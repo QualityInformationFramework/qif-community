@@ -1,0 +1,48 @@
+SOFTWARE LICENSE
+
+"QIF_CPlusPlus" and "QIF_21" open source QIF™ application and QIF™ library
+written in C++ using source code bindings produced with CodeSynthesis' XSD
+tool.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+
+Dimensional Metrology Standards Consortium, Inc. (DMSC™, Inc,) 2017
+
+This license applies to and only to the following files supplied by DMSC™:
+
+ReadMe.txt
+QIF_CPlusPlus.sln
+QIF_CPlusPlus\QIF_CPlusPlus.cpp
+QIF_CPlusPlus\QIF_CPlusPlus.h
+QIF_CPlusPlus\QIF_CPlusPlus.rc
+QIF_CPlusPlus\QIF_CPlusPlus.vcxproj
+QIF_CPlusPlus\QIF_CPlusPlus.vcxproj.filters
+QIF_CPlusPlus\QIF_CPlusPlusDlg.cpp
+QIF_CPlusPlus\QIF_CPlusPlusDlg.h
+QIF_CPlusPlus\resource.h
+QIF_CPlusPlus\stdafx.cpp
+QIF_CPlusPlus\stdafx.h
+QIF_CPlusPlus\targetver.h
+QIF_CPlusPlus\res\QIF_CPlusPlus.ico
+QIF_CPlusPlus\res\QIF_CPlusPlus.rc2
+
+QIF_21_vc100.sln
+QIF_21\QIF_21_vc100.vcxproj
+QIF_21\QIF_21_vc100.vcxproj.filters
+QIF_21\xsd-cxx-tree.props
+QIF_21\xsd-cxx-tree.targets
+QIF_21\xsd-cxx-tree.xml
+QIF_21\QIF_21_vc100.vcproj
+QIF_21\export.hxx
+QIF_21\xsd-cxx-tree.rules
+QIFApplications\QIFDocument.xsd
+QIFLibrary\xmldsig-core-schema-qif2-namespace.xsd

@@ -1,0 +1,957 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DebugLibNchar|Win32">
+      <Configuration>DebugLibNchar</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugLibNchar|x64">
+      <Configuration>DebugLibNchar</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugLib|Win32">
+      <Configuration>DebugLib</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugLib|x64">
+      <Configuration>DebugLib</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugNchar|Win32">
+      <Configuration>DebugNchar</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DebugNchar|x64">
+      <Configuration>DebugNchar</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseLibNchar|Win32">
+      <Configuration>ReleaseLibNchar</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseLibNchar|x64">
+      <Configuration>ReleaseLibNchar</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseLib|Win32">
+      <Configuration>ReleaseLib</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseLib|x64">
+      <Configuration>ReleaseLib</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseNchar|Win32">
+      <Configuration>ReleaseNchar</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseNchar|x64">
+      <Configuration>ReleaseNchar</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8BCD60B0-4779-46B3-B900-62AE193F21DF}</ProjectGuid>
+    <RootNamespace>QIF_21_vc100</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugNchar|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugLib|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="xsd-cxx-tree.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugNchar|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugLib|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|Win32'">$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|Win32'">$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|Win32'">$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|Win32'">$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|Win32'">$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|Win32'">$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='DebugLib|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='DebugLib|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='DebugLib|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='DebugNchar|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='DebugNchar|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='DebugNchar|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\QIFLibrary;..\QIFApplications;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>..\lib\xerces-c_3D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)D.dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <CXX_Tree_Mapping_Rule>
+      <AdditionalOptions>--location-map http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd=..\QIFLibrary\xmldsig-core-schema.xsd --hxx-prologue "#include \"..\\export.hxx\""</AdditionalOptions>
+      <CharType>1</CharType>
+      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21,http://www.w3.org/2000/09/xmldsig#=digitalsignature</NamespaceMap>
+      <GenSerialization>true</GenSerialization>
+      <GenPolymorphic>true</GenPolymorphic>
+      <GenDefaultCtor>true</GenDefaultCtor>
+      <RootElement>QIFDocument</RootElement>
+      <ExportSymbol>QIF21_SYMBOL_DECL</ExportSymbol>
+    </CXX_Tree_Mapping_Rule>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;..\..\QIF_XSD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>QIF21_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>..\..\QIF_XSD\lib64\xerces-c_3D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)D.dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>..\lib\xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <CXX_Tree_Mapping_Rule>
+      <AdditionalOptions>--location-map http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd=..\QIFLibrary\xmldsig-core-schema.xsd --hxx-prologue "#include \"..\\export.hxx\""</AdditionalOptions>
+      <CharType>1</CharType>
+      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21,http://www.w3.org/2000/09/xmldsig#=digitalsignature</NamespaceMap>
+      <GenSerialization>true</GenSerialization>
+      <GenPolymorphic>true</GenPolymorphic>
+      <GenDefaultCtor>true</GenDefaultCtor>
+      <RootElement>QIFDocument</RootElement>
+      <ExportSymbol>QIF21_SYMBOL_DECL</ExportSymbol>
+    </CXX_Tree_Mapping_Rule>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;..\..\QIF_XSD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>QIF21_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>..\..\QIF_XSD\lib64\xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugLib|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\QIFLibrary;..\QIFApplications;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>..\lib\xerces-c_3D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">
+    <CXX_Tree_Mapping_Rule>
+      <AdditionalOptions>--location-map http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd=..\QIFLibrary\xmldsig-core-schema.xsd --hxx-prologue "#include \"..\\export.hxx\""</AdditionalOptions>
+      <CharType>1</CharType>
+      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21,http://www.w3.org/2000/09/xmldsig#=digitalsignature</NamespaceMap>
+      <GenSerialization>true</GenSerialization>
+      <GenPolymorphic>true</GenPolymorphic>
+      <GenDefaultCtor>true</GenDefaultCtor>
+      <RootElement>QIFDocument</RootElement>
+      <ExportSymbol>QIF21_SYMBOL_DECL</ExportSymbol>
+    </CXX_Tree_Mapping_Rule>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;..\..\QIF_XSD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>QIF_STATIC_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(ProjectName)LIBD.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>..\lib\xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)LIB.dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">
+    <CXX_Tree_Mapping_Rule>
+      <AdditionalOptions>--hxx-prologue "#include \"..\\export.hxx\""</AdditionalOptions>
+      <CharType>1</CharType>
+      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21</NamespaceMap>
+      <GenSerialization>true</GenSerialization>
+      <GenPolymorphic>true</GenPolymorphic>
+      <GenDefaultCtor>true</GenDefaultCtor>
+      <RootElement>QIFDocument</RootElement>
+      <ExportSymbol>QIF21_SYMBOL_DECL</ExportSymbol>
+    </CXX_Tree_Mapping_Rule>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;..\..\QIF_XSD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>QIF_STATIC_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(ProjectName)LIB.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugNchar|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\QIFLibrary;..\QIFApplications;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>..\lib\xerces-c_3D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)DN.dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">
+    <CXX_Tree_Mapping_Rule>
+      <AdditionalOptions>--location-map http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd=..\QIFLibrary\xmldsig-core-schema.xsd --hxx-prologue "#include \"..\\export.hxx\""</AdditionalOptions>
+      <CharType>0</CharType>
+      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21,http://www.w3.org/2000/09/xmldsig#=digitalsignature</NamespaceMap>
+      <GenSerialization>true</GenSerialization>
+      <GenPolymorphic>true</GenPolymorphic>
+      <GenDefaultCtor>true</GenDefaultCtor>
+      <RootElement>QIFDocument</RootElement>
+      <ExportSymbol>QIF21_SYMBOL_DECL</ExportSymbol>
+    </CXX_Tree_Mapping_Rule>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;..\..\QIF_XSD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>QIF21_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>..\..\QIF_XSD\lib64\xerces-c_3D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)DN.dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\QIFLibrary;..\QIFApplications;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>..\lib\xerces-c_3D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)LIBND.dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">
+    <CXX_Tree_Mapping_Rule>
+      <AdditionalOptions>--location-map http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd=..\QIFLibrary\xmldsig-core-schema.xsd --hxx-prologue "#include \"..\\export.hxx\""</AdditionalOptions>
+      <CharType>0</CharType>
+      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21,http://www.w3.org/2000/09/xmldsig#=digitalsignature</NamespaceMap>
+      <GenSerialization>true</GenSerialization>
+      <GenPolymorphic>true</GenPolymorphic>
+      <GenDefaultCtor>true</GenDefaultCtor>
+      <RootElement>QIFDocument</RootElement>
+      <ExportSymbol>QIF21_SYMBOL_DECL</ExportSymbol>
+    </CXX_Tree_Mapping_Rule>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;..\..\QIF_XSD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>QIF_STATIC_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(ProjectName)LIBND.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>..\lib\xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)N.dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">
+    <CXX_Tree_Mapping_Rule>
+      <AdditionalOptions>--location-map http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd=..\QIFLibrary\xmldsig-core-schema.xsd --hxx-prologue "#include \"..\\export.hxx\""</AdditionalOptions>
+      <CharType>0</CharType>
+      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21,http://www.w3.org/2000/09/xmldsig#=digitalsignature</NamespaceMap>
+      <GenSerialization>true</GenSerialization>
+      <GenPolymorphic>true</GenPolymorphic>
+      <GenDefaultCtor>true</GenDefaultCtor>
+      <RootElement>QIFDocument</RootElement>
+      <ExportSymbol>QIF21_SYMBOL_DECL</ExportSymbol>
+    </CXX_Tree_Mapping_Rule>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;..\..\QIF_XSD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>QIF21_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>..\..\QIF_XSD\lib64\xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)N.dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>..\lib\xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)LIBN.dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">
+    <CXX_Tree_Mapping_Rule>
+      <AdditionalOptions>--location-map http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd=..\QIFLibrary\xmldsig-core-schema.xsd --hxx-prologue "#include \"..\\export.hxx\""</AdditionalOptions>
+      <CharType>0</CharType>
+      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21,http://www.w3.org/2000/09/xmldsig#=digitalsignature</NamespaceMap>
+      <GenSerialization>true</GenSerialization>
+      <GenPolymorphic>true</GenPolymorphic>
+      <GenDefaultCtor>true</GenDefaultCtor>
+      <RootElement>QIFDocument</RootElement>
+      <ExportSymbol>QIF21_SYMBOL_DECL</ExportSymbol>
+    </CXX_Tree_Mapping_Rule>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;..\..\QIF_XSD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>QIF_STATIC_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(ProjectName)LIBN.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="qiflibrary\Auxiliary.cxx" />
+    <ClCompile Include="qiflibrary\Characteristics.cxx" />
+    <ClCompile Include="qiflibrary\Expressions.cxx" />
+    <ClCompile Include="qiflibrary\Features.cxx" />
+    <ClCompile Include="qiflibrary\GenericExpressions.cxx" />
+    <ClCompile Include="qiflibrary\Geometry.cxx" />
+    <ClCompile Include="qiflibrary\IntermediatesPMI.cxx" />
+    <ClCompile Include="qiflibrary\Primitives.cxx" />
+    <ClCompile Include="qiflibrary\PrimitivesPD.cxx" />
+    <ClCompile Include="qiflibrary\PrimitivesPMI.cxx" />
+    <ClCompile Include="qifapplications\QIFDocument.cxx" />
+    <ClCompile Include="qifapplications\QIFMeasurementResources.cxx" />
+    <ClCompile Include="qifapplications\QIFPlan.cxx" />
+    <ClCompile Include="qifapplications\QIFProduct.cxx" />
+    <ClCompile Include="qifapplications\QIFResults.cxx" />
+    <ClCompile Include="qifapplications\QIFRules.cxx" />
+    <ClCompile Include="qifapplications\QIFStatistics.cxx" />
+    <ClCompile Include="qiflibrary\Statistics.cxx" />
+    <ClCompile Include="qiflibrary\Topology.cxx" />
+    <ClCompile Include="qiflibrary\Traceability.cxx" />
+    <ClCompile Include="qiflibrary\Units.cxx" />
+    <ClCompile Include="qiflibrary\Visualization.cxx" />
+    <ClCompile Include="qiflibrary\xmldsig-core-schema-qif2-namespace.cxx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="qiflibrary\Auxiliary.hxx" />
+    <ClInclude Include="qiflibrary\Characteristics.hxx" />
+    <ClInclude Include="qiflibrary\Expressions.hxx" />
+    <ClInclude Include="qiflibrary\Features.hxx" />
+    <ClInclude Include="qiflibrary\GenericExpressions.hxx" />
+    <ClInclude Include="qiflibrary\Geometry.hxx" />
+    <ClInclude Include="qiflibrary\IntermediatesPMI.hxx" />
+    <ClInclude Include="qiflibrary\Primitives.hxx" />
+    <ClInclude Include="qiflibrary\PrimitivesPD.hxx" />
+    <ClInclude Include="qiflibrary\PrimitivesPMI.hxx" />
+    <ClInclude Include="qifapplications\QIFDocument.hxx" />
+    <ClInclude Include="qifapplications\QIFMeasurementResources.hxx" />
+    <ClInclude Include="qifapplications\QIFPlan.hxx" />
+    <ClInclude Include="qifapplications\QIFProduct.hxx" />
+    <ClInclude Include="qifapplications\QIFResults.hxx" />
+    <ClInclude Include="qifapplications\QIFRules.hxx" />
+    <ClInclude Include="qifapplications\QIFStatistics.hxx" />
+    <ClInclude Include="qiflibrary\Statistics.hxx" />
+    <ClInclude Include="qiflibrary\Topology.hxx" />
+    <ClInclude Include="qiflibrary\Traceability.hxx" />
+    <ClInclude Include="qiflibrary\Units.hxx" />
+    <ClInclude Include="qiflibrary\Visualization.hxx" />
+    <ClInclude Include="qiflibrary\xmldsig-core-schema-qif2-namespace.hxx" />
+  </ItemGroup>
+  <ItemGroup>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Auxiliary.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Characteristics.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Expressions.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Features.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\GenericExpressions.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Geometry.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\IntermediatesPMI.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Primitives.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\PrimitivesPD.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\PrimitivesPMI.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFDocument.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFApplications</OutDir>
+      <SubType>Designer</SubType>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFMeasurementResources.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFApplications</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFPlan.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFApplications</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFProduct.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFApplications</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFResults.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFApplications</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFRules.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFApplications</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFStatistics.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFApplications</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Statistics.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Topology.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Traceability.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Units.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Visualization.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+      <SubType>Designer</SubType>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\xmldsig-core-schema-qif2-namespace.xsd">
+      <SubType>Designer</SubType>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLib|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='DebugNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseLibNchar|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='ReleaseNchar|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="xsd-cxx-tree.targets" />
+  </ImportGroup>
+</Project>

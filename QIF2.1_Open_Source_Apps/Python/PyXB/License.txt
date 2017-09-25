@@ -1,0 +1,25 @@
+SOFTWARE LICENSE
+
+"demoQIFin" and "demoQIFout" open source QIF™ applications written in Python
+using source code bindings produced with PyXB's pyxbgen tool.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+
+Dimensional Metrology Standards Consortium, Inc. (DMSC™, Inc,) 2017
+
+This license applies to and only to the following files supplied by DMSC™:
+
+ReadMe.txt
+demoQIFin.py
+demoQIFout.py
+QIFApplications\QIFDocument.xsd
+QIFLibrary\xmldsig-core-schema-qif2-namespace.xsd
