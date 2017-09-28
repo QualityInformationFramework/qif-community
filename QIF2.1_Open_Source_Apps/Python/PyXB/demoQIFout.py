@@ -9,6 +9,19 @@ import tkinter
 import uuid
 import os
 
+# This script prompts the user for the name of a QIF document.
+# This new QIF document is populated with feature, characteristic,
+# datum, measurement resource, and measured results information
+# in a top-down, hard-coded fashion.
+# 
+# Where you see hard-coded data like:
+# 
+#   # plane location
+#   planLoc = QIFDocument.PointType([0.0, 0.0, 0.0])
+#   planANom.Location = planLoc      ##   ##   ##
+#
+#   YOUR DATA GOES HERE ##
+#
 # this sets xmlns="http:#qifstandards.org/xsd/qif2" in the QIF document and
 # prevents a default namespace prefix like <ns1: on every element
 pyxb.utils.domutils.BindingDOMSupport.SetDefaultNamespace("http://qifstandards.org/xsd/qif2")
@@ -559,7 +572,7 @@ diaBCTol = QIFDocument.LinearToleranceType()
 diaBCTol.DefinedAsLimit = 0 # false
 diaBCTol.MaxValue = plusTolBC
 diaBCTol.MinValue = minusTolBC
-#diaBCDef.Tolerance = diaBCTol
+diaBCDef.Tolerance = diaBCTol
 
 # add to list
 charDefs.append(diaBCDef)

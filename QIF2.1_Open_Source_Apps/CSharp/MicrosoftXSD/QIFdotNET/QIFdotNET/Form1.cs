@@ -66,7 +66,7 @@ namespace QifStructureReader1
                         string tertiary = "";
                         // Generic holder until we figure out this datum's precidence
                         string datum = "";
-                        if (qifDoc.DatumReferenceFrames.DatumReferenceFrame[i].Datums != null) // make sure this srf has (optional) datum list
+                        if (qifDoc.DatumReferenceFrames.DatumReferenceFrame[i].Datums != null) // make sure this drf has (optional) datum list
                         {
                             for (int j = 0; j < qifDoc.DatumReferenceFrames.DatumReferenceFrame[i].Datums.Datum.Length; j++) // walk through the datum list
                             {
@@ -81,7 +81,7 @@ namespace QifStructureReader1
                                             datum = ",DAT(" + qifDoc.DatumDefinitions.DatumDefinition[k].DatumLabel + ")"; // and capture the datum label
                                         }
                                     }
-                                    switch (simpleDatum.MaterialModifier) // append material consition modifier as appropriate
+                                    switch (simpleDatum.MaterialModifier) // append material condition modifier as appropriate
                                     {
                                         case MaterialModifierEnumType.MAXIMUM:
                                             datum += ",MMC";
@@ -139,11 +139,7 @@ namespace QifStructureReader1
         {
             if (qifDoc.Characteristics != null && // make sure we have(optional) characteristics and measurements
                 qifDoc.Characteristics.CharacteristicItems != null && 
-                qifDoc.Characteristics.CharacteristicNominals != null &&
-                qifDoc.Characteristics.CharacteristicDefinitions != null &&
                 qifDoc.MeasurementsResults != null &&
-                qifDoc.MeasurementsResults.MeasurementResultsSet != null &&
-                qifDoc.MeasurementsResults.MeasurementResultsSet.MeasurementResults != null &&
                 qifDoc.MeasurementsResults.MeasurementResultsSet.MeasurementResults.Length > 0)
             {
                 // let's just look at the first set of measurement results
@@ -163,17 +159,17 @@ namespace QifStructureReader1
                                 if (measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i].FeatureActualIds.Id[j].Value == actfeatid) // look for a match
                                 {
                                     // find the (required) item, nominal and definition for this actual characteristic 
-                                    for (int k = 0; k < qifDoc.Characteristics.CharacteristicItems.CharacteristicItem.Length; k++)
+                                    for (int k = 0; k < qifDoc.Characteristics.CharacteristicItems.CharacteristicItem.Length; k++) // walk through characteristic items
                                     {
-                                        if (qifDoc.Characteristics.CharacteristicItems.CharacteristicItem[k].id == measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i].CharacteristicItemId.Value)
+                                        if (qifDoc.Characteristics.CharacteristicItems.CharacteristicItem[k].id == measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i].CharacteristicItemId.Value) // looking for the item referenced by the actual
                                         {
-                                            for (int m = 0; m < qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal.Length; m++)
+                                            for (int m = 0; m < qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal.Length; m++) // walk through characteristic nominals
                                             {
-                                                if (qifDoc.Characteristics.CharacteristicItems.CharacteristicItem[k].CharacteristicNominalId.Value == qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal[m].id)
+                                                if (qifDoc.Characteristics.CharacteristicItems.CharacteristicItem[k].CharacteristicNominalId.Value == qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal[m].id) // looking for the nominal referenced by the item
                                                 {
-                                                    for (int n = 0; n < qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition.Length; n++)
+                                                    for (int n = 0; n < qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition.Length; n++) // walk through characteristic definitions
                                                     {
-                                                        if (qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal[m].CharacteristicDefinitionId.Value == qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition[n].id)
+                                                        if (qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal[m].CharacteristicDefinitionId.Value == qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition[n].id) // looking for the definition referenced by the nominal
                                                         {
                                                             // we have all four aspects, check their types (which should all match)
                                                             if (measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i] is DiameterCharacteristicActualType &&
@@ -191,13 +187,21 @@ namespace QifStructureReader1
                                                                     qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition[n].GetType());
                                                                 if(diaAct != null && diaItem != null && diaNom != null && diaDef != null) // should never fail, so it will
                                                                 {
-                                                                    if (diaDef.Item is LinearToleranceType)
+                                                                    // we have a set of matched types
+                                                                    if (diaDef.Item is LinearToleranceType) // this could be a limit&fit or tolerance definition
                                                                     {
+                                                                        // an aside...
+                                                                        // dimensional characteristics have an optional enumeration for BASIC, SET, REFERENCE
+                                                                        // if(diaDef.DimensionType != null) { } // this doesn't work to see if it exists (never null)
+                                                                        if (diaDef.DimensionTypeSpecified) { } // this extra method needs to be used to test for optional enumerations
+                                                                        // but we're not interested in this modifier for our DMIS output
                                                                         LinearToleranceType diaTol = (LinearToleranceType)Convert.ChangeType(diaDef.Item, diaDef.Item.GetType());
                                                                         if(diaTol != null)
                                                                         {
+                                                                            // just min, just max, or both min+max may be defined in QIF, DMIS needs both
                                                                             decimal hitol = 0;
                                                                             decimal lotol = 0;
+                                                                            // because both min and max are objects of the same type, this clunky method is used to figure out who is who
                                                                             for (int t = 0; t < diaTol.ItemsElementName.Length; t++)
                                                                             {
                                                                                 if (diaTol.ItemsElementName[t] == ItemsChoiceType4.MaxValue)
@@ -211,27 +215,34 @@ namespace QifStructureReader1
                                                                                     if (diaMin != null) lotol = diaMin.Value;
                                                                                 }
                                                                             }
-                                                                            if (diaTol.DefinedAsLimit)
+                                                                            if (diaTol.DefinedAsLimit) // limit specification?
                                                                             {
-                                                                                if (diaNom.TargetValue != null)
+                                                                                // DMIS doesn't support limit tolerance for diameter
+                                                                                if (diaNom.TargetValue != null) // do we have a target value?
                                                                                 {
+                                                                                    // convert min and max from limit to +/- tols
                                                                                     hitol = hitol - diaNom.TargetValue.Value;
                                                                                     lotol = lotol - diaNom.TargetValue.Value;
                                                                                 }
                                                                                 else
                                                                                 {
+                                                                                    // assume target is between limits
                                                                                     decimal diam = (hitol + lotol) / 2;
                                                                                     hitol = hitol - diam;
                                                                                     lotol = lotol - diam;
                                                                                 }
                                                                             }
+                                                                            // compose the nominal DMIS tolerance label T(DIAM1)
                                                                             tlabels += ",T(" + diaItem.Name + ")";
+                                                                            // compose the nominal DMIS tolerance T(DIAM1)=TOL/DIAM,-.1,.1
                                                                             tdefs += "T(" + diaItem.Name + ")=TOL/DIAM," + lotol.ToString() + "," + hitol.ToString() + Environment.NewLine;
                                                                             if (diaAct.Value != null)
                                                                             {
+                                                                                // compose the actual DMIS tolerance label TA(DIAM1)
                                                                                 talabels += ",TA(" + diaItem.Name + ")";
+                                                                                // compose the actual DMIS tolerance TA(DIAM1)=TOL/DIAM,-.05,INTOL
                                                                                 tadefs += "TA(" + diaItem.Name + ")=TOL/DIAM," + diaAct.Value.Value.ToString();
-                                                                                if (diaAct.Status.Item is CharacteristicStatusEnumType)
+                                                                                if (diaAct.Status.Item is CharacteristicStatusEnumType) // we are only going to handle the enumeration
                                                                                 {
                                                                                     CharacteristicStatusEnumType status = (CharacteristicStatusEnumType)Convert.ChangeType(diaAct.Status.Item, diaAct.Status.Item.GetType());
                                                                                     if (status == CharacteristicStatusEnumType.PASS) tadefs += ",INTOL";
@@ -259,8 +270,11 @@ namespace QifStructureReader1
                                                                     qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition[n].GetType());
                                                                 if (flatAct != null && flatItem != null && flatNom != null && flatDef != null) // should never fail, so it will
                                                                 {
+                                                                    // we have a set of matched flatness types
                                                                     // we're going to cheat and just grab the tolerance zone neglecting any per-area requirements
+                                                                    // compose the nominal DMIS tolerance label T(FLAT1)
                                                                     tlabels += ",T(" + flatItem.Name + ")";
+                                                                    // compose the nominal DMIS tolerance T(FLAT1)=TOL/FLAT,.1
                                                                     tdefs += "T(" + flatItem.Name + ")=TOL/FLAT,";
                                                                     if (flatDef.Items != null) // this can be zone, or zone + per unit area
                                                                     {
@@ -273,7 +287,7 @@ namespace QifStructureReader1
                                                                             }
                                                                         }
                                                                     }
-                                                                    else if (flatDef.Items != null && flatDef.Item is ToleranceZonePerUnitAreaType) // this will be unit area
+                                                                    else if (flatDef.Items != null && flatDef.Item is ToleranceZonePerUnitAreaType) // this will be per unit area
                                                                     {
                                                                         ToleranceZonePerUnitAreaType areazone = (ToleranceZonePerUnitAreaType)Convert.ChangeType(flatDef.Item, flatDef.Item.GetType());
                                                                         tdefs += areazone.ToleranceValuePerUnit.Value.ToString();
@@ -283,11 +297,13 @@ namespace QifStructureReader1
                                                                         tdefs += "0";
                                                                     }
                                                                     tdefs += Environment.NewLine;
-                                                                    if (flatAct.Value != null)
+                                                                    if (flatAct.Value != null) // do we have the optional actual value?
                                                                     {
+                                                                        // compose the actual DMIS tolerance label TA(FLAT1)
                                                                         talabels += ",TA(" + flatItem.Name + ")";
+                                                                        // compose the actual DMIS tolerance TA(FLAT1)=TOL/FLAT,.05,INTOL
                                                                         tadefs += "TA(" + flatItem.Name + ")=TOL/FLAT," + flatAct.Value.Value.ToString();
-                                                                        if (flatAct.Status.Item is CharacteristicStatusEnumType)
+                                                                        if (flatAct.Status.Item is CharacteristicStatusEnumType) // we are only going to handle the enumeration
                                                                         {
                                                                             CharacteristicStatusEnumType status = (CharacteristicStatusEnumType)Convert.ChangeType(flatAct.Status.Item, flatAct.Status.Item.GetType());
                                                                             if (status == CharacteristicStatusEnumType.PASS) tadefs += ",INTOL";
@@ -313,29 +329,38 @@ namespace QifStructureReader1
                                                                     qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition[n].GetType());
                                                                 if (perpAct != null && perpItem != null && perpNom != null && perpDef != null) // should never fail, so it will
                                                                 {
+                                                                    // we have a set of matched perpendicularity types
+                                                                    // compose the nominal DMIS tolerance label T(PERP1)
                                                                     tlabels += ",T(" + perpItem.Name + ")";
+                                                                    // compose the nominal DMIS tolerance T(PERP1)=TOL/PERP,.1,MMC,DAT(A)
                                                                     tdefs += "T(" + perpItem.Name + ")=TOL/PERP," + perpDef.ToleranceValue.Value.ToString();
+                                                                    // material modifier for tolerance value
                                                                     if (perpDef.MaterialCondition == MaterialModifierEnumType.MAXIMUM) tdefs += ",MMC";
                                                                     else if (perpDef.MaterialCondition == MaterialModifierEnumType.LEAST) tdefs += ",LMC";
                                                                     else if (perpDef.MaterialCondition == MaterialModifierEnumType.REGARDLESS) tdefs += ",RFS";
+                                                                    // get the DRF string
                                                                     string drfStr = "";
-                                                                    if (perpDef.DatumReferenceFrameId != null) GetDatumReferenceFrame(qifDoc, perpDef.DatumReferenceFrameId.Value, ref drfStr);
+                                                                    if (perpDef.DatumReferenceFrameId != null) // DRF is optional
+                                                                        GetDatumReferenceFrame(qifDoc, perpDef.DatumReferenceFrameId.Value, ref drfStr);
                                                                     tdefs += drfStr + Environment.NewLine;
-                                                                    if (perpAct.Value != null)
+                                                                    if (perpAct.Value != null) // do we have the optional actual value?
                                                                     {
+                                                                        // compose the actual DMIS tolerance label TA(PERP1)
                                                                         talabels += ",TA(" + perpItem.Name + ")";
+                                                                        // compose the actual DMIS tolerance TA(PERP1)=TOL/PERP,.05,INTOL,MMC,DAT(A)
                                                                         tadefs += "TA(" + perpItem.Name + ")=TOL/PERP," + perpAct.Value.Value.ToString();
-                                                                        if (perpAct.Status.Item is CharacteristicStatusEnumType)
+                                                                        if (perpAct.Status.Item is CharacteristicStatusEnumType) // we are only going to handle the enumeration
                                                                         {
                                                                             CharacteristicStatusEnumType status = (CharacteristicStatusEnumType)Convert.ChangeType(perpAct.Status.Item, perpAct.Status.Item.GetType());
                                                                             if (status == CharacteristicStatusEnumType.PASS) tadefs += ",INTOL";
                                                                             else tadefs += ",OUTOL"; // if we don't it's in, assume it's out
                                                                         }
                                                                         else tadefs += ",OUTOL"; // if we don't it's in, assume it's out
+                                                                        // material modifier for tolerance value, again
                                                                         if (perpDef.MaterialCondition == MaterialModifierEnumType.MAXIMUM) tadefs += ",MMC";
                                                                         else if (perpDef.MaterialCondition == MaterialModifierEnumType.LEAST) tadefs += ",LMC";
                                                                         else if (perpDef.MaterialCondition == MaterialModifierEnumType.REGARDLESS) tadefs += ",RFS";
-                                                                        tadefs += drfStr + Environment.NewLine;
+                                                                        tadefs += drfStr + Environment.NewLine; // reuse the DRF string
                                                                     }
                                                                 }
                                                             }
@@ -354,31 +379,40 @@ namespace QifStructureReader1
                                                                     qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition[n].GetType());
                                                                 if (posAct != null && posItem != null && posNom != null && posDef != null) // should never fail, so it will
                                                                 {
+                                                                    // we have a set of matched position types
+                                                                    // compose the nominal DMIS tolerance label T(POS1)
                                                                     tlabels += ",T(" + posItem.Name + ")";
                                                                     string dim = "3D,";
                                                                     // TODO, determine dimensionality
+                                                                    // compose the nominal DMIS tolerance T(POS1)=TOL/POS,.1,MMC,DAT(A),DAT(B),MMC
                                                                     tdefs += "T(" + posItem.Name + ")=TOL/POS," + dim + posDef.ToleranceValue.Value.ToString();
+                                                                    // material modifier for tolerance value
                                                                     if (posDef.MaterialCondition == MaterialModifierEnumType.MAXIMUM) tdefs += ",MMC";
                                                                     else if (posDef.MaterialCondition == MaterialModifierEnumType.LEAST) tdefs += ",LMC";
                                                                     else if (posDef.MaterialCondition == MaterialModifierEnumType.REGARDLESS) tdefs += ",RFS";
+                                                                    // get the DRF string
                                                                     string drfStr = "";
-                                                                    if (posDef.DatumReferenceFrameId != null) GetDatumReferenceFrame(qifDoc, posDef.DatumReferenceFrameId.Value, ref drfStr);
+                                                                    if (posDef.DatumReferenceFrameId != null) // DRF is optional
+                                                                        GetDatumReferenceFrame(qifDoc, posDef.DatumReferenceFrameId.Value, ref drfStr);
                                                                     tdefs += drfStr + Environment.NewLine;
-                                                                    if (posAct.Value != null)
+                                                                    if (posAct.Value != null) // do we have the optional actual value?
                                                                     {
+                                                                        // compose the actual DMIS tolerance label TA(POS1)
                                                                         talabels += ",TA(" + posItem.Name + ")";
+                                                                        // compose the actual DMIS tolerance T(POS1)=TOL/POS,.05,INTOL,MMC,DAT(A),DAT(B),MMC
                                                                         tadefs += "TA(" + posItem.Name + ")=TOL/POS," + dim + posAct.Value.Value.ToString();
-                                                                        if (posAct.Status.Item is CharacteristicStatusEnumType)
+                                                                        if (posAct.Status.Item is CharacteristicStatusEnumType) // we are only going to handle the enumeration
                                                                         {
                                                                             CharacteristicStatusEnumType status = (CharacteristicStatusEnumType)Convert.ChangeType(posAct.Status.Item, posAct.Status.Item.GetType());
                                                                             if (status == CharacteristicStatusEnumType.PASS) tadefs += ",INTOL";
                                                                             else tadefs += ",OUTOL"; // if we don't it's in, assume it's out
                                                                         }
                                                                         else tadefs += ",OUTOL"; // if we don't it's in, assume it's out
+                                                                        // material modifier for tolerance value, again
                                                                         if (posDef.MaterialCondition == MaterialModifierEnumType.MAXIMUM) tadefs += ",MMC";
                                                                         else if (posDef.MaterialCondition == MaterialModifierEnumType.LEAST) tadefs += ",LMC";
                                                                         else if (posDef.MaterialCondition == MaterialModifierEnumType.REGARDLESS) tadefs += ",RFS";
-                                                                        tadefs += drfStr + Environment.NewLine;
+                                                                        tadefs += drfStr + Environment.NewLine; // reuse the DRF string
                                                                     }
                                                                 }
                                                             }
@@ -401,20 +435,47 @@ namespace QifStructureReader1
         }
         #endregion function GetTolerances
 
-        private void QifDocumentTypeCall()
+#region read QIF
+        /*
+        This call back prompts the user for a QIF document to read.
+        The QIF document is mined for units, feature, characteristic, and datum deinfition data.
+        This information is output in the form of a DMIS results file which shows
+        the relationships among features, characteristics and datums:
+
+        FILNAM/'cpp.qif',5.3
+        $$ Dimensional Metrology Standards Consortium (DMSC))
+        $$ This DMIS results file produced from QIF document:
+        $$   C:\Python34\pyxb-next\QIF21\QIF21\cpp.qif
+        $$ with DMSC's open source QIFdotNET application written in C#
+        $$ using XML schema source code bindings created by Microsoft's XSD tool
+        UNITS/MM,ANGDEC                         <- units
+
+        $$ Plane nominal DAT_A
+        OUTPUT/F(DAT_A),T(FLAT1)                <- feature/characteristic relationship
+        F(DAT_A)=FEAT/PLANE,CART,0,0,0,0,0,1    <- nominal feature data
+        T(FLAT1)=TOL/FLAT,0.1                   <- nominal characteristic data
+        $$ Plane actual DAT_A
+        OUTPUT/FA(DAT_A),TA(FLAT1)              <- feature/characteristic relationship redux
+        FA(DAT_A)=FEAT/PLANE,CART,0,0,0,0,0,1   <- actual feature data
+        TA(FLAT1)=TOL/FLAT,0.023,INTOL          <- actual characteristic data
+        DATDEF/FA(DAT_A),DAT(A)                 <- datum definition
+        */
+        private void QifDocumentReadCall()
         {
             try
             {
-                QIFDocumentType qifDoc;
+                QIFDocumentType qifDoc; // QIF objects (eventually)
 
                 bool breakout = false;
 
                 var serializer = new XmlSerializer(typeof(QIFDocumentType));
 
+                // set up file open dialog
                 OpenFileDialog openFileDialog1 = new OpenFileDialog();
                 openFileDialog1.Filter = "QIF Documents|*.qif";
                 openFileDialog1.Title = "Open a QIF file:";
 
+                // launch the dialog box
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     // deserialize QIF document
@@ -424,7 +485,7 @@ namespace QifStructureReader1
                         qifDoc = (QIFDocumentType)serializer.Deserialize(reader);
                     }
                     // make sure we have all the pieces we need to make a DMIS results document:
-                    // features, datums, characteristics, and measured results
+                    // DMIS is very feature-centric, so at minimum we need features and measured results
                     if (qifDoc.Features != null &&
                         qifDoc.Features.FeatureItems != null &&
                         qifDoc.Features.FeatureNominals != null &&
@@ -435,8 +496,8 @@ namespace QifStructureReader1
                         qifDoc.MeasurementsResults.MeasurementResultsSet.MeasurementResults.Length > 0)
                     {
                         // begin our DMIS results file
-                        string dmisoutput = "FILNAM/'";
-                        dmisoutput += Path.GetFileNameWithoutExtension(openFileDialog1.FileName) + "',5.3" + Environment.NewLine;
+                        string dmisoutput = "FILNAM/'"; // this needs to be the first statement in a DMIS results file
+                        dmisoutput += Path.GetFileNameWithoutExtension(openFileDialog1.FileName) + "',5.3" + Environment.NewLine; // the name of the QIF document we loaded + DMIS version number
                         // add some application identifying information
                         dmisoutput += "$$ Dimensional Metrology Standards Consortium (DMSC))" + Environment.NewLine;
                         dmisoutput += "$$ This DMIS results file produced from QIF document:" + Environment.NewLine;
@@ -450,12 +511,12 @@ namespace QifStructureReader1
                         {
                             if(qifDoc.FileUnits.PrimaryUnits.LinearUnit != null)
                             {
-                                if (qifDoc.FileUnits.PrimaryUnits.LinearUnit.UnitConversion != null)
+                                if (qifDoc.FileUnits.PrimaryUnits.LinearUnit.UnitConversion != null) // use the conversion factor if we have it
                                 {
                                     if (qifDoc.FileUnits.PrimaryUnits.LinearUnit.UnitConversion.Factor == 0.001M) units = "MM";
                                     else if (qifDoc.FileUnits.PrimaryUnits.LinearUnit.UnitConversion.Factor == 0.0254M) units = "INCH";
                                 }
-                                else // try the name
+                                else // otherwise, try the name
                                 {
                                     string unitname = qifDoc.FileUnits.PrimaryUnits.LinearUnit.UnitName;
                                     if (unitname.ToUpper() == "MM") units = "MM";
@@ -465,25 +526,30 @@ namespace QifStructureReader1
                         }
                         dmisoutput += units;
                         dmisoutput += ",ANGDEC" + Environment.NewLine;
-                        // walk through the features and characteristics
+                        // just look at the first set of measured results
                         MeasurementResultsType measResults = qifDoc.MeasurementsResults.MeasurementResultsSet.MeasurementResults[0];
                         if (measResults.MeasuredFeatures != null &&
                            measResults.MeasuredFeatures.FeatureActuals != null)
                         {
-                            // walk through the list of feature actuals
+                            // walk through the list of feature actuals (this is the main output loop)
                             for (int i = 0; i < measResults.MeasuredFeatures.FeatureActuals.FeatureActual.Length; i++)
                             {
-                                // find the associated feature item
+                                // walk through the list of feature items...
                                 for (int j = 0; j < qifDoc.Features.FeatureItems.FeatureItem.Length; j++)
                                 {
+                                    // ...to find the associated feature item
                                     if (qifDoc.Features.FeatureItems.FeatureItem[j].id == measResults.MeasuredFeatures.FeatureActuals.FeatureActual[i].FeatureItemId.Value)
                                     {
+                                        // walk through the list of feature nominals...
                                         for (int k = 0; k < qifDoc.Features.FeatureNominals.FeatureNominal.Length; k++)
                                         {
+                                            // ...to find the associated feature nominal (the item->nominal link is optional)
                                             if (qifDoc.Features.FeatureItems.FeatureItem[j].FeatureNominalId != null && qifDoc.Features.FeatureNominals.FeatureNominal[k].id == qifDoc.Features.FeatureItems.FeatureItem[j].FeatureNominalId.Value)
                                             {
+                                                // walk through the list of feature definitions...
                                                 for (int n = 0; n < qifDoc.Features.FeatureDefinitions.FeatureDefinition.Length; n++)
                                                 {
+                                                    // ...to find the associated feature definition
                                                     if (qifDoc.Features.FeatureDefinitions.FeatureDefinition[n].id == qifDoc.Features.FeatureNominals.FeatureNominal[k].FeatureDefinitionId.Value)
                                                     {
                                                         // we have all 4 aspects: actual, item, nominal and definition, make sure they're all the same type
@@ -500,9 +566,14 @@ namespace QifStructureReader1
                                                                 measResults.MeasuredFeatures.FeatureActuals.FeatureActual[i].GetType());
                                                             if (circNom != null && circDef != null && circAct != null) // should never happen, so it will
                                                             {
+                                                                // we have a matched set of circle aspects
+                                                                // compose the feature nominal label
                                                                 string flabel = "F(" + qifDoc.Features.FeatureItems.FeatureItem[j].FeatureName + ")"; // F(CIRC1) for example
-                                                                string falabel = "FA(" + qifDoc.Features.FeatureItems.FeatureItem[j].FeatureName + ")";
+                                                                // compose the feature actual label
+                                                                string falabel = "FA(" + qifDoc.Features.FeatureItems.FeatureItem[j].FeatureName + ")"; // FA(CIRC1) for example
+                                                                // begin composing the nominal feature definition F(CIRC1)=FEAT/CIRCLE...
                                                                 string f = flabel + "=FEAT/CIRCLE";
+                                                                // begin composing the actual feature definition FA(CIRC1)=FEAT/CIRCLE...
                                                                 string fa = falabel + "=FEAT/CIRCLE";
                                                                 // inner  or outer?
                                                                 if (circDef.InternalExternal == InternalExternalEnumType.EXTERNAL)
@@ -510,7 +581,7 @@ namespace QifStructureReader1
                                                                     f += ",OUTER";
                                                                     fa += ",OUTER";
                                                                 }
-                                                                else
+                                                                else // assume INNER, DMIS doesn't have a not-applicable option
                                                                 {
                                                                     f += ",INNER";
                                                                     fa += ",INNER";
@@ -518,7 +589,7 @@ namespace QifStructureReader1
                                                                 // cartesian
                                                                 f += ",CART";
                                                                 fa += ",CART";
-                                                                // xyz location
+                                                                // nominal xyz location
                                                                 double[] location = Array.ConvertAll(circNom.Location.Text.Split(' '), new Converter<string, double>(Double.Parse));
                                                                 if (location.Length == 3) // should always be 3
                                                                 {
@@ -530,13 +601,14 @@ namespace QifStructureReader1
                                                                     f += ",0,0,0";
                                                                     if (circAct.Location == null) fa += ",0,0,0";
                                                                 }
+                                                                // actual xyz location
                                                                 if (circAct.Location != null)
                                                                 {
                                                                     double[] actlocation = Array.ConvertAll(circAct.Location.Text.Split(' '), new Converter<string, double>(Double.Parse));
                                                                     if (actlocation.Length == 3) fa += "," + actlocation[0].ToString() + "," + actlocation[1].ToString() + "," + actlocation[2].ToString();
                                                                     else fa += ",0,0,0";
                                                                 }
-                                                                // ijk vector
+                                                                // nominal ijk vector
                                                                 double[] normal = Array.ConvertAll(circNom.Normal.Text.Split(' '), new Converter<string, double>(Double.Parse));
                                                                 if (normal.Length == 3) // should always be 3
                                                                 {
@@ -548,6 +620,7 @@ namespace QifStructureReader1
                                                                     f += ",0,0,1";
                                                                     if (circAct.Normal == null) fa += ",0,0,1";
                                                                 }
+                                                                // actual ijk vector
                                                                 if (circAct.Normal != null)
                                                                 {
                                                                     double[] actnormal = Array.ConvertAll(circAct.Normal.Text.Split(' '), new Converter<string, double>(Double.Parse));
@@ -592,9 +665,14 @@ namespace QifStructureReader1
                                                                 measResults.MeasuredFeatures.FeatureActuals.FeatureActual[i].GetType());
                                                             if (cylNom != null && cylDef != null && cylAct != null) // should never happen, so it will
                                                             {
-                                                                string flabel = "F(" + qifDoc.Features.FeatureItems.FeatureItem[j].FeatureName + ")"; // F(CIRC1) for example
-                                                                string falabel = "FA(" + qifDoc.Features.FeatureItems.FeatureItem[j].FeatureName + ")";
+                                                                // we have a matched set of cylinder aspects
+                                                                // compose the feature nominal label
+                                                                string flabel = "F(" + qifDoc.Features.FeatureItems.FeatureItem[j].FeatureName + ")"; // F(CYL1) for example
+                                                                // compose the feature actual label
+                                                                string falabel = "FA(" + qifDoc.Features.FeatureItems.FeatureItem[j].FeatureName + ")"; // FA(CYL1) for example
+                                                                // begin composing the nominal feature definition F(CYL1)=FEAT/CYLNDR...
                                                                 string f = flabel + "=FEAT/CYLNDR";
+                                                                // begin composing the actual feature definition FA(CYL1)=FEAT/CYLNDR...
                                                                 string fa = falabel + "=FEAT/CYLNDR";
                                                                 // inner  or outer?
                                                                 if (cylDef.InternalExternal == InternalExternalEnumType.EXTERNAL)
@@ -602,7 +680,7 @@ namespace QifStructureReader1
                                                                     f += ",OUTER";
                                                                     fa += ",OUTER";
                                                                 }
-                                                                else
+                                                                else // assume INNER, DMIS doesn't have a not-applicable option
                                                                 {
                                                                     f += ",INNER";
                                                                     fa += ",INNER";
@@ -610,7 +688,7 @@ namespace QifStructureReader1
                                                                 // cartesian
                                                                 f += ",CART";
                                                                 fa += ",CART";
-                                                                // xyz location
+                                                                // nominal xyz location
                                                                 double[] location = Array.ConvertAll(cylNom.Axis.AxisPoint.Text.Split(' '), new Converter<string, double>(Double.Parse));
                                                                 if (location.Length == 3) // should always be 3
                                                                 {
@@ -622,13 +700,14 @@ namespace QifStructureReader1
                                                                     f += ",0,0,0";
                                                                     if (cylAct.Axis == null) fa += ",0,0,0";
                                                                 }
+                                                                // actual xyz location
                                                                 if (cylAct.Axis != null)
                                                                 {
                                                                     double[] actlocation = Array.ConvertAll(cylAct.Axis.AxisPoint.Text.Split(' '), new Converter<string, double>(Double.Parse));
                                                                     if (actlocation.Length == 3) fa += "," + actlocation[0].ToString() + "," + actlocation[1].ToString() + "," + actlocation[2].ToString();
                                                                     else fa += ",0,0,0";
                                                                 }
-                                                                // ijk vector
+                                                                // nominal ijk vector
                                                                 double[] normal = Array.ConvertAll(cylNom.Axis.Direction.Text.Split(' '), new Converter<string, double>(Double.Parse));
                                                                 if (normal.Length == 3) // should always be 3
                                                                 {
@@ -640,6 +719,7 @@ namespace QifStructureReader1
                                                                     f += ",0,0,1";
                                                                     if (cylAct.Axis == null) fa += ",0,0,1";
                                                                 }
+                                                                // actual ijk vector
                                                                 if (cylAct.Axis != null)
                                                                 {
                                                                     double[] actnormal = Array.ConvertAll(cylAct.Axis.Direction.Text.Split(' '), new Converter<string, double>(Double.Parse));
@@ -682,14 +762,18 @@ namespace QifStructureReader1
                                                                 measResults.MeasuredFeatures.FeatureActuals.FeatureActual[i].GetType());
                                                             if (planNom != null && planAct != null) // should never happen, so it will
                                                             {
-                                                                string flabel = "F(" + qifDoc.Features.FeatureItems.FeatureItem[j].FeatureName + ")";
-                                                                string falabel = "FA(" + qifDoc.Features.FeatureItems.FeatureItem[j].FeatureName + ")";
+                                                                // we have a matched set of plane aspects
+                                                                // compose the feature nominal label
+                                                                string flabel = "F(" + qifDoc.Features.FeatureItems.FeatureItem[j].FeatureName + ")"; // F(PLN1) for example
+                                                                string falabel = "FA(" + qifDoc.Features.FeatureItems.FeatureItem[j].FeatureName + ")"; // FA(PLN1) for example
+                                                                // begin composing the nominal feature definition F(PLN1)=FEAT/PLANE...
                                                                 string f = flabel + "=FEAT/PLANE";
+                                                                // begin composing the actual feature definition FA(PLN1)=FEAT/PLANE...
                                                                 string fa = falabel + "=FEAT/PLANE";
                                                                 // cartesian
                                                                 f += ",CART";
                                                                 fa += ",CART";
-                                                                // xyz location
+                                                                // nominal xyz location
                                                                 double[] location = Array.ConvertAll(planNom.Location.Text.Split(' '), new Converter<string, double>(Double.Parse));
                                                                 if (location.Length == 3) // should always be 3
                                                                 {
@@ -701,13 +785,14 @@ namespace QifStructureReader1
                                                                     f += ",0,0,0";
                                                                     if (planAct.Location == null) fa += ",0,0,0";
                                                                 }
+                                                                // actual xyz location
                                                                 if (planAct.Location != null)
                                                                 {
                                                                     double[] actlocation = Array.ConvertAll(planAct.Location.Text.Split(' '), new Converter<string, double>(Double.Parse));
                                                                     if (actlocation.Length == 3) fa += "," + actlocation[0].ToString() + "," + actlocation[1].ToString() + "," + actlocation[2].ToString();
                                                                     else fa += ",0,0,0";
                                                                 }
-                                                                // ijk vector
+                                                                // nominal ijk vector
                                                                 double[] normal = Array.ConvertAll(planNom.Normal.Text.Split(' '), new Converter<string, double>(Double.Parse));
                                                                 if (normal.Length == 3) // should always be 3
                                                                 {
@@ -719,6 +804,7 @@ namespace QifStructureReader1
                                                                     f += ",0,0,1";
                                                                     if (planAct.Normal == null) fa += ",0,0,1";
                                                                 }
+                                                                // actual ijk vector
                                                                 if (planAct.Normal != null)
                                                                 {
                                                                     double[] actnormal = Array.ConvertAll(planAct.Normal.Text.Split(' '), new Converter<string, double>(Double.Parse));
@@ -750,21 +836,24 @@ namespace QifStructureReader1
                                                             }
                                                         }
                                                         break; // definition loop
-                                                    }                                                    
+                                                    }
                                                 }
                                                 break; // nominal loop
-                                            }                                            
+                                            }
                                         }
                                         break; // item loop
                                     }
                                 }
                             }
                         }
-                        dmisoutput += "ENDFIL";
+                        dmisoutput += "ENDFIL"; // required at the end of a DMIS file
+
+                        // set up file save dialog
                         SaveFileDialog saveDMISFileDialog1 = new SaveFileDialog();
                         saveDMISFileDialog1.Filter = "DMIS results file|*.dmo";
                         saveDMISFileDialog1.Title = "Save a DMIS results file:";
 
+                        // launch the dialog box
                         if (saveDMISFileDialog1.ShowDialog() == DialogResult.OK)
                         {
                             // write the document
@@ -773,6 +862,7 @@ namespace QifStructureReader1
                             System.Diagnostics.Process.Start("notepad.exe", saveDMISFileDialog1.FileName);
                         }
                     }
+                    #region old code
                     else
                     {
                         // otherwise here's some old code that displays some messages (why throw away working code?)
@@ -992,8 +1082,9 @@ namespace QifStructureReader1
                         }
                         #endregion
                     }
+                    #endregion
 
-                    //#region Test parser
+                    #region Test parser
                     //// save off QIF again under a different name to test validy of QIFDocument.cs serializer (no problems found yet)
                     //SaveFileDialog saveFileDialog1 = new SaveFileDialog();
                     //saveFileDialog1.Filter = "QIF Documents|*.qif";
@@ -1006,7 +1097,7 @@ namespace QifStructureReader1
                     //    xmlserializer.Serialize(putstream, qifDoc);
                     //    putstream.Close();
                     //}
-                    //#endregion
+                    #endregion
                 }
             }
             catch (Exception ex)
@@ -1015,8 +1106,28 @@ namespace QifStructureReader1
                 int i = 1;
             }
         }
+#endregion
 
-        private void QifDocumentCreateCall()
+#region write QIF
+        /*
+        This call back prompts the user for the name of a QIF document.
+        This new QIF document is populated with feature, characteristic,
+        datum, measurement resource, and measured results information
+        in a top-down, hard-coded fashion.
+
+        Where you see hard-coded data like:
+                // plane location
+                planANom.Location = new PointType();
+                double[] pt = new double[3];
+                pt[0] = 0.0; // **
+                pt[1] = 0.0; // **
+                pt[2] = 0.0; // **
+                // Microsoft XSD.exe limitation requires element of list type to be managed as space delimited string
+                planANom.Location.Text = pt[0].ToString() + ' ' + pt[1].ToString() + ' ' + pt[2].ToString();
+
+        YOUR DATA GOES HERE **
+        */
+        private void QifDocumentWriteCall()
         {
             try
             {
@@ -2519,13 +2630,14 @@ namespace QifStructureReader1
                 int i = 1;
             }
         }
+#endregion
         private void button1_Click(object sender, EventArgs e)
         {
-            QifDocumentTypeCall();
+            QifDocumentReadCall();
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            QifDocumentCreateCall();
+            QifDocumentWriteCall();
         }
     }
 }

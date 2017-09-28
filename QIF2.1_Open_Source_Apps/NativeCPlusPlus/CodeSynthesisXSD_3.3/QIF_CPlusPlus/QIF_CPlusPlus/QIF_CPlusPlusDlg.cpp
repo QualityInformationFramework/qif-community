@@ -230,45 +230,47 @@ void CQIF_CPlusPlusDlg::GetDatumReferenceFrame(QIFDocumentType &qifDoc, long drf
 						DatumWithPrecedenceType dwp(drfIter->Datums()->Datum().at(i));
 						if (dwp.SimpleDatum() != NULL) // is this a simple datum? (as opposed to compound and datum features)
 						{
-							for(DatumDefinitionsType::DatumDefinition_iterator datIter(qifDoc.DatumDefinitions()->DatumDefinition().begin()); datIter != qifDoc.DatumDefinitions()->DatumDefinition().end(); ++datIter)
-							{
-								if (dwp.SimpleDatum()->DatumDefinitionId() == datIter->id())
+							if(qifDoc.DatumDefinitions() != NULL) { // do we have optional datum definition list?
+								for(DatumDefinitionsType::DatumDefinition_iterator datIter(qifDoc.DatumDefinitions()->DatumDefinition().begin()); datIter != qifDoc.DatumDefinitions()->DatumDefinition().end(); ++datIter) // walk through the datum definition list
 								{
-									datum = _T(",DAT(");
-									datum += datIter->DatumLabel().c_str();
-									datum += _T(")");
+									if (dwp.SimpleDatum()->DatumDefinitionId() == datIter->id()) // do we have an id match?
+									{
+										datum = _T(",DAT(");
+										datum += datIter->DatumLabel().c_str(); // capture the datum label
+										datum += _T(")");
+									}
 								}
-							}
-							switch (dwp.SimpleDatum()->MaterialModifier())
-							{
-							case MaterialModifierEnumType::MAXIMUM:
-								datum += _T(",MMC");
-								break;
-							case MaterialModifierEnumType::LEAST:
-								datum += _T(",LMC");
-								break;
-							case MaterialModifierEnumType::REGARDLESS:
-								datum += _T(",RFS");
-								break;
-							}
-							if (dwp.Precedence().PrecedenceEnum() != NULL)
-							{
-								switch (*dwp.Precedence().PrecedenceEnum())
+								switch (dwp.SimpleDatum()->MaterialModifier()) // append material condition modifier as appropriate
 								{
-								case PrecedenceEnumType::PRIMARY:
-									primary = datum;
+								case MaterialModifierEnumType::MAXIMUM:
+									datum += _T(",MMC");
 									break;
-								case PrecedenceEnumType::SECONDARY:
-									secondary = datum;
+								case MaterialModifierEnumType::LEAST:
+									datum += _T(",LMC");
 									break;
-								case PrecedenceEnumType::TERTIARY:
-									tertiary = datum;
+								case MaterialModifierEnumType::REGARDLESS:
+									datum += _T(",RFS");
 									break;
+								}
+								if (dwp.Precedence().PrecedenceEnum() != NULL) // we only handle the enumeration, make sure it's there
+								{
+									switch (*dwp.Precedence().PrecedenceEnum()) // populate specific datum precidence with holder string
+									{
+									case PrecedenceEnumType::PRIMARY:
+										primary = datum;
+										break;
+									case PrecedenceEnumType::SECONDARY:
+										secondary = datum;
+										break;
+									case PrecedenceEnumType::TERTIARY:
+										tertiary = datum;
+										break;
+									}
 								}
 							}
 						}
 					}
-					drfstr = primary + secondary + tertiary;
+					drfstr = primary + secondary + tertiary; // add the 3 datum together (some or all can be empty strings)
 				}
 			}
 		}
@@ -276,14 +278,30 @@ void CQIF_CPlusPlusDlg::GetDatumReferenceFrame(QIFDocumentType &qifDoc, long drf
 }
 #pragma endregion function GetDatumReferenceFrame
 
+#pragma region function GetTolerances
+// Populates tlabels and talabels with a list of DMIS tolerance labels applied to the feature actual with specified QIF id, 
+// e.g. tlabels is filled with ",T(DIAM2),T(POSN2)" and talabels is filled with ",TA(DIAM2),TA(POSN2)"
+// Populates tdefs and tadefs with DMIS representations of nominal and actual tolerances respectively
+// e.g. tdefs is filled with:
+// T(DIAM2)=TOL/DIAM,-0.1,0.1
+// T(POSN2)=TOL/POS,3D,0.75,MMC,DAT(A),DAT(B),MMC,DAT(C),MMC
+// and tadefs is filled with:
+// TA(DIAM2)=TOL/DIAM,6.2,OUTOL
+// TA(POSN2)=TOL/POS,3D,0.0618,INTOL,MMC,DAT(A),DAT(B),MMC,DAT(C),MMC
+
+// Inputs are the QIF Document as qifDoc and the QIF id of the drf as drfid
+//
+// The datum reference frame definition list is traversed looking for the specified id, datum precidence and materal condition
+// are found and combined with the datum label found by traversing the datum definition list
 void CQIF_CPlusPlusDlg::GetTolerances(QIFDocumentType &qifDoc, long actfeatid, CString &tlabels, CString &talabels, CString &tdefs, CString &tadefs)
 {
 	CString wrkstr;
-	if (qifDoc.Characteristics() != NULL &&
+	if (qifDoc.Characteristics() != NULL && // make sure we have(optional) characteristics and measurements
 		qifDoc.Characteristics()->CharacteristicItems() != NULL &&
 		qifDoc.MeasurementsResults() != NULL &&
 		qifDoc.MeasurementsResults()->MeasurementResultsSet().MeasurementResults().size() > 0)
 	{
+		// let's just look at the first set of measurement results
 		MeasurementResultsType measResults = qifDoc.MeasurementsResults()->MeasurementResultsSet().MeasurementResults()[0];
 		if (measResults.MeasuredFeatures() != NULL &&
 			  measResults.MeasuredCharacteristics() != NULL)
@@ -291,25 +309,26 @@ void CQIF_CPlusPlusDlg::GetTolerances(QIFDocumentType &qifDoc, long actfeatid, C
 			// walk through actual characteristics to get characteristics applied to this actual feature actfeatid
 			for (int i = 0; i < measResults.MeasuredCharacteristics()->CharacteristicActuals().CharacteristicActual().size(); i++)
 			{
-				if(measResults.MeasuredCharacteristics()->CharacteristicActuals().CharacteristicActual()[i].FeatureActualIds() != NULL)
+				if(measResults.MeasuredCharacteristics()->CharacteristicActuals().CharacteristicActual()[i].FeatureActualIds() != NULL) // characteristics optionally point at features
 				{
-					for (int j = 0; j < measResults.MeasuredCharacteristics()->CharacteristicActuals().CharacteristicActual()[i].FeatureActualIds()->Id().size(); j++)
+					for (int j = 0; j < measResults.MeasuredCharacteristics()->CharacteristicActuals().CharacteristicActual()[i].FeatureActualIds()->Id().size(); j++) // walk through feature references
 					{
-						if (measResults.MeasuredCharacteristics()->CharacteristicActuals().CharacteristicActual()[i].FeatureActualIds()->Id()[j] == actfeatid)
+						if (measResults.MeasuredCharacteristics()->CharacteristicActuals().CharacteristicActual()[i].FeatureActualIds()->Id()[j] == actfeatid) // look for a match
 						{
 							// find the item, nominal and definition for this actual characteristic
-							for (int k = 0; k < qifDoc.Characteristics()->CharacteristicItems()->CharacteristicItem().size(); k++)
+							for (int k = 0; k < qifDoc.Characteristics()->CharacteristicItems()->CharacteristicItem().size(); k++) // walk through characteristic items
 							{
-								if (qifDoc.Characteristics()->CharacteristicItems()->CharacteristicItem()[k].id() == measResults.MeasuredCharacteristics()->CharacteristicActuals().CharacteristicActual()[i].CharacteristicItemId())
+								if (qifDoc.Characteristics()->CharacteristicItems()->CharacteristicItem()[k].id() == measResults.MeasuredCharacteristics()->CharacteristicActuals().CharacteristicActual()[i].CharacteristicItemId()) // looking for the item referenced by the actual
 								{
-									for (int m = 0; m < qifDoc.Characteristics()->CharacteristicNominals().CharacteristicNominal().size(); m++)
+									for (int m = 0; m < qifDoc.Characteristics()->CharacteristicNominals().CharacteristicNominal().size(); m++) // walk through characteristic nominals
 									{
-										if (qifDoc.Characteristics()->CharacteristicItems()->CharacteristicItem()[k].CharacteristicNominalId() == qifDoc.Characteristics()->CharacteristicNominals().CharacteristicNominal()[m].id())
+										if (qifDoc.Characteristics()->CharacteristicItems()->CharacteristicItem()[k].CharacteristicNominalId() == qifDoc.Characteristics()->CharacteristicNominals().CharacteristicNominal()[m].id()) // looking for the nominal referenced by the item
 										{
-											for (int n = 0; n < qifDoc.Characteristics()->CharacteristicDefinitions().CharacteristicDefinition().size(); n++)
+											for (int n = 0; n < qifDoc.Characteristics()->CharacteristicDefinitions().CharacteristicDefinition().size(); n++) // walk through characteristic definitions
 											{
-												if (qifDoc.Characteristics()->CharacteristicNominals().CharacteristicNominal()[m].CharacteristicDefinitionId() == qifDoc.Characteristics()->CharacteristicDefinitions().CharacteristicDefinition()[n].id())
+												if (qifDoc.Characteristics()->CharacteristicNominals().CharacteristicNominal()[m].CharacteristicDefinitionId() == qifDoc.Characteristics()->CharacteristicDefinitions().CharacteristicDefinition()[n].id()) // looking for the definition referenced by the nominal
 												{
+													// we have all four aspects, check their types (which should all match)
 													if(DiameterCharacteristicActualType *diaAct = dynamic_cast<DiameterCharacteristicActualType *> (&(measResults.MeasuredCharacteristics()->CharacteristicActuals().CharacteristicActual()[i])))
 													{
 													  DiameterCharacteristicItemType *diaItem = dynamic_cast<DiameterCharacteristicItemType *> (&(qifDoc.Characteristics()->CharacteristicItems()->CharacteristicItem()[k]));
@@ -317,40 +336,49 @@ void CQIF_CPlusPlusDlg::GetTolerances(QIFDocumentType &qifDoc, long actfeatid, C
 													  DiameterCharacteristicDefinitionType *diaDef = dynamic_cast<DiameterCharacteristicDefinitionType *> (&(qifDoc.Characteristics()->CharacteristicDefinitions().CharacteristicDefinition()[n]));
 														if(diaItem != NULL && diaNom != NULL && diaDef != NULL)
 														{
-															if (diaDef->Tolerance() != NULL)
+															// we have a set of matched diameter types
+															if (diaDef->Tolerance() != NULL) // this could be a limit&fit or tolerance definition
 															{
+																// just min, just max, or both min+max may be defined in QIF, DMIS needs both
 																double hitol = 0;
 																double lotol = 0;
 																if(diaDef->Tolerance()->MaxValue()) hitol = *diaDef->Tolerance()->MaxValue();
 																if(diaDef->Tolerance()->MinValue()) lotol = *diaDef->Tolerance()->MinValue();
-																if (diaDef->Tolerance()->DefinedAsLimit())
+																if (diaDef->Tolerance()->DefinedAsLimit()) // limit specification?
 																{
-																	if (diaNom->TargetValue() != NULL)
+																	// DMIS doesn't support limit tolerance for diameter
+																	if (diaNom->TargetValue() != NULL) // do we have a target value?
 																	{
+																		// convert min and max from limit to +/- tols
 																		hitol = hitol - *diaNom->TargetValue();
 																		lotol = lotol - *diaNom->TargetValue();
 																	}
 																	else
 																	{
+																		// assume target is between limits
 																		double diam = (hitol + lotol) / 2;
 																		hitol = hitol - diam;
 																		lotol = lotol - diam;
 																	}
 																}
+																// compose the nominal DMIS tolerance label T(DIAM1)
 																wrkstr.Format(_T(",T(%s)"), diaItem->Name().c_str());
 																tlabels += wrkstr;
+																// compose the nominal DMIS tolerance T(DIAM1)=TOL/DIAM,-.1,.1
 																wrkstr.Format(_T("T(%s)=TOL/DIAM,%g,%g\n"), diaItem->Name().c_str(), lotol, hitol);
 																tdefs += wrkstr;
-																if (diaAct->Value() != NULL)
+																if (diaAct->Value() != NULL) // do we have the optional actual value?
 																	{
+																	// compose the actual DMIS tolerance label TA(DIAM1)
 																	wrkstr.Format(_T(",TA(%s)"), diaItem->Name().c_str());
 																	talabels += wrkstr;
+																	// compose the actual DMIS tolerance TA(DIAM1)=TOL/DIAM,-.05,INTOL
 																	wrkstr.Format(_T("TA(%s)=TOL/DIAM,%g"), diaItem->Name().c_str(), (double)*diaAct->Value());
 																	tadefs += wrkstr;
-																	if (diaAct->Status().CharacteristicStatusEnum() != NULL)
+																	if (diaAct->Status().CharacteristicStatusEnum() != NULL) // we are only going to handle the enumeration
 																	{
 																		if (*diaAct->Status().CharacteristicStatusEnum() == CharacteristicStatusEnumType::PASS) tadefs += _T(",INTOL");
-																		else tadefs += _T(",OUTOL");
+																		else tadefs += _T(",OUTOL"); // if we don't it's in, assume it's out
 																	}
 																	else tadefs += _T(",OUTOL"); // if we don't it's in, assume it's out
 																	tadefs += _T("\n");
@@ -365,9 +393,12 @@ void CQIF_CPlusPlusDlg::GetTolerances(QIFDocumentType &qifDoc, long actfeatid, C
 													  FlatnessCharacteristicDefinitionType *flatDef = dynamic_cast<FlatnessCharacteristicDefinitionType *> (&(qifDoc.Characteristics()->CharacteristicDefinitions().CharacteristicDefinition()[n]));
 														if(flatItem != NULL && flatNom != NULL && flatDef != NULL)
 														{
+															// we have a set of matched flatness types
 															// we're going to cheat and just grab the tolerance zone neglecting any per-area requirements
+															// compose the nominal DMIS tolerance label T(FLAT1)
 															wrkstr.Format(_T(",T(%s)"), flatItem->Name().c_str());
 															tlabels += wrkstr;
+															// compose the nominal DMIS tolerance T(FLAT1)=TOL/FLAT,.1
 															wrkstr.Format(_T("T(%s)=TOL/FLAT,"), flatItem->Name().c_str());
 															tdefs += wrkstr;
 															if (flatDef->ToleranceValue() != NULL) // this can be zone, or zone + per unit area
@@ -375,7 +406,7 @@ void CQIF_CPlusPlusDlg::GetTolerances(QIFDocumentType &qifDoc, long actfeatid, C
 																wrkstr.Format(_T("%g\n"), (double)*flatDef->ToleranceValue());
 																tdefs += wrkstr;
 															}
-															else if (flatDef->ToleranceZonePerUnitArea()) // this will be unit area
+															else if (flatDef->ToleranceZonePerUnitArea()) // this will be per unit area
 															{
 																wrkstr.Format(_T("%g\n"), (double)flatDef->ToleranceZonePerUnitArea()->ToleranceValuePerUnit());
 																tdefs += wrkstr;
@@ -384,13 +415,15 @@ void CQIF_CPlusPlusDlg::GetTolerances(QIFDocumentType &qifDoc, long actfeatid, C
 															{
 																tdefs += _T("0\n");
 															}
-															if (flatAct->Value() != NULL)
+															if (flatAct->Value() != NULL) // do we have the optional actual value?
 															{
+																// compose the actual DMIS tolerance label TA(FLAT1)
 																wrkstr.Format(_T(",TA(%s)"), flatItem->Name().c_str());
 																talabels += wrkstr;
+																// compose the actual DMIS tolerance TA(FLAT1)=TOL/FLAT,.05,INTOL
 																wrkstr.Format(_T("TA(%s)=TOL/FLAT,%g"), flatItem->Name().c_str(), (double)*flatAct->Value());
 																tadefs += wrkstr;
-																if (flatAct->Status().CharacteristicStatusEnum() != NULL)
+																if (flatAct->Status().CharacteristicStatusEnum() != NULL) // we are only going to handle the enumeration
 																{
 																	if(*flatAct->Status().CharacteristicStatusEnum() == CharacteristicStatusEnumType::PASS) tadefs += _T(",INTOL");
 																	else tadefs += _T(",OUTOL"); // if we don't it's in, assume it's out
@@ -407,33 +440,42 @@ void CQIF_CPlusPlusDlg::GetTolerances(QIFDocumentType &qifDoc, long actfeatid, C
 													  PerpendicularityCharacteristicDefinitionType *perpDef = dynamic_cast<PerpendicularityCharacteristicDefinitionType *> (&(qifDoc.Characteristics()->CharacteristicDefinitions().CharacteristicDefinition()[n]));
 														if (perpItem != NULL && perpNom != NULL && perpDef != NULL)
 														{
+															// we have a set of matched perpendicularity types
+															// compose the nominal DMIS tolerance label T(PERP1)
 															wrkstr.Format(_T(",T(%s)"), perpItem->Name().c_str());
 															tlabels += wrkstr;
+															// compose the nominal DMIS tolerance T(PERP1)=TOL/PERP,.1,MMC,DAT(A)
 															wrkstr.Format(_T("T(%s)=TOL/PERP,%g"), perpItem->Name().c_str(), (double)perpDef->ToleranceValue());
 															tdefs += wrkstr;
+															// material modifier for tolerance value
 															if (perpDef->MaterialCondition() == MaterialModifierEnumType::MAXIMUM) tdefs += _T(",MMC");
 															else if (perpDef->MaterialCondition() == MaterialModifierEnumType::LEAST) tdefs += _T(",LMC");
 															else if (perpDef->MaterialCondition() == MaterialModifierEnumType::REGARDLESS) tdefs += _T(",RFS");
+															// get the DRF string
 															CString drfStr = _T("");
-															if (perpDef->DatumReferenceFrameId() != NULL) GetDatumReferenceFrame(qifDoc, *perpDef->DatumReferenceFrameId(), drfStr);
+															if (perpDef->DatumReferenceFrameId() != NULL) // DRF is optional
+																GetDatumReferenceFrame(qifDoc, *perpDef->DatumReferenceFrameId(), drfStr);
 															tdefs += drfStr;
 															tdefs += _T("\n");
-															if (perpAct->Value() != NULL)
+															if (perpAct->Value() != NULL) // do we have the optional actual value?
 															{
+																// compose the actual DMIS tolerance label TA(PERP1)
 																wrkstr.Format(_T(",TA(%s)"), perpItem->Name().c_str());
 																talabels += wrkstr;
+																// compose the actual DMIS tolerance TA(PERP1)=TOL/PERP,.05,INTOL,MMC,DAT(A)
 																wrkstr.Format(_T("TA(%s)=TOL/PERP,%g"), perpItem->Name().c_str(), (double)*perpAct->Value());
 																tadefs += wrkstr;
-																if (perpAct->Status().CharacteristicStatusEnum() != NULL)
+																if (perpAct->Status().CharacteristicStatusEnum() != NULL) // we are only going to handle the enumeration
 																{
 																	if (*perpAct->Status().CharacteristicStatusEnum() == CharacteristicStatusEnumType::PASS) tadefs += _T(",INTOL");
 																	else tadefs += _T(",OUTOL"); // if we don't it's in, assume it's out
 																}
 																else tadefs += _T(",OUTOL"); // if we don't it's in, assume it's out
+																// material modifier for tolerance value, again
 																if (perpDef->MaterialCondition() == MaterialModifierEnumType::MAXIMUM) tadefs += _T(",MMC");
 																else if (perpDef->MaterialCondition() == MaterialModifierEnumType::LEAST) tadefs += _T(",LMC");
 																else if (perpDef->MaterialCondition() == MaterialModifierEnumType::REGARDLESS) tadefs += _T(",RFS");
-																tadefs += drfStr;
+																tadefs += drfStr; // reuse the DRF string
 																tadefs += _T("\n");
 															}
 														}
@@ -445,33 +487,42 @@ void CQIF_CPlusPlusDlg::GetTolerances(QIFDocumentType &qifDoc, long actfeatid, C
 													  PositionCharacteristicDefinitionType *posDef = dynamic_cast<PositionCharacteristicDefinitionType *> (&(qifDoc.Characteristics()->CharacteristicDefinitions().CharacteristicDefinition()[n]));
 														if (posAct != NULL && posItem != NULL && posNom != NULL && posDef != NULL)
 														{
+															// we have a set of matched position types
+															// compose the nominal DMIS tolerance label T(POS1)
 															wrkstr.Format(_T(",T(%s)"), posItem->Name().c_str());
 															tlabels += wrkstr;
+															// compose the nominal DMIS tolerance T(POS1)=TOL/POS,.1,MMC,DAT(A),DAT(B),MMC
 															wrkstr.Format(_T("T(%s)=TOL/POS,3D,%g"), posItem->Name().c_str(), (double)posDef->ToleranceValue()); // TODO, determine dimensionality
 															tdefs += wrkstr;
+															// material modifier for tolerance value
 															if (posDef->MaterialCondition() == MaterialModifierEnumType::MAXIMUM) tdefs += _T(",MMC");
 															else if (posDef->MaterialCondition() == MaterialModifierEnumType::LEAST) tdefs += _T(",LMC");
 															else if (posDef->MaterialCondition() == MaterialModifierEnumType::REGARDLESS) tdefs += _T(",RFS");
+															// get the DRF string
 															CString drfStr = _T("");
-															if (posDef->DatumReferenceFrameId() != NULL) GetDatumReferenceFrame(qifDoc, *posDef->DatumReferenceFrameId(), drfStr);
+															if (posDef->DatumReferenceFrameId() != NULL) // DRF is optional
+																GetDatumReferenceFrame(qifDoc, *posDef->DatumReferenceFrameId(), drfStr);
 															tdefs += drfStr;
 															tdefs += _T("\n");
-															if (posAct->Value() != NULL)
+															if (posAct->Value() != NULL) // do we have the optional actual value?
 															{
+																// compose the actual DMIS tolerance label TA(POS1)
 																wrkstr.Format(_T(",TA(%s)"), posItem->Name().c_str());
 																talabels += wrkstr;
+																// compose the actual DMIS tolerance T(POS1)=TOL/POS,.05,INTOL,MMC,DAT(A),DAT(B),MMC
 																wrkstr.Format(_T("TA(%s)=TOL/POS,3D,%g"), posItem->Name().c_str(), (double)*posAct->Value());
 																tadefs += wrkstr;
-																if (posAct->Status().CharacteristicStatusEnum() != NULL)
+																if (posAct->Status().CharacteristicStatusEnum() != NULL) // we are only going to handle the enumeration
 																{
 																	if (*posAct->Status().CharacteristicStatusEnum() == CharacteristicStatusEnumType::PASS) tadefs += _T(",INTOL");
 																	else tadefs += _T(",OUTOL"); // if we don't it's in, assume it's out
 																}
 																else tadefs += _T(",OUTOL"); // if we don't it's in, assume it's out
+																// material modifier for tolerance value, again
 																if (posDef->MaterialCondition() == MaterialModifierEnumType::MAXIMUM) tadefs += _T(",MMC");
 																else if (posDef->MaterialCondition() == MaterialModifierEnumType::LEAST) tadefs += _T(",LMC");
 																else if (posDef->MaterialCondition() == MaterialModifierEnumType::REGARDLESS) tadefs += _T(",RFS");
-																tadefs += drfStr;
+																tadefs += drfStr; // reuse the DRF string
 																tadefs += _T("\n");
 															}
 														}
@@ -493,11 +544,37 @@ void CQIF_CPlusPlusDlg::GetTolerances(QIFDocumentType &qifDoc, long actfeatid, C
 		}
 	}
 }
+#pragma endregion function GetTolerances
 
+#pragma region read QIF
+/*
+This call back prompts the user for a QIF document to read.
+The QIF document is mined for units, feature, characteristic, and datum deinfition data.
+This information is output in the form of a DMIS results file which shows
+the relationships among features, characteristics and datums:
+
+FILNAM/'cpp.qif',5.3
+$$ Dimensional Metrology Standards Consortium (DMSC))
+$$ This DMIS results file produced from QIF document:
+$$   C:\Python34\pyxb-next\QIF21\QIF21\cpp.qif
+$$ with DMSC's open source QIF_CPlusPlus application written in native C++
+$$ using XML schema source code bindings created by CodeSynthesis' XSD tool
+UNITS/MM,ANGDEC                         <- units
+
+$$ Plane nominal DAT_A
+OUTPUT/F(DAT_A),T(FLAT1)                <- feature/characteristic relationship
+F(DAT_A)=FEAT/PLANE,CART,0,0,0,0,0,1    <- nominal feature data
+T(FLAT1)=TOL/FLAT,0.1                   <- nominal characteristic data
+$$ Plane actual DAT_A
+OUTPUT/FA(DAT_A),TA(FLAT1)              <- feature/characteristic relationship redux
+FA(DAT_A)=FEAT/PLANE,CART,0,0,0,0,0,1   <- actual feature data
+TA(FLAT1)=TOL/FLAT,0.023,INTOL          <- actual characteristic data
+DATDEF/FA(DAT_A),DAT(A)                 <- datum definition
+*/
 void CQIF_CPlusPlusDlg::OnBnClickedReadqif()
 {
 	CString wrkstr;
-	::std::auto_ptr< ::QIFDocumentType > qifDoc;
+	::std::auto_ptr< ::QIFDocumentType > qifDoc; // QIF objects (eventually)
 
 	// set up file open dialog
 	CFileDialog InDlg(TRUE, _T("QIF"), NULL, OFN_HIDEREADONLY, _T("QIF documents files (*.QIF)|*.qif|All files (*.*)|*.*||"));
@@ -505,11 +582,12 @@ void CQIF_CPlusPlusDlg::OnBnClickedReadqif()
 	// launch the dialog box
 	if(InDlg.DoModal() != IDOK ) return;
 
+	// read the file into the QIF document
 	try
 	{
-
 		qifDoc = QIFDocument((LPCTSTR)InDlg.GetPathName(), xml_schema::flags::dont_validate);
 	}
+	// what could go wrong?
 	catch (const xml_schema::expected_element& ee)
 	{
 		if(!ee.name().c_str()[0] != 0)
@@ -572,7 +650,7 @@ void CQIF_CPlusPlusDlg::OnBnClickedReadqif()
 	}
 
 	// make sure we have all the pieces we need to make a DMIS results document:
-	// features, datums, characteristics, and measured results
+	// DMIS is very feature-centric, so at minimum we need features and measured results
 	if (qifDoc->Features() != NULL &&
 			qifDoc->Features()->FeatureItems() != NULL &&
 			qifDoc->Features()->FeatureNominals() != NULL &&
@@ -580,9 +658,9 @@ void CQIF_CPlusPlusDlg::OnBnClickedReadqif()
 			qifDoc->MeasurementsResults() != NULL)
 	{
 		// begin our DMIS results file
-		CString dmisoutput = _T("FILNAM/'");
-		dmisoutput += (LPCTSTR)InDlg.GetFileName();
-		dmisoutput += _T("',5.3\n");
+		CString dmisoutput = _T("FILNAM/'"); // this needs to be the first statement in a DMIS results file
+		dmisoutput += (LPCTSTR)InDlg.GetFileName(); // the name of the QIF document we loaded
+		dmisoutput += _T("',5.3\n"); // DMIS version number
 
 		// add some application identifying information
 		dmisoutput += _T("$$ Dimensional Metrology Standards Consortium (DMSC))\n");
@@ -600,12 +678,12 @@ void CQIF_CPlusPlusDlg::OnBnClickedReadqif()
 		{
 				if(qifDoc->FileUnits()->PrimaryUnits().LinearUnit() != NULL)
 				{
-						if (qifDoc->FileUnits()->PrimaryUnits().LinearUnit()->UnitConversion() != NULL)
+						if (qifDoc->FileUnits()->PrimaryUnits().LinearUnit()->UnitConversion() != NULL) // use the conversion factor if we have it
 						{
 								if (qifDoc->FileUnits()->PrimaryUnits().LinearUnit()->UnitConversion()->Factor() == 0.001) units = _T("MM");
 								else if (qifDoc->FileUnits()->PrimaryUnits().LinearUnit()->UnitConversion()->Factor() == 0.0254) units = _T("INCH");
 						}
-						else // try the name
+						else // otherwise, try the name
 						{
 								CString unitname = qifDoc->FileUnits()->PrimaryUnits().LinearUnit()->UnitName().c_str();
 								if (unitname.MakeUpper() == _T("MM")) units = _T("MM");
@@ -616,25 +694,30 @@ void CQIF_CPlusPlusDlg::OnBnClickedReadqif()
 		dmisoutput += units;
 		dmisoutput += _T(",ANGDEC\n");
 
-		// walk through the features and characteristics
+		// just look at the first set of measured results
 		MeasurementResultsType measResults = qifDoc->MeasurementsResults()->MeasurementResultsSet().MeasurementResults()[0];
 		if (measResults.MeasuredFeatures() != NULL)
 		{
-			// walk through the list of feature actuals
+			// walk through the list of feature actuals (this is the main output loop)
 			for (int i = 0; i < measResults.MeasuredFeatures()->FeatureActuals().FeatureActual().size(); i++)
 			{
-				// find the associated feature item
+				// walk through the list of feature items...
 				for (int j = 0; j < qifDoc->Features()->FeatureItems()->FeatureItem().size(); j++)
 				{
+					// ...to find the associated feature item
 					if (qifDoc->Features()->FeatureItems()->FeatureItem()[j].id() == measResults.MeasuredFeatures()->FeatureActuals().FeatureActual()[i].FeatureItemId())
 					{
+						// walk through the list of feature nominals...
 						for (int k = 0; k < qifDoc->Features()->FeatureNominals()->FeatureNominal().size(); k++)
 						{
+							// ...to find the associated feature nominal (the item->nominal link is optional)
 							if (qifDoc->Features()->FeatureItems()->FeatureItem()[j].FeatureNominalId() != NULL &&
 								  qifDoc->Features()->FeatureNominals()->FeatureNominal()[k].id() == *qifDoc->Features()->FeatureItems()->FeatureItem()[j].FeatureNominalId())
 							{
+								// walk through the list of feature definitions...
 								for (int n = 0; n < qifDoc->Features()->FeatureDefinitions()->FeatureDefinition().size(); n++)
 								{
+									// ...to find the associated feature definition
 									if (qifDoc->Features()->FeatureDefinitions()->FeatureDefinition()[n].id() == qifDoc->Features()->FeatureNominals()->FeatureNominal()[k].FeatureDefinitionId())
 									{
 										// we have all 4 aspects: actual, item, nominal and definition, make sure they're all the same type
@@ -645,12 +728,17 @@ void CQIF_CPlusPlusDlg::OnBnClickedReadqif()
 											CircleFeatureDefinitionType *circDef = dynamic_cast<CircleFeatureDefinitionType *> (&(qifDoc->Features()->FeatureDefinitions()->FeatureDefinition()[n]));
 											if (circNom != NULL && circDef != NULL && circItem != NULL)
 											{
+												// we have a matched set of circle aspects
+												// compose the feature nominal label
 												CString flabel;
 												flabel.Format(_T("F(%s)"), circItem->FeatureName().c_str()); // F(CIRC1) for example
+												// compose the feature actual label
 												CString falabel;
 												falabel.Format(_T("FA(%s)"), circItem->FeatureName().c_str()); // FA(CIRC1) for example
+												// begin composing the nominal feature definition F(CIRC1)=FEAT/CIRCLE...
 												CString f = flabel;
 												f += _T("=FEAT/CIRCLE");
+												// begin composing the actual feature definition FA(CIRC1)=FEAT/CIRCLE...
 												CString fa = falabel;
 												fa += _T("=FEAT/CIRCLE");
 												// inner  or outer?
@@ -659,7 +747,7 @@ void CQIF_CPlusPlusDlg::OnBnClickedReadqif()
 													f += _T(",OUTER");
 													fa += _T(",OUTER");
 												}
-												else
+												else // assume INNER, DMIS doesn't have a not-applicable option
 												{
 													f += _T(",INNER");
 													fa += _T(",INNER");
@@ -667,21 +755,23 @@ void CQIF_CPlusPlusDlg::OnBnClickedReadqif()
 												// cartesian
 												f += _T(",CART");
 												fa += _T(",CART");
-												// xyz location
+												// nominal xyz location, not optional so accessed directly as circNom->Location()[0]
 												wrkstr.Format(_T(",%g,%g,%g"), circNom->Location()[0], circNom->Location()[1], circNom->Location()[2]);
 												f += wrkstr;
 												if (circAct->Location() == NULL) fa += wrkstr; // no actual, assume nominal
 												else
 												{
+													// actual xyz location, optional so accessed indirectly as *circAct->Location()[0]
 													wrkstr.Format(_T(",%g,%g,%g"), (*circAct->Location())[0], (*circAct->Location())[1], (*circAct->Location())[2]);
 													fa += wrkstr;
 												}
-												// ijk vector
+												// nominal ijk vector
 												wrkstr.Format(_T(",%g,%g,%g"), circNom->Normal()[0], circNom->Normal()[1], circNom->Normal()[2]);
 												f += wrkstr;
 												if (circAct->Normal() == NULL) fa += wrkstr; // no actual, assume nominal
 												else
 												{
+													// actual ijk vector
 													wrkstr.Format(_T(",%g,%g,%g"), (*circAct->Normal())[0], (*circAct->Normal())[1], (*circAct->Normal())[2]);
 													fa += wrkstr;
 												}
@@ -730,12 +820,17 @@ void CQIF_CPlusPlusDlg::OnBnClickedReadqif()
 											CylinderFeatureDefinitionType *cylDef = dynamic_cast<CylinderFeatureDefinitionType *> (&(qifDoc->Features()->FeatureDefinitions()->FeatureDefinition()[n]));
 											if (cylItem != NULL && cylNom != NULL && cylDef != NULL)
 											{
+												// we have a matched set of cylinder aspects
+												// compose the feature nominal label
 												CString flabel;
-												flabel.Format(_T("F(%s)"), cylItem->FeatureName().c_str());
+												flabel.Format(_T("F(%s)"), cylItem->FeatureName().c_str()); // F(CYL1) for example
+												// compose the feature actual label
 												CString falabel;
-												falabel.Format(_T("FA(%s)"), cylItem->FeatureName().c_str());
+												falabel.Format(_T("FA(%s)"), cylItem->FeatureName().c_str()); // FA(CYL1) for example
+												// begin composing the nominal feature definition F(CYL1)=FEAT/CYLNDR...
 												CString f = flabel;
 												f += _T("=FEAT/CYLNDR");
+												// begin composing the actual feature definition FA(CYL1)=FEAT/CYLNDR...
 												CString fa = falabel;
 												fa += _T("=FEAT/CYLNDR");
 												// inner  or outer?
@@ -744,7 +839,7 @@ void CQIF_CPlusPlusDlg::OnBnClickedReadqif()
 													f += _T(",OUTER");
 													fa += _T(",OUTER");
 												}
-												else
+												else // assume INNER, DMIS doesn't have a not-applicable option
 												{
 													f += _T(",INNER");
 													fa += _T(",INNER");
@@ -752,21 +847,25 @@ void CQIF_CPlusPlusDlg::OnBnClickedReadqif()
 												// cartesian
 												f += _T(",CART");
 												fa += _T(",CART");
-												// xyz location
+												//                                                                          | (dot)
+												// nominal xyz location, not optional so accessed directly as cylNom->Axis().AxisPoint()[0]
 												wrkstr.Format(_T(",%g,%g,%g"), cylNom->Axis().AxisPoint()[0], cylNom->Axis().AxisPoint()[1], cylNom->Axis().AxisPoint()[2]);
 												f += wrkstr;
 												if (cylAct->Axis() == NULL) fa += wrkstr; // no actual, assume nominal
 												else
 												{
+													//                                                                       | (arrow)
+													// actual xyz location, optional so accessed indirectly as cylAct->Axis()->AxisPoint()[0]
 													wrkstr.Format(_T(",%g,%g,%g"), cylAct->Axis()->AxisPoint()[0], cylAct->Axis()->AxisPoint()[1], cylAct->Axis()->AxisPoint()[2]);
 													fa += wrkstr;
 												}
-												// ijk vector
+												// nominal ijk vector
 												wrkstr.Format(_T(",%g,%g,%g"), cylNom->Axis().Direction()[0], cylNom->Axis().Direction()[1], cylNom->Axis().Direction()[2]);
 												f += wrkstr;
 												if (cylAct->Axis() == NULL) fa += wrkstr; // no actual, assume nominal
 												else
 												{
+													// actual ijk vector
 													wrkstr.Format(_T(",%g,%g,%g"), cylAct->Axis()->Direction()[0], cylAct->Axis()->Direction()[1], cylAct->Axis()->Direction()[2]);
 													fa += wrkstr;
 												}
@@ -815,33 +914,39 @@ void CQIF_CPlusPlusDlg::OnBnClickedReadqif()
 											PlaneFeatureDefinitionType *planDef = dynamic_cast<PlaneFeatureDefinitionType *> (&(qifDoc->Features()->FeatureDefinitions()->FeatureDefinition()[n]));
 											if (planItem != NULL && planNom != NULL && planDef != NULL)
 											{
+												// we have a matched set of plane aspects
+												// compose the feature nominal label
 												CString flabel;
-												flabel.Format(_T("F(%s)"), planItem->FeatureName().c_str());
+												flabel.Format(_T("F(%s)"), planItem->FeatureName().c_str()); // F(PLN1) for example
+												// compose the feature actual label
 												CString falabel;
-												falabel.Format(_T("FA(%s)"), planItem->FeatureName().c_str());
+												falabel.Format(_T("FA(%s)"), planItem->FeatureName().c_str()); // FA(PLN1) for example
+												// begin composing the nominal feature definition F(PLN1)=FEAT/PLANE...
 												CString f = flabel;
 												f += _T("=FEAT/PLANE");
+												// begin composing the actual feature definition FA(PLN1)=FEAT/PLANE...
 												CString fa = falabel;
 												fa += _T("=FEAT/PLANE");
-												// xyz location
 												// cartesian
 												f += _T(",CART");
 												fa += _T(",CART");
-												// xyz location
+												// nominal xyz location, not optional so accessed directly as planNom->Location()[0]
 												wrkstr.Format(_T(",%g,%g,%g"), planNom->Location()[0], planNom->Location()[1], planNom->Location()[2]);
 												f += wrkstr;
 												if (planAct->Location() == NULL) fa += wrkstr; // no actual, assume nominal
 												else
 												{
+													// actual xyz location, optional so accessed indirectly as *planAct->Location()[0]
 													wrkstr.Format(_T(",%g,%g,%g"), (*planAct->Location())[0], (*planAct->Location())[1], (*planAct->Location())[2]);
 													fa += wrkstr;
 												}
-												// ijk vector
+												// nominal ijk vector
 												wrkstr.Format(_T(",%g,%g,%g"), planNom->Normal()[0], planNom->Normal()[1], planNom->Normal()[2]);
 												f += wrkstr;
 												if (planAct->Normal() == NULL) fa += wrkstr; // no actual, assume nominal
 												else
 												{
+													// actual ijk vector
 													wrkstr.Format(_T(",%g,%g,%g"), (*planAct->Normal())[0], (*planAct->Normal())[1], (*planAct->Normal())[2]);
 													fa += wrkstr;
 												}
@@ -888,25 +993,45 @@ void CQIF_CPlusPlusDlg::OnBnClickedReadqif()
 				}
 			}
 		}
-		dmisoutput += "ENDFIL";
+		dmisoutput += "ENDFIL"; // required at the end of a DMIS file
 
 		// set up file save dialog
 		CFileDialog OutDlg(FALSE, _T("DMO"), NULL, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, _T("DMO results files (*.DMO)|*.dmo|All files (*.*)|*.*||")); // FALSE = save file dialog
 		// launch the dialog box
 		if(OutDlg.DoModal() != IDOK ) return;
 
+		// write out DMIS results file
 		CStdioFile file;
 		if(file.Open(OutDlg.GetPathName(), CFile::modeCreate|CFile::modeWrite))
 		{
 			file.WriteString(dmisoutput);
 			file.Close();
 
+			// open it in NotePad
 			ShellExecute(NULL, _T("Edit"), OutDlg.GetPathName(), NULL, NULL, SW_SHOW);
 		}
 	}
 }
+#pragma endregion read QIF
 
 
+#pragma region write QIF
+/*
+This call back prompts the user for the name of a QIF document.
+This new QIF document is populated with feature, characteristic,
+datum, measurement resource, and measured results information
+in a top-down, hard-coded fashion.
+
+Where you see hard-coded data like:
+	// plane location
+	PointType planLoc;
+	planLoc.push_back(0.0); // x
+	planLoc.push_back(0.0); // y
+	planLoc.push_back(0.0); // z
+	planANom.Location(planLoc);
+	                    ^
+	YOUR DATA GOES HERE |
+*/
 void CQIF_CPlusPlusDlg::OnBnClickedWriteqif()
 {
 	unsigned long qifid = 1; // the ever incrementing QIF id counter, the beating heart of QIF
@@ -2344,3 +2469,4 @@ void CQIF_CPlusPlusDlg::OnBnClickedWriteqif()
 #pragma endregion QIF document
 
 }
+#pragma endregion write QIF
