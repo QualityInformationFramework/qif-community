@@ -309,7 +309,7 @@
     <CXX_Tree_Mapping_Rule>
       <AdditionalOptions>--location-map http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd=..\QIFLibrary\xmldsig-core-schema.xsd --hxx-prologue "#include \"..\\export.hxx\""</AdditionalOptions>
       <CharType>1</CharType>
-      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21,http://www.w3.org/2000/09/xmldsig#=digitalsignature</NamespaceMap>
+      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21</NamespaceMap>
       <GenSerialization>true</GenSerialization>
       <GenPolymorphic>true</GenPolymorphic>
       <GenDefaultCtor>true</GenDefaultCtor>
@@ -322,7 +322,7 @@
     <ClCompile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;..\..\QIF_XSD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;\Program Files %28x86%29\CodeSynthesis XSD 3.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>QIF21_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -357,7 +357,7 @@
     <CXX_Tree_Mapping_Rule>
       <AdditionalOptions>--location-map http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd=..\QIFLibrary\xmldsig-core-schema.xsd --hxx-prologue "#include \"..\\export.hxx\""</AdditionalOptions>
       <CharType>1</CharType>
-      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21,http://www.w3.org/2000/09/xmldsig#=digitalsignature</NamespaceMap>
+      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21</NamespaceMap>
       <GenSerialization>true</GenSerialization>
       <GenPolymorphic>true</GenPolymorphic>
       <GenDefaultCtor>true</GenDefaultCtor>
@@ -369,7 +369,7 @@
     </Midl>
     <ClCompile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;..\..\QIF_XSD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;\Program Files %28x86%29\CodeSynthesis XSD 3.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>QIF21_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -406,7 +406,7 @@
     <CXX_Tree_Mapping_Rule>
       <AdditionalOptions>--location-map http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd=..\QIFLibrary\xmldsig-core-schema.xsd --hxx-prologue "#include \"..\\export.hxx\""</AdditionalOptions>
       <CharType>1</CharType>
-      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21,http://www.w3.org/2000/09/xmldsig#=digitalsignature</NamespaceMap>
+      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21</NamespaceMap>
       <GenSerialization>true</GenSerialization>
       <GenPolymorphic>true</GenPolymorphic>
       <GenDefaultCtor>true</GenDefaultCtor>
@@ -419,7 +419,7 @@
     <ClCompile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;..\..\QIF_XSD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;\Program Files %28x86%29\CodeSynthesis XSD 3.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>QIF_STATIC_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -464,7 +464,7 @@
     <ClCompile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;..\..\QIF_XSD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;\Program Files %28x86%29\CodeSynthesis XSD 3.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>QIF_STATIC_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -496,7 +496,7 @@
     <CXX_Tree_Mapping_Rule>
       <AdditionalOptions>--location-map http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd=..\QIFLibrary\xmldsig-core-schema.xsd --hxx-prologue "#include \"..\\export.hxx\""</AdditionalOptions>
       <CharType>0</CharType>
-      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21,http://www.w3.org/2000/09/xmldsig#=digitalsignature</NamespaceMap>
+      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21</NamespaceMap>
       <GenSerialization>true</GenSerialization>
       <GenPolymorphic>true</GenPolymorphic>
       <GenDefaultCtor>true</GenDefaultCtor>
@@ -509,7 +509,7 @@
     <ClCompile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;..\..\QIF_XSD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;\Program Files %28x86%29\CodeSynthesis XSD 3.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>QIF21_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -547,7 +547,7 @@
     <CXX_Tree_Mapping_Rule>
       <AdditionalOptions>--location-map http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd=..\QIFLibrary\xmldsig-core-schema.xsd --hxx-prologue "#include \"..\\export.hxx\""</AdditionalOptions>
       <CharType>0</CharType>
-      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21,http://www.w3.org/2000/09/xmldsig#=digitalsignature</NamespaceMap>
+      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21</NamespaceMap>
       <GenSerialization>true</GenSerialization>
       <GenPolymorphic>true</GenPolymorphic>
       <GenDefaultCtor>true</GenDefaultCtor>
@@ -560,7 +560,7 @@
     <ClCompile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;..\..\QIF_XSD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;\Program Files %28x86%29\CodeSynthesis XSD 3.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>QIF_STATIC_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -592,7 +592,7 @@
     <CXX_Tree_Mapping_Rule>
       <AdditionalOptions>--location-map http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd=..\QIFLibrary\xmldsig-core-schema.xsd --hxx-prologue "#include \"..\\export.hxx\""</AdditionalOptions>
       <CharType>0</CharType>
-      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21,http://www.w3.org/2000/09/xmldsig#=digitalsignature</NamespaceMap>
+      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21</NamespaceMap>
       <GenSerialization>true</GenSerialization>
       <GenPolymorphic>true</GenPolymorphic>
       <GenDefaultCtor>true</GenDefaultCtor>
@@ -604,7 +604,7 @@
     </Midl>
     <ClCompile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;..\..\QIF_XSD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;\Program Files %28x86%29\CodeSynthesis XSD 3.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>QIF21_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -640,7 +640,7 @@
     <CXX_Tree_Mapping_Rule>
       <AdditionalOptions>--location-map http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd=..\QIFLibrary\xmldsig-core-schema.xsd --hxx-prologue "#include \"..\\export.hxx\""</AdditionalOptions>
       <CharType>0</CharType>
-      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21,http://www.w3.org/2000/09/xmldsig#=digitalsignature</NamespaceMap>
+      <NamespaceMap>http://qifstandards.org/xsd/qif2=xsd::qif21</NamespaceMap>
       <GenSerialization>true</GenSerialization>
       <GenPolymorphic>true</GenPolymorphic>
       <GenDefaultCtor>true</GenDefaultCtor>
@@ -652,7 +652,7 @@
     </Midl>
     <ClCompile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;..\..\QIF_XSD;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;\Program Files %28x86%29\CodeSynthesis XSD 3.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>QIF_STATIC_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>

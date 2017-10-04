@@ -11,7 +11,7 @@
 // set up QIF namespaces
 using namespace std;
 using namespace xsd;
-using namespace xsd::qif2;
+using namespace xsd::qif21;
 
 #include "QIF_CPlusPlus.h"
 #include "QIF_CPlusPlusDlg.h"
@@ -2331,7 +2331,7 @@ void CQIF_CPlusPlusDlg::OnBnClickedWriteqif()
 	qifdoc.QPId(LPCTSTR(qpidstr));
 
 	// add some application identifying information
-	xsd::qif2::ApplicationType app; // there is a namespace conflict with this type so it must be prefixed with xsd::qif2::
+	xsd::qif21::ApplicationType app; // there is a namespace conflict with this type so it must be prefixed with xsd::qif2::
 	app.Name(_T("QIF_CPlusPlus open source QIF application"));
 	app.Organization(_T("Dimensional Metrology Standards Consortium (DMSC)"));
 	QIFDocumentHeaderType header;

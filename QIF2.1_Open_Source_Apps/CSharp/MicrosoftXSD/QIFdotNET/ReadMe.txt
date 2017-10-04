@@ -1,10 +1,16 @@
-﻿QIF.NET C# source code bindings for QIF 2.1 with test application
+﻿QIFdotNET C# source code bindings for QIF 2.1 with test application
 
-The file QIFDocument.cs contains C# source code bindings created with
-Microsoft's XSD tool using:
+To create C# source code bindings with Microsoft's XSD tool:
 
-xsd /c /e:QIFDocument /n:qif21 QIFDocument.xsd
-(executed from a Visual Studio Developer Command Prompt in the folder containing QIFDocument.xsd)
+Step 1: copy tje QIF 2.1 schema files into QIFApplications and QIFLibrary.Do not overwrite QIFDocument.xsd.
+
+Step 2: open a visual studio command prompt:
+  Start->All Programs->Microsoft Visual Studio 2010->Visual Studio Tools->Visual Studio Command Prompt
+
+Step 3: change directory to QIFApplications folder
+
+Step 4: create the source code bindings using:
+  xsd /c /e:QIFDocument /n:qif21 QIFDocument.xsd
 
 where,
 /c causes classes to be generated (default language is C#)
@@ -18,16 +24,19 @@ with some global elements made local to resolve element name conflicts with QIF 
 QIFDocument.xsd was edited to reference this new schema and the new namespace for the Signature element.
 (These edited schemas will still generate QIF documents valid against the original, unedited schema files.)
 
-The resulting QIFDocument.cs was then edited to resolve three issues (search for MANEDIT to find changes):
+The resulting QIFDocument.cs must be edited to resolve three issues:
 1: The XSD tool does not support list elements (it does however support list attributes). This
-   required replacing lists of doubles, ints, etc, with space delimted text strings.
-2: Substitution groups were missing all but the base element type. The other polymorphic substitutions
-   were added manually.
-3: Code was added so that the xsi:schemaLocation attribute would appear in the QIFDocument XML header.
+   requires replacing lists of doubles, ints, etc, with space delimted text strings.
+2: Substitution groups are missing all but the base element type. The other polymorphic substitutions
+   must be added manually.
+3: Code needs to be added so that the xsi:schemaLocation attribute will appear in the QIFDocument XML header.
+
+These edits have been performed in the QIFdotNET\QIFDocument.cs file contained in the download package.
+Search for MANEDIT to see these changes or compare with the file you created.
 
 The test harness application:
 
-QifStructureReader1.sln is a Visual Studio 2015 solution for a two-button form application that:
+QIFdotNET.sln is a Visual Studio 2010 solution for a two-button form application that:
 1. reads any QIF document and if the document has measurement results a DMIS format results file
    is created from the QIF data, otherwise it displays information about diameter characteristics,
    distance between characteristics, and circle features. The application has a commented-out

@@ -26,6 +26,7 @@ QIF_CPlusPlus\QIF_CPlusPlus.h
 QIF_CPlusPlus\QIF_CPlusPlus.rc
 QIF_CPlusPlus\QIF_CPlusPlus.vcxproj
 QIF_CPlusPlus\QIF_CPlusPlus.vcxproj.filters
+QIF_CPlusPlus\QIF_CPlusPlus.vcxproj.user
 QIF_CPlusPlus\QIF_CPlusPlusDlg.cpp
 QIF_CPlusPlus\QIF_CPlusPlusDlg.h
 QIF_CPlusPlus\resource.h

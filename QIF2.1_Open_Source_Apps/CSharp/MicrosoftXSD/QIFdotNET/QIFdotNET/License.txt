@@ -25,6 +25,7 @@ QIFdotNET\Form1.cs
 QIFdotNET\Form1.Designer.cs
 QIFdotNET\Form1.resx
 QIFdotNET\Program.cs
+QIFdotNET\QIFDocument.cs
 QIFdotNET\QIFdotNET.csproj
-QIFApplications\QIFDocument.xsd
-QIFLibrary\xmldsig-core-schema-qif2-namespace.xsd
+QIFdotNET\QIFApplications\QIFDocument.xsd
+QIFdotNET\QIFLibrary\xmldsig-core-schema-qif2-namespace.xsd

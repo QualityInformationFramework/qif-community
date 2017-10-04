@@ -11,7 +11,7 @@
 // set up QIF namespaces
 using namespace std;
 using namespace xsd;
-using namespace xsd::qif2;
+using namespace xsd::qif21;
 
 #include "QIF_CPlusPlus.h"
 #include "QIF_CPlusPlusDlg.h"

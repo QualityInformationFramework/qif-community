@@ -6,6 +6,7 @@ import time
 import io
 import os
 import tkinter
+import tkinter.filedialog
 
 #region function GetDatumDefinitions
 # Populates string datdef with DMIS datum definition(s), e.g., "DATDEF/FA(PLANE1),DAT(A)"
