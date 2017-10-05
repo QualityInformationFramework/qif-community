@@ -8,7 +8,7 @@ Here are a few quick links:
 
 ### [QIF Website](http://www.qifstandards.org):
 
-The main QIF website. This is where you can download the standard, including the schemas and the documentation. It's free, go and get it!
+The main QIF website. This is where you can download the standard, including the schemas and the documentation. It's free, [go and get it](http://qifstandards.org/download/)!
 
 ### [QIF Community Wiki](https://github.com/QualityInformationFramework/qif-community/wiki):
 
