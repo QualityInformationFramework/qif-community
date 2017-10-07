@@ -1,6 +1,6 @@
 # How to contribute
 
-The best way to contribute to QIF is to [join the Dimensional Metrology Standards Consortium (DMSC)](http://qifstandards.org/about-dmsc/). The DMSC is the governing body for ANSI QIF, and this is where you can really make a difference. 
+The best way to contribute to QIF is to [join the Dimensional Metrology Standards Consortium (DMSC)](http://qifstandards.org/join-dmsc/). The DMSC is the governing body for ANSI QIF, and this is where you can really make a difference. 
 
 **What are some of the benefits of joining the DMSC?**
 
