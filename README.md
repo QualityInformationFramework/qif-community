@@ -18,6 +18,11 @@ Here you'll find some general information about QIF and the QIF community.
 
 Here is where you can find all the source code for supporting tools for QIF.
 
+[![QIF for Beginners](https://img.youtube.com/vi/EyUumtOc-f4/0.jpg)](https://www.youtube.com/watch?v=EyUumtOc-f4)
+
+[Here is a presentation which can show just how easy it is to get started with QIF!](https://www.youtube.com/watch?v=EyUumtOc-f4)
+
+
 ### [Our "Issues" List](https://github.com/QualityInformationFramework/qif-community/issues): 
 
 This is for more than just flagging issues with the QIF standard. Here is where you can interact with the rest of the community: 
