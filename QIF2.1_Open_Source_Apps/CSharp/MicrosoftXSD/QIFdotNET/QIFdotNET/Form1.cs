@@ -137,298 +137,395 @@ namespace QifStructureReader1
         // are found and combined with the datum label found by traversing the datum definition list
         private void GetTolerances(QIFDocumentType qifDoc, long actfeatid, ref string tlabels, ref string talabels, ref string tdefs, ref string tadefs)
         {
-            if (qifDoc.Characteristics != null && // make sure we have(optional) characteristics and measurements
-                qifDoc.Characteristics.CharacteristicItems != null && 
-                qifDoc.MeasurementsResults != null &&
-                qifDoc.MeasurementsResults.MeasurementResultsSet.MeasurementResults.Length > 0)
+            // make sure we have(optional) characteristics and measurements
+            if (qifDoc.Characteristics == null ||
+                qifDoc.Characteristics.CharacteristicItems == null ||
+                qifDoc.MeasurementsResults == null ||
+                qifDoc.MeasurementsResults.MeasurementResultsSet.MeasurementResults.Length == 0)
+                return;
+
+            // let's just look at the first set of measurement results
+            var measResults = qifDoc.MeasurementsResults.MeasurementResultsSet.MeasurementResults[0];
+            if (measResults.MeasuredFeatures == null || // make sure we have both (optional) actual features and characteristics
+                measResults.MeasuredFeatures.FeatureActuals == null ||
+                measResults.MeasuredCharacteristics == null ||
+                measResults.MeasuredCharacteristics.CharacteristicActuals == null)
+                return;
+
+            // walk through actual characteristics to get characteristics applied to this actual feature actfeatid
+            for (int i = 0; i < measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual.Length; i++)
             {
-                // let's just look at the first set of measurement results
-                MeasurementResultsType measResults = qifDoc.MeasurementsResults.MeasurementResultsSet.MeasurementResults[0];
-                if (measResults.MeasuredFeatures != null && // make sure we have both (optional) actual features and characteristics
-                    measResults.MeasuredFeatures.FeatureActuals != null &&
-                    measResults.MeasuredCharacteristics != null &&
-                    measResults.MeasuredCharacteristics.CharacteristicActuals != null)
+                var characteristicActual = measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i];
+                if (characteristicActual.FeatureActualIds == null) // characteristics optionally point at features
+                    continue;
+                for (int j = 0; j < characteristicActual.FeatureActualIds.Id.Length; j++) // walk through feature references
                 {
-                    // walk through actual characteristics to get characteristics applied to this actual feature actfeatid
-                    for (int i = 0; i < measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual.Length; i++)
+                    if (characteristicActual.FeatureActualIds.Id[j].Value != actfeatid) // look for a match
+                        continue;
+
+                    // find the (required) item, nominal and definition for this actual characteristic 
+                    for (int k = 0; k < qifDoc.Characteristics.CharacteristicItems.CharacteristicItem.Length; k++) // walk through characteristic items
                     {
-                        if(measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i].FeatureActualIds != null) // characteristics optionally point at features
+                        var characteristicItem = qifDoc.Characteristics.CharacteristicItems.CharacteristicItem[k];
+                        if (characteristicItem.id != characteristicActual.CharacteristicItemId.Value) // looking for the item referenced by the actual
+                            continue;
+
+                        for (int m = 0; m < qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal.Length; m++) // walk through characteristic nominals
                         {
-                            for (int j = 0; j < measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i].FeatureActualIds.Id.Length; j++) // walk through feature references
+                            var characteristicNominal = qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal[m];
+                            if (characteristicItem.CharacteristicNominalId.Value != characteristicNominal.id) // looking for the nominal referenced by the item
+                                continue;
+
+                            for (int n = 0; n < qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition.Length; n++) // walk through characteristic definitions
                             {
-                                if (measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i].FeatureActualIds.Id[j].Value == actfeatid) // look for a match
+                                var characteristicDefn = qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition[n];
+                                if (characteristicNominal.CharacteristicDefinitionId.Value != characteristicDefn.id) // looking for the definition referenced by the nominal
+                                    continue;
+
+                                // we have all four aspects, check their types (which should all match)
+                                if (characteristicActual is DiameterCharacteristicActualType &&
+                                    characteristicItem is DiameterCharacteristicItemType &&
+                                    characteristicNominal is DiameterCharacteristicNominalType &&
+                                    characteristicDefn is DiameterCharacteristicDefinitionType)
                                 {
-                                    // find the (required) item, nominal and definition for this actual characteristic 
-                                    for (int k = 0; k < qifDoc.Characteristics.CharacteristicItems.CharacteristicItem.Length; k++) // walk through characteristic items
-                                    {
-                                        if (qifDoc.Characteristics.CharacteristicItems.CharacteristicItem[k].id == measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i].CharacteristicItemId.Value) // looking for the item referenced by the actual
-                                        {
-                                            for (int m = 0; m < qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal.Length; m++) // walk through characteristic nominals
-                                            {
-                                                if (qifDoc.Characteristics.CharacteristicItems.CharacteristicItem[k].CharacteristicNominalId.Value == qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal[m].id) // looking for the nominal referenced by the item
-                                                {
-                                                    for (int n = 0; n < qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition.Length; n++) // walk through characteristic definitions
-                                                    {
-                                                        if (qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal[m].CharacteristicDefinitionId.Value == qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition[n].id) // looking for the definition referenced by the nominal
-                                                        {
-                                                            // we have all four aspects, check their types (which should all match)
-                                                            if (measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i] is DiameterCharacteristicActualType &&
-                                                                qifDoc.Characteristics.CharacteristicItems.CharacteristicItem[k] is DiameterCharacteristicItemType &&
-                                                                qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal[m] is DiameterCharacteristicNominalType &&
-                                                                qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition[n] is DiameterCharacteristicDefinitionType)
-                                                            {
-                                                                DiameterCharacteristicActualType diaAct = (DiameterCharacteristicActualType)Convert.ChangeType(measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i],
-                                                                    measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i].GetType());
-                                                                DiameterCharacteristicItemType diaItem = (DiameterCharacteristicItemType)Convert.ChangeType(qifDoc.Characteristics.CharacteristicItems.CharacteristicItem[k],
-                                                                    qifDoc.Characteristics.CharacteristicItems.CharacteristicItem[k].GetType());
-                                                                DiameterCharacteristicNominalType diaNom = (DiameterCharacteristicNominalType)Convert.ChangeType(qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal[m],
-                                                                    qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal[m].GetType());
-                                                                DiameterCharacteristicDefinitionType diaDef = (DiameterCharacteristicDefinitionType)Convert.ChangeType(qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition[n],
-                                                                    qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition[n].GetType());
-                                                                if(diaAct != null && diaItem != null && diaNom != null && diaDef != null) // should never fail, so it will
-                                                                {
-                                                                    // we have a set of matched types
-                                                                    if (diaDef.Item is LinearToleranceType) // this could be a limit&fit or tolerance definition
-                                                                    {
-                                                                        // an aside...
-                                                                        // dimensional characteristics have an optional enumeration for BASIC, SET, REFERENCE
-                                                                        // if(diaDef.DimensionType != null) { } // this doesn't work to see if it exists (never null)
-                                                                        if (diaDef.DimensionTypeSpecified) { } // this extra method needs to be used to test for optional enumerations
-                                                                        // but we're not interested in this modifier for our DMIS output
-                                                                        LinearToleranceType diaTol = (LinearToleranceType)Convert.ChangeType(diaDef.Item, diaDef.Item.GetType());
-                                                                        if(diaTol != null)
-                                                                        {
-                                                                            // just min, just max, or both min+max may be defined in QIF, DMIS needs both
-                                                                            decimal hitol = 0;
-                                                                            decimal lotol = 0;
-                                                                            // because both min and max are objects of the same type, this clunky method is used to figure out who is who
-                                                                            for (int t = 0; t < diaTol.ItemsElementName.Length; t++)
-                                                                            {
-                                                                                if (diaTol.ItemsElementName[t] == ItemsChoiceType4.MaxValue)
-                                                                                {
-                                                                                    LinearValueType diaMax = (LinearValueType)Convert.ChangeType(diaTol.Items[t], diaTol.Items[t].GetType());
-                                                                                    if (diaMax != null) hitol = diaMax.Value;
-                                                                                }
-                                                                                else if (diaTol.ItemsElementName[t] == ItemsChoiceType4.MinValue)
-                                                                                {
-                                                                                    LinearValueType diaMin = (LinearValueType)Convert.ChangeType(diaTol.Items[t], diaTol.Items[t].GetType());
-                                                                                    if (diaMin != null) lotol = diaMin.Value;
-                                                                                }
-                                                                            }
-                                                                            if (diaTol.DefinedAsLimit) // limit specification?
-                                                                            {
-                                                                                // DMIS doesn't support limit tolerance for diameter
-                                                                                if (diaNom.TargetValue != null) // do we have a target value?
-                                                                                {
-                                                                                    // convert min and max from limit to +/- tols
-                                                                                    hitol = hitol - diaNom.TargetValue.Value;
-                                                                                    lotol = lotol - diaNom.TargetValue.Value;
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                    // assume target is between limits
-                                                                                    decimal diam = (hitol + lotol) / 2;
-                                                                                    hitol = hitol - diam;
-                                                                                    lotol = lotol - diam;
-                                                                                }
-                                                                            }
-                                                                            // compose the nominal DMIS tolerance label T(DIAM1)
-                                                                            tlabels += ",T(" + diaItem.Name + ")";
-                                                                            // compose the nominal DMIS tolerance T(DIAM1)=TOL/DIAM,-.1,.1
-                                                                            tdefs += "T(" + diaItem.Name + ")=TOL/DIAM," + lotol.ToString() + "," + hitol.ToString() + Environment.NewLine;
-                                                                            if (diaAct.Value != null)
-                                                                            {
-                                                                                // compose the actual DMIS tolerance label TA(DIAM1)
-                                                                                talabels += ",TA(" + diaItem.Name + ")";
-                                                                                // compose the actual DMIS tolerance TA(DIAM1)=TOL/DIAM,-.05,INTOL
-                                                                                tadefs += "TA(" + diaItem.Name + ")=TOL/DIAM," + diaAct.Value.Value.ToString();
-                                                                                if (diaAct.Status.Item is CharacteristicStatusEnumType) // we are only going to handle the enumeration
-                                                                                {
-                                                                                    CharacteristicStatusEnumType status = (CharacteristicStatusEnumType)Convert.ChangeType(diaAct.Status.Item, diaAct.Status.Item.GetType());
-                                                                                    if (status == CharacteristicStatusEnumType.PASS) tadefs += ",INTOL";
-                                                                                    else tadefs += ",OUTOL"; // if we don't it's in, assume it's out
-                                                                                }
-                                                                                else tadefs += ",OUTOL"; // if we don't it's in, assume it's out
-                                                                                tadefs += Environment.NewLine;
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                            else if (measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i] is FlatnessCharacteristicActualType &&
-                                                                qifDoc.Characteristics.CharacteristicItems.CharacteristicItem[k] is FlatnessCharacteristicItemType &&
-                                                                qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal[m] is FlatnessCharacteristicNominalType &&
-                                                                qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition[n] is FlatnessCharacteristicDefinitionType)
-                                                            {
-                                                                FlatnessCharacteristicActualType flatAct = (FlatnessCharacteristicActualType)Convert.ChangeType(measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i],
-                                                                    measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i].GetType());
-                                                                FlatnessCharacteristicItemType flatItem = (FlatnessCharacteristicItemType)Convert.ChangeType(qifDoc.Characteristics.CharacteristicItems.CharacteristicItem[k],
-                                                                    qifDoc.Characteristics.CharacteristicItems.CharacteristicItem[k].GetType());
-                                                                FlatnessCharacteristicNominalType flatNom = (FlatnessCharacteristicNominalType)Convert.ChangeType(qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal[m],
-                                                                    qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal[m].GetType());
-                                                                FlatnessCharacteristicDefinitionType flatDef = (FlatnessCharacteristicDefinitionType)Convert.ChangeType(qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition[n],
-                                                                    qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition[n].GetType());
-                                                                if (flatAct != null && flatItem != null && flatNom != null && flatDef != null) // should never fail, so it will
-                                                                {
-                                                                    // we have a set of matched flatness types
-                                                                    // we're going to cheat and just grab the tolerance zone neglecting any per-area requirements
-                                                                    // compose the nominal DMIS tolerance label T(FLAT1)
-                                                                    tlabels += ",T(" + flatItem.Name + ")";
-                                                                    // compose the nominal DMIS tolerance T(FLAT1)=TOL/FLAT,.1
-                                                                    tdefs += "T(" + flatItem.Name + ")=TOL/FLAT,";
-                                                                    if (flatDef.Items != null) // this can be zone, or zone + per unit area
-                                                                    {
-                                                                        for (int t = 0; t < flatDef.Items.Length; t++)
-                                                                        {
-                                                                            if (flatDef.Items[t] is LinearValueType)
-                                                                            {
-                                                                                LinearValueType zone = (LinearValueType)Convert.ChangeType(flatDef.Items[t], flatDef.Items[t].GetType());
-                                                                                tdefs += zone.Value.ToString();
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                    else if (flatDef.Items != null && flatDef.Item is ToleranceZonePerUnitAreaType) // this will be per unit area
-                                                                    {
-                                                                        ToleranceZonePerUnitAreaType areazone = (ToleranceZonePerUnitAreaType)Convert.ChangeType(flatDef.Item, flatDef.Item.GetType());
-                                                                        tdefs += areazone.ToleranceValuePerUnit.Value.ToString();
-                                                                    }
-                                                                    else // should never happen
-                                                                    {
-                                                                        tdefs += "0";
-                                                                    }
-                                                                    tdefs += Environment.NewLine;
-                                                                    if (flatAct.Value != null) // do we have the optional actual value?
-                                                                    {
-                                                                        // compose the actual DMIS tolerance label TA(FLAT1)
-                                                                        talabels += ",TA(" + flatItem.Name + ")";
-                                                                        // compose the actual DMIS tolerance TA(FLAT1)=TOL/FLAT,.05,INTOL
-                                                                        tadefs += "TA(" + flatItem.Name + ")=TOL/FLAT," + flatAct.Value.Value.ToString();
-                                                                        if (flatAct.Status.Item is CharacteristicStatusEnumType) // we are only going to handle the enumeration
-                                                                        {
-                                                                            CharacteristicStatusEnumType status = (CharacteristicStatusEnumType)Convert.ChangeType(flatAct.Status.Item, flatAct.Status.Item.GetType());
-                                                                            if (status == CharacteristicStatusEnumType.PASS) tadefs += ",INTOL";
-                                                                            else tadefs += ",OUTOL"; // if we don't it's in, assume it's out
-                                                                        }
-                                                                        else tadefs += ",OUTOL"; // if we don't it's in, assume it's out
-                                                                        tadefs += Environment.NewLine;
-                                                                    }
-                                                                }
-                                                            }
-                                                            else if (measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i] is PerpendicularityCharacteristicActualType &&
-                                                                qifDoc.Characteristics.CharacteristicItems.CharacteristicItem[k] is PerpendicularityCharacteristicItemType &&
-                                                                qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal[m] is PerpendicularityCharacteristicNominalType &&
-                                                                qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition[n] is PerpendicularityCharacteristicDefinitionType)
-                                                            {
-                                                                PerpendicularityCharacteristicActualType perpAct = (PerpendicularityCharacteristicActualType)Convert.ChangeType(measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i],
-                                                                    measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i].GetType());
-                                                                PerpendicularityCharacteristicItemType perpItem = (PerpendicularityCharacteristicItemType)Convert.ChangeType(qifDoc.Characteristics.CharacteristicItems.CharacteristicItem[k],
-                                                                    qifDoc.Characteristics.CharacteristicItems.CharacteristicItem[k].GetType());
-                                                                PerpendicularityCharacteristicNominalType perpNom = (PerpendicularityCharacteristicNominalType)Convert.ChangeType(qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal[m],
-                                                                    qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal[m].GetType());
-                                                                PerpendicularityCharacteristicDefinitionType perpDef = (PerpendicularityCharacteristicDefinitionType)Convert.ChangeType(qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition[n],
-                                                                    qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition[n].GetType());
-                                                                if (perpAct != null && perpItem != null && perpNom != null && perpDef != null) // should never fail, so it will
-                                                                {
-                                                                    // we have a set of matched perpendicularity types
-                                                                    // compose the nominal DMIS tolerance label T(PERP1)
-                                                                    tlabels += ",T(" + perpItem.Name + ")";
-                                                                    // compose the nominal DMIS tolerance T(PERP1)=TOL/PERP,.1,MMC,DAT(A)
-                                                                    tdefs += "T(" + perpItem.Name + ")=TOL/PERP," + perpDef.ToleranceValue.Value.ToString();
-                                                                    // material modifier for tolerance value
-                                                                    if (perpDef.MaterialCondition == MaterialModifierEnumType.MAXIMUM) tdefs += ",MMC";
-                                                                    else if (perpDef.MaterialCondition == MaterialModifierEnumType.LEAST) tdefs += ",LMC";
-                                                                    else if (perpDef.MaterialCondition == MaterialModifierEnumType.REGARDLESS) tdefs += ",RFS";
-                                                                    // get the DRF string
-                                                                    string drfStr = "";
-                                                                    if (perpDef.DatumReferenceFrameId != null) // DRF is optional
-                                                                        GetDatumReferenceFrame(qifDoc, perpDef.DatumReferenceFrameId.Value, ref drfStr);
-                                                                    tdefs += drfStr + Environment.NewLine;
-                                                                    if (perpAct.Value != null) // do we have the optional actual value?
-                                                                    {
-                                                                        // compose the actual DMIS tolerance label TA(PERP1)
-                                                                        talabels += ",TA(" + perpItem.Name + ")";
-                                                                        // compose the actual DMIS tolerance TA(PERP1)=TOL/PERP,.05,INTOL,MMC,DAT(A)
-                                                                        tadefs += "TA(" + perpItem.Name + ")=TOL/PERP," + perpAct.Value.Value.ToString();
-                                                                        if (perpAct.Status.Item is CharacteristicStatusEnumType) // we are only going to handle the enumeration
-                                                                        {
-                                                                            CharacteristicStatusEnumType status = (CharacteristicStatusEnumType)Convert.ChangeType(perpAct.Status.Item, perpAct.Status.Item.GetType());
-                                                                            if (status == CharacteristicStatusEnumType.PASS) tadefs += ",INTOL";
-                                                                            else tadefs += ",OUTOL"; // if we don't it's in, assume it's out
-                                                                        }
-                                                                        else tadefs += ",OUTOL"; // if we don't it's in, assume it's out
-                                                                        // material modifier for tolerance value, again
-                                                                        if (perpDef.MaterialCondition == MaterialModifierEnumType.MAXIMUM) tadefs += ",MMC";
-                                                                        else if (perpDef.MaterialCondition == MaterialModifierEnumType.LEAST) tadefs += ",LMC";
-                                                                        else if (perpDef.MaterialCondition == MaterialModifierEnumType.REGARDLESS) tadefs += ",RFS";
-                                                                        tadefs += drfStr + Environment.NewLine; // reuse the DRF string
-                                                                    }
-                                                                }
-                                                            }
-                                                            else if (measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i] is PositionCharacteristicActualType &&
-                                                                qifDoc.Characteristics.CharacteristicItems.CharacteristicItem[k] is PositionCharacteristicItemType &&
-                                                                qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal[m] is PositionCharacteristicNominalType &&
-                                                                qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition[n] is PositionCharacteristicDefinitionType)
-                                                            {
-                                                                PositionCharacteristicActualType posAct = (PositionCharacteristicActualType)Convert.ChangeType(measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i],
-                                                                    measResults.MeasuredCharacteristics.CharacteristicActuals.CharacteristicActual[i].GetType());
-                                                                PositionCharacteristicItemType posItem = (PositionCharacteristicItemType)Convert.ChangeType(qifDoc.Characteristics.CharacteristicItems.CharacteristicItem[k],
-                                                                    qifDoc.Characteristics.CharacteristicItems.CharacteristicItem[k].GetType());
-                                                                PositionCharacteristicNominalType posNom = (PositionCharacteristicNominalType)Convert.ChangeType(qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal[m],
-                                                                    qifDoc.Characteristics.CharacteristicNominals.CharacteristicNominal[m].GetType());
-                                                                PositionCharacteristicDefinitionType posDef = (PositionCharacteristicDefinitionType)Convert.ChangeType(qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition[n],
-                                                                    qifDoc.Characteristics.CharacteristicDefinitions.CharacteristicDefinition[n].GetType());
-                                                                if (posAct != null && posItem != null && posNom != null && posDef != null) // should never fail, so it will
-                                                                {
-                                                                    // we have a set of matched position types
-                                                                    // compose the nominal DMIS tolerance label T(POS1)
-                                                                    tlabels += ",T(" + posItem.Name + ")";
-                                                                    string dim = "3D,";
-                                                                    // TODO, determine dimensionality
-                                                                    // compose the nominal DMIS tolerance T(POS1)=TOL/POS,.1,MMC,DAT(A),DAT(B),MMC
-                                                                    tdefs += "T(" + posItem.Name + ")=TOL/POS," + dim + posDef.ToleranceValue.Value.ToString();
-                                                                    // material modifier for tolerance value
-                                                                    if (posDef.MaterialCondition == MaterialModifierEnumType.MAXIMUM) tdefs += ",MMC";
-                                                                    else if (posDef.MaterialCondition == MaterialModifierEnumType.LEAST) tdefs += ",LMC";
-                                                                    else if (posDef.MaterialCondition == MaterialModifierEnumType.REGARDLESS) tdefs += ",RFS";
-                                                                    // get the DRF string
-                                                                    string drfStr = "";
-                                                                    if (posDef.DatumReferenceFrameId != null) // DRF is optional
-                                                                        GetDatumReferenceFrame(qifDoc, posDef.DatumReferenceFrameId.Value, ref drfStr);
-                                                                    tdefs += drfStr + Environment.NewLine;
-                                                                    if (posAct.Value != null) // do we have the optional actual value?
-                                                                    {
-                                                                        // compose the actual DMIS tolerance label TA(POS1)
-                                                                        talabels += ",TA(" + posItem.Name + ")";
-                                                                        // compose the actual DMIS tolerance T(POS1)=TOL/POS,.05,INTOL,MMC,DAT(A),DAT(B),MMC
-                                                                        tadefs += "TA(" + posItem.Name + ")=TOL/POS," + dim + posAct.Value.Value.ToString();
-                                                                        if (posAct.Status.Item is CharacteristicStatusEnumType) // we are only going to handle the enumeration
-                                                                        {
-                                                                            CharacteristicStatusEnumType status = (CharacteristicStatusEnumType)Convert.ChangeType(posAct.Status.Item, posAct.Status.Item.GetType());
-                                                                            if (status == CharacteristicStatusEnumType.PASS) tadefs += ",INTOL";
-                                                                            else tadefs += ",OUTOL"; // if we don't it's in, assume it's out
-                                                                        }
-                                                                        else tadefs += ",OUTOL"; // if we don't it's in, assume it's out
-                                                                        // material modifier for tolerance value, again
-                                                                        if (posDef.MaterialCondition == MaterialModifierEnumType.MAXIMUM) tadefs += ",MMC";
-                                                                        else if (posDef.MaterialCondition == MaterialModifierEnumType.LEAST) tadefs += ",LMC";
-                                                                        else if (posDef.MaterialCondition == MaterialModifierEnumType.REGARDLESS) tadefs += ",RFS";
-                                                                        tadefs += drfStr + Environment.NewLine; // reuse the DRF string
-                                                                    }
-                                                                }
-                                                            }
-                                                            // here's where you add support for other characteristic types
-                                                            break; // definition loop
-                                                        }
-                                                    }
-                                                    break; // nominal loop
-                                                }
-                                            }
-                                            break; // item loop
-                                        }
-                                    }
+                                    var diaAct = (DiameterCharacteristicActualType)Convert.ChangeType(characteristicActual, characteristicActual.GetType());
+                                    var diaItem = (DiameterCharacteristicItemType)Convert.ChangeType(characteristicItem, characteristicItem.GetType());
+                                    var diaNom = (DiameterCharacteristicNominalType)Convert.ChangeType(characteristicNominal, characteristicNominal.GetType());
+                                    var diaDef = (DiameterCharacteristicDefinitionType)Convert.ChangeType(characteristicDefn, characteristicDefn.GetType());
+                                    GetDiameterTolerance(ref tlabels,
+                                        ref talabels,
+                                        ref tdefs,
+                                        ref tadefs,
+                                        diaAct,
+                                        diaItem,
+                                        diaNom,
+                                        diaDef);
                                 }
+                                else if (characteristicActual is FlatnessCharacteristicActualType &&
+                                    characteristicItem is FlatnessCharacteristicItemType &&
+                                    characteristicNominal is FlatnessCharacteristicNominalType &&
+                                    characteristicDefn is FlatnessCharacteristicDefinitionType)
+                                {
+                                    var flatAct = (FlatnessCharacteristicActualType)Convert.ChangeType(characteristicActual, characteristicActual.GetType());
+                                    var flatItem = (FlatnessCharacteristicItemType)Convert.ChangeType(characteristicItem, characteristicItem.GetType());
+                                    var flatNom = (FlatnessCharacteristicNominalType)Convert.ChangeType(characteristicNominal, characteristicNominal.GetType());
+                                    var flatDef = (FlatnessCharacteristicDefinitionType)Convert.ChangeType(characteristicDefn, characteristicDefn.GetType());
+                                    GetFlatnessTolerance(ref tlabels,
+                                        ref talabels,
+                                        ref tdefs,
+                                        ref tadefs,
+                                        flatAct,
+                                        flatItem,
+                                        flatNom,
+                                        flatDef);
+                                }
+                                else if (characteristicActual is PerpendicularityCharacteristicActualType &&
+                                    characteristicItem is PerpendicularityCharacteristicItemType &&
+                                    characteristicNominal is PerpendicularityCharacteristicNominalType &&
+                                    characteristicDefn is PerpendicularityCharacteristicDefinitionType)
+                                {
+                                    var perpAct = (PerpendicularityCharacteristicActualType)Convert.ChangeType(characteristicActual, characteristicActual.GetType());
+                                    var perpItem = (PerpendicularityCharacteristicItemType)Convert.ChangeType(characteristicItem, characteristicItem.GetType());
+                                    var perpNom = (PerpendicularityCharacteristicNominalType)Convert.ChangeType(characteristicNominal, characteristicNominal.GetType());
+                                    var perpDef = (PerpendicularityCharacteristicDefinitionType)Convert.ChangeType(characteristicDefn, characteristicDefn.GetType());
+                                    GetPerpendicularityTolerance(qifDoc,
+                                        ref tlabels,
+                                        ref talabels,
+                                        ref tdefs,
+                                        ref tadefs,
+                                        perpAct,
+                                        perpItem,
+                                        perpNom,
+                                        perpDef);
+                                }
+                                else if (characteristicActual is PositionCharacteristicActualType &&
+                                    characteristicItem is PositionCharacteristicItemType &&
+                                    characteristicNominal is PositionCharacteristicNominalType &&
+                                    characteristicDefn is PositionCharacteristicDefinitionType)
+                                {
+                                    var posAct = (PositionCharacteristicActualType)Convert.ChangeType(characteristicActual, characteristicActual.GetType());
+                                    var posItem = (PositionCharacteristicItemType)Convert.ChangeType(characteristicItem, characteristicItem.GetType());
+                                    var posNom = (PositionCharacteristicNominalType)Convert.ChangeType(characteristicNominal, characteristicNominal.GetType());
+                                    var posDef = (PositionCharacteristicDefinitionType)Convert.ChangeType(characteristicDefn, characteristicDefn.GetType());
+
+                                    GetPositionTolerance(qifDoc,
+                                        ref tlabels,
+                                        ref talabels,
+                                        ref tdefs,
+                                        ref tadefs,
+                                        posAct,
+                                        posItem,
+                                        posNom,
+                                        posDef);
+                                }
+                                // here's where you add support for other characteristic types
+                                break; // definition loop
                             }
+                            break; // nominal loop
                         }
+                        break; // item loop
+                    }
+                }
+            }
+        }
+
+        private void GetPositionTolerance(QIFDocumentType qifDoc,
+            ref string tlabels,
+            ref string talabels,
+            ref string tdefs,
+            ref string tadefs,
+            PositionCharacteristicActualType posAct,
+            PositionCharacteristicItemType posItem,
+            PositionCharacteristicNominalType posNom,
+            PositionCharacteristicDefinitionType posDef)
+        {
+            System.Diagnostics.Debug.Assert(posAct != null && posItem != null && posNom != null && posDef != null);
+            if (posAct == null || posItem == null || posNom == null || posDef == null)
+                return;
+
+            // we have a set of matched position types
+            // compose the nominal DMIS tolerance label T(POS1)
+            tlabels += ",T(" + posItem.Name + ")";
+            string dim = "3D,";
+            // TODO, determine dimensionality
+            // compose the nominal DMIS tolerance T(POS1)=TOL/POS,.1,MMC,DAT(A),DAT(B),MMC
+            tdefs += "T(" + posItem.Name + ")=TOL/POS," + dim + posDef.ToleranceValue.Value.ToString();
+            // material modifier for tolerance value
+            if (posDef.MaterialCondition == MaterialModifierEnumType.MAXIMUM)
+                tdefs += ",MMC";
+            else if (posDef.MaterialCondition == MaterialModifierEnumType.LEAST)
+                tdefs += ",LMC";
+            else if (posDef.MaterialCondition == MaterialModifierEnumType.REGARDLESS)
+                tdefs += ",RFS";
+            // get the DRF string
+            string drfStr = "";
+            if (posDef.DatumReferenceFrameId != null) // DRF is optional
+                GetDatumReferenceFrame(qifDoc, posDef.DatumReferenceFrameId.Value, ref drfStr);
+            tdefs += drfStr + Environment.NewLine;
+            if (posAct.Value != null) // do we have the optional actual value?
+            {
+                // compose the actual DMIS tolerance label TA(POS1)
+                talabels += ",TA(" + posItem.Name + ")";
+                // compose the actual DMIS tolerance T(POS1)=TOL/POS,.05,INTOL,MMC,DAT(A),DAT(B),MMC
+                tadefs += "TA(" + posItem.Name + ")=TOL/POS," + dim + posAct.Value.Value.ToString();
+                if (posAct.Status.Item is CharacteristicStatusEnumType) // we are only going to handle the enumeration
+                {
+                    var status = (CharacteristicStatusEnumType)Convert.ChangeType(posAct.Status.Item, posAct.Status.Item.GetType());
+                    if (status == CharacteristicStatusEnumType.PASS)
+                        tadefs += ",INTOL";
+                    else
+                        tadefs += ",OUTOL"; // if we don't it's in, assume it's out
+                }
+                else
+                    tadefs += ",OUTOL"; // if we don't it's in, assume it's out
+                                            // material modifier for tolerance value, again
+                if (posDef.MaterialCondition == MaterialModifierEnumType.MAXIMUM)
+                    tadefs += ",MMC";
+                else if (posDef.MaterialCondition == MaterialModifierEnumType.LEAST)
+                    tadefs += ",LMC";
+                else if (posDef.MaterialCondition == MaterialModifierEnumType.REGARDLESS)
+                    tadefs += ",RFS";
+                tadefs += drfStr + Environment.NewLine; // reuse the DRF string
+            }
+        }
+
+        private void GetPerpendicularityTolerance(QIFDocumentType qifDoc,
+            ref string tlabels,
+            ref string talabels,
+            ref string tdefs,
+            ref string tadefs,
+            PerpendicularityCharacteristicActualType perpAct,
+            PerpendicularityCharacteristicItemType perpItem,
+            PerpendicularityCharacteristicNominalType perpNom,
+            PerpendicularityCharacteristicDefinitionType perpDef)
+        {
+            System.Diagnostics.Debug.Assert(perpAct != null && perpItem != null && perpNom != null && perpDef != null);
+            if (perpAct == null || perpItem == null || perpNom == null || perpDef == null)
+                return;
+
+            // we have a set of matched perpendicularity types
+            // compose the nominal DMIS tolerance label T(PERP1)
+            tlabels += ",T(" + perpItem.Name + ")";
+            // compose the nominal DMIS tolerance T(PERP1)=TOL/PERP,.1,MMC,DAT(A)
+            tdefs += "T(" + perpItem.Name + ")=TOL/PERP," + perpDef.ToleranceValue.Value.ToString();
+            // material modifier for tolerance value
+            if (perpDef.MaterialCondition == MaterialModifierEnumType.MAXIMUM)
+                tdefs += ",MMC";
+            else if (perpDef.MaterialCondition == MaterialModifierEnumType.LEAST)
+                tdefs += ",LMC";
+            else if (perpDef.MaterialCondition == MaterialModifierEnumType.REGARDLESS)
+                tdefs += ",RFS";
+            // get the DRF string
+            string drfStr = "";
+            if (perpDef.DatumReferenceFrameId != null) // DRF is optional
+                GetDatumReferenceFrame(qifDoc, perpDef.DatumReferenceFrameId.Value, ref drfStr);
+            tdefs += drfStr + Environment.NewLine;
+            if (perpAct.Value != null) // do we have the optional actual value?
+            {
+                // compose the actual DMIS tolerance label TA(PERP1)
+                talabels += ",TA(" + perpItem.Name + ")";
+                // compose the actual DMIS tolerance TA(PERP1)=TOL/PERP,.05,INTOL,MMC,DAT(A)
+                tadefs += "TA(" + perpItem.Name + ")=TOL/PERP," + perpAct.Value.Value.ToString();
+                if (perpAct.Status.Item is CharacteristicStatusEnumType) // we are only going to handle the enumeration
+                {
+                    var status = (CharacteristicStatusEnumType)Convert.ChangeType(perpAct.Status.Item, perpAct.Status.Item.GetType());
+                    if (status == CharacteristicStatusEnumType.PASS)
+                        tadefs += ",INTOL";
+                    else
+                        tadefs += ",OUTOL"; // if we don't it's in, assume it's out
+                }
+                else
+                    tadefs += ",OUTOL"; // if we don't it's in, assume it's out
+                                            // material modifier for tolerance value, again
+                if (perpDef.MaterialCondition == MaterialModifierEnumType.MAXIMUM)
+                    tadefs += ",MMC";
+                else if (perpDef.MaterialCondition == MaterialModifierEnumType.LEAST)
+                    tadefs += ",LMC";
+                else if (perpDef.MaterialCondition == MaterialModifierEnumType.REGARDLESS)
+                    tadefs += ",RFS";
+                tadefs += drfStr + Environment.NewLine; // reuse the DRF string
+            }
+        }
+
+        private static void GetFlatnessTolerance(ref string tlabels,
+            ref string talabels,
+            ref string tdefs,
+            ref string tadefs,
+            FlatnessCharacteristicActualType flatAct,
+            FlatnessCharacteristicItemType flatItem,
+            FlatnessCharacteristicNominalType flatNom,
+            FlatnessCharacteristicDefinitionType flatDef)
+        {
+            System.Diagnostics.Debug.Assert(flatAct != null && flatItem != null && flatNom != null && flatDef != null);
+            if (flatAct == null || flatItem == null || flatNom == null || flatDef == null)
+                return;
+
+            // we have a set of matched flatness types
+            // we're going to cheat and just grab the tolerance zone neglecting any per-area requirements
+            // compose the nominal DMIS tolerance label T(FLAT1)
+            tlabels += ",T(" + flatItem.Name + ")";
+            // compose the nominal DMIS tolerance T(FLAT1)=TOL/FLAT,.1
+            tdefs += "T(" + flatItem.Name + ")=TOL/FLAT,";
+            if (flatDef.Items != null) // this can be zone, or zone + per unit area
+            {
+                for (int t = 0; t < flatDef.Items.Length; t++)
+                {
+                    if (flatDef.Items[t] is LinearValueType)
+                    {
+                        var zone = (LinearValueType)Convert.ChangeType(flatDef.Items[t], flatDef.Items[t].GetType());
+                        tdefs += zone.Value.ToString();
+                    }
+                }
+            }
+            else if (flatDef.Items != null && flatDef.Item is ToleranceZonePerUnitAreaType) // this will be per unit area
+            {
+                var areazone = (ToleranceZonePerUnitAreaType)Convert.ChangeType(flatDef.Item, flatDef.Item.GetType());
+                tdefs += areazone.ToleranceValuePerUnit.Value.ToString();
+            }
+            else // should never happen
+            {
+                tdefs += "0";
+            }
+            tdefs += Environment.NewLine;
+            if (flatAct.Value != null) // do we have the optional actual value?
+            {
+                // compose the actual DMIS tolerance label TA(FLAT1)
+                talabels += ",TA(" + flatItem.Name + ")";
+                // compose the actual DMIS tolerance TA(FLAT1)=TOL/FLAT,.05,INTOL
+                tadefs += "TA(" + flatItem.Name + ")=TOL/FLAT," + flatAct.Value.Value.ToString();
+                if (flatAct.Status.Item is CharacteristicStatusEnumType) // we are only going to handle the enumeration
+                {
+                    var status = (CharacteristicStatusEnumType)Convert.ChangeType(flatAct.Status.Item, flatAct.Status.Item.GetType());
+                    if (status == CharacteristicStatusEnumType.PASS)
+                        tadefs += ",INTOL";
+                    else
+                        tadefs += ",OUTOL"; // if we don't it's in, assume it's out
+                }
+                else
+                    tadefs += ",OUTOL"; // if we don't it's in, assume it's out
+                tadefs += Environment.NewLine;
+            }
+        }
+
+        private static void GetDiameterTolerance(ref string tlabels,
+            ref string talabels,
+            ref string tdefs,
+            ref string tadefs,
+            DiameterCharacteristicActualType diaAct,
+            DiameterCharacteristicItemType diaItem,
+            DiameterCharacteristicNominalType diaNom,
+            DiameterCharacteristicDefinitionType diaDef)
+        {
+            System.Diagnostics.Debug.Assert(diaAct != null && diaItem != null && diaNom != null && diaDef != null);
+            if (diaAct == null || diaItem == null || diaNom == null || diaDef == null)
+                return;
+
+            // we have a set of matched types
+            if (diaDef.Item is LinearToleranceType) // this could be a limit&fit or tolerance definition
+            {
+                // an aside...
+                // dimensional characteristics have an optional enumeration for BASIC, SET, REFERENCE
+                // if(diaDef.DimensionType != null) { } // this doesn't work to see if it exists (never null)
+                if (diaDef.DimensionTypeSpecified) { } // this extra method needs to be used to test for optional enumerations
+                                                        // but we're not interested in this modifier for our DMIS output
+                var diaTol = (LinearToleranceType)Convert.ChangeType(diaDef.Item, diaDef.Item.GetType());
+                if (diaTol != null)
+                {
+                    // just min, just max, or both min+max may be defined in QIF, DMIS needs both
+                    decimal hitol = 0;
+                    decimal lotol = 0;
+                    // because both min and max are objects of the same type, this clunky method is used to figure out who is who
+                    for (int t = 0; t < diaTol.ItemsElementName.Length; t++)
+                    {
+                        if (diaTol.ItemsElementName[t] == ItemsChoiceType4.MaxValue)
+                        {
+                            var diaMax = (LinearValueType)Convert.ChangeType(diaTol.Items[t], diaTol.Items[t].GetType());
+                            if (diaMax != null) hitol = diaMax.Value;
+                        }
+                        else if (diaTol.ItemsElementName[t] == ItemsChoiceType4.MinValue)
+                        {
+                            var diaMin = (LinearValueType)Convert.ChangeType(diaTol.Items[t], diaTol.Items[t].GetType());
+                            if (diaMin != null) lotol = diaMin.Value;
+                        }
+                    }
+                    if (diaTol.DefinedAsLimit) // limit specification?
+                    {
+                        // DMIS doesn't support limit tolerance for diameter
+                        if (diaNom.TargetValue != null) // do we have a target value?
+                        {
+                            // convert min and max from limit to +/- tols
+                            hitol = hitol - diaNom.TargetValue.Value;
+                            lotol = lotol - diaNom.TargetValue.Value;
+                        }
+                        else
+                        {
+                            // assume target is between limits
+                            decimal diam = (hitol + lotol) / 2;
+                            hitol = hitol - diam;
+                            lotol = lotol - diam;
+                        }
+                    }
+                    // compose the nominal DMIS tolerance label T(DIAM1)
+                    tlabels += ",T(" + diaItem.Name + ")";
+                    // compose the nominal DMIS tolerance T(DIAM1)=TOL/DIAM,-.1,.1
+                    tdefs += "T(" + diaItem.Name + ")=TOL/DIAM," + lotol.ToString() + "," + hitol.ToString() + Environment.NewLine;
+                    if (diaAct.Value != null)
+                    {
+                        // compose the actual DMIS tolerance label TA(DIAM1)
+                        talabels += ",TA(" + diaItem.Name + ")";
+                        // compose the actual DMIS tolerance TA(DIAM1)=TOL/DIAM,-.05,INTOL
+                        tadefs += "TA(" + diaItem.Name + ")=TOL/DIAM," + diaAct.Value.Value.ToString();
+                        if (diaAct.Status.Item is CharacteristicStatusEnumType) // we are only going to handle the enumeration
+                        {
+                            var status = (CharacteristicStatusEnumType)Convert.ChangeType(diaAct.Status.Item, diaAct.Status.Item.GetType());
+                            if (status == CharacteristicStatusEnumType.PASS)
+                                tadefs += ",INTOL";
+                            else
+                                tadefs += ",OUTOL"; // if we don't it's in, assume it's out
+                        }
+                        else
+                            tadefs += ",OUTOL"; // if we don't it's in, assume it's out
+                        tadefs += Environment.NewLine;
                     }
                 }
             }
