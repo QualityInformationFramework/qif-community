@@ -18,12 +18,14 @@ In a CMD window:
 
 1. change to the QIFApplications folder  
    ```
-   cd <qif-community_folder>\QIF2.1_Open_Source_Apps\Python\PyXB\QIFApplications
+   cd <qif-community_folder>\qif-2.1\python\QIFApplications
    ```
 2. call pyxbgen  
    ```
-   py <python_install_folder>\scripts\pyxbgen --schema-location=QIFDocument.xsd --schema-root=QIF21 --module=QIFDocument
+   py pyxbgen --schema-location=QIFDocument.xsd --schema-root=QIF21 --module=QIFDocument
    ```
+
+   _Note: If your PATH has not been set by the Python installer, then you may need to specify the full path of the pyxbgen script:_ `<python_install_folder>\scripts\pyxbgen`
 
    You will see these messages:
    
