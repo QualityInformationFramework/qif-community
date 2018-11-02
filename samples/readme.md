@@ -11,3 +11,5 @@ C:/QIF/QIFApplications/
 C:/QIF/QIFLibrary/
 C:/QIF/MySampleFiles/<insert_sample_file_here>.qif
 ```
+
+In the folder `SampleXSLTCheckInstanceFiles`, you will find sample files for running the XSLT checks.
