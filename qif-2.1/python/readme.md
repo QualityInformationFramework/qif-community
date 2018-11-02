@@ -48,3 +48,7 @@ In a CMD window:
 Copy or move `qifdocument.py` to `<qif-community_folder>\qif-2.1\python\`
 
 You are ready to run the apps.
+
+The app `demoQIFout.py` will prompt the user the path of a QIF file to generate, and then generate a sample QIF instance file with some hard-coded values. This sample script will give you an idea of how to **write** data in the QIF format using the Python source code bindings. 
+
+The app `demoQIFin.py` will prompt the user for a QIF file to read. It will then read the QIF file, and mine it for some measurement results data, and then output that measurement results data in the DMIS format. This sample script will give you an idea of how to **read** data in the QIF format, using the Python source code bindings. 
