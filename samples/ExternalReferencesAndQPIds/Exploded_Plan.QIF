@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<QIFDocument
+  xmlns="http://qifstandards.org/xsd/qif3"
+  idMax="7"
+  versionQIF="3.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation=
+    "http://qifstandards.org/xsd/qif3 ../QIFApplications/QIFDocument.xsd">
+
+  <QPId>6558F196-D952-4b80-8054-0A0756D60526</QPId>
+
+  <StandardsDefinitions n="1">
+    <Standard id="7">
+      <Organization>
+        <StandardsOrganizationEnum>ASME</StandardsOrganizationEnum>
+      </Organization>
+      <Designator>Y14.5</Designator>
+    </Standard>
+  </StandardsDefinitions>
+  <Characteristics>
+    <FormalStandardId>7</FormalStandardId>
+    <CharacteristicDefinitions n="2">
+      <SphericalDiameterCharacteristicDefinition id="1">
+        <Tolerance>
+          <MaxValue>0.25</MaxValue>
+          <MinValue>-0.25</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </SphericalDiameterCharacteristicDefinition>
+      <SphericityCharacteristicDefinition id="2">
+        <ToleranceValue>0.05</ToleranceValue>
+      </SphericityCharacteristicDefinition>
+    </CharacteristicDefinitions>
+    <CharacteristicNominals n="2">
+      <SphericalDiameterCharacteristicNominal id="3">
+        <CharacteristicDefinitionId>1</CharacteristicDefinitionId>
+        <TargetValue>25.399999999999999</TargetValue>
+      </SphericalDiameterCharacteristicNominal>
+      <SphericityCharacteristicNominal id="4">
+        <CharacteristicDefinitionId>2</CharacteristicDefinitionId>
+      </SphericityCharacteristicNominal>
+    </CharacteristicNominals>
+    <CharacteristicItems n="2">
+      <SphericalDiameterCharacteristicItem id="5">
+        <Name>SphericalDiameter1</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RFTM1</Designator>
+          <UUID>3D5D3273-55A6-4c38-9742-8B35E5D08914</UUID>
+        </CharacteristicDesignator>
+        <CharacteristicNominalId>3</CharacteristicNominalId>
+      </SphericalDiameterCharacteristicItem>
+      <SphericityCharacteristicItem id="6">
+        <Name>Sphericity1</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RFTM2</Designator>
+          <UUID>816060DA-7EB4-4fbb-BF5B-A124D54A924D</UUID>
+        </CharacteristicDesignator>
+        <CharacteristicNominalId>4</CharacteristicNominalId>
+      </SphericityCharacteristicItem>
+    </CharacteristicItems>
+  </Characteristics>
+
+  <Plan>
+    <UnorderedPlanRoot>
+      <Steps n="1">
+        <MeasureEvaluateAll/>
+      </Steps>
+    </UnorderedPlanRoot>
+  </Plan>
+
+</QIFDocument>

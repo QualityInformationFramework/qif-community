@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<QIFDocument
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://qifstandards.org/xsd/qif3"
+  versionQIF="3.0.0"
+  idMax="1"
+  xsi:schemaLocation=
+    "http://qifstandards.org/xsd/qif3 ../QIFApplications/QIFDocument.xsd">
+  <QPId>effa78c0-fb28-11e3-a3ac-0800200c9a66</QPId>
+  <Rules>
+    <DMESelectionRules n="1">
+
+
+<!--
+ 
+If Equipment Effective Working Volume  >=  Part Bounding Box Volume * 1.5
+Then a Universal Device may be selected.
+
+-->
+
+      <DMEDecisionRule>
+        <GreaterOrEqual>
+          <Times>
+            <ArithmeticDMEParameter>
+              <Parameter>CartesianWorkingVolume/XAxisLength</Parameter>
+              <DMEClassNameEnum>UNIVERSAL_DEVICE</DMEClassNameEnum>
+            </ArithmeticDMEParameter>
+            <ArithmeticDMEParameter>
+              <Parameter>CartesianWorkingVolume/YAxisLength</Parameter>
+              <DMEClassNameEnum>UNIVERSAL_DEVICE</DMEClassNameEnum>
+            </ArithmeticDMEParameter>
+            <ArithmeticDMEParameter>
+              <Parameter>CartesianWorkingVolume/ZAxisLength</Parameter>
+              <DMEClassNameEnum>UNIVERSAL_DEVICE</DMEClassNameEnum>
+            </ArithmeticDMEParameter>
+          </Times>
+          <Times>
+            <ArithmeticConstant val="1.5"/>
+            <ArithmeticPartParameter>
+              <Parameter>PartFamily/MinimumBoundingBox/Length</Parameter>
+            </ArithmeticPartParameter>
+            <ArithmeticPartParameter>
+              <Parameter>PartFamily/MinimumBoundingBoxWidth</Parameter>
+            </ArithmeticPartParameter>
+            <ArithmeticPartParameter>
+              <Parameter>PartFamily/MinimumBoundingBoxHeight</Parameter>
+            </ArithmeticPartParameter>
+          </Times>
+        </GreaterOrEqual>
+        <DMEThen n="1">
+          <DMEDecisionClass>
+            <May/>
+            <DMEClassName>UNIVERSAL_DEVICE</DMEClassName>
+          </DMEDecisionClass>    
+        </DMEThen>
+      </DMEDecisionRule>
+
+<!--
+ This is the original natural language rule.
+ WR = Equipment Work Volume / Part Work Space
+ e.g., WR >= 1.5
+-->
+
+    </DMESelectionRules>
+  </Rules>
+</QIFDocument>

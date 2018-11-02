@@ -1,0 +1,1014 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+
+<!-- This is an example of a realistic plan for a sheet metal part  -->
+<!-- based on a drawing. The Plan element is the simplest possible. -->
+
+
+<QIFDocument xmlns="http://qifstandards.org/xsd/qif3" idMax="139"
+             versionQIF="3.0.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://qifstandards.org/xsd/qif3
+                                 ../QIFApplications/QIFDocument.xsd">
+  <QPId>fd43400a-29bf-4ec6-b96c-e2f846eb6ff7</QPId>
+
+  <StandardsDefinitions n="1">
+    <Standard id="139">
+      <Organization>
+        <StandardsOrganizationEnum>ASME</StandardsOrganizationEnum>
+      </Organization>
+      <Designator>Y14.5</Designator>
+      <Year>1994</Year>
+    </Standard>
+  </StandardsDefinitions>
+
+  <PreInspectionTraceability>
+    <InspectingOrganization>
+      <Name>Origin International Inc</Name>
+      <Address>
+        <StreetNumber>3235</StreetNumber>
+        <Street>14th Avenue</Street>
+        <Town>Markham</Town>
+        <Region>Ontario</Region>
+        <PostalCode>L3R 0H3</PostalCode>
+        <FacsimileNumber>905-470-2559</FacsimileNumber>
+        <TelephoneNumber>800-269-2509</TelephoneNumber>
+        <ElectronicMailAddress>support@origin.com</ElectronicMailAddress>
+      </Address>
+    </InspectingOrganization>
+    <PurchaseOrderNumber>Job No,</PurchaseOrderNumber>
+    <AsmPathIds n="1">
+      <Id>3</Id>
+    </AsmPathIds>
+    <ReportNumber>CheckMate Inspection Program</ReportNumber>
+    <InspectionScope>DETAIL</InspectionScope>
+    <InspectionMode>FAI_Full</InspectionMode>
+    <FormalStandardId>139</FormalStandardId>
+  </PreInspectionTraceability>
+
+  <FileUnits>
+    <PrimaryUnits>
+      <AngularUnit>
+        <SIUnitName>radian</SIUnitName>
+        <UnitName>degree</UnitName>
+        <UnitConversion>
+          <Factor>0.017453292519943</Factor>
+        </UnitConversion>
+      </AngularUnit>
+      <LinearUnit>
+        <SIUnitName>meter</SIUnitName>
+        <UnitName>mm</UnitName>
+        <UnitConversion>
+          <Factor>0.001</Factor>
+        </UnitConversion>
+      </LinearUnit>
+    </PrimaryUnits>
+  </FileUnits>
+
+  <DatumDefinitions n="3">
+    <DatumDefinition id="116">
+      <DatumLabel>A</DatumLabel>
+    </DatumDefinition>
+    <DatumDefinition id="117">
+      <DatumLabel>B</DatumLabel>
+    </DatumDefinition>
+    <DatumDefinition id="118">
+      <DatumLabel>C</DatumLabel>
+    </DatumDefinition>
+  </DatumDefinitions>
+
+  <DatumReferenceFrames n="2">
+    <DatumReferenceFrame id="11"/>
+    <DatumReferenceFrame id="115">
+      <Datums n="3">
+      <Datum>
+        <SimpleDatum>
+          <DatumDefinitionId>116</DatumDefinitionId>
+          <MaterialModifier>NONE</MaterialModifier>
+          <ReferencedComponent>ACTUAL</ReferencedComponent>
+        </SimpleDatum>
+        <Precedence>
+          <PrecedenceEnum>PRIMARY</PrecedenceEnum>
+        </Precedence>
+      </Datum>
+      <Datum>
+        <SimpleDatum>
+          <DatumDefinitionId>117</DatumDefinitionId>
+          <MaterialModifier>MAXIMUM</MaterialModifier>
+          <ReferencedComponent>ACTUAL</ReferencedComponent>
+        </SimpleDatum>
+        <Precedence>
+          <PrecedenceEnum>SECONDARY</PrecedenceEnum>
+        </Precedence>
+      </Datum>
+      <Datum>
+        <SimpleDatum>
+          <DatumDefinitionId>118</DatumDefinitionId>
+          <MaterialModifier>MAXIMUM</MaterialModifier>
+          <ReferencedComponent>ACTUAL</ReferencedComponent>
+        </SimpleDatum>
+        <Precedence>
+          <PrecedenceEnum>TERTIARY</PrecedenceEnum>
+        </Precedence>
+      </Datum>
+      </Datums>
+    </DatumReferenceFrame>
+  </DatumReferenceFrames>
+
+  <MeasurementResources>
+    <MeasurementDevices n="1">
+      <MeasurementDevice id="14">
+        <Name>CMM</Name>
+      </MeasurementDevice>
+    </MeasurementDevices>
+  </MeasurementResources>
+
+  <Product>
+    <Header>
+      <Application>
+        <Name>Autodesk Mechanical Desktop 2009</Name>
+        <AddonName>CheckMate 2009</AddonName>
+        <AddonOrganization>Origin International Inc.</AddonOrganization>
+      </Application>
+    </Header>
+
+    <PartSet n="1">
+      <Part id="1">
+        <Header>
+          <Name>123456</Name>
+          <Description>Description of the part</Description>
+        </Header>
+        <ModelNumber>Wing mirror reinforcement</ModelNumber>
+        <Version>Version</Version>
+        <DefinitionExternal n="1" id="6">
+          <PrintedDrawing id="5">
+            <Name>sheet2with6samples</Name>
+            <Version>1.0.0</Version>
+            <Description>Sample QIF elements</Description>
+            <DrawingNumber>#1</DrawingNumber>
+            <AdditionalChanges>none</AdditionalChanges>
+            <Location>Cabinet 17, Drawer 3</Location>
+          </PrintedDrawing>
+        </DefinitionExternal>
+      </Part>
+    </PartSet>
+    <ComponentSet n="1">
+      <Component id="2">
+        <Part>
+          <Id>1</Id>
+        </Part>
+      </Component>
+    </ComponentSet>
+    <AsmPaths n="1">
+      <AsmPath id="3">
+        <ComponentIds n="1">
+          <Id>2</Id>
+        </ComponentIds>
+      </AsmPath>
+    </AsmPaths>
+  </Product>
+
+  <Features>
+    <FeatureDefinitions n="21">
+      <EdgePointFeatureDefinition id="7">
+        <InternalExternal>EXTERNAL</InternalExternal>
+      </EdgePointFeatureDefinition>
+      <PointFeatureDefinition id="15"/>
+      <PointFeatureDefinition id="21"/>
+      <PointFeatureDefinition id="27"/>
+      <PointFeatureDefinition id="33"/>
+      <PointFeatureDefinition id="39"/>
+      <PointFeatureDefinition id="45"/>
+      <EdgePointFeatureDefinition id="51">
+        <InternalExternal>EXTERNAL</InternalExternal>
+      </EdgePointFeatureDefinition>
+      <PointFeatureDefinition id="57"/>
+      <PointFeatureDefinition id="63"/>
+      <PointFeatureDefinition id="69"/>
+      <PointFeatureDefinition id="75"/>
+      <EdgePointFeatureDefinition id="81">
+        <InternalExternal>EXTERNAL</InternalExternal>
+      </EdgePointFeatureDefinition>
+      <PointFeatureDefinition id="87"/>
+      <PointFeatureDefinition id="93"/>
+      <EdgePointFeatureDefinition id="99">
+        <InternalExternal>EXTERNAL</InternalExternal>
+      </EdgePointFeatureDefinition>
+      <PointFeatureDefinition id="105"/>
+      <CircleFeatureDefinition id="111">
+        <InternalExternal>INTERNAL</InternalExternal>
+        <Diameter>10</Diameter>
+      </CircleFeatureDefinition>
+      <CircleFeatureDefinition id="121">
+        <InternalExternal>INTERNAL</InternalExternal>
+        <Diameter>10</Diameter>
+      </CircleFeatureDefinition>
+      <CircleFeatureDefinition id="127">
+        <InternalExternal>INTERNAL</InternalExternal>
+        <Diameter>10</Diameter>
+      </CircleFeatureDefinition>
+      <CircleFeatureDefinition id="133">
+        <InternalExternal>INTERNAL</InternalExternal>
+        <Diameter>10</Diameter>
+      </CircleFeatureDefinition>
+    </FeatureDefinitions>
+    <FeatureNominals n="21">
+      <EdgePointFeatureNominal id="8">
+        <FeatureDefinitionId>7</FeatureDefinitionId>
+        <Location>2460.7099609375 770.604614257813 944.993591308594</Location>
+        <Normal>-0.73546588415666 -0.307902932145295 0.603560864882732</Normal>
+        <AdjacentNormal>0.0411800179073908 -0.909449806293425 -0.413769568670774</AdjacentNormal>
+      </EdgePointFeatureNominal>
+      <PointFeatureNominal id="16">
+        <FeatureDefinitionId>15</FeatureDefinitionId>
+        <Location>2466.72924804688 774.269897460938 945.002746582031</Location>
+        <Normal>0.731520704664955 0.146124942550593 -0.66597669614715</Normal>
+      </PointFeatureNominal>
+      <PointFeatureNominal id="22">
+        <FeatureDefinitionId>21</FeatureDefinitionId>
+        <Location>2522.72216796875 755.170776367188 991.666442871094</Location>
+        <Normal>0.347667834280947 0.237461888724738 -0.907049573292263</Normal>
+      </PointFeatureNominal>
+      <PointFeatureNominal id="28">
+        <FeatureDefinitionId>27</FeatureDefinitionId>
+        <Location>2541.19067382813 767.65380859375 971.752868652344</Location>
+        <Normal>0.0418530037094572 -0.909167062298371 -0.414323036907492</Normal>
+      </PointFeatureNominal>
+      <PointFeatureNominal id="34">
+        <FeatureDefinitionId>33</FeatureDefinitionId>
+        <Location>2536.49487304688 782.806213378906 920.002197265625</Location>
+        <Normal>-0.760926041022405 -0.648538030188314 -0.0197479997323851</Normal>
+      </PointFeatureNominal>
+      <PointFeatureNominal id="40">
+        <FeatureDefinitionId>39</FeatureDefinitionId>
+        <Location>2550.15502929688 775.190979003906 919.996643066406</Location>
+        <Normal>0.021842990645291 -0.947984601169234 -0.317565866720085</Normal>
+      </PointFeatureNominal>
+      <PointFeatureNominal id="46">
+        <FeatureDefinitionId>45</FeatureDefinitionId>
+        <Location>2561.62670898438 775.4541015625 920.000244140625</Location>
+        <Normal>0.0218479992132415 -0.948013922967287 -0.317477978434021</Normal>
+      </PointFeatureNominal>
+      <EdgePointFeatureNominal id="52">
+        <FeatureDefinitionId>51</FeatureDefinitionId>
+        <Location>2565.7392578125 775.538452148438 920.008422851563</Location>
+        <Normal>0.97169734689535 0.094852031880148 -0.216350082238824</Normal>
+        <AdjacentNormal>0.0218587885636227 -0.94802103418136 -0.317456000277574</AdjacentNormal>
+      </EdgePointFeatureNominal>
+      <PointFeatureNominal id="58">
+        <FeatureDefinitionId>57</FeatureDefinitionId>
+        <Location>2494.97998046875 818.732360839844 855.000854492188</Location>
+        <Normal>0.0418530037094572 -0.909167062298371 -0.414323036907492</Normal>
+      </PointFeatureNominal>
+      <PointFeatureNominal id="64">
+        <FeatureDefinitionId>63</FeatureDefinitionId>
+        <Location>2523.69995117188 801.422424316406 855.006286621094</Location>
+        <Normal>-0.946210381453245 -0.279307126138248 0.163320064041433</Normal>
+      </PointFeatureNominal>
+      <PointFeatureNominal id="70">
+        <FeatureDefinitionId>69</FeatureDefinitionId>
+        <Location>2532.89965820313 794.235717773438 855.005493164063</Location>
+        <Normal>0.0216939984255078 -0.966721928689961 -0.254907989326103</Normal>
+      </PointFeatureNominal>
+      <PointFeatureNominal id="76">
+        <FeatureDefinitionId>75</FeatureDefinitionId>
+        <Location>2545.23901367188 794.512329101563 855.006530761719</Location>
+        <Normal>0.0216900093642836 -0.966745445216935 -0.254819127316001</Normal>
+      </PointFeatureNominal>
+      <EdgePointFeatureNominal id="82">
+        <FeatureDefinitionId>81</FeatureDefinitionId>
+        <Location>2549.34521484375 794.5849609375 855.000366210938</Location>
+        <Normal>0.971727230804546 0.0803130177021309 -0.222027043624206</Normal>
+        <AdjacentNormal>0.021687332538204 -0.966755151633157 -0.254782527654722</AdjacentNormal>
+      </EdgePointFeatureNominal>
+      <PointFeatureNominal id="88">
+        <FeatureDefinitionId>87</FeatureDefinitionId>
+        <Location>2449.3134765625 816.630676269531 854.999694824219</Location>
+        <Normal>0.0418530037094572 -0.909167062298371 -0.414323036907492</Normal>
+      </PointFeatureNominal>
+      <PointFeatureNominal id="94">
+        <FeatureDefinitionId>93</FeatureDefinitionId>
+        <Location>2408.77319335938 812.609191894531 855.004211425781</Location>
+        <Normal>0.991429943380046 -0.118881995203897 -0.0541639971362864</Normal>
+      </PointFeatureNominal>
+      <EdgePointFeatureNominal id="100">
+        <FeatureDefinitionId>99</FeatureDefinitionId>
+        <Location>2403.36083984375 808.974975585938 855.002258300781</Location>
+        <Normal>-0.999160325572721 -0.0372770121756262 -0.0170020047251222</Normal>
+        <AdjacentNormal>0.0409709139821644 -0.909202693036924 -0.414333014834529</AdjacentNormal>
+      </EdgePointFeatureNominal>
+      <PointFeatureNominal id="106">
+        <FeatureDefinitionId>105</FeatureDefinitionId>
+        <Location>2448.9189453125 786.634704589844 920.781372070313</Location>
+        <Normal>0.0418530037094572 -0.909167062298371 -0.414323036907492</Normal>
+      </PointFeatureNominal>
+      <CircleFeatureNominal id="112">
+        <FeatureDefinitionId>111</FeatureDefinitionId>
+        <Location>2433.974609375 800.617431640625 890.049621582031</Location>
+        <Normal>0.0558150216642394 -0.907624351305648 -0.416056150385524</Normal>
+      </CircleFeatureNominal>
+      <CircleFeatureNominal id="122">
+        <FeatureDefinitionId>121</FeatureDefinitionId>
+        <Location>2503.30444335938 804.363159179688 887.372741699219</Location>
+        <Normal>0.041849021347662 -0.909169445910364 -0.414318208669719</Normal>
+      </CircleFeatureNominal>
+      <CircleFeatureNominal id="128">
+        <FeatureDefinitionId>127</FeatureDefinitionId>
+        <Location>2496.25146484375 780.842590332031 938.272277832031</Location>
+        <Normal>0.0418550117443374 -0.909169210311167 -0.414318120547546</Normal>
+      </CircleFeatureNominal>
+      <CircleFeatureNominal id="134">
+        <FeatureDefinitionId>133</FeatureDefinitionId>
+        <Location>2521.0419921875 780.010925292969 942.583374023438</Location>
+        <Normal>0.0418729925608207 -0.90916984077565 -0.414314920221298</Normal>
+      </CircleFeatureNominal>
+    </FeatureNominals>
+    <FeatureItems n="21">
+      <EdgePointFeatureItem id="9">
+        <FeatureNominalId>8</FeatureNominalId>
+        <FeatureName>W1RFTMRA02</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </EdgePointFeatureItem>
+      <PointFeatureItem id="17">
+        <FeatureNominalId>16</FeatureNominalId>
+        <FeatureName>W1RFSMRA05</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PointFeatureItem id="23">
+        <FeatureNominalId>22</FeatureNominalId>
+        <FeatureName>W1RHSMRA06</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PointFeatureItem id="29">
+        <FeatureNominalId>28</FeatureNominalId>
+        <FeatureName>W1RISMRA09</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PointFeatureItem id="35">
+        <FeatureNominalId>34</FeatureNominalId>
+        <FeatureName>W1RFSMRA11</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PointFeatureItem id="41">
+        <FeatureNominalId>40</FeatureNominalId>
+        <FeatureName>W1RISMRA14</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PointFeatureItem id="47">
+        <FeatureNominalId>46</FeatureNominalId>
+        <FeatureName>W1RISMRA15</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <EdgePointFeatureItem id="53">
+        <FeatureNominalId>52</FeatureNominalId>
+        <FeatureName>W1RFTMRA17</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </EdgePointFeatureItem>
+      <PointFeatureItem id="59">
+        <FeatureNominalId>58</FeatureNominalId>
+        <FeatureName>W1RISMRA10</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PointFeatureItem id="65">
+        <FeatureNominalId>64</FeatureNominalId>
+        <FeatureName>W1RFSMRA12</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PointFeatureItem id="71">
+        <FeatureNominalId>70</FeatureNominalId>
+        <FeatureName>W1RISMRA13</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PointFeatureItem id="77">
+        <FeatureNominalId>76</FeatureNominalId>
+        <FeatureName>W1RISMRA16</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <EdgePointFeatureItem id="83">
+        <FeatureNominalId>82</FeatureNominalId>
+        <FeatureName>W1RFTMRA18</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </EdgePointFeatureItem>
+      <PointFeatureItem id="89">
+        <FeatureNominalId>88</FeatureNominalId>
+        <FeatureName>W1RISMRA07</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PointFeatureItem id="95">
+        <FeatureNominalId>94</FeatureNominalId>
+        <FeatureName>W1RFSMRA04</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <EdgePointFeatureItem id="101">
+        <FeatureNominalId>100</FeatureNominalId>
+        <FeatureName>W1RFTMRA01</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </EdgePointFeatureItem>
+      <PointFeatureItem id="107">
+        <FeatureNominalId>106</FeatureNominalId>
+        <FeatureName>W1RISMRA08</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <CircleFeatureItem id="113">
+        <FeatureNominalId>112</FeatureNominalId>
+        <FeatureName>W1RXXMRA19</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </CircleFeatureItem>
+      <CircleFeatureItem id="123">
+        <FeatureNominalId>122</FeatureNominalId>
+        <FeatureName>W1RXXMRA22</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </CircleFeatureItem>
+      <CircleFeatureItem id="129">
+        <FeatureNominalId>128</FeatureNominalId>
+        <FeatureName>W1RXXMRA20</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </CircleFeatureItem>
+      <CircleFeatureItem id="135">
+        <FeatureNominalId>134</FeatureNominalId>
+        <FeatureName>W1RXXMRA21</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </CircleFeatureItem>
+    </FeatureItems>
+  </Features>
+
+  <Characteristics>
+    <FormalStandardId>139</FormalStandardId>
+    <CharacteristicDefinitions n="21">
+      <PointProfileCharacteristicDefinition id="10">
+        <ToleranceValue>4</ToleranceValue>
+        <DatumReferenceFrameId>11</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="18">
+        <ToleranceValue>1.5</ToleranceValue>
+        <DatumReferenceFrameId>11</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="24">
+        <ToleranceValue>1.5</ToleranceValue>
+        <DatumReferenceFrameId>11</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="30">
+        <ToleranceValue>0.5</ToleranceValue>
+        <DatumReferenceFrameId>11</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="36">
+        <ToleranceValue>2</ToleranceValue>
+        <DatumReferenceFrameId>11</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="42">
+        <ToleranceValue>1</ToleranceValue>
+        <DatumReferenceFrameId>11</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="48">
+        <ToleranceValue>2</ToleranceValue>
+        <DatumReferenceFrameId>11</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="54">
+        <ToleranceValue>3</ToleranceValue>
+        <DatumReferenceFrameId>11</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="60">
+        <ToleranceValue>0.5</ToleranceValue>
+        <DatumReferenceFrameId>11</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="66">
+        <ToleranceValue>1.5</ToleranceValue>
+        <DatumReferenceFrameId>11</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="72">
+        <ToleranceValue>1</ToleranceValue>
+        <DatumReferenceFrameId>11</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="78">
+        <ToleranceValue>2</ToleranceValue>
+        <DatumReferenceFrameId>11</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="84">
+        <ToleranceValue>2</ToleranceValue>
+        <DatumReferenceFrameId>11</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="90">
+        <ToleranceValue>0.5</ToleranceValue>
+        <DatumReferenceFrameId>11</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="96">
+        <ToleranceValue>1.5</ToleranceValue>
+        <DatumReferenceFrameId>11</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="102">
+        <ToleranceValue>4</ToleranceValue>
+        <DatumReferenceFrameId>11</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="108">
+        <ToleranceValue>0.5</ToleranceValue>
+        <DatumReferenceFrameId>11</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PositionCharacteristicDefinition id="114">
+        <ToleranceValue>1.25</ToleranceValue>
+        <DatumReferenceFrameId>115</DatumReferenceFrameId>
+        <MaterialCondition>REGARDLESS</MaterialCondition>
+        <ZoneShape>
+          <DiametricalZone/>
+        </ZoneShape>
+      </PositionCharacteristicDefinition>
+      <PositionCharacteristicDefinition id="124">
+        <ToleranceValue>1.25</ToleranceValue>
+        <DatumReferenceFrameId>115</DatumReferenceFrameId>
+        <MaterialCondition>REGARDLESS</MaterialCondition>
+        <ZoneShape>
+          <DiametricalZone/>
+        </ZoneShape>
+      </PositionCharacteristicDefinition>
+      <PositionCharacteristicDefinition id="130">
+        <ToleranceValue>1.25</ToleranceValue>
+        <DatumReferenceFrameId>115</DatumReferenceFrameId>
+        <MaterialCondition>REGARDLESS</MaterialCondition>
+        <ZoneShape>
+          <DiametricalZone/>
+        </ZoneShape>
+      </PositionCharacteristicDefinition>
+      <PositionCharacteristicDefinition id="136">
+        <ToleranceValue>1.25</ToleranceValue>
+        <DatumReferenceFrameId>115</DatumReferenceFrameId>
+        <MaterialCondition>REGARDLESS</MaterialCondition>
+        <ZoneShape>
+          <DiametricalZone/>
+        </ZoneShape>
+      </PositionCharacteristicDefinition>
+    </CharacteristicDefinitions>
+    <CharacteristicNominals n="21">
+      <PointProfileCharacteristicNominal id="12">
+        <CharacteristicDefinitionId>10</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="19">
+        <CharacteristicDefinitionId>18</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="25">
+        <CharacteristicDefinitionId>24</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="31">
+        <CharacteristicDefinitionId>30</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="37">
+        <CharacteristicDefinitionId>36</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="43">
+        <CharacteristicDefinitionId>42</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="49">
+        <CharacteristicDefinitionId>48</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="55">
+        <CharacteristicDefinitionId>54</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="61">
+        <CharacteristicDefinitionId>60</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="67">
+        <CharacteristicDefinitionId>66</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="73">
+        <CharacteristicDefinitionId>72</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="79">
+        <CharacteristicDefinitionId>78</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="85">
+        <CharacteristicDefinitionId>84</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="91">
+        <CharacteristicDefinitionId>90</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="97">
+        <CharacteristicDefinitionId>96</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="103">
+        <CharacteristicDefinitionId>102</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="109">
+        <CharacteristicDefinitionId>108</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PositionCharacteristicNominal id="119">
+        <CharacteristicDefinitionId>114</CharacteristicDefinitionId>
+      </PositionCharacteristicNominal>
+      <PositionCharacteristicNominal id="125">
+        <CharacteristicDefinitionId>124</CharacteristicDefinitionId>
+      </PositionCharacteristicNominal>
+      <PositionCharacteristicNominal id="131">
+        <CharacteristicDefinitionId>130</CharacteristicDefinitionId>
+      </PositionCharacteristicNominal>
+      <PositionCharacteristicNominal id="137">
+        <CharacteristicDefinitionId>136</CharacteristicDefinitionId>
+      </PositionCharacteristicNominal>
+    </CharacteristicNominals>
+    <CharacteristicItems n="21">
+      <PointProfileCharacteristicItem id="13">
+        <Name>W1RFTMRA02V</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RFTMRA02V</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>9</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>12</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="20">
+        <Name>W1RFSMRA05V</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RFSMRA05V</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>17</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>19</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="26">
+        <Name>W1RHSMRA06V</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RHSMRA06V</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>23</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>25</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="32">
+        <Name>W1RISMRA09V</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RISMRA09V</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>29</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>31</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="38">
+        <Name>W1RFSMRA11V</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RFSMRA11V</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>35</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>37</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="44">
+        <Name>W1RISMRA14V</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RISMRA14V</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>41</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>43</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="50">
+        <Name>W1RISMRA15V</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RISMRA15V</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>47</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>49</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="56">
+        <Name>W1RFTMRA17V</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RFTMRA17V</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>53</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>55</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="62">
+        <Name>W1RISMRA10V</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RISMRA10V</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>59</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>61</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="68">
+        <Name>W1RFSMRA12V</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RFSMRA12V</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>65</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>67</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="74">
+        <Name>W1RISMRA13V</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RISMRA13V</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>71</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>73</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="80">
+        <Name>W1RISMRA16V</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RISMRA16V</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>77</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>79</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="86">
+        <Name>W1RFTMRA18V</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RFTMRA18V</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>83</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>85</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="92">
+        <Name>W1RISMRA07V</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RISMRA07V</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>89</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>91</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="98">
+        <Name>W1RFSMRA04V</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RFSMRA04V</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>95</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>97</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="104">
+        <Name>W1RFTMRA01V</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RFTMRA01V</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>101</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>103</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="110">
+        <Name>W1RISMRA08V</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RISMRA08V</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>107</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>109</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PositionCharacteristicItem id="120">
+        <Name>W1RXXMRA19P</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RXXMRA19P</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>113</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>119</CharacteristicNominalId>
+      </PositionCharacteristicItem>
+      <PositionCharacteristicItem id="126">
+        <Name>W1RXXMRA22P</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RXXMRA22P</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>123</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>125</CharacteristicNominalId>
+      </PositionCharacteristicItem>
+      <PositionCharacteristicItem id="132">
+        <Name>W1RXXMRA20P</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RXXMRA20P</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>129</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>131</CharacteristicNominalId>
+      </PositionCharacteristicItem>
+      <PositionCharacteristicItem id="138">
+        <Name>W1RXXMRA21P</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RXXMRA21P</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>135</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>137</CharacteristicNominalId>
+      </PositionCharacteristicItem>
+    </CharacteristicItems>
+  </Characteristics>
+
+  <Plan>
+    <UnorderedPlanRoot>
+      <Steps n="1">
+        <MeasureEvaluateAll/>
+      </Steps>
+    </UnorderedPlanRoot>
+  </Plan>
+
+</QIFDocument>

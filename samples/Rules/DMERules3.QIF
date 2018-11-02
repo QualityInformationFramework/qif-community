@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+This file models two DME selection rules.
+-->
+
+<QIFDocument
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://qifstandards.org/xsd/qif3"
+  versionQIF="3.0.0"
+  idMax="1"
+  xsi:schemaLocation=
+    "http://qifstandards.org/xsd/qif3 ../QIFApplications/QIFDocument.xsd">
+  <QPId>effa78c0-fb28-11e3-a3ac-0800200c9a68</QPId>
+  <Rules>
+    <DMESelectionRules n="2">
+
+<!--
+
+If the feature is a cylinder and
+   feature is internal (i.e., a hole) and
+   characteristic is diameter and
+   diameter tolerance >= 0.01 and
+   hole diameter >= 16 and
+   hole depth <= 25
+
+Then
+   a CMM may be used
+   a PH9 may be used
+   a stylus with length >= 25 may be used
+   a spherical tip with diameter <= 3 and >= 2 may be used
+
+-->
+      <DMEDecisionRule>
+        <And n="6">
+          <FeatureTypeIs val="CYLINDER"/>
+          <FeatureIsInternal/>
+          <CharacteristicIs val="DIAMETER"/>
+          <GreaterOrEqual>
+            <ArithmeticCharacteristicParameter>
+              <Parameter>ToleranceValue</Parameter>
+              <CharacteristicTypeEnum>DIAMETER</CharacteristicTypeEnum>
+            </ArithmeticCharacteristicParameter>
+            <ArithmeticConstant val="0.010"/>
+          </GreaterOrEqual>
+          <GreaterOrEqual>
+            <ArithmeticFeatureParameter>
+              <Parameter>Diameter</Parameter>
+            </ArithmeticFeatureParameter>
+            <ArithmeticConstant val="16"/>
+          </GreaterOrEqual>
+          <LessOrEqual>
+            <ArithmeticFeatureParameter>
+              <Parameter>Length</Parameter>
+            </ArithmeticFeatureParameter>
+            <ArithmeticConstant val="25"/>
+          </LessOrEqual>
+        </And>
+        <DMEThen n="3">
+          <DMEDecisionClass>
+            <May/>
+            <DMEClassName>CARTESIAN_CMM</DMEClassName>
+          </DMEDecisionClass>    
+          <DMEDecisionMakeModel>
+            <May/>
+            <Manufacturer>Renishaw</Manufacturer>
+            <ModelNumber>PH9</ModelNumber>
+          </DMEDecisionMakeModel>    
+          <DMEDecisionClass>
+            <May/>
+            <DMEClassName>SIMPLE_TACTILE_PROBE_SENSOR</DMEClassName>
+            <ParameterConstraints n="3">
+              <DMEParameterConstraint>
+                <ParameterName>Length</ParameterName>
+                <Comparison>GREATEROREQUAL</Comparison>
+                <ArithmeticConstant val="25"/>
+              </DMEParameterConstraint>
+              <DMEParameterConstraint>
+                <ParameterName>TipEndDiameter</ParameterName>
+                <Comparison>GREATEROREQUAL</Comparison>
+                <ArithmeticConstant val="2"/>
+              </DMEParameterConstraint>
+              <DMEParameterConstraint>
+                <ParameterName>TipEndDiameter</ParameterName>
+                <Comparison>LESSOREQUAL</Comparison>
+                <ArithmeticConstant val="3"/>
+              </DMEParameterConstraint>
+            </ParameterConstraints>
+          </DMEDecisionClass>
+        </DMEThen>
+      </DMEDecisionRule>
+
+<!--
+
+Then
+   a measurement room may be selected if
+   temperature range min <= 22
+   temperature range max => 22
+   temperature control min <= 0.5
+   temperature control max <= 0.5
+   relative humidity min <= 0.6
+   relative humidity max >= 0.6
+   relative humidity control min <= 0.03
+   relative humidity control max <= 0.03
+-->
+      
+      <DMEDecisionRule>
+        <DMEThen n="1">
+          <DMEDecisionClass>
+            <May/>
+            <DMEClassName>MEASUREMENT_ROOM</DMEClassName>
+            <ParameterConstraints n="7">
+              <DMEParameterConstraint>
+                <ParameterName>TemperatureRangeMax</ParameterName>
+                <Comparison>GREATEROREQUAL</Comparison>
+                <ArithmeticConstant val="22"/>
+              </DMEParameterConstraint>
+              <DMEParameterConstraint>
+                <ParameterName>TemperatureRangeMin</ParameterName>
+                <Comparison>LESSOREQUAL</Comparison>
+                <ArithmeticConstant val="22"/>
+              </DMEParameterConstraint>
+              <DMEParameterConstraint>
+                <ParameterName>TemperatureControlMax</ParameterName>
+                <Comparison>LESSOREQUAL</Comparison>
+                <ArithmeticConstant val="0.5"/>
+              </DMEParameterConstraint>
+              <DMEParameterConstraint>
+                <ParameterName>TemperatureControlMin</ParameterName>
+                <Comparison>LESSOREQUAL</Comparison>
+                <ArithmeticConstant val="0.5"/>
+              </DMEParameterConstraint>
+              <DMEParameterConstraint>
+                <ParameterName>RelativeHumidityRangeMax</ParameterName>
+                <Comparison>GREATEROREQUAL</Comparison>
+                <ArithmeticConstant val="0.6"/>
+              </DMEParameterConstraint>
+              <DMEParameterConstraint>
+                <ParameterName>RelativeHumidityRangeMin</ParameterName>
+                <Comparison>LESSOREQUAL</Comparison>
+                <ArithmeticConstant val="0.03"/>
+              </DMEParameterConstraint>
+              <DMEParameterConstraint>
+                <ParameterName>RelativeHumidityControlMax</ParameterName>
+                <Comparison>LESSOREQUAL</Comparison>
+                <ArithmeticConstant val="0.03"/>
+              </DMEParameterConstraint>
+            </ParameterConstraints>
+          </DMEDecisionClass>    
+        </DMEThen>
+      </DMEDecisionRule>
+    </DMESelectionRules>
+  </Rules>
+</QIFDocument>

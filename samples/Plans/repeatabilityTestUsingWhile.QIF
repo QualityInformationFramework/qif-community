@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<QIFDocument xmlns="http://qifstandards.org/xsd/qif3"
+ idMax="70"
+ versionQIF="3.0.0"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation=
+    "http://qifstandards.org/xsd/qif3 ../QIFApplications/QIFDocument.xsd">
+
+<!--
+
+This file is a plan for a repeatability test. It measures the same circle
+ten times.
+
+-->
+
+  <QPId>1cccfbd0-f589-11e7-8f1a-0800200c9a66</QPId>
+
+  <StandardsDefinitions n="1">
+    <Standard id="70">
+      <Organization>
+        <StandardsOrganizationEnum>ASME</StandardsOrganizationEnum>
+      </Organization>
+      <Designator>Y14.5</Designator>
+    </Standard>
+  </StandardsDefinitions>
+
+  <FileUnits>
+    <PrimaryUnits>
+      <LinearUnit>
+        <UnitName>mm</UnitName>
+        <UnitConversion>
+          <Factor>0.001</Factor>
+        </UnitConversion>
+      </LinearUnit>
+    </PrimaryUnits>
+  </FileUnits>
+
+  <Features>
+    <FeatureDefinitions n="1">
+      <CircleFeatureDefinition id="34">
+        <InternalExternal>INTERNAL</InternalExternal>
+        <Diameter>10</Diameter>
+      </CircleFeatureDefinition>
+    </FeatureDefinitions>
+    <FeatureNominals n="1">
+       <CircleFeatureNominal id="35">
+        <FeatureDefinitionId>34</FeatureDefinitionId>
+        <Location>0.0 -0.9 -0.4</Location>
+        <Normal>0.0 0.0 1.0</Normal>
+      </CircleFeatureNominal>
+    </FeatureNominals>
+    <FeatureItems n="1">
+      <CircleFeatureItem id="36">
+        <FeatureNominalId>35</FeatureNominalId>
+        <FeatureName>HOLE1</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </CircleFeatureItem>
+    </FeatureItems>
+  </Features>
+
+  <Characteristics>
+    <FormalStandardId>70</FormalStandardId>
+    <CharacteristicDefinitions n="1">
+      <DiameterCharacteristicDefinition id="37">
+        <Tolerance>
+          <MaxValue>0.4</MaxValue>
+          <MinValue>-0.4</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DiameterCharacteristicDefinition>
+    </CharacteristicDefinitions>
+    <CharacteristicNominals n="1">
+      <DiameterCharacteristicNominal id="38">
+        <CharacteristicDefinitionId>37</CharacteristicDefinitionId>
+        <TargetValue>10</TargetValue>
+      </DiameterCharacteristicNominal>
+    </CharacteristicNominals>
+    <CharacteristicItems n="1">
+      <DiameterCharacteristicItem id="39">
+        <Name>6</Name>
+        <FeatureItemIds n="1">
+          <Id>36</Id>
+        </FeatureItemIds>
+        <CharacteristicNominalId>38</CharacteristicNominalId>
+      </DiameterCharacteristicItem>
+     </CharacteristicItems>
+  </Characteristics>
+
+  <Plan>
+    <LocalVariables n="1">
+      <Variable>
+        <Name>N</Name>
+        <Val>0</Val>
+      </Variable>
+    </LocalVariables>
+    <UnorderedPlanRoot>
+      <Steps n="1">
+        <WhileActionGroup>
+          <LessThan>
+            <VariableValue>
+              <VariableName>N</VariableName>
+            </VariableValue>
+            <ArithmeticConstant val="10"/>
+          </LessThan>
+          <UnorderedActionGroup>
+            <Steps n="2">
+              <MeasureEvaluateSpecified>
+                <CharacteristicItemIds n="1">
+                  <Id>39</Id>
+                </CharacteristicItemIds>
+              </MeasureEvaluateSpecified>
+              <VariableSet>
+                <VariableName>N</VariableName>
+                <Plus>
+                  <VariableValue>
+                    <VariableName>N</VariableName>
+                  </VariableValue>
+                  <ArithmeticConstant val="1"/>
+                </Plus>
+              </VariableSet>
+            </Steps>
+          </UnorderedActionGroup>
+        </WhileActionGroup>
+      </Steps>
+    </UnorderedPlanRoot>
+  </Plan>
+
+
+</QIFDocument>

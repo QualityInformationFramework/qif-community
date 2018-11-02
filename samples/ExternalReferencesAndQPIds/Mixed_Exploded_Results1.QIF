@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<QIFDocument
+  xmlns="http://qifstandards.org/xsd/qif3"
+  idMax="8"
+  versionQIF="3.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation=
+    "http://qifstandards.org/xsd/qif3 ../QIFApplications/QIFDocument.xsd">
+
+  <QPId>C7523054-ADB7-47bb-AA6D-8B9B4AEC1556</QPId>
+
+  <ExternalQIFReferences n="1">
+    <ExternalQIFDocument id="1">
+      <QPId>350FD853-3EAF-4c26-BF50-2CAF36342C9E</QPId>
+      <URI>.\Exploded-form_only_Plan.QIF</URI>
+    </ExternalQIFDocument>
+  </ExternalQIFReferences>
+
+  <StandardsDefinitions n="1">
+    <Standard id="8">
+      <Organization>
+        <StandardsOrganizationEnum>ASME</StandardsOrganizationEnum>
+      </Organization>
+      <Designator>Y14.5</Designator>
+      <Year>1994</Year>
+    </Standard>
+  </StandardsDefinitions>
+
+  <Characteristics>
+    <FormalStandardId>8</FormalStandardId>
+    <CharacteristicDefinitions n="1">
+      <SphericalDiameterCharacteristicDefinition id="2">
+        <Tolerance>
+          <MaxValue>0.25</MaxValue>
+          <MinValue>-0.25</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </SphericalDiameterCharacteristicDefinition>
+    </CharacteristicDefinitions>
+    <CharacteristicNominals n="1">
+      <SphericalDiameterCharacteristicNominal id="3">
+        <CharacteristicDefinitionId>2</CharacteristicDefinitionId>
+        <TargetValue>25.399999999999999</TargetValue>
+      </SphericalDiameterCharacteristicNominal>
+    </CharacteristicNominals>
+    <CharacteristicItems n="1">
+      <SphericalDiameterCharacteristicItem id="4">
+        <Name>SphericalDiameter1</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RFTM1</Designator>
+          <UUID>3D5D3273-55A6-4c38-9742-8B35E5D08914</UUID>
+        </CharacteristicDesignator>
+        <CharacteristicNominalId>3</CharacteristicNominalId>
+      </SphericalDiameterCharacteristicItem>
+    </CharacteristicItems>
+  </Characteristics>
+
+  <Results>
+    <MeasurementResultsSet n="1">
+      <MeasurementResults id="5">
+        <ThisResultsInstanceQPId>
+          2E2ABB9B-4184-49ad-B239-41F21A36408B
+        </ThisResultsInstanceQPId>
+        <MeasuredCharacteristics>
+          <CharacteristicMeasurements n="2">
+            <SphericalDiameterCharacteristicMeasurement id="6">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>4</CharacteristicItemId>
+              <Value>25.008279671621001</Value>
+            </SphericalDiameterCharacteristicMeasurement>
+            <SphericityCharacteristicMeasurement id="7">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId xId="3">1</CharacteristicItemId>
+              <Value>0.251457258827</Value>
+            </SphericityCharacteristicMeasurement>
+          </CharacteristicMeasurements>
+        </MeasuredCharacteristics>
+        <InspectionStatus>
+          <InspectionStatusEnum>FAIL</InspectionStatusEnum>
+        </InspectionStatus>
+      </MeasurementResults>
+    </MeasurementResultsSet>
+  </Results>
+
+</QIFDocument>

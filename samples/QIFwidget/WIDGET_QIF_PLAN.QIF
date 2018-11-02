@@ -1,0 +1,1270 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<QIFDocument
+  xmlns="http://qifstandards.org/xsd/qif3"
+  idMax="156"
+  versionQIF="3.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation=
+    "http://qifstandards.org/xsd/qif3 ../QIFApplications/QIFDocument.xsd">
+
+  <QPId>5cd22692-9940-4276-a080-ec81a7d0e14c</QPId>
+
+  <Version>
+    <TimeCreated>2015-10-23T14:01:52</TimeCreated>
+  </Version>
+
+  <Header>
+    <Application>
+      <Name>SOLIDWORKS 2016</Name>
+      <AddonName>CheckMate 14 for SOLIDWORKS</AddonName>
+      <AddonOrganization>Origin International Inc.</AddonOrganization>
+    </Application>
+  </Header>
+
+  <StandardsDefinitions n="1">
+    <Standard id="156">
+      <Organization>
+        <StandardsOrganizationEnum>ASME</StandardsOrganizationEnum>
+      </Organization>
+      <Designator>Y14.5</Designator>
+      <Year>1994</Year>
+    </Standard>
+  </StandardsDefinitions>
+
+  <PreInspectionTraceability>
+    <InspectingOrganization>
+      <Name>Origin International Inc</Name>
+      <Address>
+        <StreetNumber>72</StreetNumber>
+        <Street>Baynards Lane</Street>
+        <Town>Richmond Hill</Town>
+        <Region>Ontario</Region>
+        <PostalCode>L4C 9B8</PostalCode>
+        <FacsimileNumber>416 410-8313</FacsimileNumber>
+        <TelephoneNumber>800-269-2509</TelephoneNumber>
+        <ElectronicMailAddress>support@originintl.com</ElectronicMailAddress>
+      </Address>
+    </InspectingOrganization>
+    <PurchaseOrderNumber>123456</PurchaseOrderNumber>
+    <AsmPathIds n="1">
+      <Id>3</Id>
+    </AsmPathIds>
+    <ReportNumber>Test1</ReportNumber>
+    <InspectionScope>DETAIL</InspectionScope>
+    <InspectionMode>FAI_Full</InspectionMode>
+    <FormalStandardId>156</FormalStandardId>
+  </PreInspectionTraceability>
+
+  <FileUnits>
+    <PrimaryUnits>
+      <AngularUnit>
+        <SIUnitName>radian</SIUnitName>
+        <UnitName>degree</UnitName>
+        <UnitConversion>
+          <Factor>0.017453292519943</Factor>
+        </UnitConversion>
+      </AngularUnit>
+      <LinearUnit>
+        <SIUnitName>meter</SIUnitName>
+        <UnitName>mm</UnitName>
+        <UnitConversion>
+          <Factor>0.001</Factor>
+        </UnitConversion>
+      </LinearUnit>
+    </PrimaryUnits>
+  </FileUnits>
+
+  <DatumDefinitions n="5">
+    <DatumDefinition id="17">
+      <DatumLabel>B</DatumLabel>
+    </DatumDefinition>
+    <DatumDefinition id="43">
+      <DatumLabel>A</DatumLabel>
+    </DatumDefinition>
+    <DatumDefinition id="44">
+      <DatumLabel>C</DatumLabel>
+    </DatumDefinition>
+    <DatumDefinition id="58">
+      <DatumLabel>J</DatumLabel>
+    </DatumDefinition>
+    <DatumDefinition id="118">
+      <DatumLabel>H</DatumLabel>
+    </DatumDefinition>
+  </DatumDefinitions>
+
+  <DatumReferenceFrames n="7">
+    <DatumReferenceFrame id="16">
+      <Datums n="1">
+        <Datum>
+          <SimpleDatum>
+            <DatumDefinitionId>17</DatumDefinitionId>
+            <MaterialModifier>NONE</MaterialModifier>
+            <ReferencedComponent>ACTUAL</ReferencedComponent>
+          </SimpleDatum>
+          <Precedence>
+            <PrecedenceEnum>PRIMARY</PrecedenceEnum>
+          </Precedence>
+        </Datum>
+      </Datums>
+    </DatumReferenceFrame>
+    <DatumReferenceFrame id="42">
+      <Datums n="3">
+        <Datum>
+          <SimpleDatum>
+            <DatumDefinitionId>17</DatumDefinitionId>
+            <MaterialModifier>NONE</MaterialModifier>
+            <ReferencedComponent>ACTUAL</ReferencedComponent>
+          </SimpleDatum>
+          <Precedence>
+            <PrecedenceEnum>PRIMARY</PrecedenceEnum>
+          </Precedence>
+        </Datum>
+        <Datum>
+          <SimpleDatum>
+            <DatumDefinitionId>43</DatumDefinitionId>
+            <MaterialModifier>NONE</MaterialModifier>
+            <ReferencedComponent>ACTUAL</ReferencedComponent>
+          </SimpleDatum>
+          <Precedence>
+            <PrecedenceEnum>SECONDARY</PrecedenceEnum>
+          </Precedence>
+        </Datum>
+        <Datum>
+          <SimpleDatum>
+            <DatumDefinitionId>44</DatumDefinitionId>
+            <MaterialModifier>NONE</MaterialModifier>
+            <ReferencedComponent>ACTUAL</ReferencedComponent>
+          </SimpleDatum>
+          <Precedence>
+            <PrecedenceEnum>TERTIARY</PrecedenceEnum>
+          </Precedence>
+        </Datum>
+      </Datums>
+    </DatumReferenceFrame>
+    <DatumReferenceFrame id="57">
+      <Datums n="1">
+        <Datum>
+          <SimpleDatum>
+            <DatumDefinitionId>58</DatumDefinitionId>
+            <MaterialModifier>MAXIMUM</MaterialModifier>
+            <ReferencedComponent>ACTUAL</ReferencedComponent>
+          </SimpleDatum>
+          <Precedence>
+            <PrecedenceEnum>PRIMARY</PrecedenceEnum>
+          </Precedence>
+        </Datum>
+      </Datums>
+    </DatumReferenceFrame>
+    <DatumReferenceFrame id="77"/>
+    <DatumReferenceFrame id="117">
+      <Datums n="1">
+        <Datum>
+          <SimpleDatum>
+            <DatumDefinitionId>118</DatumDefinitionId>
+            <MaterialModifier>NONE</MaterialModifier>
+            <ReferencedComponent>ACTUAL</ReferencedComponent>
+          </SimpleDatum>
+          <Precedence>
+            <PrecedenceEnum>PRIMARY</PrecedenceEnum>
+          </Precedence>
+        </Datum>
+      </Datums>
+    </DatumReferenceFrame>
+    <DatumReferenceFrame id="128">
+      <Datums n="3">
+        <Datum>
+          <SimpleDatum>
+            <DatumDefinitionId>43</DatumDefinitionId>
+            <MaterialModifier>NONE</MaterialModifier>
+            <ReferencedComponent>ACTUAL</ReferencedComponent>
+          </SimpleDatum>
+          <Precedence>
+            <PrecedenceEnum>PRIMARY</PrecedenceEnum>
+          </Precedence>
+        </Datum>
+        <Datum>
+          <SimpleDatum>
+            <DatumDefinitionId>17</DatumDefinitionId>
+            <MaterialModifier>NONE</MaterialModifier>
+            <ReferencedComponent>ACTUAL</ReferencedComponent>
+          </SimpleDatum>
+          <Precedence>
+            <PrecedenceEnum>SECONDARY</PrecedenceEnum>
+          </Precedence>
+        </Datum>
+        <Datum>
+          <SimpleDatum>
+            <DatumDefinitionId>44</DatumDefinitionId>
+            <MaterialModifier>NONE</MaterialModifier>
+            <ReferencedComponent>ACTUAL</ReferencedComponent>
+          </SimpleDatum>
+          <Precedence>
+            <PrecedenceEnum>TERTIARY</PrecedenceEnum>
+          </Precedence>
+        </Datum>
+      </Datums>
+    </DatumReferenceFrame>
+    <DatumReferenceFrame id="153">
+      <Datums n="2">
+        <Datum>
+          <SimpleDatum>
+            <DatumDefinitionId>43</DatumDefinitionId>
+            <MaterialModifier>NONE</MaterialModifier>
+            <ReferencedComponent>ACTUAL</ReferencedComponent>
+          </SimpleDatum>
+          <Precedence>
+            <PrecedenceEnum>PRIMARY</PrecedenceEnum>
+          </Precedence>
+        </Datum>
+        <Datum>
+          <SimpleDatum>
+            <DatumDefinitionId>44</DatumDefinitionId>
+            <MaterialModifier>NONE</MaterialModifier>
+            <ReferencedComponent>ACTUAL</ReferencedComponent>
+          </SimpleDatum>
+          <Precedence>
+            <PrecedenceEnum>SECONDARY</PrecedenceEnum>
+          </Precedence>
+        </Datum>
+      </Datums>
+    </DatumReferenceFrame>
+  </DatumReferenceFrames>
+
+  <MeasurementResources>
+    <MeasurementDevices n="1">
+      <MeasurementDevice id="14">
+        <Name>CMM</Name>
+      </MeasurementDevice>
+    </MeasurementDevices>
+  </MeasurementResources>
+
+  <Product>
+    <PartSet n="1">
+      <Part hidden="false" id="1" transparency="0">
+        <ModelNumber>rev 1</ModelNumber>
+        <Version>Version</Version>
+        <DefinitionExternal id="6" n="2">
+          <PrintedDrawing id="5">
+            <Name>Drawing1</Name>
+            <Version>1.0.0</Version>
+            <Description>Sample QIF elements</Description>
+            <DrawingNumber>#1</DrawingNumber>
+            <AdditionalChanges>none</AdditionalChanges>
+            <Location>Cabinet 17, Drawer 3</Location>
+          </PrintedDrawing>
+          <DigitalModel id="7">
+            <Name>Drawing1</Name>
+            <File>
+              <Name>D:\CM14_Parts\QIF\Drawing1.SLDPRT</Name>
+              <Format>
+                <DigitalModelFormatEnum>SOLIDWORKS</DigitalModelFormatEnum>
+              </Format>
+            </File>
+          </DigitalModel>
+        </DefinitionExternal>
+      </Part>
+    </PartSet>
+    <ComponentSet n="1">
+      <Component hidden="false" id="2" transparency="0">
+        <Part>
+          <Id>1</Id>
+        </Part>
+      </Component>
+    </ComponentSet>
+    <AsmPaths n="1">
+      <AsmPath id="3">
+        <ComponentIds n="1">
+          <Id>2</Id>
+        </ComponentIds>
+      </AsmPath>
+    </AsmPaths>
+  </Product>
+
+  <Features>
+    <FeatureDefinitions n="19">
+      <PlaneFeatureDefinition id="8"/>
+      <PlaneFeatureDefinition id="20"/>
+      <PlaneFeatureDefinition id="26"/>
+      <CylinderFeatureDefinition id="35">
+        <InternalExternal>INTERNAL</InternalExternal>
+        <Diameter>19</Diameter>
+      </CylinderFeatureDefinition>
+      <CircleFeatureDefinition id="50">
+        <InternalExternal>INTERNAL</InternalExternal>
+        <Diameter>25.399999999999999</Diameter>
+      </CircleFeatureDefinition>
+      <CylinderFeatureDefinition id="61">
+        <InternalExternal>INTERNAL</InternalExternal>
+        <Diameter>5</Diameter>
+      </CylinderFeatureDefinition>
+      <CylinderFeatureDefinition id="70">
+        <InternalExternal>INTERNAL</InternalExternal>
+        <Diameter>5</Diameter>
+      </CylinderFeatureDefinition>
+      <PointFeatureDefinition id="73"/>
+      <PointFeatureDefinition id="80"/>
+      <PointFeatureDefinition id="86"/>
+      <PointFeatureDefinition id="92"/>
+      <PointFeatureDefinition id="95"/>
+      <PointFeatureDefinition id="98"/>
+      <PlaneFeatureDefinition id="101"/>
+      <PlaneFeatureDefinition id="107"/>
+      <CylinderFeatureDefinition id="121">
+        <InternalExternal>INTERNAL</InternalExternal>
+        <Diameter>9.5</Diameter>
+      </CylinderFeatureDefinition>
+      <CylinderFeatureDefinition id="131">
+        <InternalExternal>INTERNAL</InternalExternal>
+        <Diameter>9.5</Diameter>
+      </CylinderFeatureDefinition>
+      <CylinderFeatureDefinition id="134">
+        <InternalExternal>INTERNAL</InternalExternal>
+        <Diameter>9.5</Diameter>
+      </CylinderFeatureDefinition>
+      <OppositeParallelLinesFeatureDefinition id="146">
+        <InternalExternal>INTERNAL</InternalExternal>
+        <Width>10</Width>
+        <Length>18.591370725154999</Length>
+        <EndType>
+          <SlotEndEnum>OPEN</SlotEndEnum>
+        </EndType>
+      </OppositeParallelLinesFeatureDefinition>
+    </FeatureDefinitions>
+    <FeatureNominals n="19">
+      <PlaneFeatureNominal id="9">
+        <FeatureDefinitionId>8</FeatureDefinitionId>
+        <Location>-23.295574955003 0 -50.109199377592</Location>
+        <Normal>0 -1 0</Normal>
+      </PlaneFeatureNominal>
+      <PlaneFeatureNominal id="21">
+        <FeatureDefinitionId>20</FeatureDefinitionId>
+        <Location>-0 35.655360663391 -60.656409481635</Location>
+        <Normal>1 0 0</Normal>
+      </PlaneFeatureNominal>
+      <PlaneFeatureNominal id="27">
+        <FeatureDefinitionId>26</FeatureDefinitionId>
+        <Location>-37.082354562036 28.895806429543 0</Location>
+        <Normal>0 0 1</Normal>
+      </PlaneFeatureNominal>
+      <CylinderFeatureNominal id="36">
+        <FeatureDefinitionId>35</FeatureDefinitionId>
+        <Axis>
+          <AxisPoint>-5 31.1 -71.45</AxisPoint>
+          <Direction>-1 0 0</Direction>
+        </Axis>
+      </CylinderFeatureNominal>
+      <CircleFeatureNominal id="51">
+        <FeatureDefinitionId>50</FeatureDefinitionId>
+        <Location>0 31.1 -71.45</Location>
+        <Normal>1 0 0</Normal>
+      </CircleFeatureNominal>
+      <CylinderFeatureNominal id="62">
+        <FeatureDefinitionId>61</FeatureDefinitionId>
+        <Axis>
+          <AxisPoint>-1 15 -45</AxisPoint>
+          <Direction>-1 0 0</Direction>
+        </Axis>
+      </CylinderFeatureNominal>
+      <CylinderFeatureNominal id="71">
+        <FeatureDefinitionId>70</FeatureDefinitionId>
+        <Axis>
+          <AxisPoint>-1 15 -85</AxisPoint>
+          <Direction>-1 0 0</Direction>
+        </Axis>
+      </CylinderFeatureNominal>
+      <PointFeatureNominal id="74">
+        <FeatureDefinitionId>73</FeatureDefinitionId>
+        <Location>-5.579896200589 27.909589506802 -105</Location>
+        <Normal>0 0 -1</Normal>
+      </PointFeatureNominal>
+      <PointFeatureNominal id="81">
+        <FeatureDefinitionId>80</FeatureDefinitionId>
+        <Location>-4.093684079445 5 -55.129821108323</Location>
+        <Normal>0 -1 0</Normal>
+      </PointFeatureNominal>
+      <PointFeatureNominal id="87">
+        <FeatureDefinitionId>86</FeatureDefinitionId>
+        <Location>-1.448053926505 1 -60</Location>
+        <Normal>0 0 1</Normal>
+      </PointFeatureNominal>
+      <PointFeatureNominal id="93">
+        <FeatureDefinitionId>92</FeatureDefinitionId>
+        <Location>-10.03942465166 1 -60</Location>
+        <Normal>0 0 1</Normal>
+      </PointFeatureNominal>
+      <PointFeatureNominal id="96">
+        <FeatureDefinitionId>95</FeatureDefinitionId>
+        <Location>-1.451385106375 1.043906691029 -50</Location>
+        <Normal>0 0 -1</Normal>
+      </PointFeatureNominal>
+      <PointFeatureNominal id="99">
+        <FeatureDefinitionId>98</FeatureDefinitionId>
+        <Location>-10.053910187821 1.02429144942 -50</Location>
+        <Normal>0 0 -1</Normal>
+      </PointFeatureNominal>
+      <PlaneFeatureNominal id="102">
+        <FeatureDefinitionId>101</FeatureDefinitionId>
+        <Location>-34.311557413592 74.999999999996 -76.251542658698</Location>
+        <Normal>0 1 0</Normal>
+      </PlaneFeatureNominal>
+      <PlaneFeatureNominal id="108">
+        <FeatureDefinitionId>107</FeatureDefinitionId>
+        <Location>-45.442931626203 69.381003624723 -28.133088012395</Location>
+        <Normal>0 0.98480775301219 0.173648177667034</Normal>
+      </PlaneFeatureNominal>
+      <CylinderFeatureNominal id="122">
+        <FeatureDefinitionId>121</FeatureDefinitionId>
+        <Axis>
+          <AxisPoint>-10 73.75 -95</AxisPoint>
+          <Direction>0 -1 -0</Direction>
+        </Axis>
+      </CylinderFeatureNominal>
+      <CylinderFeatureNominal id="132">
+        <FeatureDefinitionId>131</FeatureDefinitionId>
+        <Axis>
+          <AxisPoint>-65 73.75 -95</AxisPoint>
+          <Direction>0 -1 0</Direction>
+        </Axis>
+      </CylinderFeatureNominal>
+      <CylinderFeatureNominal id="135">
+        <FeatureDefinitionId>134</FeatureDefinitionId>
+        <Axis>
+          <AxisPoint>-65 73.75 -70</AxisPoint>
+          <Direction>0 -1 0</Direction>
+        </Axis>
+      </CylinderFeatureNominal>
+      <OppositeParallelLinesFeatureNominal id="147">
+        <FeatureDefinitionId>146</FeatureDefinitionId>
+        <CenterLine>
+          <StartPoint>-5.743739289082 1 -55</StartPoint>
+          <Vector>0.00258091265800102 -0.999817004588394 -0.0189551108080075</Vector>
+        </CenterLine>
+        <Normal>0 1 0</Normal>
+      </OppositeParallelLinesFeatureNominal>
+    </FeatureNominals>
+    <FeatureItems n="19">
+      <PlaneFeatureItem id="10">
+        <FeatureNominalId>9</FeatureNominalId>
+        <FeatureName>DATUM_A</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PlaneFeatureItem>
+      <PlaneFeatureItem id="22">
+        <FeatureNominalId>21</FeatureNominalId>
+        <FeatureName>DATUM_B</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PlaneFeatureItem>
+      <PlaneFeatureItem id="28">
+        <FeatureNominalId>27</FeatureNominalId>
+        <FeatureName>DATUM_C</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PlaneFeatureItem>
+      <CylinderFeatureItem id="37">
+        <FeatureNominalId>36</FeatureNominalId>
+        <FeatureName>DATUM_J</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </CylinderFeatureItem>
+      <CircleFeatureItem id="52">
+        <FeatureNominalId>51</FeatureNominalId>
+        <FeatureName>DATUM_J_CBOREYZ</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </CircleFeatureItem>
+      <CylinderFeatureItem id="63">
+        <FeatureNominalId>62</FeatureNominalId>
+        <FeatureName>CYLINDER6</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </CylinderFeatureItem>
+      <CylinderFeatureItem id="72">
+        <FeatureNominalId>71</FeatureNominalId>
+        <FeatureName>CYLINDER7</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </CylinderFeatureItem>
+      <PointFeatureItem id="75">
+        <FeatureNominalId>74</FeatureNominalId>
+        <FeatureName>BACK_FACE</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PointFeatureItem id="82">
+        <FeatureNominalId>81</FeatureNominalId>
+        <FeatureName>SLOT_DEPTH</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PointFeatureItem id="88">
+        <FeatureNominalId>87</FeatureNominalId>
+        <FeatureName>SLOT_PTS01</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PointFeatureItem id="94">
+        <FeatureNominalId>93</FeatureNominalId>
+        <FeatureName>SLOT_PTS02</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PointFeatureItem id="97">
+        <FeatureNominalId>96</FeatureNominalId>
+        <FeatureName>SLOT_PTS03</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PointFeatureItem id="100">
+        <FeatureNominalId>99</FeatureNominalId>
+        <FeatureName>SLOT_PTS04</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PlaneFeatureItem id="103">
+        <FeatureNominalId>102</FeatureNominalId>
+        <FeatureName>DATUM_H</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PlaneFeatureItem>
+      <PlaneFeatureItem id="109">
+        <FeatureNominalId>108</FeatureNominalId>
+        <FeatureName>CANTED_PLANE</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PlaneFeatureItem>
+      <CylinderFeatureItem id="123">
+        <FeatureNominalId>122</FeatureNominalId>
+        <FeatureName>CYLINDER15</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </CylinderFeatureItem>
+      <CylinderFeatureItem id="133">
+        <FeatureNominalId>132</FeatureNominalId>
+        <FeatureName>CYLINDER16</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </CylinderFeatureItem>
+      <CylinderFeatureItem id="136">
+        <FeatureNominalId>135</FeatureNominalId>
+        <FeatureName>CYLINDER17</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </CylinderFeatureItem>
+      <OppositeParallelLinesFeatureItem id="148">
+        <FeatureNominalId>147</FeatureNominalId>
+        <FeatureName>SLOT_CNST</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Constructed/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </OppositeParallelLinesFeatureItem>
+    </FeatureItems>
+  </Features>
+
+  <Characteristics>
+    <FormalStandardId>156</FormalStandardId>
+    <CharacteristicDefinitions n="26">
+      <FlatnessCharacteristicDefinition id="11">
+        <ToleranceValue>0.25</ToleranceValue>
+      </FlatnessCharacteristicDefinition>
+      <PerpendicularityCharacteristicDefinition id="15">
+        <ToleranceValue>0.5</ToleranceValue>
+        <DatumReferenceFrameId>16</DatumReferenceFrameId>
+        <MaterialCondition>NONE</MaterialCondition>
+        <ZoneShape>
+          <PlanarZone/>
+        </ZoneShape>
+      </PerpendicularityCharacteristicDefinition>
+      <FlatnessCharacteristicDefinition id="23">
+        <ToleranceValue>0.25</ToleranceValue>
+      </FlatnessCharacteristicDefinition>
+      <FlatnessCharacteristicDefinition id="29">
+        <ToleranceValue>0.25</ToleranceValue>
+      </FlatnessCharacteristicDefinition>
+      <PerpendicularityCharacteristicDefinition id="32">
+        <ToleranceValue>0.5</ToleranceValue>
+        <DatumReferenceFrameId>16</DatumReferenceFrameId>
+        <MaterialCondition>NONE</MaterialCondition>
+        <ZoneShape>
+          <PlanarZone/>
+        </ZoneShape>
+      </PerpendicularityCharacteristicDefinition>
+      <DiameterCharacteristicDefinition id="38">
+        <Tolerance>
+          <MaxValue>0.13</MaxValue>
+          <MinValue>-0.13</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DiameterCharacteristicDefinition>
+      <PositionCharacteristicDefinition id="41">
+        <ToleranceValue>0.5</ToleranceValue>
+        <DatumReferenceFrameId>42</DatumReferenceFrameId>
+        <MaterialCondition>MAXIMUM</MaterialCondition>
+        <ZoneShape>
+          <DiametricalZone/>
+        </ZoneShape>
+      </PositionCharacteristicDefinition>
+      <DistanceBetweenCharacteristicDefinition id="47">
+        <Tolerance>
+          <MaxValue>0.5</MaxValue>
+          <MinValue>-0.5</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DistanceBetweenCharacteristicDefinition>
+      <DiameterCharacteristicDefinition id="53">
+        <Tolerance>
+          <MaxValue>0.15</MaxValue>
+          <MinValue>-0.15</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DiameterCharacteristicDefinition>
+      <PositionCharacteristicDefinition id="56">
+        <ToleranceValue>0.5</ToleranceValue>
+        <DatumReferenceFrameId>57</DatumReferenceFrameId>
+        <MaterialCondition>MAXIMUM</MaterialCondition>
+        <ZoneShape>
+          <DiametricalZone/>
+        </ZoneShape>
+      </PositionCharacteristicDefinition>
+      <DiameterCharacteristicDefinition id="64">
+        <Tolerance>
+          <MaxValue>0.025</MaxValue>
+          <MinValue>-0.025</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DiameterCharacteristicDefinition>
+      <PositionCharacteristicDefinition id="67">
+        <ToleranceValue>0.25</ToleranceValue>
+        <DatumReferenceFrameId>42</DatumReferenceFrameId>
+        <MaterialCondition>MAXIMUM</MaterialCondition>
+        <ZoneShape>
+          <DiametricalZone/>
+        </ZoneShape>
+      </PositionCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="76">
+        <ToleranceValue>2</ToleranceValue>
+        <DatumReferenceFrameId>77</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="83">
+        <ToleranceValue>2</ToleranceValue>
+        <DatumReferenceFrameId>77</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="89">
+        <ToleranceValue>2</ToleranceValue>
+        <DatumReferenceFrameId>77</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <FlatnessCharacteristicDefinition id="104">
+        <ToleranceValue>0.25</ToleranceValue>
+      </FlatnessCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="110">
+        <ToleranceValue>1</ToleranceValue>
+        <DatumReferenceFrameId>42</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <FlatnessCharacteristicDefinition id="113">
+        <ToleranceValue>0.5</ToleranceValue>
+      </FlatnessCharacteristicDefinition>
+      <AngularityCharacteristicDefinition id="116">
+        <ToleranceValue>0.5</ToleranceValue>
+        <DatumReferenceFrameId>117</DatumReferenceFrameId>
+        <MaterialCondition>NONE</MaterialCondition>
+        <ZoneShape>
+          <PlanarZone/>
+        </ZoneShape>
+      </AngularityCharacteristicDefinition>
+      <DiameterCharacteristicDefinition id="124">
+        <Tolerance>
+          <MaxValue>0.15</MaxValue>
+          <MinValue>-0.15</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DiameterCharacteristicDefinition>
+      <PositionCharacteristicDefinition id="127">
+        <ToleranceValue>0.5</ToleranceValue>
+        <DatumReferenceFrameId>128</DatumReferenceFrameId>
+        <MaterialCondition>MAXIMUM</MaterialCondition>
+        <ZoneShape>
+          <DiametricalZone/>
+        </ZoneShape>
+      </PositionCharacteristicDefinition>
+      <DistanceBetweenCharacteristicDefinition id="137">
+        <Tolerance>
+          <MaxValue>0.25</MaxValue>
+          <MinValue>-0.25</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DistanceBetweenCharacteristicDefinition>
+      <DistanceBetweenCharacteristicDefinition id="140">
+        <Tolerance>
+          <MaxValue>0.25</MaxValue>
+          <MinValue>-0.25</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DistanceBetweenCharacteristicDefinition>
+      <DistanceBetweenCharacteristicDefinition id="143">
+        <Tolerance>
+          <MaxValue>1</MaxValue>
+          <MinValue>-1</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DistanceBetweenCharacteristicDefinition>
+      <WidthCharacteristicDefinition id="149">
+        <Tolerance>
+          <MaxValue>0.5</MaxValue>
+          <MinValue>-0.5</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </WidthCharacteristicDefinition>
+      <PositionCharacteristicDefinition id="152">
+        <ToleranceValue>1</ToleranceValue>
+        <DatumReferenceFrameId>153</DatumReferenceFrameId>
+        <MaterialCondition>MAXIMUM</MaterialCondition>
+        <ZoneShape>
+          <NonDiametricalZone/>
+        </ZoneShape>
+      </PositionCharacteristicDefinition>
+    </CharacteristicDefinitions>
+    <CharacteristicNominals n="26">
+      <FlatnessCharacteristicNominal id="12">
+        <CharacteristicDefinitionId>11</CharacteristicDefinitionId>
+      </FlatnessCharacteristicNominal>
+      <PerpendicularityCharacteristicNominal id="18">
+        <CharacteristicDefinitionId>15</CharacteristicDefinitionId>
+      </PerpendicularityCharacteristicNominal>
+      <FlatnessCharacteristicNominal id="24">
+        <CharacteristicDefinitionId>23</CharacteristicDefinitionId>
+      </FlatnessCharacteristicNominal>
+      <FlatnessCharacteristicNominal id="30">
+        <CharacteristicDefinitionId>29</CharacteristicDefinitionId>
+      </FlatnessCharacteristicNominal>
+      <PerpendicularityCharacteristicNominal id="33">
+        <CharacteristicDefinitionId>32</CharacteristicDefinitionId>
+      </PerpendicularityCharacteristicNominal>
+      <DiameterCharacteristicNominal id="39">
+        <CharacteristicDefinitionId>38</CharacteristicDefinitionId>
+        <TargetValue>19</TargetValue>
+      </DiameterCharacteristicNominal>
+      <PositionCharacteristicNominal id="45">
+        <CharacteristicDefinitionId>41</CharacteristicDefinitionId>
+      </PositionCharacteristicNominal>
+      <DistanceBetweenCharacteristicNominal id="48">
+        <CharacteristicDefinitionId>47</CharacteristicDefinitionId>
+        <TargetValue>5</TargetValue>
+        <AnalysisMode>THREEDIMENSIONAL</AnalysisMode>
+      </DistanceBetweenCharacteristicNominal>
+      <DiameterCharacteristicNominal id="54">
+        <CharacteristicDefinitionId>53</CharacteristicDefinitionId>
+        <TargetValue>25.399999999999999</TargetValue>
+      </DiameterCharacteristicNominal>
+      <PositionCharacteristicNominal id="59">
+        <CharacteristicDefinitionId>56</CharacteristicDefinitionId>
+      </PositionCharacteristicNominal>
+      <DiameterCharacteristicNominal id="65">
+        <CharacteristicDefinitionId>64</CharacteristicDefinitionId>
+        <TargetValue>5</TargetValue>
+      </DiameterCharacteristicNominal>
+      <PositionCharacteristicNominal id="68">
+        <CharacteristicDefinitionId>67</CharacteristicDefinitionId>
+      </PositionCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="78">
+        <CharacteristicDefinitionId>76</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="84">
+        <CharacteristicDefinitionId>83</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="90">
+        <CharacteristicDefinitionId>89</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <FlatnessCharacteristicNominal id="105">
+        <CharacteristicDefinitionId>104</CharacteristicDefinitionId>
+      </FlatnessCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="111">
+        <CharacteristicDefinitionId>110</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <FlatnessCharacteristicNominal id="114">
+        <CharacteristicDefinitionId>113</CharacteristicDefinitionId>
+      </FlatnessCharacteristicNominal>
+      <AngularityCharacteristicNominal id="119">
+        <CharacteristicDefinitionId>116</CharacteristicDefinitionId>
+        <Angle>9.999999999999</Angle>
+      </AngularityCharacteristicNominal>
+      <DiameterCharacteristicNominal id="125">
+        <CharacteristicDefinitionId>124</CharacteristicDefinitionId>
+        <TargetValue>9.5</TargetValue>
+      </DiameterCharacteristicNominal>
+      <PositionCharacteristicNominal id="129">
+        <CharacteristicDefinitionId>127</CharacteristicDefinitionId>
+      </PositionCharacteristicNominal>
+      <DistanceBetweenCharacteristicNominal id="138">
+        <CharacteristicDefinitionId>137</CharacteristicDefinitionId>
+        <TargetValue>74.999999999997002</TargetValue>
+        <AnalysisMode>THREEDIMENSIONAL</AnalysisMode>
+      </DistanceBetweenCharacteristicNominal>
+      <DistanceBetweenCharacteristicNominal id="141">
+        <CharacteristicDefinitionId>140</CharacteristicDefinitionId>
+        <TargetValue>105</TargetValue>
+        <AnalysisMode>THREEDIMENSIONAL</AnalysisMode>
+      </DistanceBetweenCharacteristicNominal>
+      <DistanceBetweenCharacteristicNominal id="144">
+        <CharacteristicDefinitionId>143</CharacteristicDefinitionId>
+        <TargetValue>5</TargetValue>
+        <AnalysisMode>THREEDIMENSIONAL</AnalysisMode>
+      </DistanceBetweenCharacteristicNominal>
+      <WidthCharacteristicNominal id="150">
+        <CharacteristicDefinitionId>149</CharacteristicDefinitionId>
+        <TargetValue>10</TargetValue>
+      </WidthCharacteristicNominal>
+      <PositionCharacteristicNominal id="154">
+        <CharacteristicDefinitionId>152</CharacteristicDefinitionId>
+      </PositionCharacteristicNominal>
+    </CharacteristicNominals>
+    <CharacteristicItems n="26">
+      <FlatnessCharacteristicItem id="13">
+        <Name>113</Name>
+        <CharacteristicDesignator>
+          <Designator>113</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>10</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>12</CharacteristicNominalId>
+      </FlatnessCharacteristicItem>
+      <PerpendicularityCharacteristicItem id="19">
+        <Name>14</Name>
+        <CharacteristicDesignator>
+          <Designator>14</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>10</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>18</CharacteristicNominalId>
+      </PerpendicularityCharacteristicItem>
+      <FlatnessCharacteristicItem id="25">
+        <Name>4</Name>
+        <CharacteristicDesignator>
+          <Designator>4</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>22</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>24</CharacteristicNominalId>
+      </FlatnessCharacteristicItem>
+      <FlatnessCharacteristicItem id="31">
+        <Name>112</Name>
+        <CharacteristicDesignator>
+          <Designator>112</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>28</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>30</CharacteristicNominalId>
+      </FlatnessCharacteristicItem>
+      <PerpendicularityCharacteristicItem id="34">
+        <Name>3</Name>
+        <CharacteristicDesignator>
+          <Designator>3</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>28</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>33</CharacteristicNominalId>
+      </PerpendicularityCharacteristicItem>
+      <DiameterCharacteristicItem id="40">
+        <Name>10</Name>
+        <CharacteristicDesignator>
+          <Designator>10</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>37</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>39</CharacteristicNominalId>
+      </DiameterCharacteristicItem>
+      <PositionCharacteristicItem id="46">
+        <Name>11</Name>
+        <CharacteristicDesignator>
+          <Designator>11</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>37</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>45</CharacteristicNominalId>
+      </PositionCharacteristicItem>
+      <DistanceBetweenCharacteristicItem id="49">
+        <Attributes n="1">
+          <AttributeStr name="Comment" value="J datum counter bore depth"/>
+        </Attributes>
+        <Name>5</Name>
+        <CharacteristicDesignator>
+          <Designator>5</Designator>
+        </CharacteristicDesignator>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>48</CharacteristicNominalId>
+      </DistanceBetweenCharacteristicItem>
+      <DiameterCharacteristicItem id="55">
+        <Name>8</Name>
+        <CharacteristicDesignator>
+          <Designator>8</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>52</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>54</CharacteristicNominalId>
+      </DiameterCharacteristicItem>
+      <PositionCharacteristicItem id="60">
+        <Name>9</Name>
+        <CharacteristicDesignator>
+          <Designator>9</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>52</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>59</CharacteristicNominalId>
+      </PositionCharacteristicItem>
+      <DiameterCharacteristicItem id="66">
+        <Name>6</Name>
+        <CharacteristicDesignator>
+          <Designator>6</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>63</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>65</CharacteristicNominalId>
+      </DiameterCharacteristicItem>
+      <PositionCharacteristicItem id="69">
+        <Name>7</Name>
+        <CharacteristicDesignator>
+          <Designator>7</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>63</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>68</CharacteristicNominalId>
+      </PositionCharacteristicItem>
+      <PointProfileCharacteristicItem id="79">
+        <Name>109</Name>
+        <CharacteristicDesignator>
+          <Designator>109</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>75</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>78</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="85">
+        <Name>110</Name>
+        <CharacteristicDesignator>
+          <Designator>110</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>82</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>84</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="91">
+        <Name>106</Name>
+        <CharacteristicDesignator>
+          <Designator>106</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>88</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>90</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <FlatnessCharacteristicItem id="106">
+        <Name>108</Name>
+        <CharacteristicDesignator>
+          <Designator>108</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>103</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>105</CharacteristicNominalId>
+      </FlatnessCharacteristicItem>
+      <PointProfileCharacteristicItem id="112">
+        <Name>1</Name>
+        <CharacteristicDesignator>
+          <Designator>1</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>109</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>111</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <FlatnessCharacteristicItem id="115">
+        <Name>198</Name>
+        <CharacteristicDesignator>
+          <Designator>198</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>109</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>114</CharacteristicNominalId>
+      </FlatnessCharacteristicItem>
+      <AngularityCharacteristicItem id="120">
+        <Name>2</Name>
+        <CharacteristicDesignator>
+          <Designator>2</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>109</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>119</CharacteristicNominalId>
+      </AngularityCharacteristicItem>
+      <DiameterCharacteristicItem id="126">
+        <Name>17</Name>
+        <CharacteristicDesignator>
+          <Designator>17</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>123</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>125</CharacteristicNominalId>
+      </DiameterCharacteristicItem>
+      <PositionCharacteristicItem id="130">
+        <Name>18</Name>
+        <CharacteristicDesignator>
+          <Designator>18</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>123</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>129</CharacteristicNominalId>
+      </PositionCharacteristicItem>
+      <DistanceBetweenCharacteristicItem id="139">
+        <Attributes n="1">
+          <AttributeStr name="Comment" value="Distance between A datum and H datum planes"/>
+        </Attributes>
+        <Name>12</Name>
+        <CharacteristicDesignator>
+          <Designator>12</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="2">
+          <Id>103</Id>
+          <Id>10</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>138</CharacteristicNominalId>
+      </DistanceBetweenCharacteristicItem>
+      <DistanceBetweenCharacteristicItem id="142">
+        <Name>19</Name>
+        <CharacteristicDesignator>
+          <Designator>19</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="2">
+          <Id>75</Id>
+          <Id>28</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>141</CharacteristicNominalId>
+      </DistanceBetweenCharacteristicItem>
+      <DistanceBetweenCharacteristicItem id="145">
+        <Name>13</Name>
+        <CharacteristicDesignator>
+          <Designator>13</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="2">
+          <Id>10</Id>
+          <Id>82</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>144</CharacteristicNominalId>
+      </DistanceBetweenCharacteristicItem>
+      <WidthCharacteristicItem id="151">
+        <Name>15</Name>
+        <CharacteristicDesignator>
+          <Designator>15</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>148</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>150</CharacteristicNominalId>
+      </WidthCharacteristicItem>
+      <PositionCharacteristicItem id="155">
+        <Name>16</Name>
+        <CharacteristicDesignator>
+          <Designator>16</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>148</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>14</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>154</CharacteristicNominalId>
+      </PositionCharacteristicItem>
+    </CharacteristicItems>
+  </Characteristics>
+
+  <Plan>
+    <UnorderedPlanRoot>
+      <Steps n="1">
+        <MeasureEvaluateAll/>
+      </Steps>
+    </UnorderedPlanRoot>
+  </Plan>
+
+</QIFDocument>

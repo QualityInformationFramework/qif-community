@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<QIFDocument
+  xmlns="http://qifstandards.org/xsd/qif3"
+  idMax="4"
+  versionQIF="3.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation=
+    "http://qifstandards.org/xsd/qif3 ../QIFApplications/QIFDocument.xsd">
+
+  <QPId>FA4BF105-B04E-40f8-8493-5661CC5047DA</QPId>
+
+  <ExternalQIFReferences n="1">
+    <ExternalQIFDocument id="1">
+      <QPId>6558F196-D952-4b80-8054-0A0756D60526</QPId>
+      <URI>.\Exploded_Plan.QIF</URI>
+    </ExternalQIFDocument>
+  </ExternalQIFReferences>
+
+  <Results>
+    <MeasurementResultsSet n="1">
+      <MeasurementResults id="2">
+        <ThisResultsInstanceQPId>
+          AF259E3E-6A5E-41af-8131-8BC3130881C9
+        </ThisResultsInstanceQPId>
+        <MeasuredCharacteristics>
+          <CharacteristicMeasurements n="2">
+            <SphericalDiameterCharacteristicMeasurement id="3">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId xId="5">1</CharacteristicItemId>
+              <Value>25.680053102205999</Value>
+            </SphericalDiameterCharacteristicMeasurement>
+            <SphericityCharacteristicMeasurement id="4">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId xId="6">1</CharacteristicItemId>
+              <Value>0.051042207099</Value>
+            </SphericityCharacteristicMeasurement>
+          </CharacteristicMeasurements>
+        </MeasuredCharacteristics>
+        <InspectionStatus>
+          <InspectionStatusEnum>FAIL</InspectionStatusEnum>
+        </InspectionStatus>
+      </MeasurementResults>
+    </MeasurementResultsSet>
+  </Results>
+
+</QIFDocument>

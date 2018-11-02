@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+This file provides examples of various types of rule. It is not intended
+to be of practical use.
+
+The file models:
+  - a micrometer with id = 4
+  - an IfThenElseFeatureRules with three parts
+  - a MaxFeatureRules with two parts
+  - two DME Selection rules
+
+The IfThenElseFeatureRules means:
+  If the feature is a cylinder, then use 23 touch points.
+  Otherwise, if the feature is a circular arc, choose touch points with
+    a density of 0.8 points per millimeter.
+  Otherwise, use at least 13 touch points for the feature.
+
+The MaxFeatureRules means:
+  If the feature is a surface feature with an area of more than 10
+    square millimeters, use at least 25 touch points for the feature.
+  Otherwise use at least 10 touch points for the feature.
+
+The first DME selection rule means do not use a caliper. This rule has
+  no "if" part.
+
+The second DME selection rule means:
+  if ((the feature is a cylinder) and
+      (the feature is not internal) and
+      (the characteristic is diameter) and
+      (the diameter of the cylinder feature is more than 0.01 mm))
+  then the DME with id = 4 (the micrometer) must be used.
+
+-->
+
+<QIFDocument
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://qifstandards.org/xsd/qif3"
+  versionQIF="3.0.0"
+  idMax="4"
+  xsi:schemaLocation=
+    "http://qifstandards.org/xsd/qif3 ../QIFApplications/QIFDocument.xsd">
+    <QPId>b2fdf150-fb27-11e3-a3ac-0800200c9a66</QPId>
+  <FileUnits>
+    <PrimaryUnits>
+      <AngularUnit>
+        <UnitName>degree</UnitName>
+      </AngularUnit>
+      <LinearUnit>
+        <SIUnitName>meter</SIUnitName>
+        <UnitName>mm</UnitName>
+        <UnitConversion>
+          <Factor>0.001</Factor>
+        </UnitConversion>
+      </LinearUnit>
+    </PrimaryUnits>
+  </FileUnits>
+  <MeasurementResources>
+    <Version>
+      <TimeCreated>2015-05-28T17:44:00</TimeCreated>
+      <ThisInstanceQPId>0673a750-094e-11e5-b939-0800200c9a66</ThisInstanceQPId>
+    </Version>
+    <MeasurementDevices n="1">
+      <Micrometer id="4">
+        <Name>Mike</Name>
+      </Micrometer>
+    </MeasurementDevices>
+  </MeasurementResources>
+   <Rules>
+    <FeatureRules>
+      <IfThenElseFeatureRules n="3">
+        <IfThenCylinderRule>
+          <ThenPoints>
+            <NumberOfPoints>23</NumberOfPoints>
+          </ThenPoints>
+        </IfThenCylinderRule>
+        <IfThenCircularArcRule>
+          <ThenPoints>
+            <PointDensity>0.8</PointDensity>
+          </ThenPoints>
+        </IfThenCircularArcRule>
+        <Else>
+          <ThenPoints>
+            <MinPoints>13</MinPoints>
+          </ThenPoints>
+        </Else>
+      </IfThenElseFeatureRules>
+      <MaxFeatureRules n="2">
+        <IfThenSurfaceRule>
+          <GreaterThan>
+            <FeatureArea/>
+            <ArithmeticConstant val="10"/>
+          </GreaterThan>
+          <ThenPoints>
+            <MinPoints>25</MinPoints>
+          </ThenPoints>
+        </IfThenSurfaceRule>
+        <Else>
+          <ThenPoints>
+            <MinPoints>10</MinPoints>
+          </ThenPoints>
+        </Else>
+      </MaxFeatureRules>
+    </FeatureRules>
+    <DMESelectionRules n="2">
+      <DMEDecisionRule>
+        <DMEThen n="1">
+          <DMEDecisionClass>
+            <MustNot/>
+            <DMEClassName>CALIPER</DMEClassName>
+          </DMEDecisionClass>
+        </DMEThen>
+       </DMEDecisionRule>
+      <DMEDecisionRule>
+        <And n="4">
+          <FeatureTypeIs val="CYLINDER"/>
+          <Not>
+            <FeatureIsInternal/>
+          </Not>
+          <CharacteristicIs val="DIAMETER"/>
+          <GreaterThan>
+            <ArithmeticFeatureParameter>
+              <Parameter>Diameter</Parameter>
+            </ArithmeticFeatureParameter>
+            <ArithmeticConstant val="0.010"/>
+          </GreaterThan>
+        </And>
+        <DMEThen n="1">
+          <DMEDecisionId>
+            <Must/>
+            <DMEId>4</DMEId>
+          </DMEDecisionId>
+        </DMEThen>
+      </DMEDecisionRule>
+    </DMESelectionRules>
+  </Rules>
+</QIFDocument>

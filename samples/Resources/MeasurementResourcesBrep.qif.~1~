@@ -1,0 +1,775 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QIFDocument xmlns="http://qifstandards.org/xsd/qif3"
+ idMax="900"
+ versionQIF="2.9.1"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation=
+   "http://qifstandards.org/xsd/qif3 ../QIFApplications/QIFDocument.xsd">
+  <QPId>12dd5d20-0583-11e5-b939-0800200c9a66</QPId>
+  <Header>
+    <Author>
+      <Name>T. Kramer</Name>
+      <Organization>NIST</Organization>
+    </Author>
+    <Description>example of using a QIF brep for working volume</Description>
+  </Header>
+  <FileUnits>
+    <PrimaryUnits>
+      <AngularUnit>
+        <UnitName>degree</UnitName>
+      </AngularUnit>
+      <LinearUnit>
+        <SIUnitName>meter</SIUnitName>
+        <UnitName>mm</UnitName>
+        <UnitConversion>
+          <Factor>0.001</Factor>
+        </UnitConversion>
+      </LinearUnit>
+    </PrimaryUnits>
+  </FileUnits>
+  <MeasurementResources>
+    <Version>
+      <TimeCreated>2015-05-28T17:44:00</TimeCreated>
+      <ThisInstanceQPId>0673a750-094e-11e5-b939-0800200c9a66</ThisInstanceQPId>
+    </Version>
+    <MeasurementDevices n="1">
+      <CartesianCMM id="1">
+        <Name>CMM1</Name>
+	<ClosedShellSetWorkingVolume>
+	  <WorkingClosedShellSet>
+	    <PointSet n="10">
+	      <Point id="101">
+		<XYZ>0 -50 0</XYZ>
+	      </Point>
+	      <Point id="102">
+		<XYZ>0 -50 200</XYZ>
+	      </Point>
+	      <Point id="103">
+		<XYZ>-400 -400 0</XYZ>
+	      </Point>
+	      <Point id="104">
+		<XYZ>400 -400 0</XYZ>
+	      </Point>
+	      <Point id="105">
+		<XYZ>400 -100 0</XYZ>
+	      </Point>
+	      <Point id="106">
+		<XYZ>-400 -100 0</XYZ>
+	      </Point>
+	      <Point id="107">
+		<XYZ>-400 -400 300</XYZ>
+	      </Point>
+	      <Point id="108">
+		<XYZ>400 -400 300</XYZ>
+	      </Point>
+	      <Point id="109">
+		<XYZ>400 -100 300</XYZ>
+	      </Point>
+	      <Point id="110">
+		<XYZ>-400 -100 300</XYZ>
+	      </Point>
+	    </PointSet>
+	    <Curve13Set n="15">
+	      <ArcCircular13 id="201">
+		<ArcCircular13Core domain="0 6.28318530717959">
+		  <Radius>50</Radius>
+		  <Center>0 0 0</Center>
+		  <DirBeg>0 -1 0</DirBeg>
+		  <Normal>0 0 1</Normal>
+		</ArcCircular13Core>
+	      </ArcCircular13>
+	      <ArcCircular13 id="202">
+		<ArcCircular13Core domain="0 6.28318530717959">
+		  <Radius>50</Radius>
+		  <Center>0 0 200</Center>
+		  <DirBeg>0 -1 0</DirBeg>
+		  <Normal>0 0 1</Normal>
+		</ArcCircular13Core>
+	      </ArcCircular13>
+<!-- all segments point in a positive direction -->
+	      <Segment13 id="203">
+              <Segment13Core domain="0 1">
+                <StartPoint>-400 -400 0</StartPoint>
+                <EndPoint>400 -400 0</EndPoint>
+              </Segment13Core>
+	      </Segment13>
+	      <Segment13 id="204">
+		<Segment13Core domain="0 1">
+		  <StartPoint>-400 -400 300</StartPoint>
+		  <EndPoint>400 -400 300</EndPoint>
+		</Segment13Core>
+	      </Segment13>
+	      <Segment13 id="205">
+		<Segment13Core domain="0 1">
+		  <StartPoint>-400 -100 300</StartPoint>
+		  <EndPoint>400 -100 300</EndPoint>
+		</Segment13Core>
+	      </Segment13>
+	      <Segment13 id="206">
+		<Segment13Core domain="0 1">
+		  <StartPoint>-400 -100 0</StartPoint>
+		  <EndPoint>400 -100 0</EndPoint>
+		</Segment13Core>
+	      </Segment13>
+	      <Segment13 id="207">
+		<Segment13Core domain="0 1">
+		  <StartPoint>-400 -400 0</StartPoint>
+		  <EndPoint>-400 -100 0</EndPoint>
+		</Segment13Core>
+	      </Segment13>
+	      <Segment13 id="208">
+		<Segment13Core domain="0 1">
+		  <StartPoint>-400 -400 300</StartPoint>
+		  <EndPoint>-400 -100 300</EndPoint>
+		</Segment13Core>
+	      </Segment13>
+	      <Segment13 id="209">
+		<Segment13Core domain="0 1">
+		  <StartPoint>400 -400 300</StartPoint>
+		  <EndPoint>400 -100 300</EndPoint>
+		</Segment13Core>
+	      </Segment13>
+	      <Segment13 id="210">
+		<Segment13Core domain="0 1">
+		  <StartPoint>400 -400 0</StartPoint>
+		  <EndPoint>400 -100 0</EndPoint>
+		</Segment13Core>
+	      </Segment13>
+	      <Segment13 id="211">
+		<Segment13Core domain="0 1">
+		  <StartPoint>-400 -400 0</StartPoint>
+		  <EndPoint>-400 -400 300</EndPoint>
+		</Segment13Core>
+	      </Segment13>
+	      <Segment13 id="212">
+		<Segment13Core domain="0 1">
+		  <StartPoint>400 -400 0</StartPoint>
+		  <EndPoint>400 -400 300</EndPoint>
+		</Segment13Core>
+	      </Segment13>
+	      <Segment13 id="213">
+		<Segment13Core domain="0 1">
+		  <StartPoint>400 -100 0</StartPoint>
+		  <EndPoint>400 -100 300</EndPoint>
+		</Segment13Core>
+	      </Segment13>
+	      <Segment13 id="214">
+		<Segment13Core domain="0 1">
+		  <StartPoint>-400 -100 0</StartPoint>
+		  <EndPoint>-400 -100 300</EndPoint>
+		</Segment13Core>
+	      </Segment13>
+	      <Segment13 id="215">
+		<Segment13Core domain="0 1">
+		  <StartPoint>0 -50 0</StartPoint>
+		  <EndPoint>0 -50 200</EndPoint>
+		</Segment13Core>
+	      </Segment13>
+	    </Curve13Set>
+	    <SurfaceSet n="8">
+<!-- Planes are rectangles with origin in middle, normal outwards for faces -->
+<!-- Base plane 1000x1000, normal down, two faces use this -->
+	      <Plane23 id="301">
+		<Plane23Core domainU="-500 500" domainV="-500 500">
+		  <Origin>0 0 0</Origin>
+		  <DirU>1 0 0</DirU>
+		  <DirV>0 -1 0</DirV>
+		</Plane23Core>
+	      </Plane23>
+<!-- top plane of box 800x300, normal up -->
+	      <Plane23 id="302">
+		<Plane23Core domainU="-400 400" domainV="-150 150">
+		  <Origin>0 -250 300</Origin>
+		  <DirU>1 0 0</DirU>
+		<DirV>0 1 0</DirV>
+		</Plane23Core>
+	      </Plane23>
+<!-- right plane of box 300x300, normal right -->
+	      <Plane23 id="303">
+		<Plane23Core domainU="-150 150" domainV="-150 150">
+		  <Origin>400 -250 150</Origin>
+		  <DirU>0 1 0</DirU>
+		  <DirV>0 0 1</DirV>
+		</Plane23Core>
+	      </Plane23>
+<!-- left plane of box 300x300, normal left -->
+	      <Plane23 id="304">
+		<Plane23Core domainU="-150 150" domainV="-150 150">
+		  <Origin>-400 -250 150</Origin>
+		  <DirU>0 1 0</DirU>
+		  <DirV>0 0 -1</DirV>
+		</Plane23Core>
+	      </Plane23>
+<!-- front plane of box 800x300, normal front -->
+	      <Plane23 id="305">
+		<Plane23Core domainU="-400 400" domainV="-150 150">
+		  <Origin>0 -400 150</Origin>
+		  <DirU>1 0 0</DirU>
+		  <DirV>0 0 1</DirV>
+		</Plane23Core>
+	      </Plane23>
+<!-- back plane of box 800x300, normal back -->
+	      <Plane23 id="306">
+		<Plane23Core domainU="-400 400" domainV="0 300">
+		  <Origin>0 -100 150</Origin>
+		  <DirU>1 0 0</DirU>
+		  <DirV>0 0 -1</DirV>
+		</Plane23Core>
+	      </Plane23>
+<!-- Cylinder on base plane diameter=100, height = 200 -->
+              <Cylinder23 id="307">
+		<Cylinder23Core>
+		  <Diameter>100</Diameter>
+		  <Length>200</Length>
+		  <Axis>
+		    <AxisPoint>0 0 0 </AxisPoint>
+		    <Direction>0 0 1</Direction>
+		  </Axis>
+		  <Sweep>
+		    <DirBeg>0 -1 0</DirBeg>
+		    <DomainAngle>0 6.28318530717959</DomainAngle>
+		  </Sweep>
+		</Cylinder23Core>
+	      </Cylinder23>
+<!-- Hemisphere on top of cylinder diameter=100, height -->
+	      <Sphere23 id="308">
+		<Sphere23Core>
+		  <Diameter>100</Diameter>
+		  <Location>0 0 200</Location>
+		  <LatitudeLongitudeSweep>
+		    <DirMeridianPrime>0 -1 0</DirMeridianPrime>
+		    <DomainLatitude>0 1.5707963267949</DomainLatitude>
+		    <DomainLongitude>0 6.28318530717959</DomainLongitude>
+		    <DirNorthPole>0 0 1</DirNorthPole>
+		  </LatitudeLongitudeSweep>
+		</Sphere23Core>
+	      </Sphere23>
+	    </SurfaceSet>
+	    <VertexSet n="10">
+	      <Vertex id="401">
+		<Point>
+		  <Id>101</Id>
+		</Point>
+	      </Vertex>
+	      <Vertex id="402">
+		<Point>
+		  <Id>102</Id>
+		</Point>
+	      </Vertex>
+	      <Vertex id="403">
+		<Point>
+		  <Id>103</Id>
+		</Point>
+	      </Vertex>
+	      <Vertex id="404">
+		<Point>
+		  <Id>104</Id>
+		</Point>
+	      </Vertex>
+	      <Vertex id="405">
+		<Point>
+		  <Id>105</Id>
+		</Point>
+	      </Vertex>
+	      <Vertex id="406">
+		<Point>
+		  <Id>106</Id>
+		</Point>
+	      </Vertex>
+	      <Vertex id="407">
+		<Point>
+		  <Id>107</Id>
+		</Point>
+	      </Vertex>
+	      <Vertex id="408">
+		<Point>
+		  <Id>108</Id>
+		</Point>
+	      </Vertex>
+	      <Vertex id="409">
+		<Point>
+		  <Id>109</Id>
+		</Point>
+	      </Vertex>
+	      <Vertex id="410">
+		<Point>
+		  <Id>110</Id>
+		</Point>
+	      </Vertex>
+	    </VertexSet>
+	    <EdgeSet n="15">
+<!-- All edges on segments point in a positive direction -->
+	      <Edge id="501">
+		<Curve>
+		  <Id>201</Id>
+		</Curve>
+		<VertexBeg>
+		  <Id>401</Id>
+		</VertexBeg>
+		<VertexEnd>
+		  <Id>401</Id>
+		</VertexEnd>
+	      </Edge>
+	      <Edge id="502">
+		<Curve>
+		  <Id>202</Id>
+		</Curve>
+		<VertexBeg>
+		  <Id>402</Id>
+		</VertexBeg>
+		<VertexEnd>
+		  <Id>402</Id>
+		</VertexEnd>
+	      </Edge>
+	      <Edge id="503">
+		<Curve>
+		  <Id>203</Id>
+		</Curve>
+		<VertexBeg>
+		  <Id>403</Id>
+		</VertexBeg>
+		<VertexEnd>
+		  <Id>404</Id>
+		</VertexEnd>
+	      </Edge>
+	      <Edge id="504">
+		<Curve>
+		  <Id>204</Id>
+		</Curve>
+		<VertexBeg>
+		  <Id>407</Id>
+		</VertexBeg>
+		<VertexEnd>
+		  <Id>408</Id>
+		</VertexEnd>
+	      </Edge>
+	      <Edge id="505">
+		<Curve>
+		  <Id>205</Id>
+		</Curve>
+		<VertexBeg>
+		  <Id>410</Id>
+		</VertexBeg>
+		<VertexEnd>
+		  <Id>409</Id>
+		</VertexEnd>
+	      </Edge>
+	      <Edge id="506">
+		<Curve>
+		  <Id>206</Id>
+		</Curve>
+		<VertexBeg>
+		  <Id>406</Id>
+		</VertexBeg>
+		<VertexEnd>
+		  <Id>405</Id>
+		</VertexEnd>
+	      </Edge>
+	      <Edge id="507">
+		<Curve>
+		  <Id>207</Id>
+		</Curve>
+		<VertexBeg>
+		  <Id>403</Id>
+		</VertexBeg>
+		<VertexEnd>
+		  <Id>406</Id>
+		</VertexEnd>
+	      </Edge>
+	      <Edge id="508">
+		<Curve>
+		  <Id>208</Id>
+		</Curve>
+		<VertexBeg>
+		  <Id>407</Id>
+		</VertexBeg>
+		<VertexEnd>
+		  <Id>410</Id>
+		</VertexEnd>
+	      </Edge>
+	      <Edge id="509">
+		<Curve>
+		  <Id>209</Id>
+		</Curve>
+		<VertexBeg>
+		  <Id>408</Id>
+		</VertexBeg>
+		<VertexEnd>
+		  <Id>409</Id>
+		</VertexEnd>
+	      </Edge>
+	      <Edge id="510">
+		<Curve>
+		  <Id>210</Id>
+		</Curve>
+		<VertexBeg>
+		  <Id>404</Id>
+		</VertexBeg>
+		<VertexEnd>
+		  <Id>405</Id>
+		</VertexEnd>
+	      </Edge>
+	      <Edge id="511">
+		<Curve>
+		  <Id>211</Id>
+		</Curve>
+		<VertexBeg>
+		  <Id>403</Id>
+		</VertexBeg>
+		<VertexEnd>
+		  <Id>407</Id>
+		</VertexEnd>
+	      </Edge>
+	      <Edge id="512">
+		<Curve>
+		  <Id>212</Id>
+		</Curve>
+		<VertexBeg>
+		  <Id>404</Id>
+		</VertexBeg>
+		<VertexEnd>
+		  <Id>408</Id>
+		</VertexEnd>
+	      </Edge>
+	      <Edge id="513">
+		<Curve>
+		  <Id>213</Id>
+		</Curve>
+		<VertexBeg>
+		  <Id>405</Id>
+		</VertexBeg>
+		<VertexEnd>
+		  <Id>409</Id>
+		</VertexEnd>
+	      </Edge>
+	      <Edge id="514">
+		<Curve>
+		  <Id>214</Id>
+		</Curve>
+		<VertexBeg>
+		  <Id>406</Id>
+		</VertexBeg>
+		<VertexEnd>
+		  <Id>410</Id>
+		</VertexEnd>
+	      </Edge>
+	      <Edge id="515">
+		<Curve>
+		  <Id>215</Id>
+		</Curve>
+		<VertexBeg>
+		  <Id>401</Id>
+		</VertexBeg>
+		<VertexEnd>
+		  <Id>402</Id>
+		</VertexEnd>
+	      </Edge>
+	    </EdgeSet>
+	    <LoopSet n="9">
+<!-- all loops are oriented positively (material on left) -->
+<!-- top of box  -->
+              <Loop id="601" form="OUTER">
+		<CoEdges n="4">
+		  <CoEdge>
+		    <EdgeOriented>
+		      <Id>504</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented>
+		      <Id>509</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented turned="1">
+		      <Id>505</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented turned="1">
+		      <Id>508</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		</CoEdges>
+	      </Loop>
+<!-- bottom of box  -->
+              <Loop id="602" form="OUTER">
+		<CoEdges n="4">
+		  <CoEdge>
+		    <EdgeOriented turned="1">
+		      <Id>503</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented turned="1">
+		      <Id>510</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented>
+		      <Id>506</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented>
+		      <Id>507</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		</CoEdges>
+	      </Loop>
+<!-- right side of box  -->
+              <Loop id="603" form="OUTER">
+		<CoEdges n="4">
+		  <CoEdge>
+		    <EdgeOriented>
+		      <Id>510</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented>
+		      <Id>513</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented turned="1">
+		      <Id>509</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented turned="1">
+		      <Id>512</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		</CoEdges>
+	      </Loop>
+<!-- left side of box  -->
+              <Loop id="604" form="OUTER">
+		<CoEdges n="4">
+		  <CoEdge>
+		    <EdgeOriented turned="1">
+		      <Id>507</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented turned="1">
+		      <Id>514</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented>
+		      <Id>508</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented>
+		      <Id>511</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		</CoEdges>
+	      </Loop>
+<!-- front side of box  -->
+              <Loop id="605" form="OUTER">
+		<CoEdges n="4">
+		  <CoEdge>
+		    <EdgeOriented>
+		      <Id>503</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented>
+		      <Id>512</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented turned="1">
+		      <Id>504</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented turned="1">
+		      <Id>511</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		</CoEdges>
+	      </Loop>
+<!-- back side of box  -->
+              <Loop id="606" form="OUTER">
+		<CoEdges n="4">
+		  <CoEdge>
+		    <EdgeOriented turned="1">
+		      <Id>506</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented turned="1">
+		      <Id>513</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented>
+		      <Id>505</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented>
+		      <Id>514</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		</CoEdges>
+	      </Loop>
+<!-- side of cylinder -->
+              <Loop id="607" form="OUTER">
+		<CoEdges n="4">
+		  <CoEdge>
+		    <EdgeOriented>
+		      <Id>501</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented>
+		      <Id>515</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented turned="1">
+		      <Id>502</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		  <CoEdge>
+		    <EdgeOriented turned="1">
+		      <Id>515</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		</CoEdges>
+	      </Loop>
+<!-- bottom of cylinder -->
+              <Loop id="608" form="OUTER">
+		<CoEdges n="1">
+		  <CoEdge>
+		    <EdgeOriented turned="1">
+		      <Id>501</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		</CoEdges>
+	      </Loop>
+<!-- bottom of hemisphere -->
+              <Loop id="610" form="OUTER">
+		<CoEdges n="1">
+		  <CoEdge>
+		    <EdgeOriented>
+		      <Id>502</Id>
+		    </EdgeOriented>
+		  </CoEdge>
+		</CoEdges>
+	      </Loop>
+	    </LoopSet>
+	    <FaceSet n="9">
+<!-- top of box -->
+              <Face id="701">
+		<Surface>
+		  <Id>302</Id>
+		</Surface>
+		<LoopIds n="1">
+		  <Id>601</Id>
+		</LoopIds>
+	      </Face>
+<!-- bottom of box -->
+              <Face id="702">
+		<Surface>
+		  <Id>301</Id>
+		</Surface>
+		<LoopIds n="1">
+		  <Id>602</Id>
+		</LoopIds>
+	      </Face>
+<!-- right side of box -->
+              <Face id="703">
+		<Surface>
+		  <Id>303</Id>
+		</Surface>
+		<LoopIds n="1">
+		  <Id>603</Id>
+		</LoopIds>
+	      </Face>
+<!-- left side of box -->
+              <Face id="704">
+		<Surface>
+		  <Id>304</Id>
+		</Surface>
+		<LoopIds n="1">
+		  <Id>604</Id>
+		</LoopIds>
+	      </Face>
+<!-- front side of box  -->
+              <Face id="705">
+		<Surface>
+		  <Id>305</Id>
+		</Surface>
+		<LoopIds n="1">
+		  <Id>605</Id>
+		</LoopIds>
+	      </Face>
+<!-- back side of box  -->
+              <Face id="706">
+		<Surface>
+		  <Id>306</Id>
+		</Surface>
+		<LoopIds n="1">
+		  <Id>606</Id>
+		</LoopIds>
+	      </Face>
+<!-- side of cylinder  -->
+              <Face id="707">
+		<Surface>
+		  <Id>307</Id>
+		</Surface>
+		<LoopIds n="1">
+		  <Id>607</Id>
+		</LoopIds>
+	      </Face>
+<!-- bottom of cylinder  -->
+              <Face id="708">
+		<Surface>
+		  <Id>301</Id>
+		</Surface>
+		<LoopIds n="1">
+		  <Id>608</Id>
+		</LoopIds>
+	      </Face>
+<!-- bottom of hemisphere  -->
+              <Face id="709">
+		<Surface>
+		  <Id>308</Id>
+		</Surface>
+		<LoopIds n="1">
+		  <Id>610</Id>
+		</LoopIds>
+	      </Face>
+	    </FaceSet>
+	    <ShellSet n="2">
+<!-- box -->
+	      <Shell id="801" form="OUTER">
+		<FaceIds n="6">
+		  <Id>701</Id>
+		  <Id>702</Id>
+		  <Id>703</Id>
+		  <Id>704</Id>
+		  <Id>705</Id>
+		  <Id>706</Id>
+		</FaceIds>
+	      </Shell>
+<!-- silo -->
+	      <Shell id="802" form="OUTER">
+		<FaceIds n="3">
+		  <Id>707</Id>
+		  <Id>708</Id>
+		  <Id>709</Id>
+		</FaceIds>
+	      </Shell>
+	    </ShellSet>
+	  </WorkingClosedShellSet>
+	</ClosedShellSetWorkingVolume>
+      </CartesianCMM>
+    </MeasurementDevices>
+  </MeasurementResources>
+</QIFDocument>

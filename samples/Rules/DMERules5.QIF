@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+This file models one DME selection rule.
+
+The rule is applied to each feature/characteristic combination. Then
+those feature/characteristic combinations that satisfy the "if" part of
+the rule may be inspected using any CMM/tool/sensor combination that
+satisfies the conditions on the parameters of the CMM, tool, and sensor.
+It is up to the planning system to then decide which features to
+measure with which CMM/tool/sensor combinations. 
+
+If:
+   ((the tolerance on the characteristic satisfies (0.2 mm <= tolerance)) and
+    (the tolerance on the characteristic satisfies (tolerance <= 0.25)) and
+    (the minimum bounding box/length <= 1200 mm) and
+    (the minimum bounding box/length >= 500 mm) and
+    (the minimum bounding box/width <= 1200 mm) and
+    (the minimum bounding box/width >= 500 mm) and
+    (the minimum bounding box/height <= 1500 mm) and
+    (the minimum bounding box/height >= 500 mm) and
+    ((the feature is not internal) or
+     ((the feature size satisfies (size >= 20 mm)) and
+      (the feature size satisfies (size <= 50 mm)) and
+     )
+    )
+   )
+
+Then
+   ((a CartesianCMM may be used provided that
+     ((the XAxisLength < 1500 mm) and
+      (the XAxisLength > 800 mm) and
+      (the YAxisLength < 1500 mm) and
+      (the YAxisLength > 800 mm) and
+      (the ZAxisLength < 2000 mm) and
+      (the ZAxisLength > 1000 mm) and
+      (the Resolution > 0.01 mm) and
+      (the Resolution < 0.02 mm) and
+      (the CMM satisfies MinAmbientTemperature >= 20 C) and
+      (the CMM satisfies MaxAmbientTemperature <= 25 C)
+     ) 
+    ) and
+    (a ToolWithDetachableSensors may be used provided that it satisfies
+     (MinAmbientTemperature >= 20 C) and
+     (MaxAmbientTemperature <= 25 C)
+    ) and
+    (a SimpleTactileProbeSensor may be used provided that it satisfies:
+     (MinAmbientTemperature >= 20C) and
+     (MaxAmbientTemperature <= 25C) and
+     (ProbeLength >= 50 mm) and
+     (ProbeLength <= 75 mm) and
+     (TipEndDiameter <= 1 mm) and
+     (TipEndDiameter >= 0.5 mm) and
+    )
+   )
+
+-->
+
+<QIFDocument
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://qifstandards.org/xsd/qif3"
+  versionQIF="3.0.0"
+  idMax="1"
+  xsi:schemaLocation=
+    "http://qifstandards.org/xsd/qif3 ../QIFApplications/QIFDocument.xsd">
+  <QPId>effa78c0-fb28-11e3-a3ac-0800200c9a68</QPId>
+  <Rules>
+    <RulesUnits n="2">
+      <LinearUnit>
+        <SIUnitName>meter</SIUnitName>
+        <UnitName>mm</UnitName>
+        <UnitConversion>
+          <Factor>0.001</Factor>
+        </UnitConversion>
+      </LinearUnit>
+      <TemperatureUnit>
+        <UnitName>degrees Celcius</UnitName>
+      </TemperatureUnit>
+    </RulesUnits>
+    <DMESelectionRules n="1">
+      <DMEDecisionRule>
+        <And n="9">
+	  <GreaterOrEqual>
+            <ArithmeticCharacteristicParameter>
+	      <Parameter>ToleranceValue</Parameter>
+            </ArithmeticCharacteristicParameter>
+	    <ArithmeticConstant val="0.2"/>
+	  </GreaterOrEqual>
+	  <LessOrEqual>
+            <ArithmeticCharacteristicParameter>
+	      <Parameter>ToleranceValue</Parameter>
+            </ArithmeticCharacteristicParameter>
+	    <ArithmeticConstant val="0.25"/>
+	  </LessOrEqual>
+          <GreaterOrEqual>
+            <ArithmeticPartParameter>
+              <Parameter>PartFamily/MinimumBoundingBox/Length</Parameter>
+            </ArithmeticPartParameter>
+            <ArithmeticConstant val="500"/>
+          </GreaterOrEqual>
+          <LessOrEqual>
+            <ArithmeticPartParameter>
+              <Parameter>PartFamily/MinimumBoundingBox/Length</Parameter>
+            </ArithmeticPartParameter>
+            <ArithmeticConstant val="1200"/>
+          </LessOrEqual>
+          <GreaterOrEqual>
+            <ArithmeticPartParameter>
+              <Parameter>PartFamily/MinimumBoundingBox/Width</Parameter>
+            </ArithmeticPartParameter>
+            <ArithmeticConstant val="500"/>
+          </GreaterOrEqual>
+          <LessOrEqual>
+            <ArithmeticPartParameter>
+              <Parameter>PartFamily/MinimumBoundingBox/Width</Parameter>
+            </ArithmeticPartParameter>
+            <ArithmeticConstant val="1200"/>
+          </LessOrEqual>
+          <GreaterOrEqual>
+            <ArithmeticPartParameter>
+              <Parameter>PartFamily/MinimumBoundingBox/Height</Parameter>
+            </ArithmeticPartParameter>
+            <ArithmeticConstant val="500"/>
+          </GreaterOrEqual>
+          <LessOrEqual>
+            <ArithmeticPartParameter>
+              <Parameter>PartFamily/MinimumBoundingBox/Height</Parameter>
+            </ArithmeticPartParameter>
+            <ArithmeticConstant val="1500"/>
+          </LessOrEqual>
+	  <Or n="2">
+	    <Not>
+	      <FeatureIsInternal/>
+	    </Not>
+	    <And n="2">
+	      <GreaterOrEqual>
+		<FeatureSize/>
+		<ArithmeticConstant val="20"/>
+	      </GreaterOrEqual>
+	      <LessOrEqual>
+		<FeatureSize/>
+		<ArithmeticConstant val="50"/>
+	      </LessOrEqual>
+            </And>
+	  </Or>
+        </And>
+	<DMEThen n="3">
+	  <DMEDecisionClass>
+	    <May/>
+	    <DMEClassName>CARTESIAN_CMM</DMEClassName>
+	    <ParameterConstraints n="10">
+	      <DMEParameterConstraint>
+		<ParameterName>
+		  CartesianWorkingVolume/XAxisLength
+		</ParameterName>
+		<Comparison>GREATEROREQUAL</Comparison>
+		<ArithmeticConstant val="800"/>
+	      </DMEParameterConstraint>
+	      <DMEParameterConstraint>
+		<ParameterName>
+		  CartesianWorkingVolume/XAxisLength
+		</ParameterName>
+		<Comparison>LESSOREQUAL</Comparison>
+		<ArithmeticConstant val="1500"/>
+	      </DMEParameterConstraint>
+	      <DMEParameterConstraint>
+		<ParameterName>
+		  CartesianWorkingVolume/YAxisLength
+		</ParameterName>
+		<Comparison>GREATEROREQUAL</Comparison>
+		<ArithmeticConstant val="800"/>
+	      </DMEParameterConstraint>
+	      <DMEParameterConstraint>
+		<ParameterName>
+		  CartesianWorkingVolume/YAxisLength
+		</ParameterName>
+		<Comparison>LESSOREQUAL</Comparison>
+		<ArithmeticConstant val="1500"/>
+	      </DMEParameterConstraint>
+	      <DMEParameterConstraint>
+		<ParameterName>
+		  CartesianWorkingVolume/ZAxisLength
+		</ParameterName>
+		<Comparison>GREATEROREQUAL</Comparison>
+		<ArithmeticConstant val="1000"/>
+	      </DMEParameterConstraint>
+	      <DMEParameterConstraint>
+		<ParameterName>
+		  CartesianWorkingVolume/ZAxisLength
+		</ParameterName>
+		<Comparison>LESSOREQUAL</Comparison>
+		<ArithmeticConstant val="2000"/>
+	      </DMEParameterConstraint>
+	      <DMEParameterConstraint>
+		<ParameterName>
+		  CartesianResolution/CombinedCartesianResolution
+		</ParameterName>
+		<Comparison>GREATEROREQUAL</Comparison>
+		<ArithmeticConstant val="0.01"/>
+	      </DMEParameterConstraint>
+	      <DMEParameterConstraint>
+		<ParameterName>
+		  CartesianResolution/CombinedCartesianResolution
+		</ParameterName>
+		<Comparison>LESSOREQUAL</Comparison>
+		<ArithmeticConstant val="0.02"/>
+	      </DMEParameterConstraint>
+	      <DMEParameterConstraint>
+		<ParameterName>
+		  EnvironmentalRange/MinAmbientTemperature
+		</ParameterName>
+		<Comparison>GREATEROREQUAL</Comparison>
+		<ArithmeticConstant val="20"/>
+	      </DMEParameterConstraint>
+	      <DMEParameterConstraint>
+		<ParameterName>
+		  EnvironmentalRange/MaxAmbientTemperature
+		</ParameterName>
+		<Comparison>LESSOREQUAL</Comparison>
+		<ArithmeticConstant val="25"/>
+	      </DMEParameterConstraint>
+	    </ParameterConstraints>
+	  </DMEDecisionClass>    
+	  <DMEDecisionClass>
+	    <May/>
+	    <DMEClassName>TOOL_WITH_DETACHABLE_SENSORS</DMEClassName>
+	    <ParameterConstraints n="2">
+	      <DMEParameterConstraint>
+		<ParameterName>
+		  EnvironmentalRange/MinAmbientTemperature
+		</ParameterName>
+		<Comparison>GREATEROREQUAL</Comparison>
+		<ArithmeticConstant val="20"/>
+	      </DMEParameterConstraint>
+	      <DMEParameterConstraint>
+		<ParameterName>
+		  EnvironmentalRange/MaxAmbientTemperature
+		</ParameterName>
+		<Comparison>LESSOREQUAL</Comparison>
+		<ArithmeticConstant val="25"/>
+	      </DMEParameterConstraint>
+	    </ParameterConstraints>
+	  </DMEDecisionClass>    
+	  <DMEDecisionClass>
+	    <May/>
+	    <DMEClassName>SIMPLE_TACTILE_PROBE_SENSOR</DMEClassName>
+	    <ParameterConstraints n="6">
+	      <DMEParameterConstraint>
+		<ParameterName>
+		  EnvironmentalRange/MinAmbientTemperature
+		</ParameterName>
+		<Comparison>GREATEROREQUAL</Comparison>
+		<ArithmeticConstant val="20"/>
+	      </DMEParameterConstraint>
+	      <DMEParameterConstraint>
+		<ParameterName>
+		  EnvironmentalRange/MaxAmbientTemperature
+		</ParameterName>
+		<Comparison>LESSOREQUAL</Comparison>
+		<ArithmeticConstant val="25"/>
+	      </DMEParameterConstraint>
+	      <DMEParameterConstraint>
+		<ParameterName>Length</ParameterName>
+		<Comparison>GREATEROREQUAL</Comparison>
+		<ArithmeticConstant val="50"/>
+	      </DMEParameterConstraint>
+	      <DMEParameterConstraint>
+		<ParameterName>Length</ParameterName>
+		<Comparison>LESSOREQUAL</Comparison>
+		<ArithmeticConstant val="75"/>
+	      </DMEParameterConstraint>
+	      <DMEParameterConstraint>
+		<ParameterName>TipEndDiameter</ParameterName>
+		<Comparison>GREATEROREQUAL</Comparison>
+		<ArithmeticConstant val="0.5"/>
+	      </DMEParameterConstraint>
+	      <DMEParameterConstraint>
+		<ParameterName>TipEndDiameter</ParameterName>
+		<Comparison>LESSOREQUAL</Comparison>
+		<ArithmeticConstant val="1"/>
+	      </DMEParameterConstraint>
+	    </ParameterConstraints>
+	  </DMEDecisionClass>
+	</DMEThen>
+      </DMEDecisionRule>
+    </DMESelectionRules>
+  </Rules>
+</QIFDocument>

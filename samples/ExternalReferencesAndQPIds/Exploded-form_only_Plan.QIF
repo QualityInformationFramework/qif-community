@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<QIFDocument
+  xmlns="http://qifstandards.org/xsd/qif3"
+  idMax="4"
+  versionQIF="3.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation=
+    "http://qifstandards.org/xsd/qif3 ../QIFApplications/QIFDocument.xsd">
+
+  <QPId>350FD853-3EAF-4c26-BF50-2CAF36342C9E</QPId>
+
+  <StandardsDefinitions n="1">
+    <Standard id="4">
+      <Organization>
+        <StandardsOrganizationEnum>ASME</StandardsOrganizationEnum>
+      </Organization>
+      <Designator>Y14.5</Designator>
+      <Year>1994</Year>
+    </Standard>
+  </StandardsDefinitions>
+
+  <Characteristics>
+    <FormalStandardId>4</FormalStandardId>
+    <CharacteristicDefinitions n="1">
+      <SphericityCharacteristicDefinition id="1">
+        <ToleranceValue>0.05</ToleranceValue>
+      </SphericityCharacteristicDefinition>
+    </CharacteristicDefinitions>
+    <CharacteristicNominals n="1">
+      <SphericityCharacteristicNominal id="2">
+        <CharacteristicDefinitionId>1</CharacteristicDefinitionId>
+      </SphericityCharacteristicNominal>
+    </CharacteristicNominals>
+    <CharacteristicItems n="1">
+      <SphericityCharacteristicItem id="3">
+        <Name>Sphericity1</Name>
+        <CharacteristicDesignator>
+          <Designator>W1RFTM2</Designator>
+          <UUID>816060DA-7EB4-4fbb-BF5B-A124D54A924D</UUID>
+        </CharacteristicDesignator>
+        <CharacteristicNominalId>2</CharacteristicNominalId>
+      </SphericityCharacteristicItem>
+    </CharacteristicItems>
+  </Characteristics>
+
+  <Plan>
+    <UnorderedPlanRoot>
+      <Steps n="1">
+        <MeasureEvaluateAll/>
+      </Steps>
+    </UnorderedPlanRoot>
+  </Plan>
+
+</QIFDocument>

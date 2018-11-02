@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+This file contains syntactically valid rules for debugging the rules model.
+The rules themselves are not intended to be useful.
+-->
+<QIFDocument
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://qifstandards.org/xsd/qif3"
+  versionQIF="3.0.0"
+  idMax="1"
+  xsi:schemaLocation=
+    "http://qifstandards.org/xsd/qif3 ../QIFApplications/QIFDocument.xsd">
+    <QPId>b2fdf150-fb27-11e3-a3ac-0800200c9a66</QPId>
+  <Rules>
+    <FeatureRules>
+
+<!--
+If the feature is a plane and has a flatness characteristic whose
+tolerance is less the 0.05, then the point density must be 0.8 and the
+plane must be evaluated using a MINMAX substitute feature algorithm.
+-->
+      <IfThenElseFeatureRules n="6">
+        <IfThenPlaneRule name="rule1">
+          <And n="2">
+            <CharacteristicIs val="FLATNESS"/>
+            <LessThan>
+              <ArithmeticCharacteristicParameter>
+                <Parameter>ToleranceValue</Parameter>
+                <CharacteristicTypeEnum>FLATNESS</CharacteristicTypeEnum>
+              </ArithmeticCharacteristicParameter>
+              <ArithmeticConstant val="0.05"/>
+            </LessThan>
+          </And>
+          <ThenPoints>
+            <PointDensity>0.8</PointDensity>
+          </ThenPoints>
+          <ThenFittingAlgorithm>
+            <SubstituteFeatureAlgorithmEnum>
+              MINMAX
+            </SubstituteFeatureAlgorithmEnum>
+          </ThenFittingAlgorithm>
+        </IfThenPlaneRule>
+  
+<!--
+If the feature is a circle and the sampling category is 3, then
+the number of points must be 7.
+-->
+        <IfThenCircleRule>
+          <SamplingCategoryIs val="3"/>
+          <ThenPoints>
+            <NumberOfPoints>7</NumberOfPoints>
+          </ThenPoints>
+        </IfThenCircleRule>
+  
+<!--
+If the feature is an arc and the sampling rigor is 2 (out of 3), then
+the number of points must be at least 6.
+-->
+        <IfThenCircularArcRule>
+          <SamplingCategoryIs val="2"/>
+          <ThenPoints>
+            <MinPoints>6</MinPoints>
+          </ThenPoints>
+        </IfThenCircularArcRule>
+  
+<!--
+If the feature is a cylinder and the sampling category is 1, and
+the diameter of the cylinder is greater than 24, then the number of points
+must be at least 15.
+-->
+        <IfThenCylinderRule>
+          <And n="2">
+            <SamplingCategoryIs val="1"/>
+            <GreaterThan>
+              <ArithmeticFeatureParameter>
+                <Parameter>Diameter</Parameter>
+              </ArithmeticFeatureParameter>
+              <ArithmeticConstant val="24"/>
+            </GreaterThan>
+          </And>
+          <ThenPoints>
+            <MinPoints>15</MinPoints>
+          </ThenPoints>
+        </IfThenCylinderRule>
+  
+<!--
+If the feature is a cylinder and the sampling category is 1, and
+the cylinder is used as a datum, then the number of points
+must be at least 20 and they must be located using a birdcage point
+sampling strategy.
+-->
+        <IfThenCylinderRule>
+          <And n="2">
+            <SamplingCategoryIs val="1"/>
+            <FeatureIsDatum/>
+          </And>
+          <ThenPoints>
+            <MinPoints>20</MinPoints>
+          </ThenPoints>
+          <ThenPointStrategy>
+            <PointSamplingStrategyEnum>
+              BIRDCAGE
+            </PointSamplingStrategyEnum>
+          </ThenPointStrategy>
+        </IfThenCylinderRule>
+
+<!--
+If none of the preceding rules applies, then use at least 12 points
+for the feature
+-->
+        <Else>
+          <ThenPoints>
+            <MinPoints>12</MinPoints>
+          </ThenPoints>
+        </Else>
+      </IfThenElseFeatureRules>
+    </FeatureRules>
+  </Rules>
+</QIFDocument>

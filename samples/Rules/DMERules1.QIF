@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+This file models the rules for recommended number of points for
+specific feature types given in Table 1 of the publication 
+"Measurement Good Practice Guide No. 41 - CMM Measurement Strategies",
+National Physical Laboratory, UK, July, 2001.
+-->
+
+<QIFDocument
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://qifstandards.org/xsd/qif3"
+  versionQIF="3.0.0"
+  idMax="1"
+  xsi:schemaLocation=
+    "http://qifstandards.org/xsd/qif3 ../QIFApplications/QIFDocument.xsd">
+  <QPId>effa78c0-fb28-11e3-a3ac-0800200c9a66</QPId>
+  <Rules>
+    <DMESelectionRules n="6">
+
+<!--
+DME resolution must be less than or equal to tolerance times 0.1.
+(Rolls-Royce Guide, page 6, section 2.2.3, text)
+-->
+<!--
+This rule has no IF part
+-->
+      <DMEDecisionRule>
+        <DMEThen n="1">
+          <DMEDecisionClass>
+            <Must/>
+            <DMEClassName>ALLDMES</DMEClassName>
+            <ParameterConstraints n="1">
+              <DMEParameterConstraint>
+                <ParameterName>Resolution</ParameterName>
+                <Comparison>LESSOREQUAL</Comparison>
+                <Times>
+                  <ArithmeticConstant val="0.1"/>
+                  <ArithmeticCharacteristicParameter>
+                    <Parameter>Tolerance</Parameter>
+                  </ArithmeticCharacteristicParameter>
+                </Times>
+              </DMEParameterConstraint>
+            </ParameterConstraints>
+          </DMEDecisionClass>    
+        </DMEThen>
+      </DMEDecisionRule>
+
+<!--
+If the characteristic is thickness, then a caliper may be used.
+(Rolls-Royce Guide, page 7, Equipment Selection table)
+-->
+      <DMEDecisionRule>
+        <CharacteristicIs val="THICKNESS"/>
+        <DMEThen n="1">
+          <DMEDecisionClass>
+            <May desirability="1"/>
+            <DMEClassName>CALIPER</DMEClassName>
+          </DMEDecisionClass>    
+        </DMEThen>
+      </DMEDecisionRule>
+
+<!-- 
+If the characteristic is thickness, then a micrometer may be used.
+(Rolls-Royce Guide, page 7, Equipment Selection table)
+-->
+     <DMEDecisionRule>
+        <CharacteristicIs val="THICKNESS"/>
+        <DMEThen n="1">
+          <DMEDecisionClass>
+            <May desirability="1"/>
+            <DMEClassName>MICROMETER</DMEClassName>
+          </DMEDecisionClass>    
+        </DMEThen>
+      </DMEDecisionRule>
+
+<!--
+If feature size is less than 5 mm and tolerance is greater than or equal
+to 0.100 mm, then an analogue micrometer may be used.
+(Rolls-Royce Guide, page 25, table 5)
+-->
+<!--
+The rule modeled below adds the requirement that the feature being
+considered must not be an internal feature.
+-->
+     <DMEDecisionRule>
+        <And n="3">
+          <Not><FeatureIsInternal/></Not>
+          <LessThan>
+            <FeatureSize/>
+            <ArithmeticConstant val="5.0"/>
+          </LessThan>
+          <GreaterOrEqual>
+            <ArithmeticCharacteristicParameter>
+              <Parameter>Tolerance</Parameter>
+            </ArithmeticCharacteristicParameter>
+            <ArithmeticConstant val="0.100"/>
+          </GreaterOrEqual>
+        </And>
+        <DMEThen n="1">
+          <DMEDecisionClass>
+            <May desirability="1"/>
+            <DMEClassName>ANALOG_MICROMETER</DMEClassName>
+          </DMEDecisionClass>    
+        </DMEThen>
+      </DMEDecisionRule>
+
+<!--
+If feature size is greater than or equal to 100 mm and tolerance is less
+than or equal to 0.100 mm, then an analogue micrometer must not be used.
+(Rolls-Royce Guide, page 25, table 5)
+-->
+      <DMEDecisionRule>
+        <And n="2">
+          <GreaterOrEqual>
+            <FeatureSize/>
+            <ArithmeticConstant val="100.0"/>
+          </GreaterOrEqual>
+          <LessOrEqual>
+            <ArithmeticCharacteristicParameter>
+              <Parameter>Tolerance</Parameter>
+            </ArithmeticCharacteristicParameter>
+            <ArithmeticConstant val="0.100"/>
+          </LessOrEqual>
+        </And>
+        <DMEThen n="1">
+          <DMEDecisionClass>
+            <MustNot/>
+            <DMEClassName>ANALOG_MICROMETER</DMEClassName>
+          </DMEDecisionClass>    
+        </DMEThen>
+      </DMEDecisionRule>
+
+<!--
+If feature size is less than 200 mm and tolerance is greater than or
+equal to 0.5 mm, then a dial caliper may be used.
+(Rolls-Royce Guide, page 29, table 8)
+-->
+      <DMEDecisionRule>
+        <And n="2">
+          <LessThan>
+            <FeatureSize/>
+            <ArithmeticConstant val="200.0"/>
+          </LessThan>
+          <GreaterOrEqual>
+            <ArithmeticCharacteristicParameter>
+              <Parameter>Tolerance</Parameter>
+            </ArithmeticCharacteristicParameter>
+            <ArithmeticConstant val="0.5"/>
+          </GreaterOrEqual>
+        </And>
+        <DMEThen n="1">
+          <DMEDecisionClass>
+            <May desirability="1"/>
+            <DMEClassName>DIAL_CALIPER</DMEClassName>
+          </DMEDecisionClass>    
+        </DMEThen>
+      </DMEDecisionRule>
+
+    </DMESelectionRules>
+  </Rules>
+</QIFDocument>

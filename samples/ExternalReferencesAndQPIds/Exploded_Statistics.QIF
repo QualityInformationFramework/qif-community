@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<QIFDocument
+  xmlns="http://qifstandards.org/xsd/qif3"
+  idMax="3"
+  versionQIF="3.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation=
+    "http://qifstandards.org/xsd/qif3 ../QIFApplications/QIFDocument.xsd">
+
+  <QPId>E6D9B721-B5CB-435a-B77B-0C9ADDE33F8D</QPId>
+
+  <ExternalQIFReferences n="2">
+    <ExternalQIFDocument id="1">
+      <QPId>C7523054-ADB7-47bb-AA6D-8B9B4AEC1556</QPId>
+      <URI>.\Exploded_Results1.QIF</URI>
+    </ExternalQIFDocument>
+    <ExternalQIFDocument id="2">
+      <QPId>FA4BF105-B04E-40f8-8493-5661CC5047DA</QPId>
+      <URI>.\Exploded_Results2.QIF</URI>
+    </ExternalQIFDocument>
+  </ExternalQIFReferences>
+
+  <Statistics>
+    <StatisticalStudiesResults n="1">
+      <SimpleStudyResults id="3">
+        <ThisStatisticalStudyResultsInstanceQPId>
+          618EEA47-AB49-4345-9269-E1B978A4FBD0
+        </ThisStatisticalStudyResultsInstanceQPId>
+        <Status>
+          <StatsEvalStatusEnum>INFORMATIONAL</StatsEvalStatusEnum>
+        </Status>
+        <CharacteristicsStats n="2">
+          <SphericalDiameterCharacteristicStats>
+            <MeasuredIds>
+              <Ids n="2">
+                <Id xId="3">1</Id>
+                <Id xId="3">2</Id>
+              </Ids>
+            </MeasuredIds>
+            <Status>
+              <StatsEvalStatusEnum>INFORMATIONAL</StatsEvalStatusEnum>
+            </Status>
+            <ValueStats>
+              <Average>
+                <Value>25.3441663869135</Value>
+              </Average>
+            </ValueStats>
+          </SphericalDiameterCharacteristicStats>
+          <SphericityCharacteristicStats>
+            <MeasuredIds>
+              <Ids n="2">
+                <Id xId="4">1</Id>
+                <Id xId="4">2</Id>
+              </Ids>
+            </MeasuredIds>
+            <Status>
+              <StatsEvalStatusEnum>INFORMATIONAL</StatsEvalStatusEnum>
+            </Status>
+            <ValueStats>
+              <Average>
+                <Value>0.251457258827</Value>
+              </Average>
+            </ValueStats>
+          </SphericityCharacteristicStats>
+        </CharacteristicsStats>        
+        <NumberOfSamples>2</NumberOfSamples>
+      </SimpleStudyResults>
+    </StatisticalStudiesResults>
+  </Statistics>
+  
+</QIFDocument>
