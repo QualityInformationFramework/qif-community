@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<CheckReport>
+  <CheckFormat>
+    <Error>
+      <Report>The external document was not found URI = DoesNotExist.</Report>
+      <Node>/QIFDocument/ExternalQIFReferences/ExternalQIFDocument</Node>
+    </Error>
+    <Error>
+      <Report>The external document has a different QPId. URI = check_lesson4_pol.QIF, QPId(78652b70-b5be-11e8-b568-0800200c9a66) != QPIdExt(0399d590-b2dd-11e8-b568-0800200c9a66).</Report>
+      <Node>/QIFDocument/ExternalQIFReferences/ExternalQIFDocument[2]</Node>
+    </Error>
+    <Error>
+      <Report>The number of array elements doesn't correspond to the specified "n" attribute: n(6) != nElem(7)</Report>
+      <Node>/QIFDocument/Transforms</Node>
+    </Error>
+  </CheckFormat>
+  <CheckQuality/>
+  <CheckSemantic/>
+  <CheckLinkedDocument uri="DoesNotExist"/>
+  <CheckLinkedDocument uri="check_lesson4_pol.QIF">
+    <CheckFormat/>
+    <CheckQuality>
+      <Error>
+        <Report>Fragmented curve (G-CU-FG): id=101 nSeg(207) greater than MaxNumSegments(200)</Report>
+        <Node>/QIFDocument/Product/GeometrySet/Curve13Set/Polyline13/Polyline13Core</Node>
+      </Error>
+    </CheckQuality>
+    <CheckSemantic/>
+  </CheckLinkedDocument>
+</CheckReport>

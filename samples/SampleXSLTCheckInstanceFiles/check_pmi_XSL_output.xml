@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CheckReport>
+  <CheckFormat>
+    <Error>
+      <Report>The id of element is greater than idMax. id(1520) greater than idMax(1515).</Report>
+      <Node>/QIFDocument/StandardsDefinitions/Standard</Node>
+    </Error>
+    <Error>
+      <Report>The number of array elements doesn't correspond to the specified "n" attribute: n(3) != nElem(2)</Report>
+      <Node>/QIFDocument/DatumReferenceFrames/DatumReferenceFrame/Datums</Node>
+    </Error>
+    <Error>
+      <Report>Unit vector too long: length of (1.0001 -0 0) greater than 1.00000001</Report>
+      <Node>/QIFDocument/Product/GeometrySet/Curve13Set/ArcCircular13/ArcCircular13Core/Normal</Node>
+    </Error>
+  </CheckFormat>
+  <CheckQuality/>
+  <CheckSemantic>
+    <Error>
+      <Report>PositionCharacteristicDefinition: id=704, ToleranceValue=0 and MaterialCondition(NONE) != 'MAXIMUM'</Report>
+      <Node>/QIFDocument/Characteristics/CharacteristicDefinitions/PositionCharacteristicDefinition</Node>
+    </Error>
+  </CheckSemantic>
+</CheckReport>

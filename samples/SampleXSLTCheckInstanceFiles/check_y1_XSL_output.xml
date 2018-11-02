@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CheckReport>
+  <CheckFormat>
+    <Error>
+      <Report>Nurbs12Core/Nurbs13Core: id=205, nCP(63) != nKt(66) - order(5)</Report>
+      <Node>/QIFDocument/Product/GeometrySet/Curve12Set/Nurbs12/Nurbs12Core</Node>
+    </Error>
+    <Error>
+      <Report>Nurbs12Core/Nurbs13Core: id=199, nCP(46) != nKt(50) - order(5)</Report>
+      <Node>/QIFDocument/Product/GeometrySet/Curve13Set/Nurbs13/Nurbs13Core</Node>
+    </Error>
+    <Error>
+      <Report>Nurbs23Core: id=102, nCP(16) != (nKtU(8) - ordU(4)) * (nKtV(8) - ordV(5))</Report>
+      <Node>/QIFDocument/Product/GeometrySet/SurfaceSet/Nurbs23/Nurbs23Core</Node>
+    </Error>
+  </CheckFormat>
+  <CheckQuality>
+    <Error>
+      <Report>Free edge (G-SH-FR): id=204, nEdgeRef(1)</Report>
+      <Node>/QIFDocument/Product/TopologySet/EdgeSet/Edge</Node>
+    </Error>
+    <Error>
+      <Report>Free edge (G-SH-FR): id=212, nEdgeRef(1)</Report>
+      <Node>/QIFDocument/Product/TopologySet/EdgeSet/Edge[2]</Node>
+    </Error>
+    <Error>
+      <Report>Over-used edge (G-SH-NM): id=225, nEdgeRef(3)</Report>
+      <Node>/QIFDocument/Product/TopologySet/EdgeSet/Edge[3]</Node>
+    </Error>
+    <Error>
+      <Report>Free edge (G-SH-FR): id=249, nEdgeRef(1)</Report>
+      <Node>/QIFDocument/Product/TopologySet/EdgeSet/Edge[6]</Node>
+    </Error>
+  </CheckQuality>
+  <CheckSemantic/>
+</CheckReport>

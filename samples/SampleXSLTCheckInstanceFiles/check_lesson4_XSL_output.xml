@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CheckReport>
+  <CheckFormat/>
+  <CheckQuality>
+    <Error>
+      <Report>Fragmented curve (G-CU-FG): id=101 nSeg(207) greater than MaxNumSegments(200)</Report>
+      <Node>/QIFDocument/Product/GeometrySet/Curve13Set/Polyline13/Polyline13Core</Node>
+    </Error>
+  </CheckQuality>
+  <CheckSemantic/>
+</CheckReport>

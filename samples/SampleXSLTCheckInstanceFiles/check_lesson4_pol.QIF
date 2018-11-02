@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<QIFDocument
+xmlns="http://qifstandards.org/xsd/qif3"
+versionQIF="3.0.0"
+idMax="109"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation=
+  "http://qifstandards.org/xsd/qif3 ../QIFApplications/QIFDocument.xsd">
+  <QPId>0399d590-b2dd-11e8-b568-0800200c9a66</QPId>
+  <Product>
+    <Header>
+      <Application>
+        <Name>3DTransVidia</Name>
+      </Application>
+      <Author>
+        <Name>ilya</Name>
+        <Organization>capvidia</Organization>
+      </Author>
+      <ApplicationSource>
+        <Name>AutoForm </Name>
+      </ApplicationSource>
+      <ScaleCoefficient>1</ScaleCoefficient>
+      <ModelTolerance>0.01</ModelTolerance>
+      <MassPropertyTolerance>-1</MassPropertyTolerance>
+    </Header>
+    <GeometrySet>
+      <PointSet n="1">
+        <Point id="104">
+          <XYZ>128.82 -502.45 16.872</XYZ>
+        </Point>
+      </PointSet>
+      <Curve13Set n="1">
+        <Polyline13 id="101" label=" @  Poly3D.1">
+          <Polyline13Core domain="0 206">
+            <PointsBinary count="207" sizeElement="24">
+CtejcD0aYEAzMzMzM2d/wKwcWmQ73zBAzczMzMwcYEBI4XoUrk9+wOf7qfHSjS1Aj8L1KFwf
+YEC4HoXrUTh9wBfZzvdTIylA4XoUrkchYEApXI/C9SB8wFYOLbKdryRAexSuR+EiYECamZmZ
+mQl7wBiV1AloYiBA7FG4HoUjYEBSuB6F6/F5wCqpE9BE2BhA7FG4HoUjYEBSuB6F69l4wJm7
+lpAP+hFAexSuR+EiYEDhehSuR8F3wL4wmSoYFQlAmpmZmZkhYEDD9Shcj552wMbctYR80P4/
+AAAAAAAgYECkcD0K13t1wPZ698d71eU/rkfhehQeYECF61G4Hll0wG05l+KqsuK/pHA9Ctcb
+YEAK16NwPTZzwJF++zpwzv2/mpmZmZkZYEDsUbgehRNywKRwPQrXIwnA16NwPQoXYEBxPQrX
+o/BwwL3jFB3JpRHAFK5H4XoUYEDsUbgehZtvwMBbIEHxoxbAmpmZmZkRYECuR+F6FFZtwDca
+wFsggRvA16NwPQoPYEAAAAAAABBrwH6MuWsJGSDAFK5H4XoMYEAK16NwPcpowEvIBz2bVSLA
+mpmZmZkJYEAUrkfheoRmwHE9CtejcCTA16NwPQoHYEBmZmZmZj5kwL6fGi/dZCbAzczMzMwE
+YEC4HoXrUfhhwHnpJjEILCjACtejcD0CYEAUrkfhemRfwI2XbhKDwCnAuB6F61EAYEBI4XoU
+rtdawHe+nxovHSvAzczMzMz8X0AX2c73U0tWwJZDi2znOyzAKVyPwvX4X0Atsp3vp75RwNej
+cD0KFy3AZmZmZmb2X0DdJAaBlWNKwLbz/dR4qS3AFK5H4Xr0X0C28/3UeElBwJMYBFYO7S3A
+MzMzMzPzX0CR7Xw/NV4wwM/3U+Ol2y3Aw/UoXI/yX0CHFtnO91P7P8P1KFyPgi3Aw/UoXI/y
+X0AOLbKd78czQKabxCCw8izAw/UoXI/yX0CwcmiR7exCQDvfT42XLizAMzMzMzPzX0ASg8DK
+ofVLQEa28/3UOCvApHA9CtfzX0Dl0CLb+X5SQC/dJAaBFSrAhetRuB71X0BQjZduEgNXQC2y
+ne+nxijA16NwPQr3X0DXo3A9CodbQI/C9ShcTyfAKVyPwvX4X0A9CtejcAVgQDMzMzMzsyXA
+exSuR+H6X0DXo3A9CkdiQPmgZ7Pq8yPAzczMzMz8X0ApXI/C9YhkQIV80LNZFSLAj8L1KFz/
+X0DD9Shcj8pmQEMc6+I2GiDAKVyPwvUAYEAUrkfhegxpQHuDL0ymChzACtejcD0CYECuR+F6
+FE5rQGwJ+aBnsxfA7FG4HoUDYECPwvUoXI9tQL8OnDOiNBPAzczMzMwEYEApXI/C9dBvQA4t
+sp3vJw3ArkfhehQGYEDhehSuRwlxQJCg+DHmrgPAj8L1KFwHYEBSuB6F6ylyQDJVMCqpE/S/
+cT0K16MIYEAfhetRuEpzQIo/ijpzD6G/mpmZmZkJYECPwvUoXGt0QEATYcPTK/M/exSuR+EK
+YEAAAAAAAIx1QH6MuWsJeQNApHA9CtcLYEDNzMzMzKx2QEXY8PRKWQ1AFK5H4XoMYEA9Ctej
+cM13QC/dJAaBlRNAPQrXo3ANYECuR+F6FO54QBrAWyBBcRhA9ihcj8INYEAfhetRuA56QH3Q
+s1n1OR1ArkfhehQOYECPwvUoXC97QBTQRNjw9CBAAAAAAAAQYECF61G4HlV8QDm0yHa+HyRA
+MzMzMzMTYEBSuB6F63l9QH0/NV66iShApHA9CtcTYECuR+F6FJ5+QIGVQ4tspy1Aj8L1KFwP
+YEAK16NwPcJ/QEoMAiuHdjFAw/UoXI8CYEDhehSuR3OAQLpJDAIr5zNASOF6FK73X0BI4XoU
+rouAQNnO91PjRTRASOF6FK7XX0AAAAAAAKSAQMdLN4lBoDRA4XoUrkehX0DsUbgehbuAQKrx
+0k1i8DRAj8L1KFxPX0CamZmZmdGAQHE9CtejMDVAhetRuB71XkAzMzMzM+GAQG3n+6nxUjVA
+w/UoXI+CXkBxPQrXo+6AQPhT46WbZDVAAAAAAAAAXkCkcD0K1/mAQC2yne+nZjVApHA9Ctdz
+XUDD9ShcjwKBQNNNYhBYWTVAexSuR+HKXEDhehSuRwmBQNejcD0KNzVACtejcD0aXEDXo3A9
+Cg2BQGq8dJMYBDVAZmZmZmZmW0DNzMzMzA6BQPT91HjpxjRAMzMzMzOzWkD2KFyPwg+BQNnO
+91PjhTRA46WbxCD4V0DD9ShcjxKBQIlBYOXQgjNAkxgEVg49VUBSuB6F6xOBQEa28/3UeDJA
+YOXQItuBUkDD9ShcjxSBQLKd76fGazFAWmQ730+NT0CF61G4HhWBQAAAAAAAYDBAy6FFtvM9
+R0BmZmZmZhaBQCcxCKwcmi1AsHJoke3cPUBSuB6F6xeBQCuHFtnOdypAlkOLbOd7KkAzMzMz
+MxmBQC/dJAaBVSdAK/aX3ZMHC8CuR+F6FBqBQMl2vp8aLyRArBxaZDv/M8AK16NwPRqBQP2H
+9NvXASFAO99PjZdOQsCPwvUoXBmBQN6Th4VakxtA1XjpJjGISsCPwvUoXBeBQOkmMQisHBVA
+VOOlm8RgUcDD9ShcjxSBQNPe4AuTKQ1Ad76fGi99VcApXI/C9RCBQNGRXP5D+v8/mpmZmZmZ
+WcDNzMzMzAyBQFdgyOpWz9U/9ihcj8K1XcBcj8L1KAiBQGiR7Xw/NfW/cT0K16PoYMCPwvUo
+XAOBQApoImx4+gfA9ihcj8JNYcDD9ShcjwKBQABvgQTFjwrAexSuR+GyYcAzMzMzMwGBQMP1
+KFyPQg3AH4XrUbgWYsBcj8L1KP6AQGiz6nO1FRDASOF6FK53YsAK16NwPfiAQMX+snvysBHA
+exSuR+GyYsCuR+F6FPKAQPOOU3Qk1xLAw/UoXI/qYsDsUbgehemAQH9qvHSTGBTAMzMzMzMb
+Y8B7FK5H4d6AQH4dOGdEaRXAexSuR+FCY8C4HoXrUdKAQFuxv+yevBbAPQrXo3BlY8DhehSu
+R8GAQKyt2F92TxjAXI/C9Sh8Y8DNzMzMzK6AQEoMAiuH1hnAMzMzMzOLY8CamZmZmZuAQFUw
+KqkTUBvA9ihcj8KVY8C4HoXrUYiAQGDl0CLbuRzA16NwPQqfY8BmZmZmZmqAQCqpE9BE2B7A
+mpmZmZmhY8C4HoXrUUyAQDXvOEVHciDAcT0K16OgY8AK16NwPS6AQDsBTYQNbyHAKVyPwvWg
+Y8CuR+F6FBCAQDVeukkMYiLAMzMzMzOrY8CuR+F6FB5/QBsv3SQGgSbA9ihcj8K1Y8Bcj8L1
+KBx+QHNoke18vyrASOF6FK6/Y8AK16NwPRp9QL6fGi/d5C7AuB6F61HIY8AAAAAAABh8QCPb
++X5qXDHA9ihcj8LNY8CF61G4HhV7QKjGSzeJATPACtejcD3SY8CPwvUoXPd5QG8Sg8DKoTTA
+rkfhehTWY8CamZmZmdl4QBsv3SQGQTbA4XoUrkfZY8BI4XoUrrt3QD0K16Nw3TfAFK5H4Xrc
+Y8D2KFyPwp12QGiR7Xw/dTnAj8L1KFzfY8CkcD0K1391QNnO91PjBTvAUrgehevhY8BSuB6F
+62F0QK5H4XoUjjzAXI/C9SjkY8CkcD0K10NzQOxRuB6FCz7AZmZmZmbmY8D2KFyPwiVyQFyP
+wvUofD/AAAAAAADoY8DsUbgehQdxQKwcWmQ7b0DAUrgehevpY8DD9Shcj9JvQA4tsp3vF0HA
+7FG4HoXrY8CuR+F6FJZtQIGVQ4tst0HAhetRuB7tY8DhehSuR1lrQAaBlUOLTELAZmZmZmbu
+Y8AUrkfhehxpQEoMAiuH1kLASOF6FK7vY8ApXI/C9eBmQFK4HoXrUUPAcT0K16PwY8A9Ctej
+cKVkQCGwcmiRvUPA4XoUrkfxY8CamZmZmWliQLTIdr6fGkTA4XoUrkfxY8D2KFyPwi1gQGDl
+0CLbaUTA4XoUrkfxY8AzMzMzM+NbQFyPwvUorETA4XoUrkfxY8Bt5/up8WpXQN9PjZdu4kTA
+cT0K16PwY8DRItv5fvJSQOf7qfHSDUXAuB6F61HwY8BqvHSTGPRMQMl2vp8aL0XAj8L1KFzv
+Y8BQjZduEgNEQLpJDAIrR0XAH4XrUbjuY8AxCKwcWiQ2QNejcD0KV0XAPQrXo3DtY8CTqYJR
+Sd0QQDvfT42XXkXApHA9CtfrY8B56SYxCGwrwAaBlUOLXEXAUrgehevpY8DdJAaBlaM/wFTj
+pZvEUEXAj8L1KFznY8CcxCCwcshIwLTIdr6fOkXAhetRuB7lY8BkO99Pjd9QwGDl0CLbGUXA
+exSuR+HiY8Cmm8QgsFpVwK5H4XoU7kTAcT0K16PgY8D2KFyPwtVZwBBYObTItkTA16NwPQrf
+Y8BxPQrXo1BewKRwPQrXc0TAPQrXo3DdY8D2KFyPwmVhwBSuR+F6JETAzczMzMzcY8B7FK5H
+4aJjwGIQWDm0yEPAzczMzMzcY8B7FK5H4cplwGiR7Xw/ZUPAPQrXo3DdY8AzMzMzM/NnwJzE
+ILBy+ELAZmZmZmbeY8AzMzMzMxtqwIlBYOXQgkLAAAAAAADgY8AzMzMzM0NswPhT46WbBELA
+mpmZmZnhY8B7FK5H4WpuwFg5tMh2fkHAMzMzMzPjY8DhehSuR0lwwI2XbhKD8EDAzczMzMzk
+Y8CF61G4Hl1xwEJg5dAiW0DArkfhehTmY8DNzMzMzHBywMuhRbbzfT/A16NwPQrnY8AUrkfh
+eoRzwLgehetROD7A16NwPQrnY8AAAAAAAJh0wGZmZmZm5jzAZmZmZmbmY8BI4XoUrqt1wClc
+j8L1iDvAzczMzMzkY8DXo3A9Cr92wFTjpZvEIDrAmpmZmZnhY8BSuB6F6/F3wNV46SYxaDjA
+zczMzMzcY8AUrkfheiR5wEoMAiuHdjbAZmZmZmbWY8B7FK5H4VZ6wJqZmZmZWTTA16NwPQrP
+Y8ApXI/C9Yh7wDm0yHa+HzLAH4XrUbjGY8B7FK5H4bp8wK5H4XoUri/APQrXo3C9Y8ApXI/C
+9ex9wCcxCKwcGivAXI/C9Si0Y8B7FK5H4R5/wFTjpZvEoCbAj8L1KFyvY8C4HoXrUZh/wLpJ
+DAIrxyTAuB6F61GoY8DNzMzMzAiAwNxoAG+BxCLAH4XrUbieY8A9CtejcEWAwMzuycNCrSDA
+w/UoXI+SY8BSuB6F64GAwOjZrPpcLR3AuB6F61GQY8CuR+F6FJKAwN6Th4VaExzAhetRuB6N
+Y8C4HoXrUaKAwAMJih9j7hrApHA9CteDY8Bcj8L1KLKAwJf/kH77uhnASOF6FK5vY8CF61G4
+HsGAwNk9eViodRjAPQrXo3BNY8BmZmZmZtCAwBsv3SQGARfAMzMzMzMjY8DD9Shcj96AwE0V
+jErqhBXAcT0K16PwYsDNzMzMzOqAwG3n+6nxEhTAZmZmZma2YsCuR+F6FPSAwHicoiO5vBLA
+exSuR+FaYsDNzMzMzPyAwAdfmEwVDBHACtejcD36YcBcj8L1KAKBwHEbDeAtEA/A16NwPQqX
+YcCF61G4HgWBwAkbnl4pSwzA7FG4HoUzYcAfhetRuAaBwKTfvg6cswnAUrgehevhX8AfhetR
+uAiBwESLbOf7qQHAXI/C9ShcXcBmZmZmZgiBwMrDQq1p3vO/ZmZmZmbWWsBI4XoUrgeBwCwO
+Z341B9K/KVyPwvVQWMDD9ShcjwiBwFk0nZ0MjuY/g8DKoUUeVMCkcD0K1w2BwIMvTKYKRgNA
+uB6F61HYT8AfhetRuBSBwHgLJCh+jBBAarx0kxh0R8CPwvUoXBuBwBTQRNjwdBdAsHJoke0c
+PsAK16NwPSCBwGx4eqUsQx5A1XjpJjHIKcAzMzMzMyOBwOSDns2qjyJA845TdCRXEUB7FK5H
+4SSBwGiR7Xw/9SVAcT0K16OQNUCPwvUoXCWBwDeJQWDlUClA2c73U+NlQ0AfhetRuCSBwFTj
+pZvEoCxAUrgehethSkB7FK5H4SKBwKjGSzeJQS9A9P3UeOmuUEBI4XoUrh+BwArXo3A96jBA
+vp8aL90sVED2KFyPwhuBwKrx0k1iMDJAmG4Sg8CqV0CuR+F6FBiBwGQ730+NdzNAMzMzMzOb
+WECkcD0K1xeBwG3n+6nx0jNAXI/C9SiMWUBSuB6F6xeBwKrx0k1iMDRAXI/C9Sh8WkB7FK5H
+4RaBwNV46SYxiDRAmpmZmZlpW0AzMzMzMxOBwPp+arx00zRAH4XrUbhOXEAAAAAAAA6BwBSu
+R+F6FDVApHA9CtczXUA9CtejcAeBwFYOLbKdTzVAexSuR+EKXkDhehSuR/2AwC/dJAaBdTVA
+w/UoXI/CXkAzMzMzM+2AwIPAyqFFdjVArkfhehROX0AfhetRuNaAwPCnxks3STVAPQrXo3Ct
+X0AK16NwPbyAwGDl0CLb+TRAXI/C9SjsX0D2KFyPwp+AwLx0kxgEljRAw/UoXI8KYEDXo3A9
+CoOAwCUGgZVDKzRA9ihcj8IdYEA9CtejcE+AwOXQItv5XjNAKVyPwvUgYECamZmZmRuAwPhT
+46WbhDJAzczMzMwcYEAzMzMzM89/wNEi2/l+qjFACtejcD0aYEAzMzMzM2d/wKwcWmQ73zBA
+            </PointsBinary>
+          </Polyline13Core>
+        </Polyline13>
+      </Curve13Set>
+    </GeometrySet>
+    <TopologySet>
+      <VertexSet n="1">
+        <Vertex id="103">
+          <Point>
+            <Id>104</Id>
+          </Point>
+        </Vertex>
+      </VertexSet>
+      <EdgeSet n="1">
+        <Edge id="105" label=" @  Poly3D.1">
+          <Curve>
+            <Id>101</Id>
+          </Curve>
+          <VertexBeg>
+            <Id>103</Id>
+          </VertexBeg>
+          <VertexEnd>
+            <Id>103</Id>
+          </VertexEnd>
+        </Edge>
+      </EdgeSet>
+      <BodySet n="1">
+        <Body id="102">
+          <EdgeIds n="1"><Id>105</Id></EdgeIds>
+          <VertexIds n="1"><Id>103</Id></VertexIds>
+        </Body>
+      </BodySet>
+    </TopologySet>
+    <PartSet n="1">
+      <Part id="2">
+        <FoldersPart n="1">
+          <FolderPart id="99">
+            <BodyIds n="1"><Id>102</Id></BodyIds>
+          </FolderPart>
+        </FoldersPart>
+      </Part>
+    </PartSet>
+    <RootPart>
+      <Id>2</Id>
+    </RootPart>
+  </Product>
+</QIFDocument>
