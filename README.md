@@ -2,7 +2,7 @@
 
 ### The online hub for the QIF community :+1:
 
-**If you are looking for the main navigation page for the QIF Community site, [click here](https://qualityinformationframework.github.io/).**
+**[If you are looking for the main navigation page for the QIF Community site, click here](https://qualityinformationframework.github.io/).**
 
 This is the repository for supplemental files for the current version of QIF – version 3.0. Here, you will find: 
 * `bindings` – the source code bindings for C++, C#, and Python to easily read and write QIF 3.0.
