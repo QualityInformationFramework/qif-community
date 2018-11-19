@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QIFDocument
+ xmlns="http://qifstandards.org/xsd/qif2"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ versionQIF="2.1.0"
+ idMax="11"
+ xsi:schemaLocation=
+  "http://qifstandards.org/xsd/qif2 ../QIFApplications/QIFDocument.xsd">
+  <QPId>21106cae-9a93-4573-bf61-6dc057b0d0be</QPId>
+  <Product>
+    <PartSet n="1">
+      <Part id="1" label="Widget">
+        <Attributes n="1">
+          <AttributeQPId name="qpid">
+            <Value>ed43400a-29bf-4ec6-b96c-e2f846eb6f00</Value>
+          </AttributeQPId>
+        </Attributes>
+      </Part>
+    </PartSet>
+  </Product>
+  <Characteristics>
+    <FormalStandard>
+      <FormalStandardEnum>ASME-Y14.5-1994</FormalStandardEnum>
+    </FormalStandard>
+    <CharacteristicDefinitions n="1">
+      <UserDefinedAttributeCharacteristicDefinition id="2">
+        <Name>Scratched</Name>
+      </UserDefinedAttributeCharacteristicDefinition>
+    </CharacteristicDefinitions>
+    <CharacteristicNominals n="1">
+      <UserDefinedAttributeCharacteristicNominal id="3">
+        <CharacteristicDefinitionId>2</CharacteristicDefinitionId>
+        <PassValues n="1">
+          <StringValue>0</StringValue>
+        </PassValues>
+        <FailValues n="1">
+          <StringValue>1 or more</StringValue>
+        </FailValues>
+      </UserDefinedAttributeCharacteristicNominal>
+    </CharacteristicNominals>
+    <CharacteristicItems n="1">
+      <UserDefinedAttributeCharacteristicItem id="4">
+        <Attributes n="1">
+          <AttributeQPId name="qpid">
+          <Value>fd43400a-29bf-4ec6-b96c-e2f846eb6ff1</Value>
+          </AttributeQPId>
+        </Attributes>
+        <Name>Scratched</Name>
+        <CharacteristicNominalId>3</CharacteristicNominalId>
+      </UserDefinedAttributeCharacteristicItem>
+    </CharacteristicItems>
+  </Characteristics>  
+  <MeasurementsResults>
+    <MeasurementResultsSet n="3">
+      <MeasurementResults id="5">
+        <ThisResultsInstanceQPId>fd43400a-29bf-4ec6-b96c-e2f846eb6ff7</ThisResultsInstanceQPId>
+        <MeasuredCharacteristics>
+          <CharacteristicActuals n="1">
+            <UserDefinedAttributeCharacteristicActual id="6">
+              <Status>
+                <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>4</CharacteristicItemId>
+              <Value>0</Value>
+            </UserDefinedAttributeCharacteristicActual>
+          </CharacteristicActuals>
+        </MeasuredCharacteristics>
+        <InspectionStatus>
+          <InspectionStatusEnum>PASS</InspectionStatusEnum>
+        </InspectionStatus>
+      </MeasurementResults>  
+      <MeasurementResults id="7">
+        <ThisResultsInstanceQPId>6eccd072-fbac-11e3-a3ac-0800200c9a66</ThisResultsInstanceQPId>
+        <MeasuredCharacteristics>
+          <CharacteristicActuals n="1">
+            <UserDefinedAttributeCharacteristicActual id="8">
+              <Status>
+                <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>4</CharacteristicItemId>
+              <Value>0</Value>
+            </UserDefinedAttributeCharacteristicActual>
+          </CharacteristicActuals>
+        </MeasuredCharacteristics>
+        <InspectionStatus>
+          <InspectionStatusEnum>PASS</InspectionStatusEnum>
+        </InspectionStatus>
+      </MeasurementResults>  
+      <MeasurementResults id="9">
+        <ThisResultsInstanceQPId>b3e4acb3-1b7e-4039-9154-9490ae1ec56f</ThisResultsInstanceQPId>
+        <MeasuredCharacteristics>
+          <CharacteristicActuals n="1">
+            <UserDefinedAttributeCharacteristicActual id="10">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>4</CharacteristicItemId>
+              <Value>1</Value>
+            </UserDefinedAttributeCharacteristicActual>
+          </CharacteristicActuals>
+        </MeasuredCharacteristics>
+        <InspectionStatus>
+          <InspectionStatusEnum>FAIL</InspectionStatusEnum>
+        </InspectionStatus>
+      </MeasurementResults>
+    </MeasurementResultsSet>
+  </MeasurementsResults>
+  <Statistics>
+    <StatisticalStudiesResults n="1">
+      <SimpleStudyResults id="11">
+        <ThisStatisticalStudyResultsInstanceQPId>fd43400a-29bf-4ec6-b96c-e2f846eb6ff9</ThisStatisticalStudyResultsInstanceQPId>
+        <Status>
+          <StatsEvalStatusEnum>INFORMATIONAL</StatsEvalStatusEnum>
+        </Status>
+        <CharacteristicsStats n="1">
+          <UserDefinedAttributeCharacteristicStats>
+            <ActualIds>
+              <Ids n="3">
+                <Id>6</Id>
+                <Id>8</Id>
+                <Id>10</Id>
+              </Ids>
+            </ActualIds>
+            <Status>
+              <StatsEvalStatusEnum>INFORMATIONAL</StatsEvalStatusEnum>
+            </Status>
+            <AttributeStats>
+              <TotalNumber>3</TotalNumber>
+              <FailurePercentage>33</FailurePercentage>
+            </AttributeStats>
+          </UserDefinedAttributeCharacteristicStats>
+        </CharacteristicsStats>
+        <NumberOfSamples>3</NumberOfSamples>
+        <SubgroupSize>1</SubgroupSize>
+      </SimpleStudyResults>
+    </StatisticalStudiesResults>
+  </Statistics>
+</QIFDocument>

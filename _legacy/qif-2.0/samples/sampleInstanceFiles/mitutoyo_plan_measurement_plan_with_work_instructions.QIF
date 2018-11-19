@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QIFDocument
+ xmlns="http://qifstandards.org/xsd/qif2"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ versionQIF="2.0.0"
+ xsi:schemaLocation=
+  "http://qifstandards.org/xsd/qif2 ../QIFApplications/QIFDocument.xsd">
+  <Version>
+    <ThisInstanceQPId>fd43400a-29bf-4ec6-b96c-e2f846eb6ff6</ThisInstanceQPId>
+  </Version>
+  <Product>
+    <PartSet N="1">
+      <Part id="1">
+        <Name>Widget</Name>
+        <QPId>ed43400a-29bf-4ec6-b96c-e2f846eb6f00</QPId>
+      </Part>
+    </PartSet>
+    <RootPart>
+      <Id>1</Id>
+    </RootPart>
+  </Product>
+  <Characteristics>
+    <FormalStandard>
+      <FormalStandardEnum>ASME-Y14.5-1994</FormalStandardEnum>
+    </FormalStandard>
+    <CharacteristicDefinitions>
+      <DiameterCharacteristicDefinition id="1">
+        <Name>Diameter #1</Name>
+        <Tolerance>
+          <MaxValue>2.200</MaxValue>
+          <MinValue>1.800</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DiameterCharacteristicDefinition>
+      <DiameterCharacteristicDefinition id="2">
+        <Name>Diameter #2</Name>
+        <Tolerance>
+          <MaxValue>4.200</MaxValue>
+          <MinValue>3.800</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DiameterCharacteristicDefinition>
+    </CharacteristicDefinitions>
+    <CharacteristicNominals>
+      <DiameterCharacteristicNominal id="3">
+        <CharacteristicDefinitionId>1</CharacteristicDefinitionId>
+        <TargetValue>2.000</TargetValue>
+      </DiameterCharacteristicNominal>
+      <DiameterCharacteristicNominal id="4">
+        <CharacteristicDefinitionId>2</CharacteristicDefinitionId>
+        <TargetValue>2.000</TargetValue>
+      </DiameterCharacteristicNominal>
+    </CharacteristicNominals>
+    <CharacteristicItems>
+      <DiameterCharacteristicItem id="5">
+        <Name>Diameter #1</Name>
+        <QPId>6eccd070-fbac-11e3-a3ac-0800200c9a66</QPId>
+        <CharacteristicNominalId>3</CharacteristicNominalId>
+      </DiameterCharacteristicItem>
+      <DiameterCharacteristicItem id="6">
+        <Name>Diameter #1</Name>
+        <QPId>6eccd071-fbac-11e3-a3ac-0800200c9a66</QPId>
+        <CharacteristicNominalId>4</CharacteristicNominalId>
+      </DiameterCharacteristicItem>
+    </CharacteristicItems>
+  </Characteristics>
+  <MeasurementPlan>
+    <Version>
+      <ThisInstanceQPId>dd43400a-29bf-4ec6-b96c-e2f846eb6ff7</ThisInstanceQPId>
+    </Version>
+  <WorkInstructions>
+		<TextInstruction id="1">
+			<TextInstruction>Rotate Part</TextInstruction>
+		</TextInstruction>
+  </WorkInstructions>
+    <OrderedPlanRoot>
+      <Steps>
+		<NumberedPlanElement>
+			<SequenceNumber>1</SequenceNumber>
+			<MeasureEvaluateSpecified>
+				<CharacteristicItemIds N="1">
+					<Id>5</Id>		
+				</CharacteristicItemIds>
+				</MeasureEvaluateSpecified>
+		</NumberedPlanElement>
+		<NumberedPlanElement>
+			<SequenceNumber>2</SequenceNumber>
+			<MeasureEvaluateSpecified>
+				<WorkInstructionIds N="1">
+					<Id>1</Id>		
+				</WorkInstructionIds>
+					<CharacteristicItemIds N="1">
+					<Id>6</Id>		
+				</CharacteristicItemIds>
+			</MeasureEvaluateSpecified>
+		</NumberedPlanElement>
+      </Steps>
+    </OrderedPlanRoot>
+  </MeasurementPlan>
+</QIFDocument>

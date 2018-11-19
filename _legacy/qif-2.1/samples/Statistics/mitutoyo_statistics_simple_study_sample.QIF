@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QIFDocument
+ xmlns="http://qifstandards.org/xsd/qif2"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ versionQIF="2.1.0"
+ idMax="13" 
+ xsi:schemaLocation=
+  "http://qifstandards.org/xsd/qif2 ../QIFApplications/QIFDocument.xsd">
+  <QPId>4c98bd02-632a-44d1-8ca9-a97bcf9a8a9b</QPId>
+  <MeasurementResources>
+    <MeasurementDevices n="1">
+      <Caliper id="1">
+        <Name>500-196-30</Name>
+        <Description>Digital Caliper</Description>
+        <Manufacturer>Mitutoyo</Manufacturer>
+        <SerialNumber>1234-5678</SerialNumber>
+        <LinearResolution>
+        <LinearValue>.0005</LinearValue>
+        </LinearResolution>
+        <Accuracy>
+        <EnvironmentalRange></EnvironmentalRange>
+          <AccuracyValue>.001</AccuracyValue>
+        </Accuracy>
+      </Caliper>
+    </MeasurementDevices>
+  </MeasurementResources>
+  <Product>
+    <PartSet n="1">
+      <Part id="2" label="Widget">
+        <Attributes n="1">
+          <AttributeQPId name="qpid">
+            <Value>ed43400a-29bf-4ec6-b96c-e2f846eb6f00</Value>
+          </AttributeQPId>
+        </Attributes>
+      </Part>
+    </PartSet>
+    <RootPart>
+      <Id>2</Id>
+    </RootPart>
+  </Product>
+  <Characteristics>
+    <FormalStandard>
+      <FormalStandardEnum>ASME-Y14.5-1994</FormalStandardEnum>
+    </FormalStandard>
+    <CharacteristicDefinitions n="1">
+      <DiameterCharacteristicDefinition id="3">
+      <Name>Diameter #1</Name>
+        <Tolerance>
+          <MaxValue>2.200</MaxValue>
+          <MinValue>1.800</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DiameterCharacteristicDefinition>
+    </CharacteristicDefinitions>
+    <CharacteristicNominals n="1">
+      <DiameterCharacteristicNominal id="4">
+        <CharacteristicDefinitionId>3</CharacteristicDefinitionId>
+        <TargetValue>2.000</TargetValue>
+      </DiameterCharacteristicNominal>
+    </CharacteristicNominals>
+    <CharacteristicItems n="1">
+      <DiameterCharacteristicItem id="5">
+        <Attributes n="1">
+          <AttributeQPId name="qpid">
+            <Value>ed43400a-29bf-4ec6-b96c-e2f846eb6ff7</Value>
+          </AttributeQPId>
+        </Attributes>
+        <Name>Diameter #1</Name>
+        <MeasurementDeviceIds n="1">
+          <Id>1</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>4</CharacteristicNominalId>
+      </DiameterCharacteristicItem>
+    </CharacteristicItems>
+  </Characteristics>
+  <MeasurementPlan>
+    <Version>
+     <ThisInstanceQPId>dd43400a-29bf-4ec6-b96c-e2f846eb6ff7</ThisInstanceQPId>
+    </Version>
+    <UnorderedPlanRoot>
+      <Steps n="1">
+        <MeasureEvaluateAll></MeasureEvaluateAll>
+      </Steps>
+    </UnorderedPlanRoot>
+  </MeasurementPlan>
+  <MeasurementsResults>
+    <MeasurementResultsSet n="2">
+      <MeasurementResults id="6">
+        <InspectionTraceability>
+          <InspectingOrganization>
+            <Name>Mitutoyo America</Name>
+            <Address>
+              <StreetNumber>965</StreetNumber>
+              <Street>Corporate Blvd</Street>
+              <Town>Aurora</Town>
+              <Region>Illinois</Region>
+              <PostalCode>60502</PostalCode>
+              <Country>USA</Country>
+              <TelephoneNumber>630-820-9666</TelephoneNumber>
+            </Address>
+          </InspectingOrganization>
+          <InspectionStart>2014-04-01T15:13:44-05:00</InspectionStart>
+          <ReportPreparer>
+            <Name>Robert Brown</Name>
+          </ReportPreparer>
+          <ReferencedQIFPlanInstance>
+            <ItemQPId>dd43400a-29bf-4ec6-b96c-e2f846eb6ff7</ItemQPId>
+          </ReferencedQIFPlanInstance>
+        </InspectionTraceability>
+        <ThisResultsInstanceQPId>
+          fd43400a-29bf-4ec6-b96c-e2f846eb6ff7
+        </ThisResultsInstanceQPId>
+        <MeasuredCharacteristics>
+          <CharacteristicActuals n="1">
+            <DiameterCharacteristicActual id="7">
+              <Status>
+                <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>5</CharacteristicItemId>
+              <Value>1.999</Value>
+            </DiameterCharacteristicActual>
+          </CharacteristicActuals>
+        </MeasuredCharacteristics>
+        <InspectionStatus>
+          <InspectionStatusEnum>PASS</InspectionStatusEnum>
+        </InspectionStatus>
+        <ActualComponentIds n="1">
+          <Id>10</Id>
+        </ActualComponentIds>
+      </MeasurementResults>
+      <MeasurementResults id="8">
+        <ThisResultsInstanceQPId>
+          fd43400a-29bf-4ec6-b96c-e2f846eb6ff8
+        </ThisResultsInstanceQPId>
+        <MeasuredCharacteristics>
+          <CharacteristicActuals n="1">
+            <DiameterCharacteristicActual id="9">
+              <Status>
+                <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>5</CharacteristicItemId>
+              <Value>2.001</Value>
+            </DiameterCharacteristicActual>
+          </CharacteristicActuals>
+        </MeasuredCharacteristics>
+        <InspectionStatus>
+          <InspectionStatusEnum>PASS</InspectionStatusEnum>
+        </InspectionStatus>
+        <ActualComponentIds n="1">
+          <Id>11</Id>
+        </ActualComponentIds>
+      </MeasurementResults>
+    </MeasurementResultsSet>
+    <ActualComponentSets n="2">
+    <ActualComponentSet n="1">
+      <ActualComponent id="10">
+        <SerialNumber>SN#1234-56789</SerialNumber>
+        <Status>
+          <InspectionStatusEnum>PASS</InspectionStatusEnum>
+        </Status>
+      </ActualComponent>
+    </ActualComponentSet>
+    <ActualComponentSet n="1">
+      <ActualComponent id="11">
+        <SerialNumber>SN#2345-67890</SerialNumber>
+        <Status>
+          <InspectionStatusEnum>PASS</InspectionStatusEnum>
+        </Status>
+      </ActualComponent>
+    </ActualComponentSet>
+    </ActualComponentSets>
+  </MeasurementsResults>
+  <Statistics>
+    <StatisticalStudyPlans n="1">
+      <SimpleStudyPlan id="12">
+      <Version>
+        <ThisInstanceQPId>
+          fd43400a-29bf-4ec6-b96c-e2f846eb6ff9
+        </ThisInstanceQPId>
+        </Version>
+        <NumberOfSamples>2</NumberOfSamples>
+        <SubgroupSize>1</SubgroupSize>
+      </SimpleStudyPlan>
+    </StatisticalStudyPlans>    
+    <StatisticalStudiesResults n="1">
+      <SimpleStudyResults id="13">
+        <ThisStatisticalStudyResultsInstanceQPId>
+          4aa329b8-fbbb-11e3-a3ac-0800200c9a66
+        </ThisStatisticalStudyResultsInstanceQPId>
+        <Status>
+          <StatsEvalStatusEnum>INFORMATIONAL</StatsEvalStatusEnum>
+        </Status>
+        <StudyId>12</StudyId>
+        <CharacteristicsStats n="1">
+          <DiameterCharacteristicStats>
+            <Status>
+              <StatsEvalStatusEnum>INFORMATIONAL</StatsEvalStatusEnum>
+            </Status>
+            <ValueStats>
+              <TotalNumber>2</TotalNumber>
+              <NumberSubgroups>2</NumberSubgroups>
+              <Maximum>1.999</Maximum>
+              <Minimum>2.001</Minimum>
+              <Range>0.002</Range>
+              <NumberOutOfTolerance>0</NumberOutOfTolerance>
+              <Cpk>1.6667</Cpk>
+              <Ppk>1.3333</Ppk>
+            </ValueStats>
+          </DiameterCharacteristicStats>
+        </CharacteristicsStats>
+        <NumberOfSamples>2</NumberOfSamples>
+      </SimpleStudyResults>
+    </StatisticalStudiesResults>
+  </Statistics>
+</QIFDocument>

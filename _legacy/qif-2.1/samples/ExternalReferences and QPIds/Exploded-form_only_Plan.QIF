@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<QIFDocument xmlns="http://qifstandards.org/xsd/qif2" idMax="3" versionQIF="2.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://qifstandards.org/xsd/qif2 ../QIFApplications/QIFDocument.xsd">
+
+  <QPId>350FD853-3EAF-4c26-BF50-2CAF36342C9E</QPId>
+
+  <Characteristics>
+    <FormalStandard>
+      <FormalStandardEnum>ASME-Y14.5-1994</FormalStandardEnum>
+    </FormalStandard>
+    <CharacteristicDefinitions n="1">
+      <SphericityCharacteristicDefinition id="1">
+        <ToleranceValue>0.05</ToleranceValue>
+      </SphericityCharacteristicDefinition>
+    </CharacteristicDefinitions>
+    <CharacteristicNominals n="1">
+      <SphericityCharacteristicNominal id="2">
+        <CharacteristicDefinitionId>1</CharacteristicDefinitionId>
+      </SphericityCharacteristicNominal>
+    </CharacteristicNominals>
+    <CharacteristicItems n="1">
+      <SphericityCharacteristicItem id="3">
+        <Attributes n="1">
+          <AttributeQPId name="qpid">
+            <Value>816060DA-7EB4-4fbb-BF5B-A124D54A924D</Value>
+          </AttributeQPId>
+        </Attributes>
+        <Name>Sphericity1</Name>
+        <CharacteristicNominalId>2</CharacteristicNominalId>
+      </SphericityCharacteristicItem>
+    </CharacteristicItems>
+  </Characteristics>
+
+  <MeasurementPlan>
+    <UnorderedPlanRoot>
+      <Steps n="1">
+        <MeasureEvaluateAll/>
+      </Steps>
+    </UnorderedPlanRoot>
+  </MeasurementPlan>
+
+</QIFDocument>

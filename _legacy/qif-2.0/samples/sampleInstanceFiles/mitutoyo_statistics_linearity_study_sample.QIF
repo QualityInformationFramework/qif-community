@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QIFDocument
+ xmlns="http://qifstandards.org/xsd/qif2"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ versionQIF="2.0.0"
+ xsi:schemaLocation=
+  "http://qifstandards.org/xsd/qif2 ../QIFApplications/QIFDocument.xsd">
+  <Version>
+  <ThisInstanceQPId>
+    fd43400a-29bf-4ec6-b96c-e2f846eb6ff6
+  </ThisInstanceQPId>
+  </Version>
+  <MeasurementResources>
+    <MeasurementDevices>
+      <Caliper id="1">
+        <Name>500-196-30</Name>
+        <Description>Digital Caliper</Description>
+        <Manufacturer>Mitutoyo</Manufacturer>
+        <SerialNumber>1234-5678</SerialNumber>
+        <Resolution>.0005</Resolution>
+        <Accuracy>
+          <AccuracyValue>.001</AccuracyValue>
+        </Accuracy>
+      </Caliper>
+    </MeasurementDevices>
+  </MeasurementResources>
+  <Characteristics>
+    <FormalStandard>
+      <FormalStandardEnum>ASME-Y14.5-1994</FormalStandardEnum>
+    </FormalStandard>
+    <CharacteristicDefinitions>
+      <LengthCharacteristicDefinition id="1">
+      <Name>1 inch Ceramic Gage Block</Name>
+        <Tolerance>
+          <MaxValue>1.00000012</MaxValue>
+          <MinValue>0.99999988</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </LengthCharacteristicDefinition>
+      <LengthCharacteristicDefinition id="2">
+      <Name>3 inch Ceramic Gage Block</Name>
+        <Tolerance>
+          <MaxValue>3.00000012</MaxValue>
+          <MinValue>2.99999988</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </LengthCharacteristicDefinition>
+      <LengthCharacteristicDefinition id="3">
+      <Name>5 inch Ceramic Gage Block</Name>
+        <Tolerance>
+          <MaxValue>5.00000012</MaxValue>
+          <MinValue>4.99999988</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </LengthCharacteristicDefinition>
+    </CharacteristicDefinitions>
+    <CharacteristicNominals>
+      <LengthCharacteristicNominal id="4">
+        <CharacteristicDefinitionId>1</CharacteristicDefinitionId>
+        <TargetValue>1.000000</TargetValue>
+      </LengthCharacteristicNominal>
+      <LengthCharacteristicNominal id="5">
+        <CharacteristicDefinitionId>2</CharacteristicDefinitionId>
+        <TargetValue>3.000000</TargetValue>
+      </LengthCharacteristicNominal>
+      <LengthCharacteristicNominal id="6">
+        <CharacteristicDefinitionId>3</CharacteristicDefinitionId>
+        <TargetValue>5.000000</TargetValue>
+      </LengthCharacteristicNominal>
+    </CharacteristicNominals>
+    <CharacteristicItems>
+      <LengthCharacteristicItem id="7">
+        <Name>1 inch Ceramic Gage Block</Name>
+        <QPId>ed43400a-29bf-4ec6-b96c-e2f846eb6ff7</QPId>
+        <MeasurementDeviceIds N="1">
+			<Id>1</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>4</CharacteristicNominalId>
+      </LengthCharacteristicItem>
+      <LengthCharacteristicItem id="8">
+        <Name>3 inch Ceramic Gage Block</Name>
+        <QPId>4aa329b0-fbbb-11e3-a3ac-0800200c9a66</QPId>
+        <MeasurementDeviceIds N="1">
+			<Id>1</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>5</CharacteristicNominalId>
+      </LengthCharacteristicItem>
+      <LengthCharacteristicItem id="9">
+        <Name>5 inch Ceramic Gage Block</Name>
+        <QPId>4aa329b1-fbbb-11e3-a3ac-0800200c9a66</QPId>
+        <MeasurementDeviceIds N="1">
+			<Id>1</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>6</CharacteristicNominalId>
+      </LengthCharacteristicItem>
+    </CharacteristicItems>
+  </Characteristics>  
+  <MeasurementsResults>
+    <MeasurementResults id="1">
+      <ThisResultsInstanceQPId>
+        fd43400a-29bf-4ec6-b96c-e2f846eb6ff7
+      </ThisResultsInstanceQPId>
+      <MeasuredCharacteristics>
+        <CharacteristicActuals>
+          <LengthCharacteristicActual id="1">
+            <Status>
+              <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+            </Status>
+            <CharacteristicItemId>7</CharacteristicItemId>
+            <Value>1.00000</Value>
+          </LengthCharacteristicActual>
+          <LengthCharacteristicActual id="2">
+            <Status>
+              <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+            </Status>
+            <CharacteristicItemId>8</CharacteristicItemId>
+            <Value>3.00000</Value>
+          </LengthCharacteristicActual>
+          <LengthCharacteristicActual id="3">
+            <Status>
+              <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+            </Status>
+            <CharacteristicItemId>9</CharacteristicItemId>
+            <Value>5.00000</Value>
+          </LengthCharacteristicActual>
+        </CharacteristicActuals>
+      </MeasuredCharacteristics>      
+      <InspectionStatus>
+        <InspectionStatusEnum>PASS</InspectionStatusEnum>
+      </InspectionStatus>
+    </MeasurementResults>
+  </MeasurementsResults>
+  <Statistics>
+    <StatisticalStudiesResults>
+      <LinearityStudyResults id="1">
+        <ThisStatisticalStudyResultsInstanceQPId>
+          fd43400a-29bf-4ec6-b96c-e2f846eb6ff9
+        </ThisStatisticalStudyResultsInstanceQPId>
+        <Status>
+          <StatsEvalStatusEnum>INFORMATIONAL</StatsEvalStatusEnum>
+        </Status>
+        <CharacteristicsStats>
+          <LengthCharacteristicStats>
+            <Status>
+              <StatsEvalStatusEnum>INFORMATIONAL</StatsEvalStatusEnum>
+            </Status>
+            <ValueStats>
+				<RelativeEquipmentVariation>0.000002</RelativeEquipmentVariation>
+            </ValueStats>
+          </LengthCharacteristicStats>
+        </CharacteristicsStats>        
+        <SampleSize>3</SampleSize>
+      </LinearityStudyResults>
+    </StatisticalStudiesResults>
+  </Statistics>
+</QIFDocument>

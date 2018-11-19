@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QIFDocument
+ xmlns="http://qifstandards.org/xsd/qif2"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ versionQIF="2.0.0"
+ xsi:schemaLocation=
+  "http://qifstandards.org/xsd/qif2 ../QIFApplications/QIFDocument.xsd">
+  <Version>
+    <ThisInstanceQPId>
+      fd43400a-29bf-4ec6-b96c-e2f846eb6ff6
+    </ThisInstanceQPId>
+  </Version>
+  <FileUnits>
+    <PrimaryUnits>
+      <AngularUnit>
+        <UnitName>degree</UnitName>
+      </AngularUnit>
+      <LinearUnit>
+        <UnitName>inch</UnitName>
+      </LinearUnit>
+      <TemperatureUnit>
+        <UnitName>Fahrenheit</UnitName>
+      </TemperatureUnit>
+    </PrimaryUnits>
+    <OtherUnits>
+      <LinearUnit>
+        <UnitName>mm</UnitName>
+      </LinearUnit>
+    </OtherUnits>
+  </FileUnits>
+  <MeasurementResources>
+    <MeasurementDevices>
+      <Caliper id="1">
+        <Name>500-196-30</Name>
+        <Description>Digital Caliper</Description>
+        <Manufacturer>Mitutoyo</Manufacturer>
+        <SerialNumber>1234-5678</SerialNumber>
+        <Resolution>.0005</Resolution>
+        <Accuracy>
+          <AccuracyValue>.001</AccuracyValue>
+        </Accuracy>
+      </Caliper>
+    </MeasurementDevices>
+  </MeasurementResources>
+  <Product>
+    <PartSet N="1">
+      <Part id="2">
+        <Name>Widget</Name>
+        <QPId>ed43400a-29bf-4ec6-b96c-e2f846eb6f00</QPId>
+      </Part>
+    </PartSet>
+    <RootPart>
+      <Id>2</Id>
+    </RootPart>
+  </Product>
+  <Characteristics>
+    <FormalStandard>
+      <FormalStandardEnum>ASME-Y14.5-1994</FormalStandardEnum>
+    </FormalStandard>
+    <CharacteristicDefinitions>
+      <UserDefinedLinearCharacteristicDefinition id="1">
+        <Name>Diameter #1</Name>
+        <Tolerance>
+          <MaxValue>2.001</MaxValue>
+          <MinValue linearUnit= "inch">1.999</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+        <WhatToMeasure>measure the diameter</WhatToMeasure>
+      </UserDefinedLinearCharacteristicDefinition>
+    </CharacteristicDefinitions>
+    <CharacteristicNominals>
+      <UserDefinedLinearCharacteristicNominal id="3">
+        <CharacteristicDefinitionId>1</CharacteristicDefinitionId>
+        <TargetValue linearUnit="inch">2.000</TargetValue>
+      </UserDefinedLinearCharacteristicNominal>
+    </CharacteristicNominals>
+    <CharacteristicItems>
+      <UserDefinedLinearCharacteristicItem id="4">
+        <Name>Diameter #1</Name>
+        <QPId>ed43400a-29bf-4ec6-b96c-e2f846eb6ff7</QPId>
+        <MeasurementDeviceIds N="1">
+          <Id>1</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>3</CharacteristicNominalId>
+      </UserDefinedLinearCharacteristicItem>
+    </CharacteristicItems>
+  </Characteristics>
+  <Statistics>
+    <StatisticalStudyPlans>
+      <GageRandRStudyPlan id="1">
+        <ThisStatisticalStudyPlanInstanceQPId>
+          fd43400a-29bf-4ec6-b96c-e2f846eb6ff9
+        </ThisStatisticalStudyPlanInstanceQPId>
+        <RandRStudyType>AVGANDRANGE</RandRStudyType>
+        <NumberOfAppraisers>2</NumberOfAppraisers>
+        <NumberOfParts>5</NumberOfParts>
+        <NumberOfTrials>2</NumberOfTrials>
+      </GageRandRStudyPlan>
+    </StatisticalStudyPlans>
+    <StatisticalStudiesResults>
+      <GageRandRStudyResults id="1">
+        <ThisStatisticalStudyResultsInstanceQPId>
+          4aa329b9-fbbb-11e3-a3ac-0800200c9a66
+        </ThisStatisticalStudyResultsInstanceQPId>
+        <Status>
+          <StatsEvalStatusEnum>INFORMATIONAL</StatsEvalStatusEnum>
+        </Status>
+        <CharacteristicsStats>
+          <UserDefinedLinearCharacteristicStats>
+            <Status>
+              <StatsEvalStatusEnum>INFORMATIONAL</StatsEvalStatusEnum>
+            </Status>
+            <ValueStats linearUnit="mm">
+              <AppraiserVariation>0.02</AppraiserVariation>
+              <EquipmentVariation>0.01</EquipmentVariation>
+              <GageRandR>0.07</GageRandR>
+              <TotalVariation>0.03</TotalVariation>
+            </ValueStats>
+          </UserDefinedLinearCharacteristicStats>
+        </CharacteristicsStats>
+        <MeasurementDeviceIds N="1">
+          <Id>1</Id>
+        </MeasurementDeviceIds>
+        <NumberOfAppraisers>2</NumberOfAppraisers>
+        <NumberOfParts>5</NumberOfParts>
+        <NumberOfTrials>2</NumberOfTrials>
+      </GageRandRStudyResults>
+    </StatisticalStudiesResults>
+  </Statistics>
+</QIFDocument>

@@ -1,0 +1,1009 @@
+<?xml version="1.0"?>
+<QIFDocument
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns="http://qifstandards.org/xsd/qif2"
+ versionQIF="2.0.0"
+ xsi:schemaLocation="http://qifstandards.org/xsd/qif2 ../QIFApplications/QIFDocument.xsd">
+  <Version>
+     <ThisInstanceQPId>fd43400a-29bf-4ec6-b96c-e2f846eb6ff6</ThisInstanceQPId>
+  </Version>
+     <MeasurementResources>
+          <MeasurementDevices>
+               <Caliper id="1">
+                    <Name>500-171-30</Name>
+                    <Description>Mitutoyo 6 inch Caliper</Description>
+                    <Manufacturer>Mitutoyo</Manufacturer>
+                    <SerialNumber>1234-5678</SerialNumber>
+                    <Resolution>0.0005</Resolution>
+                    <Accuracy>
+                         <AccuracyValue>0.001</AccuracyValue>
+                    </Accuracy>
+               </Caliper>
+          </MeasurementDevices>
+     </MeasurementResources>
+     <Product>
+          <PartSet N="1">
+               <Part id="1">
+                    <Name>Widget</Name>
+                    <QPId>ed43400a-29bf-4ec6-b96c-e2f846eb6f00</QPId>
+               </Part>
+          </PartSet>
+          <RootPart>
+               <Id>1</Id>
+          </RootPart>
+     </Product>
+     <Characteristics>
+          <FormalStandard>
+                <FormalStandardEnum>ASME-Y14.5-1994</FormalStandardEnum>
+          </FormalStandard>
+          <CharacteristicDefinitions>
+               <DiameterCharacteristicDefinition id="1">
+                    <Name>Diameter_2.000</Name>
+                    <Tolerance>
+                         <MaxValue>2.200</MaxValue>
+                         <MinValue>1.800</MinValue>
+                         <DefinedAsLimit>false</DefinedAsLimit>
+                    </Tolerance>
+               </DiameterCharacteristicDefinition>
+          </CharacteristicDefinitions>
+          <CharacteristicNominals>
+               <DiameterCharacteristicNominal id="1001">
+                    <CharacteristicDefinitionId>1</CharacteristicDefinitionId>
+                    <TargetValue>2.000</TargetValue>
+               </DiameterCharacteristicNominal>
+          </CharacteristicNominals>
+          <CharacteristicItems>
+               <DiameterCharacteristicItem id="2001">
+                    <Name>Top_Diameter_2.000</Name>
+                    <MeasurementDeviceIds N="1">
+                         <Id>1</Id>
+                    </MeasurementDeviceIds>
+                    <CharacteristicNominalId>1001</CharacteristicNominalId>
+               </DiameterCharacteristicItem>
+          </CharacteristicItems>
+     </Characteristics>
+     <MeasurementsResults>
+          <MeasurementResults id="1">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="3001">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>2.001</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>1</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="2">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="3002">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>1.999</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>2</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="3">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="3003">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>2.125</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>3</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="4">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="3004">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>1.997</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>4</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="5">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="3005">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>1.876</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>5</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="6">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="3006">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>1.987</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>6</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="7">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="3007">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>1.995</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>7</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="8">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="3008">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>2.156</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>8</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="9">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="3009">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>2.001</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>9</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="10">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30010">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>2.005</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>10</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="11">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30011">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>2.000</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>11</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="12">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30012">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>1.997</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>12</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="13">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30013">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>1.875</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>13</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="14">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30014">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>2.125</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>14</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="15">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30015">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>2.003</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>15</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="16">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30016">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>1.999</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>16</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="17">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30017">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>2.003</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>17</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="18">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30018">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>1.996</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>18</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="19">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30019">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>1.865</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>19</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="20">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30020">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>1.987</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>20</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="21">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30021">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>2.002</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>21</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="22">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30022">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>1.998</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>22</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="23">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30023">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>2.008</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>23</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="24">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30024">
+                              <Status>
+                                   <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>1.764</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>FAIL</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>24</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="25">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30025">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>2.000</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>25</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="26">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30026">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>1.999</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>26</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="27">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30027">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>1.898</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>27</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="28">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30028">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>1.997</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>28</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="29">
+               <MeasuredCharacteristics>
+                    <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30029">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>1.876</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>29</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <MeasurementResults id="30">
+               <MeasuredCharacteristics>
+                     <CharacteristicActuals>
+                         <DiameterCharacteristicActual id="30030">
+                              <Status>
+                                   <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+                              </Status>
+                              <CharacteristicItemId>2001</CharacteristicItemId>
+                              <Value>2.000</Value>
+                         </DiameterCharacteristicActual>
+                    </CharacteristicActuals>
+               </MeasuredCharacteristics>
+               <InspectionStatus>
+                    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+               </InspectionStatus>
+               <ActualComponentIds N="1">
+                    <Id>30</Id>
+               </ActualComponentIds>
+          </MeasurementResults>
+          <ActualComponentSet N="1">
+               <ActualComponent id="1">
+                    <SerialNumber>1ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="2">
+                    <SerialNumber>2ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="3">
+                    <SerialNumber>3ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="4">
+                    <SerialNumber>4ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="5">
+                    <SerialNumber>5ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="6">
+                    <SerialNumber>6ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="7">
+                    <SerialNumber>7ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="8">
+                    <SerialNumber>8ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="9">
+                    <SerialNumber>9ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="10">
+                    <SerialNumber>10ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="11">
+                    <SerialNumber>11ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="12">
+                    <SerialNumber>12ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="13">
+                    <SerialNumber>13ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="14">
+                    <SerialNumber>14ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="15">
+                    <SerialNumber>15ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="16">
+                    <SerialNumber>16ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="17">
+                    <SerialNumber>17ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="18">
+                    <SerialNumber>18ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="19">
+                    <SerialNumber>19ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="20">
+                    <SerialNumber>20ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="21">
+                    <SerialNumber>21ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="22">
+                    <SerialNumber>22ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="23">
+                    <SerialNumber>23ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="24">
+                    <SerialNumber>24ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="25">
+                    <SerialNumber>25ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="26">
+                    <SerialNumber>26ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="27">
+                    <SerialNumber>27ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="28">
+                    <SerialNumber>28ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="29">
+                    <SerialNumber>29ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+          <ActualComponentSet N="1">
+               <ActualComponent id="30">
+                    <SerialNumber>30ABC-DEFG</SerialNumber>
+                    <Status>
+                         <InspectionStatusEnum>PASS</InspectionStatusEnum>
+                    </Status>
+               </ActualComponent>
+          </ActualComponentSet>
+     </MeasurementsResults>
+     <Statistics>
+     <StatisticalStudyPlans>
+        <CapabilityStudyPlan id="1">
+          <ThisStatisticalStudyPlanInstanceQPId>
+            4aa329b4-fbbb-11e3-a3ac-0800200c9a66
+          </ThisStatisticalStudyPlanInstanceQPId>
+          <NumberOfSamples>10</NumberOfSamples>
+          <CpkThreshold>
+            <Limit>1.33</Limit>
+          </CpkThreshold>
+        </CapabilityStudyPlan>
+      </StatisticalStudyPlans>
+      <StatisticalStudiesResults>
+        <CapabilityStudyResults id="1">
+          <ThisStatisticalStudyResultsInstanceQPId>
+            4aa329b5-fbbb-11e3-a3ac-0800200c9a66
+          </ThisStatisticalStudyResultsInstanceQPId>
+          <Status>
+            <StatsEvalStatusEnum>INFORMATIONAL</StatsEvalStatusEnum>
+          </Status>
+          <CharacteristicsStats>
+            <DiameterCharacteristicStats>
+            <Subgroup id="1">
+              <ActualIds>
+                <Ids N="1">
+                  <Id>3001</Id>
+                  <Id>3002</Id>
+                  <Id>3003</Id>
+                </Ids>
+              </ActualIds>
+            </Subgroup>
+            <Subgroup id="2">
+              <ActualIds>
+                <Ids N="1">
+                  <Id>3004</Id>
+                  <Id>3005</Id>
+                  <Id>3006</Id>
+                </Ids>
+              </ActualIds>
+            </Subgroup>
+            <Subgroup id="3">
+              <ActualIds>
+                <Ids N="1">
+                  <Id>3007</Id>
+                  <Id>3008</Id>
+                  <Id>3009</Id>
+                </Ids>
+              </ActualIds>
+            </Subgroup>
+            <Subgroup id="4">
+              <ActualIds>
+                <Ids N="1">
+                  <Id>30010</Id>
+                  <Id>30011</Id>
+                  <Id>30012</Id>
+                </Ids>
+              </ActualIds>
+            </Subgroup>
+            <Subgroup id="5">
+              <ActualIds>
+                <Ids N="1">
+                  <Id>30013</Id>
+                  <Id>30014</Id>
+                  <Id>30015</Id>
+                </Ids>
+              </ActualIds>
+            </Subgroup>
+            <Subgroup id="6">
+              <ActualIds>
+                <Ids N="1">
+                  <Id>30016</Id>
+                  <Id>30017</Id>
+                  <Id>30018</Id>
+                </Ids>
+              </ActualIds>
+            </Subgroup>
+            <Subgroup id="7">
+              <ActualIds>
+                <Ids N="1">
+                  <Id>30019</Id>
+                  <Id>30020</Id>
+                  <Id>30021</Id>
+                </Ids>
+              </ActualIds>
+            </Subgroup>
+            <Subgroup id="8">
+              <ActualIds>
+                <Ids N="1">
+                  <Id>30022</Id>
+                  <Id>30023</Id>
+                  <Id>30024</Id>
+                </Ids>
+              </ActualIds>
+            </Subgroup>
+            <Subgroup id="9">
+              <ActualIds>
+                <Ids N="1">
+                  <Id>30025</Id>
+                  <Id>30026</Id>
+                  <Id>30027</Id>
+                </Ids>
+              </ActualIds>
+            </Subgroup>
+            <Subgroup id="10">
+              <ActualIds>
+                <Ids N="1">
+                  <Id>30028</Id>
+                  <Id>30029</Id>
+                  <Id>30030</Id>
+                </Ids>
+              </ActualIds>
+            </Subgroup>
+            <Status>
+                <StatsEvalStatusEnum>INFORMATIONAL</StatsEvalStatusEnum>
+            </Status>
+            <ValueStats>
+              <TotalNumber>30</TotalNumber>
+              <NumberSubgroups>10</NumberSubgroups>
+              <Average>1.984466667</Average>
+              <Maximum>2.156</Maximum>
+              <Minimum>1.764</Minimum>
+              <StandardDeviation>0.078690898</StandardDeviation>
+              <NumberOutOfTolerance>1</NumberOutOfTolerance>
+              <Cp>1.678</Cp>
+              <Cpk>1.345</Cpk>
+            </ValueStats>
+            </DiameterCharacteristicStats>
+          </CharacteristicsStats>
+          <NumberOfSamples>10</NumberOfSamples>
+        </CapabilityStudyResults>
+      </StatisticalStudiesResults>
+     </Statistics>
+</QIFDocument>

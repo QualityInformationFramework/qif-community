@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QIFDocument
+ xmlns="http://qifstandards.org/xsd/qif2"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ versionQIF="2.1.0"
+ idMax="12" 
+ xsi:schemaLocation=
+  "http://qifstandards.org/xsd/qif2 ../QIFApplications/QIFDocument.xsd">
+  <QPId>e90a2b82-c971-4ca7-82a8-f783b6a35e59</QPId>
+  <Product>
+    <PartSet n="1">
+      <Part id="1" label="Widget">
+        <Attributes n="1">
+          <AttributeQPId name="qpid">
+            <Value>ed43400a-29bf-4ec6-b96c-e2f846eb6f00</Value>
+          </AttributeQPId>
+        </Attributes>
+      </Part>
+    </PartSet>
+    <RootPart>
+      <Id>1</Id>
+    </RootPart>
+  </Product>
+  <Characteristics>
+    <FormalStandard>
+      <FormalStandardEnum>ASME-Y14.5-1994</FormalStandardEnum>
+    </FormalStandard>
+    <CharacteristicDefinitions n="1">
+      <DiameterCharacteristicDefinition id="2">
+        <Name>Diameter #1</Name>
+        <Tolerance>
+          <MaxValue>2.200</MaxValue>
+          <MinValue>1.800</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DiameterCharacteristicDefinition>
+    </CharacteristicDefinitions>
+    <CharacteristicNominals n="1">
+      <DiameterCharacteristicNominal id="3">
+        <CharacteristicDefinitionId>2</CharacteristicDefinitionId>
+        <TargetValue>2.000</TargetValue>
+      </DiameterCharacteristicNominal>
+    </CharacteristicNominals>
+    <CharacteristicItems n="1">
+      <DiameterCharacteristicItem id="4">
+        <Attributes n="1">
+          <AttributeQPId name="qpid">
+            <Value>ed43400a-29bf-4ec6-b96c-e2f846eb6ff7</Value>
+          </AttributeQPId>
+        </Attributes>
+        <Name>Diameter #1</Name>
+        <CharacteristicNominalId>3</CharacteristicNominalId>
+      </DiameterCharacteristicItem>
+    </CharacteristicItems>
+  </Characteristics>
+  <MeasurementPlan>
+    <Version>
+      <ThisInstanceQPId>dd43400a-29bf-4ec6-b96c-e2f846eb6ff7</ThisInstanceQPId>
+    </Version>
+    <UnorderedPlanRoot>
+      <Steps n="1">
+        <MeasureEvaluateAll></MeasureEvaluateAll>
+      </Steps>
+    </UnorderedPlanRoot>
+  </MeasurementPlan>
+  <Statistics>
+    <StatisticalStudyPlans n="1">
+      <ProductionStudyPlan id="5">
+      <Version>
+      <ThisInstanceQPId>fd43400a-29bf-4ec6-b96c-e2f846eb6ff9</ThisInstanceQPId>
+        </Version>
+        <NumberOfSamples>100</NumberOfSamples>
+        <SamplingMethod>
+          <SampleSize>1</SampleSize>
+          <SamplingPeriod>1</SamplingPeriod>
+        </SamplingMethod>
+        <ControlMethods n="1">
+        <ControlMethod id="6">
+          <CpkThreshold>
+            <Limit>1.33</Limit>
+          </CpkThreshold>
+        </ControlMethod>
+        </ControlMethods>
+      </ProductionStudyPlan>
+    </StatisticalStudyPlans>
+    <CorrectiveActionPlans n="1">
+      <CorrectiveActionPlan id="7">
+        <AssignableCauses n="2">
+          <AssignableCause id="8">
+            <AssignableCauseEnum>BROKEN_TOOL</AssignableCauseEnum>
+              <CorrectiveActionIds n="1">
+                <Id>10</Id>
+              </CorrectiveActionIds>
+            </AssignableCause>
+          <AssignableCause id="9">
+            <AssignableCauseEnum>BROKEN_TOOL</AssignableCauseEnum>
+            <CorrectiveActionIds n="1">
+              <Id>11</Id>
+            </CorrectiveActionIds>
+          </AssignableCause>
+        </AssignableCauses>
+        <CorrectiveActions n="2">
+          <CorrectiveAction id="10">
+            <ActionToTake>Scrap Part</ActionToTake>
+          </CorrectiveAction>
+          <CorrectiveAction id="11">
+            <ActionToTake>Call Maintenance</ActionToTake>
+          </CorrectiveAction>
+        </CorrectiveActions>
+      </CorrectiveActionPlan>
+    </CorrectiveActionPlans>
+  </Statistics>
+</QIFDocument>

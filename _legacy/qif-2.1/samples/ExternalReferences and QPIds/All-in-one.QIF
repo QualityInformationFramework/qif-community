@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<QIFDocument xmlns="http://qifstandards.org/xsd/qif2" idMax="13" versionQIF="2.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://qifstandards.org/xsd/qif2 ../QIFApplications/QIFDocument.xsd">
+
+  <QPId>dc5103a5-75da-4fc9-b5cf-ecf0f7eed9fd</QPId>
+
+  <Characteristics>
+    <FormalStandard>
+      <FormalStandardEnum>ASME-Y14.5-1994</FormalStandardEnum>
+    </FormalStandard>
+    <CharacteristicDefinitions n="2">
+      <SphericalDiameterCharacteristicDefinition id="1">
+        <Tolerance>
+          <MaxValue>0.25</MaxValue>
+          <MinValue>-0.25</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </SphericalDiameterCharacteristicDefinition>
+      <SphericityCharacteristicDefinition id="2">
+        <ToleranceValue>0.05</ToleranceValue>
+      </SphericityCharacteristicDefinition>
+    </CharacteristicDefinitions>
+    <CharacteristicNominals n="2">
+      <SphericalDiameterCharacteristicNominal id="3">
+        <CharacteristicDefinitionId>1</CharacteristicDefinitionId>
+        <TargetValue>25.399999999999999</TargetValue>
+      </SphericalDiameterCharacteristicNominal>
+      <SphericityCharacteristicNominal id="4">
+        <CharacteristicDefinitionId>2</CharacteristicDefinitionId>
+      </SphericityCharacteristicNominal>
+    </CharacteristicNominals>
+    <CharacteristicItems n="2">
+      <SphericalDiameterCharacteristicItem id="5">
+        <Attributes n="1">
+          <AttributeQPId name="qpid">
+            <Value>3D5D3273-55A6-4c38-9742-8B35E5D08914</Value>
+          </AttributeQPId>
+        </Attributes>
+        <Name>SphericalDiameter1</Name>
+        <CharacteristicNominalId>3</CharacteristicNominalId>
+      </SphericalDiameterCharacteristicItem>
+      <SphericityCharacteristicItem id="6">
+        <Attributes n="1">
+          <AttributeQPId name="qpid">
+            <Value>816060DA-7EB4-4fbb-BF5B-A124D54A924D</Value>
+          </AttributeQPId>
+        </Attributes>
+        <Name>Sphericity1</Name>
+        <CharacteristicNominalId>4</CharacteristicNominalId>
+      </SphericityCharacteristicItem>
+    </CharacteristicItems>
+  </Characteristics>
+
+  <MeasurementPlan>
+    <UnorderedPlanRoot>
+      <Steps n="1">
+        <MeasureEvaluateAll/>
+      </Steps>
+    </UnorderedPlanRoot>
+  </MeasurementPlan>
+
+  <MeasurementsResults>
+    <MeasurementResultsSet n="2">
+      <MeasurementResults id="7">
+        <ThisResultsInstanceQPId>C88AAECB-1345-45ca-8946-7AAADB6C0336</ThisResultsInstanceQPId>
+        <MeasuredCharacteristics>
+          <CharacteristicActuals n="2">
+            <SphericalDiameterCharacteristicActual id="8">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>5</CharacteristicItemId>
+              <Value>25.008279671621001</Value>
+            </SphericalDiameterCharacteristicActual>
+            <SphericityCharacteristicActual id="9">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>6</CharacteristicItemId>
+              <Value>0.251457258827</Value>
+            </SphericityCharacteristicActual>
+          </CharacteristicActuals>
+        </MeasuredCharacteristics>
+        <InspectionStatus>
+          <InspectionStatusEnum>FAIL</InspectionStatusEnum>
+        </InspectionStatus>
+      </MeasurementResults>
+      <MeasurementResults id="10">
+        <ThisResultsInstanceQPId>AF259E3E-6A5E-41af-8131-8BC3130881C9</ThisResultsInstanceQPId>
+        <MeasuredCharacteristics>
+          <CharacteristicActuals n="2">
+            <SphericalDiameterCharacteristicActual id="11">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>5</CharacteristicItemId>
+              <Value>25.680053102205999</Value>
+            </SphericalDiameterCharacteristicActual>
+            <SphericityCharacteristicActual id="12">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>6</CharacteristicItemId>
+              <Value>0.051042207099</Value>
+            </SphericityCharacteristicActual>
+          </CharacteristicActuals>
+        </MeasuredCharacteristics>
+        <InspectionStatus>
+          <InspectionStatusEnum>FAIL</InspectionStatusEnum>
+        </InspectionStatus>
+      </MeasurementResults>
+    </MeasurementResultsSet>
+  </MeasurementsResults>
+
+  <Statistics>
+    <StatisticalStudiesResults n="1">
+      <SimpleStudyResults id="13">
+        <ThisStatisticalStudyResultsInstanceQPId>618EEA47-AB49-4345-9269-E1B978A4FBD0</ThisStatisticalStudyResultsInstanceQPId>
+        <Status>
+          <StatsEvalStatusEnum>INFORMATIONAL</StatsEvalStatusEnum>
+        </Status>
+        <CharacteristicsStats n="2">
+          <SphericalDiameterCharacteristicStats>
+            <ActualIds>
+              <Ids n="2">
+                <Id>8</Id>
+                <Id>11</Id>
+              </Ids>
+            </ActualIds>
+            <Status>
+              <StatsEvalStatusEnum>INFORMATIONAL</StatsEvalStatusEnum>
+            </Status>
+            <ValueStats>
+              <Average>25.3441663869135</Average>
+            </ValueStats>
+          </SphericalDiameterCharacteristicStats>
+          <SphericityCharacteristicStats>
+            <ActualIds>
+              <Ids n="2">
+                <Id>9</Id>
+                <Id>12</Id>
+              </Ids>
+            </ActualIds>
+            <Status>
+              <StatsEvalStatusEnum>INFORMATIONAL</StatsEvalStatusEnum>
+            </Status>
+            <ValueStats>
+              <Average>0.251457258827</Average>
+            </ValueStats>
+          </SphericityCharacteristicStats>
+        </CharacteristicsStats>
+        <NumberOfSamples>2</NumberOfSamples>
+      </SimpleStudyResults>
+    </StatisticalStudiesResults>
+  </Statistics>
+  
+</QIFDocument>

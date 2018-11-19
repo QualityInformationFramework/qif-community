@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QIFDocument
+ xmlns="http://qifstandards.org/xsd/qif2"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ versionQIF="2.0.0"
+ xsi:schemaLocation="http://qifstandards.org/xsd/qif2 ../QIFApplications/QIFDocument.xsd"
+>
+  <Version>
+    <ThisInstanceQPId>
+      fd43400a-29bf-4ec6-b96c-e2f846eb6ff6
+    </ThisInstanceQPId>
+  </Version>
+  <MeasurementResources>
+    <MeasurementDevices>
+      <Caliper id="1">
+        <Name>500-196-30</Name>
+        <Description>Digital Caliper</Description>
+        <Manufacturer>Mitutoyo</Manufacturer>
+        <SerialNumber>1234-5678</SerialNumber>
+        <Resolution>.0005</Resolution>
+        <Accuracy>
+          <AccuracyValue>.001</AccuracyValue>
+        </Accuracy>
+      </Caliper>
+    </MeasurementDevices>
+  </MeasurementResources>
+  <Characteristics>
+    <FormalStandard>
+      <FormalStandardEnum>ASME-Y14.5-1994</FormalStandardEnum>
+    </FormalStandard>
+    <CharacteristicDefinitions>
+      <DiameterCharacteristicDefinition id="1">
+      <Name>Diameter #1</Name>
+        <Tolerance>
+          <MaxValue>2.200</MaxValue>
+          <MinValue>1.800</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DiameterCharacteristicDefinition>
+    </CharacteristicDefinitions>
+    <CharacteristicNominals>
+      <DiameterCharacteristicNominal id="2">
+        <CharacteristicDefinitionId>1</CharacteristicDefinitionId>
+        <TargetValue>2.000</TargetValue>
+      </DiameterCharacteristicNominal>
+    </CharacteristicNominals>
+    <CharacteristicItems>
+      <DiameterCharacteristicItem id="3">
+        <Name>Diameter #1</Name>
+        <QPId>ed43400a-29bf-4ec6-b96c-e2f846eb6ff7</QPId>
+        <MeasurementDeviceIds N="1">
+          <Id>1</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>2</CharacteristicNominalId>
+      </DiameterCharacteristicItem>
+    </CharacteristicItems>
+  </Characteristics>  
+  <MeasurementPlan>
+    <Version>
+      <ThisInstanceQPId>dd43400a-29bf-4ec6-b96c-e2f846eb6ff7</ThisInstanceQPId>
+    </Version>
+    <UnorderedPlanRoot>
+      <Steps>
+        <MeasureEvaluateAll></MeasureEvaluateAll>
+      </Steps>
+    </UnorderedPlanRoot>
+  </MeasurementPlan>
+  <MeasurementsResults>
+    <MeasurementResults id="1">
+      <InspectionTraceability>
+        <InspectingOrganization>
+          <Name>Mitutoyo America</Name>
+          <Address>
+            <StreetNumber>965</StreetNumber>
+            <Street>Corporate Blvd</Street>
+            <Town>Aurora</Town>
+            <Region>Illinois</Region>
+            <PostalCode>60502</PostalCode>
+            <Country>USA</Country>
+            <TelephoneNumber>630-820-9666</TelephoneNumber>
+          </Address>
+        </InspectingOrganization>
+        <InspectionStart>2014-04-01T15:13:44-05:00</InspectionStart>
+        <ReportPreparer>
+          <Name>Robert Brown</Name>
+        </ReportPreparer>
+        <ReferencedQIFPlanInstance>
+          <ItemQPId>dd43400a-29bf-4ec6-b96c-e2f846eb6ff7</ItemQPId>
+        </ReferencedQIFPlanInstance>
+      </InspectionTraceability>
+      <ThisResultsInstanceQPId>
+        fd43400a-29bf-4ec6-b96c-e2f846eb6ff7
+      </ThisResultsInstanceQPId>
+      <MeasuredCharacteristics>
+        <CharacteristicActuals>
+          <DiameterCharacteristicActual id="1">
+            <Status>
+              <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+            </Status>
+            <CharacteristicItemId>3</CharacteristicItemId>
+            <Value>1.999</Value>
+          </DiameterCharacteristicActual>
+        </CharacteristicActuals>
+      </MeasuredCharacteristics>      
+      <InspectionStatus>
+        <InspectionStatusEnum>PASS</InspectionStatusEnum>
+      </InspectionStatus>
+    </MeasurementResults>
+        <MeasurementResults id="2">
+      <ThisResultsInstanceQPId>
+        fd43400a-29bf-4ec6-b96c-e2f846eb6ff8
+      </ThisResultsInstanceQPId>
+      <MeasuredCharacteristics>
+        <CharacteristicActuals>
+          <DiameterCharacteristicActual id="3">
+            <Status>
+              <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+            </Status>
+            <CharacteristicItemId>3</CharacteristicItemId>
+            <Value>2.001</Value>
+          </DiameterCharacteristicActual>
+        </CharacteristicActuals>
+      </MeasuredCharacteristics>      
+      <InspectionStatus>
+        <InspectionStatusEnum>PASS</InspectionStatusEnum>
+      </InspectionStatus>
+    </MeasurementResults>
+  </MeasurementsResults>
+  <Statistics>
+    <StatisticalStudyPlans>
+      <SimpleStudyPlan id="1">
+        <ThisStatisticalStudyPlanInstanceQPId>
+          fd43400a-29bf-4ec6-b96c-e2f846eb6ff9
+        </ThisStatisticalStudyPlanInstanceQPId>
+        <NumberOfSamples>2</NumberOfSamples>
+        <SubgroupSize>1</SubgroupSize>
+      </SimpleStudyPlan>
+    </StatisticalStudyPlans>    
+    <StatisticalStudiesResults>
+      <SimpleStudyResults id="1">
+        <ThisStatisticalStudyResultsInstanceQPId>
+          4aa329b7-fbbb-11e3-a3ac-0800200c9a66
+        </ThisStatisticalStudyResultsInstanceQPId>
+        <Status>
+          <StatsEvalStatusEnum>INFORMATIONAL</StatsEvalStatusEnum>
+        </Status>
+        <StudyId>1</StudyId>
+        <CharacteristicsStats>
+          <DiameterCharacteristicStats>
+            <Status>
+              <StatsEvalStatusEnum>INFORMATIONAL</StatsEvalStatusEnum>
+            </Status>
+            <ValueStats>
+              <TotalNumber>2</TotalNumber>
+              <NumberSubgroups>2</NumberSubgroups>
+              <Maximum>1.999</Maximum>
+              <Minimum>2.001</Minimum>
+              <Range>0.002</Range>
+              <NumberOutOfTolerance>0</NumberOutOfTolerance>
+              <Cpk>1.6667</Cpk>
+              <Ppk>1.3333</Ppk>
+            </ValueStats>
+          </DiameterCharacteristicStats>
+        </CharacteristicsStats>        
+        <NumberOfSamples>2</NumberOfSamples>
+      </SimpleStudyResults>
+    </StatisticalStudiesResults>
+  </Statistics>
+</QIFDocument>

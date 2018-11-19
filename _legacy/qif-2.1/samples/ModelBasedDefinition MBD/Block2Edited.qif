@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="utf-8"?>
+<QIFDocument
+  xmlns="http://qifstandards.org/xsd/qif2"
+  versionQIF="2.1.0"
+  idMax="86"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation=
+   "http://qifstandards.org/xsd/qif2 ../QIFApplications/QIFDocument.xsd">
+<!-- adjusted indenting througout -->
+<!-- removed <Attributes>  -->
+  <QPId>50595f9d-21a1-43a1-bbfe-c38a601b4dd2</QPId>
+  <FileUnits>
+    <PrimaryUnits>
+      <LinearUnit>
+	<SIUnitName>meter</SIUnitName>
+	<UnitName>mm</UnitName>
+	<UnitConversion>
+	  <Factor>0.001</Factor>
+	</UnitConversion>
+      </LinearUnit>
+    </PrimaryUnits>
+<!-- removed <OtherUnits>  -->
+  </FileUnits>
+  <Product>
+    <Header>
+      <Application>
+	<Name>MBDVidia</Name>
+      </Application>
+      <Author>
+	<Name>Thomas Kramer</Name>
+	<Organization>NIST</Organization>
+      </Author>
+      <ApplicationSource>
+	<Name>Solidworks SolidWorks 2014</Name>
+      </ApplicationSource>
+      <ScaleCoefficient>1</ScaleCoefficient>
+      <ModelTolerance>0.275</ModelTolerance>
+      <MassPropertyTolerance>-1</MassPropertyTolerance>
+    </Header>
+<!-- changed many numbers like -5.55111512312578e-014 to zero  -->
+    <GeometrySet>
+      <PointSet n="8">
+	<Point id="6">
+	  <XYZ>0 300 0</XYZ>
+	</Point>
+	<Point id="8">
+	  <XYZ>0 0 0</XYZ>
+	</Point>
+	<Point id="12">
+	  <XYZ>0 0 800</XYZ>
+	</Point>
+	<Point id="16">
+	  <XYZ>0 300 800</XYZ>
+	</Point>
+	<Point id="25">
+	  <XYZ>300 0 0</XYZ>
+	</Point>
+	<Point id="29">
+	  <XYZ>300 0 800</XYZ>
+	</Point>
+	<Point id="38">
+	  <XYZ>300 300 0</XYZ>
+	</Point>
+	<Point id="42">
+	  <XYZ>300 300 800</XYZ>
+	</Point>
+      </PointSet>
+      <Curve12Set n="24">
+	<Segment12 id="63">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>300 -800</StartPoint>
+	    <EndPoint>300 0</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="64">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>300 0</StartPoint>
+	    <EndPoint>0 0</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="65">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>0 0</StartPoint>
+	    <EndPoint>0 -800</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="66">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>0 -800</StartPoint>
+	    <EndPoint>300 -800</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="67">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>-800 0</StartPoint>
+	    <EndPoint>0 0</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="68">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>0 0</StartPoint>
+	    <EndPoint>0 300</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="69">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>0 300</StartPoint>
+	    <EndPoint>-800 300</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="70">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>-800 300</StartPoint>
+	    <EndPoint>-800 0</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="71">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>0 -800</StartPoint>
+	    <EndPoint>0 0</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="72">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>0 0</StartPoint>
+	    <EndPoint>-300 0</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="73">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>-300 0</StartPoint>
+	    <EndPoint>-300 -800</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="74">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>-300 -800</StartPoint>
+	    <EndPoint>0 -800</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="75">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>800 300</StartPoint>
+	    <EndPoint>0 300</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="76">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>0 300</StartPoint>
+	    <EndPoint>0 0</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="77">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>0 0</StartPoint>
+	    <EndPoint>800 0</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="78">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>800 0</StartPoint>
+	    <EndPoint>800 300</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="79">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>0 0</StartPoint>
+	    <EndPoint>0 300</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="80">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>0 300</StartPoint>
+	    <EndPoint>-300 300</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="81">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>-300 300</StartPoint>
+	    <EndPoint>-300 0</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="82">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>-300 0</StartPoint>
+	    <EndPoint>0 0</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="83">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>0 300</StartPoint>
+	    <EndPoint>-300 300</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="84">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>-300 300</StartPoint>
+	    <EndPoint>-300 0</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="85">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>-300 0</StartPoint>
+	    <EndPoint>0 0</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+	<Segment12 id="86">
+	  <Segment12Core domain="0 1">
+	    <StartPoint>0 0</StartPoint>
+	    <EndPoint>0 300</EndPoint>
+	  </Segment12Core>
+	</Segment12>
+      </Curve12Set>
+      <Curve13Set n="12">
+	<Segment13 id="5">
+	  <Segment13Core domain="0 1">
+	    <StartPoint>0 300 0</StartPoint>
+	    <EndPoint>0 0 0</EndPoint>
+	  </Segment13Core>
+	</Segment13>
+	<Segment13 id="11">
+	  <Segment13Core domain="0 1">
+	    <StartPoint>0 0 800</StartPoint>
+	    <EndPoint>0 0 0</EndPoint>
+	  </Segment13Core>
+	</Segment13>
+	<Segment13 id="15">
+	  <Segment13Core domain="0 1">
+	    <StartPoint>0 300 800</StartPoint>
+	    <EndPoint>0 0 800</EndPoint>
+	  </Segment13Core>
+	</Segment13>
+	<Segment13 id="19">
+	  <Segment13Core domain="0 1">
+	    <StartPoint>0 300 800</StartPoint>
+	    <EndPoint>0 300 0</EndPoint>
+	  </Segment13Core>
+	</Segment13>
+	<Segment13 id="24">
+	  <Segment13Core domain="0 1">
+	    <StartPoint>0 0 0</StartPoint>
+	    <EndPoint>300 0 0</EndPoint>
+	  </Segment13Core>
+	</Segment13>
+	<Segment13 id="28">
+	  <Segment13Core domain="0 1">
+	    <StartPoint>300 0 800</StartPoint>
+	    <EndPoint>300 0 0</EndPoint>
+	  </Segment13Core>
+	</Segment13>
+	<Segment13 id="32">
+	  <Segment13Core domain="0 1">
+	    <StartPoint>0 0 800</StartPoint>
+	    <EndPoint>300 0 800</EndPoint>
+	  </Segment13Core>
+	</Segment13>
+	<Segment13 id="37">
+	  <Segment13Core domain="0 1">
+	    <StartPoint>300 0 0</StartPoint>
+	    <EndPoint>300 300 0</EndPoint>
+	  </Segment13Core>
+	</Segment13>
+	<Segment13 id="41">
+	  <Segment13Core domain="0 1">
+	    <StartPoint>300 300 800</StartPoint>
+	    <EndPoint>300 300 0</EndPoint>
+	  </Segment13Core>
+	</Segment13>
+	<Segment13 id="45">
+	  <Segment13Core domain="0 1">
+	    <StartPoint>300 0 800</StartPoint>
+	    <EndPoint>300 300 800</EndPoint>
+	  </Segment13Core>
+	</Segment13>
+	<Segment13 id="50">
+	  <Segment13Core domain="0 1">
+	    <StartPoint>300 300 0</StartPoint>
+	    <EndPoint>0 300 0</EndPoint>
+	  </Segment13Core>
+	</Segment13>
+	<Segment13 id="52">
+	  <Segment13Core domain="0 1">
+	    <StartPoint>300 300 800</StartPoint>
+	    <EndPoint>0 300 800</EndPoint>
+	  </Segment13Core>
+	</Segment13>
+      </Curve13Set>
+      <SurfaceSet n="6">
+	<Plane23 id="4">
+	  <Plane23Core domainU="-79.5 334.5" domainV="-919.5 514.5">
+	    <Origin>0 0 800</Origin>
+	    <DirU>0 1 0</DirU>
+	    <DirV>0 0 1</DirV>
+	  </Plane23Core>
+	</Plane23>
+	<Plane23 id="23">
+	  <Plane23Core domainU="-1320 120" domainV="-44.5 489.5">
+	    <Origin>0 0 800</Origin>
+	    <DirU>0 -0 1</DirU>
+	    <DirV>1 0 -0</DirV>
+	  </Plane23Core>
+	</Plane23>
+	<Plane23 id="36">
+	  <Plane23Core domainU="-412.5 37.5" domainV="-917.5 492.5">
+	    <Origin>300 0 800</Origin>
+	    <DirU>0 -1 0</DirU>
+	    <DirV>0 0 1</DirV>
+	  </Plane23Core>
+	</Plane23>
+	<Plane23 id="49">
+	  <Plane23Core domainU="-492.5 917.5" domainV="-37.5 412.5">
+	    <Origin>0 300 800</Origin>
+	    <DirU>0 0 -1</DirU>
+	    <DirV>1 0 0</DirV>
+	  </Plane23Core>
+	</Plane23>
+	<Plane23 id="56">
+	  <Plane23Core domainU="-462 42.0" domainV="-42 462">
+	    <Origin>0 0 -0</Origin>
+	    <DirU>-1 0 0</DirU>
+	    <DirV>0 1 0</DirV>
+	  </Plane23Core>
+	</Plane23>
+	<Plane23 id="59">
+	  <Plane23Core domainU="-462 42.0" domainV="-42 462">
+	    <Origin>0 0 800</Origin>
+	    <DirU>-1 0 0</DirU>
+	    <DirV>0 1 0</DirV>
+	  </Plane23Core>
+	</Plane23>
+      </SurfaceSet>
+    </GeometrySet>
+    <TopologySet>
+      <VertexSet n="8">
+	<Vertex id="7">
+	  <Point>
+	    <Id>6</Id>
+	  </Point>
+	</Vertex>
+	<Vertex id="9">
+	  <Point>
+	    <Id>8</Id>
+	  </Point>
+	</Vertex>
+	<Vertex id="13">
+	  <Point>
+	    <Id>12</Id>
+	  </Point>
+	</Vertex>
+	<Vertex id="17">
+	  <Point>
+	    <Id>16</Id>
+	  </Point>
+	</Vertex>
+	<Vertex id="26">
+	  <Point>
+	    <Id>25</Id>
+	  </Point>
+	</Vertex>
+	<Vertex id="30">
+	  <Point>
+	    <Id>29</Id>
+	  </Point>
+	</Vertex>
+	<Vertex id="39">
+	  <Point>
+	    <Id>38</Id>
+	  </Point>
+	</Vertex>
+	<Vertex id="43">
+	  <Point>
+	    <Id>42</Id>
+	  </Point>
+	</Vertex>
+      </VertexSet>
+      <EdgeSet n="12">
+	<Edge id="10">
+	  <Curve>
+	    <Id>5</Id>
+	  </Curve>
+	  <VertexBeg>
+	    <Id>7</Id>
+	  </VertexBeg>
+	  <VertexEnd>
+	    <Id>9</Id>
+	  </VertexEnd>
+	</Edge>
+	<Edge id="14">
+	  <Curve>
+	    <Id>11</Id>
+	  </Curve>
+	  <VertexBeg>
+	    <Id>13</Id>
+	  </VertexBeg>
+	  <VertexEnd>
+	    <Id>9</Id>
+	  </VertexEnd>
+	</Edge>
+	<Edge id="18">
+	  <Curve>
+	    <Id>15</Id>
+	  </Curve>
+	  <VertexBeg>
+	    <Id>17</Id>
+	  </VertexBeg>
+	  <VertexEnd>
+	    <Id>13</Id>
+	  </VertexEnd>
+	</Edge>
+	<Edge id="20">
+	  <Curve>
+	    <Id>19</Id>
+	  </Curve>
+	  <VertexBeg>
+	    <Id>17</Id>
+	  </VertexBeg>
+	  <VertexEnd>
+	    <Id>7</Id>
+	  </VertexEnd>
+	</Edge>
+	<Edge id="27">
+	  <Curve>
+	    <Id>24</Id>
+	  </Curve>
+	  <VertexBeg>
+	    <Id>9</Id>
+	  </VertexBeg>
+	  <VertexEnd>
+	    <Id>26</Id>
+	  </VertexEnd>
+	</Edge>
+	<Edge id="31">
+	  <Curve>
+	    <Id>28</Id>
+	  </Curve>
+	  <VertexBeg>
+	    <Id>30</Id>
+	  </VertexBeg>
+	  <VertexEnd>
+	    <Id>26</Id>
+	  </VertexEnd>
+	</Edge>
+	<Edge id="33">
+	  <Curve>
+	    <Id>32</Id>
+	  </Curve>
+	  <VertexBeg>
+	    <Id>13</Id>
+	  </VertexBeg>
+	  <VertexEnd>
+	    <Id>30</Id>
+	  </VertexEnd>
+	</Edge>
+	<Edge id="40">
+	  <Curve>
+	    <Id>37</Id>
+	  </Curve>
+	  <VertexBeg>
+	    <Id>26</Id>
+	  </VertexBeg>
+	  <VertexEnd>
+	    <Id>39</Id>
+	  </VertexEnd>
+	</Edge>
+	<Edge id="44">
+	  <Curve>
+	    <Id>41</Id>
+	  </Curve>
+	  <VertexBeg>
+	    <Id>43</Id>
+	  </VertexBeg>
+	  <VertexEnd>
+	    <Id>39</Id>
+	  </VertexEnd>
+	</Edge>
+	<Edge id="46">
+	  <Curve>
+	    <Id>45</Id>
+	  </Curve>
+	  <VertexBeg>
+	    <Id>30</Id>
+	  </VertexBeg>
+	  <VertexEnd>
+	    <Id>43</Id>
+	  </VertexEnd>
+	</Edge>
+	<Edge id="51">
+	  <Curve>
+	    <Id>50</Id>
+	  </Curve>
+	  <VertexBeg>
+	    <Id>39</Id>
+	  </VertexBeg>
+	  <VertexEnd>
+	    <Id>7</Id>
+	  </VertexEnd>
+	</Edge>
+	<Edge id="53">
+	  <Curve>
+	    <Id>52</Id>
+	  </Curve>
+	  <VertexBeg>
+	    <Id>43</Id>
+	  </VertexBeg>
+	  <VertexEnd>
+	    <Id>17</Id>
+	  </VertexEnd>
+	</Edge>
+      </EdgeSet>
+      <LoopSet n="6">
+	<Loop id="21" form="OUTER">
+	  <CoEdges n="4">
+	    <CoEdge>
+	      <EdgeOriented turned="1">
+		<Id>20</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>63</Id>
+	      </Curve12>
+	    </CoEdge>
+	    <CoEdge>
+	      <EdgeOriented>
+		<Id>18</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>64</Id>
+	      </Curve12>
+	    </CoEdge>
+	    <CoEdge>
+	      <EdgeOriented>
+		<Id>14</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>65</Id>
+	      </Curve12>
+	    </CoEdge>
+	    <CoEdge>
+	      <EdgeOriented turned="1">
+		<Id>10</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>66</Id>
+	      </Curve12>
+	    </CoEdge>
+	  </CoEdges>
+	</Loop>
+	<Loop id="34" form="OUTER">
+	  <CoEdges n="4">
+	    <CoEdge>
+	      <EdgeOriented turned="1">
+		<Id>14</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>67</Id>
+	      </Curve12>
+	    </CoEdge>
+	    <CoEdge>
+	      <EdgeOriented>
+		<Id>33</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>68</Id>
+	      </Curve12>
+	    </CoEdge>
+	    <CoEdge>
+	      <EdgeOriented>
+		<Id>31</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>69</Id>
+	      </Curve12>
+	    </CoEdge>
+	    <CoEdge>
+	      <EdgeOriented turned="1">
+		<Id>27</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>70</Id>
+	      </Curve12>
+	    </CoEdge>
+	  </CoEdges>
+	</Loop>
+	<Loop id="47" form="OUTER">
+	  <CoEdges n="4">
+	    <CoEdge>
+	      <EdgeOriented turned="1">
+		<Id>31</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>71</Id>
+	      </Curve12>
+	    </CoEdge>
+	    <CoEdge>
+	      <EdgeOriented>
+		<Id>46</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>72</Id>
+	      </Curve12>
+	    </CoEdge>
+	    <CoEdge>
+	      <EdgeOriented>
+		<Id>44</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>73</Id>
+	      </Curve12>
+	    </CoEdge>
+	    <CoEdge>
+	      <EdgeOriented turned="1">
+		<Id>40</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>74</Id>
+	      </Curve12>
+	    </CoEdge>
+	  </CoEdges>
+	</Loop>
+	<Loop id="54" form="OUTER">
+	  <CoEdges n="4">
+	    <CoEdge>
+	      <EdgeOriented turned="1">
+		<Id>44</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>75</Id>
+	      </Curve12>
+	    </CoEdge>
+	    <CoEdge>
+	      <EdgeOriented>
+		<Id>53</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>76</Id>
+	      </Curve12>
+	    </CoEdge>
+	    <CoEdge>
+	      <EdgeOriented>
+		<Id>20</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>77</Id>
+	      </Curve12>
+	    </CoEdge>
+	    <CoEdge>
+	      <EdgeOriented turned="1">
+		<Id>51</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>78</Id>
+	      </Curve12>
+	    </CoEdge>
+	  </CoEdges>
+	</Loop>
+	<Loop id="57" form="OUTER">
+	  <CoEdges n="4">
+	    <CoEdge>
+	      <EdgeOriented turned="1">
+		<Id>10</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>79</Id>
+	      </Curve12>
+	    </CoEdge>
+	    <CoEdge>
+	      <EdgeOriented turned="1">
+		<Id>51</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>80</Id>
+	      </Curve12>
+	    </CoEdge>
+	    <CoEdge>
+	      <EdgeOriented turned="1">
+		<Id>40</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>81</Id>
+	      </Curve12>
+	    </CoEdge>
+	    <CoEdge>
+	      <EdgeOriented turned="1">
+		<Id>27</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>82</Id>
+	      </Curve12>
+	    </CoEdge>
+	  </CoEdges>
+	</Loop>
+	<Loop id="60" form="OUTER">
+	  <CoEdges n="4">
+	    <CoEdge>
+	      <EdgeOriented turned="1">
+		<Id>53</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>83</Id>
+	      </Curve12>
+	    </CoEdge>
+	    <CoEdge>
+	      <EdgeOriented turned="1">
+		<Id>46</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>84</Id>
+	      </Curve12>
+	    </CoEdge>
+	    <CoEdge>
+	      <EdgeOriented turned="1">
+		<Id>33</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>85</Id>
+	      </Curve12>
+	    </CoEdge>
+	    <CoEdge>
+	      <EdgeOriented turned="1">
+		<Id>18</Id>
+	      </EdgeOriented>
+	      <Curve12>
+		<Id>86</Id>
+	      </Curve12>
+	    </CoEdge>
+	  </CoEdges>
+	</Loop>
+      </LoopSet>
+      <FaceSet n="6">
+	<Face id="22" label="5" color="202 209 238" turned="1">
+	  <Surface>
+	    <Id>4</Id>
+	  </Surface>
+	  <LoopIds n="1"><Id>21</Id></LoopIds>
+	</Face>
+	<Face id="35" label="6" color="202 209 238" turned="1">
+	  <Surface>
+	    <Id>23</Id>
+	  </Surface>
+	  <LoopIds n="1"><Id>34</Id></LoopIds>
+	</Face>
+	<Face id="48" label="1" color="202 209 238" turned="1">
+	  <Surface>
+	    <Id>36</Id>
+	  </Surface>
+	  <LoopIds n="1"><Id>47</Id></LoopIds>
+	</Face>
+	<Face id="55" label="4" color="202 209 238" turned="1">
+	  <Surface>
+	    <Id>49</Id>
+	  </Surface>
+	  <LoopIds n="1"><Id>54</Id></LoopIds>
+	</Face>
+	<Face id="58" label="3" color="202 209 238">
+	  <Surface>
+	    <Id>56</Id>
+	  </Surface>
+	  <LoopIds n="1"><Id>57</Id></LoopIds>
+	</Face>
+	<Face id="61" label="2" color="202 209 238" turned="1">
+	  <Surface>
+	    <Id>59</Id>
+	  </Surface>
+	  <LoopIds n="1"><Id>60</Id></LoopIds>
+	</Face>
+      </FaceSet>
+      <ShellSet n="1">
+	<Shell id="62" closed="1">
+	  <FaceIds n="6">
+<!-- put each id on a separate line -->
+            <Id>22</Id>
+            <Id>35</Id>
+            <Id>48</Id>
+            <Id>55</Id>
+            <Id>58</Id>
+            <Id>61</Id>
+	  </FaceIds>
+	</Shell>
+      </ShellSet>
+      <BodySet n="1">
+	<Body id="3">
+	  <Attributes n="2">
+	    <AttributeStr name="_3dv.BodyForm" value="Solid"/>
+	    <AttributeBool name="_3dv.Body" value="1"/>
+	  </Attributes>
+	  <ShellIds n="1">
+	    <Id>62</Id>
+	  </ShellIds>
+	  <FaceIds n="6">
+<!-- put each id on a separate line -->
+	    <Id>22</Id>
+	    <Id>35</Id>
+	    <Id>48</Id>
+	    <Id>55</Id>
+	    <Id>58</Id>
+	    <Id>61</Id>
+	  </FaceIds>
+	  <LoopIds n="6">
+<!-- put each id on a separate line -->
+	    <Id>21</Id>
+	    <Id>34</Id>
+	    <Id>47</Id>
+	    <Id>54</Id>
+	    <Id>57</Id>
+	    <Id>60</Id>
+	  </LoopIds>
+	  <EdgeIds n="12">
+<!-- put each id on a separate line -->
+	    <Id>10</Id>
+	    <Id>14</Id>
+	    <Id>18</Id>
+	    <Id>20</Id>
+	    <Id>27</Id>
+	    <Id>31</Id>
+	    <Id>33</Id>
+	    <Id>40</Id>
+	    <Id>44</Id>
+	    <Id>46</Id>
+	    <Id>51</Id>
+	    <Id>53</Id>
+	  </EdgeIds>
+	  <VertexIds n="8">
+<!-- put each id on a separate line -->
+	    <Id>7</Id>
+	    <Id>9</Id>
+	    <Id>13</Id>
+	    <Id>17</Id>
+	    <Id>26</Id>
+	    <Id>30</Id>
+	    <Id>39</Id>
+	    <Id>43</Id>
+	  </VertexIds>
+	</Body>
+      </BodySet>
+    </TopologySet>
+    <PartSet n="1">
+      <Part id="2" label="Model Entities" originMassProperty="150 150 400">
+	<BodyIds n="1">
+	  <Id>3</Id>
+	</BodyIds>
+      </Part>
+    </PartSet>
+    <RootPart>
+      <Id>2</Id>
+    </RootPart>
+  </Product>
+</QIFDocument>

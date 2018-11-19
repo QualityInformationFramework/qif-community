@@ -1,0 +1,908 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<QIFDocument xmlns="http://qifstandards.org/xsd/qif2" idMax="86" versionQIF="2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://qifstandards.org/xsd/qif2 ../QIFApplications/QIFDocument.xsd">
+
+  <Version>
+    <ThisInstanceQPId>b61e7786-891f-4883-8d55-ef2b9abacfad</ThisInstanceQPId>
+  </Version>
+
+  <Header>
+    <Application>
+      <Name>Solidworks 2014</Name>
+      <AddonName>CheckMate 14</AddonName>
+      <AddonOrganization>Origin International Inc.</AddonOrganization>
+    </Application>
+  </Header>
+
+  <PreInspectionTraceability>
+    <InspectingOrganization>
+      <Name>Origin International</Name>
+      <Address>
+        <StreetNumber>72</StreetNumber>
+        <Street>Baynards Lane</Street>
+        <Town>Richmond Hill</Town>
+        <Region>Ontario</Region>
+        <PostalCode>L4C 9B8</PostalCode>
+        <FacsimileNumber>416 410 8313</FacsimileNumber>
+        <TelephoneNumber>1-800-269-2509</TelephoneNumber>
+        <ElectronicMailAddress>support@originintl.com</ElectronicMailAddress>
+      </Address>
+    </InspectingOrganization>
+    <SupplierCode>North_Fab</SupplierCode>
+    <PurchaseOrderNumber>PO123456</PurchaseOrderNumber>
+    <AsmPathIds N="1">
+      <Id>3</Id>
+    </AsmPathIds>
+    <ReportNumber>QIF 1</ReportNumber>
+    <InspectionScope>DETAIL</InspectionScope>
+    <InspectionMode>FAI_Full</InspectionMode>
+    <ReferencedQIFPlanInstance>
+      <ItemQPId>9fcebcb6-99da-44f9-b997-2ba76fd438dd</ItemQPId>
+    </ReferencedQIFPlanInstance>
+    <FormalStandard>
+      <FormalStandardEnum>ASME-Y14.5-1994</FormalStandardEnum>
+    </FormalStandard>
+  </PreInspectionTraceability>
+
+  <FileUnits>
+    <PrimaryUnits>
+      <AngularUnit>
+        <SIUnitName>radian</SIUnitName>
+        <UnitName>degree</UnitName>
+        <UnitConversion>
+          <Factor>0.017453292519943</Factor>
+        </UnitConversion>
+      </AngularUnit>
+      <LinearUnit>
+        <SIUnitName>meter</SIUnitName>
+        <UnitName>mm</UnitName>
+        <UnitConversion>
+          <Factor>0.001</Factor>
+        </UnitConversion>
+      </LinearUnit>
+    </PrimaryUnits>
+  </FileUnits>
+
+  <DatumDefinitions>
+    <DatumDefinition id="51">
+      <DatumLabel>A</DatumLabel>
+    </DatumDefinition>
+    <DatumDefinition id="52">
+      <DatumLabel>B</DatumLabel>
+    </DatumDefinition>
+    <DatumDefinition id="53">
+      <DatumLabel>C</DatumLabel>
+    </DatumDefinition>
+    <DatumDefinition id="69">
+      <DatumLabel>D</DatumLabel>
+    </DatumDefinition>
+    <DatumDefinition id="70">
+      <DatumLabel>E</DatumLabel>
+    </DatumDefinition>
+  </DatumDefinitions>
+
+  <DatumReferenceFrames>
+    <DatumReferenceFrame id="12"/>
+    <DatumReferenceFrame id="50">
+      <Datum>
+        <SimpleDatum>
+          <DatumDefinitionId>51</DatumDefinitionId>
+          <MaterialModifier>NONE</MaterialModifier>
+          <ReferencedComponent>ACTUAL</ReferencedComponent>
+        </SimpleDatum>
+        <Precedence>
+          <PrecedenceEnum>PRIMARY</PrecedenceEnum>
+        </Precedence>
+      </Datum>
+      <Datum>
+        <SimpleDatum>
+          <DatumDefinitionId>52</DatumDefinitionId>
+          <MaterialModifier>MAXIMUM</MaterialModifier>
+          <ReferencedComponent>ACTUAL</ReferencedComponent>
+        </SimpleDatum>
+        <Precedence>
+          <PrecedenceEnum>SECONDARY</PrecedenceEnum>
+        </Precedence>
+      </Datum>
+      <Datum>
+        <SimpleDatum>
+          <DatumDefinitionId>53</DatumDefinitionId>
+          <MaterialModifier>MAXIMUM</MaterialModifier>
+          <ReferencedComponent>ACTUAL</ReferencedComponent>
+        </SimpleDatum>
+        <Precedence>
+          <PrecedenceEnum>TERTIARY</PrecedenceEnum>
+        </Precedence>
+      </Datum>
+    </DatumReferenceFrame>
+    <DatumReferenceFrame id="68">
+      <Datum>
+        <SimpleDatum>
+          <DatumDefinitionId>51</DatumDefinitionId>
+          <MaterialModifier>NONE</MaterialModifier>
+          <ReferencedComponent>ACTUAL</ReferencedComponent>
+        </SimpleDatum>
+        <Precedence>
+          <PrecedenceEnum>PRIMARY</PrecedenceEnum>
+        </Precedence>
+      </Datum>
+      <Datum>
+        <SimpleDatum>
+          <DatumDefinitionId>69</DatumDefinitionId>
+          <MaterialModifier>LEAST</MaterialModifier>
+          <ReferencedComponent>ACTUAL</ReferencedComponent>
+        </SimpleDatum>
+        <Precedence>
+          <PrecedenceEnum>SECONDARY</PrecedenceEnum>
+        </Precedence>
+      </Datum>
+      <Datum>
+        <SimpleDatum>
+          <DatumDefinitionId>70</DatumDefinitionId>
+          <MaterialModifier>LEAST</MaterialModifier>
+          <ReferencedComponent>ACTUAL</ReferencedComponent>
+        </SimpleDatum>
+        <Precedence>
+          <PrecedenceEnum>TERTIARY</PrecedenceEnum>
+        </Precedence>
+      </Datum>
+    </DatumReferenceFrame>
+  </DatumReferenceFrames>
+
+  <MeasurementResources>
+    <MeasurementDevices>
+      <MeasurementDevice id="15">
+        <Name>CMM</Name>
+      </MeasurementDevice>
+      <MeasurementDevice id="56">
+        <Name>GAGE PINS</Name>
+      </MeasurementDevice>
+      <MeasurementDevice id="65">
+        <Name>CALIPERS</Name>
+      </MeasurementDevice>
+    </MeasurementDevices>
+  </MeasurementResources>
+
+  <Product>
+    <PartSet N="1">
+      <Part id="1">
+        <Name>WING_MIR_REENF</Name>
+        <QPId>2bbeb82a-96bf-4f1e-a327-4ba3500490e1</QPId>
+        <ModelNumber>QM_X_123456</ModelNumber>
+        <Description>Wing Mirror Re-enforcement</Description>
+        <Version>1.02</Version>
+        <DefinitionExternal id="6">
+          <PrintedDrawing id="5">
+            <Name>sheet2_solid4</Name>
+            <Version>1.0.0</Version>
+            <Description>Sample QIF elements</Description>
+            <DrawingNumber>#1</DrawingNumber>
+            <AdditionalChanges>none</AdditionalChanges>
+            <Location>Cabinet 17, Drawer 3</Location>
+          </PrintedDrawing>
+        </DefinitionExternal>
+      </Part>
+    </PartSet>
+    <ComponentSet N="1">
+      <Component id="2">
+        <QPId>af4d1612-8918-4a69-a716-709beee7a953</QPId>
+        <Part>
+          <Id>1</Id>
+        </Part>
+      </Component>
+    </ComponentSet>
+    <AsmPaths N="1">
+      <AsmPath id="3">
+        <ComponentIds N="1">
+          <Id>2</Id>
+        </ComponentIds>
+      </AsmPath>
+    </AsmPaths>
+  </Product>
+
+  <Features>
+    <FeatureDefinitions>
+      <EdgePointFeatureDefinition id="7">
+        <InternalExternal>EXTERNAL</InternalExternal>
+      </EdgePointFeatureDefinition>
+      <PointFeatureDefinition id="17"/>
+      <PointFeatureDefinition id="33"/>
+      <CircleFeatureDefinition id="41">
+        <InternalExternal>INTERNAL</InternalExternal>
+        <Diameter>10</Diameter>
+      </CircleFeatureDefinition>
+      <CircleFeatureDefinition id="58">
+        <InternalExternal>INTERNAL</InternalExternal>
+        <Diameter>10</Diameter>
+      </CircleFeatureDefinition>
+      <CircleFeatureDefinition id="74">
+        <InternalExternal>NOT_APPLICABLE</InternalExternal>
+        <Diameter>30</Diameter>
+      </CircleFeatureDefinition>
+    </FeatureDefinitions>
+    <FeatureNominals>
+      <EdgePointFeatureNominal id="8">
+        <FeatureDefinitionId>7</FeatureDefinitionId>
+        <Location>2460.7099609375 770.604614257813 944.993591308594</Location>
+        <Normal>-0.735465884156759 -0.307902932144912 0.603560864882807</Normal>
+        <AdjacentNormal>0.0411800179070265 -0.909449806293278 -0.413769568671133</AdjacentNormal>
+      </EdgePointFeatureNominal>
+      <PointFeatureNominal id="18">
+        <FeatureDefinitionId>17</FeatureDefinitionId>
+        <Location>2466.72924804688 774.269897460938 945.002746582031</Location>
+        <Normal>0.731520704665031 0.146124942551 -0.665976696146977</Normal>
+      </PointFeatureNominal>
+      <PointFeatureNominal id="34">
+        <FeatureDefinitionId>33</FeatureDefinitionId>
+        <Location>2536.49487304688 782.806213378906 920.002197265625</Location>
+        <Normal>-0.7609260410224 -0.648538030188332 -0.0197479997320212</Normal>
+      </PointFeatureNominal>
+      <CircleFeatureNominal id="42">
+        <FeatureDefinitionId>41</FeatureDefinitionId>
+        <Location>0.0558150216639657 -0.907624351305543 -0.416056150385791</Location>
+        <Normal>2433.974609375 800.617431640625 890.049621582031</Normal>
+      </CircleFeatureNominal>
+      <CircleFeatureNominal id="59">
+        <FeatureDefinitionId>58</FeatureDefinitionId>
+        <Location>0.0418550117439733 -0.909169210310978 -0.414318120547998</Location>
+        <Normal>2496.25146484375 780.842590332031 938.272277832031</Normal>
+      </CircleFeatureNominal>
+      <CircleFeatureNominal id="75">
+        <FeatureDefinitionId>74</FeatureDefinitionId>
+        <Location>0.0418467877611875 -0.909189553580246 -0.414274307693132</Location>
+        <Normal>2506.63672251543 792.999124488284 912.644676969086</Normal>
+      </CircleFeatureNominal>
+    </FeatureNominals>
+    <FeatureItems>
+      <EdgePointFeatureItem id="9">
+        <Attributes N="1">
+          <AttributeStr name="Comment" value="An edge point with uniform profile characteristic"/>
+        </Attributes>
+        <FeatureNominalId>8</FeatureNominalId>
+        <FeatureName>TRIM1</FeatureName>
+        <QPId>aeba4615-65db-4f7d-a2e8-a7928c80117f</QPId>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </EdgePointFeatureItem>
+      <PointFeatureItem id="19">
+        <Attributes N="1">
+          <AttributeStr name="Comment" value="A point on a surface with coordinate characteristics"/>
+        </Attributes>
+        <FeatureNominalId>18</FeatureNominalId>
+        <FeatureName>SURF1</FeatureName>
+        <QPId>263c98a7-9786-4408-b62f-dda79a07daad</QPId>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PointFeatureItem id="35">
+        <Attributes N="1">
+          <AttributeStr name="Comment" value="A point on a surface with non-uniform profile characteristic"/>
+        </Attributes>
+        <FeatureNominalId>34</FeatureNominalId>
+        <FeatureName>SURF2</FeatureName>
+        <QPId>63799169-1d43-41ee-b1ad-451f9d8a8f4e</QPId>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <CircleFeatureItem id="43">
+        <Attributes N="1">
+          <AttributeStr name="Comment" value="A hole with position and gage-pin diameter"/>
+        </Attributes>
+        <FeatureNominalId>42</FeatureNominalId>
+        <FeatureName>HOLE1</FeatureName>
+        <QPId>f29bb618-e50d-4dbb-b4b4-83b28755c741</QPId>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </CircleFeatureItem>
+      <CircleFeatureItem id="60">
+        <Attributes N="1">
+          <AttributeStr name="Comment" value="A hole with position and caliper diameter"/>
+        </Attributes>
+        <FeatureNominalId>59</FeatureNominalId>
+        <FeatureName>HOLE2</FeatureName>
+        <QPId>5bb191b0-7a18-4393-8f24-1353ac8365c7</QPId>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </CircleFeatureItem>
+      <CircleFeatureItem id="76">
+        <Attributes N="1">
+          <AttributeStr name="Comment" value="A non-measureable reference circle"/>
+        </Attributes>
+        <FeatureNominalId>75</FeatureNominalId>
+        <FeatureName>REFCIRC1</FeatureName>
+        <QPId>6443f863-c559-42f2-b62a-48c0172d3395</QPId>
+        <DeterminationMode>
+          <Set/>
+        </DeterminationMode>
+      </CircleFeatureItem>
+    </FeatureItems>
+  </Features>
+
+  <Characteristics>
+    <FormalStandard>
+      <FormalStandardEnum>ASME-Y14.5-1994</FormalStandardEnum>
+    </FormalStandard>
+    <CharacteristicDefinitions>
+      <PointProfileCharacteristicDefinition id="11">
+        <ToleranceValue>4</ToleranceValue>
+        <DatumReferenceFrameId>12</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <LinearCoordinateCharacteristicDefinition id="21">
+        <NonTolerance>MEASURED</NonTolerance>
+      </LinearCoordinateCharacteristicDefinition>
+      <LinearCoordinateCharacteristicDefinition id="25">
+        <Tolerance>
+          <MaxValue>0.2</MaxValue>
+          <MinValue>-0.2</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </LinearCoordinateCharacteristicDefinition>
+      <LinearCoordinateCharacteristicDefinition id="29">
+        <Tolerance>
+          <MaxValue>945.20274658203095</MaxValue>
+          <MinValue>944.80274658203086</MinValue>
+          <DefinedAsLimit>true</DefinedAsLimit>
+        </Tolerance>
+      </LinearCoordinateCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="37">
+        <ToleranceValue>1.5</ToleranceValue>
+        <OuterDisposition>1</OuterDisposition>
+        <DatumReferenceFrameId>12</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <DiameterCharacteristicDefinition id="45">
+        <Tolerance>
+          <MaxValue>0.4</MaxValue>
+          <MinValue>-0.4</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DiameterCharacteristicDefinition>
+      <PositionCharacteristicDefinition id="49">
+        <ToleranceValue>1</ToleranceValue>
+        <DatumReferenceFrameId>50</DatumReferenceFrameId>
+        <MaterialCondition>MAXIMUM</MaterialCondition>
+        <ZoneShape>
+          <DiametricalZone/>
+        </ZoneShape>
+      </PositionCharacteristicDefinition>
+      <DiameterCharacteristicDefinition id="62">
+        <Tolerance>
+          <MaxValue>10.4</MaxValue>
+          <MinValue>9.6</MinValue>
+          <DefinedAsLimit>true</DefinedAsLimit>
+        </Tolerance>
+      </DiameterCharacteristicDefinition>
+      <PositionCharacteristicDefinition id="67">
+        <ToleranceValue>1</ToleranceValue>
+        <DatumReferenceFrameId>68</DatumReferenceFrameId>
+        <MaterialCondition>REGARDLESS</MaterialCondition>
+        <ZoneShape>
+          <DiametricalZone/>
+        </ZoneShape>
+      </PositionCharacteristicDefinition>
+      <DiameterCharacteristicDefinition id="78">
+        <NonTolerance>SET</NonTolerance>
+      </DiameterCharacteristicDefinition>
+      <DistanceBetweenCharacteristicDefinition id="82">
+        <Tolerance>
+          <MaxValue>0.5</MaxValue>
+          <MinValue>-0.5</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DistanceBetweenCharacteristicDefinition>
+    </CharacteristicDefinitions>
+    <CharacteristicNominals>
+      <PointProfileCharacteristicNominal id="13">
+        <CharacteristicDefinitionId>11</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <LinearCoordinateCharacteristicNominal id="22">
+        <CharacteristicDefinitionId>21</CharacteristicDefinitionId>
+        <TargetValue>2466.729248046875</TargetValue>
+        <Direction>XAXIS</Direction>
+      </LinearCoordinateCharacteristicNominal>
+      <LinearCoordinateCharacteristicNominal id="26">
+        <CharacteristicDefinitionId>25</CharacteristicDefinitionId>
+        <TargetValue>774.26989746093795</TargetValue>
+        <Direction>YAXIS</Direction>
+      </LinearCoordinateCharacteristicNominal>
+      <LinearCoordinateCharacteristicNominal id="30">
+        <CharacteristicDefinitionId>29</CharacteristicDefinitionId>
+        <Direction>ZAXIS</Direction>
+      </LinearCoordinateCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="38">
+        <CharacteristicDefinitionId>37</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <DiameterCharacteristicNominal id="46">
+        <CharacteristicDefinitionId>45</CharacteristicDefinitionId>
+        <TargetValue>10</TargetValue>
+      </DiameterCharacteristicNominal>
+      <PositionCharacteristicNominal id="54">
+        <CharacteristicDefinitionId>49</CharacteristicDefinitionId>
+      </PositionCharacteristicNominal>
+      <DiameterCharacteristicNominal id="63">
+        <CharacteristicDefinitionId>62</CharacteristicDefinitionId>
+      </DiameterCharacteristicNominal>
+      <PositionCharacteristicNominal id="71">
+        <CharacteristicDefinitionId>67</CharacteristicDefinitionId>
+      </PositionCharacteristicNominal>
+      <DiameterCharacteristicNominal id="79">
+        <CharacteristicDefinitionId>78</CharacteristicDefinitionId>
+        <TargetValue>30</TargetValue>
+      </DiameterCharacteristicNominal>
+      <DistanceBetweenCharacteristicNominal id="83">
+        <CharacteristicDefinitionId>82</CharacteristicDefinitionId>
+        <TargetValue>81.208839738425993</TargetValue>
+        <AnalysisMode>THREEDIMENSIONAL</AnalysisMode>
+      </DistanceBetweenCharacteristicNominal>
+    </CharacteristicNominals>
+    <CharacteristicItems>
+      <PointProfileCharacteristicItem id="14">
+        <Attributes N="1">
+          <AttributeStr name="Comment" value="A uniform profile zone ±2.0 with empty DRF"/>
+        </Attributes>
+        <Name>5</Name>
+        <QPId>6f2a6f83-3ff7-4327-b00c-98208361301a</QPId>
+        <KeyCharacteristic>
+          <Designator>5</Designator>
+          <Criticality>MINOR</Criticality>
+        </KeyCharacteristic>
+        <FeatureItemIds N="1">
+          <Id>9</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds N="1">
+          <Id>15</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>13</CharacteristicNominalId>
+        <LocationOnDrawing>
+          <DrawingId>5</DrawingId>
+          <SheetNumber>SHEET1</SheetNumber>
+          <DrawingZone>C2</DrawingZone>
+        </LocationOnDrawing>
+      </PointProfileCharacteristicItem>
+      <LinearCoordinateCharacteristicItem id="23">
+        <Attributes N="1">
+          <AttributeStr name="Comment" value="A basic coordinate dimension"/>
+        </Attributes>
+        <Name>1</Name>
+        <QPId>fdb07604-ac7e-4f7c-acc8-0860de517fd4</QPId>
+        <KeyCharacteristic>
+          <Designator>1</Designator>
+          <Criticality>REF</Criticality>
+        </KeyCharacteristic>
+        <FeatureItemIds N="1">
+          <Id>19</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds N="1">
+          <Id>15</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>22</CharacteristicNominalId>
+        <LocationOnDrawing>
+          <DrawingId>5</DrawingId>
+          <SheetNumber>SHEET1</SheetNumber>
+          <DrawingZone>D3</DrawingZone>
+        </LocationOnDrawing>
+      </LinearCoordinateCharacteristicItem>
+      <LinearCoordinateCharacteristicItem id="27">
+        <Attributes N="1">
+          <AttributeStr name="Comment" value="A bi-directional coordinate tolerance"/>
+        </Attributes>
+        <Name>2</Name>
+        <QPId>445298bf-91a2-4ec6-8fa4-3b2c029eeb6e</QPId>
+        <KeyCharacteristic>
+          <Designator>2</Designator>
+          <Criticality>MINOR</Criticality>
+        </KeyCharacteristic>
+        <FeatureItemIds N="1">
+          <Id>19</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds N="1">
+          <Id>15</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>26</CharacteristicNominalId>
+        <LocationOnDrawing>
+          <DrawingId>5</DrawingId>
+          <SheetNumber>SHEET1</SheetNumber>
+          <DrawingZone>D3</DrawingZone>
+        </LocationOnDrawing>
+      </LinearCoordinateCharacteristicItem>
+      <LinearCoordinateCharacteristicItem id="31">
+        <Attributes N="1">
+          <AttributeStr name="Comment" value="A limit coordinate tolerance"/>
+        </Attributes>
+        <Name>3</Name>
+        <QPId>187ce9c9-7125-47b0-869b-d37a9722a35d</QPId>
+        <KeyCharacteristic>
+          <Designator>3</Designator>
+          <Criticality>MAJOR</Criticality>
+        </KeyCharacteristic>
+        <FeatureItemIds N="1">
+          <Id>19</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds N="1">
+          <Id>15</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>30</CharacteristicNominalId>
+        <LocationOnDrawing>
+          <DrawingId>5</DrawingId>
+          <SheetNumber>SHEET1</SheetNumber>
+          <DrawingZone>D3</DrawingZone>
+        </LocationOnDrawing>
+      </LinearCoordinateCharacteristicItem>
+      <PointProfileCharacteristicItem id="39">
+        <Attributes N="1">
+          <AttributeStr name="Comment" value="An offset profile zone +1.0/-0.5 to ABC"/>
+        </Attributes>
+        <Name>4</Name>
+        <QPId>7ad19cce-458a-4d0a-9436-6a2d2683b018</QPId>
+        <KeyCharacteristic>
+          <Designator>4</Designator>
+          <Criticality>CRITICAL</Criticality>
+        </KeyCharacteristic>
+        <FeatureItemIds N="1">
+          <Id>35</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds N="1">
+          <Id>15</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>38</CharacteristicNominalId>
+        <LocationOnDrawing>
+          <DrawingId>5</DrawingId>
+          <SheetNumber>SHEET1</SheetNumber>
+          <DrawingZone>B3</DrawingZone>
+        </LocationOnDrawing>
+      </PointProfileCharacteristicItem>
+      <DiameterCharacteristicItem id="47">
+        <Attributes N="1">
+          <AttributeStr name="Comment" value="A bi-directional diameter tolerance"/>
+        </Attributes>
+        <Name>6</Name>
+        <QPId>4e609ab8-7d1c-4317-9b16-5fea194f9d7e</QPId>
+        <KeyCharacteristic>
+          <Designator>6</Designator>
+          <Criticality>MINOR</Criticality>
+        </KeyCharacteristic>
+        <FeatureItemIds N="1">
+          <Id>43</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds N="1">
+          <Id>15</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>46</CharacteristicNominalId>
+        <LocationOnDrawing>
+          <DrawingId>5</DrawingId>
+          <SheetNumber>SHEET1</SheetNumber>
+          <DrawingZone>C1</DrawingZone>
+        </LocationOnDrawing>
+      </DiameterCharacteristicItem>
+      <PositionCharacteristicItem id="55">
+        <Attributes N="1">
+          <AttributeStr name="Comment" value="MMC diametrical position to AB(m)C(m)"/>
+        </Attributes>
+        <Name>7</Name>
+        <QPId>4438e85a-441a-420f-93d8-c6ed52fae87e</QPId>
+        <KeyCharacteristic>
+          <Designator>7</Designator>
+          <Criticality>CRITICAL</Criticality>
+        </KeyCharacteristic>
+        <FeatureItemIds N="1">
+          <Id>43</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds N="1">
+          <Id>56</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>54</CharacteristicNominalId>
+        <LocationOnDrawing>
+          <DrawingId>5</DrawingId>
+          <SheetNumber>SHEET1</SheetNumber>
+          <DrawingZone>C1</DrawingZone>
+        </LocationOnDrawing>
+      </PositionCharacteristicItem>
+      <DiameterCharacteristicItem id="64">
+        <Attributes N="1">
+          <AttributeStr name="Comment" value="Limit diameter tolerance with caliper "/>
+        </Attributes>
+        <Name>8</Name>
+        <QPId>a5a0d3a2-e6c4-4be9-93fe-18ba95d8372c</QPId>
+        <KeyCharacteristic>
+          <Designator>8</Designator>
+        </KeyCharacteristic>
+        <FeatureItemIds N="1">
+          <Id>60</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds N="1">
+          <Id>65</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>63</CharacteristicNominalId>
+        <LocationOnDrawing>
+          <DrawingId>5</DrawingId>
+          <SheetNumber>SHEET1</SheetNumber>
+          <DrawingZone>C3</DrawingZone>
+        </LocationOnDrawing>
+      </DiameterCharacteristicItem>
+      <PositionCharacteristicItem id="72">
+        <Attributes N="1">
+          <AttributeStr name="Comment" value="RFS position to AD(l)E(l)"/>
+        </Attributes>
+        <Name>9</Name>
+        <QPId>c79e4f25-f235-4886-88a3-b8a2eeaba096</QPId>
+        <KeyCharacteristic>
+          <Designator>9</Designator>
+          <Criticality>MINOR</Criticality>
+        </KeyCharacteristic>
+        <FeatureItemIds N="1">
+          <Id>60</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds N="1">
+          <Id>15</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>71</CharacteristicNominalId>
+        <LocationOnDrawing>
+          <DrawingId>5</DrawingId>
+          <SheetNumber>SHEET1</SheetNumber>
+          <DrawingZone>C3</DrawingZone>
+        </LocationOnDrawing>
+      </PositionCharacteristicItem>
+      <DiameterCharacteristicItem id="80">
+        <Name>10</Name>
+        <QPId>ee9bb7c3-31fb-40a4-841d-4f1b9fc885bd</QPId>
+        <KeyCharacteristic>
+          <Designator>10</Designator>
+        </KeyCharacteristic>
+        <FeatureItemIds N="1">
+          <Id>76</Id>
+        </FeatureItemIds>
+        <CharacteristicNominalId>79</CharacteristicNominalId>
+      </DiameterCharacteristicItem>
+      <DistanceBetweenCharacteristicItem id="84">
+        <Attributes N="1">
+          <AttributeStr name="Comment" value="Distance between HOLE1 and HOLE2"/>
+        </Attributes>
+        <Name>DIST1</Name>
+        <QPId>3e6797f5-b443-4b15-9108-055190223837</QPId>
+        <KeyCharacteristic>
+          <Designator>11</Designator>
+        </KeyCharacteristic>
+        <FeatureItemIds N="2">
+          <Id>60</Id>
+          <Id>43</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds N="1">
+          <Id>15</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>83</CharacteristicNominalId>
+        <LocationOnDrawing>
+          <DrawingId>5</DrawingId>
+          <SheetNumber>SHEET1</SheetNumber>
+          <DrawingZone>B2</DrawingZone>
+        </LocationOnDrawing>
+      </DistanceBetweenCharacteristicItem>
+    </CharacteristicItems>
+  </Characteristics>
+
+  <MeasurementsResults>
+    <MeasurementResults id="86">
+      <ThisResultsInstanceQPId>8521ff0f-4c05-4f13-a2be-1386190f75a6</ThisResultsInstanceQPId>
+      <ExternalFileReference>
+        <URI>C:\R19_parts\5802804.res</URI>
+        <FileSpec>
+          <OtherFileSpec>res</OtherFileSpec>
+        </FileSpec>
+        <Description>Zeiss Umess CMM Results</Description>
+      </ExternalFileReference>
+      <MeasuredFeatures>
+        <FeatureActuals>
+          <EdgePointFeatureActual id="10">
+            <FeatureItemId>9</FeatureItemId>
+            <Location>2460.72 770.62 944.98</Location>
+            <Normal>-0.735465884156759 -0.307902932144912 0.603560864882807</Normal>
+          </EdgePointFeatureActual>
+          <PointFeatureActual id="20">
+            <FeatureItemId>19</FeatureItemId>
+            <Location>2466.9 774.31 944.84</Location>
+          </PointFeatureActual>
+          <PointFeatureActual id="36">
+            <FeatureItemId>35</FeatureItemId>
+            <Location>2537.17 783.38 920.02</Location>
+          </PointFeatureActual>
+          <CircleFeatureActual id="44">
+            <FeatureItemId>43</FeatureItemId>
+            <Location>2434.01 801.52505599193 889.98</Location>
+            <Normal>0.0558150216639657 -0.907624351305543 -0.416056150385791</Normal>
+            <Diameter>9.499476</Diameter>
+          </CircleFeatureActual>
+          <CircleFeatureActual id="61">
+            <FeatureItemId>60</FeatureItemId>
+            <Location>2496.39 781.751759542342 938.09</Location>
+            <Normal>0.0418550117439733 -0.909169210310978 -0.414318120547998</Normal>
+            <Diameter>10.199987999999999</Diameter>
+          </CircleFeatureActual>
+          <CircleFeatureActual id="77">
+            <FeatureItemId>76</FeatureItemId>
+            <Location>2506.63672251543 792.999124488284 912.644676969086</Location>
+            <Normal>0.0418467877611875 -0.909189553580246 -0.414274307693132</Normal>
+            <Diameter>30</Diameter>
+          </CircleFeatureActual>
+        </FeatureActuals>
+      </MeasuredFeatures>
+      <MeasuredCharacteristics>
+        <CharacteristicActuals>
+          <PointProfileCharacteristicActual id="16">
+            <Status>
+              <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+            </Status>
+            <CharacteristicItemId>14</CharacteristicItemId>
+            <FeatureActualIds N="1">
+              <Id>10</Id>
+            </FeatureActualIds>
+            <NonConformanceDesignator>NA</NonConformanceDesignator>
+            <Value>-0.020323885080472</Value>
+          </PointProfileCharacteristicActual>
+          <LinearCoordinateCharacteristicActual id="24">
+            <Status>
+              <CharacteristicStatusEnum>BASIC</CharacteristicStatusEnum>
+            </Status>
+            <CharacteristicItemId>23</CharacteristicItemId>
+            <FeatureActualIds N="1">
+              <Id>20</Id>
+            </FeatureActualIds>
+            <NonConformanceDesignator>NA</NonConformanceDesignator>
+            <TypeOfCoordinates>
+              <CoordinateEnum>CARTESIAN_3D</CoordinateEnum>
+            </TypeOfCoordinates>
+            <Value>2466.9000000000001</Value>
+          </LinearCoordinateCharacteristicActual>
+          <LinearCoordinateCharacteristicActual id="28">
+            <Status>
+              <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+            </Status>
+            <CharacteristicItemId>27</CharacteristicItemId>
+            <FeatureActualIds N="1">
+              <Id>20</Id>
+            </FeatureActualIds>
+            <NonConformanceDesignator>NA</NonConformanceDesignator>
+            <TypeOfCoordinates>
+              <CoordinateEnum>CARTESIAN_3D</CoordinateEnum>
+            </TypeOfCoordinates>
+            <Value>774.30999999999995</Value>
+          </LinearCoordinateCharacteristicActual>
+          <LinearCoordinateCharacteristicActual id="32">
+            <Status>
+              <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+            </Status>
+            <CharacteristicItemId>31</CharacteristicItemId>
+            <FeatureActualIds N="1">
+              <Id>20</Id>
+            </FeatureActualIds>
+            <NonConformanceDesignator>NA</NonConformanceDesignator>
+            <TypeOfCoordinates>
+              <CoordinateEnum>CARTESIAN_3D</CoordinateEnum>
+            </TypeOfCoordinates>
+            <Value>944.84000000000003</Value>
+          </LinearCoordinateCharacteristicActual>
+          <PointProfileCharacteristicActual id="40">
+            <Status>
+              <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+            </Status>
+            <CharacteristicItemId>39</CharacteristicItemId>
+            <FeatureActualIds N="1">
+              <Id>36</Id>
+            </FeatureActualIds>
+            <NonConformanceDesignator>1234</NonConformanceDesignator>
+            <Value>-0.886195693015566</Value>
+          </PointProfileCharacteristicActual>
+          <DiameterCharacteristicActual id="48">
+            <Status>
+              <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+            </Status>
+            <CharacteristicItemId>47</CharacteristicItemId>
+            <FeatureActualIds N="1">
+              <Id>44</Id>
+            </FeatureActualIds>
+            <NonConformanceDesignator>1234</NonConformanceDesignator>
+            <Value>9.499476</Value>
+          </DiameterCharacteristicActual>
+          <PositionCharacteristicActual id="57">
+            <Status>
+              <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+            </Status>
+            <CharacteristicItemId>55</CharacteristicItemId>
+            <FeatureActualIds N="1">
+              <Id>44</Id>
+            </FeatureActualIds>
+            <NonConformanceDesignator>NA</NonConformanceDesignator>
+            <Value>0.897298445619386</Value>
+          </PositionCharacteristicActual>
+          <DiameterCharacteristicActual id="66">
+            <Status>
+              <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+            </Status>
+            <CharacteristicItemId>64</CharacteristicItemId>
+            <FeatureActualIds N="1">
+              <Id>61</Id>
+            </FeatureActualIds>
+            <NonConformanceDesignator>NA</NonConformanceDesignator>
+            <Value>10.199987999999999</Value>
+          </DiameterCharacteristicActual>
+          <PositionCharacteristicActual id="73">
+            <Status>
+              <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+            </Status>
+            <CharacteristicItemId>72</CharacteristicItemId>
+            <FeatureActualIds N="1">
+              <Id>61</Id>
+            </FeatureActualIds>
+            <NonConformanceDesignator>1234</NonConformanceDesignator>
+            <Value>1.137681133150095</Value>
+          </PositionCharacteristicActual>
+          <DiameterCharacteristicActual id="81">
+            <Status>
+              <CharacteristicStatusEnum>BASIC</CharacteristicStatusEnum>
+            </Status>
+            <CharacteristicItemId>80</CharacteristicItemId>
+            <FeatureActualIds N="1">
+              <Id>77</Id>
+            </FeatureActualIds>
+            <Value>30</Value>
+          </DiameterCharacteristicActual>
+          <DistanceBetweenCharacteristicActual id="85">
+            <Status>
+              <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+            </Status>
+            <CharacteristicItemId>84</CharacteristicItemId>
+            <FeatureActualIds N="2">
+              <Id>61</Id>
+              <Id>44</Id>
+            </FeatureActualIds>
+            <Value>81.220808617516994</Value>
+          </DistanceBetweenCharacteristicActual>
+        </CharacteristicActuals>
+      </MeasuredCharacteristics>
+      <InspectionStatus>
+        <InspectionStatusEnum>FAIL</InspectionStatusEnum>
+      </InspectionStatus>
+      <ActualComponentIds N="1">
+        <Id>4</Id>
+      </ActualComponentIds>
+    </MeasurementResults>
+    <ActualComponentSet N="1">
+      <ActualComponent id="4">
+        <SerialNumber>Run 3, Bin 17</SerialNumber>
+        <Status>
+          <InspectionStatusEnum>FAIL</InspectionStatusEnum>
+        </Status>
+        <AsmPathId>3</AsmPathId>
+      </ActualComponent>
+    </ActualComponentSet>
+    <InspectionTraceability>
+      <ReportPreparer>
+        <Name>John Doe</Name>
+        <EmployeeId>123-456</EmployeeId>
+      </ReportPreparer>
+      <ReportPreparationDate>2014-07-30T11:14:06</ReportPreparationDate>
+    </InspectionTraceability>
+  </MeasurementsResults>
+
+</QIFDocument>

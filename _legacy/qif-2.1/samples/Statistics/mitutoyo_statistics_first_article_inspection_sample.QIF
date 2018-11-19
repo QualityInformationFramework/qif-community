@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QIFDocument
+ xmlns="http://qifstandards.org/xsd/qif2"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ versionQIF="2.1.0"
+ idMax="18" 
+ xsi:schemaLocation="http://qifstandards.org/xsd/qif2 ../QIFApplications/QIFDocument.xsd">
+  <QPId>cbb10eac-f86b-42f0-929b-e62d5c5a4fcb</QPId>
+  <Product>
+    <PartSet n="1">
+      <Part id="1" label="Widget">
+        <Attributes n="1">
+          <AttributeQPId name="qpid">
+            <Value>ed43400a-29bf-4ec6-b96c-e2f846eb6f00</Value>
+          </AttributeQPId>
+        </Attributes>
+        <ModelNumber>9876543</ModelNumber>
+        <DefinitionExternal n="1" id="2">
+          <PrintedDrawing id="3">
+            <Name>Widget Drawing</Name>
+            <Version>2</Version>
+            <Description>Widget Drawing rev02</Description>
+            <DrawingNumber>12345</DrawingNumber>
+            <Location>Engineering</Location>
+          </PrintedDrawing>
+        </DefinitionExternal>
+      </Part>
+    </PartSet>
+  </Product>
+  <Characteristics>
+    <FormalStandard>
+      <FormalStandardEnum>ASME-Y14.5-1994</FormalStandardEnum>
+    </FormalStandard>
+    <CharacteristicDefinitions n="2">
+      <DiameterCharacteristicDefinition id="4">
+        <Name>Diameter #1</Name>
+        <Tolerance>
+          <MaxValue>2.200</MaxValue>
+          <MinValue>1.800</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DiameterCharacteristicDefinition>
+      <DiameterCharacteristicDefinition id="5">
+        <Name>Diameter #2</Name>
+        <Tolerance>
+          <MaxValue>3.200</MaxValue>
+          <MinValue>2.800</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DiameterCharacteristicDefinition>
+    </CharacteristicDefinitions>
+    <CharacteristicNominals n="2">
+      <DiameterCharacteristicNominal id="6">
+        <CharacteristicDefinitionId>4</CharacteristicDefinitionId>
+        <TargetValue>2.000</TargetValue>
+      </DiameterCharacteristicNominal>
+      <DiameterCharacteristicNominal id="7">
+        <CharacteristicDefinitionId>5</CharacteristicDefinitionId>
+        <TargetValue>3.000</TargetValue>
+      </DiameterCharacteristicNominal>
+    </CharacteristicNominals>
+    <CharacteristicItems n="2">
+      <DiameterCharacteristicItem id="8">
+        <Name>Diameter #1</Name>
+        <KeyCharacteristic>
+          <Designator>C</Designator>
+        </KeyCharacteristic>
+        <CharacteristicNominalId>6</CharacteristicNominalId>
+        <LocationOnDrawing>
+          <DrawingId>3</DrawingId>
+          <SheetNumber>1</SheetNumber>
+          <DrawingZone>A</DrawingZone>
+        </LocationOnDrawing>
+      </DiameterCharacteristicItem>
+      <DiameterCharacteristicItem id="9">
+        <Attributes n="1">
+          <AttributeQPId name="qpid">
+            <Value>6eccd077-fbac-11e3-a3ac-0800200c9a66</Value>
+          </AttributeQPId>
+        </Attributes>
+        <Name>Diameter #2</Name>
+        <KeyCharacteristic>
+          <Designator>C</Designator>
+        </KeyCharacteristic>
+        <CharacteristicNominalId>7</CharacteristicNominalId>
+        <LocationOnDrawing>
+          <DrawingId>3</DrawingId>
+          <SheetNumber>1</SheetNumber>
+          <DrawingZone>A</DrawingZone>
+        </LocationOnDrawing>
+      </DiameterCharacteristicItem>
+    </CharacteristicItems>
+  </Characteristics>
+  <MeasurementsResults>
+    <MeasurementResultsSet n="2">
+      <MeasurementResults id="10">
+        <ThisResultsInstanceQPId>6eccd078-fbac-11e3-a3ac-0800200c9a66</ThisResultsInstanceQPId>
+        <MeasuredCharacteristics>
+          <CharacteristicActuals n="1">
+            <DiameterCharacteristicActual id="11">
+              <Status>
+                <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>8</CharacteristicItemId>
+              <ManufacturingProcessId>17</ManufacturingProcessId>
+              <NonConformanceDesignator>0</NonConformanceDesignator>
+              <Value>2.001</Value>
+            </DiameterCharacteristicActual>
+          </CharacteristicActuals>
+        </MeasuredCharacteristics>
+        <InspectionStatus>
+          <InspectionStatusEnum>PASS</InspectionStatusEnum>
+        </InspectionStatus>
+        <ActualComponentIds n="1">
+          <Id>14</Id>
+        </ActualComponentIds>
+      </MeasurementResults>
+      <MeasurementResults id="12">
+        <ThisResultsInstanceQPId>6eccd079-fbac-11e3-a3ac-0800200c9a66</ThisResultsInstanceQPId>
+        <MeasuredCharacteristics>
+          <CharacteristicActuals n="1">
+            <DiameterCharacteristicActual id="13">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>9</CharacteristicItemId>
+              <ManufacturingProcessId>18</ManufacturingProcessId>
+              <NonConformanceDesignator>1</NonConformanceDesignator>
+              <Value>3.234</Value>
+            </DiameterCharacteristicActual>
+          </CharacteristicActuals>
+        </MeasuredCharacteristics>
+        <InspectionStatus>
+          <InspectionStatusEnum>FAIL</InspectionStatusEnum>
+        </InspectionStatus>
+        <ActualComponentIds n="1">
+          <Id>14</Id>
+        </ActualComponentIds>
+      </MeasurementResults>
+    </MeasurementResultsSet>
+    <ActualComponentSets n="1">
+		<ActualComponentSet n="1">
+		  <ActualComponent id="14">
+			<SerialNumber>1ABC-DEFG</SerialNumber>
+			<Status>
+			  <InspectionStatusEnum>PASS</InspectionStatusEnum>
+			</Status>
+		  </ActualComponent>
+		</ActualComponentSet>
+	</ActualComponentSets>
+  </MeasurementsResults>
+  <Statistics>
+    <StatisticalStudiesResults n="1">
+      <FirstArticleStudyResults id="15">
+        <ThisStatisticalStudyResultsInstanceQPId>4aa329b6-fbbb-11e3-a3ac-0800200c9a66</ThisStatisticalStudyResultsInstanceQPId>
+        <Status>
+          <StatsEvalStatusEnum>FAIL</StatsEvalStatusEnum>
+        </Status>
+        <InspectionTraceability>
+          <InspectingOrganization>
+            <Name>Supplier Corporation, Inc.</Name>
+            <Address>
+              <StreetNumber>1234</StreetNumber>
+              <Street>Main Street</Street>
+              <Town>Anywhere</Town>
+              <PostalCode>90120</PostalCode>
+              <Country>USA</Country>
+            </Address>
+          </InspectingOrganization>
+          <CustomerOrganization>
+            <Name>Customer Corporation, Inc.</Name>
+            <Address>
+              <StreetNumber>4321</StreetNumber>
+              <Street>Tower Street</Street>
+              <Town>Somewhere</Town>
+              <PostalCode>012345</PostalCode>
+              <Country>USA</Country>
+            </Address>
+            <CustomerNumber>0001-0000</CustomerNumber>
+          </CustomerOrganization>
+          <PurchaseOrderNumber>1</PurchaseOrderNumber>
+          <ReportNumber>0001-00002</ReportNumber>
+          <InspectionStart>2014-06-03T13:47:30Z</InspectionStart>
+          <ReportPreparer>
+            <Name>John Smith</Name>
+          </ReportPreparer>
+          <ReportPreparationDate>2014-06-03T13:47:30Z</ReportPreparationDate>
+          <PlantLocation id="16">
+            <LocationDescription>QA</LocationDescription>
+            <Address>
+              <TelephoneNumber>800-555-1212</TelephoneNumber>
+              <ElectronicMailAddress>john.smith@supplier.com</ElectronicMailAddress>
+            </Address>
+          </PlantLocation>
+        </InspectionTraceability>
+        <InSpecRatio>0.5</InSpecRatio>
+      </FirstArticleStudyResults>
+    </StatisticalStudiesResults>
+  </Statistics>
+  <ManufacturingProcessTraceabilities n="2">
+    <ManufacturingProcessTraceability id="17">
+      <Description>CNC Machining</Description>
+      <MachineManufacturerName>MC Hammer</MachineManufacturerName>
+      <MachineIdentifier>214-West</MachineIdentifier>
+      <Shift>1</Shift>
+      <Department>Mill</Department>
+      <PlantSector>West Building</PlantSector>
+      <ProcessParameters n="1">
+        <Parameter>
+          <ParameterType>Drill</ParameterType>
+          <ParameterValue>Tool # 1</ParameterValue>
+        </Parameter>
+      </ProcessParameters>
+    </ManufacturingProcessTraceability>
+    <ManufacturingProcessTraceability id="18">
+      <Description>CNC Machining</Description>
+      <MachineManufacturerName>MC Hammer</MachineManufacturerName>
+      <MachineIdentifier>214-West</MachineIdentifier>
+      <Shift>1</Shift>
+      <Department>Mill</Department>
+      <PlantSector>West Building</PlantSector>
+      <ProcessParameters n="1">
+        <Parameter>
+          <ParameterType>Drill</ParameterType>
+          <ParameterValue>Tool # 2</ParameterValue>
+        </Parameter>
+      </ProcessParameters>
+    </ManufacturingProcessTraceability>
+  </ManufacturingProcessTraceabilities>
+</QIFDocument>

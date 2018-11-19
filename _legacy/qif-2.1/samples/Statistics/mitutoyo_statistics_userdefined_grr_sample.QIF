@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QIFDocument
+ xmlns="http://qifstandards.org/xsd/qif2"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ versionQIF="2.1.0"
+ idMax="7"
+ xsi:schemaLocation=
+  "http://qifstandards.org/xsd/qif2 ../QIFApplications/QIFDocument.xsd">
+  <QPId>961b7421-dbd8-4bf3-b3be-56f427262484</QPId>
+  <FileUnits>
+    <PrimaryUnits>
+      <AngularUnit>
+        <UnitName>degree</UnitName>
+      </AngularUnit>
+      <LinearUnit>
+        <UnitName>inch</UnitName>
+      </LinearUnit>
+      <TemperatureUnit>
+        <UnitName>Fahrenheit</UnitName>
+      </TemperatureUnit>
+    </PrimaryUnits>
+    <OtherUnits n="1">
+      <LinearUnit>
+        <UnitName>mm</UnitName>
+      </LinearUnit>
+    </OtherUnits>
+  </FileUnits>
+  <MeasurementResources>
+    <MeasurementDevices n="1">
+      <ManualMeasurementDevice id="1">
+        <Name>216-380</Name>
+        <Description>Digital Tape Measure</Description>
+        <Manufacturer>Mitutoyo</Manufacturer>
+        <SerialNumber>1234-5678</SerialNumber>
+      </ManualMeasurementDevice>
+    </MeasurementDevices>
+  </MeasurementResources>
+  <Product>
+    <PartSet n="1">
+      <Part id="2" label="Drum">
+        <Attributes n="1">
+          <AttributeQPId name="qpid">
+            <Value>71cb7514-abf6-4de1-9366-fc7e3db0ad2a</Value>
+          </AttributeQPId>
+        </Attributes>
+      </Part>
+    </PartSet>
+    <RootPart>
+      <Id>2</Id>
+    </RootPart>
+  </Product>
+  <Characteristics>
+    <FormalStandard>
+      <FormalStandardEnum>ASME-Y14.5-1994</FormalStandardEnum>
+    </FormalStandard>
+    <CharacteristicDefinitions n="1">
+      <UserDefinedLinearCharacteristicDefinition id="3">
+        <Name>Circumference #1</Name>
+        <Tolerance>
+          <MaxValue linearUnit="inch">75.5</MaxValue>
+          <MinValue linearUnit="inch">75.3</MinValue>
+          <DefinedAsLimit>true</DefinedAsLimit>
+        </Tolerance>
+        <WhatToMeasure>measure the circumference of the drum</WhatToMeasure>
+      </UserDefinedLinearCharacteristicDefinition>
+    </CharacteristicDefinitions>
+    <CharacteristicNominals n="1">
+      <UserDefinedLinearCharacteristicNominal id="4">
+        <CharacteristicDefinitionId>3</CharacteristicDefinitionId>
+        <TargetValue linearUnit="inch">75.398</TargetValue>
+      </UserDefinedLinearCharacteristicNominal>
+    </CharacteristicNominals>
+    <CharacteristicItems n="1">
+      <UserDefinedLinearCharacteristicItem id="5">
+        <Attributes n="1">
+          <AttributeQPId name="qpid">
+            <Value>ed43400a-29bf-4ec6-b96c-e2f846eb6ff7</Value>
+          </AttributeQPId>
+        </Attributes>
+        <Name>Circumference #1</Name>
+        <MeasurementDeviceIds n="1">
+          <Id>1</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>4</CharacteristicNominalId>
+      </UserDefinedLinearCharacteristicItem>
+    </CharacteristicItems>
+  </Characteristics>
+  <Statistics>
+    <StatisticalStudyPlans n="1">
+      <GageRandRStudyPlan id="6">
+        <Version>
+          <ThisInstanceQPId>
+            fd43400a-29bf-4ec6-b96c-e2f846eb6ff9
+          </ThisInstanceQPId>
+        </Version>
+        <RandRStudyType>AVGANDRANGE</RandRStudyType>
+        <NumberOfAppraisers>2</NumberOfAppraisers>
+        <NumberOfParts>5</NumberOfParts>
+        <NumberOfTrials>2</NumberOfTrials>
+      </GageRandRStudyPlan>
+    </StatisticalStudyPlans>
+    <StatisticalStudiesResults n="1">
+      <GageRandRStudyResults id="7">
+        <ThisStatisticalStudyResultsInstanceQPId>
+          4aa329b9-fbbb-11e3-a3ac-0800200c9a66
+        </ThisStatisticalStudyResultsInstanceQPId>
+        <Status>
+          <StatsEvalStatusEnum>INFORMATIONAL</StatsEvalStatusEnum>
+        </Status>
+        <StudyId>6</StudyId>
+        <CharacteristicsStats n="1">
+          <UserDefinedLinearCharacteristicStats>
+            <Status>
+              <StatsEvalStatusEnum>INFORMATIONAL</StatsEvalStatusEnum>
+            </Status>
+            <ValueStats linearUnit="mm">
+              <AppraiserVariation>2.54</AppraiserVariation>
+              <EquipmentVariation>1.85</EquipmentVariation>
+              <GageRandR>3.14</GageRandR>
+              <TotalVariation>3.81</TotalVariation>
+            </ValueStats>
+          </UserDefinedLinearCharacteristicStats>
+        </CharacteristicsStats>
+        <MeasurementDeviceIds n="1">
+          <Id>1</Id>
+        </MeasurementDeviceIds>
+        <NumberOfAppraisers>2</NumberOfAppraisers>
+        <NumberOfParts>5</NumberOfParts>
+        <NumberOfTrials>2</NumberOfTrials>
+      </GageRandRStudyResults>
+    </StatisticalStudiesResults>
+  </Statistics>
+</QIFDocument>
