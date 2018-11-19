@@ -1,5 +1,3 @@
-Source code bindings and sample instance files for QIF 2.1.
-
 # Legacy QIF - QIF 2.1
 
 Here you will find sample instance files and source code bindings for QIF 2.1. 
