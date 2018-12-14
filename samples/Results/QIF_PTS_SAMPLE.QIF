@@ -1,0 +1,2200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<QIFDocument
+  xmlns="http://qifstandards.org/xsd/qif3"
+  idMax="858"
+  versionQIF="3.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation=
+    "http://qifstandards.org/xsd/qif3 ../QIFApplications/QIFDocument.xsd">
+
+  <QPId>175819bb-4961-4ad0-8939-e06475685c4d</QPId>
+
+  <Version>
+    <TimeCreated>2015-10-23T06:23:09</TimeCreated>
+  </Version>
+
+  <Header>
+    <Application>
+      <Name>SOLIDWORKS 2016</Name>
+      <AddonName>CheckMate 14 for SOLIDWORKS</AddonName>
+      <AddonOrganization>Origin International Inc.</AddonOrganization>
+    </Application>
+  </Header>
+
+  <StandardsDefinitions n="1">
+    <Standard id="858">
+      <Organization>
+        <StandardsOrganizationEnum>ASME</StandardsOrganizationEnum>
+      </Organization>
+      <Designator>Y14.5</Designator>
+      <Year>1994</Year>
+    </Standard>
+  </StandardsDefinitions>
+
+  <PreInspectionTraceability>
+    <InspectingOrganization>
+      <Name>Origin International Inc</Name>
+      <Address>
+        <StreetNumber>72</StreetNumber>
+        <Street>Baynards Lane</Street>
+        <Town>Richmond Hill</Town>
+        <Region>Ontario</Region>
+        <PostalCode>L4C 9B8</PostalCode>
+        <FacsimileNumber>416 410-8313</FacsimileNumber>
+        <TelephoneNumber>800-269-2509</TelephoneNumber>
+        <ElectronicMailAddress>support@originintl.com</ElectronicMailAddress>
+      </Address>
+    </InspectingOrganization>
+    <PurchaseOrderNumber>1234</PurchaseOrderNumber>
+    <AsmPathIds n="1">
+      <Id>3</Id>
+    </AsmPathIds>
+    <ReportNumber>QIF Points Example</ReportNumber>
+    <InspectionScope>DETAIL</InspectionScope>
+    <InspectionMode>FAI_Full</InspectionMode>
+    <FormalStandardId>858</FormalStandardId>
+  </PreInspectionTraceability>
+
+  <FileUnits>
+    <PrimaryUnits>
+      <AngularUnit>
+        <SIUnitName>radian</SIUnitName>
+        <UnitName>degree</UnitName>
+        <UnitConversion>
+          <Factor>0.017453292519943</Factor>
+        </UnitConversion>
+      </AngularUnit>
+      <LinearUnit>
+        <SIUnitName>meter</SIUnitName>
+        <UnitName>mm</UnitName>
+        <UnitConversion>
+          <Factor>0.001</Factor>
+        </UnitConversion>
+      </LinearUnit>
+    </PrimaryUnits>
+  </FileUnits>
+
+  <DatumDefinitions n="2">
+    <DatumDefinition id="821">
+      <DatumLabel>DATUMA</DatumLabel>
+    </DatumDefinition>
+    <DatumDefinition id="845">
+      <DatumLabel>DATUMC</DatumLabel>
+    </DatumDefinition>
+  </DatumDefinitions>
+
+  <DatumReferenceFrames n="3">
+    <DatumReferenceFrame id="498"/>
+    <DatumReferenceFrame id="820">
+      <Datums n="1">
+        <Datum>
+          <SimpleDatum>
+            <DatumDefinitionId>821</DatumDefinitionId>
+            <MaterialModifier>REGARDLESS</MaterialModifier>
+            <ReferencedComponent>ACTUAL</ReferencedComponent>
+          </SimpleDatum>
+          <Precedence>
+            <PrecedenceEnum>PRIMARY</PrecedenceEnum>
+          </Precedence>
+        </Datum>
+      </Datums>
+    </DatumReferenceFrame>
+    <DatumReferenceFrame id="844">
+      <Datums n="1">
+        <Datum>
+          <SimpleDatum>
+            <DatumDefinitionId>845</DatumDefinitionId>
+            <MaterialModifier>REGARDLESS</MaterialModifier>
+            <ReferencedComponent>ACTUAL</ReferencedComponent>
+          </SimpleDatum>
+          <Precedence>
+            <PrecedenceEnum>PRIMARY</PrecedenceEnum>
+          </Precedence>
+        </Datum>
+      </Datums>
+    </DatumReferenceFrame>
+  </DatumReferenceFrames>
+
+  <MeasurementResources>
+    <MeasurementDevices n="1">
+      <MeasurementDevice id="23">
+        <Name>CMM</Name>
+      </MeasurementDevice>
+    </MeasurementDevices>
+  </MeasurementResources>
+
+  <Product>
+    <PartSet n="1">
+      <Part hidden="false" id="1" transparency="0">
+        <ModelNumber>Cheese Block</ModelNumber>
+        <Version>1.6</Version>
+        <DefinitionExternal id="6" n="2">
+          <PrintedDrawing id="5">
+            <Name>QIF_pts_sample_SW2016</Name>
+            <Version>1.0.0</Version>
+            <Description>Sample QIF elements</Description>
+            <DrawingNumber>#1</DrawingNumber>
+            <AdditionalChanges>none</AdditionalChanges>
+            <Location>Cabinet 17, Drawer 3</Location>
+          </PrintedDrawing>
+          <DigitalModel id="7">
+            <Name>QIF_pts_sample_SW2016</Name>
+            <File>
+              <Name>D:\CM14_Parts\QIF\QIF_pts_sample_SW2016.SLDPRT</Name>
+              <Format>
+                <DigitalModelFormatEnum>SOLIDWORKS</DigitalModelFormatEnum>
+              </Format>
+            </File>
+          </DigitalModel>
+        </DefinitionExternal>
+      </Part>
+    </PartSet>
+    <ComponentSet n="1">
+      <Component hidden="false" id="2" transparency="0">
+        <Part>
+          <Id>1</Id>
+        </Part>
+      </Component>
+    </ComponentSet>
+    <AsmPaths n="1">
+      <AsmPath id="3">
+        <ComponentIds n="1">
+          <Id>2</Id>
+        </ComponentIds>
+      </AsmPath>
+    </AsmPaths>
+  </Product>
+
+  <Features>
+    <FeatureDefinitions n="14">
+      <PlaneFeatureDefinition id="8"/>
+      <CircleFeatureDefinition id="25">
+        <InternalExternal>NOT_APPLICABLE</InternalExternal>
+        <Diameter>12</Diameter>
+      </CircleFeatureDefinition>
+      <LineFeatureDefinition id="252"/>
+      <CircleFeatureDefinition id="258">
+        <InternalExternal>INTERNAL</InternalExternal>
+        <Diameter>12</Diameter>
+      </CircleFeatureDefinition>
+      <CircleFeatureDefinition id="506">
+        <InternalExternal>INTERNAL</InternalExternal>
+        <Diameter>12</Diameter>
+      </CircleFeatureDefinition>
+      <PointFeatureDefinition id="753"/>
+      <PointFeatureDefinition id="763"/>
+      <PointFeatureDefinition id="773"/>
+      <PointFeatureDefinition id="783"/>
+      <CylinderFeatureDefinition id="793">
+        <InternalExternal>NOT_APPLICABLE</InternalExternal>
+        <Diameter>30</Diameter>
+      </CylinderFeatureDefinition>
+      <PointFeatureDefinition id="825"/>
+      <PointFeatureDefinition id="830"/>
+      <PlaneFeatureDefinition id="835"/>
+      <LineFeatureDefinition id="839"/>
+    </FeatureDefinitions>
+    <FeatureNominals n="14">
+      <PlaneFeatureNominal id="9">
+        <FeatureDefinitionId>8</FeatureDefinitionId>
+        <Location>-13.582729221136 25.604066083193 0</Location>
+        <Normal>0 0 1</Normal>
+      </PlaneFeatureNominal>
+      <CircleFeatureNominal id="26">
+        <FeatureDefinitionId>25</FeatureDefinitionId>
+        <Location>0 0 -1.834101858977</Location>
+        <Normal>0 0 -1</Normal>
+      </CircleFeatureNominal>
+      <LineFeatureNominal id="253">
+        <FeatureDefinitionId>252</FeatureDefinitionId>
+        <Location>20.55 15.398943602691 -3.544179796825</Location>
+        <Direction>0 0.999785979136153 -0.0206880623250032</Direction>
+      </LineFeatureNominal>
+      <CircleFeatureNominal id="259">
+        <FeatureDefinitionId>258</FeatureDefinitionId>
+        <Location>-33.05 -4.35 -1.309995069701</Location>
+        <Normal>0 0 -1</Normal>
+      </CircleFeatureNominal>
+      <CircleFeatureNominal id="507">
+        <FeatureDefinitionId>506</FeatureDefinitionId>
+        <Location>-33.05 43.05 -1.660694009548</Location>
+        <Normal>0 0 -1</Normal>
+      </CircleFeatureNominal>
+      <PointFeatureNominal id="754">
+        <FeatureDefinitionId>753</FeatureDefinitionId>
+        <Location>-50.175094015692 54.198959479609 -3.125725044257</Location>
+        <Normal>-0.642788056925063 0 0.766044067841075</Normal>
+      </PointFeatureNominal>
+      <PointFeatureNominal id="764">
+        <FeatureDefinitionId>763</FeatureDefinitionId>
+        <Location>-49.456113829197 0.039038194052 -2.522429033857</Location>
+        <Normal>-0.642788056925063 0 0.766044067841075</Normal>
+      </PointFeatureNominal>
+      <PointFeatureNominal id="774">
+        <FeatureDefinitionId>773</FeatureDefinitionId>
+        <Location>-67.834027324636 46.222132399832 -17.943329470273</Location>
+        <Normal>-0.642788056925063 0 0.766044067841075</Normal>
+      </PointFeatureNominal>
+      <PointFeatureNominal id="784">
+        <FeatureDefinitionId>783</FeatureDefinitionId>
+        <Location>-66.453709454437 0.679570935675 -16.785105253415</Location>
+        <Normal>-0.642788056925063 0 0.766044067841075</Normal>
+      </PointFeatureNominal>
+      <CylinderFeatureNominal id="794">
+        <FeatureDefinitionId>793</FeatureDefinitionId>
+        <Axis>
+          <AxisPoint>-19.65 19.45 -7</AxisPoint>
+          <Direction>0 0 -1</Direction>
+        </Axis>
+      </CylinderFeatureNominal>
+      <PointFeatureNominal id="826">
+        <FeatureDefinitionId>825</FeatureDefinitionId>
+        <Location>-1.246616730596 -12.549999776403 -2.991463154478</Location>
+        <Normal>6.60889620000082e-005 -0.999999997816125 0</Normal>
+      </PointFeatureNominal>
+      <PointFeatureNominal id="831">
+        <FeatureDefinitionId>830</FeatureDefinitionId>
+        <Location>-8.77986070385 65.449999614697 -3.009861578624</Location>
+        <Normal>-0.000134688337999936 0.999999990929526 0</Normal>
+      </PointFeatureNominal>
+      <PlaneFeatureNominal id="836">
+        <FeatureDefinitionId>835</FeatureDefinitionId>
+        <Location>-58.479736155991 25.284925252292 -10.09414720045</Location>
+        <Normal>-0.642787609678657 1.79999999999904e-011 0.766044443125592</Normal>
+      </PlaneFeatureNominal>
+      <LineFeatureNominal id="840">
+        <FeatureDefinitionId>839</FeatureDefinitionId>
+        <Location>-33.05 19.35 -1.485344539625</Location>
+        <Direction>0 0.999972630655432 -0.0073985093130032</Direction>
+      </LineFeatureNominal>
+    </FeatureNominals>
+    <FeatureItems n="14">
+      <PlaneFeatureItem id="10">
+        <FeatureNominalId>9</FeatureNominalId>
+        <FeatureName>DATUMA</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PlaneFeatureItem>
+      <CircleFeatureItem id="27">
+        <FeatureNominalId>26</FeatureNominalId>
+        <FeatureName>DATUMB</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </CircleFeatureItem>
+      <LineFeatureItem id="254">
+        <FeatureNominalId>253</FeatureNominalId>
+        <FeatureName>DATUMC</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </LineFeatureItem>
+      <CircleFeatureItem id="260">
+        <FeatureNominalId>259</FeatureNominalId>
+        <FeatureName>CIRCLE1</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </CircleFeatureItem>
+      <CircleFeatureItem id="508">
+        <FeatureNominalId>507</FeatureNominalId>
+        <FeatureName>CIRCLE2</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </CircleFeatureItem>
+      <PointFeatureItem id="755">
+        <FeatureNominalId>754</FeatureNominalId>
+        <FeatureName>POINT1</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PointFeatureItem id="765">
+        <FeatureNominalId>764</FeatureNominalId>
+        <FeatureName>POINT2</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PointFeatureItem id="775">
+        <FeatureNominalId>774</FeatureNominalId>
+        <FeatureName>POINT3</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PointFeatureItem id="785">
+        <FeatureNominalId>784</FeatureNominalId>
+        <FeatureName>POINT4</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <CylinderFeatureItem id="795">
+        <FeatureNominalId>794</FeatureNominalId>
+        <FeatureName>CYL_1</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </CylinderFeatureItem>
+      <PointFeatureItem id="827">
+        <FeatureNominalId>826</FeatureNominalId>
+        <FeatureName>POINT5</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PointFeatureItem id="832">
+        <FeatureNominalId>831</FeatureNominalId>
+        <FeatureName>POINT6</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Measured/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PointFeatureItem>
+      <PlaneFeatureItem id="837">
+        <FeatureNominalId>836</FeatureNominalId>
+        <FeatureName>CPLANE</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Constructed/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </PlaneFeatureItem>
+      <LineFeatureItem id="841">
+        <FeatureNominalId>840</FeatureNominalId>
+        <FeatureName>3-D_LINE1</FeatureName>
+        <DeterminationMode>
+          <Checked>
+            <CheckDetails>
+              <Constructed/>
+            </CheckDetails>
+          </Checked>
+        </DeterminationMode>
+      </LineFeatureItem>
+    </FeatureItems>
+  </Features>
+
+  <Characteristics>
+    <FormalStandardId>858</FormalStandardId>
+    <CharacteristicDefinitions n="23">
+      <FlatnessCharacteristicDefinition id="20">
+        <ToleranceValue>0.01</ToleranceValue>
+      </FlatnessCharacteristicDefinition>
+      <DiameterCharacteristicDefinition id="248">
+        <Tolerance>
+          <MaxValue>0.05</MaxValue>
+          <MinValue>-0.05</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DiameterCharacteristicDefinition>
+      <LinearCoordinateCharacteristicDefinition id="481">
+        <Tolerance>
+          <MaxValue>0.05</MaxValue>
+          <MinValue>-0.05</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </LinearCoordinateCharacteristicDefinition>
+      <LinearCoordinateCharacteristicDefinition id="485">
+        <Tolerance>
+          <MaxValue>0.05</MaxValue>
+          <MinValue>-0.05</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </LinearCoordinateCharacteristicDefinition>
+      <LinearCoordinateCharacteristicDefinition id="489">
+        <Tolerance>
+          <MaxValue>0.05</MaxValue>
+          <MinValue>-0.05</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </LinearCoordinateCharacteristicDefinition>
+      <DiameterCharacteristicDefinition id="493">
+        <Tolerance>
+          <MaxValue>0.05</MaxValue>
+          <MinValue>-0.05</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DiameterCharacteristicDefinition>
+      <PositionCharacteristicDefinition id="497">
+        <ToleranceValue>0.01</ToleranceValue>
+        <DatumReferenceFrameId>498</DatumReferenceFrameId>
+        <MaterialCondition>NONE</MaterialCondition>
+        <ZoneShape>
+          <DiametricalZone/>
+        </ZoneShape>
+      </PositionCharacteristicDefinition>
+      <CircularityCharacteristicDefinition id="502">
+        <ToleranceValue>0.01</ToleranceValue>
+      </CircularityCharacteristicDefinition>
+      <LinearCoordinateCharacteristicDefinition id="729">
+        <Tolerance>
+          <MaxValue>0.05</MaxValue>
+          <MinValue>-0.05</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </LinearCoordinateCharacteristicDefinition>
+      <LinearCoordinateCharacteristicDefinition id="733">
+        <Tolerance>
+          <MaxValue>0.05</MaxValue>
+          <MinValue>-0.05</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </LinearCoordinateCharacteristicDefinition>
+      <LinearCoordinateCharacteristicDefinition id="737">
+        <Tolerance>
+          <MaxValue>0.05</MaxValue>
+          <MinValue>-0.05</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </LinearCoordinateCharacteristicDefinition>
+      <DiameterCharacteristicDefinition id="741">
+        <Tolerance>
+          <MaxValue>0.05</MaxValue>
+          <MinValue>-0.05</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DiameterCharacteristicDefinition>
+      <PositionCharacteristicDefinition id="745">
+        <ToleranceValue>0.01</ToleranceValue>
+        <DatumReferenceFrameId>498</DatumReferenceFrameId>
+        <MaterialCondition>NONE</MaterialCondition>
+        <ZoneShape>
+          <DiametricalZone/>
+        </ZoneShape>
+      </PositionCharacteristicDefinition>
+      <CircularityCharacteristicDefinition id="749">
+        <ToleranceValue>0.01</ToleranceValue>
+      </CircularityCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="758">
+        <ToleranceValue>0.2</ToleranceValue>
+        <DatumReferenceFrameId>498</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="768">
+        <ToleranceValue>0.2</ToleranceValue>
+        <DatumReferenceFrameId>498</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="778">
+        <ToleranceValue>0.2</ToleranceValue>
+        <DatumReferenceFrameId>498</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <PointProfileCharacteristicDefinition id="788">
+        <ToleranceValue>0.2</ToleranceValue>
+        <DatumReferenceFrameId>498</DatumReferenceFrameId>
+      </PointProfileCharacteristicDefinition>
+      <DiameterCharacteristicDefinition id="815">
+        <Tolerance>
+          <MaxValue>0.05</MaxValue>
+          <MinValue>-0.05</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DiameterCharacteristicDefinition>
+      <PerpendicularityCharacteristicDefinition id="819">
+        <ToleranceValue>1</ToleranceValue>
+        <DatumReferenceFrameId>820</DatumReferenceFrameId>
+        <MaterialCondition>NONE</MaterialCondition>
+        <ZoneShape>
+          <DiametricalZone/>
+        </ZoneShape>
+      </PerpendicularityCharacteristicDefinition>
+      <ParallelismCharacteristicDefinition id="843">
+        <ToleranceValue>1</ToleranceValue>
+        <DatumReferenceFrameId>844</DatumReferenceFrameId>
+        <MaterialCondition>NONE</MaterialCondition>
+        <ZoneShape>
+          <PlanarZone/>
+        </ZoneShape>
+      </ParallelismCharacteristicDefinition>
+      <AngleBetweenCharacteristicDefinition id="849">
+        <Tolerance>
+          <MaxValue>2.864788975654</MaxValue>
+          <MinValue>-2.864788975654</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </AngleBetweenCharacteristicDefinition>
+      <DistanceBetweenCharacteristicDefinition id="853">
+        <Tolerance>
+          <MaxValue>0.05</MaxValue>
+          <MinValue>-0.05</MinValue>
+          <DefinedAsLimit>false</DefinedAsLimit>
+        </Tolerance>
+      </DistanceBetweenCharacteristicDefinition>
+    </CharacteristicDefinitions>
+    <CharacteristicNominals n="23">
+      <FlatnessCharacteristicNominal id="21">
+        <CharacteristicDefinitionId>20</CharacteristicDefinitionId>
+      </FlatnessCharacteristicNominal>
+      <DiameterCharacteristicNominal id="249">
+        <CharacteristicDefinitionId>248</CharacteristicDefinitionId>
+        <TargetValue>12</TargetValue>
+      </DiameterCharacteristicNominal>
+      <LinearCoordinateCharacteristicNominal id="482">
+        <CharacteristicDefinitionId>481</CharacteristicDefinitionId>
+        <TargetValue>-33.049999999999997</TargetValue>
+        <Direction>XAXIS</Direction>
+      </LinearCoordinateCharacteristicNominal>
+      <LinearCoordinateCharacteristicNominal id="486">
+        <CharacteristicDefinitionId>485</CharacteristicDefinitionId>
+        <TargetValue>-4.35</TargetValue>
+        <Direction>YAXIS</Direction>
+      </LinearCoordinateCharacteristicNominal>
+      <LinearCoordinateCharacteristicNominal id="490">
+        <CharacteristicDefinitionId>489</CharacteristicDefinitionId>
+        <TargetValue>-1.309995069701</TargetValue>
+        <Direction>ZAXIS</Direction>
+      </LinearCoordinateCharacteristicNominal>
+      <DiameterCharacteristicNominal id="494">
+        <CharacteristicDefinitionId>493</CharacteristicDefinitionId>
+        <TargetValue>12</TargetValue>
+      </DiameterCharacteristicNominal>
+      <PositionCharacteristicNominal id="499">
+        <CharacteristicDefinitionId>497</CharacteristicDefinitionId>
+      </PositionCharacteristicNominal>
+      <CircularityCharacteristicNominal id="503">
+        <CharacteristicDefinitionId>502</CharacteristicDefinitionId>
+      </CircularityCharacteristicNominal>
+      <LinearCoordinateCharacteristicNominal id="730">
+        <CharacteristicDefinitionId>729</CharacteristicDefinitionId>
+        <TargetValue>-33.049999999999997</TargetValue>
+        <Direction>XAXIS</Direction>
+      </LinearCoordinateCharacteristicNominal>
+      <LinearCoordinateCharacteristicNominal id="734">
+        <CharacteristicDefinitionId>733</CharacteristicDefinitionId>
+        <TargetValue>43.049999999999997</TargetValue>
+        <Direction>YAXIS</Direction>
+      </LinearCoordinateCharacteristicNominal>
+      <LinearCoordinateCharacteristicNominal id="738">
+        <CharacteristicDefinitionId>737</CharacteristicDefinitionId>
+        <TargetValue>-1.660694009548</TargetValue>
+        <Direction>ZAXIS</Direction>
+      </LinearCoordinateCharacteristicNominal>
+      <DiameterCharacteristicNominal id="742">
+        <CharacteristicDefinitionId>741</CharacteristicDefinitionId>
+        <TargetValue>12</TargetValue>
+      </DiameterCharacteristicNominal>
+      <PositionCharacteristicNominal id="746">
+        <CharacteristicDefinitionId>745</CharacteristicDefinitionId>
+      </PositionCharacteristicNominal>
+      <CircularityCharacteristicNominal id="750">
+        <CharacteristicDefinitionId>749</CharacteristicDefinitionId>
+      </CircularityCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="759">
+        <CharacteristicDefinitionId>758</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="769">
+        <CharacteristicDefinitionId>768</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="779">
+        <CharacteristicDefinitionId>778</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <PointProfileCharacteristicNominal id="789">
+        <CharacteristicDefinitionId>788</CharacteristicDefinitionId>
+      </PointProfileCharacteristicNominal>
+      <DiameterCharacteristicNominal id="816">
+        <CharacteristicDefinitionId>815</CharacteristicDefinitionId>
+        <TargetValue>30</TargetValue>
+      </DiameterCharacteristicNominal>
+      <PerpendicularityCharacteristicNominal id="822">
+        <CharacteristicDefinitionId>819</CharacteristicDefinitionId>
+      </PerpendicularityCharacteristicNominal>
+      <ParallelismCharacteristicNominal id="846">
+        <CharacteristicDefinitionId>843</CharacteristicDefinitionId>
+      </ParallelismCharacteristicNominal>
+      <AngleBetweenCharacteristicNominal id="850">
+        <CharacteristicDefinitionId>849</CharacteristicDefinitionId>
+        <TargetValue>40</TargetValue>
+        <AnalysisMode>THREEDIMENSIONAL</AnalysisMode>
+      </AngleBetweenCharacteristicNominal>
+      <DistanceBetweenCharacteristicNominal id="854">
+        <CharacteristicDefinitionId>853</CharacteristicDefinitionId>
+        <TargetValue>78</TargetValue>
+        <AnalysisVector>0 1 0</AnalysisVector>
+        <AnalysisMode>ONEDIMENSIONAL</AnalysisMode>
+      </DistanceBetweenCharacteristicNominal>
+    </CharacteristicNominals>
+    <CharacteristicItems n="23">
+      <FlatnessCharacteristicItem id="22">
+        <Name>FLATA</Name>
+        <CharacteristicDesignator>
+          <Designator>FLATA</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>10</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>21</CharacteristicNominalId>
+      </FlatnessCharacteristicItem>
+      <DiameterCharacteristicItem id="250">
+        <Name>DIA_</Name>
+        <CharacteristicDesignator>
+          <Designator>DIA_</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>27</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>249</CharacteristicNominalId>
+      </DiameterCharacteristicItem>
+      <LinearCoordinateCharacteristicItem id="483">
+        <Name>X_CIRCLE1</Name>
+        <CharacteristicDesignator>
+          <Designator>X_CIRCLE1</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>260</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>482</CharacteristicNominalId>
+      </LinearCoordinateCharacteristicItem>
+      <LinearCoordinateCharacteristicItem id="487">
+        <Name>Y_CIRCLE1</Name>
+        <CharacteristicDesignator>
+          <Designator>Y_CIRCLE1</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>260</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>486</CharacteristicNominalId>
+      </LinearCoordinateCharacteristicItem>
+      <LinearCoordinateCharacteristicItem id="491">
+        <Name>Z_CIRCLE1</Name>
+        <CharacteristicDesignator>
+          <Designator>Z_CIRCLE1</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>260</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>490</CharacteristicNominalId>
+      </LinearCoordinateCharacteristicItem>
+      <DiameterCharacteristicItem id="495">
+        <Name>DIA_CIRCLE1</Name>
+        <CharacteristicDesignator>
+          <Designator>DIA_CIRCLE1</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>260</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>494</CharacteristicNominalId>
+      </DiameterCharacteristicItem>
+      <PositionCharacteristicItem id="500">
+        <Name>TP_CIRCLE1</Name>
+        <CharacteristicDesignator>
+          <Designator>TP_CIRCLE1</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>260</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>499</CharacteristicNominalId>
+      </PositionCharacteristicItem>
+      <CircularityCharacteristicItem id="504">
+        <Name>RND_CIRCLE1</Name>
+        <CharacteristicDesignator>
+          <Designator>RND_CIRCLE1</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>260</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>503</CharacteristicNominalId>
+      </CircularityCharacteristicItem>
+      <LinearCoordinateCharacteristicItem id="731">
+        <Name>X_CIRCLE2</Name>
+        <CharacteristicDesignator>
+          <Designator>X_CIRCLE2</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>508</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>730</CharacteristicNominalId>
+      </LinearCoordinateCharacteristicItem>
+      <LinearCoordinateCharacteristicItem id="735">
+        <Name>Y_CIRCLE2</Name>
+        <CharacteristicDesignator>
+          <Designator>Y_CIRCLE2</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>508</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>734</CharacteristicNominalId>
+      </LinearCoordinateCharacteristicItem>
+      <LinearCoordinateCharacteristicItem id="739">
+        <Name>Z_CIRCLE2</Name>
+        <CharacteristicDesignator>
+          <Designator>Z_CIRCLE2</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>508</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>738</CharacteristicNominalId>
+      </LinearCoordinateCharacteristicItem>
+      <DiameterCharacteristicItem id="743">
+        <Name>DIA_2</Name>
+        <CharacteristicDesignator>
+          <Designator>DIA_2</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>508</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>742</CharacteristicNominalId>
+      </DiameterCharacteristicItem>
+      <PositionCharacteristicItem id="747">
+        <Name>TP_2</Name>
+        <CharacteristicDesignator>
+          <Designator>TP_2</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>508</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>746</CharacteristicNominalId>
+      </PositionCharacteristicItem>
+      <CircularityCharacteristicItem id="751">
+        <Name>RND_2</Name>
+        <CharacteristicDesignator>
+          <Designator>RND_2</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>508</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>750</CharacteristicNominalId>
+      </CircularityCharacteristicItem>
+      <PointProfileCharacteristicItem id="760">
+        <Name>PROF1</Name>
+        <CharacteristicDesignator>
+          <Designator>PROF1</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>755</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>759</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="770">
+        <Name>PROF2</Name>
+        <CharacteristicDesignator>
+          <Designator>PROF2</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>765</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>769</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="780">
+        <Name>PROF3</Name>
+        <CharacteristicDesignator>
+          <Designator>PROF3</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>775</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>779</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <PointProfileCharacteristicItem id="790">
+        <Name>PROF4</Name>
+        <CharacteristicDesignator>
+          <Designator>PROF4</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>785</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>789</CharacteristicNominalId>
+      </PointProfileCharacteristicItem>
+      <DiameterCharacteristicItem id="817">
+        <Name>DIA_CYL</Name>
+        <CharacteristicDesignator>
+          <Designator>DIA_CYL</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>795</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>816</CharacteristicNominalId>
+      </DiameterCharacteristicItem>
+      <PerpendicularityCharacteristicItem id="823">
+        <Name>PERP1</Name>
+        <CharacteristicDesignator>
+          <Designator>PERP1</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>795</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>822</CharacteristicNominalId>
+      </PerpendicularityCharacteristicItem>
+      <ParallelismCharacteristicItem id="847">
+        <Name>PARALLELISM1</Name>
+        <CharacteristicDesignator>
+          <Designator>PARALLELISM1</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="1">
+          <Id>841</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>846</CharacteristicNominalId>
+      </ParallelismCharacteristicItem>
+      <AngleBetweenCharacteristicItem id="851">
+        <Name>ANGLE_CPLANE</Name>
+        <CharacteristicDesignator>
+          <Designator>ANGLE_CPLANE</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="2">
+          <Id>837</Id>
+          <Id>10</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>850</CharacteristicNominalId>
+      </AngleBetweenCharacteristicItem>
+      <DistanceBetweenCharacteristicItem id="855">
+        <Name>DISTANCE1_Y</Name>
+        <CharacteristicDesignator>
+          <Designator>DISTANCE1_Y</Designator>
+        </CharacteristicDesignator>
+        <FeatureItemIds n="2">
+          <Id>827</Id>
+          <Id>832</Id>
+        </FeatureItemIds>
+        <MeasurementDeviceIds n="1">
+          <Id>23</Id>
+        </MeasurementDeviceIds>
+        <CharacteristicNominalId>854</CharacteristicNominalId>
+      </DistanceBetweenCharacteristicItem>
+    </CharacteristicItems>
+  </Characteristics>
+
+  <Results>
+    <MeasurementResultsSet n="1">
+      <MeasurementResults id="857">
+        <ExternalFileReferences n="1">
+          <ExternalFileReference>
+            <URI>FROM_APTIN</URI>
+            <FileSpec>
+              <OtherFileSpec>RES</OtherFileSpec>
+            </FileSpec>
+            <Description>/#SFI,SCAN_APTIN,CMMPROG01</Description>
+          </ExternalFileReference>
+        </ExternalFileReferences>
+        <MeasuredFeatures n="14">
+          <PlaneFeatureMeasurement id="11">
+            <FeatureItemId>10</FeatureItemId>
+              <PointList n="1">
+                <RangePointSetId range="3 8">12</RangePointSetId>
+              </PointList>
+            <Location>-13.582729221136 25.604066083193 0.003062682189</Location>
+            <Normal>7.64415200000037e-006 1.45420590000007e-005 0.999999999865048</Normal>
+          </PlaneFeatureMeasurement>
+          <CircleFeatureMeasurement id="28">
+              <FeatureItemId>27</FeatureItemId>
+              <PointList n="1">
+                <WholePointSetId>29</WholePointSetId>
+              </PointList>
+              <Location>0.00080940233 0.00031692348 -1.834101858977</Location>
+              <Normal>0 0 -1</Normal>
+              <Diameter>12.091599179226</Diameter>
+            </CircleFeatureMeasurement>
+            <LineFeatureMeasurement id="255">
+              <FeatureItemId>254</FeatureItemId>
+              <PointList n="2">
+                <SinglePointSetId index="1">256</SinglePointSetId>
+                <SinglePointSetId index="2">256</SinglePointSetId>
+              </PointList>
+              <Location>20.453263334779 15.398943606174 -3.544179628467</Location>
+              <Normal>-3.07699999999909e-009 0.999785979180705 -0.0206880601719939</Normal>
+            </LineFeatureMeasurement>
+            <CircleFeatureMeasurement id="261">
+              <FeatureItemId>260</FeatureItemId>
+	      <PointList n="1">
+                <WholePointSetId>262</WholePointSetId>
+              </PointList>
+              <Location>-33.202287934878 -4.336695992982 -1.309995069701</Location>
+              <Normal>0 0 -1</Normal>
+              <Diameter>12.095569950907</Diameter>
+            </CircleFeatureMeasurement>
+            <CircleFeatureMeasurement id="509">
+              <FeatureItemId>508</FeatureItemId>
+	      <PointList n="1">
+                <WholePointSetId>510</WholePointSetId>
+              </PointList>
+              <Location>-33.150578904473 43.279377062175 -1.660694009548</Location>
+              <Normal>0 0 -1</Normal>
+              <Diameter>12.068425921098999</Diameter>
+            </CircleFeatureMeasurement>
+            <PointFeatureMeasurement id="756">
+              <FeatureItemId>755</FeatureItemId>
+	      <PointList n="1">
+                <WholePointSetId>757</WholePointSetId>
+              </PointList>
+              <Location>-51.726518705386 54.198959479609 -1.276811288879</Location>
+            </PointFeatureMeasurement>
+            <PointFeatureMeasurement id="766">
+              <FeatureItemId>765</FeatureItemId>
+	      <PointList n="1">
+                <WholePointSetId>767</WholePointSetId>
+              </PointList>
+              <Location>-51.033955721119 0.039038194052 -0.642032520146</Location>
+            </PointFeatureMeasurement>
+            <PointFeatureMeasurement id="776">
+
+              <FeatureItemId>775</FeatureItemId>
+              <Location>-69.387091135231 46.222132399832 -16.092462288988</Location>
+            </PointFeatureMeasurement>
+            <PointFeatureMeasurement id="786">
+              <FeatureItemId>785</FeatureItemId>
+	      <PointList n="1">
+                <WholePointSetId>787</WholePointSetId>
+              </PointList>
+              <Location>-68.03628976895 0.679570935675 -14.899061714253</Location>
+            </PointFeatureMeasurement>
+            <CylinderFeatureMeasurement id="796">
+              <FeatureItemId>795</FeatureItemId>
+	      <PointList n="1">
+                <WholePointSetId>797</WholePointSetId>
+              </PointList>
+              <Axis>
+                <AxisPoint>-19.460634807052 19.61932106672 -7</AxisPoint>
+                <Direction>0.00027596187700008 -0.00120213638300035 -0.99999923935629</Direction>
+              </Axis>
+              <Diameter>30.110940798089999</Diameter>
+            </CylinderFeatureMeasurement>
+            <PointFeatureMeasurement id="828">
+              <FeatureItemId>827</FeatureItemId>
+	      <PointList n="1">
+                <WholePointSetId>828</WholePointSetId>
+              </PointList>
+              <Location>-1.246458515652 -14.943969035049 -2.991463154478</Location>
+            </PointFeatureMeasurement>
+            <PointFeatureMeasurement id="833">
+              <FeatureItemId>832</FeatureItemId>
+	      <PointList n="1">
+                <WholePointSetId>834</WholePointSetId>
+              </PointList>
+              <Location>-8.780180022677 67.820797479257 -3.009861578624</Location>
+            </PointFeatureMeasurement>
+            <PlaneFeatureMeasurement id="838">
+              <FeatureItemId>837</FeatureItemId>
+              <Location>-8.780180022677 67.820797479257 -3.009861578624</Location>
+              <Normal>-0.642731788334176 0.000864293699000237 0.76609079178721</Normal>
+            </PlaneFeatureMeasurement>
+            <LineFeatureMeasurement id="842">
+              <FeatureItemId>841</FeatureItemId>
+              <Location>-8.780180022677 67.820797479257 -3.009861578624</Location>
+              <Normal>0.00108592972999987 0.999972288895881 -0.00736493020699912</Normal>
+            </LineFeatureMeasurement>
+        </MeasuredFeatures>
+
+	<MeasuredPointSets n="12">
+          <MeasuredPointSet id="29" count="219">
+            <Points>
+<!-- for CircleFeatureMeasurement id="28" -->
+                3.54516458565 0.0037440421 -1.82916012241
+                3.53565512438 0.16719415655 -1.82668309022
+                3.53421404082 0.2741139726 -1.8330761955
+                3.53222657884 0.35200678873 -1.83793175495
+                3.52260741082 0.46614781434 -1.84190683334
+                3.50983644456 0.56681389682 -1.84276597889
+                3.49199532628 0.66252889377 -1.83795311218
+                3.46391869026 0.79103760218 -1.82902408267
+                3.44729693718 0.86488712158 -1.82734157118
+                3.42667092205 0.9375369606 -1.82939877209
+                3.38629997911 1.05519491808 -1.83171035301
+                3.35865641669 1.1341826956 -1.83398598571
+                  3.31796429289 1.25708971059 -1.83980587496
+                  3.28953627506 1.33642153859 -1.83857966769
+                  3.24977590479 1.42764335432 -1.83264705064
+                  3.20426491535 1.52527089311 -1.82814586608
+                  3.16157650391 1.61778349845 -1.82856951297
+                  3.11790119068 1.69924379727 -1.82904108808
+                  3.06049184625 1.8019789487 -1.82972015792
+                  3.01652595207 1.87384565381 -1.83400926134
+                  2.94485425575 1.97969307108 -1.83618156748
+                  2.89681650609 2.04973823261 -1.83196889122
+                  2.83568484425 2.13130470799 -1.82747280242
+                  2.76928574355 2.21520953633 -1.83093655879
+                  2.7010646102 2.30210661744 -1.84014335003
+                  2.64727845793 2.36162637892 -1.8419676505
+                  2.57004902822 2.44116279944 -1.8346537987
+                  2.49741964774 2.51517309678 -1.82371803328
+                  2.43024104129 2.57883466874 -1.82168629009
+                  2.34743308518 2.65622925746 -1.83831036271
+                  2.27463886846 2.71997529735 -1.85384847557
+                  2.18612460017 2.79404285979 -1.85036932249
+                  2.12190711404 2.84342131172 -1.84049109598
+                  2.0382947647 2.90187986463 -1.8361686924
+                  1.94242799666 2.96654755565 -1.83304330892
+                  1.87092200999 3.01088051422 -1.83273151834
+                  1.75850541874 3.0819060321 -1.83205370243
+                  1.69678646721 3.11566772655 -1.83335116346
+                  1.57306548214 3.17836098575 -1.83575763377
+                  1.4931668911 3.21643863803 -1.83841585181
+                  1.40387799642 3.25751948101 -1.83884737078
+                  1.29785092318 3.30019618219 -1.83717679008
+                  1.21142676387 3.33381115986 -1.83748397417
+                  1.10403210506 3.37104838127 -1.8399330911
+                  1.0079709124 3.40031026392 -1.84513594694
+                  0.91467719911 3.4266803217 -1.84729259053
+                  0.83582430987 3.44399759361 -1.84423644108
+                  0.71011490626 3.46954473625 -1.83942284985
+                  0.6308671527 3.48290678849 -1.8366032728
+                  0.48824674007 3.50457727446 -1.83923041106
+                  0.38684223575 3.52154462828 -1.84594770124
+                  0.30215585198 3.53445466959 -1.84910697489
+                  0.19502056282 3.54241067461 -1.8462323371
+                  0.09346042468 3.5468789246 -1.83867215741
+                  -0.00722315471 3.54948626306 -1.83451429478
+                  -0.11081516769 3.54957515166 -1.83462936562
+                  -0.22101898092 3.54437750004 -1.83541893618
+                  -0.31439144549 3.53541469309 -1.83692650914
+                  -0.40641895127 3.52267605197 -1.83943060018
+                  -0.52327241144 3.51077212509 -1.84115554897
+                  -0.61524962827 3.49876925364 -1.84228813427
+                  -0.71388210082 3.47911765295 -1.84184727906
+                  -0.82217990618 3.45391672843 -1.84165709258
+                  -0.91470986224 3.43149510011 -1.84190808644
+                  -1.00661952639 3.40375303578 -1.84043100396
+                  -1.11661412026 3.36809414484 -1.83726394309
+                  -1.20291393218 3.33586213109 -1.83570042267
+                  -1.31773588788 3.29375913031 -1.83490656362
+                  -1.39727506778 3.25914451796 -1.83641765348
+                  -1.51256118317 3.20899542433 -1.8409990831
+                  -1.59889287111 3.16744926097 -1.84334270315
+                  -1.6757709478 3.12426355092 -1.83997095627
+                  -1.77525878135 3.06700862961 -1.83506692725
+                  -1.86031301685 3.0193962839 -1.83351121788
+                  -1.9528783602 2.96217897564 -1.83532651615
+                  -2.0276225169 2.90761654703 -1.83854592304
+                  -2.13466779778 2.83004348848 -1.84187088858
+                  -2.19512835241 2.78250918917 -1.84575971266
+                  -2.28510250322 2.71145234221 -1.84772788262
+                  -2.3600293407 2.64752226377 -1.8462466624
+                  -2.42809721384 2.58179056556 -1.83996723231
+                  -2.50564994748 2.50228671401 -1.83280698052
+                  -2.58189963712 2.42623481386 -1.82890256031
+                  -2.66115416396 2.34348364284 -1.83149574917
+                  -2.71580033939 2.28247204179 -1.83852497566
+                  -2.78571639556 2.18953289072 -1.8492558961
+                  -2.84676931142 2.11001455702 -1.85279676206
+                  -2.90058734983 2.0366653324 -1.84917530911
+                  -2.96842886524 1.93433714294 -1.83656292687
+                  -3.01475491999 1.8609621251 -1.82950026466
+                  -3.06794824185 1.77288359954 -1.82865271259
+                  -3.11263335674 1.68591904141 -1.83487157135
+                  -3.15654014789 1.57953708311 -1.84560696207
+                  -3.19274359932 1.49126888375 -1.85243116038
+                  -3.23622274401 1.38650440615 -1.8567248348
+                  -3.29176565968 1.26364560777 -1.85603519295
+                  -3.31766558939 1.20951667586 -1.85319456393
+                  -3.37612169507 1.08283526972 -1.84560963703
+                  -3.39327248879 1.0268199001 -1.83877015409
+                  -3.42875190902 0.9026107616 -1.8328786917
+                  -3.44527389509 0.83122550586 -1.83025356593
+                  -3.47397621365 0.70631327938 -1.83126815106
+                  -3.48970755335 0.61575778442 -1.83523776
+                  -3.5115216436 0.49197240656 -1.83571161528
+                  -3.52567293875 0.40461570872 -1.83730611118
+                  -3.53481861551 0.31537790177 -1.84123889191
+                  -3.54171222956 0.19176475576 -1.83937972082
+                  -3.54345545757 0.11529453201 -1.83569742292
+                  -3.54781428905 -0.0200630546 -1.83793309456
+                  -3.54870440073 -0.1026989499 -1.84442755256
+                  -3.54499361998 -0.20890653954 -1.84774464589
+                  -3.53918147809 -0.2941143623 -1.84825960254
+                  -3.52780574026 -0.41302535444 -1.84635519377
+                  -3.51639382346 -0.51312951313 -1.84258878356
+                  -3.50240428338 -0.60653593965 -1.83605783581
+                  -3.48043191814 -0.719785049 -1.83308359088
+                  -3.45640561232 -0.81352878774 -1.83411811327
+                  -3.42855519846 -0.91709947409 -1.8332849365
+                  -3.40586059581 -1.00207667788 -1.83555020506
+                  -3.3731654707 -1.11118428546 -1.83721657429
+                  -3.34357380633 -1.19639371546 -1.84028194174
+                  -3.30266110001 -1.30074120094 -1.84188047688
+                  -3.2667463926 -1.38224054229 -1.83526660414
+                  -3.2066982184 -1.51202833337 -1.82417386396
+                  -3.18134926536 -1.56244894354 -1.8201382302
+                  -3.12591171193 -1.67400749923 -1.82163340707
+                  -3.08744440864 -1.7468432805 -1.83416997161
+                  -3.02860319779 -1.8463940636 -1.84279826083
+                  -2.97617157688 -1.93217845094 -1.84024975341
+                  -2.92521686992 -2.01017463881 -1.83176543271
+                  -2.86507065497 -2.0923925789 -1.82223921743
+                  -2.8075616411 -2.16525541322 -1.81705244538
+                  -2.73307829783 -2.26213489462 -1.81706003697
+                  -2.67556583794 -2.33043549862 -1.8254172997
+                  -2.59192863418 -2.42047677785 -1.83698868492
+                  -2.5392661608 -2.47392954747 -1.84345239204
+                  -2.45285061669 -2.560220294 -1.83873909279
+                  -2.39115531344 -2.61976179083 -1.82722652042
+                  -2.3133769822 -2.69002733685 -1.82043284753
+                  -2.24174474771 -2.74552458565 -1.81679474204
+                  -2.14611910653 -2.81431733798 -1.81741916434
+                  -2.06251202681 -2.87501201491 -1.8248247076
+                  -1.99074043432 -2.92792090505 -1.82972156704
+                  -1.91614306103 -2.98093408756 -1.83037344802
+                  -1.81881671929 -3.04520459579 -1.82629757468
+                  -1.74977308807 -3.08506568664 -1.82148911708
+                  -1.63712361674 -3.14560518251 -1.82801842025
+                  -1.58524730781 -3.17051334592 -1.84067753501
+                  -1.43657993711 -3.24175097618 -1.8584205271
+                  -1.38439094491 -3.26599982144 -1.85728930961
+                  -1.28314764944 -3.30430105013 -1.83249797202
+                  -1.1760044308 -3.34365870561 -1.80726243107
+                  -1.09892832408 -3.37022197986 -1.8013958873
+                  -1.02560819189 -3.38727730907 -1.81662579716
+                  -0.90174240575 -3.41290563177 -1.84247001119
+                  -0.78942158798 -3.44076692666 -1.85974819832
+                  -0.69159509819 -3.46932775024 -1.8631297634
+                  -0.59187537841 -3.49530401974 -1.85407782885
+                  -0.48512168001 -3.51271188388 -1.83087504544
+                  -0.40025788566 -3.52290864729 -1.81891958487
+                  -0.30363171078 -3.53369047589 -1.80915314737
+                  -0.21720560367 -3.53939141597 -1.80712685109
+                  -0.10905577707 -3.54353877681 -1.81479235016
+                  -0.0090124678 -3.54447240437 -1.82641028128
+                  0.10008474567 -3.5454148201 -1.82902417796
+                  0.1931066189 -3.5446079327 -1.82885149185
+                  0.29258283081 -3.53898550957 -1.83062431058
+                  0.41723360974 -3.52598686492 -1.82656939227
+                  0.51029342149 -3.51666002045 -1.8231498759
+                  0.59383454638 -3.50631406556 -1.81915428828
+                  0.68367999381 -3.48692501173 -1.81288714582
+                  0.78577128499 -3.46413049841 -1.80954627902
+                  0.88463031611 -3.43945351674 -1.81098790335
+                  0.9800563162 -3.41336736318 -1.81686809654
+                  1.05293867698 -3.38739895287 -1.82150479553
+                  1.18388480548 -3.34482487355 -1.82244099602
+                  1.26340620896 -3.31794979389 -1.82173133194
+                  1.35030951645 -3.28243035585 -1.8233992077
+                  1.44039403507 -3.24200833751 -1.82487557133
+                  1.51639075296 -3.2043729976 -1.8235876534
+                  1.64336522702 -3.14207308147 -1.82048032357
+                  1.70431650627 -3.10936834576 -1.8187186318
+                  1.8163451478 -3.04275007364 -1.8309163646
+                  1.87037205904 -3.01023959013 -1.84314542422
+                  1.98213964908 -2.93771950362 -1.85032779147
+                  2.04153931351 -2.89558547218 -1.84570690278
+                  2.14023934491 -2.82556423011 -1.83451660531
+                  2.20451209944 -2.77399603479 -1.82495093694
+                  2.30514427708 -2.69042977325 -1.8270296885
+                  2.37117378559 -2.63442649951 -1.83165470402
+                  2.44393689515 -2.56659286757 -1.83395151011
+                  2.52692818926 -2.48456242444 -1.83536368054
+                  2.56233047552 -2.449114085 -1.83593026143
+                  2.65253761504 -2.34962697163 -1.83332485374
+                  2.70023046958 -2.29307490492 -1.83437772929
+                  2.7832230424 -2.19084411038 -1.83702520306
+                  2.83627377363 -2.12051269434 -1.82789379146
+                  2.89867456445 -2.03588361412 -1.81993297878
+                  2.94531540221 -1.96664891811 -1.81918024281
+                  3.01639756504 -1.85899644523 -1.8210252067
+                  3.05908595075 -1.78800316502 -1.82109056329
+                  3.10727860109 -1.70109230972 -1.82077621429
+                  3.16862425163 -1.58936996672 -1.82177325555
+                  3.19278092726 -1.53912773021 -1.82693879964
+                  3.24546338937 -1.42302348912 -1.83336563698
+                  3.2745472647 -1.35441348411 -1.8358249431
+                  3.32300178433 -1.22829996795 -1.83519452293
+                  3.35793967419 -1.13295555393 -1.83643152435
+                  3.37814156877 -1.0697191029 -1.83668872663
+                  3.42312547734 -0.92747465165 -1.83363450239
+                  3.43367249653 -0.88249855637 -1.83346945732
+                  3.46840975065 -0.73972833247 -1.83433554877
+                  3.48218991344 -0.67486596862 -1.83275368336
+                  3.50651336755 -0.54016460601 -1.83271008766
+                  3.51762929379 -0.46238290994 -1.83910081983
+                  3.52960025888 -0.33850131839 -1.84364193428
+                  3.53418482396 -0.26501273441 -1.83803469385
+                  3.54271215745 -0.14948152027 -1.8263098375
+                  3.54406294492 -0.07350448483 -1.8194095497
+            </Points>
+            <Compensated>false</Compensated>
+            <ProbeRadius>2.49978271104</ProbeRadius>
+          </MeasuredPointSet>
+
+          <MeasuredPointSet id="262" count="219">
+<!-- for CircleFeatureMeasurement id="261" -->
+              <Points>
+                  -29.65156295289 -4.35146716339 -1.30554312075
+                  -29.6589725501 -4.24946301295 -1.30374241679
+                  -29.66208467073 -4.13267541893 -1.30888803251
+                  -29.66562984362 -4.04848288067 -1.31436678449
+                  -29.67437757962 -3.90625353734 -1.31664381502
+                  -29.68148888278 -3.83295638053 -1.31475080115
+                  -29.70057757868 -3.70487286569 -1.30702266944
+                  -29.7154946397 -3.63401168953 -1.30307946037
+                  -29.7383710474 -3.54679091166 -1.30250558059
+                  -29.76383738419 -3.43939108212 -1.31095634942
+                  -29.79009472784 -3.35455835087 -1.32057071869
+                  -29.83376911334 -3.21927359 -1.31993639275
+                  -29.8504419686 -3.17181174435 -1.31451238224
+                  -29.90081102962 -3.03008818952 -1.30927374445
+                  -29.92200201679 -2.97845029841 -1.30951631441
+                  -29.97940613831 -2.84332312286 -1.31059513566
+                  -30.01171402524 -2.77271243203 -1.31126489362
+                  -30.06298821357 -2.67182223271 -1.31359155335
+                  -30.10754040032 -2.59165549327 -1.31222914091
+                  -30.16410574221 -2.49492013 -1.30702198574
+                  -30.21772358637 -2.40909162257 -1.30611839158
+                  -30.27220055617 -2.33155494585 -1.31037182941
+                  -30.33951093264 -2.2358912571 -1.31329287199
+                  -30.38252864638 -2.17751924636 -1.31489010565
+                  -30.47200417207 -2.06159329693 -1.31486117464
+                  -30.51815292944 -2.01359395918 -1.31047305009
+                  -30.60741162111 -1.91247738715 -1.3062398678
+                  -30.65689476872 -1.86124465284 -1.30694064269
+                  -30.74794530893 -1.77309619457 -1.31161478513
+                  -30.81837073874 -1.70683967894 -1.31689321314
+                  -30.88759394556 -1.64968995675 -1.31887589547
+                  -30.98982625191 -1.56422802046 -1.31913278415
+                  -31.05509330764 -1.51039785245 -1.31779300497
+                  -31.15478600856 -1.43663354986 -1.31567869824
+                  -31.21798507994 -1.39346383641 -1.31483378345
+                  -31.32762251766 -1.31871751854 -1.31517243711
+                  -31.39196262114 -1.27831683207 -1.31645293683
+                  -31.50390177204 -1.21365243725 -1.31703653489
+                  -31.59097654203 -1.16829713345 -1.31681434515
+                  -31.687155266 -1.12279869955 -1.31549132421
+                  -31.78871301775 -1.07664586895 -1.31379289247
+                  -31.87616718863 -1.0427961615 -1.31333676547
+                  -32.00352965083 -0.99368578815 -1.31483341949
+                  -32.06284059164 -0.97493261152 -1.31653419839
+                  -32.18019508827 -0.93649414586 -1.31603744457
+                  -32.28016830401 -0.90812193712 -1.31394594132
+                  -32.37678511243 -0.88244692823 -1.31255600312
+                  -32.49080735694 -0.85730555099 -1.31243279101
+                  -32.5782788637 -0.84435330147 -1.31372682563
+                  -32.70842757337 -0.82497051077 -1.31525076965
+                  -32.78401745723 -0.82004093135 -1.31539613428
+                  -32.92306280614 -0.8057895059 -1.31397720865
+                  -33.01138909848 -0.80531943702 -1.31360860664
+                  -33.11573091916 -0.79941808735 -1.31316345853
+                  -33.22588787676 -0.79959554146 -1.31366620259
+                  -33.31830795002 -0.79926270748 -1.31456541434
+                  -33.44475751289 -0.80032523385 -1.31508487461
+                  -33.52744775118 -0.80740280386 -1.31481115383
+                  -33.66138653439 -0.81325281796 -1.31409064612
+                  -33.7522700601 -0.82929864932 -1.31384509516
+                  -33.85410548353 -0.84035079001 -1.31370535685
+                  -33.95667124185 -0.86724391028 -1.31423182687
+                  -34.05299674255 -0.88996905051 -1.31453474543
+                  -34.17048003059 -0.92491456235 -1.31421745243
+                  -34.26417485498 -0.9598850299 -1.31392950306
+                  -34.36701435971 -0.99114899389 -1.31384688626
+                  -34.45401700305 -1.0328152443 -1.31409099317
+                  -34.56212239552 -1.06920018501 -1.31410274933
+                  -34.6492667702 -1.11295188795 -1.31437241352
+                  -34.75220358712 -1.15688781505 -1.31443518
+                  -34.85060616407 -1.20407287439 -1.31422417507
+                  -34.9370054736 -1.2561649844 -1.31427288796
+                  -35.04277523283 -1.31695540488 -1.31395007788
+                  -35.1281063455 -1.36577316191 -1.31400315074
+                  -35.20999274903 -1.42378222532 -1.3142650831
+                  -35.28854099634 -1.47813278253 -1.31450505213
+                  -35.38230042697 -1.54760818922 -1.31438595705
+                  -35.46434806057 -1.61181706615 -1.31428296568
+                  -35.54618683696 -1.68043170924 -1.31459769781
+                  -35.64336112924 -1.76897048112 -1.31421255275
+                  -35.69350377364 -1.81634518502 -1.31410159388
+                  -35.78741103163 -1.91229931592 -1.31373617229
+                  -35.84378877918 -1.96985156191 -1.31390762153
+                  -35.91265277529 -2.05240372402 -1.3143299441
+                  -35.99301303895 -2.14085179998 -1.31450809839
+                  -36.05240418556 -2.22380137036 -1.31440009803
+                  -36.11783196513 -2.30557134429 -1.31404174768
+                  -36.16942813476 -2.3856128882 -1.31405833231
+                  -36.23304139827 -2.48650949504 -1.31405019993
+                  -36.29164177059 -2.58458053558 -1.31468633535
+                  -36.33732444048 -2.66890722538 -1.314850907
+                  -36.38118535908 -2.75279626725 -1.3146364309
+                  -36.43066732619 -2.85678645281 -1.31406036621
+                  -36.47167456212 -2.94559749697 -1.31367475022
+                  -36.50881273665 -3.03764498271 -1.31371498148
+                  -36.55017157939 -3.15443353807 -1.31408625979
+                  -36.58225273248 -3.24741295043 -1.3146524319
+                  -36.6111929477 -3.34448126259 -1.31473547797
+                  -36.63813681253 -3.43868077996 -1.3149451405
+                  -36.66415197809 -3.54651496734 -1.31513587048
+                  -36.68455446078 -3.64228673151 -1.31501431637
+                  -36.70481679406 -3.75073056591 -1.3139375575
+                  -36.72039194491 -3.84783109167 -1.31339915199
+                  -36.73330890214 -3.95490702211 -1.31414976681
+                  -36.74217496266 -4.05468613553 -1.31475880519
+                  -36.74754392638 -4.16181782989 -1.31614107067
+                  -36.75205357393 -4.2633513855 -1.31657203771
+                  -36.75273034227 -4.38785989934 -1.31564701348
+                  -36.75085117365 -4.46698215528 -1.3144256655
+                  -36.74653022884 -4.58204278197 -1.3126876042
+                  -36.7406704431 -4.67320002244 -1.31173329443
+                  -36.72973264644 -4.7806442777 -1.31100671836
+                  -36.71857313187 -4.87907375395 -1.31408036516
+                  -36.70182622492 -4.97661220975 -1.31814423289
+                  -36.67926974524 -5.07730992968 -1.32132629419
+                  -36.65271264312 -5.1905883383 -1.31911482059
+                  -36.62630057833 -5.28409466837 -1.31406360726
+                  -36.59816354295 -5.37909647827 -1.30900192887
+                  -36.56733878405 -5.47672764551 -1.30931953341
+                  -36.53540126937 -5.56400258291 -1.31413035573
+                  -36.49372265038 -5.66764685701 -1.31841852334
+                  -36.45746557982 -5.75097411609 -1.32081022581
+                  -36.40713112887 -5.86153429469 -1.31813340406
+                  -36.36090932143 -5.95811022539 -1.31020848378
+                  -36.32141068082 -6.02940745566 -1.30913259405
+                  -36.26661424198 -6.12004164613 -1.32510120725
+                  -36.21034852541 -6.21744331841 -1.35244657465
+                  -36.16273198184 -6.29470208532 -1.35652794043
+                  -36.09246511452 -6.39811941403 -1.31939954346
+                  -36.04382336026 -6.46520268328 -1.29159681701
+                  -35.99028121643 -6.53290463378 -1.27911982957
+                  -35.91728091297 -6.62194222591 -1.29100461607
+                  -35.86301829833 -6.68354784422 -1.30372435807
+                  -35.79148727877 -6.76062171502 -1.31175491783
+                  -35.7164793445 -6.83773041936 -1.31529796923
+                  -35.63630163073 -6.91698894029 -1.30801853048
+                  -35.57510217438 -6.97652374397 -1.29756198712
+                  -35.51394938351 -7.03101832744 -1.2952789571
+                  -35.41750201897 -7.11070931123 -1.30189682649
+                  -35.3614401966 -7.15033775728 -1.30536893735
+                  -35.25694926377 -7.22521241478 -1.30220136483
+                  -35.18405512169 -7.27667733194 -1.29851464232
+                  -35.08420037783 -7.34325367355 -1.29884669834
+                  -35.00943158644 -7.38943593 -1.30133402117
+                  -34.93884392921 -7.43001714217 -1.30092324201
+                  -34.82652149175 -7.49213660573 -1.29992789607
+                  -34.77620350634 -7.51448295636 -1.29911583977
+                  -34.64988020038 -7.57054345772 -1.30286581075
+                  -34.5844733508 -7.59917297716 -1.30925688906
+                  -34.46319727518 -7.65027878332 -1.31133931532
+                  -34.40657424697 -7.67090197594 -1.30803243428
+                  -34.28152755262 -7.71098590086 -1.30520911613
+                  -34.19124651435 -7.7396651026 -1.30955186728
+                  -34.11259464915 -7.76137053325 -1.3135517627
+                  -33.98364067073 -7.79331055608 -1.30820692813
+                  -33.93187491695 -7.80462707518 -1.30338377108
+                  -33.7921066671 -7.83326185427 -1.29835457039
+                  -33.73555764507 -7.84176261038 -1.29085020929
+                  -33.61636346646 -7.85697933559 -1.29109140035
+                  -33.51652933804 -7.86866273961 -1.29610257052
+                  -33.41509468881 -7.87564109602 -1.30125589432
+                  -33.31085727133 -7.8794284547 -1.30128410901
+                  -33.224603652 -7.87900669336 -1.29493543472
+                  -33.1067743434 -7.87875915459 -1.28856911086
+                  -33.03367253324 -7.87859526503 -1.28515010889
+                  -32.90164130236 -7.87728935259 -1.28891938606
+                  -32.83769494691 -7.87291516107 -1.29080122511
+                  -32.72770844641 -7.86060104034 -1.29273332108
+                  -32.65775634332 -7.84948120904 -1.29786742003
+                  -32.53491468602 -7.82611654615 -1.2959337966
+                  -32.42129623224 -7.80240419845 -1.29494682603
+                  -32.36974591822 -7.79055837389 -1.29521708064
+                  -32.2532103927 -7.7612193567 -1.29026382171
+                  -32.18063345297 -7.73889256575 -1.28295303405
+                  -32.07491195039 -7.70438479623 -1.2879535022
+                  -31.9996365825 -7.6772716712 -1.30076347939
+                  -31.89855424056 -7.63651784592 -1.30108348932
+                  -31.81571396262 -7.60004455131 -1.29571697168
+                  -31.73828113227 -7.56006079213 -1.29989465793
+                  -31.62238445359 -7.50341776718 -1.29977838034
+                  -31.55680408335 -7.47015851944 -1.30104599335
+                  -31.43070578811 -7.40771571232 -1.30301198786
+                  -31.38941438209 -7.38414939801 -1.29916609373
+                  -31.2794971957 -7.31742534258 -1.29034484883
+                  -31.21509323712 -7.27507956667 -1.28482202555
+                  -31.12369823786 -7.21053592906 -1.28545988335
+                  -31.03542373516 -7.14609235593 -1.29045025951
+                  -30.98296842872 -7.10269730459 -1.29764141184
+                  -30.86579837113 -7.00633723932 -1.30902718072
+                  -30.84861398533 -6.98861699308 -1.30962772988
+                  -30.73170057313 -6.87893800384 -1.3026133417
+                  -30.68794844635 -6.83537529289 -1.29954561954
+                  -30.61205369826 -6.75597618828 -1.30789983124
+                  -30.53829494869 -6.67605502231 -1.31573465973
+                  -30.47750937217 -6.60295358764 -1.31617400358
+                  -30.39851978591 -6.50874088154 -1.31297728754
+                  -30.37621170042 -6.47804822447 -1.30913448851
+                  -30.2791961694 -6.34488770834 -1.30549945247
+                  -30.25331175281 -6.30583587473 -1.30696320165
+                  -30.19356964485 -6.21203330364 -1.30785180745
+                  -30.14977624667 -6.13639773803 -1.30975350415
+                  -30.07895524998 -6.01013826951 -1.31340809412
+                  -30.04164130149 -5.94011860959 -1.31567468279
+                  -30.00062991828 -5.85771855018 -1.31527388975
+                  -29.95581553518 -5.75744634414 -1.30929513328
+                  -29.91973968974 -5.67294217369 -1.30226003291
+                  -29.88599044392 -5.58385194101 -1.30484259422
+                  -29.84417053613 -5.47551202027 -1.31592817448
+                  -29.81490308282 -5.38835095584 -1.32228997999
+                  -29.78966188453 -5.30279029447 -1.32473813
+                  -29.76155373246 -5.19924212649 -1.32556372313
+                  -29.7431254557 -5.11885227306 -1.32213989141
+                  -29.71440244757 -4.99425456113 -1.32125800561
+                  -29.70419925389 -4.93311614738 -1.32114364681
+                  -29.68172439985 -4.78253031878 -1.31925914649
+                  -29.67589244544 -4.72591323296 -1.3176374907
+                  -29.66584478689 -4.59541177504 -1.32155795599
+                  -29.65857929911 -4.499417358 -1.32503160353
+                  -29.65385677214 -4.42320260897 -1.32261141214
+            </Points>
+            <Compensated>false</Compensated>
+            <ProbeRadius>2.49978271104</ProbeRadius>
+           </MeasuredPointSet>
+
+          <MeasuredPointSet id="510" count="219">
+<!-- for CircleFeatureMeasurement id="509" -->
+              <Points>
+                  -29.6082220648 43.05470395336 -1.65356383054
+                  -29.61397984826 43.17684824945 -1.65338171107
+                  -29.61075072644 43.29692098508 -1.65861408929
+                  -29.60648284404 43.39559280975 -1.66537458103
+                  -29.60753455532 43.51682974696 -1.67127433956
+                  -29.61086340067 43.60445156419 -1.67225868887
+                  -29.61977720861 43.69531253522 -1.6670112915
+                  -29.63284579955 43.81345583304 -1.66026338419
+                  -29.64613877937 43.90340602574 -1.65448781071
+                  -29.66373940426 43.97880150956 -1.65462623191
+                  -29.69418454061 44.11999329105 -1.66000735431
+                  -29.71159167723 44.17491892296 -1.6612907332
+                  -29.75127645962 44.32071180904 -1.66036313401
+                  -29.7715376649 44.38472753782 -1.65819020288
+                  -29.81269068629 44.5153728813 -1.65604213631
+                  -29.837097993 44.57578404331 -1.65663318335
+                  -29.89396381824 44.70770271259 -1.66039034555
+                  -29.92229240279 44.77281188521 -1.66584397954
+                  -29.97631519039 44.89394096502 -1.66762896334
+                  -30.01556535489 44.96662535808 -1.66248246296
+                  -30.08546972936 45.08249853393 -1.6585013575
+                  -30.13012162026 45.15173420808 -1.65770702774
+                  -30.18478581508 45.23526680606 -1.65783825099
+                  -30.25336932777 45.3452639403 -1.6586229446
+                  -30.29156944643 45.39883979606 -1.66102156018
+                  -30.3861650326 45.52012364218 -1.66428400696
+                  -30.42699146107 45.57184143865 -1.66638438726
+                  -30.50821418651 45.66409990401 -1.66589645629
+                  -30.57826411197 45.73709709506 -1.66153586566
+                  -30.64666065912 45.80643643191 -1.65789813345
+                  -30.74171395404 45.89612466871 -1.65866752095
+                  -30.79839165748 45.94075166244 -1.66143422699
+                  -30.90763670483 46.02331881404 -1.66394390383
+                  -30.97732116447 46.06905348281 -1.66483706024
+                  -31.07929538665 46.14249466452 -1.66319623653
+                  -31.15619347192 46.18444779466 -1.6607265903
+                  -31.25138064129 46.25488697661 -1.65976374793
+                  -31.3404618184 46.29591938587 -1.66036486359
+                  -31.44401606967 46.36358433017 -1.66241494325
+                  -31.5469325543 46.40397108853 -1.66382803789
+                  -31.62202806285 46.44363681789 -1.66384708335
+                  -31.73198180258 46.49417718826 -1.66163191608
+                  -31.82093889979 46.52132511388 -1.66027378354
+                  -31.92671868098 46.57109357179 -1.66070886542
+                  -32.02211120181 46.58326124699 -1.66182448349
+                  -32.12408724029 46.63216431612 -1.66331261521
+                  -32.24272506334 46.64361813947 -1.66339793738
+                  -32.33591562568 46.68177384478 -1.66321053082
+                  -32.45174363543 46.69319356473 -1.66222300405
+                  -32.5360417615 46.71072549592 -1.66205233313
+                  -32.66040697301 46.73180444069 -1.66171979769
+                  -32.7437090251 46.73092639743 -1.66198190282
+                  -32.85138565672 46.75688715469 -1.6633251382
+                  -32.9604778953 46.74651400689 -1.66302157568
+                  -33.05865915131 46.76924283778 -1.66278300962
+                  -33.17730288157 46.75789177533 -1.66186974601
+                  -33.26589756429 46.76490520066 -1.66191145287
+                  -33.38785847934 46.76269449388 -1.6618430877
+                  -33.48099491362 46.75677603645 -1.66246374032
+                  -33.60380556643 46.75517817951 -1.66292030305
+                  -33.69594794086 46.73919367235 -1.66285010159
+                  -33.79756110483 46.73921624537 -1.66337663342
+                  -33.91241766329 46.70608408818 -1.66213179183
+                  -33.99737809227 46.69888174764 -1.661735709
+                  -34.13108062536 46.6540340539 -1.66152653245
+                  -34.20818125882 46.63676517018 -1.66271775027
+                  -34.31872647801 46.5986240699 -1.66284616073
+                  -34.41829586451 46.56314984579 -1.66272023313
+                  -34.50470026408 46.53489468055 -1.66262857032
+                  -34.62967389226 46.47837697713 -1.6620421892
+                  -34.70981691783 46.44887742124 -1.6625232736
+                  -34.8242881524 46.39028532756 -1.66223863556
+                  -34.89605482725 46.36288590823 -1.66285820519
+                  -34.99011049864 46.30802558691 -1.66261524676
+                  -35.09154329899 46.25739264754 -1.66309482395
+                  -35.17128176477 46.20365665349 -1.66261109649
+                  -35.26464320207 46.14273689627 -1.66213324637
+                  -35.34158875613 46.08529478563 -1.6625635691
+                  -35.43233317285 46.01316212433 -1.66225673947
+                  -35.51201969926 45.94364067456 -1.66287633673
+                  -35.5869873389 45.87558054938 -1.66321873894
+                  -35.65583943726 45.80898219125 -1.66445157006
+                  -35.73985977897 45.72041471513 -1.66525832129
+                  -35.80660524902 45.64539218573 -1.66652280542
+                  -35.87053717288 45.56591003424 -1.6665696207
+                  -35.93619663127 45.48655859579 -1.66541772721
+                  -35.98563740681 45.4228440537 -1.66409591955
+                  -36.05661636004 45.32233707572 -1.66083473571
+                  -36.11177353782 45.24360848063 -1.6590418931
+                  -36.16523637022 45.1575606297 -1.66057468605
+                  -36.22827754863 45.05327088494 -1.66705909481
+                  -36.26668017928 44.98297069975 -1.67108590608
+                  -36.32675263958 44.87517869591 -1.67103803839
+                  -36.35121469298 44.82149429058 -1.66933224663
+                  -36.41159418965 44.68425290479 -1.66671679907
+                  -36.43818788487 44.61676874108 -1.66664034027
+                  -36.48744260963 44.4957575326 -1.66556986308
+                  -36.51503940129 44.42019276321 -1.66493689048
+                  -36.54593094305 44.31850704574 -1.66079643582
+                  -36.57477606949 44.21572908495 -1.65696908154
+                  -36.59076239806 44.14670702202 -1.65759557578
+                  -36.62301076393 44.00549720476 -1.6643135689
+                  -36.63519901888 43.94510973159 -1.67201533837
+                  -36.65641919709 43.81321860041 -1.67474854258
+                  -36.66601195231 43.73566549668 -1.6721431649
+                  -36.68276926929 43.59554045886 -1.66443236335
+                  -36.68664528713 43.54537293625 -1.65888661328
+                  -36.68914579723 43.42006179977 -1.65378697752
+                  -36.69011566268 43.33802859173 -1.65436386438
+                  -36.69252573747 43.20259262862 -1.6586794065
+                  -36.69081161695 43.14457093761 -1.66363245372
+                  -36.68800889899 43.00066569112 -1.66834707802
+                  -36.68328937729 42.93362691401 -1.6700760553
+                  -36.66710447935 42.80620914257 -1.66626729218
+                  -36.65678018356 42.73772834159 -1.66255937854
+                  -36.63505965412 42.62955431271 -1.65754270535
+                  -36.61266986573 42.52254169553 -1.65501143133
+                  -36.59298401008 42.44263581391 -1.65631404222
+                  -36.56278214565 42.32667441556 -1.65863317742
+                  -36.54383595814 42.26258486431 -1.66032617388
+                  -36.5053907419 42.14628751253 -1.66300002554
+                  -36.48369837726 42.08789828415 -1.66881229828
+                  -36.43383912272 41.96036087603 -1.67448883364
+                  -36.41009731169 41.90593595191 -1.67690050555
+                  -36.35076382832 41.77232713997 -1.67509176471
+                  -36.31853417393 41.70489941649 -1.67327663189
+                  -36.27719107858 41.62498563515 -1.6733866828
+                  -36.22937207782 41.54098793035 -1.66845546368
+                  -36.18137166378 41.46836968644 -1.66469459197
+                  -36.09662200634 41.33061546574 -1.65845158446
+                  -36.07254871023 41.29160394537 -1.65714665542
+                  -36.01584919792 41.21271611358 -1.65779933786
+                  -35.94496907206 41.11486570236 -1.65577530048
+                  -35.90210607356 41.06470426881 -1.65271419086
+                  -35.80486228038 40.95224042629 -1.64952062868
+                  -35.76692052145 40.90801630216 -1.64977759203
+                  -35.71046581866 40.84943144059 -1.65393234505
+                  -35.62334819153 40.76439548198 -1.65468795125
+                  -35.55648076176 40.69866647267 -1.64840819972
+                  -35.47870006353 40.62907220955 -1.64922072341
+                  -35.40359036619 40.56519904623 -1.65054664695
+                  -35.36055560408 40.53295605908 -1.65265656571
+                  -35.24680234474 40.44531817393 -1.65644234795
+                  -35.18280571272 40.39923015117 -1.65680950095
+                  -35.10560872385 40.34749912653 -1.65407875038
+                  -35.02004570449 40.2937816326 -1.65367302048
+                  -34.93154428344 40.23833221611 -1.65557969734
+                  -34.85679033928 40.19529452019 -1.66506046514
+                  -34.77099842251 40.14979486527 -1.67411533512
+                  -34.68736218663 40.11173501643 -1.67445773817
+                  -34.58826816711 40.06481800028 -1.66495793154
+                  -34.49230250114 40.02253289556 -1.65446068344
+                  -34.43168733418 39.99830912 -1.65624983706
+                  -34.29304792818 39.94479738916 -1.65917755215
+                  -34.23468610611 39.92718899225 -1.65388078398
+                  -34.12222944937 39.89391121863 -1.64683430105
+                  -34.05103070024 39.87626657784 -1.64843942872
+                  -33.9456852639 39.85086784246 -1.65472410134
+                  -33.83913926759 39.8256641562 -1.65827500123
+                  -33.7543657449 39.80935440444 -1.64687421137
+                  -33.65484369592 39.79376668251 -1.6336883628
+                  -33.55747801051 39.78260495038 -1.63480684154
+                  -33.45724266535 39.772186576 -1.64012304723
+                  -33.3829939536 39.76789475707 -1.64049743873
+                  -33.25890201814 39.76042879058 -1.63660727634
+                  -33.19280613832 39.75765420207 -1.63573771521
+                  -33.08885629187 39.75660669851 -1.64274898648
+                  -32.94234696153 39.75481848981 -1.66315462319
+                  -32.90426829065 39.7576703608 -1.66485681489
+                  -32.76453383859 39.76992260523 -1.64926656656
+                  -32.69629613651 39.77882323818 -1.63617472108
+                  -32.6026153946 39.79300627711 -1.64210794994
+                  -32.47734111491 39.81224973971 -1.65822606878
+                  -32.43913907966 39.82150332251 -1.65962245778
+                  -32.27912356654 39.85706100191 -1.65989024335
+                  -32.23011130271 39.86981125242 -1.65606738723
+                  -32.12099520676 39.90096552944 -1.6547397177
+                  -32.02890802459 39.92975557281 -1.65201626899
+                  -31.92793127771 39.96390645849 -1.64944988523
+                  -31.85539064043 39.99353457111 -1.65014155782
+                  -31.7381436476 40.04281207701 -1.65844685112
+                  -31.66334371925 40.07724601468 -1.66627324945
+                  -31.58219837413 40.12051368171 -1.66774079547
+                  -31.49296240328 40.16937008499 -1.66397348386
+                  -31.40340093584 40.21657461434 -1.6563189253
+                  -31.32486697594 40.26232083726 -1.63936574284
+                  -31.23864843919 40.31724861636 -1.6274778772
+                  -31.14937571709 40.37566647382 -1.63524180722
+                  -31.06284026408 40.43578700981 -1.66123001732
+                  -30.99170235533 40.4886826524 -1.67841224445
+                  -30.89889391534 40.56112617094 -1.67170650946
+                  -30.82392244386 40.6218482148 -1.65959687447
+                  -30.77713427495 40.66695291342 -1.65058515044
+                  -30.67690294472 40.76053089758 -1.64969164258
+                  -30.6255817028 40.81115707626 -1.65545782642
+                  -30.53277189988 40.90805070099 -1.66679327511
+                  -30.47603675407 40.97205025976 -1.67287083145
+                  -30.41444785805 41.04515318969 -1.67306138682
+                  -30.34488609965 41.13173242966 -1.66907915675
+                  -30.29702024111 41.19720733593 -1.66171933767
+                  -30.21200836897 41.31693236843 -1.64922605644
+                  -30.18757064542 41.35435835862 -1.64585595462
+                  -30.10361518398 41.48519178445 -1.65876003301
+                  -30.07824587998 41.5304682667 -1.66837554906
+                  -30.0056355703 41.66079367943 -1.67311560112
+                  -29.98359344288 41.71079547682 -1.67150012575
+                  -29.91679365549 41.84919686907 -1.6732351659
+                  -29.88436450067 41.91657572209 -1.67377947006
+                  -29.86034117999 41.98082082205 -1.67416645003
+                  -29.80729970736 42.11888513966 -1.6740955226
+                  -29.7919015212 42.16957315756 -1.67404675272
+                  -29.74076304453 42.32268290804 -1.67480737035
+                  -29.72528472687 42.37748867944 -1.67328292887
+                  -29.69225661001 42.51106906325 -1.66815259604
+                  -29.67450099283 42.58845033604 -1.66014296449
+                  -29.65033626273 42.71874660292 -1.66091134824
+                  -29.63668790696 42.80261923699 -1.6668753873
+                  -29.6261222498 42.89705393674 -1.67402198194
+                  -29.61199184928 43.00912325637 -1.67876406339
+            </Points>
+            <Compensated>false</Compensated>
+            <ProbeRadius>2.49978271104</ProbeRadius>
+          </MeasuredPointSet>
+
+          <MeasuredPointSet id="797" count="18">
+<!-- for CylinderFeatureMeasurement id="796" -->
+            <Points>
+                  -10.68167127504 10.64337662543 -4.49374276264
+                  -6.94548705029 18.62903596959 -4.49705194062
+                  -8.68802672018 26.07448239279 -4.50083481403
+                  -14.35162936531 31.09175322516 -4.50197420694
+                  -21.9090958753 31.93565147106 -4.49535175453
+                  -28.54578907752 28.29163546341 -4.50280146523
+                  -31.87895318042 21.48571892139 -4.49753344888
+                  -30.68672825172 13.99310411089 -4.49450743127
+                  -25.40569279095 8.56467332605 -4.48318602584
+                  -10.68913344202 10.64588119155 -2.49575681099
+                  -6.96040401694 18.47879940622 -2.50093226426
+                  -8.58771541578 25.90628982123 -2.49480843479
+                  -14.24366218353 31.04512516452 -2.49212633775
+                  -21.78045655455 31.96169363342 -2.50251820781
+                  -28.43327874609 28.40646859374 -2.49915197005
+                  -31.85351649121 21.64833065673 -2.50432799857
+                  -30.7697755262 14.16658436267 -2.49958713313
+                  -25.54677278185 8.64276466747 -2.48298055198
+            </Points>
+            <Compensated>false</Compensated>
+            <ProbeRadius>2.49978271104</ProbeRadius>
+          </MeasuredPointSet>
+
+          <MeasuredPointSet id="12" count="8">
+<!-- for PlaneFeatureMeasurement id="11" -->
+            <Points>
+                -43.73170020597 49.51823501394 2.50038872433
+                -41.10589910466 -7.86586023134 2.49673923082
+                17.02290609066 -6.12985679561 2.50307291306
+                14.25342676209 39.8224599935 2.49562257039
+                -37.90430060185 24.94844749202 2.50171101761
+                -21.51200883909 56.00932459605 2.50237900196
+                -10.99206622128 35.9091616727 2.49779564658
+                15.30780835101 12.62061692428 2.50055258359
+            </Points>
+            <Compensated>false</Compensated>
+            <ProbeRadius>2.49978271104</ProbeRadius>
+          </MeasuredPointSet>
+
+          <MeasuredPointSet id="256" count="2">
+<!-- for LineFeatureMeasurement id="255" -->
+            <Points>
+                22.953045849941 -7.907186804579 -3.061917904289
+                22.953045849941 38.70507400996 -4.026441689361
+            </Points>
+            <Compensated>false</Compensated>
+            <ProbeRadius>2.49978271104</ProbeRadius>
+          </MeasuredPointSet>
+
+          <MeasuredPointSet id="757" count="1">
+<!-- for PointFeatureMeasurement id="756" -->
+            <Points>
+                -51.726518705386 54.198959479609 -1.276811288879
+            </Points>
+            <Compensated>false</Compensated>
+            <ProbeRadius>2.49978271104</ProbeRadius>
+          </MeasuredPointSet>
+
+          <MeasuredPointSet id="767" count="1">
+<!-- for PointFeatureMeasurement id="766" -->
+            <Points>
+                -51.033955721119 0.039038194052 -0.642032520146
+            </Points>
+            <Compensated>false</Compensated>
+            <ProbeRadius>2.49978271104</ProbeRadius>
+          </MeasuredPointSet>
+
+          <MeasuredPointSet id="777" count="1">
+<!-- for PointFeatureMeasurement id="776" -->
+            <Points>
+                -69.387091135231 46.222132399832 -16.092462288988
+            </Points>
+            <Compensated>false</Compensated>
+            <ProbeRadius>2.49978271104</ProbeRadius>
+          </MeasuredPointSet>
+
+          <MeasuredPointSet id="787" count="1">
+<!-- for PointFeatureMeasurement id="786" -->
+            <Points>
+                -68.03628976895 0.679570935675 -14.899061714253
+            </Points>
+            <Compensated>false</Compensated>
+            <ProbeRadius>2.49978271104</ProbeRadius>
+          </MeasuredPointSet>
+
+          <MeasuredPointSet id="829" count="1">
+<!-- for PointFeatureMeasurement id="828" -->
+            <Points>
+                -1.246458515652 -14.943969035049 -2.991463154478
+            </Points>
+            <Compensated>false</Compensated>
+            <ProbeRadius>2.49978271104</ProbeRadius>
+          </MeasuredPointSet>
+
+          <MeasuredPointSet id="834" count="1">
+<!-- for PointFeatureMeasurement id="833" -->
+            <Points>
+                  -8.780180022677 67.820797479257 -3.009861578624
+            </Points>
+            <Compensated>false</Compensated>
+            <ProbeRadius>2.49978271104</ProbeRadius>
+          </MeasuredPointSet>
+	</MeasuredPointSets>
+
+        <MeasuredCharacteristics>
+          <CharacteristicMeasurements n="27">
+            <FlatnessCharacteristicMeasurement id="24">
+              <Status>
+                <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>22</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>11</Id>
+              </FeatureMeasurementIds>
+              <Value>0.00676025187</Value>
+            </FlatnessCharacteristicMeasurement>
+            <DiameterCharacteristicMeasurement id="251">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>250</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>28</Id>
+              </FeatureMeasurementIds>
+              <Value>12.091599179226</Value>
+            </DiameterCharacteristicMeasurement>
+            <LinearCoordinateCharacteristicMeasurement id="484">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>483</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>261</Id>
+              </FeatureMeasurementIds>
+              <TypeOfCoordinates>
+                <CoordinateEnum>CARTESIAN_3D</CoordinateEnum>
+              </TypeOfCoordinates>
+              <Value>-33.202287934878001</Value>
+            </LinearCoordinateCharacteristicMeasurement>
+            <LinearCoordinateCharacteristicMeasurement id="488">
+              <Status>
+                <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>487</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>261</Id>
+              </FeatureMeasurementIds>
+              <TypeOfCoordinates>
+                <CoordinateEnum>CARTESIAN_3D</CoordinateEnum>
+              </TypeOfCoordinates>
+              <Value>-4.336695992982</Value>
+            </LinearCoordinateCharacteristicMeasurement>
+            <LinearCoordinateCharacteristicMeasurement id="492">
+              <Status>
+                <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>491</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>261</Id>
+              </FeatureMeasurementIds>
+              <TypeOfCoordinates>
+                <CoordinateEnum>CARTESIAN_3D</CoordinateEnum>
+              </TypeOfCoordinates>
+              <Value>-1.309995069701</Value>
+            </LinearCoordinateCharacteristicMeasurement>
+            <DiameterCharacteristicMeasurement id="496">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>495</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>261</Id>
+              </FeatureMeasurementIds>
+              <Value>12.095569950907</Value>
+            </DiameterCharacteristicMeasurement>
+            <PositionCharacteristicMeasurement id="501">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>500</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>261</Id>
+              </FeatureMeasurementIds>
+              <Value>0.305735910302614</Value>
+            </PositionCharacteristicMeasurement>
+            <CircularityCharacteristicMeasurement id="505">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>504</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>261</Id>
+              </FeatureMeasurementIds>
+              <Value>0.023337199995</Value>
+            </CircularityCharacteristicMeasurement>
+            <LinearCoordinateCharacteristicMeasurement id="732">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>731</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>509</Id>
+              </FeatureMeasurementIds>
+              <TypeOfCoordinates>
+                <CoordinateEnum>CARTESIAN_3D</CoordinateEnum>
+              </TypeOfCoordinates>
+              <Value>-33.150578904473001</Value>
+            </LinearCoordinateCharacteristicMeasurement>
+            <LinearCoordinateCharacteristicMeasurement id="736">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>735</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>509</Id>
+              </FeatureMeasurementIds>
+              <TypeOfCoordinates>
+                <CoordinateEnum>CARTESIAN_3D</CoordinateEnum>
+              </TypeOfCoordinates>
+              <Value>43.279377062175001</Value>
+            </LinearCoordinateCharacteristicMeasurement>
+            <LinearCoordinateCharacteristicMeasurement id="740">
+              <Status>
+                <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>739</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>509</Id>
+              </FeatureMeasurementIds>
+              <TypeOfCoordinates>
+                <CoordinateEnum>CARTESIAN_3D</CoordinateEnum>
+              </TypeOfCoordinates>
+              <Value>-1.660694009548</Value>
+            </LinearCoordinateCharacteristicMeasurement>
+            <DiameterCharacteristicMeasurement id="744">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>743</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>509</Id>
+              </FeatureMeasurementIds>
+              <Value>12.068425921098999</Value>
+            </DiameterCharacteristicMeasurement>
+            <PositionCharacteristicMeasurement id="748">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>747</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>509</Id>
+              </FeatureMeasurementIds>
+              <Value>0.500918966209208</Value>
+            </PositionCharacteristicMeasurement>
+            <CircularityCharacteristicMeasurement id="752">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>751</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>509</Id>
+              </FeatureMeasurementIds>
+              <Value>0.081326375416</Value>
+            </CircularityCharacteristicMeasurement>
+            <PointProfileCharacteristicMeasurement id="761">
+              <Status>
+                <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>760</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>756</Id>
+              </FeatureMeasurementIds>
+              <Value>-0.086196035032941</Value>
+            </PointProfileCharacteristicMeasurement>
+            <PointProfileCharacteristicMeasurement id="762">
+              <Status>
+                <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>760</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>756</Id>
+              </FeatureMeasurementIds>
+              <Value>0</Value>
+            </PointProfileCharacteristicMeasurement>
+            <PointProfileCharacteristicMeasurement id="771">
+              <Status>
+                <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>770</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>766</Id>
+              </FeatureMeasurementIds>
+              <Value>-0.045098192683142</Value>
+            </PointProfileCharacteristicMeasurement>
+            <PointProfileCharacteristicMeasurement id="772">
+              <Status>
+                <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>770</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>766</Id>
+              </FeatureMeasurementIds>
+              <Value>0</Value>
+            </PointProfileCharacteristicMeasurement>
+            <PointProfileCharacteristicMeasurement id="781">
+              <Status>
+                <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>780</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>776</Id>
+              </FeatureMeasurementIds>
+              <Value>-0.083646017365895</Value>
+            </PointProfileCharacteristicMeasurement>
+            <PointProfileCharacteristicMeasurement id="782">
+              <Status>
+                <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>780</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>776</Id>
+              </FeatureMeasurementIds>
+              <Value>0</Value>
+            </PointProfileCharacteristicMeasurement>
+            <PointProfileCharacteristicMeasurement id="791">
+              <Status>
+                <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>790</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>786</Id>
+              </FeatureMeasurementIds>
+              <Value>-0.037726520885299</Value>
+            </PointProfileCharacteristicMeasurement>
+            <PointProfileCharacteristicMeasurement id="792">
+              <Status>
+                <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>790</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>786</Id>
+              </FeatureMeasurementIds>
+              <Value>0</Value>
+            </PointProfileCharacteristicMeasurement>
+            <DiameterCharacteristicMeasurement id="818">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>817</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>796</Id>
+              </FeatureMeasurementIds>
+              <Value>30.110940798089999</Value>
+            </DiameterCharacteristicMeasurement>
+            <PerpendicularityCharacteristicMeasurement id="824">
+              <Status>
+                <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>823</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>796</Id>
+              </FeatureMeasurementIds>
+              <Value>0.000001541919</Value>
+            </PerpendicularityCharacteristicMeasurement>
+            <ParallelismCharacteristicMeasurement id="848">
+              <Status>
+                <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>847</CharacteristicItemId>
+              <FeatureMeasurementIds n="1">
+                <Id>842</Id>
+              </FeatureMeasurementIds>
+              <Value>0.685259214728</Value>
+            </ParallelismCharacteristicMeasurement>
+            <AngleBetweenCharacteristicMeasurement id="852">
+              <Status>
+                <CharacteristicStatusEnum>PASS</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>851</CharacteristicItemId>
+              <FeatureMeasurementIds n="2">
+                <Id>838</Id>
+                <Id>11</Id>
+              </FeatureMeasurementIds>
+              <Value>39.996305332654998</Value>
+            </AngleBetweenCharacteristicMeasurement>
+            <DistanceBetweenCharacteristicMeasurement id="856">
+              <Status>
+                <CharacteristicStatusEnum>FAIL</CharacteristicStatusEnum>
+              </Status>
+              <CharacteristicItemId>855</CharacteristicItemId>
+              <FeatureMeasurementIds n="2">
+                <Id>828</Id>
+                <Id>833</Id>
+              </FeatureMeasurementIds>
+              <Value>82.764766514306004</Value>
+            </DistanceBetweenCharacteristicMeasurement>
+          </CharacteristicMeasurements>
+        </MeasuredCharacteristics>
+        <InspectionStatus>
+          <InspectionStatusEnum>FAIL</InspectionStatusEnum>
+        </InspectionStatus>
+        <ActualComponentIds n="1">
+          <Id>4</Id>
+        </ActualComponentIds>
+      </MeasurementResults>
+    </MeasurementResultsSet>
+    <ActualComponentSets n="1">
+      <ActualComponentSet n="1">
+        <ActualComponent id="4">
+          <Status>
+            <InspectionStatusEnum>FAIL</InspectionStatusEnum>
+          </Status>
+          <AsmPathId>3</AsmPathId>
+        </ActualComponent>
+      </ActualComponentSet>
+    </ActualComponentSets>
+    <InspectionTraceability>
+      <ReportPreparer>
+        <Name>Programmer</Name>
+      </ReportPreparer>
+      <ReportPreparationDate>2015-10-23T06:23:09</ReportPreparationDate>
+    </InspectionTraceability>
+  </Results>
+
+</QIFDocument>

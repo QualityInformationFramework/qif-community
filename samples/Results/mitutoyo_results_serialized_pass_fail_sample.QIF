@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QIFDocument
+  xmlns="http://qifstandards.org/xsd/qif3"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  versionQIF="3.0.0"
+  idMax="3"
+  xsi:schemaLocation=
+    "http://qifstandards.org/xsd/qif3 ../QIFApplications/QIFDocument.xsd">
+  <QPId>fd43400a-29bf-4ec6-b96c-e2f846eb6ff6</QPId>
+  <Product>
+    <PartSet n="1">
+      <Part id="1" label="Widget" originMassProperty="1 2 0">
+        <UUID>ed43400a-29bf-4ec6-b96c-e2f846eb6f00</UUID>
+      </Part>
+    </PartSet>
+  </Product>
+  <Results>
+    <MeasurementResultsSet n="1">
+      <MeasurementResults id="2">
+	<ThisResultsInstanceQPId>
+          fd43400a-29bf-4ec6-b96c-e2f846eb6ff7
+        </ThisResultsInstanceQPId>
+	<InspectionStatus>
+	  <InspectionStatusEnum>PASS</InspectionStatusEnum>
+	</InspectionStatus>
+	<ActualComponentIds n="1">
+	  <Id>3</Id>
+	</ActualComponentIds>
+      </MeasurementResults>
+    </MeasurementResultsSet>
+    <ActualComponentSets n="1">
+      <ActualComponentSet n="1">
+	<ActualComponent id="3">
+	  <SerialNumber>SN#1234-56789</SerialNumber>
+	  <Status>
+	    <InspectionStatusEnum>PASS</InspectionStatusEnum>
+	  </Status>
+	</ActualComponent>
+      </ActualComponentSet>
+    </ActualComponentSets>
+  </Results>
+</QIFDocument>
