@@ -1,6 +1,6 @@
-# COMPILING...
+# COMPLETE
 
-Source code bindings for QIF3 will be ready soon: 
+Source code bindings for QIF3 are now ready: 
 
 * C++
 * C#
