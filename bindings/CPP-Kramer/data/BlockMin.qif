@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<QIFDocument
+  xmlns="http://qifstandards.org/xsd/qif3"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation=
+    "http://qifstandards.org/xsd/qif3 ../schema/QIFDocument.xsd"
+  idMax="86"
+  versionQIF="3.0.0">
+  <QPId>50595f9d-21a1-43a1-bbfe-c38a601b4dd2</QPId>
+  <Product>
+    <Header>
+      <Application>
+        <Name>MBDVidia</Name>
+      </Application>
+      <Author>
+        <Name>Thomas Kramer</Name>
+        <Organization>NIST</Organization>
+      </Author>
+      <ApplicationSource>
+        <Name>Solidworks SolidWorks 2014</Name>
+      </ApplicationSource>
+      <ScaleCoefficient>1</ScaleCoefficient>
+      <ModelTolerance>0.275</ModelTolerance>
+      <MassPropertyTolerance>-1</MassPropertyTolerance>
+    </Header>
+    <GeometrySet>
+      <PointSet n="1">
+        <Point id="6">
+          <XYZ>0 300 0</XYZ>
+        </Point>
+      </PointSet>
+    </GeometrySet>
+    <TopologySet>
+      <VertexSet n="1">
+        <Vertex id="7">
+          <Point>
+            <Id>6</Id>
+          </Point>
+        </Vertex>
+      </VertexSet>
+    </TopologySet>
+    <PartSet n="1">
+      <Part id="2"
+        label="Model Entities"
+        originMassProperty="150 150 400">
+        <BodyIds n="1">
+          <Id>3</Id>
+        </BodyIds>
+      </Part>
+    </PartSet>
+    <RootPart>
+      <Id>2</Id>
+    </RootPart>
+  </Product>
+</QIFDocument>

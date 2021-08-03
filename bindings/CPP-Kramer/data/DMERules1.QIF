@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QIFDocument
+  xmlns="http://qifstandards.org/xsd/qif3"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation=
+    "http://qifstandards.org/xsd/qif3 ../schema/QIFDocument.xsd"
+  idMax="1"
+  versionQIF="3.0.0">
+  <QPId>effa78c0-fb28-11e3-a3ac-0800200c9a66</QPId>
+  <Rules>
+    <DMESelectionRules n="6">
+      <DMEDecisionRule>
+        <DMEThen n="1">
+          <DMEDecisionClass>
+            <Must/>
+            <DMEClassName>ALLDMES</DMEClassName>
+            <ParameterConstraints n="1">
+              <DMEParameterConstraint>
+                <ParameterName>Resolution</ParameterName>
+                <Comparison>LESSOREQUAL</Comparison>
+                <Times>
+                  <ArithmeticConstant val="0.1"/>
+                  <ArithmeticCharacteristicParameter>
+                    <Parameter>Tolerance</Parameter>
+                  </ArithmeticCharacteristicParameter>
+                </Times>
+              </DMEParameterConstraint>
+            </ParameterConstraints>
+          </DMEDecisionClass>
+        </DMEThen>
+      </DMEDecisionRule>
+      <DMEDecisionRule>
+        <CharacteristicIs val="THICKNESS"/>
+        <DMEThen n="1">
+          <DMEDecisionClass>
+            <May desirability="1"/>
+            <DMEClassName>CALIPER</DMEClassName>
+          </DMEDecisionClass>
+        </DMEThen>
+      </DMEDecisionRule>
+      <DMEDecisionRule>
+        <CharacteristicIs val="THICKNESS"/>
+        <DMEThen n="1">
+          <DMEDecisionClass>
+            <May desirability="1"/>
+            <DMEClassName>MICROMETER</DMEClassName>
+          </DMEDecisionClass>
+        </DMEThen>
+      </DMEDecisionRule>
+      <DMEDecisionRule>
+        <And n="3">
+          <Not>
+            <FeatureIsInternal/>
+          </Not>
+          <LessThan>
+            <FeatureSize/>
+            <ArithmeticConstant val="5.0"/>
+          </LessThan>
+          <GreaterOrEqual>
+            <ArithmeticCharacteristicParameter>
+              <Parameter>Tolerance</Parameter>
+            </ArithmeticCharacteristicParameter>
+            <ArithmeticConstant val="0.100"/>
+          </GreaterOrEqual>
+        </And>
+        <DMEThen n="1">
+          <DMEDecisionClass>
+            <May desirability="1"/>
+            <DMEClassName>ANALOG_MICROMETER</DMEClassName>
+          </DMEDecisionClass>
+        </DMEThen>
+      </DMEDecisionRule>
+      <DMEDecisionRule>
+        <And n="2">
+          <GreaterOrEqual>
+            <FeatureSize/>
+            <ArithmeticConstant val="100.0"/>
+          </GreaterOrEqual>
+          <LessOrEqual>
+            <ArithmeticCharacteristicParameter>
+              <Parameter>Tolerance</Parameter>
+            </ArithmeticCharacteristicParameter>
+            <ArithmeticConstant val="0.100"/>
+          </LessOrEqual>
+        </And>
+        <DMEThen n="1">
+          <DMEDecisionClass>
+            <MustNot/>
+            <DMEClassName>ANALOG_MICROMETER</DMEClassName>
+          </DMEDecisionClass>
+        </DMEThen>
+      </DMEDecisionRule>
+      <DMEDecisionRule>
+        <And n="2">
+          <LessThan>
+            <FeatureSize/>
+            <ArithmeticConstant val="200.0"/>
+          </LessThan>
+          <GreaterOrEqual>
+            <ArithmeticCharacteristicParameter>
+              <Parameter>Tolerance</Parameter>
+            </ArithmeticCharacteristicParameter>
+            <ArithmeticConstant val="0.5"/>
+          </GreaterOrEqual>
+        </And>
+        <DMEThen n="1">
+          <DMEDecisionClass>
+            <May desirability="1"/>
+            <DMEClassName>DIAL_CALIPER</DMEClassName>
+          </DMEDecisionClass>
+        </DMEThen>
+      </DMEDecisionRule>
+    </DMESelectionRules>
+  </Rules>
+</QIFDocument>

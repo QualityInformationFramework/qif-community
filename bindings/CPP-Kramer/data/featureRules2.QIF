@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QIFDocument
+  xmlns="http://qifstandards.org/xsd/qif3"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation=
+    "http://qifstandards.org/xsd/qif3 ../schema/QIFDocument.xsd"
+  idMax="1"
+  versionQIF="3.0.0">
+  <QPId>bdb13de0-fb28-11e3-a3ac-0800200c9a66</QPId>
+  <Rules>
+    <RulesUnits n="2">
+      <AreaUnit>
+        <SIUnitName>square meter</SIUnitName>
+        <UnitName>square inch</UnitName>
+        <UnitConversion>
+          <Factor>0.00064516</Factor>
+          <Offset>0</Offset>
+        </UnitConversion>
+      </AreaUnit>
+      <LinearUnit>
+        <SIUnitName>meter</SIUnitName>
+        <UnitName>inch</UnitName>
+        <UnitConversion>
+          <Factor>0.0254</Factor>
+          <Offset>0</Offset>
+        </UnitConversion>
+      </LinearUnit>
+    </RulesUnits>
+    <FeatureRules>
+      <MaxFeatureRules n="20">
+        <IfThenSurfaceRule name="rule1">
+          <GreaterThan>
+            <FeatureArea/>
+            <ArithmeticConstant val="2"/>
+          </GreaterThan>
+          <ThenPoints>
+            <MinPoints>4</MinPoints>
+          </ThenPoints>
+        </IfThenSurfaceRule>
+        <IfThenSurfaceRule name="rule2">
+          <GreaterThan>
+            <FeatureArea/>
+            <ArithmeticConstant val="25"/>
+          </GreaterThan>
+          <ThenPoints>
+            <MinPoints>5</MinPoints>
+          </ThenPoints>
+        </IfThenSurfaceRule>
+        <IfThenSurfaceRule name="rule3">
+          <And n="2">
+            <CharacteristicIs val="SURFACEPROFILE"/>
+            <LessThan>
+              <ArithmeticCharacteristicParameter>
+                <Parameter>ToleranceValue</Parameter>
+                <CharacteristicTypeEnum>SURFACEPROFILE</CharacteristicTypeEnum>
+              </ArithmeticCharacteristicParameter>
+              <ArithmeticConstant val="0.010"/>
+            </LessThan>
+          </And>
+          <ThenPoints>
+            <MinPointDensity>0.2</MinPointDensity>
+          </ThenPoints>
+        </IfThenSurfaceRule>
+        <IfThenSurfaceRule name="rule4">
+          <And n="3">
+            <CharacteristicIs val="SURFACEPROFILE"/>
+            <GreaterThan>
+              <ArithmeticCharacteristicParameter>
+                <Parameter>ToleranceValue</Parameter>
+                <CharacteristicTypeEnum>SURFACEPROFILE</CharacteristicTypeEnum>
+              </ArithmeticCharacteristicParameter>
+              <ArithmeticConstant val="0.010"/>
+            </GreaterThan>
+            <LessThan>
+              <ArithmeticCharacteristicParameter>
+                <Parameter>ToleranceValue</Parameter>
+                <CharacteristicTypeEnum>SURFACEPROFILE</CharacteristicTypeEnum>
+              </ArithmeticCharacteristicParameter>
+              <ArithmeticConstant val="0.030"/>
+            </LessThan>
+          </And>
+          <ThenPoints>
+            <MinPointDensity>0.1</MinPointDensity>
+          </ThenPoints>
+        </IfThenSurfaceRule>
+        <IfThenCurveRule name="rule5a">
+          <LessThan>
+            <FeatureLength/>
+            <ArithmeticConstant val="5"/>
+          </LessThan>
+          <ThenPoints>
+            <MinPointDensity>1</MinPointDensity>
+          </ThenPoints>
+        </IfThenCurveRule>
+        <IfThenCurveRule name="rule5b">
+          <ThenPoints>
+            <MinPoints>3</MinPoints>
+          </ThenPoints>
+        </IfThenCurveRule>
+        <IfThenCurveRule name="rule6">
+          <GreaterThan>
+            <FeatureLength/>
+            <ArithmeticConstant val="5"/>
+          </GreaterThan>
+          <ThenPoints>
+            <MinPoints>5</MinPoints>
+          </ThenPoints>
+        </IfThenCurveRule>
+        <IfThenSurfaceRule name="rule7a1">
+          <And n="2">
+            <CharacteristicIs val="DIAMETER"/>
+            <LessThan>
+              <ArithmeticCharacteristicParameter>
+                <Parameter>Tolerance</Parameter>
+                <CharacteristicTypeEnum>DIAMETER</CharacteristicTypeEnum>
+              </ArithmeticCharacteristicParameter>
+              <ArithmeticConstant val="0.001"/>
+            </LessThan>
+          </And>
+          <ThenPoints>
+            <MinPoints>32</MinPoints>
+          </ThenPoints>
+        </IfThenSurfaceRule>
+        <IfThenCurveRule name="rule7a2">
+          <And n="2">
+            <CharacteristicIs val="DIAMETER"/>
+            <LessThan>
+              <ArithmeticCharacteristicParameter>
+                <Parameter>Tolerance</Parameter>
+                <CharacteristicTypeEnum>DIAMETER</CharacteristicTypeEnum>
+              </ArithmeticCharacteristicParameter>
+              <ArithmeticConstant val="0.001"/>
+            </LessThan>
+          </And>
+          <ThenPoints>
+            <MinPoints>32</MinPoints>
+          </ThenPoints>
+        </IfThenCurveRule>
+        <IfThenSurfaceRule name="rule7b1">
+          <And n="2">
+            <CharacteristicIs val="DIAMETER"/>
+            <LessThan>
+              <ArithmeticCharacteristicParameter>
+                <Parameter>Tolerance</Parameter>
+                <CharacteristicTypeEnum>DIAMETER</CharacteristicTypeEnum>
+              </ArithmeticCharacteristicParameter>
+              <ArithmeticConstant val="0.002"/>
+            </LessThan>
+          </And>
+          <ThenPoints>
+            <MinPoints>24</MinPoints>
+          </ThenPoints>
+        </IfThenSurfaceRule>
+        <IfThenCurveRule name="rule7b2">
+          <And n="2">
+            <CharacteristicIs val="DIAMETER"/>
+            <LessThan>
+              <ArithmeticCharacteristicParameter>
+                <Parameter>Tolerance</Parameter>
+                <CharacteristicTypeEnum>DIAMETER</CharacteristicTypeEnum>
+              </ArithmeticCharacteristicParameter>
+              <ArithmeticConstant val="0.002"/>
+            </LessThan>
+          </And>
+          <ThenPoints>
+            <MinPoints>24</MinPoints>
+          </ThenPoints>
+        </IfThenCurveRule>
+        <IfThenSurfaceRule name="rule7c1">
+          <And n="2">
+            <CharacteristicIs val="DIAMETER"/>
+            <LessThan>
+              <ArithmeticCharacteristicParameter>
+                <Parameter>Tolerance</Parameter>
+                <CharacteristicTypeEnum>DIAMETER</CharacteristicTypeEnum>
+              </ArithmeticCharacteristicParameter>
+              <ArithmeticConstant val="0.005"/>
+            </LessThan>
+          </And>
+          <ThenPoints>
+            <MinPoints>18</MinPoints>
+          </ThenPoints>
+        </IfThenSurfaceRule>
+        <IfThenCurveRule name="rule7c2">
+          <And n="2">
+            <CharacteristicIs val="DIAMETER"/>
+            <LessThan>
+              <ArithmeticCharacteristicParameter>
+                <Parameter>Tolerance</Parameter>
+                <CharacteristicTypeEnum>DIAMETER</CharacteristicTypeEnum>
+              </ArithmeticCharacteristicParameter>
+              <ArithmeticConstant val="0.005"/>
+            </LessThan>
+          </And>
+          <ThenPoints>
+            <MinPoints>18</MinPoints>
+          </ThenPoints>
+        </IfThenCurveRule>
+        <IfThenSurfaceRule name="rule7d1">
+          <And n="2">
+            <CharacteristicIs val="DIAMETER"/>
+            <LessThan>
+              <ArithmeticCharacteristicParameter>
+                <Parameter>Tolerance</Parameter>
+                <CharacteristicTypeEnum>DIAMETER</CharacteristicTypeEnum>
+              </ArithmeticCharacteristicParameter>
+              <ArithmeticConstant val="0.010"/>
+            </LessThan>
+          </And>
+          <ThenPoints>
+            <MinPoints>12</MinPoints>
+          </ThenPoints>
+        </IfThenSurfaceRule>
+        <IfThenCurveRule name="rule7d2">
+          <And n="2">
+            <CharacteristicIs val="DIAMETER"/>
+            <LessThan>
+              <ArithmeticCharacteristicParameter>
+                <Parameter>Tolerance</Parameter>
+                <CharacteristicTypeEnum>DIAMETER</CharacteristicTypeEnum>
+              </ArithmeticCharacteristicParameter>
+              <ArithmeticConstant val="0.010"/>
+            </LessThan>
+          </And>
+          <ThenPoints>
+            <MinPoints>12</MinPoints>
+          </ThenPoints>
+        </IfThenCurveRule>
+        <IfThenSurfaceRule name="rule7e1">
+          <And n="2">
+            <CharacteristicIs val="DIAMETER"/>
+            <LessThan>
+              <ArithmeticCharacteristicParameter>
+                <Parameter>Tolerance</Parameter>
+                <CharacteristicTypeEnum>DIAMETER</CharacteristicTypeEnum>
+              </ArithmeticCharacteristicParameter>
+              <ArithmeticConstant val="0.020"/>
+            </LessThan>
+          </And>
+          <ThenPoints>
+            <MinPoints>8</MinPoints>
+          </ThenPoints>
+        </IfThenSurfaceRule>
+        <IfThenCurveRule name="rule7e2">
+          <And n="2">
+            <CharacteristicIs val="DIAMETER"/>
+            <LessThan>
+              <ArithmeticCharacteristicParameter>
+                <Parameter>Tolerance</Parameter>
+                <CharacteristicTypeEnum>DIAMETER</CharacteristicTypeEnum>
+              </ArithmeticCharacteristicParameter>
+              <ArithmeticConstant val="0.020"/>
+            </LessThan>
+          </And>
+          <ThenPoints>
+            <MinPoints>8</MinPoints>
+          </ThenPoints>
+        </IfThenCurveRule>
+        <IfThenSurfaceRule name="rule7f1">
+          <And n="2">
+            <CharacteristicIs val="DIAMETER"/>
+            <LessThan>
+              <ArithmeticCharacteristicParameter>
+                <Parameter>Tolerance</Parameter>
+                <CharacteristicTypeEnum>DIAMETER</CharacteristicTypeEnum>
+              </ArithmeticCharacteristicParameter>
+              <ArithmeticConstant val="0.040"/>
+            </LessThan>
+          </And>
+          <ThenPoints>
+            <MinPoints>5</MinPoints>
+          </ThenPoints>
+        </IfThenSurfaceRule>
+        <IfThenCurveRule name="rule7f2">
+          <And n="2">
+            <CharacteristicIs val="DIAMETER"/>
+            <LessThan>
+              <ArithmeticCharacteristicParameter>
+                <Parameter>Tolerance</Parameter>
+                <CharacteristicTypeEnum>DIAMETER</CharacteristicTypeEnum>
+              </ArithmeticCharacteristicParameter>
+              <ArithmeticConstant val="0.040"/>
+            </LessThan>
+          </And>
+          <ThenPoints>
+            <MinPoints>5</MinPoints>
+          </ThenPoints>
+        </IfThenCurveRule>
+        <Else>
+          <ThenPoints>
+            <MinPoints>3</MinPoints>
+          </ThenPoints>
+        </Else>
+      </MaxFeatureRules>
+    </FeatureRules>
+  </Rules>
+</QIFDocument>

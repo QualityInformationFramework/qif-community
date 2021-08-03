@@ -1,0 +1,2111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This document is part of QIF 3.0, an open, industry-wide standard -->
+<!-- established by the Dimensional Metrology Standards Consortium.    -->
+<!-- This document shall not be used in any manner to claim any        -->
+<!-- proprietary rights to such information, such as rights to a       -->
+<!-- patent, trademark, or copyright.                                  -->
+
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://qifstandards.org/xsd/qif3"
+  xmlns:t="http://qifstandards.org/xsd/qif3"
+  targetNamespace="http://qifstandards.org/xsd/qif3"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified"
+  version="3.0.0">
+
+  <xs:include schemaLocation="../QIFLibrary/IntermediatesPMI.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/GenericExpressions.xsd"/>
+
+  <xs:annotation>
+    <xs:documentation>
+      The QIFPlan.xsd schema file defines the global Plan element, which is
+      the root of a measurement plan. The schema file also contains the
+      definitions of some of the types used in a Plan and a number of
+      key/keyref pairs that constrain references used in a Plan. In all
+      keys, the items that are collected must be unique within the
+      collection.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:element name="Plan"
+    type="PlanType">
+    <xs:annotation>
+      <xs:documentation>
+        The global Plan element is the root of a measurement plan.
+      </xs:documentation>
+    </xs:annotation>
+
+<!-- START KEY/KEYREF CHECKS -->
+<!-- start key and one keyref for QIF ids of work instructions -->
+
+    <xs:key name="WorkInstructionsIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The WorkInstructionsIdKey collects all QIF ids of
+          WorkInstructions of any sort.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:WorkInstructions/t:*"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WorkInstructionsIdKeyref"
+      refer="WorkInstructionsIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The WorkInstructionsIdKeyref requires that a
+          WorkInstructionIds/Id located anywhere be the id of a
+          WorkInstruction.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath=".//t:WorkInstructionIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+<!-- start key and one keyref for QIF ids of measurands -->
+
+    <xs:key name="MeasurandIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The MeasurandIdKey collects all QIF ids of Measurands of any
+          sort.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:Measurands/t:*"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="MeasurandIdKeyref"
+      refer="MeasurandIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The MeasurandIdKeyref requires that a MeasurandIds/Id located
+          anywhere be the id of a Measurand.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath=".//t:MeasurandIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+<!-- start key and two keyrefs for QIF ids of action methods -->
+
+    <xs:key name="ActionMethodIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ActionMethodIdKey collects all QIF ids of ActionMethods of
+          any sort.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:ActionMethods/t:*"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ActionMethodIdKeyref"
+      refer="ActionMethodIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ActionMethodIdKeyref requires that an
+          AlternativeActionMethodIds/Id located anywhere be the id of an
+          ActionMethod.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath=".//t:AlternativeActionMethodIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:keyref name="PreferredActionMethodIdKeyref"
+      refer="ActionMethodIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The PreferredActionMethodIdKeyref requires that a
+          PreferredActionMethodId located anywhere be the id of an
+          ActionMethod.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath=".//t:PreferredActionMethodId"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+  </xs:element>
+
+<!-- END KEY/KEYREF CHECKS FOR MEASUREMENTPLAN -->
+
+  <xs:complexType name="PlanType">
+    <xs:annotation>
+      <xs:documentation>
+        The PlanType defines information about a measurement plan.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Version"
+        type="VersionType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Version element gives version information about
+            the measurement plan.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RulesUsedQPId"
+        type="QPIdFullReferenceType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional RulesUsedQPId element gives the QPId of the rules
+            that were used in creating the plan. The rules may be in the
+            same QIFDocument as the plan, or in a separate QIFDocument, or
+            both (in which case the two sets of rules must be identical).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RulesToUseQPId"
+        type="QPIdFullReferenceType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional RulesToUseQPId element gives the QPId of the rules
+            to be used in making a more detailed plan from the plan or in
+            generating a program from the plan (a DMIS program, for
+            example). The rules may be in the same QIFDocument as the plan,
+            or in a separate QIFDocument, or both (in which case the two
+            sets of rules must be identical).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="WorkInstructions"
+        type="WorkInstructionsType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional WorkInstructions element captures any instructions
+            necessary for executing the Plan.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ActionMethods"
+        type="ActionMethodsType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ActionMethods element captures any action methods
+            necessary for executing the Plan.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Measurands"
+        type="MeasurandsType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Measurands element captures any measurands used in
+            the Plan.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LocalVariables"
+        type="LocalVariablesType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional LocalVariables element declares local variables
+            and sets their initial values.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="PlanRoot">
+        <xs:annotation>
+          <xs:documentation>
+            The PlanRoot element gives information about the activities to
+            be carried out in executing the measurement plan and how
+            execution of the measurement plan is to be controlled.
+            Structurally, the PlanRoot is at the top of an (upside down)
+            plan tree of PlanElements. All PlanElement instances occur
+            within the tree.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PlanElementBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The PlanElementBaseType defines the abstract base type that defines
+        plan element types. Plan elements are of two types: actions and
+        action groups.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="WorkInstructionIds"
+        type="ArrayReferenceType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional WorkInstructionIds element gives the QIF ids of
+            work instructions required to execute the plan element.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="Attributes"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Attributes element contains user defined
+            attributes (typified, binary array, or XML structured).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="UnnumberedPlanElementsType">
+    <xs:annotation>
+      <xs:documentation>
+        The UnnumberedPlanElementsType defines a set of plan elements
+        without sequence numbers.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="PlanElement"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each PlanElement element is one member of the set of unnumbered
+            plan elements.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of plan elements in the
+          list.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="NumberedPlanElementType">
+    <xs:annotation>
+      <xs:documentation>
+        The NumberedPlanElementType defines a single ordered plan element.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SequenceNumber"
+        type="xs:positiveInteger">
+        <xs:annotation>
+          <xs:documentation>
+            The SequenceNumber element is a positive integer used in
+            determining either the order within a set of PlanElements in
+            which a plan element should be executed or which plan element
+            in the set should be executed.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="PlanElement">
+        <xs:annotation>
+          <xs:documentation>
+            The PlanElement element is the plan element associated with the
+            SequenceNumber.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="NumberedPlanElementsType">
+    <xs:annotation>
+      <xs:documentation>
+        The NumberedPlanElementsType defines a set of numbered plan
+        elements.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="NumberedPlanElement"
+        type="NumberedPlanElementType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each NumberedPlanElement element is one member of the set of
+            numbered plan elements.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of plan elements in the
+          list.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+<!--
+        NOTE: Future QIF Plans should consider: MotionDmeAction,
+        SelectSensorAction, SelectCarriageAction, MeasureAFeatureAction,
+        ConstructAFeatureAction
+-->
+
+  <xs:complexType name="ActionBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The ActionBaseType is the abstract base type that defines an action
+        to be carried out.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="PlanElementBaseType">
+        <xs:sequence>
+          <xs:element name="PreferredActionMethodId"
+            type="QIFReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional PreferredActionMethodId element is the QIF id
+                of the preferred action method applicable to the action
+                being executed.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AlternativeActionMethodIds"
+            type="ArrayReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional AlternativeActionMethodIds element captures
+                any possible alternative action methods applicable to the
+                action being executed.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PreferredResourceIds"
+            type="ArrayReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional PreferredResourceIds element gives the QIF ids
+                of resources preferred to perform the action, for example,
+                one of the Fixtures in the MeasurementResources in the
+                Plan.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MeasureEvaluateAllActionType">
+    <xs:annotation>
+      <xs:documentation>
+        The MeasureEvaluateAllActionType defines an action that means:
+        measure whatever is necessary in order to find
+        CharacteristicMeasurements for all CharacteristicItems, and find
+        those measurements. For any FeatureItems that are measured, also
+        populate the corresponding FeatureMeasurements with values.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ActionBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="HaltActionType">
+    <xs:annotation>
+      <xs:documentation>
+        The HaltActionType defines an action that means stop executing the
+        plan. A plan is not required to include an instance of
+        HaltActionType.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ActionBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MeasureEvaluateSpecifiedActionType">
+    <xs:annotation>
+      <xs:documentation>
+        The MeasureEvaluateSpecifiedActionType defines an action that
+        means: measure whatever is necessary in order to find
+        CharacteristicMeasurements for the CharacteristicItems whose QIF
+        ids are specified, and find those measurements. For any
+        FeatureItems that are measured, also populate the corresponding
+        FeatureMeasurements with values.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ActionBaseType">
+        <xs:sequence>
+          <xs:element name="CharacteristicItemIds"
+            type="ArrayReferenceType">
+            <xs:annotation>
+              <xs:documentation>
+                The CharacteristicItemIds element is a list of the QIF
+                ids of characteristic items that are to be evaluated.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="EvaluateSpecifiedCharacteristicsActionType">
+    <xs:annotation>
+      <xs:documentation>
+        The EvaluateSpecifiedCharacteristicsActionType defines an action
+        that means: find CharacteristicMeasurements for the
+        CharacteristicItems whose QIF ids are specified. Do not measure
+        anything while performing this action. All features that need to be
+        measured in order to evaluate the CharacteristicMeasurements must
+        already be measured.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ActionBaseType">
+        <xs:sequence>
+          <xs:element name="CharacteristicItemIds"
+            type="ArrayReferenceType">
+            <xs:annotation>
+              <xs:documentation>
+                The CharacteristicItemIds element is a list of the QIF
+                ids of characteristic items that are to be evaluated.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MeasureSpecifiedFeaturesActionType">
+    <xs:annotation>
+      <xs:documentation>
+        The MeasureSpecifiedFeaturesActionType defines an action that
+        means: measure the FeatureItems whose QIF ids are specified,
+        and populate the corresponding FeatureMeasurements with values.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ActionBaseType">
+        <xs:sequence>
+          <xs:element name="FeatureItemIds"
+            type="ArrayReferenceType">
+            <xs:annotation>
+              <xs:documentation>
+                The FeatureItemIds element is a list of the QIF ids of
+                feature items that are to be measured.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MeasurandBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The MeasurandBaseType is the abstract base type that defines an
+        object, quantity, property, or condition to be measured and for a
+        specific purpose. (Example measurands: Measure a shape feature to
+        evaluate a specified characteristic(tolerance). Measure a shape
+        feature to establish a datum within the context of a datum
+        reference frame. Measure a grain feature to determine a grain
+        size.) MeasurandTypes can be expanded in future QIF Plans versions.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Attributes"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Attributes element contains user defined
+            attributes (typified, binary array, or XML structured).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id"
+      type="QIFIdType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The id attribute is the QIF id of the measurand, used for
+          referencing.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="EvaluateCharacteristicMeasurandType">
+    <xs:annotation>
+      <xs:documentation>
+        The EvaluateCharacteristicMeasurandType defines a measurand to
+        measure a feature for evaluating a specified characteristic. A
+        characteristic item provides both the characteristic and the
+        feature item.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MeasurandBaseType">
+        <xs:sequence>
+          <xs:element name="CharacteristicItemId"
+            type="QIFReferenceType">
+            <xs:annotation>
+              <xs:documentation>
+                The CharacteristicItemId element is the QIF id of the
+                characteristic item.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="EstablishDatumMeasurandType">
+    <xs:annotation>
+      <xs:documentation>
+        The EstablishDatumMeasurandType defines a measurand to measure the
+        features specified by a DatumDefinition in order to create a given
+        DatumReferenceFrame.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MeasurandBaseType">
+        <xs:sequence>
+          <xs:element name="DatumDefinitionId"
+            type="QIFReferenceFullType">
+            <xs:annotation>
+              <xs:documentation>
+                The DatumDefinitionId element is the QIF id of a datum
+                definition that participates in the DatumReferenceFrame
+                identified by the DatumReferenceFrameId.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DatumReferenceFrameId"
+            type="QIFReferenceFullType">
+            <xs:annotation>
+              <xs:documentation>
+                The DatumReferenceFrameId element is the QIF id of the
+                datum reference frame for the specified DatumDefinitionId.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MeasureSpecifiedMeasurandsActionType">
+    <xs:annotation>
+      <xs:documentation>
+        The MeasureSpecifiedMeasurandsActionType defines an action that
+        means: measure the Measurands whose QIF ids are given, and populate
+        the corresponding FeatureMeasurements with values.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ActionBaseType">
+        <xs:sequence>
+          <xs:element name="MeasurandIds"
+            type="ArrayReferenceType">
+            <xs:annotation>
+              <xs:documentation>
+                The MeasurandIds element is a list of the QIF ids of
+                measurands that are to be measured.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MeasurandsType">
+    <xs:annotation>
+      <xs:documentation>
+        The MeasurandsType defines a set of measurands.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Measurand"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Measurand element is a single measurand.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of measurands in the list.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ActionMethodBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The ActionMethodBaseType is the abstract base type that defines an
+        action method. An action method describes how an action is to be
+        performed. An action method will be a strategy or a set of
+        parameters for the action (such as a search distance).
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ChosenResourceIds"
+        type="ArrayReferenceType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ChosenResourceIds element gives the QIF ids of
+            resources to be used to perform the method, for example, one of
+            the Fixtures in the MeasurementResources in the Plan. The
+            resources identified in this element by an instance of
+            ActionMethodBaseType may be the same as or different from
+            resources identified by the PreferredResourcesIds element of an
+            instance of ActionBaseType that contains the
+            ActionMethodBaseType instance.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="WorkInstructionIds"
+        type="ArrayReferenceType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional WorkInstructionIds element gives the QIF ids of
+            work instructions required to perform the action method.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="Attributes"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Attributes element contains user defined
+            attributes (typified, binary array, or XML structured).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id"
+      type="QIFIdType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The id attribute is the QIF id of the action method, used for
+          referencing.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="MeasureFeatureMethodBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The MeasureFeatureMethodBaseType is the abstract base type that
+        defines a feature measurement method.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ActionMethodBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AutocollimatorMeasureFeatureMethodType">
+    <xs:annotation>
+      <xs:documentation>
+        The AutocollimatorMeasureFeatureMethodType is the metrology method
+        in which an autocollimator (an optical instrument for non-contact
+        measurement of angles) is used for measuring the feature.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MeasureFeatureMethodBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="CalibratedComparatorMeasureFeatureMethodType">
+    <xs:annotation>
+      <xs:documentation>
+        The CalibratedComparatorMeasureFeatureMethodType is the metrology
+        method in which a calibrated comparator is used for measuring the
+        feature.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MeasureFeatureMethodBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ComputedTomographyMeasureFeatureMethodType">
+    <xs:annotation>
+      <xs:documentation>
+        The ComputedTomographyMeasureFeatureMethodType is the metrology
+        method in which computed tomography is used for measuring the
+        feature.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MeasureFeatureMethodBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="CoordinateMeasureFeatureMethodType">
+    <xs:annotation>
+      <xs:documentation>
+        The CoordinateMeasureFeatureMethodType is the metrology method in
+        which a coordinate metrology device (e.g., a CMM) is used for
+        measuring the feature.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MeasureFeatureMethodBaseType">
+        <xs:sequence>
+          <xs:element name="NumberOfMeasurementPoints"
+            type="xs:positiveInteger"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional NumberOfMeasurementPoints element is the
+                suggested number of a measurement points for measuring the
+                designated feature.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ExternalReferenceMeasureFeatureMethodType">
+    <xs:annotation>
+      <xs:documentation>
+        The ExternalReferenceMeasureFeatureMethodType references an
+        external metrology method for measuring the feature.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MeasureFeatureMethodBaseType">
+        <xs:sequence>
+          <xs:element name="ExternalFileReferences"
+            type="ExternalFileReferencesType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ExternalFileReferences element is a list of
+                references to additional files that specify the measurement
+                method, e.g. ASTM standard.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="GageMeasureFeatureMethodType">
+    <xs:annotation>
+      <xs:documentation>
+        The GageMeasureFeatureMethodType defines the metrology method
+        in which a gage is used for measuring the feature.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MeasureFeatureMethodBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="LaserRadarMeasureFeatureMethodType">
+    <xs:annotation>
+      <xs:documentation>
+        The LaserRadarMeasureFeatureMethodType is the metrology method in
+        which a laser radar is used for measuring the feature.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MeasureFeatureMethodBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="LaserTrackerMeasureFeatureMethodType">
+    <xs:annotation>
+      <xs:documentation>
+        The LaserTrackerMeasureFeatureMethodType is the metrology method in
+        which a laser tracker is used for measuring the feature.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MeasureFeatureMethodBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ManualMeasureFeatureMethodType">
+    <xs:annotation>
+      <xs:documentation>
+        The ManualMeasureFeatureMethodType is the metrology method in which
+        a manual device (e.g., caliper, micrometer) is used for measuring
+        the feature.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MeasureFeatureMethodBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MicroscopeMeasureFeatureMethodType">
+    <xs:annotation>
+      <xs:documentation>
+        The MicroscopeMeasureFeatureMethodType is the metrology method in
+        which a microscope is used for measuring the feature.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MeasureFeatureMethodBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="OtherMeasureFeatureMethodType">
+    <xs:annotation>
+      <xs:documentation>
+        The OtherMeasureFeatureMethodType is the metrology method in which
+        some device not named in the other measure feature types is used
+        for measuring the feature.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MeasureFeatureMethodBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ProfileProjectorMeasureFeatureMethodType">
+    <xs:annotation>
+      <xs:documentation>
+        The ProfileProjectorMeasureFeatureMethodType is the metrology
+        method in which an optical comparator (shadowgraph) is used for
+        measuring the feature.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MeasureFeatureMethodBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TheodoliteMeasureFeatureMethodType">
+    <xs:annotation>
+      <xs:documentation>
+        The TheodoliteMeasureFeatureMethodType is the metrology method in
+        which a theodolite is used for measuring the feature.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MeasureFeatureMethodBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="UniversalLengthMeasureFeatureMethodType">
+    <xs:annotation>
+      <xs:documentation>
+        The UniversalLengthMeasureFeatureMethodType is the metrology method
+        in which a universal length measuring machine is used for measuring
+        the feature.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MeasureFeatureMethodBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ActionMethodsType">
+    <xs:annotation>
+      <xs:documentation>
+        The ActionMethodsType defines a set of action methods.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="ActionMethod"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each ActionMethod element is a single action method.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of action methods in the
+          list.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:simpleType name="MeasureActionGroupFunctionEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The MeasureActionGroupFunctionEnumType enumerates values that
+        describe the functions of action groups within the context of a
+        measurement plan.
+        - Routing Plan is a group of actions that may route the product
+          from one measurement work cell to another.
+        - Operation Sequence is a group of actions that are performed
+          at one work cell, typically referencing a measurement device
+          resource.
+        - Setup Usage Group is a group of actions that are performed at
+          one part setup, typically referencing a fixture resource.
+        - Sensor Usage Group is a group of actions that are performed at
+          one sensor tool change, typically referencing a sensor resource.
+        - Carriage Usage Group is a group of actions that are performed
+          at one carriage, typically referencing a carriage of a
+          measurement device resource.
+        - PCS Usage Group is a group of actions that are performed at one
+          active part coordinate system which usually corresponds with a
+          datum reference frame.
+        - Evaluate Characteristic Actions is a group of actions that are
+          performed to evaluate a characteristic.
+        - Establish Datum Actions is a group of actions that are
+          performed to establish a datum with a datum reference frame.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="ROUTING_PLAN"/>
+      <xs:enumeration value="OPERATION_SEQUENCE"/>
+      <xs:enumeration value="SETUP_USAGE_GROUP"/>
+      <xs:enumeration value="SENSOR_USAGE_GROUP"/>
+      <xs:enumeration value="CARRIAGE_USAGE_GROUP"/>
+      <xs:enumeration value="PCS_USAGE_GROUP"/>
+      <xs:enumeration value="EVALUATE_CHAR_ACTIONS"/>
+      <xs:enumeration value="ESTABLISH_DATUM_ACTIONS"/>
+      <xs:enumeration value="UNDEFINED"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="MeasureActionGroupFunctionType">
+    <xs:annotation>
+      <xs:documentation>
+        The MeasureActionGroupFunctionType defines the function of the
+        action group within the context of a measurement plan.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="MeasureActionGroupFunctionEnum"
+        type="MeasureActionGroupFunctionEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The MeasureActionGroupFunctionEnum element describes an
+            often-used function of the action group within the context of a
+            measurement plan.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OtherMeasureActionGroupFunction"
+        type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            The OtherMeasureActionGroupFunction element describes the
+            function of the action group within the context of a
+            measurement plan.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="ActionGroupBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The ActionGroupBaseType is the abstract base type that defines an
+        action group.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="PlanElementBaseType">
+        <xs:sequence>
+          <xs:element name="MeasureActionGroupFunction"
+            type="MeasureActionGroupFunctionType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional MeasureActionGroupFunction element identifies
+                the function of the action group.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="OrderedActionGroupType">
+    <xs:annotation>
+      <xs:documentation>
+        The OrderedActionGroupType defines an action group for which the
+        all the steps it contains must be executed in order of increasing
+        sequence number. The SequenceNumbers of the Steps in an instance of
+        OrderedActionGroupType must be present, must be assigned 1, 2, 3,
+        ..., and must be executed in that order.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ActionGroupBaseType">
+        <xs:sequence>
+          <xs:element name="Steps"
+            type="NumberedPlanElementsType">
+            <xs:annotation>
+              <xs:documentation>
+                The Steps element is a set of numbered plan elements.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="UnorderedActionGroupType">
+    <xs:annotation>
+      <xs:documentation>
+        The UnorderedActionGroupType defines an action group for which all
+        of the steps it contains should be executed, but any order of
+        executing them will work, and no particular order of execution is
+        required.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ActionGroupBaseType">
+        <xs:sequence>
+          <xs:element name="Steps"
+            type="UnnumberedPlanElementsType">
+            <xs:annotation>
+              <xs:documentation>
+                The Steps element is a list of plan elements without
+                numbers.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="PartiallyOrderedActionGroupType">
+    <xs:annotation>
+      <xs:documentation>
+        The PartiallyOrderedActionGroupType defines an action group for
+        which all of the steps it contains should be executed, but each
+        step may be executed only after all of the predecessors of that
+        step have been executed. If more than one step meets that
+        condition, any order of executing those steps will work, and no
+        particular order is required by the plan. The SequenceNumbers of
+        the Steps in the StepsWithPredecessors in an instance of
+        PartiallyOrderedActionGroupType must be assigned 1, 2, 3, ... but
+        usually will not be executed in that order.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ActionGroupBaseType">
+        <xs:sequence>
+          <xs:element name="StepsWithPredecessors"
+            type="StepsWithPredecessorsType">
+            <xs:annotation>
+              <xs:documentation>
+                The StepsWithPredecessors element is a list of PlanElements
+                with predecessors.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="StepWithPredecessorsType">
+    <xs:annotation>
+      <xs:documentation>
+        The StepWithPredecessorsType defines information about a single
+        PlanElement that has predecessors.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Predecessors"
+        type="PredecessorsType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Predecessors element is a list of the numbers of
+            steps that must be executed before this step is executed. Care
+            should be taken that no step has itself as a predecessor and
+            that there are no loops of predecessors, as when step 1 is a
+            predecessor of step 2 and step 2 is a predecessor of step 1.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Step"
+        type="NumberedPlanElementType">
+        <xs:annotation>
+          <xs:documentation>
+            The Step element is a numbered PlanElement.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="StepsWithPredecessorsType">
+    <xs:annotation>
+      <xs:documentation>
+        The StepsWithPredecessorsType defines a list of
+        StepWithPredecessors elements.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="StepWithPredecessors"
+        type="StepWithPredecessorsType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each StepWithPredecessors element is a single member of the
+            list.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of elements in the list.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="PredecessorsType">
+    <xs:annotation>
+      <xs:documentation>
+        The PredecessorsType defines a list of the numbers of predecessor
+        steps.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Predecessor"
+        type="xs:positiveInteger"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Predecessor element is a single member of the list. It is
+            a positive integer that is the number of a step and is
+            different from any other member of the list.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of predecessor steps in
+          the list.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="OneOfActionGroupType">
+    <xs:annotation>
+      <xs:documentation>
+        The OneOfActionGroupType defines an action group for which exactly
+        one of the steps it contains must be executed. Any step in the list
+        will do. The SequenceNumbers of the Steps in an instance of
+        OneOfActionGroupType are not required to be distinct. The
+        SequenceNumbers indicate a preference for which step is executed,
+        with 1 the most preferred, 2 the second most preferred, and so on.
+        Steps with the same SequenceNumber are equally preferred.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ActionGroupBaseType">
+        <xs:sequence>
+          <xs:element name="Steps"
+            type="NumberedPlanElementsType">
+            <xs:annotation>
+              <xs:documentation>
+                The Steps element is a list of numbered plan elements.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="PickSomeActionGroupType">
+    <xs:annotation>
+      <xs:documentation>
+        The PickSomeActionGroupType defines an action group for which a
+        specified number of the steps it contains must be executed; they
+        may be executed in any order.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ActionGroupBaseType">
+        <xs:sequence>
+          <xs:element name="Steps"
+            type="UnnumberedPlanElementsType">
+            <xs:annotation>
+              <xs:documentation>
+                The Steps element is a list of unnumbered plan elements.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NumberOfSteps"
+            type="xs:positiveInteger">
+            <xs:annotation>
+              <xs:documentation>
+                The NumberOfSteps element is the number of steps from the
+                Steps list to be executed. This must be at least one and
+                must not be larger than the number of Steps.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="IfActionGroupType">
+    <xs:annotation>
+      <xs:documentation>
+        IfActionGroupType is derived from ActionGroupBaseType and
+        represents an If-ElseIf-Else construct with zero to many Else-Ifs
+        and an optional Else.
+
+        If is a test to evaluate and the plan element to execute if the
+        test evaluates to true.
+ 
+        Each optional ElseIf is a test to evaluate and the plan
+        element to execute if the test evaluates to true.
+ 
+        The optional ElseDo is a plan element to execute if none
+        of the If or ElseIf tests evaluates to true.
+ 
+        To execute an IfActionGroupType:
+        1. Evaluate the test in the If. If it evaluates to true,
+           execute the plan element in the If and return.
+ 
+        2. Otherwise, evaluate the test in the next ElseIf if there is one.
+           If it evaluates to true, execute the plan element in the ElseIf
+           and return. Repeat until either return occurs or there are no
+           more ElseIfs.
+ 
+        3. Otherwise, if there is an ElseDo, execute the plan element
+        in the ElseDo and return.
+ 
+        4. Otherwise, return.
+ 
+        It is possible that no plan element will be executed when an
+        IfActionGroupType is executed.
+ 
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ActionGroupBaseType">
+        <xs:sequence>
+          <xs:element name="If"
+            type="TestAndPlanElementType">
+            <xs:annotation>
+              <xs:documentation>
+                The If element is the first test and plan element.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ElseIf"
+            type="TestAndPlanElementType"
+            minOccurs="0"
+            maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                Each optional ElseIf element is an additional test and plan
+                element.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ElseDo"
+            type="ElseDoType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ElseDo element is a plan element to execute if
+                the ElseDo is reached.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TestAndPlanElementType">
+    <xs:annotation>
+      <xs:documentation>
+        The TestAndPlanElementType represents a test to evaluate and a plan
+        element to execute if the test evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="BooleanExpression">
+        <xs:annotation>
+          <xs:documentation>
+            The BooleanExpression element is a boolean expression to
+            evaluate.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="PlanElement">
+        <xs:annotation>
+          <xs:documentation>
+            The PlanElement element is the plan element to execute if the
+            BooleanExpression evaluates to true.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ElseDoType">
+    <xs:annotation>
+      <xs:documentation>
+        The ElseDoType represents the 'Else' part of an If-ElseIf-Else
+        construct.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="PlanElement">
+        <xs:annotation>
+          <xs:documentation>
+            The PlanElement element is the plan element to execute.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="WhileActionGroupType">
+    <xs:annotation>
+      <xs:documentation>
+        The WhileActionGroupType represents a loop. To execute a
+        WhileActionGroupType, evaluate the BooleanExpression. If the
+        BooleanExpression evaluates to true, execute the PlanElement.
+        Repeat evaluating and executing as long as the BooleanExpression
+        evaluates to true. The first time the BooleanExpression evaluates
+        to false, return. If the BooleanExpression evaluates to false the
+        first time it is evaluated, the PlanElement is never executed.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ActionGroupBaseType">
+        <xs:sequence>
+          <xs:element ref="BooleanExpression">
+            <xs:annotation>
+              <xs:documentation>
+                The BooleanExpression element is the test.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element ref="PlanElement">
+            <xs:annotation>
+              <xs:documentation>
+                The PlanElement element is the element to execute if the
+                the test evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="WorkInstructionBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The WorkInstructionBaseType is the abstract base type that defines
+        the specific media types that provide instructions that have
+        meaning in an application context.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Attributes"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Attributes element contains user defined
+            attributes (typified, binary array, or XML structured).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id"
+      type="QIFIdType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The id attribute is the QIF id of the work instruction, used for
+          referencing.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="TextInstructionType">
+    <xs:annotation>
+      <xs:documentation>
+        The TextInstructionType defines work instructions that consist of
+        text.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="WorkInstructionBaseType">
+        <xs:sequence>
+          <xs:element name="TextInstruction"
+            type="xs:string">
+            <xs:annotation>
+              <xs:documentation>
+                The TextInstruction element provides instructions in text.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DocumentFileInstructionType">
+    <xs:annotation>
+      <xs:documentation>
+        The DocumentFileInstructionType defines an external file that
+        provides work instructions in a text file.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="WorkInstructionBaseType">
+        <xs:sequence>
+          <xs:element name="ExternalFile"
+            type="ExternalFileReferenceType">
+            <xs:annotation>
+              <xs:documentation>
+                The ExternalFile element gives information about an
+                external document instruction file.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ImageInstructionType">
+    <xs:annotation>
+      <xs:documentation>
+        The ImageInstructionType defines an external file that provides
+        work instructions in an image.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="WorkInstructionBaseType">
+        <xs:sequence>
+          <xs:element name="ExternalFile"
+            type="ExternalFileReferenceType">
+            <xs:annotation>
+              <xs:documentation>
+                The ExternalFile element gives information about an
+                external image instruction file.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="VariableDeclarationType">
+    <xs:annotation>
+      <xs:documentation>
+        The VariableDeclarationType represents declaring a numerical
+        variable. Val is the initial value of the variable. The value may
+        be reset using a VariableSetType. The value may be used using a
+        VariableValueType.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name"
+        type="xs:ID">
+        <xs:annotation>
+          <xs:documentation>
+            The Name element is the name of the variable.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Val"
+        type="xs:decimal">
+        <xs:annotation>
+          <xs:documentation>
+            The Val element is the value of the variable.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="LocalVariablesType">
+    <xs:annotation>
+      <xs:documentation>
+        The LocalVariablesType is a set of variable declarations. The
+        variables are local to the plan.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Variable"
+        type="VariableDeclarationType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Variable element declares a variable and sets its initial
+            value.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of variables in the set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="VariableSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The VariableSetType represents the setting of a variable.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="PlanElementBaseType">
+        <xs:sequence>
+          <xs:element name="VariableName"
+            type="xs:IDREF">
+            <xs:annotation>
+              <xs:documentation>
+                The VariableName element is the name of variable to set.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element ref="ArithmeticExpression">
+            <xs:annotation>
+              <xs:documentation>
+                The ArithmeticExpression element is the value to which the
+                variable should be set.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="VariableValueType">
+    <xs:annotation>
+      <xs:documentation>
+        The VariableValueType represents the value of a variable. The value
+        of a VariableValueType is the value of the named variable at the
+        time the variable is used (as in standard programming languages).
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArithmeticExpressionBaseType">
+        <xs:sequence>
+          <xs:element name="VariableName"
+            type="xs:IDREF">
+            <xs:annotation>
+              <xs:documentation>
+                The VariableName element is the name of a variable.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArithmeticParameterValueType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArithmeticParameterValueType defines an arithmetic expression
+        that represents the value of an arithmetic parameter of a QIF
+        object with a QIF id (e.g., the ToleranceValue of a geometric
+        tolerance). If the identified object does not have the given
+        parameter, the result is undefined. If a parameter value is given
+        in units that are not the units in use, the evaluating system must
+        convert to the units in use and use the converted value.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArithmeticExpressionBaseType">
+        <xs:sequence>
+          <xs:element name="Parameter"
+            type="xs:token">
+            <xs:annotation>
+              <xs:documentation>
+                The Parameter element is the xpath starting from the object
+                (e.g., a feature or characteristic) and ending in name of
+                the arithmetic parameter whose value is to be obtained --
+                for example, Diameter for a Circle or Sweep/Angle for a
+                Circular Arc. The type of the value of the parameter must
+                be xs:decimal or the value must be convertible to
+                xs:decimal without loss of accuracy.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ObjectId"
+            type="QIFReferenceFullType">
+            <xs:annotation>
+              <xs:documentation>
+                The ObjectId element identifies the object from which the
+                parameter value is to be extracted.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TokenParameterValueType">
+    <xs:annotation>
+      <xs:documentation>
+        The TokenParameterValueType defines a token expression that
+        represents the value of a token parameter of a QIF object with a
+        QIF id (e.g., the InternalExternal of a circle feature). If the
+        identified object does not have the given parameter, the result is
+        undefined.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="TokenExpressionBaseType">
+        <xs:sequence>
+          <xs:element name="Parameter"
+            type="xs:token">
+            <xs:annotation>
+              <xs:documentation>
+                The Parameter element is the xpath starting from the object
+                (e.g., a feature or characteristic) and ending in name of
+                the token parameter whose value is to be obtained -
+                for example, InternalExternal of a circle.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ObjectId"
+            type="QIFReferenceFullType">
+            <xs:annotation>
+              <xs:documentation>
+                The ObjectId element identifies the object from which the
+                parameter value is to be extracted.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="VideoInstructionType">
+    <xs:annotation>
+      <xs:documentation>
+        The VideoInstructionType defines an external file that provides
+        work instructions in a video.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="WorkInstructionBaseType">
+        <xs:sequence>
+          <xs:element name="ExternalFile"
+            type="ExternalFileReferenceType">
+            <xs:annotation>
+              <xs:documentation>
+                The ExternalFile element gives information about an
+                external video instruction file.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="WorkInstructionsType">
+    <xs:annotation>
+      <xs:documentation>
+        The WorkInstructionsType defines a set of sets of work
+        instructions.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="WorkInstruction"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each WorkInstruction element is a single set of work
+            instructions.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of work instructions in
+          the set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+<!-- START PlanRoot SUBSTITUTION GROUP -->
+
+  <xs:element name="PlanRoot"
+    type="ActionGroupBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The global PlanRoot element (to be used via 'ref') is the root
+        of a plan tree. This element may be replaced (as provided by
+        substitution group declarations) by any of the following elements
+        representing action groups:
+          OrderedPlanRoot
+          UnorderedPlanRoot
+          PartiallyOrderedPlanRoot
+          OneOfPlanRoot
+          PickSomePlanRoot
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="OrderedPlanRoot"
+    type="OrderedActionGroupType"
+    substitutionGroup="PlanRoot"/>
+
+  <xs:element name="UnorderedPlanRoot"
+    type="UnorderedActionGroupType"
+    substitutionGroup="PlanRoot"/>
+
+  <xs:element name="PartiallyOrderedPlanRoot"
+    type="PartiallyOrderedActionGroupType"
+    substitutionGroup="PlanRoot"/>
+
+  <xs:element name="OneOfPlanRoot"
+    type="OneOfActionGroupType"
+    substitutionGroup="PlanRoot"/>
+
+  <xs:element name="PickSomePlanRoot"
+    type="PickSomeActionGroupType"
+    substitutionGroup="PlanRoot"/>
+
+<!-- END PlanRoot SUBSTITUTION GROUP -->
+
+<!-- START PlanElement SUBSTITUTION GROUP -->
+
+  <xs:element name="PlanElement"
+    type="PlanElementBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The global PlanElement element (to be used via 'ref') is a single
+        step in a plan. This element may be replaced (as provided by
+        substitution group declarations) by any of the following elements
+        representing types of step:
+          OrderedActionGroup
+          UnorderedActionGroup,
+          PartiallyOrderedActionGroup
+          OneOfActionGroup
+          PickSomeActionGroup
+          IfActionGroup
+          WhileActionGroup
+          MeasureEvaluateAll
+          MeasureEvaluateSpecified
+          EvaluateSpecifiedCharacteristics
+          Halt
+          MeasureSpecifiedFeatures
+          MeasureSpecifiedMeasurands
+          VariableSet
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="OrderedActionGroup"
+    type="OrderedActionGroupType"
+    substitutionGroup="PlanElement"/>
+
+  <xs:element name="UnorderedActionGroup"
+    type="UnorderedActionGroupType"
+    substitutionGroup="PlanElement"/>
+
+  <xs:element name="PartiallyOrderedActionGroup"
+    type="PartiallyOrderedActionGroupType"
+    substitutionGroup="PlanElement"/>
+
+  <xs:element name="OneOfActionGroup"
+    type="OneOfActionGroupType"
+    substitutionGroup="PlanElement"/>
+
+  <xs:element name="PickSomeActionGroup"
+    type="PickSomeActionGroupType"
+    substitutionGroup="PlanElement"/>
+
+  <xs:element name="MeasureEvaluateAll"
+    type="MeasureEvaluateAllActionType"
+    substitutionGroup="PlanElement"/>
+
+  <xs:element name="MeasureEvaluateSpecified"
+    type="MeasureEvaluateSpecifiedActionType"
+    substitutionGroup="PlanElement"/>
+
+  <xs:element name="EvaluateSpecifiedCharacteristics"
+    type="EvaluateSpecifiedCharacteristicsActionType"
+    substitutionGroup="PlanElement"/>
+
+  <xs:element name="Halt"
+    type="HaltActionType"
+    substitutionGroup="PlanElement"/>
+
+  <xs:element name="MeasureSpecifiedFeatures"
+    type="MeasureSpecifiedFeaturesActionType"
+    substitutionGroup="PlanElement"/>
+
+  <xs:element name="MeasureSpecifiedMeasurands"
+    type="MeasureSpecifiedMeasurandsActionType"
+    substitutionGroup="PlanElement"/>
+
+  <xs:element name="IfActionGroup"
+    type="IfActionGroupType"
+    substitutionGroup="PlanElement"/>
+
+  <xs:element name="WhileActionGroup"
+    type="WhileActionGroupType"
+    substitutionGroup="PlanElement"/>
+
+  <xs:element name="VariableSet"
+    type="VariableSetType"
+    substitutionGroup="PlanElement"/>
+
+<!-- END PlanElement SUBSTITUTION GROUP -->
+
+<!-- START WorkInstruction SUBSTITUTION GROUP -->
+
+  <xs:element name="WorkInstruction"
+    type="WorkInstructionBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The global WorkInstruction element (to be used via 'ref') is a
+        single set of work instructions. This element may be replaced (as
+        provided by substitution group declarations) by any of the
+        following elements representing types of work instruction:
+          TextInstruction
+          DocumentFileInstruction
+          ImageInstruction
+          VideoInstruction
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="TextInstruction"
+    type="TextInstructionType"
+    substitutionGroup="WorkInstruction"/>
+
+  <xs:element name="DocumentFileInstruction"
+    type="DocumentFileInstructionType"
+    substitutionGroup="WorkInstruction"/>
+
+  <xs:element name="ImageInstruction"
+    type="ImageInstructionType"
+    substitutionGroup="WorkInstruction"/>
+
+  <xs:element name="VideoInstruction"
+    type="VideoInstructionType"
+    substitutionGroup="WorkInstruction"/>
+
+<!-- END WorkInstruction SUBSTITUTION GROUP -->
+
+<!-- START ActionMethod SUBSTITUTION GROUP -->
+
+  <xs:element name="ActionMethod"
+    type="ActionMethodBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The global ActionMethod element (to be used via 'ref') is a
+        single action method. This element may be replaced (as
+        provided by substitution group declarations) by any of the
+        following elements representing types of action method:
+          AutocollimatorMeasureFeatureMethod
+          CalibratedComparatorMeasureFeatureMethod
+          CoordinateMeasureFeatureMethod
+          ComputedTomographyMeasureFeatureMethod
+          ExternalReferenceMeasureFeatureMethod
+          GageMeasureFeatureMethod
+          LaserRadarMeasureFeatureMethod
+          LaserTrackerMeasureFeatureMethod
+          ManualMeasureFeatureMethod
+          MicroscopeMeasureFeatureMethod
+          ProfileProjectorMeasureFeatureMethod
+          TheodoliteMeasureFeatureMethod
+          UniversalLengthMeasureFeatureMethod
+          OtherMeasureFeatureMethod
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="AutocollimatorMeasureFeatureMethod"
+    type="AutocollimatorMeasureFeatureMethodType"
+    substitutionGroup="ActionMethod"/>
+
+  <xs:element name="CalibratedComparatorMeasureFeatureMethod"
+    type="CalibratedComparatorMeasureFeatureMethodType"
+    substitutionGroup="ActionMethod"/>
+
+  <xs:element name="CoordinateMeasureFeatureMethod"
+    type="CoordinateMeasureFeatureMethodType"
+    substitutionGroup="ActionMethod"/>
+
+  <xs:element name="ComputedTomographyMeasureFeatureMethod"
+    type="ComputedTomographyMeasureFeatureMethodType"
+    substitutionGroup="ActionMethod"/>
+
+  <xs:element name="ExternalReferenceMeasureFeatureMethod"
+    type="ExternalReferenceMeasureFeatureMethodType"
+    substitutionGroup="ActionMethod"/>
+
+  <xs:element name="GageMeasureFeatureMethod"
+    type="GageMeasureFeatureMethodType"
+    substitutionGroup="ActionMethod"/>
+
+  <xs:element name="LaserRadarMeasureFeatureMethod"
+    type="LaserRadarMeasureFeatureMethodType"
+    substitutionGroup="ActionMethod"/>
+
+  <xs:element name="LaserTrackerMeasureFeatureMethod"
+    type="LaserTrackerMeasureFeatureMethodType"
+    substitutionGroup="ActionMethod"/>
+
+  <xs:element name="ManualMeasureFeatureMethod"
+    type="ManualMeasureFeatureMethodType"
+    substitutionGroup="ActionMethod"/>
+
+  <xs:element name="MicroscopeMeasureFeatureMethod"
+    type="MicroscopeMeasureFeatureMethodType"
+    substitutionGroup="ActionMethod"/>
+
+  <xs:element name="ProfileProjectorMeasureFeatureMethod"
+    type="ProfileProjectorMeasureFeatureMethodType"
+    substitutionGroup="ActionMethod"/>
+
+  <xs:element name="TheodoliteMeasureFeatureMethod"
+    type="TheodoliteMeasureFeatureMethodType"
+    substitutionGroup="ActionMethod"/>
+
+  <xs:element name="UniversalLengthMeasureFeatureMethod"
+    type="UniversalLengthMeasureFeatureMethodType"
+    substitutionGroup="ActionMethod"/>
+
+  <xs:element name="OtherMeasureFeatureMethod"
+    type="OtherMeasureFeatureMethodType"
+    substitutionGroup="ActionMethod"/>
+
+<!-- END ActionMethod SUBSTITUTION GROUP -->
+
+<!-- START Measurand SUBSTITUTION GROUP -->
+
+  <xs:element name="Measurand"
+    type="MeasurandBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The global Measurand element (to be used via 'ref') is a
+        single measurand. This element may be replaced (as
+        provided by substitution group declarations) by any of the
+        following elements representing types of action method:
+          EvaluateCharacteristicMeasurand
+          EstablishDatumMeasurand
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="EvaluateCharacteristicMeasurand"
+    type="EvaluateCharacteristicMeasurandType"
+    substitutionGroup="Measurand"/>
+
+  <xs:element name="EstablishDatumMeasurand"
+    type="EstablishDatumMeasurandType"
+    substitutionGroup="Measurand"/>
+
+<!-- END Measurand SUBSTITUTION GROUP -->
+
+<!-- START EXTEND ArithmeticExpression SUBSTITUTION GROUP  -->
+
+  <xs:element name="VariableValue"
+    type="VariableValueType"
+    substitutionGroup="ArithmeticExpression"/>
+
+  <xs:element name="ArithmeticParameterValue"
+    type="ArithmeticParameterValueType"
+    substitutionGroup="ArithmeticExpression"/>
+
+<!-- END EXTEND ArithmeticExpression SUBSTITUTION GROUP  -->
+
+<!-- START EXTEND TokenExpression SUBSTITUTION GROUP  -->
+
+  <xs:element name="TokenParameterValue"
+    type="TokenParameterValueType"
+    substitutionGroup="TokenExpression"/>
+
+<!-- END EXTEND TokenExpression SUBSTITUTION GROUP  -->
+
+</xs:schema>

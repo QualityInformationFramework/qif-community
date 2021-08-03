@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QIFDocument
+  xmlns="http://qifstandards.org/xsd/qif3"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation=
+    "http://qifstandards.org/xsd/qif3 ../schema/QIFDocument.xsd"
+  idMax="1"
+  versionQIF="3.0.0">
+  <QPId>b2fdf150-fb27-11e3-a3ac-0800200c9a66</QPId>
+  <Rules>
+    <FeatureRules>
+      <IfThenElseFeatureRules n="6">
+        <IfThenPlaneRule name="rule1">
+          <And n="2">
+            <CharacteristicIs val="FLATNESS"/>
+            <LessThan>
+              <ArithmeticCharacteristicParameter>
+                <Parameter>ToleranceValue</Parameter>
+                <CharacteristicTypeEnum>FLATNESS</CharacteristicTypeEnum>
+              </ArithmeticCharacteristicParameter>
+              <ArithmeticConstant val="0.05"/>
+            </LessThan>
+          </And>
+          <ThenPoints>
+            <PointDensity>0.8</PointDensity>
+          </ThenPoints>
+          <ThenFittingAlgorithm>
+            <SubstituteFeatureAlgorithmEnum>MINMAX</SubstituteFeatureAlgorithmEnum>
+          </ThenFittingAlgorithm>
+        </IfThenPlaneRule>
+        <IfThenCircleRule>
+          <SamplingCategoryIs val="3"/>
+          <ThenPoints>
+            <NumberOfPoints>7</NumberOfPoints>
+          </ThenPoints>
+        </IfThenCircleRule>
+        <IfThenCircularArcRule>
+          <SamplingCategoryIs val="2"/>
+          <ThenPoints>
+            <MinPoints>6</MinPoints>
+          </ThenPoints>
+        </IfThenCircularArcRule>
+        <IfThenCylinderRule>
+          <And n="2">
+            <SamplingCategoryIs val="1"/>
+            <GreaterThan>
+              <ArithmeticFeatureParameter>
+                <Parameter>Diameter</Parameter>
+              </ArithmeticFeatureParameter>
+              <ArithmeticConstant val="24"/>
+            </GreaterThan>
+          </And>
+          <ThenPoints>
+            <MinPoints>15</MinPoints>
+          </ThenPoints>
+        </IfThenCylinderRule>
+        <IfThenCylinderRule>
+          <And n="2">
+            <SamplingCategoryIs val="1"/>
+            <FeatureIsDatum/>
+          </And>
+          <ThenPoints>
+            <MinPoints>20</MinPoints>
+          </ThenPoints>
+          <ThenPointStrategy>
+            <PointSamplingStrategyEnum>BIRDCAGE</PointSamplingStrategyEnum>
+          </ThenPointStrategy>
+        </IfThenCylinderRule>
+        <Else>
+          <ThenPoints>
+            <MinPoints>12</MinPoints>
+          </ThenPoints>
+        </Else>
+      </IfThenElseFeatureRules>
+    </FeatureRules>
+  </Rules>
+</QIFDocument>

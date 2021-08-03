@@ -1,0 +1,3021 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This document is part of QIF 3.0, an open, industry-wide standard -->
+<!-- established by the Dimensional Metrology Standards Consortium.    -->
+<!-- This document shall not be used in any manner to claim any        -->
+<!-- proprietary rights to such information, such as rights to a       -->
+<!-- patent, trademark, or copyright.                                  -->
+
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://qifstandards.org/xsd/qif3"
+  xmlns:t="http://qifstandards.org/xsd/qif3"
+  targetNamespace="http://qifstandards.org/xsd/qif3"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified"
+  version="3.0.0">
+
+  <xs:include schemaLocation="../QIFLibrary/Expressions.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/IntermediatesPMI.xsd"/>
+
+  <xs:element name="Rules"
+    type="QIFRulesType"/>
+
+  <xs:complexType name="QIFRulesType">
+    <xs:annotation>
+      <xs:documentation>
+        The QIFRulesType defines a collection of sets of rules for
+        selecting quality measurement items. Currently it contains a
+        complete model of rules for selecting the quantity of hit points
+        and/or the strategy for selecting hit points and/or a substitute
+        feature algorithm. It also contains a model of rules for selecting
+        DMEs. Rules sets for other types of decisions might be added.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Version"
+        type="VersionType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Version element gives version information about
+            the rules.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RulesUnits"
+        type="RulesUnitsType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional RulesUnits element defines the units that apply in
+            the FeatureRules. If this element does not exist, the units are
+            the primary units given in the FileUnits element of the
+            QIFDocument. Feature and characteristic information expressed
+            elsewhere in other units must be converted to these units while
+            using rules.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FeatureRules"
+        type="FeatureRulesType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional FeatureRules element defines rules for
+            selecting the quantity of hit points for a feature and/or
+            the strategy to use for selecting the points and/or the
+            substitute feature algorithm to use.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DMESelectionRules"
+        type="DMESelectionRulesType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional DMESelectionRules element defines a set of rules
+            for selecting or not selecting DMEs.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RulesUnitsType">
+    <xs:annotation>
+      <xs:documentation>
+        The RulesUnitsType defines units for various quantities. All unit
+        types are optional. Each unit type may occur at most once,
+        since individual numbers used in rules cannot have units assigned.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AreaUnit"
+        type="AreaUnitType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional AreaUnit element defines units for area values.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AngularUnit"
+        type="AngularUnitType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional AngularUnit element defines units for angle
+            values.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ForceUnit"
+        type="ForceUnitType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ForceUnit element defines units for force values.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LinearUnit"
+        type="LinearUnitType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional LinearUnit element defines units for length
+            values.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MassUnit"
+        type="MassUnitType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional MassUnit element defines units for mass values.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PressureUnit"
+        type="PressureUnitType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional PressureUnit element defines units for pressure
+            values.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SpeedUnit"
+        type="SpeedUnitType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional SpeedUnit element defines units for speed values.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TemperatureUnit"
+        type="TemperatureUnitType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional TemperatureUnit element defines units for
+            temperature values.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TimeUnit"
+        type="TimeUnitType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional TimeUnit element defines units for time values.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of unit definitions in the
+          set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="FeatureRulesType">
+    <xs:annotation>
+      <xs:documentation>
+          The FeatureRulesType defines two methods of setting the quantity
+        of hit points to use for a feature and/or a strategy to use for
+        selecting the hit points and/or the substitute feature algorithm to
+        use to fit the feature to the hit points. If the
+        IfThenElseFeatureRules and MaxFeatureRules are both used to find
+        the quantity of points for a feature, both sets of rules should be
+        applied and the maximum value should be used. Also if both are used
+        and they give different point sampling strategies or different
+        substitute feature algorithms, the evaluating system may use any of
+        those strategies or algorithms.
+
+          Since a given feature F may be associated with zero to many
+        characteristics C1 ... Cn, if there is any characteristic
+        associated with F, the rules should be evaluated for each FCi pair,
+        and the number or density of hit points to use for F should be set
+        to the maximum value.
+
+          If a number of hit points must be compared with a density of hit
+        points, the evaluating system should find and use the area of the
+        feature to convert density values to numbers of points.
+
+          So that a single rules file may be used in different situations,
+        the rules include a SamplingCategoryIs Boolean expression that
+        tests whether the sampling category is equal to a particular value.
+        If a set of rules includes one or more rules containing a
+        SamplingCategoryIs test, the rules are to be evaluated in an
+        environment in which the sampling category has been set to some
+        positive integer. The meaning of a sampling category is determined
+        by whoever writes the rules. For example, 1 might mean first
+        article inspection while 5 means process control. As another
+        example, Sampling categories 1 through 3 might represent LOW,
+        MEDIUM, and HIGH, respectively. An alternative to using rules
+        containing SamplingCategoryIs tests is to write a separate rules
+        file for each category.
+
+          Numerical quantities that are constants, feature parameters, or
+        characteristic parameters may be used in conditions.
+
+          The numerical quantities FeatureLength and FeatureArea may also
+        be used in conditions. The evaluating system must set the value of
+        FeatureLength for the feature being processed if FeatureLength is
+        used in any condition. The evaluating system must set the value of
+        FeatureArea for the feature being processed if FeatureArea is used
+        in any condition.
+
+          The rules are not intended for picking the quantity of points or
+        point sampling strategy to use for measuring a characteristic that
+        is not associated with any feature.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="IfThenElseFeatureRules"
+        type="IfThenElseFeatureRulesType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional IfThenElseFeatureRules element is a set of rules
+            for selecting the number or density of hit points for a feature
+            and/or a strategy to use for selecting the hit points and/or a
+            substitute feature algorithm. The first rule that applies is
+            used to set the quantity of hit points and/or the strategy
+            and/or the algorithm.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MaxFeatureRules"
+        type="MaxFeatureRulesType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional MaxFeatureRules element is a set of rules for
+            selecting the number or density of hit points for a feature
+            and/or a strategy to use for selecting the hit points and/or a
+            substitute feature algorithm. The largest value returned by all
+            rules that apply is used to set the quantity of hit points. If
+            the rules that apply give different point sampling strategies
+            or substitute feature algorithms, the evaluating system may use
+            any of those strategies or algorithms.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="QIFRuleBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The abstract QIFRuleBaseType defines the base type for all QIF
+        rules.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="UUID"
+        type="QPIdType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional UUID element is a persistent identifier for the
+            rule. If used, it should be generated using a widely accepted
+            UUID generator.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="name"
+      type="xs:token">
+      <xs:annotation>
+        <xs:documentation>
+          The optional name attribute is the name of the rule.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="IfThenElseFeatureRulesType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenElseFeatureRulesType defines a set of rules for selecting
+        (1) the number or density of hit points for a single feature,
+        possibly with an associated characteristic, and/or (2) a strategy
+        for selecting the points, and/or (3) the substitute feature
+        algorithm to use to fit the feature to the hit points. To evaluate
+        an IfThenElseFeatureRulesType, each IfThenFeatureRule should be
+        considered in order until the 'if' part of one of them evaluates to
+        true, at which point the 'then' part of the rule should be
+        evaluated and the value of the point quantity and or point sampling
+        strategy returned. In this case, the remainder of the
+        IfThenFeatureRules should be ignored. If the 'if' part of no
+        IfThenFeatureRule evaluates to true, then the 'then' part of the
+        Else should be evaluated and returned.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="IfThenFeatureRule"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each IfThenFeatureRule element defines a conditional rule for
+            selecting the number or density of hit points.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Else"
+        type="ElseRuleType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Else element is an unconditional rule for
+            selecting the number or density of hit points.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of rules in this list,
+          which is the number of if-then-rules plus one for the else-rule
+          if present.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="MaxFeatureRulesType">
+    <xs:annotation>
+      <xs:documentation>
+        The MaxFeatureRulesType defines a set of rules for selecting (1)
+        the number or density of hit points for a single feature, possibly
+        with an associated characteristic and/or (2) a strategy for
+        selecting the points, and/or (3) the substitute feature algorithm
+        to use to fit the feature to the hit points. To evaluate a
+        MaxFeatureRulesType, keep track of a current answer for point
+        quantity, which is initially set to zero. Each IfThenFeatureRule
+        should be considered in order. If the 'if' part of a rule evaluates
+        to true, the 'then' part of the rule should be evaluated and if
+        that value is greater than the current answer, the current answer
+        should be set to that value. If the 'if' part of no
+        IfThenFeatureRule evaluates to true, so that the current answer is
+        still zero after all IfThenFeatureRules have been processed, then
+        the 'then' part of the Else should be evaluated and the current
+        answer set to that value. The returned value for point quantity is
+        the final value of the current answer. In addition to keeping track
+        of the current answer for point quantity, the evaluating system
+        should collect all the strategies and substitute feature algorithms
+        from the 'then' parts that were evaluated.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="IfThenFeatureRule"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each IfThenFeatureRule element defines a conditional rule for
+            selecting the number or density of hit points and/or a strategy
+            for selecting the points, and/or a substitute feature
+            algorithm.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Else"
+        type="ElseRuleType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Else element is an unconditional rule for
+            selecting the number or density of hit points.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of rules in this list,
+          which is the number of if-then-rules plus one for the else-rule
+          if present.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="PointRuleBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The abstract PointRuleBaseType defines the base type for rules for
+        selecting the number or density of hit points and/or a strategy for
+        selecting the points.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="QIFRuleBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="IfThenFeatureRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenFeatureRuleType defines a rule containing an optional
+        'if' part and an optional 'then points' part. The 'then points'
+        part of the rule applies if the 'if' part does not exist or
+        evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="PointRuleBaseType">
+        <xs:sequence>
+          <xs:element ref="BooleanExpression"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional BooleanExpression element is the 'if' part of
+                the rule.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenPoints"
+            type="ThenPointsType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPoints element gives the quantity of
+                points to use if the 'if' part evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ElseRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The ElseRuleType defines a rule containing an optional 'then
+        points' part which always applies.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="PointRuleBaseType">
+        <xs:sequence>
+          <xs:element name="ThenPoints"
+            type="ThenPointsType">
+            <xs:annotation>
+              <xs:documentation>
+                The ThenPoints element gives (only) the quantity of points
+                to use.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ThenPointsType">
+    <xs:annotation>
+      <xs:documentation>
+        The ThenPointsType defines an optional choice of four alternative
+        methods for specifying the quantity of hit points to be used. In
+        the two density alternatives: (1) for curves, the value is in
+        points per unit length in linear units; (2) for surfaces, the value
+        is in points per unit area in area units.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice
+        minOccurs="0">
+        <xs:element name="NumberOfPoints"
+          type="xs:unsignedInt">
+          <xs:annotation>
+            <xs:documentation>
+              The NumberOfPoints element is the number of points to be
+              used. A larger or smaller number of points must not be used.
+              This element is in an optional choice.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="MinPoints"
+          type="xs:unsignedInt">
+          <xs:annotation>
+            <xs:documentation>
+              The MinPoints element is the minimum number of points to be
+              used. A smaller number of points must not be used. A larger
+              number of points may be used. This element is in an optional
+              choice.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="PointDensity"
+          type="PositiveDecimalType">
+          <xs:annotation>
+            <xs:documentation>
+              The PointDensity element is the density of points to be used.
+              A larger or smaller point density must not be used, except as
+              is unavoidable because the number of points is an integer.
+              This element is in an optional choice.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="MinPointDensity"
+          type="PositiveDecimalType">
+          <xs:annotation>
+            <xs:documentation>
+              The MinPointDensity element is the minimum density of points
+              to be used. A smaller point density must not be used. A larger
+              point density may be used. This element is in an optional
+              choice.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:annotation>
+    <xs:documentation>
+      There follow pairs of definitions of IfThenXXXRuleType and
+      XXXPointSamplingStrategyType for each of 22 feature types. The
+      IfThenXXXRuleType is derived from the IfThenFeatureRuleType and
+      inherits the BooleanExpression element and the optional ThenPoints
+      element from it. In addition, the IfThenXXXRuleType specifies an
+      optional set of point sampling strategies and an optional set of
+      substitute feature algorithms that may be assigned by rule to
+      features of the XXX type. The complex composite features, edge point,
+      and thread are not included. In all cases, the set of allowed
+      substitute feature algorithms is the one given for XXX features in
+      FeatureTypes.xsd. The sets of point sampling strategies used here are
+      defined in QIFExpressions.xsd. Most of them come from ISO14406:2010.
+ 
+      In addition to IfThenXXXRuleType definitions for specific feature
+      types, there is an IfThenSurfaceRuleType for any type of surface
+      feature and an IfThenCurveRuleType for any type of curve feature.
+      Those have only the BooleanExpression and ThenPoints elements.
+    </xs:documentation>
+  </xs:annotation>
+
+<!-- BEGIN TYPES SPECIFIC TO CIRCLE -->
+
+  <xs:complexType name="IfThenCircleRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenCircleRuleType defines a conditional rule that applies if
+        the feature under consideration is a circle feature. The rule
+        contains an inherited 'if' part, an inherited ThenPoints part, and
+        two more 'then' parts. The 'then' parts of the rule apply if the
+        'if' part does not exist or evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="CirclePointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="CirclePointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The CirclePointSamplingStrategyType defines a point sampling
+        strategy for a circle feature. The strategy is either an enumerated
+        circle strategy or a user defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="ClosedCurvePointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for a circle feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point
+            sampling strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO CIRCLE -->
+
+<!-- BEGIN TYPES SPECIFIC TO CIRCULAR ARC -->
+
+  <xs:complexType name="IfThenCircularArcRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenCircularArcRuleType defines a conditional rule that
+        applies if the feature under consideration is a circular arc
+        feature. The rule contains an inherited 'if' part, an inherited
+        ThenPoints part, and two more 'then' parts. The 'then' parts of the
+        rule apply if the 'if' part does not exist or evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="CircularArcPointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="CircularArcPointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The CircularArcPointSamplingStrategyType defines a point sampling
+        strategy for a circular arc feature. The strategy is either an
+        enumerated circular arc strategy or a user defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="OpenCurvePointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for a circular arc feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO CIRCULAR ARC -->
+
+<!-- BEGIN TYPES SPECIFIC TO CONE -->
+
+  <xs:complexType name="IfThenConeRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenConeRuleType defines a conditional rule that applies if
+        the feature under consideration is a cone feature. The rule
+        contains an inherited 'if' part, an inherited ThenPoints part, and
+        two more 'then' parts. The 'then' parts of the rule apply if the
+        'if' part does not exist or evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="ConePointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ConePointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The ConePointSamplingStrategyType defines a point sampling strategy
+        for a cone feature. The strategy is either an enumerated cone
+        strategy or a user defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="ConePointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for a cone feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO CONE -->
+
+<!-- BEGIN TYPES SPECIFIC TO CONICAL SEGMENT -->
+
+  <xs:complexType name="IfThenConicalSegmentRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenConicalSegmentRuleType defines a conditional rule that
+        applies if the feature under consideration is a conical segment
+        feature. The rule contains an inherited 'if' part, an inherited
+        ThenPoints part, and two more 'then' parts. The 'then' parts of the
+        rule apply if the 'if' part does not exist or evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="ConicalSegmentPointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ConicalSegmentPointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The ConicalSegmentPointSamplingStrategyType defines a point
+        sampling strategy for a conical segment feature. The strategy is
+        either an enumerated conical segment strategy or a user defined
+        strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="ConePointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for a conical segment feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO CONICAL SEGMENT -->
+
+<!-- BEGIN TYPES SPECIFIC TO CYLINDER -->
+
+  <xs:complexType name="IfThenCylinderRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenCylinderRuleType defines a conditional rule that applies
+        if the feature under consideration is a cylinder feature. The rule
+        contains an inherited 'if' part, an inherited ThenPoints part, and
+        two more 'then' parts. The 'then' parts of the rule apply if the
+        'if' part does not exist or evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="CylinderPointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="CylinderPointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The CylinderPointSamplingStrategyType defines a point sampling
+        strategy for a cylinder feature. The strategy is either an
+        enumerated cylinder strategy or a user defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="SurfaceOfRevolutionPointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for a cylinder feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO CYLINDER -->
+
+<!-- BEGIN TYPES SPECIFIC TO CYLINDRICAL SEGMENT -->
+
+  <xs:complexType name="IfThenCylindricalSegmentRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenCylindricalSegmentRuleType defines a conditional rule
+        that applies if the feature under consideration is a cylindrical
+        segment feature. The rule contains an inherited 'if' part, an
+        inherited ThenPoints part, and two more 'then' parts. The 'then'
+        parts of the rule apply if the 'if' part evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="CylindricalSegmentPointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="CylindricalSegmentPointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The CylindricalSegmentPointSamplingStrategyType defines a point
+        sampling strategy for a cylindrical segment feature. The strategy
+        is either an enumerated cylindrical segment strategy or a user
+        defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="SurfaceOfRevolutionPointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for a cylindrical segment feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO CYLINDRICAL SEGMENT -->
+
+<!-- THERE ARE NO TYPES SPECIFIC TO EDGE POINT -->
+
+<!-- BEGIN TYPES SPECIFIC TO ELLIPSE -->
+
+  <xs:complexType name="IfThenEllipseRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenEllipseRuleType defines a conditional rule that applies
+        if the feature under consideration is an ellipse feature. The rule
+        contains an inherited 'if' part, an inherited ThenPoints part, and
+        two more 'then' parts. The 'then' parts of the rule apply if the
+        'if' part does not exist or evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="EllipsePointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="EllipsePointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The EllipsePointSamplingStrategyType defines a point sampling
+        strategy for an ellipse feature. The strategy is either an
+        enumerated ellipse strategy or a user defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="ClosedCurvePointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for an ellipse feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO ELLIPSE -->
+
+<!-- BEGIN TYPES SPECIFIC TO ELLIPTICAL ARC -->
+
+  <xs:complexType name="IfThenEllipticalArcRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenEllipticalArcRuleType defines a conditional rule that
+        applies if the feature under consideration is an elliptical arc
+        feature. The rule contains an inherited 'if' part, an inherited
+        ThenPoints part, and two more 'then' parts. The 'then' parts of the
+        rule apply if the 'if' part does not exist or evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="EllipticalArcPointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="EllipticalArcPointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The EllipticalArcPointSamplingStrategyType defines a point sampling
+        strategy for an elliptical arc feature. The strategy is either an
+        enumerated elliptical arc strategy or a user defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="OpenCurvePointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for an elliptical arc feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO ELLIPTICAL ARC -->
+
+<!-- BEGIN TYPES SPECIFIC TO ELONGATED CIRCLE -->
+
+  <xs:complexType name="IfThenElongatedCircleRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenElongatedCircleRuleType defines a conditional rule that
+        applies if the feature under consideration is an elongated circle
+        feature. The rule contains an inherited 'if' part, an inherited
+        ThenPoints part, and two more 'then' parts. The 'then' parts of the
+        rule apply if the 'if' part evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="ElongatedCirclePointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ElongatedCirclePointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The ElongatedCirclePointSamplingStrategyType defines a point
+        sampling strategy for an elongated circle feature. The strategy
+        is either an enumerated elongated circle strategy or a user
+        defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="OpenCurvePointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for an elongated circle feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO ELONGATEDCIRCLE -->
+
+<!-- BEGIN TYPES SPECIFIC TO ELONGATED CYLINDER -->
+
+  <xs:complexType name="IfThenElongatedCylinderRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenElongatedCylinderRuleType defines a conditional rule that
+        applies if the feature under consideration is an elongated cylinder
+        feature. The rule contains an inherited 'if' part, an inherited
+        ThenPoints part, and two more 'then' parts. The 'then' parts of the
+        rule apply if the 'if' part evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="ElongatedCylinderPointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ElongatedCylinderPointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The ElongatedCylinderPointSamplingStrategyType defines a point
+        sampling strategy for an elongated cylinder feature. The strategy
+        is either an enumerated elongated cylinder strategy or a user
+        defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="ElongatedCylinderPointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for an elongated cylinder feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO ELONGATEDCYLINDER -->
+
+<!-- BEGIN TYPES SPECIFIC TO EXTRUDED-CROSS-SECTION -->
+
+  <xs:complexType name="IfThenExtrudedCrossSectionRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenExtrudedCrossSectionRuleType defines a conditional rule
+        that applies if the feature under consideration is an extruded
+        cross-section feature. The rule contains an inherited 'if' part, an
+        inherited ThenPoints part, and two more 'then' parts. The 'then'
+        parts of the rule apply if the 'if' part evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="ExtrudedCrossSectionPointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ExtrudedCrossSectionPointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The ExtrudedCrossSectionPointSamplingStrategyType defines a point
+        sampling strategy for an extruded cross-section feature. The
+        strategy is either an enumerated extruded cross-section strategy or
+        a user defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="ExtrudedCrossSectionPointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for an extruded cross-section feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO EXTRUDED-CROSS-SECTION -->
+
+<!-- THERE ARE NO TYPES SPECIFIC TO GROUP -->
+
+<!-- BEGIN TYPES SPECIFIC TO LINE -->
+
+  <xs:complexType name="IfThenLineRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenLineRuleType defines a conditional rule that applies if
+        the feature under consideration is a line feature. The rule
+        contains an inherited 'if' part, an inherited ThenPoints part, and
+        two more 'then' parts. The 'then' parts of the rule apply if the
+        'if' part does not exist or evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="LinePointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="LinePointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The LinePointSamplingStrategyType defines a point sampling strategy
+        for a line feature. The strategy is either an enumerated line
+        strategy or a user defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="OpenCurvePointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for a line.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO LINE -->
+
+<!-- THERE ARE NO TYPES SPECIFIC TO MARKING -->
+
+<!-- BEGIN TYPES SPECIFIC TO OPPOSITE ANGLED LINES -->
+
+  <xs:complexType name="IfThenOppositeAngledLinesRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenOppositeAngledLinesRuleType defines a conditional rule
+        that applies if the feature under consideration is an opposite
+        angled lines feature. The rule contains an inherited 'if' part, an
+        inherited ThenPoints part, and two more 'then' parts. The 'then'
+        parts of the rule apply if the 'if' part does not exist or
+        evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="OppositeAngledLinesPointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="OppositeAngledLinesPointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The OppositeAngledLinesPointSamplingStrategyType defines a point
+        sampling strategy for an opposite angled lines feature. The
+        strategy is either an enumerated opposite angled lines strategy or
+        a user defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="OpenCurvePointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for an opposite angled lines feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO OPPOSITE ANGLED LINES -->
+
+<!-- BEGIN TYPES SPECIFIC TO OPPOSITE ANGLED PLANES -->
+
+  <xs:complexType name="IfThenOppositeAngledPlanesRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenOppositeAngledPlanesRuleType defines a conditional rule
+        that applies if the feature under consideration is an opposite
+        angled planes feature. The rule contains an inherited 'if' part, an
+        inherited ThenPoints part, and two more 'then' parts. The 'then'
+        parts of the rule apply if the 'if' part does not exist or
+        evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="OppositeAngledPlanesPointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="OppositeAngledPlanesPointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The OppositeAngledPlanesPointSamplingStrategyType defines a point
+        sampling strategy for an opposite angled planes feature. The
+        strategy is either an enumerated opposite angled planes strategy or
+        a user defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="PlanePointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for an opposite angled planes feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO OPPOSITE ANGLED PLANES -->
+
+<!-- BEGIN TYPES SPECIFIC TO OPPOSITE PARALLEL LINES -->
+
+  <xs:complexType name="IfThenOppositeParallelLinesRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenOppositeParallelLinesRuleType defines a conditional rule
+        that applies if the feature under consideration is an opposite
+        parallel lines feature. The rule contains an inherited 'if' part,
+        an inherited ThenPoints part, and two more 'then' parts. The 'then'
+        parts of the rule apply if the 'if' part does not exist or
+        evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="OppositeParallelLinesPointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="OppositeParallelLinesPointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The OppositeParallelLinesPointSamplingStrategyType defines a point
+        sampling strategy for an opposite parallel lines feature. The
+        strategy is either an enumerated opposite parallel lines strategy
+        or a user defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="OpenCurvePointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for an opposite parallel lines feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO OPPOSITE PARALLEL LINES -->
+
+<!-- BEGIN TYPES SPECIFIC TO OPPOSITE PARALLEL PLANES -->
+
+  <xs:complexType name="IfThenOppositeParallelPlanesRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenOppositeParallelPlanesRuleType defines a conditional rule
+        that applies if the feature under consideration is an opposite
+        parallel planes feature. The rule contains an inherited 'if' part,
+        an inherited ThenPoints part, and two more 'then' parts. The 'then'
+        parts of the rule apply if the 'if' part does not exist or
+        evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="OppositeParallelPlanesPointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="OppositeParallelPlanesPointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The OppositeParallelPlanesPointSamplingStrategyType defines a point
+        sampling strategy for an opposite parallel planes feature. The
+        strategy is either an enumerated opposite parallel planes strategy
+        or a user defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="PlanePointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for an opposite parallel planes feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO OPPOSITE PARALLEL PLANES -->
+
+<!-- BEGIN TYPES SPECIFIC TO PLANE -->
+
+  <xs:complexType name="IfThenPlaneRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenPlaneRuleType defines a conditional rule that applies if
+        the feature under consideration is a plane feature. The rule
+        contains an inherited 'if' part, an inherited ThenPoints part, and
+        two more 'then' parts. The 'then' parts of the rule apply if the
+        'if' part does not exist or evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="PlanePointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="PlanePointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The PlanePointSamplingStrategyType defines a point sampling
+        strategy for a plane feature. The strategy is either an enumerated
+        plane strategy or a user defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="PlanePointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for a plane feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO PLANE -->
+
+<!-- THERE ARE NO TYPES SPECIFIC TO OTHER... -->
+
+<!-- THERE ARE NO TYPES SPECIFIC TO PATTERN... -->
+
+<!-- BEGIN TYPES SPECIFIC TO POINT-DEFINED CURVE -->
+
+  <xs:complexType name="IfThenPointDefinedCurveRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenPointDefinedCurveRuleType defines a conditional rule that
+        applies if the feature under consideration is a point-defined curve
+        feature. The rule contains an inherited 'if' part, an inherited
+        ThenPoints part, and two more 'then' parts. The 'then' parts of the
+        rule apply if the 'if' part does not exist or evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="PointDefinedCurvePointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="PointDefinedCurvePointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The PointDefinedCurvePointSamplingStrategyType defines a point
+        sampling strategy for a point-defined curve feature. The strategy
+        is either an enumerated point-defined curve strategy or a user
+        defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="PointDefinedPointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for a point-defined curve feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO POINT-DEFINED CURVE -->
+
+<!-- BEGIN TYPES SPECIFIC TO POINT-DEFINED SURFACE -->
+
+  <xs:complexType name="IfThenPointDefinedSurfaceRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenPointDefinedSurfaceRuleType defines a conditional rule
+        that applies if the feature under consideration is a point-defined
+        surface feature. The rule contains an inherited 'if' part, an
+        inherited ThenPoints part, and two more 'then' parts. The 'then'
+        parts of the rule apply if the 'if' part does not exist or
+        evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="PointDefinedSurfacePointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="PointDefinedSurfacePointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The PointDefinedSurfacePointSamplingStrategyType defines a point
+        sampling strategy for a point-defined surface feature. The strategy
+        is either an enumerated point-defined surface strategy or a user
+        defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="PointDefinedPointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for a point-defined surface feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO POINT-DEFINED SURFACE -->
+
+<!-- BEGIN TYPES SPECIFIC TO POINT -->
+
+  <xs:complexType name="IfThenPointRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenPointRuleType defines a conditional rule that applies if
+        the feature under consideration is a point feature. The rule
+        contains an inherited 'if' part, an inherited ThenPoints part, and
+        one more 'then' part. The 'then' parts of the rule apply if the
+        'if' part does not exist or evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="PointPointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="PointPointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The PointPointSamplingStrategyType defines a point sampling
+        strategy for a point feature. The strategy is either an enumerated
+        point strategy or a user defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="PointPointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for a point feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO POINT -->
+
+<!-- BEGIN TYPES SPECIFIC TO SPHERE -->
+
+  <xs:complexType name="IfThenSphereRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenSphereRuleType defines a conditional rule that applies if
+        the feature under consideration is a sphere feature. The rule
+        contains an inherited 'if' part, an inherited ThenPoints part, and
+        two more 'then' parts. The 'then' parts of the rule apply if the
+        'if' part does not exist or evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="SpherePointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="SpherePointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The SpherePointSamplingStrategyType defines a point sampling
+        strategy for a sphere feature. The strategy is either an enumerated
+        sphere strategy or a user defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="SpherePointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for a sphere feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO SPHERE -->
+
+<!-- BEGIN TYPES SPECIFIC TO SPHERICAL SEGMENT -->
+
+  <xs:complexType name="IfThenSphericalSegmentRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenSphericalSegmentRuleType defines a conditional rule that
+        applies if the feature under consideration is a spherical segment
+        feature. The rule contains an inherited 'if' part, an inherited
+        ThenPoints part, and two more 'then' parts. The 'then' parts of the
+        rule apply if the 'if' part does not exist or evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="SphericalSegmentPointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="SphericalSegmentPointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The SphericalSegmentPointSamplingStrategyType defines a point
+        sampling strategy for a spherical segment feature. The strategy is
+        either an enumerated spherical segment strategy or a user defined
+        strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="SpherePointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for a spherical segment feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point
+            sampling strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO SPHERICAL SEGMENT -->
+
+<!-- BEGIN TYPES SPECIFIC TO SURFACE OF REVOLUTION -->
+
+  <xs:complexType name="IfThenSurfaceOfRevolutionRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenSurfaceOfRevolutionRuleType defines a conditional rule
+        that applies if the feature under consideration is a surface of
+        revolution feature. The rule contains an inherited 'if' part, an
+        inherited ThenPoints part, and two more 'then' parts. The 'then'
+        parts of the rule apply if the 'if' part does not exist or
+        evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="SurfaceOfRevolutionPointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="SurfaceOfRevolutionPointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The SurfaceOfRevolutionPointSamplingStrategyType defines a point
+        sampling strategy for a surface of revolution feature. The strategy
+        is either an enumerated surface of revolution strategy or a user
+        defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="SurfaceOfRevolutionPointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for a surface of revolution feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO SURFACE OF REVOLUTION -->
+
+<!-- NO TYPES FOR THREADED FEATURE -->
+
+<!-- BEGIN TYPES SPECIFIC TO TOROIDAL SEGMENT -->
+
+  <xs:complexType name="IfThenToroidalSegmentRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenToroidalSegmentRuleType defines a conditional rule that
+        applies if the feature under consideration is a toroidal segment
+        feature. The rule contains an inherited 'if' part, an inherited
+        ThenPoints part, and two more 'then' parts. The 'then' parts of the
+        rule apply if the 'if' part does not exist or evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="ToroidalSegmentPointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ToroidalSegmentPointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The ToroidalSegmentPointSamplingStrategyType defines a point
+        sampling strategy for a toroidal segment feature. The strategy is
+        either an enumerated toroidal segment strategy or a user defined
+        strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="SurfaceOfRevolutionPointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for a toroidal segment feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO TOROIDAL SEGMENT -->
+
+<!-- BEGIN TYPES SPECIFIC TO TORUS -->
+
+  <xs:complexType name="IfThenTorusRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenTorusRuleType defines a conditional rule that applies if
+        the feature under consideration is a torus feature. The rule
+        contains an inherited 'if' part, an inherited ThenPoints part, and
+        two more 'then' parts. The 'then' parts of the rule apply if the
+        'if' part does not exist or evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType">
+        <xs:sequence>
+          <xs:element name="ThenPointStrategy"
+            type="TorusPointSamplingStrategyType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenPointStrategy element is the point
+                sampling strategy to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ThenFittingAlgorithm"
+            type="SubstituteFeatureAlgorithmType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ThenFittingAlgorithm element is the substitute
+                feature algorithm to be used if the 'if' part of the rule
+                does not exist or evaluates to true.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TorusPointSamplingStrategyType">
+    <xs:annotation>
+      <xs:documentation>
+        The TorusPointSamplingStrategyType defines a point sampling
+        strategy for a torus feature. The strategy is either an enumerated
+        torus strategy or a user defined strategy.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PointSamplingStrategyEnum"
+        type="SurfaceOfRevolutionPointSamplingStrategyEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointSamplingStrategyEnum element is an often-used point
+            sampling strategy for a torus feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedStrategy"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The UserDefinedStrategy element is the name of a point sampling
+            strategy defined by the user.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO TORUS -->
+
+<!-- BEGIN TYPES SPECIFIC TO SURFACE -->
+
+  <xs:complexType name="IfThenSurfaceRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenSurfaceRuleType defines a conditional rule that applies
+        if the feature under consideration is a surface feature. The rule
+        contains an inherited 'if' part and an inherited ThenPoints part.
+        The 'then' part of the rule applies if the 'if' part does not exist
+        or evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO SURFACE -->
+
+<!-- BEGIN TYPES SPECIFIC TO CURVE -->
+
+  <xs:complexType name="IfThenCurveRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenCurveRuleType defines a conditional rule that applies if
+        the feature under consideration is a curve feature. The rule
+        contains an inherited 'if' part and an inherited ThenPoints part.
+        The 'then' part of the rule applies if the 'if' part does not exist
+        or evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="IfThenFeatureRuleType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+<!-- END TYPES SPECIFIC TO CURVE -->
+
+<!-- BEGIN TYPES SPECIFIC TO DME SELECTION -->
+
+  <xs:complexType name="DMESelectionRulesType">
+    <xs:annotation>
+      <xs:documentation>
+        The DMESelectionRulesType is a set of rules for deciding what DMEs
+        to select or not select.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DMEDecisionRule"
+        type="IfThenDMERuleType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each DMEDecisionRule element is a rule constraining the
+            selection of a DME.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="defaultDesirability"
+      type="ZeroToOneType"
+      default="1.0">
+      <xs:annotation>
+        <xs:documentation>
+          The optional defaultDesirability attribute is the default value
+          of the desirability of a DMEDecisionRule/DMEThen/DMEDecision/May
+          in the range [0...1] to be used if no explicit desirability value
+          is assigned in the 'May'. If no explicit value is provided for
+          this element, its default value is 1.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of rules in the set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="DMEThenType">
+    <xs:annotation>
+      <xs:documentation>
+        The DMEThenType is the 'then' part of a DME decision rule. It
+        contains requirements that particular types of DME or particular
+        classes of DME may, must, or must not be used.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="DMEDecision"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each DMEDecision element indicates whether a particular DME or
+            class of DME must be selected, must not be selected, or may be
+            selected.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of DMEDecisions.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="DMEDecisionBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The DMEDecisionBaseType is the base type for making a decision on a
+        DME.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Applicability">
+        <xs:annotation>
+          <xs:documentation>
+            The Applicability element indicates whether a DME must
+            be selected, must not be selected, or may be selected.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ApplicabilityBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The ApplicabilityBaseType is the base class for types that describe
+        whether a 'then' must apply, must not apply, or may apply.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:complexType>
+
+  <xs:complexType name="QIFMustType">
+    <xs:annotation>
+      <xs:documentation>
+        The QIFMustType indicates that a 'then' must apply.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ApplicabilityBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="QIFMustNotType">
+    <xs:annotation>
+      <xs:documentation>
+        The QIFMustType indicates that a 'then' must not apply.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ApplicabilityBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="QIFMayType">
+    <xs:annotation>
+      <xs:documentation>
+        The QIFMayType indicates that a 'then' may apply.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ApplicabilityBaseType">
+        <xs:attribute name="desirability"
+          type="ZeroToOneType">
+          <xs:annotation>
+            <xs:documentation>
+              The optional desirability attribute indicates the
+              desirability of the selection. A value of 1.0 indicates most
+              desirable while 0.0 indicates least desirable. The default
+              value is the value of the defaultDesirability given in the
+              DMESelectionRules, which itself defaults to 1.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DMEDecisionClassType">
+    <xs:annotation>
+      <xs:documentation>
+        The DMEDecisionClassType is a decision in which a DME
+        must, must not, or may be in a named class of DME.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DMEDecisionBaseType">
+        <xs:sequence>
+          <xs:element name="DMEClassName"
+            type="DMEClassNameEnumType">
+            <xs:annotation>
+              <xs:documentation>
+                The DMEClassName element is the name of a class of DME.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ParameterConstraints"
+            type="DMEParameterConstraintSetType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional DMEParameterConstraints element is a set of
+                constraints on parameters of the DME being considered. If
+                this element is used with 'must not', only those DMEs
+                satisfying the constraints are ruled out.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DMEParameterConstraintSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The DMEParameterConstraintSetType is a set of constraints on
+        parameters of the DME.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DMEParameterConstraint"
+        type="DMEParameterConstraintType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each DMEParameterConstraint element is a constraint
+            on a parameter of the DME.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of DMEParameterConstraint
+          elements in the set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="DMEParameterConstraintType">
+    <xs:annotation>
+      <xs:documentation>
+        The DMEParameterConstraintType is a constraint on a parameter of
+        the DME being considered. For a DME to satisfy the rule, the named
+        parameter of the DME must satisfy the enumerated comparison with
+        the evaluated arithmetic expression. The parameter name must be the
+        name of a parameter of the class of DMEs named in the
+        DMEDecisionClass in which the constraint is found. For example if
+        the the DME class name is CALIPER, the parameter is
+        LinearResolution, the comparison is LESS, and the arithmetic
+        expression is 0.01, then the resolution of a caliper being
+        considered must be less than (i.e., better than) 0.01.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ParameterName"
+        type="xs:token">
+        <xs:annotation>
+          <xs:documentation>
+            The ParameterName element is the xpath to a numerical-valued
+            parameter of the class of DME being considered. For example if
+            the class of DME is UNIVERSAL_DEVICE, the ParameterName could
+            be CartesianWorkingVolume/XAxisLength, the value of which would
+            be length of the X axis of the CartesianWorkingVolume of the
+            instance of UniversalDeviceType being considered.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Comparison"
+        type="ArithmeticComparisonEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The Comparison element is the comparison to perform between
+            the value of the named parameter of a DME and the value
+            of the ComparedTo expression.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="ArithmeticExpression">
+        <xs:annotation>
+          <xs:documentation>
+            The ArithmeticExpression element is the expression whose value
+            is to be compared to the value of the named parameter.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DMEDecisionIdType">
+    <xs:annotation>
+      <xs:documentation>
+        The DMEDecisionIdType is a decision in which a specific
+        DME must, must not, or may be selected by id.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DMEDecisionBaseType">
+        <xs:sequence>
+          <xs:element name="DMEId"
+            type="QIFReferenceType">
+            <xs:annotation>
+              <xs:documentation>
+                The DMEId element is the QIF id of a measurement resource.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DMEDecisionMakeModelType">
+    <xs:annotation>
+      <xs:documentation>
+        The DMEDecisionMakeModelType is a decision in which a specific
+        DME must, must not, or may be selected by its manufacturer, model
+        number, and optionally its serial number.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DMEDecisionBaseType">
+        <xs:sequence>
+          <xs:element name="Manufacturer"
+            type="xs:string">
+            <xs:annotation>
+              <xs:documentation>
+                The Manufacturer element is the name of the manufacturer of
+                the DME.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ModelNumber"
+            type="xs:string">
+            <xs:annotation>
+              <xs:documentation>
+                The ModelNumber element is the model number of the DME.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SerialNumber"
+            type="xs:string"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional SerialNumber element is the serial number of
+                the DME.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="IfThenDMERuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The IfThenDMERuleType defines a rule containing an optional 'if'
+        part and a required 'then' part. The 'then' part of the rule
+        applies if the 'if' part does not exist or evaluates to true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="QIFRuleBaseType">
+        <xs:sequence>
+          <xs:element ref="BooleanExpression"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional BooleanExpression element is the 'if' part of
+                the rule.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DMEThen"
+            type="DMEThenType">
+            <xs:annotation>
+              <xs:documentation>
+                The DMEThen element is set of constraints on the decision
+                about one or more DMEs.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="ZeroToOneType">
+    <xs:annotation>
+      <xs:documentation>
+        The ZeroToOneType is a double value in range [0..1].
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:double">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+<!-- END TYPES SPECIFIC TO DME SELECTION -->
+
+<!-- START SUBSTITUTION GROUP FOR IfThenFeatureRule -->
+
+  <xs:element name="IfThenFeatureRule"
+    type="IfThenFeatureRuleType"/>
+
+  <xs:element name="IfThenCurveRule"
+    type="IfThenCurveRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenSurfaceRule"
+    type="IfThenSurfaceRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenCircleRule"
+    type="IfThenCircleRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenCircularArcRule"
+    type="IfThenCircularArcRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenConeRule"
+    type="IfThenConeRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenConicalSegmentRule"
+    type="IfThenConicalSegmentRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenCylinderRule"
+    type="IfThenCylinderRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenCylindricalSegmentRule"
+    type="IfThenCylindricalSegmentRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenEllipseRule"
+    type="IfThenEllipseRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenEllipticalArcRule"
+    type="IfThenEllipticalArcRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenElongatedCircleRule"
+    type="IfThenElongatedCircleRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenElongatedCylinderRule"
+    type="IfThenElongatedCylinderRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenExtrudedCrossSectionRule"
+    type="IfThenExtrudedCrossSectionRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenLineRule"
+    type="IfThenLineRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenOppositeAngledLinesRule"
+    type="IfThenOppositeAngledLinesRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenOppositeAngledPlanesRule"
+    type="IfThenOppositeAngledPlanesRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenOppositeParallelLinesRule"
+    type="IfThenOppositeParallelLinesRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenOppositeParallelPlanesRule"
+    type="IfThenOppositeParallelPlanesRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenPlaneRule"
+    type="IfThenPlaneRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenPointDefinedCurveRule"
+    type="IfThenPointDefinedCurveRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenPointDefinedSurfaceRule"
+    type="IfThenPointDefinedSurfaceRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenPointRule"
+    type="IfThenPointRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenSphereRule"
+    type="IfThenSphereRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenSphericalSegmentRule"
+    type="IfThenSphericalSegmentRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenSurfaceOfRevolutionRule"
+    type="IfThenSurfaceOfRevolutionRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenToroidalSegmentRule"
+    type="IfThenToroidalSegmentRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+  <xs:element name="IfThenTorusRule"
+    type="IfThenTorusRuleType"
+    substitutionGroup="IfThenFeatureRule"/>
+
+<!-- END SUBSTITUTION GROUP FOR IfThenFeatureRule -->
+
+<!-- START SUBSTITUTION GROUP FOR DMEDecision -->
+
+  <xs:element name="DMEDecision"
+    type="DMEDecisionBaseType"/>
+
+  <xs:element name="DMEDecisionClass"
+    type="DMEDecisionClassType"
+    substitutionGroup="DMEDecision"/>
+
+  <xs:element name="DMEDecisionId"
+    type="DMEDecisionIdType"
+    substitutionGroup="DMEDecision"/>
+
+  <xs:element name="DMEDecisionMakeModel"
+    type="DMEDecisionMakeModelType"
+    substitutionGroup="DMEDecision"/>
+
+<!-- END SUBSTITUTION GROUP FOR DMEDecision -->
+
+<!-- START SUBSTITUTION GROUP FOR Applicability -->
+
+  <xs:element name="Applicability"
+    type="ApplicabilityBaseType"/>
+
+  <xs:element name="Must"
+    type="QIFMustType"
+    substitutionGroup="Applicability"/>
+
+  <xs:element name="MustNot"
+    type="QIFMustNotType"
+    substitutionGroup="Applicability"/>
+
+  <xs:element name="May"
+    type="QIFMayType"
+    substitutionGroup="Applicability"/>
+
+<!-- END SUBSTITUTION GROUP FOR Applicability -->
+
+</xs:schema>

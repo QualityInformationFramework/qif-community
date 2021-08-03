@@ -1,0 +1,2317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This document is part of QIF 3.0, an open, industry-wide standard -->
+<!-- established by the Dimensional Metrology Standards Consortium.    -->
+<!-- This document shall not be used in any manner to claim any        -->
+<!-- proprietary rights to such information, such as rights to a       -->
+<!-- patent, trademark, or copyright.                                  -->
+
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://qifstandards.org/xsd/qif3"
+  xmlns:t="http://qifstandards.org/xsd/qif3"
+  targetNamespace="http://qifstandards.org/xsd/qif3"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified"
+  version="3.0.0">
+
+  <xs:complexType name="BinaryDataType">
+    <xs:annotation>
+      <xs:documentation>
+        The BinaryDataType represents a Base64-encoded arbitrary binary
+        data block. For base64Binary data the entire binary stream is
+        encoded using the Base64 Alphabet in RFC 2045.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:base64Binary">
+        <xs:attribute name="count"
+          type="NaturalType"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required count attribute is the number of bytes in the
+              binary block.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="ListIntType">
+    <xs:annotation>
+      <xs:documentation>
+        The ListIntType is a list of integer numbers.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:list itemType="xs:integer"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="I2Type">
+    <xs:annotation>
+      <xs:documentation>
+        The I2Type is an array of two integer values.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="ListIntType">
+      <xs:length value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="I3Type">
+    <xs:annotation>
+      <xs:documentation>
+        The I3Type is an array of three integer values.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="ListIntType">
+      <xs:length value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ListDoubleType">
+    <xs:annotation>
+      <xs:documentation>
+        The ListDoubleType is an array of double values.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:list itemType="xs:double"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="ListBooleanType">
+    <xs:annotation>
+      <xs:documentation>
+        The ListBooleanType is an array of Boolean values.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:list itemType="xs:boolean"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="ListDateTimeType">
+    <xs:annotation>
+      <xs:documentation>
+        The ListDateTimeType is an array of date-time values.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:list itemType="xs:dateTime"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="ListTokenType">
+    <xs:annotation>
+      <xs:documentation>
+        The ListTokenType is a list of string tokens.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:list itemType="xs:NMTOKEN"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="D3Type">
+    <xs:annotation>
+      <xs:documentation>
+        The D3Type is an array of three double values.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="ListDoubleType">
+      <xs:length value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="D2Type">
+    <xs:annotation>
+      <xs:documentation>
+        The D2Type is an array of two double values.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="ListDoubleType">
+      <xs:length value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="DoublePositiveType">
+    <xs:annotation>
+      <xs:documentation>
+        The DoublePositiveType is a positive double type. The value must be
+        greater than zero.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:double">
+      <xs:minExclusive value="0.0"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Point2dSimpleType">
+    <xs:annotation>
+      <xs:documentation>
+        The Point2dSimpleType is an array of two double values used to
+        represent a 2D point. The first entry in the list is the X value
+        and the second entry is the Y value.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="ListDoubleType">
+      <xs:length value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="UnitVector2dSimpleType">
+    <xs:annotation>
+      <xs:documentation>
+        The UnitVector2dSimpleType is an array of two double values. used
+        to represent a 2D unit vector. The first entry in the list is the X
+        component (I) and the second entry is the Y component (J). A
+        UnitVector2dSimpleType should be of unit length to the limits of
+        accuracy of the executing system, and in any event must not be less
+        than 0.99999999 or greater than 1.00000001.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="ListDoubleType">
+      <xs:length value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ParameterRangeType">
+    <xs:annotation>
+      <xs:documentation>
+        The ParameterRangeBoundsType is an array of two double values used
+        to represent parameter bounds. The first entry in the list is the
+        first bound of the parameter, and the second entry is the second
+        bound. The second entry must be larger or smaller than the first.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="ListDoubleType">
+      <xs:length value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="PointSimpleType">
+    <xs:annotation>
+      <xs:documentation>
+        The PointSimpleType is an array of three double values used to
+        represent the Cartesian three-dimensional coordinates. The first
+        entry in the list is the X value, the second entry is the Y value,
+        and the third entry is the Z value.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="ListDoubleType">
+      <xs:length value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="VectorSimpleType">
+    <xs:annotation>
+      <xs:documentation>
+        The VectorSimpleType is an array of three double values used to
+        represent a 3D vector. The first entry in the list is the X
+        component (I), the second entry is the Y component (J), and the
+        third entry is the Z component (K).
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="ListDoubleType">
+      <xs:length value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="UnitVectorSimpleType">
+    <xs:annotation>
+      <xs:documentation>
+        The UnitVectorSimpleType is an array of three double values. used
+        to represent a 3D unit vector. The first entry in the list is the X
+        component (I), the second entry is the Y component (J), and the
+        third entry is the Z component (K). A UnitVectorSimpleType should
+        be of unit length to the limits of accuracy of the executing
+        system, and in any event must not be less than 0.99999999 or
+        greater than 1.00000001.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="ListDoubleType">
+      <xs:length value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ValidityEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The ValidityEnumType enumerates values that describe the validity
+        of a coordinate or set of coordinates. A coordinate can be present
+        and correct in a report (REPORTED). A coordinate may be missing
+        from a report but will have a value determined by one of several
+        means: it may be an arbitrary value (DUMMY), it may be an arbitrary
+        value that is meaningless such as the third coordinate in
+        two-dimensional measurement (MOOT), it may be derived (calculated)
+        from other values (DERIVED), or it may be set to a value (SET)
+        typically the nominal value.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="REPORTED"/>
+      <xs:enumeration value="DUMMY"/>
+      <xs:enumeration value="MOOT"/>
+      <xs:enumeration value="DERIVED"/>
+      <xs:enumeration value="SET"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:attributeGroup name="AttrPoint">
+    <xs:annotation>
+      <xs:documentation>
+        The AttrPoint attributeGroup provides attributes for length unit
+        and measures of the accuracy of the coordinates or components of 3D
+        points and vectors. Accuracy may be specified that applies to all
+        three values (X, Y and Z) and/or accuracy may be specified
+        individually for X, Y, and Z. If both types of accuracy are given,
+        the individual values should be used, not the group value.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="linearUnit"
+      type="xs:token"/>
+    <xs:attribute name="decimalPlaces"
+      type="xs:nonNegativeInteger"/>
+    <xs:attribute name="significantFigures"
+      type="xs:nonNegativeInteger"/>
+    <xs:attribute name="validity"
+      type="ValidityEnumType"/>
+    <xs:attribute name="xDecimalPlaces"
+      type="xs:nonNegativeInteger"/>
+    <xs:attribute name="xSignificantFigures"
+      type="xs:nonNegativeInteger"/>
+    <xs:attribute name="xValidity"
+      type="ValidityEnumType"/>
+    <xs:attribute name="yDecimalPlaces"
+      type="xs:nonNegativeInteger"/>
+    <xs:attribute name="ySignificantFigures"
+      type="xs:nonNegativeInteger"/>
+    <xs:attribute name="yValidity"
+      type="ValidityEnumType"/>
+    <xs:attribute name="zDecimalPlaces"
+      type="xs:nonNegativeInteger"/>
+    <xs:attribute name="zSignificantFigures"
+      type="xs:nonNegativeInteger"/>
+    <xs:attribute name="zValidity"
+      type="ValidityEnumType"/>
+  </xs:attributeGroup>
+
+  <xs:complexType name="PointType">
+    <xs:annotation>
+      <xs:documentation>
+        The PointType defines an XYZ location in which the length units and
+        accuracy of the coordinates may be specified.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="PointSimpleType">
+        <xs:attributeGroup ref="AttrPoint"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="VectorType">
+    <xs:annotation>
+      <xs:documentation>
+        The VectorType defines a vector in which the length units and
+        accuracy of the components may be specified.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="VectorSimpleType">
+        <xs:attributeGroup ref="AttrPoint"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="UnitVectorType">
+    <xs:annotation>
+      <xs:documentation>
+        The UnitVectorType is a unit vector in which the accuracy of the
+        components may be specified. The linearUnit attribute included in
+        AttrPoint must not be used since unit vectors do not have length
+        units.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="UnitVectorSimpleType">
+        <xs:attributeGroup ref="AttrPoint"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayPoint2dType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArrayPointType is an array of doubles representing a specific
+        number of ordered 2D points. Each successive group of two entries
+        in the array represents the X, and Y coordinates of a point.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="ListDoubleType">
+        <xs:attribute name="count"
+          type="NaturalType"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required count attribute is the number of points
+              represented by the array. The number of entries in the array
+              must be 2*count.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayPointType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArrayPointType is an array of doubles representing a specific
+        number of ordered 3D points. Each successive group of three entries
+        in the array represents the X, Y, and Z coordinates of a point.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="ListDoubleType">
+        <xs:attribute name="count"
+          type="NaturalType"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required count attribute gives the number of points
+              represented by the array. The number of entries in the array
+              must be 3*count.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attributeGroup ref="AttrPoint"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayUnitVectorType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArrayUnitVectorType is an array of doubles representing a
+        specific number of ordered unit vectors. Each successive group of
+        three entries in the array represents the X, Y, and Z components of
+        a unit vector. The linearUnit attribute included in AttrPoint must
+        not be used since unit vectors do not have length units.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="ListDoubleType">
+        <xs:attribute name="count"
+          type="NaturalType"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required count attribute gives the number of unit vectors
+              represented by the array. The number of entries in the array
+              must be 3*count.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attributeGroup ref="AttrPoint"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="PolyLineType">
+    <xs:annotation>
+      <xs:documentation>
+        The PolyLineType defines a polyline as an ordered list of points.
+        The polyline is a continuous path consisting of line segments from
+        point 1 to point 2, point 2 to point 3, etc. A polyline is not
+        necessarily closed. To make a closed polyline, the last point
+        should be the same as the first.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArrayPointType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="PlaneType">
+    <xs:annotation>
+      <xs:documentation>
+        The PlaneType defines a plane by means of the plane unit normal
+        vector and a point on the plane.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Point"
+        type="PointType">
+        <xs:annotation>
+          <xs:documentation>
+            The Point element is a point on the plane.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Normal"
+        type="UnitVectorType">
+        <xs:annotation>
+          <xs:documentation>
+            The Normal element is the unit normal vector of the plane.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PlaneXType">
+    <xs:annotation>
+      <xs:documentation>
+        The PlaneXType defines a plane with a given x-direction.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="PlaneType">
+        <xs:sequence>
+          <xs:element name="Direction"
+            type="UnitVectorType">
+            <xs:annotation>
+              <xs:documentation>
+                The Direction element gives the direction of the positive X
+                axis.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AxisType">
+    <xs:annotation>
+      <xs:documentation>
+        The AxisType defines a feature axis.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AxisPoint"
+        type="PointType">
+        <xs:annotation>
+          <xs:documentation>
+            The AxisPoint element is the location of a point on the axis.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Direction"
+        type="UnitVectorType">
+        <xs:annotation>
+          <xs:documentation>
+            The Direction element is the unit vector direction of the axis.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TransformRotationType">
+    <xs:annotation>
+      <xs:documentation>
+        The TransformRotationType defines a transformation for a rotation.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="XDirection"
+        type="UnitVectorSimpleType">
+        <xs:annotation>
+          <xs:documentation>
+            The XDirection element is a unit vector that specifies the x
+            rotation. When the origin is (0,0,0), the components of the X
+            direction are the coordinates in the 'after' coordinate system
+            of the point (1,0,0) in the 'before' system.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="YDirection"
+        type="UnitVectorSimpleType">
+        <xs:annotation>
+          <xs:documentation>
+            The YDirection element is a unit vector that describes the y
+            rotation. When the origin is (0,0,0), the components of the Y
+            direction are the coordinates in the 'after' coordinate system
+            of the point (0,1,0) in the 'before' system.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ZDirection"
+        type="UnitVectorSimpleType">
+        <xs:annotation>
+          <xs:documentation>
+            The ZDirection element is a unit vector that describes the z
+            rotation. When the Origin is (0,0,0), the components of the z
+            Direction are the coordinates in the 'after' coordinate system
+            of the point (0,0,1) in the 'before' system.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CoordinateSystemCoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The CoordinateSystemCoreType defines the mathematical core of a
+        Cartesian right-handed 3D coordinate system. It is also the
+        base of the TransformMatrixType
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Rotation"
+        type="TransformRotationType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The Rotation element is an orthogonal basis of the Cartesian
+            coordinate system.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Origin"
+        type="PointSimpleType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The Origin element is an origin of the coordinate system.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TransformMatrixType">
+    <xs:annotation>
+      <xs:documentation>
+        The TransformMatrixType defines a three dimensional
+        transformation that may include rotation and translation, but
+        not scaling. The vectors of the Rotation are unit vectors.
+      </xs:documentation>
+      <xs:documentation>
+        For any point, if:
+        1. The coordinates of the point in the "before" coordinate system
+           are x, y, and z.
+        2. The coordinates of the point in the "after" coordinate system
+           are X, Y, and Z.
+        3. The components of the XDirection are Xi, Xj, and Xk.
+        4. The components of the YDirection are Yi, Yj, and Yk.
+        5. The components of the ZDirection are Zi, Zj, and Zk.
+        6. The Cartesian coordinates of the Origin are Ox, Oy, and Oz.
+        Then the following transformation equations hold.
+          X = (Xi)x + (Yi)y + (Zi)z + Ox
+          Y = (Xj)x + (Yj)y + (Zj)z + Oy
+          Z = (Xk)x + (Yk)y + (Zk)z + Oz
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="CoordinateSystemCoreType">
+        <xs:attributeGroup ref="AttrPoint">
+          <xs:annotation>
+            <xs:documentation>
+              The optional AttrPoint attribute gives attributes of the
+              point that is the Origin. This may include a linearUnit, an
+              accuracy, etc.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attributeGroup>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:group name="LineSegmentGroup">
+    <xs:annotation>
+      <xs:documentation>
+        The LineSegmentGroup is a group which contains a start point and
+        an end point that define a portion of a line.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="StartPoint"
+        type="PointSimpleType">
+        <xs:annotation>
+          <xs:documentation>
+            The StartPoint element is the beginning point of the line
+            segment.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EndPoint"
+        type="PointSimpleType">
+        <xs:annotation>
+          <xs:documentation>
+            The EndPoint element is the ending point of the line segment.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
+
+  <xs:complexType name="LineSegmentType">
+    <xs:annotation>
+      <xs:documentation>
+        The LineSegmentType defines a portion of a line defined and bounded
+        by a start point and an end point.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:group ref="LineSegmentGroup"/>
+    <xs:attributeGroup ref="AttrPoint"/>
+  </xs:complexType>
+
+  <xs:group name="LineSegment2dGroup">
+    <xs:annotation>
+      <xs:documentation>
+        The LineSegmentGroup is a group which contains a start point and
+        an end point that define a portion of a 2D line.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="StartPoint"
+        type="Point2dSimpleType">
+        <xs:annotation>
+          <xs:documentation>
+            The StartPoint element is the beginning point of the 2D line
+            segment.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EndPoint"
+        type="Point2dSimpleType">
+        <xs:annotation>
+          <xs:documentation>
+            The EndPoint element is the ending point of the 2D line segment.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
+
+  <xs:complexType name="LineSegment2dType">
+    <xs:annotation>
+      <xs:documentation>
+        The LineSegment2dType defines a portion of a 2D line defined and
+        bounded by a start point and an end point.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:group ref="LineSegment2dGroup"/>
+  </xs:complexType>
+
+  <xs:complexType name="LatitudeLongitudeSweepType">
+    <xs:annotation>
+      <xs:documentation>
+        The LatitudeLongitudeSweepType defines an angular sweep in two
+        directions analogous to terrestrial latitude and longitude. For a
+        sphere, latitude angles are +90 degrees at the north pole to -90
+        degrees at the south pole with 0 degrees at the equator. For a
+        torus, latitude angles are 0 degrees at the equator farthest from
+        the feature center and 180 or -180 degrees at the equator closest
+        to the feature center, and the positive direction is towards the
+        north pole vector from the equator farthest from the feature
+        center. The positive direction in the longitude direction is
+        counterclockwise (east) as viewed from the direction in which the
+        north pole vector points. To use the LatitudeLongitudeSweepType, a
+        north pole must be identified. For a torus, that is the north pole
+        of the torus. For a sphere, the derived type
+        OrientedLatitudeLongitudeSweepType must be used; it includes a
+        north pole.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DirMeridianPrime"
+        type="UnitVectorType">
+        <xs:annotation>
+          <xs:documentation>
+            The DirMeridianPrime element is the direction of the prime
+            meridian vector. The longitude is 0 on the PrimeMeridianVector.
+            This vector must be perpendicular to the north pole vector.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DomainLatitude"
+        type="AngleRangeType">
+        <xs:annotation>
+          <xs:documentation>
+            The DomainLatitude element is the latitude domain. The unit
+            type is angular unit. For a sphere, the latitude end angle must
+            be greater than the latitude start angle. For a torus, either
+            angle may be greater, but the sweep is always in the positive
+            direction.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DomainLongitude"
+        type="AngleRangeType">
+        <xs:annotation>
+          <xs:documentation>
+            The DomainLongitude element is the longitude domain. The unit
+            type is angular unit. Regardless of the values of the
+            DomainLongitude, the longitude sweep is in the positive
+            direction.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="OrientedLatitudeLongitudeSweepType">
+    <xs:annotation>
+      <xs:documentation>
+        The OrientedLatitudeLongitudeSweepType defines a
+        LatitudeLongitudeSweepType with a north pole added.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="LatitudeLongitudeSweepType">
+        <xs:sequence>
+          <xs:element name="DirNorthPole"
+            type="UnitVectorType">
+            <xs:annotation>
+              <xs:documentation>
+                The DirNorthPole element is the direction of the north pole
+                vector. For a torus this vector must be parallel or
+                anti-parallel to the feature axis.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="SweepType">
+    <xs:annotation>
+      <xs:documentation>
+        The SweepType defines a partial feature using a vector and an
+        angle.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DirBeg"
+        type="UnitVectorType">
+        <xs:annotation>
+          <xs:documentation>
+            The DirBeg element is a unit vector representing the beginning
+            extent of the feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DomainAngle"
+        type="AngleRangeType">
+        <xs:annotation>
+          <xs:documentation>
+            The DomainAngle element is the angle limits in angular units
+            from the start vector to the start extent of the feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AngleRangeType">
+    <xs:annotation>
+      <xs:documentation>
+        The AngleRangeType defines an angle range.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="D2Type">
+        <xs:attribute name="angularUnit"
+          type="xs:token">
+          <xs:annotation>
+            <xs:documentation>
+              The optional angularUnit attribute defines the UnitName for
+              the AngleRangeType.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="QIFIdAndReferenceBaseType">
+    <xs:annotation>
+      <xs:documentation>
+        The QIFIdandReferenceBaseType defines an unsigned integer with no
+        leading zeros. It is used as the base type for ids and references
+        to ids. It is not used as the type of an element or attribute.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:unsignedInt">
+      <xs:pattern value="[1-9][0-9]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="QIFIdType">
+    <xs:annotation>
+      <xs:documentation>
+        The QIFIdType defines the type for 'id' attributes.
+        All 'id' attributes in all QIF schema files are of QIFIdType.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="QIFIdAndReferenceBaseType"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="QIFReferenceBaseType">
+    <xs:annotation>
+      <xs:documentation>
+        The QIFReferenceBaseType is the base type for references
+        to 'id' attributes. It is not used as the type of an element
+        or attribute.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="QIFIdAndReferenceBaseType"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="QIFReferenceSimpleType">
+    <xs:annotation>
+      <xs:documentation>
+        The QIFReferenceSimpleType defines the type for simple references
+        to 'id' attributes. It has no external id and no asm path.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="QIFReferenceBaseType"/>
+  </xs:simpleType>
+
+  <xs:complexType name="QIFReferenceType">
+    <xs:annotation>
+      <xs:documentation>
+        The QIFReferenceType defines a reference to a QIF id that may be in
+        the same file as the reference or may be in an identified external
+        file. In order to ensure that each reference refers to an object of
+        the correct type, where possible, each reference is covered by an
+        appropriate key/keyref constraint.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="QIFReferenceBaseType">
+        <xs:attribute name="xId"
+          type="QIFReferenceSimpleType">
+          <xs:annotation>
+            <xs:documentation>
+              The optional xId attribute is a reference to the id of a QIF
+              object in an external document. A QIF object in an external
+              QIF document can be referenced by using references to two QIF
+              ids: the id of the external document reference of type
+              ExternalQIFDocumentReferenceType found in the local document
+              and the id of the object found in the external document.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="ListQIFReferenceSimpleType">
+    <xs:annotation>
+      <xs:documentation>
+        The ListQIFReferenceSimpleType is an array of references to QIF ids.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:list itemType="QIFReferenceSimpleType"/>
+  </xs:simpleType>
+
+  <xs:complexType name="ListQIFReferenceType">
+    <xs:annotation>
+      <xs:documentation>
+        The ListQIFReferenceType defines a set of references to the QIF ids
+        of other objects. The other objects are either all in the local
+        QIF document or all in the same external QIF document.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:annotation>
+        <xs:documentation>
+          This compositor allows for a choice between a list of QIF ids in
+          the local document, or a list of external QIF ids in separate
+          document.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:element name="Ids"
+        type="ListQIFReferenceSimpleType">
+        <xs:annotation>
+          <xs:documentation>
+            The Ids element is a list of references to the QIF ids of
+            objects found in the local QIF document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:sequence>
+        <xs:element name="Id"
+          type="QIFReferenceSimpleType">
+          <xs:annotation>
+            <xs:documentation>
+              The Id element is the QIF id of an external document
+              reference.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="XIds"
+          type="ListQIFReferenceSimpleType">
+          <xs:annotation>
+            <xs:documentation>
+              The XIds element is a list of references to the QIF ids of
+              objects found in the external QIF document.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:choice>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of QIF id references
+          in this list.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ListQIFReferenceFullType">
+    <xs:annotation>
+      <xs:documentation>
+        The ListQIFReferenceFullType defines a list of unsigned integers
+        with no leading zeros referencing the QIF ids of other objects with
+        an optional assembly path to define a 'full' reference which is
+        used for locating entities within an assembly.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ListQIFReferenceType">
+        <xs:attribute name="asmPathId"
+          type="QIFReferenceSimpleType">
+          <xs:annotation>
+            <xs:documentation>
+              The optional asmPathId attribute is a reference used for
+              locating the id of an assembly path. If the asmPathXId
+              attribute is not used, the asmPathId is a reference to an
+              assembly path in the AsmPaths of the local document. If the
+              asmPathXId is used, the asmPathId is the local id of an
+              external QIF document, and the asmPathXId is a reference to
+              an assembly path in the external QIF document. The assembly
+              path (instantiation chain) unambiguously identifies a model
+              entity within an assembly.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="asmPathXId"
+          type="QIFReferenceSimpleType">
+          <xs:annotation>
+            <xs:documentation>
+              The optional asmPathXId attribute, if used, is a reference to
+              the id of an assembly path in the external document
+              identified by the asmPathId. The asmPathXId must not be used
+              if the asmPathId is not used.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayBinaryQIFReferenceType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArrayBinaryQIFReferenceType defines a binary array of
+        references to the QIF ids of other objects.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:annotation>
+        <xs:documentation>
+          This compositor allows for a choice between an array of
+          references to QIF ids in the local document, or an array of
+          references to QIF ids in an external document.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:element name="Ids"
+        type="ArrayBinaryType">
+        <xs:annotation>
+          <xs:documentation>
+            The Ids element is an array of QIF ids of objects found in the
+            local QIF document.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:sequence>
+        <xs:element name="Id"
+          type="QIFReferenceSimpleType">
+          <xs:annotation>
+            <xs:documentation>
+              The Id element is the QIF id of an external document
+              reference.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="XIds"
+          type="ArrayBinaryType">
+          <xs:annotation>
+            <xs:documentation>
+              The XIds element is an array of references to QIF ids of
+              objects found in the external QIF document.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayBinaryQIFReferenceFullType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArrayBinaryQIFReferenceFullType defines a binary array of the
+        QIF ids of other objects with an optional assembly path to define a
+        'full' reference which is used for locating entities within an
+        assembly.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArrayBinaryQIFReferenceType">
+        <xs:attribute name="asmPathId"
+          type="QIFReferenceSimpleType">
+          <xs:annotation>
+            <xs:documentation>
+              The optional asmPathId attribute is a reference used for
+              locating the id of an assembly path. If the asmPathXId
+              attribute is not used, the asmPathId is a reference to an
+              assembly path in the AsmPaths of the local document. If the
+              asmPathXId is used, the asmPathId is the local id of an
+              external QIF document, and the asmPathXId is a reference to
+              an assembly path in the external QIF document. The assembly
+              path (instantiation chain) unambiguously identifies a model
+              entity within an assembly.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="asmPathXId"
+          type="QIFReferenceSimpleType">
+          <xs:annotation>
+            <xs:documentation>
+              The optional asmPathXId attribute, if used, is a reference to
+              the id of an assembly path in the external document
+              identified by the asmPathId. The asmPathXId must not be used
+              if the asmPathId is not used.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="QIFReferenceActiveType">
+    <xs:annotation>
+      <xs:documentation>
+        The QIFReferenceActiveType is a reference to a QIFId with defined
+        activity.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="QIFReferenceType">
+        <xs:attribute name="active"
+          type="xs:boolean"
+          default="false">
+          <xs:annotation>
+            <xs:documentation>
+              The active attribute defines whether the reference is active.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="QIFReferenceFullType">
+    <xs:annotation>
+      <xs:documentation>
+        The QIFReferenceFullType defines a 'full' reference which is used
+        for locating an entity within an assembly.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="QIFReferenceType">
+        <xs:attribute name="asmPathId"
+          type="QIFReferenceSimpleType">
+          <xs:annotation>
+            <xs:documentation>
+              The optional asmPathId attribute is a reference used for
+              locating the id of an assembly path. If the asmPathXId
+              attribute is not used, the asmPathId is a reference to an
+              assembly path in the AsmPaths of the local document. If the
+              asmPathXId is used, the asmPathId is the local id of an
+              external QIF document, and the asmPathXId is a reference to
+              an assembly path in the external QIF document. The assembly
+              path (instantiation chain) unambiguously identifies a model
+              entity within an assembly.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="asmPathXId"
+          type="QIFReferenceSimpleType">
+          <xs:annotation>
+            <xs:documentation>
+              The optional asmPathXId attribute, if used, is a reference to
+              the id of an assembly path in the external document
+              identified by the asmPathId. The asmPathXId must not be used
+              if the asmPathId is not used.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+<!--
+
+The ElementReferenceType and ElementReferenceFullType exist only to 
+enable writing simpler xpaths in keys and keyrefs. They let the xpath
+end in 'Id'.
+
+-->
+
+  <xs:complexType name="ElementReferenceType">
+    <xs:annotation>
+      <xs:documentation>
+        The ElementReferenceType is an entity ID.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Id"
+        type="QIFReferenceType">
+        <xs:annotation>
+          <xs:documentation>
+            The Id element is a reference to a QIF id that may not
+            include an AsmPath.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ElementReferenceFullType">
+    <xs:annotation>
+      <xs:documentation>
+        The ElementReferenceFullType is an entity ID.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Id"
+        type="QIFReferenceFullType">
+        <xs:annotation>
+          <xs:documentation>
+            The Id element is a reference to a QIF id that may include
+            an AsmPath.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="D4Type">
+    <xs:annotation>
+      <xs:documentation>
+        The D4Type is an array of four double values.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="ListDoubleType">
+      <xs:length value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="NaturalType">
+    <xs:annotation>
+      <xs:documentation>
+        The NaturalType is the natural number type (integer > 0).
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:unsignedInt">
+      <xs:minInclusive value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ListNaturalType">
+    <xs:annotation>
+      <xs:documentation>
+        The ListNaturalType is an array of natural numbers.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:list itemType="NaturalType"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="Natural2Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Natural2Type is an array of two Natural values.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="ListNaturalType">
+      <xs:length value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="ArrayNaturalType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArrayNaturalType is an array of natural numbers.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="ListNaturalType">
+        <xs:attribute name="count"
+          type="NaturalType"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required count attribute is the number of natural numbers
+              in this array.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="FractionType">
+    <xs:annotation>
+      <xs:documentation>
+        The FractionType is a fraction value.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Numerator"
+        type="NaturalType">
+        <xs:annotation>
+          <xs:documentation>
+            The Numerator element is the numerator of the fraction.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Denominator"
+        type="NaturalType">
+        <xs:annotation>
+          <xs:documentation>
+            The Denominator element is the denominator of the fraction.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayReferenceType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArrayReferenceType is an array of references to object IDs.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Id"
+        type="QIFReferenceType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Id element is a reference to the QIF id of an object.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of Id elements in this
+          array.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayReferenceActiveType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArrayReferenceActiveType is an array of references to object
+        IDs. 
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Id"
+        type="QIFReferenceActiveType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Id element is a reference to the QIF id of an object
+            with an indicator of whether the reference is active or not.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of Id elements in this
+          array.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayReferenceFullType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArrayReferenceFullType is an array of references to object IDs.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Id"
+        type="QIFReferenceFullType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            The Id element is a reference to a QIF id that may include
+            an AsmPath.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of Id elements in this
+          array.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="QIFFeaturePairType">
+    <xs:annotation>
+      <xs:documentation>
+        The QIFFeaturePairType defines a pair of feature references and
+        optionally defines feature zones for either or both features. This
+        type is used to define the two features participating in a distance
+        between or angle between characteristic.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="FirstFeature"
+        type="QIFReferenceFullType">
+        <xs:annotation>
+          <xs:documentation>
+            The FirstFeature element is a reference to a QIF feature id
+            that may include an AsmPath.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SecondFeature"
+        type="QIFReferenceFullType">
+        <xs:annotation>
+          <xs:documentation>
+            The SecondFeature element is a reference to a QIF feature id
+            that may include an AsmPath.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FirstFeatureZone"
+        type="QIFReferenceFullType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional FirstFeatureZone element is a reference to a QIF
+            zone feature id that may include an AsmPath. This feature zone
+            is applied to the first feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SecondFeatureZone"
+        type="QIFReferenceFullType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional SecondFeatureZone element is a reference to a QIF
+            zone feature id that may include an AsmPath. This feature zone
+            is applied to the second feature.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayPairReferenceFullType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArrayReferenceFullType is an array of references to object IDs.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="FeaturePair"
+        type="QIFFeaturePairType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            The Id element is reference to a QIF id that may include
+            an AsmPath.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of Id elements in this
+          array.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:simpleType name="ListUnsignedByteType">
+    <xs:annotation>
+      <xs:documentation>
+        The ListUnsignedByteType is an array of unsigned byte values.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:list itemType="xs:unsignedByte"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="QPIdType">
+    <xs:annotation>
+      <xs:documentation>
+        The QPIdType (QIF Persistent Identifier Type) is the text
+        representation of the universally unique identifier described in
+        the standard ISO/IEC 9834-8. As a number, it has 128 bits. As a
+        text string it is represented by 32 hexadecimal digits displayed in
+        five groups separated by hyphens in the form 8-4-4-4-12, for a
+        total of 36 characters. example:
+        fd43400a-29bf-4ec6-b96c-e2f846eb6ff6
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:token">
+      <xs:pattern value="[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="QPIdReferenceType">
+    <xs:annotation>
+      <xs:documentation>
+        The QPIdReferenceType defines the text representation of the
+        universally unique identifier described in the standard ISO/IEC
+        9834-8. As a number, it has 128 bits. As a text string it is
+        represented by 32 hexadecimal digits displayed in five groups
+        separated by hyphens in the form 8-4-4-4-12, for a total of 36
+        characters. example: fd43400a-29bf-4ec6-b96c-e2f846eb6ff6
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:token">
+      <xs:pattern value="[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="QPIdFullReferenceType">
+    <xs:annotation>
+      <xs:documentation>
+        The QPIdFullReferenceType identifies an item by using QPIds.
+        The item with the specified ItemQPId may exist in one or more
+        QIF documents.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ItemQPId"
+        type="QPIdReferenceType">
+        <xs:annotation>
+          <xs:documentation>
+            The ItemQPId is the QPId of an item.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DocumentQPId"
+        type="QPIdReferenceType"
+        minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each optional DocumentQPId is the QPId of a QIFDocument in
+            which the item is found.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayQPIdFullReferenceType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArrayQPIdFullReferenceType is an array of references to QPIds
+        and optional document QPIds.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="QPId"
+        type="QPIdFullReferenceType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each QPId element is a reference to the QPId of an object and
+            optionally the QPId of the document in which it is found.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of QPId reference elements
+          in this array.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayUnsignedByteType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArrayUnsignedByteType is an array of unsigned byte values.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="ListUnsignedByteType">
+        <xs:attribute name="count"
+          type="NaturalType"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required count attribute is the number of unsigned byte
+              values in this array.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayIntType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArrayIntType is an array of integer numbers.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="ListIntType">
+        <xs:attribute name="count"
+          type="NaturalType"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required count attribute is the number of integer numbers
+              in this array.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayI2Type">
+    <xs:annotation>
+      <xs:documentation>
+        The ArrayI2Type is an array of integer numbers representing a
+        specific number of ordered pairs of integers. Each successive group
+        of two entries in the array represents the first and second
+        components of a pair.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="ListIntType">
+        <xs:attribute name="count"
+          type="NaturalType"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required count attribute gives the number of integer pairs
+              represented bu the array. The number of entries in the array
+              must be 2*count.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayI3Type">
+    <xs:annotation>
+      <xs:documentation>
+        The ArrayI3Type is an array of integer numbers representing a
+        specific number of ordered triplets of integers. Each successive
+        group of three entries in the array represents the first, second
+        and third components of a triplet.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="ListIntType">
+        <xs:attribute name="count"
+          type="NaturalType"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required count attribute gives the number of integer
+              triplets represented by the array. The number of entries in
+              the array must be 3*count.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayDoubleType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArrayDoubleType is an array of double values.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="ListDoubleType">
+        <xs:attribute name="count"
+          type="NaturalType"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required count attribute is the number of double values
+              in this array.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayBinaryType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArrayBinaryType represents an array of Base64-encoded binary
+        elements. For base64Binary data the entire binary stream is encoded
+        using the Base64 Alphabet in RFC 2045.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:base64Binary">
+        <xs:attribute name="count"
+          type="NaturalType"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required count attribute is the number of elements in this
+              array.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="sizeElement"
+          type="xs:unsignedInt"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required sizeElement attribute shows the size (in bytes)
+              of one element stored in the array. The total size of the
+              binary array can be calculated as: count*sizeElement.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="AttributesType">
+    <xs:annotation>
+      <xs:documentation>
+        The AttributesType defines a list of entity attributes.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Attribute"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Attribute element is an entity attribute.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of entity attributes in
+          this list.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="AttributeBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The AttributeBaseType is the abstract base type for all entity
+        attributes present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="name"
+      type="xs:string"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required name attribute is the name of the entity attribute.
+          This name is a unique identifier of an attribute within the
+          entity.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="AttributeBoolType">
+    <xs:annotation>
+      <xs:documentation>
+        The AttributeBoolType defines an entity attribute of Boolean type.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="AttributeBaseType">
+        <xs:attribute name="value"
+          type="xs:boolean"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required value attribute specifies the Boolean value of
+              this entity attribute.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AttributeStrType">
+    <xs:annotation>
+      <xs:documentation>
+        The AttributeStrType defines an entity attribute of string type.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="AttributeBaseType">
+        <xs:attribute name="value"
+          type="xs:string"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required value attribute specifies the string value of
+              this entity attribute.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AttributeTimeType">
+    <xs:annotation>
+      <xs:documentation>
+        The AttributeTimeType defines an entity attribute of date-time type.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="AttributeBaseType">
+        <xs:attribute name="value"
+          type="xs:dateTime"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required value attribute specifies the date-time value of
+              this entity attribute.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AttributeQPIdType">
+    <xs:annotation>
+      <xs:documentation>
+        The AttributeQPIdType defines an entity attribute of QPId type.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="AttributeBaseType">
+        <xs:sequence>
+          <xs:element name="Value"
+            type="QPIdType">
+            <xs:annotation>
+              <xs:documentation>
+                The Value element specifies the QPId value of this entity
+                attribute.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AttributeI1Type">
+    <xs:annotation>
+      <xs:documentation>
+        The AttributeI1Type defines an entity attribute
+        of integer type.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="AttributeBaseType">
+        <xs:attribute name="value"
+          type="xs:integer"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required value attribute specifies the integer value of
+              this entity attribute.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AttributeI2Type">
+    <xs:annotation>
+      <xs:documentation>
+        The AttributeI2Type defines an entity attribute
+        of 'pair of integers' type.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="AttributeBaseType">
+        <xs:attribute name="value"
+          type="I2Type"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required value attribute specifies the integer pair value
+              of this entity attribute.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AttributeI3Type">
+    <xs:annotation>
+      <xs:documentation>
+        The AttributeI3Type defines an entity attribute
+        of 'three integers' type.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="AttributeBaseType">
+        <xs:attribute name="value"
+          type="I3Type"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required value attribute specifies the integer triple
+              value of this entity attribute.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AttributeD1Type">
+    <xs:annotation>
+      <xs:documentation>
+        The AttributeD1Type defines an entity attribute of double type.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="AttributeBaseType">
+        <xs:attribute name="value"
+          type="xs:double"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required value attribute specifies the double value of
+              this entity attribute.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AttributeD2Type">
+    <xs:annotation>
+      <xs:documentation>
+        The AttributeD2Type defines an entity attribute
+        of 'two doubles' type.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="AttributeBaseType">
+        <xs:attribute name="value"
+          type="D2Type"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required value attribute specifies the double pair
+              value of this entity attribute.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AttributeD3Type">
+    <xs:annotation>
+      <xs:documentation>
+        The AttributeD3Type defines an entity attribute
+        of 'three doubles' type.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="AttributeBaseType">
+        <xs:attribute name="value"
+          type="D3Type"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required value attribute specifies the double triple
+              value of this entity attribute.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AttributeUserType">
+    <xs:annotation>
+      <xs:documentation>
+        The AttributeUserType defines a user-defined entity attribute which
+        contains a binary array or any user-defined structured XML data.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="AttributeBaseType">
+        <xs:sequence>
+          <xs:choice>
+            <xs:annotation>
+              <xs:documentation>
+                This compositor selects the representation method for data
+                of the user-defined entity attribute.
+              </xs:documentation>
+            </xs:annotation>
+            <xs:element name="UserDataXML"
+              type="UserDataXMLType">
+              <xs:annotation>
+                <xs:documentation>
+                  The UserDataXML element is the user-defined data
+                  represented as an XML structure.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="UserDataBinary"
+              type="BinaryDataType">
+              <xs:annotation>
+                <xs:documentation>
+                  The UserDataBinary element is a binary block of user
+                  data.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="nameUserAttribute"
+          type="xs:string"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required nameUserAttribute attribute is the name of
+              user-defined attribute type. The structure of the
+              user-defined attribute can be identified by this name.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="UserDataXMLType">
+    <xs:annotation>
+      <xs:documentation>
+        The UserDataXMLType defines a user-defined XML structure from any
+        namespace that is not the target namespace. The XML processor will
+        validate elements if the corresponding schema will be presented. If
+        the schema cannot be obtained, no errors will occur.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:any
+        minOccurs="0"
+        maxOccurs="unbounded"
+        namespace="##other"
+        processContents="lax">
+        <xs:annotation>
+          <xs:documentation>
+            This 'any' specifier specifies that the content must be from
+            another namespace and lax verification should be applied to
+            that content.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:any>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="Attributes"
+    type="AttributesType">
+    <xs:annotation>
+      <xs:documentation>
+        The Attributes element is a list of entity attributes.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+<!-- BEGIN SUBSTITUTION GROUP FOR ATTRIBUTES -->
+
+  <xs:element name="Attribute"
+    type="AttributeBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The global Attribute element is the head of a substitution group.
+        Any element that is a member of the group may be substituted for
+        the Attribute element anywhere the Attribute element may be
+        used in an instance file.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="AttributeBool"
+    type="AttributeBoolType"
+    substitutionGroup="Attribute">
+    <xs:annotation>
+      <xs:documentation>
+        The global AttributeBool element is an entity attribute of Boolean
+        type.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="AttributeStr"
+    type="AttributeStrType"
+    substitutionGroup="Attribute">
+    <xs:annotation>
+      <xs:documentation>
+        The global AttributeStr element is an entity attribute of string
+        type.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="AttributeTime"
+    type="AttributeTimeType"
+    substitutionGroup="Attribute">
+    <xs:annotation>
+      <xs:documentation>
+        The global AttributeTime element is an entity attribute of date-time
+        type.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="AttributeQPId"
+    type="AttributeQPIdType"
+    substitutionGroup="Attribute">
+    <xs:annotation>
+      <xs:documentation>
+        The global AttributeQPId element is an entity attribute of QPId
+        type.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="AttributeI1"
+    type="AttributeI1Type"
+    substitutionGroup="Attribute">
+    <xs:annotation>
+      <xs:documentation>
+        The global AttributeI1 element is an entity attribute of integer
+        type.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="AttributeI2"
+    type="AttributeI2Type"
+    substitutionGroup="Attribute">
+    <xs:annotation>
+      <xs:documentation>
+        The global AttributeI2 element is an entity attribute which
+        contains pair of integers.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="AttributeI3"
+    type="AttributeI3Type"
+    substitutionGroup="Attribute">
+    <xs:annotation>
+      <xs:documentation>
+        The global AttributeI3 element is an entity attribute which
+        contains three integers.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="AttributeD1"
+    type="AttributeD1Type"
+    substitutionGroup="Attribute">
+    <xs:annotation>
+      <xs:documentation>
+        The global AttributeD1 element is an entity attribute of double
+        type.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="AttributeD2"
+    type="AttributeD2Type"
+    substitutionGroup="Attribute">
+    <xs:annotation>
+      <xs:documentation>
+        The global AttributeD2 element is an entity attribute which
+        contains pair of doubles.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="AttributeD3"
+    type="AttributeD3Type"
+    substitutionGroup="Attribute">
+    <xs:annotation>
+      <xs:documentation>
+        The global AttributeD3 element is an entity attribute which
+        contains three doubles.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="AttributeUser"
+    type="AttributeUserType"
+    substitutionGroup="Attribute">
+    <xs:annotation>
+      <xs:documentation>
+        The global AttributeUser element is a user-defined entity attribute
+        which contains a binary array or any user-defined structured XML
+        data.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+<!-- END SUBSTITUTION GROUP FOR ATTRIBUTES -->
+
+  <xs:complexType name="ValidationPointsType">
+    <xs:annotation>
+      <xs:documentation>
+        The ValidationPointsType defines validation points.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Points"
+          type="ArrayPointType">
+          <xs:annotation>
+            <xs:documentation>
+              The Points element is an array of 3D points.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="PointsBinary"
+          type="ArrayBinaryType">
+          <xs:annotation>
+            <xs:documentation>
+              The PointsBinary element is a binary array of 3D points.
+              Each element of  this array is a triplet of real numbers 
+              (represented in accordance with the standard IEEE 754-2008): 
+              the X-component, the Y-component and the Z-component.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:choice
+        minOccurs="0">
+        <xs:element name="Directions"
+          type="ArrayUnitVectorType">
+          <xs:annotation>
+            <xs:documentation>
+              The optional Directions element is an array of vectors
+              defined at the points. The directions are considered as
+              normal vectors in the case of face points, and tangent
+              vectors in the case of edge points. The number of the
+              directions must be equal to the number of the points.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="DirectionsBinary"
+          type="ArrayBinaryType">
+          <xs:annotation>
+            <xs:documentation>
+              The optional Directions element is a binary array of vectors
+              defined at the points. The directions are considered as
+              normal vectors in the case of face points, and tangent
+              vectors in the case of edge points. The number of the
+              directions must be equal to the number of the points. Each
+              element of this array is a triplet of real numbers
+              (represented in accordance with the standard IEEE 754-2008):
+              the X-component, the Y-component and the Z-component.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="BoundingBoxAxisAlignedType">
+    <xs:annotation>
+      <xs:documentation>
+        The BoundingBoxAxisAlignedType defines a bounding box
+        as a cuboid with axes parallel to the model coordinate system.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PointMin"
+        type="PointSimpleType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointMin element is the minimal point of the bounding box
+            (the corner with the minimum X, Y, and Z values).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PointMax"
+        type="PointSimpleType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointMin element is the maximal point of the bounding box
+            (the corner with the maximum X, Y, and Z values). 
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

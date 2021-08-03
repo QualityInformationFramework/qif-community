@@ -1,0 +1,3883 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This document is part of QIF 3.0, an open, industry-wide standard -->
+<!-- established by the Dimensional Metrology Standards Consortium.    -->
+<!-- This document shall not be used in any manner to claim any        -->
+<!-- proprietary rights to such information, such as rights to a       -->
+<!-- patent, trademark, or copyright.                                  -->
+
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://qifstandards.org/xsd/qif3"
+  xmlns:t="http://qifstandards.org/xsd/qif3"
+  targetNamespace="http://qifstandards.org/xsd/qif3"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified"
+  version="3.0.0">
+
+  <xs:include schemaLocation="../QIFLibrary/PrimitivesPD.xsd"/>
+
+  <xs:annotation>
+    <xs:documentation>
+      This schema file defines types that describe the geometric entities
+      of a CAD model. The file also contains the key/keyref pairs that
+      constrain references among geometric entities.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="GeometrySetType">
+    <xs:annotation>
+      <xs:documentation>
+        The GeometrySetType describes the main container for
+        storing all geometric entities present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="PointSet"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional PointSet element is a collection of all instances
+            of PointEntityType present in the CAD scene.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="Curve12Set"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Curve12Set element is a collection of all 2D
+            curves (curve(t):R1->R2) present in the CAD scene. These
+            curves are defined in the parametric space of a surface.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="Curve13Set"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Curve13Set element is a collection of all 3D
+            curves (curve(t):R1->R3) present in the CAD scene.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="SurfaceSet"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional SurfaceSet element is a collection of all
+            surfaces present in the CAD scene.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="CurveMeshSet"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional CurveMeshSet element is a collection of all
+            mesh curves present in the CAD scene.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="SurfaceMeshSet"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional SurfaceMeshSet element is a collection of all
+            mesh surfaces present in the CAD scene.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GeometryBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The GeometryBaseType is the abstract base type for all geometric
+        elements.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="NodeWithIdBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+<!-- Point Set -->
+
+  <xs:complexType name="PointSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The PointSetType represents a container for storing all
+        instances of PointEntityType present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Point"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Point element is an instance of PointEntityType. Point
+            elements are normally used as the underlying geometry for
+            vertices.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of points in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="PointEntityType">
+    <xs:annotation>
+      <xs:documentation>
+        The PointEntityType is a geometric entity that is a 3D point. It
+        is normally used as underlying geometry for vertices.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="GeometryBaseType">
+        <xs:sequence>
+          <xs:element name="XYZ"
+            type="PointSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The XYZ element is the Cartesian three-dimensional
+                coordinates of the 3D point.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+<!-- 2D and 3D Curve Sets -->
+
+  <xs:complexType name="Curve12SetType">
+    <xs:annotation>
+      <xs:documentation>
+        The Curve12SetType represents a container for storing all
+        2D curves present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Curve12"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Curve12 element is a 2D curves (curve(t):R1->R2)
+            defined in the parametric space of a surface.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of 2D curves in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="Curve13SetType">
+    <xs:annotation>
+      <xs:documentation>
+        The Curve13SetType represents a container for storing all
+        3D curves present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Curve13"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Curve13 element is a 3D curve (curve(t):R1->R3).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of 3D curves in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="Curve13CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Curve13CoreType represents a container for a single 3D curve.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Curve13Core">
+        <xs:annotation>
+          <xs:documentation>
+            The Curve13 element is a 3D curve (curve(t):R1->R3).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CurveCoreBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The CurveCoreBaseType is the abstract base type for all mathematical
+        cores of 2D and 3D curves present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="domain"
+      type="ParameterRangeType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required domain attribute is the domain of the
+          parameterization of the curve.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="Curve12BaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The Curve12BaseType is the abstract base type for all geometric
+        2D curves (curve(t):R1->R2) present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="GeometryBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Curve13BaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The Curve13BaseType is the abstract base type for all geometric
+        3D curves (curve(t):R1->R3) present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="GeometryBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Segment13CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Segment13CoreType defines the mathematical core of the
+        geometric entity 'linear_segment(t):R1->R3'. It represents a
+        portion of a 3D line defined and bounded by a start point and an
+        end point.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="CurveCoreBaseType">
+        <xs:group ref="LineSegmentGroup">
+          <xs:annotation>
+            <xs:documentation>
+              The LineSegmentGroup is a group of elements that contains a
+              start point and an end point that define a portion of a line.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:group>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Segment12CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Segment12CoreType defines the mathematical core of the
+        geometric entity 'linear_segment(t):R1->R2'. It represents a
+        portion of a 2D line defined and bounded by a start point and an
+        end point.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="CurveCoreBaseType">
+        <xs:group ref="LineSegment2dGroup">
+          <xs:annotation>
+            <xs:documentation>
+              The LineSegment2dGroup is a group of elements that contains a
+              start point and an end point that define a portion of a line.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:group>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Segment13Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Segment13Type defines the geometric entity
+        'linear_segment(t):R1->R3'. Any 3D geometry can have an
+        additional transformation matrix.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Curve13BaseType">
+        <xs:sequence>
+          <xs:element ref="Segment13Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Segment13Core element defines the mathematical core
+                of this curve type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transform"
+            type="ElementReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Transform element is the identifier
+                of a three dimensional transformation matrix.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Segment12Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Segment12Type defines the geometric entity
+        'linear_segment(t):R1->R2'. The 2D curves
+        are normally used to define a trimming curve in the
+        parametric space of a surface.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Curve12BaseType">
+        <xs:sequence>
+          <xs:element ref="Segment12Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Segment12Core element defines the mathematical core
+                of this curve type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="ArcConicFormEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArcConicFormEnumType enumerates values that describe the
+        conic arc form and can take the following values:
+          'PARABOLA' - a parabola;
+          'ELLIPSE' - an ellipse;
+          'HYPERBOLA' - a hyperbola;
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PARABOLA"/>
+      <xs:enumeration value="ELLIPSE"/>
+      <xs:enumeration value="HYPERBOLA"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="ArcConic13CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArcConic13CoreType defines the mathematical core of the
+        geometric entity 'conic_arc(t):R1->R3'. A conic arc is defined
+        as a portion of a conic curve. The conic curve can have one the
+        following forms: an ellipse, a parabola, or a hyperbola.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="CurveCoreBaseType">
+        <xs:sequence>
+          <xs:element name="A"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The major diameter of the arc.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="B"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The minor diameter of the arc.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Center"
+            type="PointSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The Center element is the 3D coordinates of center of the
+                arc.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DirBeg"
+            type="UnitVectorSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The DirBeg element is a unit vector representing the
+                beginning of the conic arc.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Normal"
+            type="UnitVectorSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The Normal element is normal of the plane wherein
+                the conic arc is defined.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="form"
+          type="ArcConicFormEnumType"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required form attribute specifies the form of the conic
+              arc.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArcConic12CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArcConic13CoreType defines the mathematical core of the
+        geometric entity 'conic_arc(t):R1->R2'. A conic arc is defined as a
+        portion of a conic curve. The conic curve can have one the
+        following forms: an ellipse, a parabola, or a hyperbola.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="CurveCoreBaseType">
+        <xs:sequence>
+          <xs:element name="A"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The major diameter of the arc.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="B"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The minor diameter of the arc.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Center"
+            type="Point2dSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The Center element is the 2D coordinates of center of the
+                arc.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DirBeg"
+            type="UnitVector2dSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The DirBeg element is a 2D unit vector representing the
+                beginning of the conic arc.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="form"
+          type="ArcConicFormEnumType"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required form attribute specifies the form of the conic
+              arc.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="turned"
+          type="xs:boolean"
+          default="0">
+          <xs:annotation>
+            <xs:documentation>
+              The optional turned attribute shows if the arc is inverted.
+              A value of 1 (or true) means the arc is inverted. A value
+              of 0 (or false) means the arc is not inverted.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArcConic12Type">
+    <xs:annotation>
+      <xs:documentation>
+        The ArcConic12Type defines the geometric entity
+        'conic_arc(t):R1->R2'. The 2D curves are
+        normally used to define a trimming curve in the parametric space of
+        a surface.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Curve12BaseType">
+        <xs:sequence>
+          <xs:element ref="ArcConic12Core">
+            <xs:annotation>
+              <xs:documentation>
+                The ArcConic12Core element defines the mathematical core of
+                this curve type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArcConic13Type">
+    <xs:annotation>
+      <xs:documentation>
+        The ArcConic13Type defines the geometric entity
+        'conic_arc(t):R1->R3'. Any 3D geometry can have an
+        additional transformation matrix.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Curve13BaseType">
+        <xs:sequence>
+          <xs:element ref="ArcConic13Core">
+            <xs:annotation>
+              <xs:documentation>
+                The ArcConic13Core element defines the mathematical core of
+                this curve type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transform"
+            type="ElementReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Transform element is the identifier
+                of a three dimensional transformation matrix.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArcCircular13CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArcCircular13CoreType defines the mathematical core of the
+        geometric entity 'circular_arc(t):R1->R3'. A circular arc is
+        defined as a portion of a circle.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="CurveCoreBaseType">
+        <xs:sequence>
+          <xs:element name="Radius"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The Radius element is the arc radius.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Center"
+            type="PointSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The Center element is the 3D coordinates of center of the
+                arc.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DirBeg"
+            type="UnitVectorSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The DirBeg element is a unit vector representing the
+                beginning of the circular arc.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Normal"
+            type="UnitVectorSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The Normal element is normal of the plane wherein
+                the circular arc is defined.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArcCircular12CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArcCircular12CoreType defines the mathematical core of the
+        geometric entity 'circular_arc(t):R1->R2'. A circular arc is
+        defined as a portion of a circle.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="CurveCoreBaseType">
+        <xs:sequence>
+          <xs:element name="Radius"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The Radius element is the arc radius.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Center"
+            type="Point2dSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The Center element is the 2D coordinates of center of the
+                arc.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DirBeg"
+            type="UnitVector2dSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The DirBeg element is a 2D unit vector representing the
+                beginning of the circular arc.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="turned"
+          type="xs:boolean"
+          default="0">
+          <xs:annotation>
+            <xs:documentation>
+              The optional turned attribute shows if the arc is inverted.
+              A value of 1 (or true) means the arc is inverted. A value
+              of 0 (or false) means the arc is not inverted.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArcCircular13Type">
+    <xs:annotation>
+      <xs:documentation>
+        The ArcCircular13Type defines the geometric entity
+        'circular_arc(t):R1->R3'. Any 3D geometry can have an
+        additional transformation matrix.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Curve13BaseType">
+        <xs:sequence>
+          <xs:element ref="ArcCircular13Core">
+            <xs:annotation>
+              <xs:documentation>
+                The ArcCircular13Core element defines the mathematical core
+                of this curve type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transform"
+            type="ElementReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Transform element is the identifier
+                of a three dimensional transformation matrix.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArcCircular12Type">
+    <xs:annotation>
+      <xs:documentation>
+        The ArcCircular12Type defines the geometric entity
+        'circular_arc(t):R1->R2'. 
+        The 2D curves are normally used to define a trimming curve in the
+        parametric space of a surface.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Curve12BaseType">
+        <xs:sequence>
+          <xs:element ref="ArcCircular12Core">
+            <xs:annotation>
+              <xs:documentation>
+                The ArcCircular12Core element defines the mathematical core
+                of this curve type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Nurbs12CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Nurbs12CoreType defines the mathematical core of the
+        geometric entity 'NURBS_curve(t):R1->R2'. A NURBS curve
+        is built on B-spline basis functions and defined by its
+        order (= degree + 1), a knot vector, and an array of
+        control points with an optional set of associated weights.
+        If the weights are not defined or equal, the curve is a
+        polynomial one (otherwise rational).
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="CurveCoreBaseType">
+        <xs:sequence>
+          <xs:element name="Order"
+            type="NaturalType">
+            <xs:annotation>
+              <xs:documentation>
+                The Order element is the order (= degree + 1).
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Knots"
+            type="ArrayDoubleType">
+            <xs:annotation>
+              <xs:documentation>
+                The Knots element is the knot vector - an increasing
+                sequence of real numbers which divides the parametric
+                space in the spans. The size of the knot
+                vector is 'number of control points' + 'order'.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice>
+            <xs:annotation>
+              <xs:documentation>
+                This compositor provides a choice of the representation
+                method for the array of control points.
+              </xs:documentation>
+            </xs:annotation>
+            <xs:element name="CPs"
+              type="ArrayPoint2dType">
+              <xs:annotation>
+                <xs:documentation>
+                  The CPs element is an array of 2D control points.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="CPsBinary"
+              type="ArrayBinaryType">
+              <xs:annotation>
+                <xs:documentation>
+                  The CPsBinary element is a binary array of 2D control
+                  points.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+          <xs:element name="Weights"
+            type="ArrayDoubleType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Weights element is an array of control point
+                weights (positive real numbers).This array can be absent if
+                the NURBS curve is a polynomial one. If this array is
+                present, then the number of its elements corresponds to the
+                number of control points.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Nurbs13CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Nurbs13CoreType defines the mathematical core of the geometric
+        entity 'NURBS_curve(t):R1->R3'. A NURBS curve is built on B-spline
+        basis functions and defined by its order (= degree + 1), a knot
+        vector, and an array of control points with an optional set of
+        associated weights. If the weights are not defined or equal, the
+        curve is a polynomial one (otherwise rational).
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="CurveCoreBaseType">
+        <xs:sequence>
+          <xs:element name="Order"
+            type="NaturalType">
+            <xs:annotation>
+              <xs:documentation>
+                The Order element is the order (= degree + 1).
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Knots"
+            type="ArrayDoubleType">
+            <xs:annotation>
+              <xs:documentation>
+                The Knots element is the knot vector - an increasing
+                sequence of real numbers which divides the parametric
+                space in the spans. The size of the knot vector is
+                'number of control points' + 'order'.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice>
+            <xs:annotation>
+              <xs:documentation>
+                This compositor provides a choice of the representation
+                method for the array of control points.
+              </xs:documentation>
+            </xs:annotation>
+            <xs:element name="CPs"
+              type="ArrayPointType">
+              <xs:annotation>
+                <xs:documentation>
+                  The CPs element is an array of 3D control points.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="CPsBinary"
+              type="ArrayBinaryType">
+              <xs:annotation>
+                <xs:documentation>
+                  The CPsBinary element is a binary array of 3D control
+                  points.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+          <xs:element name="Weights"
+            type="ArrayDoubleType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Weights element is an array of control point
+                weights (positive real numbers).This array can be absent if
+                the NURBS curve is a polynomial one. If this array is
+                present, then the number of its elements corresponds to the
+                number of control points.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Nurbs12Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Nurbs12Type defines the geometric entity
+        'NURBS_curve(t):R1->R2'. 
+        The 2D curves are normally used to define a trimming curve in the
+        parametric space of a surface.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Curve12BaseType">
+        <xs:sequence>
+          <xs:element ref="Nurbs12Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Nurbs12Core element defines the mathematical core of
+                this curve type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Nurbs13Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Nurbs13Type defines the geometric entity
+        'NURBS_curve(t):R1->R3'. Any 3D geometry can have an
+        additional transformation matrix.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Curve13BaseType">
+        <xs:sequence>
+          <xs:element ref="Nurbs13Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Nurbs13Core element defines the mathematical core of
+                this curve type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transform"
+            type="ElementReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Transform element is the identifier
+                of a three dimensional transformation matrix.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Spline13CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Spline13CoreType defines the mathematical core of the
+        geometric entity 'spline_curve(t):R1->R3'.
+        The spline curve is a sequence of parametric polynomial segments.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="CurveCoreBaseType">
+        <xs:sequence>
+          <xs:element name="Knots"
+            type="ArrayDoubleType">
+            <xs:annotation>
+              <xs:documentation>
+                The Knots element is the knot vector which contains the
+                spline breakpoints.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Orders"
+            type="ArrayNaturalType">
+            <xs:annotation>
+              <xs:documentation>
+                The Orders element is the orders of the polynomial segments.
+                The order is 'the degree of the polynomial' + 1.
+                The size of this array is
+                'the number of spline breakpoints' - 1.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Coefficients"
+            type="ArrayPointType">
+            <xs:annotation>
+              <xs:documentation>
+                The Coefficients element is the coefficients of the
+                polynomial segments. For each segment the number of
+                coefficients equals the polynomial order on this
+                segment. The total size of this array is the sum of
+                all orders.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="normalized"
+          type="xs:boolean"
+          default="0">
+          <xs:annotation>
+            <xs:documentation>
+              The optional normalized attribute shows if the curve is
+              normalized. A value of 1 (or true) means the curve is
+              normalized. A value of 0 (or false) means the curve is not
+              normalized.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Spline12CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Spline12CoreType defines the mathematical core of the
+        geometric entity 'spline_curve(t):R1->R2'.
+        The spline curve is a sequence of parametric polynomial segments.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="CurveCoreBaseType">
+        <xs:sequence>
+          <xs:element name="Knots"
+            type="ArrayDoubleType">
+            <xs:annotation>
+              <xs:documentation>
+                The Knots element is the knot vector which contains the
+                spline breakpoints.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Orders"
+            type="ArrayNaturalType">
+            <xs:annotation>
+              <xs:documentation>
+                The Orders element is the orders of the polynomial segments.
+                The order is 'the degree of the polynomial' + 1.
+                The size of this array is
+                'the number of spline breakpoints' - 1.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Coefficients"
+            type="ArrayPoint2dType">
+            <xs:annotation>
+              <xs:documentation>
+                The Coefficients element is the coefficients of the
+                polynomial segments. The total size of this array is the
+                sum of all orders.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="normalized"
+          type="xs:boolean"
+          default="0">
+          <xs:annotation>
+            <xs:documentation>
+              The optional normalized attribute shows if the curve is
+              normalized. A value of 1 (or true) means the curve is
+              normalized. A value of 0 (or false) means the curve is not
+              normalized.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Spline13Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Spline13Type defines the geometric entity
+        'spline_curve(t):R1->R3'. Any 3D geometry can have an
+        additional transformation matrix.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Curve13BaseType">
+        <xs:sequence>
+          <xs:element ref="Spline13Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Spline13Core element defines the mathematical core of
+                this curve type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transform"
+            type="ElementReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Transform element is the identifier
+                of a three dimensional transformation matrix.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Spline12Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Spline12Type defines the geometric entity
+        'spline_curve(t):R1->R2'. 
+        The 2D curves are normally used to define a trimming curve in the
+        parametric space of a surface.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Curve12BaseType">
+        <xs:sequence>
+          <xs:element ref="Spline12Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Spline12Core element defines the mathematical core of
+                this curve type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Curve12OrientedType">
+    <xs:sequence>
+      <xs:element ref="Curve12Core">
+        <xs:annotation>
+          <xs:documentation>
+            The Curve12Core is the core of the oriented curve.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="turned"
+      type="xs:boolean"
+      default="0">
+      <xs:annotation>
+        <xs:documentation>
+          The optional turned attribute shows if the Curve12 is inverted.
+          A value of 1 (or true) means the Curve12 is inverted from the
+          Curve12Core. A value of 0 (or false) means the Curve12 is not
+          inverted.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ArraySubCurve12Type">
+    <xs:sequence>
+      <xs:element name="SubCurve"
+        type="Curve12OrientedType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            The ArraySubCurve12Type defines an array of Curve12.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of Curve12 objects in this
+          array.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="Aggregate12CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Aggregate12CoreType defines the mathematical core of the
+        geometric entity 'aggregate_curve(t):R1->R2'.
+        The aggregate curve is a sequence of parametric sub-curves.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="CurveCoreBaseType">
+        <xs:sequence>
+          <xs:element name="SubCurves"
+            type="ArraySubCurve12Type">
+            <xs:annotation>
+              <xs:documentation>
+                The SubCurves element is an array of oriented sub-curves.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Curve13OrientedType">
+    <xs:annotation>
+      <xs:documentation>
+        The Curve13OrientedType defines an oriented Curve13.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Curve13Core">
+        <xs:annotation>
+          <xs:documentation>
+            The Curve13Core is the core of the oriented curve.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="turned"
+      type="xs:boolean"
+      default="0">
+      <xs:annotation>
+        <xs:documentation>
+          The optional turned attribute shows if the Curve13 is inverted.
+          A value of 1 (or true) means the Curve13 is inverted from the
+          Curve13Core. A value of 0 (or false) means the Curve13 is not
+          inverted.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ArraySubCurve13Type">
+    <xs:annotation>
+      <xs:documentation>
+        The ArraySubCurve13Type defines an array of Curve13 sub-curves.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SubCurve"
+        type="Curve13OrientedType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each SubCurve element is a Curve13.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of Curve13 objects in this
+          array.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="Aggregate13CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Aggregate13CoreType defines the mathematical core of the
+        geometric entity 'aggregate_curve(t):R1->R3'.
+        The aggregate curve is a sequence of parametric sub-curves.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="CurveCoreBaseType">
+        <xs:sequence>
+          <xs:element name="SubCurves"
+            type="ArraySubCurve13Type">
+            <xs:annotation>
+              <xs:documentation>
+                The SubCurves element is an array of
+                orientated sub-curves.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Aggregate12Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Aggregate12Type defines the geometric entity
+        'aggregate_curve(t):R1->R2'.
+        The 2D curves are normally used to define a trimming curve in the
+        parametric space of a surface.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Curve12BaseType">
+        <xs:sequence>
+          <xs:element ref="Aggregate12Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Aggregate12Core element defines the mathematical core
+                of this curve type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Aggregate13Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Aggregate13Type defines the geometric entity
+        'aggregate_curve(t):R1->R3'. Any 3D geometry can have an
+        additional transformation matrix.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Curve13BaseType">
+        <xs:sequence>
+          <xs:element ref="Aggregate13Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Aggregate13Core element defines the mathematical core
+                of this curve type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transform"
+            type="ElementReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Transform element is the identifier
+                of a three dimensional transformation matrix.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Polyline13CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Polyline13CoreType defines the mathematical core of the
+        geometric entity 'polyline(t):R1->R3'.
+        The polyline is a series of connected linear segments.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="CurveCoreBaseType">
+        <xs:sequence>
+          <xs:choice>
+            <xs:annotation>
+              <xs:documentation>
+                This compositor provides a choice of the representation
+                method for the polyline points.
+              </xs:documentation>
+            </xs:annotation>
+            <xs:element name="Points"
+              type="ArrayPointType">
+              <xs:annotation>
+                <xs:documentation>
+                  The Points element is an array of 3D polyline points.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="PointsBinary"
+              type="ArrayBinaryType">
+              <xs:annotation>
+                <xs:documentation>
+                  The PointsBinary element is a binary array of 3D polyline
+                  points.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Polyline12CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Polyline12CoreType defines the mathematical core of the
+        geometric entity 'polyline(t):R1->R2'.
+        The polyline is a series of connected linear segments.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="CurveCoreBaseType">
+        <xs:sequence>
+          <xs:choice>
+            <xs:annotation>
+              <xs:documentation>
+                This compositor provides a choice of the representation
+                method for the polyline points.
+              </xs:documentation>
+            </xs:annotation>
+            <xs:element name="Points"
+              type="ArrayPoint2dType">
+              <xs:annotation>
+                <xs:documentation>
+                  The Points element is an array of 2D polyline points.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="PointsBinary"
+              type="ArrayBinaryType">
+              <xs:annotation>
+                <xs:documentation>
+                  The PointsBinary element is a binary array of 2D polyline
+                  points.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Polyline13Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Polyline13Type defines the geometric entity
+        'polyline(t):R1->R3'. Any 3D geometry can have an
+        additional transformation matrix.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Curve13BaseType">
+        <xs:sequence>
+          <xs:element ref="Polyline13Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Polyline13Core element defines the mathematical core of
+                this curve type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transform"
+            type="ElementReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Transform element is the identifier
+                of a three dimensional transformation matrix.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Polyline12Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Polyline12Type defines the geometric entity
+        'polyline(t):R1->R2'.
+        The Polyline12Type is a 2D curve normally used to define a
+        trimming curve in the parametric space of a surface.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="Curve12BaseType">
+        <xs:sequence>
+          <xs:element ref="Polyline12Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Polyline12Core element defines the mathematical core of
+                this curve type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+<!-- Surface Set -->
+
+  <xs:complexType name="SurfaceBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The SurfaceBaseType is the abstract base type for all geometric
+        surfaces (R2->R3) present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="GeometryBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="SurfaceSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The SurfaceSetType represents a container for storing all
+        surfaces present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Surface"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Surface element is a surface (surface(u, v):R2->R3).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of surfaces in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="SurfaceCoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The SurfaceCoreType represents a container for a single surface.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="SurfaceCore">
+        <xs:annotation>
+          <xs:documentation>
+            The Surface element is a surface (surface(u, v):R2->R3).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SurfaceCoreBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The SurfaceCoreBaseType is the abstract base type for all
+        mathematical cores of surfaces present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="form"
+      type="Attr23CoreEnumType">
+      <xs:annotation>
+        <xs:documentation>
+          The optional form attribute describes the surface form.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:simpleType name="Attr23CoreEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The Attr23CoreEnumType enumerates values that describe the surface
+        form:
+          'FREEFORM' - a freeform surface (NURBS, spline etc.);
+          'CYLINDER' - a cylindrical surface;
+          'CONE' - a conical surface;
+          'TORUS' - a toroidal surface;
+          'SPHERE' - a spherical surface;
+          'PLANE' - a plane surface;
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="FREEFORM"/>
+      <xs:enumeration value="CYLINDER"/>
+      <xs:enumeration value="CONE"/>
+      <xs:enumeration value="TORUS"/>
+      <xs:enumeration value="SPHERE"/>
+      <xs:enumeration value="PLANE"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="Nurbs23CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Nurbs23CoreType defines the mathematical core of the
+        geometric entity 'NURBS_surface(u,v):R2->R3'.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceCoreBaseType">
+        <xs:sequence>
+          <xs:element name="OrderU"
+            type="NaturalType">
+            <xs:annotation>
+              <xs:documentation>
+                The OrderU element is the order in the u direction
+                (= degree + 1).
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrderV"
+            type="NaturalType">
+            <xs:annotation>
+              <xs:documentation>
+                The OrderU element is the order in the v direction
+                (= degree + 1).
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="KnotsU"
+            type="ArrayDoubleType">
+            <xs:annotation>
+              <xs:documentation>
+                The KnotsU element is the knot vector in the u direction.
+                The size of the knot vector is 'number of control points in
+                the u direction' + 'order in the u direction'.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="KnotsV"
+            type="ArrayDoubleType">
+            <xs:annotation>
+              <xs:documentation>
+                The KnotsV element is the knot vector in the v direction.
+                The size of the knot vector is 'number of control points in
+                the v direction' + 'order in the v direction'.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice>
+            <xs:annotation>
+              <xs:documentation>
+                This compositor provides a choice of the representation
+                method for the array of control points. The size of this
+                array is ('number of the u-knots' - 'the u-order') *
+                ('number of the v-knots' - 'the v-order').
+              </xs:documentation>
+            </xs:annotation>
+            <xs:element name="CPs"
+              type="ArrayPointType">
+              <xs:annotation>
+                <xs:documentation>
+                  The CPs element is an array of control points.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="CPsBinary"
+              type="ArrayBinaryType">
+              <xs:annotation>
+                <xs:documentation>
+                  The CPsBinary element is a binary array of control points.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+          <xs:element name="Weights"
+            type="ArrayDoubleType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Weights element is an array of control point
+                weights. This array can be absent if the NURBS surface is a
+                polynomial one. If this array is present then the number
+                of its elements corresponds to the number of control
+                points.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Nurbs23Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Nurbs23Type defines the geometric entity
+        'NURBS_surface(u,v):R2->R3'. Any surface can have an
+        additional transformation matrix.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceBaseType">
+        <xs:sequence>
+          <xs:element ref="Nurbs23Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Nurbs23Core element defines the mathematical core of
+                this surface type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transform"
+            type="ElementReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Transform element is the identifier
+                of a three dimensional transformation matrix.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Spline23CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Spline23CoreType defines the mathematical core of the
+        geometric entity 'spline_surface(u,v):R2->R3'.
+        The spline surface is a grid of parametric polynomial patches.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceCoreBaseType">
+        <xs:sequence>
+          <xs:element name="KnotsU"
+            type="ArrayDoubleType">
+            <xs:annotation>
+              <xs:documentation>
+                The KnotsU element is the knot vector in the u direction
+                (the u spline breakpoints).
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="KnotsV"
+            type="ArrayDoubleType">
+            <xs:annotation>
+              <xs:documentation>
+                The KnotsV element is the knot vector in the v direction
+                (the v spline breakpoints).
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrdersU"
+            type="ArrayNaturalType">
+            <xs:annotation>
+              <xs:documentation>
+                The OrdersU element is the orders of the polynomial patches
+                in the u direction.
+                The order is 'the degree of the polynomial' + 1.
+                The size of this array is
+                'the number of the u spline breakpoints' - 1.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrdersV"
+            type="ArrayNaturalType">
+            <xs:annotation>
+              <xs:documentation>
+                The OrdersV element is the orders of the polynomial patches
+                in the v direction.
+                The order is 'the degree of the polynomial' + 1.
+                The size of this array is
+                'the number of the v spline breakpoints' - 1.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Coefficients"
+            type="ArrayPointType">
+            <xs:annotation>
+              <xs:documentation>
+                The Coefficients element is the coefficients of the
+                polynomial patches. For each patch the number of
+                coefficients equals
+                ['the u polynomial order of the patch' times
+                'the v polynomial order of the patch'].
+                The total size of this array is the sum of all patch
+                coefficients.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="normalized"
+          type="xs:boolean"
+          default="0">
+          <xs:annotation>
+            <xs:documentation>
+              The optional normalized attribute shows if the spline surface
+              is normalized. A value of 1 (or true) means the surface is
+              normalized. A value of 0 (or false) means the surface is not
+              normalized.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Spline23Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Spline23Type defines the geometric entity
+        'spline_surface(u,v):R2->R3'. Any surface can have an
+        additional transformation matrix.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceBaseType">
+        <xs:sequence>
+          <xs:element ref="Spline23Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Spline23Core element defines the mathematical core of
+                this surface type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transform"
+            type="ElementReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Transform element is the identifier
+                of a three dimensional transformation matrix.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Revolution23CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Revolution23CoreType defines the mathematical core of the
+        geometric entity 'surface_of_revolution(u,v):R2->R3'.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceCoreBaseType">
+        <xs:sequence>
+          <xs:element name="Axis"
+            type="AxisType">
+            <xs:annotation>
+              <xs:documentation>
+                The Axis is the unit axis vector of rotation.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Generatrix"
+            type="Curve13CoreType">
+            <xs:annotation>
+              <xs:documentation>
+                The Generatrix element is the 3D curve to be rotated around
+                the axis.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="angle"
+          type="ParameterRangeType"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required angle attribute specifies start and
+              terminate rotation angles.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Revolution23Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Revolution23Type defines the geometric entity
+        'surface_of_revolution(u,v):R2->R3'. Any surface can have an
+        additional transformation matrix.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceBaseType">
+        <xs:sequence>
+          <xs:element ref="Revolution23Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Revolution23Core element defines the mathematical core
+                of this surface type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transform"
+            type="ElementReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Transform element is the identifier
+                of a three dimensional transformation matrix.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Extrude23CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Extrude23CoreType defines the mathematical core of the
+        geometric entity 'surface_of_extrusion(u,v):R2->R3'.
+        It is built on the profile-curve and the extrusion direction.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceCoreBaseType">
+        <xs:sequence>
+          <xs:element name="TerminationPoint"
+            type="PointSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The TerminationPoint specifies the termination point. The
+                corresponding start point is located at the profile curve.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Curve"
+            type="Curve13CoreType">
+            <xs:annotation>
+              <xs:documentation>
+                The Curve element is the curve to be used as the profile of
+                extrusion.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Extrude23Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Extrude23Type defines the geometric entity
+        'surface_of_extrusion(u,v):R2->R3'. Any surface can have an
+        additional transformation matrix.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceBaseType">
+        <xs:sequence>
+          <xs:element ref="Extrude23Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Extrude23Core element defines the mathematical core of
+                this surface type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transform"
+            type="ElementReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Transform element is the identifier
+                of a three dimensional transformation matrix.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Ruled23CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Ruled23CoreType defines the mathematical core of the
+        geometric entity 'ruled_surface(u,v):R2->R3'.
+        The ruled surface is a surface generated by connecting
+        corresponding points on two space curves by a set of linear
+        segments.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceCoreBaseType">
+        <xs:sequence>
+          <xs:element name="Curve"
+            type="Curve13CoreType"
+            minOccurs="2"
+            maxOccurs="2">
+            <xs:annotation>
+              <xs:documentation>
+                The Curve element is a 3D base curve.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="turnedSecondCurve"
+          type="xs:boolean"
+          default="0">
+          <xs:annotation>
+            <xs:documentation>
+              The optional turnedSecondCurve attribute shows if the second
+              curve is inverted. A value of 1 (or true) means the second
+              curve is inverted. A value of 0 (or false) means the second
+              curve is not inverted.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Ruled23Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Ruled23Type defines the geometric entity
+        'ruled_surface(u,v):R2->R3'. Any surface can have an
+        additional transformation matrix.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceBaseType">
+        <xs:sequence>
+          <xs:element ref="Ruled23Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Ruled23Core element defines the mathematical core of
+                this surface type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transform"
+            type="ElementReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Transform element is the identifier
+                of a three dimensional transformation matrix.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Offset23CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Offset23CoreType defines the mathematical core of the
+        geometric entity 'offset_surface(u,v):R2->R3'. The offset surface
+        is built on an existing surface by moving every surface point in
+        the normal direction on an offset distance.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceCoreBaseType">
+        <xs:sequence>
+          <xs:element name="Distance"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The Distance element is the offset distance.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Surface"
+            type="SurfaceCoreType">
+            <xs:annotation>
+              <xs:documentation>
+                The Surface element is the base surface for the offsetting.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Offset23Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Offset23Type defines the geometric entity
+        'offset_surface(u,v):R2->R3'. Any surface can have an
+        additional transformation matrix.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceBaseType">
+        <xs:sequence>
+          <xs:element ref="Offset23Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Offset23Core element defines the mathematical core of
+                this surface type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transform"
+            type="ElementReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Transform element is the identifier
+                of a three dimensional transformation matrix.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Plane23CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Plane23CoreType defines the mathematical core of the geometric
+        entity 'plane_surface(u,v):R2->R3'. Plane is an infinite flat
+        surface. The parametrization of the plane is defined by two
+        vectors: DirU and DirV. The domain values (domainU and domainV)
+        'limit' the plane infinity.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceCoreBaseType">
+        <xs:sequence>
+          <xs:element name="Origin"
+            type="PointSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The Origin element gives one corner of the parallelogram.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DirU"
+            type="VectorSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The DirU element is a vector that defines the direction and
+                scaling of U-parameter lines. The DirU vector must not be
+                parallel or anti-parallel to the DirV vector.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DirV"
+            type="VectorSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The DirV element is a vector that defines the direction and
+                scaling of V-parameter lines.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="domainU"
+          type="ParameterRangeType"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required domainU attribute gives the parameter
+              domain in the U-direction.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="domainV"
+          type="ParameterRangeType"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required domainV attribute gives the parameter
+              domain in the V-direction.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Plane23Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Plane23Type defines the geometric entity
+        'planar_surface(u,v):R2->R3'. Any surface can have an
+        additional transformation matrix.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceBaseType">
+        <xs:sequence>
+          <xs:element ref="Plane23Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Plane23Core element defines the mathematical core of
+                this surface type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transform"
+            type="ElementReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Transform element is the identifier
+                of a three dimensional transformation matrix.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Cone23CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Cone23CoreType defines the mathematical core of the
+        geometric entity 'conical_surface(u,v):R2->R3'.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceCoreBaseType">
+        <xs:sequence>
+          <xs:element name="DiameterBottom"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The DiameterBottom element is cone diameter at the bottom.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DiameterTop"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The DiameterBottom element is cone diameter at the top.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Length"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The Length element is the cone height - distance between
+                the cone top and bottom.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Axis"
+            type="AxisType">
+            <xs:annotation>
+              <xs:documentation>
+                The Axis is the unit axis vector of the cone.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Sweep"
+            type="SweepType">
+            <xs:annotation>
+              <xs:documentation>
+                The Sweep element gives the start direction and the swept
+                angle for the cone. The start Vector of the
+                Sweep must lie in a plane normal to the axis of the cone.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="turnedV"
+          type="xs:boolean"
+          default="false">
+          <xs:annotation>
+            <xs:documentation>
+              The optional turnedV attribute shows if the v direction of
+              the cone must be inverted. A value of 1 (or true) means the v
+              direction must be inverted. A value of 0 (or false) means the
+              v direction must not be inverted.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="scaleU"
+          type="DoublePositiveType"
+          default="1.0">
+          <xs:annotation>
+            <xs:documentation>
+              The optional scaleU attribute is the scaling coefficient of
+              the u direction of the parametric space.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="scaleV"
+          type="DoublePositiveType"
+          default="1.0">
+          <xs:annotation>
+            <xs:documentation>
+              The optional scaleV attribute is the scaling coefficient of
+              the v direction of the parametric space.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Cone23Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Cone23Type defines the geometric entity
+        'conical_surface(u,v):R2->R3'. Any surface can have an
+        additional transformation matrix.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceBaseType">
+        <xs:sequence>
+          <xs:element ref="Cone23Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Cone23Core element defines the mathematical core of this
+                surface type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transform"
+            type="ElementReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Transform element is the identifier
+                of a three dimensional transformation matrix.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Cylinder23CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Cylinder23CoreType defines the mathematical core of the
+        geometric entity 'cylindrical_surface(u,v):R2->R3'.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceCoreBaseType">
+        <xs:sequence>
+          <xs:element name="Diameter"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The Diameter element is diameter of the cylinder.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Length"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The Length element is height of the cylinder - distance
+                between the cylinder top and bottom.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Axis"
+            type="AxisType">
+            <xs:annotation>
+              <xs:documentation>
+                The Axis is the unit axis vector of the cylinder.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Sweep"
+            type="SweepType">
+            <xs:annotation>
+              <xs:documentation>
+                The Sweep element gives the start direction and the swept
+                angle for the cylinder. The StartVector of the
+                Sweep must lie in a plane normal to the axis of the cone.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="turnedV"
+          type="xs:boolean"
+          default="false">
+          <xs:annotation>
+            <xs:documentation>
+              The optional turnedV attribute shows if the v direction of
+              the cylinder must be inverted. A value of 1 (or true) means
+              the v direction must be inverted. A value of 0 (or false)
+              means the v direction must not be inverted.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="scaleU"
+          type="DoublePositiveType"
+          default="1.0">
+          <xs:annotation>
+            <xs:documentation>
+              The optional scaleU attribute is the scaling coefficient of
+              the u direction of the parametric space.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="scaleV"
+          type="DoublePositiveType"
+          default="1.0">
+          <xs:annotation>
+            <xs:documentation>
+              The optional scaleV attribute is the scaling coefficient of
+              the v direction of the parametric space.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Cylinder23Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Cylinder23Type defines the geometric entity
+        'cylindrical_surface(u,v):R2->R3'. Any surface can have an
+        additional transformation matrix. The
+        cylinder is bounded below by a plane passing through the
+        AxisPoint of the axis and normal to the axis. The cylinder is
+        bound above by a plane that (1) passes through a point on the
+        axis a distance Length along the axis from the axis point in
+        the direction of the axis and (2) is normal to the axis.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceBaseType">
+        <xs:sequence>
+          <xs:element ref="Cylinder23Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Cylinder23Core element defines the mathematical core of
+                this surface type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transform"
+            type="ElementReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Transform element is the identifier
+                of a three dimensional transformation matrix.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Sphere23CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Sphere23CoreType defines the mathematical core of the
+        geometric entity 'spherical_surface(u,v):R2->R3'.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceCoreBaseType">
+        <xs:sequence>
+          <xs:element name="Diameter"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The Diameter element is diameter of the sphere.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Location"
+            type="PointSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The Location element is a 3D point which defines the sphere
+                center.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LatitudeLongitudeSweep"
+            type="OrientedLatitudeLongitudeSweepType">
+            <xs:annotation>
+              <xs:documentation>
+                The LatitudeLongitudeSweep element specifies the
+                sweep angles in the two directions analogous
+                to terrestrial latitude and longitude.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="turnedV"
+          type="xs:boolean"
+          default="false">
+          <xs:annotation>
+            <xs:documentation>
+              The optional turnedV attribute shows if the v direction of
+              the sphere must be inverted. A value of 1 (or true) means the
+              v direction must be inverted. A value of 0 (or false) means
+              the v direction must not be inverted.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="scaleU"
+          type="DoublePositiveType"
+          default="1.0">
+          <xs:annotation>
+            <xs:documentation>
+              The optional scaleU attribute is the scaling coefficient of
+              the u direction of the parametric space.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="scaleV"
+          type="DoublePositiveType"
+          default="1.0">
+          <xs:annotation>
+            <xs:documentation>
+              The optional scaleV attribute is the scaling coefficient of
+              the v direction of the parametric space.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Sphere23Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Sphere23Type defines the geometric entity
+        'spherical_surface(u,v):R2->R3'. Any surface can have an
+        additional transformation matrix.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceBaseType">
+        <xs:sequence>
+          <xs:element ref="Sphere23Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Sphere23Core element defines the mathematical core of
+                this surface type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transform"
+            type="ElementReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Transform element is the identifier
+                of a three dimensional transformation matrix.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Torus23CoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The Torus23CoreType defines the mathematical core of the
+        geometric entity 'toroidal_surface(u,v):R2->R3'.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceCoreBaseType">
+        <xs:sequence>
+          <xs:element name="DiameterMinor"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The DiameterMinor element is the torus minor diameter.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DiameterMajor"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The DiameterMajor element is the torus major diameter.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Axis"
+            type="AxisType">
+            <xs:annotation>
+              <xs:documentation>
+                The Axis is the unit axis vector of the torus.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LatitudeLongitudeSweep"
+            type="LatitudeLongitudeSweepType">
+            <xs:annotation>
+              <xs:documentation>
+                The LatitudeLongitudeSweep element specifies the
+                sweep angles in the two directions analogous
+                to terrestrial latitude and longitude.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="turnedV"
+          type="xs:boolean"
+          default="false">
+          <xs:annotation>
+            <xs:documentation>
+              The optional turnedV attribute shows if the v direction of
+              the torus must be inverted. A value of 1 (or true) means the
+              v direction must be inverted. A value of 0 (or false) means
+              the v direction must not be inverted.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="offsetV"
+          type="xs:double"
+          default="0.0">
+          <xs:annotation>
+            <xs:documentation>
+              The optional offsetV attribute specifies the offset of the v
+              parameter before passing the parameter to the torus formula.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="scaleU"
+          type="DoublePositiveType"
+          default="1.0">
+          <xs:annotation>
+            <xs:documentation>
+              The optional scaleU attribute is the scaling coefficient of
+              the u direction of the parametric space.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="scaleV"
+          type="DoublePositiveType"
+          default="1.0">
+          <xs:annotation>
+            <xs:documentation>
+              The optional scaleV attribute is the scaling coefficient of
+              the v direction of the parametric space.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Torus23Type">
+    <xs:annotation>
+      <xs:documentation>
+        The Torus23Type defines the geometric entity
+        'toroidal_surface(u,v):R2->R3'. Any surface can have an
+        additional transformation matrix.
+        The center of the torus is at the AxisPoint of the Axis, and
+        the axis of the torus is the Axis.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="SurfaceBaseType">
+        <xs:sequence>
+          <xs:element ref="Torus23Core">
+            <xs:annotation>
+              <xs:documentation>
+                The Torus23Core element defines the mathematical core of
+                this surface type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Transform"
+            type="ElementReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Transform element is the identifier
+                of a three dimensional transformation matrix.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+<!-- PathTriangulation Set -->
+
+  <xs:complexType name="CurveMeshSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The CurveMeshSetType represents a container for storing all
+        mesh curves present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="PathTriangulation"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each PathTriangulation element is a triangulation path.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of mesh curves in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="PathTriangulationCoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The PathTriangulationCoreType defines the mathematical core of the
+        triangulation path (a polyline formed from the triangle edges).
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice>
+        <xs:annotation>
+          <xs:documentation>
+            This compositor provides a choice of the representation method
+            for the triangulation path.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:element name="Edges"
+          type="ArrayI2Type">
+          <xs:annotation>
+            <xs:documentation>
+              The Edges element is an array of triangle edges which form a
+              triangulation path. This is an array of pairs of non-negative
+              integers, where the first value is a triangle index and the
+              second value is a vertex index opposite to the edge.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="EdgesBinary"
+          type="ArrayBinaryType">
+          <xs:annotation>
+            <xs:documentation>
+              The EdgesBinary element is a binary array of triangle edges
+              which form a triangulation path. This is an array of pairs
+              of non-negative integers, where the first value is a triangle
+              index and the second value is a vertex index opposite to
+              the edge.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PathTriangulationType">
+    <xs:annotation>
+      <xs:documentation>
+        The PathTriangulationType defines a triangulation path
+        (polylines formed from the triangle edges).
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="GeometryBaseType">
+        <xs:sequence>
+          <xs:element ref="PathTriangulationCore">
+            <xs:annotation>
+              <xs:documentation>
+                The PathTriangulationCore element defines the mathematical
+                core of this curve type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MeshTriangle"
+            type="ElementReferenceType">
+            <xs:annotation>
+              <xs:documentation>
+                The MeshTriangle element is the identifier of a triangle
+                mesh.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+<!-- Surface Mesh Set -->
+
+  <xs:complexType name="SurfaceMeshSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The SurfaceMeshSetType represents a container for storing all
+        mesh surfaces present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="MeshTriangle"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each MeshTriangle element is a triangle mesh.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of mesh surfaces in this
+          set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="MeshTriangleCoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The MeshTriangleCoreType defines the math core of the triangle mesh
+        entity. It contains a set of triangles connected by their common
+        edges.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice>
+        <xs:annotation>
+          <xs:documentation>
+            This compositor provides a choice of the representation method
+            for indices of the triangle vertices.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:element name="Triangles"
+          type="ArrayI3Type">
+          <xs:annotation>
+            <xs:documentation>
+              The Triangles element is an array of indices of the triangle
+              vertices. The number of array elements corresponds to the
+              number of triangles in the mesh. Each element of this array
+              is a triplet of integer numbers: index of the first vertex,
+              index of the second vertex and index of the third vertex.
+              All three vertex indexes of a triangle must be different and
+              must lie in the range [0, ..., number of vertices - 1].
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="TrianglesBinary"
+          type="ArrayBinaryType">
+          <xs:annotation>
+            <xs:documentation>
+              The TrianglesBinary element is a binary array of indices of
+              the triangle vertices. The number of array elements
+              corresponds to the number of triangles in the mesh. Each
+              element of this array is a triplet of 32-bit integer numbers:
+              index of the first vertex, index of the second vertex and
+              index of the third vertex. All three vertex indexes of a
+              triangle must be different and must lie in the range
+              [0, ..., number of vertices - 1].
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:choice
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            This optional compositor provides a choice of the
+            representation method for indices of the triangle neighbors.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:element name="Neighbours"
+          type="ArrayI3Type">
+          <xs:annotation>
+            <xs:documentation>
+              The Neighbours element is an array of indices of the triangle
+              neighbors. The number of array elements corresponds to the
+              number of triangles in the mesh. Each element of this array
+              is a triplet of integer numbers: index of a neighbor triangle
+              opposite to the first triangle vertex, index of a neighbor
+              triangle opposite to the second triangle vertex, index of a
+              neighbor triangle opposite to the third triangle vertex.
+              There is a special index value "-1" which shows that there is
+              no neighbor. The neighbor indices must lie in the range
+              [-1,..., number of triangles - 1].
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="NeighboursBinary"
+          type="ArrayBinaryType">
+          <xs:annotation>
+            <xs:documentation>
+              The NeighboursBinary element is a binary array of indices of
+              the triangle neighbors. The number of array elements
+              corresponds to the number of triangles in the mesh. Each
+              element of this array is a triplet of 32-bit integer numbers:
+              index of a neighbor triangle opposite to the first triangle
+              vertex, index of a neighbor triangle opposite to the second
+              triangle vertex, index of a neighbor triangle opposite to the
+              third triangle vertex. There is a special index value "-1"
+              which shows that there is no neighbor. The neighbor indices
+              must lie in the range [-1, ..., number of triangles - 1].
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:choice>
+        <xs:annotation>
+          <xs:documentation>
+            This compositor provides a choice of the representation method
+            for the triangle vertices.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:element name="Vertices"
+          type="ArrayPointType">
+          <xs:annotation>
+            <xs:documentation>
+              The Vertices element is an array of 3D points. The
+              number of array elements corresponds to the number of
+              vertices in the mesh. Each element of this array is a
+              triplet of real numbers: the X-coordinate, the
+              Y-coordinate and the Z-coordinate.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="VerticesBinary"
+          type="ArrayBinaryType">
+          <xs:annotation>
+            <xs:documentation>
+              The VerticesBinary element is a binary array of 3D
+              points. The number of array elements corresponds to the
+              number of vertices in the mesh. Each element of this
+              array is a triplet of real numbers (represented in
+              accordance with the standard IEEE 754-2008): the
+              X-coordinate, the Y-coordinate and the Z-coordinate.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:choice
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            This optional compositor provides a choice of the
+            representation method for the mesh normals. The mesh normals
+            are defined at the mesh vertices and represent normals to the
+            surface being approximated by the mesh.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:element name="Normals"
+          type="ArrayUnitVectorType">
+          <xs:annotation>
+            <xs:documentation>
+              The Normals element is an array of unit vectors. The
+              number of array elements corresponds to the number of
+              vertices in the mesh. Each element of this array is a
+              triplet of real numbers: the X-component, the
+              Y-component and the Z-component.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="NormalsBinary"
+          type="ArrayBinaryType">
+          <xs:annotation>
+            <xs:documentation>
+              The NormalsBinary element is a binary array of unit
+              vectors. The number of array elements corresponds to
+              the number of vertices in the mesh. Each element of
+              this array is a triplet of real numbers (represented in
+              accordance with the standard IEEE 754-2008): the
+              X-component, the Y-component and the Z-component.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TriangleVertexNormalType">
+    <xs:annotation>
+      <xs:documentation>
+        The TriangleVertexNormalType defines the normal vector
+        specified in a triangle vertex.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="UnitVectorType">
+        <xs:attribute name="vertex"
+          type="I2Type"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The vertex attribute is a pair of non-negative integers, 
+              where the first value is a triangle index and the
+              second value is a vertex index.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArrayTriangleVertexNormalType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArrayTriangleVertexNormalType is an array of normal vectors
+        specified in triangle vertices. 
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="NormalSpecial"
+        type="TriangleVertexNormalType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            The NormalSpecial element is a normal vector specified 
+            in a triangle vertex.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of NormalSpecial elements
+          in this array.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="MeshTriangleType">
+    <xs:annotation>
+      <xs:documentation>
+        The MeshTriangleType defines the math core of the triangle mesh
+        entity. It contains a set of triangles connected by their common
+        edges.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="GeometryBaseType">
+        <xs:sequence>
+          <xs:element ref="MeshTriangleCore">
+            <xs:annotation>
+              <xs:documentation>
+                The MeshTriangleCore element defines the mathematical
+                core of this surface type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice
+            minOccurs="0">
+            <xs:element name="NormalsSpecial"
+              type="ArrayTriangleVertexNormalType">
+              <xs:annotation>
+                <xs:documentation>
+                  The NormalsSpecial element is an array of normal vectors
+                  specified on the triangle level. This array is an
+                  addition to the core mesh normal vectors and it allows to
+                  define different normal vectors in a common vertex for
+                  different triangles. This situation is typical for
+                  vertices of mesh feature lines.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="NormalsSpecialBinary"
+              type="ArrayBinaryType">
+              <xs:annotation>
+                <xs:documentation>
+                  The NormalsBinary element is a binary array of normal
+                  vectors specified on the triangle level. Each element of
+                  this array is a pentad consisting of:
+                    a 32-bit integer index of a triangle;
+                    an 8-bit integer index of a triangle vertex (0, 1 or 2);
+                    a triplet of real numbers (represented in
+                       accordance with the standard IEEE 754-2008): the
+                       X-component, the Y-component and the Z-component.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="GeometrySet"
+    type="GeometrySetType">
+    <xs:annotation>
+      <xs:documentation>
+        The GeometrySet element is a collection of all geometric entities
+        present in the CAD scene, divided by type in a number of sub-sets.
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:key name="GeometrySetSurfaceIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The GeometrySetSurfaceIdKey collects all ids of surfaces
+          present in the CAD scene.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:SurfaceSet/t:*"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:key name="GeometryMeshTriangleIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The GeometryMeshTriangleIdKey collects all ids of triangle meshes
+          present in the CAD scene.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:SurfaceMeshSet/t:MeshTriangle"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+<!-- PathTriangulation connected with MeshTriangle -->
+
+    <xs:keyref name="GeometrySetPathTriangulationMeshTriangleKeyref"
+      refer="GeometryMeshTriangleIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The GeometrySetPathTriangulationMeshTriangleKeyref requires that
+          a mesh whose id is specified in a triangulation path curve be
+          present in the mesh surface set (SurfaceMeshSet).
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:CurveMeshSet/t:PathTriangulation/t:MeshTriangle/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+  </xs:element>
+
+  <xs:element name="PointSet"
+    type="PointSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global PointSet element is a collection of all instances of
+        PointEntityType present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Point"
+    type="PointEntityType">
+    <xs:annotation>
+      <xs:documentation>
+        The global Point element is a geometric entity that is a 3D
+        point. It is normally used as underlying geometry for vertices.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Curve12Set"
+    type="Curve12SetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global Curve12Set element is a collection of all 2D curves
+        present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Curve13Set"
+    type="Curve13SetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global Curve13Set element is a collection of all 3D curves
+        present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Curve12"
+    type="Curve12BaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The global Curve12 element is a 2D curve and is the head of a
+        substitution group.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Curve13"
+    type="Curve13BaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The global Curve13 element is a 3D curve and is the head of a
+        substitution group.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Curve12Core"
+    type="CurveCoreBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The global Curve12Core element is a 2D curve and is the head of a
+        substitution group.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Curve13Core"
+    type="CurveCoreBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The global Curve13Core element is a 3D curve and is the head of a
+        substitution group.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Segment13Core"
+    type="Segment13CoreType"
+    substitutionGroup="Curve13Core">
+    <xs:annotation>
+      <xs:documentation>
+        The global Segment13Core element is the mathematical core of a 3D
+        linear segment. It represents a portion of a 3D line defined
+        and bounded by a start point and an end point.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Segment12Core"
+    type="Segment12CoreType"
+    substitutionGroup="Curve12Core">
+    <xs:annotation>
+      <xs:documentation>
+        The global Segment12Core element is the mathematical core of a 2D
+        linear segment. It represents a portion of a 2D line defined
+        and bounded by a start point and an end point.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Segment13"
+    type="Segment13Type"
+    substitutionGroup="Curve13">
+    <xs:annotation>
+      <xs:documentation>
+        The global Segment13 element is a 3D linear segment.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Segment12"
+    type="Segment12Type"
+    substitutionGroup="Curve12">
+    <xs:annotation>
+      <xs:documentation>
+        The global Segment12 element is a 2D linear segment.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="ArcConic13Core"
+    type="ArcConic13CoreType"
+    substitutionGroup="Curve13Core">
+    <xs:annotation>
+      <xs:documentation>
+        The global ArcConic13Core element is the mathematical core of a
+        3D conic arc.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="ArcConic12Core"
+    type="ArcConic12CoreType"
+    substitutionGroup="Curve12Core">
+    <xs:annotation>
+      <xs:documentation>
+        The global ArcConic12Core element is the mathematical core of a
+        2D conic arc.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="ArcConic13"
+    type="ArcConic13Type"
+    substitutionGroup="Curve13">
+    <xs:annotation>
+      <xs:documentation>
+        The global ArcConic13 element is a 3D conic arc.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="ArcConic12"
+    type="ArcConic12Type"
+    substitutionGroup="Curve12">
+    <xs:annotation>
+      <xs:documentation>
+        The ArcConic12 element is a 2D conic arc.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="ArcCircular13Core"
+    type="ArcCircular13CoreType"
+    substitutionGroup="Curve13Core">
+    <xs:annotation>
+      <xs:documentation>
+        The global ArcCircular13Core element is the mathematical core of a
+        3D circular arc.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="ArcCircular12Core"
+    type="ArcCircular12CoreType"
+    substitutionGroup="Curve12Core">
+    <xs:annotation>
+      <xs:documentation>
+        The global ArcCircular12Core element is the mathematical core of a
+        2D circular arc.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="ArcCircular13"
+    type="ArcCircular13Type"
+    substitutionGroup="Curve13">
+    <xs:annotation>
+      <xs:documentation>
+        The global ArcCircular13 element is a 3D circular arc.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="ArcCircular12"
+    type="ArcCircular12Type"
+    substitutionGroup="Curve12">
+    <xs:annotation>
+      <xs:documentation>
+        The global ArcCircular12 element is a 2D circular arc.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Nurbs12Core"
+    type="Nurbs12CoreType"
+    substitutionGroup="Curve12Core">
+    <xs:annotation>
+      <xs:documentation>
+        The global Nurbs12Core element is the mathematical core of a
+        2D NURBS curve.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Nurbs13Core"
+    type="Nurbs13CoreType"
+    substitutionGroup="Curve13Core">
+    <xs:annotation>
+      <xs:documentation>
+        The global Nurbs13Core element is the mathematical core of a
+        3D NURBS curve.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Nurbs13"
+    type="Nurbs13Type"
+    substitutionGroup="Curve13">
+    <xs:annotation>
+      <xs:documentation>
+        The global Nurbs13 element is a 3D NURBS curve.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Nurbs12"
+    type="Nurbs12Type"
+    substitutionGroup="Curve12">
+    <xs:annotation>
+      <xs:documentation>
+        The global Nurbs12 element is a 2D NURBS curve.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Spline13Core"
+    type="Spline13CoreType"
+    substitutionGroup="Curve13Core">
+    <xs:annotation>
+      <xs:documentation>
+        The global Spline13Core element is the mathematical core of a 3D
+        spline curve. The spline curve is a sequence of parametric
+        polynomial segments.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Spline12Core"
+    type="Spline12CoreType"
+    substitutionGroup="Curve12Core">
+    <xs:annotation>
+      <xs:documentation>
+        The global Spline12Core is the mathematical core of a 2D spline
+        curve. The spline curve is a sequence of parametric polynomial
+        segments.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Spline13"
+    type="Spline13Type"
+    substitutionGroup="Curve13">
+    <xs:annotation>
+      <xs:documentation>
+        The global Spline13 element is a 3D spline curve.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Spline12"
+    type="Spline12Type"
+    substitutionGroup="Curve12">
+    <xs:annotation>
+      <xs:documentation>
+        The global Spline12 element is a 2D spline curve.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Aggregate12Core"
+    type="Aggregate12CoreType"
+    substitutionGroup="Curve12Core">
+    <xs:annotation>
+      <xs:documentation>
+        The global Aggregate12Core element is the mathematical core of a 2D
+        aggregate curve. The aggregate curve is a sequence of parametric
+        sub-curves.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Aggregate13Core"
+    type="Aggregate13CoreType"
+    substitutionGroup="Curve13Core">
+    <xs:annotation>
+      <xs:documentation>
+        The global Aggregate13Core element is the mathematical core of a 3D
+        aggregate curve. The aggregate curve is a sequence of parametric
+        sub-curves.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Aggregate12"
+    type="Aggregate12Type"
+    substitutionGroup="Curve12">
+    <xs:annotation>
+      <xs:documentation>
+        The global Aggregate12 element is a 2D aggregate curve.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Aggregate13"
+    type="Aggregate13Type"
+    substitutionGroup="Curve13">
+    <xs:annotation>
+      <xs:documentation>
+        The global Aggregate13 element is a 3D aggregate curve.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Polyline13Core"
+    type="Polyline13CoreType"
+    substitutionGroup="Curve13Core">
+    <xs:annotation>
+      <xs:documentation>
+        The global Polyline13Core element is the mathematical core of a
+        3D polyline. The polyline is a series of connected linear segments.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Polyline12Core"
+    type="Polyline12CoreType"
+    substitutionGroup="Curve12Core">
+    <xs:annotation>
+      <xs:documentation>
+        The global Polyline12Core element is the mathematical core of a
+        2D polyline. The polyline is a series of connected linear segments.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Polyline13"
+    type="Polyline13Type"
+    substitutionGroup="Curve13">
+    <xs:annotation>
+      <xs:documentation>
+        The global Polyline13 element is a 3D polyline.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Polyline12"
+    type="Polyline12Type"
+    substitutionGroup="Curve12">
+    <xs:annotation>
+      <xs:documentation>
+        The global Polyline12 element is a 2D polyline.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Surface"
+    type="SurfaceBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The global Surface element is a surface and is the head of a
+        substitution group.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="SurfaceSet"
+    type="SurfaceSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global SurfaceSet element is a collection of all surfaces
+        present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="SurfaceCore"
+    type="SurfaceCoreBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The global SurfaceCore element is a surface (surface(u, v):R2->R3)
+        and is the head of a substitution group.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Nurbs23Core"
+    type="Nurbs23CoreType"
+    substitutionGroup="SurfaceCore">
+    <xs:annotation>
+      <xs:documentation>
+        The global Nurbs23Core element is the mathematical core of a
+        NURBS surface.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Nurbs23"
+    type="Nurbs23Type"
+    substitutionGroup="Surface">
+    <xs:annotation>
+      <xs:documentation>
+        The global Nurbs23 element is a NURBS surface.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Spline23Core"
+    type="Spline23CoreType"
+    substitutionGroup="SurfaceCore">
+    <xs:annotation>
+      <xs:documentation>
+        The global Spline23Core element is the mathematical core of a
+        spline surface.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Spline23"
+    type="Spline23Type"
+    substitutionGroup="Surface">
+    <xs:annotation>
+      <xs:documentation>
+        The global Spline23 element is a spline surface.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Revolution23Core"
+    type="Revolution23CoreType"
+    substitutionGroup="SurfaceCore">
+    <xs:annotation>
+      <xs:documentation>
+        The global Revolution23Core element is the mathematical core of a
+        surface of revolution.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Revolution23"
+    type="Revolution23Type"
+    substitutionGroup="Surface">
+    <xs:annotation>
+      <xs:documentation>
+        The global Revolution23 element is a surface of revolution.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Extrude23Core"
+    type="Extrude23CoreType"
+    substitutionGroup="SurfaceCore">
+    <xs:annotation>
+      <xs:documentation>
+        The Extrude23Core element is the mathematical core of an
+        extruded surface.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Extrude23"
+    type="Extrude23Type"
+    substitutionGroup="Surface">
+    <xs:annotation>
+      <xs:documentation>
+        The Extrude23 element is an extruded surface.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Ruled23Core"
+    type="Ruled23CoreType"
+    substitutionGroup="SurfaceCore">
+    <xs:annotation>
+      <xs:documentation>
+        The global Ruled23Core element is the mathematical core of a
+        ruled surface.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Ruled23"
+    type="Ruled23Type"
+    substitutionGroup="Surface">
+    <xs:annotation>
+      <xs:documentation>
+        The global Ruled23 element is a ruled surface.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Offset23Core"
+    type="Offset23CoreType"
+    substitutionGroup="SurfaceCore">
+    <xs:annotation>
+      <xs:documentation>
+        The global Offset23Core element is the mathematical core of an
+        offset surface.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Offset23"
+    type="Offset23Type"
+    substitutionGroup="Surface">
+    <xs:annotation>
+      <xs:documentation>
+        The global Offset23 element is an offset surface.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Plane23Core"
+    type="Plane23CoreType"
+    substitutionGroup="SurfaceCore">
+    <xs:annotation>
+      <xs:documentation>
+        The global Plane23Core element is the mathematical core of a
+        plane.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Plane23"
+    type="Plane23Type"
+    substitutionGroup="Surface">
+    <xs:annotation>
+      <xs:documentation>
+        The global Plane23 element is a plane.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Cone23Core"
+    type="Cone23CoreType"
+    substitutionGroup="SurfaceCore">
+    <xs:annotation>
+      <xs:documentation>
+        The global Cone23Core element is the mathematical core of a
+        conical surface.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Cone23"
+    type="Cone23Type"
+    substitutionGroup="Surface">
+    <xs:annotation>
+      <xs:documentation>
+        The global Cone23 element is a conical surface.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Cylinder23Core"
+    type="Cylinder23CoreType"
+    substitutionGroup="SurfaceCore">
+    <xs:annotation>
+      <xs:documentation>
+        The global Cylinder23Core element is the mathematical core of a
+        cylindrical surface.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Cylinder23"
+    type="Cylinder23Type"
+    substitutionGroup="Surface">
+    <xs:annotation>
+      <xs:documentation>
+        The global Cylinder23 element is a cylindrical surface.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Sphere23Core"
+    type="Sphere23CoreType"
+    substitutionGroup="SurfaceCore">
+    <xs:annotation>
+      <xs:documentation>
+        The global Sphere23Core element is the mathematical core of a
+        spherical surface.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Sphere23"
+    type="Sphere23Type"
+    substitutionGroup="Surface">
+    <xs:annotation>
+      <xs:documentation>
+        The global Sphere23 element is a spherical surface.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Torus23Core"
+    type="Torus23CoreType"
+    substitutionGroup="SurfaceCore">
+    <xs:annotation>
+      <xs:documentation>
+        The global Torus23Core element is the mathematical core of a
+        toroidal surface.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Torus23"
+    type="Torus23Type"
+    substitutionGroup="Surface">
+    <xs:annotation>
+      <xs:documentation>
+        The global Torus23 element is a toroidal surface.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="CurveMeshSet"
+    type="CurveMeshSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global CurveMeshSet element is a collection of all mesh curves
+        present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="PathTriangulationCore"
+    type="PathTriangulationCoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The global PathTriangulationCore element is the mathematical core
+        of a triangulation path (polylines formed from the triangle edges).
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="PathTriangulation"
+    type="PathTriangulationType">
+    <xs:annotation>
+      <xs:documentation>
+        The global PathTriangulation element is a triangulation path
+        (polyline formed from the triangle edges).
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="SurfaceMeshSet"
+    type="SurfaceMeshSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global SurfaceMeshSet element is a collection of all mesh
+        surfaces present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="MeshTriangleCore"
+    type="MeshTriangleCoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The global MeshTriangleCore element is the math core of the
+        triangle mesh entity.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="MeshTriangle"
+    type="MeshTriangleType">
+    <xs:annotation>
+      <xs:documentation>
+        The global MeshTriangle element is a triangle mesh.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+</xs:schema>

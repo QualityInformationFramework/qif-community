@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QIFDocument
+  xmlns="http://qifstandards.org/xsd/qif3"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation=
+    "http://qifstandards.org/xsd/qif3 ../schema/QIFDocument.xsd"
+  idMax="1"
+  versionQIF="3.0.0">
+  <QPId>effa78c0-fb28-11e3-a3ac-0800200c9a66</QPId>
+  <Rules>
+    <FeatureRules>
+      <IfThenElseFeatureRules n="7">
+        <IfThenLineRule name="straight line rule">
+          <ThenPoints>
+            <NumberOfPoints>5</NumberOfPoints>
+          </ThenPoints>
+        </IfThenLineRule>
+        <IfThenPlaneRule name="plane rule">
+          <ThenPoints>
+            <NumberOfPoints>9</NumberOfPoints>
+          </ThenPoints>
+        </IfThenPlaneRule>
+        <IfThenCircleRule name="circle rule">
+          <ThenPoints>
+            <NumberOfPoints>7</NumberOfPoints>
+          </ThenPoints>
+        </IfThenCircleRule>
+        <IfThenSphereRule name="sphere rule">
+          <ThenPoints>
+            <NumberOfPoints>9</NumberOfPoints>
+          </ThenPoints>
+        </IfThenSphereRule>
+        <IfThenConeRule name="cone rule">
+          <ThenPoints>
+            <NumberOfPoints>12</NumberOfPoints>
+          </ThenPoints>
+        </IfThenConeRule>
+        <IfThenEllipseRule name="ellipse rule">
+          <ThenPoints>
+            <NumberOfPoints>12</NumberOfPoints>
+          </ThenPoints>
+        </IfThenEllipseRule>
+        <IfThenCylinderRule name="cylinder rule">
+          <ThenPoints>
+            <NumberOfPoints>12</NumberOfPoints>
+          </ThenPoints>
+        </IfThenCylinderRule>
+      </IfThenElseFeatureRules>
+    </FeatureRules>
+  </Rules>
+</QIFDocument>
