@@ -12,5 +12,17 @@ _Looking for help with legacy QIF versions?_
 In the `_legacy` folder, you will find assistance for past versions of QIF. 
 
 ---
+
+### Other repositories
+
+[Click here to see the full list of repositories for QIF.](https://github.com/QualityInformationFramework)
+
+Here are a few highlights: 
+
+* [**QIF Validation Tools**](https://github.com/QualityInformationFramework/qif-validation-tools) - Here, you will find some tools that will allow you to easily check the validity of a QIF instance file.
+* [**QIF Rules Editor**](https://github.com/QualityInformationFramework/QIFRulesEditor) - A free and open source app for creating and editing QIF Rules instance files.
+* [**QIF Resources Editor**](https://github.com/QualityInformationFramework/QIFResourcesEditor) - A free and open source QIF Resources editor app.
+
+---
   
 Thanks for dropping by! [If you have any questions, get in touch with us here!](http://qifstandards.org/contact-us/)
