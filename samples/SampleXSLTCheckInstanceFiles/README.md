@@ -4,7 +4,19 @@ This directory contains four sample QIF instance files that are valid against th
 
 Some XSLT 1.0 processors (e.g. the one in XMLSpy v2014) signal an error if the XSLT document function is called and does not find the URL it is looking for, and in that case no output file is produced. Other XSLT processors such as the one in oXygen and xsltproc (which is available for many operating systems) deal with a failure in the document function by returning an empty node list that can be tested; those processors will produce an output file if the document function fails. Since the check_car.QIF file includes an external QIF reference to a file that does not exist and the document function tries to find it, the XMLSpy XSLT processor reports an error in CheckFormat.xsl when check_car.QIF is tested with Check.xsl. xsltproc was used to generate check_car_XSL_output.xml.
 
-To process an instance file in this directory, use the Check.xsl XSLT file in the check directory. For example, xsltproc might be used from this directory as follows:
+To process an instance file in this directory, use the Check.xsl XSLT file in the check directory. 
+
+## On Windows
+
+If you are running Windows, you can use the XSLT checking tools that we provide in the [qif-validation-tools](https://github.com/QualityInformationFramework/qif-validation-tools) repo: 
+
+* [**QIF Instance File XLST Check Helper**](https://github.com/QualityInformationFramework/qif-validation-tools/tree/master/XSLT%20Check%20Tool)
+
+Follow the instructions there to see how to run the XSLT checks in Windows. 
+
+## On Unix/Linux 
+
+For example, xsltproc might be used from this directory as follows:
 
 ```  
 xsltproc ../check/Check.xsl check_car.QIF
