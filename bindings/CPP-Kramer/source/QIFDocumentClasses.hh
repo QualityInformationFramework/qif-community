@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #ifndef QIFDOCUMENT_HH
 #define QIFDOCUMENT_HH
@@ -12,7 +12,7 @@
 #include "QIFProductClasses.hh"
 #include "QIFMeasurementResourcesClasses.hh"
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QIFDocumentFile;
 class ExternalQIFDocumentReferenceType;
@@ -22,8 +22,8 @@ class QIFDocumentHeaderType;
 class QIFDocumentType;
 class XmlHeaderForQIFDocument;
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 class QIFDocumentFile :
   public XmlTypeBase
@@ -49,7 +49,7 @@ protected:
   QIFDocumentType * QIFDocument;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExternalQIFDocumentReferenceType :
   public XmlTypeBase
@@ -86,7 +86,7 @@ protected:
   XmlString * Description;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExternalQIFDocumentReferenceTypeLisd :
   public std::list<ExternalQIFDocumentReferenceType *>,
@@ -100,7 +100,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExternalQIFReferencesType :
   public XmlTypeBase
@@ -127,7 +127,7 @@ protected:
   ExternalQIFDocumentReferenceTypeLisd * ExternalQIFDocument;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QIFDocumentHeaderType :
   public XmlTypeBase
@@ -162,7 +162,7 @@ protected:
   XmlString * Scope;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QIFDocumentType :
   public XmlTypeBase
@@ -343,7 +343,7 @@ protected:
   XmlString * Signature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class XmlHeaderForQIFDocument :
   public XmlSchemaInstanceBase
@@ -377,6 +377,6 @@ protected:
   XmlNMTOKEN * versionQIF;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 #endif // QIFDOCUMENT_HH

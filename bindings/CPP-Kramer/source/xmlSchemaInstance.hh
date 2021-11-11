@@ -128,6 +128,8 @@ class XmlInteger;
 class XmlIntegerLisd;
 class XmlLong;
 class XmlLongLisd;
+class XmlNCName;
+class XmlNCNameLisd;
 class XmlNegativeInteger;
 class XmlNegativeIntegerLisd;
 class XmlNMTOKEN;
@@ -954,6 +956,54 @@ public:
   XmlLongLisd(
     const char * valueString);
   ~XmlLongLisd();
+  virtual void PRINTNAMEDECL;
+  void PRINTSELFDECL;
+  void OPRINTSELFDECL;
+};
+
+/*********************************************************************/
+
+/* class XmlNCName
+
+This is a class for handling XML basic type NCName.
+
+*/
+
+class XmlNCName :
+  public XmlOPrintTypeBase
+{
+public:
+  XmlNCName();
+  XmlNCName(
+    const char * valIn);
+  ~XmlNCName();
+  void PRINTSELFDECL;
+  void OPRINTSELFDECL;
+  void printBad(FILE * badFile);
+  bool XmlNCNameIsBad();
+#ifdef ACCESS
+  std::string getval();
+  void setval(std::string valIn);
+protected:
+#endif
+  std::string val;
+};
+
+/*********************************************************************/
+
+class XmlNCNameLisd :
+  public std::list<XmlNCName *>,
+  public XmlBasicLisdBase
+{
+public:
+  XmlNCNameLisd();
+  XmlNCNameLisd(
+    XmlNCName * nmtokenIn);
+  XmlNCNameLisd(
+    XmlNCNameLisd * nmtokenLisdIn);
+  XmlNCNameLisd(
+    const char * valueString);
+  ~XmlNCNameLisd();
   virtual void PRINTNAMEDECL;
   void PRINTSELFDECL;
   void OPRINTSELFDECL;

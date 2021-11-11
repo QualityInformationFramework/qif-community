@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #ifndef QIFRULES_HH
 #define QIFRULES_HH
@@ -8,7 +8,7 @@
 #include "ExpressionsClasses.hh"
 #include "IntermediatesPMIClasses.hh"
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ApplicabilityBaseType;
 class CirclePointSamplingStrategyType;
@@ -115,11 +115,11 @@ class ToroidalSegmentPointSamplingStrategyTypeChoicePair;
 class TorusPointSamplingStrategyType;
 class TorusPointSamplingStrategyTypeChoicePair;
 class ZeroToOneType;
-class ThenPointsType_1212_Type;
-class ThenPointsType_1212_TypeChoicePair;
+class ThenPointsType_1213_Type;
+class ThenPointsType_1213_TypeChoicePair;
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 class ApplicabilityBaseType :
   public XmlTypeBase
@@ -130,7 +130,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CirclePointSamplingStrategyType :
   public XmlTypeBase
@@ -149,7 +149,7 @@ protected:
   CirclePointSamplingStrategyTypeChoicePair * CirclePointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union CirclePointSamplingStrategyTypeVal
 {
@@ -157,7 +157,7 @@ union CirclePointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CirclePointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -177,7 +177,7 @@ public:
   CirclePointSamplingStrategyTypeVal CirclePointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcPointSamplingStrategyType :
   public XmlTypeBase
@@ -196,7 +196,7 @@ protected:
   CircularArcPointSamplingStrategyTypeChoicePair * CircularArcPointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union CircularArcPointSamplingStrategyTypeVal
 {
@@ -204,7 +204,7 @@ union CircularArcPointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcPointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -224,7 +224,7 @@ public:
   CircularArcPointSamplingStrategyTypeVal CircularArcPointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConePointSamplingStrategyType :
   public XmlTypeBase
@@ -243,7 +243,7 @@ protected:
   ConePointSamplingStrategyTypeChoicePair * ConePointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ConePointSamplingStrategyTypeVal
 {
@@ -251,7 +251,7 @@ union ConePointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConePointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -271,7 +271,7 @@ public:
   ConePointSamplingStrategyTypeVal ConePointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConicalSegmentPointSamplingStrategyType :
   public XmlTypeBase
@@ -290,7 +290,7 @@ protected:
   ConicalSegmentPointSamplingStrategyTypeChoicePair * ConicalSegmentPointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ConicalSegmentPointSamplingStrategyTypeVal
 {
@@ -298,7 +298,7 @@ union ConicalSegmentPointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConicalSegmentPointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -318,7 +318,7 @@ public:
   ConicalSegmentPointSamplingStrategyTypeVal ConicalSegmentPointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylinderPointSamplingStrategyType :
   public XmlTypeBase
@@ -337,7 +337,7 @@ protected:
   CylinderPointSamplingStrategyTypeChoicePair * CylinderPointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union CylinderPointSamplingStrategyTypeVal
 {
@@ -345,7 +345,7 @@ union CylinderPointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylinderPointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -365,7 +365,7 @@ public:
   CylinderPointSamplingStrategyTypeVal CylinderPointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylindricalSegmentPointSamplingStrategyType :
   public XmlTypeBase
@@ -384,7 +384,7 @@ protected:
   CylindricalSegmentPointSamplingStrategyTypeChoicePair * CylindricalSegmentPointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union CylindricalSegmentPointSamplingStrategyTypeVal
 {
@@ -392,7 +392,7 @@ union CylindricalSegmentPointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylindricalSegmentPointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -412,7 +412,7 @@ public:
   CylindricalSegmentPointSamplingStrategyTypeVal CylindricalSegmentPointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DMEDecisionBaseType :
   public XmlTypeBase
@@ -431,7 +431,7 @@ protected:
   ApplicabilityBaseType * Applicability;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DMEDecisionBaseTypeLisd :
   public std::list<DMEDecisionBaseType *>,
@@ -445,7 +445,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DMEDecisionClassType :
   public DMEDecisionBaseType
@@ -469,7 +469,7 @@ protected:
   DMEParameterConstraintSetType * ParameterConstraints;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DMEDecisionIdType :
   public DMEDecisionBaseType
@@ -489,7 +489,7 @@ protected:
   QIFReferenceType * DMEId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DMEDecisionMakeModelType :
   public DMEDecisionBaseType
@@ -517,7 +517,7 @@ protected:
   XmlString * SerialNumber;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DMEParameterConstraintSetType :
   public XmlTypeBase
@@ -544,7 +544,7 @@ protected:
   DMEParameterConstraintTypeLisd * DMEParameterConstraint;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DMEParameterConstraintType :
   public XmlTypeBase
@@ -571,7 +571,7 @@ protected:
   ArithmeticExpressionBaseType * ArithmeticExpression;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DMEParameterConstraintTypeLisd :
   public std::list<DMEParameterConstraintType *>,
@@ -585,7 +585,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DMESelectionRulesType :
   public XmlTypeBase
@@ -616,7 +616,7 @@ protected:
   IfThenDMERuleTypeLisd * DMEDecisionRule;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DMEThenType :
   public XmlTypeBase
@@ -643,7 +643,7 @@ protected:
   DMEDecisionBaseTypeLisd * DMEDecision;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipsePointSamplingStrategyType :
   public XmlTypeBase
@@ -662,7 +662,7 @@ protected:
   EllipsePointSamplingStrategyTypeChoicePair * EllipsePointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union EllipsePointSamplingStrategyTypeVal
 {
@@ -670,7 +670,7 @@ union EllipsePointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipsePointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -690,7 +690,7 @@ public:
   EllipsePointSamplingStrategyTypeVal EllipsePointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcPointSamplingStrategyType :
   public XmlTypeBase
@@ -709,7 +709,7 @@ protected:
   EllipticalArcPointSamplingStrategyTypeChoicePair * EllipticalArcPointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union EllipticalArcPointSamplingStrategyTypeVal
 {
@@ -717,7 +717,7 @@ union EllipticalArcPointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcPointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -737,7 +737,7 @@ public:
   EllipticalArcPointSamplingStrategyTypeVal EllipticalArcPointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCirclePointSamplingStrategyType :
   public XmlTypeBase
@@ -756,7 +756,7 @@ protected:
   ElongatedCirclePointSamplingStrategyTypeChoicePair * ElongatedCirclePointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ElongatedCirclePointSamplingStrategyTypeVal
 {
@@ -764,7 +764,7 @@ union ElongatedCirclePointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCirclePointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -784,7 +784,7 @@ public:
   ElongatedCirclePointSamplingStrategyTypeVal ElongatedCirclePointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCylinderPointSamplingStrategyType :
   public XmlTypeBase
@@ -803,7 +803,7 @@ protected:
   ElongatedCylinderPointSamplingStrategyTypeChoicePair * ElongatedCylinderPointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ElongatedCylinderPointSamplingStrategyTypeVal
 {
@@ -811,7 +811,7 @@ union ElongatedCylinderPointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCylinderPointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -831,7 +831,7 @@ public:
   ElongatedCylinderPointSamplingStrategyTypeVal ElongatedCylinderPointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExtrudedCrossSectionPointSamplingStrategyType :
   public XmlTypeBase
@@ -850,7 +850,7 @@ protected:
   ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair * ExtrudedCrossSectionPointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ExtrudedCrossSectionPointSamplingStrategyTypeVal
 {
@@ -858,7 +858,7 @@ union ExtrudedCrossSectionPointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -878,7 +878,7 @@ public:
   ExtrudedCrossSectionPointSamplingStrategyTypeVal ExtrudedCrossSectionPointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureRulesType :
   public XmlTypeBase
@@ -901,7 +901,7 @@ protected:
   MaxFeatureRulesType * MaxFeatureRules;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenElseFeatureRulesType :
   public XmlTypeBase
@@ -933,7 +933,7 @@ protected:
   ElseRuleType * Else;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LinePointSamplingStrategyType :
   public XmlTypeBase
@@ -952,7 +952,7 @@ protected:
   LinePointSamplingStrategyTypeChoicePair * LinePointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union LinePointSamplingStrategyTypeVal
 {
@@ -960,7 +960,7 @@ union LinePointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LinePointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -980,7 +980,7 @@ public:
   LinePointSamplingStrategyTypeVal LinePointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MaxFeatureRulesType :
   public XmlTypeBase
@@ -1012,7 +1012,7 @@ protected:
   ElseRuleType * Else;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesPointSamplingStrategyType :
   public XmlTypeBase
@@ -1031,7 +1031,7 @@ protected:
   OppositeAngledLinesPointSamplingStrategyTypeChoicePair * OppositeAngledLinesPointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OppositeAngledLinesPointSamplingStrategyTypeVal
 {
@@ -1039,7 +1039,7 @@ union OppositeAngledLinesPointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesPointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -1059,7 +1059,7 @@ public:
   OppositeAngledLinesPointSamplingStrategyTypeVal OppositeAngledLinesPointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledPlanesPointSamplingStrategyType :
   public XmlTypeBase
@@ -1078,7 +1078,7 @@ protected:
   OppositeAngledPlanesPointSamplingStrategyTypeChoicePair * OppositeAngledPlanesPointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OppositeAngledPlanesPointSamplingStrategyTypeVal
 {
@@ -1086,7 +1086,7 @@ union OppositeAngledPlanesPointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledPlanesPointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -1106,7 +1106,7 @@ public:
   OppositeAngledPlanesPointSamplingStrategyTypeVal OppositeAngledPlanesPointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesPointSamplingStrategyType :
   public XmlTypeBase
@@ -1125,7 +1125,7 @@ protected:
   OppositeParallelLinesPointSamplingStrategyTypeChoicePair * OppositeParallelLinesPointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OppositeParallelLinesPointSamplingStrategyTypeVal
 {
@@ -1133,7 +1133,7 @@ union OppositeParallelLinesPointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesPointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -1153,7 +1153,7 @@ public:
   OppositeParallelLinesPointSamplingStrategyTypeVal OppositeParallelLinesPointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelPlanesPointSamplingStrategyType :
   public XmlTypeBase
@@ -1172,7 +1172,7 @@ protected:
   OppositeParallelPlanesPointSamplingStrategyTypeChoicePair * OppositeParallelPlanesPointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OppositeParallelPlanesPointSamplingStrategyTypeVal
 {
@@ -1180,7 +1180,7 @@ union OppositeParallelPlanesPointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelPlanesPointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -1200,7 +1200,7 @@ public:
   OppositeParallelPlanesPointSamplingStrategyTypeVal OppositeParallelPlanesPointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlanePointSamplingStrategyType :
   public XmlTypeBase
@@ -1219,7 +1219,7 @@ protected:
   PlanePointSamplingStrategyTypeChoicePair * PlanePointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PlanePointSamplingStrategyTypeVal
 {
@@ -1227,7 +1227,7 @@ union PlanePointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlanePointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -1247,7 +1247,7 @@ public:
   PlanePointSamplingStrategyTypeVal PlanePointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedCurvePointSamplingStrategyType :
   public XmlTypeBase
@@ -1266,7 +1266,7 @@ protected:
   PointDefinedCurvePointSamplingStrategyTypeChoicePair * PointDefinedCurvePointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PointDefinedCurvePointSamplingStrategyTypeVal
 {
@@ -1274,7 +1274,7 @@ union PointDefinedCurvePointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedCurvePointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -1294,7 +1294,7 @@ public:
   PointDefinedCurvePointSamplingStrategyTypeVal PointDefinedCurvePointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedSurfacePointSamplingStrategyType :
   public XmlTypeBase
@@ -1313,7 +1313,7 @@ protected:
   PointDefinedSurfacePointSamplingStrategyTypeChoicePair * PointDefinedSurfacePointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PointDefinedSurfacePointSamplingStrategyTypeVal
 {
@@ -1321,7 +1321,7 @@ union PointDefinedSurfacePointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedSurfacePointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -1341,7 +1341,7 @@ public:
   PointDefinedSurfacePointSamplingStrategyTypeVal PointDefinedSurfacePointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointPointSamplingStrategyType :
   public XmlTypeBase
@@ -1360,7 +1360,7 @@ protected:
   PointPointSamplingStrategyTypeChoicePair * PointPointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PointPointSamplingStrategyTypeVal
 {
@@ -1368,7 +1368,7 @@ union PointPointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointPointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -1388,7 +1388,7 @@ public:
   PointPointSamplingStrategyTypeVal PointPointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QIFMayType :
   public ApplicabilityBaseType
@@ -1408,7 +1408,7 @@ protected:
   ZeroToOneType * desirability;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QIFMustNotType :
   public ApplicabilityBaseType
@@ -1419,7 +1419,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QIFMustType :
   public ApplicabilityBaseType
@@ -1430,7 +1430,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QIFRuleBaseType :
   public XmlTypeBase
@@ -1457,7 +1457,7 @@ protected:
   QPIdType * UUID;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QIFRulesType :
   public XmlTypeBase
@@ -1488,7 +1488,7 @@ protected:
   DMESelectionRulesType * DMESelectionRules;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class RulesUnitsType :
   public XmlTypeBase
@@ -1555,7 +1555,7 @@ protected:
   TimeUnitType * TimeUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SpherePointSamplingStrategyType :
   public XmlTypeBase
@@ -1574,7 +1574,7 @@ protected:
   SpherePointSamplingStrategyTypeChoicePair * SpherePointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union SpherePointSamplingStrategyTypeVal
 {
@@ -1582,7 +1582,7 @@ union SpherePointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SpherePointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -1602,7 +1602,7 @@ public:
   SpherePointSamplingStrategyTypeVal SpherePointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphericalSegmentPointSamplingStrategyType :
   public XmlTypeBase
@@ -1621,7 +1621,7 @@ protected:
   SphericalSegmentPointSamplingStrategyTypeChoicePair * SphericalSegmentPointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union SphericalSegmentPointSamplingStrategyTypeVal
 {
@@ -1629,7 +1629,7 @@ union SphericalSegmentPointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphericalSegmentPointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -1649,7 +1649,7 @@ public:
   SphericalSegmentPointSamplingStrategyTypeVal SphericalSegmentPointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceOfRevolutionPointSamplingStrategyType :
   public XmlTypeBase
@@ -1668,7 +1668,7 @@ protected:
   SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair * SurfaceOfRevolutionPointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union SurfaceOfRevolutionPointSamplingStrategyTypeVal
 {
@@ -1676,7 +1676,7 @@ union SurfaceOfRevolutionPointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -1696,7 +1696,7 @@ public:
   SurfaceOfRevolutionPointSamplingStrategyTypeVal SurfaceOfRevolutionPointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThenPointsType :
   public XmlTypeBase
@@ -1704,18 +1704,18 @@ class ThenPointsType :
 public:
   ThenPointsType();
   ThenPointsType(
-    ThenPointsType_1212_Type * ThenPointsType_1212In);
+    ThenPointsType_1213_Type * ThenPointsType_1213In);
   ~ThenPointsType();
   void printSelf(FILE * outFile);
 
-  ThenPointsType_1212_Type * getThenPointsType_1212();
-  void setThenPointsType_1212(ThenPointsType_1212_Type * ThenPointsType_1212In);
+  ThenPointsType_1213_Type * getThenPointsType_1213();
+  void setThenPointsType_1213(ThenPointsType_1213_Type * ThenPointsType_1213In);
 
 protected:
-  ThenPointsType_1212_Type * ThenPointsType_1212;
+  ThenPointsType_1213_Type * ThenPointsType_1213;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ToroidalSegmentPointSamplingStrategyType :
   public XmlTypeBase
@@ -1734,7 +1734,7 @@ protected:
   ToroidalSegmentPointSamplingStrategyTypeChoicePair * ToroidalSegmentPointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ToroidalSegmentPointSamplingStrategyTypeVal
 {
@@ -1742,7 +1742,7 @@ union ToroidalSegmentPointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ToroidalSegmentPointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -1762,7 +1762,7 @@ public:
   ToroidalSegmentPointSamplingStrategyTypeVal ToroidalSegmentPointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TorusPointSamplingStrategyType :
   public XmlTypeBase
@@ -1781,7 +1781,7 @@ protected:
   TorusPointSamplingStrategyTypeChoicePair * TorusPointSamplingStrategyTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union TorusPointSamplingStrategyTypeVal
 {
@@ -1789,7 +1789,7 @@ union TorusPointSamplingStrategyTypeVal
   XmlToken * UserDefinedStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TorusPointSamplingStrategyTypeChoicePair :
   public XmlTypeBase
@@ -1809,7 +1809,7 @@ public:
   TorusPointSamplingStrategyTypeVal TorusPointSamplingStrategyTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ZeroToOneType :
   public XmlDouble
@@ -1825,28 +1825,28 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ThenPointsType_1212_Type :
+class ThenPointsType_1213_Type :
   public XmlTypeBase
 {
 public:
-  ThenPointsType_1212_Type();
-  ThenPointsType_1212_Type(
-    ThenPointsType_1212_TypeChoicePair * ThenPointsType_1212_TypePairIn);
-  ~ThenPointsType_1212_Type();
+  ThenPointsType_1213_Type();
+  ThenPointsType_1213_Type(
+    ThenPointsType_1213_TypeChoicePair * ThenPointsType_1213_TypePairIn);
+  ~ThenPointsType_1213_Type();
   void printSelf(FILE * outFile);
 
-  ThenPointsType_1212_TypeChoicePair * getThenPointsType_1212_TypePair();
-  void setThenPointsType_1212_TypePair(ThenPointsType_1212_TypeChoicePair * ThenPointsType_1212_TypePairIn);
+  ThenPointsType_1213_TypeChoicePair * getThenPointsType_1213_TypePair();
+  void setThenPointsType_1213_TypePair(ThenPointsType_1213_TypeChoicePair * ThenPointsType_1213_TypePairIn);
 
 protected:
-  ThenPointsType_1212_TypeChoicePair * ThenPointsType_1212_TypePair;
+  ThenPointsType_1213_TypeChoicePair * ThenPointsType_1213_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union ThenPointsType_1212_TypeVal
+union ThenPointsType_1213_TypeVal
 {
   XmlUnsignedInt * NumberOfPoints;
   XmlUnsignedInt * MinPoints;
@@ -1854,9 +1854,9 @@ union ThenPointsType_1212_TypeVal
   PositiveDecimalType * MinPointDensity;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ThenPointsType_1212_TypeChoicePair :
+class ThenPointsType_1213_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -1865,18 +1865,18 @@ public:
     MinPointsE,
     PointDensityE,
     MinPointDensityE };
-  ThenPointsType_1212_TypeChoicePair();
-  ThenPointsType_1212_TypeChoicePair(
-    whichOne ThenPointsType_1212_TypeTypeIn,
-    ThenPointsType_1212_TypeVal ThenPointsType_1212_TypeValueIn);
-  ~ThenPointsType_1212_TypeChoicePair();
+  ThenPointsType_1213_TypeChoicePair();
+  ThenPointsType_1213_TypeChoicePair(
+    whichOne ThenPointsType_1213_TypeTypeIn,
+    ThenPointsType_1213_TypeVal ThenPointsType_1213_TypeValueIn);
+  ~ThenPointsType_1213_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ThenPointsType_1212_TypeType;
-  ThenPointsType_1212_TypeVal ThenPointsType_1212_TypeValue;
+  whichOne ThenPointsType_1213_TypeType;
+  ThenPointsType_1213_TypeVal ThenPointsType_1213_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenDMERuleType :
   public QIFRuleBaseType
@@ -1906,7 +1906,7 @@ protected:
   DMEThenType * DMEThen;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenDMERuleTypeLisd :
   public std::list<IfThenDMERuleType *>,
@@ -1920,7 +1920,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointRuleBaseType :
   public QIFRuleBaseType
@@ -1937,7 +1937,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElseRuleType :
   public PointRuleBaseType
@@ -1962,7 +1962,7 @@ protected:
   ThenPointsType * ThenPoints;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenFeatureRuleType :
   public PointRuleBaseType
@@ -1992,7 +1992,7 @@ protected:
   ThenPointsType * ThenPoints;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenFeatureRuleTypeLisd :
   public std::list<IfThenFeatureRuleType *>,
@@ -2006,7 +2006,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenLineRuleType :
   public IfThenFeatureRuleType
@@ -2040,7 +2040,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenOppositeAngledLinesRuleType :
   public IfThenFeatureRuleType
@@ -2074,7 +2074,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenOppositeAngledPlanesRuleType :
   public IfThenFeatureRuleType
@@ -2108,7 +2108,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenOppositeParallelLinesRuleType :
   public IfThenFeatureRuleType
@@ -2142,7 +2142,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenOppositeParallelPlanesRuleType :
   public IfThenFeatureRuleType
@@ -2176,7 +2176,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenPlaneRuleType :
   public IfThenFeatureRuleType
@@ -2210,7 +2210,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenPointDefinedCurveRuleType :
   public IfThenFeatureRuleType
@@ -2244,7 +2244,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenPointDefinedSurfaceRuleType :
   public IfThenFeatureRuleType
@@ -2278,7 +2278,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenPointRuleType :
   public IfThenFeatureRuleType
@@ -2307,7 +2307,7 @@ protected:
   PointPointSamplingStrategyType * ThenPointStrategy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenSphereRuleType :
   public IfThenFeatureRuleType
@@ -2341,7 +2341,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenSphericalSegmentRuleType :
   public IfThenFeatureRuleType
@@ -2375,7 +2375,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenSurfaceOfRevolutionRuleType :
   public IfThenFeatureRuleType
@@ -2409,7 +2409,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenSurfaceRuleType :
   public IfThenFeatureRuleType
@@ -2430,7 +2430,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenToroidalSegmentRuleType :
   public IfThenFeatureRuleType
@@ -2464,7 +2464,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenTorusRuleType :
   public IfThenFeatureRuleType
@@ -2498,7 +2498,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenCircleRuleType :
   public IfThenFeatureRuleType
@@ -2532,7 +2532,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenCircularArcRuleType :
   public IfThenFeatureRuleType
@@ -2566,7 +2566,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenConeRuleType :
   public IfThenFeatureRuleType
@@ -2600,7 +2600,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenConicalSegmentRuleType :
   public IfThenFeatureRuleType
@@ -2634,7 +2634,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenCurveRuleType :
   public IfThenFeatureRuleType
@@ -2655,7 +2655,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenCylinderRuleType :
   public IfThenFeatureRuleType
@@ -2689,7 +2689,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenCylindricalSegmentRuleType :
   public IfThenFeatureRuleType
@@ -2723,7 +2723,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenEllipseRuleType :
   public IfThenFeatureRuleType
@@ -2757,7 +2757,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenEllipticalArcRuleType :
   public IfThenFeatureRuleType
@@ -2791,7 +2791,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenElongatedCircleRuleType :
   public IfThenFeatureRuleType
@@ -2825,7 +2825,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenElongatedCylinderRuleType :
   public IfThenFeatureRuleType
@@ -2859,7 +2859,7 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfThenExtrudedCrossSectionRuleType :
   public IfThenFeatureRuleType
@@ -2893,6 +2893,6 @@ protected:
   SubstituteFeatureAlgorithmType * ThenFittingAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 #endif // QIFRULES_HH

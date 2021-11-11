@@ -1,3 +1,5 @@
+README - Last edited 2021Nov9
+
 WHERE THE CODE CAME FROM
 ------------------------
 
@@ -67,6 +69,11 @@ The following automatically generated files are for the parser
   QIFDocument.y
   QIFDocumentParser.cc
 
+So that UserDataXML (which contains non-QIF XML data) can be handled,
+changes in QIFDocument.lex and QIFDocument.y were made manually.
+Also, the definition of UserDataXMLType in Primitives.xsd (in the
+schema directory) has been modified.
+
 1B. Code created automatically from automatically generated code.
 
 The QIFDocumentYACC.cc and QIFDocumentYACC.hh files were created by bison
@@ -78,6 +85,7 @@ The QIFDocumentLex.cc file was created by flex from QIFDocument.lex.
 
   QIF_CPlusPlusDlgAuto.cc
   QIF_CPlusPlusDlg.cc
+  QIF_CPlusPlusDlgNoDup.cc
 
 2. Code Not Specific to QIF
 
@@ -85,7 +93,9 @@ The xmlSchemaInstance.hh and xmlSchemaInstance.cc files are not specific
 to QIF. They define C++ classes for XML primitive data types. They were
 hand-written.
 
-All code was contributed by Tom Kramer.
+All code was contributed by Tom Kramer. The generator that created most of
+the code is open source code available at
+https://sourceforge.net/projects/xml-parsers-and-utilities/
 
 APPROACHES TO USING THE CODE
 ----------------------------

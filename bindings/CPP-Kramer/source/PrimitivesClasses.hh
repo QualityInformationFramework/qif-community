@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #ifndef PRIMITIVES_HH
 #define PRIMITIVES_HH
@@ -6,7 +6,7 @@
 #include <list>
 #include <xmlSchemaInstance.hh>
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AngleRangeType;
 class ArrayBinaryQIFReferenceFullType;
@@ -103,19 +103,22 @@ class TransformRotationType;
 class UnitVector2dSimpleType;
 class UnitVectorSimpleType;
 class UnitVectorType;
+class UserDataXMLType;
 class ValidationPointsType;
 class ValidityEnumType;
 class VectorSimpleType;
 class VectorType;
 class ArrayBinaryQIFR_1001_Type;
-class ListQIFReferenc_1002_Type;
-class ValidationPoint_1003_Type;
-class ValidationPoint_1003_TypeChoicePair;
+class AttributeUserTy_1002_Type;
+class AttributeUserTy_1002_TypeChoicePair;
+class ListQIFReferenc_1003_Type;
 class ValidationPoint_1004_Type;
 class ValidationPoint_1004_TypeChoicePair;
+class ValidationPoint_1005_Type;
+class ValidationPoint_1005_TypeChoicePair;
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 class ArrayBinaryQIFReferenceType :
   public XmlTypeBase
@@ -134,7 +137,7 @@ protected:
   ArrayBinaryQIFReferenceTypeChoicePair * ArrayBinaryQIFReferenceTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ArrayBinaryQIFReferenceTypeVal
 {
@@ -142,7 +145,7 @@ union ArrayBinaryQIFReferenceTypeVal
   ArrayBinaryQIFR_1001_Type * ArrayBinaryQIFR_1001;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArrayBinaryQIFReferenceTypeChoicePair :
   public XmlTypeBase
@@ -162,7 +165,7 @@ public:
   ArrayBinaryQIFReferenceTypeVal ArrayBinaryQIFReferenceTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArrayBinaryType :
   public XmlBase64Binary
@@ -190,7 +193,7 @@ protected:
   XmlUnsignedInt * sizeElement;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArrayPairReferenceFullType :
   public XmlTypeBase
@@ -217,7 +220,7 @@ protected:
   QIFFeaturePairTypeLisd * FeaturePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArrayQPIdFullReferenceType :
   public XmlTypeBase
@@ -244,7 +247,7 @@ protected:
   QPIdFullReferenceTypeLisd * QPId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArrayQPIdFullReferenceTypeLisd :
   public std::list<ArrayQPIdFullReferenceType *>,
@@ -258,7 +261,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArrayReferenceActiveType :
   public XmlTypeBase
@@ -285,7 +288,7 @@ protected:
   QIFReferenceActiveTypeLisd * Id;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArrayReferenceFullType :
   public XmlTypeBase
@@ -312,7 +315,7 @@ protected:
   QIFReferenceFullTypeLisd * Id;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArrayReferenceType :
   public XmlTypeBase
@@ -339,7 +342,7 @@ protected:
   QIFReferenceTypeLisd * Id;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AttributeBaseType :
   public XmlTypeBase
@@ -359,7 +362,7 @@ protected:
   XmlString * name;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AttributeBaseTypeLisd :
   public std::list<AttributeBaseType *>,
@@ -373,7 +376,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AttributeBoolType :
   public AttributeBaseType
@@ -394,7 +397,7 @@ protected:
   XmlBoolean * value;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AttributeD1Type :
   public AttributeBaseType
@@ -415,7 +418,7 @@ protected:
   XmlDouble * value;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AttributeD2Type :
   public AttributeBaseType
@@ -436,7 +439,7 @@ protected:
   D2Type * value;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AttributeD3Type :
   public AttributeBaseType
@@ -457,7 +460,7 @@ protected:
   D3Type * value;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AttributeI1Type :
   public AttributeBaseType
@@ -478,7 +481,7 @@ protected:
   XmlInteger * value;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AttributeI2Type :
   public AttributeBaseType
@@ -499,7 +502,7 @@ protected:
   I2Type * value;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AttributeI3Type :
   public AttributeBaseType
@@ -520,7 +523,7 @@ protected:
   I3Type * value;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AttributeQPIdType :
   public AttributeBaseType
@@ -543,7 +546,7 @@ protected:
   QPIdType * Value;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AttributeStrType :
   public AttributeBaseType
@@ -564,7 +567,7 @@ protected:
   XmlString * value;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AttributeTimeType :
   public AttributeBaseType
@@ -585,7 +588,7 @@ protected:
   XmlDateTime * value;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AttributeUserType :
   public AttributeBaseType
@@ -593,11 +596,11 @@ class AttributeUserType :
 public:
   AttributeUserType();
   AttributeUserType(
-    BinaryDataType * UserDataBinaryIn);
+    AttributeUserTy_1002_Type * AttributeUserTy_1002In);
   AttributeUserType(
     XmlString * nameIn,
     XmlString * nameUserAttributeIn,
-    BinaryDataType * UserDataBinaryIn);
+    AttributeUserTy_1002_Type * AttributeUserTy_1002In);
   ~AttributeUserType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -605,15 +608,15 @@ public:
   XmlString * getnameUserAttribute();
   void setnameUserAttribute(XmlString * nameUserAttributeIn);
 
-  BinaryDataType * getUserDataBinary();
-  void setUserDataBinary(BinaryDataType * UserDataBinaryIn);
+  AttributeUserTy_1002_Type * getAttributeUserTy_1002();
+  void setAttributeUserTy_1002(AttributeUserTy_1002_Type * AttributeUserTy_1002In);
 
 protected:
   XmlString * nameUserAttribute;
-  BinaryDataType * UserDataBinary;
+  AttributeUserTy_1002_Type * AttributeUserTy_1002;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AttributesType :
   public XmlTypeBase
@@ -640,7 +643,7 @@ protected:
   AttributeBaseTypeLisd * Attribute;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AxisType :
   public XmlTypeBase
@@ -663,7 +666,7 @@ protected:
   UnitVectorType * Direction;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class BinaryDataType :
   public XmlBase64Binary
@@ -687,7 +690,7 @@ protected:
   NaturalType * count;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class BoundingBoxAxisAlignedType :
   public XmlTypeBase
@@ -710,7 +713,7 @@ protected:
   PointSimpleType * PointMax;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CoordinateSystemCoreType :
   public XmlTypeBase
@@ -733,7 +736,7 @@ protected:
   PointSimpleType * Origin;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DoublePositiveType :
   public XmlDouble
@@ -749,7 +752,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElementReferenceFullType :
   public XmlTypeBase
@@ -768,7 +771,7 @@ protected:
   QIFReferenceFullType * Id;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElementReferenceType :
   public XmlTypeBase
@@ -787,7 +790,7 @@ protected:
   QIFReferenceType * Id;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FractionType :
   public XmlTypeBase
@@ -810,7 +813,7 @@ protected:
   NaturalType * Denominator;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LatitudeLongitudeSweepType :
   public XmlTypeBase
@@ -837,7 +840,7 @@ protected:
   AngleRangeType * DomainLongitude;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineSegment2dType :
   public XmlTypeBase
@@ -860,7 +863,7 @@ protected:
   Point2dSimpleType * EndPoint;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineSegmentType :
   public XmlTypeBase
@@ -940,7 +943,7 @@ protected:
   PointSimpleType * EndPoint;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ListBooleanType :
   public XmlBooleanLisd
@@ -957,7 +960,7 @@ public:
   void oPrintSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ListDateTimeType :
   public XmlDateTimeLisd
@@ -974,7 +977,7 @@ public:
   void oPrintSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ListDoubleType :
   public XmlDoubleLisd
@@ -991,7 +994,7 @@ public:
   void oPrintSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ListIntType :
   public XmlIntegerLisd
@@ -1008,7 +1011,7 @@ public:
   void oPrintSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ListNaturalType :
   public std::list<NaturalType *>,
@@ -1028,7 +1031,7 @@ public:
   bool bad;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ListQIFReferenceSimpleType :
   public std::list<QIFReferenceSimpleType *>,
@@ -1048,7 +1051,7 @@ public:
   bool bad;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ListQIFReferenceType :
   public XmlTypeBase
@@ -1075,15 +1078,15 @@ protected:
   ListQIFReferenceTypeChoicePair * ListQIFReferenceTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ListQIFReferenceTypeVal
 {
   ListQIFReferenceSimpleType * Ids;
-  ListQIFReferenc_1002_Type * ListQIFReferenc_1002;
+  ListQIFReferenc_1003_Type * ListQIFReferenc_1003;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ListQIFReferenceTypeChoicePair :
   public XmlTypeBase
@@ -1091,7 +1094,7 @@ class ListQIFReferenceTypeChoicePair :
 public:
   enum whichOne {
     IdsE,
-    ListQIFReferenc_1002E };
+    ListQIFReferenc_1003E };
   ListQIFReferenceTypeChoicePair();
   ListQIFReferenceTypeChoicePair(
     whichOne ListQIFReferenceTypeTypeIn,
@@ -1103,7 +1106,7 @@ public:
   ListQIFReferenceTypeVal ListQIFReferenceTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ListTokenType :
   public XmlNMTOKENLisd
@@ -1120,7 +1123,7 @@ public:
   void oPrintSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ListUnsignedByteType :
   public XmlUnsignedByteLisd
@@ -1137,7 +1140,7 @@ public:
   void oPrintSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Natural2Type :
   public ListNaturalType
@@ -1155,7 +1158,7 @@ public:
   bool Natural2TypeCheck();
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class NaturalType :
   public XmlUnsignedInt
@@ -1171,7 +1174,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OrientedLatitudeLongitudeSweepType :
   public LatitudeLongitudeSweepType
@@ -1193,7 +1196,7 @@ protected:
   UnitVectorType * DirNorthPole;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ParameterRangeType :
   public ListDoubleType
@@ -1211,7 +1214,7 @@ public:
   bool ParameterRangeTypeCheck();
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneType :
   public XmlTypeBase
@@ -1234,7 +1237,7 @@ protected:
   UnitVectorType * Normal;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneXType :
   public PlaneType
@@ -1255,7 +1258,7 @@ protected:
   UnitVectorType * Direction;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Point2dSimpleType :
   public ListDoubleType
@@ -1273,7 +1276,7 @@ public:
   bool Point2dSimpleTypeCheck();
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Point2dSimpleTypeLisd :
   public std::list<Point2dSimpleType *>,
@@ -1289,7 +1292,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointSimpleType :
   public ListDoubleType
@@ -1307,7 +1310,7 @@ public:
   bool PointSimpleTypeCheck();
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointType :
   public PointSimpleType
@@ -1380,7 +1383,7 @@ protected:
   ValidityEnumType * zValidity;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QIFFeaturePairType :
   public XmlTypeBase
@@ -1411,7 +1414,7 @@ protected:
   QIFReferenceFullType * SecondFeatureZone;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QIFFeaturePairTypeLisd :
   public std::list<QIFFeaturePairType *>,
@@ -1425,7 +1428,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QIFIdAndReferenceBaseType :
   public XmlUnsignedInt
@@ -1441,7 +1444,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QIFIdType :
   public QIFIdAndReferenceBaseType
@@ -1457,7 +1460,7 @@ public:
   void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QIFReferenceBaseType :
   public QIFIdAndReferenceBaseType
@@ -1473,7 +1476,7 @@ public:
   void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QIFReferenceSimpleType :
   public QIFReferenceBaseType
@@ -1489,7 +1492,7 @@ public:
   void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QIFReferenceType :
   public QIFReferenceBaseType
@@ -1514,7 +1517,7 @@ protected:
   QIFReferenceSimpleType * xId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QIFReferenceTypeLisd :
   public std::list<QIFReferenceType *>,
@@ -1528,7 +1531,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QPIdFullReferenceType :
   public XmlTypeBase
@@ -1551,7 +1554,7 @@ protected:
   QPIdReferenceTypeLisd * DocumentQPId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QPIdFullReferenceTypeLisd :
   public std::list<QPIdFullReferenceType *>,
@@ -1565,7 +1568,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QPIdReferenceType :
   public XmlToken
@@ -1581,7 +1584,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QPIdReferenceTypeLisd :
   public std::list<QPIdReferenceType *>,
@@ -1597,7 +1600,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QPIdType :
   public XmlToken
@@ -1613,7 +1616,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SweepType :
   public XmlTypeBase
@@ -1636,7 +1639,7 @@ protected:
   AngleRangeType * DomainAngle;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TransformMatrixType :
   public CoordinateSystemCoreType
@@ -1709,7 +1712,7 @@ protected:
   ValidityEnumType * zValidity;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TransformRotationType :
   public XmlTypeBase
@@ -1736,7 +1739,7 @@ protected:
   UnitVectorSimpleType * ZDirection;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class UnitVector2dSimpleType :
   public ListDoubleType
@@ -1754,7 +1757,7 @@ public:
   bool UnitVector2dSimpleTypeCheck();
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class UnitVectorSimpleType :
   public ListDoubleType
@@ -1772,7 +1775,7 @@ public:
   bool UnitVectorSimpleTypeCheck();
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class UnitVectorType :
   public UnitVectorSimpleType
@@ -1845,7 +1848,23 @@ protected:
   ValidityEnumType * zValidity;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
+
+class UserDataXMLType :
+  public XmlString
+{
+public:
+  UserDataXMLType();
+  UserDataXMLType(
+    const char * valIn);
+  ~UserDataXMLType();
+  bool UserDataXMLTypeIsBad();
+  void printSelf(FILE * outFile);
+  void oPrintSelf(FILE * outFile);
+  virtual void printName(FILE * outFile);
+};
+
+/* ***************************************************************** */
 
 class ValidationPointsType :
   public XmlTypeBase
@@ -1853,22 +1872,22 @@ class ValidationPointsType :
 public:
   ValidationPointsType();
   ValidationPointsType(
-    ValidationPoint_1003_Type * ValidationPoint_1003In,
-    ValidationPoint_1004_Type * ValidationPoint_1004In);
+    ValidationPoint_1004_Type * ValidationPoint_1004In,
+    ValidationPoint_1005_Type * ValidationPoint_1005In);
   ~ValidationPointsType();
   void printSelf(FILE * outFile);
 
-  ValidationPoint_1003_Type * getValidationPoint_1003();
-  void setValidationPoint_1003(ValidationPoint_1003_Type * ValidationPoint_1003In);
   ValidationPoint_1004_Type * getValidationPoint_1004();
   void setValidationPoint_1004(ValidationPoint_1004_Type * ValidationPoint_1004In);
+  ValidationPoint_1005_Type * getValidationPoint_1005();
+  void setValidationPoint_1005(ValidationPoint_1005_Type * ValidationPoint_1005In);
 
 protected:
-  ValidationPoint_1003_Type * ValidationPoint_1003;
   ValidationPoint_1004_Type * ValidationPoint_1004;
+  ValidationPoint_1005_Type * ValidationPoint_1005;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ValidityEnumType :
   public XmlNMTOKEN
@@ -1884,7 +1903,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class VectorSimpleType :
   public ListDoubleType
@@ -1902,7 +1921,7 @@ public:
   bool VectorSimpleTypeCheck();
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class VectorType :
   public VectorSimpleType
@@ -1975,7 +1994,7 @@ protected:
   ValidityEnumType * zValidity;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArrayBinaryQIFR_1001_Type :
   public XmlTypeBase
@@ -1998,17 +2017,64 @@ protected:
   ArrayBinaryType * XIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ListQIFReferenc_1002_Type :
+class AttributeUserTy_1002_Type :
   public XmlTypeBase
 {
 public:
-  ListQIFReferenc_1002_Type();
-  ListQIFReferenc_1002_Type(
+  AttributeUserTy_1002_Type();
+  AttributeUserTy_1002_Type(
+    AttributeUserTy_1002_TypeChoicePair * AttributeUserTy_1002_TypePairIn);
+  ~AttributeUserTy_1002_Type();
+  void printSelf(FILE * outFile);
+
+  AttributeUserTy_1002_TypeChoicePair * getAttributeUserTy_1002_TypePair();
+  void setAttributeUserTy_1002_TypePair(AttributeUserTy_1002_TypeChoicePair * AttributeUserTy_1002_TypePairIn);
+
+protected:
+  AttributeUserTy_1002_TypeChoicePair * AttributeUserTy_1002_TypePair;
+};
+
+/* ***************************************************************** */
+
+union AttributeUserTy_1002_TypeVal
+{
+  UserDataXMLType * UserDataXML;
+  BinaryDataType * UserDataBinary;
+};
+
+/* ***************************************************************** */
+
+class AttributeUserTy_1002_TypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    UserDataXMLE,
+    UserDataBinaryE };
+  AttributeUserTy_1002_TypeChoicePair();
+  AttributeUserTy_1002_TypeChoicePair(
+    whichOne AttributeUserTy_1002_TypeTypeIn,
+    AttributeUserTy_1002_TypeVal AttributeUserTy_1002_TypeValueIn);
+  ~AttributeUserTy_1002_TypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne AttributeUserTy_1002_TypeType;
+  AttributeUserTy_1002_TypeVal AttributeUserTy_1002_TypeValue;
+};
+
+/* ***************************************************************** */
+
+class ListQIFReferenc_1003_Type :
+  public XmlTypeBase
+{
+public:
+  ListQIFReferenc_1003_Type();
+  ListQIFReferenc_1003_Type(
     QIFReferenceSimpleType * IdIn,
     ListQIFReferenceSimpleType * XIdsIn);
-  ~ListQIFReferenc_1002_Type();
+  ~ListQIFReferenc_1003_Type();
   void printSelf(FILE * outFile);
 
   QIFReferenceSimpleType * getId();
@@ -2021,54 +2087,7 @@ protected:
   ListQIFReferenceSimpleType * XIds;
 };
 
-/*********************************************************************/
-
-class ValidationPoint_1003_Type :
-  public XmlTypeBase
-{
-public:
-  ValidationPoint_1003_Type();
-  ValidationPoint_1003_Type(
-    ValidationPoint_1003_TypeChoicePair * ValidationPoint_1003_TypePairIn);
-  ~ValidationPoint_1003_Type();
-  void printSelf(FILE * outFile);
-
-  ValidationPoint_1003_TypeChoicePair * getValidationPoint_1003_TypePair();
-  void setValidationPoint_1003_TypePair(ValidationPoint_1003_TypeChoicePair * ValidationPoint_1003_TypePairIn);
-
-protected:
-  ValidationPoint_1003_TypeChoicePair * ValidationPoint_1003_TypePair;
-};
-
-/*********************************************************************/
-
-union ValidationPoint_1003_TypeVal
-{
-  ArrayPointType * Points;
-  ArrayBinaryType * PointsBinary;
-};
-
-/*********************************************************************/
-
-class ValidationPoint_1003_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    PointsE,
-    PointsBinaryE };
-  ValidationPoint_1003_TypeChoicePair();
-  ValidationPoint_1003_TypeChoicePair(
-    whichOne ValidationPoint_1003_TypeTypeIn,
-    ValidationPoint_1003_TypeVal ValidationPoint_1003_TypeValueIn);
-  ~ValidationPoint_1003_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne ValidationPoint_1003_TypeType;
-  ValidationPoint_1003_TypeVal ValidationPoint_1003_TypeValue;
-};
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ValidationPoint_1004_Type :
   public XmlTypeBase
@@ -2087,23 +2106,23 @@ protected:
   ValidationPoint_1004_TypeChoicePair * ValidationPoint_1004_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ValidationPoint_1004_TypeVal
 {
-  ArrayUnitVectorType * Directions;
-  ArrayBinaryType * DirectionsBinary;
+  ArrayPointType * Points;
+  ArrayBinaryType * PointsBinary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ValidationPoint_1004_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    DirectionsE,
-    DirectionsBinaryE };
+    PointsE,
+    PointsBinaryE };
   ValidationPoint_1004_TypeChoicePair();
   ValidationPoint_1004_TypeChoicePair(
     whichOne ValidationPoint_1004_TypeTypeIn,
@@ -2115,7 +2134,54 @@ public:
   ValidationPoint_1004_TypeVal ValidationPoint_1004_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
+
+class ValidationPoint_1005_Type :
+  public XmlTypeBase
+{
+public:
+  ValidationPoint_1005_Type();
+  ValidationPoint_1005_Type(
+    ValidationPoint_1005_TypeChoicePair * ValidationPoint_1005_TypePairIn);
+  ~ValidationPoint_1005_Type();
+  void printSelf(FILE * outFile);
+
+  ValidationPoint_1005_TypeChoicePair * getValidationPoint_1005_TypePair();
+  void setValidationPoint_1005_TypePair(ValidationPoint_1005_TypeChoicePair * ValidationPoint_1005_TypePairIn);
+
+protected:
+  ValidationPoint_1005_TypeChoicePair * ValidationPoint_1005_TypePair;
+};
+
+/* ***************************************************************** */
+
+union ValidationPoint_1005_TypeVal
+{
+  ArrayUnitVectorType * Directions;
+  ArrayBinaryType * DirectionsBinary;
+};
+
+/* ***************************************************************** */
+
+class ValidationPoint_1005_TypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    DirectionsE,
+    DirectionsBinaryE };
+  ValidationPoint_1005_TypeChoicePair();
+  ValidationPoint_1005_TypeChoicePair(
+    whichOne ValidationPoint_1005_TypeTypeIn,
+    ValidationPoint_1005_TypeVal ValidationPoint_1005_TypeValueIn);
+  ~ValidationPoint_1005_TypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne ValidationPoint_1005_TypeType;
+  ValidationPoint_1005_TypeVal ValidationPoint_1005_TypeValue;
+};
+
+/* ***************************************************************** */
 
 class ArrayBinaryQIFReferenceFullType :
   public ArrayBinaryQIFReferenceType
@@ -2142,7 +2208,7 @@ protected:
   QIFReferenceSimpleType * asmPathXId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArrayDoubleType :
   public ListDoubleType
@@ -2166,7 +2232,7 @@ protected:
   NaturalType * count;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArrayI2Type :
   public ListIntType
@@ -2190,7 +2256,7 @@ protected:
   NaturalType * count;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArrayI3Type :
   public ListIntType
@@ -2214,7 +2280,7 @@ protected:
   NaturalType * count;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArrayIntType :
   public ListIntType
@@ -2238,7 +2304,7 @@ protected:
   NaturalType * count;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArrayNaturalType :
   public ListNaturalType
@@ -2262,7 +2328,7 @@ protected:
   NaturalType * count;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArrayPoint2dType :
   public ListDoubleType
@@ -2286,7 +2352,7 @@ protected:
   NaturalType * count;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArrayPointType :
   public ListDoubleType
@@ -2362,7 +2428,7 @@ protected:
   ValidityEnumType * zValidity;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArrayUnitVectorType :
   public ListDoubleType
@@ -2438,7 +2504,7 @@ protected:
   ValidityEnumType * zValidity;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArrayUnsignedByteType :
   public ListUnsignedByteType
@@ -2462,7 +2528,7 @@ protected:
   NaturalType * count;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class D2Type :
   public ListDoubleType
@@ -2480,7 +2546,7 @@ public:
   bool D2TypeCheck();
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class D3Type :
   public ListDoubleType
@@ -2498,7 +2564,7 @@ public:
   bool D3TypeCheck();
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class D4Type :
   public ListDoubleType
@@ -2516,7 +2582,7 @@ public:
   bool D4TypeCheck();
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class I2Type :
   public ListIntType
@@ -2534,7 +2600,7 @@ public:
   bool I2TypeCheck();
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class I3Type :
   public ListIntType
@@ -2552,7 +2618,7 @@ public:
   bool I3TypeCheck();
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ListQIFReferenceFullType :
   public ListQIFReferenceType
@@ -2580,7 +2646,7 @@ protected:
   QIFReferenceSimpleType * asmPathXId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PolyLineType :
   public ArrayPointType
@@ -2613,7 +2679,7 @@ public:
 protected:
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QIFReferenceActiveType :
   public QIFReferenceType
@@ -2639,7 +2705,7 @@ protected:
   XmlBoolean * active;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QIFReferenceActiveTypeLisd :
   public std::list<QIFReferenceActiveType *>,
@@ -2653,7 +2719,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QIFReferenceFullType :
   public QIFReferenceType
@@ -2683,7 +2749,7 @@ protected:
   QIFReferenceSimpleType * asmPathXId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class QIFReferenceFullTypeLisd :
   public std::list<QIFReferenceFullType *>,
@@ -2697,7 +2763,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AngleRangeType :
   public D2Type
@@ -2722,6 +2788,6 @@ protected:
   XmlToken * angularUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 #endif // PRIMITIVES_HH

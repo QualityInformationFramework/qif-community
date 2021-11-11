@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #include <stdio.h>             // for printf, etc.
 #include <string.h>            // for strdup
@@ -10,8 +10,8 @@
 
 #define INDENT 2
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 /* class AddressDescriptionEnumType
 
@@ -73,7 +73,7 @@ void AddressDescriptionEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AddressDescriptionType
 
@@ -111,7 +111,7 @@ AddressDescriptionTypeChoicePair * AddressDescriptionType::getAddressDescription
 void AddressDescriptionType::setAddressDescriptionTypePair(AddressDescriptionTypeChoicePair * AddressDescriptionTypePairIn)
 {AddressDescriptionTypePair = AddressDescriptionTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AddressDescriptionTypeChoicePair
 
@@ -155,7 +155,7 @@ void AddressDescriptionTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AlgorithmType
 
@@ -165,20 +165,20 @@ AlgorithmType::AlgorithmType()
 {
   id = 0;
   Attributes = 0;
-  AlgorithmType_1007 = 0;
+  AlgorithmType_1008 = 0;
   Name = 0;
   Description = 0;
 }
 
 AlgorithmType::AlgorithmType(
  AttributesType * AttributesIn,
- AlgorithmType_1007_Type * AlgorithmType_1007In,
+ AlgorithmType_1008_Type * AlgorithmType_1008In,
  XmlString * NameIn,
  XmlString * DescriptionIn)
 {
   id = 0;
   Attributes = AttributesIn;
-  AlgorithmType_1007 = AlgorithmType_1007In;
+  AlgorithmType_1008 = AlgorithmType_1008In;
   Name = NameIn;
   Description = DescriptionIn;
 }
@@ -186,13 +186,13 @@ AlgorithmType::AlgorithmType(
 AlgorithmType::AlgorithmType(
  QIFIdType * idIn,
  AttributesType * AttributesIn,
- AlgorithmType_1007_Type * AlgorithmType_1007In,
+ AlgorithmType_1008_Type * AlgorithmType_1008In,
  XmlString * NameIn,
  XmlString * DescriptionIn)
 {
   id = idIn;
   Attributes = AttributesIn;
-  AlgorithmType_1007 = AlgorithmType_1007In;
+  AlgorithmType_1008 = AlgorithmType_1008In;
   Name = NameIn;
   Description = DescriptionIn;
 }
@@ -202,7 +202,7 @@ AlgorithmType::~AlgorithmType()
   #ifndef NODESTRUCT
   delete id;
   delete Attributes;
-  delete AlgorithmType_1007;
+  delete AlgorithmType_1008;
   delete Name;
   delete Description;
   #endif
@@ -245,7 +245,7 @@ void AlgorithmType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  AlgorithmType_1007->printSelf(outFile);
+  AlgorithmType_1008->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<Name");
   Name->printSelf(outFile);
@@ -329,11 +329,11 @@ AttributesType * AlgorithmType::getAttributes()
 void AlgorithmType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-AlgorithmType_1007_Type * AlgorithmType::getAlgorithmType_1007()
-{return AlgorithmType_1007;}
+AlgorithmType_1008_Type * AlgorithmType::getAlgorithmType_1008()
+{return AlgorithmType_1008;}
 
-void AlgorithmType::setAlgorithmType_1007(AlgorithmType_1007_Type * AlgorithmType_1007In)
-{AlgorithmType_1007 = AlgorithmType_1007In;}
+void AlgorithmType::setAlgorithmType_1008(AlgorithmType_1008_Type * AlgorithmType_1008In)
+{AlgorithmType_1008 = AlgorithmType_1008In;}
 
 XmlString * AlgorithmType::getName()
 {return Name;}
@@ -347,7 +347,7 @@ XmlString * AlgorithmType::getDescription()
 void AlgorithmType::setDescription(XmlString * DescriptionIn)
 {Description = DescriptionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AlgorithmTypeLisd
 
@@ -374,7 +374,7 @@ AlgorithmTypeLisd::~AlgorithmTypeLisd()
 
 void AlgorithmTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AlgorithmsType
 
@@ -532,7 +532,7 @@ AlgorithmTypeLisd * AlgorithmsType::getAlgorithm()
 void AlgorithmsType::setAlgorithm(AlgorithmTypeLisd * AlgorithmIn)
 {Algorithm = AlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AlignmentFeatureType
 
@@ -540,19 +540,19 @@ void AlgorithmsType::setAlgorithm(AlgorithmTypeLisd * AlgorithmIn)
 
 AlignmentFeatureType::AlignmentFeatureType()
 {
-  AlignmentFeatur_1008 = 0;
+  AlignmentFeatur_1009 = 0;
 }
 
 AlignmentFeatureType::AlignmentFeatureType(
- AlignmentFeatur_1008_Type * AlignmentFeatur_1008In)
+ AlignmentFeatur_1009_Type * AlignmentFeatur_1009In)
 {
-  AlignmentFeatur_1008 = AlignmentFeatur_1008In;
+  AlignmentFeatur_1009 = AlignmentFeatur_1009In;
 }
 
 AlignmentFeatureType::~AlignmentFeatureType()
 {
   #ifndef NODESTRUCT
-  delete AlignmentFeatur_1008;
+  delete AlignmentFeatur_1009;
   #endif
 }
 
@@ -560,17 +560,17 @@ void AlignmentFeatureType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  AlignmentFeatur_1008->printSelf(outFile);
+  AlignmentFeatur_1009->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-AlignmentFeatur_1008_Type * AlignmentFeatureType::getAlignmentFeatur_1008()
-{return AlignmentFeatur_1008;}
+AlignmentFeatur_1009_Type * AlignmentFeatureType::getAlignmentFeatur_1009()
+{return AlignmentFeatur_1009;}
 
-void AlignmentFeatureType::setAlignmentFeatur_1008(AlignmentFeatur_1008_Type * AlignmentFeatur_1008In)
-{AlignmentFeatur_1008 = AlignmentFeatur_1008In;}
+void AlignmentFeatureType::setAlignmentFeatur_1009(AlignmentFeatur_1009_Type * AlignmentFeatur_1009In)
+{AlignmentFeatur_1009 = AlignmentFeatur_1009In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AlignmentOperationBaseType
 
@@ -629,7 +629,7 @@ AttributesType * AlignmentOperationBaseType::getAttributes()
 void AlignmentOperationBaseType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AlignmentOperationBaseTypeLisd
 
@@ -656,7 +656,7 @@ AlignmentOperationBaseTypeLisd::~AlignmentOperationBaseTypeLisd()
 
 void AlignmentOperationBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AlignmentOperationsType
 
@@ -970,7 +970,7 @@ QIFReferenceFullType * AlignmentOperationsType::getBaseCoordinateSystemId()
 void AlignmentOperationsType::setBaseCoordinateSystemId(QIFReferenceFullType * BaseCoordinateSystemIdIn)
 {BaseCoordinateSystemId = BaseCoordinateSystemIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngleBetweenAnalysisModeEnumType
 
@@ -1028,7 +1028,7 @@ void AngleBetweenAnalysisModeEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularCoordinateDirectionEnumType
 
@@ -1088,7 +1088,7 @@ void AngularCoordinateDirectionEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularToleranceDefinitionType
 
@@ -1098,26 +1098,26 @@ AngularToleranceDefinitionType::AngularToleranceDefinitionType()
 {
   id = 0;
   Attributes = 0;
-  AngularToleranc_1009 = 0;
+  AngularToleranc_1010 = 0;
 }
 
 AngularToleranceDefinitionType::AngularToleranceDefinitionType(
  AttributesType * AttributesIn,
- AngularToleranc_1009_Type * AngularToleranc_1009In)
+ AngularToleranc_1010_Type * AngularToleranc_1010In)
 {
   id = 0;
   Attributes = AttributesIn;
-  AngularToleranc_1009 = AngularToleranc_1009In;
+  AngularToleranc_1010 = AngularToleranc_1010In;
 }
 
 AngularToleranceDefinitionType::AngularToleranceDefinitionType(
  QIFIdType * idIn,
  AttributesType * AttributesIn,
- AngularToleranc_1009_Type * AngularToleranc_1009In)
+ AngularToleranc_1010_Type * AngularToleranc_1010In)
 {
   id = idIn;
   Attributes = AttributesIn;
-  AngularToleranc_1009 = AngularToleranc_1009In;
+  AngularToleranc_1010 = AngularToleranc_1010In;
 }
 
 AngularToleranceDefinitionType::~AngularToleranceDefinitionType()
@@ -1125,7 +1125,7 @@ AngularToleranceDefinitionType::~AngularToleranceDefinitionType()
   #ifndef NODESTRUCT
   delete id;
   delete Attributes;
-  delete AngularToleranc_1009;
+  delete AngularToleranc_1010;
   #endif
 }
 
@@ -1166,7 +1166,7 @@ void AngularToleranceDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  AngularToleranc_1009->printSelf(outFile);
+  AngularToleranc_1010->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -1239,13 +1239,13 @@ AttributesType * AngularToleranceDefinitionType::getAttributes()
 void AngularToleranceDefinitionType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-AngularToleranc_1009_Type * AngularToleranceDefinitionType::getAngularToleranc_1009()
-{return AngularToleranc_1009;}
+AngularToleranc_1010_Type * AngularToleranceDefinitionType::getAngularToleranc_1010()
+{return AngularToleranc_1010;}
 
-void AngularToleranceDefinitionType::setAngularToleranc_1009(AngularToleranc_1009_Type * AngularToleranc_1009In)
-{AngularToleranc_1009 = AngularToleranc_1009In;}
+void AngularToleranceDefinitionType::setAngularToleranc_1010(AngularToleranc_1010_Type * AngularToleranc_1010In)
+{AngularToleranc_1010 = AngularToleranc_1010In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularToleranceType
 
@@ -1253,17 +1253,17 @@ void AngularToleranceDefinitionType::setAngularToleranc_1009(AngularToleranc_100
 
 AngularToleranceType::AngularToleranceType()
 {
-  AngularToleranc_1010 = 0;
+  AngularToleranc_1011 = 0;
   DefinedAsLimit = 0;
   Attributes = 0;
 }
 
 AngularToleranceType::AngularToleranceType(
- AngularToleranc_1010_Type * AngularToleranc_1010In,
+ AngularToleranc_1011_Type * AngularToleranc_1011In,
  XmlBoolean * DefinedAsLimitIn,
  AttributesType * AttributesIn)
 {
-  AngularToleranc_1010 = AngularToleranc_1010In;
+  AngularToleranc_1011 = AngularToleranc_1011In;
   DefinedAsLimit = DefinedAsLimitIn;
   Attributes = AttributesIn;
 }
@@ -1271,7 +1271,7 @@ AngularToleranceType::AngularToleranceType(
 AngularToleranceType::~AngularToleranceType()
 {
   #ifndef NODESTRUCT
-  delete AngularToleranc_1010;
+  delete AngularToleranc_1011;
   delete DefinedAsLimit;
   delete Attributes;
   #endif
@@ -1281,7 +1281,7 @@ void AngularToleranceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  AngularToleranc_1010->printSelf(outFile);
+  AngularToleranc_1011->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<DefinedAsLimit");
   DefinedAsLimit->printSelf(outFile);
@@ -1297,11 +1297,11 @@ void AngularToleranceType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-AngularToleranc_1010_Type * AngularToleranceType::getAngularToleranc_1010()
-{return AngularToleranc_1010;}
+AngularToleranc_1011_Type * AngularToleranceType::getAngularToleranc_1011()
+{return AngularToleranc_1011;}
 
-void AngularToleranceType::setAngularToleranc_1010(AngularToleranc_1010_Type * AngularToleranc_1010In)
-{AngularToleranc_1010 = AngularToleranc_1010In;}
+void AngularToleranceType::setAngularToleranc_1011(AngularToleranc_1011_Type * AngularToleranc_1011In)
+{AngularToleranc_1011 = AngularToleranc_1011In;}
 
 XmlBoolean * AngularToleranceType::getDefinedAsLimit()
 {return DefinedAsLimit;}
@@ -1315,7 +1315,7 @@ AttributesType * AngularToleranceType::getAttributes()
 void AngularToleranceType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AreaToleranceType
 
@@ -1323,17 +1323,17 @@ void AngularToleranceType::setAttributes(AttributesType * AttributesIn)
 
 AreaToleranceType::AreaToleranceType()
 {
-  AreaToleranceTy_1011 = 0;
+  AreaToleranceTy_1012 = 0;
   DefinedAsLimit = 0;
   Attributes = 0;
 }
 
 AreaToleranceType::AreaToleranceType(
- AreaToleranceTy_1011_Type * AreaToleranceTy_1011In,
+ AreaToleranceTy_1012_Type * AreaToleranceTy_1012In,
  XmlBoolean * DefinedAsLimitIn,
  AttributesType * AttributesIn)
 {
-  AreaToleranceTy_1011 = AreaToleranceTy_1011In;
+  AreaToleranceTy_1012 = AreaToleranceTy_1012In;
   DefinedAsLimit = DefinedAsLimitIn;
   Attributes = AttributesIn;
 }
@@ -1341,7 +1341,7 @@ AreaToleranceType::AreaToleranceType(
 AreaToleranceType::~AreaToleranceType()
 {
   #ifndef NODESTRUCT
-  delete AreaToleranceTy_1011;
+  delete AreaToleranceTy_1012;
   delete DefinedAsLimit;
   delete Attributes;
   #endif
@@ -1351,7 +1351,7 @@ void AreaToleranceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  AreaToleranceTy_1011->printSelf(outFile);
+  AreaToleranceTy_1012->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<DefinedAsLimit");
   DefinedAsLimit->printSelf(outFile);
@@ -1367,11 +1367,11 @@ void AreaToleranceType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-AreaToleranceTy_1011_Type * AreaToleranceType::getAreaToleranceTy_1011()
-{return AreaToleranceTy_1011;}
+AreaToleranceTy_1012_Type * AreaToleranceType::getAreaToleranceTy_1012()
+{return AreaToleranceTy_1012;}
 
-void AreaToleranceType::setAreaToleranceTy_1011(AreaToleranceTy_1011_Type * AreaToleranceTy_1011In)
-{AreaToleranceTy_1011 = AreaToleranceTy_1011In;}
+void AreaToleranceType::setAreaToleranceTy_1012(AreaToleranceTy_1012_Type * AreaToleranceTy_1012In)
+{AreaToleranceTy_1012 = AreaToleranceTy_1012In;}
 
 XmlBoolean * AreaToleranceType::getDefinedAsLimit()
 {return DefinedAsLimit;}
@@ -1385,7 +1385,7 @@ AttributesType * AreaToleranceType::getAttributes()
 void AreaToleranceType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class BaseFeatureType
 
@@ -1440,7 +1440,7 @@ QIFReferenceFullType * BaseFeatureType::getFeatureId()
 void BaseFeatureType::setFeatureId(QIFReferenceFullType * FeatureIdIn)
 {FeatureId = FeatureIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class BaseFeatureTypeLisd
 
@@ -1467,7 +1467,7 @@ BaseFeatureTypeLisd::~BaseFeatureTypeLisd()
 
 void BaseFeatureTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class BestFitAlignmentOperationType
 
@@ -1665,7 +1665,7 @@ SequencedBaseFeatureTypeLisd * BestFitAlignmentOperationType::getBaseFeature()
 void BestFitAlignmentOperationType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CollectionPlaneType
 
@@ -1720,7 +1720,7 @@ QIFReferenceFullType * CollectionPlaneType::getDatumDefinitionId()
 void CollectionPlaneType::setDatumDefinitionId(QIFReferenceFullType * DatumDefinitionIdIn)
 {DatumDefinitionId = DatumDefinitionIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CommonFileSpecEnumType
 
@@ -1846,7 +1846,7 @@ void CommonFileSpecEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CompoundDatumType
 
@@ -2023,7 +2023,7 @@ ReducedDatumEnumType * CompoundDatumType::getReducedDatum()
 void CompoundDatumType::setReducedDatum(ReducedDatumEnumType * ReducedDatumIn)
 {ReducedDatum = ReducedDatumIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoordinateSystemActualTransformAssociationType
 
@@ -2078,7 +2078,7 @@ QIFReferenceFullType * CoordinateSystemActualTransformAssociationType::getCoordi
 void CoordinateSystemActualTransformAssociationType::setCoordinateSystemId(QIFReferenceFullType * CoordinateSystemIdIn)
 {CoordinateSystemId = CoordinateSystemIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoordinateSystemActualTransformAssociationTypeLisd
 
@@ -2105,7 +2105,7 @@ CoordinateSystemActualTransformAssociationTypeLisd::~CoordinateSystemActualTrans
 
 void CoordinateSystemActualTransformAssociationTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoordinateSystemActualTransformAssociationsType
 
@@ -2263,7 +2263,7 @@ CoordinateSystemActualTransformAssociationTypeLisd * CoordinateSystemActualTrans
 void CoordinateSystemActualTransformAssociationsType::setCoordinateSystemActualTransformAssociation(CoordinateSystemActualTransformAssociationTypeLisd * CoordinateSystemActualTransformAssociationIn)
 {CoordinateSystemActualTransformAssociation = CoordinateSystemActualTransformAssociationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoordinateSystemListType
 
@@ -2421,7 +2421,7 @@ CoordinateSystemTypeLisd * CoordinateSystemListType::getCoordinateSystem()
 void CoordinateSystemListType::setCoordinateSystem(CoordinateSystemTypeLisd * CoordinateSystemIn)
 {CoordinateSystem = CoordinateSystemIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoordinateSystemType
 
@@ -2681,7 +2681,7 @@ NaturalType * CoordinateSystemType::getSequenceNumber()
 void CoordinateSystemType::setSequenceNumber(NaturalType * SequenceNumberIn)
 {SequenceNumber = SequenceNumberIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoordinateSystemTypeLisd
 
@@ -2708,7 +2708,7 @@ CoordinateSystemTypeLisd::~CoordinateSystemTypeLisd()
 
 void CoordinateSystemTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoordinateSystemsType
 
@@ -2793,7 +2793,7 @@ MachineCoordinateSystemTypeLisd * CoordinateSystemsType::getMachineCoordinateSys
 void CoordinateSystemsType::setMachineCoordinateSystem(MachineCoordinateSystemTypeLisd * MachineCoordinateSystemIn)
 {MachineCoordinateSystem = MachineCoordinateSystemIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CustomerOrganizationType
 
@@ -2862,7 +2862,7 @@ XmlToken * CustomerOrganizationType::getCustomerNumber()
 void CustomerOrganizationType::setCustomerNumber(XmlToken * CustomerNumberIn)
 {CustomerNumber = CustomerNumberIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DatumDefinitionType
 
@@ -3062,7 +3062,7 @@ ArrayReferenceFullType * DatumDefinitionType::getFeatureNominalIds()
 void DatumDefinitionType::setFeatureNominalIds(ArrayReferenceFullType * FeatureNominalIdsIn)
 {FeatureNominalIds = FeatureNominalIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DatumDefinitionTypeLisd
 
@@ -3089,7 +3089,7 @@ DatumDefinitionTypeLisd::~DatumDefinitionTypeLisd()
 
 void DatumDefinitionTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DatumDefinitionsType
 
@@ -3247,7 +3247,7 @@ DatumDefinitionTypeLisd * DatumDefinitionsType::getDatumDefinition()
 void DatumDefinitionsType::setDatumDefinition(DatumDefinitionTypeLisd * DatumDefinitionIn)
 {DatumDefinition = DatumDefinitionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DatumFeatureBaseType
 
@@ -3288,7 +3288,7 @@ QIFReferenceFullType * DatumFeatureBaseType::getFeatureNominalId()
 void DatumFeatureBaseType::setFeatureNominalId(QIFReferenceFullType * FeatureNominalIdIn)
 {FeatureNominalId = FeatureNominalIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DatumFeatureSimulatorModifierType
 
@@ -3326,7 +3326,7 @@ DatumFeatureSimulatorModifierTypeChoicePair * DatumFeatureSimulatorModifierType:
 void DatumFeatureSimulatorModifierType::setDatumFeatureSimulatorModifierTypePair(DatumFeatureSimulatorModifierTypeChoicePair * DatumFeatureSimulatorModifierTypePairIn)
 {DatumFeatureSimulatorModifierTypePair = DatumFeatureSimulatorModifierTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DatumFeatureSimulatorModifierTypeChoicePair
 
@@ -3379,7 +3379,7 @@ void DatumFeatureSimulatorModifierTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DatumPrecedenceAlignmentOperationType
 
@@ -3469,7 +3469,7 @@ UnitVectorType * DatumPrecedenceAlignmentOperationType::getSecondaryAxis()
 void DatumPrecedenceAlignmentOperationType::setSecondaryAxis(UnitVectorType * SecondaryAxisIn)
 {SecondaryAxis = SecondaryAxisIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DatumReferenceFrameType
 
@@ -3690,7 +3690,7 @@ QIFReferenceFullType * DatumReferenceFrameType::getCoordinateSystemId()
 void DatumReferenceFrameType::setCoordinateSystemId(QIFReferenceFullType * CoordinateSystemIdIn)
 {CoordinateSystemId = CoordinateSystemIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DatumReferenceFrameTypeLisd
 
@@ -3717,7 +3717,7 @@ DatumReferenceFrameTypeLisd::~DatumReferenceFrameTypeLisd()
 
 void DatumReferenceFrameTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DatumReferenceFramesType
 
@@ -3875,7 +3875,7 @@ DatumReferenceFrameTypeLisd * DatumReferenceFramesType::getDatumReferenceFrame()
 void DatumReferenceFramesType::setDatumReferenceFrame(DatumReferenceFrameTypeLisd * DatumReferenceFrameIn)
 {DatumReferenceFrame = DatumReferenceFrameIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DatumTargetDefinitionsType
 
@@ -4033,7 +4033,7 @@ DatumTargetTypeLisd * DatumTargetDefinitionsType::getDatumTarget()
 void DatumTargetDefinitionsType::setDatumTarget(DatumTargetTypeLisd * DatumTargetIn)
 {DatumTarget = DatumTargetIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DatumTargetType
 
@@ -4251,7 +4251,7 @@ MovableDatumTargetDirectionType * DatumTargetType::getMovableDatumTarget()
 void DatumTargetType::setMovableDatumTarget(MovableDatumTargetDirectionType * MovableDatumTargetIn)
 {MovableDatumTarget = MovableDatumTargetIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DatumTargetTypeLisd
 
@@ -4278,7 +4278,7 @@ DatumTargetTypeLisd::~DatumTargetTypeLisd()
 
 void DatumTargetTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DatumTranslationType
 
@@ -4319,7 +4319,7 @@ XmlBoolean * DatumTranslationType::getDatumTranslationAllowed()
 void DatumTranslationType::setDatumTranslationAllowed(XmlBoolean * DatumTranslationAllowedIn)
 {DatumTranslationAllowed = DatumTranslationAllowedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DatumType
 
@@ -4648,7 +4648,7 @@ AttributesType * DatumType::getAttributes()
 void DatumType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DatumWithPrecedenceType
 
@@ -4656,22 +4656,22 @@ void DatumType::setAttributes(AttributesType * AttributesIn)
 
 DatumWithPrecedenceType::DatumWithPrecedenceType()
 {
-  DatumWithPreced_1012 = 0;
+  DatumWithPreced_1013 = 0;
   Precedence = 0;
 }
 
 DatumWithPrecedenceType::DatumWithPrecedenceType(
- DatumWithPreced_1012_Type * DatumWithPreced_1012In,
+ DatumWithPreced_1013_Type * DatumWithPreced_1013In,
  PrecedenceType * PrecedenceIn)
 {
-  DatumWithPreced_1012 = DatumWithPreced_1012In;
+  DatumWithPreced_1013 = DatumWithPreced_1013In;
   Precedence = PrecedenceIn;
 }
 
 DatumWithPrecedenceType::~DatumWithPrecedenceType()
 {
   #ifndef NODESTRUCT
-  delete DatumWithPreced_1012;
+  delete DatumWithPreced_1013;
   delete Precedence;
   #endif
 }
@@ -4680,7 +4680,7 @@ void DatumWithPrecedenceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  DatumWithPreced_1012->printSelf(outFile);
+  DatumWithPreced_1013->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<Precedence");
   Precedence->printSelf(outFile);
@@ -4689,11 +4689,11 @@ void DatumWithPrecedenceType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-DatumWithPreced_1012_Type * DatumWithPrecedenceType::getDatumWithPreced_1012()
-{return DatumWithPreced_1012;}
+DatumWithPreced_1013_Type * DatumWithPrecedenceType::getDatumWithPreced_1013()
+{return DatumWithPreced_1013;}
 
-void DatumWithPrecedenceType::setDatumWithPreced_1012(DatumWithPreced_1012_Type * DatumWithPreced_1012In)
-{DatumWithPreced_1012 = DatumWithPreced_1012In;}
+void DatumWithPrecedenceType::setDatumWithPreced_1013(DatumWithPreced_1013_Type * DatumWithPreced_1013In)
+{DatumWithPreced_1013 = DatumWithPreced_1013In;}
 
 PrecedenceType * DatumWithPrecedenceType::getPrecedence()
 {return Precedence;}
@@ -4701,7 +4701,7 @@ PrecedenceType * DatumWithPrecedenceType::getPrecedence()
 void DatumWithPrecedenceType::setPrecedence(PrecedenceType * PrecedenceIn)
 {Precedence = PrecedenceIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DatumWithPrecedenceTypeLisd
 
@@ -4728,7 +4728,7 @@ DatumWithPrecedenceTypeLisd::~DatumWithPrecedenceTypeLisd()
 
 void DatumWithPrecedenceTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DatumsType
 
@@ -4886,7 +4886,7 @@ DatumWithPrecedenceTypeLisd * DatumsType::getDatum()
 void DatumsType::setDatum(DatumWithPrecedenceTypeLisd * DatumIn)
 {Datum = DatumIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DefiningPointMeasurementType
 
@@ -5039,7 +5039,7 @@ NaturalType * DefiningPointMeasurementType::getSequenceNumber()
 void DefiningPointMeasurementType::setSequenceNumber(NaturalType * SequenceNumberIn)
 {SequenceNumber = SequenceNumberIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DefiningPointMeasurementTypeLisd
 
@@ -5066,7 +5066,7 @@ DefiningPointMeasurementTypeLisd::~DefiningPointMeasurementTypeLisd()
 
 void DefiningPointMeasurementTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DefiningPointNominalType
 
@@ -5219,7 +5219,7 @@ NaturalType * DefiningPointNominalType::getSequenceNumber()
 void DefiningPointNominalType::setSequenceNumber(NaturalType * SequenceNumberIn)
 {SequenceNumber = SequenceNumberIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DefiningPointNominalTypeLisd
 
@@ -5246,7 +5246,7 @@ DefiningPointNominalTypeLisd::~DefiningPointNominalTypeLisd()
 
 void DefiningPointNominalTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DegreeOfFreedomEnumType
 
@@ -5312,7 +5312,7 @@ void DegreeOfFreedomEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DegreeOfFreedomEnumTypeLisd
 
@@ -5357,7 +5357,7 @@ void DegreeOfFreedomEnumTypeLisd::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DegreesOfFreedomType
 
@@ -5366,29 +5366,29 @@ void DegreeOfFreedomEnumTypeLisd::printSelf(FILE * outFile)
 DegreesOfFreedomType::DegreesOfFreedomType()
 {
   n = 0;
-  DegreesOfFreedo_1013 = 0;
+  DegreesOfFreedo_1014 = 0;
 }
 
 DegreesOfFreedomType::DegreesOfFreedomType(
- DegreesOfFreedo_1013_Type * DegreesOfFreedo_1013In)
+ DegreesOfFreedo_1014_Type * DegreesOfFreedo_1014In)
 {
   n = 0;
-  DegreesOfFreedo_1013 = DegreesOfFreedo_1013In;
+  DegreesOfFreedo_1014 = DegreesOfFreedo_1014In;
 }
 
 DegreesOfFreedomType::DegreesOfFreedomType(
  NaturalType * nIn,
- DegreesOfFreedo_1013_Type * DegreesOfFreedo_1013In)
+ DegreesOfFreedo_1014_Type * DegreesOfFreedo_1014In)
 {
   n = nIn;
-  DegreesOfFreedo_1013 = DegreesOfFreedo_1013In;
+  DegreesOfFreedo_1014 = DegreesOfFreedo_1014In;
 }
 
 DegreesOfFreedomType::~DegreesOfFreedomType()
 {
   #ifndef NODESTRUCT
   delete n;
-  delete DegreesOfFreedo_1013;
+  delete DegreesOfFreedo_1014;
   #endif
 }
 
@@ -5421,7 +5421,7 @@ void DegreesOfFreedomType::printSelf(FILE * outFile)
     }
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  DegreesOfFreedo_1013->printSelf(outFile);
+  DegreesOfFreedo_1014->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -5488,13 +5488,13 @@ NaturalType * DegreesOfFreedomType::getn()
 void DegreesOfFreedomType::setn(NaturalType * nIn)
 {n = nIn;}
 
-DegreesOfFreedo_1013_Type * DegreesOfFreedomType::getDegreesOfFreedo_1013()
-{return DegreesOfFreedo_1013;}
+DegreesOfFreedo_1014_Type * DegreesOfFreedomType::getDegreesOfFreedo_1014()
+{return DegreesOfFreedo_1014;}
 
-void DegreesOfFreedomType::setDegreesOfFreedo_1013(DegreesOfFreedo_1013_Type * DegreesOfFreedo_1013In)
-{DegreesOfFreedo_1013 = DegreesOfFreedo_1013In;}
+void DegreesOfFreedomType::setDegreesOfFreedo_1014(DegreesOfFreedo_1014_Type * DegreesOfFreedo_1014In)
+{DegreesOfFreedo_1014 = DegreesOfFreedo_1014In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DiameterModifierEnumType
 
@@ -5554,7 +5554,7 @@ void DiameterModifierEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DimensionDeterminationEnumType
 
@@ -5626,7 +5626,7 @@ void DimensionDeterminationEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DimensionModifierEnumType
 
@@ -5686,7 +5686,7 @@ void DimensionModifierEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DimensionModifiersType
 
@@ -5764,7 +5764,7 @@ SectionModifierEnumType * DimensionModifiersType::getSectionModifier()
 void DimensionModifiersType::setSectionModifier(SectionModifierEnumType * SectionModifierIn)
 {SectionModifier = SectionModifierIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DirectionFeatureType
 
@@ -5819,7 +5819,7 @@ QIFReferenceFullType * DirectionFeatureType::getDatumDefinitionId()
 void DirectionFeatureType::setDatumDefinitionId(QIFReferenceFullType * DatumDefinitionIdIn)
 {DatumDefinitionId = DatumDefinitionIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DirectionalOffsetType
 
@@ -5828,22 +5828,22 @@ void DirectionFeatureType::setDatumDefinitionId(QIFReferenceFullType * DatumDefi
 DirectionalOffsetType::DirectionalOffsetType()
 {
   Offset = 0;
-  DirectionalOffs_1014 = 0;
+  DirectionalOffs_1015 = 0;
 }
 
 DirectionalOffsetType::DirectionalOffsetType(
  LinearValueType * OffsetIn,
- DirectionalOffs_1014_Type * DirectionalOffs_1014In)
+ DirectionalOffs_1015_Type * DirectionalOffs_1015In)
 {
   Offset = OffsetIn;
-  DirectionalOffs_1014 = DirectionalOffs_1014In;
+  DirectionalOffs_1015 = DirectionalOffs_1015In;
 }
 
 DirectionalOffsetType::~DirectionalOffsetType()
 {
   #ifndef NODESTRUCT
   delete Offset;
-  delete DirectionalOffs_1014;
+  delete DirectionalOffs_1015;
   #endif
 }
 
@@ -5855,7 +5855,7 @@ void DirectionalOffsetType::printSelf(FILE * outFile)
   fprintf(outFile, "<Offset");
   Offset->printSelf(outFile);
   fprintf(outFile, "</Offset>\n");
-  DirectionalOffs_1014->printSelf(outFile);
+  DirectionalOffs_1015->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -5865,13 +5865,13 @@ LinearValueType * DirectionalOffsetType::getOffset()
 void DirectionalOffsetType::setOffset(LinearValueType * OffsetIn)
 {Offset = OffsetIn;}
 
-DirectionalOffs_1014_Type * DirectionalOffsetType::getDirectionalOffs_1014()
-{return DirectionalOffs_1014;}
+DirectionalOffs_1015_Type * DirectionalOffsetType::getDirectionalOffs_1015()
+{return DirectionalOffs_1015;}
 
-void DirectionalOffsetType::setDirectionalOffs_1014(DirectionalOffs_1014_Type * DirectionalOffs_1014In)
-{DirectionalOffs_1014 = DirectionalOffs_1014In;}
+void DirectionalOffsetType::setDirectionalOffs_1015(DirectionalOffs_1015_Type * DirectionalOffs_1015In)
+{DirectionalOffs_1015 = DirectionalOffs_1015In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DistanceBetweenAnalysisModeEnumType
 
@@ -5931,7 +5931,7 @@ void DistanceBetweenAnalysisModeEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EmployeeType
 
@@ -6006,7 +6006,7 @@ XmlToken * EmployeeType::getShift()
 void EmployeeType::setShift(XmlToken * ShiftIn)
 {Shift = ShiftIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EmployeeTypeLisd
 
@@ -6033,7 +6033,7 @@ EmployeeTypeLisd::~EmployeeTypeLisd()
 
 void EmployeeTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EntitiesExternalType
 
@@ -6191,7 +6191,7 @@ EntityExternalTypeLisd * EntitiesExternalType::getEntity()
 void EntitiesExternalType::setEntity(EntityExternalTypeLisd * EntityIn)
 {Entity = EntityIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EntityExternalType
 
@@ -6369,7 +6369,7 @@ XmlString * EntityExternalType::getDescription()
 void EntityExternalType::setDescription(XmlString * DescriptionIn)
 {Description = DescriptionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EntityExternalTypeLisd
 
@@ -6396,7 +6396,7 @@ EntityExternalTypeLisd::~EntityExternalTypeLisd()
 
 void EntityExternalTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EventBaseType
 
@@ -6536,7 +6536,7 @@ XmlString * EventBaseType::getDescription()
 void EventBaseType::setDescription(XmlString * DescriptionIn)
 {Description = DescriptionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExternalFileReferenceType
 
@@ -6606,7 +6606,7 @@ XmlString * ExternalFileReferenceType::getDescription()
 void ExternalFileReferenceType::setDescription(XmlString * DescriptionIn)
 {Description = DescriptionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExternalFileReferenceTypeLisd
 
@@ -6633,7 +6633,7 @@ ExternalFileReferenceTypeLisd::~ExternalFileReferenceTypeLisd()
 
 void ExternalFileReferenceTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExternalFileReferencesType
 
@@ -6791,7 +6791,7 @@ ExternalFileReferenceTypeLisd * ExternalFileReferencesType::getExternalFileRefer
 void ExternalFileReferencesType::setExternalFileReference(ExternalFileReferenceTypeLisd * ExternalFileReferenceIn)
 {ExternalFileReference = ExternalFileReferenceIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FileSpecType
 
@@ -6829,7 +6829,7 @@ FileSpecTypeChoicePair * FileSpecType::getFileSpecTypePair()
 void FileSpecType::setFileSpecTypePair(FileSpecTypeChoicePair * FileSpecTypePairIn)
 {FileSpecTypePair = FileSpecTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FileSpecTypeChoicePair
 
@@ -6873,7 +6873,7 @@ void FileSpecTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FileType
 
@@ -6949,7 +6949,7 @@ DigitalModelFormatType * FileType::getFormat()
 void FileType::setFormat(DigitalModelFormatType * FormatIn)
 {Format = FormatIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ForceToleranceType
 
@@ -6957,17 +6957,17 @@ void FileType::setFormat(DigitalModelFormatType * FormatIn)
 
 ForceToleranceType::ForceToleranceType()
 {
-  ForceToleranceT_1015 = 0;
+  ForceToleranceT_1016 = 0;
   DefinedAsLimit = 0;
   Attributes = 0;
 }
 
 ForceToleranceType::ForceToleranceType(
- ForceToleranceT_1015_Type * ForceToleranceT_1015In,
+ ForceToleranceT_1016_Type * ForceToleranceT_1016In,
  XmlBoolean * DefinedAsLimitIn,
  AttributesType * AttributesIn)
 {
-  ForceToleranceT_1015 = ForceToleranceT_1015In;
+  ForceToleranceT_1016 = ForceToleranceT_1016In;
   DefinedAsLimit = DefinedAsLimitIn;
   Attributes = AttributesIn;
 }
@@ -6975,7 +6975,7 @@ ForceToleranceType::ForceToleranceType(
 ForceToleranceType::~ForceToleranceType()
 {
   #ifndef NODESTRUCT
-  delete ForceToleranceT_1015;
+  delete ForceToleranceT_1016;
   delete DefinedAsLimit;
   delete Attributes;
   #endif
@@ -6985,7 +6985,7 @@ void ForceToleranceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  ForceToleranceT_1015->printSelf(outFile);
+  ForceToleranceT_1016->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<DefinedAsLimit");
   DefinedAsLimit->printSelf(outFile);
@@ -7001,11 +7001,11 @@ void ForceToleranceType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-ForceToleranceT_1015_Type * ForceToleranceType::getForceToleranceT_1015()
-{return ForceToleranceT_1015;}
+ForceToleranceT_1016_Type * ForceToleranceType::getForceToleranceT_1016()
+{return ForceToleranceT_1016;}
 
-void ForceToleranceType::setForceToleranceT_1015(ForceToleranceT_1015_Type * ForceToleranceT_1015In)
-{ForceToleranceT_1015 = ForceToleranceT_1015In;}
+void ForceToleranceType::setForceToleranceT_1016(ForceToleranceT_1016_Type * ForceToleranceT_1016In)
+{ForceToleranceT_1016 = ForceToleranceT_1016In;}
 
 XmlBoolean * ForceToleranceType::getDefinedAsLimit()
 {return DefinedAsLimit;}
@@ -7019,7 +7019,7 @@ AttributesType * ForceToleranceType::getAttributes()
 void ForceToleranceType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ISODegreeOfFreedomEnumType
 
@@ -7085,7 +7085,7 @@ void ISODegreeOfFreedomEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ISODegreeOfFreedomEnumTypeLisd
 
@@ -7130,7 +7130,7 @@ void ISODegreeOfFreedomEnumTypeLisd::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class InspectionStatusEnumType
 
@@ -7200,7 +7200,7 @@ void InspectionStatusEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class InspectionStatusType
 
@@ -7238,7 +7238,7 @@ InspectionStatusTypeChoicePair * InspectionStatusType::getInspectionStatusTypePa
 void InspectionStatusType::setInspectionStatusTypePair(InspectionStatusTypeChoicePair * InspectionStatusTypePairIn)
 {InspectionStatusTypePair = InspectionStatusTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class InspectionStatusTypeChoicePair
 
@@ -7282,7 +7282,7 @@ void InspectionStatusTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IntersectionPlaneEnumType
 
@@ -7342,7 +7342,7 @@ void IntersectionPlaneEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IntersectionPlaneType
 
@@ -7397,7 +7397,7 @@ QIFReferenceFullType * IntersectionPlaneType::getDatumDefinitionId()
 void IntersectionPlaneType::setDatumDefinitionId(QIFReferenceFullType * DatumDefinitionIdIn)
 {DatumDefinitionId = DatumDefinitionIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LimitsAndFitsSpecificationType
 
@@ -7553,7 +7553,7 @@ XmlToken * LimitsAndFitsSpecificationType::getGrade()
 void LimitsAndFitsSpecificationType::setGrade(XmlToken * GradeIn)
 {Grade = GradeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LimitsAndFitsZoneVarianceType
 
@@ -7611,7 +7611,7 @@ void LimitsAndFitsZoneVarianceType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearCoordinateDirectionEnumType
 
@@ -7673,7 +7673,7 @@ void LinearCoordinateDirectionEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearToleranceDefinitionType
 
@@ -7683,26 +7683,26 @@ LinearToleranceDefinitionType::LinearToleranceDefinitionType()
 {
   id = 0;
   Attributes = 0;
-  LinearTolerance_1016 = 0;
+  LinearTolerance_1017 = 0;
 }
 
 LinearToleranceDefinitionType::LinearToleranceDefinitionType(
  AttributesType * AttributesIn,
- LinearTolerance_1016_Type * LinearTolerance_1016In)
+ LinearTolerance_1017_Type * LinearTolerance_1017In)
 {
   id = 0;
   Attributes = AttributesIn;
-  LinearTolerance_1016 = LinearTolerance_1016In;
+  LinearTolerance_1017 = LinearTolerance_1017In;
 }
 
 LinearToleranceDefinitionType::LinearToleranceDefinitionType(
  QIFIdType * idIn,
  AttributesType * AttributesIn,
- LinearTolerance_1016_Type * LinearTolerance_1016In)
+ LinearTolerance_1017_Type * LinearTolerance_1017In)
 {
   id = idIn;
   Attributes = AttributesIn;
-  LinearTolerance_1016 = LinearTolerance_1016In;
+  LinearTolerance_1017 = LinearTolerance_1017In;
 }
 
 LinearToleranceDefinitionType::~LinearToleranceDefinitionType()
@@ -7710,7 +7710,7 @@ LinearToleranceDefinitionType::~LinearToleranceDefinitionType()
   #ifndef NODESTRUCT
   delete id;
   delete Attributes;
-  delete LinearTolerance_1016;
+  delete LinearTolerance_1017;
   #endif
 }
 
@@ -7751,7 +7751,7 @@ void LinearToleranceDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  LinearTolerance_1016->printSelf(outFile);
+  LinearTolerance_1017->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -7824,13 +7824,13 @@ AttributesType * LinearToleranceDefinitionType::getAttributes()
 void LinearToleranceDefinitionType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-LinearTolerance_1016_Type * LinearToleranceDefinitionType::getLinearTolerance_1016()
-{return LinearTolerance_1016;}
+LinearTolerance_1017_Type * LinearToleranceDefinitionType::getLinearTolerance_1017()
+{return LinearTolerance_1017;}
 
-void LinearToleranceDefinitionType::setLinearTolerance_1016(LinearTolerance_1016_Type * LinearTolerance_1016In)
-{LinearTolerance_1016 = LinearTolerance_1016In;}
+void LinearToleranceDefinitionType::setLinearTolerance_1017(LinearTolerance_1017_Type * LinearTolerance_1017In)
+{LinearTolerance_1017 = LinearTolerance_1017In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearToleranceType
 
@@ -7838,17 +7838,17 @@ void LinearToleranceDefinitionType::setLinearTolerance_1016(LinearTolerance_1016
 
 LinearToleranceType::LinearToleranceType()
 {
-  LinearTolerance_1017 = 0;
+  LinearTolerance_1018 = 0;
   DefinedAsLimit = 0;
   Attributes = 0;
 }
 
 LinearToleranceType::LinearToleranceType(
- LinearTolerance_1017_Type * LinearTolerance_1017In,
+ LinearTolerance_1018_Type * LinearTolerance_1018In,
  XmlBoolean * DefinedAsLimitIn,
  AttributesType * AttributesIn)
 {
-  LinearTolerance_1017 = LinearTolerance_1017In;
+  LinearTolerance_1018 = LinearTolerance_1018In;
   DefinedAsLimit = DefinedAsLimitIn;
   Attributes = AttributesIn;
 }
@@ -7856,7 +7856,7 @@ LinearToleranceType::LinearToleranceType(
 LinearToleranceType::~LinearToleranceType()
 {
   #ifndef NODESTRUCT
-  delete LinearTolerance_1017;
+  delete LinearTolerance_1018;
   delete DefinedAsLimit;
   delete Attributes;
   #endif
@@ -7866,7 +7866,7 @@ void LinearToleranceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  LinearTolerance_1017->printSelf(outFile);
+  LinearTolerance_1018->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<DefinedAsLimit");
   DefinedAsLimit->printSelf(outFile);
@@ -7882,11 +7882,11 @@ void LinearToleranceType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-LinearTolerance_1017_Type * LinearToleranceType::getLinearTolerance_1017()
-{return LinearTolerance_1017;}
+LinearTolerance_1018_Type * LinearToleranceType::getLinearTolerance_1018()
+{return LinearTolerance_1018;}
 
-void LinearToleranceType::setLinearTolerance_1017(LinearTolerance_1017_Type * LinearTolerance_1017In)
-{LinearTolerance_1017 = LinearTolerance_1017In;}
+void LinearToleranceType::setLinearTolerance_1018(LinearTolerance_1018_Type * LinearTolerance_1018In)
+{LinearTolerance_1018 = LinearTolerance_1018In;}
 
 XmlBoolean * LinearToleranceType::getDefinedAsLimit()
 {return DefinedAsLimit;}
@@ -7900,7 +7900,7 @@ AttributesType * LinearToleranceType::getAttributes()
 void LinearToleranceType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LocationType
 
@@ -8060,7 +8060,7 @@ PhysicalAddressType * LocationType::getAddress()
 void LocationType::setAddress(PhysicalAddressType * AddressIn)
 {Address = AddressIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MachineCoordinateSystemOperationType
 
@@ -8099,7 +8099,7 @@ void MachineCoordinateSystemOperationType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MachineCoordinateSystemType
 
@@ -8157,7 +8157,7 @@ QIFReferenceType * MachineCoordinateSystemType::getMeasurementDeviceId()
 void MachineCoordinateSystemType::setMeasurementDeviceId(QIFReferenceType * MeasurementDeviceIdIn)
 {MeasurementDeviceId = MeasurementDeviceIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MachineCoordinateSystemTypeLisd
 
@@ -8184,7 +8184,7 @@ MachineCoordinateSystemTypeLisd::~MachineCoordinateSystemTypeLisd()
 
 void MachineCoordinateSystemTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MassToleranceType
 
@@ -8192,17 +8192,17 @@ void MachineCoordinateSystemTypeLisd::printSelf(FILE * outFile){}
 
 MassToleranceType::MassToleranceType()
 {
-  MassToleranceTy_1018 = 0;
+  MassToleranceTy_1019 = 0;
   DefinedAsLimit = 0;
   Attributes = 0;
 }
 
 MassToleranceType::MassToleranceType(
- MassToleranceTy_1018_Type * MassToleranceTy_1018In,
+ MassToleranceTy_1019_Type * MassToleranceTy_1019In,
  XmlBoolean * DefinedAsLimitIn,
  AttributesType * AttributesIn)
 {
-  MassToleranceTy_1018 = MassToleranceTy_1018In;
+  MassToleranceTy_1019 = MassToleranceTy_1019In;
   DefinedAsLimit = DefinedAsLimitIn;
   Attributes = AttributesIn;
 }
@@ -8210,7 +8210,7 @@ MassToleranceType::MassToleranceType(
 MassToleranceType::~MassToleranceType()
 {
   #ifndef NODESTRUCT
-  delete MassToleranceTy_1018;
+  delete MassToleranceTy_1019;
   delete DefinedAsLimit;
   delete Attributes;
   #endif
@@ -8220,7 +8220,7 @@ void MassToleranceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  MassToleranceTy_1018->printSelf(outFile);
+  MassToleranceTy_1019->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<DefinedAsLimit");
   DefinedAsLimit->printSelf(outFile);
@@ -8236,11 +8236,11 @@ void MassToleranceType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-MassToleranceTy_1018_Type * MassToleranceType::getMassToleranceTy_1018()
-{return MassToleranceTy_1018;}
+MassToleranceTy_1019_Type * MassToleranceType::getMassToleranceTy_1019()
+{return MassToleranceTy_1019;}
 
-void MassToleranceType::setMassToleranceTy_1018(MassToleranceTy_1018_Type * MassToleranceTy_1018In)
-{MassToleranceTy_1018 = MassToleranceTy_1018In;}
+void MassToleranceType::setMassToleranceTy_1019(MassToleranceTy_1019_Type * MassToleranceTy_1019In)
+{MassToleranceTy_1019 = MassToleranceTy_1019In;}
 
 XmlBoolean * MassToleranceType::getDefinedAsLimit()
 {return DefinedAsLimit;}
@@ -8254,7 +8254,7 @@ AttributesType * MassToleranceType::getAttributes()
 void MassToleranceType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MaterialClassEnumType
 
@@ -8326,7 +8326,7 @@ void MaterialClassEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MaterialModifierEnumType
 
@@ -8392,7 +8392,7 @@ void MaterialModifierEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MaterialType
 
@@ -8403,7 +8403,7 @@ MaterialType::MaterialType()
   Index = 0;
   MaterialName = 0;
   Attributes = 0;
-  MaterialType_1019 = 0;
+  MaterialType_1020 = 0;
   Description = 0;
   MassDensity = 0;
   PoissonsRatio = 0;
@@ -8418,7 +8418,7 @@ MaterialType::MaterialType()
 
 MaterialType::MaterialType(
  AttributesType * AttributesIn,
- MaterialType_1019_Type * MaterialType_1019In,
+ MaterialType_1020_Type * MaterialType_1020In,
  XmlString * DescriptionIn,
  XmlDouble * MassDensityIn,
  XmlDouble * PoissonsRatioIn,
@@ -8433,7 +8433,7 @@ MaterialType::MaterialType(
   Index = 0;
   MaterialName = 0;
   Attributes = AttributesIn;
-  MaterialType_1019 = MaterialType_1019In;
+  MaterialType_1020 = MaterialType_1020In;
   Description = DescriptionIn;
   MassDensity = MassDensityIn;
   PoissonsRatio = PoissonsRatioIn;
@@ -8450,7 +8450,7 @@ MaterialType::MaterialType(
  NaturalType * IndexIn,
  XmlToken * MaterialNameIn,
  AttributesType * AttributesIn,
- MaterialType_1019_Type * MaterialType_1019In,
+ MaterialType_1020_Type * MaterialType_1020In,
  XmlString * DescriptionIn,
  XmlDouble * MassDensityIn,
  XmlDouble * PoissonsRatioIn,
@@ -8465,7 +8465,7 @@ MaterialType::MaterialType(
   Index = IndexIn;
   MaterialName = MaterialNameIn;
   Attributes = AttributesIn;
-  MaterialType_1019 = MaterialType_1019In;
+  MaterialType_1020 = MaterialType_1020In;
   Description = DescriptionIn;
   MassDensity = MassDensityIn;
   PoissonsRatio = PoissonsRatioIn;
@@ -8484,7 +8484,7 @@ MaterialType::~MaterialType()
   delete Index;
   delete MaterialName;
   delete Attributes;
-  delete MaterialType_1019;
+  delete MaterialType_1020;
   delete Description;
   delete MassDensity;
   delete PoissonsRatio;
@@ -8557,9 +8557,9 @@ void MaterialType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (MaterialType_1019)
+  if (MaterialType_1020)
     {
-      MaterialType_1019->printSelf(outFile);
+      MaterialType_1020->printSelf(outFile);
     }
   if (Description)
     {
@@ -8737,11 +8737,11 @@ AttributesType * MaterialType::getAttributes()
 void MaterialType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-MaterialType_1019_Type * MaterialType::getMaterialType_1019()
-{return MaterialType_1019;}
+MaterialType_1020_Type * MaterialType::getMaterialType_1020()
+{return MaterialType_1020;}
 
-void MaterialType::setMaterialType_1019(MaterialType_1019_Type * MaterialType_1019In)
-{MaterialType_1019 = MaterialType_1019In;}
+void MaterialType::setMaterialType_1020(MaterialType_1020_Type * MaterialType_1020In)
+{MaterialType_1020 = MaterialType_1020In;}
 
 XmlString * MaterialType::getDescription()
 {return Description;}
@@ -8803,7 +8803,7 @@ XmlDouble * MaterialType::getThermalConductivity()
 void MaterialType::setThermalConductivity(XmlDouble * ThermalConductivityIn)
 {ThermalConductivity = ThermalConductivityIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MaterialTypeLisd
 
@@ -8830,7 +8830,7 @@ MaterialTypeLisd::~MaterialTypeLisd()
 
 void MaterialTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MaterialsType
 
@@ -8988,7 +8988,7 @@ MaterialTypeLisd * MaterialsType::getMaterial()
 void MaterialsType::setMaterial(MaterialTypeLisd * MaterialIn)
 {Material = MaterialIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurePointNominalType
 
@@ -9182,7 +9182,7 @@ QIFReferenceType * MeasurePointNominalType::getTipId()
 void MeasurePointNominalType::setTipId(QIFReferenceType * TipIdIn)
 {TipId = TipIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurePointNominalTypeLisd
 
@@ -9209,7 +9209,7 @@ MeasurePointNominalTypeLisd::~MeasurePointNominalTypeLisd()
 
 void MeasurePointNominalTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredDatumFeatureType
 
@@ -9276,7 +9276,7 @@ SubstituteFeatureAlgorithmType * MeasuredDatumFeatureType::getSubstituteFeatureA
 void MeasuredDatumFeatureType::setSubstituteFeatureAlgorithm(SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn)
 {SubstituteFeatureAlgorithm = SubstituteFeatureAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointWithNormalBaseType
 
@@ -9435,7 +9435,7 @@ MeasuredUnitVectorType * MeasuredPointWithNormalBaseType::getNormal()
 void MeasuredPointWithNormalBaseType::setNormal(MeasuredUnitVectorType * NormalIn)
 {Normal = NormalIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurementDirectiveEnumType
 
@@ -9497,7 +9497,7 @@ void MeasurementDirectiveEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurementDirectiveType
 
@@ -9535,7 +9535,7 @@ MeasurementDirectiveTypeChoicePair * MeasurementDirectiveType::getMeasurementDir
 void MeasurementDirectiveType::setMeasurementDirectiveTypePair(MeasurementDirectiveTypeChoicePair * MeasurementDirectiveTypePairIn)
 {MeasurementDirectiveTypePair = MeasurementDirectiveTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurementDirectiveTypeChoicePair
 
@@ -9579,7 +9579,7 @@ void MeasurementDirectiveTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurementOffsetAlignmentOperationType
 
@@ -9760,7 +9760,7 @@ MeasurementOriginOffsetTypeLisd * MeasurementOffsetAlignmentOperationType::getOr
 void MeasurementOffsetAlignmentOperationType::setOrigin(MeasurementOriginOffsetTypeLisd * OriginIn)
 {Origin = OriginIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurementOriginOffsetType
 
@@ -9816,7 +9816,7 @@ UnitVectorType * MeasurementOriginOffsetType::getOriginDirection()
 void MeasurementOriginOffsetType::setOriginDirection(UnitVectorType * OriginDirectionIn)
 {OriginDirection = OriginDirectionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurementOriginOffsetTypeLisd
 
@@ -9843,7 +9843,7 @@ MeasurementOriginOffsetTypeLisd::~MeasurementOriginOffsetTypeLisd()
 
 void MeasurementOriginOffsetTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ModifyingPlaneEnumType
 
@@ -9903,7 +9903,7 @@ void ModifyingPlaneEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MovableDatumTargetDirectionType
 
@@ -9944,7 +9944,7 @@ UnitVectorType * MovableDatumTargetDirectionType::getDatumTargetTranslationDirec
 void MovableDatumTargetDirectionType::setDatumTargetTranslationDirection(UnitVectorType * DatumTargetTranslationDirectionIn)
 {DatumTargetTranslationDirection = DatumTargetTranslationDirectionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MultiLeadThreadSpecificationType
 
@@ -10193,7 +10193,7 @@ NaturalType * MultiLeadThreadSpecificationType::getThreadLeadStarts()
 void MultiLeadThreadSpecificationType::setThreadLeadStarts(NaturalType * ThreadLeadStartsIn)
 {ThreadLeadStarts = ThreadLeadStartsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NominalDatumFeatureType
 
@@ -10222,7 +10222,7 @@ void NominalDatumFeatureType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NominalOffsetAlignmentOperationType
 
@@ -10281,7 +10281,7 @@ VectorType * NominalOffsetAlignmentOperationType::getOffset()
 void NominalOffsetAlignmentOperationType::setOffset(VectorType * OffsetIn)
 {Offset = OffsetIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NominalRotationAlignmentOperationType
 
@@ -10354,7 +10354,7 @@ AngularValueType * NominalRotationAlignmentOperationType::getAngle()
 void NominalRotationAlignmentOperationType::setAngle(AngularValueType * AngleIn)
 {Angle = AngleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NonToleranceEnumType
 
@@ -10412,7 +10412,7 @@ void NonToleranceEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NotableEventType
 
@@ -10554,7 +10554,7 @@ XmlBoolean * NotableEventType::getActive()
 void NotableEventType::setActive(XmlBoolean * ActiveIn)
 {Active = ActiveIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NotableEventTypeLisd
 
@@ -10581,7 +10581,7 @@ NotableEventTypeLisd::~NotableEventTypeLisd()
 
 void NotableEventTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NotableEventsType
 
@@ -10739,7 +10739,7 @@ NotableEventTypeLisd * NotableEventsType::getNotableEvent()
 void NotableEventsType::setNotableEvent(NotableEventTypeLisd * NotableEventIn)
 {NotableEvent = NotableEventIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NotedEventType
 
@@ -10919,7 +10919,7 @@ QIFReferenceType * NotedEventType::getNotableEventId()
 void NotedEventType::setNotableEventId(QIFReferenceType * NotableEventIdIn)
 {NotableEventId = NotableEventIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NotedEventTypeLisd
 
@@ -10946,7 +10946,7 @@ NotedEventTypeLisd::~NotedEventTypeLisd()
 
 void NotedEventTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NotedEventsType
 
@@ -11104,7 +11104,7 @@ NotedEventTypeLisd * NotedEventsType::getNotedEvent()
 void NotedEventsType::setNotedEvent(NotedEventTypeLisd * NotedEventIn)
 {NotedEvent = NotedEventIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OrganizationType
 
@@ -11181,7 +11181,7 @@ AttributesType * OrganizationType::getAttributes()
 void OrganizationType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OrientationPlaneType
 
@@ -11236,7 +11236,7 @@ QIFReferenceFullType * OrientationPlaneType::getDatumDefinitionId()
 void OrientationPlaneType::setDatumDefinitionId(QIFReferenceFullType * DatumDefinitionIdIn)
 {DatumDefinitionId = DatumDefinitionIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PhysicalAddressType
 
@@ -11485,7 +11485,7 @@ XmlToken * PhysicalAddressType::getTelexNumber()
 void PhysicalAddressType::setTelexNumber(XmlToken * TelexNumberIn)
 {TelexNumber = TelexNumberIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointSetReferenceBaseType
 
@@ -11607,7 +11607,7 @@ bool PointSetReferenceBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointSetReferenceBaseTypeLisd
 
@@ -11634,7 +11634,7 @@ PointSetReferenceBaseTypeLisd::~PointSetReferenceBaseTypeLisd()
 
 void PointSetReferenceBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointSetReferenceRangeType
 
@@ -11821,7 +11821,7 @@ Natural2Type * PointSetReferenceRangeType::getrange()
 void PointSetReferenceRangeType::setrange(Natural2Type * rangeIn)
 {range = rangeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointSetReferenceSingleType
 
@@ -12008,7 +12008,7 @@ NaturalType * PointSetReferenceSingleType::getindex()
 void PointSetReferenceSingleType::setindex(NaturalType * indexIn)
 {index = indexIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointSetReferenceWholeType
 
@@ -12130,7 +12130,7 @@ bool PointSetReferenceWholeType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointWithNormalBaseType
 
@@ -12289,7 +12289,7 @@ UnitVectorType * PointWithNormalBaseType::getNormal()
 void PointWithNormalBaseType::setNormal(UnitVectorType * NormalIn)
 {Normal = NormalIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PrecedenceEnumType
 
@@ -12355,7 +12355,7 @@ void PrecedenceEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PrecedenceType
 
@@ -12393,7 +12393,7 @@ PrecedenceTypeChoicePair * PrecedenceType::getPrecedenceTypePair()
 void PrecedenceType::setPrecedenceTypePair(PrecedenceTypeChoicePair * PrecedenceTypePairIn)
 {PrecedenceTypePair = PrecedenceTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PrecedenceTypeChoicePair
 
@@ -12437,7 +12437,7 @@ void PrecedenceTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PressureToleranceType
 
@@ -12445,17 +12445,17 @@ void PrecedenceTypeChoicePair::printSelf(FILE * outFile)
 
 PressureToleranceType::PressureToleranceType()
 {
-  PressureToleran_1020 = 0;
+  PressureToleran_1021 = 0;
   DefinedAsLimit = 0;
   Attributes = 0;
 }
 
 PressureToleranceType::PressureToleranceType(
- PressureToleran_1020_Type * PressureToleran_1020In,
+ PressureToleran_1021_Type * PressureToleran_1021In,
  XmlBoolean * DefinedAsLimitIn,
  AttributesType * AttributesIn)
 {
-  PressureToleran_1020 = PressureToleran_1020In;
+  PressureToleran_1021 = PressureToleran_1021In;
   DefinedAsLimit = DefinedAsLimitIn;
   Attributes = AttributesIn;
 }
@@ -12463,7 +12463,7 @@ PressureToleranceType::PressureToleranceType(
 PressureToleranceType::~PressureToleranceType()
 {
   #ifndef NODESTRUCT
-  delete PressureToleran_1020;
+  delete PressureToleran_1021;
   delete DefinedAsLimit;
   delete Attributes;
   #endif
@@ -12473,7 +12473,7 @@ void PressureToleranceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  PressureToleran_1020->printSelf(outFile);
+  PressureToleran_1021->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<DefinedAsLimit");
   DefinedAsLimit->printSelf(outFile);
@@ -12489,11 +12489,11 @@ void PressureToleranceType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-PressureToleran_1020_Type * PressureToleranceType::getPressureToleran_1020()
-{return PressureToleran_1020;}
+PressureToleran_1021_Type * PressureToleranceType::getPressureToleran_1021()
+{return PressureToleran_1021;}
 
-void PressureToleranceType::setPressureToleran_1020(PressureToleran_1020_Type * PressureToleran_1020In)
-{PressureToleran_1020 = PressureToleran_1020In;}
+void PressureToleranceType::setPressureToleran_1021(PressureToleran_1021_Type * PressureToleran_1021In)
+{PressureToleran_1021 = PressureToleran_1021In;}
 
 XmlBoolean * PressureToleranceType::getDefinedAsLimit()
 {return DefinedAsLimit;}
@@ -12507,7 +12507,7 @@ AttributesType * PressureToleranceType::getAttributes()
 void PressureToleranceType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PrimaryAlignmentOperationType
 
@@ -12581,7 +12581,7 @@ UnitVectorType * PrimaryAlignmentOperationType::getPrimaryAxis()
 void PrimaryAlignmentOperationType::setPrimaryAxis(UnitVectorType * PrimaryAxisIn)
 {PrimaryAxis = PrimaryAxisIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ReducedDatumEnumType
 
@@ -12641,7 +12641,7 @@ void ReducedDatumEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ReferencedComponentEnumType
 
@@ -12699,7 +12699,7 @@ void ReferencedComponentEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RetrievalMethodEnumType
 
@@ -12765,7 +12765,7 @@ void RetrievalMethodEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SecondaryAlignmentOperationType
 
@@ -12856,7 +12856,7 @@ UnitVectorType * SecondaryAlignmentOperationType::getRotationAxis()
 void SecondaryAlignmentOperationType::setRotationAxis(UnitVectorType * RotationAxisIn)
 {RotationAxis = RotationAxisIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SectionModifierEnumType
 
@@ -12916,7 +12916,7 @@ void SectionModifierEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SequencedBaseFeatureType
 
@@ -12971,7 +12971,7 @@ NaturalType * SequencedBaseFeatureType::getSequenceNumber()
 void SequencedBaseFeatureType::setSequenceNumber(NaturalType * SequenceNumberIn)
 {SequenceNumber = SequenceNumberIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SequencedBaseFeatureTypeLisd
 
@@ -12998,7 +12998,7 @@ SequencedBaseFeatureTypeLisd::~SequencedBaseFeatureTypeLisd()
 
 void SequencedBaseFeatureTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SequencedDatumType
 
@@ -13006,22 +13006,22 @@ void SequencedBaseFeatureTypeLisd::printSelf(FILE * outFile){}
 
 SequencedDatumType::SequencedDatumType()
 {
-  SequencedDatumT_1021 = 0;
+  SequencedDatumT_1022 = 0;
   SequenceNumber = 0;
 }
 
 SequencedDatumType::SequencedDatumType(
- SequencedDatumT_1021_Type * SequencedDatumT_1021In,
+ SequencedDatumT_1022_Type * SequencedDatumT_1022In,
  NaturalType * SequenceNumberIn)
 {
-  SequencedDatumT_1021 = SequencedDatumT_1021In;
+  SequencedDatumT_1022 = SequencedDatumT_1022In;
   SequenceNumber = SequenceNumberIn;
 }
 
 SequencedDatumType::~SequencedDatumType()
 {
   #ifndef NODESTRUCT
-  delete SequencedDatumT_1021;
+  delete SequencedDatumT_1022;
   delete SequenceNumber;
   #endif
 }
@@ -13030,7 +13030,7 @@ void SequencedDatumType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  SequencedDatumT_1021->printSelf(outFile);
+  SequencedDatumT_1022->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<SequenceNumber");
   SequenceNumber->printSelf(outFile);
@@ -13038,11 +13038,11 @@ void SequencedDatumType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-SequencedDatumT_1021_Type * SequencedDatumType::getSequencedDatumT_1021()
-{return SequencedDatumT_1021;}
+SequencedDatumT_1022_Type * SequencedDatumType::getSequencedDatumT_1022()
+{return SequencedDatumT_1022;}
 
-void SequencedDatumType::setSequencedDatumT_1021(SequencedDatumT_1021_Type * SequencedDatumT_1021In)
-{SequencedDatumT_1021 = SequencedDatumT_1021In;}
+void SequencedDatumType::setSequencedDatumT_1022(SequencedDatumT_1022_Type * SequencedDatumT_1022In)
+{SequencedDatumT_1022 = SequencedDatumT_1022In;}
 
 NaturalType * SequencedDatumType::getSequenceNumber()
 {return SequenceNumber;}
@@ -13050,7 +13050,7 @@ NaturalType * SequencedDatumType::getSequenceNumber()
 void SequencedDatumType::setSequenceNumber(NaturalType * SequenceNumberIn)
 {SequenceNumber = SequenceNumberIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SequencedDatumTypeLisd
 
@@ -13077,7 +13077,7 @@ SequencedDatumTypeLisd::~SequencedDatumTypeLisd()
 
 void SequencedDatumTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SignOffsType
 
@@ -13235,7 +13235,7 @@ EmployeeTypeLisd * SignOffsType::getEmployee()
 void SignOffsType::setEmployee(EmployeeTypeLisd * EmployeeIn)
 {Employee = EmployeeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SignificantDimensionEnumType
 
@@ -13303,7 +13303,7 @@ void SignificantDimensionEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SingleLeadThreadSpecificationType
 
@@ -13520,7 +13520,7 @@ SpecifiedDecimalType * SingleLeadThreadSpecificationType::getThreadDensity()
 void SingleLeadThreadSpecificationType::setThreadDensity(SpecifiedDecimalType * ThreadDensityIn)
 {ThreadDensity = ThreadDensityIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SoftwareType
 
@@ -13773,7 +13773,7 @@ ArrayReferenceType * SoftwareType::getReferencedStandardIds()
 void SoftwareType::setReferencedStandardIds(ArrayReferenceType * ReferencedStandardIdsIn)
 {ReferencedStandardIds = ReferencedStandardIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SoftwareTypeLisd
 
@@ -13800,7 +13800,7 @@ SoftwareTypeLisd::~SoftwareTypeLisd()
 
 void SoftwareTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SoftwaresType
 
@@ -13958,7 +13958,7 @@ SoftwareTypeLisd * SoftwaresType::getSoftware()
 void SoftwaresType::setSoftware(SoftwareTypeLisd * SoftwareIn)
 {Software = SoftwareIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SpeedToleranceType
 
@@ -13966,17 +13966,17 @@ void SoftwaresType::setSoftware(SoftwareTypeLisd * SoftwareIn)
 
 SpeedToleranceType::SpeedToleranceType()
 {
-  SpeedToleranceT_1022 = 0;
+  SpeedToleranceT_1023 = 0;
   DefinedAsLimit = 0;
   Attributes = 0;
 }
 
 SpeedToleranceType::SpeedToleranceType(
- SpeedToleranceT_1022_Type * SpeedToleranceT_1022In,
+ SpeedToleranceT_1023_Type * SpeedToleranceT_1023In,
  XmlBoolean * DefinedAsLimitIn,
  AttributesType * AttributesIn)
 {
-  SpeedToleranceT_1022 = SpeedToleranceT_1022In;
+  SpeedToleranceT_1023 = SpeedToleranceT_1023In;
   DefinedAsLimit = DefinedAsLimitIn;
   Attributes = AttributesIn;
 }
@@ -13984,7 +13984,7 @@ SpeedToleranceType::SpeedToleranceType(
 SpeedToleranceType::~SpeedToleranceType()
 {
   #ifndef NODESTRUCT
-  delete SpeedToleranceT_1022;
+  delete SpeedToleranceT_1023;
   delete DefinedAsLimit;
   delete Attributes;
   #endif
@@ -13994,7 +13994,7 @@ void SpeedToleranceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  SpeedToleranceT_1022->printSelf(outFile);
+  SpeedToleranceT_1023->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<DefinedAsLimit");
   DefinedAsLimit->printSelf(outFile);
@@ -14010,11 +14010,11 @@ void SpeedToleranceType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-SpeedToleranceT_1022_Type * SpeedToleranceType::getSpeedToleranceT_1022()
-{return SpeedToleranceT_1022;}
+SpeedToleranceT_1023_Type * SpeedToleranceType::getSpeedToleranceT_1023()
+{return SpeedToleranceT_1023;}
 
-void SpeedToleranceType::setSpeedToleranceT_1022(SpeedToleranceT_1022_Type * SpeedToleranceT_1022In)
-{SpeedToleranceT_1022 = SpeedToleranceT_1022In;}
+void SpeedToleranceType::setSpeedToleranceT_1023(SpeedToleranceT_1023_Type * SpeedToleranceT_1023In)
+{SpeedToleranceT_1023 = SpeedToleranceT_1023In;}
 
 XmlBoolean * SpeedToleranceType::getDefinedAsLimit()
 {return DefinedAsLimit;}
@@ -14028,7 +14028,7 @@ AttributesType * SpeedToleranceType::getAttributes()
 void SpeedToleranceType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StandardType
 
@@ -14320,7 +14320,7 @@ ArrayReferenceType * StandardType::getReferencedStandardIds()
 void StandardType::setReferencedStandardIds(ArrayReferenceType * ReferencedStandardIdsIn)
 {ReferencedStandardIds = ReferencedStandardIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StandardTypeLisd
 
@@ -14347,7 +14347,7 @@ StandardTypeLisd::~StandardTypeLisd()
 
 void StandardTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StandardsOrganizationEnumType
 
@@ -14439,7 +14439,7 @@ void StandardsOrganizationEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StandardsOrganizationType
 
@@ -14477,7 +14477,7 @@ StandardsOrganizationTypeChoicePair * StandardsOrganizationType::getStandardsOrg
 void StandardsOrganizationType::setStandardsOrganizationTypePair(StandardsOrganizationTypeChoicePair * StandardsOrganizationTypePairIn)
 {StandardsOrganizationTypePair = StandardsOrganizationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StandardsOrganizationTypeChoicePair
 
@@ -14521,7 +14521,7 @@ void StandardsOrganizationTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StandardsType
 
@@ -14679,7 +14679,7 @@ StandardTypeLisd * StandardsType::getStandard()
 void StandardsType::setStandard(StandardTypeLisd * StandardIn)
 {Standard = StandardIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SubstituteFeatureAlgorithmEnumType
 
@@ -14761,7 +14761,7 @@ void SubstituteFeatureAlgorithmEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SubstituteFeatureAlgorithmType
 
@@ -14770,22 +14770,22 @@ void SubstituteFeatureAlgorithmEnumType::oPrintSelf(FILE * outFile)
 SubstituteFeatureAlgorithmType::SubstituteFeatureAlgorithmType()
 {
   Attributes = 0;
-  SubstituteFeatu_1023 = 0;
+  SubstituteFeatu_1024 = 0;
 }
 
 SubstituteFeatureAlgorithmType::SubstituteFeatureAlgorithmType(
  AttributesType * AttributesIn,
- SubstituteFeatu_1023_Type * SubstituteFeatu_1023In)
+ SubstituteFeatu_1024_Type * SubstituteFeatu_1024In)
 {
   Attributes = AttributesIn;
-  SubstituteFeatu_1023 = SubstituteFeatu_1023In;
+  SubstituteFeatu_1024 = SubstituteFeatu_1024In;
 }
 
 SubstituteFeatureAlgorithmType::~SubstituteFeatureAlgorithmType()
 {
   #ifndef NODESTRUCT
   delete Attributes;
-  delete SubstituteFeatu_1023;
+  delete SubstituteFeatu_1024;
   #endif
 }
 
@@ -14801,7 +14801,7 @@ void SubstituteFeatureAlgorithmType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  SubstituteFeatu_1023->printSelf(outFile);
+  SubstituteFeatu_1024->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -14811,13 +14811,13 @@ AttributesType * SubstituteFeatureAlgorithmType::getAttributes()
 void SubstituteFeatureAlgorithmType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-SubstituteFeatu_1023_Type * SubstituteFeatureAlgorithmType::getSubstituteFeatu_1023()
-{return SubstituteFeatu_1023;}
+SubstituteFeatu_1024_Type * SubstituteFeatureAlgorithmType::getSubstituteFeatu_1024()
+{return SubstituteFeatu_1024;}
 
-void SubstituteFeatureAlgorithmType::setSubstituteFeatu_1023(SubstituteFeatu_1023_Type * SubstituteFeatu_1023In)
-{SubstituteFeatu_1023 = SubstituteFeatu_1023In;}
+void SubstituteFeatureAlgorithmType::setSubstituteFeatu_1024(SubstituteFeatu_1024_Type * SubstituteFeatu_1024In)
+{SubstituteFeatu_1024 = SubstituteFeatu_1024In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TemperatureToleranceType
 
@@ -14825,17 +14825,17 @@ void SubstituteFeatureAlgorithmType::setSubstituteFeatu_1023(SubstituteFeatu_102
 
 TemperatureToleranceType::TemperatureToleranceType()
 {
-  TemperatureTole_1024 = 0;
+  TemperatureTole_1025 = 0;
   DefinedAsLimit = 0;
   Attributes = 0;
 }
 
 TemperatureToleranceType::TemperatureToleranceType(
- TemperatureTole_1024_Type * TemperatureTole_1024In,
+ TemperatureTole_1025_Type * TemperatureTole_1025In,
  XmlBoolean * DefinedAsLimitIn,
  AttributesType * AttributesIn)
 {
-  TemperatureTole_1024 = TemperatureTole_1024In;
+  TemperatureTole_1025 = TemperatureTole_1025In;
   DefinedAsLimit = DefinedAsLimitIn;
   Attributes = AttributesIn;
 }
@@ -14843,7 +14843,7 @@ TemperatureToleranceType::TemperatureToleranceType(
 TemperatureToleranceType::~TemperatureToleranceType()
 {
   #ifndef NODESTRUCT
-  delete TemperatureTole_1024;
+  delete TemperatureTole_1025;
   delete DefinedAsLimit;
   delete Attributes;
   #endif
@@ -14853,7 +14853,7 @@ void TemperatureToleranceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  TemperatureTole_1024->printSelf(outFile);
+  TemperatureTole_1025->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<DefinedAsLimit");
   DefinedAsLimit->printSelf(outFile);
@@ -14869,11 +14869,11 @@ void TemperatureToleranceType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-TemperatureTole_1024_Type * TemperatureToleranceType::getTemperatureTole_1024()
-{return TemperatureTole_1024;}
+TemperatureTole_1025_Type * TemperatureToleranceType::getTemperatureTole_1025()
+{return TemperatureTole_1025;}
 
-void TemperatureToleranceType::setTemperatureTole_1024(TemperatureTole_1024_Type * TemperatureTole_1024In)
-{TemperatureTole_1024 = TemperatureTole_1024In;}
+void TemperatureToleranceType::setTemperatureTole_1025(TemperatureTole_1025_Type * TemperatureTole_1025In)
+{TemperatureTole_1025 = TemperatureTole_1025In;}
 
 XmlBoolean * TemperatureToleranceType::getDefinedAsLimit()
 {return DefinedAsLimit;}
@@ -14887,7 +14887,7 @@ AttributesType * TemperatureToleranceType::getAttributes()
 void TemperatureToleranceType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TextThreadSpecificationType
 
@@ -15027,7 +15027,7 @@ XmlString * TextThreadSpecificationType::getTextSpecification()
 void TextThreadSpecificationType::setTextSpecification(XmlString * TextSpecificationIn)
 {TextSpecification = TextSpecificationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadSpecificationDetailedBaseType
 
@@ -15298,7 +15298,7 @@ AttributesType * ThreadSpecificationDetailedBaseType::getAttributes()
 void ThreadSpecificationDetailedBaseType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadSpecificationType
 
@@ -15336,7 +15336,7 @@ ThreadSpecificationTypeChoicePair * ThreadSpecificationType::getThreadSpecificat
 void ThreadSpecificationType::setThreadSpecificationTypePair(ThreadSpecificationTypeChoicePair * ThreadSpecificationTypePairIn)
 {ThreadSpecificationTypePair = ThreadSpecificationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadSpecificationTypeChoicePair
 
@@ -15392,7 +15392,7 @@ void ThreadSpecificationTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadSpecificationTypeLisd
 
@@ -15419,7 +15419,7 @@ ThreadSpecificationTypeLisd::~ThreadSpecificationTypeLisd()
 
 void ThreadSpecificationTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadSpecificationsType
 
@@ -15577,7 +15577,7 @@ ThreadSpecificationTypeLisd * ThreadSpecificationsType::getThreadSpecification()
 void ThreadSpecificationsType::setThreadSpecification(ThreadSpecificationTypeLisd * ThreadSpecificationIn)
 {ThreadSpecification = ThreadSpecificationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TimeToleranceType
 
@@ -15585,17 +15585,17 @@ void ThreadSpecificationsType::setThreadSpecification(ThreadSpecificationTypeLis
 
 TimeToleranceType::TimeToleranceType()
 {
-  TimeToleranceTy_1025 = 0;
+  TimeToleranceTy_1026 = 0;
   DefinedAsLimit = 0;
   Attributes = 0;
 }
 
 TimeToleranceType::TimeToleranceType(
- TimeToleranceTy_1025_Type * TimeToleranceTy_1025In,
+ TimeToleranceTy_1026_Type * TimeToleranceTy_1026In,
  XmlBoolean * DefinedAsLimitIn,
  AttributesType * AttributesIn)
 {
-  TimeToleranceTy_1025 = TimeToleranceTy_1025In;
+  TimeToleranceTy_1026 = TimeToleranceTy_1026In;
   DefinedAsLimit = DefinedAsLimitIn;
   Attributes = AttributesIn;
 }
@@ -15603,7 +15603,7 @@ TimeToleranceType::TimeToleranceType(
 TimeToleranceType::~TimeToleranceType()
 {
   #ifndef NODESTRUCT
-  delete TimeToleranceTy_1025;
+  delete TimeToleranceTy_1026;
   delete DefinedAsLimit;
   delete Attributes;
   #endif
@@ -15613,7 +15613,7 @@ void TimeToleranceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  TimeToleranceTy_1025->printSelf(outFile);
+  TimeToleranceTy_1026->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<DefinedAsLimit");
   DefinedAsLimit->printSelf(outFile);
@@ -15629,11 +15629,11 @@ void TimeToleranceType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-TimeToleranceTy_1025_Type * TimeToleranceType::getTimeToleranceTy_1025()
-{return TimeToleranceTy_1025;}
+TimeToleranceTy_1026_Type * TimeToleranceType::getTimeToleranceTy_1026()
+{return TimeToleranceTy_1026;}
 
-void TimeToleranceType::setTimeToleranceTy_1025(TimeToleranceTy_1025_Type * TimeToleranceTy_1025In)
-{TimeToleranceTy_1025 = TimeToleranceTy_1025In;}
+void TimeToleranceType::setTimeToleranceTy_1026(TimeToleranceTy_1026_Type * TimeToleranceTy_1026In)
+{TimeToleranceTy_1026 = TimeToleranceTy_1026In;}
 
 XmlBoolean * TimeToleranceType::getDefinedAsLimit()
 {return DefinedAsLimit;}
@@ -15647,7 +15647,7 @@ AttributesType * TimeToleranceType::getAttributes()
 void TimeToleranceType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToleranceZonePerUnitAngleType
 
@@ -15702,7 +15702,7 @@ AngularValueType * ToleranceZonePerUnitAngleType::getUnitAngle()
 void ToleranceZonePerUnitAngleType::setUnitAngle(AngularValueType * UnitAngleIn)
 {UnitAngle = UnitAngleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToleranceZonePerUnitAreaType
 
@@ -15711,22 +15711,22 @@ void ToleranceZonePerUnitAngleType::setUnitAngle(AngularValueType * UnitAngleIn)
 ToleranceZonePerUnitAreaType::ToleranceZonePerUnitAreaType()
 {
   ToleranceValuePerUnit = 0;
-  ToleranceZonePe_1026 = 0;
+  ToleranceZonePe_1027 = 0;
 }
 
 ToleranceZonePerUnitAreaType::ToleranceZonePerUnitAreaType(
  LinearValueType * ToleranceValuePerUnitIn,
- ToleranceZonePe_1026_Type * ToleranceZonePe_1026In)
+ ToleranceZonePe_1027_Type * ToleranceZonePe_1027In)
 {
   ToleranceValuePerUnit = ToleranceValuePerUnitIn;
-  ToleranceZonePe_1026 = ToleranceZonePe_1026In;
+  ToleranceZonePe_1027 = ToleranceZonePe_1027In;
 }
 
 ToleranceZonePerUnitAreaType::~ToleranceZonePerUnitAreaType()
 {
   #ifndef NODESTRUCT
   delete ToleranceValuePerUnit;
-  delete ToleranceZonePe_1026;
+  delete ToleranceZonePe_1027;
   #endif
 }
 
@@ -15738,7 +15738,7 @@ void ToleranceZonePerUnitAreaType::printSelf(FILE * outFile)
   fprintf(outFile, "<ToleranceValuePerUnit");
   ToleranceValuePerUnit->printSelf(outFile);
   fprintf(outFile, "</ToleranceValuePerUnit>\n");
-  ToleranceZonePe_1026->printSelf(outFile);
+  ToleranceZonePe_1027->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -15748,13 +15748,13 @@ LinearValueType * ToleranceZonePerUnitAreaType::getToleranceValuePerUnit()
 void ToleranceZonePerUnitAreaType::setToleranceValuePerUnit(LinearValueType * ToleranceValuePerUnitIn)
 {ToleranceValuePerUnit = ToleranceValuePerUnitIn;}
 
-ToleranceZonePe_1026_Type * ToleranceZonePerUnitAreaType::getToleranceZonePe_1026()
-{return ToleranceZonePe_1026;}
+ToleranceZonePe_1027_Type * ToleranceZonePerUnitAreaType::getToleranceZonePe_1027()
+{return ToleranceZonePe_1027;}
 
-void ToleranceZonePerUnitAreaType::setToleranceZonePe_1026(ToleranceZonePe_1026_Type * ToleranceZonePe_1026In)
-{ToleranceZonePe_1026 = ToleranceZonePe_1026In;}
+void ToleranceZonePerUnitAreaType::setToleranceZonePe_1027(ToleranceZonePe_1027_Type * ToleranceZonePe_1027In)
+{ToleranceZonePe_1027 = ToleranceZonePe_1027In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToleranceZonePerUnitLengthType
 
@@ -15809,7 +15809,7 @@ LinearValueType * ToleranceZonePerUnitLengthType::getUnitLength()
 void ToleranceZonePerUnitLengthType::setUnitLength(LinearValueType * UnitLengthIn)
 {UnitLength = UnitLengthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToleranceZonePerUnitPolarAreaType
 
@@ -15878,7 +15878,7 @@ LinearValueType * ToleranceZonePerUnitPolarAreaType::getUnitLength()
 void ToleranceZonePerUnitPolarAreaType::setUnitLength(LinearValueType * UnitLengthIn)
 {UnitLength = UnitLengthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TransformInstanceType
 
@@ -16613,7 +16613,7 @@ XmlToken * TransformInstanceType::getName()
 void TransformInstanceType::setName(XmlToken * NameIn)
 {Name = NameIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TransformInstanceTypeLisd
 
@@ -16640,7 +16640,7 @@ TransformInstanceTypeLisd::~TransformInstanceTypeLisd()
 
 void TransformInstanceTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TransformListType
 
@@ -16798,7 +16798,7 @@ TransformInstanceTypeLisd * TransformListType::getTransform()
 void TransformListType::setTransform(TransformInstanceTypeLisd * TransformIn)
 {Transform = TransformIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class VersionBaseType
 
@@ -16860,7 +16860,7 @@ SignOffsType * VersionBaseType::getSignOffs()
 void VersionBaseType::setSignOffs(SignOffsType * SignOffsIn)
 {SignOffs = SignOffsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class VersionHistoryType
 
@@ -17018,7 +17018,7 @@ VersionReferenceTypeLisd * VersionHistoryType::getEarlierVersion()
 void VersionHistoryType::setEarlierVersion(VersionReferenceTypeLisd * EarlierVersionIn)
 {EarlierVersion = EarlierVersionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class VersionReferenceType
 
@@ -17083,7 +17083,7 @@ QPIdReferenceType * VersionReferenceType::getQPIdReference()
 void VersionReferenceType::setQPIdReference(QPIdReferenceType * QPIdReferenceIn)
 {QPIdReference = QPIdReferenceIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class VersionReferenceTypeLisd
 
@@ -17110,7 +17110,7 @@ VersionReferenceTypeLisd::~VersionReferenceTypeLisd()
 
 void VersionReferenceTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class VersionType
 
@@ -17175,7 +17175,7 @@ QPIdType * VersionType::getThisInstanceQPId()
 void VersionType::setThisInstanceQPId(QPIdType * ThisInstanceQPIdIn)
 {ThisInstanceQPId = ThisInstanceQPIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class VirtualMeasurementType
 
@@ -17290,7 +17290,7 @@ QIFIdType * VirtualMeasurementType::getid()
 void VirtualMeasurementType::setid(QIFIdType * idIn)
 {id = idIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ZoneDataSetType
 
@@ -17448,7 +17448,7 @@ ZoneDataTypeLisd * ZoneDataSetType::getZoneData()
 void ZoneDataSetType::setZoneData(ZoneDataTypeLisd * ZoneDataIn)
 {ZoneData = ZoneDataIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ZoneDataType
 
@@ -17517,7 +17517,7 @@ LinearValueType * ZoneDataType::getReferenceLength()
 void ZoneDataType::setReferenceLength(LinearValueType * ReferenceLengthIn)
 {ReferenceLength = ReferenceLengthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ZoneDataTypeLisd
 
@@ -17544,236 +17544,160 @@ ZoneDataTypeLisd::~ZoneDataTypeLisd()
 
 void ZoneDataTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class AlgorithmType_1007_Type
-
-*/
-
-AlgorithmType_1007_Type::AlgorithmType_1007_Type()
-{
-  AlgorithmType_1007_TypePair = 0;
-}
-
-AlgorithmType_1007_Type::AlgorithmType_1007_Type(
- AlgorithmType_1007_TypeChoicePair * AlgorithmType_1007_TypePairIn)
-{
-  AlgorithmType_1007_TypePair = AlgorithmType_1007_TypePairIn;
-}
-
-AlgorithmType_1007_Type::~AlgorithmType_1007_Type()
-{
-  #ifndef NODESTRUCT
-  delete AlgorithmType_1007_TypePair;
-  #endif
-}
-
-void AlgorithmType_1007_Type::printSelf(FILE * outFile)
-{
-  AlgorithmType_1007_TypePair->printSelf(outFile);
-}
-
-AlgorithmType_1007_TypeChoicePair * AlgorithmType_1007_Type::getAlgorithmType_1007_TypePair()
-{return AlgorithmType_1007_TypePair;}
-
-void AlgorithmType_1007_Type::setAlgorithmType_1007_TypePair(AlgorithmType_1007_TypeChoicePair * AlgorithmType_1007_TypePairIn)
-{AlgorithmType_1007_TypePair = AlgorithmType_1007_TypePairIn;}
-
-/*********************************************************************/
-
-/* class AlgorithmType_1007_TypeChoicePair
+/* class AlgorithmType_1008_Type
 
 */
 
-AlgorithmType_1007_TypeChoicePair::AlgorithmType_1007_TypeChoicePair() {}
-
-AlgorithmType_1007_TypeChoicePair::AlgorithmType_1007_TypeChoicePair(
- whichOne AlgorithmType_1007_TypeTypeIn,
- AlgorithmType_1007_TypeVal AlgorithmType_1007_TypeValueIn)
+AlgorithmType_1008_Type::AlgorithmType_1008_Type()
 {
-  AlgorithmType_1007_TypeType = AlgorithmType_1007_TypeTypeIn;
-  AlgorithmType_1007_TypeValue = AlgorithmType_1007_TypeValueIn;
+  AlgorithmType_1008_TypePair = 0;
 }
 
-AlgorithmType_1007_TypeChoicePair::~AlgorithmType_1007_TypeChoicePair()
+AlgorithmType_1008_Type::AlgorithmType_1008_Type(
+ AlgorithmType_1008_TypeChoicePair * AlgorithmType_1008_TypePairIn)
+{
+  AlgorithmType_1008_TypePair = AlgorithmType_1008_TypePairIn;
+}
+
+AlgorithmType_1008_Type::~AlgorithmType_1008_Type()
 {
   #ifndef NODESTRUCT
-  if (AlgorithmType_1007_TypeType == AlgorithmType_1_1027E)
-    delete AlgorithmType_1007_TypeValue.AlgorithmType_1_1027;
-  else if (AlgorithmType_1007_TypeType == AlgorithmType_1_1028E)
-    delete AlgorithmType_1007_TypeValue.AlgorithmType_1_1028;
+  delete AlgorithmType_1008_TypePair;
   #endif
 }
 
-void AlgorithmType_1007_TypeChoicePair::printSelf(FILE * outFile)
+void AlgorithmType_1008_Type::printSelf(FILE * outFile)
 {
-  if (AlgorithmType_1007_TypeType == AlgorithmType_1_1027E)
+  AlgorithmType_1008_TypePair->printSelf(outFile);
+}
+
+AlgorithmType_1008_TypeChoicePair * AlgorithmType_1008_Type::getAlgorithmType_1008_TypePair()
+{return AlgorithmType_1008_TypePair;}
+
+void AlgorithmType_1008_Type::setAlgorithmType_1008_TypePair(AlgorithmType_1008_TypeChoicePair * AlgorithmType_1008_TypePairIn)
+{AlgorithmType_1008_TypePair = AlgorithmType_1008_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class AlgorithmType_1008_TypeChoicePair
+
+*/
+
+AlgorithmType_1008_TypeChoicePair::AlgorithmType_1008_TypeChoicePair() {}
+
+AlgorithmType_1008_TypeChoicePair::AlgorithmType_1008_TypeChoicePair(
+ whichOne AlgorithmType_1008_TypeTypeIn,
+ AlgorithmType_1008_TypeVal AlgorithmType_1008_TypeValueIn)
+{
+  AlgorithmType_1008_TypeType = AlgorithmType_1008_TypeTypeIn;
+  AlgorithmType_1008_TypeValue = AlgorithmType_1008_TypeValueIn;
+}
+
+AlgorithmType_1008_TypeChoicePair::~AlgorithmType_1008_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (AlgorithmType_1008_TypeType == AlgorithmType_1_1028E)
+    delete AlgorithmType_1008_TypeValue.AlgorithmType_1_1028;
+  else if (AlgorithmType_1008_TypeType == AlgorithmType_1_1029E)
+    delete AlgorithmType_1008_TypeValue.AlgorithmType_1_1029;
+  #endif
+}
+
+void AlgorithmType_1008_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (AlgorithmType_1008_TypeType == AlgorithmType_1_1028E)
     {
-      AlgorithmType_1007_TypeValue.AlgorithmType_1_1027->printSelf(outFile);
+      AlgorithmType_1008_TypeValue.AlgorithmType_1_1028->printSelf(outFile);
     }
-  else if (AlgorithmType_1007_TypeType == AlgorithmType_1_1028E)
+  else if (AlgorithmType_1008_TypeType == AlgorithmType_1_1029E)
     {
-      AlgorithmType_1007_TypeValue.AlgorithmType_1_1028->printSelf(outFile);
+      AlgorithmType_1008_TypeValue.AlgorithmType_1_1029->printSelf(outFile);
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class AlignmentFeatur_1008_Type
-
-*/
-
-AlignmentFeatur_1008_Type::AlignmentFeatur_1008_Type()
-{
-  AlignmentFeatur_1008_TypePair = 0;
-}
-
-AlignmentFeatur_1008_Type::AlignmentFeatur_1008_Type(
- AlignmentFeatur_1008_TypeChoicePair * AlignmentFeatur_1008_TypePairIn)
-{
-  AlignmentFeatur_1008_TypePair = AlignmentFeatur_1008_TypePairIn;
-}
-
-AlignmentFeatur_1008_Type::~AlignmentFeatur_1008_Type()
-{
-  #ifndef NODESTRUCT
-  delete AlignmentFeatur_1008_TypePair;
-  #endif
-}
-
-void AlignmentFeatur_1008_Type::printSelf(FILE * outFile)
-{
-  AlignmentFeatur_1008_TypePair->printSelf(outFile);
-}
-
-AlignmentFeatur_1008_TypeChoicePair * AlignmentFeatur_1008_Type::getAlignmentFeatur_1008_TypePair()
-{return AlignmentFeatur_1008_TypePair;}
-
-void AlignmentFeatur_1008_Type::setAlignmentFeatur_1008_TypePair(AlignmentFeatur_1008_TypeChoicePair * AlignmentFeatur_1008_TypePairIn)
-{AlignmentFeatur_1008_TypePair = AlignmentFeatur_1008_TypePairIn;}
-
-/*********************************************************************/
-
-/* class AlignmentFeatur_1008_TypeChoicePair
+/* class AlignmentFeatur_1009_Type
 
 */
 
-AlignmentFeatur_1008_TypeChoicePair::AlignmentFeatur_1008_TypeChoicePair() {}
-
-AlignmentFeatur_1008_TypeChoicePair::AlignmentFeatur_1008_TypeChoicePair(
- whichOne AlignmentFeatur_1008_TypeTypeIn,
- AlignmentFeatur_1008_TypeVal AlignmentFeatur_1008_TypeValueIn)
+AlignmentFeatur_1009_Type::AlignmentFeatur_1009_Type()
 {
-  AlignmentFeatur_1008_TypeType = AlignmentFeatur_1008_TypeTypeIn;
-  AlignmentFeatur_1008_TypeValue = AlignmentFeatur_1008_TypeValueIn;
+  AlignmentFeatur_1009_TypePair = 0;
 }
 
-AlignmentFeatur_1008_TypeChoicePair::~AlignmentFeatur_1008_TypeChoicePair()
+AlignmentFeatur_1009_Type::AlignmentFeatur_1009_Type(
+ AlignmentFeatur_1009_TypeChoicePair * AlignmentFeatur_1009_TypePairIn)
+{
+  AlignmentFeatur_1009_TypePair = AlignmentFeatur_1009_TypePairIn;
+}
+
+AlignmentFeatur_1009_Type::~AlignmentFeatur_1009_Type()
 {
   #ifndef NODESTRUCT
-  if (AlignmentFeatur_1008_TypeType == DatumDefinitionIdE)
-    delete AlignmentFeatur_1008_TypeValue.DatumDefinitionId;
-  else if (AlignmentFeatur_1008_TypeType == BaseFeatureE)
-    delete AlignmentFeatur_1008_TypeValue.BaseFeature;
+  delete AlignmentFeatur_1009_TypePair;
   #endif
 }
 
-void AlignmentFeatur_1008_TypeChoicePair::printSelf(FILE * outFile)
+void AlignmentFeatur_1009_Type::printSelf(FILE * outFile)
 {
-  if (AlignmentFeatur_1008_TypeType == DatumDefinitionIdE)
+  AlignmentFeatur_1009_TypePair->printSelf(outFile);
+}
+
+AlignmentFeatur_1009_TypeChoicePair * AlignmentFeatur_1009_Type::getAlignmentFeatur_1009_TypePair()
+{return AlignmentFeatur_1009_TypePair;}
+
+void AlignmentFeatur_1009_Type::setAlignmentFeatur_1009_TypePair(AlignmentFeatur_1009_TypeChoicePair * AlignmentFeatur_1009_TypePairIn)
+{AlignmentFeatur_1009_TypePair = AlignmentFeatur_1009_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class AlignmentFeatur_1009_TypeChoicePair
+
+*/
+
+AlignmentFeatur_1009_TypeChoicePair::AlignmentFeatur_1009_TypeChoicePair() {}
+
+AlignmentFeatur_1009_TypeChoicePair::AlignmentFeatur_1009_TypeChoicePair(
+ whichOne AlignmentFeatur_1009_TypeTypeIn,
+ AlignmentFeatur_1009_TypeVal AlignmentFeatur_1009_TypeValueIn)
+{
+  AlignmentFeatur_1009_TypeType = AlignmentFeatur_1009_TypeTypeIn;
+  AlignmentFeatur_1009_TypeValue = AlignmentFeatur_1009_TypeValueIn;
+}
+
+AlignmentFeatur_1009_TypeChoicePair::~AlignmentFeatur_1009_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (AlignmentFeatur_1009_TypeType == DatumDefinitionIdE)
+    delete AlignmentFeatur_1009_TypeValue.DatumDefinitionId;
+  else if (AlignmentFeatur_1009_TypeType == BaseFeatureE)
+    delete AlignmentFeatur_1009_TypeValue.BaseFeature;
+  #endif
+}
+
+void AlignmentFeatur_1009_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (AlignmentFeatur_1009_TypeType == DatumDefinitionIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DatumDefinitionId");
-      AlignmentFeatur_1008_TypeValue.DatumDefinitionId->printSelf(outFile);
+      AlignmentFeatur_1009_TypeValue.DatumDefinitionId->printSelf(outFile);
       fprintf(outFile, "</DatumDefinitionId>\n");
     }
-  else if (AlignmentFeatur_1008_TypeType == BaseFeatureE)
+  else if (AlignmentFeatur_1009_TypeType == BaseFeatureE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BaseFeature");
-      AlignmentFeatur_1008_TypeValue.BaseFeature->printSelf(outFile);
+      AlignmentFeatur_1009_TypeValue.BaseFeature->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BaseFeature>\n");
     }
 }
 
-/*********************************************************************/
-
-/* class AngularToleranc_1009_Type
-
-*/
-
-AngularToleranc_1009_Type::AngularToleranc_1009_Type()
-{
-  AngularToleranc_1009_TypePair = 0;
-}
-
-AngularToleranc_1009_Type::AngularToleranc_1009_Type(
- AngularToleranc_1009_TypeChoicePair * AngularToleranc_1009_TypePairIn)
-{
-  AngularToleranc_1009_TypePair = AngularToleranc_1009_TypePairIn;
-}
-
-AngularToleranc_1009_Type::~AngularToleranc_1009_Type()
-{
-  #ifndef NODESTRUCT
-  delete AngularToleranc_1009_TypePair;
-  #endif
-}
-
-void AngularToleranc_1009_Type::printSelf(FILE * outFile)
-{
-  AngularToleranc_1009_TypePair->printSelf(outFile);
-}
-
-AngularToleranc_1009_TypeChoicePair * AngularToleranc_1009_Type::getAngularToleranc_1009_TypePair()
-{return AngularToleranc_1009_TypePair;}
-
-void AngularToleranc_1009_Type::setAngularToleranc_1009_TypePair(AngularToleranc_1009_TypeChoicePair * AngularToleranc_1009_TypePairIn)
-{AngularToleranc_1009_TypePair = AngularToleranc_1009_TypePairIn;}
-
-/*********************************************************************/
-
-/* class AngularToleranc_1009_TypeChoicePair
-
-*/
-
-AngularToleranc_1009_TypeChoicePair::AngularToleranc_1009_TypeChoicePair() {}
-
-AngularToleranc_1009_TypeChoicePair::AngularToleranc_1009_TypeChoicePair(
- whichOne AngularToleranc_1009_TypeTypeIn,
- AngularToleranc_1009_TypeVal AngularToleranc_1009_TypeValueIn)
-{
-  AngularToleranc_1009_TypeType = AngularToleranc_1009_TypeTypeIn;
-  AngularToleranc_1009_TypeValue = AngularToleranc_1009_TypeValueIn;
-}
-
-AngularToleranc_1009_TypeChoicePair::~AngularToleranc_1009_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (AngularToleranc_1009_TypeType == AngularToleranc_1029E)
-    delete AngularToleranc_1009_TypeValue.AngularToleranc_1029;
-  else if (AngularToleranc_1009_TypeType == MinValueE)
-    delete AngularToleranc_1009_TypeValue.MinValue;
-  #endif
-}
-
-void AngularToleranc_1009_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (AngularToleranc_1009_TypeType == AngularToleranc_1029E)
-    {
-      AngularToleranc_1009_TypeValue.AngularToleranc_1029->printSelf(outFile);
-    }
-  else if (AngularToleranc_1009_TypeType == MinValueE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinValue");
-      AngularToleranc_1009_TypeValue.MinValue->printSelf(outFile);
-      fprintf(outFile, "</MinValue>\n");
-    }
-}
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularToleranc_1010_Type
 
@@ -17808,7 +17732,7 @@ AngularToleranc_1010_TypeChoicePair * AngularToleranc_1010_Type::getAngularToler
 void AngularToleranc_1010_Type::setAngularToleranc_1010_TypePair(AngularToleranc_1010_TypeChoicePair * AngularToleranc_1010_TypePairIn)
 {AngularToleranc_1010_TypePair = AngularToleranc_1010_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularToleranc_1010_TypeChoicePair
 
@@ -17831,8 +17755,6 @@ AngularToleranc_1010_TypeChoicePair::~AngularToleranc_1010_TypeChoicePair()
     delete AngularToleranc_1010_TypeValue.AngularToleranc_1030;
   else if (AngularToleranc_1010_TypeType == MinValueE)
     delete AngularToleranc_1010_TypeValue.MinValue;
-  else if (AngularToleranc_1010_TypeType == DefinitionIdE)
-    delete AngularToleranc_1010_TypeValue.DefinitionId;
   #endif
 }
 
@@ -17849,260 +17771,338 @@ void AngularToleranc_1010_TypeChoicePair::printSelf(FILE * outFile)
       AngularToleranc_1010_TypeValue.MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
-  else if (AngularToleranc_1010_TypeType == DefinitionIdE)
+}
+
+/* ***************************************************************** */
+
+/* class AngularToleranc_1011_Type
+
+*/
+
+AngularToleranc_1011_Type::AngularToleranc_1011_Type()
+{
+  AngularToleranc_1011_TypePair = 0;
+}
+
+AngularToleranc_1011_Type::AngularToleranc_1011_Type(
+ AngularToleranc_1011_TypeChoicePair * AngularToleranc_1011_TypePairIn)
+{
+  AngularToleranc_1011_TypePair = AngularToleranc_1011_TypePairIn;
+}
+
+AngularToleranc_1011_Type::~AngularToleranc_1011_Type()
+{
+  #ifndef NODESTRUCT
+  delete AngularToleranc_1011_TypePair;
+  #endif
+}
+
+void AngularToleranc_1011_Type::printSelf(FILE * outFile)
+{
+  AngularToleranc_1011_TypePair->printSelf(outFile);
+}
+
+AngularToleranc_1011_TypeChoicePair * AngularToleranc_1011_Type::getAngularToleranc_1011_TypePair()
+{return AngularToleranc_1011_TypePair;}
+
+void AngularToleranc_1011_Type::setAngularToleranc_1011_TypePair(AngularToleranc_1011_TypeChoicePair * AngularToleranc_1011_TypePairIn)
+{AngularToleranc_1011_TypePair = AngularToleranc_1011_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class AngularToleranc_1011_TypeChoicePair
+
+*/
+
+AngularToleranc_1011_TypeChoicePair::AngularToleranc_1011_TypeChoicePair() {}
+
+AngularToleranc_1011_TypeChoicePair::AngularToleranc_1011_TypeChoicePair(
+ whichOne AngularToleranc_1011_TypeTypeIn,
+ AngularToleranc_1011_TypeVal AngularToleranc_1011_TypeValueIn)
+{
+  AngularToleranc_1011_TypeType = AngularToleranc_1011_TypeTypeIn;
+  AngularToleranc_1011_TypeValue = AngularToleranc_1011_TypeValueIn;
+}
+
+AngularToleranc_1011_TypeChoicePair::~AngularToleranc_1011_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (AngularToleranc_1011_TypeType == AngularToleranc_1031E)
+    delete AngularToleranc_1011_TypeValue.AngularToleranc_1031;
+  else if (AngularToleranc_1011_TypeType == MinValueE)
+    delete AngularToleranc_1011_TypeValue.MinValue;
+  else if (AngularToleranc_1011_TypeType == DefinitionIdE)
+    delete AngularToleranc_1011_TypeValue.DefinitionId;
+  #endif
+}
+
+void AngularToleranc_1011_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (AngularToleranc_1011_TypeType == AngularToleranc_1031E)
+    {
+      AngularToleranc_1011_TypeValue.AngularToleranc_1031->printSelf(outFile);
+    }
+  else if (AngularToleranc_1011_TypeType == MinValueE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinValue");
+      AngularToleranc_1011_TypeValue.MinValue->printSelf(outFile);
+      fprintf(outFile, "</MinValue>\n");
+    }
+  else if (AngularToleranc_1011_TypeType == DefinitionIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DefinitionId");
-      AngularToleranc_1010_TypeValue.DefinitionId->printSelf(outFile);
+      AngularToleranc_1011_TypeValue.DefinitionId->printSelf(outFile);
       fprintf(outFile, "</DefinitionId>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class AreaToleranceTy_1011_Type
-
-*/
-
-AreaToleranceTy_1011_Type::AreaToleranceTy_1011_Type()
-{
-  AreaToleranceTy_1011_TypePair = 0;
-}
-
-AreaToleranceTy_1011_Type::AreaToleranceTy_1011_Type(
- AreaToleranceTy_1011_TypeChoicePair * AreaToleranceTy_1011_TypePairIn)
-{
-  AreaToleranceTy_1011_TypePair = AreaToleranceTy_1011_TypePairIn;
-}
-
-AreaToleranceTy_1011_Type::~AreaToleranceTy_1011_Type()
-{
-  #ifndef NODESTRUCT
-  delete AreaToleranceTy_1011_TypePair;
-  #endif
-}
-
-void AreaToleranceTy_1011_Type::printSelf(FILE * outFile)
-{
-  AreaToleranceTy_1011_TypePair->printSelf(outFile);
-}
-
-AreaToleranceTy_1011_TypeChoicePair * AreaToleranceTy_1011_Type::getAreaToleranceTy_1011_TypePair()
-{return AreaToleranceTy_1011_TypePair;}
-
-void AreaToleranceTy_1011_Type::setAreaToleranceTy_1011_TypePair(AreaToleranceTy_1011_TypeChoicePair * AreaToleranceTy_1011_TypePairIn)
-{AreaToleranceTy_1011_TypePair = AreaToleranceTy_1011_TypePairIn;}
-
-/*********************************************************************/
-
-/* class AreaToleranceTy_1011_TypeChoicePair
+/* class AreaToleranceTy_1012_Type
 
 */
 
-AreaToleranceTy_1011_TypeChoicePair::AreaToleranceTy_1011_TypeChoicePair() {}
-
-AreaToleranceTy_1011_TypeChoicePair::AreaToleranceTy_1011_TypeChoicePair(
- whichOne AreaToleranceTy_1011_TypeTypeIn,
- AreaToleranceTy_1011_TypeVal AreaToleranceTy_1011_TypeValueIn)
+AreaToleranceTy_1012_Type::AreaToleranceTy_1012_Type()
 {
-  AreaToleranceTy_1011_TypeType = AreaToleranceTy_1011_TypeTypeIn;
-  AreaToleranceTy_1011_TypeValue = AreaToleranceTy_1011_TypeValueIn;
+  AreaToleranceTy_1012_TypePair = 0;
 }
 
-AreaToleranceTy_1011_TypeChoicePair::~AreaToleranceTy_1011_TypeChoicePair()
+AreaToleranceTy_1012_Type::AreaToleranceTy_1012_Type(
+ AreaToleranceTy_1012_TypeChoicePair * AreaToleranceTy_1012_TypePairIn)
+{
+  AreaToleranceTy_1012_TypePair = AreaToleranceTy_1012_TypePairIn;
+}
+
+AreaToleranceTy_1012_Type::~AreaToleranceTy_1012_Type()
 {
   #ifndef NODESTRUCT
-  if (AreaToleranceTy_1011_TypeType == AreaToleranceTy_1031E)
-    delete AreaToleranceTy_1011_TypeValue.AreaToleranceTy_1031;
-  else if (AreaToleranceTy_1011_TypeType == MinValueE)
-    delete AreaToleranceTy_1011_TypeValue.MinValue;
+  delete AreaToleranceTy_1012_TypePair;
   #endif
 }
 
-void AreaToleranceTy_1011_TypeChoicePair::printSelf(FILE * outFile)
+void AreaToleranceTy_1012_Type::printSelf(FILE * outFile)
 {
-  if (AreaToleranceTy_1011_TypeType == AreaToleranceTy_1031E)
+  AreaToleranceTy_1012_TypePair->printSelf(outFile);
+}
+
+AreaToleranceTy_1012_TypeChoicePair * AreaToleranceTy_1012_Type::getAreaToleranceTy_1012_TypePair()
+{return AreaToleranceTy_1012_TypePair;}
+
+void AreaToleranceTy_1012_Type::setAreaToleranceTy_1012_TypePair(AreaToleranceTy_1012_TypeChoicePair * AreaToleranceTy_1012_TypePairIn)
+{AreaToleranceTy_1012_TypePair = AreaToleranceTy_1012_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class AreaToleranceTy_1012_TypeChoicePair
+
+*/
+
+AreaToleranceTy_1012_TypeChoicePair::AreaToleranceTy_1012_TypeChoicePair() {}
+
+AreaToleranceTy_1012_TypeChoicePair::AreaToleranceTy_1012_TypeChoicePair(
+ whichOne AreaToleranceTy_1012_TypeTypeIn,
+ AreaToleranceTy_1012_TypeVal AreaToleranceTy_1012_TypeValueIn)
+{
+  AreaToleranceTy_1012_TypeType = AreaToleranceTy_1012_TypeTypeIn;
+  AreaToleranceTy_1012_TypeValue = AreaToleranceTy_1012_TypeValueIn;
+}
+
+AreaToleranceTy_1012_TypeChoicePair::~AreaToleranceTy_1012_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (AreaToleranceTy_1012_TypeType == AreaToleranceTy_1032E)
+    delete AreaToleranceTy_1012_TypeValue.AreaToleranceTy_1032;
+  else if (AreaToleranceTy_1012_TypeType == MinValueE)
+    delete AreaToleranceTy_1012_TypeValue.MinValue;
+  #endif
+}
+
+void AreaToleranceTy_1012_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (AreaToleranceTy_1012_TypeType == AreaToleranceTy_1032E)
     {
-      AreaToleranceTy_1011_TypeValue.AreaToleranceTy_1031->printSelf(outFile);
+      AreaToleranceTy_1012_TypeValue.AreaToleranceTy_1032->printSelf(outFile);
     }
-  else if (AreaToleranceTy_1011_TypeType == MinValueE)
+  else if (AreaToleranceTy_1012_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      AreaToleranceTy_1011_TypeValue.MinValue->printSelf(outFile);
+      AreaToleranceTy_1012_TypeValue.MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class DatumWithPreced_1012_Type
-
-*/
-
-DatumWithPreced_1012_Type::DatumWithPreced_1012_Type()
-{
-  DatumWithPreced_1012_TypePair = 0;
-}
-
-DatumWithPreced_1012_Type::DatumWithPreced_1012_Type(
- DatumWithPreced_1012_TypeChoicePair * DatumWithPreced_1012_TypePairIn)
-{
-  DatumWithPreced_1012_TypePair = DatumWithPreced_1012_TypePairIn;
-}
-
-DatumWithPreced_1012_Type::~DatumWithPreced_1012_Type()
-{
-  #ifndef NODESTRUCT
-  delete DatumWithPreced_1012_TypePair;
-  #endif
-}
-
-void DatumWithPreced_1012_Type::printSelf(FILE * outFile)
-{
-  DatumWithPreced_1012_TypePair->printSelf(outFile);
-}
-
-DatumWithPreced_1012_TypeChoicePair * DatumWithPreced_1012_Type::getDatumWithPreced_1012_TypePair()
-{return DatumWithPreced_1012_TypePair;}
-
-void DatumWithPreced_1012_Type::setDatumWithPreced_1012_TypePair(DatumWithPreced_1012_TypeChoicePair * DatumWithPreced_1012_TypePairIn)
-{DatumWithPreced_1012_TypePair = DatumWithPreced_1012_TypePairIn;}
-
-/*********************************************************************/
-
-/* class DatumWithPreced_1012_TypeChoicePair
+/* class DatumWithPreced_1013_Type
 
 */
 
-DatumWithPreced_1012_TypeChoicePair::DatumWithPreced_1012_TypeChoicePair() {}
-
-DatumWithPreced_1012_TypeChoicePair::DatumWithPreced_1012_TypeChoicePair(
- whichOne DatumWithPreced_1012_TypeTypeIn,
- DatumWithPreced_1012_TypeVal DatumWithPreced_1012_TypeValueIn)
+DatumWithPreced_1013_Type::DatumWithPreced_1013_Type()
 {
-  DatumWithPreced_1012_TypeType = DatumWithPreced_1012_TypeTypeIn;
-  DatumWithPreced_1012_TypeValue = DatumWithPreced_1012_TypeValueIn;
+  DatumWithPreced_1013_TypePair = 0;
 }
 
-DatumWithPreced_1012_TypeChoicePair::~DatumWithPreced_1012_TypeChoicePair()
+DatumWithPreced_1013_Type::DatumWithPreced_1013_Type(
+ DatumWithPreced_1013_TypeChoicePair * DatumWithPreced_1013_TypePairIn)
+{
+  DatumWithPreced_1013_TypePair = DatumWithPreced_1013_TypePairIn;
+}
+
+DatumWithPreced_1013_Type::~DatumWithPreced_1013_Type()
 {
   #ifndef NODESTRUCT
-  if (DatumWithPreced_1012_TypeType == SimpleDatumE)
-    delete DatumWithPreced_1012_TypeValue.SimpleDatum;
-  else if (DatumWithPreced_1012_TypeType == NominalDatumFeatureE)
-    delete DatumWithPreced_1012_TypeValue.NominalDatumFeature;
-  else if (DatumWithPreced_1012_TypeType == MeasuredDatumFeatureE)
-    delete DatumWithPreced_1012_TypeValue.MeasuredDatumFeature;
-  else if (DatumWithPreced_1012_TypeType == CompoundDatumE)
-    delete DatumWithPreced_1012_TypeValue.CompoundDatum;
+  delete DatumWithPreced_1013_TypePair;
   #endif
 }
 
-void DatumWithPreced_1012_TypeChoicePair::printSelf(FILE * outFile)
+void DatumWithPreced_1013_Type::printSelf(FILE * outFile)
 {
-  if (DatumWithPreced_1012_TypeType == SimpleDatumE)
+  DatumWithPreced_1013_TypePair->printSelf(outFile);
+}
+
+DatumWithPreced_1013_TypeChoicePair * DatumWithPreced_1013_Type::getDatumWithPreced_1013_TypePair()
+{return DatumWithPreced_1013_TypePair;}
+
+void DatumWithPreced_1013_Type::setDatumWithPreced_1013_TypePair(DatumWithPreced_1013_TypeChoicePair * DatumWithPreced_1013_TypePairIn)
+{DatumWithPreced_1013_TypePair = DatumWithPreced_1013_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class DatumWithPreced_1013_TypeChoicePair
+
+*/
+
+DatumWithPreced_1013_TypeChoicePair::DatumWithPreced_1013_TypeChoicePair() {}
+
+DatumWithPreced_1013_TypeChoicePair::DatumWithPreced_1013_TypeChoicePair(
+ whichOne DatumWithPreced_1013_TypeTypeIn,
+ DatumWithPreced_1013_TypeVal DatumWithPreced_1013_TypeValueIn)
+{
+  DatumWithPreced_1013_TypeType = DatumWithPreced_1013_TypeTypeIn;
+  DatumWithPreced_1013_TypeValue = DatumWithPreced_1013_TypeValueIn;
+}
+
+DatumWithPreced_1013_TypeChoicePair::~DatumWithPreced_1013_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (DatumWithPreced_1013_TypeType == SimpleDatumE)
+    delete DatumWithPreced_1013_TypeValue.SimpleDatum;
+  else if (DatumWithPreced_1013_TypeType == NominalDatumFeatureE)
+    delete DatumWithPreced_1013_TypeValue.NominalDatumFeature;
+  else if (DatumWithPreced_1013_TypeType == MeasuredDatumFeatureE)
+    delete DatumWithPreced_1013_TypeValue.MeasuredDatumFeature;
+  else if (DatumWithPreced_1013_TypeType == CompoundDatumE)
+    delete DatumWithPreced_1013_TypeValue.CompoundDatum;
+  #endif
+}
+
+void DatumWithPreced_1013_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (DatumWithPreced_1013_TypeType == SimpleDatumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SimpleDatum");
-      DatumWithPreced_1012_TypeValue.SimpleDatum->printSelf(outFile);
+      DatumWithPreced_1013_TypeValue.SimpleDatum->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</SimpleDatum>\n");
     }
-  else if (DatumWithPreced_1012_TypeType == NominalDatumFeatureE)
+  else if (DatumWithPreced_1013_TypeType == NominalDatumFeatureE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NominalDatumFeature");
-      DatumWithPreced_1012_TypeValue.NominalDatumFeature->printSelf(outFile);
+      DatumWithPreced_1013_TypeValue.NominalDatumFeature->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</NominalDatumFeature>\n");
     }
-  else if (DatumWithPreced_1012_TypeType == MeasuredDatumFeatureE)
+  else if (DatumWithPreced_1013_TypeType == MeasuredDatumFeatureE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MeasuredDatumFeature");
-      DatumWithPreced_1012_TypeValue.MeasuredDatumFeature->printSelf(outFile);
+      DatumWithPreced_1013_TypeValue.MeasuredDatumFeature->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MeasuredDatumFeature>\n");
     }
-  else if (DatumWithPreced_1012_TypeType == CompoundDatumE)
+  else if (DatumWithPreced_1013_TypeType == CompoundDatumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CompoundDatum");
-      DatumWithPreced_1012_TypeValue.CompoundDatum->printSelf(outFile);
+      DatumWithPreced_1013_TypeValue.CompoundDatum->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</CompoundDatum>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class DegreesOfFreedo_1013_Type
-
-*/
-
-DegreesOfFreedo_1013_Type::DegreesOfFreedo_1013_Type()
-{
-  DegreesOfFreedo_1013_TypePair = 0;
-}
-
-DegreesOfFreedo_1013_Type::DegreesOfFreedo_1013_Type(
- DegreesOfFreedo_1013_TypeChoicePair * DegreesOfFreedo_1013_TypePairIn)
-{
-  DegreesOfFreedo_1013_TypePair = DegreesOfFreedo_1013_TypePairIn;
-}
-
-DegreesOfFreedo_1013_Type::~DegreesOfFreedo_1013_Type()
-{
-  #ifndef NODESTRUCT
-  delete DegreesOfFreedo_1013_TypePair;
-  #endif
-}
-
-void DegreesOfFreedo_1013_Type::printSelf(FILE * outFile)
-{
-  DegreesOfFreedo_1013_TypePair->printSelf(outFile);
-}
-
-DegreesOfFreedo_1013_TypeChoicePair * DegreesOfFreedo_1013_Type::getDegreesOfFreedo_1013_TypePair()
-{return DegreesOfFreedo_1013_TypePair;}
-
-void DegreesOfFreedo_1013_Type::setDegreesOfFreedo_1013_TypePair(DegreesOfFreedo_1013_TypeChoicePair * DegreesOfFreedo_1013_TypePairIn)
-{DegreesOfFreedo_1013_TypePair = DegreesOfFreedo_1013_TypePairIn;}
-
-/*********************************************************************/
-
-/* class DegreesOfFreedo_1013_TypeChoicePair
+/* class DegreesOfFreedo_1014_Type
 
 */
 
-DegreesOfFreedo_1013_TypeChoicePair::DegreesOfFreedo_1013_TypeChoicePair() {}
-
-DegreesOfFreedo_1013_TypeChoicePair::DegreesOfFreedo_1013_TypeChoicePair(
- whichOne DegreesOfFreedo_1013_TypeTypeIn,
- DegreesOfFreedo_1013_TypeVal DegreesOfFreedo_1013_TypeValueIn)
+DegreesOfFreedo_1014_Type::DegreesOfFreedo_1014_Type()
 {
-  DegreesOfFreedo_1013_TypeType = DegreesOfFreedo_1013_TypeTypeIn;
-  DegreesOfFreedo_1013_TypeValue = DegreesOfFreedo_1013_TypeValueIn;
+  DegreesOfFreedo_1014_TypePair = 0;
 }
 
-DegreesOfFreedo_1013_TypeChoicePair::~DegreesOfFreedo_1013_TypeChoicePair()
+DegreesOfFreedo_1014_Type::DegreesOfFreedo_1014_Type(
+ DegreesOfFreedo_1014_TypeChoicePair * DegreesOfFreedo_1014_TypePairIn)
+{
+  DegreesOfFreedo_1014_TypePair = DegreesOfFreedo_1014_TypePairIn;
+}
+
+DegreesOfFreedo_1014_Type::~DegreesOfFreedo_1014_Type()
 {
   #ifndef NODESTRUCT
-  if (DegreesOfFreedo_1013_TypeType == DegreeOfFreedomE)
-    delete DegreesOfFreedo_1013_TypeValue.DegreeOfFreedom;
-  else if (DegreesOfFreedo_1013_TypeType == ISODegreeOfFreedomE)
-    delete DegreesOfFreedo_1013_TypeValue.ISODegreeOfFreedom;
+  delete DegreesOfFreedo_1014_TypePair;
   #endif
 }
 
-void DegreesOfFreedo_1013_TypeChoicePair::printSelf(FILE * outFile)
+void DegreesOfFreedo_1014_Type::printSelf(FILE * outFile)
 {
-  if (DegreesOfFreedo_1013_TypeType == DegreeOfFreedomE)
+  DegreesOfFreedo_1014_TypePair->printSelf(outFile);
+}
+
+DegreesOfFreedo_1014_TypeChoicePair * DegreesOfFreedo_1014_Type::getDegreesOfFreedo_1014_TypePair()
+{return DegreesOfFreedo_1014_TypePair;}
+
+void DegreesOfFreedo_1014_Type::setDegreesOfFreedo_1014_TypePair(DegreesOfFreedo_1014_TypeChoicePair * DegreesOfFreedo_1014_TypePairIn)
+{DegreesOfFreedo_1014_TypePair = DegreesOfFreedo_1014_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class DegreesOfFreedo_1014_TypeChoicePair
+
+*/
+
+DegreesOfFreedo_1014_TypeChoicePair::DegreesOfFreedo_1014_TypeChoicePair() {}
+
+DegreesOfFreedo_1014_TypeChoicePair::DegreesOfFreedo_1014_TypeChoicePair(
+ whichOne DegreesOfFreedo_1014_TypeTypeIn,
+ DegreesOfFreedo_1014_TypeVal DegreesOfFreedo_1014_TypeValueIn)
+{
+  DegreesOfFreedo_1014_TypeType = DegreesOfFreedo_1014_TypeTypeIn;
+  DegreesOfFreedo_1014_TypeValue = DegreesOfFreedo_1014_TypeValueIn;
+}
+
+DegreesOfFreedo_1014_TypeChoicePair::~DegreesOfFreedo_1014_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (DegreesOfFreedo_1014_TypeType == DegreeOfFreedomE)
+    delete DegreesOfFreedo_1014_TypeValue.DegreeOfFreedom;
+  else if (DegreesOfFreedo_1014_TypeType == ISODegreeOfFreedomE)
+    delete DegreesOfFreedo_1014_TypeValue.ISODegreeOfFreedom;
+  #endif
+}
+
+void DegreesOfFreedo_1014_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (DegreesOfFreedo_1014_TypeType == DegreeOfFreedomE)
     {
       std::list<DegreeOfFreedomEnumType *>::iterator iter;
-      for (iter = DegreesOfFreedo_1013_TypeValue.DegreeOfFreedom->begin();
-           iter != DegreesOfFreedo_1013_TypeValue.DegreeOfFreedom->end();
+      for (iter = DegreesOfFreedo_1014_TypeValue.DegreeOfFreedom->begin();
+           iter != DegreesOfFreedo_1014_TypeValue.DegreeOfFreedom->end();
            iter++)
         {
           doSpaces(0, outFile);
@@ -18111,11 +18111,11 @@ void DegreesOfFreedo_1013_TypeChoicePair::printSelf(FILE * outFile)
           fprintf(outFile, "</DegreeOfFreedom>\n");
         }
     }
-  else if (DegreesOfFreedo_1013_TypeType == ISODegreeOfFreedomE)
+  else if (DegreesOfFreedo_1014_TypeType == ISODegreeOfFreedomE)
     {
       std::list<ISODegreeOfFreedomEnumType *>::iterator iter;
-      for (iter = DegreesOfFreedo_1013_TypeValue.ISODegreeOfFreedom->begin();
-           iter != DegreesOfFreedo_1013_TypeValue.ISODegreeOfFreedom->end();
+      for (iter = DegreesOfFreedo_1014_TypeValue.ISODegreeOfFreedom->begin();
+           iter != DegreesOfFreedo_1014_TypeValue.ISODegreeOfFreedom->end();
            iter++)
         {
           doSpaces(0, outFile);
@@ -18126,239 +18126,163 @@ void DegreesOfFreedo_1013_TypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class DirectionalOffs_1014_Type
-
-*/
-
-DirectionalOffs_1014_Type::DirectionalOffs_1014_Type()
-{
-  DirectionalOffs_1014_TypePair = 0;
-}
-
-DirectionalOffs_1014_Type::DirectionalOffs_1014_Type(
- DirectionalOffs_1014_TypeChoicePair * DirectionalOffs_1014_TypePairIn)
-{
-  DirectionalOffs_1014_TypePair = DirectionalOffs_1014_TypePairIn;
-}
-
-DirectionalOffs_1014_Type::~DirectionalOffs_1014_Type()
-{
-  #ifndef NODESTRUCT
-  delete DirectionalOffs_1014_TypePair;
-  #endif
-}
-
-void DirectionalOffs_1014_Type::printSelf(FILE * outFile)
-{
-  DirectionalOffs_1014_TypePair->printSelf(outFile);
-}
-
-DirectionalOffs_1014_TypeChoicePair * DirectionalOffs_1014_Type::getDirectionalOffs_1014_TypePair()
-{return DirectionalOffs_1014_TypePair;}
-
-void DirectionalOffs_1014_Type::setDirectionalOffs_1014_TypePair(DirectionalOffs_1014_TypeChoicePair * DirectionalOffs_1014_TypePairIn)
-{DirectionalOffs_1014_TypePair = DirectionalOffs_1014_TypePairIn;}
-
-/*********************************************************************/
-
-/* class DirectionalOffs_1014_TypeChoicePair
+/* class DirectionalOffs_1015_Type
 
 */
 
-DirectionalOffs_1014_TypeChoicePair::DirectionalOffs_1014_TypeChoicePair() {}
-
-DirectionalOffs_1014_TypeChoicePair::DirectionalOffs_1014_TypeChoicePair(
- whichOne DirectionalOffs_1014_TypeTypeIn,
- DirectionalOffs_1014_TypeVal DirectionalOffs_1014_TypeValueIn)
+DirectionalOffs_1015_Type::DirectionalOffs_1015_Type()
 {
-  DirectionalOffs_1014_TypeType = DirectionalOffs_1014_TypeTypeIn;
-  DirectionalOffs_1014_TypeValue = DirectionalOffs_1014_TypeValueIn;
+  DirectionalOffs_1015_TypePair = 0;
 }
 
-DirectionalOffs_1014_TypeChoicePair::~DirectionalOffs_1014_TypeChoicePair()
+DirectionalOffs_1015_Type::DirectionalOffs_1015_Type(
+ DirectionalOffs_1015_TypeChoicePair * DirectionalOffs_1015_TypePairIn)
+{
+  DirectionalOffs_1015_TypePair = DirectionalOffs_1015_TypePairIn;
+}
+
+DirectionalOffs_1015_Type::~DirectionalOffs_1015_Type()
 {
   #ifndef NODESTRUCT
-  if (DirectionalOffs_1014_TypeType == NominalDirectionE)
-    delete DirectionalOffs_1014_TypeValue.NominalDirection;
-  else if (DirectionalOffs_1014_TypeType == FeatureDirectionE)
-    delete DirectionalOffs_1014_TypeValue.FeatureDirection;
+  delete DirectionalOffs_1015_TypePair;
   #endif
 }
 
-void DirectionalOffs_1014_TypeChoicePair::printSelf(FILE * outFile)
+void DirectionalOffs_1015_Type::printSelf(FILE * outFile)
 {
-  if (DirectionalOffs_1014_TypeType == NominalDirectionE)
+  DirectionalOffs_1015_TypePair->printSelf(outFile);
+}
+
+DirectionalOffs_1015_TypeChoicePair * DirectionalOffs_1015_Type::getDirectionalOffs_1015_TypePair()
+{return DirectionalOffs_1015_TypePair;}
+
+void DirectionalOffs_1015_Type::setDirectionalOffs_1015_TypePair(DirectionalOffs_1015_TypeChoicePair * DirectionalOffs_1015_TypePairIn)
+{DirectionalOffs_1015_TypePair = DirectionalOffs_1015_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class DirectionalOffs_1015_TypeChoicePair
+
+*/
+
+DirectionalOffs_1015_TypeChoicePair::DirectionalOffs_1015_TypeChoicePair() {}
+
+DirectionalOffs_1015_TypeChoicePair::DirectionalOffs_1015_TypeChoicePair(
+ whichOne DirectionalOffs_1015_TypeTypeIn,
+ DirectionalOffs_1015_TypeVal DirectionalOffs_1015_TypeValueIn)
+{
+  DirectionalOffs_1015_TypeType = DirectionalOffs_1015_TypeTypeIn;
+  DirectionalOffs_1015_TypeValue = DirectionalOffs_1015_TypeValueIn;
+}
+
+DirectionalOffs_1015_TypeChoicePair::~DirectionalOffs_1015_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (DirectionalOffs_1015_TypeType == NominalDirectionE)
+    delete DirectionalOffs_1015_TypeValue.NominalDirection;
+  else if (DirectionalOffs_1015_TypeType == FeatureDirectionE)
+    delete DirectionalOffs_1015_TypeValue.FeatureDirection;
+  #endif
+}
+
+void DirectionalOffs_1015_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (DirectionalOffs_1015_TypeType == NominalDirectionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NominalDirection");
-      DirectionalOffs_1014_TypeValue.NominalDirection->printSelf(outFile);
+      DirectionalOffs_1015_TypeValue.NominalDirection->printSelf(outFile);
       fprintf(outFile, "</NominalDirection>\n");
     }
-  else if (DirectionalOffs_1014_TypeType == FeatureDirectionE)
+  else if (DirectionalOffs_1015_TypeType == FeatureDirectionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FeatureDirection");
-      DirectionalOffs_1014_TypeValue.FeatureDirection->printSelf(outFile);
+      DirectionalOffs_1015_TypeValue.FeatureDirection->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FeatureDirection>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class ForceToleranceT_1015_Type
-
-*/
-
-ForceToleranceT_1015_Type::ForceToleranceT_1015_Type()
-{
-  ForceToleranceT_1015_TypePair = 0;
-}
-
-ForceToleranceT_1015_Type::ForceToleranceT_1015_Type(
- ForceToleranceT_1015_TypeChoicePair * ForceToleranceT_1015_TypePairIn)
-{
-  ForceToleranceT_1015_TypePair = ForceToleranceT_1015_TypePairIn;
-}
-
-ForceToleranceT_1015_Type::~ForceToleranceT_1015_Type()
-{
-  #ifndef NODESTRUCT
-  delete ForceToleranceT_1015_TypePair;
-  #endif
-}
-
-void ForceToleranceT_1015_Type::printSelf(FILE * outFile)
-{
-  ForceToleranceT_1015_TypePair->printSelf(outFile);
-}
-
-ForceToleranceT_1015_TypeChoicePair * ForceToleranceT_1015_Type::getForceToleranceT_1015_TypePair()
-{return ForceToleranceT_1015_TypePair;}
-
-void ForceToleranceT_1015_Type::setForceToleranceT_1015_TypePair(ForceToleranceT_1015_TypeChoicePair * ForceToleranceT_1015_TypePairIn)
-{ForceToleranceT_1015_TypePair = ForceToleranceT_1015_TypePairIn;}
-
-/*********************************************************************/
-
-/* class ForceToleranceT_1015_TypeChoicePair
+/* class ForceToleranceT_1016_Type
 
 */
 
-ForceToleranceT_1015_TypeChoicePair::ForceToleranceT_1015_TypeChoicePair() {}
-
-ForceToleranceT_1015_TypeChoicePair::ForceToleranceT_1015_TypeChoicePair(
- whichOne ForceToleranceT_1015_TypeTypeIn,
- ForceToleranceT_1015_TypeVal ForceToleranceT_1015_TypeValueIn)
+ForceToleranceT_1016_Type::ForceToleranceT_1016_Type()
 {
-  ForceToleranceT_1015_TypeType = ForceToleranceT_1015_TypeTypeIn;
-  ForceToleranceT_1015_TypeValue = ForceToleranceT_1015_TypeValueIn;
+  ForceToleranceT_1016_TypePair = 0;
 }
 
-ForceToleranceT_1015_TypeChoicePair::~ForceToleranceT_1015_TypeChoicePair()
+ForceToleranceT_1016_Type::ForceToleranceT_1016_Type(
+ ForceToleranceT_1016_TypeChoicePair * ForceToleranceT_1016_TypePairIn)
+{
+  ForceToleranceT_1016_TypePair = ForceToleranceT_1016_TypePairIn;
+}
+
+ForceToleranceT_1016_Type::~ForceToleranceT_1016_Type()
 {
   #ifndef NODESTRUCT
-  if (ForceToleranceT_1015_TypeType == ForceToleranceT_1032E)
-    delete ForceToleranceT_1015_TypeValue.ForceToleranceT_1032;
-  else if (ForceToleranceT_1015_TypeType == MinValueE)
-    delete ForceToleranceT_1015_TypeValue.MinValue;
+  delete ForceToleranceT_1016_TypePair;
   #endif
 }
 
-void ForceToleranceT_1015_TypeChoicePair::printSelf(FILE * outFile)
+void ForceToleranceT_1016_Type::printSelf(FILE * outFile)
 {
-  if (ForceToleranceT_1015_TypeType == ForceToleranceT_1032E)
+  ForceToleranceT_1016_TypePair->printSelf(outFile);
+}
+
+ForceToleranceT_1016_TypeChoicePair * ForceToleranceT_1016_Type::getForceToleranceT_1016_TypePair()
+{return ForceToleranceT_1016_TypePair;}
+
+void ForceToleranceT_1016_Type::setForceToleranceT_1016_TypePair(ForceToleranceT_1016_TypeChoicePair * ForceToleranceT_1016_TypePairIn)
+{ForceToleranceT_1016_TypePair = ForceToleranceT_1016_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class ForceToleranceT_1016_TypeChoicePair
+
+*/
+
+ForceToleranceT_1016_TypeChoicePair::ForceToleranceT_1016_TypeChoicePair() {}
+
+ForceToleranceT_1016_TypeChoicePair::ForceToleranceT_1016_TypeChoicePair(
+ whichOne ForceToleranceT_1016_TypeTypeIn,
+ ForceToleranceT_1016_TypeVal ForceToleranceT_1016_TypeValueIn)
+{
+  ForceToleranceT_1016_TypeType = ForceToleranceT_1016_TypeTypeIn;
+  ForceToleranceT_1016_TypeValue = ForceToleranceT_1016_TypeValueIn;
+}
+
+ForceToleranceT_1016_TypeChoicePair::~ForceToleranceT_1016_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (ForceToleranceT_1016_TypeType == ForceToleranceT_1033E)
+    delete ForceToleranceT_1016_TypeValue.ForceToleranceT_1033;
+  else if (ForceToleranceT_1016_TypeType == MinValueE)
+    delete ForceToleranceT_1016_TypeValue.MinValue;
+  #endif
+}
+
+void ForceToleranceT_1016_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (ForceToleranceT_1016_TypeType == ForceToleranceT_1033E)
     {
-      ForceToleranceT_1015_TypeValue.ForceToleranceT_1032->printSelf(outFile);
+      ForceToleranceT_1016_TypeValue.ForceToleranceT_1033->printSelf(outFile);
     }
-  else if (ForceToleranceT_1015_TypeType == MinValueE)
+  else if (ForceToleranceT_1016_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      ForceToleranceT_1015_TypeValue.MinValue->printSelf(outFile);
+      ForceToleranceT_1016_TypeValue.MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
 
-/*********************************************************************/
-
-/* class LinearTolerance_1016_Type
-
-*/
-
-LinearTolerance_1016_Type::LinearTolerance_1016_Type()
-{
-  LinearTolerance_1016_TypePair = 0;
-}
-
-LinearTolerance_1016_Type::LinearTolerance_1016_Type(
- LinearTolerance_1016_TypeChoicePair * LinearTolerance_1016_TypePairIn)
-{
-  LinearTolerance_1016_TypePair = LinearTolerance_1016_TypePairIn;
-}
-
-LinearTolerance_1016_Type::~LinearTolerance_1016_Type()
-{
-  #ifndef NODESTRUCT
-  delete LinearTolerance_1016_TypePair;
-  #endif
-}
-
-void LinearTolerance_1016_Type::printSelf(FILE * outFile)
-{
-  LinearTolerance_1016_TypePair->printSelf(outFile);
-}
-
-LinearTolerance_1016_TypeChoicePair * LinearTolerance_1016_Type::getLinearTolerance_1016_TypePair()
-{return LinearTolerance_1016_TypePair;}
-
-void LinearTolerance_1016_Type::setLinearTolerance_1016_TypePair(LinearTolerance_1016_TypeChoicePair * LinearTolerance_1016_TypePairIn)
-{LinearTolerance_1016_TypePair = LinearTolerance_1016_TypePairIn;}
-
-/*********************************************************************/
-
-/* class LinearTolerance_1016_TypeChoicePair
-
-*/
-
-LinearTolerance_1016_TypeChoicePair::LinearTolerance_1016_TypeChoicePair() {}
-
-LinearTolerance_1016_TypeChoicePair::LinearTolerance_1016_TypeChoicePair(
- whichOne LinearTolerance_1016_TypeTypeIn,
- LinearTolerance_1016_TypeVal LinearTolerance_1016_TypeValueIn)
-{
-  LinearTolerance_1016_TypeType = LinearTolerance_1016_TypeTypeIn;
-  LinearTolerance_1016_TypeValue = LinearTolerance_1016_TypeValueIn;
-}
-
-LinearTolerance_1016_TypeChoicePair::~LinearTolerance_1016_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (LinearTolerance_1016_TypeType == LinearTolerance_1033E)
-    delete LinearTolerance_1016_TypeValue.LinearTolerance_1033;
-  else if (LinearTolerance_1016_TypeType == MinValueE)
-    delete LinearTolerance_1016_TypeValue.MinValue;
-  #endif
-}
-
-void LinearTolerance_1016_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (LinearTolerance_1016_TypeType == LinearTolerance_1033E)
-    {
-      LinearTolerance_1016_TypeValue.LinearTolerance_1033->printSelf(outFile);
-    }
-  else if (LinearTolerance_1016_TypeType == MinValueE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinValue");
-      LinearTolerance_1016_TypeValue.MinValue->printSelf(outFile);
-      fprintf(outFile, "</MinValue>\n");
-    }
-}
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearTolerance_1017_Type
 
@@ -18393,7 +18317,7 @@ LinearTolerance_1017_TypeChoicePair * LinearTolerance_1017_Type::getLinearTolera
 void LinearTolerance_1017_Type::setLinearTolerance_1017_TypePair(LinearTolerance_1017_TypeChoicePair * LinearTolerance_1017_TypePairIn)
 {LinearTolerance_1017_TypePair = LinearTolerance_1017_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearTolerance_1017_TypeChoicePair
 
@@ -18414,10 +18338,8 @@ LinearTolerance_1017_TypeChoicePair::~LinearTolerance_1017_TypeChoicePair()
   #ifndef NODESTRUCT
   if (LinearTolerance_1017_TypeType == LinearTolerance_1034E)
     delete LinearTolerance_1017_TypeValue.LinearTolerance_1034;
-  else if (LinearTolerance_1017_TypeType == LinearTolerance_1035E)
-    delete LinearTolerance_1017_TypeValue.LinearTolerance_1035;
-  else if (LinearTolerance_1017_TypeType == DefinitionIdE)
-    delete LinearTolerance_1017_TypeValue.DefinitionId;
+  else if (LinearTolerance_1017_TypeType == MinValueE)
+    delete LinearTolerance_1017_TypeValue.MinValue;
   #endif
 }
 
@@ -18427,744 +18349,822 @@ void LinearTolerance_1017_TypeChoicePair::printSelf(FILE * outFile)
     {
       LinearTolerance_1017_TypeValue.LinearTolerance_1034->printSelf(outFile);
     }
-  else if (LinearTolerance_1017_TypeType == LinearTolerance_1035E)
+  else if (LinearTolerance_1017_TypeType == MinValueE)
     {
-      LinearTolerance_1017_TypeValue.LinearTolerance_1035->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinValue");
+      LinearTolerance_1017_TypeValue.MinValue->printSelf(outFile);
+      fprintf(outFile, "</MinValue>\n");
     }
-  else if (LinearTolerance_1017_TypeType == DefinitionIdE)
+}
+
+/* ***************************************************************** */
+
+/* class LinearTolerance_1018_Type
+
+*/
+
+LinearTolerance_1018_Type::LinearTolerance_1018_Type()
+{
+  LinearTolerance_1018_TypePair = 0;
+}
+
+LinearTolerance_1018_Type::LinearTolerance_1018_Type(
+ LinearTolerance_1018_TypeChoicePair * LinearTolerance_1018_TypePairIn)
+{
+  LinearTolerance_1018_TypePair = LinearTolerance_1018_TypePairIn;
+}
+
+LinearTolerance_1018_Type::~LinearTolerance_1018_Type()
+{
+  #ifndef NODESTRUCT
+  delete LinearTolerance_1018_TypePair;
+  #endif
+}
+
+void LinearTolerance_1018_Type::printSelf(FILE * outFile)
+{
+  LinearTolerance_1018_TypePair->printSelf(outFile);
+}
+
+LinearTolerance_1018_TypeChoicePair * LinearTolerance_1018_Type::getLinearTolerance_1018_TypePair()
+{return LinearTolerance_1018_TypePair;}
+
+void LinearTolerance_1018_Type::setLinearTolerance_1018_TypePair(LinearTolerance_1018_TypeChoicePair * LinearTolerance_1018_TypePairIn)
+{LinearTolerance_1018_TypePair = LinearTolerance_1018_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class LinearTolerance_1018_TypeChoicePair
+
+*/
+
+LinearTolerance_1018_TypeChoicePair::LinearTolerance_1018_TypeChoicePair() {}
+
+LinearTolerance_1018_TypeChoicePair::LinearTolerance_1018_TypeChoicePair(
+ whichOne LinearTolerance_1018_TypeTypeIn,
+ LinearTolerance_1018_TypeVal LinearTolerance_1018_TypeValueIn)
+{
+  LinearTolerance_1018_TypeType = LinearTolerance_1018_TypeTypeIn;
+  LinearTolerance_1018_TypeValue = LinearTolerance_1018_TypeValueIn;
+}
+
+LinearTolerance_1018_TypeChoicePair::~LinearTolerance_1018_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (LinearTolerance_1018_TypeType == LinearTolerance_1035E)
+    delete LinearTolerance_1018_TypeValue.LinearTolerance_1035;
+  else if (LinearTolerance_1018_TypeType == LinearTolerance_1036E)
+    delete LinearTolerance_1018_TypeValue.LinearTolerance_1036;
+  else if (LinearTolerance_1018_TypeType == DefinitionIdE)
+    delete LinearTolerance_1018_TypeValue.DefinitionId;
+  #endif
+}
+
+void LinearTolerance_1018_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (LinearTolerance_1018_TypeType == LinearTolerance_1035E)
+    {
+      LinearTolerance_1018_TypeValue.LinearTolerance_1035->printSelf(outFile);
+    }
+  else if (LinearTolerance_1018_TypeType == LinearTolerance_1036E)
+    {
+      LinearTolerance_1018_TypeValue.LinearTolerance_1036->printSelf(outFile);
+    }
+  else if (LinearTolerance_1018_TypeType == DefinitionIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DefinitionId");
-      LinearTolerance_1017_TypeValue.DefinitionId->printSelf(outFile);
+      LinearTolerance_1018_TypeValue.DefinitionId->printSelf(outFile);
       fprintf(outFile, "</DefinitionId>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class MassToleranceTy_1018_Type
-
-*/
-
-MassToleranceTy_1018_Type::MassToleranceTy_1018_Type()
-{
-  MassToleranceTy_1018_TypePair = 0;
-}
-
-MassToleranceTy_1018_Type::MassToleranceTy_1018_Type(
- MassToleranceTy_1018_TypeChoicePair * MassToleranceTy_1018_TypePairIn)
-{
-  MassToleranceTy_1018_TypePair = MassToleranceTy_1018_TypePairIn;
-}
-
-MassToleranceTy_1018_Type::~MassToleranceTy_1018_Type()
-{
-  #ifndef NODESTRUCT
-  delete MassToleranceTy_1018_TypePair;
-  #endif
-}
-
-void MassToleranceTy_1018_Type::printSelf(FILE * outFile)
-{
-  MassToleranceTy_1018_TypePair->printSelf(outFile);
-}
-
-MassToleranceTy_1018_TypeChoicePair * MassToleranceTy_1018_Type::getMassToleranceTy_1018_TypePair()
-{return MassToleranceTy_1018_TypePair;}
-
-void MassToleranceTy_1018_Type::setMassToleranceTy_1018_TypePair(MassToleranceTy_1018_TypeChoicePair * MassToleranceTy_1018_TypePairIn)
-{MassToleranceTy_1018_TypePair = MassToleranceTy_1018_TypePairIn;}
-
-/*********************************************************************/
-
-/* class MassToleranceTy_1018_TypeChoicePair
+/* class MassToleranceTy_1019_Type
 
 */
 
-MassToleranceTy_1018_TypeChoicePair::MassToleranceTy_1018_TypeChoicePair() {}
-
-MassToleranceTy_1018_TypeChoicePair::MassToleranceTy_1018_TypeChoicePair(
- whichOne MassToleranceTy_1018_TypeTypeIn,
- MassToleranceTy_1018_TypeVal MassToleranceTy_1018_TypeValueIn)
+MassToleranceTy_1019_Type::MassToleranceTy_1019_Type()
 {
-  MassToleranceTy_1018_TypeType = MassToleranceTy_1018_TypeTypeIn;
-  MassToleranceTy_1018_TypeValue = MassToleranceTy_1018_TypeValueIn;
+  MassToleranceTy_1019_TypePair = 0;
 }
 
-MassToleranceTy_1018_TypeChoicePair::~MassToleranceTy_1018_TypeChoicePair()
+MassToleranceTy_1019_Type::MassToleranceTy_1019_Type(
+ MassToleranceTy_1019_TypeChoicePair * MassToleranceTy_1019_TypePairIn)
+{
+  MassToleranceTy_1019_TypePair = MassToleranceTy_1019_TypePairIn;
+}
+
+MassToleranceTy_1019_Type::~MassToleranceTy_1019_Type()
 {
   #ifndef NODESTRUCT
-  if (MassToleranceTy_1018_TypeType == MassToleranceTy_1036E)
-    delete MassToleranceTy_1018_TypeValue.MassToleranceTy_1036;
-  else if (MassToleranceTy_1018_TypeType == MinValueE)
-    delete MassToleranceTy_1018_TypeValue.MinValue;
+  delete MassToleranceTy_1019_TypePair;
   #endif
 }
 
-void MassToleranceTy_1018_TypeChoicePair::printSelf(FILE * outFile)
+void MassToleranceTy_1019_Type::printSelf(FILE * outFile)
 {
-  if (MassToleranceTy_1018_TypeType == MassToleranceTy_1036E)
+  MassToleranceTy_1019_TypePair->printSelf(outFile);
+}
+
+MassToleranceTy_1019_TypeChoicePair * MassToleranceTy_1019_Type::getMassToleranceTy_1019_TypePair()
+{return MassToleranceTy_1019_TypePair;}
+
+void MassToleranceTy_1019_Type::setMassToleranceTy_1019_TypePair(MassToleranceTy_1019_TypeChoicePair * MassToleranceTy_1019_TypePairIn)
+{MassToleranceTy_1019_TypePair = MassToleranceTy_1019_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class MassToleranceTy_1019_TypeChoicePair
+
+*/
+
+MassToleranceTy_1019_TypeChoicePair::MassToleranceTy_1019_TypeChoicePair() {}
+
+MassToleranceTy_1019_TypeChoicePair::MassToleranceTy_1019_TypeChoicePair(
+ whichOne MassToleranceTy_1019_TypeTypeIn,
+ MassToleranceTy_1019_TypeVal MassToleranceTy_1019_TypeValueIn)
+{
+  MassToleranceTy_1019_TypeType = MassToleranceTy_1019_TypeTypeIn;
+  MassToleranceTy_1019_TypeValue = MassToleranceTy_1019_TypeValueIn;
+}
+
+MassToleranceTy_1019_TypeChoicePair::~MassToleranceTy_1019_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (MassToleranceTy_1019_TypeType == MassToleranceTy_1037E)
+    delete MassToleranceTy_1019_TypeValue.MassToleranceTy_1037;
+  else if (MassToleranceTy_1019_TypeType == MinValueE)
+    delete MassToleranceTy_1019_TypeValue.MinValue;
+  #endif
+}
+
+void MassToleranceTy_1019_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (MassToleranceTy_1019_TypeType == MassToleranceTy_1037E)
     {
-      MassToleranceTy_1018_TypeValue.MassToleranceTy_1036->printSelf(outFile);
+      MassToleranceTy_1019_TypeValue.MassToleranceTy_1037->printSelf(outFile);
     }
-  else if (MassToleranceTy_1018_TypeType == MinValueE)
+  else if (MassToleranceTy_1019_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      MassToleranceTy_1018_TypeValue.MinValue->printSelf(outFile);
+      MassToleranceTy_1019_TypeValue.MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class MaterialType_1019_Type
+/* class MaterialType_1020_Type
 
 */
 
-MaterialType_1019_Type::MaterialType_1019_Type()
+MaterialType_1020_Type::MaterialType_1020_Type()
 {
-  MaterialType_1019_TypePair = 0;
+  MaterialType_1020_TypePair = 0;
 }
 
-MaterialType_1019_Type::MaterialType_1019_Type(
- MaterialType_1019_TypeChoicePair * MaterialType_1019_TypePairIn)
+MaterialType_1020_Type::MaterialType_1020_Type(
+ MaterialType_1020_TypeChoicePair * MaterialType_1020_TypePairIn)
 {
-  MaterialType_1019_TypePair = MaterialType_1019_TypePairIn;
+  MaterialType_1020_TypePair = MaterialType_1020_TypePairIn;
 }
 
-MaterialType_1019_Type::~MaterialType_1019_Type()
+MaterialType_1020_Type::~MaterialType_1020_Type()
 {
   #ifndef NODESTRUCT
-  delete MaterialType_1019_TypePair;
+  delete MaterialType_1020_TypePair;
   #endif
 }
 
-void MaterialType_1019_Type::printSelf(FILE * outFile)
+void MaterialType_1020_Type::printSelf(FILE * outFile)
 {
-  if (MaterialType_1019_TypePair)
+  if (MaterialType_1020_TypePair)
     {
-      MaterialType_1019_TypePair->printSelf(outFile);
+      MaterialType_1020_TypePair->printSelf(outFile);
     }
 }
 
-MaterialType_1019_TypeChoicePair * MaterialType_1019_Type::getMaterialType_1019_TypePair()
-{return MaterialType_1019_TypePair;}
+MaterialType_1020_TypeChoicePair * MaterialType_1020_Type::getMaterialType_1020_TypePair()
+{return MaterialType_1020_TypePair;}
 
-void MaterialType_1019_Type::setMaterialType_1019_TypePair(MaterialType_1019_TypeChoicePair * MaterialType_1019_TypePairIn)
-{MaterialType_1019_TypePair = MaterialType_1019_TypePairIn;}
+void MaterialType_1020_Type::setMaterialType_1020_TypePair(MaterialType_1020_TypeChoicePair * MaterialType_1020_TypePairIn)
+{MaterialType_1020_TypePair = MaterialType_1020_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class MaterialType_1019_TypeChoicePair
+/* class MaterialType_1020_TypeChoicePair
 
 */
 
-MaterialType_1019_TypeChoicePair::MaterialType_1019_TypeChoicePair() {}
+MaterialType_1020_TypeChoicePair::MaterialType_1020_TypeChoicePair() {}
 
-MaterialType_1019_TypeChoicePair::MaterialType_1019_TypeChoicePair(
- whichOne MaterialType_1019_TypeTypeIn,
- MaterialType_1019_TypeVal MaterialType_1019_TypeValueIn)
+MaterialType_1020_TypeChoicePair::MaterialType_1020_TypeChoicePair(
+ whichOne MaterialType_1020_TypeTypeIn,
+ MaterialType_1020_TypeVal MaterialType_1020_TypeValueIn)
 {
-  MaterialType_1019_TypeType = MaterialType_1019_TypeTypeIn;
-  MaterialType_1019_TypeValue = MaterialType_1019_TypeValueIn;
+  MaterialType_1020_TypeType = MaterialType_1020_TypeTypeIn;
+  MaterialType_1020_TypeValue = MaterialType_1020_TypeValueIn;
 }
 
-MaterialType_1019_TypeChoicePair::~MaterialType_1019_TypeChoicePair()
+MaterialType_1020_TypeChoicePair::~MaterialType_1020_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (MaterialType_1019_TypeType == MaterialClassEnumE)
-    delete MaterialType_1019_TypeValue.MaterialClassEnum;
-  else if (MaterialType_1019_TypeType == OtherMaterialClassE)
-    delete MaterialType_1019_TypeValue.OtherMaterialClass;
+  if (MaterialType_1020_TypeType == MaterialClassEnumE)
+    delete MaterialType_1020_TypeValue.MaterialClassEnum;
+  else if (MaterialType_1020_TypeType == OtherMaterialClassE)
+    delete MaterialType_1020_TypeValue.OtherMaterialClass;
   #endif
 }
 
-void MaterialType_1019_TypeChoicePair::printSelf(FILE * outFile)
+void MaterialType_1020_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (MaterialType_1019_TypeType == MaterialClassEnumE)
+  if (MaterialType_1020_TypeType == MaterialClassEnumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MaterialClassEnum");
-      MaterialType_1019_TypeValue.MaterialClassEnum->printSelf(outFile);
+      MaterialType_1020_TypeValue.MaterialClassEnum->printSelf(outFile);
       fprintf(outFile, "</MaterialClassEnum>\n");
     }
-  else if (MaterialType_1019_TypeType == OtherMaterialClassE)
+  else if (MaterialType_1020_TypeType == OtherMaterialClassE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherMaterialClass");
-      MaterialType_1019_TypeValue.OtherMaterialClass->printSelf(outFile);
+      MaterialType_1020_TypeValue.OtherMaterialClass->printSelf(outFile);
       fprintf(outFile, "</OtherMaterialClass>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class PressureToleran_1020_Type
-
-*/
-
-PressureToleran_1020_Type::PressureToleran_1020_Type()
-{
-  PressureToleran_1020_TypePair = 0;
-}
-
-PressureToleran_1020_Type::PressureToleran_1020_Type(
- PressureToleran_1020_TypeChoicePair * PressureToleran_1020_TypePairIn)
-{
-  PressureToleran_1020_TypePair = PressureToleran_1020_TypePairIn;
-}
-
-PressureToleran_1020_Type::~PressureToleran_1020_Type()
-{
-  #ifndef NODESTRUCT
-  delete PressureToleran_1020_TypePair;
-  #endif
-}
-
-void PressureToleran_1020_Type::printSelf(FILE * outFile)
-{
-  PressureToleran_1020_TypePair->printSelf(outFile);
-}
-
-PressureToleran_1020_TypeChoicePair * PressureToleran_1020_Type::getPressureToleran_1020_TypePair()
-{return PressureToleran_1020_TypePair;}
-
-void PressureToleran_1020_Type::setPressureToleran_1020_TypePair(PressureToleran_1020_TypeChoicePair * PressureToleran_1020_TypePairIn)
-{PressureToleran_1020_TypePair = PressureToleran_1020_TypePairIn;}
-
-/*********************************************************************/
-
-/* class PressureToleran_1020_TypeChoicePair
+/* class PressureToleran_1021_Type
 
 */
 
-PressureToleran_1020_TypeChoicePair::PressureToleran_1020_TypeChoicePair() {}
-
-PressureToleran_1020_TypeChoicePair::PressureToleran_1020_TypeChoicePair(
- whichOne PressureToleran_1020_TypeTypeIn,
- PressureToleran_1020_TypeVal PressureToleran_1020_TypeValueIn)
+PressureToleran_1021_Type::PressureToleran_1021_Type()
 {
-  PressureToleran_1020_TypeType = PressureToleran_1020_TypeTypeIn;
-  PressureToleran_1020_TypeValue = PressureToleran_1020_TypeValueIn;
+  PressureToleran_1021_TypePair = 0;
 }
 
-PressureToleran_1020_TypeChoicePair::~PressureToleran_1020_TypeChoicePair()
+PressureToleran_1021_Type::PressureToleran_1021_Type(
+ PressureToleran_1021_TypeChoicePair * PressureToleran_1021_TypePairIn)
+{
+  PressureToleran_1021_TypePair = PressureToleran_1021_TypePairIn;
+}
+
+PressureToleran_1021_Type::~PressureToleran_1021_Type()
 {
   #ifndef NODESTRUCT
-  if (PressureToleran_1020_TypeType == PressureToleran_1037E)
-    delete PressureToleran_1020_TypeValue.PressureToleran_1037;
-  else if (PressureToleran_1020_TypeType == MinValueE)
-    delete PressureToleran_1020_TypeValue.MinValue;
+  delete PressureToleran_1021_TypePair;
   #endif
 }
 
-void PressureToleran_1020_TypeChoicePair::printSelf(FILE * outFile)
+void PressureToleran_1021_Type::printSelf(FILE * outFile)
 {
-  if (PressureToleran_1020_TypeType == PressureToleran_1037E)
+  PressureToleran_1021_TypePair->printSelf(outFile);
+}
+
+PressureToleran_1021_TypeChoicePair * PressureToleran_1021_Type::getPressureToleran_1021_TypePair()
+{return PressureToleran_1021_TypePair;}
+
+void PressureToleran_1021_Type::setPressureToleran_1021_TypePair(PressureToleran_1021_TypeChoicePair * PressureToleran_1021_TypePairIn)
+{PressureToleran_1021_TypePair = PressureToleran_1021_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class PressureToleran_1021_TypeChoicePair
+
+*/
+
+PressureToleran_1021_TypeChoicePair::PressureToleran_1021_TypeChoicePair() {}
+
+PressureToleran_1021_TypeChoicePair::PressureToleran_1021_TypeChoicePair(
+ whichOne PressureToleran_1021_TypeTypeIn,
+ PressureToleran_1021_TypeVal PressureToleran_1021_TypeValueIn)
+{
+  PressureToleran_1021_TypeType = PressureToleran_1021_TypeTypeIn;
+  PressureToleran_1021_TypeValue = PressureToleran_1021_TypeValueIn;
+}
+
+PressureToleran_1021_TypeChoicePair::~PressureToleran_1021_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (PressureToleran_1021_TypeType == PressureToleran_1038E)
+    delete PressureToleran_1021_TypeValue.PressureToleran_1038;
+  else if (PressureToleran_1021_TypeType == MinValueE)
+    delete PressureToleran_1021_TypeValue.MinValue;
+  #endif
+}
+
+void PressureToleran_1021_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (PressureToleran_1021_TypeType == PressureToleran_1038E)
     {
-      PressureToleran_1020_TypeValue.PressureToleran_1037->printSelf(outFile);
+      PressureToleran_1021_TypeValue.PressureToleran_1038->printSelf(outFile);
     }
-  else if (PressureToleran_1020_TypeType == MinValueE)
+  else if (PressureToleran_1021_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      PressureToleran_1020_TypeValue.MinValue->printSelf(outFile);
+      PressureToleran_1021_TypeValue.MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class SequencedDatumT_1021_Type
-
-*/
-
-SequencedDatumT_1021_Type::SequencedDatumT_1021_Type()
-{
-  SequencedDatumT_1021_TypePair = 0;
-}
-
-SequencedDatumT_1021_Type::SequencedDatumT_1021_Type(
- SequencedDatumT_1021_TypeChoicePair * SequencedDatumT_1021_TypePairIn)
-{
-  SequencedDatumT_1021_TypePair = SequencedDatumT_1021_TypePairIn;
-}
-
-SequencedDatumT_1021_Type::~SequencedDatumT_1021_Type()
-{
-  #ifndef NODESTRUCT
-  delete SequencedDatumT_1021_TypePair;
-  #endif
-}
-
-void SequencedDatumT_1021_Type::printSelf(FILE * outFile)
-{
-  SequencedDatumT_1021_TypePair->printSelf(outFile);
-}
-
-SequencedDatumT_1021_TypeChoicePair * SequencedDatumT_1021_Type::getSequencedDatumT_1021_TypePair()
-{return SequencedDatumT_1021_TypePair;}
-
-void SequencedDatumT_1021_Type::setSequencedDatumT_1021_TypePair(SequencedDatumT_1021_TypeChoicePair * SequencedDatumT_1021_TypePairIn)
-{SequencedDatumT_1021_TypePair = SequencedDatumT_1021_TypePairIn;}
-
-/*********************************************************************/
-
-/* class SequencedDatumT_1021_TypeChoicePair
+/* class SequencedDatumT_1022_Type
 
 */
 
-SequencedDatumT_1021_TypeChoicePair::SequencedDatumT_1021_TypeChoicePair() {}
-
-SequencedDatumT_1021_TypeChoicePair::SequencedDatumT_1021_TypeChoicePair(
- whichOne SequencedDatumT_1021_TypeTypeIn,
- SequencedDatumT_1021_TypeVal SequencedDatumT_1021_TypeValueIn)
+SequencedDatumT_1022_Type::SequencedDatumT_1022_Type()
 {
-  SequencedDatumT_1021_TypeType = SequencedDatumT_1021_TypeTypeIn;
-  SequencedDatumT_1021_TypeValue = SequencedDatumT_1021_TypeValueIn;
+  SequencedDatumT_1022_TypePair = 0;
 }
 
-SequencedDatumT_1021_TypeChoicePair::~SequencedDatumT_1021_TypeChoicePair()
+SequencedDatumT_1022_Type::SequencedDatumT_1022_Type(
+ SequencedDatumT_1022_TypeChoicePair * SequencedDatumT_1022_TypePairIn)
+{
+  SequencedDatumT_1022_TypePair = SequencedDatumT_1022_TypePairIn;
+}
+
+SequencedDatumT_1022_Type::~SequencedDatumT_1022_Type()
 {
   #ifndef NODESTRUCT
-  if (SequencedDatumT_1021_TypeType == SimpleDatumE)
-    delete SequencedDatumT_1021_TypeValue.SimpleDatum;
-  else if (SequencedDatumT_1021_TypeType == CompoundDatumE)
-    delete SequencedDatumT_1021_TypeValue.CompoundDatum;
+  delete SequencedDatumT_1022_TypePair;
   #endif
 }
 
-void SequencedDatumT_1021_TypeChoicePair::printSelf(FILE * outFile)
+void SequencedDatumT_1022_Type::printSelf(FILE * outFile)
 {
-  if (SequencedDatumT_1021_TypeType == SimpleDatumE)
+  SequencedDatumT_1022_TypePair->printSelf(outFile);
+}
+
+SequencedDatumT_1022_TypeChoicePair * SequencedDatumT_1022_Type::getSequencedDatumT_1022_TypePair()
+{return SequencedDatumT_1022_TypePair;}
+
+void SequencedDatumT_1022_Type::setSequencedDatumT_1022_TypePair(SequencedDatumT_1022_TypeChoicePair * SequencedDatumT_1022_TypePairIn)
+{SequencedDatumT_1022_TypePair = SequencedDatumT_1022_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class SequencedDatumT_1022_TypeChoicePair
+
+*/
+
+SequencedDatumT_1022_TypeChoicePair::SequencedDatumT_1022_TypeChoicePair() {}
+
+SequencedDatumT_1022_TypeChoicePair::SequencedDatumT_1022_TypeChoicePair(
+ whichOne SequencedDatumT_1022_TypeTypeIn,
+ SequencedDatumT_1022_TypeVal SequencedDatumT_1022_TypeValueIn)
+{
+  SequencedDatumT_1022_TypeType = SequencedDatumT_1022_TypeTypeIn;
+  SequencedDatumT_1022_TypeValue = SequencedDatumT_1022_TypeValueIn;
+}
+
+SequencedDatumT_1022_TypeChoicePair::~SequencedDatumT_1022_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (SequencedDatumT_1022_TypeType == SimpleDatumE)
+    delete SequencedDatumT_1022_TypeValue.SimpleDatum;
+  else if (SequencedDatumT_1022_TypeType == CompoundDatumE)
+    delete SequencedDatumT_1022_TypeValue.CompoundDatum;
+  #endif
+}
+
+void SequencedDatumT_1022_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (SequencedDatumT_1022_TypeType == SimpleDatumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SimpleDatum");
-      SequencedDatumT_1021_TypeValue.SimpleDatum->printSelf(outFile);
+      SequencedDatumT_1022_TypeValue.SimpleDatum->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</SimpleDatum>\n");
     }
-  else if (SequencedDatumT_1021_TypeType == CompoundDatumE)
+  else if (SequencedDatumT_1022_TypeType == CompoundDatumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CompoundDatum");
-      SequencedDatumT_1021_TypeValue.CompoundDatum->printSelf(outFile);
+      SequencedDatumT_1022_TypeValue.CompoundDatum->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</CompoundDatum>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class SpeedToleranceT_1022_Type
-
-*/
-
-SpeedToleranceT_1022_Type::SpeedToleranceT_1022_Type()
-{
-  SpeedToleranceT_1022_TypePair = 0;
-}
-
-SpeedToleranceT_1022_Type::SpeedToleranceT_1022_Type(
- SpeedToleranceT_1022_TypeChoicePair * SpeedToleranceT_1022_TypePairIn)
-{
-  SpeedToleranceT_1022_TypePair = SpeedToleranceT_1022_TypePairIn;
-}
-
-SpeedToleranceT_1022_Type::~SpeedToleranceT_1022_Type()
-{
-  #ifndef NODESTRUCT
-  delete SpeedToleranceT_1022_TypePair;
-  #endif
-}
-
-void SpeedToleranceT_1022_Type::printSelf(FILE * outFile)
-{
-  SpeedToleranceT_1022_TypePair->printSelf(outFile);
-}
-
-SpeedToleranceT_1022_TypeChoicePair * SpeedToleranceT_1022_Type::getSpeedToleranceT_1022_TypePair()
-{return SpeedToleranceT_1022_TypePair;}
-
-void SpeedToleranceT_1022_Type::setSpeedToleranceT_1022_TypePair(SpeedToleranceT_1022_TypeChoicePair * SpeedToleranceT_1022_TypePairIn)
-{SpeedToleranceT_1022_TypePair = SpeedToleranceT_1022_TypePairIn;}
-
-/*********************************************************************/
-
-/* class SpeedToleranceT_1022_TypeChoicePair
+/* class SpeedToleranceT_1023_Type
 
 */
 
-SpeedToleranceT_1022_TypeChoicePair::SpeedToleranceT_1022_TypeChoicePair() {}
-
-SpeedToleranceT_1022_TypeChoicePair::SpeedToleranceT_1022_TypeChoicePair(
- whichOne SpeedToleranceT_1022_TypeTypeIn,
- SpeedToleranceT_1022_TypeVal SpeedToleranceT_1022_TypeValueIn)
+SpeedToleranceT_1023_Type::SpeedToleranceT_1023_Type()
 {
-  SpeedToleranceT_1022_TypeType = SpeedToleranceT_1022_TypeTypeIn;
-  SpeedToleranceT_1022_TypeValue = SpeedToleranceT_1022_TypeValueIn;
+  SpeedToleranceT_1023_TypePair = 0;
 }
 
-SpeedToleranceT_1022_TypeChoicePair::~SpeedToleranceT_1022_TypeChoicePair()
+SpeedToleranceT_1023_Type::SpeedToleranceT_1023_Type(
+ SpeedToleranceT_1023_TypeChoicePair * SpeedToleranceT_1023_TypePairIn)
+{
+  SpeedToleranceT_1023_TypePair = SpeedToleranceT_1023_TypePairIn;
+}
+
+SpeedToleranceT_1023_Type::~SpeedToleranceT_1023_Type()
 {
   #ifndef NODESTRUCT
-  if (SpeedToleranceT_1022_TypeType == SpeedToleranceT_1038E)
-    delete SpeedToleranceT_1022_TypeValue.SpeedToleranceT_1038;
-  else if (SpeedToleranceT_1022_TypeType == MinValueE)
-    delete SpeedToleranceT_1022_TypeValue.MinValue;
+  delete SpeedToleranceT_1023_TypePair;
   #endif
 }
 
-void SpeedToleranceT_1022_TypeChoicePair::printSelf(FILE * outFile)
+void SpeedToleranceT_1023_Type::printSelf(FILE * outFile)
 {
-  if (SpeedToleranceT_1022_TypeType == SpeedToleranceT_1038E)
+  SpeedToleranceT_1023_TypePair->printSelf(outFile);
+}
+
+SpeedToleranceT_1023_TypeChoicePair * SpeedToleranceT_1023_Type::getSpeedToleranceT_1023_TypePair()
+{return SpeedToleranceT_1023_TypePair;}
+
+void SpeedToleranceT_1023_Type::setSpeedToleranceT_1023_TypePair(SpeedToleranceT_1023_TypeChoicePair * SpeedToleranceT_1023_TypePairIn)
+{SpeedToleranceT_1023_TypePair = SpeedToleranceT_1023_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class SpeedToleranceT_1023_TypeChoicePair
+
+*/
+
+SpeedToleranceT_1023_TypeChoicePair::SpeedToleranceT_1023_TypeChoicePair() {}
+
+SpeedToleranceT_1023_TypeChoicePair::SpeedToleranceT_1023_TypeChoicePair(
+ whichOne SpeedToleranceT_1023_TypeTypeIn,
+ SpeedToleranceT_1023_TypeVal SpeedToleranceT_1023_TypeValueIn)
+{
+  SpeedToleranceT_1023_TypeType = SpeedToleranceT_1023_TypeTypeIn;
+  SpeedToleranceT_1023_TypeValue = SpeedToleranceT_1023_TypeValueIn;
+}
+
+SpeedToleranceT_1023_TypeChoicePair::~SpeedToleranceT_1023_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (SpeedToleranceT_1023_TypeType == SpeedToleranceT_1039E)
+    delete SpeedToleranceT_1023_TypeValue.SpeedToleranceT_1039;
+  else if (SpeedToleranceT_1023_TypeType == MinValueE)
+    delete SpeedToleranceT_1023_TypeValue.MinValue;
+  #endif
+}
+
+void SpeedToleranceT_1023_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (SpeedToleranceT_1023_TypeType == SpeedToleranceT_1039E)
     {
-      SpeedToleranceT_1022_TypeValue.SpeedToleranceT_1038->printSelf(outFile);
+      SpeedToleranceT_1023_TypeValue.SpeedToleranceT_1039->printSelf(outFile);
     }
-  else if (SpeedToleranceT_1022_TypeType == MinValueE)
+  else if (SpeedToleranceT_1023_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      SpeedToleranceT_1022_TypeValue.MinValue->printSelf(outFile);
+      SpeedToleranceT_1023_TypeValue.MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class SubstituteFeatu_1023_Type
-
-*/
-
-SubstituteFeatu_1023_Type::SubstituteFeatu_1023_Type()
-{
-  SubstituteFeatu_1023_TypePair = 0;
-}
-
-SubstituteFeatu_1023_Type::SubstituteFeatu_1023_Type(
- SubstituteFeatu_1023_TypeChoicePair * SubstituteFeatu_1023_TypePairIn)
-{
-  SubstituteFeatu_1023_TypePair = SubstituteFeatu_1023_TypePairIn;
-}
-
-SubstituteFeatu_1023_Type::~SubstituteFeatu_1023_Type()
-{
-  #ifndef NODESTRUCT
-  delete SubstituteFeatu_1023_TypePair;
-  #endif
-}
-
-void SubstituteFeatu_1023_Type::printSelf(FILE * outFile)
-{
-  SubstituteFeatu_1023_TypePair->printSelf(outFile);
-}
-
-SubstituteFeatu_1023_TypeChoicePair * SubstituteFeatu_1023_Type::getSubstituteFeatu_1023_TypePair()
-{return SubstituteFeatu_1023_TypePair;}
-
-void SubstituteFeatu_1023_Type::setSubstituteFeatu_1023_TypePair(SubstituteFeatu_1023_TypeChoicePair * SubstituteFeatu_1023_TypePairIn)
-{SubstituteFeatu_1023_TypePair = SubstituteFeatu_1023_TypePairIn;}
-
-/*********************************************************************/
-
-/* class SubstituteFeatu_1023_TypeChoicePair
+/* class SubstituteFeatu_1024_Type
 
 */
 
-SubstituteFeatu_1023_TypeChoicePair::SubstituteFeatu_1023_TypeChoicePair() {}
-
-SubstituteFeatu_1023_TypeChoicePair::SubstituteFeatu_1023_TypeChoicePair(
- whichOne SubstituteFeatu_1023_TypeTypeIn,
- SubstituteFeatu_1023_TypeVal SubstituteFeatu_1023_TypeValueIn)
+SubstituteFeatu_1024_Type::SubstituteFeatu_1024_Type()
 {
-  SubstituteFeatu_1023_TypeType = SubstituteFeatu_1023_TypeTypeIn;
-  SubstituteFeatu_1023_TypeValue = SubstituteFeatu_1023_TypeValueIn;
+  SubstituteFeatu_1024_TypePair = 0;
 }
 
-SubstituteFeatu_1023_TypeChoicePair::~SubstituteFeatu_1023_TypeChoicePair()
+SubstituteFeatu_1024_Type::SubstituteFeatu_1024_Type(
+ SubstituteFeatu_1024_TypeChoicePair * SubstituteFeatu_1024_TypePairIn)
+{
+  SubstituteFeatu_1024_TypePair = SubstituteFeatu_1024_TypePairIn;
+}
+
+SubstituteFeatu_1024_Type::~SubstituteFeatu_1024_Type()
 {
   #ifndef NODESTRUCT
-  if (SubstituteFeatu_1023_TypeType == SubstituteFeatureAlgorithmEnumE)
-    delete SubstituteFeatu_1023_TypeValue.SubstituteFeatureAlgorithmEnum;
-  else if (SubstituteFeatu_1023_TypeType == SubstituteFeatureAlgorithmIdE)
-    delete SubstituteFeatu_1023_TypeValue.SubstituteFeatureAlgorithmId;
-  else if (SubstituteFeatu_1023_TypeType == OtherSubstituteFeatureAlgorithmE)
-    delete SubstituteFeatu_1023_TypeValue.OtherSubstituteFeatureAlgorithm;
+  delete SubstituteFeatu_1024_TypePair;
   #endif
 }
 
-void SubstituteFeatu_1023_TypeChoicePair::printSelf(FILE * outFile)
+void SubstituteFeatu_1024_Type::printSelf(FILE * outFile)
 {
-  if (SubstituteFeatu_1023_TypeType == SubstituteFeatureAlgorithmEnumE)
+  SubstituteFeatu_1024_TypePair->printSelf(outFile);
+}
+
+SubstituteFeatu_1024_TypeChoicePair * SubstituteFeatu_1024_Type::getSubstituteFeatu_1024_TypePair()
+{return SubstituteFeatu_1024_TypePair;}
+
+void SubstituteFeatu_1024_Type::setSubstituteFeatu_1024_TypePair(SubstituteFeatu_1024_TypeChoicePair * SubstituteFeatu_1024_TypePairIn)
+{SubstituteFeatu_1024_TypePair = SubstituteFeatu_1024_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class SubstituteFeatu_1024_TypeChoicePair
+
+*/
+
+SubstituteFeatu_1024_TypeChoicePair::SubstituteFeatu_1024_TypeChoicePair() {}
+
+SubstituteFeatu_1024_TypeChoicePair::SubstituteFeatu_1024_TypeChoicePair(
+ whichOne SubstituteFeatu_1024_TypeTypeIn,
+ SubstituteFeatu_1024_TypeVal SubstituteFeatu_1024_TypeValueIn)
+{
+  SubstituteFeatu_1024_TypeType = SubstituteFeatu_1024_TypeTypeIn;
+  SubstituteFeatu_1024_TypeValue = SubstituteFeatu_1024_TypeValueIn;
+}
+
+SubstituteFeatu_1024_TypeChoicePair::~SubstituteFeatu_1024_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (SubstituteFeatu_1024_TypeType == SubstituteFeatureAlgorithmEnumE)
+    delete SubstituteFeatu_1024_TypeValue.SubstituteFeatureAlgorithmEnum;
+  else if (SubstituteFeatu_1024_TypeType == SubstituteFeatureAlgorithmIdE)
+    delete SubstituteFeatu_1024_TypeValue.SubstituteFeatureAlgorithmId;
+  else if (SubstituteFeatu_1024_TypeType == OtherSubstituteFeatureAlgorithmE)
+    delete SubstituteFeatu_1024_TypeValue.OtherSubstituteFeatureAlgorithm;
+  #endif
+}
+
+void SubstituteFeatu_1024_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (SubstituteFeatu_1024_TypeType == SubstituteFeatureAlgorithmEnumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SubstituteFeatureAlgorithmEnum");
-      SubstituteFeatu_1023_TypeValue.SubstituteFeatureAlgorithmEnum->printSelf(outFile);
+      SubstituteFeatu_1024_TypeValue.SubstituteFeatureAlgorithmEnum->printSelf(outFile);
       fprintf(outFile, "</SubstituteFeatureAlgorithmEnum>\n");
     }
-  else if (SubstituteFeatu_1023_TypeType == SubstituteFeatureAlgorithmIdE)
+  else if (SubstituteFeatu_1024_TypeType == SubstituteFeatureAlgorithmIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SubstituteFeatureAlgorithmId");
-      SubstituteFeatu_1023_TypeValue.SubstituteFeatureAlgorithmId->printSelf(outFile);
+      SubstituteFeatu_1024_TypeValue.SubstituteFeatureAlgorithmId->printSelf(outFile);
       fprintf(outFile, "</SubstituteFeatureAlgorithmId>\n");
     }
-  else if (SubstituteFeatu_1023_TypeType == OtherSubstituteFeatureAlgorithmE)
+  else if (SubstituteFeatu_1024_TypeType == OtherSubstituteFeatureAlgorithmE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherSubstituteFeatureAlgorithm");
-      SubstituteFeatu_1023_TypeValue.OtherSubstituteFeatureAlgorithm->printSelf(outFile);
+      SubstituteFeatu_1024_TypeValue.OtherSubstituteFeatureAlgorithm->printSelf(outFile);
       fprintf(outFile, "</OtherSubstituteFeatureAlgorithm>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class TemperatureTole_1024_Type
-
-*/
-
-TemperatureTole_1024_Type::TemperatureTole_1024_Type()
-{
-  TemperatureTole_1024_TypePair = 0;
-}
-
-TemperatureTole_1024_Type::TemperatureTole_1024_Type(
- TemperatureTole_1024_TypeChoicePair * TemperatureTole_1024_TypePairIn)
-{
-  TemperatureTole_1024_TypePair = TemperatureTole_1024_TypePairIn;
-}
-
-TemperatureTole_1024_Type::~TemperatureTole_1024_Type()
-{
-  #ifndef NODESTRUCT
-  delete TemperatureTole_1024_TypePair;
-  #endif
-}
-
-void TemperatureTole_1024_Type::printSelf(FILE * outFile)
-{
-  TemperatureTole_1024_TypePair->printSelf(outFile);
-}
-
-TemperatureTole_1024_TypeChoicePair * TemperatureTole_1024_Type::getTemperatureTole_1024_TypePair()
-{return TemperatureTole_1024_TypePair;}
-
-void TemperatureTole_1024_Type::setTemperatureTole_1024_TypePair(TemperatureTole_1024_TypeChoicePair * TemperatureTole_1024_TypePairIn)
-{TemperatureTole_1024_TypePair = TemperatureTole_1024_TypePairIn;}
-
-/*********************************************************************/
-
-/* class TemperatureTole_1024_TypeChoicePair
+/* class TemperatureTole_1025_Type
 
 */
 
-TemperatureTole_1024_TypeChoicePair::TemperatureTole_1024_TypeChoicePair() {}
-
-TemperatureTole_1024_TypeChoicePair::TemperatureTole_1024_TypeChoicePair(
- whichOne TemperatureTole_1024_TypeTypeIn,
- TemperatureTole_1024_TypeVal TemperatureTole_1024_TypeValueIn)
+TemperatureTole_1025_Type::TemperatureTole_1025_Type()
 {
-  TemperatureTole_1024_TypeType = TemperatureTole_1024_TypeTypeIn;
-  TemperatureTole_1024_TypeValue = TemperatureTole_1024_TypeValueIn;
+  TemperatureTole_1025_TypePair = 0;
 }
 
-TemperatureTole_1024_TypeChoicePair::~TemperatureTole_1024_TypeChoicePair()
+TemperatureTole_1025_Type::TemperatureTole_1025_Type(
+ TemperatureTole_1025_TypeChoicePair * TemperatureTole_1025_TypePairIn)
+{
+  TemperatureTole_1025_TypePair = TemperatureTole_1025_TypePairIn;
+}
+
+TemperatureTole_1025_Type::~TemperatureTole_1025_Type()
 {
   #ifndef NODESTRUCT
-  if (TemperatureTole_1024_TypeType == TemperatureTole_1039E)
-    delete TemperatureTole_1024_TypeValue.TemperatureTole_1039;
-  else if (TemperatureTole_1024_TypeType == MinValueE)
-    delete TemperatureTole_1024_TypeValue.MinValue;
+  delete TemperatureTole_1025_TypePair;
   #endif
 }
 
-void TemperatureTole_1024_TypeChoicePair::printSelf(FILE * outFile)
+void TemperatureTole_1025_Type::printSelf(FILE * outFile)
 {
-  if (TemperatureTole_1024_TypeType == TemperatureTole_1039E)
+  TemperatureTole_1025_TypePair->printSelf(outFile);
+}
+
+TemperatureTole_1025_TypeChoicePair * TemperatureTole_1025_Type::getTemperatureTole_1025_TypePair()
+{return TemperatureTole_1025_TypePair;}
+
+void TemperatureTole_1025_Type::setTemperatureTole_1025_TypePair(TemperatureTole_1025_TypeChoicePair * TemperatureTole_1025_TypePairIn)
+{TemperatureTole_1025_TypePair = TemperatureTole_1025_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class TemperatureTole_1025_TypeChoicePair
+
+*/
+
+TemperatureTole_1025_TypeChoicePair::TemperatureTole_1025_TypeChoicePair() {}
+
+TemperatureTole_1025_TypeChoicePair::TemperatureTole_1025_TypeChoicePair(
+ whichOne TemperatureTole_1025_TypeTypeIn,
+ TemperatureTole_1025_TypeVal TemperatureTole_1025_TypeValueIn)
+{
+  TemperatureTole_1025_TypeType = TemperatureTole_1025_TypeTypeIn;
+  TemperatureTole_1025_TypeValue = TemperatureTole_1025_TypeValueIn;
+}
+
+TemperatureTole_1025_TypeChoicePair::~TemperatureTole_1025_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (TemperatureTole_1025_TypeType == TemperatureTole_1040E)
+    delete TemperatureTole_1025_TypeValue.TemperatureTole_1040;
+  else if (TemperatureTole_1025_TypeType == MinValueE)
+    delete TemperatureTole_1025_TypeValue.MinValue;
+  #endif
+}
+
+void TemperatureTole_1025_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (TemperatureTole_1025_TypeType == TemperatureTole_1040E)
     {
-      TemperatureTole_1024_TypeValue.TemperatureTole_1039->printSelf(outFile);
+      TemperatureTole_1025_TypeValue.TemperatureTole_1040->printSelf(outFile);
     }
-  else if (TemperatureTole_1024_TypeType == MinValueE)
+  else if (TemperatureTole_1025_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      TemperatureTole_1024_TypeValue.MinValue->printSelf(outFile);
+      TemperatureTole_1025_TypeValue.MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class TimeToleranceTy_1025_Type
-
-*/
-
-TimeToleranceTy_1025_Type::TimeToleranceTy_1025_Type()
-{
-  TimeToleranceTy_1025_TypePair = 0;
-}
-
-TimeToleranceTy_1025_Type::TimeToleranceTy_1025_Type(
- TimeToleranceTy_1025_TypeChoicePair * TimeToleranceTy_1025_TypePairIn)
-{
-  TimeToleranceTy_1025_TypePair = TimeToleranceTy_1025_TypePairIn;
-}
-
-TimeToleranceTy_1025_Type::~TimeToleranceTy_1025_Type()
-{
-  #ifndef NODESTRUCT
-  delete TimeToleranceTy_1025_TypePair;
-  #endif
-}
-
-void TimeToleranceTy_1025_Type::printSelf(FILE * outFile)
-{
-  TimeToleranceTy_1025_TypePair->printSelf(outFile);
-}
-
-TimeToleranceTy_1025_TypeChoicePair * TimeToleranceTy_1025_Type::getTimeToleranceTy_1025_TypePair()
-{return TimeToleranceTy_1025_TypePair;}
-
-void TimeToleranceTy_1025_Type::setTimeToleranceTy_1025_TypePair(TimeToleranceTy_1025_TypeChoicePair * TimeToleranceTy_1025_TypePairIn)
-{TimeToleranceTy_1025_TypePair = TimeToleranceTy_1025_TypePairIn;}
-
-/*********************************************************************/
-
-/* class TimeToleranceTy_1025_TypeChoicePair
+/* class TimeToleranceTy_1026_Type
 
 */
 
-TimeToleranceTy_1025_TypeChoicePair::TimeToleranceTy_1025_TypeChoicePair() {}
-
-TimeToleranceTy_1025_TypeChoicePair::TimeToleranceTy_1025_TypeChoicePair(
- whichOne TimeToleranceTy_1025_TypeTypeIn,
- TimeToleranceTy_1025_TypeVal TimeToleranceTy_1025_TypeValueIn)
+TimeToleranceTy_1026_Type::TimeToleranceTy_1026_Type()
 {
-  TimeToleranceTy_1025_TypeType = TimeToleranceTy_1025_TypeTypeIn;
-  TimeToleranceTy_1025_TypeValue = TimeToleranceTy_1025_TypeValueIn;
+  TimeToleranceTy_1026_TypePair = 0;
 }
 
-TimeToleranceTy_1025_TypeChoicePair::~TimeToleranceTy_1025_TypeChoicePair()
+TimeToleranceTy_1026_Type::TimeToleranceTy_1026_Type(
+ TimeToleranceTy_1026_TypeChoicePair * TimeToleranceTy_1026_TypePairIn)
+{
+  TimeToleranceTy_1026_TypePair = TimeToleranceTy_1026_TypePairIn;
+}
+
+TimeToleranceTy_1026_Type::~TimeToleranceTy_1026_Type()
 {
   #ifndef NODESTRUCT
-  if (TimeToleranceTy_1025_TypeType == TimeToleranceTy_1040E)
-    delete TimeToleranceTy_1025_TypeValue.TimeToleranceTy_1040;
-  else if (TimeToleranceTy_1025_TypeType == MinValueE)
-    delete TimeToleranceTy_1025_TypeValue.MinValue;
+  delete TimeToleranceTy_1026_TypePair;
   #endif
 }
 
-void TimeToleranceTy_1025_TypeChoicePair::printSelf(FILE * outFile)
+void TimeToleranceTy_1026_Type::printSelf(FILE * outFile)
 {
-  if (TimeToleranceTy_1025_TypeType == TimeToleranceTy_1040E)
+  TimeToleranceTy_1026_TypePair->printSelf(outFile);
+}
+
+TimeToleranceTy_1026_TypeChoicePair * TimeToleranceTy_1026_Type::getTimeToleranceTy_1026_TypePair()
+{return TimeToleranceTy_1026_TypePair;}
+
+void TimeToleranceTy_1026_Type::setTimeToleranceTy_1026_TypePair(TimeToleranceTy_1026_TypeChoicePair * TimeToleranceTy_1026_TypePairIn)
+{TimeToleranceTy_1026_TypePair = TimeToleranceTy_1026_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class TimeToleranceTy_1026_TypeChoicePair
+
+*/
+
+TimeToleranceTy_1026_TypeChoicePair::TimeToleranceTy_1026_TypeChoicePair() {}
+
+TimeToleranceTy_1026_TypeChoicePair::TimeToleranceTy_1026_TypeChoicePair(
+ whichOne TimeToleranceTy_1026_TypeTypeIn,
+ TimeToleranceTy_1026_TypeVal TimeToleranceTy_1026_TypeValueIn)
+{
+  TimeToleranceTy_1026_TypeType = TimeToleranceTy_1026_TypeTypeIn;
+  TimeToleranceTy_1026_TypeValue = TimeToleranceTy_1026_TypeValueIn;
+}
+
+TimeToleranceTy_1026_TypeChoicePair::~TimeToleranceTy_1026_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (TimeToleranceTy_1026_TypeType == TimeToleranceTy_1041E)
+    delete TimeToleranceTy_1026_TypeValue.TimeToleranceTy_1041;
+  else if (TimeToleranceTy_1026_TypeType == MinValueE)
+    delete TimeToleranceTy_1026_TypeValue.MinValue;
+  #endif
+}
+
+void TimeToleranceTy_1026_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (TimeToleranceTy_1026_TypeType == TimeToleranceTy_1041E)
     {
-      TimeToleranceTy_1025_TypeValue.TimeToleranceTy_1040->printSelf(outFile);
+      TimeToleranceTy_1026_TypeValue.TimeToleranceTy_1041->printSelf(outFile);
     }
-  else if (TimeToleranceTy_1025_TypeType == MinValueE)
+  else if (TimeToleranceTy_1026_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      TimeToleranceTy_1025_TypeValue.MinValue->printSelf(outFile);
+      TimeToleranceTy_1026_TypeValue.MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class ToleranceZonePe_1026_Type
-
-*/
-
-ToleranceZonePe_1026_Type::ToleranceZonePe_1026_Type()
-{
-  ToleranceZonePe_1026_TypePair = 0;
-}
-
-ToleranceZonePe_1026_Type::ToleranceZonePe_1026_Type(
- ToleranceZonePe_1026_TypeChoicePair * ToleranceZonePe_1026_TypePairIn)
-{
-  ToleranceZonePe_1026_TypePair = ToleranceZonePe_1026_TypePairIn;
-}
-
-ToleranceZonePe_1026_Type::~ToleranceZonePe_1026_Type()
-{
-  #ifndef NODESTRUCT
-  delete ToleranceZonePe_1026_TypePair;
-  #endif
-}
-
-void ToleranceZonePe_1026_Type::printSelf(FILE * outFile)
-{
-  ToleranceZonePe_1026_TypePair->printSelf(outFile);
-}
-
-ToleranceZonePe_1026_TypeChoicePair * ToleranceZonePe_1026_Type::getToleranceZonePe_1026_TypePair()
-{return ToleranceZonePe_1026_TypePair;}
-
-void ToleranceZonePe_1026_Type::setToleranceZonePe_1026_TypePair(ToleranceZonePe_1026_TypeChoicePair * ToleranceZonePe_1026_TypePairIn)
-{ToleranceZonePe_1026_TypePair = ToleranceZonePe_1026_TypePairIn;}
-
-/*********************************************************************/
-
-/* class ToleranceZonePe_1026_TypeChoicePair
+/* class ToleranceZonePe_1027_Type
 
 */
 
-ToleranceZonePe_1026_TypeChoicePair::ToleranceZonePe_1026_TypeChoicePair() {}
-
-ToleranceZonePe_1026_TypeChoicePair::ToleranceZonePe_1026_TypeChoicePair(
- whichOne ToleranceZonePe_1026_TypeTypeIn,
- ToleranceZonePe_1026_TypeVal ToleranceZonePe_1026_TypeValueIn)
+ToleranceZonePe_1027_Type::ToleranceZonePe_1027_Type()
 {
-  ToleranceZonePe_1026_TypeType = ToleranceZonePe_1026_TypeTypeIn;
-  ToleranceZonePe_1026_TypeValue = ToleranceZonePe_1026_TypeValueIn;
+  ToleranceZonePe_1027_TypePair = 0;
 }
 
-ToleranceZonePe_1026_TypeChoicePair::~ToleranceZonePe_1026_TypeChoicePair()
+ToleranceZonePe_1027_Type::ToleranceZonePe_1027_Type(
+ ToleranceZonePe_1027_TypeChoicePair * ToleranceZonePe_1027_TypePairIn)
+{
+  ToleranceZonePe_1027_TypePair = ToleranceZonePe_1027_TypePairIn;
+}
+
+ToleranceZonePe_1027_Type::~ToleranceZonePe_1027_Type()
 {
   #ifndef NODESTRUCT
-  if (ToleranceZonePe_1026_TypeType == RectangularUnitAreaE)
-    delete ToleranceZonePe_1026_TypeValue.RectangularUnitArea;
-  else if (ToleranceZonePe_1026_TypeType == CircularUnitAreaE)
-    delete ToleranceZonePe_1026_TypeValue.CircularUnitArea;
+  delete ToleranceZonePe_1027_TypePair;
   #endif
 }
 
-void ToleranceZonePe_1026_TypeChoicePair::printSelf(FILE * outFile)
+void ToleranceZonePe_1027_Type::printSelf(FILE * outFile)
 {
-  if (ToleranceZonePe_1026_TypeType == RectangularUnitAreaE)
+  ToleranceZonePe_1027_TypePair->printSelf(outFile);
+}
+
+ToleranceZonePe_1027_TypeChoicePair * ToleranceZonePe_1027_Type::getToleranceZonePe_1027_TypePair()
+{return ToleranceZonePe_1027_TypePair;}
+
+void ToleranceZonePe_1027_Type::setToleranceZonePe_1027_TypePair(ToleranceZonePe_1027_TypeChoicePair * ToleranceZonePe_1027_TypePairIn)
+{ToleranceZonePe_1027_TypePair = ToleranceZonePe_1027_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class ToleranceZonePe_1027_TypeChoicePair
+
+*/
+
+ToleranceZonePe_1027_TypeChoicePair::ToleranceZonePe_1027_TypeChoicePair() {}
+
+ToleranceZonePe_1027_TypeChoicePair::ToleranceZonePe_1027_TypeChoicePair(
+ whichOne ToleranceZonePe_1027_TypeTypeIn,
+ ToleranceZonePe_1027_TypeVal ToleranceZonePe_1027_TypeValueIn)
+{
+  ToleranceZonePe_1027_TypeType = ToleranceZonePe_1027_TypeTypeIn;
+  ToleranceZonePe_1027_TypeValue = ToleranceZonePe_1027_TypeValueIn;
+}
+
+ToleranceZonePe_1027_TypeChoicePair::~ToleranceZonePe_1027_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (ToleranceZonePe_1027_TypeType == RectangularUnitAreaE)
+    delete ToleranceZonePe_1027_TypeValue.RectangularUnitArea;
+  else if (ToleranceZonePe_1027_TypeType == CircularUnitAreaE)
+    delete ToleranceZonePe_1027_TypeValue.CircularUnitArea;
+  #endif
+}
+
+void ToleranceZonePe_1027_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (ToleranceZonePe_1027_TypeType == RectangularUnitAreaE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RectangularUnitArea");
-      ToleranceZonePe_1026_TypeValue.RectangularUnitArea->printSelf(outFile);
+      ToleranceZonePe_1027_TypeValue.RectangularUnitArea->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</RectangularUnitArea>\n");
     }
-  else if (ToleranceZonePe_1026_TypeType == CircularUnitAreaE)
+  else if (ToleranceZonePe_1027_TypeType == CircularUnitAreaE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CircularUnitArea");
-      ToleranceZonePe_1026_TypeValue.CircularUnitArea->printSelf(outFile);
+      ToleranceZonePe_1027_TypeValue.CircularUnitArea->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</CircularUnitArea>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class AlgorithmType_1_1027_Type
+/* class AlgorithmType_1_1028_Type
 
 */
 
-AlgorithmType_1_1027_Type::AlgorithmType_1_1027_Type()
+AlgorithmType_1_1028_Type::AlgorithmType_1_1028_Type()
 {
   SoftwareId = 0;
   Parameters = 0;
 }
 
-AlgorithmType_1_1027_Type::AlgorithmType_1_1027_Type(
+AlgorithmType_1_1028_Type::AlgorithmType_1_1028_Type(
  QIFReferenceType * SoftwareIdIn,
  XmlString * ParametersIn)
 {
@@ -19172,7 +19172,7 @@ AlgorithmType_1_1027_Type::AlgorithmType_1_1027_Type(
   Parameters = ParametersIn;
 }
 
-AlgorithmType_1_1027_Type::~AlgorithmType_1_1027_Type()
+AlgorithmType_1_1028_Type::~AlgorithmType_1_1028_Type()
 {
   #ifndef NODESTRUCT
   delete SoftwareId;
@@ -19180,7 +19180,7 @@ AlgorithmType_1_1027_Type::~AlgorithmType_1_1027_Type()
   #endif
 }
 
-void AlgorithmType_1_1027_Type::printSelf(FILE * outFile)
+void AlgorithmType_1_1028_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<SoftwareId");
@@ -19195,31 +19195,31 @@ void AlgorithmType_1_1027_Type::printSelf(FILE * outFile)
     }
 }
 
-QIFReferenceType * AlgorithmType_1_1027_Type::getSoftwareId()
+QIFReferenceType * AlgorithmType_1_1028_Type::getSoftwareId()
 {return SoftwareId;}
 
-void AlgorithmType_1_1027_Type::setSoftwareId(QIFReferenceType * SoftwareIdIn)
+void AlgorithmType_1_1028_Type::setSoftwareId(QIFReferenceType * SoftwareIdIn)
 {SoftwareId = SoftwareIdIn;}
 
-XmlString * AlgorithmType_1_1027_Type::getParameters()
+XmlString * AlgorithmType_1_1028_Type::getParameters()
 {return Parameters;}
 
-void AlgorithmType_1_1027_Type::setParameters(XmlString * ParametersIn)
+void AlgorithmType_1_1028_Type::setParameters(XmlString * ParametersIn)
 {Parameters = ParametersIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class AlgorithmType_1_1028_Type
+/* class AlgorithmType_1_1029_Type
 
 */
 
-AlgorithmType_1_1028_Type::AlgorithmType_1_1028_Type()
+AlgorithmType_1_1029_Type::AlgorithmType_1_1029_Type()
 {
   StandardId = 0;
   Section = 0;
 }
 
-AlgorithmType_1_1028_Type::AlgorithmType_1_1028_Type(
+AlgorithmType_1_1029_Type::AlgorithmType_1_1029_Type(
  QIFReferenceType * StandardIdIn,
  XmlString * SectionIn)
 {
@@ -19227,7 +19227,7 @@ AlgorithmType_1_1028_Type::AlgorithmType_1_1028_Type(
   Section = SectionIn;
 }
 
-AlgorithmType_1_1028_Type::~AlgorithmType_1_1028_Type()
+AlgorithmType_1_1029_Type::~AlgorithmType_1_1029_Type()
 {
   #ifndef NODESTRUCT
   delete StandardId;
@@ -19235,7 +19235,7 @@ AlgorithmType_1_1028_Type::~AlgorithmType_1_1028_Type()
   #endif
 }
 
-void AlgorithmType_1_1028_Type::printSelf(FILE * outFile)
+void AlgorithmType_1_1029_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<StandardId");
@@ -19250,74 +19250,19 @@ void AlgorithmType_1_1028_Type::printSelf(FILE * outFile)
     }
 }
 
-QIFReferenceType * AlgorithmType_1_1028_Type::getStandardId()
+QIFReferenceType * AlgorithmType_1_1029_Type::getStandardId()
 {return StandardId;}
 
-void AlgorithmType_1_1028_Type::setStandardId(QIFReferenceType * StandardIdIn)
+void AlgorithmType_1_1029_Type::setStandardId(QIFReferenceType * StandardIdIn)
 {StandardId = StandardIdIn;}
 
-XmlString * AlgorithmType_1_1028_Type::getSection()
+XmlString * AlgorithmType_1_1029_Type::getSection()
 {return Section;}
 
-void AlgorithmType_1_1028_Type::setSection(XmlString * SectionIn)
+void AlgorithmType_1_1029_Type::setSection(XmlString * SectionIn)
 {Section = SectionIn;}
 
-/*********************************************************************/
-
-/* class AngularToleranc_1029_Type
-
-*/
-
-AngularToleranc_1029_Type::AngularToleranc_1029_Type()
-{
-  MaxValue = 0;
-  MinValue = 0;
-}
-
-AngularToleranc_1029_Type::AngularToleranc_1029_Type(
- AngularValueType * MaxValueIn,
- AngularValueType * MinValueIn)
-{
-  MaxValue = MaxValueIn;
-  MinValue = MinValueIn;
-}
-
-AngularToleranc_1029_Type::~AngularToleranc_1029_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxValue;
-  delete MinValue;
-  #endif
-}
-
-void AngularToleranc_1029_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxValue");
-  MaxValue->printSelf(outFile);
-  fprintf(outFile, "</MaxValue>\n");
-  if (MinValue)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinValue");
-      MinValue->printSelf(outFile);
-      fprintf(outFile, "</MinValue>\n");
-    }
-}
-
-AngularValueType * AngularToleranc_1029_Type::getMaxValue()
-{return MaxValue;}
-
-void AngularToleranc_1029_Type::setMaxValue(AngularValueType * MaxValueIn)
-{MaxValue = MaxValueIn;}
-
-AngularValueType * AngularToleranc_1029_Type::getMinValue()
-{return MinValue;}
-
-void AngularToleranc_1029_Type::setMinValue(AngularValueType * MinValueIn)
-{MinValue = MinValueIn;}
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularToleranc_1030_Type
 
@@ -19372,19 +19317,74 @@ AngularValueType * AngularToleranc_1030_Type::getMinValue()
 void AngularToleranc_1030_Type::setMinValue(AngularValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class AreaToleranceTy_1031_Type
+/* class AngularToleranc_1031_Type
 
 */
 
-AreaToleranceTy_1031_Type::AreaToleranceTy_1031_Type()
+AngularToleranc_1031_Type::AngularToleranc_1031_Type()
 {
   MaxValue = 0;
   MinValue = 0;
 }
 
-AreaToleranceTy_1031_Type::AreaToleranceTy_1031_Type(
+AngularToleranc_1031_Type::AngularToleranc_1031_Type(
+ AngularValueType * MaxValueIn,
+ AngularValueType * MinValueIn)
+{
+  MaxValue = MaxValueIn;
+  MinValue = MinValueIn;
+}
+
+AngularToleranc_1031_Type::~AngularToleranc_1031_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxValue;
+  delete MinValue;
+  #endif
+}
+
+void AngularToleranc_1031_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxValue");
+  MaxValue->printSelf(outFile);
+  fprintf(outFile, "</MaxValue>\n");
+  if (MinValue)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinValue");
+      MinValue->printSelf(outFile);
+      fprintf(outFile, "</MinValue>\n");
+    }
+}
+
+AngularValueType * AngularToleranc_1031_Type::getMaxValue()
+{return MaxValue;}
+
+void AngularToleranc_1031_Type::setMaxValue(AngularValueType * MaxValueIn)
+{MaxValue = MaxValueIn;}
+
+AngularValueType * AngularToleranc_1031_Type::getMinValue()
+{return MinValue;}
+
+void AngularToleranc_1031_Type::setMinValue(AngularValueType * MinValueIn)
+{MinValue = MinValueIn;}
+
+/* ***************************************************************** */
+
+/* class AreaToleranceTy_1032_Type
+
+*/
+
+AreaToleranceTy_1032_Type::AreaToleranceTy_1032_Type()
+{
+  MaxValue = 0;
+  MinValue = 0;
+}
+
+AreaToleranceTy_1032_Type::AreaToleranceTy_1032_Type(
  AreaValueType * MaxValueIn,
  AreaValueType * MinValueIn)
 {
@@ -19392,7 +19392,7 @@ AreaToleranceTy_1031_Type::AreaToleranceTy_1031_Type(
   MinValue = MinValueIn;
 }
 
-AreaToleranceTy_1031_Type::~AreaToleranceTy_1031_Type()
+AreaToleranceTy_1032_Type::~AreaToleranceTy_1032_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
@@ -19400,7 +19400,7 @@ AreaToleranceTy_1031_Type::~AreaToleranceTy_1031_Type()
   #endif
 }
 
-void AreaToleranceTy_1031_Type::printSelf(FILE * outFile)
+void AreaToleranceTy_1032_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -19415,31 +19415,31 @@ void AreaToleranceTy_1031_Type::printSelf(FILE * outFile)
     }
 }
 
-AreaValueType * AreaToleranceTy_1031_Type::getMaxValue()
+AreaValueType * AreaToleranceTy_1032_Type::getMaxValue()
 {return MaxValue;}
 
-void AreaToleranceTy_1031_Type::setMaxValue(AreaValueType * MaxValueIn)
+void AreaToleranceTy_1032_Type::setMaxValue(AreaValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-AreaValueType * AreaToleranceTy_1031_Type::getMinValue()
+AreaValueType * AreaToleranceTy_1032_Type::getMinValue()
 {return MinValue;}
 
-void AreaToleranceTy_1031_Type::setMinValue(AreaValueType * MinValueIn)
+void AreaToleranceTy_1032_Type::setMinValue(AreaValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class ForceToleranceT_1032_Type
+/* class ForceToleranceT_1033_Type
 
 */
 
-ForceToleranceT_1032_Type::ForceToleranceT_1032_Type()
+ForceToleranceT_1033_Type::ForceToleranceT_1033_Type()
 {
   MaxValue = 0;
   MinValue = 0;
 }
 
-ForceToleranceT_1032_Type::ForceToleranceT_1032_Type(
+ForceToleranceT_1033_Type::ForceToleranceT_1033_Type(
  ForceValueType * MaxValueIn,
  ForceValueType * MinValueIn)
 {
@@ -19447,7 +19447,7 @@ ForceToleranceT_1032_Type::ForceToleranceT_1032_Type(
   MinValue = MinValueIn;
 }
 
-ForceToleranceT_1032_Type::~ForceToleranceT_1032_Type()
+ForceToleranceT_1033_Type::~ForceToleranceT_1033_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
@@ -19455,7 +19455,7 @@ ForceToleranceT_1032_Type::~ForceToleranceT_1032_Type()
   #endif
 }
 
-void ForceToleranceT_1032_Type::printSelf(FILE * outFile)
+void ForceToleranceT_1033_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -19470,74 +19470,19 @@ void ForceToleranceT_1032_Type::printSelf(FILE * outFile)
     }
 }
 
-ForceValueType * ForceToleranceT_1032_Type::getMaxValue()
+ForceValueType * ForceToleranceT_1033_Type::getMaxValue()
 {return MaxValue;}
 
-void ForceToleranceT_1032_Type::setMaxValue(ForceValueType * MaxValueIn)
+void ForceToleranceT_1033_Type::setMaxValue(ForceValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-ForceValueType * ForceToleranceT_1032_Type::getMinValue()
+ForceValueType * ForceToleranceT_1033_Type::getMinValue()
 {return MinValue;}
 
-void ForceToleranceT_1032_Type::setMinValue(ForceValueType * MinValueIn)
+void ForceToleranceT_1033_Type::setMinValue(ForceValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
-
-/* class LinearTolerance_1033_Type
-
-*/
-
-LinearTolerance_1033_Type::LinearTolerance_1033_Type()
-{
-  MaxValue = 0;
-  MinValue = 0;
-}
-
-LinearTolerance_1033_Type::LinearTolerance_1033_Type(
- LinearValueType * MaxValueIn,
- LinearValueType * MinValueIn)
-{
-  MaxValue = MaxValueIn;
-  MinValue = MinValueIn;
-}
-
-LinearTolerance_1033_Type::~LinearTolerance_1033_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxValue;
-  delete MinValue;
-  #endif
-}
-
-void LinearTolerance_1033_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxValue");
-  MaxValue->printSelf(outFile);
-  fprintf(outFile, "</MaxValue>\n");
-  if (MinValue)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinValue");
-      MinValue->printSelf(outFile);
-      fprintf(outFile, "</MinValue>\n");
-    }
-}
-
-LinearValueType * LinearTolerance_1033_Type::getMaxValue()
-{return MaxValue;}
-
-void LinearTolerance_1033_Type::setMaxValue(LinearValueType * MaxValueIn)
-{MaxValue = MaxValueIn;}
-
-LinearValueType * LinearTolerance_1033_Type::getMinValue()
-{return MinValue;}
-
-void LinearTolerance_1033_Type::setMinValue(LinearValueType * MinValueIn)
-{MinValue = MinValueIn;}
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearTolerance_1034_Type
 
@@ -19546,30 +19491,85 @@ void LinearTolerance_1033_Type::setMinValue(LinearValueType * MinValueIn)
 LinearTolerance_1034_Type::LinearTolerance_1034_Type()
 {
   MaxValue = 0;
-  MaxDualValue = 0;
-  LinearTolerance_1041 = 0;
+  MinValue = 0;
 }
 
 LinearTolerance_1034_Type::LinearTolerance_1034_Type(
  LinearValueType * MaxValueIn,
- LinearDualValueType * MaxDualValueIn,
- LinearTolerance_1041_Type * LinearTolerance_1041In)
+ LinearValueType * MinValueIn)
 {
   MaxValue = MaxValueIn;
-  MaxDualValue = MaxDualValueIn;
-  LinearTolerance_1041 = LinearTolerance_1041In;
+  MinValue = MinValueIn;
 }
 
 LinearTolerance_1034_Type::~LinearTolerance_1034_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
-  delete MaxDualValue;
-  delete LinearTolerance_1041;
+  delete MinValue;
   #endif
 }
 
 void LinearTolerance_1034_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxValue");
+  MaxValue->printSelf(outFile);
+  fprintf(outFile, "</MaxValue>\n");
+  if (MinValue)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinValue");
+      MinValue->printSelf(outFile);
+      fprintf(outFile, "</MinValue>\n");
+    }
+}
+
+LinearValueType * LinearTolerance_1034_Type::getMaxValue()
+{return MaxValue;}
+
+void LinearTolerance_1034_Type::setMaxValue(LinearValueType * MaxValueIn)
+{MaxValue = MaxValueIn;}
+
+LinearValueType * LinearTolerance_1034_Type::getMinValue()
+{return MinValue;}
+
+void LinearTolerance_1034_Type::setMinValue(LinearValueType * MinValueIn)
+{MinValue = MinValueIn;}
+
+/* ***************************************************************** */
+
+/* class LinearTolerance_1035_Type
+
+*/
+
+LinearTolerance_1035_Type::LinearTolerance_1035_Type()
+{
+  MaxValue = 0;
+  MaxDualValue = 0;
+  LinearTolerance_1042 = 0;
+}
+
+LinearTolerance_1035_Type::LinearTolerance_1035_Type(
+ LinearValueType * MaxValueIn,
+ LinearDualValueType * MaxDualValueIn,
+ LinearTolerance_1042_Type * LinearTolerance_1042In)
+{
+  MaxValue = MaxValueIn;
+  MaxDualValue = MaxDualValueIn;
+  LinearTolerance_1042 = LinearTolerance_1042In;
+}
+
+LinearTolerance_1035_Type::~LinearTolerance_1035_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxValue;
+  delete MaxDualValue;
+  delete LinearTolerance_1042;
+  #endif
+}
+
+void LinearTolerance_1035_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -19582,43 +19582,43 @@ void LinearTolerance_1034_Type::printSelf(FILE * outFile)
       MaxDualValue->printSelf(outFile);
       fprintf(outFile, "</MaxDualValue>\n");
     }
-  if (LinearTolerance_1041)
+  if (LinearTolerance_1042)
     {
-      LinearTolerance_1041->printSelf(outFile);
+      LinearTolerance_1042->printSelf(outFile);
     }
 }
 
-LinearValueType * LinearTolerance_1034_Type::getMaxValue()
+LinearValueType * LinearTolerance_1035_Type::getMaxValue()
 {return MaxValue;}
 
-void LinearTolerance_1034_Type::setMaxValue(LinearValueType * MaxValueIn)
+void LinearTolerance_1035_Type::setMaxValue(LinearValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-LinearDualValueType * LinearTolerance_1034_Type::getMaxDualValue()
+LinearDualValueType * LinearTolerance_1035_Type::getMaxDualValue()
 {return MaxDualValue;}
 
-void LinearTolerance_1034_Type::setMaxDualValue(LinearDualValueType * MaxDualValueIn)
+void LinearTolerance_1035_Type::setMaxDualValue(LinearDualValueType * MaxDualValueIn)
 {MaxDualValue = MaxDualValueIn;}
 
-LinearTolerance_1041_Type * LinearTolerance_1034_Type::getLinearTolerance_1041()
-{return LinearTolerance_1041;}
+LinearTolerance_1042_Type * LinearTolerance_1035_Type::getLinearTolerance_1042()
+{return LinearTolerance_1042;}
 
-void LinearTolerance_1034_Type::setLinearTolerance_1041(LinearTolerance_1041_Type * LinearTolerance_1041In)
-{LinearTolerance_1041 = LinearTolerance_1041In;}
+void LinearTolerance_1035_Type::setLinearTolerance_1042(LinearTolerance_1042_Type * LinearTolerance_1042In)
+{LinearTolerance_1042 = LinearTolerance_1042In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class LinearTolerance_1035_Type
+/* class LinearTolerance_1036_Type
 
 */
 
-LinearTolerance_1035_Type::LinearTolerance_1035_Type()
+LinearTolerance_1036_Type::LinearTolerance_1036_Type()
 {
   MinValue = 0;
   MinDualValue = 0;
 }
 
-LinearTolerance_1035_Type::LinearTolerance_1035_Type(
+LinearTolerance_1036_Type::LinearTolerance_1036_Type(
  LinearValueType * MinValueIn,
  LinearDualValueType * MinDualValueIn)
 {
@@ -19626,7 +19626,7 @@ LinearTolerance_1035_Type::LinearTolerance_1035_Type(
   MinDualValue = MinDualValueIn;
 }
 
-LinearTolerance_1035_Type::~LinearTolerance_1035_Type()
+LinearTolerance_1036_Type::~LinearTolerance_1036_Type()
 {
   #ifndef NODESTRUCT
   delete MinValue;
@@ -19634,7 +19634,7 @@ LinearTolerance_1035_Type::~LinearTolerance_1035_Type()
   #endif
 }
 
-void LinearTolerance_1035_Type::printSelf(FILE * outFile)
+void LinearTolerance_1036_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MinValue");
@@ -19649,31 +19649,31 @@ void LinearTolerance_1035_Type::printSelf(FILE * outFile)
     }
 }
 
-LinearValueType * LinearTolerance_1035_Type::getMinValue()
+LinearValueType * LinearTolerance_1036_Type::getMinValue()
 {return MinValue;}
 
-void LinearTolerance_1035_Type::setMinValue(LinearValueType * MinValueIn)
+void LinearTolerance_1036_Type::setMinValue(LinearValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-LinearDualValueType * LinearTolerance_1035_Type::getMinDualValue()
+LinearDualValueType * LinearTolerance_1036_Type::getMinDualValue()
 {return MinDualValue;}
 
-void LinearTolerance_1035_Type::setMinDualValue(LinearDualValueType * MinDualValueIn)
+void LinearTolerance_1036_Type::setMinDualValue(LinearDualValueType * MinDualValueIn)
 {MinDualValue = MinDualValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class MassToleranceTy_1036_Type
+/* class MassToleranceTy_1037_Type
 
 */
 
-MassToleranceTy_1036_Type::MassToleranceTy_1036_Type()
+MassToleranceTy_1037_Type::MassToleranceTy_1037_Type()
 {
   MaxValue = 0;
   MinValue = 0;
 }
 
-MassToleranceTy_1036_Type::MassToleranceTy_1036_Type(
+MassToleranceTy_1037_Type::MassToleranceTy_1037_Type(
  MassValueType * MaxValueIn,
  MassValueType * MinValueIn)
 {
@@ -19681,7 +19681,7 @@ MassToleranceTy_1036_Type::MassToleranceTy_1036_Type(
   MinValue = MinValueIn;
 }
 
-MassToleranceTy_1036_Type::~MassToleranceTy_1036_Type()
+MassToleranceTy_1037_Type::~MassToleranceTy_1037_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
@@ -19689,7 +19689,7 @@ MassToleranceTy_1036_Type::~MassToleranceTy_1036_Type()
   #endif
 }
 
-void MassToleranceTy_1036_Type::printSelf(FILE * outFile)
+void MassToleranceTy_1037_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -19704,31 +19704,31 @@ void MassToleranceTy_1036_Type::printSelf(FILE * outFile)
     }
 }
 
-MassValueType * MassToleranceTy_1036_Type::getMaxValue()
+MassValueType * MassToleranceTy_1037_Type::getMaxValue()
 {return MaxValue;}
 
-void MassToleranceTy_1036_Type::setMaxValue(MassValueType * MaxValueIn)
+void MassToleranceTy_1037_Type::setMaxValue(MassValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-MassValueType * MassToleranceTy_1036_Type::getMinValue()
+MassValueType * MassToleranceTy_1037_Type::getMinValue()
 {return MinValue;}
 
-void MassToleranceTy_1036_Type::setMinValue(MassValueType * MinValueIn)
+void MassToleranceTy_1037_Type::setMinValue(MassValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class PressureToleran_1037_Type
+/* class PressureToleran_1038_Type
 
 */
 
-PressureToleran_1037_Type::PressureToleran_1037_Type()
+PressureToleran_1038_Type::PressureToleran_1038_Type()
 {
   MaxValue = 0;
   MinValue = 0;
 }
 
-PressureToleran_1037_Type::PressureToleran_1037_Type(
+PressureToleran_1038_Type::PressureToleran_1038_Type(
  PressureValueType * MaxValueIn,
  PressureValueType * MinValueIn)
 {
@@ -19736,7 +19736,7 @@ PressureToleran_1037_Type::PressureToleran_1037_Type(
   MinValue = MinValueIn;
 }
 
-PressureToleran_1037_Type::~PressureToleran_1037_Type()
+PressureToleran_1038_Type::~PressureToleran_1038_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
@@ -19744,7 +19744,7 @@ PressureToleran_1037_Type::~PressureToleran_1037_Type()
   #endif
 }
 
-void PressureToleran_1037_Type::printSelf(FILE * outFile)
+void PressureToleran_1038_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -19759,31 +19759,31 @@ void PressureToleran_1037_Type::printSelf(FILE * outFile)
     }
 }
 
-PressureValueType * PressureToleran_1037_Type::getMaxValue()
+PressureValueType * PressureToleran_1038_Type::getMaxValue()
 {return MaxValue;}
 
-void PressureToleran_1037_Type::setMaxValue(PressureValueType * MaxValueIn)
+void PressureToleran_1038_Type::setMaxValue(PressureValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-PressureValueType * PressureToleran_1037_Type::getMinValue()
+PressureValueType * PressureToleran_1038_Type::getMinValue()
 {return MinValue;}
 
-void PressureToleran_1037_Type::setMinValue(PressureValueType * MinValueIn)
+void PressureToleran_1038_Type::setMinValue(PressureValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class SpeedToleranceT_1038_Type
+/* class SpeedToleranceT_1039_Type
 
 */
 
-SpeedToleranceT_1038_Type::SpeedToleranceT_1038_Type()
+SpeedToleranceT_1039_Type::SpeedToleranceT_1039_Type()
 {
   MaxValue = 0;
   MinValue = 0;
 }
 
-SpeedToleranceT_1038_Type::SpeedToleranceT_1038_Type(
+SpeedToleranceT_1039_Type::SpeedToleranceT_1039_Type(
  SpeedValueType * MaxValueIn,
  SpeedValueType * MinValueIn)
 {
@@ -19791,7 +19791,7 @@ SpeedToleranceT_1038_Type::SpeedToleranceT_1038_Type(
   MinValue = MinValueIn;
 }
 
-SpeedToleranceT_1038_Type::~SpeedToleranceT_1038_Type()
+SpeedToleranceT_1039_Type::~SpeedToleranceT_1039_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
@@ -19799,7 +19799,7 @@ SpeedToleranceT_1038_Type::~SpeedToleranceT_1038_Type()
   #endif
 }
 
-void SpeedToleranceT_1038_Type::printSelf(FILE * outFile)
+void SpeedToleranceT_1039_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -19814,31 +19814,31 @@ void SpeedToleranceT_1038_Type::printSelf(FILE * outFile)
     }
 }
 
-SpeedValueType * SpeedToleranceT_1038_Type::getMaxValue()
+SpeedValueType * SpeedToleranceT_1039_Type::getMaxValue()
 {return MaxValue;}
 
-void SpeedToleranceT_1038_Type::setMaxValue(SpeedValueType * MaxValueIn)
+void SpeedToleranceT_1039_Type::setMaxValue(SpeedValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-SpeedValueType * SpeedToleranceT_1038_Type::getMinValue()
+SpeedValueType * SpeedToleranceT_1039_Type::getMinValue()
 {return MinValue;}
 
-void SpeedToleranceT_1038_Type::setMinValue(SpeedValueType * MinValueIn)
+void SpeedToleranceT_1039_Type::setMinValue(SpeedValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class TemperatureTole_1039_Type
+/* class TemperatureTole_1040_Type
 
 */
 
-TemperatureTole_1039_Type::TemperatureTole_1039_Type()
+TemperatureTole_1040_Type::TemperatureTole_1040_Type()
 {
   MaxValue = 0;
   MinValue = 0;
 }
 
-TemperatureTole_1039_Type::TemperatureTole_1039_Type(
+TemperatureTole_1040_Type::TemperatureTole_1040_Type(
  TemperatureValueType * MaxValueIn,
  TemperatureValueType * MinValueIn)
 {
@@ -19846,7 +19846,7 @@ TemperatureTole_1039_Type::TemperatureTole_1039_Type(
   MinValue = MinValueIn;
 }
 
-TemperatureTole_1039_Type::~TemperatureTole_1039_Type()
+TemperatureTole_1040_Type::~TemperatureTole_1040_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
@@ -19854,7 +19854,7 @@ TemperatureTole_1039_Type::~TemperatureTole_1039_Type()
   #endif
 }
 
-void TemperatureTole_1039_Type::printSelf(FILE * outFile)
+void TemperatureTole_1040_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -19869,31 +19869,31 @@ void TemperatureTole_1039_Type::printSelf(FILE * outFile)
     }
 }
 
-TemperatureValueType * TemperatureTole_1039_Type::getMaxValue()
+TemperatureValueType * TemperatureTole_1040_Type::getMaxValue()
 {return MaxValue;}
 
-void TemperatureTole_1039_Type::setMaxValue(TemperatureValueType * MaxValueIn)
+void TemperatureTole_1040_Type::setMaxValue(TemperatureValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-TemperatureValueType * TemperatureTole_1039_Type::getMinValue()
+TemperatureValueType * TemperatureTole_1040_Type::getMinValue()
 {return MinValue;}
 
-void TemperatureTole_1039_Type::setMinValue(TemperatureValueType * MinValueIn)
+void TemperatureTole_1040_Type::setMinValue(TemperatureValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class TimeToleranceTy_1040_Type
+/* class TimeToleranceTy_1041_Type
 
 */
 
-TimeToleranceTy_1040_Type::TimeToleranceTy_1040_Type()
+TimeToleranceTy_1041_Type::TimeToleranceTy_1041_Type()
 {
   MaxValue = 0;
   MinValue = 0;
 }
 
-TimeToleranceTy_1040_Type::TimeToleranceTy_1040_Type(
+TimeToleranceTy_1041_Type::TimeToleranceTy_1041_Type(
  TimeValueType * MaxValueIn,
  TimeValueType * MinValueIn)
 {
@@ -19901,7 +19901,7 @@ TimeToleranceTy_1040_Type::TimeToleranceTy_1040_Type(
   MinValue = MinValueIn;
 }
 
-TimeToleranceTy_1040_Type::~TimeToleranceTy_1040_Type()
+TimeToleranceTy_1041_Type::~TimeToleranceTy_1041_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
@@ -19909,7 +19909,7 @@ TimeToleranceTy_1040_Type::~TimeToleranceTy_1040_Type()
   #endif
 }
 
-void TimeToleranceTy_1040_Type::printSelf(FILE * outFile)
+void TimeToleranceTy_1041_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -19924,31 +19924,31 @@ void TimeToleranceTy_1040_Type::printSelf(FILE * outFile)
     }
 }
 
-TimeValueType * TimeToleranceTy_1040_Type::getMaxValue()
+TimeValueType * TimeToleranceTy_1041_Type::getMaxValue()
 {return MaxValue;}
 
-void TimeToleranceTy_1040_Type::setMaxValue(TimeValueType * MaxValueIn)
+void TimeToleranceTy_1041_Type::setMaxValue(TimeValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-TimeValueType * TimeToleranceTy_1040_Type::getMinValue()
+TimeValueType * TimeToleranceTy_1041_Type::getMinValue()
 {return MinValue;}
 
-void TimeToleranceTy_1040_Type::setMinValue(TimeValueType * MinValueIn)
+void TimeToleranceTy_1041_Type::setMinValue(TimeValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class LinearTolerance_1041_Type
+/* class LinearTolerance_1042_Type
 
 */
 
-LinearTolerance_1041_Type::LinearTolerance_1041_Type()
+LinearTolerance_1042_Type::LinearTolerance_1042_Type()
 {
   MinValue = 0;
   MinDualValue = 0;
 }
 
-LinearTolerance_1041_Type::LinearTolerance_1041_Type(
+LinearTolerance_1042_Type::LinearTolerance_1042_Type(
  LinearValueType * MinValueIn,
  LinearDualValueType * MinDualValueIn)
 {
@@ -19956,7 +19956,7 @@ LinearTolerance_1041_Type::LinearTolerance_1041_Type(
   MinDualValue = MinDualValueIn;
 }
 
-LinearTolerance_1041_Type::~LinearTolerance_1041_Type()
+LinearTolerance_1042_Type::~LinearTolerance_1042_Type()
 {
   #ifndef NODESTRUCT
   delete MinValue;
@@ -19964,7 +19964,7 @@ LinearTolerance_1041_Type::~LinearTolerance_1041_Type()
   #endif
 }
 
-void LinearTolerance_1041_Type::printSelf(FILE * outFile)
+void LinearTolerance_1042_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MinValue");
@@ -19979,17 +19979,17 @@ void LinearTolerance_1041_Type::printSelf(FILE * outFile)
     }
 }
 
-LinearValueType * LinearTolerance_1041_Type::getMinValue()
+LinearValueType * LinearTolerance_1042_Type::getMinValue()
 {return MinValue;}
 
-void LinearTolerance_1041_Type::setMinValue(LinearValueType * MinValueIn)
+void LinearTolerance_1042_Type::setMinValue(LinearValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-LinearDualValueType * LinearTolerance_1041_Type::getMinDualValue()
+LinearDualValueType * LinearTolerance_1042_Type::getMinDualValue()
 {return MinDualValue;}
 
-void LinearTolerance_1041_Type::setMinDualValue(LinearDualValueType * MinDualValueIn)
+void LinearTolerance_1042_Type::setMinDualValue(LinearDualValueType * MinDualValueIn)
 {MinDualValue = MinDualValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 

@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #include <stdio.h>             // for printf, etc.
 #include <string.h>            // for strdup
@@ -10,8 +10,8 @@
 
 #define INDENT 2
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 /* class AuxiliaryBaseType
 
@@ -351,7 +351,7 @@ bool AuxiliaryBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AuxiliaryBaseTypeLisd
 
@@ -378,7 +378,7 @@ AuxiliaryBaseTypeLisd::~AuxiliaryBaseTypeLisd()
 
 void AuxiliaryBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AuxiliaryPlaneBaseType
 
@@ -735,7 +735,7 @@ PlaneType * AuxiliaryPlaneBaseType::getPlane()
 void AuxiliaryPlaneBaseType::setPlane(PlaneType * PlaneIn)
 {Plane = PlaneIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AuxiliarySetType
 
@@ -950,7 +950,7 @@ AuxiliaryBaseTypeLisd * AuxiliarySetType::getAuxiliary()
 void AuxiliarySetType::setAuxiliary(AuxiliaryBaseTypeLisd * AuxiliaryIn)
 {Auxiliary = AuxiliaryIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CADCoordinateSystemType
 
@@ -1307,7 +1307,7 @@ CoordinateSystemCoreType * CADCoordinateSystemType::getCoordinateSystemCore()
 void CADCoordinateSystemType::setCoordinateSystemCore(CoordinateSystemCoreType * CoordinateSystemCoreIn)
 {CoordinateSystemCore = CoordinateSystemCoreIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CADCoordinateSystemTypeLisd
 
@@ -1334,7 +1334,7 @@ CADCoordinateSystemTypeLisd::~CADCoordinateSystemTypeLisd()
 
 void CADCoordinateSystemTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoordinateSystemSetType
 
@@ -1492,7 +1492,7 @@ CADCoordinateSystemTypeLisd * CoordinateSystemSetType::getCoordinateSystem()
 void CoordinateSystemSetType::setCoordinateSystem(CADCoordinateSystemTypeLisd * CoordinateSystemIn)
 {CoordinateSystem = CoordinateSystemIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineAuxiliaryType
 
@@ -1883,7 +1883,7 @@ LineStyleType * LineAuxiliaryType::getLineStyle()
 void LineAuxiliaryType::setLineStyle(LineStyleType * LineStyleIn)
 {LineStyle = LineStyleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneReferenceType
 
@@ -2232,7 +2232,7 @@ bool PlaneReferenceType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointAuxiliaryType
 
@@ -2588,5 +2588,5 @@ PointType * PointAuxiliaryType::getXYZ()
 void PointAuxiliaryType::setXYZ(PointType * XYZIn)
 {XYZ = XYZIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 

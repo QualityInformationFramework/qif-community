@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #ifndef FEATURES_HH
 #define FEATURES_HH
@@ -7,7 +7,7 @@
 #include <xmlSchemaInstance.hh>
 #include "IntermediatesPMIClasses.hh"
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class BaseFeaturePointListType;
 class BaseFeaturePointSetType;
@@ -632,32 +632,30 @@ class TorusMeasurementDeterminationTypeChoicePair;
 class TorusRecompType;
 class TorusTransformType;
 class TransformationReferenceType;
-class CircleFromConeT_1092_Type;
-class CircleFromConeT_1092_TypeChoicePair;
-class ConeFeatureDefi_1093_Type;
-class ConeFeatureDefi_1093_TypeChoicePair;
+class CircleFromConeT_1093_Type;
+class CircleFromConeT_1093_TypeChoicePair;
 class ConeFeatureDefi_1094_Type;
-class ConeFeatureMeas_1095_Type;
-class ConeFeatureMeas_1095_TypeChoicePair;
-class ConicalSegmentF_1096_Type;
-class ConicalSegmentF_1096_TypeChoicePair;
+class ConeFeatureDefi_1094_TypeChoicePair;
+class ConeFeatureDefi_1095_Type;
+class ConeFeatureMeas_1096_Type;
+class ConeFeatureMeas_1096_TypeChoicePair;
 class ConicalSegmentF_1097_Type;
+class ConicalSegmentF_1097_TypeChoicePair;
 class ConicalSegmentF_1098_Type;
-class ConicalSegmentF_1098_TypeChoicePair;
-class FeatureZoneArea_1099_Type;
-class FeatureZoneArea_1099_TypeChoicePair;
+class ConicalSegmentF_1099_Type;
+class ConicalSegmentF_1099_TypeChoicePair;
 class FeatureZoneArea_1100_Type;
 class FeatureZoneArea_1100_TypeChoicePair;
 class FeatureZoneArea_1101_Type;
 class FeatureZoneArea_1101_TypeChoicePair;
-class FeatureZoneCurv_1102_Type;
-class FeatureZoneCurv_1102_TypeChoicePair;
-class FeatureZonePoin_1103_Type;
-class FeatureZonePoin_1103_TypeChoicePair;
-class GroupFeatureDef_1104_Type;
-class GroupFeatureDef_1104_TypeChoicePair;
-class MeasuredPointSe_1105_Type;
-class MeasuredPointSe_1105_TypeChoicePair;
+class FeatureZoneArea_1102_Type;
+class FeatureZoneArea_1102_TypeChoicePair;
+class FeatureZoneCurv_1103_Type;
+class FeatureZoneCurv_1103_TypeChoicePair;
+class FeatureZonePoin_1104_Type;
+class FeatureZonePoin_1104_TypeChoicePair;
+class GroupFeatureDef_1105_Type;
+class GroupFeatureDef_1105_TypeChoicePair;
 class MeasuredPointSe_1106_Type;
 class MeasuredPointSe_1106_TypeChoicePair;
 class MeasuredPointSe_1107_Type;
@@ -681,25 +679,27 @@ class MeasuredPointSe_1115_TypeChoicePair;
 class MeasuredPointSe_1116_Type;
 class MeasuredPointSe_1116_TypeChoicePair;
 class MeasuredPointSe_1117_Type;
-class OppositeAngledP_1118_Type;
-class OppositeAngledP_1118_TypeChoicePair;
+class MeasuredPointSe_1117_TypeChoicePair;
+class MeasuredPointSe_1118_Type;
 class OppositeAngledP_1119_Type;
 class OppositeAngledP_1119_TypeChoicePair;
-class OtherSurfaceFea_1120_Type;
-class OtherSurfaceFea_1120_TypeChoicePair;
-class PlaneFeatureNom_1121_Type;
-class PlaneFeatureNom_1121_TypeChoicePair;
-class PointFeatureExt_1122_Type;
-class PointFeatureExt_1122_TypeChoicePair;
-class PointFeatureMov_1123_Type;
-class PointFeatureMov_1123_TypeChoicePair;
-class PointFeatureNom_1124_Type;
-class PointFeatureNom_1124_TypeChoicePair;
-class MeasuredPointSe_1125_Type;
-class MeasuredPointSe_1125_TypeChoicePair;
+class OppositeAngledP_1120_Type;
+class OppositeAngledP_1120_TypeChoicePair;
+class OtherSurfaceFea_1121_Type;
+class OtherSurfaceFea_1121_TypeChoicePair;
+class PlaneFeatureNom_1122_Type;
+class PlaneFeatureNom_1122_TypeChoicePair;
+class PointFeatureExt_1123_Type;
+class PointFeatureExt_1123_TypeChoicePair;
+class PointFeatureMov_1124_Type;
+class PointFeatureMov_1124_TypeChoicePair;
+class PointFeatureNom_1125_Type;
+class PointFeatureNom_1125_TypeChoicePair;
+class MeasuredPointSe_1126_Type;
+class MeasuredPointSe_1126_TypeChoicePair;
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 class BaseFeaturePointListType :
   public XmlTypeBase
@@ -726,7 +726,7 @@ protected:
   BaseFeaturePointSetTypeLisd * BaseFeaturePointSet;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class BaseFeaturePointSetType :
   public XmlTypeBase
@@ -757,7 +757,7 @@ protected:
   NaturalType * SequenceNumber;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class BaseFeaturePointSetTypeLisd :
   public std::list<BaseFeaturePointSetType *>,
@@ -771,7 +771,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleCheckedFeatureType :
   public XmlTypeBase
@@ -790,7 +790,7 @@ protected:
   CircleCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleCheckedType :
   public XmlTypeBase
@@ -809,7 +809,7 @@ protected:
   CircleCheckedTypeChoicePair * CircleCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union CircleCheckedTypeVal
 {
@@ -817,7 +817,7 @@ union CircleCheckedTypeVal
   CircleConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleCheckedTypeChoicePair :
   public XmlTypeBase
@@ -837,7 +837,7 @@ public:
   CircleCheckedTypeVal CircleCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleConstructionMethodType :
   public XmlTypeBase
@@ -856,7 +856,7 @@ protected:
   CircleConstructionMethodTypeChoicePair * CircleConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union CircleConstructionMethodTypeVal
 {
@@ -873,7 +873,7 @@ union CircleConstructionMethodTypeVal
   CircleFromScanType * FromScan;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -902,7 +902,7 @@ public:
   CircleConstructionMethodTypeVal CircleConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleMeasurementDeterminationType :
   public XmlTypeBase
@@ -921,7 +921,7 @@ protected:
   CircleMeasurementDeterminationTypeChoicePair * CircleMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union CircleMeasurementDeterminationTypeVal
 {
@@ -929,7 +929,7 @@ union CircleMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -949,7 +949,7 @@ public:
   CircleMeasurementDeterminationTypeVal CircleMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcCheckedFeatureType :
   public XmlTypeBase
@@ -968,7 +968,7 @@ protected:
   CircularArcCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcCheckedType :
   public XmlTypeBase
@@ -987,7 +987,7 @@ protected:
   CircularArcCheckedTypeChoicePair * CircularArcCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union CircularArcCheckedTypeVal
 {
@@ -995,7 +995,7 @@ union CircularArcCheckedTypeVal
   CircularArcConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcCheckedTypeChoicePair :
   public XmlTypeBase
@@ -1015,7 +1015,7 @@ public:
   CircularArcCheckedTypeVal CircularArcCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcConstructionMethodType :
   public XmlTypeBase
@@ -1034,7 +1034,7 @@ protected:
   CircularArcConstructionMethodTypeChoicePair * CircularArcConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union CircularArcConstructionMethodTypeVal
 {
@@ -1049,7 +1049,7 @@ union CircularArcConstructionMethodTypeVal
   CircularArcExtractType * Extract;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -1076,7 +1076,7 @@ public:
   CircularArcConstructionMethodTypeVal CircularArcConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcMeasurementDeterminationType :
   public XmlTypeBase
@@ -1095,7 +1095,7 @@ protected:
   CircularArcMeasurementDeterminationTypeChoicePair * CircularArcMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union CircularArcMeasurementDeterminationTypeVal
 {
@@ -1103,7 +1103,7 @@ union CircularArcMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -1123,7 +1123,7 @@ public:
   CircularArcMeasurementDeterminationTypeVal CircularArcMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConeCheckedFeatureType :
   public XmlTypeBase
@@ -1142,7 +1142,7 @@ protected:
   ConeCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConeCheckedType :
   public XmlTypeBase
@@ -1161,7 +1161,7 @@ protected:
   ConeCheckedTypeChoicePair * ConeCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ConeCheckedTypeVal
 {
@@ -1169,7 +1169,7 @@ union ConeCheckedTypeVal
   ConeConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConeCheckedTypeChoicePair :
   public XmlTypeBase
@@ -1189,7 +1189,7 @@ public:
   ConeCheckedTypeVal ConeCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConeConstructionMethodType :
   public XmlTypeBase
@@ -1208,7 +1208,7 @@ protected:
   ConeConstructionMethodTypeChoicePair * ConeConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ConeConstructionMethodTypeVal
 {
@@ -1220,7 +1220,7 @@ union ConeConstructionMethodTypeVal
   ConeFromScanType * FromScan;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConeConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -1244,7 +1244,7 @@ public:
   ConeConstructionMethodTypeVal ConeConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConeMeasurementDeterminationType :
   public XmlTypeBase
@@ -1263,7 +1263,7 @@ protected:
   ConeMeasurementDeterminationTypeChoicePair * ConeMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ConeMeasurementDeterminationTypeVal
 {
@@ -1271,7 +1271,7 @@ union ConeMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConeMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -1291,7 +1291,7 @@ public:
   ConeMeasurementDeterminationTypeVal ConeMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConicalSegmentCheckedFeatureType :
   public XmlTypeBase
@@ -1310,7 +1310,7 @@ protected:
   ConicalSegmentCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConicalSegmentCheckedType :
   public XmlTypeBase
@@ -1329,7 +1329,7 @@ protected:
   ConicalSegmentCheckedTypeChoicePair * ConicalSegmentCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ConicalSegmentCheckedTypeVal
 {
@@ -1337,7 +1337,7 @@ union ConicalSegmentCheckedTypeVal
   ConicalSegmentConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConicalSegmentCheckedTypeChoicePair :
   public XmlTypeBase
@@ -1357,7 +1357,7 @@ public:
   ConicalSegmentCheckedTypeVal ConicalSegmentCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConicalSegmentConstructionMethodType :
   public XmlTypeBase
@@ -1376,7 +1376,7 @@ protected:
   ConicalSegmentConstructionMethodTypeChoicePair * ConicalSegmentConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ConicalSegmentConstructionMethodTypeVal
 {
@@ -1387,7 +1387,7 @@ union ConicalSegmentConstructionMethodTypeVal
   ConicalSegmentTransformType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConicalSegmentConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -1410,7 +1410,7 @@ public:
   ConicalSegmentConstructionMethodTypeVal ConicalSegmentConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConicalSegmentMeasurementDeterminationType :
   public XmlTypeBase
@@ -1429,7 +1429,7 @@ protected:
   ConicalSegmentMeasurementDeterminationTypeChoicePair * ConicalSegmentMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ConicalSegmentMeasurementDeterminationTypeVal
 {
@@ -1437,7 +1437,7 @@ union ConicalSegmentMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConicalSegmentMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -1457,7 +1457,7 @@ public:
   ConicalSegmentMeasurementDeterminationTypeVal ConicalSegmentMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConstructionMethodBaseType :
   public XmlTypeBase
@@ -1476,7 +1476,7 @@ protected:
   XmlBoolean * NominalsCalculated;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylinderBestFitType :
   public ConstructionMethodBaseType
@@ -1505,7 +1505,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylinderCastType :
   public ConstructionMethodBaseType
@@ -1525,7 +1525,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylinderCheckedFeatureType :
   public XmlTypeBase
@@ -1544,7 +1544,7 @@ protected:
   CylinderCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylinderCheckedType :
   public XmlTypeBase
@@ -1563,7 +1563,7 @@ protected:
   CylinderCheckedTypeChoicePair * CylinderCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union CylinderCheckedTypeVal
 {
@@ -1571,7 +1571,7 @@ union CylinderCheckedTypeVal
   CylinderConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylinderCheckedTypeChoicePair :
   public XmlTypeBase
@@ -1591,7 +1591,7 @@ public:
   CylinderCheckedTypeVal CylinderCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylinderConstructionMethodType :
   public XmlTypeBase
@@ -1610,7 +1610,7 @@ protected:
   CylinderConstructionMethodTypeChoicePair * CylinderConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union CylinderConstructionMethodTypeVal
 {
@@ -1622,7 +1622,7 @@ union CylinderConstructionMethodTypeVal
   CylinderFromScanType * FromScan;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylinderConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -1646,7 +1646,7 @@ public:
   CylinderConstructionMethodTypeVal CylinderConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylinderCopyType :
   public ConstructionMethodBaseType
@@ -1666,7 +1666,7 @@ protected:
   BaseFeatureType * BaseCylinder;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylinderFromScanType :
   public ConstructionMethodBaseType
@@ -1690,7 +1690,7 @@ protected:
   LinearValueType * SearchRadius;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylinderMeasurementDeterminationType :
   public XmlTypeBase
@@ -1709,7 +1709,7 @@ protected:
   CylinderMeasurementDeterminationTypeChoicePair * CylinderMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union CylinderMeasurementDeterminationTypeVal
 {
@@ -1717,7 +1717,7 @@ union CylinderMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylinderMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -1737,7 +1737,7 @@ public:
   CylinderMeasurementDeterminationTypeVal CylinderMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylinderRecompType :
   public ConstructionMethodBaseType
@@ -1757,7 +1757,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylinderTransformType :
   public ConstructionMethodBaseType
@@ -1781,7 +1781,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylindricalSegmentBestFitType :
   public ConstructionMethodBaseType
@@ -1810,7 +1810,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylindricalSegmentCastType :
   public ConstructionMethodBaseType
@@ -1830,7 +1830,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylindricalSegmentCheckedFeatureType :
   public XmlTypeBase
@@ -1849,7 +1849,7 @@ protected:
   CylindricalSegmentCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylindricalSegmentCheckedType :
   public XmlTypeBase
@@ -1868,7 +1868,7 @@ protected:
   CylindricalSegmentCheckedTypeChoicePair * CylindricalSegmentCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union CylindricalSegmentCheckedTypeVal
 {
@@ -1876,7 +1876,7 @@ union CylindricalSegmentCheckedTypeVal
   CylindricalSegmentConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylindricalSegmentCheckedTypeChoicePair :
   public XmlTypeBase
@@ -1896,7 +1896,7 @@ public:
   CylindricalSegmentCheckedTypeVal CylindricalSegmentCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylindricalSegmentConstructionMethodType :
   public XmlTypeBase
@@ -1915,7 +1915,7 @@ protected:
   CylindricalSegmentConstructionMethodTypeChoicePair * CylindricalSegmentConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union CylindricalSegmentConstructionMethodTypeVal
 {
@@ -1926,7 +1926,7 @@ union CylindricalSegmentConstructionMethodTypeVal
   CylindricalSegmentTransformType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylindricalSegmentConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -1949,7 +1949,7 @@ public:
   CylindricalSegmentConstructionMethodTypeVal CylindricalSegmentConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylindricalSegmentCopyType :
   public ConstructionMethodBaseType
@@ -1969,7 +1969,7 @@ protected:
   BaseFeatureType * BaseCylindricalSegment;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylindricalSegmentMeasurementDeterminationType :
   public XmlTypeBase
@@ -1988,7 +1988,7 @@ protected:
   CylindricalSegmentMeasurementDeterminationTypeChoicePair * CylindricalSegmentMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union CylindricalSegmentMeasurementDeterminationTypeVal
 {
@@ -1996,7 +1996,7 @@ union CylindricalSegmentMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylindricalSegmentMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -2016,7 +2016,7 @@ public:
   CylindricalSegmentMeasurementDeterminationTypeVal CylindricalSegmentMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylindricalSegmentRecompType :
   public ConstructionMethodBaseType
@@ -2036,7 +2036,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylindricalSegmentTransformType :
   public ConstructionMethodBaseType
@@ -2060,7 +2060,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DefiningPointsMeasurementType :
   public XmlTypeBase
@@ -2171,7 +2171,7 @@ protected:
   DefiningPointMeasurementTypeLisd * DefiningPoint;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DefiningPointsNominalType :
   public XmlTypeBase
@@ -2250,7 +2250,7 @@ protected:
   DefiningPointNominalTypeLisd * DefiningPoint;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EdgePointCastType :
   public ConstructionMethodBaseType
@@ -2270,7 +2270,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EdgePointCheckedFeatureType :
   public XmlTypeBase
@@ -2289,7 +2289,7 @@ protected:
   EdgePointCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EdgePointCheckedType :
   public XmlTypeBase
@@ -2308,7 +2308,7 @@ protected:
   EdgePointCheckedTypeChoicePair * EdgePointCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union EdgePointCheckedTypeVal
 {
@@ -2316,7 +2316,7 @@ union EdgePointCheckedTypeVal
   EdgePointConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EdgePointCheckedTypeChoicePair :
   public XmlTypeBase
@@ -2336,7 +2336,7 @@ public:
   EdgePointCheckedTypeVal EdgePointCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EdgePointConstructionMethodType :
   public XmlTypeBase
@@ -2355,7 +2355,7 @@ protected:
   EdgePointConstructionMethodTypeChoicePair * EdgePointConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union EdgePointConstructionMethodTypeVal
 {
@@ -2365,7 +2365,7 @@ union EdgePointConstructionMethodTypeVal
   EdgePointFromScanType * FromScan;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EdgePointConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -2387,7 +2387,7 @@ public:
   EdgePointConstructionMethodTypeVal EdgePointConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EdgePointCopyType :
   public ConstructionMethodBaseType
@@ -2407,7 +2407,7 @@ protected:
   BaseFeatureType * BaseEdgePoint;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EdgePointFromScanType :
   public ConstructionMethodBaseType
@@ -2447,7 +2447,7 @@ protected:
   RetrievalMethodEnumType * RetrievalMethod;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EdgePointMeasurementDeterminationType :
   public XmlTypeBase
@@ -2466,7 +2466,7 @@ protected:
   EdgePointMeasurementDeterminationTypeChoicePair * EdgePointMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union EdgePointMeasurementDeterminationTypeVal
 {
@@ -2474,7 +2474,7 @@ union EdgePointMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EdgePointMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -2494,7 +2494,7 @@ public:
   EdgePointMeasurementDeterminationTypeVal EdgePointMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EdgePointTransformType :
   public ConstructionMethodBaseType
@@ -2518,7 +2518,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipseBestFitType :
   public ConstructionMethodBaseType
@@ -2547,7 +2547,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipseCastType :
   public ConstructionMethodBaseType
@@ -2567,7 +2567,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipseCheckedFeatureType :
   public XmlTypeBase
@@ -2586,7 +2586,7 @@ protected:
   EllipseCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipseCheckedType :
   public XmlTypeBase
@@ -2605,7 +2605,7 @@ protected:
   EllipseCheckedTypeChoicePair * EllipseCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union EllipseCheckedTypeVal
 {
@@ -2613,7 +2613,7 @@ union EllipseCheckedTypeVal
   EllipseConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipseCheckedTypeChoicePair :
   public XmlTypeBase
@@ -2633,7 +2633,7 @@ public:
   EllipseCheckedTypeVal EllipseCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipseConstructionMethodType :
   public XmlTypeBase
@@ -2652,7 +2652,7 @@ protected:
   EllipseConstructionMethodTypeChoicePair * EllipseConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union EllipseConstructionMethodTypeVal
 {
@@ -2666,7 +2666,7 @@ union EllipseConstructionMethodTypeVal
   EllipseFromScanType * FromScan;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipseConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -2692,7 +2692,7 @@ public:
   EllipseConstructionMethodTypeVal EllipseConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipseCopyType :
   public ConstructionMethodBaseType
@@ -2712,7 +2712,7 @@ protected:
   BaseFeatureType * BaseEllipse;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipseFromScanType :
   public ConstructionMethodBaseType
@@ -2740,7 +2740,7 @@ protected:
   LinearValueType * Depth;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipseIntersectionType :
   public ConstructionMethodBaseType
@@ -2764,7 +2764,7 @@ protected:
   BaseFeatureType * IntersectionFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipseMeasurementDeterminationType :
   public XmlTypeBase
@@ -2783,7 +2783,7 @@ protected:
   EllipseMeasurementDeterminationTypeChoicePair * EllipseMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union EllipseMeasurementDeterminationTypeVal
 {
@@ -2791,7 +2791,7 @@ union EllipseMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipseMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -2811,7 +2811,7 @@ public:
   EllipseMeasurementDeterminationTypeVal EllipseMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipseProjectionType :
   public ConstructionMethodBaseType
@@ -2835,7 +2835,7 @@ protected:
   BaseFeatureType * ProjectionPlane;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipseRecompType :
   public ConstructionMethodBaseType
@@ -2855,7 +2855,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipseTransformType :
   public ConstructionMethodBaseType
@@ -2879,7 +2879,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcBestFitType :
   public ConstructionMethodBaseType
@@ -2908,7 +2908,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcCastType :
   public ConstructionMethodBaseType
@@ -2928,7 +2928,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcCheckedFeatureType :
   public XmlTypeBase
@@ -2947,7 +2947,7 @@ protected:
   EllipticalArcCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcCheckedType :
   public XmlTypeBase
@@ -2966,7 +2966,7 @@ protected:
   EllipticalArcCheckedTypeChoicePair * EllipticalArcCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union EllipticalArcCheckedTypeVal
 {
@@ -2974,7 +2974,7 @@ union EllipticalArcCheckedTypeVal
   EllipticalArcConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcCheckedTypeChoicePair :
   public XmlTypeBase
@@ -2994,7 +2994,7 @@ public:
   EllipticalArcCheckedTypeVal EllipticalArcCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcConstructionMethodType :
   public XmlTypeBase
@@ -3013,7 +3013,7 @@ protected:
   EllipticalArcConstructionMethodTypeChoicePair * EllipticalArcConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union EllipticalArcConstructionMethodTypeVal
 {
@@ -3027,7 +3027,7 @@ union EllipticalArcConstructionMethodTypeVal
   EllipticalArcFromScanType * FromScan;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -3053,7 +3053,7 @@ public:
   EllipticalArcConstructionMethodTypeVal EllipticalArcConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcCopyType :
   public ConstructionMethodBaseType
@@ -3073,7 +3073,7 @@ protected:
   BaseFeatureType * BaseEllipticalArc;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcFromScanType :
   public ConstructionMethodBaseType
@@ -3101,7 +3101,7 @@ protected:
   LinearValueType * Depth;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcIntersectionType :
   public ConstructionMethodBaseType
@@ -3125,7 +3125,7 @@ protected:
   BaseFeatureType * IntersectionFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcMeasurementDeterminationType :
   public XmlTypeBase
@@ -3144,7 +3144,7 @@ protected:
   EllipticalArcMeasurementDeterminationTypeChoicePair * EllipticalArcMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union EllipticalArcMeasurementDeterminationTypeVal
 {
@@ -3152,7 +3152,7 @@ union EllipticalArcMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -3172,7 +3172,7 @@ public:
   EllipticalArcMeasurementDeterminationTypeVal EllipticalArcMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcProjectionType :
   public ConstructionMethodBaseType
@@ -3196,7 +3196,7 @@ protected:
   BaseFeatureType * ProjectionPlane;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcRecompType :
   public ConstructionMethodBaseType
@@ -3216,7 +3216,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcTransformType :
   public ConstructionMethodBaseType
@@ -3240,7 +3240,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCircleBestFitType :
   public ConstructionMethodBaseType
@@ -3269,7 +3269,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCircleCastType :
   public ConstructionMethodBaseType
@@ -3289,7 +3289,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCircleCheckedFeatureType :
   public XmlTypeBase
@@ -3308,7 +3308,7 @@ protected:
   ElongatedCircleCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCircleCheckedType :
   public XmlTypeBase
@@ -3327,7 +3327,7 @@ protected:
   ElongatedCircleCheckedTypeChoicePair * ElongatedCircleCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ElongatedCircleCheckedTypeVal
 {
@@ -3335,7 +3335,7 @@ union ElongatedCircleCheckedTypeVal
   ElongatedCircleConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCircleCheckedTypeChoicePair :
   public XmlTypeBase
@@ -3355,7 +3355,7 @@ public:
   ElongatedCircleCheckedTypeVal ElongatedCircleCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCircleConstructionMethodType :
   public XmlTypeBase
@@ -3374,7 +3374,7 @@ protected:
   ElongatedCircleConstructionMethodTypeChoicePair * ElongatedCircleConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ElongatedCircleConstructionMethodTypeVal
 {
@@ -3385,7 +3385,7 @@ union ElongatedCircleConstructionMethodTypeVal
   ElongatedCircleTransformType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCircleConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -3408,7 +3408,7 @@ public:
   ElongatedCircleConstructionMethodTypeVal ElongatedCircleConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCircleCopyType :
   public ConstructionMethodBaseType
@@ -3428,7 +3428,7 @@ protected:
   BaseFeatureType * BaseElongatedCircle;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCircleMeasurementDeterminationType :
   public XmlTypeBase
@@ -3447,7 +3447,7 @@ protected:
   ElongatedCircleMeasurementDeterminationTypeChoicePair * ElongatedCircleMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ElongatedCircleMeasurementDeterminationTypeVal
 {
@@ -3455,7 +3455,7 @@ union ElongatedCircleMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCircleMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -3475,7 +3475,7 @@ public:
   ElongatedCircleMeasurementDeterminationTypeVal ElongatedCircleMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCircleRecompType :
   public ConstructionMethodBaseType
@@ -3495,7 +3495,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCircleTransformType :
   public ConstructionMethodBaseType
@@ -3519,7 +3519,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCylinderBestFitType :
   public ConstructionMethodBaseType
@@ -3548,7 +3548,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCylinderCastType :
   public ConstructionMethodBaseType
@@ -3568,7 +3568,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCylinderCheckedFeatureType :
   public XmlTypeBase
@@ -3587,7 +3587,7 @@ protected:
   ElongatedCylinderCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCylinderCheckedType :
   public XmlTypeBase
@@ -3606,7 +3606,7 @@ protected:
   ElongatedCylinderCheckedTypeChoicePair * ElongatedCylinderCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ElongatedCylinderCheckedTypeVal
 {
@@ -3614,7 +3614,7 @@ union ElongatedCylinderCheckedTypeVal
   ElongatedCylinderConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCylinderCheckedTypeChoicePair :
   public XmlTypeBase
@@ -3634,7 +3634,7 @@ public:
   ElongatedCylinderCheckedTypeVal ElongatedCylinderCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCylinderConstructionMethodType :
   public XmlTypeBase
@@ -3653,7 +3653,7 @@ protected:
   ElongatedCylinderConstructionMethodTypeChoicePair * ElongatedCylinderConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ElongatedCylinderConstructionMethodTypeVal
 {
@@ -3664,7 +3664,7 @@ union ElongatedCylinderConstructionMethodTypeVal
   ElongatedCylinderTransformType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCylinderConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -3687,7 +3687,7 @@ public:
   ElongatedCylinderConstructionMethodTypeVal ElongatedCylinderConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCylinderCopyType :
   public ConstructionMethodBaseType
@@ -3707,7 +3707,7 @@ protected:
   BaseFeatureType * BaseElongatedCylinder;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCylinderMeasurementDeterminationType :
   public XmlTypeBase
@@ -3726,7 +3726,7 @@ protected:
   ElongatedCylinderMeasurementDeterminationTypeChoicePair * ElongatedCylinderMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ElongatedCylinderMeasurementDeterminationTypeVal
 {
@@ -3734,7 +3734,7 @@ union ElongatedCylinderMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCylinderMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -3754,7 +3754,7 @@ public:
   ElongatedCylinderMeasurementDeterminationTypeVal ElongatedCylinderMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCylinderRecompType :
   public ConstructionMethodBaseType
@@ -3774,7 +3774,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCylinderTransformType :
   public ConstructionMethodBaseType
@@ -3798,7 +3798,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExtrudedCrossSectionBestFitType :
   public ConstructionMethodBaseType
@@ -3827,7 +3827,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExtrudedCrossSectionCastType :
   public ConstructionMethodBaseType
@@ -3847,7 +3847,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExtrudedCrossSectionCheckedFeatureType :
   public XmlTypeBase
@@ -3866,7 +3866,7 @@ protected:
   ExtrudedCrossSectionCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExtrudedCrossSectionCheckedType :
   public XmlTypeBase
@@ -3885,7 +3885,7 @@ protected:
   ExtrudedCrossSectionCheckedTypeChoicePair * ExtrudedCrossSectionCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ExtrudedCrossSectionCheckedTypeVal
 {
@@ -3893,7 +3893,7 @@ union ExtrudedCrossSectionCheckedTypeVal
   ExtrudedCrossSectionConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExtrudedCrossSectionCheckedTypeChoicePair :
   public XmlTypeBase
@@ -3913,7 +3913,7 @@ public:
   ExtrudedCrossSectionCheckedTypeVal ExtrudedCrossSectionCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExtrudedCrossSectionConstructionMethodType :
   public XmlTypeBase
@@ -3932,7 +3932,7 @@ protected:
   ExtrudedCrossSectionConstructionMethodTypeChoicePair * ExtrudedCrossSectionConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ExtrudedCrossSectionConstructionMethodTypeVal
 {
@@ -3943,7 +3943,7 @@ union ExtrudedCrossSectionConstructionMethodTypeVal
   ExtrudedCrossSectionTransformType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExtrudedCrossSectionConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -3966,7 +3966,7 @@ public:
   ExtrudedCrossSectionConstructionMethodTypeVal ExtrudedCrossSectionConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExtrudedCrossSectionCopyType :
   public ConstructionMethodBaseType
@@ -3986,7 +3986,7 @@ protected:
   BaseFeatureType * BaseExtrudedCrossSection;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExtrudedCrossSectionMeasurementDeterminationType :
   public XmlTypeBase
@@ -4005,7 +4005,7 @@ protected:
   ExtrudedCrossSectionMeasurementDeterminationTypeChoicePair * ExtrudedCrossSectionMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ExtrudedCrossSectionMeasurementDeterminationTypeVal
 {
@@ -4013,7 +4013,7 @@ union ExtrudedCrossSectionMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExtrudedCrossSectionMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -4033,7 +4033,7 @@ public:
   ExtrudedCrossSectionMeasurementDeterminationTypeVal ExtrudedCrossSectionMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExtrudedCrossSectionRecompType :
   public ConstructionMethodBaseType
@@ -4053,7 +4053,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExtrudedCrossSectionTransformType :
   public ConstructionMethodBaseType
@@ -4077,7 +4077,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureAspectsListsType :
   public XmlTypeBase
@@ -4108,7 +4108,7 @@ protected:
   NominalPointSetListType * NominalPointSets;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureBaseType :
   public XmlTypeBase
@@ -4135,7 +4135,7 @@ protected:
   AttributesType * Attributes;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureDefinitionBaseType :
   public FeatureBaseType
@@ -4152,7 +4152,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureDefinitionBaseTypeLisd :
   public std::list<FeatureDefinitionBaseType *>,
@@ -4166,7 +4166,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureDefinitionsType :
   public XmlTypeBase
@@ -4193,7 +4193,7 @@ protected:
   FeatureDefinitionBaseTypeLisd * FeatureDefinition;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureItemBaseType :
   public FeatureBaseType
@@ -4243,7 +4243,7 @@ protected:
   QIFReferenceFullType * CoordinateSystemId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureItemBaseTypeLisd :
   public std::list<FeatureItemBaseType *>,
@@ -4257,7 +4257,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureItemsType :
   public XmlTypeBase
@@ -4284,7 +4284,7 @@ protected:
   FeatureItemBaseTypeLisd * FeatureItem;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureMeasurementBaseType :
   public FeatureBaseType
@@ -4344,7 +4344,7 @@ protected:
   ArrayReferenceFullType * NotedEventIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureMeasurementBaseTypeLisd :
   public std::list<FeatureMeasurementBaseType *>,
@@ -4358,7 +4358,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureMeasurementsType :
   public XmlTypeBase
@@ -4385,7 +4385,7 @@ protected:
   FeatureMeasurementBaseTypeLisd * FeatureMeasurement;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureNominalBaseType :
   public FeatureBaseType
@@ -4435,7 +4435,7 @@ protected:
   ArrayReferenceFullType * EntityExternalIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureNominalBaseTypeLisd :
   public std::list<FeatureNominalBaseType *>,
@@ -4449,7 +4449,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureNominalsType :
   public XmlTypeBase
@@ -4476,7 +4476,7 @@ protected:
   FeatureNominalBaseTypeLisd * FeatureNominal;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureZoneBaseType :
   public XmlTypeBase
@@ -4513,7 +4513,7 @@ protected:
   QIFReferenceFullType * SurfaceFeatureNominalId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureZoneBaseTypeLisd :
   public std::list<FeatureZoneBaseType *>,
@@ -4527,7 +4527,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureZoneCurveBaseType :
   public FeatureZoneBaseType
@@ -4538,25 +4538,25 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1102_Type * FeatureZoneCurv_1102In);
+    FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In);
   FeatureZoneCurveBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1102_Type * FeatureZoneCurv_1102In);
+    FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In);
   ~FeatureZoneCurveBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
-  FeatureZoneCurv_1102_Type * getFeatureZoneCurv_1102();
-  void setFeatureZoneCurv_1102(FeatureZoneCurv_1102_Type * FeatureZoneCurv_1102In);
+  FeatureZoneCurv_1103_Type * getFeatureZoneCurv_1103();
+  void setFeatureZoneCurv_1103(FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In);
 
 protected:
-  FeatureZoneCurv_1102_Type * FeatureZoneCurv_1102;
+  FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureZoneCurveCircularType :
   public FeatureZoneCurveBaseType
@@ -4567,14 +4567,14 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1102_Type * FeatureZoneCurv_1102In,
+    FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In,
     CircleType * CircleIn);
   FeatureZoneCurveCircularType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1102_Type * FeatureZoneCurv_1102In,
+    FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In,
     CircleType * CircleIn);
   ~FeatureZoneCurveCircularType();
   void printSelf(FILE * outFile);
@@ -4587,7 +4587,7 @@ protected:
   CircleType * Circle;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureZoneCurveIrregularType :
   public FeatureZoneCurveBaseType
@@ -4598,14 +4598,14 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1102_Type * FeatureZoneCurv_1102In,
+    FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In,
     PolyLineType * CurvePointsIn);
   FeatureZoneCurveIrregularType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1102_Type * FeatureZoneCurv_1102In,
+    FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In,
     PolyLineType * CurvePointsIn);
   ~FeatureZoneCurveIrregularType();
   void printSelf(FILE * outFile);
@@ -4618,7 +4618,7 @@ protected:
   PolyLineType * CurvePoints;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureZoneCurveLineType :
   public FeatureZoneCurveBaseType
@@ -4629,14 +4629,14 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1102_Type * FeatureZoneCurv_1102In,
+    FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In,
     LineSegmentType * LineIn);
   FeatureZoneCurveLineType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1102_Type * FeatureZoneCurv_1102In,
+    FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In,
     LineSegmentType * LineIn);
   ~FeatureZoneCurveLineType();
   void printSelf(FILE * outFile);
@@ -4649,7 +4649,7 @@ protected:
   LineSegmentType * Line;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureZoneListType :
   public XmlTypeBase
@@ -4676,7 +4676,7 @@ protected:
   FeatureZoneBaseTypeLisd * FeatureZone;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureZonePointType :
   public FeatureZoneBaseType
@@ -4687,30 +4687,30 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZonePoin_1103_Type * FeatureZonePoin_1103In,
+    FeatureZonePoin_1104_Type * FeatureZonePoin_1104In,
     PointType * PointIn);
   FeatureZonePointType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZonePoin_1103_Type * FeatureZonePoin_1103In,
+    FeatureZonePoin_1104_Type * FeatureZonePoin_1104In,
     PointType * PointIn);
   ~FeatureZonePointType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
-  FeatureZonePoin_1103_Type * getFeatureZonePoin_1103();
-  void setFeatureZonePoin_1103(FeatureZonePoin_1103_Type * FeatureZonePoin_1103In);
+  FeatureZonePoin_1104_Type * getFeatureZonePoin_1104();
+  void setFeatureZonePoin_1104(FeatureZonePoin_1104_Type * FeatureZonePoin_1104In);
   PointType * getPoint();
   void setPoint(PointType * PointIn);
 
 protected:
-  FeatureZonePoin_1103_Type * FeatureZonePoin_1103;
+  FeatureZonePoin_1104_Type * FeatureZonePoin_1104;
   PointType * Point;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineBestFitType :
   public ConstructionMethodBaseType
@@ -4739,7 +4739,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineCastType :
   public ConstructionMethodBaseType
@@ -4759,7 +4759,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineCheckedFeatureType :
   public XmlTypeBase
@@ -4778,7 +4778,7 @@ protected:
   LineCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineCheckedType :
   public XmlTypeBase
@@ -4797,7 +4797,7 @@ protected:
   LineCheckedTypeChoicePair * LineCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union LineCheckedTypeVal
 {
@@ -4805,7 +4805,7 @@ union LineCheckedTypeVal
   LineConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineCheckedTypeChoicePair :
   public XmlTypeBase
@@ -4825,7 +4825,7 @@ public:
   LineCheckedTypeVal LineCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineConstructionMethodType :
   public XmlTypeBase
@@ -4844,7 +4844,7 @@ protected:
   LineConstructionMethodTypeChoicePair * LineConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union LineConstructionMethodTypeVal
 {
@@ -4863,7 +4863,7 @@ union LineConstructionMethodTypeVal
   LineFromScanType * FromScan;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -4894,7 +4894,7 @@ public:
   LineConstructionMethodTypeVal LineConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineCopyType :
   public ConstructionMethodBaseType
@@ -4914,7 +4914,7 @@ protected:
   BaseFeatureType * BaseLine;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineExtractType :
   public ConstructionMethodBaseType
@@ -4934,7 +4934,7 @@ protected:
   BaseFeatureType * CurveFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineFromScanType :
   public ConstructionMethodBaseType
@@ -4958,7 +4958,7 @@ protected:
   LinearValueType * SearchRadius;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineIntersectionType :
   public ConstructionMethodBaseType
@@ -4978,7 +4978,7 @@ protected:
   SequencedBaseFeatureTypeLisd * IntersectionFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineMeasurementDeterminationType :
   public XmlTypeBase
@@ -4997,7 +4997,7 @@ protected:
   LineMeasurementDeterminationTypeChoicePair * LineMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union LineMeasurementDeterminationTypeVal
 {
@@ -5005,7 +5005,7 @@ union LineMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -5025,7 +5025,7 @@ public:
   LineMeasurementDeterminationTypeVal LineMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineMidlineType :
   public ConstructionMethodBaseType
@@ -5045,7 +5045,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseLine;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineParallelType :
   public ConstructionMethodBaseType
@@ -5069,7 +5069,7 @@ protected:
   BaseFeatureType * PointFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LinePerpendicularType :
   public ConstructionMethodBaseType
@@ -5093,7 +5093,7 @@ protected:
   BaseFeatureType * PointFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineProjectionType :
   public ConstructionMethodBaseType
@@ -5117,7 +5117,7 @@ protected:
   BaseFeatureType * ProjectionLine;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineRecompType :
   public ConstructionMethodBaseType
@@ -5137,7 +5137,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineTangentThroughType :
   public ConstructionMethodBaseType
@@ -5161,7 +5161,7 @@ protected:
   BaseFeatureType * PointFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineTransformType :
   public ConstructionMethodBaseType
@@ -5185,7 +5185,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MarkingMethodEnumType :
   public XmlNMTOKEN
@@ -5201,7 +5201,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MarkingMethodType :
   public XmlTypeBase
@@ -5220,7 +5220,7 @@ protected:
   MarkingMethodTypeChoicePair * MarkingMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union MarkingMethodTypeVal
 {
@@ -5228,7 +5228,7 @@ union MarkingMethodTypeVal
   XmlString * OtherMarkingMethod;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MarkingMethodTypeChoicePair :
   public XmlTypeBase
@@ -5248,7 +5248,7 @@ public:
   MarkingMethodTypeVal MarkingMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredFeatureType :
   public XmlTypeBase
@@ -5267,7 +5267,7 @@ protected:
   PointListType * PointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSetType :
   public XmlTypeBase
@@ -5277,20 +5277,20 @@ public:
   MeasuredPointSetType(
     AttributesType * AttributesIn,
     OtherUnitsType * UnitsIn,
-    MeasuredPointSe_1105_Type * MeasuredPointSe_1105In,
     MeasuredPointSe_1106_Type * MeasuredPointSe_1106In,
     MeasuredPointSe_1107_Type * MeasuredPointSe_1107In,
     MeasuredPointSe_1108_Type * MeasuredPointSe_1108In,
     MeasuredPointSe_1109_Type * MeasuredPointSe_1109In,
-    QIFReferenceType * MeasurementDeviceIdIn,
     MeasuredPointSe_1110_Type * MeasuredPointSe_1110In,
+    QIFReferenceType * MeasurementDeviceIdIn,
     MeasuredPointSe_1111_Type * MeasuredPointSe_1111In,
     MeasuredPointSe_1112_Type * MeasuredPointSe_1112In,
     MeasuredPointSe_1113_Type * MeasuredPointSe_1113In,
     MeasuredPointSe_1114_Type * MeasuredPointSe_1114In,
     MeasuredPointSe_1115_Type * MeasuredPointSe_1115In,
     MeasuredPointSe_1116_Type * MeasuredPointSe_1116In,
-    MeasuredPointSe_1117_Type * MeasuredPointSe_1117In);
+    MeasuredPointSe_1117_Type * MeasuredPointSe_1117In,
+    MeasuredPointSe_1118_Type * MeasuredPointSe_1118In);
   MeasuredPointSetType(
     XmlDecimal * combinedUncertaintyIn,
     NaturalType * countIn,
@@ -5317,20 +5317,20 @@ public:
     ValidityEnumType * zValidityIn,
     AttributesType * AttributesIn,
     OtherUnitsType * UnitsIn,
-    MeasuredPointSe_1105_Type * MeasuredPointSe_1105In,
     MeasuredPointSe_1106_Type * MeasuredPointSe_1106In,
     MeasuredPointSe_1107_Type * MeasuredPointSe_1107In,
     MeasuredPointSe_1108_Type * MeasuredPointSe_1108In,
     MeasuredPointSe_1109_Type * MeasuredPointSe_1109In,
-    QIFReferenceType * MeasurementDeviceIdIn,
     MeasuredPointSe_1110_Type * MeasuredPointSe_1110In,
+    QIFReferenceType * MeasurementDeviceIdIn,
     MeasuredPointSe_1111_Type * MeasuredPointSe_1111In,
     MeasuredPointSe_1112_Type * MeasuredPointSe_1112In,
     MeasuredPointSe_1113_Type * MeasuredPointSe_1113In,
     MeasuredPointSe_1114_Type * MeasuredPointSe_1114In,
     MeasuredPointSe_1115_Type * MeasuredPointSe_1115In,
     MeasuredPointSe_1116_Type * MeasuredPointSe_1116In,
-    MeasuredPointSe_1117_Type * MeasuredPointSe_1117In);
+    MeasuredPointSe_1117_Type * MeasuredPointSe_1117In,
+    MeasuredPointSe_1118_Type * MeasuredPointSe_1118In);
   ~MeasuredPointSetType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -5386,8 +5386,6 @@ public:
   void setAttributes(AttributesType * AttributesIn);
   OtherUnitsType * getUnits();
   void setUnits(OtherUnitsType * UnitsIn);
-  MeasuredPointSe_1105_Type * getMeasuredPointSe_1105();
-  void setMeasuredPointSe_1105(MeasuredPointSe_1105_Type * MeasuredPointSe_1105In);
   MeasuredPointSe_1106_Type * getMeasuredPointSe_1106();
   void setMeasuredPointSe_1106(MeasuredPointSe_1106_Type * MeasuredPointSe_1106In);
   MeasuredPointSe_1107_Type * getMeasuredPointSe_1107();
@@ -5396,10 +5394,10 @@ public:
   void setMeasuredPointSe_1108(MeasuredPointSe_1108_Type * MeasuredPointSe_1108In);
   MeasuredPointSe_1109_Type * getMeasuredPointSe_1109();
   void setMeasuredPointSe_1109(MeasuredPointSe_1109_Type * MeasuredPointSe_1109In);
-  QIFReferenceType * getMeasurementDeviceId();
-  void setMeasurementDeviceId(QIFReferenceType * MeasurementDeviceIdIn);
   MeasuredPointSe_1110_Type * getMeasuredPointSe_1110();
   void setMeasuredPointSe_1110(MeasuredPointSe_1110_Type * MeasuredPointSe_1110In);
+  QIFReferenceType * getMeasurementDeviceId();
+  void setMeasurementDeviceId(QIFReferenceType * MeasurementDeviceIdIn);
   MeasuredPointSe_1111_Type * getMeasuredPointSe_1111();
   void setMeasuredPointSe_1111(MeasuredPointSe_1111_Type * MeasuredPointSe_1111In);
   MeasuredPointSe_1112_Type * getMeasuredPointSe_1112();
@@ -5414,6 +5412,8 @@ public:
   void setMeasuredPointSe_1116(MeasuredPointSe_1116_Type * MeasuredPointSe_1116In);
   MeasuredPointSe_1117_Type * getMeasuredPointSe_1117();
   void setMeasuredPointSe_1117(MeasuredPointSe_1117_Type * MeasuredPointSe_1117In);
+  MeasuredPointSe_1118_Type * getMeasuredPointSe_1118();
+  void setMeasuredPointSe_1118(MeasuredPointSe_1118_Type * MeasuredPointSe_1118In);
 
 protected:
   XmlDecimal * combinedUncertainty;
@@ -5441,13 +5441,12 @@ protected:
   ValidityEnumType * zValidity;
   AttributesType * Attributes;
   OtherUnitsType * Units;
-  MeasuredPointSe_1105_Type * MeasuredPointSe_1105;
   MeasuredPointSe_1106_Type * MeasuredPointSe_1106;
   MeasuredPointSe_1107_Type * MeasuredPointSe_1107;
   MeasuredPointSe_1108_Type * MeasuredPointSe_1108;
   MeasuredPointSe_1109_Type * MeasuredPointSe_1109;
-  QIFReferenceType * MeasurementDeviceId;
   MeasuredPointSe_1110_Type * MeasuredPointSe_1110;
+  QIFReferenceType * MeasurementDeviceId;
   MeasuredPointSe_1111_Type * MeasuredPointSe_1111;
   MeasuredPointSe_1112_Type * MeasuredPointSe_1112;
   MeasuredPointSe_1113_Type * MeasuredPointSe_1113;
@@ -5455,9 +5454,10 @@ protected:
   MeasuredPointSe_1115_Type * MeasuredPointSe_1115;
   MeasuredPointSe_1116_Type * MeasuredPointSe_1116;
   MeasuredPointSe_1117_Type * MeasuredPointSe_1117;
+  MeasuredPointSe_1118_Type * MeasuredPointSe_1118;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSetTypeLisd :
   public std::list<MeasuredPointSetType *>,
@@ -5471,7 +5471,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSetsType :
   public XmlTypeBase
@@ -5498,7 +5498,7 @@ protected:
   MeasuredPointSetTypeLisd * MeasuredPointSet;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class NominalPointSetListType :
   public XmlTypeBase
@@ -5525,7 +5525,7 @@ protected:
   PointSetNominalTypeLisd * NominalPointSet;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class NonShapeFeatureDefinitionBaseType :
   public FeatureDefinitionBaseType
@@ -5542,7 +5542,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class NonShapeFeatureItemBaseType :
   public FeatureItemBaseType
@@ -5571,7 +5571,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class NonShapeFeatureMeasurementBaseType :
   public FeatureMeasurementBaseType
@@ -5604,7 +5604,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class NonShapeFeatureNominalBaseType :
   public FeatureNominalBaseType
@@ -5633,7 +5633,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesBestFitType :
   public ConstructionMethodBaseType
@@ -5662,7 +5662,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesCastType :
   public ConstructionMethodBaseType
@@ -5682,7 +5682,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesCheckedFeatureType :
   public XmlTypeBase
@@ -5701,7 +5701,7 @@ protected:
   OppositeAngledLinesCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesCheckedType :
   public XmlTypeBase
@@ -5720,7 +5720,7 @@ protected:
   OppositeAngledLinesCheckedTypeChoicePair * OppositeAngledLinesCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OppositeAngledLinesCheckedTypeVal
 {
@@ -5728,7 +5728,7 @@ union OppositeAngledLinesCheckedTypeVal
   OppositeAngledLinesConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesCheckedTypeChoicePair :
   public XmlTypeBase
@@ -5748,7 +5748,7 @@ public:
   OppositeAngledLinesCheckedTypeVal OppositeAngledLinesCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesConstructionMethodType :
   public XmlTypeBase
@@ -5767,7 +5767,7 @@ protected:
   OppositeAngledLinesConstructionMethodTypeChoicePair * OppositeAngledLinesConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OppositeAngledLinesConstructionMethodTypeVal
 {
@@ -5781,7 +5781,7 @@ union OppositeAngledLinesConstructionMethodTypeVal
   OppositeAngledLinesFromScanType * FromScan;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -5807,7 +5807,7 @@ public:
   OppositeAngledLinesConstructionMethodTypeVal OppositeAngledLinesConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesCopyType :
   public ConstructionMethodBaseType
@@ -5827,7 +5827,7 @@ protected:
   BaseFeatureType * BaseOppositeAngledLines;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesFromScanType :
   public ConstructionMethodBaseType
@@ -5855,7 +5855,7 @@ protected:
   LinearValueType * Depth;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesIntersectionType :
   public ConstructionMethodBaseType
@@ -5879,7 +5879,7 @@ protected:
   BaseFeatureType * IntersectionFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesMeasurementDeterminationType :
   public XmlTypeBase
@@ -5898,7 +5898,7 @@ protected:
   OppositeAngledLinesMeasurementDeterminationTypeChoicePair * OppositeAngledLinesMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OppositeAngledLinesMeasurementDeterminationTypeVal
 {
@@ -5906,7 +5906,7 @@ union OppositeAngledLinesMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -5926,7 +5926,7 @@ public:
   OppositeAngledLinesMeasurementDeterminationTypeVal OppositeAngledLinesMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesProjectionType :
   public ConstructionMethodBaseType
@@ -5950,7 +5950,7 @@ protected:
   BaseFeatureType * ProjectionOppositeAngledLines;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesRecompType :
   public ConstructionMethodBaseType
@@ -5970,7 +5970,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesTransformType :
   public ConstructionMethodBaseType
@@ -5994,7 +5994,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledPlanesBestFitType :
   public ConstructionMethodBaseType
@@ -6023,7 +6023,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledPlanesCastType :
   public ConstructionMethodBaseType
@@ -6043,7 +6043,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledPlanesCheckedFeatureType :
   public XmlTypeBase
@@ -6062,7 +6062,7 @@ protected:
   OppositeAngledPlanesCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledPlanesCheckedType :
   public XmlTypeBase
@@ -6081,7 +6081,7 @@ protected:
   OppositeAngledPlanesCheckedTypeChoicePair * OppositeAngledPlanesCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OppositeAngledPlanesCheckedTypeVal
 {
@@ -6089,7 +6089,7 @@ union OppositeAngledPlanesCheckedTypeVal
   OppositeAngledPlanesConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledPlanesCheckedTypeChoicePair :
   public XmlTypeBase
@@ -6109,7 +6109,7 @@ public:
   OppositeAngledPlanesCheckedTypeVal OppositeAngledPlanesCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledPlanesConstructionMethodType :
   public XmlTypeBase
@@ -6128,7 +6128,7 @@ protected:
   OppositeAngledPlanesConstructionMethodTypeChoicePair * OppositeAngledPlanesConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OppositeAngledPlanesConstructionMethodTypeVal
 {
@@ -6140,7 +6140,7 @@ union OppositeAngledPlanesConstructionMethodTypeVal
   OppositeAngledPlanesFromScanType * FromScan;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledPlanesConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -6164,7 +6164,7 @@ public:
   OppositeAngledPlanesConstructionMethodTypeVal OppositeAngledPlanesConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledPlanesCopyType :
   public ConstructionMethodBaseType
@@ -6184,7 +6184,7 @@ protected:
   BaseFeatureType * BaseOppositeAngledPlanes;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledPlanesFromScanType :
   public ConstructionMethodBaseType
@@ -6208,7 +6208,7 @@ protected:
   LinearValueType * SearchRadius;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledPlanesMeasurementDeterminationType :
   public XmlTypeBase
@@ -6227,7 +6227,7 @@ protected:
   OppositeAngledPlanesMeasurementDeterminationTypeChoicePair * OppositeAngledPlanesMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OppositeAngledPlanesMeasurementDeterminationTypeVal
 {
@@ -6235,7 +6235,7 @@ union OppositeAngledPlanesMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledPlanesMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -6255,7 +6255,7 @@ public:
   OppositeAngledPlanesMeasurementDeterminationTypeVal OppositeAngledPlanesMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledPlanesRecompType :
   public ConstructionMethodBaseType
@@ -6275,7 +6275,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledPlanesTransformType :
   public ConstructionMethodBaseType
@@ -6299,7 +6299,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesBestFitType :
   public ConstructionMethodBaseType
@@ -6328,7 +6328,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesCastType :
   public ConstructionMethodBaseType
@@ -6348,7 +6348,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesCheckedFeatureType :
   public XmlTypeBase
@@ -6367,7 +6367,7 @@ protected:
   OppositeParallelLinesCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesCheckedType :
   public XmlTypeBase
@@ -6386,7 +6386,7 @@ protected:
   OppositeParallelLinesCheckedTypeChoicePair * OppositeParallelLinesCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OppositeParallelLinesCheckedTypeVal
 {
@@ -6394,7 +6394,7 @@ union OppositeParallelLinesCheckedTypeVal
   OppositeParallelLinesConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesCheckedTypeChoicePair :
   public XmlTypeBase
@@ -6414,7 +6414,7 @@ public:
   OppositeParallelLinesCheckedTypeVal OppositeParallelLinesCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesConstructionMethodType :
   public XmlTypeBase
@@ -6433,7 +6433,7 @@ protected:
   OppositeParallelLinesConstructionMethodTypeChoicePair * OppositeParallelLinesConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OppositeParallelLinesConstructionMethodTypeVal
 {
@@ -6447,7 +6447,7 @@ union OppositeParallelLinesConstructionMethodTypeVal
   OppositeParallelLinesFromScanType * FromScan;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -6473,7 +6473,7 @@ public:
   OppositeParallelLinesConstructionMethodTypeVal OppositeParallelLinesConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesCopyType :
   public ConstructionMethodBaseType
@@ -6493,7 +6493,7 @@ protected:
   BaseFeatureType * BaseOppositeParallelLines;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesFromScanType :
   public ConstructionMethodBaseType
@@ -6521,7 +6521,7 @@ protected:
   LinearValueType * Depth;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesIntersectionType :
   public ConstructionMethodBaseType
@@ -6545,7 +6545,7 @@ protected:
   BaseFeatureType * IntersectionFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesMeasurementDeterminationType :
   public XmlTypeBase
@@ -6564,7 +6564,7 @@ protected:
   OppositeParallelLinesMeasurementDeterminationTypeChoicePair * OppositeParallelLinesMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OppositeParallelLinesMeasurementDeterminationTypeVal
 {
@@ -6572,7 +6572,7 @@ union OppositeParallelLinesMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -6592,7 +6592,7 @@ public:
   OppositeParallelLinesMeasurementDeterminationTypeVal OppositeParallelLinesMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesProjectionType :
   public ConstructionMethodBaseType
@@ -6616,7 +6616,7 @@ protected:
   BaseFeatureType * ProjectionOppositeParallelLines;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesRecompType :
   public ConstructionMethodBaseType
@@ -6636,7 +6636,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesTransformType :
   public ConstructionMethodBaseType
@@ -6660,7 +6660,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelPlanesBestFitType :
   public ConstructionMethodBaseType
@@ -6689,7 +6689,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelPlanesCastType :
   public ConstructionMethodBaseType
@@ -6709,7 +6709,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelPlanesCheckedFeatureType :
   public XmlTypeBase
@@ -6728,7 +6728,7 @@ protected:
   OppositeParallelPlanesCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelPlanesCheckedType :
   public XmlTypeBase
@@ -6747,7 +6747,7 @@ protected:
   OppositeParallelPlanesCheckedTypeChoicePair * OppositeParallelPlanesCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OppositeParallelPlanesCheckedTypeVal
 {
@@ -6755,7 +6755,7 @@ union OppositeParallelPlanesCheckedTypeVal
   OppositeParallelPlanesConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelPlanesCheckedTypeChoicePair :
   public XmlTypeBase
@@ -6775,7 +6775,7 @@ public:
   OppositeParallelPlanesCheckedTypeVal OppositeParallelPlanesCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelPlanesConstructionMethodType :
   public XmlTypeBase
@@ -6794,7 +6794,7 @@ protected:
   OppositeParallelPlanesConstructionMethodTypeChoicePair * OppositeParallelPlanesConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OppositeParallelPlanesConstructionMethodTypeVal
 {
@@ -6806,7 +6806,7 @@ union OppositeParallelPlanesConstructionMethodTypeVal
   OppositeParallelPlanesFromScanType * FromScan;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelPlanesConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -6830,7 +6830,7 @@ public:
   OppositeParallelPlanesConstructionMethodTypeVal OppositeParallelPlanesConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelPlanesCopyType :
   public ConstructionMethodBaseType
@@ -6850,7 +6850,7 @@ protected:
   BaseFeatureType * BaseOppositeParallelPlanes;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelPlanesFromScanType :
   public ConstructionMethodBaseType
@@ -6874,7 +6874,7 @@ protected:
   LinearValueType * SearchRadius;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelPlanesMeasurementDeterminationType :
   public XmlTypeBase
@@ -6893,7 +6893,7 @@ protected:
   OppositeParallelPlanesMeasurementDeterminationTypeChoicePair * OppositeParallelPlanesMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OppositeParallelPlanesMeasurementDeterminationTypeVal
 {
@@ -6901,7 +6901,7 @@ union OppositeParallelPlanesMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelPlanesMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -6921,7 +6921,7 @@ public:
   OppositeParallelPlanesMeasurementDeterminationTypeVal OppositeParallelPlanesMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelPlanesRecompType :
   public ConstructionMethodBaseType
@@ -6941,7 +6941,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelPlanesTransformType :
   public ConstructionMethodBaseType
@@ -6965,7 +6965,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherCurveCheckedFeatureType :
   public XmlTypeBase
@@ -6984,7 +6984,7 @@ protected:
   OtherCurveCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherCurveCheckedType :
   public XmlTypeBase
@@ -7003,7 +7003,7 @@ protected:
   OtherCurveCheckedTypeChoicePair * OtherCurveCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OtherCurveCheckedTypeVal
 {
@@ -7011,7 +7011,7 @@ union OtherCurveCheckedTypeVal
   OtherCurveConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherCurveCheckedTypeChoicePair :
   public XmlTypeBase
@@ -7031,7 +7031,7 @@ public:
   OtherCurveCheckedTypeVal OtherCurveCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherCurveConstructionMethodType :
   public XmlTypeBase
@@ -7050,14 +7050,14 @@ protected:
   OtherCurveConstructionMethodTypeChoicePair * OtherCurveConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OtherCurveConstructionMethodTypeVal
 {
   OtherCurveFeatureCopyType * Copy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherCurveConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -7076,7 +7076,7 @@ public:
   OtherCurveConstructionMethodTypeVal OtherCurveConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherCurveFeatureCopyType :
   public ConstructionMethodBaseType
@@ -7096,7 +7096,7 @@ protected:
   BaseFeatureType * BaseOtherCurveFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherCurveMeasurementDeterminationType :
   public XmlTypeBase
@@ -7115,7 +7115,7 @@ protected:
   OtherCurveMeasurementDeterminationTypeChoicePair * OtherCurveMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OtherCurveMeasurementDeterminationTypeVal
 {
@@ -7123,7 +7123,7 @@ union OtherCurveMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherCurveMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -7143,7 +7143,7 @@ public:
   OtherCurveMeasurementDeterminationTypeVal OtherCurveMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherNonShapeFeatureDefinitionType :
   public NonShapeFeatureDefinitionBaseType
@@ -7168,7 +7168,7 @@ protected:
   XmlString * Description;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherNonShapeFeatureItemType :
   public NonShapeFeatureItemBaseType
@@ -7197,7 +7197,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherNonShapeFeatureMeasurementType :
   public NonShapeFeatureMeasurementBaseType
@@ -7230,7 +7230,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherNonShapeFeatureNominalType :
   public NonShapeFeatureNominalBaseType
@@ -7267,7 +7267,7 @@ protected:
   ArrayReferenceFullType * ReferenceFeatureNominalIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherShapeCheckedFeatureType :
   public XmlTypeBase
@@ -7286,7 +7286,7 @@ protected:
   OtherShapeCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherShapeCheckedType :
   public XmlTypeBase
@@ -7305,7 +7305,7 @@ protected:
   OtherShapeCheckedTypeChoicePair * OtherShapeCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OtherShapeCheckedTypeVal
 {
@@ -7313,7 +7313,7 @@ union OtherShapeCheckedTypeVal
   OtherShapeConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherShapeCheckedTypeChoicePair :
   public XmlTypeBase
@@ -7333,7 +7333,7 @@ public:
   OtherShapeCheckedTypeVal OtherShapeCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherShapeConstructionMethodType :
   public XmlTypeBase
@@ -7352,14 +7352,14 @@ protected:
   OtherShapeConstructionMethodTypeChoicePair * OtherShapeConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OtherShapeConstructionMethodTypeVal
 {
   OtherShapeFeatureCopyType * Copy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherShapeConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -7378,7 +7378,7 @@ public:
   OtherShapeConstructionMethodTypeVal OtherShapeConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherShapeFeatureCopyType :
   public ConstructionMethodBaseType
@@ -7398,7 +7398,7 @@ protected:
   BaseFeatureType * BaseOtherShapeFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherShapeMeasurementDeterminationType :
   public XmlTypeBase
@@ -7417,7 +7417,7 @@ protected:
   OtherShapeMeasurementDeterminationTypeChoicePair * OtherShapeMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OtherShapeMeasurementDeterminationTypeVal
 {
@@ -7425,7 +7425,7 @@ union OtherShapeMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherShapeMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -7445,7 +7445,7 @@ public:
   OtherShapeMeasurementDeterminationTypeVal OtherShapeMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherSurfaceCheckedFeatureType :
   public XmlTypeBase
@@ -7464,7 +7464,7 @@ protected:
   OtherSurfaceCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherSurfaceCheckedType :
   public XmlTypeBase
@@ -7483,7 +7483,7 @@ protected:
   OtherSurfaceCheckedTypeChoicePair * OtherSurfaceCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OtherSurfaceCheckedTypeVal
 {
@@ -7491,7 +7491,7 @@ union OtherSurfaceCheckedTypeVal
   OtherSurfaceConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherSurfaceCheckedTypeChoicePair :
   public XmlTypeBase
@@ -7511,7 +7511,7 @@ public:
   OtherSurfaceCheckedTypeVal OtherSurfaceCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherSurfaceConstructionMethodType :
   public XmlTypeBase
@@ -7530,14 +7530,14 @@ protected:
   OtherSurfaceConstructionMethodTypeChoicePair * OtherSurfaceConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OtherSurfaceConstructionMethodTypeVal
 {
   OtherSurfaceFeatureCopyType * Copy;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherSurfaceConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -7556,7 +7556,7 @@ public:
   OtherSurfaceConstructionMethodTypeVal OtherSurfaceConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherSurfaceFeatureCopyType :
   public ConstructionMethodBaseType
@@ -7576,7 +7576,7 @@ protected:
   BaseFeatureType * BaseOtherSurfaceFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherSurfaceMeasurementDeterminationType :
   public XmlTypeBase
@@ -7595,7 +7595,7 @@ protected:
   OtherSurfaceMeasurementDeterminationTypeChoicePair * OtherSurfaceMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OtherSurfaceMeasurementDeterminationTypeVal
 {
@@ -7603,7 +7603,7 @@ union OtherSurfaceMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherSurfaceMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -7623,7 +7623,7 @@ public:
   OtherSurfaceMeasurementDeterminationTypeVal OtherSurfaceMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneBestFitType :
   public ConstructionMethodBaseType
@@ -7652,7 +7652,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneCastType :
   public ConstructionMethodBaseType
@@ -7672,7 +7672,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneCheckedFeatureType :
   public XmlTypeBase
@@ -7691,7 +7691,7 @@ protected:
   PlaneCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneCheckedType :
   public XmlTypeBase
@@ -7710,7 +7710,7 @@ protected:
   PlaneCheckedTypeChoicePair * PlaneCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PlaneCheckedTypeVal
 {
@@ -7718,7 +7718,7 @@ union PlaneCheckedTypeVal
   PlaneConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneCheckedTypeChoicePair :
   public XmlTypeBase
@@ -7738,7 +7738,7 @@ public:
   PlaneCheckedTypeVal PlaneCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneConstructionMethodType :
   public XmlTypeBase
@@ -7757,7 +7757,7 @@ protected:
   PlaneConstructionMethodTypeChoicePair * PlaneConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PlaneConstructionMethodTypeVal
 {
@@ -7775,7 +7775,7 @@ union PlaneConstructionMethodTypeVal
   PlaneExtractType * Extract;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -7805,7 +7805,7 @@ public:
   PlaneConstructionMethodTypeVal PlaneConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneCopyType :
   public ConstructionMethodBaseType
@@ -7825,7 +7825,7 @@ protected:
   BaseFeatureType * BasePlane;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneExtractType :
   public ConstructionMethodBaseType
@@ -7845,7 +7845,7 @@ protected:
   BaseFeatureType * SurfaceFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneMeasurementDeterminationType :
   public XmlTypeBase
@@ -7864,7 +7864,7 @@ protected:
   PlaneMeasurementDeterminationTypeChoicePair * PlaneMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PlaneMeasurementDeterminationTypeVal
 {
@@ -7872,7 +7872,7 @@ union PlaneMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -7892,7 +7892,7 @@ public:
   PlaneMeasurementDeterminationTypeVal PlaneMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneMidplaneType :
   public ConstructionMethodBaseType
@@ -7912,7 +7912,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BasePlane;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneOffsetType :
   public ConstructionMethodBaseType
@@ -7936,7 +7936,7 @@ protected:
   LinearValueType * Offset;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneParallelType :
   public ConstructionMethodBaseType
@@ -7960,7 +7960,7 @@ protected:
   BaseFeatureType * PointFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlanePerpendicularType :
   public ConstructionMethodBaseType
@@ -7984,7 +7984,7 @@ protected:
   BaseFeatureType * PointFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneRecompType :
   public ConstructionMethodBaseType
@@ -8004,7 +8004,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneTangentThroughType :
   public ConstructionMethodBaseType
@@ -8028,7 +8028,7 @@ protected:
   BaseFeatureType * PointFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneThroughType :
   public ConstructionMethodBaseType
@@ -8048,7 +8048,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneTransformType :
   public ConstructionMethodBaseType
@@ -8072,7 +8072,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointCheckedFeatureType :
   public XmlTypeBase
@@ -8091,7 +8091,7 @@ protected:
   PointCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointCheckedType :
   public XmlTypeBase
@@ -8110,7 +8110,7 @@ protected:
   PointCheckedTypeChoicePair * PointCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PointCheckedTypeVal
 {
@@ -8118,7 +8118,7 @@ union PointCheckedTypeVal
   PointConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointCheckedTypeChoicePair :
   public XmlTypeBase
@@ -8138,7 +8138,7 @@ public:
   PointCheckedTypeVal PointCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointConstructionMethodType :
   public XmlTypeBase
@@ -8157,7 +8157,7 @@ protected:
   PointConstructionMethodTypeChoicePair * PointConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PointConstructionMethodTypeVal
 {
@@ -8177,7 +8177,7 @@ union PointConstructionMethodTypeVal
   PointFeatureExtremeType * Extreme;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -8209,7 +8209,7 @@ public:
   PointConstructionMethodTypeVal PointConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedCurveBestFitType :
   public ConstructionMethodBaseType
@@ -8238,7 +8238,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedCurveCheckedFeatureType :
   public XmlTypeBase
@@ -8257,7 +8257,7 @@ protected:
   PointDefinedCurveCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedCurveCheckedType :
   public XmlTypeBase
@@ -8276,7 +8276,7 @@ protected:
   PointDefinedCurveCheckedTypeChoicePair * PointDefinedCurveCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PointDefinedCurveCheckedTypeVal
 {
@@ -8284,7 +8284,7 @@ union PointDefinedCurveCheckedTypeVal
   PointDefinedCurveConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedCurveCheckedTypeChoicePair :
   public XmlTypeBase
@@ -8304,7 +8304,7 @@ public:
   PointDefinedCurveCheckedTypeVal PointDefinedCurveCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedCurveConstructionMethodType :
   public XmlTypeBase
@@ -8323,7 +8323,7 @@ protected:
   PointDefinedCurveConstructionMethodTypeChoicePair * PointDefinedCurveConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PointDefinedCurveConstructionMethodTypeVal
 {
@@ -8335,7 +8335,7 @@ union PointDefinedCurveConstructionMethodTypeVal
   PointDefinedCurveExtractType * Extract;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedCurveConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -8359,7 +8359,7 @@ public:
   PointDefinedCurveConstructionMethodTypeVal PointDefinedCurveConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedCurveCopyType :
   public ConstructionMethodBaseType
@@ -8379,7 +8379,7 @@ protected:
   BaseFeatureType * BasePointDefinedCurve;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedCurveExtractType :
   public ConstructionMethodBaseType
@@ -8399,7 +8399,7 @@ protected:
   BaseFeatureType * CurveFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedCurveFromScanType :
   public ConstructionMethodBaseType
@@ -8423,7 +8423,7 @@ protected:
   LinearValueType * SearchRadius;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedCurveMeasurementDeterminationType :
   public XmlTypeBase
@@ -8442,7 +8442,7 @@ protected:
   PointDefinedCurveMeasurementDeterminationTypeChoicePair * PointDefinedCurveMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PointDefinedCurveMeasurementDeterminationTypeVal
 {
@@ -8450,7 +8450,7 @@ union PointDefinedCurveMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedCurveMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -8470,7 +8470,7 @@ public:
   PointDefinedCurveMeasurementDeterminationTypeVal PointDefinedCurveMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedCurveRecompType :
   public ConstructionMethodBaseType
@@ -8490,7 +8490,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedCurveTransformType :
   public ConstructionMethodBaseType
@@ -8514,7 +8514,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedSurfaceBestFitType :
   public ConstructionMethodBaseType
@@ -8543,7 +8543,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedSurfaceCheckedFeatureType :
   public XmlTypeBase
@@ -8562,7 +8562,7 @@ protected:
   PointDefinedSurfaceCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedSurfaceCheckedType :
   public XmlTypeBase
@@ -8581,7 +8581,7 @@ protected:
   PointDefinedSurfaceCheckedTypeChoicePair * PointDefinedSurfaceCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PointDefinedSurfaceCheckedTypeVal
 {
@@ -8589,7 +8589,7 @@ union PointDefinedSurfaceCheckedTypeVal
   PointDefinedSurfaceConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedSurfaceCheckedTypeChoicePair :
   public XmlTypeBase
@@ -8609,7 +8609,7 @@ public:
   PointDefinedSurfaceCheckedTypeVal PointDefinedSurfaceCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedSurfaceConstructionMethodType :
   public XmlTypeBase
@@ -8628,7 +8628,7 @@ protected:
   PointDefinedSurfaceConstructionMethodTypeChoicePair * PointDefinedSurfaceConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PointDefinedSurfaceConstructionMethodTypeVal
 {
@@ -8639,7 +8639,7 @@ union PointDefinedSurfaceConstructionMethodTypeVal
   PointDefinedSurfaceExtractType * Extract;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedSurfaceConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -8662,7 +8662,7 @@ public:
   PointDefinedSurfaceConstructionMethodTypeVal PointDefinedSurfaceConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedSurfaceCopyType :
   public ConstructionMethodBaseType
@@ -8682,7 +8682,7 @@ protected:
   BaseFeatureType * BasePointDefinedSurface;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedSurfaceExtractType :
   public ConstructionMethodBaseType
@@ -8702,7 +8702,7 @@ protected:
   BaseFeatureType * SurfaceFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedSurfaceMeasurementDeterminationType :
   public XmlTypeBase
@@ -8721,7 +8721,7 @@ protected:
   PointDefinedSurfaceMeasurementDeterminationTypeChoicePair * PointDefinedSurfaceMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PointDefinedSurfaceMeasurementDeterminationTypeVal
 {
@@ -8729,7 +8729,7 @@ union PointDefinedSurfaceMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedSurfaceMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -8749,7 +8749,7 @@ public:
   PointDefinedSurfaceMeasurementDeterminationTypeVal PointDefinedSurfaceMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedSurfaceRecompType :
   public ConstructionMethodBaseType
@@ -8769,7 +8769,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedSurfaceTransformType :
   public ConstructionMethodBaseType
@@ -8793,7 +8793,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureCastType :
   public ConstructionMethodBaseType
@@ -8813,7 +8813,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureCenterOfGravityType :
   public ConstructionMethodBaseType
@@ -8842,7 +8842,7 @@ protected:
   BaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureCopyType :
   public ConstructionMethodBaseType
@@ -8862,7 +8862,7 @@ protected:
   BaseFeatureType * BasePointFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureExtremeType :
   public ConstructionMethodBaseType
@@ -8873,7 +8873,7 @@ public:
     XmlBoolean * NominalsCalculatedIn,
     BaseFeatureType * BaseFeatureIn,
     XmlBoolean * MinimumIn,
-    PointFeatureExt_1122_Type * PointFeatureExt_1122In);
+    PointFeatureExt_1123_Type * PointFeatureExt_1123In);
   ~PointFeatureExtremeType();
   void printSelf(FILE * outFile);
 
@@ -8881,16 +8881,16 @@ public:
   void setBaseFeature(BaseFeatureType * BaseFeatureIn);
   XmlBoolean * getMinimum();
   void setMinimum(XmlBoolean * MinimumIn);
-  PointFeatureExt_1122_Type * getPointFeatureExt_1122();
-  void setPointFeatureExt_1122(PointFeatureExt_1122_Type * PointFeatureExt_1122In);
+  PointFeatureExt_1123_Type * getPointFeatureExt_1123();
+  void setPointFeatureExt_1123(PointFeatureExt_1123_Type * PointFeatureExt_1123In);
 
 protected:
   BaseFeatureType * BaseFeature;
   XmlBoolean * Minimum;
-  PointFeatureExt_1122_Type * PointFeatureExt_1122;
+  PointFeatureExt_1123_Type * PointFeatureExt_1123;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureFromConeType :
   public ConstructionMethodBaseType
@@ -8910,7 +8910,7 @@ protected:
   BaseFeatureType * BaseCone;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureFromScanType :
   public ConstructionMethodBaseType
@@ -8938,7 +8938,7 @@ protected:
   RetrievalMethodEnumType * RetrievalMethod;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureIntersectionType :
   public ConstructionMethodBaseType
@@ -8958,7 +8958,7 @@ protected:
   SequencedBaseFeatureTypeLisd * IntersectionFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureMidPointType :
   public ConstructionMethodBaseType
@@ -8978,7 +8978,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureMovePointAxisType :
   public ConstructionMethodBaseType
@@ -9006,7 +9006,7 @@ protected:
   BaseFeatureType * BaseAxisFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureMovePointType :
   public ConstructionMethodBaseType
@@ -9016,21 +9016,21 @@ public:
   PointFeatureMovePointType(
     XmlBoolean * NominalsCalculatedIn,
     BaseFeatureType * BaseFeatureIn,
-    PointFeatureMov_1123_Type * PointFeatureMov_1123In);
+    PointFeatureMov_1124_Type * PointFeatureMov_1124In);
   ~PointFeatureMovePointType();
   void printSelf(FILE * outFile);
 
   BaseFeatureType * getBaseFeature();
   void setBaseFeature(BaseFeatureType * BaseFeatureIn);
-  PointFeatureMov_1123_Type * getPointFeatureMov_1123();
-  void setPointFeatureMov_1123(PointFeatureMov_1123_Type * PointFeatureMov_1123In);
+  PointFeatureMov_1124_Type * getPointFeatureMov_1124();
+  void setPointFeatureMov_1124(PointFeatureMov_1124_Type * PointFeatureMov_1124In);
 
 protected:
   BaseFeatureType * BaseFeature;
-  PointFeatureMov_1123_Type * PointFeatureMov_1123;
+  PointFeatureMov_1124_Type * PointFeatureMov_1124;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureMovePointVectorType :
   public ConstructionMethodBaseType
@@ -9058,7 +9058,7 @@ protected:
   UnitVectorType * Vector;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeaturePierceType :
   public ConstructionMethodBaseType
@@ -9082,7 +9082,7 @@ protected:
   BaseFeatureType * CurveFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureProjectionType :
   public ConstructionMethodBaseType
@@ -9106,7 +9106,7 @@ protected:
   BaseFeatureType * ProjectionFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureTransformType :
   public ConstructionMethodBaseType
@@ -9130,7 +9130,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointIndexType :
   public XmlTypeBase
@@ -9149,7 +9149,7 @@ protected:
   PointIndexTypeChoicePair * PointIndexTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PointIndexTypeVal
 {
@@ -9158,7 +9158,7 @@ union PointIndexTypeVal
   XmlToken * All;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointIndexTypeChoicePair :
   public XmlTypeBase
@@ -9179,7 +9179,7 @@ public:
   PointIndexTypeVal PointIndexTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointListType :
   public XmlTypeBase
@@ -9206,7 +9206,7 @@ protected:
   PointSetReferenceBaseTypeLisd * PointSetId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointMeasurementDeterminationType :
   public XmlTypeBase
@@ -9225,7 +9225,7 @@ protected:
   PointMeasurementDeterminationTypeChoicePair * PointMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PointMeasurementDeterminationTypeVal
 {
@@ -9233,7 +9233,7 @@ union PointMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -9253,7 +9253,7 @@ public:
   PointMeasurementDeterminationTypeVal PointMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointRangeType :
   public XmlTypeBase
@@ -9276,7 +9276,7 @@ protected:
   NaturalType * Stop;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointSetNominalType :
   public XmlTypeBase
@@ -9359,7 +9359,7 @@ protected:
   MeasurePointNominalTypeLisd * MeasurePoint;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointSetNominalTypeLisd :
   public std::list<PointSetNominalType *>,
@@ -9373,7 +9373,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SetFeatureType :
   public XmlTypeBase
@@ -9384,7 +9384,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ShapeFeatureDefinitionBaseType :
   public FeatureDefinitionBaseType
@@ -9401,7 +9401,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ShapeFeatureItemBaseType :
   public FeatureItemBaseType
@@ -9448,7 +9448,7 @@ protected:
   VirtualMeasurementType * VirtualMeasurement;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ShapeFeatureMeasurementBaseType :
   public FeatureMeasurementBaseType
@@ -9499,7 +9499,7 @@ protected:
   QIFReferenceType * ProxyMeasurementId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ShapeFeatureNominalBaseType :
   public FeatureNominalBaseType
@@ -9541,7 +9541,7 @@ protected:
   SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithm;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SpecifiedFeatureDefinitionBaseType :
   public ShapeFeatureDefinitionBaseType
@@ -9558,7 +9558,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SpecifiedFeatureItemBaseType :
   public ShapeFeatureItemBaseType
@@ -9593,7 +9593,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SpecifiedFeatureMeasurementBaseType :
   public ShapeFeatureMeasurementBaseType
@@ -9632,7 +9632,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SpecifiedFeatureNominalBaseType :
   public ShapeFeatureNominalBaseType
@@ -9665,7 +9665,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphereBestFitType :
   public ConstructionMethodBaseType
@@ -9694,7 +9694,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphereCastType :
   public ConstructionMethodBaseType
@@ -9714,7 +9714,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphereCheckedFeatureType :
   public XmlTypeBase
@@ -9733,7 +9733,7 @@ protected:
   SphereCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphereCheckedType :
   public XmlTypeBase
@@ -9752,7 +9752,7 @@ protected:
   SphereCheckedTypeChoicePair * SphereCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union SphereCheckedTypeVal
 {
@@ -9760,7 +9760,7 @@ union SphereCheckedTypeVal
   SphereConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphereCheckedTypeChoicePair :
   public XmlTypeBase
@@ -9780,7 +9780,7 @@ public:
   SphereCheckedTypeVal SphereCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphereConstructionMethodType :
   public XmlTypeBase
@@ -9799,7 +9799,7 @@ protected:
   SphereConstructionMethodTypeChoicePair * SphereConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union SphereConstructionMethodTypeVal
 {
@@ -9811,7 +9811,7 @@ union SphereConstructionMethodTypeVal
   SphereFromScanType * FromScan;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphereConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -9835,7 +9835,7 @@ public:
   SphereConstructionMethodTypeVal SphereConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphereCopyType :
   public ConstructionMethodBaseType
@@ -9855,7 +9855,7 @@ protected:
   BaseFeatureType * BaseSphere;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphereFromScanType :
   public ConstructionMethodBaseType
@@ -9883,7 +9883,7 @@ protected:
   UnitVectorType * Vector;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphereMeasurementDeterminationType :
   public XmlTypeBase
@@ -9902,7 +9902,7 @@ protected:
   SphereMeasurementDeterminationTypeChoicePair * SphereMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union SphereMeasurementDeterminationTypeVal
 {
@@ -9910,7 +9910,7 @@ union SphereMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphereMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -9930,7 +9930,7 @@ public:
   SphereMeasurementDeterminationTypeVal SphereMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphereRecompType :
   public ConstructionMethodBaseType
@@ -9950,7 +9950,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphereTransformType :
   public ConstructionMethodBaseType
@@ -9974,7 +9974,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphericalSegmentBestFitType :
   public ConstructionMethodBaseType
@@ -10003,7 +10003,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphericalSegmentCastType :
   public ConstructionMethodBaseType
@@ -10023,7 +10023,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphericalSegmentCheckedFeatureType :
   public XmlTypeBase
@@ -10042,7 +10042,7 @@ protected:
   SphericalSegmentCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphericalSegmentCheckedType :
   public XmlTypeBase
@@ -10061,7 +10061,7 @@ protected:
   SphericalSegmentCheckedTypeChoicePair * SphericalSegmentCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union SphericalSegmentCheckedTypeVal
 {
@@ -10069,7 +10069,7 @@ union SphericalSegmentCheckedTypeVal
   SphericalSegmentConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphericalSegmentCheckedTypeChoicePair :
   public XmlTypeBase
@@ -10089,7 +10089,7 @@ public:
   SphericalSegmentCheckedTypeVal SphericalSegmentCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphericalSegmentConstructionMethodType :
   public XmlTypeBase
@@ -10108,7 +10108,7 @@ protected:
   SphericalSegmentConstructionMethodTypeChoicePair * SphericalSegmentConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union SphericalSegmentConstructionMethodTypeVal
 {
@@ -10119,7 +10119,7 @@ union SphericalSegmentConstructionMethodTypeVal
   SphericalSegmentTransformType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphericalSegmentConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -10142,7 +10142,7 @@ public:
   SphericalSegmentConstructionMethodTypeVal SphericalSegmentConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphericalSegmentCopyType :
   public ConstructionMethodBaseType
@@ -10162,7 +10162,7 @@ protected:
   BaseFeatureType * BaseSphericalSegment;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphericalSegmentMeasurementDeterminationType :
   public XmlTypeBase
@@ -10181,7 +10181,7 @@ protected:
   SphericalSegmentMeasurementDeterminationTypeChoicePair * SphericalSegmentMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union SphericalSegmentMeasurementDeterminationTypeVal
 {
@@ -10189,7 +10189,7 @@ union SphericalSegmentMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphericalSegmentMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -10209,7 +10209,7 @@ public:
   SphericalSegmentMeasurementDeterminationTypeVal SphericalSegmentMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphericalSegmentRecompType :
   public ConstructionMethodBaseType
@@ -10229,7 +10229,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphericalSegmentTransformType :
   public ConstructionMethodBaseType
@@ -10253,7 +10253,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceFeatureDefinitionBaseType :
   public ShapeFeatureDefinitionBaseType
@@ -10270,7 +10270,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceFeatureItemBaseType :
   public ShapeFeatureItemBaseType
@@ -10305,7 +10305,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceFeatureMeasurementBaseType :
   public ShapeFeatureMeasurementBaseType
@@ -10344,7 +10344,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceFeatureNominalBaseType :
   public ShapeFeatureNominalBaseType
@@ -10377,7 +10377,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceOfRevolutionBestFitType :
   public ConstructionMethodBaseType
@@ -10406,7 +10406,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceOfRevolutionCastType :
   public ConstructionMethodBaseType
@@ -10426,7 +10426,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceOfRevolutionCheckedFeatureType :
   public XmlTypeBase
@@ -10445,7 +10445,7 @@ protected:
   SurfaceOfRevolutionCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceOfRevolutionCheckedType :
   public XmlTypeBase
@@ -10464,7 +10464,7 @@ protected:
   SurfaceOfRevolutionCheckedTypeChoicePair * SurfaceOfRevolutionCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union SurfaceOfRevolutionCheckedTypeVal
 {
@@ -10472,7 +10472,7 @@ union SurfaceOfRevolutionCheckedTypeVal
   SurfaceOfRevolutionConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceOfRevolutionCheckedTypeChoicePair :
   public XmlTypeBase
@@ -10492,7 +10492,7 @@ public:
   SurfaceOfRevolutionCheckedTypeVal SurfaceOfRevolutionCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceOfRevolutionConstructionMethodType :
   public XmlTypeBase
@@ -10511,7 +10511,7 @@ protected:
   SurfaceOfRevolutionConstructionMethodTypeChoicePair * SurfaceOfRevolutionConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union SurfaceOfRevolutionConstructionMethodTypeVal
 {
@@ -10522,7 +10522,7 @@ union SurfaceOfRevolutionConstructionMethodTypeVal
   SurfaceOfRevolutionTransformType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceOfRevolutionConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -10545,7 +10545,7 @@ public:
   SurfaceOfRevolutionConstructionMethodTypeVal SurfaceOfRevolutionConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceOfRevolutionCopyType :
   public ConstructionMethodBaseType
@@ -10565,7 +10565,7 @@ protected:
   BaseFeatureType * BaseSurfaceOfRevolution;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceOfRevolutionFeatureDefinitionType :
   public SurfaceFeatureDefinitionBaseType
@@ -10595,7 +10595,7 @@ protected:
   LinearValueType * Length;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceOfRevolutionFeatureItemType :
   public SurfaceFeatureItemBaseType
@@ -10638,7 +10638,7 @@ protected:
   SurfaceOfRevolutionMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceOfRevolutionFeatureMeasurementType :
   public SurfaceFeatureMeasurementBaseType
@@ -10705,7 +10705,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceOfRevolutionFeatureNominalType :
   public SurfaceFeatureNominalBaseType
@@ -10761,7 +10761,7 @@ protected:
   SurfaceOfRevolutionConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceOfRevolutionMeasurementDeterminationType :
   public XmlTypeBase
@@ -10780,7 +10780,7 @@ protected:
   SurfaceOfRevolutionMeasurementDeterminationTypeChoicePair * SurfaceOfRevolutionMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union SurfaceOfRevolutionMeasurementDeterminationTypeVal
 {
@@ -10788,7 +10788,7 @@ union SurfaceOfRevolutionMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceOfRevolutionMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -10808,7 +10808,7 @@ public:
   SurfaceOfRevolutionMeasurementDeterminationTypeVal SurfaceOfRevolutionMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceOfRevolutionRecompType :
   public ConstructionMethodBaseType
@@ -10828,7 +10828,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceOfRevolutionTransformType :
   public ConstructionMethodBaseType
@@ -10852,7 +10852,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadedFeatureBestFitType :
   public ConstructionMethodBaseType
@@ -10881,7 +10881,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadedFeatureCastType :
   public ConstructionMethodBaseType
@@ -10901,7 +10901,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadedFeatureCheckedFeatureType :
   public XmlTypeBase
@@ -10920,7 +10920,7 @@ protected:
   ThreadedFeatureCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadedFeatureCheckedType :
   public XmlTypeBase
@@ -10939,7 +10939,7 @@ protected:
   ThreadedFeatureCheckedTypeChoicePair * ThreadedFeatureCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ThreadedFeatureCheckedTypeVal
 {
@@ -10947,7 +10947,7 @@ union ThreadedFeatureCheckedTypeVal
   ThreadedFeatureConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadedFeatureCheckedTypeChoicePair :
   public XmlTypeBase
@@ -10967,7 +10967,7 @@ public:
   ThreadedFeatureCheckedTypeVal ThreadedFeatureCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadedFeatureConstructionMethodType :
   public XmlTypeBase
@@ -10986,7 +10986,7 @@ protected:
   ThreadedFeatureConstructionMethodTypeChoicePair * ThreadedFeatureConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ThreadedFeatureConstructionMethodTypeVal
 {
@@ -10998,7 +10998,7 @@ union ThreadedFeatureConstructionMethodTypeVal
   ThreadedFeatureFromCylinderType * FromCylinder;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadedFeatureConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -11022,7 +11022,7 @@ public:
   ThreadedFeatureConstructionMethodTypeVal ThreadedFeatureConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadedFeatureCopyType :
   public ConstructionMethodBaseType
@@ -11042,7 +11042,7 @@ protected:
   BaseFeatureType * BaseThreadedFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadedFeatureDefinitionType :
   public SpecifiedFeatureDefinitionBaseType
@@ -11082,7 +11082,7 @@ protected:
   BottomType * Bottom;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadedFeatureFromCylinderType :
   public ConstructionMethodBaseType
@@ -11106,7 +11106,7 @@ protected:
   LinearValueType * Offset;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadedFeatureItemType :
   public SpecifiedFeatureItemBaseType
@@ -11149,7 +11149,7 @@ protected:
   ThreadedFeatureMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadedFeatureMeasurementDeterminationType :
   public XmlTypeBase
@@ -11168,7 +11168,7 @@ protected:
   ThreadedFeatureMeasurementDeterminationTypeChoicePair * ThreadedFeatureMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ThreadedFeatureMeasurementDeterminationTypeVal
 {
@@ -11176,7 +11176,7 @@ union ThreadedFeatureMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadedFeatureMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -11196,7 +11196,7 @@ public:
   ThreadedFeatureMeasurementDeterminationTypeVal ThreadedFeatureMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadedFeatureMeasurementType :
   public SpecifiedFeatureMeasurementBaseType
@@ -11258,7 +11258,7 @@ protected:
   MeasuredLinearValueType * Length;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadedFeatureNominalType :
   public SpecifiedFeatureNominalBaseType
@@ -11304,7 +11304,7 @@ protected:
   ThreadedFeatureConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadedFeatureRecompType :
   public ConstructionMethodBaseType
@@ -11324,7 +11324,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadedFeatureTransformType :
   public ConstructionMethodBaseType
@@ -11348,7 +11348,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ToroidalSegmentBestFitType :
   public ConstructionMethodBaseType
@@ -11377,7 +11377,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ToroidalSegmentCastType :
   public ConstructionMethodBaseType
@@ -11397,7 +11397,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ToroidalSegmentCheckedFeatureType :
   public XmlTypeBase
@@ -11416,7 +11416,7 @@ protected:
   ToroidalSegmentCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ToroidalSegmentCheckedType :
   public XmlTypeBase
@@ -11435,7 +11435,7 @@ protected:
   ToroidalSegmentCheckedTypeChoicePair * ToroidalSegmentCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ToroidalSegmentCheckedTypeVal
 {
@@ -11443,7 +11443,7 @@ union ToroidalSegmentCheckedTypeVal
   ToroidalSegmentConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ToroidalSegmentCheckedTypeChoicePair :
   public XmlTypeBase
@@ -11463,7 +11463,7 @@ public:
   ToroidalSegmentCheckedTypeVal ToroidalSegmentCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ToroidalSegmentConstructionMethodType :
   public XmlTypeBase
@@ -11482,7 +11482,7 @@ protected:
   ToroidalSegmentConstructionMethodTypeChoicePair * ToroidalSegmentConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ToroidalSegmentConstructionMethodTypeVal
 {
@@ -11493,7 +11493,7 @@ union ToroidalSegmentConstructionMethodTypeVal
   ToroidalSegmentTransformType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ToroidalSegmentConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -11516,7 +11516,7 @@ public:
   ToroidalSegmentConstructionMethodTypeVal ToroidalSegmentConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ToroidalSegmentCopyType :
   public ConstructionMethodBaseType
@@ -11536,7 +11536,7 @@ protected:
   BaseFeatureType * BaseToroidalSegment;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ToroidalSegmentFeatureDefinitionType :
   public SurfaceFeatureDefinitionBaseType
@@ -11571,7 +11571,7 @@ protected:
   LinearValueType * MajorDiameter;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ToroidalSegmentFeatureItemType :
   public SurfaceFeatureItemBaseType
@@ -11614,7 +11614,7 @@ protected:
   ToroidalSegmentMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ToroidalSegmentFeatureMeasurementType :
   public SurfaceFeatureMeasurementBaseType
@@ -11691,7 +11691,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ToroidalSegmentFeatureNominalType :
   public SurfaceFeatureNominalBaseType
@@ -11747,7 +11747,7 @@ protected:
   ToroidalSegmentConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ToroidalSegmentMeasurementDeterminationType :
   public XmlTypeBase
@@ -11766,7 +11766,7 @@ protected:
   ToroidalSegmentMeasurementDeterminationTypeChoicePair * ToroidalSegmentMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ToroidalSegmentMeasurementDeterminationTypeVal
 {
@@ -11774,7 +11774,7 @@ union ToroidalSegmentMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ToroidalSegmentMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -11794,7 +11794,7 @@ public:
   ToroidalSegmentMeasurementDeterminationTypeVal ToroidalSegmentMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ToroidalSegmentRecompType :
   public ConstructionMethodBaseType
@@ -11814,7 +11814,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ToroidalSegmentTransformType :
   public ConstructionMethodBaseType
@@ -11838,7 +11838,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TorusBestFitType :
   public ConstructionMethodBaseType
@@ -11867,7 +11867,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TorusCastType :
   public ConstructionMethodBaseType
@@ -11887,7 +11887,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TorusCheckedFeatureType :
   public XmlTypeBase
@@ -11906,7 +11906,7 @@ protected:
   TorusCheckedType * CheckDetails;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TorusCheckedType :
   public XmlTypeBase
@@ -11925,7 +11925,7 @@ protected:
   TorusCheckedTypeChoicePair * TorusCheckedTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union TorusCheckedTypeVal
 {
@@ -11933,7 +11933,7 @@ union TorusCheckedTypeVal
   TorusConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TorusCheckedTypeChoicePair :
   public XmlTypeBase
@@ -11953,7 +11953,7 @@ public:
   TorusCheckedTypeVal TorusCheckedTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TorusConstructionMethodType :
   public XmlTypeBase
@@ -11972,7 +11972,7 @@ protected:
   TorusConstructionMethodTypeChoicePair * TorusConstructionMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union TorusConstructionMethodTypeVal
 {
@@ -11984,7 +11984,7 @@ union TorusConstructionMethodTypeVal
   TorusFromScanType * FromScan;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TorusConstructionMethodTypeChoicePair :
   public XmlTypeBase
@@ -12008,7 +12008,7 @@ public:
   TorusConstructionMethodTypeVal TorusConstructionMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TorusCopyType :
   public ConstructionMethodBaseType
@@ -12028,7 +12028,7 @@ protected:
   BaseFeatureType * BaseTorus;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TorusFeatureDefinitionType :
   public SurfaceFeatureDefinitionBaseType
@@ -12063,7 +12063,7 @@ protected:
   LinearValueType * MajorDiameter;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TorusFeatureItemType :
   public SurfaceFeatureItemBaseType
@@ -12106,7 +12106,7 @@ protected:
   TorusMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TorusFeatureMeasurementType :
   public SurfaceFeatureMeasurementBaseType
@@ -12183,7 +12183,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TorusFeatureNominalType :
   public SurfaceFeatureNominalBaseType
@@ -12239,7 +12239,7 @@ protected:
   TorusConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TorusFromScanType :
   public ConstructionMethodBaseType
@@ -12263,7 +12263,7 @@ protected:
   LinearValueType * SearchRadius;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TorusMeasurementDeterminationType :
   public XmlTypeBase
@@ -12282,7 +12282,7 @@ protected:
   TorusMeasurementDeterminationTypeChoicePair * TorusMeasurementDeterminationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union TorusMeasurementDeterminationTypeVal
 {
@@ -12290,7 +12290,7 @@ union TorusMeasurementDeterminationTypeVal
   SetFeatureType * Set;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TorusMeasurementDeterminationTypeChoicePair :
   public XmlTypeBase
@@ -12310,7 +12310,7 @@ public:
   TorusMeasurementDeterminationTypeVal TorusMeasurementDeterminationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TorusRecompType :
   public ConstructionMethodBaseType
@@ -12330,7 +12330,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TorusTransformType :
   public ConstructionMethodBaseType
@@ -12354,7 +12354,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TransformationReferenceType :
   public XmlTypeBase
@@ -12381,101 +12381,54 @@ protected:
   NaturalType * SequenceNumber;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class CircleFromConeT_1092_Type :
+class CircleFromConeT_1093_Type :
   public XmlTypeBase
 {
 public:
-  CircleFromConeT_1092_Type();
-  CircleFromConeT_1092_Type(
-    CircleFromConeT_1092_TypeChoicePair * CircleFromConeT_1092_TypePairIn);
-  ~CircleFromConeT_1092_Type();
+  CircleFromConeT_1093_Type();
+  CircleFromConeT_1093_Type(
+    CircleFromConeT_1093_TypeChoicePair * CircleFromConeT_1093_TypePairIn);
+  ~CircleFromConeT_1093_Type();
   void printSelf(FILE * outFile);
 
-  CircleFromConeT_1092_TypeChoicePair * getCircleFromConeT_1092_TypePair();
-  void setCircleFromConeT_1092_TypePair(CircleFromConeT_1092_TypeChoicePair * CircleFromConeT_1092_TypePairIn);
+  CircleFromConeT_1093_TypeChoicePair * getCircleFromConeT_1093_TypePair();
+  void setCircleFromConeT_1093_TypePair(CircleFromConeT_1093_TypeChoicePair * CircleFromConeT_1093_TypePairIn);
 
 protected:
-  CircleFromConeT_1092_TypeChoicePair * CircleFromConeT_1092_TypePair;
+  CircleFromConeT_1093_TypeChoicePair * CircleFromConeT_1093_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union CircleFromConeT_1092_TypeVal
+union CircleFromConeT_1093_TypeVal
 {
   LinearValueType * Diameter;
   LinearValueType * Distance;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class CircleFromConeT_1092_TypeChoicePair :
+class CircleFromConeT_1093_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     DiameterE,
     DistanceE };
-  CircleFromConeT_1092_TypeChoicePair();
-  CircleFromConeT_1092_TypeChoicePair(
-    whichOne CircleFromConeT_1092_TypeTypeIn,
-    CircleFromConeT_1092_TypeVal CircleFromConeT_1092_TypeValueIn);
-  ~CircleFromConeT_1092_TypeChoicePair();
+  CircleFromConeT_1093_TypeChoicePair();
+  CircleFromConeT_1093_TypeChoicePair(
+    whichOne CircleFromConeT_1093_TypeTypeIn,
+    CircleFromConeT_1093_TypeVal CircleFromConeT_1093_TypeValueIn);
+  ~CircleFromConeT_1093_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne CircleFromConeT_1092_TypeType;
-  CircleFromConeT_1092_TypeVal CircleFromConeT_1092_TypeValue;
+  whichOne CircleFromConeT_1093_TypeType;
+  CircleFromConeT_1093_TypeVal CircleFromConeT_1093_TypeValue;
 };
 
-/*********************************************************************/
-
-class ConeFeatureDefi_1093_Type :
-  public XmlTypeBase
-{
-public:
-  ConeFeatureDefi_1093_Type();
-  ConeFeatureDefi_1093_Type(
-    ConeFeatureDefi_1093_TypeChoicePair * ConeFeatureDefi_1093_TypePairIn);
-  ~ConeFeatureDefi_1093_Type();
-  void printSelf(FILE * outFile);
-
-  ConeFeatureDefi_1093_TypeChoicePair * getConeFeatureDefi_1093_TypePair();
-  void setConeFeatureDefi_1093_TypePair(ConeFeatureDefi_1093_TypeChoicePair * ConeFeatureDefi_1093_TypePairIn);
-
-protected:
-  ConeFeatureDefi_1093_TypeChoicePair * ConeFeatureDefi_1093_TypePair;
-};
-
-/*********************************************************************/
-
-union ConeFeatureDefi_1093_TypeVal
-{
-  AngularValueType * HalfAngle;
-  AngularValueType * FullAngle;
-};
-
-/*********************************************************************/
-
-class ConeFeatureDefi_1093_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    HalfAngleE,
-    FullAngleE };
-  ConeFeatureDefi_1093_TypeChoicePair();
-  ConeFeatureDefi_1093_TypeChoicePair(
-    whichOne ConeFeatureDefi_1093_TypeTypeIn,
-    ConeFeatureDefi_1093_TypeVal ConeFeatureDefi_1093_TypeValueIn);
-  ~ConeFeatureDefi_1093_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne ConeFeatureDefi_1093_TypeType;
-  ConeFeatureDefi_1093_TypeVal ConeFeatureDefi_1093_TypeValue;
-};
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConeFeatureDefi_1094_Type :
   public XmlTypeBase
@@ -12483,9 +12436,56 @@ class ConeFeatureDefi_1094_Type :
 public:
   ConeFeatureDefi_1094_Type();
   ConeFeatureDefi_1094_Type(
+    ConeFeatureDefi_1094_TypeChoicePair * ConeFeatureDefi_1094_TypePairIn);
+  ~ConeFeatureDefi_1094_Type();
+  void printSelf(FILE * outFile);
+
+  ConeFeatureDefi_1094_TypeChoicePair * getConeFeatureDefi_1094_TypePair();
+  void setConeFeatureDefi_1094_TypePair(ConeFeatureDefi_1094_TypeChoicePair * ConeFeatureDefi_1094_TypePairIn);
+
+protected:
+  ConeFeatureDefi_1094_TypeChoicePair * ConeFeatureDefi_1094_TypePair;
+};
+
+/* ***************************************************************** */
+
+union ConeFeatureDefi_1094_TypeVal
+{
+  AngularValueType * HalfAngle;
+  AngularValueType * FullAngle;
+};
+
+/* ***************************************************************** */
+
+class ConeFeatureDefi_1094_TypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    HalfAngleE,
+    FullAngleE };
+  ConeFeatureDefi_1094_TypeChoicePair();
+  ConeFeatureDefi_1094_TypeChoicePair(
+    whichOne ConeFeatureDefi_1094_TypeTypeIn,
+    ConeFeatureDefi_1094_TypeVal ConeFeatureDefi_1094_TypeValueIn);
+  ~ConeFeatureDefi_1094_TypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne ConeFeatureDefi_1094_TypeType;
+  ConeFeatureDefi_1094_TypeVal ConeFeatureDefi_1094_TypeValue;
+};
+
+/* ***************************************************************** */
+
+class ConeFeatureDefi_1095_Type :
+  public XmlTypeBase
+{
+public:
+  ConeFeatureDefi_1095_Type();
+  ConeFeatureDefi_1095_Type(
     LinearValueType * LargeEndDistanceIn,
     LinearValueType * SmallEndDistanceIn);
-  ~ConeFeatureDefi_1094_Type();
+  ~ConeFeatureDefi_1095_Type();
   void printSelf(FILE * outFile);
 
   LinearValueType * getLargeEndDistance();
@@ -12498,101 +12498,54 @@ protected:
   LinearValueType * SmallEndDistance;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ConeFeatureMeas_1095_Type :
+class ConeFeatureMeas_1096_Type :
   public XmlTypeBase
 {
 public:
-  ConeFeatureMeas_1095_Type();
-  ConeFeatureMeas_1095_Type(
-    ConeFeatureMeas_1095_TypeChoicePair * ConeFeatureMeas_1095_TypePairIn);
-  ~ConeFeatureMeas_1095_Type();
+  ConeFeatureMeas_1096_Type();
+  ConeFeatureMeas_1096_Type(
+    ConeFeatureMeas_1096_TypeChoicePair * ConeFeatureMeas_1096_TypePairIn);
+  ~ConeFeatureMeas_1096_Type();
   void printSelf(FILE * outFile);
 
-  ConeFeatureMeas_1095_TypeChoicePair * getConeFeatureMeas_1095_TypePair();
-  void setConeFeatureMeas_1095_TypePair(ConeFeatureMeas_1095_TypeChoicePair * ConeFeatureMeas_1095_TypePairIn);
+  ConeFeatureMeas_1096_TypeChoicePair * getConeFeatureMeas_1096_TypePair();
+  void setConeFeatureMeas_1096_TypePair(ConeFeatureMeas_1096_TypeChoicePair * ConeFeatureMeas_1096_TypePairIn);
 
 protected:
-  ConeFeatureMeas_1095_TypeChoicePair * ConeFeatureMeas_1095_TypePair;
+  ConeFeatureMeas_1096_TypeChoicePair * ConeFeatureMeas_1096_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union ConeFeatureMeas_1095_TypeVal
+union ConeFeatureMeas_1096_TypeVal
 {
   MeasuredAngularValueType * HalfAngle;
   MeasuredAngularValueType * FullAngle;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ConeFeatureMeas_1095_TypeChoicePair :
+class ConeFeatureMeas_1096_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     HalfAngleE,
     FullAngleE };
-  ConeFeatureMeas_1095_TypeChoicePair();
-  ConeFeatureMeas_1095_TypeChoicePair(
-    whichOne ConeFeatureMeas_1095_TypeTypeIn,
-    ConeFeatureMeas_1095_TypeVal ConeFeatureMeas_1095_TypeValueIn);
-  ~ConeFeatureMeas_1095_TypeChoicePair();
+  ConeFeatureMeas_1096_TypeChoicePair();
+  ConeFeatureMeas_1096_TypeChoicePair(
+    whichOne ConeFeatureMeas_1096_TypeTypeIn,
+    ConeFeatureMeas_1096_TypeVal ConeFeatureMeas_1096_TypeValueIn);
+  ~ConeFeatureMeas_1096_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ConeFeatureMeas_1095_TypeType;
-  ConeFeatureMeas_1095_TypeVal ConeFeatureMeas_1095_TypeValue;
+  whichOne ConeFeatureMeas_1096_TypeType;
+  ConeFeatureMeas_1096_TypeVal ConeFeatureMeas_1096_TypeValue;
 };
 
-/*********************************************************************/
-
-class ConicalSegmentF_1096_Type :
-  public XmlTypeBase
-{
-public:
-  ConicalSegmentF_1096_Type();
-  ConicalSegmentF_1096_Type(
-    ConicalSegmentF_1096_TypeChoicePair * ConicalSegmentF_1096_TypePairIn);
-  ~ConicalSegmentF_1096_Type();
-  void printSelf(FILE * outFile);
-
-  ConicalSegmentF_1096_TypeChoicePair * getConicalSegmentF_1096_TypePair();
-  void setConicalSegmentF_1096_TypePair(ConicalSegmentF_1096_TypeChoicePair * ConicalSegmentF_1096_TypePairIn);
-
-protected:
-  ConicalSegmentF_1096_TypeChoicePair * ConicalSegmentF_1096_TypePair;
-};
-
-/*********************************************************************/
-
-union ConicalSegmentF_1096_TypeVal
-{
-  AngularValueType * HalfAngle;
-  AngularValueType * FullAngle;
-};
-
-/*********************************************************************/
-
-class ConicalSegmentF_1096_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    HalfAngleE,
-    FullAngleE };
-  ConicalSegmentF_1096_TypeChoicePair();
-  ConicalSegmentF_1096_TypeChoicePair(
-    whichOne ConicalSegmentF_1096_TypeTypeIn,
-    ConicalSegmentF_1096_TypeVal ConicalSegmentF_1096_TypeValueIn);
-  ~ConicalSegmentF_1096_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne ConicalSegmentF_1096_TypeType;
-  ConicalSegmentF_1096_TypeVal ConicalSegmentF_1096_TypeValue;
-};
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConicalSegmentF_1097_Type :
   public XmlTypeBase
@@ -12600,9 +12553,56 @@ class ConicalSegmentF_1097_Type :
 public:
   ConicalSegmentF_1097_Type();
   ConicalSegmentF_1097_Type(
+    ConicalSegmentF_1097_TypeChoicePair * ConicalSegmentF_1097_TypePairIn);
+  ~ConicalSegmentF_1097_Type();
+  void printSelf(FILE * outFile);
+
+  ConicalSegmentF_1097_TypeChoicePair * getConicalSegmentF_1097_TypePair();
+  void setConicalSegmentF_1097_TypePair(ConicalSegmentF_1097_TypeChoicePair * ConicalSegmentF_1097_TypePairIn);
+
+protected:
+  ConicalSegmentF_1097_TypeChoicePair * ConicalSegmentF_1097_TypePair;
+};
+
+/* ***************************************************************** */
+
+union ConicalSegmentF_1097_TypeVal
+{
+  AngularValueType * HalfAngle;
+  AngularValueType * FullAngle;
+};
+
+/* ***************************************************************** */
+
+class ConicalSegmentF_1097_TypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    HalfAngleE,
+    FullAngleE };
+  ConicalSegmentF_1097_TypeChoicePair();
+  ConicalSegmentF_1097_TypeChoicePair(
+    whichOne ConicalSegmentF_1097_TypeTypeIn,
+    ConicalSegmentF_1097_TypeVal ConicalSegmentF_1097_TypeValueIn);
+  ~ConicalSegmentF_1097_TypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne ConicalSegmentF_1097_TypeType;
+  ConicalSegmentF_1097_TypeVal ConicalSegmentF_1097_TypeValue;
+};
+
+/* ***************************************************************** */
+
+class ConicalSegmentF_1098_Type :
+  public XmlTypeBase
+{
+public:
+  ConicalSegmentF_1098_Type();
+  ConicalSegmentF_1098_Type(
     LinearValueType * LargeEndDistanceIn,
     LinearValueType * SmallEndDistanceIn);
-  ~ConicalSegmentF_1097_Type();
+  ~ConicalSegmentF_1098_Type();
   void printSelf(FILE * outFile);
 
   LinearValueType * getLargeEndDistance();
@@ -12615,101 +12615,54 @@ protected:
   LinearValueType * SmallEndDistance;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ConicalSegmentF_1098_Type :
+class ConicalSegmentF_1099_Type :
   public XmlTypeBase
 {
 public:
-  ConicalSegmentF_1098_Type();
-  ConicalSegmentF_1098_Type(
-    ConicalSegmentF_1098_TypeChoicePair * ConicalSegmentF_1098_TypePairIn);
-  ~ConicalSegmentF_1098_Type();
+  ConicalSegmentF_1099_Type();
+  ConicalSegmentF_1099_Type(
+    ConicalSegmentF_1099_TypeChoicePair * ConicalSegmentF_1099_TypePairIn);
+  ~ConicalSegmentF_1099_Type();
   void printSelf(FILE * outFile);
 
-  ConicalSegmentF_1098_TypeChoicePair * getConicalSegmentF_1098_TypePair();
-  void setConicalSegmentF_1098_TypePair(ConicalSegmentF_1098_TypeChoicePair * ConicalSegmentF_1098_TypePairIn);
+  ConicalSegmentF_1099_TypeChoicePair * getConicalSegmentF_1099_TypePair();
+  void setConicalSegmentF_1099_TypePair(ConicalSegmentF_1099_TypeChoicePair * ConicalSegmentF_1099_TypePairIn);
 
 protected:
-  ConicalSegmentF_1098_TypeChoicePair * ConicalSegmentF_1098_TypePair;
+  ConicalSegmentF_1099_TypeChoicePair * ConicalSegmentF_1099_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union ConicalSegmentF_1098_TypeVal
+union ConicalSegmentF_1099_TypeVal
 {
   MeasuredAngularValueType * HalfAngle;
   MeasuredAngularValueType * FullAngle;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ConicalSegmentF_1098_TypeChoicePair :
+class ConicalSegmentF_1099_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     HalfAngleE,
     FullAngleE };
-  ConicalSegmentF_1098_TypeChoicePair();
-  ConicalSegmentF_1098_TypeChoicePair(
-    whichOne ConicalSegmentF_1098_TypeTypeIn,
-    ConicalSegmentF_1098_TypeVal ConicalSegmentF_1098_TypeValueIn);
-  ~ConicalSegmentF_1098_TypeChoicePair();
+  ConicalSegmentF_1099_TypeChoicePair();
+  ConicalSegmentF_1099_TypeChoicePair(
+    whichOne ConicalSegmentF_1099_TypeTypeIn,
+    ConicalSegmentF_1099_TypeVal ConicalSegmentF_1099_TypeValueIn);
+  ~ConicalSegmentF_1099_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ConicalSegmentF_1098_TypeType;
-  ConicalSegmentF_1098_TypeVal ConicalSegmentF_1098_TypeValue;
+  whichOne ConicalSegmentF_1099_TypeType;
+  ConicalSegmentF_1099_TypeVal ConicalSegmentF_1099_TypeValue;
 };
 
-/*********************************************************************/
-
-class FeatureZoneArea_1099_Type :
-  public XmlTypeBase
-{
-public:
-  FeatureZoneArea_1099_Type();
-  FeatureZoneArea_1099_Type(
-    FeatureZoneArea_1099_TypeChoicePair * FeatureZoneArea_1099_TypePairIn);
-  ~FeatureZoneArea_1099_Type();
-  void printSelf(FILE * outFile);
-
-  FeatureZoneArea_1099_TypeChoicePair * getFeatureZoneArea_1099_TypePair();
-  void setFeatureZoneArea_1099_TypePair(FeatureZoneArea_1099_TypeChoicePair * FeatureZoneArea_1099_TypePairIn);
-
-protected:
-  FeatureZoneArea_1099_TypeChoicePair * FeatureZoneArea_1099_TypePair;
-};
-
-/*********************************************************************/
-
-union FeatureZoneArea_1099_TypeVal
-{
-  ArrayReferenceFullType * FaceIds;
-  ArrayReferenceFullType * EdgeIds;
-};
-
-/*********************************************************************/
-
-class FeatureZoneArea_1099_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    FaceIdsE,
-    EdgeIdsE };
-  FeatureZoneArea_1099_TypeChoicePair();
-  FeatureZoneArea_1099_TypeChoicePair(
-    whichOne FeatureZoneArea_1099_TypeTypeIn,
-    FeatureZoneArea_1099_TypeVal FeatureZoneArea_1099_TypeValueIn);
-  ~FeatureZoneArea_1099_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne FeatureZoneArea_1099_TypeType;
-  FeatureZoneArea_1099_TypeVal FeatureZoneArea_1099_TypeValue;
-};
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureZoneArea_1100_Type :
   public XmlTypeBase
@@ -12728,23 +12681,23 @@ protected:
   FeatureZoneArea_1100_TypeChoicePair * FeatureZoneArea_1100_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union FeatureZoneArea_1100_TypeVal
 {
-  QIFReferenceFullType * FromPointZoneId;
-  QIFReferenceFullType * FromCurveZoneId;
+  ArrayReferenceFullType * FaceIds;
+  ArrayReferenceFullType * EdgeIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureZoneArea_1100_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    FromPointZoneIdE,
-    FromCurveZoneIdE };
+    FaceIdsE,
+    EdgeIdsE };
   FeatureZoneArea_1100_TypeChoicePair();
   FeatureZoneArea_1100_TypeChoicePair(
     whichOne FeatureZoneArea_1100_TypeTypeIn,
@@ -12756,7 +12709,7 @@ public:
   FeatureZoneArea_1100_TypeVal FeatureZoneArea_1100_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureZoneArea_1101_Type :
   public XmlTypeBase
@@ -12775,23 +12728,23 @@ protected:
   FeatureZoneArea_1101_TypeChoicePair * FeatureZoneArea_1101_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union FeatureZoneArea_1101_TypeVal
 {
-  QIFReferenceFullType * ToPointZoneId;
-  QIFReferenceFullType * ToCurveZoneId;
+  QIFReferenceFullType * FromPointZoneId;
+  QIFReferenceFullType * FromCurveZoneId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureZoneArea_1101_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    ToPointZoneIdE,
-    ToCurveZoneIdE };
+    FromPointZoneIdE,
+    FromCurveZoneIdE };
   FeatureZoneArea_1101_TypeChoicePair();
   FeatureZoneArea_1101_TypeChoicePair(
     whichOne FeatureZoneArea_1101_TypeTypeIn,
@@ -12803,131 +12756,178 @@ public:
   FeatureZoneArea_1101_TypeVal FeatureZoneArea_1101_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class FeatureZoneCurv_1102_Type :
+class FeatureZoneArea_1102_Type :
   public XmlTypeBase
 {
 public:
-  FeatureZoneCurv_1102_Type();
-  FeatureZoneCurv_1102_Type(
-    FeatureZoneCurv_1102_TypeChoicePair * FeatureZoneCurv_1102_TypePairIn);
-  ~FeatureZoneCurv_1102_Type();
+  FeatureZoneArea_1102_Type();
+  FeatureZoneArea_1102_Type(
+    FeatureZoneArea_1102_TypeChoicePair * FeatureZoneArea_1102_TypePairIn);
+  ~FeatureZoneArea_1102_Type();
   void printSelf(FILE * outFile);
 
-  FeatureZoneCurv_1102_TypeChoicePair * getFeatureZoneCurv_1102_TypePair();
-  void setFeatureZoneCurv_1102_TypePair(FeatureZoneCurv_1102_TypeChoicePair * FeatureZoneCurv_1102_TypePairIn);
+  FeatureZoneArea_1102_TypeChoicePair * getFeatureZoneArea_1102_TypePair();
+  void setFeatureZoneArea_1102_TypePair(FeatureZoneArea_1102_TypeChoicePair * FeatureZoneArea_1102_TypePairIn);
 
 protected:
-  FeatureZoneCurv_1102_TypeChoicePair * FeatureZoneCurv_1102_TypePair;
+  FeatureZoneArea_1102_TypeChoicePair * FeatureZoneArea_1102_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union FeatureZoneCurv_1102_TypeVal
+union FeatureZoneArea_1102_TypeVal
+{
+  QIFReferenceFullType * ToPointZoneId;
+  QIFReferenceFullType * ToCurveZoneId;
+};
+
+/* ***************************************************************** */
+
+class FeatureZoneArea_1102_TypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    ToPointZoneIdE,
+    ToCurveZoneIdE };
+  FeatureZoneArea_1102_TypeChoicePair();
+  FeatureZoneArea_1102_TypeChoicePair(
+    whichOne FeatureZoneArea_1102_TypeTypeIn,
+    FeatureZoneArea_1102_TypeVal FeatureZoneArea_1102_TypeValueIn);
+  ~FeatureZoneArea_1102_TypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne FeatureZoneArea_1102_TypeType;
+  FeatureZoneArea_1102_TypeVal FeatureZoneArea_1102_TypeValue;
+};
+
+/* ***************************************************************** */
+
+class FeatureZoneCurv_1103_Type :
+  public XmlTypeBase
+{
+public:
+  FeatureZoneCurv_1103_Type();
+  FeatureZoneCurv_1103_Type(
+    FeatureZoneCurv_1103_TypeChoicePair * FeatureZoneCurv_1103_TypePairIn);
+  ~FeatureZoneCurv_1103_Type();
+  void printSelf(FILE * outFile);
+
+  FeatureZoneCurv_1103_TypeChoicePair * getFeatureZoneCurv_1103_TypePair();
+  void setFeatureZoneCurv_1103_TypePair(FeatureZoneCurv_1103_TypeChoicePair * FeatureZoneCurv_1103_TypePairIn);
+
+protected:
+  FeatureZoneCurv_1103_TypeChoicePair * FeatureZoneCurv_1103_TypePair;
+};
+
+/* ***************************************************************** */
+
+union FeatureZoneCurv_1103_TypeVal
 {
   ArrayReferenceFullType * EdgeIds;
   ArrayReferenceFullType * CurveIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class FeatureZoneCurv_1102_TypeChoicePair :
+class FeatureZoneCurv_1103_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     EdgeIdsE,
     CurveIdsE };
-  FeatureZoneCurv_1102_TypeChoicePair();
-  FeatureZoneCurv_1102_TypeChoicePair(
-    whichOne FeatureZoneCurv_1102_TypeTypeIn,
-    FeatureZoneCurv_1102_TypeVal FeatureZoneCurv_1102_TypeValueIn);
-  ~FeatureZoneCurv_1102_TypeChoicePair();
+  FeatureZoneCurv_1103_TypeChoicePair();
+  FeatureZoneCurv_1103_TypeChoicePair(
+    whichOne FeatureZoneCurv_1103_TypeTypeIn,
+    FeatureZoneCurv_1103_TypeVal FeatureZoneCurv_1103_TypeValueIn);
+  ~FeatureZoneCurv_1103_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne FeatureZoneCurv_1102_TypeType;
-  FeatureZoneCurv_1102_TypeVal FeatureZoneCurv_1102_TypeValue;
+  whichOne FeatureZoneCurv_1103_TypeType;
+  FeatureZoneCurv_1103_TypeVal FeatureZoneCurv_1103_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class FeatureZonePoin_1103_Type :
+class FeatureZonePoin_1104_Type :
   public XmlTypeBase
 {
 public:
-  FeatureZonePoin_1103_Type();
-  FeatureZonePoin_1103_Type(
-    FeatureZonePoin_1103_TypeChoicePair * FeatureZonePoin_1103_TypePairIn);
-  ~FeatureZonePoin_1103_Type();
+  FeatureZonePoin_1104_Type();
+  FeatureZonePoin_1104_Type(
+    FeatureZonePoin_1104_TypeChoicePair * FeatureZonePoin_1104_TypePairIn);
+  ~FeatureZonePoin_1104_Type();
   void printSelf(FILE * outFile);
 
-  FeatureZonePoin_1103_TypeChoicePair * getFeatureZonePoin_1103_TypePair();
-  void setFeatureZonePoin_1103_TypePair(FeatureZonePoin_1103_TypeChoicePair * FeatureZonePoin_1103_TypePairIn);
+  FeatureZonePoin_1104_TypeChoicePair * getFeatureZonePoin_1104_TypePair();
+  void setFeatureZonePoin_1104_TypePair(FeatureZonePoin_1104_TypeChoicePair * FeatureZonePoin_1104_TypePairIn);
 
 protected:
-  FeatureZonePoin_1103_TypeChoicePair * FeatureZonePoin_1103_TypePair;
+  FeatureZonePoin_1104_TypeChoicePair * FeatureZonePoin_1104_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union FeatureZonePoin_1103_TypeVal
+union FeatureZonePoin_1104_TypeVal
 {
   QIFReferenceFullType * VertexId;
   QIFReferenceFullType * PointId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class FeatureZonePoin_1103_TypeChoicePair :
+class FeatureZonePoin_1104_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     VertexIdE,
     PointIdE };
-  FeatureZonePoin_1103_TypeChoicePair();
-  FeatureZonePoin_1103_TypeChoicePair(
-    whichOne FeatureZonePoin_1103_TypeTypeIn,
-    FeatureZonePoin_1103_TypeVal FeatureZonePoin_1103_TypeValueIn);
-  ~FeatureZonePoin_1103_TypeChoicePair();
+  FeatureZonePoin_1104_TypeChoicePair();
+  FeatureZonePoin_1104_TypeChoicePair(
+    whichOne FeatureZonePoin_1104_TypeTypeIn,
+    FeatureZonePoin_1104_TypeVal FeatureZonePoin_1104_TypeValueIn);
+  ~FeatureZonePoin_1104_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne FeatureZonePoin_1103_TypeType;
-  FeatureZonePoin_1103_TypeVal FeatureZonePoin_1103_TypeValue;
+  whichOne FeatureZonePoin_1104_TypeType;
+  FeatureZonePoin_1104_TypeVal FeatureZonePoin_1104_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class GroupFeatureDef_1104_Type :
+class GroupFeatureDef_1105_Type :
   public XmlTypeBase
 {
 public:
-  GroupFeatureDef_1104_Type();
-  GroupFeatureDef_1104_Type(
-    GroupFeatureDef_1104_TypeChoicePair * GroupFeatureDef_1104_TypePairIn);
-  ~GroupFeatureDef_1104_Type();
+  GroupFeatureDef_1105_Type();
+  GroupFeatureDef_1105_Type(
+    GroupFeatureDef_1105_TypeChoicePair * GroupFeatureDef_1105_TypePairIn);
+  ~GroupFeatureDef_1105_Type();
   void printSelf(FILE * outFile);
 
-  GroupFeatureDef_1104_TypeChoicePair * getGroupFeatureDef_1104_TypePair();
-  void setGroupFeatureDef_1104_TypePair(GroupFeatureDef_1104_TypeChoicePair * GroupFeatureDef_1104_TypePairIn);
+  GroupFeatureDef_1105_TypeChoicePair * getGroupFeatureDef_1105_TypePair();
+  void setGroupFeatureDef_1105_TypePair(GroupFeatureDef_1105_TypeChoicePair * GroupFeatureDef_1105_TypePairIn);
 
 protected:
-  GroupFeatureDef_1104_TypeChoicePair * GroupFeatureDef_1104_TypePair;
+  GroupFeatureDef_1105_TypeChoicePair * GroupFeatureDef_1105_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union GroupFeatureDef_1104_TypeVal
+union GroupFeatureDef_1105_TypeVal
 {
   XmlBoolean * IsCountersunkHole;
   XmlBoolean * IsCounterboredHole;
   XmlBoolean * IsSpotface;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class GroupFeatureDef_1104_TypeChoicePair :
+class GroupFeatureDef_1105_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -12935,65 +12935,18 @@ public:
     IsCountersunkHoleE,
     IsCounterboredHoleE,
     IsSpotfaceE };
-  GroupFeatureDef_1104_TypeChoicePair();
-  GroupFeatureDef_1104_TypeChoicePair(
-    whichOne GroupFeatureDef_1104_TypeTypeIn,
-    GroupFeatureDef_1104_TypeVal GroupFeatureDef_1104_TypeValueIn);
-  ~GroupFeatureDef_1104_TypeChoicePair();
+  GroupFeatureDef_1105_TypeChoicePair();
+  GroupFeatureDef_1105_TypeChoicePair(
+    whichOne GroupFeatureDef_1105_TypeTypeIn,
+    GroupFeatureDef_1105_TypeVal GroupFeatureDef_1105_TypeValueIn);
+  ~GroupFeatureDef_1105_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne GroupFeatureDef_1104_TypeType;
-  GroupFeatureDef_1104_TypeVal GroupFeatureDef_1104_TypeValue;
+  whichOne GroupFeatureDef_1105_TypeType;
+  GroupFeatureDef_1105_TypeVal GroupFeatureDef_1105_TypeValue;
 };
 
-/*********************************************************************/
-
-class MeasuredPointSe_1105_Type :
-  public XmlTypeBase
-{
-public:
-  MeasuredPointSe_1105_Type();
-  MeasuredPointSe_1105_Type(
-    MeasuredPointSe_1105_TypeChoicePair * MeasuredPointSe_1105_TypePairIn);
-  ~MeasuredPointSe_1105_Type();
-  void printSelf(FILE * outFile);
-
-  MeasuredPointSe_1105_TypeChoicePair * getMeasuredPointSe_1105_TypePair();
-  void setMeasuredPointSe_1105_TypePair(MeasuredPointSe_1105_TypeChoicePair * MeasuredPointSe_1105_TypePairIn);
-
-protected:
-  MeasuredPointSe_1105_TypeChoicePair * MeasuredPointSe_1105_TypePair;
-};
-
-/*********************************************************************/
-
-union MeasuredPointSe_1105_TypeVal
-{
-  QIFReferenceFullType * CoordinateSystemId;
-  QIFReferenceType * TranformId;
-};
-
-/*********************************************************************/
-
-class MeasuredPointSe_1105_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    CoordinateSystemIdE,
-    TranformIdE };
-  MeasuredPointSe_1105_TypeChoicePair();
-  MeasuredPointSe_1105_TypeChoicePair(
-    whichOne MeasuredPointSe_1105_TypeTypeIn,
-    MeasuredPointSe_1105_TypeVal MeasuredPointSe_1105_TypeValueIn);
-  ~MeasuredPointSe_1105_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne MeasuredPointSe_1105_TypeType;
-  MeasuredPointSe_1105_TypeVal MeasuredPointSe_1105_TypeValue;
-};
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1106_Type :
   public XmlTypeBase
@@ -13012,23 +12965,23 @@ protected:
   MeasuredPointSe_1106_TypeChoicePair * MeasuredPointSe_1106_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union MeasuredPointSe_1106_TypeVal
 {
-  ListDoubleType * Points;
-  ArrayBinaryType * BinaryPoints;
+  QIFReferenceFullType * CoordinateSystemId;
+  QIFReferenceType * TranformId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1106_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    PointsE,
-    BinaryPointsE };
+    CoordinateSystemIdE,
+    TranformIdE };
   MeasuredPointSe_1106_TypeChoicePair();
   MeasuredPointSe_1106_TypeChoicePair(
     whichOne MeasuredPointSe_1106_TypeTypeIn,
@@ -13040,7 +12993,7 @@ public:
   MeasuredPointSe_1106_TypeVal MeasuredPointSe_1106_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1107_Type :
   public XmlTypeBase
@@ -13059,23 +13012,23 @@ protected:
   MeasuredPointSe_1107_TypeChoicePair * MeasuredPointSe_1107_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union MeasuredPointSe_1107_TypeVal
 {
-  ListDoubleType * Normals;
-  ArrayBinaryType * BinaryNormals;
+  ListDoubleType * Points;
+  ArrayBinaryType * BinaryPoints;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1107_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    NormalsE,
-    BinaryNormalsE };
+    PointsE,
+    BinaryPointsE };
   MeasuredPointSe_1107_TypeChoicePair();
   MeasuredPointSe_1107_TypeChoicePair(
     whichOne MeasuredPointSe_1107_TypeTypeIn,
@@ -13087,7 +13040,7 @@ public:
   MeasuredPointSe_1107_TypeVal MeasuredPointSe_1107_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1108_Type :
   public XmlTypeBase
@@ -13106,25 +13059,23 @@ protected:
   MeasuredPointSe_1108_TypeChoicePair * MeasuredPointSe_1108_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union MeasuredPointSe_1108_TypeVal
 {
-  XmlBoolean * Compensated;
-  ListBooleanType * Compensations;
-  ArrayBinaryType * BinaryCompensated;
+  ListDoubleType * Normals;
+  ArrayBinaryType * BinaryNormals;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1108_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    CompensatedE,
-    CompensationsE,
-    BinaryCompensatedE };
+    NormalsE,
+    BinaryNormalsE };
   MeasuredPointSe_1108_TypeChoicePair();
   MeasuredPointSe_1108_TypeChoicePair(
     whichOne MeasuredPointSe_1108_TypeTypeIn,
@@ -13136,7 +13087,7 @@ public:
   MeasuredPointSe_1108_TypeVal MeasuredPointSe_1108_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1109_Type :
   public XmlTypeBase
@@ -13155,25 +13106,25 @@ protected:
   MeasuredPointSe_1109_TypeChoicePair * MeasuredPointSe_1109_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union MeasuredPointSe_1109_TypeVal
 {
-  XmlDecimal * ProbeRadius;
-  ListDoubleType * ProbeRadii;
-  ArrayBinaryType * BinaryProbeRadii;
+  XmlBoolean * Compensated;
+  ListBooleanType * Compensations;
+  ArrayBinaryType * BinaryCompensated;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1109_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    ProbeRadiusE,
-    ProbeRadiiE,
-    BinaryProbeRadiiE };
+    CompensatedE,
+    CompensationsE,
+    BinaryCompensatedE };
   MeasuredPointSe_1109_TypeChoicePair();
   MeasuredPointSe_1109_TypeChoicePair(
     whichOne MeasuredPointSe_1109_TypeTypeIn,
@@ -13185,7 +13136,7 @@ public:
   MeasuredPointSe_1109_TypeVal MeasuredPointSe_1109_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1110_Type :
   public XmlTypeBase
@@ -13204,25 +13155,25 @@ protected:
   MeasuredPointSe_1110_TypeChoicePair * MeasuredPointSe_1110_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union MeasuredPointSe_1110_TypeVal
 {
-  QIFReferenceType * SensorId;
-  ListQIFReferenceType * SensorIds;
-  ArrayBinaryQIFReferenceType * BinarySensorIds;
+  XmlDecimal * ProbeRadius;
+  ListDoubleType * ProbeRadii;
+  ArrayBinaryType * BinaryProbeRadii;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1110_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    SensorIdE,
-    SensorIdsE,
-    BinarySensorIdsE };
+    ProbeRadiusE,
+    ProbeRadiiE,
+    BinaryProbeRadiiE };
   MeasuredPointSe_1110_TypeChoicePair();
   MeasuredPointSe_1110_TypeChoicePair(
     whichOne MeasuredPointSe_1110_TypeTypeIn,
@@ -13234,7 +13185,7 @@ public:
   MeasuredPointSe_1110_TypeVal MeasuredPointSe_1110_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1111_Type :
   public XmlTypeBase
@@ -13253,25 +13204,25 @@ protected:
   MeasuredPointSe_1111_TypeChoicePair * MeasuredPointSe_1111_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union MeasuredPointSe_1111_TypeVal
 {
-  QIFReferenceType * TipId;
-  ListQIFReferenceType * TipIds;
-  ArrayBinaryQIFReferenceType * BinaryTipIds;
+  QIFReferenceType * SensorId;
+  ListQIFReferenceType * SensorIds;
+  ArrayBinaryQIFReferenceType * BinarySensorIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1111_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    TipIdE,
-    TipIdsE,
-    BinaryTipIdsE };
+    SensorIdE,
+    SensorIdsE,
+    BinarySensorIdsE };
   MeasuredPointSe_1111_TypeChoicePair();
   MeasuredPointSe_1111_TypeChoicePair(
     whichOne MeasuredPointSe_1111_TypeTypeIn,
@@ -13283,7 +13234,7 @@ public:
   MeasuredPointSe_1111_TypeVal MeasuredPointSe_1111_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1112_Type :
   public XmlTypeBase
@@ -13302,23 +13253,25 @@ protected:
   MeasuredPointSe_1112_TypeChoicePair * MeasuredPointSe_1112_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union MeasuredPointSe_1112_TypeVal
 {
-  ListQIFReferenceFullType * MeasurePointNominalIds;
-  ArrayBinaryQIFReferenceFullType * BinaryMeasurePointNominalIds;
+  QIFReferenceType * TipId;
+  ListQIFReferenceType * TipIds;
+  ArrayBinaryQIFReferenceType * BinaryTipIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1112_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    MeasurePointNominalIdsE,
-    BinaryMeasurePointNominalIdsE };
+    TipIdE,
+    TipIdsE,
+    BinaryTipIdsE };
   MeasuredPointSe_1112_TypeChoicePair();
   MeasuredPointSe_1112_TypeChoicePair(
     whichOne MeasuredPointSe_1112_TypeTypeIn,
@@ -13330,7 +13283,7 @@ public:
   MeasuredPointSe_1112_TypeVal MeasuredPointSe_1112_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1113_Type :
   public XmlTypeBase
@@ -13349,23 +13302,23 @@ protected:
   MeasuredPointSe_1113_TypeChoicePair * MeasuredPointSe_1113_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union MeasuredPointSe_1113_TypeVal
 {
-  XmlDateTime * TimeStamp;
-  ListDateTimeType * TimeStamps;
+  ListQIFReferenceFullType * MeasurePointNominalIds;
+  ArrayBinaryQIFReferenceFullType * BinaryMeasurePointNominalIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1113_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    TimeStampE,
-    TimeStampsE };
+    MeasurePointNominalIdsE,
+    BinaryMeasurePointNominalIdsE };
   MeasuredPointSe_1113_TypeChoicePair();
   MeasuredPointSe_1113_TypeChoicePair(
     whichOne MeasuredPointSe_1113_TypeTypeIn,
@@ -13377,7 +13330,7 @@ public:
   MeasuredPointSe_1113_TypeVal MeasuredPointSe_1113_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1114_Type :
   public XmlTypeBase
@@ -13396,23 +13349,23 @@ protected:
   MeasuredPointSe_1114_TypeChoicePair * MeasuredPointSe_1114_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union MeasuredPointSe_1114_TypeVal
 {
-  ListDoubleType * Quality;
-  ArrayBinaryType * BinaryQuality;
+  XmlDateTime * TimeStamp;
+  ListDateTimeType * TimeStamps;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1114_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    QualityE,
-    BinaryQualityE };
+    TimeStampE,
+    TimeStampsE };
   MeasuredPointSe_1114_TypeChoicePair();
   MeasuredPointSe_1114_TypeChoicePair(
     whichOne MeasuredPointSe_1114_TypeTypeIn,
@@ -13424,7 +13377,7 @@ public:
   MeasuredPointSe_1114_TypeVal MeasuredPointSe_1114_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1115_Type :
   public XmlTypeBase
@@ -13443,23 +13396,23 @@ protected:
   MeasuredPointSe_1115_TypeChoicePair * MeasuredPointSe_1115_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union MeasuredPointSe_1115_TypeVal
 {
-  ListDoubleType * Deviations;
-  ArrayBinaryType * BinaryDeviations;
+  ListDoubleType * Quality;
+  ArrayBinaryType * BinaryQuality;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1115_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    DeviationsE,
-    BinaryDeviationsE };
+    QualityE,
+    BinaryQualityE };
   MeasuredPointSe_1115_TypeChoicePair();
   MeasuredPointSe_1115_TypeChoicePair(
     whichOne MeasuredPointSe_1115_TypeTypeIn,
@@ -13471,7 +13424,7 @@ public:
   MeasuredPointSe_1115_TypeVal MeasuredPointSe_1115_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1116_Type :
   public XmlTypeBase
@@ -13490,23 +13443,23 @@ protected:
   MeasuredPointSe_1116_TypeChoicePair * MeasuredPointSe_1116_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union MeasuredPointSe_1116_TypeVal
 {
-  ListIntType * Colors;
-  ArrayBinaryType * BinaryColors;
+  ListDoubleType * Deviations;
+  ArrayBinaryType * BinaryDeviations;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1116_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    ColorsE,
-    BinaryColorsE };
+    DeviationsE,
+    BinaryDeviationsE };
   MeasuredPointSe_1116_TypeChoicePair();
   MeasuredPointSe_1116_TypeChoicePair(
     whichOne MeasuredPointSe_1116_TypeTypeIn,
@@ -13518,7 +13471,7 @@ public:
   MeasuredPointSe_1116_TypeVal MeasuredPointSe_1116_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointSe_1117_Type :
   public XmlTypeBase
@@ -13526,69 +13479,69 @@ class MeasuredPointSe_1117_Type :
 public:
   MeasuredPointSe_1117_Type();
   MeasuredPointSe_1117_Type(
-    NaturalType * NumberOfFacetsIn,
-    MeasuredPointSe_1125_Type * MeasuredPointSe_1125In);
+    MeasuredPointSe_1117_TypeChoicePair * MeasuredPointSe_1117_TypePairIn);
   ~MeasuredPointSe_1117_Type();
   void printSelf(FILE * outFile);
 
-  NaturalType * getNumberOfFacets();
-  void setNumberOfFacets(NaturalType * NumberOfFacetsIn);
-  MeasuredPointSe_1125_Type * getMeasuredPointSe_1125();
-  void setMeasuredPointSe_1125(MeasuredPointSe_1125_Type * MeasuredPointSe_1125In);
+  MeasuredPointSe_1117_TypeChoicePair * getMeasuredPointSe_1117_TypePair();
+  void setMeasuredPointSe_1117_TypePair(MeasuredPointSe_1117_TypeChoicePair * MeasuredPointSe_1117_TypePairIn);
 
 protected:
-  NaturalType * NumberOfFacets;
-  MeasuredPointSe_1125_Type * MeasuredPointSe_1125;
+  MeasuredPointSe_1117_TypeChoicePair * MeasuredPointSe_1117_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class OppositeAngledP_1118_Type :
-  public XmlTypeBase
+union MeasuredPointSe_1117_TypeVal
 {
-public:
-  OppositeAngledP_1118_Type();
-  OppositeAngledP_1118_Type(
-    OppositeAngledP_1118_TypeChoicePair * OppositeAngledP_1118_TypePairIn);
-  ~OppositeAngledP_1118_Type();
-  void printSelf(FILE * outFile);
-
-  OppositeAngledP_1118_TypeChoicePair * getOppositeAngledP_1118_TypePair();
-  void setOppositeAngledP_1118_TypePair(OppositeAngledP_1118_TypeChoicePair * OppositeAngledP_1118_TypePairIn);
-
-protected:
-  OppositeAngledP_1118_TypeChoicePair * OppositeAngledP_1118_TypePair;
+  ListIntType * Colors;
+  ArrayBinaryType * BinaryColors;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union OppositeAngledP_1118_TypeVal
-{
-  AngularValueType * TaperAngle;
-  AngularValueType * DraftAngle;
-};
-
-/*********************************************************************/
-
-class OppositeAngledP_1118_TypeChoicePair :
+class MeasuredPointSe_1117_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    TaperAngleE,
-    DraftAngleE };
-  OppositeAngledP_1118_TypeChoicePair();
-  OppositeAngledP_1118_TypeChoicePair(
-    whichOne OppositeAngledP_1118_TypeTypeIn,
-    OppositeAngledP_1118_TypeVal OppositeAngledP_1118_TypeValueIn);
-  ~OppositeAngledP_1118_TypeChoicePair();
+    ColorsE,
+    BinaryColorsE };
+  MeasuredPointSe_1117_TypeChoicePair();
+  MeasuredPointSe_1117_TypeChoicePair(
+    whichOne MeasuredPointSe_1117_TypeTypeIn,
+    MeasuredPointSe_1117_TypeVal MeasuredPointSe_1117_TypeValueIn);
+  ~MeasuredPointSe_1117_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne OppositeAngledP_1118_TypeType;
-  OppositeAngledP_1118_TypeVal OppositeAngledP_1118_TypeValue;
+  whichOne MeasuredPointSe_1117_TypeType;
+  MeasuredPointSe_1117_TypeVal MeasuredPointSe_1117_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
+
+class MeasuredPointSe_1118_Type :
+  public XmlTypeBase
+{
+public:
+  MeasuredPointSe_1118_Type();
+  MeasuredPointSe_1118_Type(
+    NaturalType * NumberOfFacetsIn,
+    MeasuredPointSe_1126_Type * MeasuredPointSe_1126In);
+  ~MeasuredPointSe_1118_Type();
+  void printSelf(FILE * outFile);
+
+  NaturalType * getNumberOfFacets();
+  void setNumberOfFacets(NaturalType * NumberOfFacetsIn);
+  MeasuredPointSe_1126_Type * getMeasuredPointSe_1126();
+  void setMeasuredPointSe_1126(MeasuredPointSe_1126_Type * MeasuredPointSe_1126In);
+
+protected:
+  NaturalType * NumberOfFacets;
+  MeasuredPointSe_1126_Type * MeasuredPointSe_1126;
+};
+
+/* ***************************************************************** */
 
 class OppositeAngledP_1119_Type :
   public XmlTypeBase
@@ -13607,15 +13560,15 @@ protected:
   OppositeAngledP_1119_TypeChoicePair * OppositeAngledP_1119_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union OppositeAngledP_1119_TypeVal
 {
-  MeasuredAngularValueType * TaperAngle;
-  MeasuredAngularValueType * DraftAngle;
+  AngularValueType * TaperAngle;
+  AngularValueType * DraftAngle;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledP_1119_TypeChoicePair :
   public XmlTypeBase
@@ -13635,37 +13588,84 @@ public:
   OppositeAngledP_1119_TypeVal OppositeAngledP_1119_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class OtherSurfaceFea_1120_Type :
+class OppositeAngledP_1120_Type :
   public XmlTypeBase
 {
 public:
-  OtherSurfaceFea_1120_Type();
-  OtherSurfaceFea_1120_Type(
-    OtherSurfaceFea_1120_TypeChoicePair * OtherSurfaceFea_1120_TypePairIn);
-  ~OtherSurfaceFea_1120_Type();
+  OppositeAngledP_1120_Type();
+  OppositeAngledP_1120_Type(
+    OppositeAngledP_1120_TypeChoicePair * OppositeAngledP_1120_TypePairIn);
+  ~OppositeAngledP_1120_Type();
   void printSelf(FILE * outFile);
 
-  OtherSurfaceFea_1120_TypeChoicePair * getOtherSurfaceFea_1120_TypePair();
-  void setOtherSurfaceFea_1120_TypePair(OtherSurfaceFea_1120_TypeChoicePair * OtherSurfaceFea_1120_TypePairIn);
+  OppositeAngledP_1120_TypeChoicePair * getOppositeAngledP_1120_TypePair();
+  void setOppositeAngledP_1120_TypePair(OppositeAngledP_1120_TypeChoicePair * OppositeAngledP_1120_TypePairIn);
 
 protected:
-  OtherSurfaceFea_1120_TypeChoicePair * OtherSurfaceFea_1120_TypePair;
+  OppositeAngledP_1120_TypeChoicePair * OppositeAngledP_1120_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union OtherSurfaceFea_1120_TypeVal
+union OppositeAngledP_1120_TypeVal
+{
+  MeasuredAngularValueType * TaperAngle;
+  MeasuredAngularValueType * DraftAngle;
+};
+
+/* ***************************************************************** */
+
+class OppositeAngledP_1120_TypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    TaperAngleE,
+    DraftAngleE };
+  OppositeAngledP_1120_TypeChoicePair();
+  OppositeAngledP_1120_TypeChoicePair(
+    whichOne OppositeAngledP_1120_TypeTypeIn,
+    OppositeAngledP_1120_TypeVal OppositeAngledP_1120_TypeValueIn);
+  ~OppositeAngledP_1120_TypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne OppositeAngledP_1120_TypeType;
+  OppositeAngledP_1120_TypeVal OppositeAngledP_1120_TypeValue;
+};
+
+/* ***************************************************************** */
+
+class OtherSurfaceFea_1121_Type :
+  public XmlTypeBase
+{
+public:
+  OtherSurfaceFea_1121_Type();
+  OtherSurfaceFea_1121_Type(
+    OtherSurfaceFea_1121_TypeChoicePair * OtherSurfaceFea_1121_TypePairIn);
+  ~OtherSurfaceFea_1121_Type();
+  void printSelf(FILE * outFile);
+
+  OtherSurfaceFea_1121_TypeChoicePair * getOtherSurfaceFea_1121_TypePair();
+  void setOtherSurfaceFea_1121_TypePair(OtherSurfaceFea_1121_TypeChoicePair * OtherSurfaceFea_1121_TypePairIn);
+
+protected:
+  OtherSurfaceFea_1121_TypeChoicePair * OtherSurfaceFea_1121_TypePair;
+};
+
+/* ***************************************************************** */
+
+union OtherSurfaceFea_1121_TypeVal
 {
   PolyLineType * PolyLine;
   InternalExternalEnumType * ClosedSurface;
   OtherSurfaceConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class OtherSurfaceFea_1120_TypeChoicePair :
+class OtherSurfaceFea_1121_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -13673,48 +13673,48 @@ public:
     PolyLineE,
     ClosedSurfaceE,
     ConstructedE };
-  OtherSurfaceFea_1120_TypeChoicePair();
-  OtherSurfaceFea_1120_TypeChoicePair(
-    whichOne OtherSurfaceFea_1120_TypeTypeIn,
-    OtherSurfaceFea_1120_TypeVal OtherSurfaceFea_1120_TypeValueIn);
-  ~OtherSurfaceFea_1120_TypeChoicePair();
+  OtherSurfaceFea_1121_TypeChoicePair();
+  OtherSurfaceFea_1121_TypeChoicePair(
+    whichOne OtherSurfaceFea_1121_TypeTypeIn,
+    OtherSurfaceFea_1121_TypeVal OtherSurfaceFea_1121_TypeValueIn);
+  ~OtherSurfaceFea_1121_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne OtherSurfaceFea_1120_TypeType;
-  OtherSurfaceFea_1120_TypeVal OtherSurfaceFea_1120_TypeValue;
+  whichOne OtherSurfaceFea_1121_TypeType;
+  OtherSurfaceFea_1121_TypeVal OtherSurfaceFea_1121_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class PlaneFeatureNom_1121_Type :
+class PlaneFeatureNom_1122_Type :
   public XmlTypeBase
 {
 public:
-  PlaneFeatureNom_1121_Type();
-  PlaneFeatureNom_1121_Type(
-    PlaneFeatureNom_1121_TypeChoicePair * PlaneFeatureNom_1121_TypePairIn);
-  ~PlaneFeatureNom_1121_Type();
+  PlaneFeatureNom_1122_Type();
+  PlaneFeatureNom_1122_Type(
+    PlaneFeatureNom_1122_TypeChoicePair * PlaneFeatureNom_1122_TypePairIn);
+  ~PlaneFeatureNom_1122_Type();
   void printSelf(FILE * outFile);
 
-  PlaneFeatureNom_1121_TypeChoicePair * getPlaneFeatureNom_1121_TypePair();
-  void setPlaneFeatureNom_1121_TypePair(PlaneFeatureNom_1121_TypeChoicePair * PlaneFeatureNom_1121_TypePairIn);
+  PlaneFeatureNom_1122_TypeChoicePair * getPlaneFeatureNom_1122_TypePair();
+  void setPlaneFeatureNom_1122_TypePair(PlaneFeatureNom_1122_TypeChoicePair * PlaneFeatureNom_1122_TypePairIn);
 
 protected:
-  PlaneFeatureNom_1121_TypeChoicePair * PlaneFeatureNom_1121_TypePair;
+  PlaneFeatureNom_1122_TypeChoicePair * PlaneFeatureNom_1122_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union PlaneFeatureNom_1121_TypeVal
+union PlaneFeatureNom_1122_TypeVal
 {
   PolyLineType * PolyLine;
   RectangleType * Rectangle;
   CircleType * Circle;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class PlaneFeatureNom_1121_TypeChoicePair :
+class PlaneFeatureNom_1122_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -13722,39 +13722,39 @@ public:
     PolyLineE,
     RectangleE,
     CircleE };
-  PlaneFeatureNom_1121_TypeChoicePair();
-  PlaneFeatureNom_1121_TypeChoicePair(
-    whichOne PlaneFeatureNom_1121_TypeTypeIn,
-    PlaneFeatureNom_1121_TypeVal PlaneFeatureNom_1121_TypeValueIn);
-  ~PlaneFeatureNom_1121_TypeChoicePair();
+  PlaneFeatureNom_1122_TypeChoicePair();
+  PlaneFeatureNom_1122_TypeChoicePair(
+    whichOne PlaneFeatureNom_1122_TypeTypeIn,
+    PlaneFeatureNom_1122_TypeVal PlaneFeatureNom_1122_TypeValueIn);
+  ~PlaneFeatureNom_1122_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne PlaneFeatureNom_1121_TypeType;
-  PlaneFeatureNom_1121_TypeVal PlaneFeatureNom_1121_TypeValue;
+  whichOne PlaneFeatureNom_1122_TypeType;
+  PlaneFeatureNom_1122_TypeVal PlaneFeatureNom_1122_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class PointFeatureExt_1122_Type :
+class PointFeatureExt_1123_Type :
   public XmlTypeBase
 {
 public:
-  PointFeatureExt_1122_Type();
-  PointFeatureExt_1122_Type(
-    PointFeatureExt_1122_TypeChoicePair * PointFeatureExt_1122_TypePairIn);
-  ~PointFeatureExt_1122_Type();
+  PointFeatureExt_1123_Type();
+  PointFeatureExt_1123_Type(
+    PointFeatureExt_1123_TypeChoicePair * PointFeatureExt_1123_TypePairIn);
+  ~PointFeatureExt_1123_Type();
   void printSelf(FILE * outFile);
 
-  PointFeatureExt_1122_TypeChoicePair * getPointFeatureExt_1122_TypePair();
-  void setPointFeatureExt_1122_TypePair(PointFeatureExt_1122_TypeChoicePair * PointFeatureExt_1122_TypePairIn);
+  PointFeatureExt_1123_TypeChoicePair * getPointFeatureExt_1123_TypePair();
+  void setPointFeatureExt_1123_TypePair(PointFeatureExt_1123_TypeChoicePair * PointFeatureExt_1123_TypePairIn);
 
 protected:
-  PointFeatureExt_1122_TypeChoicePair * PointFeatureExt_1122_TypePair;
+  PointFeatureExt_1123_TypeChoicePair * PointFeatureExt_1123_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union PointFeatureExt_1122_TypeVal
+union PointFeatureExt_1123_TypeVal
 {
   BaseFeatureType * BaseAxisFeature;
   UnitVectorType * Vector;
@@ -13764,9 +13764,9 @@ union PointFeatureExt_1122_TypeVal
   XmlToken * Zaxis;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class PointFeatureExt_1122_TypeChoicePair :
+class PointFeatureExt_1123_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -13777,159 +13777,159 @@ public:
     XaxisE,
     YaxisE,
     ZaxisE };
-  PointFeatureExt_1122_TypeChoicePair();
-  PointFeatureExt_1122_TypeChoicePair(
-    whichOne PointFeatureExt_1122_TypeTypeIn,
-    PointFeatureExt_1122_TypeVal PointFeatureExt_1122_TypeValueIn);
-  ~PointFeatureExt_1122_TypeChoicePair();
+  PointFeatureExt_1123_TypeChoicePair();
+  PointFeatureExt_1123_TypeChoicePair(
+    whichOne PointFeatureExt_1123_TypeTypeIn,
+    PointFeatureExt_1123_TypeVal PointFeatureExt_1123_TypeValueIn);
+  ~PointFeatureExt_1123_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne PointFeatureExt_1122_TypeType;
-  PointFeatureExt_1122_TypeVal PointFeatureExt_1122_TypeValue;
+  whichOne PointFeatureExt_1123_TypeType;
+  PointFeatureExt_1123_TypeVal PointFeatureExt_1123_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class PointFeatureMov_1123_Type :
+class PointFeatureMov_1124_Type :
   public XmlTypeBase
 {
 public:
-  PointFeatureMov_1123_Type();
-  PointFeatureMov_1123_Type(
-    PointFeatureMov_1123_TypeChoicePair * PointFeatureMov_1123_TypePairIn);
-  ~PointFeatureMov_1123_Type();
+  PointFeatureMov_1124_Type();
+  PointFeatureMov_1124_Type(
+    PointFeatureMov_1124_TypeChoicePair * PointFeatureMov_1124_TypePairIn);
+  ~PointFeatureMov_1124_Type();
   void printSelf(FILE * outFile);
 
-  PointFeatureMov_1123_TypeChoicePair * getPointFeatureMov_1123_TypePair();
-  void setPointFeatureMov_1123_TypePair(PointFeatureMov_1123_TypeChoicePair * PointFeatureMov_1123_TypePairIn);
+  PointFeatureMov_1124_TypeChoicePair * getPointFeatureMov_1124_TypePair();
+  void setPointFeatureMov_1124_TypePair(PointFeatureMov_1124_TypeChoicePair * PointFeatureMov_1124_TypePairIn);
 
 protected:
-  PointFeatureMov_1123_TypeChoicePair * PointFeatureMov_1123_TypePair;
+  PointFeatureMov_1124_TypeChoicePair * PointFeatureMov_1124_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union PointFeatureMov_1123_TypeVal
+union PointFeatureMov_1124_TypeVal
 {
   VectorType * Offset;
   DirectionalOffsetType * DirectionalOffset;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class PointFeatureMov_1123_TypeChoicePair :
+class PointFeatureMov_1124_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     OffsetE,
     DirectionalOffsetE };
-  PointFeatureMov_1123_TypeChoicePair();
-  PointFeatureMov_1123_TypeChoicePair(
-    whichOne PointFeatureMov_1123_TypeTypeIn,
-    PointFeatureMov_1123_TypeVal PointFeatureMov_1123_TypeValueIn);
-  ~PointFeatureMov_1123_TypeChoicePair();
+  PointFeatureMov_1124_TypeChoicePair();
+  PointFeatureMov_1124_TypeChoicePair(
+    whichOne PointFeatureMov_1124_TypeTypeIn,
+    PointFeatureMov_1124_TypeVal PointFeatureMov_1124_TypeValueIn);
+  ~PointFeatureMov_1124_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne PointFeatureMov_1123_TypeType;
-  PointFeatureMov_1123_TypeVal PointFeatureMov_1123_TypeValue;
+  whichOne PointFeatureMov_1124_TypeType;
+  PointFeatureMov_1124_TypeVal PointFeatureMov_1124_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class PointFeatureNom_1124_Type :
+class PointFeatureNom_1125_Type :
   public XmlTypeBase
 {
 public:
-  PointFeatureNom_1124_Type();
-  PointFeatureNom_1124_Type(
-    PointFeatureNom_1124_TypeChoicePair * PointFeatureNom_1124_TypePairIn);
-  ~PointFeatureNom_1124_Type();
+  PointFeatureNom_1125_Type();
+  PointFeatureNom_1125_Type(
+    PointFeatureNom_1125_TypeChoicePair * PointFeatureNom_1125_TypePairIn);
+  ~PointFeatureNom_1125_Type();
   void printSelf(FILE * outFile);
 
-  PointFeatureNom_1124_TypeChoicePair * getPointFeatureNom_1124_TypePair();
-  void setPointFeatureNom_1124_TypePair(PointFeatureNom_1124_TypeChoicePair * PointFeatureNom_1124_TypePairIn);
+  PointFeatureNom_1125_TypeChoicePair * getPointFeatureNom_1125_TypePair();
+  void setPointFeatureNom_1125_TypePair(PointFeatureNom_1125_TypeChoicePair * PointFeatureNom_1125_TypePairIn);
 
 protected:
-  PointFeatureNom_1124_TypeChoicePair * PointFeatureNom_1124_TypePair;
+  PointFeatureNom_1125_TypeChoicePair * PointFeatureNom_1125_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union PointFeatureNom_1124_TypeVal
+union PointFeatureNom_1125_TypeVal
 {
   QIFReferenceFullType * SurfaceFeatureNominalId;
   QIFReferenceFullType * CurveFeatureNominalId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class PointFeatureNom_1124_TypeChoicePair :
+class PointFeatureNom_1125_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     SurfaceFeatureNominalIdE,
     CurveFeatureNominalIdE };
-  PointFeatureNom_1124_TypeChoicePair();
-  PointFeatureNom_1124_TypeChoicePair(
-    whichOne PointFeatureNom_1124_TypeTypeIn,
-    PointFeatureNom_1124_TypeVal PointFeatureNom_1124_TypeValueIn);
-  ~PointFeatureNom_1124_TypeChoicePair();
+  PointFeatureNom_1125_TypeChoicePair();
+  PointFeatureNom_1125_TypeChoicePair(
+    whichOne PointFeatureNom_1125_TypeTypeIn,
+    PointFeatureNom_1125_TypeVal PointFeatureNom_1125_TypeValueIn);
+  ~PointFeatureNom_1125_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne PointFeatureNom_1124_TypeType;
-  PointFeatureNom_1124_TypeVal PointFeatureNom_1124_TypeValue;
+  whichOne PointFeatureNom_1125_TypeType;
+  PointFeatureNom_1125_TypeVal PointFeatureNom_1125_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class MeasuredPointSe_1125_Type :
+class MeasuredPointSe_1126_Type :
   public XmlTypeBase
 {
 public:
-  MeasuredPointSe_1125_Type();
-  MeasuredPointSe_1125_Type(
-    MeasuredPointSe_1125_TypeChoicePair * MeasuredPointSe_1125_TypePairIn);
-  ~MeasuredPointSe_1125_Type();
+  MeasuredPointSe_1126_Type();
+  MeasuredPointSe_1126_Type(
+    MeasuredPointSe_1126_TypeChoicePair * MeasuredPointSe_1126_TypePairIn);
+  ~MeasuredPointSe_1126_Type();
   void printSelf(FILE * outFile);
 
-  MeasuredPointSe_1125_TypeChoicePair * getMeasuredPointSe_1125_TypePair();
-  void setMeasuredPointSe_1125_TypePair(MeasuredPointSe_1125_TypeChoicePair * MeasuredPointSe_1125_TypePairIn);
+  MeasuredPointSe_1126_TypeChoicePair * getMeasuredPointSe_1126_TypePair();
+  void setMeasuredPointSe_1126_TypePair(MeasuredPointSe_1126_TypeChoicePair * MeasuredPointSe_1126_TypePairIn);
 
 protected:
-  MeasuredPointSe_1125_TypeChoicePair * MeasuredPointSe_1125_TypePair;
+  MeasuredPointSe_1126_TypeChoicePair * MeasuredPointSe_1126_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union MeasuredPointSe_1125_TypeVal
+union MeasuredPointSe_1126_TypeVal
 {
   ArrayI3Type * PointIndices;
   ArrayBinaryType * BinaryPointIndices;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class MeasuredPointSe_1125_TypeChoicePair :
+class MeasuredPointSe_1126_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     PointIndicesE,
     BinaryPointIndicesE };
-  MeasuredPointSe_1125_TypeChoicePair();
-  MeasuredPointSe_1125_TypeChoicePair(
-    whichOne MeasuredPointSe_1125_TypeTypeIn,
-    MeasuredPointSe_1125_TypeVal MeasuredPointSe_1125_TypeValueIn);
-  ~MeasuredPointSe_1125_TypeChoicePair();
+  MeasuredPointSe_1126_TypeChoicePair();
+  MeasuredPointSe_1126_TypeChoicePair(
+    whichOne MeasuredPointSe_1126_TypeTypeIn,
+    MeasuredPointSe_1126_TypeVal MeasuredPointSe_1126_TypeValueIn);
+  ~MeasuredPointSe_1126_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne MeasuredPointSe_1125_TypeType;
-  MeasuredPointSe_1125_TypeVal MeasuredPointSe_1125_TypeValue;
+  whichOne MeasuredPointSe_1126_TypeType;
+  MeasuredPointSe_1126_TypeVal MeasuredPointSe_1126_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleBestFitType :
   public ConstructionMethodBaseType
@@ -13958,7 +13958,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleCastType :
   public ConstructionMethodBaseType
@@ -13978,7 +13978,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleCopyType :
   public ConstructionMethodBaseType
@@ -13998,7 +13998,7 @@ protected:
   BaseFeatureType * BaseCircle;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleFromConeType :
   public ConstructionMethodBaseType
@@ -14007,18 +14007,18 @@ public:
   CircleFromConeType();
   CircleFromConeType(
     XmlBoolean * NominalsCalculatedIn,
-    CircleFromConeT_1092_Type * CircleFromConeT_1092In);
+    CircleFromConeT_1093_Type * CircleFromConeT_1093In);
   ~CircleFromConeType();
   void printSelf(FILE * outFile);
 
-  CircleFromConeT_1092_Type * getCircleFromConeT_1092();
-  void setCircleFromConeT_1092(CircleFromConeT_1092_Type * CircleFromConeT_1092In);
+  CircleFromConeT_1093_Type * getCircleFromConeT_1093();
+  void setCircleFromConeT_1093(CircleFromConeT_1093_Type * CircleFromConeT_1093In);
 
 protected:
-  CircleFromConeT_1092_Type * CircleFromConeT_1092;
+  CircleFromConeT_1093_Type * CircleFromConeT_1093;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleFromScanType :
   public ConstructionMethodBaseType
@@ -14046,7 +14046,7 @@ protected:
   LinearValueType * Depth;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleIntersectionType :
   public ConstructionMethodBaseType
@@ -14066,7 +14066,7 @@ protected:
   SequencedBaseFeatureTypeLisd * IntersectionFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleProjectionType :
   public ConstructionMethodBaseType
@@ -14090,7 +14090,7 @@ protected:
   BaseFeatureType * ProjectionPlane;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleRecompType :
   public ConstructionMethodBaseType
@@ -14110,7 +14110,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleTangentThroughType :
   public ConstructionMethodBaseType
@@ -14134,7 +14134,7 @@ protected:
   BaseFeatureType * PointFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleTangentType :
   public ConstructionMethodBaseType
@@ -14154,7 +14154,7 @@ protected:
   SequencedBaseFeatureTypeLisd * TangentFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleTransformType :
   public ConstructionMethodBaseType
@@ -14178,7 +14178,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcBestFitType :
   public ConstructionMethodBaseType
@@ -14207,7 +14207,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcCastType :
   public ConstructionMethodBaseType
@@ -14227,7 +14227,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcCopyType :
   public ConstructionMethodBaseType
@@ -14247,7 +14247,7 @@ protected:
   BaseFeatureType * BaseArc;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcExtractType :
   public ConstructionMethodBaseType
@@ -14267,7 +14267,7 @@ protected:
   BaseFeatureType * CurveFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcFromScanType :
   public ConstructionMethodBaseType
@@ -14295,7 +14295,7 @@ protected:
   LinearValueType * Depth;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcIntersectionType :
   public ConstructionMethodBaseType
@@ -14315,7 +14315,7 @@ protected:
   SequencedBaseFeatureTypeLisd * IntersectionFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcProjectionType :
   public ConstructionMethodBaseType
@@ -14339,7 +14339,7 @@ protected:
   BaseFeatureType * ProjectionPlane;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcRecompType :
   public ConstructionMethodBaseType
@@ -14359,7 +14359,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcTransformType :
   public ConstructionMethodBaseType
@@ -14383,7 +14383,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConeBestFitType :
   public ConstructionMethodBaseType
@@ -14412,7 +14412,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConeCastType :
   public ConstructionMethodBaseType
@@ -14432,7 +14432,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConeCopyType :
   public ConstructionMethodBaseType
@@ -14452,7 +14452,7 @@ protected:
   BaseFeatureType * BaseCone;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConeFeatureDefinitionType :
   public SurfaceFeatureDefinitionBaseType
@@ -14463,15 +14463,15 @@ public:
     AttributesType * AttributesIn,
     InternalExternalEnumType * InternalExternalIn,
     LinearValueType * DiameterIn,
-    ConeFeatureDefi_1093_Type * ConeFeatureDefi_1093In,
-    ConeFeatureDefi_1094_Type * ConeFeatureDefi_1094In);
+    ConeFeatureDefi_1094_Type * ConeFeatureDefi_1094In,
+    ConeFeatureDefi_1095_Type * ConeFeatureDefi_1095In);
   ConeFeatureDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     InternalExternalEnumType * InternalExternalIn,
     LinearValueType * DiameterIn,
-    ConeFeatureDefi_1093_Type * ConeFeatureDefi_1093In,
-    ConeFeatureDefi_1094_Type * ConeFeatureDefi_1094In);
+    ConeFeatureDefi_1094_Type * ConeFeatureDefi_1094In,
+    ConeFeatureDefi_1095_Type * ConeFeatureDefi_1095In);
   ~ConeFeatureDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -14480,19 +14480,19 @@ public:
   void setInternalExternal(InternalExternalEnumType * InternalExternalIn);
   LinearValueType * getDiameter();
   void setDiameter(LinearValueType * DiameterIn);
-  ConeFeatureDefi_1093_Type * getConeFeatureDefi_1093();
-  void setConeFeatureDefi_1093(ConeFeatureDefi_1093_Type * ConeFeatureDefi_1093In);
   ConeFeatureDefi_1094_Type * getConeFeatureDefi_1094();
   void setConeFeatureDefi_1094(ConeFeatureDefi_1094_Type * ConeFeatureDefi_1094In);
+  ConeFeatureDefi_1095_Type * getConeFeatureDefi_1095();
+  void setConeFeatureDefi_1095(ConeFeatureDefi_1095_Type * ConeFeatureDefi_1095In);
 
 protected:
   InternalExternalEnumType * InternalExternal;
   LinearValueType * Diameter;
-  ConeFeatureDefi_1093_Type * ConeFeatureDefi_1093;
   ConeFeatureDefi_1094_Type * ConeFeatureDefi_1094;
+  ConeFeatureDefi_1095_Type * ConeFeatureDefi_1095;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConeFeatureItemType :
   public SurfaceFeatureItemBaseType
@@ -14535,7 +14535,7 @@ protected:
   ConeMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConeFeatureMeasurementType :
   public SurfaceFeatureMeasurementBaseType
@@ -14559,7 +14559,7 @@ public:
     MeasuredLinearValueType * DiameterIn,
     MeasuredLinearValueType * DiameterMinIn,
     MeasuredLinearValueType * DiameterMaxIn,
-    ConeFeatureMeas_1095_Type * ConeFeatureMeas_1095In,
+    ConeFeatureMeas_1096_Type * ConeFeatureMeas_1096In,
     MeasuredLinearValueType * SmallEndDistanceIn,
     MeasuredLinearValueType * LargeEndDistanceIn,
     SweepType * SweepMeasurementRangeIn,
@@ -14583,7 +14583,7 @@ public:
     MeasuredLinearValueType * DiameterIn,
     MeasuredLinearValueType * DiameterMinIn,
     MeasuredLinearValueType * DiameterMaxIn,
-    ConeFeatureMeas_1095_Type * ConeFeatureMeas_1095In,
+    ConeFeatureMeas_1096_Type * ConeFeatureMeas_1096In,
     MeasuredLinearValueType * SmallEndDistanceIn,
     MeasuredLinearValueType * LargeEndDistanceIn,
     SweepType * SweepMeasurementRangeIn,
@@ -14601,8 +14601,8 @@ public:
   void setDiameterMin(MeasuredLinearValueType * DiameterMinIn);
   MeasuredLinearValueType * getDiameterMax();
   void setDiameterMax(MeasuredLinearValueType * DiameterMaxIn);
-  ConeFeatureMeas_1095_Type * getConeFeatureMeas_1095();
-  void setConeFeatureMeas_1095(ConeFeatureMeas_1095_Type * ConeFeatureMeas_1095In);
+  ConeFeatureMeas_1096_Type * getConeFeatureMeas_1096();
+  void setConeFeatureMeas_1096(ConeFeatureMeas_1096_Type * ConeFeatureMeas_1096In);
   MeasuredLinearValueType * getSmallEndDistance();
   void setSmallEndDistance(MeasuredLinearValueType * SmallEndDistanceIn);
   MeasuredLinearValueType * getLargeEndDistance();
@@ -14619,7 +14619,7 @@ protected:
   MeasuredLinearValueType * Diameter;
   MeasuredLinearValueType * DiameterMin;
   MeasuredLinearValueType * DiameterMax;
-  ConeFeatureMeas_1095_Type * ConeFeatureMeas_1095;
+  ConeFeatureMeas_1096_Type * ConeFeatureMeas_1096;
   MeasuredLinearValueType * SmallEndDistance;
   MeasuredLinearValueType * LargeEndDistance;
   SweepType * SweepMeasurementRange;
@@ -14627,7 +14627,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConeFeatureNominalType :
   public SurfaceFeatureNominalBaseType
@@ -14678,7 +14678,7 @@ protected:
   ConeConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConeFromScanType :
   public ConstructionMethodBaseType
@@ -14702,7 +14702,7 @@ protected:
   LinearValueType * SearchRadius;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConeRecompType :
   public ConstructionMethodBaseType
@@ -14722,7 +14722,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConeTransformType :
   public ConstructionMethodBaseType
@@ -14746,7 +14746,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConicalSegmentBestFitType :
   public ConstructionMethodBaseType
@@ -14775,7 +14775,7 @@ protected:
   SequencedBaseFeatureTypeLisd * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConicalSegmentCastType :
   public ConstructionMethodBaseType
@@ -14795,7 +14795,7 @@ protected:
   BaseFeatureType * BaseFeature;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConicalSegmentCopyType :
   public ConstructionMethodBaseType
@@ -14815,7 +14815,7 @@ protected:
   BaseFeatureType * BaseConicalSegment;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConicalSegmentFeatureDefinitionType :
   public SurfaceFeatureDefinitionBaseType
@@ -14826,15 +14826,15 @@ public:
     AttributesType * AttributesIn,
     InternalExternalEnumType * InternalExternalIn,
     LinearValueType * DiameterIn,
-    ConicalSegmentF_1096_Type * ConicalSegmentF_1096In,
-    ConicalSegmentF_1097_Type * ConicalSegmentF_1097In);
+    ConicalSegmentF_1097_Type * ConicalSegmentF_1097In,
+    ConicalSegmentF_1098_Type * ConicalSegmentF_1098In);
   ConicalSegmentFeatureDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     InternalExternalEnumType * InternalExternalIn,
     LinearValueType * DiameterIn,
-    ConicalSegmentF_1096_Type * ConicalSegmentF_1096In,
-    ConicalSegmentF_1097_Type * ConicalSegmentF_1097In);
+    ConicalSegmentF_1097_Type * ConicalSegmentF_1097In,
+    ConicalSegmentF_1098_Type * ConicalSegmentF_1098In);
   ~ConicalSegmentFeatureDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -14843,19 +14843,19 @@ public:
   void setInternalExternal(InternalExternalEnumType * InternalExternalIn);
   LinearValueType * getDiameter();
   void setDiameter(LinearValueType * DiameterIn);
-  ConicalSegmentF_1096_Type * getConicalSegmentF_1096();
-  void setConicalSegmentF_1096(ConicalSegmentF_1096_Type * ConicalSegmentF_1096In);
   ConicalSegmentF_1097_Type * getConicalSegmentF_1097();
   void setConicalSegmentF_1097(ConicalSegmentF_1097_Type * ConicalSegmentF_1097In);
+  ConicalSegmentF_1098_Type * getConicalSegmentF_1098();
+  void setConicalSegmentF_1098(ConicalSegmentF_1098_Type * ConicalSegmentF_1098In);
 
 protected:
   InternalExternalEnumType * InternalExternal;
   LinearValueType * Diameter;
-  ConicalSegmentF_1096_Type * ConicalSegmentF_1096;
   ConicalSegmentF_1097_Type * ConicalSegmentF_1097;
+  ConicalSegmentF_1098_Type * ConicalSegmentF_1098;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConicalSegmentFeatureItemType :
   public SurfaceFeatureItemBaseType
@@ -14898,7 +14898,7 @@ protected:
   ConicalSegmentMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConicalSegmentFeatureMeasurementType :
   public SurfaceFeatureMeasurementBaseType
@@ -14922,7 +14922,7 @@ public:
     MeasuredLinearValueType * DiameterIn,
     MeasuredLinearValueType * DiameterMinIn,
     MeasuredLinearValueType * DiameterMaxIn,
-    ConicalSegmentF_1098_Type * ConicalSegmentF_1098In,
+    ConicalSegmentF_1099_Type * ConicalSegmentF_1099In,
     MeasuredLinearValueType * SmallEndDistanceIn,
     MeasuredLinearValueType * LargeEndDistanceIn,
     SweepType * SweepMeasurementRangeIn,
@@ -14946,7 +14946,7 @@ public:
     MeasuredLinearValueType * DiameterIn,
     MeasuredLinearValueType * DiameterMinIn,
     MeasuredLinearValueType * DiameterMaxIn,
-    ConicalSegmentF_1098_Type * ConicalSegmentF_1098In,
+    ConicalSegmentF_1099_Type * ConicalSegmentF_1099In,
     MeasuredLinearValueType * SmallEndDistanceIn,
     MeasuredLinearValueType * LargeEndDistanceIn,
     SweepType * SweepMeasurementRangeIn,
@@ -14964,8 +14964,8 @@ public:
   void setDiameterMin(MeasuredLinearValueType * DiameterMinIn);
   MeasuredLinearValueType * getDiameterMax();
   void setDiameterMax(MeasuredLinearValueType * DiameterMaxIn);
-  ConicalSegmentF_1098_Type * getConicalSegmentF_1098();
-  void setConicalSegmentF_1098(ConicalSegmentF_1098_Type * ConicalSegmentF_1098In);
+  ConicalSegmentF_1099_Type * getConicalSegmentF_1099();
+  void setConicalSegmentF_1099(ConicalSegmentF_1099_Type * ConicalSegmentF_1099In);
   MeasuredLinearValueType * getSmallEndDistance();
   void setSmallEndDistance(MeasuredLinearValueType * SmallEndDistanceIn);
   MeasuredLinearValueType * getLargeEndDistance();
@@ -14982,7 +14982,7 @@ protected:
   MeasuredLinearValueType * Diameter;
   MeasuredLinearValueType * DiameterMin;
   MeasuredLinearValueType * DiameterMax;
-  ConicalSegmentF_1098_Type * ConicalSegmentF_1098;
+  ConicalSegmentF_1099_Type * ConicalSegmentF_1099;
   MeasuredLinearValueType * SmallEndDistance;
   MeasuredLinearValueType * LargeEndDistance;
   SweepType * SweepMeasurementRange;
@@ -14990,7 +14990,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConicalSegmentFeatureNominalType :
   public SurfaceFeatureNominalBaseType
@@ -15041,7 +15041,7 @@ protected:
   ConicalSegmentConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConicalSegmentRecompType :
   public ConstructionMethodBaseType
@@ -15061,7 +15061,7 @@ protected:
   BaseFeaturePointListType * BaseFeaturePointList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConicalSegmentTransformType :
   public ConstructionMethodBaseType
@@ -15085,7 +15085,7 @@ protected:
   TransformationReferenceType * Transformation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CurveFeatureDefinitionBaseType :
   public ShapeFeatureDefinitionBaseType
@@ -15102,7 +15102,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CurveFeatureItemBaseType :
   public ShapeFeatureItemBaseType
@@ -15137,7 +15137,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CurveFeatureMeasurementBaseType :
   public ShapeFeatureMeasurementBaseType
@@ -15176,7 +15176,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CurveFeatureNominalBaseType :
   public ShapeFeatureNominalBaseType
@@ -15217,7 +15217,7 @@ protected:
   QIFReferenceFullType * SurfaceFeatureNominalId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylinderFeatureDefinitionType :
   public SurfaceFeatureDefinitionBaseType
@@ -15257,7 +15257,7 @@ protected:
   BottomType * Bottom;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylinderFeatureItemType :
   public SurfaceFeatureItemBaseType
@@ -15300,7 +15300,7 @@ protected:
   CylinderMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylinderFeatureMeasurementType :
   public SurfaceFeatureMeasurementBaseType
@@ -15382,7 +15382,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylinderFeatureNominalType :
   public SurfaceFeatureNominalBaseType
@@ -15433,7 +15433,7 @@ protected:
   CylinderConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylindricalSegmentFeatureDefinitionType :
   public SurfaceFeatureDefinitionBaseType
@@ -15473,7 +15473,7 @@ protected:
   BottomType * Bottom;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylindricalSegmentFeatureItemType :
   public SurfaceFeatureItemBaseType
@@ -15516,7 +15516,7 @@ protected:
   CylindricalSegmentMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylindricalSegmentFeatureMeasurementType :
   public SurfaceFeatureMeasurementBaseType
@@ -15598,7 +15598,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylindricalSegmentFeatureNominalType :
   public SurfaceFeatureNominalBaseType
@@ -15649,7 +15649,7 @@ protected:
   CylindricalSegmentConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipseFeatureDefinitionType :
   public CurveFeatureDefinitionBaseType
@@ -15684,7 +15684,7 @@ protected:
   LinearValueType * MinorDiameter;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipseFeatureItemType :
   public CurveFeatureItemBaseType
@@ -15727,7 +15727,7 @@ protected:
   EllipseMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipseFeatureMeasurementType :
   public CurveFeatureMeasurementBaseType
@@ -15804,7 +15804,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipseFeatureNominalType :
   public CurveFeatureNominalBaseType
@@ -15862,7 +15862,7 @@ protected:
   EllipseConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcFeatureDefinitionType :
   public CurveFeatureDefinitionBaseType
@@ -15897,7 +15897,7 @@ protected:
   LinearValueType * MinorDiameter;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcFeatureItemType :
   public CurveFeatureItemBaseType
@@ -15940,7 +15940,7 @@ protected:
   EllipticalArcMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcFeatureMeasurementType :
   public CurveFeatureMeasurementBaseType
@@ -16017,7 +16017,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EllipticalArcFeatureNominalType :
   public CurveFeatureNominalBaseType
@@ -16075,7 +16075,7 @@ protected:
   EllipticalArcConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCircleFeatureDefinitionType :
   public CurveFeatureDefinitionBaseType
@@ -16110,7 +16110,7 @@ protected:
   LinearValueType * Length;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCircleFeatureItemType :
   public CurveFeatureItemBaseType
@@ -16153,7 +16153,7 @@ protected:
   ElongatedCircleMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCircleFeatureMeasurementType :
   public CurveFeatureMeasurementBaseType
@@ -16240,7 +16240,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCircleFeatureNominalType :
   public CurveFeatureNominalBaseType
@@ -16293,7 +16293,7 @@ protected:
   ElongatedCircleConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCylinderFeatureDefinitionType :
   public SurfaceFeatureDefinitionBaseType
@@ -16333,7 +16333,7 @@ protected:
   LinearValueType * Depth;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCylinderFeatureItemType :
   public SurfaceFeatureItemBaseType
@@ -16376,7 +16376,7 @@ protected:
   ElongatedCylinderMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCylinderFeatureMeasurementType :
   public SurfaceFeatureMeasurementBaseType
@@ -16478,7 +16478,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCylinderFeatureNominalType :
   public SurfaceFeatureNominalBaseType
@@ -16529,7 +16529,7 @@ protected:
   ElongatedCylinderConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExtrudedCrossSectionFeatureDefinitionType :
   public SurfaceFeatureDefinitionBaseType
@@ -16559,7 +16559,7 @@ protected:
   LinearValueType * Length;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExtrudedCrossSectionFeatureItemType :
   public SurfaceFeatureItemBaseType
@@ -16602,7 +16602,7 @@ protected:
   ExtrudedCrossSectionMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExtrudedCrossSectionFeatureMeasurementType :
   public SurfaceFeatureMeasurementBaseType
@@ -16659,7 +16659,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExtrudedCrossSectionFeatureNominalType :
   public SurfaceFeatureNominalBaseType
@@ -16710,7 +16710,7 @@ protected:
   ExtrudedCrossSectionConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureZoneAreaBaseType :
   public FeatureZoneBaseType
@@ -16721,25 +16721,25 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099_Type * FeatureZoneArea_1099In);
+    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In);
   FeatureZoneAreaBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099_Type * FeatureZoneArea_1099In);
+    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In);
   ~FeatureZoneAreaBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
-  FeatureZoneArea_1099_Type * getFeatureZoneArea_1099();
-  void setFeatureZoneArea_1099(FeatureZoneArea_1099_Type * FeatureZoneArea_1099In);
+  FeatureZoneArea_1100_Type * getFeatureZoneArea_1100();
+  void setFeatureZoneArea_1100(FeatureZoneArea_1100_Type * FeatureZoneArea_1100In);
 
 protected:
-  FeatureZoneArea_1099_Type * FeatureZoneArea_1099;
+  FeatureZoneArea_1100_Type * FeatureZoneArea_1100;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureZoneAreaBetweenType :
   public FeatureZoneAreaBaseType
@@ -16750,9 +16750,9 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099_Type * FeatureZoneArea_1099In,
     FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
     FeatureZoneArea_1101_Type * FeatureZoneArea_1101In,
+    FeatureZoneArea_1102_Type * FeatureZoneArea_1102In,
     UnitVectorType * StartDirectionIn,
     UnitVectorType * PlaneNormalIn);
   FeatureZoneAreaBetweenType(
@@ -16760,32 +16760,32 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099_Type * FeatureZoneArea_1099In,
     FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
     FeatureZoneArea_1101_Type * FeatureZoneArea_1101In,
+    FeatureZoneArea_1102_Type * FeatureZoneArea_1102In,
     UnitVectorType * StartDirectionIn,
     UnitVectorType * PlaneNormalIn);
   ~FeatureZoneAreaBetweenType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
-  FeatureZoneArea_1100_Type * getFeatureZoneArea_1100();
-  void setFeatureZoneArea_1100(FeatureZoneArea_1100_Type * FeatureZoneArea_1100In);
   FeatureZoneArea_1101_Type * getFeatureZoneArea_1101();
   void setFeatureZoneArea_1101(FeatureZoneArea_1101_Type * FeatureZoneArea_1101In);
+  FeatureZoneArea_1102_Type * getFeatureZoneArea_1102();
+  void setFeatureZoneArea_1102(FeatureZoneArea_1102_Type * FeatureZoneArea_1102In);
   UnitVectorType * getStartDirection();
   void setStartDirection(UnitVectorType * StartDirectionIn);
   UnitVectorType * getPlaneNormal();
   void setPlaneNormal(UnitVectorType * PlaneNormalIn);
 
 protected:
-  FeatureZoneArea_1100_Type * FeatureZoneArea_1100;
   FeatureZoneArea_1101_Type * FeatureZoneArea_1101;
+  FeatureZoneArea_1102_Type * FeatureZoneArea_1102;
   UnitVectorType * StartDirection;
   UnitVectorType * PlaneNormal;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureZoneAreaCircularType :
   public FeatureZoneAreaBaseType
@@ -16796,14 +16796,14 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099_Type * FeatureZoneArea_1099In,
+    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
     CircleType * CircleIn);
   FeatureZoneAreaCircularType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099_Type * FeatureZoneArea_1099In,
+    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
     CircleType * CircleIn);
   ~FeatureZoneAreaCircularType();
   void printSelf(FILE * outFile);
@@ -16816,7 +16816,7 @@ protected:
   CircleType * Circle;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureZoneAreaCylindricalType :
   public FeatureZoneAreaBaseType
@@ -16827,14 +16827,14 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099_Type * FeatureZoneArea_1099In,
+    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
     CylinderType * CylinderIn);
   FeatureZoneAreaCylindricalType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099_Type * FeatureZoneArea_1099In,
+    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
     CylinderType * CylinderIn);
   ~FeatureZoneAreaCylindricalType();
   void printSelf(FILE * outFile);
@@ -16847,7 +16847,7 @@ protected:
   CylinderType * Cylinder;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureZoneAreaIrregularType :
   public FeatureZoneAreaBaseType
@@ -16858,19 +16858,19 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099_Type * FeatureZoneArea_1099In);
+    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In);
   FeatureZoneAreaIrregularType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099_Type * FeatureZoneArea_1099In);
+    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In);
   ~FeatureZoneAreaIrregularType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureZoneAreaRectangularType :
   public FeatureZoneAreaBaseType
@@ -16881,14 +16881,14 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099_Type * FeatureZoneArea_1099In,
+    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
     RectangleType * RectangleIn);
   FeatureZoneAreaRectangularType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099_Type * FeatureZoneArea_1099In,
+    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
     RectangleType * RectangleIn);
   ~FeatureZoneAreaRectangularType();
   void printSelf(FILE * outFile);
@@ -16901,7 +16901,7 @@ protected:
   RectangleType * Rectangle;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureZoneAreaSphericalType :
   public FeatureZoneAreaBaseType
@@ -16912,14 +16912,14 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099_Type * FeatureZoneArea_1099In,
+    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
     SphereType * SphereIn);
   FeatureZoneAreaSphericalType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099_Type * FeatureZoneArea_1099In,
+    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
     SphereType * SphereIn);
   ~FeatureZoneAreaSphericalType();
   void printSelf(FILE * outFile);
@@ -16932,7 +16932,7 @@ protected:
   SphereType * Sphere;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class GroupFeatureDefinitionType :
   public ShapeFeatureDefinitionBaseType
@@ -16943,13 +16943,13 @@ public:
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1104_Type * GroupFeatureDef_1104In);
+    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In);
   GroupFeatureDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1104_Type * GroupFeatureDef_1104In);
+    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In);
   ~GroupFeatureDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -16958,16 +16958,16 @@ public:
   void setIsProfileGroup(XmlBoolean * IsProfileGroupIn);
   XmlBoolean * getIsRunoutGroup();
   void setIsRunoutGroup(XmlBoolean * IsRunoutGroupIn);
-  GroupFeatureDef_1104_Type * getGroupFeatureDef_1104();
-  void setGroupFeatureDef_1104(GroupFeatureDef_1104_Type * GroupFeatureDef_1104In);
+  GroupFeatureDef_1105_Type * getGroupFeatureDef_1105();
+  void setGroupFeatureDef_1105(GroupFeatureDef_1105_Type * GroupFeatureDef_1105In);
 
 protected:
   XmlBoolean * IsProfileGroup;
   XmlBoolean * IsRunoutGroup;
-  GroupFeatureDef_1104_Type * GroupFeatureDef_1104;
+  GroupFeatureDef_1105_Type * GroupFeatureDef_1105;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class GroupFeatureItemType :
   public ShapeFeatureItemBaseType
@@ -17002,7 +17002,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class GroupFeatureMeasurementType :
   public ShapeFeatureMeasurementBaseType
@@ -17041,7 +17041,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class GroupFeatureNominalType :
   public ShapeFeatureNominalBaseType
@@ -17082,7 +17082,7 @@ protected:
   ArrayReferenceFullType * FeatureNominalIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineFeatureDefinitionType :
   public CurveFeatureDefinitionBaseType
@@ -17099,7 +17099,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineFeatureItemType :
   public CurveFeatureItemBaseType
@@ -17142,7 +17142,7 @@ protected:
   LineMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineFeatureMeasurementType :
   public CurveFeatureMeasurementBaseType
@@ -17209,7 +17209,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineFeatureNominalType :
   public CurveFeatureNominalBaseType
@@ -17272,7 +17272,7 @@ protected:
   LineConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MarkingFeatureDefinitionType :
   public NonShapeFeatureDefinitionBaseType
@@ -17302,7 +17302,7 @@ protected:
   MarkingMethodType * MarkingMethod;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MarkingFeatureItemType :
   public NonShapeFeatureItemBaseType
@@ -17331,7 +17331,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MarkingFeatureMeasurementType :
   public NonShapeFeatureMeasurementBaseType
@@ -17377,7 +17377,7 @@ protected:
   RectangleType * Location;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MarkingFeatureNominalType :
   public NonShapeFeatureNominalBaseType
@@ -17414,7 +17414,7 @@ protected:
   RectangleType * Location;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesFeatureDefinitionType :
   public CurveFeatureDefinitionBaseType
@@ -17474,7 +17474,7 @@ protected:
   EndRadiusType * EndRadius2;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesFeatureItemType :
   public CurveFeatureItemBaseType
@@ -17517,7 +17517,7 @@ protected:
   OppositeAngledLinesMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesFeatureMeasurementType :
   public CurveFeatureMeasurementBaseType
@@ -17619,7 +17619,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledLinesFeatureNominalType :
   public CurveFeatureNominalBaseType
@@ -17672,7 +17672,7 @@ protected:
   OppositeAngledLinesConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledPlanesFeatureDefinitionType :
   public SurfaceFeatureDefinitionBaseType
@@ -17690,7 +17690,7 @@ public:
     XmlBoolean * SingleOpenEndIn,
     EndRadiusType * EndRadius1In,
     EndRadiusType * EndRadius2In,
-    OppositeAngledP_1118_Type * OppositeAngledP_1118In);
+    OppositeAngledP_1119_Type * OppositeAngledP_1119In);
   OppositeAngledPlanesFeatureDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -17703,7 +17703,7 @@ public:
     XmlBoolean * SingleOpenEndIn,
     EndRadiusType * EndRadius1In,
     EndRadiusType * EndRadius2In,
-    OppositeAngledP_1118_Type * OppositeAngledP_1118In);
+    OppositeAngledP_1119_Type * OppositeAngledP_1119In);
   ~OppositeAngledPlanesFeatureDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -17726,8 +17726,8 @@ public:
   void setEndRadius1(EndRadiusType * EndRadius1In);
   EndRadiusType * getEndRadius2();
   void setEndRadius2(EndRadiusType * EndRadius2In);
-  OppositeAngledP_1118_Type * getOppositeAngledP_1118();
-  void setOppositeAngledP_1118(OppositeAngledP_1118_Type * OppositeAngledP_1118In);
+  OppositeAngledP_1119_Type * getOppositeAngledP_1119();
+  void setOppositeAngledP_1119(OppositeAngledP_1119_Type * OppositeAngledP_1119In);
 
 protected:
   InternalExternalEnumType * InternalExternal;
@@ -17739,10 +17739,10 @@ protected:
   XmlBoolean * SingleOpenEnd;
   EndRadiusType * EndRadius1;
   EndRadiusType * EndRadius2;
-  OppositeAngledP_1118_Type * OppositeAngledP_1118;
+  OppositeAngledP_1119_Type * OppositeAngledP_1119;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledPlanesFeatureItemType :
   public SurfaceFeatureItemBaseType
@@ -17785,7 +17785,7 @@ protected:
   OppositeAngledPlanesMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledPlanesFeatureMeasurementType :
   public SurfaceFeatureMeasurementBaseType
@@ -17815,7 +17815,7 @@ public:
     MeasuredLinearValueType * LengthMinIn,
     MeasuredLinearValueType * LengthMaxIn,
     MeasuredLinearValueType * DepthIn,
-    OppositeAngledP_1119_Type * OppositeAngledP_1119In,
+    OppositeAngledP_1120_Type * OppositeAngledP_1120In,
     MeasuredEndRadiusType * EndRadius1In,
     MeasuredEndRadiusType * EndRadius2In,
     MeasuredLinearValueType * FormIn);
@@ -17843,7 +17843,7 @@ public:
     MeasuredLinearValueType * LengthMinIn,
     MeasuredLinearValueType * LengthMaxIn,
     MeasuredLinearValueType * DepthIn,
-    OppositeAngledP_1119_Type * OppositeAngledP_1119In,
+    OppositeAngledP_1120_Type * OppositeAngledP_1120In,
     MeasuredEndRadiusType * EndRadius1In,
     MeasuredEndRadiusType * EndRadius2In,
     MeasuredLinearValueType * FormIn);
@@ -17871,8 +17871,8 @@ public:
   void setLengthMax(MeasuredLinearValueType * LengthMaxIn);
   MeasuredLinearValueType * getDepth();
   void setDepth(MeasuredLinearValueType * DepthIn);
-  OppositeAngledP_1119_Type * getOppositeAngledP_1119();
-  void setOppositeAngledP_1119(OppositeAngledP_1119_Type * OppositeAngledP_1119In);
+  OppositeAngledP_1120_Type * getOppositeAngledP_1120();
+  void setOppositeAngledP_1120(OppositeAngledP_1120_Type * OppositeAngledP_1120In);
   MeasuredEndRadiusType * getEndRadius1();
   void setEndRadius1(MeasuredEndRadiusType * EndRadius1In);
   MeasuredEndRadiusType * getEndRadius2();
@@ -17891,13 +17891,13 @@ protected:
   MeasuredLinearValueType * LengthMin;
   MeasuredLinearValueType * LengthMax;
   MeasuredLinearValueType * Depth;
-  OppositeAngledP_1119_Type * OppositeAngledP_1119;
+  OppositeAngledP_1120_Type * OppositeAngledP_1120;
   MeasuredEndRadiusType * EndRadius1;
   MeasuredEndRadiusType * EndRadius2;
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeAngledPlanesFeatureNominalType :
   public SurfaceFeatureNominalBaseType
@@ -17958,7 +17958,7 @@ protected:
   OppositeAngledPlanesConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesFeatureDefinitionType :
   public CurveFeatureDefinitionBaseType
@@ -18013,7 +18013,7 @@ protected:
   EndRadiusType * EndRadius2;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesFeatureItemType :
   public CurveFeatureItemBaseType
@@ -18056,7 +18056,7 @@ protected:
   OppositeParallelLinesMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesFeatureMeasurementType :
   public CurveFeatureMeasurementBaseType
@@ -18153,7 +18153,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelLinesFeatureNominalType :
   public CurveFeatureNominalBaseType
@@ -18206,7 +18206,7 @@ protected:
   OppositeParallelLinesConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelPlanesFeatureDefinitionType :
   public SurfaceFeatureDefinitionBaseType
@@ -18271,7 +18271,7 @@ protected:
   EndRadiusType * EndRadius2;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelPlanesFeatureItemType :
   public SurfaceFeatureItemBaseType
@@ -18314,7 +18314,7 @@ protected:
   OppositeParallelPlanesMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelPlanesFeatureMeasurementType :
   public SurfaceFeatureMeasurementBaseType
@@ -18421,7 +18421,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OppositeParallelPlanesFeatureNominalType :
   public SurfaceFeatureNominalBaseType
@@ -18477,7 +18477,7 @@ protected:
   OppositeParallelPlanesConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherCurveFeatureDefinitionType :
   public CurveFeatureDefinitionBaseType
@@ -18494,7 +18494,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherCurveFeatureItemType :
   public CurveFeatureItemBaseType
@@ -18537,7 +18537,7 @@ protected:
   OtherCurveMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherCurveFeatureMeasurementType :
   public CurveFeatureMeasurementBaseType
@@ -18576,7 +18576,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherCurveFeatureNominalType :
   public CurveFeatureNominalBaseType
@@ -18619,7 +18619,7 @@ protected:
   OtherCurveConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherShapeFeatureDefinitionType :
   public ShapeFeatureDefinitionBaseType
@@ -18644,7 +18644,7 @@ protected:
   XmlString * Description;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherShapeFeatureItemType :
   public ShapeFeatureItemBaseType
@@ -18687,7 +18687,7 @@ protected:
   OtherShapeMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherShapeFeatureMeasurementType :
   public ShapeFeatureMeasurementBaseType
@@ -18726,7 +18726,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherShapeFeatureNominalType :
   public ShapeFeatureNominalBaseType
@@ -18767,7 +18767,7 @@ protected:
   OtherShapeConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherSurfaceFeatureDefinitionType :
   public SurfaceFeatureDefinitionBaseType
@@ -18784,7 +18784,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherSurfaceFeatureItemType :
   public SurfaceFeatureItemBaseType
@@ -18827,7 +18827,7 @@ protected:
   OtherSurfaceMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherSurfaceFeatureMeasurementType :
   public SurfaceFeatureMeasurementBaseType
@@ -18874,7 +18874,7 @@ protected:
   PolyLineType * PolyLine;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherSurfaceFeatureNominalType :
   public SurfaceFeatureNominalBaseType
@@ -18891,7 +18891,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
-    OtherSurfaceFea_1120_Type * OtherSurfaceFea_1120In);
+    OtherSurfaceFea_1121_Type * OtherSurfaceFea_1121In);
   OtherSurfaceFeatureNominalType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -18903,19 +18903,19 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
-    OtherSurfaceFea_1120_Type * OtherSurfaceFea_1120In);
+    OtherSurfaceFea_1121_Type * OtherSurfaceFea_1121In);
   ~OtherSurfaceFeatureNominalType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
-  OtherSurfaceFea_1120_Type * getOtherSurfaceFea_1120();
-  void setOtherSurfaceFea_1120(OtherSurfaceFea_1120_Type * OtherSurfaceFea_1120In);
+  OtherSurfaceFea_1121_Type * getOtherSurfaceFea_1121();
+  void setOtherSurfaceFea_1121(OtherSurfaceFea_1121_Type * OtherSurfaceFea_1121In);
 
 protected:
-  OtherSurfaceFea_1120_Type * OtherSurfaceFea_1120;
+  OtherSurfaceFea_1121_Type * OtherSurfaceFea_1121;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PatternFeatureDefinitionBaseType :
   public GroupFeatureDefinitionType
@@ -18926,19 +18926,19 @@ public:
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1104_Type * GroupFeatureDef_1104In);
+    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In);
   PatternFeatureDefinitionBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1104_Type * GroupFeatureDef_1104In);
+    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In);
   ~PatternFeatureDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PatternFeatureItemBaseType :
   public GroupFeatureItemType
@@ -18973,7 +18973,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PatternFeatureLinearDefinitionType :
   public PatternFeatureDefinitionBaseType
@@ -18984,7 +18984,7 @@ public:
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1104_Type * GroupFeatureDef_1104In,
+    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
     UnitVectorType * LineDirectionIn,
     LinearValueType * IncrementalDistanceIn,
     UnitVectorType * FeatureDirectionIn,
@@ -18994,7 +18994,7 @@ public:
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1104_Type * GroupFeatureDef_1104In,
+    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
     UnitVectorType * LineDirectionIn,
     LinearValueType * IncrementalDistanceIn,
     UnitVectorType * FeatureDirectionIn,
@@ -19019,7 +19019,7 @@ protected:
   NaturalType * NumberOfFeatures;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PatternFeatureLinearItemType :
   public PatternFeatureItemBaseType
@@ -19054,7 +19054,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PatternFeatureNominalBaseType :
   public GroupFeatureNominalType
@@ -19089,7 +19089,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PatternFeatureParallelogramDefinitionType :
   public PatternFeatureDefinitionBaseType
@@ -19100,7 +19100,7 @@ public:
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1104_Type * GroupFeatureDef_1104In,
+    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
     VectorType * AlongRowDirectionIn,
     LinearValueType * IncrementalRowDistanceIn,
     VectorType * BetweenRowDirectionIn,
@@ -19113,7 +19113,7 @@ public:
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1104_Type * GroupFeatureDef_1104In,
+    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
     VectorType * AlongRowDirectionIn,
     LinearValueType * IncrementalRowDistanceIn,
     VectorType * BetweenRowDirectionIn,
@@ -19150,7 +19150,7 @@ protected:
   NaturalType * NumberOfRows;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PatternFeatureParallelogramItemType :
   public PatternFeatureItemBaseType
@@ -19185,7 +19185,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PatternFeatureParallelogramNominalType :
   public PatternFeatureNominalBaseType
@@ -19228,7 +19228,7 @@ protected:
   QIFReferenceType * FirstFeatureLocation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneFeatureDefinitionType :
   public SurfaceFeatureDefinitionBaseType
@@ -19245,7 +19245,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneFeatureItemType :
   public SurfaceFeatureItemBaseType
@@ -19288,7 +19288,7 @@ protected:
   PlaneMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneFeatureMeasurementType :
   public SurfaceFeatureMeasurementBaseType
@@ -19350,7 +19350,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneFeatureNominalType :
   public SurfaceFeatureNominalBaseType
@@ -19369,7 +19369,7 @@ public:
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
     PointType * LocationIn,
     UnitVectorType * NormalIn,
-    PlaneFeatureNom_1121_Type * PlaneFeatureNom_1121In,
+    PlaneFeatureNom_1122_Type * PlaneFeatureNom_1122In,
     PlaneConstructionMethodType * ConstructedIn);
   PlaneFeatureNominalType(
     QIFIdType * idIn,
@@ -19384,7 +19384,7 @@ public:
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
     PointType * LocationIn,
     UnitVectorType * NormalIn,
-    PlaneFeatureNom_1121_Type * PlaneFeatureNom_1121In,
+    PlaneFeatureNom_1122_Type * PlaneFeatureNom_1122In,
     PlaneConstructionMethodType * ConstructedIn);
   ~PlaneFeatureNominalType();
   void printSelf(FILE * outFile);
@@ -19394,19 +19394,19 @@ public:
   void setLocation(PointType * LocationIn);
   UnitVectorType * getNormal();
   void setNormal(UnitVectorType * NormalIn);
-  PlaneFeatureNom_1121_Type * getPlaneFeatureNom_1121();
-  void setPlaneFeatureNom_1121(PlaneFeatureNom_1121_Type * PlaneFeatureNom_1121In);
+  PlaneFeatureNom_1122_Type * getPlaneFeatureNom_1122();
+  void setPlaneFeatureNom_1122(PlaneFeatureNom_1122_Type * PlaneFeatureNom_1122In);
   PlaneConstructionMethodType * getConstructed();
   void setConstructed(PlaneConstructionMethodType * ConstructedIn);
 
 protected:
   PointType * Location;
   UnitVectorType * Normal;
-  PlaneFeatureNom_1121_Type * PlaneFeatureNom_1121;
+  PlaneFeatureNom_1122_Type * PlaneFeatureNom_1122;
   PlaneConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedCurveFeatureDefinitionType :
   public CurveFeatureDefinitionBaseType
@@ -19423,7 +19423,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedCurveFeatureItemType :
   public CurveFeatureItemBaseType
@@ -19466,7 +19466,7 @@ protected:
   PointDefinedCurveMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedCurveFeatureMeasurementType :
   public CurveFeatureMeasurementBaseType
@@ -19523,7 +19523,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedCurveFeatureNominalType :
   public CurveFeatureNominalBaseType
@@ -19576,7 +19576,7 @@ protected:
   PointDefinedCurveConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedSurfaceFeatureDefinitionType :
   public SurfaceFeatureDefinitionBaseType
@@ -19593,7 +19593,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedSurfaceFeatureItemType :
   public SurfaceFeatureItemBaseType
@@ -19636,7 +19636,7 @@ protected:
   PointDefinedSurfaceMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedSurfaceFeatureMeasurementType :
   public SurfaceFeatureMeasurementBaseType
@@ -19688,7 +19688,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedSurfaceFeatureNominalType :
   public SurfaceFeatureNominalBaseType
@@ -19734,7 +19734,7 @@ protected:
   PointDefinedSurfaceConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureDefinitionBaseType :
   public ShapeFeatureDefinitionBaseType
@@ -19751,7 +19751,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureDefinitionType :
   public PointFeatureDefinitionBaseType
@@ -19768,7 +19768,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureItemBaseType :
   public ShapeFeatureItemBaseType
@@ -19803,7 +19803,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureItemType :
   public PointFeatureItemBaseType
@@ -19846,7 +19846,7 @@ protected:
   PointMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureMeasurementBaseType :
   public ShapeFeatureMeasurementBaseType
@@ -19885,7 +19885,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureMeasurementType :
   public PointFeatureMeasurementBaseType
@@ -19937,7 +19937,7 @@ protected:
   MeasuredUnitVectorType * Normal;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureNominalBaseType :
   public ShapeFeatureNominalBaseType
@@ -19954,7 +19954,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
-    PointFeatureNom_1124_Type * PointFeatureNom_1124In);
+    PointFeatureNom_1125_Type * PointFeatureNom_1125In);
   PointFeatureNominalBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -19966,19 +19966,19 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
-    PointFeatureNom_1124_Type * PointFeatureNom_1124In);
+    PointFeatureNom_1125_Type * PointFeatureNom_1125In);
   ~PointFeatureNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
-  PointFeatureNom_1124_Type * getPointFeatureNom_1124();
-  void setPointFeatureNom_1124(PointFeatureNom_1124_Type * PointFeatureNom_1124In);
+  PointFeatureNom_1125_Type * getPointFeatureNom_1125();
+  void setPointFeatureNom_1125(PointFeatureNom_1125_Type * PointFeatureNom_1125In);
 
 protected:
-  PointFeatureNom_1124_Type * PointFeatureNom_1124;
+  PointFeatureNom_1125_Type * PointFeatureNom_1125;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointFeatureNominalType :
   public PointFeatureNominalBaseType
@@ -19995,7 +19995,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
-    PointFeatureNom_1124_Type * PointFeatureNom_1124In,
+    PointFeatureNom_1125_Type * PointFeatureNom_1125In,
     PointType * LocationIn,
     UnitVectorType * NormalIn,
     PointConstructionMethodType * ConstructedIn);
@@ -20010,7 +20010,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
-    PointFeatureNom_1124_Type * PointFeatureNom_1124In,
+    PointFeatureNom_1125_Type * PointFeatureNom_1125In,
     PointType * LocationIn,
     UnitVectorType * NormalIn,
     PointConstructionMethodType * ConstructedIn);
@@ -20031,7 +20031,7 @@ protected:
   PointConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphereFeatureDefinitionType :
   public SurfaceFeatureDefinitionBaseType
@@ -20061,7 +20061,7 @@ protected:
   LinearValueType * Diameter;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphereFeatureItemType :
   public SurfaceFeatureItemBaseType
@@ -20104,7 +20104,7 @@ protected:
   SphereMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphereFeatureMeasurementType :
   public SurfaceFeatureMeasurementBaseType
@@ -20181,7 +20181,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphereFeatureNominalType :
   public SurfaceFeatureNominalBaseType
@@ -20232,7 +20232,7 @@ protected:
   SphereConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphericalSegmentFeatureDefinitionType :
   public SurfaceFeatureDefinitionBaseType
@@ -20262,7 +20262,7 @@ protected:
   LinearValueType * Diameter;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphericalSegmentFeatureItemType :
   public SurfaceFeatureItemBaseType
@@ -20305,7 +20305,7 @@ protected:
   SphericalSegmentMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphericalSegmentFeatureMeasurementType :
   public SurfaceFeatureMeasurementBaseType
@@ -20382,7 +20382,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphericalSegmentFeatureNominalType :
   public SurfaceFeatureNominalBaseType
@@ -20433,7 +20433,7 @@ protected:
   SphericalSegmentConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleFeatureDefinitionType :
   public CurveFeatureDefinitionBaseType
@@ -20463,7 +20463,7 @@ protected:
   LinearValueType * Diameter;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleFeatureItemType :
   public CurveFeatureItemBaseType
@@ -20506,7 +20506,7 @@ protected:
   CircleMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleFeatureMeasurementType :
   public CurveFeatureMeasurementBaseType
@@ -20588,7 +20588,7 @@ protected:
   SweepType * SweepFull;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleFeatureNominalType :
   public CurveFeatureNominalBaseType
@@ -20646,7 +20646,7 @@ protected:
   CircleConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcFeatureDefinitionType :
   public CurveFeatureDefinitionBaseType
@@ -20676,7 +20676,7 @@ protected:
   LinearValueType * Radius;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcFeatureItemType :
   public CurveFeatureItemBaseType
@@ -20719,7 +20719,7 @@ protected:
   CircularArcMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcFeatureMeasurementType :
   public CurveFeatureMeasurementBaseType
@@ -20801,7 +20801,7 @@ protected:
   MeasuredLinearValueType * Form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularArcFeatureNominalType :
   public CurveFeatureNominalBaseType
@@ -20859,7 +20859,7 @@ protected:
   CircularArcConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EdgePointFeatureDefinitionType :
   public PointFeatureDefinitionBaseType
@@ -20884,7 +20884,7 @@ protected:
   InternalExternalEnumType * InternalExternal;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EdgePointFeatureItemType :
   public PointFeatureItemBaseType
@@ -20927,7 +20927,7 @@ protected:
   EdgePointMeasurementDeterminationType * DeterminationMode;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EdgePointFeatureMeasurementType :
   public PointFeatureMeasurementBaseType
@@ -20984,7 +20984,7 @@ protected:
   MeasuredUnitVectorType * AdjacentNormal;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EdgePointFeatureNominalType :
   public PointFeatureNominalBaseType
@@ -21001,7 +21001,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
-    PointFeatureNom_1124_Type * PointFeatureNom_1124In,
+    PointFeatureNom_1125_Type * PointFeatureNom_1125In,
     PointType * LocationIn,
     UnitVectorType * NormalIn,
     UnitVectorType * AdjacentNormalIn,
@@ -21017,7 +21017,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
-    PointFeatureNom_1124_Type * PointFeatureNom_1124In,
+    PointFeatureNom_1125_Type * PointFeatureNom_1125In,
     PointType * LocationIn,
     UnitVectorType * NormalIn,
     UnitVectorType * AdjacentNormalIn,
@@ -21042,7 +21042,7 @@ protected:
   EdgePointConstructionMethodType * Constructed;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PatternFeatureCircleDefinitionType :
   public PatternFeatureDefinitionBaseType
@@ -21053,7 +21053,7 @@ public:
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1104_Type * GroupFeatureDef_1104In,
+    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
     LinearValueType * DiameterIn,
     UnitVectorType * FeatureDirectionIn,
     NaturalType * NumberOfFeaturesIn);
@@ -21062,7 +21062,7 @@ public:
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1104_Type * GroupFeatureDef_1104In,
+    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
     LinearValueType * DiameterIn,
     UnitVectorType * FeatureDirectionIn,
     NaturalType * NumberOfFeaturesIn);
@@ -21083,7 +21083,7 @@ protected:
   NaturalType * NumberOfFeatures;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PatternFeatureCircleItemType :
   public PatternFeatureItemBaseType
@@ -21118,7 +21118,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PatternFeatureCircleNominalType :
   public PatternFeatureNominalBaseType
@@ -21171,7 +21171,7 @@ protected:
   QIFReferenceType * FirstFeatureLocation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PatternFeatureCircularArcDefinitionType :
   public PatternFeatureDefinitionBaseType
@@ -21182,7 +21182,7 @@ public:
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1104_Type * GroupFeatureDef_1104In,
+    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
     LinearValueType * ArcRadiusIn,
     AngularValueType * IncrementalArcIn,
     UnitVectorType * FeatureDirectionIn,
@@ -21192,7 +21192,7 @@ public:
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1104_Type * GroupFeatureDef_1104In,
+    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
     LinearValueType * ArcRadiusIn,
     AngularValueType * IncrementalArcIn,
     UnitVectorType * FeatureDirectionIn,
@@ -21217,7 +21217,7 @@ protected:
   NaturalType * NumberOfFeatures;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PatternFeatureCircularArcItemType :
   public PatternFeatureItemBaseType
@@ -21252,7 +21252,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PatternFeatureCircularArcNominalType :
   public PatternFeatureNominalBaseType
@@ -21305,7 +21305,7 @@ protected:
   QIFReferenceType * FirstFeatureLocation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PatternFeatureLinearNominalType :
   public PatternFeatureNominalBaseType
@@ -21348,6 +21348,6 @@ protected:
   QIFReferenceType * FirstFeatureLocation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 #endif // FEATURES_HH

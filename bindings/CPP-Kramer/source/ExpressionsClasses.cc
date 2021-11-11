@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #include <stdio.h>             // for printf, etc.
 #include <string.h>            // for strdup
@@ -10,8 +10,8 @@
 
 #define INDENT 2
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 /* class ArithmeticCharacteristicParameterType
 
@@ -63,7 +63,7 @@ CharacteristicTypeEnumType * ArithmeticCharacteristicParameterType::getCharacter
 void ArithmeticCharacteristicParameterType::setCharacteristicTypeEnum(CharacteristicTypeEnumType * CharacteristicTypeEnumIn)
 {CharacteristicTypeEnum = CharacteristicTypeEnumIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArithmeticComparisonEnumType
 
@@ -127,7 +127,7 @@ void ArithmeticComparisonEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArithmeticDMEParameterType
 
@@ -176,7 +176,7 @@ DMEClassNameEnumType * ArithmeticDMEParameterType::getDMEClassNameEnum()
 void ArithmeticDMEParameterType::setDMEClassNameEnum(DMEClassNameEnumType * DMEClassNameEnumIn)
 {DMEClassNameEnum = DMEClassNameEnumIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArithmeticFeatureParameterType
 
@@ -228,7 +228,7 @@ FeatureTypeEnumType * ArithmeticFeatureParameterType::getFeatureTypeEnum()
 void ArithmeticFeatureParameterType::setFeatureTypeEnum(FeatureTypeEnumType * FeatureTypeEnumIn)
 {FeatureTypeEnum = FeatureTypeEnumIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArithmeticParameterBaseType
 
@@ -271,7 +271,7 @@ XmlToken * ArithmeticParameterBaseType::getParameter()
 void ArithmeticParameterBaseType::setParameter(XmlToken * ParameterIn)
 {Parameter = ParameterIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArithmeticParameterValueType
 
@@ -328,7 +328,7 @@ QIFReferenceFullType * ArithmeticParameterValueType::getObjectId()
 void ArithmeticParameterValueType::setObjectId(QIFReferenceFullType * ObjectIdIn)
 {ObjectId = ObjectIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArithmeticPartParameterType
 
@@ -357,7 +357,7 @@ void ArithmeticPartParameterType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicIsType
 
@@ -476,7 +476,7 @@ CharacteristicTypeEnumType * CharacteristicIsType::getval()
 void CharacteristicIsType::setval(CharacteristicTypeEnumType * valIn)
 {val = valIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicToleranceType
 
@@ -492,7 +492,7 @@ void CharacteristicToleranceType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicTypeEnumType
 
@@ -664,7 +664,7 @@ void CharacteristicTypeEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ClosedCurvePointSamplingStrategyEnumType
 
@@ -722,7 +722,7 @@ void ClosedCurvePointSamplingStrategyEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConePointSamplingStrategyEnumType
 
@@ -784,7 +784,7 @@ void ConePointSamplingStrategyEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DMEClassNameEnumType
 
@@ -948,7 +948,7 @@ void DMEClassNameEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCylinderPointSamplingStrategyEnumType
 
@@ -1012,7 +1012,7 @@ void ElongatedCylinderPointSamplingStrategyEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtrudedCrossSectionPointSamplingStrategyEnumType
 
@@ -1070,7 +1070,7 @@ void ExtrudedCrossSectionPointSamplingStrategyEnumType::oPrintSelf(FILE * outFil
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureAreaType
 
@@ -1086,7 +1086,7 @@ void FeatureAreaType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureIsDatumType
 
@@ -1102,7 +1102,7 @@ void FeatureIsDatumType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureIsInternalType
 
@@ -1118,7 +1118,7 @@ void FeatureIsInternalType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureLengthType
 
@@ -1134,7 +1134,7 @@ void FeatureLengthType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureSizeType
 
@@ -1150,7 +1150,7 @@ void FeatureSizeType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureTypeEnumType
 
@@ -1280,7 +1280,7 @@ void FeatureTypeEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureTypeIsType
 
@@ -1399,7 +1399,7 @@ FeatureTypeEnumType * FeatureTypeIsType::getval()
 void FeatureTypeIsType::setval(FeatureTypeEnumType * valIn)
 {val = valIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OpenCurvePointSamplingStrategyEnumType
 
@@ -1453,7 +1453,7 @@ void OpenCurvePointSamplingStrategyEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlanePointSamplingStrategyEnumType
 
@@ -1519,7 +1519,7 @@ void PlanePointSamplingStrategyEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedPointSamplingStrategyEnumType
 
@@ -1577,7 +1577,7 @@ void PointDefinedPointSamplingStrategyEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointPointSamplingStrategyEnumType
 
@@ -1631,7 +1631,7 @@ void PointPointSamplingStrategyEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointSamplingStrategyEnumBaseType
 
@@ -1703,7 +1703,7 @@ void PointSamplingStrategyEnumBaseType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SamplingCategoryIsType
 
@@ -1822,7 +1822,7 @@ XmlUnsignedInt * SamplingCategoryIsType::getval()
 void SamplingCategoryIsType::setval(XmlUnsignedInt * valIn)
 {val = valIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ShapeClassIsType
 
@@ -1941,7 +1941,7 @@ ShapeClassEnumType * ShapeClassIsType::getval()
 void ShapeClassIsType::setval(ShapeClassEnumType * valIn)
 {val = valIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SpherePointSamplingStrategyEnumType
 
@@ -2003,7 +2003,7 @@ void SpherePointSamplingStrategyEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceOfRevolutionPointSamplingStrategyEnumType
 
@@ -2067,7 +2067,7 @@ void SurfaceOfRevolutionPointSamplingStrategyEnumType::oPrintSelf(FILE * outFile
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class VariableValueType
 
@@ -2110,5 +2110,5 @@ XmlIDREF * VariableValueType::getVariableName()
 void VariableValueType::setVariableName(XmlIDREF * VariableNameIn)
 {VariableName = VariableNameIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 

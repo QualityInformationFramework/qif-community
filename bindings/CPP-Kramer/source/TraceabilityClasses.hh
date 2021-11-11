@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #ifndef TRACEABILITY_HH
 #define TRACEABILITY_HH
@@ -7,7 +7,7 @@
 #include <xmlSchemaInstance.hh>
 #include "IntermediatesPMIClasses.hh"
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ActualProductTraceabilityType;
 class CheckStatusEnumType;
@@ -39,15 +39,15 @@ class TimeDescriptionEnumType;
 class TimeDescriptionType;
 class TimeDescriptionTypeChoicePair;
 class ValidationCountsType;
-class InspectionTrace_1042_Type;
-class InspectionTrace_1042_TypeChoicePair;
-class PreInspectionTr_1043_Type;
-class PreInspectionTr_1043_TypeChoicePair;
-class ProductDataQual_1044_Type;
-class ProductDataQual_1044_TypeChoicePair;
+class InspectionTrace_1043_Type;
+class InspectionTrace_1043_TypeChoicePair;
+class PreInspectionTr_1044_Type;
+class PreInspectionTr_1044_TypeChoicePair;
+class ProductDataQual_1045_Type;
+class ProductDataQual_1045_TypeChoicePair;
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 class ActualProductTraceabilityType :
   public XmlTypeBase
@@ -126,7 +126,7 @@ protected:
   AttributesType * Attributes;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CheckStatusEnumType :
   public XmlNMTOKEN
@@ -142,7 +142,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EnvironmentType :
   public XmlTypeBase
@@ -181,7 +181,7 @@ protected:
   TimeDescriptionType * TimeDescription;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EnvironmentTypeLisd :
   public std::list<EnvironmentType *>,
@@ -195,7 +195,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EnvironmentsType :
   public XmlTypeBase
@@ -222,7 +222,7 @@ protected:
   EnvironmentTypeLisd * Environment;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ErrorsType :
   public XmlTypeBase
@@ -249,7 +249,7 @@ protected:
   XmlStringLisd * Error;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class InspectionModeEnumType :
   public XmlString
@@ -265,7 +265,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class InspectionProgramType :
   public XmlTypeBase
@@ -296,7 +296,7 @@ protected:
   EmployeeType * Author;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class InspectionScopeEnumType :
   public XmlNMTOKEN
@@ -312,7 +312,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class InspectionSoftwareItemsType :
   public XmlTypeBase
@@ -347,7 +347,7 @@ protected:
   ArrayReferenceType * DMESoftware;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class InspectionTraceabilityType :
   public XmlTypeBase
@@ -376,7 +376,7 @@ public:
     XmlToken * ReportTypeIn,
     SecurityClassificationType * SecurityClassificationIn,
     LocationType * PlantLocationIn,
-    InspectionTrace_1042_Type * InspectionTrace_1042In,
+    InspectionTrace_1043_Type * InspectionTrace_1043In,
     ErrorsType * ErrorsIn,
     AttributesType * AttributesIn);
   ~InspectionTraceabilityType();
@@ -424,8 +424,8 @@ public:
   void setSecurityClassification(SecurityClassificationType * SecurityClassificationIn);
   LocationType * getPlantLocation();
   void setPlantLocation(LocationType * PlantLocationIn);
-  InspectionTrace_1042_Type * getInspectionTrace_1042();
-  void setInspectionTrace_1042(InspectionTrace_1042_Type * InspectionTrace_1042In);
+  InspectionTrace_1043_Type * getInspectionTrace_1043();
+  void setInspectionTrace_1043(InspectionTrace_1043_Type * InspectionTrace_1043In);
   ErrorsType * getErrors();
   void setErrors(ErrorsType * ErrorsIn);
   AttributesType * getAttributes();
@@ -453,12 +453,12 @@ protected:
   XmlToken * ReportType;
   SecurityClassificationType * SecurityClassification;
   LocationType * PlantLocation;
-  InspectionTrace_1042_Type * InspectionTrace_1042;
+  InspectionTrace_1043_Type * InspectionTrace_1043;
   ErrorsType * Errors;
   AttributesType * Attributes;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ManufacturingProcessTraceabilitiesType :
   public XmlTypeBase
@@ -485,7 +485,7 @@ protected:
   ManufacturingProcessTraceabilityTypeLisd * ManufacturingProcessTraceability;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ManufacturingProcessTraceabilityType :
   public XmlTypeBase
@@ -582,7 +582,7 @@ protected:
   QIFReferenceType * AssociatedTraceabilityId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ManufacturingProcessTraceabilityTypeLisd :
   public std::list<ManufacturingProcessTraceabilityType *>,
@@ -596,7 +596,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PartialInspectionType :
   public XmlTypeBase
@@ -623,7 +623,7 @@ protected:
   XmlString * ReasonForPartialInspection;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PreInspectionTraceabilityType :
   public XmlTypeBase
@@ -646,7 +646,7 @@ public:
     InspectionProgramType * InspectionProgramIn,
     SecurityClassificationType * SecurityClassificationIn,
     LocationType * PlantLocationIn,
-    PreInspectionTr_1043_Type * PreInspectionTr_1043In,
+    PreInspectionTr_1044_Type * PreInspectionTr_1044In,
     QIFReferenceType * FormalStandardIdIn,
     AttributesType * AttributesIn);
   ~PreInspectionTraceabilityType();
@@ -682,8 +682,8 @@ public:
   void setSecurityClassification(SecurityClassificationType * SecurityClassificationIn);
   LocationType * getPlantLocation();
   void setPlantLocation(LocationType * PlantLocationIn);
-  PreInspectionTr_1043_Type * getPreInspectionTr_1043();
-  void setPreInspectionTr_1043(PreInspectionTr_1043_Type * PreInspectionTr_1043In);
+  PreInspectionTr_1044_Type * getPreInspectionTr_1044();
+  void setPreInspectionTr_1044(PreInspectionTr_1044_Type * PreInspectionTr_1044In);
   QIFReferenceType * getFormalStandardId();
   void setFormalStandardId(QIFReferenceType * FormalStandardIdIn);
   AttributesType * getAttributes();
@@ -705,12 +705,12 @@ protected:
   InspectionProgramType * InspectionProgram;
   SecurityClassificationType * SecurityClassification;
   LocationType * PlantLocation;
-  PreInspectionTr_1043_Type * PreInspectionTr_1043;
+  PreInspectionTr_1044_Type * PreInspectionTr_1044;
   QIFReferenceType * FormalStandardId;
   AttributesType * Attributes;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ProcessParameterType :
   public XmlTypeBase
@@ -733,7 +733,7 @@ protected:
   XmlString * ParameterValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ProcessParameterTypeLisd :
   public std::list<ProcessParameterType *>,
@@ -747,7 +747,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ProcessParametersType :
   public XmlTypeBase
@@ -774,7 +774,7 @@ protected:
   ProcessParameterTypeLisd * Parameter;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ProductDataQualityAreaEnumType :
   public XmlNMTOKEN
@@ -790,7 +790,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ProductDataQualityAreaType :
   public XmlTypeBase
@@ -798,18 +798,18 @@ class ProductDataQualityAreaType :
 public:
   ProductDataQualityAreaType();
   ProductDataQualityAreaType(
-    ProductDataQual_1044_Type * ProductDataQual_1044In);
+    ProductDataQual_1045_Type * ProductDataQual_1045In);
   ~ProductDataQualityAreaType();
   void printSelf(FILE * outFile);
 
-  ProductDataQual_1044_Type * getProductDataQual_1044();
-  void setProductDataQual_1044(ProductDataQual_1044_Type * ProductDataQual_1044In);
+  ProductDataQual_1045_Type * getProductDataQual_1045();
+  void setProductDataQual_1045(ProductDataQual_1045_Type * ProductDataQual_1045In);
 
 protected:
-  ProductDataQual_1044_Type * ProductDataQual_1044;
+  ProductDataQual_1045_Type * ProductDataQual_1045;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ProductDataQualityCheckType :
   public XmlTypeBase
@@ -856,7 +856,7 @@ protected:
   CheckStatusEnumType * ResultStatus;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ProductDataQualityCheckTypeLisd :
   public std::list<ProductDataQualityCheckType *>,
@@ -870,7 +870,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ProductDataQualityChecksType :
   public XmlTypeBase
@@ -897,7 +897,7 @@ protected:
   ProductDataQualityCheckTypeLisd * ProductDataQualityCheck;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ProductDataQualityType :
   public XmlTypeBase
@@ -928,7 +928,7 @@ protected:
   ProductDataQualityChecksType * ProductDataQualityChecks;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ProductTraceabilityType :
   public XmlTypeBase
@@ -975,7 +975,7 @@ protected:
   AttributesType * Attributes;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TimeDescriptionEnumType :
   public XmlNMTOKEN
@@ -991,7 +991,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TimeDescriptionType :
   public XmlTypeBase
@@ -1010,7 +1010,7 @@ protected:
   TimeDescriptionTypeChoicePair * TimeDescriptionTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union TimeDescriptionTypeVal
 {
@@ -1018,7 +1018,7 @@ union TimeDescriptionTypeVal
   XmlString * OtherTimeDescription;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TimeDescriptionTypeChoicePair :
   public XmlTypeBase
@@ -1038,7 +1038,7 @@ public:
   TimeDescriptionTypeVal TimeDescriptionTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ValidationCountsType :
   public XmlTypeBase
@@ -1217,147 +1217,147 @@ protected:
   XmlBoolean * SignaturePresent;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class InspectionTrace_1042_Type :
+class InspectionTrace_1043_Type :
   public XmlTypeBase
 {
 public:
-  InspectionTrace_1042_Type();
-  InspectionTrace_1042_Type(
-    InspectionTrace_1042_TypeChoicePair * InspectionTrace_1042_TypePairIn);
-  ~InspectionTrace_1042_Type();
+  InspectionTrace_1043_Type();
+  InspectionTrace_1043_Type(
+    InspectionTrace_1043_TypeChoicePair * InspectionTrace_1043_TypePairIn);
+  ~InspectionTrace_1043_Type();
   void printSelf(FILE * outFile);
 
-  InspectionTrace_1042_TypeChoicePair * getInspectionTrace_1042_TypePair();
-  void setInspectionTrace_1042_TypePair(InspectionTrace_1042_TypeChoicePair * InspectionTrace_1042_TypePairIn);
+  InspectionTrace_1043_TypeChoicePair * getInspectionTrace_1043_TypePair();
+  void setInspectionTrace_1043_TypePair(InspectionTrace_1043_TypeChoicePair * InspectionTrace_1043_TypePairIn);
 
 protected:
-  InspectionTrace_1042_TypeChoicePair * InspectionTrace_1042_TypePair;
+  InspectionTrace_1043_TypeChoicePair * InspectionTrace_1043_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union InspectionTrace_1042_TypeVal
+union InspectionTrace_1043_TypeVal
 {
   QPIdFullReferenceType * ReferencedQIFPlanInstance;
   XmlNMTOKEN * ReferencedQIFPlan;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class InspectionTrace_1042_TypeChoicePair :
+class InspectionTrace_1043_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     ReferencedQIFPlanInstanceE,
     ReferencedQIFPlanE };
-  InspectionTrace_1042_TypeChoicePair();
-  InspectionTrace_1042_TypeChoicePair(
-    whichOne InspectionTrace_1042_TypeTypeIn,
-    InspectionTrace_1042_TypeVal InspectionTrace_1042_TypeValueIn);
-  ~InspectionTrace_1042_TypeChoicePair();
+  InspectionTrace_1043_TypeChoicePair();
+  InspectionTrace_1043_TypeChoicePair(
+    whichOne InspectionTrace_1043_TypeTypeIn,
+    InspectionTrace_1043_TypeVal InspectionTrace_1043_TypeValueIn);
+  ~InspectionTrace_1043_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne InspectionTrace_1042_TypeType;
-  InspectionTrace_1042_TypeVal InspectionTrace_1042_TypeValue;
+  whichOne InspectionTrace_1043_TypeType;
+  InspectionTrace_1043_TypeVal InspectionTrace_1043_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class PreInspectionTr_1043_Type :
+class PreInspectionTr_1044_Type :
   public XmlTypeBase
 {
 public:
-  PreInspectionTr_1043_Type();
-  PreInspectionTr_1043_Type(
-    PreInspectionTr_1043_TypeChoicePair * PreInspectionTr_1043_TypePairIn);
-  ~PreInspectionTr_1043_Type();
+  PreInspectionTr_1044_Type();
+  PreInspectionTr_1044_Type(
+    PreInspectionTr_1044_TypeChoicePair * PreInspectionTr_1044_TypePairIn);
+  ~PreInspectionTr_1044_Type();
   void printSelf(FILE * outFile);
 
-  PreInspectionTr_1043_TypeChoicePair * getPreInspectionTr_1043_TypePair();
-  void setPreInspectionTr_1043_TypePair(PreInspectionTr_1043_TypeChoicePair * PreInspectionTr_1043_TypePairIn);
+  PreInspectionTr_1044_TypeChoicePair * getPreInspectionTr_1044_TypePair();
+  void setPreInspectionTr_1044_TypePair(PreInspectionTr_1044_TypeChoicePair * PreInspectionTr_1044_TypePairIn);
 
 protected:
-  PreInspectionTr_1043_TypeChoicePair * PreInspectionTr_1043_TypePair;
+  PreInspectionTr_1044_TypeChoicePair * PreInspectionTr_1044_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union PreInspectionTr_1043_TypeVal
+union PreInspectionTr_1044_TypeVal
 {
   QPIdFullReferenceType * ReferencedQIFPlanInstance;
   XmlNMTOKEN * ReferencedQIFPlan;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class PreInspectionTr_1043_TypeChoicePair :
+class PreInspectionTr_1044_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     ReferencedQIFPlanInstanceE,
     ReferencedQIFPlanE };
-  PreInspectionTr_1043_TypeChoicePair();
-  PreInspectionTr_1043_TypeChoicePair(
-    whichOne PreInspectionTr_1043_TypeTypeIn,
-    PreInspectionTr_1043_TypeVal PreInspectionTr_1043_TypeValueIn);
-  ~PreInspectionTr_1043_TypeChoicePair();
+  PreInspectionTr_1044_TypeChoicePair();
+  PreInspectionTr_1044_TypeChoicePair(
+    whichOne PreInspectionTr_1044_TypeTypeIn,
+    PreInspectionTr_1044_TypeVal PreInspectionTr_1044_TypeValueIn);
+  ~PreInspectionTr_1044_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne PreInspectionTr_1043_TypeType;
-  PreInspectionTr_1043_TypeVal PreInspectionTr_1043_TypeValue;
+  whichOne PreInspectionTr_1044_TypeType;
+  PreInspectionTr_1044_TypeVal PreInspectionTr_1044_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ProductDataQual_1044_Type :
+class ProductDataQual_1045_Type :
   public XmlTypeBase
 {
 public:
-  ProductDataQual_1044_Type();
-  ProductDataQual_1044_Type(
-    ProductDataQual_1044_TypeChoicePair * ProductDataQual_1044_TypePairIn);
-  ~ProductDataQual_1044_Type();
+  ProductDataQual_1045_Type();
+  ProductDataQual_1045_Type(
+    ProductDataQual_1045_TypeChoicePair * ProductDataQual_1045_TypePairIn);
+  ~ProductDataQual_1045_Type();
   void printSelf(FILE * outFile);
 
-  ProductDataQual_1044_TypeChoicePair * getProductDataQual_1044_TypePair();
-  void setProductDataQual_1044_TypePair(ProductDataQual_1044_TypeChoicePair * ProductDataQual_1044_TypePairIn);
+  ProductDataQual_1045_TypeChoicePair * getProductDataQual_1045_TypePair();
+  void setProductDataQual_1045_TypePair(ProductDataQual_1045_TypeChoicePair * ProductDataQual_1045_TypePairIn);
 
 protected:
-  ProductDataQual_1044_TypeChoicePair * ProductDataQual_1044_TypePair;
+  ProductDataQual_1045_TypeChoicePair * ProductDataQual_1045_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union ProductDataQual_1044_TypeVal
+union ProductDataQual_1045_TypeVal
 {
   ProductDataQualityAreaEnumType * AreaEnum;
   XmlString * OtherArea;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ProductDataQual_1044_TypeChoicePair :
+class ProductDataQual_1045_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     AreaEnumE,
     OtherAreaE };
-  ProductDataQual_1044_TypeChoicePair();
-  ProductDataQual_1044_TypeChoicePair(
-    whichOne ProductDataQual_1044_TypeTypeIn,
-    ProductDataQual_1044_TypeVal ProductDataQual_1044_TypeValueIn);
-  ~ProductDataQual_1044_TypeChoicePair();
+  ProductDataQual_1045_TypeChoicePair();
+  ProductDataQual_1045_TypeChoicePair(
+    whichOne ProductDataQual_1045_TypeTypeIn,
+    ProductDataQual_1045_TypeVal ProductDataQual_1045_TypeValueIn);
+  ~ProductDataQual_1045_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ProductDataQual_1044_TypeType;
-  ProductDataQual_1044_TypeVal ProductDataQual_1044_TypeValue;
+  whichOne ProductDataQual_1045_TypeType;
+  ProductDataQual_1045_TypeVal ProductDataQual_1045_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 #endif // TRACEABILITY_HH

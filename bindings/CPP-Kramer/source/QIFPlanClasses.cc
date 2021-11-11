@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #include <stdio.h>             // for printf, etc.
 #include <string.h>            // for strdup
@@ -10,8 +10,8 @@
 
 #define INDENT 2
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 /* class ActionBaseType
 
@@ -113,7 +113,7 @@ ArrayReferenceType * ActionBaseType::getPreferredResourceIds()
 void ActionBaseType::setPreferredResourceIds(ArrayReferenceType * PreferredResourceIdsIn)
 {PreferredResourceIds = PreferredResourceIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ActionGroupBaseType
 
@@ -180,7 +180,7 @@ MeasureActionGroupFunctionType * ActionGroupBaseType::getMeasureActionGroupFunct
 void ActionGroupBaseType::setMeasureActionGroupFunction(MeasureActionGroupFunctionType * MeasureActionGroupFunctionIn)
 {MeasureActionGroupFunction = MeasureActionGroupFunctionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ActionMethodBaseType
 
@@ -364,7 +364,7 @@ AttributesType * ActionMethodBaseType::getAttributes()
 void ActionMethodBaseType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ActionMethodBaseTypeLisd
 
@@ -391,7 +391,7 @@ ActionMethodBaseTypeLisd::~ActionMethodBaseTypeLisd()
 
 void ActionMethodBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ActionMethodsType
 
@@ -782,7 +782,7 @@ ActionMethodBaseTypeLisd * ActionMethodsType::getActionMethod()
 void ActionMethodsType::setActionMethod(ActionMethodBaseTypeLisd * ActionMethodIn)
 {ActionMethod = ActionMethodIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AutocollimatorMeasureFeatureMethodType
 
@@ -936,7 +936,7 @@ bool AutocollimatorMeasureFeatureMethodType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CalibratedComparatorMeasureFeatureMethodType
 
@@ -1090,7 +1090,7 @@ bool CalibratedComparatorMeasureFeatureMethodType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ComputedTomographyMeasureFeatureMethodType
 
@@ -1244,7 +1244,7 @@ bool ComputedTomographyMeasureFeatureMethodType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoordinateMeasureFeatureMethodType
 
@@ -1417,7 +1417,7 @@ XmlPositiveInteger * CoordinateMeasureFeatureMethodType::getNumberOfMeasurementP
 void CoordinateMeasureFeatureMethodType::setNumberOfMeasurementPoints(XmlPositiveInteger * NumberOfMeasurementPointsIn)
 {NumberOfMeasurementPoints = NumberOfMeasurementPointsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DocumentFileInstructionType
 
@@ -1564,7 +1564,7 @@ ExternalFileReferenceType * DocumentFileInstructionType::getExternalFile()
 void DocumentFileInstructionType::setExternalFile(ExternalFileReferenceType * ExternalFileIn)
 {ExternalFile = ExternalFileIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElseDoType
 
@@ -1839,7 +1839,7 @@ PlanElementBaseType * ElseDoType::getPlanElement()
 void ElseDoType::setPlanElement(PlanElementBaseType * PlanElementIn)
 {PlanElement = PlanElementIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EstablishDatumMeasurandType
 
@@ -2001,7 +2001,7 @@ QIFReferenceFullType * EstablishDatumMeasurandType::getDatumReferenceFrameId()
 void EstablishDatumMeasurandType::setDatumReferenceFrameId(QIFReferenceFullType * DatumReferenceFrameIdIn)
 {DatumReferenceFrameId = DatumReferenceFrameIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EvaluateCharacteristicMeasurandType
 
@@ -2147,7 +2147,7 @@ QIFReferenceType * EvaluateCharacteristicMeasurandType::getCharacteristicItemId(
 void EvaluateCharacteristicMeasurandType::setCharacteristicItemId(QIFReferenceType * CharacteristicItemIdIn)
 {CharacteristicItemId = CharacteristicItemIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EvaluateSpecifiedCharacteristicsActionType
 
@@ -2240,7 +2240,7 @@ ArrayReferenceType * EvaluateSpecifiedCharacteristicsActionType::getCharacterist
 void EvaluateSpecifiedCharacteristicsActionType::setCharacteristicItemIds(ArrayReferenceType * CharacteristicItemIdsIn)
 {CharacteristicItemIds = CharacteristicItemIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExternalReferenceMeasureFeatureMethodType
 
@@ -2414,7 +2414,7 @@ ExternalFileReferencesType * ExternalReferenceMeasureFeatureMethodType::getExter
 void ExternalReferenceMeasureFeatureMethodType::setExternalFileReferences(ExternalFileReferencesType * ExternalFileReferencesIn)
 {ExternalFileReferences = ExternalFileReferencesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class GageMeasureFeatureMethodType
 
@@ -2568,7 +2568,7 @@ bool GageMeasureFeatureMethodType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class HaltActionType
 
@@ -2640,7 +2640,7 @@ void HaltActionType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfActionGroupType
 
@@ -2758,7 +2758,7 @@ ElseDoType * IfActionGroupType::getElseDo()
 void IfActionGroupType::setElseDo(ElseDoType * ElseDoIn)
 {ElseDo = ElseDoIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ImageInstructionType
 
@@ -2905,7 +2905,7 @@ ExternalFileReferenceType * ImageInstructionType::getExternalFile()
 void ImageInstructionType::setExternalFile(ExternalFileReferenceType * ExternalFileIn)
 {ExternalFile = ExternalFileIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LaserRadarMeasureFeatureMethodType
 
@@ -3059,7 +3059,7 @@ bool LaserRadarMeasureFeatureMethodType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LaserTrackerMeasureFeatureMethodType
 
@@ -3213,7 +3213,7 @@ bool LaserTrackerMeasureFeatureMethodType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LocalVariablesType
 
@@ -3371,7 +3371,7 @@ VariableDeclarationTypeLisd * LocalVariablesType::getVariable()
 void LocalVariablesType::setVariable(VariableDeclarationTypeLisd * VariableIn)
 {Variable = VariableIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ManualMeasureFeatureMethodType
 
@@ -3525,7 +3525,7 @@ bool ManualMeasureFeatureMethodType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurandBaseType
 
@@ -3669,7 +3669,7 @@ AttributesType * MeasurandBaseType::getAttributes()
 void MeasurandBaseType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurandBaseTypeLisd
 
@@ -3696,7 +3696,7 @@ MeasurandBaseTypeLisd::~MeasurandBaseTypeLisd()
 
 void MeasurandBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurandsType
 
@@ -3895,7 +3895,7 @@ MeasurandBaseTypeLisd * MeasurandsType::getMeasurand()
 void MeasurandsType::setMeasurand(MeasurandBaseTypeLisd * MeasurandIn)
 {Measurand = MeasurandIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasureActionGroupFunctionEnumType
 
@@ -3967,7 +3967,7 @@ void MeasureActionGroupFunctionEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasureActionGroupFunctionType
 
@@ -4005,7 +4005,7 @@ MeasureActionGroupFunctionTypeChoicePair * MeasureActionGroupFunctionType::getMe
 void MeasureActionGroupFunctionType::setMeasureActionGroupFunctionTypePair(MeasureActionGroupFunctionTypeChoicePair * MeasureActionGroupFunctionTypePairIn)
 {MeasureActionGroupFunctionTypePair = MeasureActionGroupFunctionTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasureActionGroupFunctionTypeChoicePair
 
@@ -4049,7 +4049,7 @@ void MeasureActionGroupFunctionTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasureEvaluateAllActionType
 
@@ -4121,7 +4121,7 @@ void MeasureEvaluateAllActionType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasureEvaluateSpecifiedActionType
 
@@ -4214,7 +4214,7 @@ ArrayReferenceType * MeasureEvaluateSpecifiedActionType::getCharacteristicItemId
 void MeasureEvaluateSpecifiedActionType::setCharacteristicItemIds(ArrayReferenceType * CharacteristicItemIdsIn)
 {CharacteristicItemIds = CharacteristicItemIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasureFeatureMethodBaseType
 
@@ -4368,7 +4368,7 @@ bool MeasureFeatureMethodBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasureSpecifiedFeaturesActionType
 
@@ -4461,7 +4461,7 @@ ArrayReferenceType * MeasureSpecifiedFeaturesActionType::getFeatureItemIds()
 void MeasureSpecifiedFeaturesActionType::setFeatureItemIds(ArrayReferenceType * FeatureItemIdsIn)
 {FeatureItemIds = FeatureItemIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasureSpecifiedMeasurandsActionType
 
@@ -4554,7 +4554,7 @@ ArrayReferenceType * MeasureSpecifiedMeasurandsActionType::getMeasurandIds()
 void MeasureSpecifiedMeasurandsActionType::setMeasurandIds(ArrayReferenceType * MeasurandIdsIn)
 {MeasurandIds = MeasurandIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MicroscopeMeasureFeatureMethodType
 
@@ -4708,7 +4708,7 @@ bool MicroscopeMeasureFeatureMethodType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NumberedPlanElementType
 
@@ -4997,7 +4997,7 @@ PlanElementBaseType * NumberedPlanElementType::getPlanElement()
 void NumberedPlanElementType::setPlanElement(PlanElementBaseType * PlanElementIn)
 {PlanElement = PlanElementIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NumberedPlanElementTypeLisd
 
@@ -5024,7 +5024,7 @@ NumberedPlanElementTypeLisd::~NumberedPlanElementTypeLisd()
 
 void NumberedPlanElementTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NumberedPlanElementsType
 
@@ -5182,7 +5182,7 @@ NumberedPlanElementTypeLisd * NumberedPlanElementsType::getNumberedPlanElement()
 void NumberedPlanElementsType::setNumberedPlanElement(NumberedPlanElementTypeLisd * NumberedPlanElementIn)
 {NumberedPlanElement = NumberedPlanElementIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OneOfActionGroupType
 
@@ -5256,7 +5256,7 @@ NumberedPlanElementsType * OneOfActionGroupType::getSteps()
 void OneOfActionGroupType::setSteps(NumberedPlanElementsType * StepsIn)
 {Steps = StepsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OrderedActionGroupType
 
@@ -5330,7 +5330,7 @@ NumberedPlanElementsType * OrderedActionGroupType::getSteps()
 void OrderedActionGroupType::setSteps(NumberedPlanElementsType * StepsIn)
 {Steps = StepsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherMeasureFeatureMethodType
 
@@ -5484,7 +5484,7 @@ bool OtherMeasureFeatureMethodType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PartiallyOrderedActionGroupType
 
@@ -5558,7 +5558,7 @@ StepsWithPredecessorsType * PartiallyOrderedActionGroupType::getStepsWithPredece
 void PartiallyOrderedActionGroupType::setStepsWithPredecessors(StepsWithPredecessorsType * StepsWithPredecessorsIn)
 {StepsWithPredecessors = StepsWithPredecessorsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PickSomeActionGroupType
 
@@ -5646,7 +5646,7 @@ XmlPositiveInteger * PickSomeActionGroupType::getNumberOfSteps()
 void PickSomeActionGroupType::setNumberOfSteps(XmlPositiveInteger * NumberOfStepsIn)
 {NumberOfSteps = NumberOfStepsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlanElementBaseType
 
@@ -5709,7 +5709,7 @@ AttributesType * PlanElementBaseType::getAttributes()
 void PlanElementBaseType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlanElementBaseTypeLisd
 
@@ -5736,7 +5736,7 @@ PlanElementBaseTypeLisd::~PlanElementBaseTypeLisd()
 
 void PlanElementBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlanType
 
@@ -5993,7 +5993,7 @@ ActionGroupBaseType * PlanType::getPlanRoot()
 void PlanType::setPlanRoot(ActionGroupBaseType * PlanRootIn)
 {PlanRoot = PlanRootIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PredecessorsType
 
@@ -6150,7 +6150,7 @@ XmlPositiveIntegerLisd * PredecessorsType::getPredecessor()
 void PredecessorsType::setPredecessor(XmlPositiveIntegerLisd * PredecessorIn)
 {Predecessor = PredecessorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ProfileProjectorMeasureFeatureMethodType
 
@@ -6304,7 +6304,7 @@ bool ProfileProjectorMeasureFeatureMethodType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StepWithPredecessorsType
 
@@ -6364,7 +6364,7 @@ NumberedPlanElementType * StepWithPredecessorsType::getStep()
 void StepWithPredecessorsType::setStep(NumberedPlanElementType * StepIn)
 {Step = StepIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StepWithPredecessorsTypeLisd
 
@@ -6391,7 +6391,7 @@ StepWithPredecessorsTypeLisd::~StepWithPredecessorsTypeLisd()
 
 void StepWithPredecessorsTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StepsWithPredecessorsType
 
@@ -6549,7 +6549,7 @@ StepWithPredecessorsTypeLisd * StepsWithPredecessorsType::getStepWithPredecessor
 void StepsWithPredecessorsType::setStepWithPredecessors(StepWithPredecessorsTypeLisd * StepWithPredecessorsIn)
 {StepWithPredecessors = StepWithPredecessorsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TestAndPlanElementType
 
@@ -7106,7 +7106,7 @@ PlanElementBaseType * TestAndPlanElementType::getPlanElement()
 void TestAndPlanElementType::setPlanElement(PlanElementBaseType * PlanElementIn)
 {PlanElement = PlanElementIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TestAndPlanElementTypeLisd
 
@@ -7133,7 +7133,7 @@ TestAndPlanElementTypeLisd::~TestAndPlanElementTypeLisd()
 
 void TestAndPlanElementTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TextInstructionType
 
@@ -7279,7 +7279,7 @@ XmlString * TextInstructionType::getTextInstruction()
 void TextInstructionType::setTextInstruction(XmlString * TextInstructionIn)
 {TextInstruction = TextInstructionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TheodoliteMeasureFeatureMethodType
 
@@ -7433,7 +7433,7 @@ bool TheodoliteMeasureFeatureMethodType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UniversalLengthMeasureFeatureMethodType
 
@@ -7587,7 +7587,7 @@ bool UniversalLengthMeasureFeatureMethodType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UnnumberedPlanElementsType
 
@@ -7978,7 +7978,7 @@ PlanElementBaseTypeLisd * UnnumberedPlanElementsType::getPlanElement()
 void UnnumberedPlanElementsType::setPlanElement(PlanElementBaseTypeLisd * PlanElementIn)
 {PlanElement = PlanElementIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UnorderedActionGroupType
 
@@ -8052,7 +8052,7 @@ UnnumberedPlanElementsType * UnorderedActionGroupType::getSteps()
 void UnorderedActionGroupType::setSteps(UnnumberedPlanElementsType * StepsIn)
 {Steps = StepsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class VariableDeclarationType
 
@@ -8107,7 +8107,7 @@ XmlDecimal * VariableDeclarationType::getVal()
 void VariableDeclarationType::setVal(XmlDecimal * ValIn)
 {Val = ValIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class VariableDeclarationTypeLisd
 
@@ -8134,7 +8134,7 @@ VariableDeclarationTypeLisd::~VariableDeclarationTypeLisd()
 
 void VariableDeclarationTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class VariableSetType
 
@@ -8499,7 +8499,7 @@ ArithmeticExpressionBaseType * VariableSetType::getArithmeticExpression()
 void VariableSetType::setArithmeticExpression(ArithmeticExpressionBaseType * ArithmeticExpressionIn)
 {ArithmeticExpression = ArithmeticExpressionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class VideoInstructionType
 
@@ -8646,7 +8646,7 @@ ExternalFileReferenceType * VideoInstructionType::getExternalFile()
 void VideoInstructionType::setExternalFile(ExternalFileReferenceType * ExternalFileIn)
 {ExternalFile = ExternalFileIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WhileActionGroupType
 
@@ -9235,7 +9235,7 @@ PlanElementBaseType * WhileActionGroupType::getPlanElement()
 void WhileActionGroupType::setPlanElement(PlanElementBaseType * PlanElementIn)
 {PlanElement = PlanElementIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WorkInstructionBaseType
 
@@ -9379,7 +9379,7 @@ AttributesType * WorkInstructionBaseType::getAttributes()
 void WorkInstructionBaseType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WorkInstructionBaseTypeLisd
 
@@ -9406,7 +9406,7 @@ WorkInstructionBaseTypeLisd::~WorkInstructionBaseTypeLisd()
 
 void WorkInstructionBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WorkInstructionsType
 
@@ -9637,5 +9637,5 @@ WorkInstructionBaseTypeLisd * WorkInstructionsType::getWorkInstruction()
 void WorkInstructionsType::setWorkInstruction(WorkInstructionBaseTypeLisd * WorkInstructionIn)
 {WorkInstruction = WorkInstructionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 

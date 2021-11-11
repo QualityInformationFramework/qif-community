@@ -4,11 +4,7 @@
 #include <string.h>            // for strcat
 #include <stdlib.h>            // for malloc, free
 #include <map>                 // for map
-#ifdef OWL
-#include "owlQIFDocumentClasses.hh"
-#else
 #include "QIFDocumentClasses.hh"
-#endif
 
 #define YYERROR_VERBOSE
 #define YYDEBUG 1
@@ -18,9 +14,15 @@ QIFDocumentFile * QIFDocumentTree; // the parse tree
 extern int yylex();
 int yyReadData = 0;
 int yyReadDataList = 0;
+int yyReadXML = 0;
+char yyXMLbuffer[5000];
+int yyBufferIndex;
 std::map<XmlSchemaInstanceBase *, XmlSchemaInstanceBase *> yyUnrefMap;
 
 int yyerror(const char * s);
+int yyCheckXml();
+bool yyIsName(char * text);
+int yyAttributesBad(int * index1);
 
 %}
 
@@ -59,14 +61,14 @@ int yyerror(const char * s);
   Aggregate13CoreType *               Aggregate13CoreTypeVal;
   Aggregate13Type *                   Aggregate13TypeVal;
   AlgorithmType *                     AlgorithmTypeVal;
-  AlgorithmType_1007_TypeChoicePair * AlgorithmType_1007_TypeChoicePairVal;
-  AlgorithmType_1007_Type *           AlgorithmType_1007_TypeVal;
-  AlgorithmType_1_1027_Type *         AlgorithmType_1_1027_TypeVal;
+  AlgorithmType_1008_TypeChoicePair * AlgorithmType_1008_TypeChoicePairVal;
+  AlgorithmType_1008_Type *           AlgorithmType_1008_TypeVal;
   AlgorithmType_1_1028_Type *         AlgorithmType_1_1028_TypeVal;
+  AlgorithmType_1_1029_Type *         AlgorithmType_1_1029_TypeVal;
   AlgorithmsType *                    AlgorithmsTypeVal;
   AlignmentEnumType *                 AlignmentEnumTypeVal;
-  AlignmentFeatur_1008_TypeChoicePair * AlignmentFeatur_1008_TypeChoicePairVal;
-  AlignmentFeatur_1008_Type *         AlignmentFeatur_1008_TypeVal;
+  AlignmentFeatur_1009_TypeChoicePair * AlignmentFeatur_1009_TypeChoicePairVal;
+  AlignmentFeatur_1009_Type *         AlignmentFeatur_1009_TypeVal;
   AlignmentFeatureType *              AlignmentFeatureTypeVal;
   AlignmentOperationBaseType *        AlignmentOperationBaseTypeVal;
   AlignmentOperationsType *           AlignmentOperationsTypeVal;
@@ -89,17 +91,17 @@ int yyerror(const char * s);
   AngleFromCharacteristicStatsEvalType * AngleFromCharacteristicStatsEvalTypeVal;
   AngleFunctionDiscreteType *         AngleFunctionDiscreteTypeVal;
   AngleRangeType *                    AngleRangeTypeVal;
-  AngularCharacte_1045_TypeChoicePair * AngularCharacte_1045_TypeChoicePairVal;
-  AngularCharacte_1045_Type *         AngularCharacte_1045_TypeVal;
-  AngularCharacte_1126_TypeChoicePair * AngularCharacte_1126_TypeChoicePairVal;
-  AngularCharacte_1126_Type *         AngularCharacte_1126_TypeVal;
-  AngularCharacte_1147_Type *         AngularCharacte_1147_TypeVal;
+  AngularCharacte_1046_TypeChoicePair * AngularCharacte_1046_TypeChoicePairVal;
+  AngularCharacte_1046_Type *         AngularCharacte_1046_TypeVal;
+  AngularCharacte_1127_TypeChoicePair * AngularCharacte_1127_TypeChoicePairVal;
+  AngularCharacte_1127_Type *         AngularCharacte_1127_TypeVal;
   AngularCharacte_1148_Type *         AngularCharacte_1148_TypeVal;
   AngularCharacte_1149_Type *         AngularCharacte_1149_TypeVal;
   AngularCharacte_1150_Type *         AngularCharacte_1150_TypeVal;
+  AngularCharacte_1151_Type *         AngularCharacte_1151_TypeVal;
   AngularCharacteristicStatsEvalType * AngularCharacteristicStatsEvalTypeVal;
-  AngularCoordina_1046_TypeChoicePair * AngularCoordina_1046_TypeChoicePairVal;
-  AngularCoordina_1046_Type *         AngularCoordina_1046_TypeVal;
+  AngularCoordina_1047_TypeChoicePair * AngularCoordina_1047_TypeChoicePairVal;
+  AngularCoordina_1047_Type *         AngularCoordina_1047_TypeVal;
   AngularCoordinateCharacteristicDefinitionType * AngularCoordinateCharacteristicDefinitionTypeVal;
   AngularCoordinateCharacteristicItemType * AngularCoordinateCharacteristicItemTypeVal;
   AngularCoordinateCharacteristicMeasurementType * AngularCoordinateCharacteristicMeasurementTypeVal;
@@ -107,12 +109,12 @@ int yyerror(const char * s);
   AngularCoordinateCharacteristicStatsEvalType * AngularCoordinateCharacteristicStatsEvalTypeVal;
   AngularCoordinateDirectionEnumType * AngularCoordinateDirectionEnumTypeVal;
   AngularErrorType *                  AngularErrorTypeVal;
-  AngularToleranc_1009_TypeChoicePair * AngularToleranc_1009_TypeChoicePairVal;
-  AngularToleranc_1009_Type *         AngularToleranc_1009_TypeVal;
   AngularToleranc_1010_TypeChoicePair * AngularToleranc_1010_TypeChoicePairVal;
   AngularToleranc_1010_Type *         AngularToleranc_1010_TypeVal;
-  AngularToleranc_1029_Type *         AngularToleranc_1029_TypeVal;
+  AngularToleranc_1011_TypeChoicePair * AngularToleranc_1011_TypeChoicePairVal;
+  AngularToleranc_1011_Type *         AngularToleranc_1011_TypeVal;
   AngularToleranc_1030_Type *         AngularToleranc_1030_TypeVal;
+  AngularToleranc_1031_Type *         AngularToleranc_1031_TypeVal;
   AngularToleranceDefinitionType *    AngularToleranceDefinitionTypeVal;
   AngularToleranceType *              AngularToleranceTypeVal;
   AngularUnitType *                   AngularUnitTypeVal;
@@ -134,14 +136,13 @@ int yyerror(const char * s);
   ArcConic12Type *                    ArcConic12TypeVal;
   ArcConic13CoreType *                ArcConic13CoreTypeVal;
   ArcConic13Type *                    ArcConic13TypeVal;
-  ArcConicFormEnumType *              ArcConicFormEnumTypeVal;
   Area2dTypeChoicePair *              Area2dTypeChoicePairVal;
   Area2dType *                        Area2dTypeVal;
-  AreaCharacteris_1047_TypeChoicePair * AreaCharacteris_1047_TypeChoicePairVal;
-  AreaCharacteris_1047_Type *         AreaCharacteris_1047_TypeVal;
-  AreaToleranceTy_1011_TypeChoicePair * AreaToleranceTy_1011_TypeChoicePairVal;
-  AreaToleranceTy_1011_Type *         AreaToleranceTy_1011_TypeVal;
-  AreaToleranceTy_1031_Type *         AreaToleranceTy_1031_TypeVal;
+  AreaCharacteris_1048_TypeChoicePair * AreaCharacteris_1048_TypeChoicePairVal;
+  AreaCharacteris_1048_Type *         AreaCharacteris_1048_TypeVal;
+  AreaToleranceTy_1012_TypeChoicePair * AreaToleranceTy_1012_TypeChoicePairVal;
+  AreaToleranceTy_1012_Type *         AreaToleranceTy_1012_TypeVal;
+  AreaToleranceTy_1032_Type *         AreaToleranceTy_1032_TypeVal;
   AreaToleranceType *                 AreaToleranceTypeVal;
   AreaUnitType *                      AreaUnitTypeVal;
   AreaValueType *                     AreaValueTypeVal;
@@ -184,11 +185,10 @@ int yyerror(const char * s);
   AssemblyType *                      AssemblyTypeVal;
   AssignableCauseEnumType *           AssignableCauseEnumTypeVal;
   AssignableCauseType *               AssignableCauseTypeVal;
-  AssignableCause_1127_TypeChoicePair * AssignableCause_1127_TypeChoicePairVal;
-  AssignableCause_1127_Type *         AssignableCause_1127_TypeVal;
+  AssignableCause_1128_TypeChoicePair * AssignableCause_1128_TypeChoicePairVal;
+  AssignableCause_1128_Type *         AssignableCause_1128_TypeVal;
   AssignableCausesType *              AssignableCausesTypeVal;
   AssociatedTolerancedFeatureSpecificationElementEnumType * AssociatedTolerancedFeatureSpecificationElementEnumTypeVal;
-  Attr23CoreEnumType *                Attr23CoreEnumTypeVal;
   AttributeBaseType *                 AttributeBaseTypeVal;
   AttributeBoolType *                 AttributeBoolTypeVal;
   AttributeD1Type *                   AttributeD1TypeVal;
@@ -200,6 +200,8 @@ int yyerror(const char * s);
   AttributeQPIdType *                 AttributeQPIdTypeVal;
   AttributeStrType *                  AttributeStrTypeVal;
   AttributeTimeType *                 AttributeTimeTypeVal;
+  AttributeUserTy_1002_TypeChoicePair * AttributeUserTy_1002_TypeChoicePairVal;
+  AttributeUserTy_1002_Type *         AttributeUserTy_1002_TypeVal;
   AttributeUserType *                 AttributeUserTypeVal;
   AttributesType *                    AttributesTypeVal;
   AuthorType *                        AuthorTypeVal;
@@ -218,10 +220,8 @@ int yyerror(const char * s);
   BiasStudyPlanType *                 BiasStudyPlanTypeVal;
   BiasStudyResultsType *              BiasStudyResultsTypeVal;
   BinaryDataType *                    BinaryDataTypeVal;
-  BodyFormEnumType *                  BodyFormEnumTypeVal;
   BodySetType *                       BodySetTypeVal;
   BodyType *                          BodyTypeVal;
-  BooleanConstantEnumType *           BooleanConstantEnumTypeVal;
   BooleanEqualType *                  BooleanEqualTypeVal;
   BooleanExpressionBaseType *         BooleanExpressionBaseTypeVal;
   BottomEnumType *                    BottomEnumTypeVal;
@@ -242,13 +242,12 @@ int yyerror(const char * s);
   CaliperDialType *                   CaliperDialTypeVal;
   CaliperDigitalType *                CaliperDigitalTypeVal;
   CaliperType *                       CaliperTypeVal;
-  CameraFormEnumType *                CameraFormEnumTypeVal;
   CameraSetType *                     CameraSetTypeVal;
   CameraType *                        CameraTypeVal;
   CapabilityStudyPlanType *           CapabilityStudyPlanTypeVal;
   CapabilityStudyResultsType *        CapabilityStudyResultsTypeVal;
-  CapabilityStudy_1198_TypeChoicePair * CapabilityStudy_1198_TypeChoicePairVal;
-  CapabilityStudy_1198_Type *         CapabilityStudy_1198_TypeVal;
+  CapabilityStudy_1199_TypeChoicePair * CapabilityStudy_1199_TypeChoicePairVal;
+  CapabilityStudy_1199_Type *         CapabilityStudy_1199_TypeVal;
   CapacitiveSensorType *              CapacitiveSensorTypeVal;
   CarriageType *                      CarriageTypeVal;
   CarriagesType *                     CarriagesTypeVal;
@@ -262,9 +261,9 @@ int yyerror(const char * s);
   CartesianCMMSpeedsType *            CartesianCMMSpeedsTypeVal;
   CartesianCMMType *                  CartesianCMMTypeVal;
   CartesianMeasurementDeviceScalesType * CartesianMeasurementDeviceScalesTypeVal;
-  CartesianResolu_1239_TypeChoicePair * CartesianResolu_1239_TypeChoicePairVal;
-  CartesianResolu_1239_Type *         CartesianResolu_1239_TypeVal;
-  CartesianResolu_1244_Type *         CartesianResolu_1244_TypeVal;
+  CartesianResolu_1240_TypeChoicePair * CartesianResolu_1240_TypeChoicePairVal;
+  CartesianResolu_1240_Type *         CartesianResolu_1240_TypeVal;
+  CartesianResolu_1245_Type *         CartesianResolu_1245_TypeVal;
   CartesianResolutionType *           CartesianResolutionTypeVal;
   CartesianWorkingVolumeType *        CartesianWorkingVolumeTypeVal;
   CharacteristicAspectsListsType *    CharacteristicAspectsListsTypeVal;
@@ -286,14 +285,14 @@ int yyerror(const char * s);
   CharacteristicMeasurementsType *    CharacteristicMeasurementsTypeVal;
   CharacteristicNominalBaseType *     CharacteristicNominalBaseTypeVal;
   CharacteristicNominalsType *        CharacteristicNominalsTypeVal;
-  CharacteristicS_1128_TypeChoicePair * CharacteristicS_1128_TypeChoicePairVal;
-  CharacteristicS_1128_Type *         CharacteristicS_1128_TypeVal;
   CharacteristicS_1129_TypeChoicePair * CharacteristicS_1129_TypeChoicePairVal;
   CharacteristicS_1129_Type *         CharacteristicS_1129_TypeVal;
-  CharacteristicS_1151_TypeChoicePair * CharacteristicS_1151_TypeChoicePairVal;
-  CharacteristicS_1151_Type *         CharacteristicS_1151_TypeVal;
+  CharacteristicS_1130_TypeChoicePair * CharacteristicS_1130_TypeChoicePairVal;
+  CharacteristicS_1130_Type *         CharacteristicS_1130_TypeVal;
   CharacteristicS_1152_TypeChoicePair * CharacteristicS_1152_TypeChoicePairVal;
   CharacteristicS_1152_Type *         CharacteristicS_1152_TypeVal;
+  CharacteristicS_1153_TypeChoicePair * CharacteristicS_1153_TypeChoicePairVal;
+  CharacteristicS_1153_Type *         CharacteristicS_1153_TypeVal;
   CharacteristicStatsEvalBaseType *   CharacteristicStatsEvalBaseTypeVal;
   CharacteristicStatusEnumType *      CharacteristicStatusEnumTypeVal;
   CharacteristicStatusTypeChoicePair * CharacteristicStatusTypeChoicePairVal;
@@ -320,8 +319,8 @@ int yyerror(const char * s);
   CircleFeatureItemType *             CircleFeatureItemTypeVal;
   CircleFeatureMeasurementType *      CircleFeatureMeasurementTypeVal;
   CircleFeatureNominalType *          CircleFeatureNominalTypeVal;
-  CircleFromConeT_1092_TypeChoicePair * CircleFromConeT_1092_TypeChoicePairVal;
-  CircleFromConeT_1092_Type *         CircleFromConeT_1092_TypeVal;
+  CircleFromConeT_1093_TypeChoicePair * CircleFromConeT_1093_TypeChoicePairVal;
+  CircleFromConeT_1093_Type *         CircleFromConeT_1093_TypeVal;
   CircleFromConeType *                CircleFromConeTypeVal;
   CircleFromScanType *                CircleFromScanTypeVal;
   CircleIntersectionType *            CircleIntersectionTypeVal;
@@ -363,14 +362,14 @@ int yyerror(const char * s);
   CircularRunoutCharacteristicNominalType * CircularRunoutCharacteristicNominalTypeVal;
   CircularRunoutCharacteristicStatsEvalType * CircularRunoutCharacteristicStatsEvalTypeVal;
   CircularUnitAreaType *              CircularUnitAreaTypeVal;
-  CircularityChar_1048_TypeChoicePair * CircularityChar_1048_TypeChoicePairVal;
-  CircularityChar_1048_Type *         CircularityChar_1048_TypeVal;
+  CircularityChar_1049_TypeChoicePair * CircularityChar_1049_TypeChoicePairVal;
   CircularityChar_1049_Type *         CircularityChar_1049_TypeVal;
-  CircularityChar_1081_Type *         CircularityChar_1081_TypeVal;
-  CircularityChar_1082_TypeChoicePair * CircularityChar_1082_TypeChoicePairVal;
+  CircularityChar_1050_Type *         CircularityChar_1050_TypeVal;
   CircularityChar_1082_Type *         CircularityChar_1082_TypeVal;
-  CircularityChar_1090_TypeChoicePair * CircularityChar_1090_TypeChoicePairVal;
-  CircularityChar_1090_Type *         CircularityChar_1090_TypeVal;
+  CircularityChar_1083_TypeChoicePair * CircularityChar_1083_TypeChoicePairVal;
+  CircularityChar_1083_Type *         CircularityChar_1083_TypeVal;
+  CircularityChar_1091_TypeChoicePair * CircularityChar_1091_TypeChoicePairVal;
+  CircularityChar_1091_Type *         CircularityChar_1091_TypeVal;
   CircularityCharacteristicDefinitionType * CircularityCharacteristicDefinitionTypeVal;
   CircularityCharacteristicItemType * CircularityCharacteristicItemTypeVal;
   CircularityCharacteristicMeasurementType * CircularityCharacteristicMeasurementTypeVal;
@@ -400,8 +399,8 @@ int yyerror(const char * s);
   ComplexTactileProbeSensorType *     ComplexTactileProbeSensorTypeVal;
   ComponentSetType *                  ComponentSetTypeVal;
   ComponentType *                     ComponentTypeVal;
-  ComponentType_1237_TypeChoicePair * ComponentType_1237_TypeChoicePairVal;
-  ComponentType_1237_Type *           ComponentType_1237_TypeVal;
+  ComponentType_1238_TypeChoicePair * ComponentType_1238_TypeChoicePairVal;
+  ComponentType_1238_Type *           ComponentType_1238_TypeVal;
   CompositeSegmentLowerLevelEnumType * CompositeSegmentLowerLevelEnumTypeVal;
   CompositeSegmentPositionDefinitionType * CompositeSegmentPositionDefinitionTypeVal;
   CompositeSegmentPositionMeasurementType * CompositeSegmentPositionMeasurementTypeVal;
@@ -438,13 +437,13 @@ int yyerror(const char * s);
   ConeConstructionMethodTypeChoicePair * ConeConstructionMethodTypeChoicePairVal;
   ConeConstructionMethodType *        ConeConstructionMethodTypeVal;
   ConeCopyType *                      ConeCopyTypeVal;
-  ConeFeatureDefi_1093_TypeChoicePair * ConeFeatureDefi_1093_TypeChoicePairVal;
-  ConeFeatureDefi_1093_Type *         ConeFeatureDefi_1093_TypeVal;
+  ConeFeatureDefi_1094_TypeChoicePair * ConeFeatureDefi_1094_TypeChoicePairVal;
   ConeFeatureDefi_1094_Type *         ConeFeatureDefi_1094_TypeVal;
+  ConeFeatureDefi_1095_Type *         ConeFeatureDefi_1095_TypeVal;
   ConeFeatureDefinitionType *         ConeFeatureDefinitionTypeVal;
   ConeFeatureItemType *               ConeFeatureItemTypeVal;
-  ConeFeatureMeas_1095_TypeChoicePair * ConeFeatureMeas_1095_TypeChoicePairVal;
-  ConeFeatureMeas_1095_Type *         ConeFeatureMeas_1095_TypeVal;
+  ConeFeatureMeas_1096_TypeChoicePair * ConeFeatureMeas_1096_TypeChoicePairVal;
+  ConeFeatureMeas_1096_Type *         ConeFeatureMeas_1096_TypeVal;
   ConeFeatureMeasurementType *        ConeFeatureMeasurementTypeVal;
   ConeFeatureNominalType *            ConeFeatureNominalTypeVal;
   ConeFromScanType *                  ConeFromScanTypeVal;
@@ -464,11 +463,11 @@ int yyerror(const char * s);
   ConicalSegmentConstructionMethodTypeChoicePair * ConicalSegmentConstructionMethodTypeChoicePairVal;
   ConicalSegmentConstructionMethodType * ConicalSegmentConstructionMethodTypeVal;
   ConicalSegmentCopyType *            ConicalSegmentCopyTypeVal;
-  ConicalSegmentF_1096_TypeChoicePair * ConicalSegmentF_1096_TypeChoicePairVal;
-  ConicalSegmentF_1096_Type *         ConicalSegmentF_1096_TypeVal;
+  ConicalSegmentF_1097_TypeChoicePair * ConicalSegmentF_1097_TypeChoicePairVal;
   ConicalSegmentF_1097_Type *         ConicalSegmentF_1097_TypeVal;
-  ConicalSegmentF_1098_TypeChoicePair * ConicalSegmentF_1098_TypeChoicePairVal;
   ConicalSegmentF_1098_Type *         ConicalSegmentF_1098_TypeVal;
+  ConicalSegmentF_1099_TypeChoicePair * ConicalSegmentF_1099_TypeChoicePairVal;
+  ConicalSegmentF_1099_Type *         ConicalSegmentF_1099_TypeVal;
   ConicalSegmentFeatureDefinitionType * ConicalSegmentFeatureDefinitionTypeVal;
   ConicalSegmentFeatureItemType *     ConicalSegmentFeatureItemTypeVal;
   ConicalSegmentFeatureMeasurementType * ConicalSegmentFeatureMeasurementTypeVal;
@@ -495,8 +494,8 @@ int yyerror(const char * s);
   ControlIssueEnumType *              ControlIssueEnumTypeVal;
   ControlIssueTypeChoicePair *        ControlIssueTypeChoicePairVal;
   ControlIssueType *                  ControlIssueTypeVal;
-  ControlMethodTy_1199_TypeChoicePair * ControlMethodTy_1199_TypeChoicePairVal;
-  ControlMethodTy_1199_Type *         ControlMethodTy_1199_TypeVal;
+  ControlMethodTy_1200_TypeChoicePair * ControlMethodTy_1200_TypeChoicePairVal;
+  ControlMethodTy_1200_Type *         ControlMethodTy_1200_TypeVal;
   ControlMethodType *                 ControlMethodTypeVal;
   ControlMethodsType *                ControlMethodsTypeVal;
   CoordinateEnumType *                CoordinateEnumTypeVal;
@@ -508,8 +507,8 @@ int yyerror(const char * s);
   CoordinateSystemSetType *           CoordinateSystemSetTypeVal;
   CoordinateSystemType *              CoordinateSystemTypeVal;
   CoordinateSystemsType *             CoordinateSystemsTypeVal;
-  CorrectiveActio_1130_TypeChoicePair * CorrectiveActio_1130_TypeChoicePairVal;
-  CorrectiveActio_1130_Type *         CorrectiveActio_1130_TypeVal;
+  CorrectiveActio_1131_TypeChoicePair * CorrectiveActio_1131_TypeChoicePairVal;
+  CorrectiveActio_1131_Type *         CorrectiveActio_1131_TypeVal;
   CorrectiveActionPlanType *          CorrectiveActionPlanTypeVal;
   CorrectiveActionPlansType *         CorrectiveActionPlansTypeVal;
   CorrectiveActionType *              CorrectiveActionTypeVal;
@@ -517,10 +516,10 @@ int yyerror(const char * s);
   CriteriaByUnitType *                CriteriaByUnitTypeVal;
   CriterionAngularType *              CriterionAngularTypeVal;
   CriterionAreaType *                 CriterionAreaTypeVal;
-  CriterionDecima_1131_Type *         CriterionDecima_1131_TypeVal;
+  CriterionDecima_1132_Type *         CriterionDecima_1132_TypeVal;
   CriterionDecimalType *              CriterionDecimalTypeVal;
   CriterionForceType *                CriterionForceTypeVal;
-  CriterionIntege_1132_Type *         CriterionIntege_1132_TypeVal;
+  CriterionIntege_1133_Type *         CriterionIntege_1133_TypeVal;
   CriterionIntegerType *              CriterionIntegerTypeVal;
   CriterionLinearType *               CriterionLinearTypeVal;
   CriterionMassType *                 CriterionMassTypeVal;
@@ -533,10 +532,10 @@ int yyerror(const char * s);
   CriticalityAreaEnumType *           CriticalityAreaEnumTypeVal;
   CriticalityLevelEnumType *          CriticalityLevelEnumTypeVal;
   CriticalityType *                   CriticalityTypeVal;
-  CriticalityType_1050_TypeChoicePair * CriticalityType_1050_TypeChoicePairVal;
-  CriticalityType_1050_Type *         CriticalityType_1050_TypeVal;
   CriticalityType_1051_TypeChoicePair * CriticalityType_1051_TypeChoicePairVal;
   CriticalityType_1051_Type *         CriticalityType_1051_TypeVal;
+  CriticalityType_1052_TypeChoicePair * CriticalityType_1052_TypeChoicePairVal;
+  CriticalityType_1052_Type *         CriticalityType_1052_TypeVal;
   Curve12BaseType *                   Curve12BaseTypeVal;
   Curve12OrientedType *               Curve12OrientedTypeVal;
   Curve12SetType *                    Curve12SetTypeVal;
@@ -593,21 +592,19 @@ int yyerror(const char * s);
   CylindricalSegmentRecompType *      CylindricalSegmentRecompTypeVal;
   CylindricalSegmentTransformType *   CylindricalSegmentTransformTypeVal;
   CylindricalWorkingVolumeType *      CylindricalWorkingVolumeTypeVal;
-  CylindricityCha_1052_TypeChoicePair * CylindricityCha_1052_TypeChoicePairVal;
-  CylindricityCha_1052_Type *         CylindricityCha_1052_TypeVal;
+  CylindricityCha_1053_TypeChoicePair * CylindricityCha_1053_TypeChoicePairVal;
   CylindricityCha_1053_Type *         CylindricityCha_1053_TypeVal;
-  CylindricityCha_1083_Type *         CylindricityCha_1083_TypeVal;
-  CylindricityCha_1084_TypeChoicePair * CylindricityCha_1084_TypeChoicePairVal;
+  CylindricityCha_1054_Type *         CylindricityCha_1054_TypeVal;
   CylindricityCha_1084_Type *         CylindricityCha_1084_TypeVal;
-  CylindricityCha_1091_TypeChoicePair * CylindricityCha_1091_TypeChoicePairVal;
-  CylindricityCha_1091_Type *         CylindricityCha_1091_TypeVal;
+  CylindricityCha_1085_TypeChoicePair * CylindricityCha_1085_TypeChoicePairVal;
+  CylindricityCha_1085_Type *         CylindricityCha_1085_TypeVal;
+  CylindricityCha_1092_TypeChoicePair * CylindricityCha_1092_TypeChoicePairVal;
+  CylindricityCha_1092_Type *         CylindricityCha_1092_TypeVal;
   CylindricityCharacteristicDefinitionType * CylindricityCharacteristicDefinitionTypeVal;
   CylindricityCharacteristicItemType * CylindricityCharacteristicItemTypeVal;
   CylindricityCharacteristicMeasurementType * CylindricityCharacteristicMeasurementTypeVal;
   CylindricityCharacteristicNominalType * CylindricityCharacteristicNominalTypeVal;
   CylindricityCharacteristicStatsEvalType * CylindricityCharacteristicStatsEvalTypeVal;
-  D2Type *                            D2TypeVal;
-  D3Type *                            D3TypeVal;
   D4Type *                            D4TypeVal;
   DMEClassNameEnumType *              DMEClassNameEnumTypeVal;
   DMEDecisionBaseType *               DMEDecisionBaseTypeVal;
@@ -629,8 +626,8 @@ int yyerror(const char * s);
   DatumTargetType *                   DatumTargetTypeVal;
   DatumTranslationType *              DatumTranslationTypeVal;
   DatumType *                         DatumTypeVal;
-  DatumWithPreced_1012_TypeChoicePair * DatumWithPreced_1012_TypeChoicePairVal;
-  DatumWithPreced_1012_Type *         DatumWithPreced_1012_TypeVal;
+  DatumWithPreced_1013_TypeChoicePair * DatumWithPreced_1013_TypeChoicePairVal;
+  DatumWithPreced_1013_Type *         DatumWithPreced_1013_TypeVal;
   DatumWithPrecedenceType *           DatumWithPrecedenceTypeVal;
   DatumsType *                        DatumsTypeVal;
   DefiningPointMeasurementType *      DefiningPointMeasurementTypeVal;
@@ -640,8 +637,8 @@ int yyerror(const char * s);
   DefinitionExternalTypeChoicePair *  DefinitionExternalTypeChoicePairVal;
   DefinitionExternalType *            DefinitionExternalTypeVal;
   DegreeOfFreedomEnumType *           DegreeOfFreedomEnumTypeVal;
-  DegreesOfFreedo_1013_TypeChoicePair * DegreesOfFreedo_1013_TypeChoicePairVal;
-  DegreesOfFreedo_1013_Type *         DegreesOfFreedo_1013_TypeVal;
+  DegreesOfFreedo_1014_TypeChoicePair * DegreesOfFreedo_1014_TypeChoicePairVal;
+  DegreesOfFreedo_1014_Type *         DegreesOfFreedo_1014_TypeVal;
   DegreesOfFreedomType *              DegreesOfFreedomTypeVal;
   DepthCharacteristicDefinitionType * DepthCharacteristicDefinitionTypeVal;
   DepthCharacteristicItemType *       DepthCharacteristicItemTypeVal;
@@ -650,8 +647,8 @@ int yyerror(const char * s);
   DepthCharacteristicStatsEvalType *  DepthCharacteristicStatsEvalTypeVal;
   DetachableSensorBaseType *          DetachableSensorBaseTypeVal;
   DetachableSensorsType *             DetachableSensorsTypeVal;
-  DiameterCharact_1054_TypeChoicePair * DiameterCharact_1054_TypeChoicePairVal;
-  DiameterCharact_1054_Type *         DiameterCharact_1054_TypeVal;
+  DiameterCharact_1055_TypeChoicePair * DiameterCharact_1055_TypeChoicePairVal;
+  DiameterCharact_1055_Type *         DiameterCharact_1055_TypeVal;
   DiameterCharacteristicDefinitionType * DiameterCharacteristicDefinitionTypeVal;
   DiameterCharacteristicItemType *    DiameterCharacteristicItemTypeVal;
   DiameterCharacteristicMeasurementType * DiameterCharacteristicMeasurementTypeVal;
@@ -669,8 +666,8 @@ int yyerror(const char * s);
   DimensionModifierEnumType *         DimensionModifierEnumTypeVal;
   DimensionModifiersType *            DimensionModifiersTypeVal;
   DirectionFeatureType *              DirectionFeatureTypeVal;
-  DirectionalOffs_1014_TypeChoicePair * DirectionalOffs_1014_TypeChoicePairVal;
-  DirectionalOffs_1014_Type *         DirectionalOffs_1014_TypeVal;
+  DirectionalOffs_1015_TypeChoicePair * DirectionalOffs_1015_TypeChoicePairVal;
+  DirectionalOffs_1015_Type *         DirectionalOffs_1015_TypeVal;
   DirectionalOffsetType *             DirectionalOffsetTypeVal;
   DisplayStyleFormEnumType *          DisplayStyleFormEnumTypeVal;
   DisplayStyleGroupType *             DisplayStyleGroupTypeVal;
@@ -830,8 +827,8 @@ int yyerror(const char * s);
   ExclusionReasonType *               ExclusionReasonTypeVal;
   ExclusionsIdType *                  ExclusionsIdTypeVal;
   ExclusionsIndexType *               ExclusionsIndexTypeVal;
-  ExplodedViewMov_1230_TypeChoicePair * ExplodedViewMov_1230_TypeChoicePairVal;
-  ExplodedViewMov_1230_Type *         ExplodedViewMov_1230_TypeVal;
+  ExplodedViewMov_1231_TypeChoicePair * ExplodedViewMov_1231_TypeChoicePairVal;
+  ExplodedViewMov_1231_Type *         ExplodedViewMov_1231_TypeVal;
   ExplodedViewMoveGroupType *         ExplodedViewMoveGroupTypeVal;
   ExplodedViewMoveGroupsType *        ExplodedViewMoveGroupsTypeVal;
   ExplodedViewRotateType *            ExplodedViewRotateTypeVal;
@@ -870,12 +867,12 @@ int yyerror(const char * s);
   FPSTestType *                       FPSTestTypeVal;
   FaceBaseType *                      FaceBaseTypeVal;
   FaceMeshType *                      FaceMeshTypeVal;
-  FaceMeshType_1223_TypeChoicePair *  FaceMeshType_1223_TypeChoicePairVal;
-  FaceMeshType_1223_Type *            FaceMeshType_1223_TypeVal;
   FaceMeshType_1224_TypeChoicePair *  FaceMeshType_1224_TypeChoicePairVal;
   FaceMeshType_1224_Type *            FaceMeshType_1224_TypeVal;
   FaceMeshType_1225_TypeChoicePair *  FaceMeshType_1225_TypeChoicePairVal;
   FaceMeshType_1225_Type *            FaceMeshType_1225_TypeVal;
+  FaceMeshType_1226_TypeChoicePair *  FaceMeshType_1226_TypeChoicePairVal;
+  FaceMeshType_1226_Type *            FaceMeshType_1226_TypeVal;
   FaceSetType *                       FaceSetTypeVal;
   FaceType *                          FaceTypeVal;
   FeatureAreaType *                   FeatureAreaTypeVal;
@@ -901,21 +898,21 @@ int yyerror(const char * s);
   FeatureZoneAreaIrregularType *      FeatureZoneAreaIrregularTypeVal;
   FeatureZoneAreaRectangularType *    FeatureZoneAreaRectangularTypeVal;
   FeatureZoneAreaSphericalType *      FeatureZoneAreaSphericalTypeVal;
-  FeatureZoneArea_1099_TypeChoicePair * FeatureZoneArea_1099_TypeChoicePairVal;
-  FeatureZoneArea_1099_Type *         FeatureZoneArea_1099_TypeVal;
   FeatureZoneArea_1100_TypeChoicePair * FeatureZoneArea_1100_TypeChoicePairVal;
   FeatureZoneArea_1100_Type *         FeatureZoneArea_1100_TypeVal;
   FeatureZoneArea_1101_TypeChoicePair * FeatureZoneArea_1101_TypeChoicePairVal;
   FeatureZoneArea_1101_Type *         FeatureZoneArea_1101_TypeVal;
+  FeatureZoneArea_1102_TypeChoicePair * FeatureZoneArea_1102_TypeChoicePairVal;
+  FeatureZoneArea_1102_Type *         FeatureZoneArea_1102_TypeVal;
   FeatureZoneBaseType *               FeatureZoneBaseTypeVal;
-  FeatureZoneCurv_1102_TypeChoicePair * FeatureZoneCurv_1102_TypeChoicePairVal;
-  FeatureZoneCurv_1102_Type *         FeatureZoneCurv_1102_TypeVal;
+  FeatureZoneCurv_1103_TypeChoicePair * FeatureZoneCurv_1103_TypeChoicePairVal;
+  FeatureZoneCurv_1103_Type *         FeatureZoneCurv_1103_TypeVal;
   FeatureZoneCurveCircularType *      FeatureZoneCurveCircularTypeVal;
   FeatureZoneCurveIrregularType *     FeatureZoneCurveIrregularTypeVal;
   FeatureZoneCurveLineType *          FeatureZoneCurveLineTypeVal;
   FeatureZoneListType *               FeatureZoneListTypeVal;
-  FeatureZonePoin_1103_TypeChoicePair * FeatureZonePoin_1103_TypeChoicePairVal;
-  FeatureZonePoin_1103_Type *         FeatureZonePoin_1103_TypeVal;
+  FeatureZonePoin_1104_TypeChoicePair * FeatureZonePoin_1104_TypeChoicePairVal;
+  FeatureZonePoin_1104_Type *         FeatureZonePoin_1104_TypeVal;
   FeatureZonePointType *              FeatureZonePointTypeVal;
   FileInternalType *                  FileInternalTypeVal;
   FileSpecTypeChoicePair *            FileSpecTypeChoicePairVal;
@@ -924,8 +921,8 @@ int yyerror(const char * s);
   FileUnitsType *                     FileUnitsTypeVal;
   FilterTypeChoicePair *              FilterTypeChoicePairVal;
   FilterType *                        FilterTypeVal;
-  FirstArticleStu_1200_TypeChoicePair * FirstArticleStu_1200_TypeChoicePairVal;
-  FirstArticleStu_1200_Type *         FirstArticleStu_1200_TypeVal;
+  FirstArticleStu_1201_TypeChoicePair * FirstArticleStu_1201_TypeChoicePairVal;
+  FirstArticleStu_1201_Type *         FirstArticleStu_1201_TypeVal;
   FirstArticleStudyPlanType *         FirstArticleStudyPlanTypeVal;
   FirstArticleStudyResultsType *      FirstArticleStudyResultsTypeVal;
   FixtureType *                       FixtureTypeVal;
@@ -935,10 +932,10 @@ int yyerror(const char * s);
   FlatTaperCharacteristicMeasurementType * FlatTaperCharacteristicMeasurementTypeVal;
   FlatTaperCharacteristicNominalType * FlatTaperCharacteristicNominalTypeVal;
   FlatTaperCharacteristicStatsEvalType * FlatTaperCharacteristicStatsEvalTypeVal;
-  FlatnessCharact_1055_TypeChoicePair * FlatnessCharact_1055_TypeChoicePairVal;
-  FlatnessCharact_1055_Type *         FlatnessCharact_1055_TypeVal;
-  FlatnessCharact_1085_Type *         FlatnessCharact_1085_TypeVal;
+  FlatnessCharact_1056_TypeChoicePair * FlatnessCharact_1056_TypeChoicePairVal;
+  FlatnessCharact_1056_Type *         FlatnessCharact_1056_TypeVal;
   FlatnessCharact_1086_Type *         FlatnessCharact_1086_TypeVal;
+  FlatnessCharact_1087_Type *         FlatnessCharact_1087_TypeVal;
   FlatnessCharacteristicDefinitionType * FlatnessCharacteristicDefinitionTypeVal;
   FlatnessCharacteristicItemType *    FlatnessCharacteristicItemTypeVal;
   FlatnessCharacteristicMeasurementType * FlatnessCharacteristicMeasurementTypeVal;
@@ -950,11 +947,11 @@ int yyerror(const char * s);
   FoldersPartType *                   FoldersPartTypeVal;
   FontType *                          FontTypeVal;
   FontsType *                         FontsTypeVal;
-  ForceCharacteri_1056_TypeChoicePair * ForceCharacteri_1056_TypeChoicePairVal;
-  ForceCharacteri_1056_Type *         ForceCharacteri_1056_TypeVal;
-  ForceToleranceT_1015_TypeChoicePair * ForceToleranceT_1015_TypeChoicePairVal;
-  ForceToleranceT_1015_Type *         ForceToleranceT_1015_TypeVal;
-  ForceToleranceT_1032_Type *         ForceToleranceT_1032_TypeVal;
+  ForceCharacteri_1057_TypeChoicePair * ForceCharacteri_1057_TypeChoicePairVal;
+  ForceCharacteri_1057_Type *         ForceCharacteri_1057_TypeVal;
+  ForceToleranceT_1016_TypeChoicePair * ForceToleranceT_1016_TypeChoicePairVal;
+  ForceToleranceT_1016_Type *         ForceToleranceT_1016_TypeVal;
+  ForceToleranceT_1033_Type *         ForceToleranceT_1033_TypeVal;
   ForceToleranceType *                ForceToleranceTypeVal;
   ForceUnitType *                     ForceUnitTypeVal;
   ForceValueType *                    ForceValueTypeVal;
@@ -976,23 +973,23 @@ int yyerror(const char * s);
   GageDeviceType *                    GageDeviceTypeVal;
   GageMeasureFeatureMethodType *      GageMeasureFeatureMethodTypeVal;
   GageRandRStudyEnumType *            GageRandRStudyEnumTypeVal;
-  GageRandRStudyP_1201_TypeChoicePair * GageRandRStudyP_1201_TypeChoicePairVal;
-  GageRandRStudyP_1201_Type *         GageRandRStudyP_1201_TypeVal;
   GageRandRStudyP_1202_TypeChoicePair * GageRandRStudyP_1202_TypeChoicePairVal;
   GageRandRStudyP_1202_Type *         GageRandRStudyP_1202_TypeVal;
   GageRandRStudyP_1203_TypeChoicePair * GageRandRStudyP_1203_TypeChoicePairVal;
   GageRandRStudyP_1203_Type *         GageRandRStudyP_1203_TypeVal;
+  GageRandRStudyP_1204_TypeChoicePair * GageRandRStudyP_1204_TypeChoicePairVal;
+  GageRandRStudyP_1204_Type *         GageRandRStudyP_1204_TypeVal;
   GageRandRStudyPlanType *            GageRandRStudyPlanTypeVal;
   GageRandRStudyResultsType *         GageRandRStudyResultsTypeVal;
-  GeometricCharac_1057_TypeChoicePair * GeometricCharac_1057_TypeChoicePairVal;
-  GeometricCharac_1057_Type *         GeometricCharac_1057_TypeVal;
+  GeometricCharac_1058_TypeChoicePair * GeometricCharac_1058_TypeChoicePairVal;
+  GeometricCharac_1058_Type *         GeometricCharac_1058_TypeVal;
   GeometricCharacteristicStatsEvalType * GeometricCharacteristicStatsEvalTypeVal;
   GeometrySetType *                   GeometrySetTypeVal;
   GraphicsType *                      GraphicsTypeVal;
   GreaterOrEqualType *                GreaterOrEqualTypeVal;
   GreaterThanType *                   GreaterThanTypeVal;
-  GroupFeatureDef_1104_TypeChoicePair * GroupFeatureDef_1104_TypeChoicePairVal;
-  GroupFeatureDef_1104_Type *         GroupFeatureDef_1104_TypeVal;
+  GroupFeatureDef_1105_TypeChoicePair * GroupFeatureDef_1105_TypeChoicePairVal;
+  GroupFeatureDef_1105_Type *         GroupFeatureDef_1105_TypeVal;
   GroupFeatureDefinitionType *        GroupFeatureDefinitionTypeVal;
   GroupFeatureItemType *              GroupFeatureItemTypeVal;
   GroupFeatureMeasurementType *       GroupFeatureMeasurementTypeVal;
@@ -1009,9 +1006,8 @@ int yyerror(const char * s);
   HeightCharacteristicNominalType *   HeightCharacteristicNominalTypeVal;
   HeightCharacteristicStatsEvalType * HeightCharacteristicStatsEvalTypeVal;
   I2Type *                            I2TypeVal;
-  I3Type *                            I3TypeVal;
-  ISO10360TestTyp_1240_TypeChoicePair * ISO10360TestTyp_1240_TypeChoicePairVal;
-  ISO10360TestTyp_1240_Type *         ISO10360TestTyp_1240_TypeVal;
+  ISO10360TestTyp_1241_TypeChoicePair * ISO10360TestTyp_1241_TypeChoicePairVal;
+  ISO10360TestTyp_1241_Type *         ISO10360TestTyp_1241_TypeVal;
   ISO10360TestType *                  ISO10360TestTypeVal;
   ISODegreeOfFreedomEnumType *        ISODegreeOfFreedomEnumTypeVal;
   IfActionGroupType *                 IfActionGroupTypeVal;
@@ -1053,8 +1049,8 @@ int yyerror(const char * s);
   InspectionStatusEnumType *          InspectionStatusEnumTypeVal;
   InspectionStatusTypeChoicePair *    InspectionStatusTypeChoicePairVal;
   InspectionStatusType *              InspectionStatusTypeVal;
-  InspectionTrace_1042_TypeChoicePair * InspectionTrace_1042_TypeChoicePairVal;
-  InspectionTrace_1042_Type *         InspectionTrace_1042_TypeVal;
+  InspectionTrace_1043_TypeChoicePair * InspectionTrace_1043_TypeChoicePairVal;
+  InspectionTrace_1043_Type *         InspectionTrace_1043_TypeVal;
   InspectionTraceabilityType *        InspectionTraceabilityTypeVal;
   InternalExternalEnumType *          InternalExternalEnumTypeVal;
   IntersectionPlaneEnumType *         IntersectionPlaneEnumTypeVal;
@@ -1087,11 +1083,10 @@ int yyerror(const char * s);
   LessThanType *                      LessThanTypeVal;
   LesserErrorType *                   LesserErrorTypeVal;
   LightPenCMMType *                   LightPenCMMTypeVal;
-  LimitingNumberT_1133_TypeChoicePair * LimitingNumberT_1133_TypeChoicePairVal;
-  LimitingNumberT_1133_Type *         LimitingNumberT_1133_TypeVal;
+  LimitingNumberT_1134_TypeChoicePair * LimitingNumberT_1134_TypeChoicePairVal;
+  LimitingNumberT_1134_Type *         LimitingNumberT_1134_TypeVal;
   LimitingNumberType *                LimitingNumberTypeVal;
   LimitsAndFitsSpecificationType *    LimitsAndFitsSpecificationTypeVal;
-  LimitsAndFitsZoneVarianceType *     LimitsAndFitsZoneVarianceTypeVal;
   LineAuxiliaryType *                 LineAuxiliaryTypeVal;
   LineBestFitType *                   LineBestFitTypeVal;
   LineCastType *                      LineCastTypeVal;
@@ -1124,22 +1119,21 @@ int yyerror(const char * s);
   LineRecompType *                    LineRecompTypeVal;
   LineSegment2dType *                 LineSegment2dTypeVal;
   LineSegmentType *                   LineSegmentTypeVal;
-  LineStyleEnumType *                 LineStyleEnumTypeVal;
   LineStyleType *                     LineStyleTypeVal;
   LineTangentThroughType *            LineTangentThroughTypeVal;
   LineTransformType *                 LineTransformTypeVal;
   LinearAxisType *                    LinearAxisTypeVal;
-  LinearCharacter_1058_TypeChoicePair * LinearCharacter_1058_TypeChoicePairVal;
-  LinearCharacter_1058_Type *         LinearCharacter_1058_TypeVal;
-  LinearCharacter_1134_TypeChoicePair * LinearCharacter_1134_TypeChoicePairVal;
-  LinearCharacter_1134_Type *         LinearCharacter_1134_TypeVal;
-  LinearCharacter_1153_Type *         LinearCharacter_1153_TypeVal;
+  LinearCharacter_1059_TypeChoicePair * LinearCharacter_1059_TypeChoicePairVal;
+  LinearCharacter_1059_Type *         LinearCharacter_1059_TypeVal;
+  LinearCharacter_1135_TypeChoicePair * LinearCharacter_1135_TypeChoicePairVal;
+  LinearCharacter_1135_Type *         LinearCharacter_1135_TypeVal;
   LinearCharacter_1154_Type *         LinearCharacter_1154_TypeVal;
   LinearCharacter_1155_Type *         LinearCharacter_1155_TypeVal;
   LinearCharacter_1156_Type *         LinearCharacter_1156_TypeVal;
+  LinearCharacter_1157_Type *         LinearCharacter_1157_TypeVal;
   LinearCharacteristicStatsEvalType * LinearCharacteristicStatsEvalTypeVal;
-  LinearCoordinat_1059_TypeChoicePair * LinearCoordinat_1059_TypeChoicePairVal;
-  LinearCoordinat_1059_Type *         LinearCoordinat_1059_TypeVal;
+  LinearCoordinat_1060_TypeChoicePair * LinearCoordinat_1060_TypeChoicePairVal;
+  LinearCoordinat_1060_Type *         LinearCoordinat_1060_TypeVal;
   LinearCoordinateCharacteristicDefinitionType * LinearCoordinateCharacteristicDefinitionTypeVal;
   LinearCoordinateCharacteristicItemType * LinearCoordinateCharacteristicItemTypeVal;
   LinearCoordinateCharacteristicMeasurementType * LinearCoordinateCharacteristicMeasurementTypeVal;
@@ -1152,23 +1146,23 @@ int yyerror(const char * s);
   LinearResolutionType *              LinearResolutionTypeVal;
   LinearToleranceDefinitionType *     LinearToleranceDefinitionTypeVal;
   LinearToleranceType *               LinearToleranceTypeVal;
-  LinearTolerance_1016_TypeChoicePair * LinearTolerance_1016_TypeChoicePairVal;
-  LinearTolerance_1016_Type *         LinearTolerance_1016_TypeVal;
   LinearTolerance_1017_TypeChoicePair * LinearTolerance_1017_TypeChoicePairVal;
   LinearTolerance_1017_Type *         LinearTolerance_1017_TypeVal;
-  LinearTolerance_1033_Type *         LinearTolerance_1033_TypeVal;
+  LinearTolerance_1018_TypeChoicePair * LinearTolerance_1018_TypeChoicePairVal;
+  LinearTolerance_1018_Type *         LinearTolerance_1018_TypeVal;
   LinearTolerance_1034_Type *         LinearTolerance_1034_TypeVal;
   LinearTolerance_1035_Type *         LinearTolerance_1035_TypeVal;
-  LinearTolerance_1041_Type *         LinearTolerance_1041_TypeVal;
+  LinearTolerance_1036_Type *         LinearTolerance_1036_TypeVal;
+  LinearTolerance_1042_Type *         LinearTolerance_1042_TypeVal;
   LinearUnitType *                    LinearUnitTypeVal;
   LinearValueType *                   LinearValueTypeVal;
   LinearVariableDifferentialTransformerEnumType * LinearVariableDifferentialTransformerEnumTypeVal;
   LinearVariableDifferentialTransformerSensorType * LinearVariableDifferentialTransformerSensorTypeVal;
-  LinearityStudyP_1204_TypeChoicePair * LinearityStudyP_1204_TypeChoicePairVal;
-  LinearityStudyP_1204_Type *         LinearityStudyP_1204_TypeVal;
+  LinearityStudyP_1205_TypeChoicePair * LinearityStudyP_1205_TypeChoicePairVal;
+  LinearityStudyP_1205_Type *         LinearityStudyP_1205_TypeVal;
   LinearityStudyPlanType *            LinearityStudyPlanTypeVal;
-  LinearityStudyR_1205_TypeChoicePair * LinearityStudyR_1205_TypeChoicePairVal;
-  LinearityStudyR_1205_Type *         LinearityStudyR_1205_TypeVal;
+  LinearityStudyR_1206_TypeChoicePair * LinearityStudyR_1206_TypeChoicePairVal;
+  LinearityStudyR_1206_Type *         LinearityStudyR_1206_TypeVal;
   LinearityStudyResultsType *         LinearityStudyResultsTypeVal;
   ListAccumulatedStatsValuesListType * ListAccumulatedStatsValuesListTypeVal;
   ListAccumulatedStatsValuesType *    ListAccumulatedStatsValuesTypeVal;
@@ -1176,7 +1170,7 @@ int yyerror(const char * s);
   ListDateTimeType *                  ListDateTimeTypeVal;
   ListDoubleType *                    ListDoubleTypeVal;
   ListIntType *                       ListIntTypeVal;
-  ListQIFReferenc_1002_Type *         ListQIFReferenc_1002_TypeVal;
+  ListQIFReferenc_1003_Type *         ListQIFReferenc_1003_TypeVal;
   ListQIFReferenceFullType *          ListQIFReferenceFullTypeVal;
   ListQIFReferenceSimpleType *        ListQIFReferenceSimpleTypeVal;
   ListQIFReferenceTypeChoicePair *    ListQIFReferenceTypeChoicePairVal;
@@ -1284,7 +1278,7 @@ int yyerror(const char * s);
   ListAccumulatedStatsValuesTypeLisd * LiztListAccumulatedStatsValuesTypeVal;
   ListSubgroupStatsValuesTypeLisd *   LiztListSubgroupStatsValuesTypeVal;
   LocatedTipTypeLisd *                LiztLocatedTipTypeVal;
-  LogicalOperatio_1231_TypeChoicePairLisd * LiztLogicalOperatio_1231_TypeChoicePairVal;
+  LogicalOperatio_1232_TypeChoicePairLisd * LiztLogicalOperatio_1232_TypeChoicePairVal;
   LogicalOperationTypeLisd *          LiztLogicalOperationTypeVal;
   LoopBaseTypeLisd *                  LiztLoopBaseTypeVal;
   MachineCoordinateSystemTypeLisd *   LiztMachineCoordinateSystemTypeVal;
@@ -1394,22 +1388,21 @@ int yyerror(const char * s);
   LocatedTipType *                    LocatedTipTypeVal;
   LocatedTipsType *                   LocatedTipsTypeVal;
   LocationCharacteristicStatsEvalType * LocationCharacteristicStatsEvalTypeVal;
-  LocationOnDrawi_1060_Type *         LocationOnDrawi_1060_TypeVal;
   LocationOnDrawi_1061_Type *         LocationOnDrawi_1061_TypeVal;
   LocationOnDrawi_1062_Type *         LocationOnDrawi_1062_TypeVal;
+  LocationOnDrawi_1063_Type *         LocationOnDrawi_1063_TypeVal;
   LocationOnDrawingTypeChoicePair *   LocationOnDrawingTypeChoicePairVal;
   LocationOnDrawingType *             LocationOnDrawingTypeVal;
   LocationSignificanceAllEnumType *   LocationSignificanceAllEnumTypeVal;
   LocationSignificanceOneSidesEnumType * LocationSignificanceOneSidesEnumTypeVal;
   LocationSignificanceSpotSeamEnumType * LocationSignificanceSpotSeamEnumTypeVal;
   LocationType *                      LocationTypeVal;
-  LogicalOperatio_1231_TypeChoicePair * LogicalOperatio_1231_TypeChoicePairVal;
-  LogicalOperatio_1231_Type *         LogicalOperatio_1231_TypeVal;
+  LogicalOperatio_1232_TypeChoicePair * LogicalOperatio_1232_TypeChoicePairVal;
+  LogicalOperatio_1232_Type *         LogicalOperatio_1232_TypeVal;
   LogicalOperationEnumType *          LogicalOperationEnumTypeVal;
   LogicalOperationType *              LogicalOperationTypeVal;
   LogicalOperationsType *             LogicalOperationsTypeVal;
   LoopBaseType *                      LoopBaseTypeVal;
-  LoopFormEnumType *                  LoopFormEnumTypeVal;
   LoopMeshType *                      LoopMeshTypeVal;
   LoopSetType *                       LoopSetTypeVal;
   LoopType *                          LoopTypeVal;
@@ -1431,19 +1424,19 @@ int yyerror(const char * s);
   MarkingMethodEnumType *             MarkingMethodEnumTypeVal;
   MarkingMethodTypeChoicePair *       MarkingMethodTypeChoicePairVal;
   MarkingMethodType *                 MarkingMethodTypeVal;
-  MassCharacteris_1063_TypeChoicePair * MassCharacteris_1063_TypeChoicePairVal;
-  MassCharacteris_1063_Type *         MassCharacteris_1063_TypeVal;
-  MassToleranceTy_1018_TypeChoicePair * MassToleranceTy_1018_TypeChoicePairVal;
-  MassToleranceTy_1018_Type *         MassToleranceTy_1018_TypeVal;
-  MassToleranceTy_1036_Type *         MassToleranceTy_1036_TypeVal;
+  MassCharacteris_1064_TypeChoicePair * MassCharacteris_1064_TypeChoicePairVal;
+  MassCharacteris_1064_Type *         MassCharacteris_1064_TypeVal;
+  MassToleranceTy_1019_TypeChoicePair * MassToleranceTy_1019_TypeChoicePairVal;
+  MassToleranceTy_1019_Type *         MassToleranceTy_1019_TypeVal;
+  MassToleranceTy_1037_Type *         MassToleranceTy_1037_TypeVal;
   MassToleranceType *                 MassToleranceTypeVal;
   MassUnitType *                      MassUnitTypeVal;
   MassValueType *                     MassValueTypeVal;
   MaterialClassEnumType *             MaterialClassEnumTypeVal;
   MaterialModifierEnumType *          MaterialModifierEnumTypeVal;
   MaterialType *                      MaterialTypeVal;
-  MaterialType_1019_TypeChoicePair *  MaterialType_1019_TypeChoicePairVal;
-  MaterialType_1019_Type *            MaterialType_1019_TypeVal;
+  MaterialType_1020_TypeChoicePair *  MaterialType_1020_TypeChoicePairVal;
+  MaterialType_1020_Type *            MaterialType_1020_TypeVal;
   MaterialsType *                     MaterialsTypeVal;
   MaxFeatureRulesType *               MaxFeatureRulesTypeVal;
   MaxType *                           MaxTypeVal;
@@ -1470,8 +1463,6 @@ int yyerror(const char * s);
   MeasuredMassValueType *             MeasuredMassValueTypeVal;
   MeasuredPlaneType *                 MeasuredPlaneTypeVal;
   MeasuredPointAndVectorType *        MeasuredPointAndVectorTypeVal;
-  MeasuredPointSe_1105_TypeChoicePair * MeasuredPointSe_1105_TypeChoicePairVal;
-  MeasuredPointSe_1105_Type *         MeasuredPointSe_1105_TypeVal;
   MeasuredPointSe_1106_TypeChoicePair * MeasuredPointSe_1106_TypeChoicePairVal;
   MeasuredPointSe_1106_Type *         MeasuredPointSe_1106_TypeVal;
   MeasuredPointSe_1107_TypeChoicePair * MeasuredPointSe_1107_TypeChoicePairVal;
@@ -1494,9 +1485,11 @@ int yyerror(const char * s);
   MeasuredPointSe_1115_Type *         MeasuredPointSe_1115_TypeVal;
   MeasuredPointSe_1116_TypeChoicePair * MeasuredPointSe_1116_TypeChoicePairVal;
   MeasuredPointSe_1116_Type *         MeasuredPointSe_1116_TypeVal;
+  MeasuredPointSe_1117_TypeChoicePair * MeasuredPointSe_1117_TypeChoicePairVal;
   MeasuredPointSe_1117_Type *         MeasuredPointSe_1117_TypeVal;
-  MeasuredPointSe_1125_TypeChoicePair * MeasuredPointSe_1125_TypeChoicePairVal;
-  MeasuredPointSe_1125_Type *         MeasuredPointSe_1125_TypeVal;
+  MeasuredPointSe_1118_Type *         MeasuredPointSe_1118_TypeVal;
+  MeasuredPointSe_1126_TypeChoicePair * MeasuredPointSe_1126_TypeChoicePairVal;
+  MeasuredPointSe_1126_Type *         MeasuredPointSe_1126_TypeVal;
   MeasuredPointSetType *              MeasuredPointSetTypeVal;
   MeasuredPointSetsType *             MeasuredPointSetsTypeVal;
   MeasuredPointType *                 MeasuredPointTypeVal;
@@ -1517,24 +1510,24 @@ int yyerror(const char * s);
   MeasurementDirectiveType *          MeasurementDirectiveTypeVal;
   MeasurementOffsetAlignmentOperationType * MeasurementOffsetAlignmentOperationTypeVal;
   MeasurementOriginOffsetType *       MeasurementOriginOffsetTypeVal;
-  MeasurementReso_1241_TypeChoicePair * MeasurementReso_1241_TypeChoicePairVal;
-  MeasurementReso_1241_Type *         MeasurementReso_1241_TypeVal;
+  MeasurementReso_1242_TypeChoicePair * MeasurementReso_1242_TypeChoicePairVal;
+  MeasurementReso_1242_Type *         MeasurementReso_1242_TypeVal;
   MeasurementResourcesType *          MeasurementResourcesTypeVal;
   MeasurementResultsSetType *         MeasurementResultsSetTypeVal;
   MeasurementResultsType *            MeasurementResultsTypeVal;
   MeasurementRoomType *               MeasurementRoomTypeVal;
   MeasurementRoomsType *              MeasurementRoomsTypeVal;
-  MeshTriangleCor_1213_TypeChoicePair * MeshTriangleCor_1213_TypeChoicePairVal;
-  MeshTriangleCor_1213_Type *         MeshTriangleCor_1213_TypeVal;
   MeshTriangleCor_1214_TypeChoicePair * MeshTriangleCor_1214_TypeChoicePairVal;
   MeshTriangleCor_1214_Type *         MeshTriangleCor_1214_TypeVal;
   MeshTriangleCor_1215_TypeChoicePair * MeshTriangleCor_1215_TypeChoicePairVal;
   MeshTriangleCor_1215_Type *         MeshTriangleCor_1215_TypeVal;
   MeshTriangleCor_1216_TypeChoicePair * MeshTriangleCor_1216_TypeChoicePairVal;
   MeshTriangleCor_1216_Type *         MeshTriangleCor_1216_TypeVal;
+  MeshTriangleCor_1217_TypeChoicePair * MeshTriangleCor_1217_TypeChoicePairVal;
+  MeshTriangleCor_1217_Type *         MeshTriangleCor_1217_TypeVal;
   MeshTriangleCoreType *              MeshTriangleCoreTypeVal;
-  MeshTriangleTyp_1217_TypeChoicePair * MeshTriangleTyp_1217_TypeChoicePairVal;
-  MeshTriangleTyp_1217_Type *         MeshTriangleTyp_1217_TypeVal;
+  MeshTriangleTyp_1218_TypeChoicePair * MeshTriangleTyp_1218_TypeChoicePairVal;
+  MeshTriangleTyp_1218_Type *         MeshTriangleTyp_1218_TypeVal;
   MeshTriangleType *                  MeshTriangleTypeVal;
   MicrometerAnalogType *              MicrometerAnalogTypeVal;
   MicrometerDigitalType *             MicrometerDigitalTypeVal;
@@ -1554,14 +1547,12 @@ int yyerror(const char * s);
   NominalPointSetListType *           NominalPointSetListTypeVal;
   NominalRotationAlignmentOperationType * NominalRotationAlignmentOperationTypeVal;
   NonDestructiveTestingEnumType *     NonDestructiveTestingEnumTypeVal;
-  NonNegativeDecimalType *            NonNegativeDecimalTypeVal;
   NonToleranceEnumType *              NonToleranceEnumTypeVal;
   NotType *                           NotTypeVal;
   NotableEventType *                  NotableEventTypeVal;
   NotableEventsType *                 NotableEventsTypeVal;
   NoteFlagSetType *                   NoteFlagSetTypeVal;
   NoteFlagType *                      NoteFlagTypeVal;
-  NoteFormEnumType *                  NoteFormEnumTypeVal;
   NoteSetType *                       NoteSetTypeVal;
   NoteType *                          NoteTypeVal;
   NotedEventType *                    NotedEventTypeVal;
@@ -1570,16 +1561,16 @@ int yyerror(const char * s);
   NumberedPlanElementsType *          NumberedPlanElementsTypeVal;
   NumericalLengthAccuracyType *       NumericalLengthAccuracyTypeVal;
   Nurbs12CoreType *                   Nurbs12CoreTypeVal;
-  Nurbs12CoreType_1218_TypeChoicePair * Nurbs12CoreType_1218_TypeChoicePairVal;
-  Nurbs12CoreType_1218_Type *         Nurbs12CoreType_1218_TypeVal;
+  Nurbs12CoreType_1219_TypeChoicePair * Nurbs12CoreType_1219_TypeChoicePairVal;
+  Nurbs12CoreType_1219_Type *         Nurbs12CoreType_1219_TypeVal;
   Nurbs12Type *                       Nurbs12TypeVal;
   Nurbs13CoreType *                   Nurbs13CoreTypeVal;
-  Nurbs13CoreType_1219_TypeChoicePair * Nurbs13CoreType_1219_TypeChoicePairVal;
-  Nurbs13CoreType_1219_Type *         Nurbs13CoreType_1219_TypeVal;
+  Nurbs13CoreType_1220_TypeChoicePair * Nurbs13CoreType_1220_TypeChoicePairVal;
+  Nurbs13CoreType_1220_Type *         Nurbs13CoreType_1220_TypeVal;
   Nurbs13Type *                       Nurbs13TypeVal;
   Nurbs23CoreType *                   Nurbs23CoreTypeVal;
-  Nurbs23CoreType_1220_TypeChoicePair * Nurbs23CoreType_1220_TypeChoicePairVal;
-  Nurbs23CoreType_1220_Type *         Nurbs23CoreType_1220_TypeVal;
+  Nurbs23CoreType_1221_TypeChoicePair * Nurbs23CoreType_1221_TypeChoicePairVal;
+  Nurbs23CoreType_1221_Type *         Nurbs23CoreType_1221_TypeVal;
   Nurbs23Type *                       Nurbs23TypeVal;
   Offset23CoreType *                  Offset23CoreTypeVal;
   Offset23Type *                      Offset23TypeVal;
@@ -1607,10 +1598,10 @@ int yyerror(const char * s);
   OppositeAngledLinesProjectionType * OppositeAngledLinesProjectionTypeVal;
   OppositeAngledLinesRecompType *     OppositeAngledLinesRecompTypeVal;
   OppositeAngledLinesTransformType *  OppositeAngledLinesTransformTypeVal;
-  OppositeAngledP_1118_TypeChoicePair * OppositeAngledP_1118_TypeChoicePairVal;
-  OppositeAngledP_1118_Type *         OppositeAngledP_1118_TypeVal;
   OppositeAngledP_1119_TypeChoicePair * OppositeAngledP_1119_TypeChoicePairVal;
   OppositeAngledP_1119_Type *         OppositeAngledP_1119_TypeVal;
+  OppositeAngledP_1120_TypeChoicePair * OppositeAngledP_1120_TypeChoicePairVal;
+  OppositeAngledP_1120_Type *         OppositeAngledP_1120_TypeVal;
   OppositeAngledPlanesBestFitType *   OppositeAngledPlanesBestFitTypeVal;
   OppositeAngledPlanesCastType *      OppositeAngledPlanesCastTypeVal;
   OppositeAngledPlanesCheckedFeatureType * OppositeAngledPlanesCheckedFeatureTypeVal;
@@ -1674,8 +1665,8 @@ int yyerror(const char * s);
   OrType *                            OrTypeVal;
   OrderedActionGroupType *            OrderedActionGroupTypeVal;
   OrganizationType *                  OrganizationTypeVal;
-  OrientationChar_1064_TypeChoicePair * OrientationChar_1064_TypeChoicePairVal;
-  OrientationChar_1064_Type *         OrientationChar_1064_TypeVal;
+  OrientationChar_1065_TypeChoicePair * OrientationChar_1065_TypeChoicePairVal;
+  OrientationChar_1065_Type *         OrientationChar_1065_TypeVal;
   OrientationCharacteristicStatsEvalType * OrientationCharacteristicStatsEvalTypeVal;
   OrientationDiametricalZoneType *    OrientationDiametricalZoneTypeVal;
   OrientationPlanarZoneType *         OrientationPlanarZoneTypeVal;
@@ -1685,7 +1676,7 @@ int yyerror(const char * s);
   OrientedLatitudeLongitudeSweepType * OrientedLatitudeLongitudeSweepTypeVal;
   OriginReferenceTypeChoicePair *     OriginReferenceTypeChoicePairVal;
   OriginReferenceType *               OriginReferenceTypeVal;
-  OriginReference_1065_Type *         OriginReference_1065_TypeVal;
+  OriginReference_1066_Type *         OriginReference_1066_TypeVal;
   OtherCurveCheckedFeatureType *      OtherCurveCheckedFeatureTypeVal;
   OtherCurveCheckedTypeChoicePair *   OtherCurveCheckedTypeChoicePairVal;
   OtherCurveCheckedType *             OtherCurveCheckedTypeVal;
@@ -1725,8 +1716,8 @@ int yyerror(const char * s);
   OtherSurfaceCheckedType *           OtherSurfaceCheckedTypeVal;
   OtherSurfaceConstructionMethodTypeChoicePair * OtherSurfaceConstructionMethodTypeChoicePairVal;
   OtherSurfaceConstructionMethodType * OtherSurfaceConstructionMethodTypeVal;
-  OtherSurfaceFea_1120_TypeChoicePair * OtherSurfaceFea_1120_TypeChoicePairVal;
-  OtherSurfaceFea_1120_Type *         OtherSurfaceFea_1120_TypeVal;
+  OtherSurfaceFea_1121_TypeChoicePair * OtherSurfaceFea_1121_TypeChoicePairVal;
+  OtherSurfaceFea_1121_Type *         OtherSurfaceFea_1121_TypeVal;
   OtherSurfaceFeatureCopyType *       OtherSurfaceFeatureCopyTypeVal;
   OtherSurfaceFeatureDefinitionType * OtherSurfaceFeatureDefinitionTypeVal;
   OtherSurfaceFeatureItemType *       OtherSurfaceFeatureItemTypeVal;
@@ -1744,7 +1735,6 @@ int yyerror(const char * s);
   ParallelismCharacteristicMeasurementType * ParallelismCharacteristicMeasurementTypeVal;
   ParallelismCharacteristicNominalType * ParallelismCharacteristicNominalTypeVal;
   ParallelismCharacteristicStatsEvalType * ParallelismCharacteristicStatsEvalTypeVal;
-  ParameterRangeType *                ParameterRangeTypeVal;
   PartAssemblyHeaderType *            PartAssemblyHeaderTypeVal;
   PartFamilyType *                    PartFamilyTypeVal;
   PartNoteSetType *                   PartNoteSetTypeVal;
@@ -1792,8 +1782,8 @@ int yyerror(const char * s);
   PlaneFeatureDefinitionType *        PlaneFeatureDefinitionTypeVal;
   PlaneFeatureItemType *              PlaneFeatureItemTypeVal;
   PlaneFeatureMeasurementType *       PlaneFeatureMeasurementTypeVal;
-  PlaneFeatureNom_1121_TypeChoicePair * PlaneFeatureNom_1121_TypeChoicePairVal;
-  PlaneFeatureNom_1121_Type *         PlaneFeatureNom_1121_TypeVal;
+  PlaneFeatureNom_1122_TypeChoicePair * PlaneFeatureNom_1122_TypeChoicePairVal;
+  PlaneFeatureNom_1122_Type *         PlaneFeatureNom_1122_TypeVal;
   PlaneFeatureNominalType *           PlaneFeatureNominalTypeVal;
   PlaneMeasurementDeterminationTypeChoicePair * PlaneMeasurementDeterminationTypeChoicePairVal;
   PlaneMeasurementDeterminationType * PlaneMeasurementDeterminationTypeVal;
@@ -1822,14 +1812,14 @@ int yyerror(const char * s);
   PointCheckedType *                  PointCheckedTypeVal;
   PointCloudSetType *                 PointCloudSetTypeVal;
   PointCloudType *                    PointCloudTypeVal;
-  PointCloudType_1226_TypeChoicePair * PointCloudType_1226_TypeChoicePairVal;
-  PointCloudType_1226_Type *          PointCloudType_1226_TypeVal;
   PointCloudType_1227_TypeChoicePair * PointCloudType_1227_TypeChoicePairVal;
   PointCloudType_1227_Type *          PointCloudType_1227_TypeVal;
   PointCloudType_1228_TypeChoicePair * PointCloudType_1228_TypeChoicePairVal;
   PointCloudType_1228_Type *          PointCloudType_1228_TypeVal;
   PointCloudType_1229_TypeChoicePair * PointCloudType_1229_TypeChoicePairVal;
   PointCloudType_1229_Type *          PointCloudType_1229_TypeVal;
+  PointCloudType_1230_TypeChoicePair * PointCloudType_1230_TypeChoicePairVal;
+  PointCloudType_1230_Type *          PointCloudType_1230_TypeVal;
   PointConstructionMethodTypeChoicePair * PointConstructionMethodTypeChoicePairVal;
   PointConstructionMethodType *       PointConstructionMethodTypeVal;
   PointDefinedCurveBestFitType *      PointDefinedCurveBestFitTypeVal;
@@ -1879,8 +1869,8 @@ int yyerror(const char * s);
   PointFeatureCenterOfGravityType *   PointFeatureCenterOfGravityTypeVal;
   PointFeatureCopyType *              PointFeatureCopyTypeVal;
   PointFeatureDefinitionType *        PointFeatureDefinitionTypeVal;
-  PointFeatureExt_1122_TypeChoicePair * PointFeatureExt_1122_TypeChoicePairVal;
-  PointFeatureExt_1122_Type *         PointFeatureExt_1122_TypeVal;
+  PointFeatureExt_1123_TypeChoicePair * PointFeatureExt_1123_TypeChoicePairVal;
+  PointFeatureExt_1123_Type *         PointFeatureExt_1123_TypeVal;
   PointFeatureExtremeType *           PointFeatureExtremeTypeVal;
   PointFeatureFromConeType *          PointFeatureFromConeTypeVal;
   PointFeatureFromScanType *          PointFeatureFromScanTypeVal;
@@ -1888,13 +1878,13 @@ int yyerror(const char * s);
   PointFeatureItemType *              PointFeatureItemTypeVal;
   PointFeatureMeasurementType *       PointFeatureMeasurementTypeVal;
   PointFeatureMidPointType *          PointFeatureMidPointTypeVal;
-  PointFeatureMov_1123_TypeChoicePair * PointFeatureMov_1123_TypeChoicePairVal;
-  PointFeatureMov_1123_Type *         PointFeatureMov_1123_TypeVal;
+  PointFeatureMov_1124_TypeChoicePair * PointFeatureMov_1124_TypeChoicePairVal;
+  PointFeatureMov_1124_Type *         PointFeatureMov_1124_TypeVal;
   PointFeatureMovePointAxisType *     PointFeatureMovePointAxisTypeVal;
   PointFeatureMovePointType *         PointFeatureMovePointTypeVal;
   PointFeatureMovePointVectorType *   PointFeatureMovePointVectorTypeVal;
-  PointFeatureNom_1124_TypeChoicePair * PointFeatureNom_1124_TypeChoicePairVal;
-  PointFeatureNom_1124_Type *         PointFeatureNom_1124_TypeVal;
+  PointFeatureNom_1125_TypeChoicePair * PointFeatureNom_1125_TypeChoicePairVal;
+  PointFeatureNom_1125_Type *         PointFeatureNom_1125_TypeVal;
   PointFeatureNominalType *           PointFeatureNominalTypeVal;
   PointFeaturePierceType *            PointFeaturePierceTypeVal;
   PointFeatureProjectionType *        PointFeatureProjectionTypeVal;
@@ -1913,7 +1903,6 @@ int yyerror(const char * s);
   PointProfileCharacteristicNominalType * PointProfileCharacteristicNominalTypeVal;
   PointProfileCharacteristicStatsEvalType * PointProfileCharacteristicStatsEvalTypeVal;
   PointRangeType *                    PointRangeTypeVal;
-  PointSamplingStrategyEnumBaseType * PointSamplingStrategyEnumBaseTypeVal;
   PointSetNominalType *               PointSetNominalTypeVal;
   PointSetReferenceBaseType *         PointSetReferenceBaseTypeVal;
   PointSetReferenceRangeType *        PointSetReferenceRangeTypeVal;
@@ -1923,17 +1912,17 @@ int yyerror(const char * s);
   PointSimpleType *                   PointSimpleTypeVal;
   PointType *                         PointTypeVal;
   PolyLineType *                      PolyLineTypeVal;
-  Polyline12CoreT_1221_TypeChoicePair * Polyline12CoreT_1221_TypeChoicePairVal;
-  Polyline12CoreT_1221_Type *         Polyline12CoreT_1221_TypeVal;
+  Polyline12CoreT_1222_TypeChoicePair * Polyline12CoreT_1222_TypeChoicePairVal;
+  Polyline12CoreT_1222_Type *         Polyline12CoreT_1222_TypeVal;
   Polyline12CoreType *                Polyline12CoreTypeVal;
   Polyline12Type *                    Polyline12TypeVal;
-  Polyline13CoreT_1222_TypeChoicePair * Polyline13CoreT_1222_TypeChoicePairVal;
-  Polyline13CoreT_1222_Type *         Polyline13CoreT_1222_TypeVal;
+  Polyline13CoreT_1223_TypeChoicePair * Polyline13CoreT_1223_TypeChoicePairVal;
+  Polyline13CoreT_1223_Type *         Polyline13CoreT_1223_TypeVal;
   Polyline13CoreType *                Polyline13CoreTypeVal;
   Polyline13Type *                    Polyline13TypeVal;
   Polyline2dType *                    Polyline2dTypeVal;
-  Polyline2dType_1232_TypeChoicePair * Polyline2dType_1232_TypeChoicePairVal;
-  Polyline2dType_1232_Type *          Polyline2dType_1232_TypeVal;
+  Polyline2dType_1233_TypeChoicePair * Polyline2dType_1233_TypeChoicePairVal;
+  Polyline2dType_1233_Type *          Polyline2dType_1233_TypeVal;
   Polylines2dType *                   Polylines2dTypeVal;
   PositionCapabilityCalculationEnumType * PositionCapabilityCalculationEnumTypeVal;
   PositionCharacteristicDefinitionType * PositionCharacteristicDefinitionTypeVal;
@@ -1949,18 +1938,18 @@ int yyerror(const char * s);
   PositionZoneShapeTypeChoicePair *   PositionZoneShapeTypeChoicePairVal;
   PositionZoneShapeType *             PositionZoneShapeTypeVal;
   PositiveDecimalType *               PositiveDecimalTypeVal;
-  PreInspectionTr_1043_TypeChoicePair * PreInspectionTr_1043_TypeChoicePairVal;
-  PreInspectionTr_1043_Type *         PreInspectionTr_1043_TypeVal;
+  PreInspectionTr_1044_TypeChoicePair * PreInspectionTr_1044_TypeChoicePairVal;
+  PreInspectionTr_1044_Type *         PreInspectionTr_1044_TypeVal;
   PreInspectionTraceabilityType *     PreInspectionTraceabilityTypeVal;
   PrecedenceEnumType *                PrecedenceEnumTypeVal;
   PrecedenceTypeChoicePair *          PrecedenceTypeChoicePairVal;
   PrecedenceType *                    PrecedenceTypeVal;
   PredecessorsType *                  PredecessorsTypeVal;
-  PressureCharact_1066_TypeChoicePair * PressureCharact_1066_TypeChoicePairVal;
-  PressureCharact_1066_Type *         PressureCharact_1066_TypeVal;
-  PressureToleran_1020_TypeChoicePair * PressureToleran_1020_TypeChoicePairVal;
-  PressureToleran_1020_Type *         PressureToleran_1020_TypeVal;
-  PressureToleran_1037_Type *         PressureToleran_1037_TypeVal;
+  PressureCharact_1067_TypeChoicePair * PressureCharact_1067_TypeChoicePairVal;
+  PressureCharact_1067_Type *         PressureCharact_1067_TypeVal;
+  PressureToleran_1021_TypeChoicePair * PressureToleran_1021_TypeChoicePairVal;
+  PressureToleran_1021_Type *         PressureToleran_1021_TypeVal;
+  PressureToleran_1038_Type *         PressureToleran_1038_TypeVal;
   PressureToleranceType *             PressureToleranceTypeVal;
   PressureUnitType *                  PressureUnitTypeVal;
   PressureValueType *                 PressureValueTypeVal;
@@ -1968,14 +1957,14 @@ int yyerror(const char * s);
   PrimaryUnitsType *                  PrimaryUnitsTypeVal;
   PrintedDrawingType *                PrintedDrawingTypeVal;
   ProbeTipType *                      ProbeTipTypeVal;
-  ProcessDifferen_1206_TypeChoicePair * ProcessDifferen_1206_TypeChoicePairVal;
-  ProcessDifferen_1206_Type *         ProcessDifferen_1206_TypeVal;
+  ProcessDifferen_1207_TypeChoicePair * ProcessDifferen_1207_TypeChoicePairVal;
+  ProcessDifferen_1207_Type *         ProcessDifferen_1207_TypeVal;
   ProcessDifferenceStudyPlanType *    ProcessDifferenceStudyPlanTypeVal;
   ProcessDifferenceStudyResultsType * ProcessDifferenceStudyResultsTypeVal;
   ProcessParameterType *              ProcessParameterTypeVal;
   ProcessParametersType *             ProcessParametersTypeVal;
-  ProductDataQual_1044_TypeChoicePair * ProductDataQual_1044_TypeChoicePairVal;
-  ProductDataQual_1044_Type *         ProductDataQual_1044_TypeVal;
+  ProductDataQual_1045_TypeChoicePair * ProductDataQual_1045_TypeChoicePairVal;
+  ProductDataQual_1045_Type *         ProductDataQual_1045_TypeVal;
   ProductDataQualityAreaEnumType *    ProductDataQualityAreaEnumTypeVal;
   ProductDataQualityAreaType *        ProductDataQualityAreaTypeVal;
   ProductDataQualityCheckType *       ProductDataQualityCheckTypeVal;
@@ -1984,23 +1973,20 @@ int yyerror(const char * s);
   ProductHeaderType *                 ProductHeaderTypeVal;
   ProductTraceabilityType *           ProductTraceabilityTypeVal;
   ProductType *                       ProductTypeVal;
-  ProductType_1238_TypeChoicePair *   ProductType_1238_TypeChoicePairVal;
-  ProductType_1238_Type *             ProductType_1238_TypeVal;
+  ProductType_1239_TypeChoicePair *   ProductType_1239_TypeChoicePairVal;
+  ProductType_1239_Type *             ProductType_1239_TypeVal;
   ProductionStudyPlanType *           ProductionStudyPlanTypeVal;
   ProductionStudyResultsType *        ProductionStudyResultsTypeVal;
-  ProfileCharacte_1067_TypeChoicePair * ProfileCharacte_1067_TypeChoicePairVal;
-  ProfileCharacte_1067_Type *         ProfileCharacte_1067_TypeVal;
+  ProfileCharacte_1068_TypeChoicePair * ProfileCharacte_1068_TypeChoicePairVal;
+  ProfileCharacte_1068_Type *         ProfileCharacte_1068_TypeVal;
   ProfileProjectorMeasureFeatureMethodType * ProfileProjectorMeasureFeatureMethodTypeVal;
   QIFDocumentHeaderType *             QIFDocumentHeaderTypeVal;
   QIFDocumentType *                   QIFDocumentTypeVal;
   QIFFeaturePairType *                QIFFeaturePairTypeVal;
-  QIFIdAndReferenceBaseType *         QIFIdAndReferenceBaseTypeVal;
-  QIFIdType *                         QIFIdTypeVal;
   QIFMayType *                        QIFMayTypeVal;
   QIFMustNotType *                    QIFMustNotTypeVal;
   QIFMustType *                       QIFMustTypeVal;
   QIFReferenceActiveType *            QIFReferenceActiveTypeVal;
-  QIFReferenceBaseType *              QIFReferenceBaseTypeVal;
   QIFReferenceFullType *              QIFReferenceFullTypeVal;
   QIFReferenceSimpleType *            QIFReferenceSimpleTypeVal;
   QIFReferenceType *                  QIFReferenceTypeVal;
@@ -2042,16 +2028,16 @@ int yyerror(const char * s);
   SamplingIntervalEnumType *          SamplingIntervalEnumTypeVal;
   SamplingIntervalTypeChoicePair *    SamplingIntervalTypeChoicePairVal;
   SamplingIntervalType *              SamplingIntervalTypeVal;
-  SamplingMethodT_1135_TypeChoicePair * SamplingMethodT_1135_TypeChoicePairVal;
-  SamplingMethodT_1135_Type *         SamplingMethodT_1135_TypeVal;
-  SamplingMethodT_1157_Type *         SamplingMethodT_1157_TypeVal;
+  SamplingMethodT_1136_TypeChoicePair * SamplingMethodT_1136_TypeChoicePairVal;
+  SamplingMethodT_1136_Type *         SamplingMethodT_1136_TypeVal;
+  SamplingMethodT_1158_Type *         SamplingMethodT_1158_TypeVal;
   SamplingMethodType *                SamplingMethodTypeVal;
   SavedViewSetType *                  SavedViewSetTypeVal;
   SavedViewType *                     SavedViewTypeVal;
   ScaleReferenceEnumType *            ScaleReferenceEnumTypeVal;
   ScaleType *                         ScaleTypeVal;
-  ScaleType_1005_TypeChoicePair *     ScaleType_1005_TypeChoicePairVal;
-  ScaleType_1005_Type *               ScaleType_1005_TypeVal;
+  ScaleType_1006_TypeChoicePair *     ScaleType_1006_TypeChoicePairVal;
+  ScaleType_1006_Type *               ScaleType_1006_TypeVal;
   SecondaryAlignmentOperationType *   SecondaryAlignmentOperationTypeVal;
   SectionAreaType *                   SectionAreaTypeVal;
   SectionAreasType *                  SectionAreasTypeVal;
@@ -2070,15 +2056,14 @@ int yyerror(const char * s);
   Segment13CoreType *                 Segment13CoreTypeVal;
   Segment13Type *                     Segment13TypeVal;
   SequencedBaseFeatureType *          SequencedBaseFeatureTypeVal;
-  SequencedDatumT_1021_TypeChoicePair * SequencedDatumT_1021_TypeChoicePairVal;
-  SequencedDatumT_1021_Type *         SequencedDatumT_1021_TypeVal;
+  SequencedDatumT_1022_TypeChoicePair * SequencedDatumT_1022_TypeChoicePairVal;
+  SequencedDatumT_1022_Type *         SequencedDatumT_1022_TypeVal;
   SequencedDatumType *                SequencedDatumTypeVal;
   SetFeatureType *                    SetFeatureTypeVal;
   ShapeClassEnumType *                ShapeClassEnumTypeVal;
   ShapeClassIsType *                  ShapeClassIsTypeVal;
   ShapeClassTypeChoicePair *          ShapeClassTypeChoicePairVal;
   ShapeClassType *                    ShapeClassTypeVal;
-  ShellFormEnumType *                 ShellFormEnumTypeVal;
   ShellSetType *                      ShellSetTypeVal;
   ShellType *                         ShellTypeVal;
   SignOffsType *                      SignOffsTypeVal;
@@ -2105,11 +2090,11 @@ int yyerror(const char * s);
   SoftwareType *                      SoftwareTypeVal;
   SoftwaresType *                     SoftwaresTypeVal;
   SpecifiedDecimalType *              SpecifiedDecimalTypeVal;
-  SpeedCharacteri_1068_TypeChoicePair * SpeedCharacteri_1068_TypeChoicePairVal;
-  SpeedCharacteri_1068_Type *         SpeedCharacteri_1068_TypeVal;
-  SpeedToleranceT_1022_TypeChoicePair * SpeedToleranceT_1022_TypeChoicePairVal;
-  SpeedToleranceT_1022_Type *         SpeedToleranceT_1022_TypeVal;
-  SpeedToleranceT_1038_Type *         SpeedToleranceT_1038_TypeVal;
+  SpeedCharacteri_1069_TypeChoicePair * SpeedCharacteri_1069_TypeChoicePairVal;
+  SpeedCharacteri_1069_Type *         SpeedCharacteri_1069_TypeVal;
+  SpeedToleranceT_1023_TypeChoicePair * SpeedToleranceT_1023_TypeChoicePairVal;
+  SpeedToleranceT_1023_Type *         SpeedToleranceT_1023_TypeVal;
+  SpeedToleranceT_1039_Type *         SpeedToleranceT_1039_TypeVal;
   SpeedToleranceType *                SpeedToleranceTypeVal;
   SpeedUnitType *                     SpeedUnitTypeVal;
   SpeedValueType *                    SpeedValueTypeVal;
@@ -2146,9 +2131,9 @@ int yyerror(const char * s);
   SphericalRadiusCharacteristicMeasurementType * SphericalRadiusCharacteristicMeasurementTypeVal;
   SphericalRadiusCharacteristicNominalType * SphericalRadiusCharacteristicNominalTypeVal;
   SphericalRadiusCharacteristicStatsEvalType * SphericalRadiusCharacteristicStatsEvalTypeVal;
-  SphericalResolu_1242_TypeChoicePair * SphericalResolu_1242_TypeChoicePairVal;
-  SphericalResolu_1242_Type *         SphericalResolu_1242_TypeVal;
-  SphericalResolu_1245_Type *         SphericalResolu_1245_TypeVal;
+  SphericalResolu_1243_TypeChoicePair * SphericalResolu_1243_TypeChoicePairVal;
+  SphericalResolu_1243_Type *         SphericalResolu_1243_TypeVal;
+  SphericalResolu_1246_Type *         SphericalResolu_1246_TypeVal;
   SphericalResolutionType *           SphericalResolutionTypeVal;
   SphericalSegmentBestFitType *       SphericalSegmentBestFitTypeVal;
   SphericalSegmentCastType *          SphericalSegmentCastTypeVal;
@@ -2169,7 +2154,7 @@ int yyerror(const char * s);
   SphericalSegmentRecompType *        SphericalSegmentRecompTypeVal;
   SphericalSegmentTransformType *     SphericalSegmentTransformTypeVal;
   SphericalWorkingVolumeType *        SphericalWorkingVolumeTypeVal;
-  SphericityChara_1069_Type *         SphericityChara_1069_TypeVal;
+  SphericityChara_1070_Type *         SphericityChara_1070_TypeVal;
   SphericityCharacteristicDefinitionType * SphericityCharacteristicDefinitionTypeVal;
   SphericityCharacteristicItemType *  SphericityCharacteristicItemTypeVal;
   SphericityCharacteristicMeasurementType * SphericityCharacteristicMeasurementTypeVal;
@@ -2193,14 +2178,14 @@ int yyerror(const char * s);
   StandardsOrganizationTypeChoicePair * StandardsOrganizationTypeChoicePairVal;
   StandardsOrganizationType *         StandardsOrganizationTypeVal;
   StandardsType *                     StandardsTypeVal;
-  StatisticalStud_1207_Type *         StatisticalStud_1207_TypeVal;
   StatisticalStud_1208_Type *         StatisticalStud_1208_TypeVal;
-  StatisticalStud_1209_TypeChoicePair * StatisticalStud_1209_TypeChoicePairVal;
   StatisticalStud_1209_Type *         StatisticalStud_1209_TypeVal;
   StatisticalStud_1210_TypeChoicePair * StatisticalStud_1210_TypeChoicePairVal;
   StatisticalStud_1210_Type *         StatisticalStud_1210_TypeVal;
   StatisticalStud_1211_TypeChoicePair * StatisticalStud_1211_TypeChoicePairVal;
   StatisticalStud_1211_Type *         StatisticalStud_1211_TypeVal;
+  StatisticalStud_1212_TypeChoicePair * StatisticalStud_1212_TypeChoicePairVal;
+  StatisticalStud_1212_Type *         StatisticalStud_1212_TypeVal;
   StatisticalStudiesResultsType *     StatisticalStudiesResultsTypeVal;
   StatisticalStudyPlanBaseType *      StatisticalStudyPlanBaseTypeVal;
   StatisticalStudyPlansType *         StatisticalStudyPlansTypeVal;
@@ -2227,8 +2212,8 @@ int yyerror(const char * s);
   StatsUserDefinedUnitType *          StatsUserDefinedUnitTypeVal;
   StatsValuesEnumType *               StatsValuesEnumTypeVal;
   StatsValuesType *                   StatsValuesTypeVal;
-  StatsWithRefere_1006_TypeChoicePair * StatsWithRefere_1006_TypeChoicePairVal;
-  StatsWithRefere_1006_Type *         StatsWithRefere_1006_TypeVal;
+  StatsWithRefere_1007_TypeChoicePair * StatsWithRefere_1007_TypeChoicePairVal;
+  StatsWithRefere_1007_Type *         StatsWithRefere_1007_TypeVal;
   StatsWithReferenceBaseType *        StatsWithReferenceBaseTypeVal;
   StatsWithTolAngularType *           StatsWithTolAngularTypeVal;
   StatsWithTolAreaType *              StatsWithTolAreaTypeVal;
@@ -2243,10 +2228,10 @@ int yyerror(const char * s);
   StepWithPredecessorsType *          StepWithPredecessorsTypeVal;
   StepsWithPredecessorsType *         StepsWithPredecessorsTypeVal;
   StiffnessType *                     StiffnessTypeVal;
-  StraightnessCha_1070_TypeChoicePair * StraightnessCha_1070_TypeChoicePairVal;
-  StraightnessCha_1070_Type *         StraightnessCha_1070_TypeVal;
-  StraightnessCha_1087_Type *         StraightnessCha_1087_TypeVal;
+  StraightnessCha_1071_TypeChoicePair * StraightnessCha_1071_TypeChoicePairVal;
+  StraightnessCha_1071_Type *         StraightnessCha_1071_TypeVal;
   StraightnessCha_1088_Type *         StraightnessCha_1088_TypeVal;
+  StraightnessCha_1089_Type *         StraightnessCha_1089_TypeVal;
   StraightnessCharacteristicDefinitionType * StraightnessCharacteristicDefinitionTypeVal;
   StraightnessCharacteristicItemType * StraightnessCharacteristicItemTypeVal;
   StraightnessCharacteristicMeasurementType * StraightnessCharacteristicMeasurementTypeVal;
@@ -2259,8 +2244,8 @@ int yyerror(const char * s);
   StringValuesType *                  StringValuesTypeVal;
   StructuredLightSensorType *         StructuredLightSensorTypeVal;
   StudyIssueType *                    StudyIssueTypeVal;
-  StudyIssueType_1136_TypeChoicePair * StudyIssueType_1136_TypeChoicePairVal;
-  StudyIssueType_1136_Type *          StudyIssueType_1136_TypeVal;
+  StudyIssueType_1137_TypeChoicePair * StudyIssueType_1137_TypeChoicePairVal;
+  StudyIssueType_1137_Type *          StudyIssueType_1137_TypeVal;
   StudyIssuesType *                   StudyIssuesTypeVal;
   SubgroupDecimalArrayType *          SubgroupDecimalArrayTypeVal;
   SubgroupDecimalType *               SubgroupDecimalTypeVal;
@@ -2272,8 +2257,8 @@ int yyerror(const char * s);
   SubgroupType *                      SubgroupTypeVal;
   SubgroupValuesType *                SubgroupValuesTypeVal;
   SubgroupsType *                     SubgroupsTypeVal;
-  SubstituteFeatu_1023_TypeChoicePair * SubstituteFeatu_1023_TypeChoicePairVal;
-  SubstituteFeatu_1023_Type *         SubstituteFeatu_1023_TypeVal;
+  SubstituteFeatu_1024_TypeChoicePair * SubstituteFeatu_1024_TypeChoicePairVal;
+  SubstituteFeatu_1024_Type *         SubstituteFeatu_1024_TypeVal;
   SubstituteFeatureAlgorithmEnumType * SubstituteFeatureAlgorithmEnumTypeVal;
   SubstituteFeatureAlgorithmType *    SubstituteFeatureAlgorithmTypeVal;
   SummariesStatisticsAngularType *    SummariesStatisticsAngularTypeVal;
@@ -2329,8 +2314,8 @@ int yyerror(const char * s);
   SurfaceProfileCharacteristicMeasurementType * SurfaceProfileCharacteristicMeasurementTypeVal;
   SurfaceProfileCharacteristicNominalType * SurfaceProfileCharacteristicNominalTypeVal;
   SurfaceProfileCharacteristicStatsEvalType * SurfaceProfileCharacteristicStatsEvalTypeVal;
-  SurfaceProfileN_1071_TypeChoicePair * SurfaceProfileN_1071_TypeChoicePairVal;
-  SurfaceProfileN_1071_Type *         SurfaceProfileN_1071_TypeVal;
+  SurfaceProfileN_1072_TypeChoicePair * SurfaceProfileN_1072_TypeChoicePairVal;
+  SurfaceProfileN_1072_Type *         SurfaceProfileN_1072_TypeVal;
   SurfaceProfileNonUniformCharacteristicDefinitionType * SurfaceProfileNonUniformCharacteristicDefinitionTypeVal;
   SurfaceProfileNonUniformCharacteristicItemType * SurfaceProfileNonUniformCharacteristicItemTypeVal;
   SurfaceProfileNonUniformCharacteristicMeasurementType * SurfaceProfileNonUniformCharacteristicMeasurementTypeVal;
@@ -2351,14 +2336,14 @@ int yyerror(const char * s);
   TableErrorsType *                   TableErrorsTypeVal;
   TactileProbeSensorBaseType *        TactileProbeSensorBaseTypeVal;
   TargetMirrorEnumType *              TargetMirrorEnumTypeVal;
-  TemperatureChar_1072_TypeChoicePair * TemperatureChar_1072_TypeChoicePairVal;
-  TemperatureChar_1072_Type *         TemperatureChar_1072_TypeVal;
+  TemperatureChar_1073_TypeChoicePair * TemperatureChar_1073_TypeChoicePairVal;
+  TemperatureChar_1073_Type *         TemperatureChar_1073_TypeVal;
   TemperatureCompensationEnumType *   TemperatureCompensationEnumTypeVal;
   TemperatureCompensationTypeChoicePair * TemperatureCompensationTypeChoicePairVal;
   TemperatureCompensationType *       TemperatureCompensationTypeVal;
-  TemperatureTole_1024_TypeChoicePair * TemperatureTole_1024_TypeChoicePairVal;
-  TemperatureTole_1024_Type *         TemperatureTole_1024_TypeVal;
-  TemperatureTole_1039_Type *         TemperatureTole_1039_TypeVal;
+  TemperatureTole_1025_TypeChoicePair * TemperatureTole_1025_TypeChoicePairVal;
+  TemperatureTole_1025_Type *         TemperatureTole_1025_TypeVal;
+  TemperatureTole_1040_Type *         TemperatureTole_1040_TypeVal;
   TemperatureToleranceType *          TemperatureToleranceTypeVal;
   TemperatureType *                   TemperatureTypeVal;
   TemperatureUnitType *               TemperatureUnitTypeVal;
@@ -2370,8 +2355,8 @@ int yyerror(const char * s);
   TextType *                          TextTypeVal;
   TextsType *                         TextsTypeVal;
   ThenPointsType *                    ThenPointsTypeVal;
-  ThenPointsType_1212_TypeChoicePair * ThenPointsType_1212_TypeChoicePairVal;
-  ThenPointsType_1212_Type *          ThenPointsType_1212_TypeVal;
+  ThenPointsType_1213_TypeChoicePair * ThenPointsType_1213_TypeChoicePairVal;
+  ThenPointsType_1213_Type *          ThenPointsType_1213_TypeVal;
   TheodoliteMeasureFeatureMethodType * TheodoliteMeasureFeatureMethodTypeVal;
   TheodoliteType *                    TheodoliteTypeVal;
   ThicknessCharacteristicDefinitionType * ThicknessCharacteristicDefinitionTypeVal;
@@ -2410,14 +2395,14 @@ int yyerror(const char * s);
   ThreadedFeatureNominalType *        ThreadedFeatureNominalTypeVal;
   ThreadedFeatureRecompType *         ThreadedFeatureRecompTypeVal;
   ThreadedFeatureTransformType *      ThreadedFeatureTransformTypeVal;
-  TimeCharacteris_1073_TypeChoicePair * TimeCharacteris_1073_TypeChoicePairVal;
-  TimeCharacteris_1073_Type *         TimeCharacteris_1073_TypeVal;
+  TimeCharacteris_1074_TypeChoicePair * TimeCharacteris_1074_TypeChoicePairVal;
+  TimeCharacteris_1074_Type *         TimeCharacteris_1074_TypeVal;
   TimeDescriptionEnumType *           TimeDescriptionEnumTypeVal;
   TimeDescriptionTypeChoicePair *     TimeDescriptionTypeChoicePairVal;
   TimeDescriptionType *               TimeDescriptionTypeVal;
-  TimeToleranceTy_1025_TypeChoicePair * TimeToleranceTy_1025_TypeChoicePairVal;
-  TimeToleranceTy_1025_Type *         TimeToleranceTy_1025_TypeVal;
-  TimeToleranceTy_1040_Type *         TimeToleranceTy_1040_TypeVal;
+  TimeToleranceTy_1026_TypeChoicePair * TimeToleranceTy_1026_TypeChoicePairVal;
+  TimeToleranceTy_1026_Type *         TimeToleranceTy_1026_TypeVal;
+  TimeToleranceTy_1041_Type *         TimeToleranceTy_1041_TypeVal;
   TimeToleranceType *                 TimeToleranceTypeVal;
   TimeUnitType *                      TimeUnitTypeVal;
   TimeValueType *                     TimeValueTypeVal;
@@ -2431,8 +2416,8 @@ int yyerror(const char * s);
   TokenParameterValueType *           TokenParameterValueTypeVal;
   ToleranceDefinitionsTypeChoicePair * ToleranceDefinitionsTypeChoicePairVal;
   ToleranceDefinitionsType *          ToleranceDefinitionsTypeVal;
-  ToleranceZonePe_1026_TypeChoicePair * ToleranceZonePe_1026_TypeChoicePairVal;
-  ToleranceZonePe_1026_Type *         ToleranceZonePe_1026_TypeVal;
+  ToleranceZonePe_1027_TypeChoicePair * ToleranceZonePe_1027_TypeChoicePairVal;
+  ToleranceZonePe_1027_Type *         ToleranceZonePe_1027_TypeVal;
   ToleranceZonePerUnitAngleType *     ToleranceZonePerUnitAngleTypeVal;
   ToleranceZonePerUnitAreaType *      ToleranceZonePerUnitAreaTypeVal;
   ToleranceZonePerUnitLengthType *    ToleranceZonePerUnitLengthTypeVal;
@@ -2518,10 +2503,10 @@ int yyerror(const char * s);
   TransparencyType *                  TransparencyTypeVal;
   TriangleVertexNormalType *          TriangleVertexNormalTypeVal;
   Triangulation2dType *               Triangulation2dTypeVal;
-  Triangulation2d_1233_TypeChoicePair * Triangulation2d_1233_TypeChoicePairVal;
-  Triangulation2d_1233_Type *         Triangulation2d_1233_TypeVal;
   Triangulation2d_1234_TypeChoicePair * Triangulation2d_1234_TypeChoicePairVal;
   Triangulation2d_1234_Type *         Triangulation2d_1234_TypeVal;
+  Triangulation2d_1235_TypeChoicePair * Triangulation2d_1235_TypeChoicePairVal;
+  Triangulation2d_1235_Type *         Triangulation2d_1235_TypeVal;
   TwentyLinearValuesType *            TwentyLinearValuesTypeVal;
   TypeOfCoordinatesTypeChoicePair *   TypeOfCoordinatesTypeChoicePairVal;
   TypeOfCoordinatesType *             TypeOfCoordinatesTypeVal;
@@ -2534,18 +2519,18 @@ int yyerror(const char * s);
   UnitVector2dSimpleType *            UnitVector2dSimpleTypeVal;
   UnitVectorSimpleType *              UnitVectorSimpleTypeVal;
   UnitVectorType *                    UnitVectorTypeVal;
-  UniversalDeviceType *               UniversalDeviceTypeVal;
   UniversalLengthMeasureFeatureMethodType * UniversalLengthMeasureFeatureMethodTypeVal;
   UniversalLengthMeasuringType *      UniversalLengthMeasuringTypeVal;
   UnnumberedPlanElementsType *        UnnumberedPlanElementsTypeVal;
   UnorderedActionGroupType *          UnorderedActionGroupTypeVal;
   UserAxisBaseType *                  UserAxisBaseTypeVal;
-  UserDefinedAngu_1137_TypeChoicePair * UserDefinedAngu_1137_TypeChoicePairVal;
-  UserDefinedAngu_1137_Type *         UserDefinedAngu_1137_TypeVal;
-  UserDefinedAngu_1158_Type *         UserDefinedAngu_1158_TypeVal;
+  UserDataXMLType *                   UserDataXMLTypeVal;
+  UserDefinedAngu_1138_TypeChoicePair * UserDefinedAngu_1138_TypeChoicePairVal;
+  UserDefinedAngu_1138_Type *         UserDefinedAngu_1138_TypeVal;
   UserDefinedAngu_1159_Type *         UserDefinedAngu_1159_TypeVal;
   UserDefinedAngu_1160_Type *         UserDefinedAngu_1160_TypeVal;
   UserDefinedAngu_1161_Type *         UserDefinedAngu_1161_TypeVal;
+  UserDefinedAngu_1162_Type *         UserDefinedAngu_1162_TypeVal;
   UserDefinedAngularCharacteristicDefinitionType * UserDefinedAngularCharacteristicDefinitionTypeVal;
   UserDefinedAngularCharacteristicItemType * UserDefinedAngularCharacteristicItemTypeVal;
   UserDefinedAngularCharacteristicMeasurementType * UserDefinedAngularCharacteristicMeasurementTypeVal;
@@ -2556,35 +2541,35 @@ int yyerror(const char * s);
   UserDefinedAreaCharacteristicMeasurementType * UserDefinedAreaCharacteristicMeasurementTypeVal;
   UserDefinedAreaCharacteristicNominalType * UserDefinedAreaCharacteristicNominalTypeVal;
   UserDefinedAreaCharacteristicStatsEvalType * UserDefinedAreaCharacteristicStatsEvalTypeVal;
-  UserDefinedArea_1138_TypeChoicePair * UserDefinedArea_1138_TypeChoicePairVal;
-  UserDefinedArea_1138_Type *         UserDefinedArea_1138_TypeVal;
-  UserDefinedArea_1162_Type *         UserDefinedArea_1162_TypeVal;
+  UserDefinedArea_1139_TypeChoicePair * UserDefinedArea_1139_TypeChoicePairVal;
+  UserDefinedArea_1139_Type *         UserDefinedArea_1139_TypeVal;
   UserDefinedArea_1163_Type *         UserDefinedArea_1163_TypeVal;
   UserDefinedArea_1164_Type *         UserDefinedArea_1164_TypeVal;
   UserDefinedArea_1165_Type *         UserDefinedArea_1165_TypeVal;
+  UserDefinedArea_1166_Type *         UserDefinedArea_1166_TypeVal;
   UserDefinedAttributeCharacteristicDefinitionType * UserDefinedAttributeCharacteristicDefinitionTypeVal;
   UserDefinedAttributeCharacteristicItemType * UserDefinedAttributeCharacteristicItemTypeVal;
   UserDefinedAttributeCharacteristicMeasurementType * UserDefinedAttributeCharacteristicMeasurementTypeVal;
   UserDefinedAttributeCharacteristicNominalType * UserDefinedAttributeCharacteristicNominalTypeVal;
   UserDefinedAttributeCharacteristicStatsEvalType * UserDefinedAttributeCharacteristicStatsEvalTypeVal;
   UserDefinedAxisType *               UserDefinedAxisTypeVal;
-  UserDefinedForc_1139_TypeChoicePair * UserDefinedForc_1139_TypeChoicePairVal;
-  UserDefinedForc_1139_Type *         UserDefinedForc_1139_TypeVal;
-  UserDefinedForc_1166_Type *         UserDefinedForc_1166_TypeVal;
+  UserDefinedForc_1140_TypeChoicePair * UserDefinedForc_1140_TypeChoicePairVal;
+  UserDefinedForc_1140_Type *         UserDefinedForc_1140_TypeVal;
   UserDefinedForc_1167_Type *         UserDefinedForc_1167_TypeVal;
   UserDefinedForc_1168_Type *         UserDefinedForc_1168_TypeVal;
   UserDefinedForc_1169_Type *         UserDefinedForc_1169_TypeVal;
+  UserDefinedForc_1170_Type *         UserDefinedForc_1170_TypeVal;
   UserDefinedForceCharacteristicDefinitionType * UserDefinedForceCharacteristicDefinitionTypeVal;
   UserDefinedForceCharacteristicItemType * UserDefinedForceCharacteristicItemTypeVal;
   UserDefinedForceCharacteristicMeasurementType * UserDefinedForceCharacteristicMeasurementTypeVal;
   UserDefinedForceCharacteristicNominalType * UserDefinedForceCharacteristicNominalTypeVal;
   UserDefinedForceCharacteristicStatsEvalType * UserDefinedForceCharacteristicStatsEvalTypeVal;
-  UserDefinedLine_1140_TypeChoicePair * UserDefinedLine_1140_TypeChoicePairVal;
-  UserDefinedLine_1140_Type *         UserDefinedLine_1140_TypeVal;
-  UserDefinedLine_1170_Type *         UserDefinedLine_1170_TypeVal;
+  UserDefinedLine_1141_TypeChoicePair * UserDefinedLine_1141_TypeChoicePairVal;
+  UserDefinedLine_1141_Type *         UserDefinedLine_1141_TypeVal;
   UserDefinedLine_1171_Type *         UserDefinedLine_1171_TypeVal;
   UserDefinedLine_1172_Type *         UserDefinedLine_1172_TypeVal;
   UserDefinedLine_1173_Type *         UserDefinedLine_1173_TypeVal;
+  UserDefinedLine_1174_Type *         UserDefinedLine_1174_TypeVal;
   UserDefinedLinearCharacteristicDefinitionType * UserDefinedLinearCharacteristicDefinitionTypeVal;
   UserDefinedLinearCharacteristicItemType * UserDefinedLinearCharacteristicItemTypeVal;
   UserDefinedLinearCharacteristicMeasurementType * UserDefinedLinearCharacteristicMeasurementTypeVal;
@@ -2595,44 +2580,44 @@ int yyerror(const char * s);
   UserDefinedMassCharacteristicMeasurementType * UserDefinedMassCharacteristicMeasurementTypeVal;
   UserDefinedMassCharacteristicNominalType * UserDefinedMassCharacteristicNominalTypeVal;
   UserDefinedMassCharacteristicStatsEvalType * UserDefinedMassCharacteristicStatsEvalTypeVal;
-  UserDefinedMass_1141_TypeChoicePair * UserDefinedMass_1141_TypeChoicePairVal;
-  UserDefinedMass_1141_Type *         UserDefinedMass_1141_TypeVal;
-  UserDefinedMass_1174_Type *         UserDefinedMass_1174_TypeVal;
+  UserDefinedMass_1142_TypeChoicePair * UserDefinedMass_1142_TypeChoicePairVal;
+  UserDefinedMass_1142_Type *         UserDefinedMass_1142_TypeVal;
   UserDefinedMass_1175_Type *         UserDefinedMass_1175_TypeVal;
   UserDefinedMass_1176_Type *         UserDefinedMass_1176_TypeVal;
   UserDefinedMass_1177_Type *         UserDefinedMass_1177_TypeVal;
-  UserDefinedPres_1142_TypeChoicePair * UserDefinedPres_1142_TypeChoicePairVal;
-  UserDefinedPres_1142_Type *         UserDefinedPres_1142_TypeVal;
-  UserDefinedPres_1178_Type *         UserDefinedPres_1178_TypeVal;
+  UserDefinedMass_1178_Type *         UserDefinedMass_1178_TypeVal;
+  UserDefinedPres_1143_TypeChoicePair * UserDefinedPres_1143_TypeChoicePairVal;
+  UserDefinedPres_1143_Type *         UserDefinedPres_1143_TypeVal;
   UserDefinedPres_1179_Type *         UserDefinedPres_1179_TypeVal;
   UserDefinedPres_1180_Type *         UserDefinedPres_1180_TypeVal;
   UserDefinedPres_1181_Type *         UserDefinedPres_1181_TypeVal;
+  UserDefinedPres_1182_Type *         UserDefinedPres_1182_TypeVal;
   UserDefinedPressureCharacteristicDefinitionType * UserDefinedPressureCharacteristicDefinitionTypeVal;
   UserDefinedPressureCharacteristicItemType * UserDefinedPressureCharacteristicItemTypeVal;
   UserDefinedPressureCharacteristicMeasurementType * UserDefinedPressureCharacteristicMeasurementTypeVal;
   UserDefinedPressureCharacteristicNominalType * UserDefinedPressureCharacteristicNominalTypeVal;
   UserDefinedPressureCharacteristicStatsEvalType * UserDefinedPressureCharacteristicStatsEvalTypeVal;
-  UserDefinedReso_1243_TypeChoicePair * UserDefinedReso_1243_TypeChoicePairVal;
-  UserDefinedReso_1243_Type *         UserDefinedReso_1243_TypeVal;
-  UserDefinedReso_1246_Type *         UserDefinedReso_1246_TypeVal;
+  UserDefinedReso_1244_TypeChoicePair * UserDefinedReso_1244_TypeChoicePairVal;
+  UserDefinedReso_1244_Type *         UserDefinedReso_1244_TypeVal;
+  UserDefinedReso_1247_Type *         UserDefinedReso_1247_TypeVal;
   UserDefinedResolutionType *         UserDefinedResolutionTypeVal;
-  UserDefinedSpee_1143_TypeChoicePair * UserDefinedSpee_1143_TypeChoicePairVal;
-  UserDefinedSpee_1143_Type *         UserDefinedSpee_1143_TypeVal;
-  UserDefinedSpee_1182_Type *         UserDefinedSpee_1182_TypeVal;
+  UserDefinedSpee_1144_TypeChoicePair * UserDefinedSpee_1144_TypeChoicePairVal;
+  UserDefinedSpee_1144_Type *         UserDefinedSpee_1144_TypeVal;
   UserDefinedSpee_1183_Type *         UserDefinedSpee_1183_TypeVal;
   UserDefinedSpee_1184_Type *         UserDefinedSpee_1184_TypeVal;
   UserDefinedSpee_1185_Type *         UserDefinedSpee_1185_TypeVal;
+  UserDefinedSpee_1186_Type *         UserDefinedSpee_1186_TypeVal;
   UserDefinedSpeedCharacteristicDefinitionType * UserDefinedSpeedCharacteristicDefinitionTypeVal;
   UserDefinedSpeedCharacteristicItemType * UserDefinedSpeedCharacteristicItemTypeVal;
   UserDefinedSpeedCharacteristicMeasurementType * UserDefinedSpeedCharacteristicMeasurementTypeVal;
   UserDefinedSpeedCharacteristicNominalType * UserDefinedSpeedCharacteristicNominalTypeVal;
   UserDefinedSpeedCharacteristicStatsEvalType * UserDefinedSpeedCharacteristicStatsEvalTypeVal;
-  UserDefinedTemp_1144_TypeChoicePair * UserDefinedTemp_1144_TypeChoicePairVal;
-  UserDefinedTemp_1144_Type *         UserDefinedTemp_1144_TypeVal;
-  UserDefinedTemp_1186_Type *         UserDefinedTemp_1186_TypeVal;
+  UserDefinedTemp_1145_TypeChoicePair * UserDefinedTemp_1145_TypeChoicePairVal;
+  UserDefinedTemp_1145_Type *         UserDefinedTemp_1145_TypeVal;
   UserDefinedTemp_1187_Type *         UserDefinedTemp_1187_TypeVal;
   UserDefinedTemp_1188_Type *         UserDefinedTemp_1188_TypeVal;
   UserDefinedTemp_1189_Type *         UserDefinedTemp_1189_TypeVal;
+  UserDefinedTemp_1190_Type *         UserDefinedTemp_1190_TypeVal;
   UserDefinedTemperatureCharacteristicDefinitionType * UserDefinedTemperatureCharacteristicDefinitionTypeVal;
   UserDefinedTemperatureCharacteristicItemType * UserDefinedTemperatureCharacteristicItemTypeVal;
   UserDefinedTemperatureCharacteristicMeasurementType * UserDefinedTemperatureCharacteristicMeasurementTypeVal;
@@ -2643,12 +2628,12 @@ int yyerror(const char * s);
   UserDefinedTimeCharacteristicMeasurementType * UserDefinedTimeCharacteristicMeasurementTypeVal;
   UserDefinedTimeCharacteristicNominalType * UserDefinedTimeCharacteristicNominalTypeVal;
   UserDefinedTimeCharacteristicStatsEvalType * UserDefinedTimeCharacteristicStatsEvalTypeVal;
-  UserDefinedTime_1145_TypeChoicePair * UserDefinedTime_1145_TypeChoicePairVal;
-  UserDefinedTime_1145_Type *         UserDefinedTime_1145_TypeVal;
-  UserDefinedTime_1190_Type *         UserDefinedTime_1190_TypeVal;
+  UserDefinedTime_1146_TypeChoicePair * UserDefinedTime_1146_TypeChoicePairVal;
+  UserDefinedTime_1146_Type *         UserDefinedTime_1146_TypeVal;
   UserDefinedTime_1191_Type *         UserDefinedTime_1191_TypeVal;
   UserDefinedTime_1192_Type *         UserDefinedTime_1192_TypeVal;
   UserDefinedTime_1193_Type *         UserDefinedTime_1193_TypeVal;
+  UserDefinedTime_1194_Type *         UserDefinedTime_1194_TypeVal;
   UserDefinedUnitCharacteristicDefinitionType * UserDefinedUnitCharacteristicDefinitionTypeVal;
   UserDefinedUnitCharacteristicItemType * UserDefinedUnitCharacteristicItemTypeVal;
   UserDefinedUnitCharacteristicMeasurementType * UserDefinedUnitCharacteristicMeasurementTypeVal;
@@ -2656,15 +2641,15 @@ int yyerror(const char * s);
   UserDefinedUnitCharacteristicStatsEvalType * UserDefinedUnitCharacteristicStatsEvalTypeVal;
   UserDefinedUnitType *               UserDefinedUnitTypeVal;
   UserDefinedUnitValueType *          UserDefinedUnitValueTypeVal;
-  UserDefinedUnit_1074_TypeChoicePair * UserDefinedUnit_1074_TypeChoicePairVal;
-  UserDefinedUnit_1074_Type *         UserDefinedUnit_1074_TypeVal;
-  UserDefinedUnit_1089_Type *         UserDefinedUnit_1089_TypeVal;
-  UserDefinedUnit_1146_TypeChoicePair * UserDefinedUnit_1146_TypeChoicePairVal;
-  UserDefinedUnit_1146_Type *         UserDefinedUnit_1146_TypeVal;
-  UserDefinedUnit_1194_Type *         UserDefinedUnit_1194_TypeVal;
+  UserDefinedUnit_1075_TypeChoicePair * UserDefinedUnit_1075_TypeChoicePairVal;
+  UserDefinedUnit_1075_Type *         UserDefinedUnit_1075_TypeVal;
+  UserDefinedUnit_1090_Type *         UserDefinedUnit_1090_TypeVal;
+  UserDefinedUnit_1147_TypeChoicePair * UserDefinedUnit_1147_TypeChoicePairVal;
+  UserDefinedUnit_1147_Type *         UserDefinedUnit_1147_TypeVal;
   UserDefinedUnit_1195_Type *         UserDefinedUnit_1195_TypeVal;
   UserDefinedUnit_1196_Type *         UserDefinedUnit_1196_TypeVal;
   UserDefinedUnit_1197_Type *         UserDefinedUnit_1197_TypeVal;
+  UserDefinedUnit_1198_Type *         UserDefinedUnit_1198_TypeVal;
   UserDefinedUnitsType *              UserDefinedUnitsTypeVal;
   UserDefinedWorkingVolumeType *      UserDefinedWorkingVolumeTypeVal;
   ValidationBodyType *                ValidationBodyTypeVal;
@@ -2674,12 +2659,11 @@ int yyerror(const char * s);
   ValidationPartAssemblyInstanceType * ValidationPartAssemblyInstanceTypeVal;
   ValidationPartAssemblyInstancesType * ValidationPartAssemblyInstancesTypeVal;
   ValidationPartAssemblyType *        ValidationPartAssemblyTypeVal;
-  ValidationPoint_1003_TypeChoicePair * ValidationPoint_1003_TypeChoicePairVal;
-  ValidationPoint_1003_Type *         ValidationPoint_1003_TypeVal;
   ValidationPoint_1004_TypeChoicePair * ValidationPoint_1004_TypeChoicePairVal;
   ValidationPoint_1004_Type *         ValidationPoint_1004_TypeVal;
+  ValidationPoint_1005_TypeChoicePair * ValidationPoint_1005_TypeChoicePairVal;
+  ValidationPoint_1005_Type *         ValidationPoint_1005_TypeVal;
   ValidationPointsType *              ValidationPointsTypeVal;
-  ValidityEnumType *                  ValidityEnumTypeVal;
   VariableDeclarationType *           VariableDeclarationTypeVal;
   VariableSetType *                   VariableSetTypeVal;
   VariableValueType *                 VariableValueTypeVal;
@@ -2714,18 +2698,18 @@ int yyerror(const char * s);
   WeldEdgeCharacteristicNominalType * WeldEdgeCharacteristicNominalTypeVal;
   WeldEdgeCharacteristicStatsEvalType * WeldEdgeCharacteristicStatsEvalTypeVal;
   WeldFilletBothSidesType *           WeldFilletBothSidesTypeVal;
-  WeldFilletChara_1075_TypeChoicePair * WeldFilletChara_1075_TypeChoicePairVal;
-  WeldFilletChara_1075_Type *         WeldFilletChara_1075_TypeVal;
   WeldFilletChara_1076_TypeChoicePair * WeldFilletChara_1076_TypeChoicePairVal;
   WeldFilletChara_1076_Type *         WeldFilletChara_1076_TypeVal;
+  WeldFilletChara_1077_TypeChoicePair * WeldFilletChara_1077_TypeChoicePairVal;
+  WeldFilletChara_1077_Type *         WeldFilletChara_1077_TypeVal;
   WeldFilletCharacteristicDefinitionType * WeldFilletCharacteristicDefinitionTypeVal;
   WeldFilletCharacteristicItemType *  WeldFilletCharacteristicItemTypeVal;
   WeldFilletCharacteristicMeasurementType * WeldFilletCharacteristicMeasurementTypeVal;
   WeldFilletCharacteristicNominalType * WeldFilletCharacteristicNominalTypeVal;
   WeldFilletCharacteristicStatsEvalType * WeldFilletCharacteristicStatsEvalTypeVal;
   WeldFilletEqualLegLengthType *      WeldFilletEqualLegLengthTypeVal;
-  WeldFilletOneSi_1077_TypeChoicePair * WeldFilletOneSi_1077_TypeChoicePairVal;
-  WeldFilletOneSi_1077_Type *         WeldFilletOneSi_1077_TypeVal;
+  WeldFilletOneSi_1078_TypeChoicePair * WeldFilletOneSi_1078_TypeChoicePairVal;
+  WeldFilletOneSi_1078_Type *         WeldFilletOneSi_1078_TypeVal;
   WeldFilletOneSideInBothSidesType *  WeldFilletOneSideInBothSidesTypeVal;
   WeldFilletOneSideType *             WeldFilletOneSideTypeVal;
   WeldFilletUnequalLegLengthType *    WeldFilletUnequalLegLengthTypeVal;
@@ -2742,13 +2726,11 @@ int yyerror(const char * s);
   WeldFlareVCharacteristicNominalType * WeldFlareVCharacteristicNominalTypeVal;
   WeldFlareVCharacteristicStatsEvalType * WeldFlareVCharacteristicStatsEvalTypeVal;
   WeldGrooveBothSidesExtendedType *   WeldGrooveBothSidesExtendedTypeVal;
-  WeldGrooveChara_1078_TypeChoicePair * WeldGrooveChara_1078_TypeChoicePairVal;
-  WeldGrooveChara_1078_Type *         WeldGrooveChara_1078_TypeVal;
   WeldGrooveChara_1079_TypeChoicePair * WeldGrooveChara_1079_TypeChoicePairVal;
   WeldGrooveChara_1079_Type *         WeldGrooveChara_1079_TypeVal;
-  WeldGrooveCharacteristicMeasurementType * WeldGrooveCharacteristicMeasurementTypeVal;
-  WeldGrooveCharacteristicNominalType * WeldGrooveCharacteristicNominalTypeVal;
-  WeldGrooveOneSi_1080_Type *         WeldGrooveOneSi_1080_TypeVal;
+  WeldGrooveChara_1080_TypeChoicePair * WeldGrooveChara_1080_TypeChoicePairVal;
+  WeldGrooveChara_1080_Type *         WeldGrooveChara_1080_TypeVal;
+  WeldGrooveOneSi_1081_Type *         WeldGrooveOneSi_1081_TypeVal;
   WeldGrooveOneSideParametersType *   WeldGrooveOneSideParametersTypeVal;
   WeldGrooveOneSideType *             WeldGrooveOneSideTypeVal;
   WeldJCharacteristicDefinitionType * WeldJCharacteristicDefinitionTypeVal;
@@ -2823,8 +2805,8 @@ int yyerror(const char * s);
   WidthCharacteristicMeasurementType * WidthCharacteristicMeasurementTypeVal;
   WidthCharacteristicNominalType *    WidthCharacteristicNominalTypeVal;
   WidthCharacteristicStatsEvalType *  WidthCharacteristicStatsEvalTypeVal;
-  WitnessLinesTyp_1235_Type *         WitnessLinesTyp_1235_TypeVal;
   WitnessLinesTyp_1236_Type *         WitnessLinesTyp_1236_TypeVal;
+  WitnessLinesTyp_1237_Type *         WitnessLinesTyp_1237_TypeVal;
   WitnessLinesTypeChoicePair *        WitnessLinesTypeChoicePairVal;
   WitnessLinesType *                  WitnessLinesTypeVal;
   WorkInstructionBaseType *           WorkInstructionBaseTypeVal;
@@ -2848,7 +2830,6 @@ int yyerror(const char * s);
   XmlToken *                          XmlTokenVal;
   XmlUnsignedByte *                   XmlUnsignedByteVal;
   XmlUnsignedInt *                    XmlUnsignedIntVal;
-  ZeroToOneType *                     ZeroToOneTypeVal;
   ZoneDataSetType *                   ZoneDataSetTypeVal;
   ZoneDataType *                      ZoneDataTypeVal;
   ZoneOrientationEnumType *           ZoneOrientationEnumTypeVal;
@@ -2960,19 +2941,19 @@ int yyerror(const char * s);
 %type <AlgorithmsTypeVal>             y_AlgorithmDefinitions_AlgorithmsType_0
 %type <QIFReferenceTypeVal>           y_AlgorithmId_QIFReferenceType
 %type <AlgorithmTypeVal>              y_AlgorithmType
-%type <AlgorithmType_1007_TypeVal>    y_AlgorithmType_1007_AlgorithmType_1007_Type
-%type <AlgorithmType_1007_TypeVal>    y_AlgorithmType_1007_Type
-%type <AlgorithmType_1007_TypeChoicePairVal> y_AlgorithmType_1007_TypeChoicePair
-%type <AlgorithmType_1_1027_TypeVal>  y_AlgorithmType_1_1027_AlgorithmType_1_1027_Type
-%type <AlgorithmType_1_1027_TypeVal>  y_AlgorithmType_1_1027_Type
+%type <AlgorithmType_1008_TypeVal>    y_AlgorithmType_1008_AlgorithmType_1008_Type
+%type <AlgorithmType_1008_TypeVal>    y_AlgorithmType_1008_Type
+%type <AlgorithmType_1008_TypeChoicePairVal> y_AlgorithmType_1008_TypeChoicePair
 %type <AlgorithmType_1_1028_TypeVal>  y_AlgorithmType_1_1028_AlgorithmType_1_1028_Type
 %type <AlgorithmType_1_1028_TypeVal>  y_AlgorithmType_1_1028_Type
+%type <AlgorithmType_1_1029_TypeVal>  y_AlgorithmType_1_1029_AlgorithmType_1_1029_Type
+%type <AlgorithmType_1_1029_TypeVal>  y_AlgorithmType_1_1029_Type
 %type <AlgorithmTypeVal>              y_Algorithm_AlgorithmType
 %type <AlgorithmsTypeVal>             y_AlgorithmsType
 %type <AlignmentEnumTypeVal>          y_AlignmentEnumType
-%type <AlignmentFeatur_1008_TypeVal>  y_AlignmentFeatur_1008_AlignmentFeatur_1008_Type
-%type <AlignmentFeatur_1008_TypeVal>  y_AlignmentFeatur_1008_Type
-%type <AlignmentFeatur_1008_TypeChoicePairVal> y_AlignmentFeatur_1008_TypeChoicePair
+%type <AlignmentFeatur_1009_TypeVal>  y_AlignmentFeatur_1009_AlignmentFeatur_1009_Type
+%type <AlignmentFeatur_1009_TypeVal>  y_AlignmentFeatur_1009_Type
+%type <AlignmentFeatur_1009_TypeChoicePairVal> y_AlignmentFeatur_1009_TypeChoicePair
 %type <AlignmentFeatureTypeVal>       y_AlignmentFeatureType
 %type <AlignmentOperationBaseTypeVal> y_AlignmentOperation_substituteType
 %type <AlignmentOperationsTypeVal>    y_AlignmentOperationsType
@@ -3029,25 +3010,25 @@ int yyerror(const char * s);
 %type <MeasuredAngularValueTypeVal>   y_AngularAbsoluteLinearity_MeasuredAngularValueType
 %type <AngularErrorTypeVal>           y_AngularAccuracy_AngularErrorType_0
 %type <AngularValueTypeVal>           y_AngularAccuracy_AngularValueType_0
-%type <AngularCharacte_1045_TypeVal>  y_AngularCharacte_1045_AngularCharacte_1045_Type
-%type <AngularCharacte_1045_TypeVal>  y_AngularCharacte_1045_Type
-%type <AngularCharacte_1045_TypeChoicePairVal> y_AngularCharacte_1045_TypeChoicePair
-%type <AngularCharacte_1126_TypeVal>  y_AngularCharacte_1126_AngularCharacte_1126_Type
-%type <AngularCharacte_1126_TypeVal>  y_AngularCharacte_1126_Type
-%type <AngularCharacte_1126_TypeChoicePairVal> y_AngularCharacte_1126_TypeChoicePair
-%type <AngularCharacte_1147_TypeVal>  y_AngularCharacte_1147_AngularCharacte_1147_Type
-%type <AngularCharacte_1147_TypeVal>  y_AngularCharacte_1147_Type
+%type <AngularCharacte_1046_TypeVal>  y_AngularCharacte_1046_AngularCharacte_1046_Type
+%type <AngularCharacte_1046_TypeVal>  y_AngularCharacte_1046_Type
+%type <AngularCharacte_1046_TypeChoicePairVal> y_AngularCharacte_1046_TypeChoicePair
+%type <AngularCharacte_1127_TypeVal>  y_AngularCharacte_1127_AngularCharacte_1127_Type
+%type <AngularCharacte_1127_TypeVal>  y_AngularCharacte_1127_Type
+%type <AngularCharacte_1127_TypeChoicePairVal> y_AngularCharacte_1127_TypeChoicePair
 %type <AngularCharacte_1148_TypeVal>  y_AngularCharacte_1148_AngularCharacte_1148_Type
 %type <AngularCharacte_1148_TypeVal>  y_AngularCharacte_1148_Type
 %type <AngularCharacte_1149_TypeVal>  y_AngularCharacte_1149_AngularCharacte_1149_Type
 %type <AngularCharacte_1149_TypeVal>  y_AngularCharacte_1149_Type
 %type <AngularCharacte_1150_TypeVal>  y_AngularCharacte_1150_AngularCharacte_1150_Type
 %type <AngularCharacte_1150_TypeVal>  y_AngularCharacte_1150_Type
+%type <AngularCharacte_1151_TypeVal>  y_AngularCharacte_1151_AngularCharacte_1151_Type
+%type <AngularCharacte_1151_TypeVal>  y_AngularCharacte_1151_Type
 %type <AngularCharacteristicStatsEvalTypeVal> y_AngularCharacteristicStatsEvalType
 %type <AngularCharacteristicStatsEvalTypeVal> y_AngularCharacteristicStats_AngularCharacteristicStatsEvalType
-%type <AngularCoordina_1046_TypeVal>  y_AngularCoordina_1046_AngularCoordina_1046_Type
-%type <AngularCoordina_1046_TypeVal>  y_AngularCoordina_1046_Type
-%type <AngularCoordina_1046_TypeChoicePairVal> y_AngularCoordina_1046_TypeChoicePair
+%type <AngularCoordina_1047_TypeVal>  y_AngularCoordina_1047_AngularCoordina_1047_Type
+%type <AngularCoordina_1047_TypeVal>  y_AngularCoordina_1047_Type
+%type <AngularCoordina_1047_TypeChoicePairVal> y_AngularCoordina_1047_TypeChoicePair
 %type <AngularCoordinateCharacteristicDefinitionTypeVal> y_AngularCoordinateCharacteristicDefinitionType
 %type <AngularCoordinateCharacteristicDefinitionTypeVal> y_AngularCoordinateCharacteristicDefinition_AngularCoordinateCharacteristicDefinitionType
 %type <AngularCoordinateCharacteristicItemTypeVal> y_AngularCoordinateCharacteristicItemType
@@ -3065,16 +3046,16 @@ int yyerror(const char * s);
 %type <MeasuredAngularValueTypeVal>   y_AngularMeasurement_MeasuredAngularValueType_0
 %type <SummariesStatisticsAngularTypeVal> y_AngularStatsSummaries_SummariesStatisticsAngularType_0
 %type <SummaryStatisticsAngularTypeVal> y_AngularStatsSummary_SummaryStatisticsAngularType
-%type <AngularToleranc_1009_TypeVal>  y_AngularToleranc_1009_AngularToleranc_1009_Type
-%type <AngularToleranc_1009_TypeVal>  y_AngularToleranc_1009_Type
-%type <AngularToleranc_1009_TypeChoicePairVal> y_AngularToleranc_1009_TypeChoicePair
 %type <AngularToleranc_1010_TypeVal>  y_AngularToleranc_1010_AngularToleranc_1010_Type
 %type <AngularToleranc_1010_TypeVal>  y_AngularToleranc_1010_Type
 %type <AngularToleranc_1010_TypeChoicePairVal> y_AngularToleranc_1010_TypeChoicePair
-%type <AngularToleranc_1029_TypeVal>  y_AngularToleranc_1029_AngularToleranc_1029_Type
-%type <AngularToleranc_1029_TypeVal>  y_AngularToleranc_1029_Type
+%type <AngularToleranc_1011_TypeVal>  y_AngularToleranc_1011_AngularToleranc_1011_Type
+%type <AngularToleranc_1011_TypeVal>  y_AngularToleranc_1011_Type
+%type <AngularToleranc_1011_TypeChoicePairVal> y_AngularToleranc_1011_TypeChoicePair
 %type <AngularToleranc_1030_TypeVal>  y_AngularToleranc_1030_AngularToleranc_1030_Type
 %type <AngularToleranc_1030_TypeVal>  y_AngularToleranc_1030_Type
+%type <AngularToleranc_1031_TypeVal>  y_AngularToleranc_1031_AngularToleranc_1031_Type
+%type <AngularToleranc_1031_TypeVal>  y_AngularToleranc_1031_Type
 %type <AngularToleranceDefinitionTypeVal> y_AngularToleranceDefinitionType
 %type <AngularToleranceTypeVal>       y_AngularToleranceType
 %type <AngularToleranceDefinitionTypeVal> y_AngularTolerance_AngularToleranceDefinitionType
@@ -3129,9 +3110,9 @@ int yyerror(const char * s);
 %type <Area2dTypeVal>                 y_Area2dType
 %type <Area2dTypeChoicePairVal>       y_Area2dTypeChoicePair
 %type <MeasuredAreaValueTypeVal>      y_AreaAbsoluteLinearity_MeasuredAreaValueType
-%type <AreaCharacteris_1047_TypeVal>  y_AreaCharacteris_1047_AreaCharacteris_1047_Type
-%type <AreaCharacteris_1047_TypeVal>  y_AreaCharacteris_1047_Type
-%type <AreaCharacteris_1047_TypeChoicePairVal> y_AreaCharacteris_1047_TypeChoicePair
+%type <AreaCharacteris_1048_TypeVal>  y_AreaCharacteris_1048_AreaCharacteris_1048_Type
+%type <AreaCharacteris_1048_TypeVal>  y_AreaCharacteris_1048_Type
+%type <AreaCharacteris_1048_TypeChoicePairVal> y_AreaCharacteris_1048_TypeChoicePair
 %type <CriterionAreaTypeVal>          y_AreaCriterion_CriterionAreaType_0
 %type <CriticalityAreaEnumTypeVal>    y_AreaEnum_CriticalityAreaEnumType
 %type <ProductDataQualityAreaEnumTypeVal> y_AreaEnum_ProductDataQualityAreaEnumType
@@ -3139,11 +3120,11 @@ int yyerror(const char * s);
 %type <MeasuredAreaValueTypeVal>      y_AreaMeasurement_MeasuredAreaValueType_0
 %type <SummariesStatisticsAreaTypeVal> y_AreaStatsSummaries_SummariesStatisticsAreaType_0
 %type <SummaryStatisticsAreaTypeVal>  y_AreaStatsSummary_SummaryStatisticsAreaType
-%type <AreaToleranceTy_1011_TypeVal>  y_AreaToleranceTy_1011_AreaToleranceTy_1011_Type
-%type <AreaToleranceTy_1011_TypeVal>  y_AreaToleranceTy_1011_Type
-%type <AreaToleranceTy_1011_TypeChoicePairVal> y_AreaToleranceTy_1011_TypeChoicePair
-%type <AreaToleranceTy_1031_TypeVal>  y_AreaToleranceTy_1031_AreaToleranceTy_1031_Type
-%type <AreaToleranceTy_1031_TypeVal>  y_AreaToleranceTy_1031_Type
+%type <AreaToleranceTy_1012_TypeVal>  y_AreaToleranceTy_1012_AreaToleranceTy_1012_Type
+%type <AreaToleranceTy_1012_TypeVal>  y_AreaToleranceTy_1012_Type
+%type <AreaToleranceTy_1012_TypeChoicePairVal> y_AreaToleranceTy_1012_TypeChoicePair
+%type <AreaToleranceTy_1032_TypeVal>  y_AreaToleranceTy_1032_AreaToleranceTy_1032_Type
+%type <AreaToleranceTy_1032_TypeVal>  y_AreaToleranceTy_1032_Type
 %type <AreaToleranceTypeVal>          y_AreaToleranceType
 %type <AreaUnitTypeVal>               y_AreaUnitType
 %type <AreaUnitTypeVal>               y_AreaUnit_AreaUnitType
@@ -3216,9 +3197,9 @@ int yyerror(const char * s);
 %type <AssignableCauseEnumTypeVal>    y_AssignableCauseEnum_AssignableCauseEnumType
 %type <ArrayReferenceTypeVal>         y_AssignableCauseIds_ArrayReferenceType_0
 %type <AssignableCauseTypeVal>        y_AssignableCauseType
-%type <AssignableCause_1127_TypeVal>  y_AssignableCause_1127_AssignableCause_1127_Type
-%type <AssignableCause_1127_TypeVal>  y_AssignableCause_1127_Type
-%type <AssignableCause_1127_TypeChoicePairVal> y_AssignableCause_1127_TypeChoicePair
+%type <AssignableCause_1128_TypeVal>  y_AssignableCause_1128_AssignableCause_1128_Type
+%type <AssignableCause_1128_TypeVal>  y_AssignableCause_1128_Type
+%type <AssignableCause_1128_TypeChoicePairVal> y_AssignableCause_1128_TypeChoicePair
 %type <AssignableCauseTypeVal>        y_AssignableCause_AssignableCauseType
 %type <AssignableCausesTypeVal>       y_AssignableCausesType
 %type <AssignableCausesTypeVal>       y_AssignableCauses_AssignableCausesType
@@ -3247,6 +3228,9 @@ int yyerror(const char * s);
 %type <AttributeStrTypeVal>           y_AttributeStr_AttributeStrType
 %type <AttributeTimeTypeVal>          y_AttributeTimeType
 %type <AttributeTimeTypeVal>          y_AttributeTime_AttributeTimeType
+%type <AttributeUserTy_1002_TypeVal>  y_AttributeUserTy_1002_AttributeUserTy_1002_Type
+%type <AttributeUserTy_1002_TypeVal>  y_AttributeUserTy_1002_Type
+%type <AttributeUserTy_1002_TypeChoicePairVal> y_AttributeUserTy_1002_TypeChoicePair
 %type <AttributeUserTypeVal>          y_AttributeUserType
 %type <AttributeUserTypeVal>          y_AttributeUser_AttributeUserType
 %type <AttributeBaseTypeVal>          y_Attribute_substituteType
@@ -3460,9 +3444,9 @@ int yyerror(const char * s);
 %type <CapabilityStudyPlanTypeVal>    y_CapabilityStudyPlan_CapabilityStudyPlanType
 %type <CapabilityStudyResultsTypeVal> y_CapabilityStudyResultsType
 %type <CapabilityStudyResultsTypeVal> y_CapabilityStudyResults_CapabilityStudyResultsType
-%type <CapabilityStudy_1198_TypeVal>  y_CapabilityStudy_1198_CapabilityStudy_1198_Type
-%type <CapabilityStudy_1198_TypeVal>  y_CapabilityStudy_1198_Type
-%type <CapabilityStudy_1198_TypeChoicePairVal> y_CapabilityStudy_1198_TypeChoicePair
+%type <CapabilityStudy_1199_TypeVal>  y_CapabilityStudy_1199_CapabilityStudy_1199_Type
+%type <CapabilityStudy_1199_TypeVal>  y_CapabilityStudy_1199_Type
+%type <CapabilityStudy_1199_TypeChoicePairVal> y_CapabilityStudy_1199_TypeChoicePair
 %type <CapacitiveSensorTypeVal>       y_CapacitiveSensorType
 %type <CapacitiveSensorTypeVal>       y_CapacitiveSensor_CapacitiveSensorType
 %type <CarriageTypeVal>               y_CarriageType
@@ -3490,11 +3474,11 @@ int yyerror(const char * s);
 %type <CartesianCMMTypeVal>           y_CartesianCMM_CartesianCMMType
 %type <CartesianMeasurementDeviceScalesTypeVal> y_CartesianMeasurementDeviceScalesType
 %type <CartesianMeasurementDeviceScalesTypeVal> y_CartesianMeasurementDeviceScales_CartesianMeasurementDeviceScalesType
-%type <CartesianResolu_1239_TypeVal>  y_CartesianResolu_1239_CartesianResolu_1239_Type
-%type <CartesianResolu_1239_TypeVal>  y_CartesianResolu_1239_Type
-%type <CartesianResolu_1239_TypeChoicePairVal> y_CartesianResolu_1239_TypeChoicePair
-%type <CartesianResolu_1244_TypeVal>  y_CartesianResolu_1244_CartesianResolu_1244_Type
-%type <CartesianResolu_1244_TypeVal>  y_CartesianResolu_1244_Type
+%type <CartesianResolu_1240_TypeVal>  y_CartesianResolu_1240_CartesianResolu_1240_Type
+%type <CartesianResolu_1240_TypeVal>  y_CartesianResolu_1240_Type
+%type <CartesianResolu_1240_TypeChoicePairVal> y_CartesianResolu_1240_TypeChoicePair
+%type <CartesianResolu_1245_TypeVal>  y_CartesianResolu_1245_CartesianResolu_1245_Type
+%type <CartesianResolu_1245_TypeVal>  y_CartesianResolu_1245_Type
 %type <CartesianResolutionTypeVal>    y_CartesianResolutionType
 %type <CartesianResolutionTypeVal>    y_CartesianResolution_CartesianResolutionType
 %type <CartesianWorkingVolumeTypeVal> y_CartesianWorkingVolumeType
@@ -3577,18 +3561,18 @@ int yyerror(const char * s);
 %type <XmlUnsignedIntVal>             y_CharacteristicNominalsCount_XmlUnsignedInt_0
 %type <CharacteristicNominalsTypeVal> y_CharacteristicNominalsType
 %type <CharacteristicNominalsTypeVal> y_CharacteristicNominals_CharacteristicNominalsType
-%type <CharacteristicS_1128_TypeVal>  y_CharacteristicS_1128_CharacteristicS_1128_Type_0
-%type <CharacteristicS_1128_TypeVal>  y_CharacteristicS_1128_Type
-%type <CharacteristicS_1128_TypeChoicePairVal> y_CharacteristicS_1128_TypeChoicePair
 %type <CharacteristicS_1129_TypeVal>  y_CharacteristicS_1129_CharacteristicS_1129_Type_0
 %type <CharacteristicS_1129_TypeVal>  y_CharacteristicS_1129_Type
 %type <CharacteristicS_1129_TypeChoicePairVal> y_CharacteristicS_1129_TypeChoicePair
-%type <CharacteristicS_1151_TypeVal>  y_CharacteristicS_1151_CharacteristicS_1151_Type
-%type <CharacteristicS_1151_TypeVal>  y_CharacteristicS_1151_Type
-%type <CharacteristicS_1151_TypeChoicePairVal> y_CharacteristicS_1151_TypeChoicePair
+%type <CharacteristicS_1130_TypeVal>  y_CharacteristicS_1130_CharacteristicS_1130_Type_0
+%type <CharacteristicS_1130_TypeVal>  y_CharacteristicS_1130_Type
+%type <CharacteristicS_1130_TypeChoicePairVal> y_CharacteristicS_1130_TypeChoicePair
 %type <CharacteristicS_1152_TypeVal>  y_CharacteristicS_1152_CharacteristicS_1152_Type
 %type <CharacteristicS_1152_TypeVal>  y_CharacteristicS_1152_Type
 %type <CharacteristicS_1152_TypeChoicePairVal> y_CharacteristicS_1152_TypeChoicePair
+%type <CharacteristicS_1153_TypeVal>  y_CharacteristicS_1153_CharacteristicS_1153_Type
+%type <CharacteristicS_1153_TypeVal>  y_CharacteristicS_1153_Type
+%type <CharacteristicS_1153_TypeChoicePairVal> y_CharacteristicS_1153_TypeChoicePair
 %type <CharacteristicStatsEvalBaseTypeVal> y_CharacteristicStats_substituteType
 %type <CharacteristicStatusEnumTypeVal> y_CharacteristicStatusEnumType
 %type <CharacteristicStatusEnumTypeVal> y_CharacteristicStatusEnum_CharacteristicStatusEnumType
@@ -3695,9 +3679,9 @@ int yyerror(const char * s);
 %type <CircleFeatureMeasurementTypeVal> y_CircleFeatureMeasurement_CircleFeatureMeasurementType
 %type <CircleFeatureNominalTypeVal>   y_CircleFeatureNominalType
 %type <CircleFeatureNominalTypeVal>   y_CircleFeatureNominal_CircleFeatureNominalType
-%type <CircleFromConeT_1092_TypeVal>  y_CircleFromConeT_1092_CircleFromConeT_1092_Type
-%type <CircleFromConeT_1092_TypeVal>  y_CircleFromConeT_1092_Type
-%type <CircleFromConeT_1092_TypeChoicePairVal> y_CircleFromConeT_1092_TypeChoicePair
+%type <CircleFromConeT_1093_TypeVal>  y_CircleFromConeT_1093_CircleFromConeT_1093_Type
+%type <CircleFromConeT_1093_TypeVal>  y_CircleFromConeT_1093_Type
+%type <CircleFromConeT_1093_TypeChoicePairVal> y_CircleFromConeT_1093_TypeChoicePair
 %type <CircleFromConeTypeVal>         y_CircleFromConeType
 %type <CircleFromScanTypeVal>         y_CircleFromScanType
 %type <CircleIntersectionTypeVal>     y_CircleIntersectionType
@@ -3752,19 +3736,19 @@ int yyerror(const char * s);
 %type <LinearValueTypeVal>            y_CircularUnitAreaDiameter_LinearValueType
 %type <CircularUnitAreaTypeVal>       y_CircularUnitAreaType
 %type <CircularUnitAreaTypeVal>       y_CircularUnitArea_CircularUnitAreaType
-%type <CircularityChar_1048_TypeVal>  y_CircularityChar_1048_CircularityChar_1048_Type
-%type <CircularityChar_1048_TypeVal>  y_CircularityChar_1048_Type
-%type <CircularityChar_1048_TypeChoicePairVal> y_CircularityChar_1048_TypeChoicePair
-%type <CircularityChar_1049_TypeVal>  y_CircularityChar_1049_CircularityChar_1049_Type_0
+%type <CircularityChar_1049_TypeVal>  y_CircularityChar_1049_CircularityChar_1049_Type
 %type <CircularityChar_1049_TypeVal>  y_CircularityChar_1049_Type
-%type <CircularityChar_1081_TypeVal>  y_CircularityChar_1081_CircularityChar_1081_Type
-%type <CircularityChar_1081_TypeVal>  y_CircularityChar_1081_Type
+%type <CircularityChar_1049_TypeChoicePairVal> y_CircularityChar_1049_TypeChoicePair
+%type <CircularityChar_1050_TypeVal>  y_CircularityChar_1050_CircularityChar_1050_Type_0
+%type <CircularityChar_1050_TypeVal>  y_CircularityChar_1050_Type
 %type <CircularityChar_1082_TypeVal>  y_CircularityChar_1082_CircularityChar_1082_Type
 %type <CircularityChar_1082_TypeVal>  y_CircularityChar_1082_Type
-%type <CircularityChar_1082_TypeChoicePairVal> y_CircularityChar_1082_TypeChoicePair
-%type <CircularityChar_1090_TypeVal>  y_CircularityChar_1090_CircularityChar_1090_Type_0
-%type <CircularityChar_1090_TypeVal>  y_CircularityChar_1090_Type
-%type <CircularityChar_1090_TypeChoicePairVal> y_CircularityChar_1090_TypeChoicePair
+%type <CircularityChar_1083_TypeVal>  y_CircularityChar_1083_CircularityChar_1083_Type
+%type <CircularityChar_1083_TypeVal>  y_CircularityChar_1083_Type
+%type <CircularityChar_1083_TypeChoicePairVal> y_CircularityChar_1083_TypeChoicePair
+%type <CircularityChar_1091_TypeVal>  y_CircularityChar_1091_CircularityChar_1091_Type_0
+%type <CircularityChar_1091_TypeVal>  y_CircularityChar_1091_Type
+%type <CircularityChar_1091_TypeChoicePairVal> y_CircularityChar_1091_TypeChoicePair
 %type <CircularityCharacteristicDefinitionTypeVal> y_CircularityCharacteristicDefinitionType
 %type <CircularityCharacteristicDefinitionTypeVal> y_CircularityCharacteristicDefinition_CircularityCharacteristicDefinitionType
 %type <CircularityCharacteristicItemTypeVal> y_CircularityCharacteristicItemType
@@ -3837,9 +3821,9 @@ int yyerror(const char * s);
 %type <ComponentSetTypeVal>           y_ComponentSetType
 %type <ComponentSetTypeVal>           y_ComponentSet_ComponentSetType_0
 %type <ComponentTypeVal>              y_ComponentType
-%type <ComponentType_1237_TypeVal>    y_ComponentType_1237_ComponentType_1237_Type
-%type <ComponentType_1237_TypeVal>    y_ComponentType_1237_Type
-%type <ComponentType_1237_TypeChoicePairVal> y_ComponentType_1237_TypeChoicePair
+%type <ComponentType_1238_TypeVal>    y_ComponentType_1238_ComponentType_1238_Type
+%type <ComponentType_1238_TypeVal>    y_ComponentType_1238_Type
+%type <ComponentType_1238_TypeChoicePairVal> y_ComponentType_1238_TypeChoicePair
 %type <ComponentTypeVal>              y_Component_ComponentType
 %type <CompositeSegmentLowerLevelEnumTypeVal> y_CompositeLevel_CompositeSegmentLowerLevelEnumType_0
 %type <CompositeSegmentLowerLevelEnumTypeVal> y_CompositeSegmentLowerLevelEnumType
@@ -3892,18 +3876,18 @@ int yyerror(const char * s);
 %type <ConeConstructionMethodTypeVal> y_ConeConstructionMethodType
 %type <ConeConstructionMethodTypeChoicePairVal> y_ConeConstructionMethodTypeChoicePair
 %type <ConeCopyTypeVal>               y_ConeCopyType
-%type <ConeFeatureDefi_1093_TypeVal>  y_ConeFeatureDefi_1093_ConeFeatureDefi_1093_Type
-%type <ConeFeatureDefi_1093_TypeVal>  y_ConeFeatureDefi_1093_Type
-%type <ConeFeatureDefi_1093_TypeChoicePairVal> y_ConeFeatureDefi_1093_TypeChoicePair
-%type <ConeFeatureDefi_1094_TypeVal>  y_ConeFeatureDefi_1094_ConeFeatureDefi_1094_Type_0
+%type <ConeFeatureDefi_1094_TypeVal>  y_ConeFeatureDefi_1094_ConeFeatureDefi_1094_Type
 %type <ConeFeatureDefi_1094_TypeVal>  y_ConeFeatureDefi_1094_Type
+%type <ConeFeatureDefi_1094_TypeChoicePairVal> y_ConeFeatureDefi_1094_TypeChoicePair
+%type <ConeFeatureDefi_1095_TypeVal>  y_ConeFeatureDefi_1095_ConeFeatureDefi_1095_Type_0
+%type <ConeFeatureDefi_1095_TypeVal>  y_ConeFeatureDefi_1095_Type
 %type <ConeFeatureDefinitionTypeVal>  y_ConeFeatureDefinitionType
 %type <ConeFeatureDefinitionTypeVal>  y_ConeFeatureDefinition_ConeFeatureDefinitionType
 %type <ConeFeatureItemTypeVal>        y_ConeFeatureItemType
 %type <ConeFeatureItemTypeVal>        y_ConeFeatureItem_ConeFeatureItemType
-%type <ConeFeatureMeas_1095_TypeVal>  y_ConeFeatureMeas_1095_ConeFeatureMeas_1095_Type_0
-%type <ConeFeatureMeas_1095_TypeVal>  y_ConeFeatureMeas_1095_Type
-%type <ConeFeatureMeas_1095_TypeChoicePairVal> y_ConeFeatureMeas_1095_TypeChoicePair
+%type <ConeFeatureMeas_1096_TypeVal>  y_ConeFeatureMeas_1096_ConeFeatureMeas_1096_Type_0
+%type <ConeFeatureMeas_1096_TypeVal>  y_ConeFeatureMeas_1096_Type
+%type <ConeFeatureMeas_1096_TypeChoicePairVal> y_ConeFeatureMeas_1096_TypeChoicePair
 %type <ConeFeatureMeasurementTypeVal> y_ConeFeatureMeasurementType
 %type <ConeFeatureMeasurementTypeVal> y_ConeFeatureMeasurement_ConeFeatureMeasurementType
 %type <ConeFeatureNominalTypeVal>     y_ConeFeatureNominalType
@@ -3926,14 +3910,14 @@ int yyerror(const char * s);
 %type <ConicalSegmentConstructionMethodTypeVal> y_ConicalSegmentConstructionMethodType
 %type <ConicalSegmentConstructionMethodTypeChoicePairVal> y_ConicalSegmentConstructionMethodTypeChoicePair
 %type <ConicalSegmentCopyTypeVal>     y_ConicalSegmentCopyType
-%type <ConicalSegmentF_1096_TypeVal>  y_ConicalSegmentF_1096_ConicalSegmentF_1096_Type
-%type <ConicalSegmentF_1096_TypeVal>  y_ConicalSegmentF_1096_Type
-%type <ConicalSegmentF_1096_TypeChoicePairVal> y_ConicalSegmentF_1096_TypeChoicePair
-%type <ConicalSegmentF_1097_TypeVal>  y_ConicalSegmentF_1097_ConicalSegmentF_1097_Type_0
+%type <ConicalSegmentF_1097_TypeVal>  y_ConicalSegmentF_1097_ConicalSegmentF_1097_Type
 %type <ConicalSegmentF_1097_TypeVal>  y_ConicalSegmentF_1097_Type
+%type <ConicalSegmentF_1097_TypeChoicePairVal> y_ConicalSegmentF_1097_TypeChoicePair
 %type <ConicalSegmentF_1098_TypeVal>  y_ConicalSegmentF_1098_ConicalSegmentF_1098_Type_0
 %type <ConicalSegmentF_1098_TypeVal>  y_ConicalSegmentF_1098_Type
-%type <ConicalSegmentF_1098_TypeChoicePairVal> y_ConicalSegmentF_1098_TypeChoicePair
+%type <ConicalSegmentF_1099_TypeVal>  y_ConicalSegmentF_1099_ConicalSegmentF_1099_Type_0
+%type <ConicalSegmentF_1099_TypeVal>  y_ConicalSegmentF_1099_Type
+%type <ConicalSegmentF_1099_TypeChoicePairVal> y_ConicalSegmentF_1099_TypeChoicePair
 %type <ConicalSegmentFeatureDefinitionTypeVal> y_ConicalSegmentFeatureDefinitionType
 %type <ConicalSegmentFeatureDefinitionTypeVal> y_ConicalSegmentFeatureDefinition_ConicalSegmentFeatureDefinitionType
 %type <ConicalSegmentFeatureItemTypeVal> y_ConicalSegmentFeatureItemType
@@ -4044,9 +4028,9 @@ int yyerror(const char * s);
 %type <ControlIssueTypeChoicePairVal> y_ControlIssueTypeChoicePair
 %type <ControlIssueTypeVal>           y_ControlIssue_ControlIssueType
 %type <QIFReferenceTypeVal>           y_ControlMethodId_QIFReferenceType_0
-%type <ControlMethodTy_1199_TypeVal>  y_ControlMethodTy_1199_ControlMethodTy_1199_Type
-%type <ControlMethodTy_1199_TypeVal>  y_ControlMethodTy_1199_Type
-%type <ControlMethodTy_1199_TypeChoicePairVal> y_ControlMethodTy_1199_TypeChoicePair
+%type <ControlMethodTy_1200_TypeVal>  y_ControlMethodTy_1200_ControlMethodTy_1200_Type
+%type <ControlMethodTy_1200_TypeVal>  y_ControlMethodTy_1200_Type
+%type <ControlMethodTy_1200_TypeChoicePairVal> y_ControlMethodTy_1200_TypeChoicePair
 %type <ControlMethodTypeVal>          y_ControlMethodType
 %type <ControlMethodTypeVal>          y_ControlMethod_ControlMethodType
 %type <ControlMethodsTypeVal>         y_ControlMethodsType
@@ -4107,9 +4091,9 @@ int yyerror(const char * s);
 %type <ToroidalSegmentCopyTypeVal>    y_Copy_ToroidalSegmentCopyType
 %type <TorusCopyTypeVal>              y_Copy_TorusCopyType
 %type <PointTypeVal>                  y_CornerPoint_PointType
-%type <CorrectiveActio_1130_TypeVal>  y_CorrectiveActio_1130_CorrectiveActio_1130_Type
-%type <CorrectiveActio_1130_TypeVal>  y_CorrectiveActio_1130_Type
-%type <CorrectiveActio_1130_TypeChoicePairVal> y_CorrectiveActio_1130_TypeChoicePair
+%type <CorrectiveActio_1131_TypeVal>  y_CorrectiveActio_1131_CorrectiveActio_1131_Type
+%type <CorrectiveActio_1131_TypeVal>  y_CorrectiveActio_1131_Type
+%type <CorrectiveActio_1131_TypeChoicePairVal> y_CorrectiveActio_1131_TypeChoicePair
 %type <ArrayReferenceTypeVal>         y_CorrectiveActionIds_ArrayReferenceType_0
 %type <QIFReferenceTypeVal>           y_CorrectiveActionPlanId_QIFReferenceType_0
 %type <CorrectiveActionPlanTypeVal>   y_CorrectiveActionPlanType
@@ -4132,12 +4116,12 @@ int yyerror(const char * s);
 %type <CriteriaByUnitTypeVal>         y_CriteriaByUnitType
 %type <CriterionAngularTypeVal>       y_CriterionAngularType
 %type <CriterionAreaTypeVal>          y_CriterionAreaType
-%type <CriterionDecima_1131_TypeVal>  y_CriterionDecima_1131_CriterionDecima_1131_Type_0
-%type <CriterionDecima_1131_TypeVal>  y_CriterionDecima_1131_Type
+%type <CriterionDecima_1132_TypeVal>  y_CriterionDecima_1132_CriterionDecima_1132_Type_0
+%type <CriterionDecima_1132_TypeVal>  y_CriterionDecima_1132_Type
 %type <CriterionDecimalTypeVal>       y_CriterionDecimalType
 %type <CriterionForceTypeVal>         y_CriterionForceType
-%type <CriterionIntege_1132_TypeVal>  y_CriterionIntege_1132_CriterionIntege_1132_Type_0
-%type <CriterionIntege_1132_TypeVal>  y_CriterionIntege_1132_Type
+%type <CriterionIntege_1133_TypeVal>  y_CriterionIntege_1133_CriterionIntege_1133_Type_0
+%type <CriterionIntege_1133_TypeVal>  y_CriterionIntege_1133_Type
 %type <CriterionIntegerTypeVal>       y_CriterionIntegerType
 %type <CriterionLinearTypeVal>        y_CriterionLinearType
 %type <CriterionMassTypeVal>          y_CriterionMassType
@@ -4150,12 +4134,12 @@ int yyerror(const char * s);
 %type <CriticalityAreaEnumTypeVal>    y_CriticalityAreaEnumType
 %type <CriticalityLevelEnumTypeVal>   y_CriticalityLevelEnumType
 %type <CriticalityTypeVal>            y_CriticalityType
-%type <CriticalityType_1050_TypeVal>  y_CriticalityType_1050_CriticalityType_1050_Type
-%type <CriticalityType_1050_TypeVal>  y_CriticalityType_1050_Type
-%type <CriticalityType_1050_TypeChoicePairVal> y_CriticalityType_1050_TypeChoicePair
-%type <CriticalityType_1051_TypeVal>  y_CriticalityType_1051_CriticalityType_1051_Type_0
+%type <CriticalityType_1051_TypeVal>  y_CriticalityType_1051_CriticalityType_1051_Type
 %type <CriticalityType_1051_TypeVal>  y_CriticalityType_1051_Type
 %type <CriticalityType_1051_TypeChoicePairVal> y_CriticalityType_1051_TypeChoicePair
+%type <CriticalityType_1052_TypeVal>  y_CriticalityType_1052_CriticalityType_1052_Type_0
+%type <CriticalityType_1052_TypeVal>  y_CriticalityType_1052_Type
+%type <CriticalityType_1052_TypeChoicePairVal> y_CriticalityType_1052_TypeChoicePair
 %type <CriticalityTypeVal>            y_Criticality_CriticalityType_0
 %type <ArrayReferenceFullTypeVal>     y_CrossSectionReferenceFeatureId_ArrayReferenceFullType
 %type <CurveCoreBaseTypeVal>          y_Curve12Core_substituteType
@@ -4247,19 +4231,19 @@ int yyerror(const char * s);
 %type <CylindricalSegmentTransformTypeVal> y_CylindricalSegmentTransformType
 %type <CylindricalWorkingVolumeTypeVal> y_CylindricalWorkingVolumeType
 %type <CylindricalWorkingVolumeTypeVal> y_CylindricalWorkingVolume_CylindricalWorkingVolumeType
-%type <CylindricityCha_1052_TypeVal>  y_CylindricityCha_1052_CylindricityCha_1052_Type
-%type <CylindricityCha_1052_TypeVal>  y_CylindricityCha_1052_Type
-%type <CylindricityCha_1052_TypeChoicePairVal> y_CylindricityCha_1052_TypeChoicePair
-%type <CylindricityCha_1053_TypeVal>  y_CylindricityCha_1053_CylindricityCha_1053_Type_0
+%type <CylindricityCha_1053_TypeVal>  y_CylindricityCha_1053_CylindricityCha_1053_Type
 %type <CylindricityCha_1053_TypeVal>  y_CylindricityCha_1053_Type
-%type <CylindricityCha_1083_TypeVal>  y_CylindricityCha_1083_CylindricityCha_1083_Type
-%type <CylindricityCha_1083_TypeVal>  y_CylindricityCha_1083_Type
+%type <CylindricityCha_1053_TypeChoicePairVal> y_CylindricityCha_1053_TypeChoicePair
+%type <CylindricityCha_1054_TypeVal>  y_CylindricityCha_1054_CylindricityCha_1054_Type_0
+%type <CylindricityCha_1054_TypeVal>  y_CylindricityCha_1054_Type
 %type <CylindricityCha_1084_TypeVal>  y_CylindricityCha_1084_CylindricityCha_1084_Type
 %type <CylindricityCha_1084_TypeVal>  y_CylindricityCha_1084_Type
-%type <CylindricityCha_1084_TypeChoicePairVal> y_CylindricityCha_1084_TypeChoicePair
-%type <CylindricityCha_1091_TypeVal>  y_CylindricityCha_1091_CylindricityCha_1091_Type_0
-%type <CylindricityCha_1091_TypeVal>  y_CylindricityCha_1091_Type
-%type <CylindricityCha_1091_TypeChoicePairVal> y_CylindricityCha_1091_TypeChoicePair
+%type <CylindricityCha_1085_TypeVal>  y_CylindricityCha_1085_CylindricityCha_1085_Type
+%type <CylindricityCha_1085_TypeVal>  y_CylindricityCha_1085_Type
+%type <CylindricityCha_1085_TypeChoicePairVal> y_CylindricityCha_1085_TypeChoicePair
+%type <CylindricityCha_1092_TypeVal>  y_CylindricityCha_1092_CylindricityCha_1092_Type_0
+%type <CylindricityCha_1092_TypeVal>  y_CylindricityCha_1092_Type
+%type <CylindricityCha_1092_TypeChoicePairVal> y_CylindricityCha_1092_TypeChoicePair
 %type <CylindricityCharacteristicDefinitionTypeVal> y_CylindricityCharacteristicDefinitionType
 %type <CylindricityCharacteristicDefinitionTypeVal> y_CylindricityCharacteristicDefinition_CylindricityCharacteristicDefinitionType
 %type <CylindricityCharacteristicItemTypeVal> y_CylindricityCharacteristicItemType
@@ -4335,9 +4319,9 @@ int yyerror(const char * s);
 %type <DatumTranslationTypeVal>       y_DatumTranslationType
 %type <DatumTranslationTypeVal>       y_DatumTranslation_DatumTranslationType_0
 %type <DatumTypeVal>                  y_DatumType
-%type <DatumWithPreced_1012_TypeVal>  y_DatumWithPreced_1012_DatumWithPreced_1012_Type
-%type <DatumWithPreced_1012_TypeVal>  y_DatumWithPreced_1012_Type
-%type <DatumWithPreced_1012_TypeChoicePairVal> y_DatumWithPreced_1012_TypeChoicePair
+%type <DatumWithPreced_1013_TypeVal>  y_DatumWithPreced_1013_DatumWithPreced_1013_Type
+%type <DatumWithPreced_1013_TypeVal>  y_DatumWithPreced_1013_Type
+%type <DatumWithPreced_1013_TypeChoicePairVal> y_DatumWithPreced_1013_TypeChoicePair
 %type <DatumWithPrecedenceTypeVal>    y_DatumWithPrecedenceType
 %type <DatumWithPrecedenceTypeVal>    y_Datum_DatumWithPrecedenceType
 %type <SequencedDatumTypeVal>         y_Datum_SequencedDatumType
@@ -4365,9 +4349,9 @@ int yyerror(const char * s);
 %type <QIFReferenceFullTypeVal>       y_DefinitionId_QIFReferenceFullType
 %type <DegreeOfFreedomEnumTypeVal>    y_DegreeOfFreedomEnumType
 %type <DegreeOfFreedomEnumTypeVal>    y_DegreeOfFreedom_DegreeOfFreedomEnumType
-%type <DegreesOfFreedo_1013_TypeVal>  y_DegreesOfFreedo_1013_DegreesOfFreedo_1013_Type
-%type <DegreesOfFreedo_1013_TypeVal>  y_DegreesOfFreedo_1013_Type
-%type <DegreesOfFreedo_1013_TypeChoicePairVal> y_DegreesOfFreedo_1013_TypeChoicePair
+%type <DegreesOfFreedo_1014_TypeVal>  y_DegreesOfFreedo_1014_DegreesOfFreedo_1014_Type
+%type <DegreesOfFreedo_1014_TypeVal>  y_DegreesOfFreedo_1014_Type
+%type <DegreesOfFreedo_1014_TypeChoicePairVal> y_DegreesOfFreedo_1014_TypeChoicePair
 %type <DegreesOfFreedomTypeVal>       y_DegreesOfFreedomType
 %type <DegreesOfFreedomTypeVal>       y_DegreesOfFreedom_DegreesOfFreedomType
 %type <DegreesOfFreedomTypeVal>       y_DegreesOfFreedom_DegreesOfFreedomType_0
@@ -4450,9 +4434,9 @@ int yyerror(const char * s);
 %type <TwentyLinearValuesTypeVal>     y_DeviationsFromCalibration_TwentyLinearValuesType
 %type <ListDoubleTypeVal>             y_Deviations_ListDoubleType
 %type <XmlDoubleVal>                  y_DiameterBottom_XmlDouble
-%type <DiameterCharact_1054_TypeVal>  y_DiameterCharact_1054_DiameterCharact_1054_Type
-%type <DiameterCharact_1054_TypeVal>  y_DiameterCharact_1054_Type
-%type <DiameterCharact_1054_TypeChoicePairVal> y_DiameterCharact_1054_TypeChoicePair
+%type <DiameterCharact_1055_TypeVal>  y_DiameterCharact_1055_DiameterCharact_1055_Type
+%type <DiameterCharact_1055_TypeVal>  y_DiameterCharact_1055_Type
+%type <DiameterCharact_1055_TypeChoicePairVal> y_DiameterCharact_1055_TypeChoicePair
 %type <DiameterCharacteristicDefinitionTypeVal> y_DiameterCharacteristicDefinitionType
 %type <DiameterCharacteristicDefinitionTypeVal> y_DiameterCharacteristicDefinition_DiameterCharacteristicDefinitionType
 %type <DiameterCharacteristicItemTypeVal> y_DiameterCharacteristicItemType
@@ -4518,9 +4502,9 @@ int yyerror(const char * s);
 %type <MeasuredUnitVectorTypeVal>     y_Direction_MeasuredUnitVectorType_0
 %type <UnitVectorTypeVal>             y_Direction_UnitVectorType
 %type <UnitVectorTypeVal>             y_Direction_UnitVectorType_0
-%type <DirectionalOffs_1014_TypeVal>  y_DirectionalOffs_1014_DirectionalOffs_1014_Type
-%type <DirectionalOffs_1014_TypeVal>  y_DirectionalOffs_1014_Type
-%type <DirectionalOffs_1014_TypeChoicePairVal> y_DirectionalOffs_1014_TypeChoicePair
+%type <DirectionalOffs_1015_TypeVal>  y_DirectionalOffs_1015_DirectionalOffs_1015_Type
+%type <DirectionalOffs_1015_TypeVal>  y_DirectionalOffs_1015_Type
+%type <DirectionalOffs_1015_TypeChoicePairVal> y_DirectionalOffs_1015_TypeChoicePair
 %type <DirectionalOffsetTypeVal>      y_DirectionalOffsetType
 %type <DirectionalOffsetTypeVal>      y_DirectionalOffset_DirectionalOffsetType
 %type <ArrayBinaryTypeVal>            y_DirectionsBinary_ArrayBinaryType
@@ -4816,9 +4800,9 @@ int yyerror(const char * s);
 %type <XmlBooleanVal>                 y_Expanded_XmlBoolean_0
 %type <XmlDateTimeVal>                y_ExpirationDate_XmlDateTime
 %type <QIFReferenceActiveTypeVal>     y_ExplodedViewId_QIFReferenceActiveType_0
-%type <ExplodedViewMov_1230_TypeVal>  y_ExplodedViewMov_1230_ExplodedViewMov_1230_Type
-%type <ExplodedViewMov_1230_TypeVal>  y_ExplodedViewMov_1230_Type
-%type <ExplodedViewMov_1230_TypeChoicePairVal> y_ExplodedViewMov_1230_TypeChoicePair
+%type <ExplodedViewMov_1231_TypeVal>  y_ExplodedViewMov_1231_ExplodedViewMov_1231_Type
+%type <ExplodedViewMov_1231_TypeVal>  y_ExplodedViewMov_1231_Type
+%type <ExplodedViewMov_1231_TypeChoicePairVal> y_ExplodedViewMov_1231_TypeChoicePair
 %type <ExplodedViewMoveGroupTypeVal>  y_ExplodedViewMoveGroupType
 %type <ExplodedViewMoveGroupsTypeVal> y_ExplodedViewMoveGroupsType
 %type <ExplodedViewRotateTypeVal>     y_ExplodedViewRotateType
@@ -4887,15 +4871,15 @@ int yyerror(const char * s);
 %type <ArrayReferenceFullTypeVal>     y_FaceIds_ArrayReferenceFullType
 %type <ArrayReferenceTypeVal>         y_FaceIds_ArrayReferenceType_0
 %type <FaceMeshTypeVal>               y_FaceMeshType
-%type <FaceMeshType_1223_TypeVal>     y_FaceMeshType_1223_FaceMeshType_1223_Type_0
-%type <FaceMeshType_1223_TypeVal>     y_FaceMeshType_1223_Type
-%type <FaceMeshType_1223_TypeChoicePairVal> y_FaceMeshType_1223_TypeChoicePair
 %type <FaceMeshType_1224_TypeVal>     y_FaceMeshType_1224_FaceMeshType_1224_Type_0
 %type <FaceMeshType_1224_TypeVal>     y_FaceMeshType_1224_Type
 %type <FaceMeshType_1224_TypeChoicePairVal> y_FaceMeshType_1224_TypeChoicePair
 %type <FaceMeshType_1225_TypeVal>     y_FaceMeshType_1225_FaceMeshType_1225_Type_0
 %type <FaceMeshType_1225_TypeVal>     y_FaceMeshType_1225_Type
 %type <FaceMeshType_1225_TypeChoicePairVal> y_FaceMeshType_1225_TypeChoicePair
+%type <FaceMeshType_1226_TypeVal>     y_FaceMeshType_1226_FaceMeshType_1226_Type_0
+%type <FaceMeshType_1226_TypeVal>     y_FaceMeshType_1226_Type
+%type <FaceMeshType_1226_TypeChoicePairVal> y_FaceMeshType_1226_TypeChoicePair
 %type <FaceMeshTypeVal>               y_FaceMesh_FaceMeshType
 %type <ValidationPointsTypeVal>       y_FacePoints_ValidationPointsType_0
 %type <FaceSetTypeVal>                y_FaceSetType
@@ -4971,18 +4955,18 @@ int yyerror(const char * s);
 %type <FeatureZoneAreaRectangularTypeVal> y_FeatureZoneAreaRectangular_FeatureZoneAreaRectangularType
 %type <FeatureZoneAreaSphericalTypeVal> y_FeatureZoneAreaSphericalType
 %type <FeatureZoneAreaSphericalTypeVal> y_FeatureZoneAreaSpherical_FeatureZoneAreaSphericalType
-%type <FeatureZoneArea_1099_TypeVal>  y_FeatureZoneArea_1099_FeatureZoneArea_1099_Type_0
-%type <FeatureZoneArea_1099_TypeVal>  y_FeatureZoneArea_1099_Type
-%type <FeatureZoneArea_1099_TypeChoicePairVal> y_FeatureZoneArea_1099_TypeChoicePair
-%type <FeatureZoneArea_1100_TypeVal>  y_FeatureZoneArea_1100_FeatureZoneArea_1100_Type
+%type <FeatureZoneArea_1100_TypeVal>  y_FeatureZoneArea_1100_FeatureZoneArea_1100_Type_0
 %type <FeatureZoneArea_1100_TypeVal>  y_FeatureZoneArea_1100_Type
 %type <FeatureZoneArea_1100_TypeChoicePairVal> y_FeatureZoneArea_1100_TypeChoicePair
 %type <FeatureZoneArea_1101_TypeVal>  y_FeatureZoneArea_1101_FeatureZoneArea_1101_Type
 %type <FeatureZoneArea_1101_TypeVal>  y_FeatureZoneArea_1101_Type
 %type <FeatureZoneArea_1101_TypeChoicePairVal> y_FeatureZoneArea_1101_TypeChoicePair
-%type <FeatureZoneCurv_1102_TypeVal>  y_FeatureZoneCurv_1102_FeatureZoneCurv_1102_Type_0
-%type <FeatureZoneCurv_1102_TypeVal>  y_FeatureZoneCurv_1102_Type
-%type <FeatureZoneCurv_1102_TypeChoicePairVal> y_FeatureZoneCurv_1102_TypeChoicePair
+%type <FeatureZoneArea_1102_TypeVal>  y_FeatureZoneArea_1102_FeatureZoneArea_1102_Type
+%type <FeatureZoneArea_1102_TypeVal>  y_FeatureZoneArea_1102_Type
+%type <FeatureZoneArea_1102_TypeChoicePairVal> y_FeatureZoneArea_1102_TypeChoicePair
+%type <FeatureZoneCurv_1103_TypeVal>  y_FeatureZoneCurv_1103_FeatureZoneCurv_1103_Type_0
+%type <FeatureZoneCurv_1103_TypeVal>  y_FeatureZoneCurv_1103_Type
+%type <FeatureZoneCurv_1103_TypeChoicePairVal> y_FeatureZoneCurv_1103_TypeChoicePair
 %type <FeatureZoneCurveCircularTypeVal> y_FeatureZoneCurveCircularType
 %type <FeatureZoneCurveCircularTypeVal> y_FeatureZoneCurveCircular_FeatureZoneCurveCircularType
 %type <FeatureZoneCurveIrregularTypeVal> y_FeatureZoneCurveIrregularType
@@ -4992,9 +4976,9 @@ int yyerror(const char * s);
 %type <ArrayReferenceFullTypeVal>     y_FeatureZoneIds_ArrayReferenceFullType_0
 %type <ArrayReferenceTypeVal>         y_FeatureZoneIds_ArrayReferenceType_0
 %type <FeatureZoneListTypeVal>        y_FeatureZoneListType
-%type <FeatureZonePoin_1103_TypeVal>  y_FeatureZonePoin_1103_FeatureZonePoin_1103_Type_0
-%type <FeatureZonePoin_1103_TypeVal>  y_FeatureZonePoin_1103_Type
-%type <FeatureZonePoin_1103_TypeChoicePairVal> y_FeatureZonePoin_1103_TypeChoicePair
+%type <FeatureZonePoin_1104_TypeVal>  y_FeatureZonePoin_1104_FeatureZonePoin_1104_Type_0
+%type <FeatureZonePoin_1104_TypeVal>  y_FeatureZonePoin_1104_Type
+%type <FeatureZonePoin_1104_TypeChoicePairVal> y_FeatureZonePoin_1104_TypeChoicePair
 %type <FeatureZonePointTypeVal>       y_FeatureZonePointType
 %type <FeatureZonePointTypeVal>       y_FeatureZonePoint_FeatureZonePointType
 %type <FeatureZoneBaseTypeVal>        y_FeatureZone_substituteType
@@ -5017,9 +5001,9 @@ int yyerror(const char * s);
 %type <FilterTypeVal>                 y_Filter_FilterType_0
 %type <WeldFinishingDesignatorEnumTypeVal> y_FinishingDesignator_WeldFinishingDesignatorEnumType_0
 %type <WeldFinishingTypeVal>          y_Finishing_WeldFinishingType_0
-%type <FirstArticleStu_1200_TypeVal>  y_FirstArticleStu_1200_FirstArticleStu_1200_Type
-%type <FirstArticleStu_1200_TypeVal>  y_FirstArticleStu_1200_Type
-%type <FirstArticleStu_1200_TypeChoicePairVal> y_FirstArticleStu_1200_TypeChoicePair
+%type <FirstArticleStu_1201_TypeVal>  y_FirstArticleStu_1201_FirstArticleStu_1201_Type
+%type <FirstArticleStu_1201_TypeVal>  y_FirstArticleStu_1201_Type
+%type <FirstArticleStu_1201_TypeChoicePairVal> y_FirstArticleStu_1201_TypeChoicePair
 %type <FirstArticleStudyPlanTypeVal>  y_FirstArticleStudyPlanType
 %type <FirstArticleStudyPlanTypeVal>  y_FirstArticleStudyPlan_FirstArticleStudyPlanType
 %type <FirstArticleStudyResultsTypeVal> y_FirstArticleStudyResultsType
@@ -5046,13 +5030,13 @@ int yyerror(const char * s);
 %type <FlatTaperCharacteristicNominalTypeVal> y_FlatTaperCharacteristicNominal_FlatTaperCharacteristicNominalType
 %type <FlatTaperCharacteristicStatsEvalTypeVal> y_FlatTaperCharacteristicStatsEvalType
 %type <FlatTaperCharacteristicStatsEvalTypeVal> y_FlatTaperCharacteristicStats_FlatTaperCharacteristicStatsEvalType
-%type <FlatnessCharact_1055_TypeVal>  y_FlatnessCharact_1055_FlatnessCharact_1055_Type
-%type <FlatnessCharact_1055_TypeVal>  y_FlatnessCharact_1055_Type
-%type <FlatnessCharact_1055_TypeChoicePairVal> y_FlatnessCharact_1055_TypeChoicePair
-%type <FlatnessCharact_1085_TypeVal>  y_FlatnessCharact_1085_FlatnessCharact_1085_Type
-%type <FlatnessCharact_1085_TypeVal>  y_FlatnessCharact_1085_Type
+%type <FlatnessCharact_1056_TypeVal>  y_FlatnessCharact_1056_FlatnessCharact_1056_Type
+%type <FlatnessCharact_1056_TypeVal>  y_FlatnessCharact_1056_Type
+%type <FlatnessCharact_1056_TypeChoicePairVal> y_FlatnessCharact_1056_TypeChoicePair
 %type <FlatnessCharact_1086_TypeVal>  y_FlatnessCharact_1086_FlatnessCharact_1086_Type
 %type <FlatnessCharact_1086_TypeVal>  y_FlatnessCharact_1086_Type
+%type <FlatnessCharact_1087_TypeVal>  y_FlatnessCharact_1087_FlatnessCharact_1087_Type
+%type <FlatnessCharact_1087_TypeVal>  y_FlatnessCharact_1087_Type
 %type <FlatnessCharacteristicDefinitionTypeVal> y_FlatnessCharacteristicDefinitionType
 %type <FlatnessCharacteristicDefinitionTypeVal> y_FlatnessCharacteristicDefinition_FlatnessCharacteristicDefinitionType
 %type <FlatnessCharacteristicItemTypeVal> y_FlatnessCharacteristicItemType
@@ -5078,19 +5062,19 @@ int yyerror(const char * s);
 %type <FontsTypeVal>                  y_FontsType
 %type <FontsTypeVal>                  y_Fonts_FontsType
 %type <MeasuredForceValueTypeVal>     y_ForceAbsoluteLinearity_MeasuredForceValueType
-%type <ForceCharacteri_1056_TypeVal>  y_ForceCharacteri_1056_ForceCharacteri_1056_Type
-%type <ForceCharacteri_1056_TypeVal>  y_ForceCharacteri_1056_Type
-%type <ForceCharacteri_1056_TypeChoicePairVal> y_ForceCharacteri_1056_TypeChoicePair
+%type <ForceCharacteri_1057_TypeVal>  y_ForceCharacteri_1057_ForceCharacteri_1057_Type
+%type <ForceCharacteri_1057_TypeVal>  y_ForceCharacteri_1057_Type
+%type <ForceCharacteri_1057_TypeChoicePairVal> y_ForceCharacteri_1057_TypeChoicePair
 %type <CriterionForceTypeVal>         y_ForceCriterion_CriterionForceType_0
 %type <ForceValueTypeVal>             y_ForceLimit_ForceValueType_0
 %type <MeasuredForceValueTypeVal>     y_ForceMeasurement_MeasuredForceValueType_0
 %type <SummariesStatisticsForceTypeVal> y_ForceStatsSummaries_SummariesStatisticsForceType_0
 %type <SummaryStatisticsForceTypeVal> y_ForceStatsSummary_SummaryStatisticsForceType
-%type <ForceToleranceT_1015_TypeVal>  y_ForceToleranceT_1015_ForceToleranceT_1015_Type
-%type <ForceToleranceT_1015_TypeVal>  y_ForceToleranceT_1015_Type
-%type <ForceToleranceT_1015_TypeChoicePairVal> y_ForceToleranceT_1015_TypeChoicePair
-%type <ForceToleranceT_1032_TypeVal>  y_ForceToleranceT_1032_ForceToleranceT_1032_Type
-%type <ForceToleranceT_1032_TypeVal>  y_ForceToleranceT_1032_Type
+%type <ForceToleranceT_1016_TypeVal>  y_ForceToleranceT_1016_ForceToleranceT_1016_Type
+%type <ForceToleranceT_1016_TypeVal>  y_ForceToleranceT_1016_Type
+%type <ForceToleranceT_1016_TypeChoicePairVal> y_ForceToleranceT_1016_TypeChoicePair
+%type <ForceToleranceT_1033_TypeVal>  y_ForceToleranceT_1033_ForceToleranceT_1033_Type
+%type <ForceToleranceT_1033_TypeVal>  y_ForceToleranceT_1033_Type
 %type <ForceToleranceTypeVal>         y_ForceToleranceType
 %type <ForceUnitTypeVal>              y_ForceUnitType
 %type <ForceUnitTypeVal>              y_ForceUnit_ForceUnitType
@@ -5168,24 +5152,24 @@ int yyerror(const char * s);
 %type <GageMeasureFeatureMethodTypeVal> y_GageMeasureFeatureMethodType
 %type <GageMeasureFeatureMethodTypeVal> y_GageMeasureFeatureMethod_GageMeasureFeatureMethodType
 %type <GageRandRStudyEnumTypeVal>     y_GageRandRStudyEnumType
-%type <GageRandRStudyP_1201_TypeVal>  y_GageRandRStudyP_1201_GageRandRStudyP_1201_Type_0
-%type <GageRandRStudyP_1201_TypeVal>  y_GageRandRStudyP_1201_Type
-%type <GageRandRStudyP_1201_TypeChoicePairVal> y_GageRandRStudyP_1201_TypeChoicePair
 %type <GageRandRStudyP_1202_TypeVal>  y_GageRandRStudyP_1202_GageRandRStudyP_1202_Type_0
 %type <GageRandRStudyP_1202_TypeVal>  y_GageRandRStudyP_1202_Type
 %type <GageRandRStudyP_1202_TypeChoicePairVal> y_GageRandRStudyP_1202_TypeChoicePair
 %type <GageRandRStudyP_1203_TypeVal>  y_GageRandRStudyP_1203_GageRandRStudyP_1203_Type_0
 %type <GageRandRStudyP_1203_TypeVal>  y_GageRandRStudyP_1203_Type
 %type <GageRandRStudyP_1203_TypeChoicePairVal> y_GageRandRStudyP_1203_TypeChoicePair
+%type <GageRandRStudyP_1204_TypeVal>  y_GageRandRStudyP_1204_GageRandRStudyP_1204_Type_0
+%type <GageRandRStudyP_1204_TypeVal>  y_GageRandRStudyP_1204_Type
+%type <GageRandRStudyP_1204_TypeChoicePairVal> y_GageRandRStudyP_1204_TypeChoicePair
 %type <GageRandRStudyPlanTypeVal>     y_GageRandRStudyPlanType
 %type <GageRandRStudyPlanTypeVal>     y_GageRandRStudyPlan_GageRandRStudyPlanType
 %type <GageRandRStudyResultsTypeVal>  y_GageRandRStudyResultsType
 %type <GageRandRStudyResultsTypeVal>  y_GageRandRStudyResults_GageRandRStudyResultsType
 %type <StatsMeasuredDecimalTypeVal>   y_GageRandR_StatsMeasuredDecimalType
 %type <Curve13CoreTypeVal>            y_Generatrix_Curve13CoreType
-%type <GeometricCharac_1057_TypeVal>  y_GeometricCharac_1057_GeometricCharac_1057_Type_0
-%type <GeometricCharac_1057_TypeVal>  y_GeometricCharac_1057_Type
-%type <GeometricCharac_1057_TypeChoicePairVal> y_GeometricCharac_1057_TypeChoicePair
+%type <GeometricCharac_1058_TypeVal>  y_GeometricCharac_1058_GeometricCharac_1058_Type_0
+%type <GeometricCharac_1058_TypeVal>  y_GeometricCharac_1058_Type
+%type <GeometricCharac_1058_TypeChoicePairVal> y_GeometricCharac_1058_TypeChoicePair
 %type <ArrayReferenceFullTypeVal>     y_GeometricCharacteristicIds_ArrayReferenceFullType
 %type <GeometricCharacteristicStatsEvalTypeVal> y_GeometricCharacteristicStatsEvalType
 %type <GeometricCharacteristicStatsEvalTypeVal> y_GeometricCharacteristicStats_GeometricCharacteristicStatsEvalType
@@ -5204,9 +5188,9 @@ int yyerror(const char * s);
 %type <GreaterThanTypeVal>            y_GreaterThanType
 %type <GreaterThanTypeVal>            y_GreaterThan_GreaterThanType
 %type <FractionTypeVal>               y_Groove_FractionType_0
-%type <GroupFeatureDef_1104_TypeVal>  y_GroupFeatureDef_1104_GroupFeatureDef_1104_Type_0
-%type <GroupFeatureDef_1104_TypeVal>  y_GroupFeatureDef_1104_Type
-%type <GroupFeatureDef_1104_TypeChoicePairVal> y_GroupFeatureDef_1104_TypeChoicePair
+%type <GroupFeatureDef_1105_TypeVal>  y_GroupFeatureDef_1105_GroupFeatureDef_1105_Type_0
+%type <GroupFeatureDef_1105_TypeVal>  y_GroupFeatureDef_1105_Type
+%type <GroupFeatureDef_1105_TypeChoicePairVal> y_GroupFeatureDef_1105_TypeChoicePair
 %type <GroupFeatureDefinitionTypeVal> y_GroupFeatureDefinitionType
 %type <GroupFeatureDefinitionTypeVal> y_GroupFeatureDefinition_GroupFeatureDefinitionType
 %type <GroupFeatureItemTypeVal>       y_GroupFeatureItemType
@@ -5255,9 +5239,9 @@ int yyerror(const char * s);
 %type <LinearValueTypeVal>            y_Hysteresis_LinearValueType_0
 %type <I2TypeVal>                     y_I2Type
 %type <XmlNMTOKENVal>                 y_ISBN_XmlNMTOKEN_0
-%type <ISO10360TestTyp_1240_TypeVal>  y_ISO10360TestTyp_1240_ISO10360TestTyp_1240_Type
-%type <ISO10360TestTyp_1240_TypeVal>  y_ISO10360TestTyp_1240_Type
-%type <ISO10360TestTyp_1240_TypeChoicePairVal> y_ISO10360TestTyp_1240_TypeChoicePair
+%type <ISO10360TestTyp_1241_TypeVal>  y_ISO10360TestTyp_1241_ISO10360TestTyp_1241_Type
+%type <ISO10360TestTyp_1241_TypeVal>  y_ISO10360TestTyp_1241_Type
+%type <ISO10360TestTyp_1241_TypeChoicePairVal> y_ISO10360TestTyp_1241_TypeChoicePair
 %type <ISO10360TestTypeVal>           y_ISO10360TestType
 %type <ISODegreeOfFreedomEnumTypeVal> y_ISODegreeOfFreedomEnumType
 %type <ISODegreeOfFreedomEnumTypeVal> y_ISODegreeOfFreedom_ISODegreeOfFreedomEnumType
@@ -5362,9 +5346,9 @@ int yyerror(const char * s);
 %type <InspectionStatusTypeVal>       y_InspectionStatusType
 %type <InspectionStatusTypeChoicePairVal> y_InspectionStatusTypeChoicePair
 %type <InspectionStatusTypeVal>       y_InspectionStatus_InspectionStatusType
-%type <InspectionTrace_1042_TypeVal>  y_InspectionTrace_1042_InspectionTrace_1042_Type_0
-%type <InspectionTrace_1042_TypeVal>  y_InspectionTrace_1042_Type
-%type <InspectionTrace_1042_TypeChoicePairVal> y_InspectionTrace_1042_TypeChoicePair
+%type <InspectionTrace_1043_TypeVal>  y_InspectionTrace_1043_InspectionTrace_1043_Type_0
+%type <InspectionTrace_1043_TypeVal>  y_InspectionTrace_1043_Type
+%type <InspectionTrace_1043_TypeChoicePairVal> y_InspectionTrace_1043_TypeChoicePair
 %type <InspectionTraceabilityTypeVal> y_InspectionTraceabilityType
 %type <InspectionTraceabilityTypeVal> y_InspectionTraceability_InspectionTraceabilityType_0
 %type <ValidationPartAssemblyInstanceTypeVal> y_Instance_ValidationPartAssemblyInstanceType
@@ -5491,9 +5475,9 @@ int yyerror(const char * s);
 %type <XmlStringVal>                  y_LightSource_XmlString_0
 %type <XmlDecimalVal>                 y_Limit_XmlDecimal
 %type <XmlPositiveIntegerVal>         y_Limit_XmlPositiveInteger
-%type <LimitingNumberT_1133_TypeVal>  y_LimitingNumberT_1133_LimitingNumberT_1133_Type
-%type <LimitingNumberT_1133_TypeVal>  y_LimitingNumberT_1133_Type
-%type <LimitingNumberT_1133_TypeChoicePairVal> y_LimitingNumberT_1133_TypeChoicePair
+%type <LimitingNumberT_1134_TypeVal>  y_LimitingNumberT_1134_LimitingNumberT_1134_Type
+%type <LimitingNumberT_1134_TypeVal>  y_LimitingNumberT_1134_Type
+%type <LimitingNumberT_1134_TypeChoicePairVal> y_LimitingNumberT_1134_TypeChoicePair
 %type <LimitingNumberTypeVal>         y_LimitingNumberType
 %type <LimitsAndFitsSpecificationTypeVal> y_LimitsAndFitsSpecificationType
 %type <LimitsAndFitsSpecificationTypeVal> y_LimitsAndFitsSpecification_LimitsAndFitsSpecificationType
@@ -5548,25 +5532,25 @@ int yyerror(const char * s);
 %type <MeasuredLinearValueTypeVal>    y_LinearAbsoluteLinearity_MeasuredLinearValueType
 %type <LinearAxisTypeVal>             y_LinearAxisType
 %type <LinearAxisTypeVal>             y_LinearAxis_LinearAxisType
-%type <LinearCharacter_1058_TypeVal>  y_LinearCharacter_1058_LinearCharacter_1058_Type
-%type <LinearCharacter_1058_TypeVal>  y_LinearCharacter_1058_Type
-%type <LinearCharacter_1058_TypeChoicePairVal> y_LinearCharacter_1058_TypeChoicePair
-%type <LinearCharacter_1134_TypeVal>  y_LinearCharacter_1134_LinearCharacter_1134_Type
-%type <LinearCharacter_1134_TypeVal>  y_LinearCharacter_1134_Type
-%type <LinearCharacter_1134_TypeChoicePairVal> y_LinearCharacter_1134_TypeChoicePair
-%type <LinearCharacter_1153_TypeVal>  y_LinearCharacter_1153_LinearCharacter_1153_Type
-%type <LinearCharacter_1153_TypeVal>  y_LinearCharacter_1153_Type
+%type <LinearCharacter_1059_TypeVal>  y_LinearCharacter_1059_LinearCharacter_1059_Type
+%type <LinearCharacter_1059_TypeVal>  y_LinearCharacter_1059_Type
+%type <LinearCharacter_1059_TypeChoicePairVal> y_LinearCharacter_1059_TypeChoicePair
+%type <LinearCharacter_1135_TypeVal>  y_LinearCharacter_1135_LinearCharacter_1135_Type
+%type <LinearCharacter_1135_TypeVal>  y_LinearCharacter_1135_Type
+%type <LinearCharacter_1135_TypeChoicePairVal> y_LinearCharacter_1135_TypeChoicePair
 %type <LinearCharacter_1154_TypeVal>  y_LinearCharacter_1154_LinearCharacter_1154_Type
 %type <LinearCharacter_1154_TypeVal>  y_LinearCharacter_1154_Type
 %type <LinearCharacter_1155_TypeVal>  y_LinearCharacter_1155_LinearCharacter_1155_Type
 %type <LinearCharacter_1155_TypeVal>  y_LinearCharacter_1155_Type
 %type <LinearCharacter_1156_TypeVal>  y_LinearCharacter_1156_LinearCharacter_1156_Type
 %type <LinearCharacter_1156_TypeVal>  y_LinearCharacter_1156_Type
+%type <LinearCharacter_1157_TypeVal>  y_LinearCharacter_1157_LinearCharacter_1157_Type
+%type <LinearCharacter_1157_TypeVal>  y_LinearCharacter_1157_Type
 %type <LinearCharacteristicStatsEvalTypeVal> y_LinearCharacteristicStatsEvalType
 %type <LinearCharacteristicStatsEvalTypeVal> y_LinearCharacteristicStats_LinearCharacteristicStatsEvalType
-%type <LinearCoordinat_1059_TypeVal>  y_LinearCoordinat_1059_LinearCoordinat_1059_Type
-%type <LinearCoordinat_1059_TypeVal>  y_LinearCoordinat_1059_Type
-%type <LinearCoordinat_1059_TypeChoicePairVal> y_LinearCoordinat_1059_TypeChoicePair
+%type <LinearCoordinat_1060_TypeVal>  y_LinearCoordinat_1060_LinearCoordinat_1060_Type
+%type <LinearCoordinat_1060_TypeVal>  y_LinearCoordinat_1060_Type
+%type <LinearCoordinat_1060_TypeChoicePairVal> y_LinearCoordinat_1060_TypeChoicePair
 %type <LinearCoordinateCharacteristicDefinitionTypeVal> y_LinearCoordinateCharacteristicDefinitionType
 %type <LinearCoordinateCharacteristicDefinitionTypeVal> y_LinearCoordinateCharacteristicDefinition_LinearCoordinateCharacteristicDefinitionType
 %type <LinearCoordinateCharacteristicItemTypeVal> y_LinearCoordinateCharacteristicItemType
@@ -5593,20 +5577,20 @@ int yyerror(const char * s);
 %type <SummaryStatisticsLinearTypeVal> y_LinearStatsSummary_SummaryStatisticsLinearType
 %type <LinearToleranceDefinitionTypeVal> y_LinearToleranceDefinitionType
 %type <LinearToleranceTypeVal>        y_LinearToleranceType
-%type <LinearTolerance_1016_TypeVal>  y_LinearTolerance_1016_LinearTolerance_1016_Type
-%type <LinearTolerance_1016_TypeVal>  y_LinearTolerance_1016_Type
-%type <LinearTolerance_1016_TypeChoicePairVal> y_LinearTolerance_1016_TypeChoicePair
 %type <LinearTolerance_1017_TypeVal>  y_LinearTolerance_1017_LinearTolerance_1017_Type
 %type <LinearTolerance_1017_TypeVal>  y_LinearTolerance_1017_Type
 %type <LinearTolerance_1017_TypeChoicePairVal> y_LinearTolerance_1017_TypeChoicePair
-%type <LinearTolerance_1033_TypeVal>  y_LinearTolerance_1033_LinearTolerance_1033_Type
-%type <LinearTolerance_1033_TypeVal>  y_LinearTolerance_1033_Type
+%type <LinearTolerance_1018_TypeVal>  y_LinearTolerance_1018_LinearTolerance_1018_Type
+%type <LinearTolerance_1018_TypeVal>  y_LinearTolerance_1018_Type
+%type <LinearTolerance_1018_TypeChoicePairVal> y_LinearTolerance_1018_TypeChoicePair
 %type <LinearTolerance_1034_TypeVal>  y_LinearTolerance_1034_LinearTolerance_1034_Type
 %type <LinearTolerance_1034_TypeVal>  y_LinearTolerance_1034_Type
 %type <LinearTolerance_1035_TypeVal>  y_LinearTolerance_1035_LinearTolerance_1035_Type
 %type <LinearTolerance_1035_TypeVal>  y_LinearTolerance_1035_Type
-%type <LinearTolerance_1041_TypeVal>  y_LinearTolerance_1041_LinearTolerance_1041_Type_0
-%type <LinearTolerance_1041_TypeVal>  y_LinearTolerance_1041_Type
+%type <LinearTolerance_1036_TypeVal>  y_LinearTolerance_1036_LinearTolerance_1036_Type
+%type <LinearTolerance_1036_TypeVal>  y_LinearTolerance_1036_Type
+%type <LinearTolerance_1042_TypeVal>  y_LinearTolerance_1042_LinearTolerance_1042_Type_0
+%type <LinearTolerance_1042_TypeVal>  y_LinearTolerance_1042_Type
 %type <LinearToleranceDefinitionTypeVal> y_LinearTolerance_LinearToleranceDefinitionType
 %type <LinearUnitTypeVal>             y_LinearUnitType
 %type <LinearUnitTypeVal>             y_LinearUnit_LinearUnitType
@@ -5616,14 +5600,14 @@ int yyerror(const char * s);
 %type <LinearVariableDifferentialTransformerEnumTypeVal> y_LinearVariableDifferentialTransformerEnumType
 %type <LinearVariableDifferentialTransformerSensorTypeVal> y_LinearVariableDifferentialTransformerSensorType
 %type <XmlStringVal>                  y_LinearityError_XmlString_0
-%type <LinearityStudyP_1204_TypeVal>  y_LinearityStudyP_1204_LinearityStudyP_1204_Type
-%type <LinearityStudyP_1204_TypeVal>  y_LinearityStudyP_1204_Type
-%type <LinearityStudyP_1204_TypeChoicePairVal> y_LinearityStudyP_1204_TypeChoicePair
+%type <LinearityStudyP_1205_TypeVal>  y_LinearityStudyP_1205_LinearityStudyP_1205_Type
+%type <LinearityStudyP_1205_TypeVal>  y_LinearityStudyP_1205_Type
+%type <LinearityStudyP_1205_TypeChoicePairVal> y_LinearityStudyP_1205_TypeChoicePair
 %type <LinearityStudyPlanTypeVal>     y_LinearityStudyPlanType
 %type <LinearityStudyPlanTypeVal>     y_LinearityStudyPlan_LinearityStudyPlanType
-%type <LinearityStudyR_1205_TypeVal>  y_LinearityStudyR_1205_LinearityStudyR_1205_Type_0
-%type <LinearityStudyR_1205_TypeVal>  y_LinearityStudyR_1205_Type
-%type <LinearityStudyR_1205_TypeChoicePairVal> y_LinearityStudyR_1205_TypeChoicePair
+%type <LinearityStudyR_1206_TypeVal>  y_LinearityStudyR_1206_LinearityStudyR_1206_Type_0
+%type <LinearityStudyR_1206_TypeVal>  y_LinearityStudyR_1206_Type
+%type <LinearityStudyR_1206_TypeChoicePairVal> y_LinearityStudyR_1206_TypeChoicePair
 %type <LinearityStudyResultsTypeVal>  y_LinearityStudyResultsType
 %type <LinearityStudyResultsTypeVal>  y_LinearityStudyResults_LinearityStudyResultsType
 %type <StatsMeasuredDecimalTypeVal>   y_Linearity_StatsMeasuredDecimalType
@@ -5635,8 +5619,8 @@ int yyerror(const char * s);
 %type <ListDateTimeTypeVal>           y_ListDateTimeType
 %type <ListDoubleTypeVal>             y_ListDoubleType
 %type <ListIntTypeVal>                y_ListIntType
-%type <ListQIFReferenc_1002_TypeVal>  y_ListQIFReferenc_1002_ListQIFReferenc_1002_Type
-%type <ListQIFReferenc_1002_TypeVal>  y_ListQIFReferenc_1002_Type
+%type <ListQIFReferenc_1003_TypeVal>  y_ListQIFReferenc_1003_ListQIFReferenc_1003_Type
+%type <ListQIFReferenc_1003_TypeVal>  y_ListQIFReferenc_1003_Type
 %type <ListQIFReferenceFullTypeVal>   y_ListQIFReferenceFullType
 %type <ListQIFReferenceSimpleTypeVal> y_ListQIFReferenceSimpleType
 %type <ListQIFReferenceTypeVal>       y_ListQIFReferenceType
@@ -5787,7 +5771,7 @@ int yyerror(const char * s);
 %type <LiztLinearValueTypeVal>        y_LiztLinearValue_LinearValueType_20_20
 %type <LiztLinearValueTypeVal>        y_LiztLinearValue_LinearValueType_20_20_Check
 %type <LiztLocatedTipTypeVal>         y_LiztLocatedTip_LocatedTipType_1_u
-%type <LiztLogicalOperatio_1231_TypeChoicePairVal> y_LiztLogicalOperatio_1231_TypeChoicePair
+%type <LiztLogicalOperatio_1232_TypeChoicePairVal> y_LiztLogicalOperatio_1232_TypeChoicePair
 %type <LiztLogicalOperationTypeVal>   y_LiztLogicalOperation_LogicalOperationType_1_u
 %type <LiztLoopBaseTypeVal>           y_LiztLoopBase_substituteType_1_u
 %type <LiztPolyline2dTypeVal>         y_LiztLoop_Polyline2dType_1_u
@@ -5913,12 +5897,12 @@ int yyerror(const char * s);
 %type <XmlStringVal>                  y_LocationDescription_XmlString
 %type <QIFReferenceTypeVal>           y_LocationId_QIFReferenceType
 %type <PointTypeVal>                  y_LocationOnCMM_PointType
-%type <LocationOnDrawi_1060_TypeVal>  y_LocationOnDrawi_1060_LocationOnDrawi_1060_Type
-%type <LocationOnDrawi_1060_TypeVal>  y_LocationOnDrawi_1060_Type
 %type <LocationOnDrawi_1061_TypeVal>  y_LocationOnDrawi_1061_LocationOnDrawi_1061_Type
 %type <LocationOnDrawi_1061_TypeVal>  y_LocationOnDrawi_1061_Type
 %type <LocationOnDrawi_1062_TypeVal>  y_LocationOnDrawi_1062_LocationOnDrawi_1062_Type
 %type <LocationOnDrawi_1062_TypeVal>  y_LocationOnDrawi_1062_Type
+%type <LocationOnDrawi_1063_TypeVal>  y_LocationOnDrawi_1063_LocationOnDrawi_1063_Type
+%type <LocationOnDrawi_1063_TypeVal>  y_LocationOnDrawi_1063_Type
 %type <LocationOnDrawingTypeVal>      y_LocationOnDrawingType
 %type <LocationOnDrawingTypeChoicePairVal> y_LocationOnDrawingTypeChoicePair
 %type <LocationOnDrawingTypeVal>      y_LocationOnDrawing_LocationOnDrawingType_0
@@ -5935,9 +5919,9 @@ int yyerror(const char * s);
 %type <PointTypeVal>                  y_Location_PointType
 %type <RectangleTypeVal>              y_Location_RectangleType
 %type <XmlStringVal>                  y_Location_XmlString_0
-%type <LogicalOperatio_1231_TypeVal>  y_LogicalOperatio_1231_LogicalOperatio_1231_Type
-%type <LogicalOperatio_1231_TypeVal>  y_LogicalOperatio_1231_Type
-%type <LogicalOperatio_1231_TypeChoicePairVal> y_LogicalOperatio_1231_TypeChoicePair
+%type <LogicalOperatio_1232_TypeVal>  y_LogicalOperatio_1232_LogicalOperatio_1232_Type
+%type <LogicalOperatio_1232_TypeVal>  y_LogicalOperatio_1232_Type
+%type <LogicalOperatio_1232_TypeChoicePairVal> y_LogicalOperatio_1232_TypeChoicePair
 %type <LogicalOperationEnumTypeVal>   y_LogicalOperationEnumType
 %type <XmlUnsignedIntVal>             y_LogicalOperationResult_XmlUnsignedInt
 %type <LogicalOperationTypeVal>       y_LogicalOperationType
@@ -6007,9 +5991,9 @@ int yyerror(const char * s);
 %type <MarkingMethodTypeChoicePairVal> y_MarkingMethodTypeChoicePair
 %type <MarkingMethodTypeVal>          y_MarkingMethod_MarkingMethodType
 %type <MeasuredMassValueTypeVal>      y_MassAbsoluteLinearity_MeasuredMassValueType
-%type <MassCharacteris_1063_TypeVal>  y_MassCharacteris_1063_MassCharacteris_1063_Type
-%type <MassCharacteris_1063_TypeVal>  y_MassCharacteris_1063_Type
-%type <MassCharacteris_1063_TypeChoicePairVal> y_MassCharacteris_1063_TypeChoicePair
+%type <MassCharacteris_1064_TypeVal>  y_MassCharacteris_1064_MassCharacteris_1064_Type
+%type <MassCharacteris_1064_TypeVal>  y_MassCharacteris_1064_Type
+%type <MassCharacteris_1064_TypeChoicePairVal> y_MassCharacteris_1064_TypeChoicePair
 %type <CriterionMassTypeVal>          y_MassCriterion_CriterionMassType_0
 %type <XmlDoubleVal>                  y_MassDensity_XmlDouble_0
 %type <MassValueTypeVal>              y_MassLimit_MassValueType_0
@@ -6017,11 +6001,11 @@ int yyerror(const char * s);
 %type <XmlDoubleVal>                  y_MassPropertyTolerance_XmlDouble_0
 %type <SummariesStatisticsMassTypeVal> y_MassStatsSummaries_SummariesStatisticsMassType_0
 %type <SummaryStatisticsMassTypeVal>  y_MassStatsSummary_SummaryStatisticsMassType
-%type <MassToleranceTy_1018_TypeVal>  y_MassToleranceTy_1018_MassToleranceTy_1018_Type
-%type <MassToleranceTy_1018_TypeVal>  y_MassToleranceTy_1018_Type
-%type <MassToleranceTy_1018_TypeChoicePairVal> y_MassToleranceTy_1018_TypeChoicePair
-%type <MassToleranceTy_1036_TypeVal>  y_MassToleranceTy_1036_MassToleranceTy_1036_Type
-%type <MassToleranceTy_1036_TypeVal>  y_MassToleranceTy_1036_Type
+%type <MassToleranceTy_1019_TypeVal>  y_MassToleranceTy_1019_MassToleranceTy_1019_Type
+%type <MassToleranceTy_1019_TypeVal>  y_MassToleranceTy_1019_Type
+%type <MassToleranceTy_1019_TypeChoicePairVal> y_MassToleranceTy_1019_TypeChoicePair
+%type <MassToleranceTy_1037_TypeVal>  y_MassToleranceTy_1037_MassToleranceTy_1037_Type
+%type <MassToleranceTy_1037_TypeVal>  y_MassToleranceTy_1037_Type
 %type <MassToleranceTypeVal>          y_MassToleranceType
 %type <MassUnitTypeVal>               y_MassUnitType
 %type <MassUnitTypeVal>               y_MassUnit_MassUnitType
@@ -6036,9 +6020,9 @@ int yyerror(const char * s);
 %type <MaterialModifierEnumTypeVal>   y_MaterialModifierEnumType
 %type <MaterialModifierEnumTypeVal>   y_MaterialModifier_MaterialModifierEnumType
 %type <MaterialTypeVal>               y_MaterialType
-%type <MaterialType_1019_TypeVal>     y_MaterialType_1019_MaterialType_1019_Type_0
-%type <MaterialType_1019_TypeVal>     y_MaterialType_1019_Type
-%type <MaterialType_1019_TypeChoicePairVal> y_MaterialType_1019_TypeChoicePair
+%type <MaterialType_1020_TypeVal>     y_MaterialType_1020_MaterialType_1020_Type_0
+%type <MaterialType_1020_TypeVal>     y_MaterialType_1020_Type
+%type <MaterialType_1020_TypeChoicePairVal> y_MaterialType_1020_TypeChoicePair
 %type <MaterialTypeVal>               y_Material_MaterialType
 %type <XmlStringVal>                  y_Material_XmlString_0
 %type <MaterialsTypeVal>              y_MaterialsType
@@ -6228,19 +6212,16 @@ int yyerror(const char * s);
 %type <MeasuredPlaneTypeVal>          y_MeasuredPlaneType
 %type <MeasuredPointAndVectorTypeVal> y_MeasuredPointAndVectorType
 %type <StatsArrayIdTypeVal>           y_MeasuredPointIds_StatsArrayIdType
-%type <MeasuredPointSe_1105_TypeVal>  y_MeasuredPointSe_1105_MeasuredPointSe_1105_Type_0
-%type <MeasuredPointSe_1105_TypeVal>  y_MeasuredPointSe_1105_Type
-%type <MeasuredPointSe_1105_TypeChoicePairVal> y_MeasuredPointSe_1105_TypeChoicePair
-%type <MeasuredPointSe_1106_TypeVal>  y_MeasuredPointSe_1106_MeasuredPointSe_1106_Type
+%type <MeasuredPointSe_1106_TypeVal>  y_MeasuredPointSe_1106_MeasuredPointSe_1106_Type_0
 %type <MeasuredPointSe_1106_TypeVal>  y_MeasuredPointSe_1106_Type
 %type <MeasuredPointSe_1106_TypeChoicePairVal> y_MeasuredPointSe_1106_TypeChoicePair
-%type <MeasuredPointSe_1107_TypeVal>  y_MeasuredPointSe_1107_MeasuredPointSe_1107_Type_0
+%type <MeasuredPointSe_1107_TypeVal>  y_MeasuredPointSe_1107_MeasuredPointSe_1107_Type
 %type <MeasuredPointSe_1107_TypeVal>  y_MeasuredPointSe_1107_Type
 %type <MeasuredPointSe_1107_TypeChoicePairVal> y_MeasuredPointSe_1107_TypeChoicePair
-%type <MeasuredPointSe_1108_TypeVal>  y_MeasuredPointSe_1108_MeasuredPointSe_1108_Type
+%type <MeasuredPointSe_1108_TypeVal>  y_MeasuredPointSe_1108_MeasuredPointSe_1108_Type_0
 %type <MeasuredPointSe_1108_TypeVal>  y_MeasuredPointSe_1108_Type
 %type <MeasuredPointSe_1108_TypeChoicePairVal> y_MeasuredPointSe_1108_TypeChoicePair
-%type <MeasuredPointSe_1109_TypeVal>  y_MeasuredPointSe_1109_MeasuredPointSe_1109_Type_0
+%type <MeasuredPointSe_1109_TypeVal>  y_MeasuredPointSe_1109_MeasuredPointSe_1109_Type
 %type <MeasuredPointSe_1109_TypeVal>  y_MeasuredPointSe_1109_Type
 %type <MeasuredPointSe_1109_TypeChoicePairVal> y_MeasuredPointSe_1109_TypeChoicePair
 %type <MeasuredPointSe_1110_TypeVal>  y_MeasuredPointSe_1110_MeasuredPointSe_1110_Type_0
@@ -6266,9 +6247,12 @@ int yyerror(const char * s);
 %type <MeasuredPointSe_1116_TypeChoicePairVal> y_MeasuredPointSe_1116_TypeChoicePair
 %type <MeasuredPointSe_1117_TypeVal>  y_MeasuredPointSe_1117_MeasuredPointSe_1117_Type_0
 %type <MeasuredPointSe_1117_TypeVal>  y_MeasuredPointSe_1117_Type
-%type <MeasuredPointSe_1125_TypeVal>  y_MeasuredPointSe_1125_MeasuredPointSe_1125_Type
-%type <MeasuredPointSe_1125_TypeVal>  y_MeasuredPointSe_1125_Type
-%type <MeasuredPointSe_1125_TypeChoicePairVal> y_MeasuredPointSe_1125_TypeChoicePair
+%type <MeasuredPointSe_1117_TypeChoicePairVal> y_MeasuredPointSe_1117_TypeChoicePair
+%type <MeasuredPointSe_1118_TypeVal>  y_MeasuredPointSe_1118_MeasuredPointSe_1118_Type_0
+%type <MeasuredPointSe_1118_TypeVal>  y_MeasuredPointSe_1118_Type
+%type <MeasuredPointSe_1126_TypeVal>  y_MeasuredPointSe_1126_MeasuredPointSe_1126_Type
+%type <MeasuredPointSe_1126_TypeVal>  y_MeasuredPointSe_1126_Type
+%type <MeasuredPointSe_1126_TypeChoicePairVal> y_MeasuredPointSe_1126_TypeChoicePair
 %type <MeasuredPointSetTypeVal>       y_MeasuredPointSetType
 %type <MeasuredPointSetTypeVal>       y_MeasuredPointSet_MeasuredPointSetType
 %type <MeasuredPointSetsTypeVal>      y_MeasuredPointSetsType
@@ -6305,9 +6289,9 @@ int yyerror(const char * s);
 %type <MeasurementOffsetAlignmentOperationTypeVal> y_MeasurementOffset_MeasurementOffsetAlignmentOperationType
 %type <MeasurementOriginOffsetTypeVal> y_MeasurementOriginOffsetType
 %type <UserDefinedUnitValueTypeVal>   y_MeasurementRate_UserDefinedUnitValueType_0
-%type <MeasurementReso_1241_TypeVal>  y_MeasurementReso_1241_MeasurementReso_1241_Type_0
-%type <MeasurementReso_1241_TypeVal>  y_MeasurementReso_1241_Type
-%type <MeasurementReso_1241_TypeChoicePairVal> y_MeasurementReso_1241_TypeChoicePair
+%type <MeasurementReso_1242_TypeVal>  y_MeasurementReso_1242_MeasurementReso_1242_Type_0
+%type <MeasurementReso_1242_TypeVal>  y_MeasurementReso_1242_Type
+%type <MeasurementReso_1242_TypeChoicePairVal> y_MeasurementReso_1242_TypeChoicePair
 %type <XmlUnsignedIntVal>             y_MeasurementResourcesCount_XmlUnsignedInt_0
 %type <MeasurementResourcesTypeVal>   y_MeasurementResourcesType
 %type <MeasurementResourcesTypeVal>   y_MeasurementResources_MeasurementResourcesType_0
@@ -6324,23 +6308,23 @@ int yyerror(const char * s);
 %type <AngularErrorTypeVal>           y_MeasuringAccuracy_AngularErrorType_0
 %type <ForceValueTypeVal>             y_MeasuringForce_ForceValueType_0
 %type <XmlBooleanVal>                 y_MedianFeature_XmlBoolean_0
-%type <MeshTriangleCor_1213_TypeVal>  y_MeshTriangleCor_1213_MeshTriangleCor_1213_Type
-%type <MeshTriangleCor_1213_TypeVal>  y_MeshTriangleCor_1213_Type
-%type <MeshTriangleCor_1213_TypeChoicePairVal> y_MeshTriangleCor_1213_TypeChoicePair
-%type <MeshTriangleCor_1214_TypeVal>  y_MeshTriangleCor_1214_MeshTriangleCor_1214_Type_0
+%type <MeshTriangleCor_1214_TypeVal>  y_MeshTriangleCor_1214_MeshTriangleCor_1214_Type
 %type <MeshTriangleCor_1214_TypeVal>  y_MeshTriangleCor_1214_Type
 %type <MeshTriangleCor_1214_TypeChoicePairVal> y_MeshTriangleCor_1214_TypeChoicePair
-%type <MeshTriangleCor_1215_TypeVal>  y_MeshTriangleCor_1215_MeshTriangleCor_1215_Type
+%type <MeshTriangleCor_1215_TypeVal>  y_MeshTriangleCor_1215_MeshTriangleCor_1215_Type_0
 %type <MeshTriangleCor_1215_TypeVal>  y_MeshTriangleCor_1215_Type
 %type <MeshTriangleCor_1215_TypeChoicePairVal> y_MeshTriangleCor_1215_TypeChoicePair
-%type <MeshTriangleCor_1216_TypeVal>  y_MeshTriangleCor_1216_MeshTriangleCor_1216_Type_0
+%type <MeshTriangleCor_1216_TypeVal>  y_MeshTriangleCor_1216_MeshTriangleCor_1216_Type
 %type <MeshTriangleCor_1216_TypeVal>  y_MeshTriangleCor_1216_Type
 %type <MeshTriangleCor_1216_TypeChoicePairVal> y_MeshTriangleCor_1216_TypeChoicePair
+%type <MeshTriangleCor_1217_TypeVal>  y_MeshTriangleCor_1217_MeshTriangleCor_1217_Type_0
+%type <MeshTriangleCor_1217_TypeVal>  y_MeshTriangleCor_1217_Type
+%type <MeshTriangleCor_1217_TypeChoicePairVal> y_MeshTriangleCor_1217_TypeChoicePair
 %type <MeshTriangleCoreTypeVal>       y_MeshTriangleCoreType
 %type <MeshTriangleCoreTypeVal>       y_MeshTriangleCore_MeshTriangleCoreType
-%type <MeshTriangleTyp_1217_TypeVal>  y_MeshTriangleTyp_1217_MeshTriangleTyp_1217_Type_0
-%type <MeshTriangleTyp_1217_TypeVal>  y_MeshTriangleTyp_1217_Type
-%type <MeshTriangleTyp_1217_TypeChoicePairVal> y_MeshTriangleTyp_1217_TypeChoicePair
+%type <MeshTriangleTyp_1218_TypeVal>  y_MeshTriangleTyp_1218_MeshTriangleTyp_1218_Type_0
+%type <MeshTriangleTyp_1218_TypeVal>  y_MeshTriangleTyp_1218_Type
+%type <MeshTriangleTyp_1218_TypeChoicePairVal> y_MeshTriangleTyp_1218_TypeChoicePair
 %type <MeshTriangleTypeVal>           y_MeshTriangleType
 %type <ElementReferenceTypeVal>       y_MeshTriangle_ElementReferenceType
 %type <MeshTriangleTypeVal>           y_MeshTriangle_MeshTriangleType
@@ -6601,23 +6585,23 @@ int yyerror(const char * s);
 %type <StatsWithReferenceBaseTypeVal> y_NumericCharacteristicWithTolStatsValue_substituteType
 %type <NumericalLengthAccuracyTypeVal> y_NumericalLengthAccuracyType
 %type <Nurbs12CoreTypeVal>            y_Nurbs12CoreType
-%type <Nurbs12CoreType_1218_TypeVal>  y_Nurbs12CoreType_1218_Nurbs12CoreType_1218_Type
-%type <Nurbs12CoreType_1218_TypeVal>  y_Nurbs12CoreType_1218_Type
-%type <Nurbs12CoreType_1218_TypeChoicePairVal> y_Nurbs12CoreType_1218_TypeChoicePair
+%type <Nurbs12CoreType_1219_TypeVal>  y_Nurbs12CoreType_1219_Nurbs12CoreType_1219_Type
+%type <Nurbs12CoreType_1219_TypeVal>  y_Nurbs12CoreType_1219_Type
+%type <Nurbs12CoreType_1219_TypeChoicePairVal> y_Nurbs12CoreType_1219_TypeChoicePair
 %type <Nurbs12CoreTypeVal>            y_Nurbs12Core_Nurbs12CoreType
 %type <Nurbs12TypeVal>                y_Nurbs12Type
 %type <Nurbs12TypeVal>                y_Nurbs12_Nurbs12Type
 %type <Nurbs13CoreTypeVal>            y_Nurbs13CoreType
-%type <Nurbs13CoreType_1219_TypeVal>  y_Nurbs13CoreType_1219_Nurbs13CoreType_1219_Type
-%type <Nurbs13CoreType_1219_TypeVal>  y_Nurbs13CoreType_1219_Type
-%type <Nurbs13CoreType_1219_TypeChoicePairVal> y_Nurbs13CoreType_1219_TypeChoicePair
+%type <Nurbs13CoreType_1220_TypeVal>  y_Nurbs13CoreType_1220_Nurbs13CoreType_1220_Type
+%type <Nurbs13CoreType_1220_TypeVal>  y_Nurbs13CoreType_1220_Type
+%type <Nurbs13CoreType_1220_TypeChoicePairVal> y_Nurbs13CoreType_1220_TypeChoicePair
 %type <Nurbs13CoreTypeVal>            y_Nurbs13Core_Nurbs13CoreType
 %type <Nurbs13TypeVal>                y_Nurbs13Type
 %type <Nurbs13TypeVal>                y_Nurbs13_Nurbs13Type
 %type <Nurbs23CoreTypeVal>            y_Nurbs23CoreType
-%type <Nurbs23CoreType_1220_TypeVal>  y_Nurbs23CoreType_1220_Nurbs23CoreType_1220_Type
-%type <Nurbs23CoreType_1220_TypeVal>  y_Nurbs23CoreType_1220_Type
-%type <Nurbs23CoreType_1220_TypeChoicePairVal> y_Nurbs23CoreType_1220_TypeChoicePair
+%type <Nurbs23CoreType_1221_TypeVal>  y_Nurbs23CoreType_1221_Nurbs23CoreType_1221_Type
+%type <Nurbs23CoreType_1221_TypeVal>  y_Nurbs23CoreType_1221_Type
+%type <Nurbs23CoreType_1221_TypeChoicePairVal> y_Nurbs23CoreType_1221_TypeChoicePair
 %type <Nurbs23CoreTypeVal>            y_Nurbs23Core_Nurbs23CoreType
 %type <Nurbs23TypeVal>                y_Nurbs23Type
 %type <Nurbs23TypeVal>                y_Nurbs23_Nurbs23Type
@@ -6672,12 +6656,12 @@ int yyerror(const char * s);
 %type <OppositeAngledLinesProjectionTypeVal> y_OppositeAngledLinesProjectionType
 %type <OppositeAngledLinesRecompTypeVal> y_OppositeAngledLinesRecompType
 %type <OppositeAngledLinesTransformTypeVal> y_OppositeAngledLinesTransformType
-%type <OppositeAngledP_1118_TypeVal>  y_OppositeAngledP_1118_OppositeAngledP_1118_Type
-%type <OppositeAngledP_1118_TypeVal>  y_OppositeAngledP_1118_Type
-%type <OppositeAngledP_1118_TypeChoicePairVal> y_OppositeAngledP_1118_TypeChoicePair
-%type <OppositeAngledP_1119_TypeVal>  y_OppositeAngledP_1119_OppositeAngledP_1119_Type_0
+%type <OppositeAngledP_1119_TypeVal>  y_OppositeAngledP_1119_OppositeAngledP_1119_Type
 %type <OppositeAngledP_1119_TypeVal>  y_OppositeAngledP_1119_Type
 %type <OppositeAngledP_1119_TypeChoicePairVal> y_OppositeAngledP_1119_TypeChoicePair
+%type <OppositeAngledP_1120_TypeVal>  y_OppositeAngledP_1120_OppositeAngledP_1120_Type_0
+%type <OppositeAngledP_1120_TypeVal>  y_OppositeAngledP_1120_Type
+%type <OppositeAngledP_1120_TypeChoicePairVal> y_OppositeAngledP_1120_TypeChoicePair
 %type <OppositeAngledPlanesBestFitTypeVal> y_OppositeAngledPlanesBestFitType
 %type <OppositeAngledPlanesCastTypeVal> y_OppositeAngledPlanesCastType
 %type <OppositeAngledPlanesCheckedFeatureTypeVal> y_OppositeAngledPlanesCheckedFeatureType
@@ -6767,9 +6751,9 @@ int yyerror(const char * s);
 %type <OrganizationTypeVal>           y_OrganizationType
 %type <StandardsOrganizationTypeVal>  y_Organization_StandardsOrganizationType
 %type <XmlStringVal>                  y_Organization_XmlString_0
-%type <OrientationChar_1064_TypeVal>  y_OrientationChar_1064_OrientationChar_1064_Type_0
-%type <OrientationChar_1064_TypeVal>  y_OrientationChar_1064_Type
-%type <OrientationChar_1064_TypeChoicePairVal> y_OrientationChar_1064_TypeChoicePair
+%type <OrientationChar_1065_TypeVal>  y_OrientationChar_1065_OrientationChar_1065_Type_0
+%type <OrientationChar_1065_TypeVal>  y_OrientationChar_1065_Type
+%type <OrientationChar_1065_TypeChoicePairVal> y_OrientationChar_1065_TypeChoicePair
 %type <OrientationCharacteristicStatsEvalTypeVal> y_OrientationCharacteristicStatsEvalType
 %type <OrientationCharacteristicStatsEvalTypeVal> y_OrientationCharacteristicStats_OrientationCharacteristicStatsEvalType
 %type <OrientationDiametricalZoneTypeVal> y_OrientationDiametricalZoneType
@@ -6786,8 +6770,8 @@ int yyerror(const char * s);
 %type <AlignmentFeatureTypeVal>       y_OriginEntity_AlignmentFeatureType
 %type <OriginReferenceTypeVal>        y_OriginReferenceType
 %type <OriginReferenceTypeChoicePairVal> y_OriginReferenceTypeChoicePair
-%type <OriginReference_1065_TypeVal>  y_OriginReference_1065_OriginReference_1065_Type
-%type <OriginReference_1065_TypeVal>  y_OriginReference_1065_Type
+%type <OriginReference_1066_TypeVal>  y_OriginReference_1066_OriginReference_1066_Type
+%type <OriginReference_1066_TypeVal>  y_OriginReference_1066_Type
 %type <OriginReferenceTypeVal>        y_OriginReference_OriginReferenceType_0
 %type <MeasurementOriginOffsetTypeVal> y_Origin_MeasurementOriginOffsetType
 %type <Point2dSimpleTypeVal>          y_Origin_Point2dSimpleType
@@ -6884,9 +6868,9 @@ int yyerror(const char * s);
 %type <OtherSurfaceCheckedTypeChoicePairVal> y_OtherSurfaceCheckedTypeChoicePair
 %type <OtherSurfaceConstructionMethodTypeVal> y_OtherSurfaceConstructionMethodType
 %type <OtherSurfaceConstructionMethodTypeChoicePairVal> y_OtherSurfaceConstructionMethodTypeChoicePair
-%type <OtherSurfaceFea_1120_TypeVal>  y_OtherSurfaceFea_1120_OtherSurfaceFea_1120_Type_0
-%type <OtherSurfaceFea_1120_TypeVal>  y_OtherSurfaceFea_1120_Type
-%type <OtherSurfaceFea_1120_TypeChoicePairVal> y_OtherSurfaceFea_1120_TypeChoicePair
+%type <OtherSurfaceFea_1121_TypeVal>  y_OtherSurfaceFea_1121_OtherSurfaceFea_1121_Type_0
+%type <OtherSurfaceFea_1121_TypeVal>  y_OtherSurfaceFea_1121_Type
+%type <OtherSurfaceFea_1121_TypeChoicePairVal> y_OtherSurfaceFea_1121_TypeChoicePair
 %type <OtherSurfaceFeatureCopyTypeVal> y_OtherSurfaceFeatureCopyType
 %type <OtherSurfaceFeatureDefinitionTypeVal> y_OtherSurfaceFeatureDefinitionType
 %type <OtherSurfaceFeatureDefinitionTypeVal> y_OtherSurfaceFeatureDefinition_OtherSurfaceFeatureDefinitionType
@@ -7056,9 +7040,9 @@ int yyerror(const char * s);
 %type <PlaneFeatureItemTypeVal>       y_PlaneFeatureItem_PlaneFeatureItemType
 %type <PlaneFeatureMeasurementTypeVal> y_PlaneFeatureMeasurementType
 %type <PlaneFeatureMeasurementTypeVal> y_PlaneFeatureMeasurement_PlaneFeatureMeasurementType
-%type <PlaneFeatureNom_1121_TypeVal>  y_PlaneFeatureNom_1121_PlaneFeatureNom_1121_Type_0
-%type <PlaneFeatureNom_1121_TypeVal>  y_PlaneFeatureNom_1121_Type
-%type <PlaneFeatureNom_1121_TypeChoicePairVal> y_PlaneFeatureNom_1121_TypeChoicePair
+%type <PlaneFeatureNom_1122_TypeVal>  y_PlaneFeatureNom_1122_PlaneFeatureNom_1122_Type_0
+%type <PlaneFeatureNom_1122_TypeVal>  y_PlaneFeatureNom_1122_Type
+%type <PlaneFeatureNom_1122_TypeChoicePairVal> y_PlaneFeatureNom_1122_TypeChoicePair
 %type <PlaneFeatureNominalTypeVal>    y_PlaneFeatureNominalType
 %type <PlaneFeatureNominalTypeVal>    y_PlaneFeatureNominal_PlaneFeatureNominalType
 %type <PlaneMeasurementDeterminationTypeVal> y_PlaneMeasurementDeterminationType
@@ -7101,10 +7085,7 @@ int yyerror(const char * s);
 %type <PointCloudSetTypeVal>          y_PointCloudSetType
 %type <PointCloudSetTypeVal>          y_PointCloudSet_PointCloudSetType_0
 %type <PointCloudTypeVal>             y_PointCloudType
-%type <PointCloudType_1226_TypeVal>   y_PointCloudType_1226_PointCloudType_1226_Type
-%type <PointCloudType_1226_TypeVal>   y_PointCloudType_1226_Type
-%type <PointCloudType_1226_TypeChoicePairVal> y_PointCloudType_1226_TypeChoicePair
-%type <PointCloudType_1227_TypeVal>   y_PointCloudType_1227_PointCloudType_1227_Type_0
+%type <PointCloudType_1227_TypeVal>   y_PointCloudType_1227_PointCloudType_1227_Type
 %type <PointCloudType_1227_TypeVal>   y_PointCloudType_1227_Type
 %type <PointCloudType_1227_TypeChoicePairVal> y_PointCloudType_1227_TypeChoicePair
 %type <PointCloudType_1228_TypeVal>   y_PointCloudType_1228_PointCloudType_1228_Type_0
@@ -7113,6 +7094,9 @@ int yyerror(const char * s);
 %type <PointCloudType_1229_TypeVal>   y_PointCloudType_1229_PointCloudType_1229_Type_0
 %type <PointCloudType_1229_TypeVal>   y_PointCloudType_1229_Type
 %type <PointCloudType_1229_TypeChoicePairVal> y_PointCloudType_1229_TypeChoicePair
+%type <PointCloudType_1230_TypeVal>   y_PointCloudType_1230_PointCloudType_1230_Type_0
+%type <PointCloudType_1230_TypeVal>   y_PointCloudType_1230_Type
+%type <PointCloudType_1230_TypeChoicePairVal> y_PointCloudType_1230_TypeChoicePair
 %type <PointCloudTypeVal>             y_PointCloud_PointCloudType
 %type <Point2dSimpleTypeVal>          y_PointConnection_Point2dSimpleType
 %type <PointConstructionMethodTypeVal> y_PointConstructionMethodType
@@ -7179,9 +7163,9 @@ int yyerror(const char * s);
 %type <PointFeatureCopyTypeVal>       y_PointFeatureCopyType
 %type <PointFeatureDefinitionTypeVal> y_PointFeatureDefinitionType
 %type <PointFeatureDefinitionTypeVal> y_PointFeatureDefinition_PointFeatureDefinitionType
-%type <PointFeatureExt_1122_TypeVal>  y_PointFeatureExt_1122_PointFeatureExt_1122_Type
-%type <PointFeatureExt_1122_TypeVal>  y_PointFeatureExt_1122_Type
-%type <PointFeatureExt_1122_TypeChoicePairVal> y_PointFeatureExt_1122_TypeChoicePair
+%type <PointFeatureExt_1123_TypeVal>  y_PointFeatureExt_1123_PointFeatureExt_1123_Type
+%type <PointFeatureExt_1123_TypeVal>  y_PointFeatureExt_1123_Type
+%type <PointFeatureExt_1123_TypeChoicePairVal> y_PointFeatureExt_1123_TypeChoicePair
 %type <PointFeatureExtremeTypeVal>    y_PointFeatureExtremeType
 %type <PointFeatureFromConeTypeVal>   y_PointFeatureFromConeType
 %type <PointFeatureFromScanTypeVal>   y_PointFeatureFromScanType
@@ -7191,15 +7175,15 @@ int yyerror(const char * s);
 %type <PointFeatureMeasurementTypeVal> y_PointFeatureMeasurementType
 %type <PointFeatureMeasurementTypeVal> y_PointFeatureMeasurement_PointFeatureMeasurementType
 %type <PointFeatureMidPointTypeVal>   y_PointFeatureMidPointType
-%type <PointFeatureMov_1123_TypeVal>  y_PointFeatureMov_1123_PointFeatureMov_1123_Type
-%type <PointFeatureMov_1123_TypeVal>  y_PointFeatureMov_1123_Type
-%type <PointFeatureMov_1123_TypeChoicePairVal> y_PointFeatureMov_1123_TypeChoicePair
+%type <PointFeatureMov_1124_TypeVal>  y_PointFeatureMov_1124_PointFeatureMov_1124_Type
+%type <PointFeatureMov_1124_TypeVal>  y_PointFeatureMov_1124_Type
+%type <PointFeatureMov_1124_TypeChoicePairVal> y_PointFeatureMov_1124_TypeChoicePair
 %type <PointFeatureMovePointAxisTypeVal> y_PointFeatureMovePointAxisType
 %type <PointFeatureMovePointTypeVal>  y_PointFeatureMovePointType
 %type <PointFeatureMovePointVectorTypeVal> y_PointFeatureMovePointVectorType
-%type <PointFeatureNom_1124_TypeVal>  y_PointFeatureNom_1124_PointFeatureNom_1124_Type_0
-%type <PointFeatureNom_1124_TypeVal>  y_PointFeatureNom_1124_Type
-%type <PointFeatureNom_1124_TypeChoicePairVal> y_PointFeatureNom_1124_TypeChoicePair
+%type <PointFeatureNom_1125_TypeVal>  y_PointFeatureNom_1125_PointFeatureNom_1125_Type_0
+%type <PointFeatureNom_1125_TypeVal>  y_PointFeatureNom_1125_Type
+%type <PointFeatureNom_1125_TypeChoicePairVal> y_PointFeatureNom_1125_TypeChoicePair
 %type <PointFeatureNominalTypeVal>    y_PointFeatureNominalType
 %type <PointFeatureNominalTypeVal>    y_PointFeatureNominal_PointFeatureNominalType
 %type <PointFeaturePierceTypeVal>     y_PointFeaturePierceType
@@ -7272,24 +7256,24 @@ int yyerror(const char * s);
 %type <PolyLineTypeVal>               y_PolyLineType
 %type <PolyLineTypeVal>               y_PolyLine_PolyLineType
 %type <PolyLineTypeVal>               y_PolyLine_PolyLineType_0
-%type <Polyline12CoreT_1221_TypeVal>  y_Polyline12CoreT_1221_Polyline12CoreT_1221_Type
-%type <Polyline12CoreT_1221_TypeVal>  y_Polyline12CoreT_1221_Type
-%type <Polyline12CoreT_1221_TypeChoicePairVal> y_Polyline12CoreT_1221_TypeChoicePair
+%type <Polyline12CoreT_1222_TypeVal>  y_Polyline12CoreT_1222_Polyline12CoreT_1222_Type
+%type <Polyline12CoreT_1222_TypeVal>  y_Polyline12CoreT_1222_Type
+%type <Polyline12CoreT_1222_TypeChoicePairVal> y_Polyline12CoreT_1222_TypeChoicePair
 %type <Polyline12CoreTypeVal>         y_Polyline12CoreType
 %type <Polyline12CoreTypeVal>         y_Polyline12Core_Polyline12CoreType
 %type <Polyline12TypeVal>             y_Polyline12Type
 %type <Polyline12TypeVal>             y_Polyline12_Polyline12Type
-%type <Polyline13CoreT_1222_TypeVal>  y_Polyline13CoreT_1222_Polyline13CoreT_1222_Type
-%type <Polyline13CoreT_1222_TypeVal>  y_Polyline13CoreT_1222_Type
-%type <Polyline13CoreT_1222_TypeChoicePairVal> y_Polyline13CoreT_1222_TypeChoicePair
+%type <Polyline13CoreT_1223_TypeVal>  y_Polyline13CoreT_1223_Polyline13CoreT_1223_Type
+%type <Polyline13CoreT_1223_TypeVal>  y_Polyline13CoreT_1223_Type
+%type <Polyline13CoreT_1223_TypeChoicePairVal> y_Polyline13CoreT_1223_TypeChoicePair
 %type <Polyline13CoreTypeVal>         y_Polyline13CoreType
 %type <Polyline13CoreTypeVal>         y_Polyline13Core_Polyline13CoreType
 %type <Polyline13TypeVal>             y_Polyline13Type
 %type <Polyline13TypeVal>             y_Polyline13_Polyline13Type
 %type <Polyline2dTypeVal>             y_Polyline2dType
-%type <Polyline2dType_1232_TypeVal>   y_Polyline2dType_1232_Polyline2dType_1232_Type
-%type <Polyline2dType_1232_TypeVal>   y_Polyline2dType_1232_Type
-%type <Polyline2dType_1232_TypeChoicePairVal> y_Polyline2dType_1232_TypeChoicePair
+%type <Polyline2dType_1233_TypeVal>   y_Polyline2dType_1233_Polyline2dType_1233_Type
+%type <Polyline2dType_1233_TypeVal>   y_Polyline2dType_1233_Type
+%type <Polyline2dType_1233_TypeChoicePairVal> y_Polyline2dType_1233_TypeChoicePair
 %type <Polyline2dTypeVal>             y_Polyline_Polyline2dType
 %type <Polylines2dTypeVal>            y_Polylines2dType
 %type <Polylines2dTypeVal>            y_Polylines_Polylines2dType_0
@@ -7318,9 +7302,9 @@ int yyerror(const char * s);
 %type <StatsMeasuredDecimalTypeVal>   y_Pp_StatsMeasuredDecimalType
 %type <CriterionDecimalTypeVal>       y_PpkThreshold_CriterionDecimalType
 %type <StatsMeasuredDecimalTypeVal>   y_Ppk_StatsMeasuredDecimalType
-%type <PreInspectionTr_1043_TypeVal>  y_PreInspectionTr_1043_PreInspectionTr_1043_Type_0
-%type <PreInspectionTr_1043_TypeVal>  y_PreInspectionTr_1043_Type
-%type <PreInspectionTr_1043_TypeChoicePairVal> y_PreInspectionTr_1043_TypeChoicePair
+%type <PreInspectionTr_1044_TypeVal>  y_PreInspectionTr_1044_PreInspectionTr_1044_Type_0
+%type <PreInspectionTr_1044_TypeVal>  y_PreInspectionTr_1044_Type
+%type <PreInspectionTr_1044_TypeChoicePairVal> y_PreInspectionTr_1044_TypeChoicePair
 %type <PreInspectionTraceabilityTypeVal> y_PreInspectionTraceabilityType
 %type <PreInspectionTraceabilityTypeVal> y_PreInspectionTraceability_PreInspectionTraceabilityType_0
 %type <PrecedenceEnumTypeVal>         y_PrecedenceEnumType
@@ -7334,19 +7318,19 @@ int yyerror(const char * s);
 %type <QIFReferenceTypeVal>           y_PreferredActionMethodId_QIFReferenceType_0
 %type <ArrayReferenceTypeVal>         y_PreferredResourceIds_ArrayReferenceType_0
 %type <MeasuredPressureValueTypeVal>  y_PressureAbsoluteLinearity_MeasuredPressureValueType
-%type <PressureCharact_1066_TypeVal>  y_PressureCharact_1066_PressureCharact_1066_Type
-%type <PressureCharact_1066_TypeVal>  y_PressureCharact_1066_Type
-%type <PressureCharact_1066_TypeChoicePairVal> y_PressureCharact_1066_TypeChoicePair
+%type <PressureCharact_1067_TypeVal>  y_PressureCharact_1067_PressureCharact_1067_Type
+%type <PressureCharact_1067_TypeVal>  y_PressureCharact_1067_Type
+%type <PressureCharact_1067_TypeChoicePairVal> y_PressureCharact_1067_TypeChoicePair
 %type <CriterionPressureTypeVal>      y_PressureCriterion_CriterionPressureType_0
 %type <PressureValueTypeVal>          y_PressureLimit_PressureValueType_0
 %type <MeasuredPressureValueTypeVal>  y_PressureMeasurement_MeasuredPressureValueType_0
 %type <SummariesStatisticsPressureTypeVal> y_PressureStatsSummaries_SummariesStatisticsPressureType_0
 %type <SummaryStatisticsPressureTypeVal> y_PressureStatsSummary_SummaryStatisticsPressureType
-%type <PressureToleran_1020_TypeVal>  y_PressureToleran_1020_PressureToleran_1020_Type
-%type <PressureToleran_1020_TypeVal>  y_PressureToleran_1020_Type
-%type <PressureToleran_1020_TypeChoicePairVal> y_PressureToleran_1020_TypeChoicePair
-%type <PressureToleran_1037_TypeVal>  y_PressureToleran_1037_PressureToleran_1037_Type
-%type <PressureToleran_1037_TypeVal>  y_PressureToleran_1037_Type
+%type <PressureToleran_1021_TypeVal>  y_PressureToleran_1021_PressureToleran_1021_Type
+%type <PressureToleran_1021_TypeVal>  y_PressureToleran_1021_Type
+%type <PressureToleran_1021_TypeChoicePairVal> y_PressureToleran_1021_TypeChoicePair
+%type <PressureToleran_1038_TypeVal>  y_PressureToleran_1038_PressureToleran_1038_Type
+%type <PressureToleran_1038_TypeVal>  y_PressureToleran_1038_Type
 %type <PressureToleranceTypeVal>      y_PressureToleranceType
 %type <PressureUnitTypeVal>           y_PressureUnitType
 %type <PressureUnitTypeVal>           y_PressureUnit_PressureUnitType
@@ -7368,9 +7352,9 @@ int yyerror(const char * s);
 %type <LinearValueTypeVal>            y_ProbeTipDiameter_LinearValueType_0
 %type <ProbeTipTypeVal>               y_ProbeTipType
 %type <ProbeTipTypeVal>               y_ProbeTip_ProbeTipType
-%type <ProcessDifferen_1206_TypeVal>  y_ProcessDifferen_1206_ProcessDifferen_1206_Type
-%type <ProcessDifferen_1206_TypeVal>  y_ProcessDifferen_1206_Type
-%type <ProcessDifferen_1206_TypeChoicePairVal> y_ProcessDifferen_1206_TypeChoicePair
+%type <ProcessDifferen_1207_TypeVal>  y_ProcessDifferen_1207_ProcessDifferen_1207_Type
+%type <ProcessDifferen_1207_TypeVal>  y_ProcessDifferen_1207_Type
+%type <ProcessDifferen_1207_TypeChoicePairVal> y_ProcessDifferen_1207_TypeChoicePair
 %type <ProcessDifferenceStudyPlanTypeVal> y_ProcessDifferenceStudyPlanType
 %type <ProcessDifferenceStudyPlanTypeVal> y_ProcessDifferenceStudyPlan_ProcessDifferenceStudyPlanType
 %type <ProcessDifferenceStudyResultsTypeVal> y_ProcessDifferenceStudyResultsType
@@ -7385,9 +7369,9 @@ int yyerror(const char * s);
 %type <XmlUnsignedIntVal>             y_ProductAuxiliarySetCount_XmlUnsignedInt_0
 %type <XmlUnsignedIntVal>             y_ProductComponentSetCount_XmlUnsignedInt_0
 %type <XmlUnsignedIntVal>             y_ProductCoordinateSystemSetCount_XmlUnsignedInt_0
-%type <ProductDataQual_1044_TypeVal>  y_ProductDataQual_1044_ProductDataQual_1044_Type
-%type <ProductDataQual_1044_TypeVal>  y_ProductDataQual_1044_Type
-%type <ProductDataQual_1044_TypeChoicePairVal> y_ProductDataQual_1044_TypeChoicePair
+%type <ProductDataQual_1045_TypeVal>  y_ProductDataQual_1045_ProductDataQual_1045_Type
+%type <ProductDataQual_1045_TypeVal>  y_ProductDataQual_1045_Type
+%type <ProductDataQual_1045_TypeChoicePairVal> y_ProductDataQual_1045_TypeChoicePair
 %type <ProductDataQualityAreaEnumTypeVal> y_ProductDataQualityAreaEnumType
 %type <ProductDataQualityAreaTypeVal> y_ProductDataQualityAreaType
 %type <ProductDataQualityCheckTypeVal> y_ProductDataQualityCheckType
@@ -7407,9 +7391,9 @@ int yyerror(const char * s);
 %type <XmlUnsignedIntVal>             y_ProductTopologySetCount_XmlUnsignedInt_0
 %type <ProductTraceabilityTypeVal>    y_ProductTraceabilityType
 %type <ProductTypeVal>                y_ProductType
-%type <ProductType_1238_TypeVal>      y_ProductType_1238_ProductType_1238_Type_0
-%type <ProductType_1238_TypeVal>      y_ProductType_1238_Type
-%type <ProductType_1238_TypeChoicePairVal> y_ProductType_1238_TypeChoicePair
+%type <ProductType_1239_TypeVal>      y_ProductType_1239_ProductType_1239_Type_0
+%type <ProductType_1239_TypeVal>      y_ProductType_1239_Type
+%type <ProductType_1239_TypeChoicePairVal> y_ProductType_1239_TypeChoicePair
 %type <XmlUnsignedIntVal>             y_ProductViewSetCount_XmlUnsignedInt_0
 %type <XmlUnsignedIntVal>             y_ProductVisualizationSetCount_XmlUnsignedInt_0
 %type <ProductTypeVal>                y_Product_ProductType_0
@@ -7418,9 +7402,9 @@ int yyerror(const char * s);
 %type <ProductionStudyPlanTypeVal>    y_ProductionStudyPlan_ProductionStudyPlanType
 %type <ProductionStudyResultsTypeVal> y_ProductionStudyResultsType
 %type <ProductionStudyResultsTypeVal> y_ProductionStudyResults_ProductionStudyResultsType
-%type <ProfileCharacte_1067_TypeVal>  y_ProfileCharacte_1067_ProfileCharacte_1067_Type_0
-%type <ProfileCharacte_1067_TypeVal>  y_ProfileCharacte_1067_Type
-%type <ProfileCharacte_1067_TypeChoicePairVal> y_ProfileCharacte_1067_TypeChoicePair
+%type <ProfileCharacte_1068_TypeVal>  y_ProfileCharacte_1068_ProfileCharacte_1068_Type_0
+%type <ProfileCharacte_1068_TypeVal>  y_ProfileCharacte_1068_Type
+%type <ProfileCharacte_1068_TypeChoicePairVal> y_ProfileCharacte_1068_TypeChoicePair
 %type <QIFReferenceFullTypeVal>       y_ProfileCurveId_QIFReferenceFullType_0
 %type <ProfileProjectorMeasureFeatureMethodTypeVal> y_ProfileProjectorMeasureFeatureMethodType
 %type <ProfileProjectorMeasureFeatureMethodTypeVal> y_ProfileProjectorMeasureFeatureMethod_ProfileProjectorMeasureFeatureMethodType
@@ -7649,11 +7633,11 @@ int yyerror(const char * s);
 %type <SamplingIntervalTypeVal>       y_SamplingIntervalType
 %type <SamplingIntervalTypeChoicePairVal> y_SamplingIntervalTypeChoicePair
 %type <SamplingIntervalTypeVal>       y_SamplingInterval_SamplingIntervalType
-%type <SamplingMethodT_1135_TypeVal>  y_SamplingMethodT_1135_SamplingMethodT_1135_Type
-%type <SamplingMethodT_1135_TypeVal>  y_SamplingMethodT_1135_Type
-%type <SamplingMethodT_1135_TypeChoicePairVal> y_SamplingMethodT_1135_TypeChoicePair
-%type <SamplingMethodT_1157_TypeVal>  y_SamplingMethodT_1157_SamplingMethodT_1157_Type
-%type <SamplingMethodT_1157_TypeVal>  y_SamplingMethodT_1157_Type
+%type <SamplingMethodT_1136_TypeVal>  y_SamplingMethodT_1136_SamplingMethodT_1136_Type
+%type <SamplingMethodT_1136_TypeVal>  y_SamplingMethodT_1136_Type
+%type <SamplingMethodT_1136_TypeChoicePairVal> y_SamplingMethodT_1136_TypeChoicePair
+%type <SamplingMethodT_1158_TypeVal>  y_SamplingMethodT_1158_SamplingMethodT_1158_Type
+%type <SamplingMethodT_1158_TypeVal>  y_SamplingMethodT_1158_Type
 %type <SamplingMethodTypeVal>         y_SamplingMethodType
 %type <SamplingMethodTypeVal>         y_SamplingMethod_SamplingMethodType
 %type <XmlPositiveIntegerVal>         y_SamplingPeriod_XmlPositiveInteger
@@ -7671,9 +7655,9 @@ int yyerror(const char * s);
 %type <ScaleReferenceEnumTypeVal>     y_ScaleReference_ScaleReferenceEnumType_0
 %type <LinearValueTypeVal>            y_ScaleResolution_LinearValueType_0
 %type <ScaleTypeVal>                  y_ScaleType
-%type <ScaleType_1005_TypeVal>        y_ScaleType_1005_ScaleType_1005_Type
-%type <ScaleType_1005_TypeVal>        y_ScaleType_1005_Type
-%type <ScaleType_1005_TypeChoicePairVal> y_ScaleType_1005_TypeChoicePair
+%type <ScaleType_1006_TypeVal>        y_ScaleType_1006_ScaleType_1006_Type
+%type <ScaleType_1006_TypeVal>        y_ScaleType_1006_Type
+%type <ScaleType_1006_TypeChoicePairVal> y_ScaleType_1006_TypeChoicePair
 %type <ScaleTypeVal>                  y_Scale_ScaleType_0
 %type <MeasurementDeviceScalesBaseTypeVal> y_Scales_substituteType_0
 %type <UserDefinedUnitValueTypeVal>   y_ScanningSpeed_UserDefinedUnitValueType_0
@@ -7745,9 +7729,9 @@ int yyerror(const char * s);
 %type <NaturalTypeVal>                y_SequenceNumber_NaturalType_0
 %type <XmlPositiveIntegerVal>         y_SequenceNumber_XmlPositiveInteger
 %type <SequencedBaseFeatureTypeVal>   y_SequencedBaseFeatureType
-%type <SequencedDatumT_1021_TypeVal>  y_SequencedDatumT_1021_SequencedDatumT_1021_Type
-%type <SequencedDatumT_1021_TypeVal>  y_SequencedDatumT_1021_Type
-%type <SequencedDatumT_1021_TypeChoicePairVal> y_SequencedDatumT_1021_TypeChoicePair
+%type <SequencedDatumT_1022_TypeVal>  y_SequencedDatumT_1022_SequencedDatumT_1022_Type
+%type <SequencedDatumT_1022_TypeVal>  y_SequencedDatumT_1022_Type
+%type <SequencedDatumT_1022_TypeChoicePairVal> y_SequencedDatumT_1022_TypeChoicePair
 %type <SequencedDatumTypeVal>         y_SequencedDatumType
 %type <XmlStringVal>                  y_SerialNumber_XmlString
 %type <XmlStringVal>                  y_SerialNumber_XmlString_0
@@ -7838,19 +7822,19 @@ int yyerror(const char * s);
 %type <XmlTokenVal>                   y_Specification_XmlToken_0
 %type <SpecifiedDecimalTypeVal>       y_SpecifiedDecimalType
 %type <MeasuredSpeedValueTypeVal>     y_SpeedAbsoluteLinearity_MeasuredSpeedValueType
-%type <SpeedCharacteri_1068_TypeVal>  y_SpeedCharacteri_1068_SpeedCharacteri_1068_Type
-%type <SpeedCharacteri_1068_TypeVal>  y_SpeedCharacteri_1068_Type
-%type <SpeedCharacteri_1068_TypeChoicePairVal> y_SpeedCharacteri_1068_TypeChoicePair
+%type <SpeedCharacteri_1069_TypeVal>  y_SpeedCharacteri_1069_SpeedCharacteri_1069_Type
+%type <SpeedCharacteri_1069_TypeVal>  y_SpeedCharacteri_1069_Type
+%type <SpeedCharacteri_1069_TypeChoicePairVal> y_SpeedCharacteri_1069_TypeChoicePair
 %type <CriterionSpeedTypeVal>         y_SpeedCriterion_CriterionSpeedType_0
 %type <SpeedValueTypeVal>             y_SpeedLimit_SpeedValueType_0
 %type <MeasuredSpeedValueTypeVal>     y_SpeedMeasurement_MeasuredSpeedValueType_0
 %type <SummariesStatisticsSpeedTypeVal> y_SpeedStatsSummaries_SummariesStatisticsSpeedType_0
 %type <SummaryStatisticsSpeedTypeVal> y_SpeedStatsSummary_SummaryStatisticsSpeedType
-%type <SpeedToleranceT_1022_TypeVal>  y_SpeedToleranceT_1022_SpeedToleranceT_1022_Type
-%type <SpeedToleranceT_1022_TypeVal>  y_SpeedToleranceT_1022_Type
-%type <SpeedToleranceT_1022_TypeChoicePairVal> y_SpeedToleranceT_1022_TypeChoicePair
-%type <SpeedToleranceT_1038_TypeVal>  y_SpeedToleranceT_1038_SpeedToleranceT_1038_Type
-%type <SpeedToleranceT_1038_TypeVal>  y_SpeedToleranceT_1038_Type
+%type <SpeedToleranceT_1023_TypeVal>  y_SpeedToleranceT_1023_SpeedToleranceT_1023_Type
+%type <SpeedToleranceT_1023_TypeVal>  y_SpeedToleranceT_1023_Type
+%type <SpeedToleranceT_1023_TypeChoicePairVal> y_SpeedToleranceT_1023_TypeChoicePair
+%type <SpeedToleranceT_1039_TypeVal>  y_SpeedToleranceT_1039_SpeedToleranceT_1039_Type
+%type <SpeedToleranceT_1039_TypeVal>  y_SpeedToleranceT_1039_Type
 %type <SpeedToleranceTypeVal>         y_SpeedToleranceType
 %type <SpeedUnitTypeVal>              y_SpeedUnitType
 %type <SpeedUnitTypeVal>              y_SpeedUnit_SpeedUnitType
@@ -7906,11 +7890,11 @@ int yyerror(const char * s);
 %type <SphericalRadiusCharacteristicNominalTypeVal> y_SphericalRadiusCharacteristicNominal_SphericalRadiusCharacteristicNominalType
 %type <SphericalRadiusCharacteristicStatsEvalTypeVal> y_SphericalRadiusCharacteristicStatsEvalType
 %type <SphericalRadiusCharacteristicStatsEvalTypeVal> y_SphericalRadiusCharacteristicStats_SphericalRadiusCharacteristicStatsEvalType
-%type <SphericalResolu_1242_TypeVal>  y_SphericalResolu_1242_SphericalResolu_1242_Type
-%type <SphericalResolu_1242_TypeVal>  y_SphericalResolu_1242_Type
-%type <SphericalResolu_1242_TypeChoicePairVal> y_SphericalResolu_1242_TypeChoicePair
-%type <SphericalResolu_1245_TypeVal>  y_SphericalResolu_1245_SphericalResolu_1245_Type
-%type <SphericalResolu_1245_TypeVal>  y_SphericalResolu_1245_Type
+%type <SphericalResolu_1243_TypeVal>  y_SphericalResolu_1243_SphericalResolu_1243_Type
+%type <SphericalResolu_1243_TypeVal>  y_SphericalResolu_1243_Type
+%type <SphericalResolu_1243_TypeChoicePairVal> y_SphericalResolu_1243_TypeChoicePair
+%type <SphericalResolu_1246_TypeVal>  y_SphericalResolu_1246_SphericalResolu_1246_Type
+%type <SphericalResolu_1246_TypeVal>  y_SphericalResolu_1246_Type
 %type <SphericalResolutionTypeVal>    y_SphericalResolutionType
 %type <SphericalResolutionTypeVal>    y_SphericalResolution_SphericalResolutionType
 %type <SphericalSegmentBestFitTypeVal> y_SphericalSegmentBestFitType
@@ -7939,8 +7923,8 @@ int yyerror(const char * s);
 %type <SphericalWorkingVolumeTypeVal> y_SphericalWorkingVolume_SphericalWorkingVolumeType
 %type <ConcentricitySphericalZoneTypeVal> y_SphericalZone_ConcentricitySphericalZoneType
 %type <PositionSphericalZoneTypeVal>  y_SphericalZone_PositionSphericalZoneType
-%type <SphericityChara_1069_TypeVal>  y_SphericityChara_1069_SphericityChara_1069_Type_0
-%type <SphericityChara_1069_TypeVal>  y_SphericityChara_1069_Type
+%type <SphericityChara_1070_TypeVal>  y_SphericityChara_1070_SphericityChara_1070_Type_0
+%type <SphericityChara_1070_TypeVal>  y_SphericityChara_1070_Type
 %type <SphericityCharacteristicDefinitionTypeVal> y_SphericityCharacteristicDefinitionType
 %type <SphericityCharacteristicDefinitionTypeVal> y_SphericityCharacteristicDefinition_SphericityCharacteristicDefinitionType
 %type <SphericityCharacteristicItemTypeVal> y_SphericityCharacteristicItemType
@@ -8003,19 +7987,19 @@ int yyerror(const char * s);
 %type <PointTypeVal>                  y_StartPoint_PointType
 %type <NaturalTypeVal>                y_Start_NaturalType
 %type <XmlBooleanVal>                 y_StatisticalCharacteristic_XmlBoolean_0
-%type <StatisticalStud_1207_TypeVal>  y_StatisticalStud_1207_StatisticalStud_1207_Type_0
-%type <StatisticalStud_1207_TypeVal>  y_StatisticalStud_1207_Type
 %type <StatisticalStud_1208_TypeVal>  y_StatisticalStud_1208_StatisticalStud_1208_Type_0
 %type <StatisticalStud_1208_TypeVal>  y_StatisticalStud_1208_Type
 %type <StatisticalStud_1209_TypeVal>  y_StatisticalStud_1209_StatisticalStud_1209_Type_0
 %type <StatisticalStud_1209_TypeVal>  y_StatisticalStud_1209_Type
-%type <StatisticalStud_1209_TypeChoicePairVal> y_StatisticalStud_1209_TypeChoicePair
 %type <StatisticalStud_1210_TypeVal>  y_StatisticalStud_1210_StatisticalStud_1210_Type_0
 %type <StatisticalStud_1210_TypeVal>  y_StatisticalStud_1210_Type
 %type <StatisticalStud_1210_TypeChoicePairVal> y_StatisticalStud_1210_TypeChoicePair
 %type <StatisticalStud_1211_TypeVal>  y_StatisticalStud_1211_StatisticalStud_1211_Type_0
 %type <StatisticalStud_1211_TypeVal>  y_StatisticalStud_1211_Type
 %type <StatisticalStud_1211_TypeChoicePairVal> y_StatisticalStud_1211_TypeChoicePair
+%type <StatisticalStud_1212_TypeVal>  y_StatisticalStud_1212_StatisticalStud_1212_Type_0
+%type <StatisticalStud_1212_TypeVal>  y_StatisticalStud_1212_Type
+%type <StatisticalStud_1212_TypeChoicePairVal> y_StatisticalStud_1212_TypeChoicePair
 %type <XmlUnsignedIntVal>             y_StatisticalStudiesResultsCount_XmlUnsignedInt_0
 %type <StatisticalStudiesResultsTypeVal> y_StatisticalStudiesResultsType
 %type <StatisticalStudiesResultsTypeVal> y_StatisticalStudiesResults_StatisticalStudiesResultsType_0
@@ -8053,9 +8037,9 @@ int yyerror(const char * s);
 %type <ListSubgroupStatsValuesTypeVal> y_StatsValuesPerSubgroup_ListSubgroupStatsValuesType
 %type <SummaryStatsValuesListTypeVal> y_StatsValuesSummarys_SummaryStatsValuesListType
 %type <StatsValuesTypeVal>            y_StatsValuesType
-%type <StatsWithRefere_1006_TypeVal>  y_StatsWithRefere_1006_StatsWithRefere_1006_Type_0
-%type <StatsWithRefere_1006_TypeVal>  y_StatsWithRefere_1006_Type
-%type <StatsWithRefere_1006_TypeChoicePairVal> y_StatsWithRefere_1006_TypeChoicePair
+%type <StatsWithRefere_1007_TypeVal>  y_StatsWithRefere_1007_StatsWithRefere_1007_Type_0
+%type <StatsWithRefere_1007_TypeVal>  y_StatsWithRefere_1007_Type
+%type <StatsWithRefere_1007_TypeChoicePairVal> y_StatsWithRefere_1007_TypeChoicePair
 %type <StatsWithTolAngularTypeVal>    y_StatsWithTolAngularType
 %type <StatsWithTolAreaTypeVal>       y_StatsWithTolAreaType
 %type <StatsWithTolForceTypeVal>      y_StatsWithTolForceType
@@ -8083,13 +8067,13 @@ int yyerror(const char * s);
 %type <UnnumberedPlanElementsTypeVal> y_Steps_UnnumberedPlanElementsType
 %type <StiffnessTypeVal>              y_StiffnessType
 %type <NaturalTypeVal>                y_Stop_NaturalType
-%type <StraightnessCha_1070_TypeVal>  y_StraightnessCha_1070_StraightnessCha_1070_Type
-%type <StraightnessCha_1070_TypeVal>  y_StraightnessCha_1070_Type
-%type <StraightnessCha_1070_TypeChoicePairVal> y_StraightnessCha_1070_TypeChoicePair
-%type <StraightnessCha_1087_TypeVal>  y_StraightnessCha_1087_StraightnessCha_1087_Type
-%type <StraightnessCha_1087_TypeVal>  y_StraightnessCha_1087_Type
+%type <StraightnessCha_1071_TypeVal>  y_StraightnessCha_1071_StraightnessCha_1071_Type
+%type <StraightnessCha_1071_TypeVal>  y_StraightnessCha_1071_Type
+%type <StraightnessCha_1071_TypeChoicePairVal> y_StraightnessCha_1071_TypeChoicePair
 %type <StraightnessCha_1088_TypeVal>  y_StraightnessCha_1088_StraightnessCha_1088_Type
 %type <StraightnessCha_1088_TypeVal>  y_StraightnessCha_1088_Type
+%type <StraightnessCha_1089_TypeVal>  y_StraightnessCha_1089_StraightnessCha_1089_Type
+%type <StraightnessCha_1089_TypeVal>  y_StraightnessCha_1089_Type
 %type <StraightnessCharacteristicDefinitionTypeVal> y_StraightnessCharacteristicDefinitionType
 %type <StraightnessCharacteristicDefinitionTypeVal> y_StraightnessCharacteristicDefinition_StraightnessCharacteristicDefinitionType
 %type <StraightnessCharacteristicItemTypeVal> y_StraightnessCharacteristicItemType
@@ -8114,9 +8098,9 @@ int yyerror(const char * s);
 %type <QIFReferenceTypeVal>           y_StudyId_QIFReferenceType_0
 %type <QIFReferenceTypeVal>           y_StudyIssueId_QIFReferenceType_0
 %type <StudyIssueTypeVal>             y_StudyIssueType
-%type <StudyIssueType_1136_TypeVal>   y_StudyIssueType_1136_StudyIssueType_1136_Type_0
-%type <StudyIssueType_1136_TypeVal>   y_StudyIssueType_1136_Type
-%type <StudyIssueType_1136_TypeChoicePairVal> y_StudyIssueType_1136_TypeChoicePair
+%type <StudyIssueType_1137_TypeVal>   y_StudyIssueType_1137_StudyIssueType_1137_Type_0
+%type <StudyIssueType_1137_TypeVal>   y_StudyIssueType_1137_Type
+%type <StudyIssueType_1137_TypeChoicePairVal> y_StudyIssueType_1137_TypeChoicePair
 %type <StudyIssueTypeVal>             y_StudyIssue_StudyIssueType
 %type <StudyIssuesTypeVal>            y_StudyIssuesType
 %type <StudyIssuesTypeVal>            y_StudyIssues_StudyIssuesType_0
@@ -8153,9 +8137,9 @@ int yyerror(const char * s);
 %type <SubgroupTypeVal>               y_Subgroup_SubgroupType
 %type <SubgroupsTypeVal>              y_SubgroupsType
 %type <SubgroupsTypeVal>              y_Subgroups_SubgroupsType
-%type <SubstituteFeatu_1023_TypeVal>  y_SubstituteFeatu_1023_SubstituteFeatu_1023_Type
-%type <SubstituteFeatu_1023_TypeVal>  y_SubstituteFeatu_1023_Type
-%type <SubstituteFeatu_1023_TypeChoicePairVal> y_SubstituteFeatu_1023_TypeChoicePair
+%type <SubstituteFeatu_1024_TypeVal>  y_SubstituteFeatu_1024_SubstituteFeatu_1024_Type
+%type <SubstituteFeatu_1024_TypeVal>  y_SubstituteFeatu_1024_Type
+%type <SubstituteFeatu_1024_TypeChoicePairVal> y_SubstituteFeatu_1024_TypeChoicePair
 %type <SubstituteFeatureAlgorithmEnumTypeVal> y_SubstituteFeatureAlgorithmEnumType
 %type <SubstituteFeatureAlgorithmEnumTypeVal> y_SubstituteFeatureAlgorithmEnum_SubstituteFeatureAlgorithmEnumType
 %type <QIFReferenceTypeVal>           y_SubstituteFeatureAlgorithmId_QIFReferenceType
@@ -8241,9 +8225,9 @@ int yyerror(const char * s);
 %type <SurfaceProfileCharacteristicNominalTypeVal> y_SurfaceProfileCharacteristicNominal_SurfaceProfileCharacteristicNominalType
 %type <SurfaceProfileCharacteristicStatsEvalTypeVal> y_SurfaceProfileCharacteristicStatsEvalType
 %type <SurfaceProfileCharacteristicStatsEvalTypeVal> y_SurfaceProfileCharacteristicStats_SurfaceProfileCharacteristicStatsEvalType
-%type <SurfaceProfileN_1071_TypeVal>  y_SurfaceProfileN_1071_SurfaceProfileN_1071_Type_0
-%type <SurfaceProfileN_1071_TypeVal>  y_SurfaceProfileN_1071_Type
-%type <SurfaceProfileN_1071_TypeChoicePairVal> y_SurfaceProfileN_1071_TypeChoicePair
+%type <SurfaceProfileN_1072_TypeVal>  y_SurfaceProfileN_1072_SurfaceProfileN_1072_Type_0
+%type <SurfaceProfileN_1072_TypeVal>  y_SurfaceProfileN_1072_Type
+%type <SurfaceProfileN_1072_TypeChoicePairVal> y_SurfaceProfileN_1072_TypeChoicePair
 %type <SurfaceProfileNonUniformCharacteristicDefinitionTypeVal> y_SurfaceProfileNonUniformCharacteristicDefinitionType
 %type <SurfaceProfileNonUniformCharacteristicDefinitionTypeVal> y_SurfaceProfileNonUniformCharacteristicDefinition_SurfaceProfileNonUniformCharacteristicDefinitionType
 %type <SurfaceProfileNonUniformCharacteristicItemTypeVal> y_SurfaceProfileNonUniformCharacteristicItemType
@@ -8323,9 +8307,9 @@ int yyerror(const char * s);
 %type <XmlTokenVal>                   y_TelephoneNumber_XmlToken_0
 %type <XmlTokenVal>                   y_TelexNumber_XmlToken_0
 %type <MeasuredTemperatureValueTypeVal> y_TemperatureAbsoluteLinearity_MeasuredTemperatureValueType
-%type <TemperatureChar_1072_TypeVal>  y_TemperatureChar_1072_TemperatureChar_1072_Type
-%type <TemperatureChar_1072_TypeVal>  y_TemperatureChar_1072_Type
-%type <TemperatureChar_1072_TypeChoicePairVal> y_TemperatureChar_1072_TypeChoicePair
+%type <TemperatureChar_1073_TypeVal>  y_TemperatureChar_1073_TemperatureChar_1073_Type
+%type <TemperatureChar_1073_TypeVal>  y_TemperatureChar_1073_Type
+%type <TemperatureChar_1073_TypeChoicePairVal> y_TemperatureChar_1073_TypeChoicePair
 %type <TemperatureCompensationEnumTypeVal> y_TemperatureCompensationEnumType
 %type <TemperatureCompensationEnumTypeVal> y_TemperatureCompensationEnum_TemperatureCompensationEnumType
 %type <TemperatureCompensationTypeVal> y_TemperatureCompensationType
@@ -8341,11 +8325,11 @@ int yyerror(const char * s);
 %type <UserDefinedUnitValueTypeVal>   y_TemperatureStability_UserDefinedUnitValueType_0
 %type <SummariesStatisticsTemperatureTypeVal> y_TemperatureStatsSummaries_SummariesStatisticsTemperatureType_0
 %type <SummaryStatisticsTemperatureTypeVal> y_TemperatureStatsSummary_SummaryStatisticsTemperatureType
-%type <TemperatureTole_1024_TypeVal>  y_TemperatureTole_1024_TemperatureTole_1024_Type
-%type <TemperatureTole_1024_TypeVal>  y_TemperatureTole_1024_Type
-%type <TemperatureTole_1024_TypeChoicePairVal> y_TemperatureTole_1024_TypeChoicePair
-%type <TemperatureTole_1039_TypeVal>  y_TemperatureTole_1039_TemperatureTole_1039_Type
-%type <TemperatureTole_1039_TypeVal>  y_TemperatureTole_1039_Type
+%type <TemperatureTole_1025_TypeVal>  y_TemperatureTole_1025_TemperatureTole_1025_Type
+%type <TemperatureTole_1025_TypeVal>  y_TemperatureTole_1025_Type
+%type <TemperatureTole_1025_TypeChoicePairVal> y_TemperatureTole_1025_TypeChoicePair
+%type <TemperatureTole_1040_TypeVal>  y_TemperatureTole_1040_TemperatureTole_1040_Type
+%type <TemperatureTole_1040_TypeVal>  y_TemperatureTole_1040_Type
 %type <TemperatureToleranceTypeVal>   y_TemperatureToleranceType
 %type <TemperatureTypeVal>            y_TemperatureType
 %type <TemperatureUnitTypeVal>        y_TemperatureUnitType
@@ -8399,9 +8383,9 @@ int yyerror(const char * s);
 %type <ToroidalSegmentPointSamplingStrategyTypeVal> y_ThenPointStrategy_ToroidalSegmentPointSamplingStrategyType_0
 %type <TorusPointSamplingStrategyTypeVal> y_ThenPointStrategy_TorusPointSamplingStrategyType_0
 %type <ThenPointsTypeVal>             y_ThenPointsType
-%type <ThenPointsType_1212_TypeVal>   y_ThenPointsType_1212_ThenPointsType_1212_Type_0
-%type <ThenPointsType_1212_TypeVal>   y_ThenPointsType_1212_Type
-%type <ThenPointsType_1212_TypeChoicePairVal> y_ThenPointsType_1212_TypeChoicePair
+%type <ThenPointsType_1213_TypeVal>   y_ThenPointsType_1213_ThenPointsType_1213_Type_0
+%type <ThenPointsType_1213_TypeVal>   y_ThenPointsType_1213_Type
+%type <ThenPointsType_1213_TypeChoicePairVal> y_ThenPointsType_1213_TypeChoicePair
 %type <ThenPointsTypeVal>             y_ThenPoints_ThenPointsType
 %type <ThenPointsTypeVal>             y_ThenPoints_ThenPointsType_0
 %type <TheodoliteMeasureFeatureMethodTypeVal> y_TheodoliteMeasureFeatureMethodType
@@ -8489,9 +8473,9 @@ int yyerror(const char * s);
 %type <ThreadedFeatureTransformTypeVal> y_ThreadedFeatureTransformType
 %type <PlaneThroughTypeVal>           y_Through_PlaneThroughType
 %type <MeasuredTimeValueTypeVal>      y_TimeAbsoluteLinearity_MeasuredTimeValueType
-%type <TimeCharacteris_1073_TypeVal>  y_TimeCharacteris_1073_TimeCharacteris_1073_Type
-%type <TimeCharacteris_1073_TypeVal>  y_TimeCharacteris_1073_Type
-%type <TimeCharacteris_1073_TypeChoicePairVal> y_TimeCharacteris_1073_TypeChoicePair
+%type <TimeCharacteris_1074_TypeVal>  y_TimeCharacteris_1074_TimeCharacteris_1074_Type
+%type <TimeCharacteris_1074_TypeVal>  y_TimeCharacteris_1074_Type
+%type <TimeCharacteris_1074_TypeChoicePairVal> y_TimeCharacteris_1074_TypeChoicePair
 %type <XmlDateTimeVal>                y_TimeCreated_XmlDateTime_0
 %type <CriterionTimeTypeVal>          y_TimeCriterion_CriterionTimeType_0
 %type <TimeDescriptionEnumTypeVal>    y_TimeDescriptionEnumType
@@ -8507,11 +8491,11 @@ int yyerror(const char * s);
 %type <ListDateTimeTypeVal>           y_TimeStamps_ListDateTimeType
 %type <SummariesStatisticsTimeTypeVal> y_TimeStatsSummaries_SummariesStatisticsTimeType_0
 %type <SummaryStatisticsTimeTypeVal>  y_TimeStatsSummary_SummaryStatisticsTimeType
-%type <TimeToleranceTy_1025_TypeVal>  y_TimeToleranceTy_1025_TimeToleranceTy_1025_Type
-%type <TimeToleranceTy_1025_TypeVal>  y_TimeToleranceTy_1025_Type
-%type <TimeToleranceTy_1025_TypeChoicePairVal> y_TimeToleranceTy_1025_TypeChoicePair
-%type <TimeToleranceTy_1040_TypeVal>  y_TimeToleranceTy_1040_TimeToleranceTy_1040_Type
-%type <TimeToleranceTy_1040_TypeVal>  y_TimeToleranceTy_1040_Type
+%type <TimeToleranceTy_1026_TypeVal>  y_TimeToleranceTy_1026_TimeToleranceTy_1026_Type
+%type <TimeToleranceTy_1026_TypeVal>  y_TimeToleranceTy_1026_Type
+%type <TimeToleranceTy_1026_TypeChoicePairVal> y_TimeToleranceTy_1026_TypeChoicePair
+%type <TimeToleranceTy_1041_TypeVal>  y_TimeToleranceTy_1041_TimeToleranceTy_1041_Type
+%type <TimeToleranceTy_1041_TypeVal>  y_TimeToleranceTy_1041_Type
 %type <TimeToleranceTypeVal>          y_TimeToleranceType
 %type <TimeUnitTypeVal>               y_TimeUnitType
 %type <TimeUnitTypeVal>               y_TimeUnit_TimeUnitType
@@ -8549,9 +8533,9 @@ int yyerror(const char * s);
 %type <LinearDualValueTypeVal>        y_ToleranceDualValue_LinearDualValueType_0
 %type <LinearValueTypeVal>            y_ToleranceValuePerUnit_LinearValueType
 %type <LinearValueTypeVal>            y_ToleranceValue_LinearValueType
-%type <ToleranceZonePe_1026_TypeVal>  y_ToleranceZonePe_1026_ToleranceZonePe_1026_Type
-%type <ToleranceZonePe_1026_TypeVal>  y_ToleranceZonePe_1026_Type
-%type <ToleranceZonePe_1026_TypeChoicePairVal> y_ToleranceZonePe_1026_TypeChoicePair
+%type <ToleranceZonePe_1027_TypeVal>  y_ToleranceZonePe_1027_ToleranceZonePe_1027_Type
+%type <ToleranceZonePe_1027_TypeVal>  y_ToleranceZonePe_1027_Type
+%type <ToleranceZonePe_1027_TypeChoicePairVal> y_ToleranceZonePe_1027_TypeChoicePair
 %type <ToleranceZonePerUnitAngleTypeVal> y_ToleranceZonePerUnitAngleType
 %type <ToleranceZonePerUnitAngleTypeVal> y_ToleranceZonePerUnitAngle_ToleranceZonePerUnitAngleType
 %type <ToleranceZonePerUnitLengthTypeVal> y_ToleranceZonePerUnitArcLength_ToleranceZonePerUnitLengthType
@@ -8749,12 +8733,12 @@ int yyerror(const char * s);
 %type <ArrayI3TypeVal>                y_Triangles_ArrayI3Type
 %type <ArrayIntTypeVal>               y_Triangles_ArrayIntType
 %type <Triangulation2dTypeVal>        y_Triangulation2dType
-%type <Triangulation2d_1233_TypeVal>  y_Triangulation2d_1233_Triangulation2d_1233_Type
-%type <Triangulation2d_1233_TypeVal>  y_Triangulation2d_1233_Type
-%type <Triangulation2d_1233_TypeChoicePairVal> y_Triangulation2d_1233_TypeChoicePair
 %type <Triangulation2d_1234_TypeVal>  y_Triangulation2d_1234_Triangulation2d_1234_Type
 %type <Triangulation2d_1234_TypeVal>  y_Triangulation2d_1234_Type
 %type <Triangulation2d_1234_TypeChoicePairVal> y_Triangulation2d_1234_TypeChoicePair
+%type <Triangulation2d_1235_TypeVal>  y_Triangulation2d_1235_Triangulation2d_1235_Type
+%type <Triangulation2d_1235_TypeVal>  y_Triangulation2d_1235_Type
+%type <Triangulation2d_1235_TypeChoicePairVal> y_Triangulation2d_1235_TypeChoicePair
 %type <Triangulation2dTypeVal>        y_Triangulation_Triangulation2dType
 %type <TwentyLinearValuesTypeVal>     y_TwentyLinearValuesType
 %type <LinearValueTypeVal>            y_TwiceStandardDeviationFar_LinearValueType
@@ -8807,18 +8791,19 @@ int yyerror(const char * s);
 %type <StatsMeasuredDecimalTypeVal>   y_UpperControlLimit_StatsMeasuredDecimalType
 %type <Point2dSimpleTypeVal>          y_UpperPoint_Point2dSimpleType
 %type <BinaryDataTypeVal>             y_UserDataBinary_BinaryDataType
-%type <XmlStringVal>                  y_UserDataXML_XmlString_0
-%type <UserDefinedAngu_1137_TypeVal>  y_UserDefinedAngu_1137_Type
-%type <UserDefinedAngu_1137_TypeChoicePairVal> y_UserDefinedAngu_1137_TypeChoicePair
-%type <UserDefinedAngu_1137_TypeVal>  y_UserDefinedAngu_1137_UserDefinedAngu_1137_Type
-%type <UserDefinedAngu_1158_TypeVal>  y_UserDefinedAngu_1158_Type
-%type <UserDefinedAngu_1158_TypeVal>  y_UserDefinedAngu_1158_UserDefinedAngu_1158_Type
+%type <UserDataXMLTypeVal>            y_UserDataXML_UserDataXMLType
+%type <UserDataXMLTypeVal>            y_UserDataXML_UserDataXMLType_0
+%type <UserDefinedAngu_1138_TypeVal>  y_UserDefinedAngu_1138_Type
+%type <UserDefinedAngu_1138_TypeChoicePairVal> y_UserDefinedAngu_1138_TypeChoicePair
+%type <UserDefinedAngu_1138_TypeVal>  y_UserDefinedAngu_1138_UserDefinedAngu_1138_Type
 %type <UserDefinedAngu_1159_TypeVal>  y_UserDefinedAngu_1159_Type
 %type <UserDefinedAngu_1159_TypeVal>  y_UserDefinedAngu_1159_UserDefinedAngu_1159_Type
 %type <UserDefinedAngu_1160_TypeVal>  y_UserDefinedAngu_1160_Type
 %type <UserDefinedAngu_1160_TypeVal>  y_UserDefinedAngu_1160_UserDefinedAngu_1160_Type
 %type <UserDefinedAngu_1161_TypeVal>  y_UserDefinedAngu_1161_Type
 %type <UserDefinedAngu_1161_TypeVal>  y_UserDefinedAngu_1161_UserDefinedAngu_1161_Type
+%type <UserDefinedAngu_1162_TypeVal>  y_UserDefinedAngu_1162_Type
+%type <UserDefinedAngu_1162_TypeVal>  y_UserDefinedAngu_1162_UserDefinedAngu_1162_Type
 %type <UserDefinedAngularCharacteristicDefinitionTypeVal> y_UserDefinedAngularCharacteristicDefinitionType
 %type <UserDefinedAngularCharacteristicDefinitionTypeVal> y_UserDefinedAngularCharacteristicDefinition_UserDefinedAngularCharacteristicDefinitionType
 %type <UserDefinedAngularCharacteristicItemTypeVal> y_UserDefinedAngularCharacteristicItemType
@@ -8839,17 +8824,17 @@ int yyerror(const char * s);
 %type <UserDefinedAreaCharacteristicNominalTypeVal> y_UserDefinedAreaCharacteristicNominal_UserDefinedAreaCharacteristicNominalType
 %type <UserDefinedAreaCharacteristicStatsEvalTypeVal> y_UserDefinedAreaCharacteristicStatsEvalType
 %type <UserDefinedAreaCharacteristicStatsEvalTypeVal> y_UserDefinedAreaCharacteristicStats_UserDefinedAreaCharacteristicStatsEvalType
-%type <UserDefinedArea_1138_TypeVal>  y_UserDefinedArea_1138_Type
-%type <UserDefinedArea_1138_TypeChoicePairVal> y_UserDefinedArea_1138_TypeChoicePair
-%type <UserDefinedArea_1138_TypeVal>  y_UserDefinedArea_1138_UserDefinedArea_1138_Type
-%type <UserDefinedArea_1162_TypeVal>  y_UserDefinedArea_1162_Type
-%type <UserDefinedArea_1162_TypeVal>  y_UserDefinedArea_1162_UserDefinedArea_1162_Type
+%type <UserDefinedArea_1139_TypeVal>  y_UserDefinedArea_1139_Type
+%type <UserDefinedArea_1139_TypeChoicePairVal> y_UserDefinedArea_1139_TypeChoicePair
+%type <UserDefinedArea_1139_TypeVal>  y_UserDefinedArea_1139_UserDefinedArea_1139_Type
 %type <UserDefinedArea_1163_TypeVal>  y_UserDefinedArea_1163_Type
 %type <UserDefinedArea_1163_TypeVal>  y_UserDefinedArea_1163_UserDefinedArea_1163_Type
 %type <UserDefinedArea_1164_TypeVal>  y_UserDefinedArea_1164_Type
 %type <UserDefinedArea_1164_TypeVal>  y_UserDefinedArea_1164_UserDefinedArea_1164_Type
 %type <UserDefinedArea_1165_TypeVal>  y_UserDefinedArea_1165_Type
 %type <UserDefinedArea_1165_TypeVal>  y_UserDefinedArea_1165_UserDefinedArea_1165_Type
+%type <UserDefinedArea_1166_TypeVal>  y_UserDefinedArea_1166_Type
+%type <UserDefinedArea_1166_TypeVal>  y_UserDefinedArea_1166_UserDefinedArea_1166_Type
 %type <UserDefinedAttributeCharacteristicDefinitionTypeVal> y_UserDefinedAttributeCharacteristicDefinitionType
 %type <UserDefinedAttributeCharacteristicDefinitionTypeVal> y_UserDefinedAttributeCharacteristicDefinition_UserDefinedAttributeCharacteristicDefinitionType
 %type <UserDefinedAttributeCharacteristicItemTypeVal> y_UserDefinedAttributeCharacteristicItemType
@@ -8861,17 +8846,17 @@ int yyerror(const char * s);
 %type <UserDefinedAttributeCharacteristicStatsEvalTypeVal> y_UserDefinedAttributeCharacteristicStatsEvalType
 %type <UserDefinedAttributeCharacteristicStatsEvalTypeVal> y_UserDefinedAttributeCharacteristicStats_UserDefinedAttributeCharacteristicStatsEvalType
 %type <UserDefinedAxisTypeVal>        y_UserDefinedAxisType
-%type <UserDefinedForc_1139_TypeVal>  y_UserDefinedForc_1139_Type
-%type <UserDefinedForc_1139_TypeChoicePairVal> y_UserDefinedForc_1139_TypeChoicePair
-%type <UserDefinedForc_1139_TypeVal>  y_UserDefinedForc_1139_UserDefinedForc_1139_Type
-%type <UserDefinedForc_1166_TypeVal>  y_UserDefinedForc_1166_Type
-%type <UserDefinedForc_1166_TypeVal>  y_UserDefinedForc_1166_UserDefinedForc_1166_Type
+%type <UserDefinedForc_1140_TypeVal>  y_UserDefinedForc_1140_Type
+%type <UserDefinedForc_1140_TypeChoicePairVal> y_UserDefinedForc_1140_TypeChoicePair
+%type <UserDefinedForc_1140_TypeVal>  y_UserDefinedForc_1140_UserDefinedForc_1140_Type
 %type <UserDefinedForc_1167_TypeVal>  y_UserDefinedForc_1167_Type
 %type <UserDefinedForc_1167_TypeVal>  y_UserDefinedForc_1167_UserDefinedForc_1167_Type
 %type <UserDefinedForc_1168_TypeVal>  y_UserDefinedForc_1168_Type
 %type <UserDefinedForc_1168_TypeVal>  y_UserDefinedForc_1168_UserDefinedForc_1168_Type
 %type <UserDefinedForc_1169_TypeVal>  y_UserDefinedForc_1169_Type
 %type <UserDefinedForc_1169_TypeVal>  y_UserDefinedForc_1169_UserDefinedForc_1169_Type
+%type <UserDefinedForc_1170_TypeVal>  y_UserDefinedForc_1170_Type
+%type <UserDefinedForc_1170_TypeVal>  y_UserDefinedForc_1170_UserDefinedForc_1170_Type
 %type <UserDefinedForceCharacteristicDefinitionTypeVal> y_UserDefinedForceCharacteristicDefinitionType
 %type <UserDefinedForceCharacteristicDefinitionTypeVal> y_UserDefinedForceCharacteristicDefinition_UserDefinedForceCharacteristicDefinitionType
 %type <UserDefinedForceCharacteristicItemTypeVal> y_UserDefinedForceCharacteristicItemType
@@ -8882,17 +8867,17 @@ int yyerror(const char * s);
 %type <UserDefinedForceCharacteristicNominalTypeVal> y_UserDefinedForceCharacteristicNominal_UserDefinedForceCharacteristicNominalType
 %type <UserDefinedForceCharacteristicStatsEvalTypeVal> y_UserDefinedForceCharacteristicStatsEvalType
 %type <UserDefinedForceCharacteristicStatsEvalTypeVal> y_UserDefinedForceCharacteristicStats_UserDefinedForceCharacteristicStatsEvalType
-%type <UserDefinedLine_1140_TypeVal>  y_UserDefinedLine_1140_Type
-%type <UserDefinedLine_1140_TypeChoicePairVal> y_UserDefinedLine_1140_TypeChoicePair
-%type <UserDefinedLine_1140_TypeVal>  y_UserDefinedLine_1140_UserDefinedLine_1140_Type
-%type <UserDefinedLine_1170_TypeVal>  y_UserDefinedLine_1170_Type
-%type <UserDefinedLine_1170_TypeVal>  y_UserDefinedLine_1170_UserDefinedLine_1170_Type
+%type <UserDefinedLine_1141_TypeVal>  y_UserDefinedLine_1141_Type
+%type <UserDefinedLine_1141_TypeChoicePairVal> y_UserDefinedLine_1141_TypeChoicePair
+%type <UserDefinedLine_1141_TypeVal>  y_UserDefinedLine_1141_UserDefinedLine_1141_Type
 %type <UserDefinedLine_1171_TypeVal>  y_UserDefinedLine_1171_Type
 %type <UserDefinedLine_1171_TypeVal>  y_UserDefinedLine_1171_UserDefinedLine_1171_Type
 %type <UserDefinedLine_1172_TypeVal>  y_UserDefinedLine_1172_Type
 %type <UserDefinedLine_1172_TypeVal>  y_UserDefinedLine_1172_UserDefinedLine_1172_Type
 %type <UserDefinedLine_1173_TypeVal>  y_UserDefinedLine_1173_Type
 %type <UserDefinedLine_1173_TypeVal>  y_UserDefinedLine_1173_UserDefinedLine_1173_Type
+%type <UserDefinedLine_1174_TypeVal>  y_UserDefinedLine_1174_Type
+%type <UserDefinedLine_1174_TypeVal>  y_UserDefinedLine_1174_UserDefinedLine_1174_Type
 %type <UserDefinedLinearCharacteristicDefinitionTypeVal> y_UserDefinedLinearCharacteristicDefinitionType
 %type <UserDefinedLinearCharacteristicDefinitionTypeVal> y_UserDefinedLinearCharacteristicDefinition_UserDefinedLinearCharacteristicDefinitionType
 %type <UserDefinedLinearCharacteristicItemTypeVal> y_UserDefinedLinearCharacteristicItemType
@@ -8913,28 +8898,28 @@ int yyerror(const char * s);
 %type <UserDefinedMassCharacteristicNominalTypeVal> y_UserDefinedMassCharacteristicNominal_UserDefinedMassCharacteristicNominalType
 %type <UserDefinedMassCharacteristicStatsEvalTypeVal> y_UserDefinedMassCharacteristicStatsEvalType
 %type <UserDefinedMassCharacteristicStatsEvalTypeVal> y_UserDefinedMassCharacteristicStats_UserDefinedMassCharacteristicStatsEvalType
-%type <UserDefinedMass_1141_TypeVal>  y_UserDefinedMass_1141_Type
-%type <UserDefinedMass_1141_TypeChoicePairVal> y_UserDefinedMass_1141_TypeChoicePair
-%type <UserDefinedMass_1141_TypeVal>  y_UserDefinedMass_1141_UserDefinedMass_1141_Type
-%type <UserDefinedMass_1174_TypeVal>  y_UserDefinedMass_1174_Type
-%type <UserDefinedMass_1174_TypeVal>  y_UserDefinedMass_1174_UserDefinedMass_1174_Type
+%type <UserDefinedMass_1142_TypeVal>  y_UserDefinedMass_1142_Type
+%type <UserDefinedMass_1142_TypeChoicePairVal> y_UserDefinedMass_1142_TypeChoicePair
+%type <UserDefinedMass_1142_TypeVal>  y_UserDefinedMass_1142_UserDefinedMass_1142_Type
 %type <UserDefinedMass_1175_TypeVal>  y_UserDefinedMass_1175_Type
 %type <UserDefinedMass_1175_TypeVal>  y_UserDefinedMass_1175_UserDefinedMass_1175_Type
 %type <UserDefinedMass_1176_TypeVal>  y_UserDefinedMass_1176_Type
 %type <UserDefinedMass_1176_TypeVal>  y_UserDefinedMass_1176_UserDefinedMass_1176_Type
 %type <UserDefinedMass_1177_TypeVal>  y_UserDefinedMass_1177_Type
 %type <UserDefinedMass_1177_TypeVal>  y_UserDefinedMass_1177_UserDefinedMass_1177_Type
-%type <UserDefinedPres_1142_TypeVal>  y_UserDefinedPres_1142_Type
-%type <UserDefinedPres_1142_TypeChoicePairVal> y_UserDefinedPres_1142_TypeChoicePair
-%type <UserDefinedPres_1142_TypeVal>  y_UserDefinedPres_1142_UserDefinedPres_1142_Type
-%type <UserDefinedPres_1178_TypeVal>  y_UserDefinedPres_1178_Type
-%type <UserDefinedPres_1178_TypeVal>  y_UserDefinedPres_1178_UserDefinedPres_1178_Type
+%type <UserDefinedMass_1178_TypeVal>  y_UserDefinedMass_1178_Type
+%type <UserDefinedMass_1178_TypeVal>  y_UserDefinedMass_1178_UserDefinedMass_1178_Type
+%type <UserDefinedPres_1143_TypeVal>  y_UserDefinedPres_1143_Type
+%type <UserDefinedPres_1143_TypeChoicePairVal> y_UserDefinedPres_1143_TypeChoicePair
+%type <UserDefinedPres_1143_TypeVal>  y_UserDefinedPres_1143_UserDefinedPres_1143_Type
 %type <UserDefinedPres_1179_TypeVal>  y_UserDefinedPres_1179_Type
 %type <UserDefinedPres_1179_TypeVal>  y_UserDefinedPres_1179_UserDefinedPres_1179_Type
 %type <UserDefinedPres_1180_TypeVal>  y_UserDefinedPres_1180_Type
 %type <UserDefinedPres_1180_TypeVal>  y_UserDefinedPres_1180_UserDefinedPres_1180_Type
 %type <UserDefinedPres_1181_TypeVal>  y_UserDefinedPres_1181_Type
 %type <UserDefinedPres_1181_TypeVal>  y_UserDefinedPres_1181_UserDefinedPres_1181_Type
+%type <UserDefinedPres_1182_TypeVal>  y_UserDefinedPres_1182_Type
+%type <UserDefinedPres_1182_TypeVal>  y_UserDefinedPres_1182_UserDefinedPres_1182_Type
 %type <UserDefinedPressureCharacteristicDefinitionTypeVal> y_UserDefinedPressureCharacteristicDefinitionType
 %type <UserDefinedPressureCharacteristicDefinitionTypeVal> y_UserDefinedPressureCharacteristicDefinition_UserDefinedPressureCharacteristicDefinitionType
 %type <UserDefinedPressureCharacteristicItemTypeVal> y_UserDefinedPressureCharacteristicItemType
@@ -8945,24 +8930,24 @@ int yyerror(const char * s);
 %type <UserDefinedPressureCharacteristicNominalTypeVal> y_UserDefinedPressureCharacteristicNominal_UserDefinedPressureCharacteristicNominalType
 %type <UserDefinedPressureCharacteristicStatsEvalTypeVal> y_UserDefinedPressureCharacteristicStatsEvalType
 %type <UserDefinedPressureCharacteristicStatsEvalTypeVal> y_UserDefinedPressureCharacteristicStats_UserDefinedPressureCharacteristicStatsEvalType
-%type <UserDefinedReso_1243_TypeVal>  y_UserDefinedReso_1243_Type
-%type <UserDefinedReso_1243_TypeChoicePairVal> y_UserDefinedReso_1243_TypeChoicePair
-%type <UserDefinedReso_1243_TypeVal>  y_UserDefinedReso_1243_UserDefinedReso_1243_Type
-%type <UserDefinedReso_1246_TypeVal>  y_UserDefinedReso_1246_Type
-%type <UserDefinedReso_1246_TypeVal>  y_UserDefinedReso_1246_UserDefinedReso_1246_Type
+%type <UserDefinedReso_1244_TypeVal>  y_UserDefinedReso_1244_Type
+%type <UserDefinedReso_1244_TypeChoicePairVal> y_UserDefinedReso_1244_TypeChoicePair
+%type <UserDefinedReso_1244_TypeVal>  y_UserDefinedReso_1244_UserDefinedReso_1244_Type
+%type <UserDefinedReso_1247_TypeVal>  y_UserDefinedReso_1247_Type
+%type <UserDefinedReso_1247_TypeVal>  y_UserDefinedReso_1247_UserDefinedReso_1247_Type
 %type <UserDefinedResolutionTypeVal>  y_UserDefinedResolutionType
 %type <UserDefinedResolutionTypeVal>  y_UserDefinedResolution_UserDefinedResolutionType
-%type <UserDefinedSpee_1143_TypeVal>  y_UserDefinedSpee_1143_Type
-%type <UserDefinedSpee_1143_TypeChoicePairVal> y_UserDefinedSpee_1143_TypeChoicePair
-%type <UserDefinedSpee_1143_TypeVal>  y_UserDefinedSpee_1143_UserDefinedSpee_1143_Type
-%type <UserDefinedSpee_1182_TypeVal>  y_UserDefinedSpee_1182_Type
-%type <UserDefinedSpee_1182_TypeVal>  y_UserDefinedSpee_1182_UserDefinedSpee_1182_Type
+%type <UserDefinedSpee_1144_TypeVal>  y_UserDefinedSpee_1144_Type
+%type <UserDefinedSpee_1144_TypeChoicePairVal> y_UserDefinedSpee_1144_TypeChoicePair
+%type <UserDefinedSpee_1144_TypeVal>  y_UserDefinedSpee_1144_UserDefinedSpee_1144_Type
 %type <UserDefinedSpee_1183_TypeVal>  y_UserDefinedSpee_1183_Type
 %type <UserDefinedSpee_1183_TypeVal>  y_UserDefinedSpee_1183_UserDefinedSpee_1183_Type
 %type <UserDefinedSpee_1184_TypeVal>  y_UserDefinedSpee_1184_Type
 %type <UserDefinedSpee_1184_TypeVal>  y_UserDefinedSpee_1184_UserDefinedSpee_1184_Type
 %type <UserDefinedSpee_1185_TypeVal>  y_UserDefinedSpee_1185_Type
 %type <UserDefinedSpee_1185_TypeVal>  y_UserDefinedSpee_1185_UserDefinedSpee_1185_Type
+%type <UserDefinedSpee_1186_TypeVal>  y_UserDefinedSpee_1186_Type
+%type <UserDefinedSpee_1186_TypeVal>  y_UserDefinedSpee_1186_UserDefinedSpee_1186_Type
 %type <UserDefinedSpeedCharacteristicDefinitionTypeVal> y_UserDefinedSpeedCharacteristicDefinitionType
 %type <UserDefinedSpeedCharacteristicDefinitionTypeVal> y_UserDefinedSpeedCharacteristicDefinition_UserDefinedSpeedCharacteristicDefinitionType
 %type <UserDefinedSpeedCharacteristicItemTypeVal> y_UserDefinedSpeedCharacteristicItemType
@@ -8974,17 +8959,17 @@ int yyerror(const char * s);
 %type <UserDefinedSpeedCharacteristicStatsEvalTypeVal> y_UserDefinedSpeedCharacteristicStatsEvalType
 %type <UserDefinedSpeedCharacteristicStatsEvalTypeVal> y_UserDefinedSpeedCharacteristicStats_UserDefinedSpeedCharacteristicStatsEvalType
 %type <XmlTokenVal>                   y_UserDefinedStrategy_XmlToken
-%type <UserDefinedTemp_1144_TypeVal>  y_UserDefinedTemp_1144_Type
-%type <UserDefinedTemp_1144_TypeChoicePairVal> y_UserDefinedTemp_1144_TypeChoicePair
-%type <UserDefinedTemp_1144_TypeVal>  y_UserDefinedTemp_1144_UserDefinedTemp_1144_Type
-%type <UserDefinedTemp_1186_TypeVal>  y_UserDefinedTemp_1186_Type
-%type <UserDefinedTemp_1186_TypeVal>  y_UserDefinedTemp_1186_UserDefinedTemp_1186_Type
+%type <UserDefinedTemp_1145_TypeVal>  y_UserDefinedTemp_1145_Type
+%type <UserDefinedTemp_1145_TypeChoicePairVal> y_UserDefinedTemp_1145_TypeChoicePair
+%type <UserDefinedTemp_1145_TypeVal>  y_UserDefinedTemp_1145_UserDefinedTemp_1145_Type
 %type <UserDefinedTemp_1187_TypeVal>  y_UserDefinedTemp_1187_Type
 %type <UserDefinedTemp_1187_TypeVal>  y_UserDefinedTemp_1187_UserDefinedTemp_1187_Type
 %type <UserDefinedTemp_1188_TypeVal>  y_UserDefinedTemp_1188_Type
 %type <UserDefinedTemp_1188_TypeVal>  y_UserDefinedTemp_1188_UserDefinedTemp_1188_Type
 %type <UserDefinedTemp_1189_TypeVal>  y_UserDefinedTemp_1189_Type
 %type <UserDefinedTemp_1189_TypeVal>  y_UserDefinedTemp_1189_UserDefinedTemp_1189_Type
+%type <UserDefinedTemp_1190_TypeVal>  y_UserDefinedTemp_1190_Type
+%type <UserDefinedTemp_1190_TypeVal>  y_UserDefinedTemp_1190_UserDefinedTemp_1190_Type
 %type <UserDefinedTemperatureCharacteristicDefinitionTypeVal> y_UserDefinedTemperatureCharacteristicDefinitionType
 %type <UserDefinedTemperatureCharacteristicDefinitionTypeVal> y_UserDefinedTemperatureCharacteristicDefinition_UserDefinedTemperatureCharacteristicDefinitionType
 %type <UserDefinedTemperatureCharacteristicItemTypeVal> y_UserDefinedTemperatureCharacteristicItemType
@@ -9005,17 +8990,17 @@ int yyerror(const char * s);
 %type <UserDefinedTimeCharacteristicNominalTypeVal> y_UserDefinedTimeCharacteristicNominal_UserDefinedTimeCharacteristicNominalType
 %type <UserDefinedTimeCharacteristicStatsEvalTypeVal> y_UserDefinedTimeCharacteristicStatsEvalType
 %type <UserDefinedTimeCharacteristicStatsEvalTypeVal> y_UserDefinedTimeCharacteristicStats_UserDefinedTimeCharacteristicStatsEvalType
-%type <UserDefinedTime_1145_TypeVal>  y_UserDefinedTime_1145_Type
-%type <UserDefinedTime_1145_TypeChoicePairVal> y_UserDefinedTime_1145_TypeChoicePair
-%type <UserDefinedTime_1145_TypeVal>  y_UserDefinedTime_1145_UserDefinedTime_1145_Type
-%type <UserDefinedTime_1190_TypeVal>  y_UserDefinedTime_1190_Type
-%type <UserDefinedTime_1190_TypeVal>  y_UserDefinedTime_1190_UserDefinedTime_1190_Type
+%type <UserDefinedTime_1146_TypeVal>  y_UserDefinedTime_1146_Type
+%type <UserDefinedTime_1146_TypeChoicePairVal> y_UserDefinedTime_1146_TypeChoicePair
+%type <UserDefinedTime_1146_TypeVal>  y_UserDefinedTime_1146_UserDefinedTime_1146_Type
 %type <UserDefinedTime_1191_TypeVal>  y_UserDefinedTime_1191_Type
 %type <UserDefinedTime_1191_TypeVal>  y_UserDefinedTime_1191_UserDefinedTime_1191_Type
 %type <UserDefinedTime_1192_TypeVal>  y_UserDefinedTime_1192_Type
 %type <UserDefinedTime_1192_TypeVal>  y_UserDefinedTime_1192_UserDefinedTime_1192_Type
 %type <UserDefinedTime_1193_TypeVal>  y_UserDefinedTime_1193_Type
 %type <UserDefinedTime_1193_TypeVal>  y_UserDefinedTime_1193_UserDefinedTime_1193_Type
+%type <UserDefinedTime_1194_TypeVal>  y_UserDefinedTime_1194_Type
+%type <UserDefinedTime_1194_TypeVal>  y_UserDefinedTime_1194_UserDefinedTime_1194_Type
 %type <MeasuredUserDefinedUnitValueTypeVal> y_UserDefinedUnitAbsoluteLinearity_MeasuredUserDefinedUnitValueType
 %type <UserDefinedUnitCharacteristicDefinitionTypeVal> y_UserDefinedUnitCharacteristicDefinitionType
 %type <UserDefinedUnitCharacteristicDefinitionTypeVal> y_UserDefinedUnitCharacteristicDefinition_UserDefinedUnitCharacteristicDefinitionType
@@ -9034,22 +9019,22 @@ int yyerror(const char * s);
 %type <SummaryStatisticsUserDefinedUnitTypeVal> y_UserDefinedUnitStatsSummary_SummaryStatisticsUserDefinedUnitType
 %type <UserDefinedUnitTypeVal>        y_UserDefinedUnitType
 %type <UserDefinedUnitValueTypeVal>   y_UserDefinedUnitValueType
-%type <UserDefinedUnit_1074_TypeVal>  y_UserDefinedUnit_1074_Type
-%type <UserDefinedUnit_1074_TypeChoicePairVal> y_UserDefinedUnit_1074_TypeChoicePair
-%type <UserDefinedUnit_1074_TypeVal>  y_UserDefinedUnit_1074_UserDefinedUnit_1074_Type
-%type <UserDefinedUnit_1089_TypeVal>  y_UserDefinedUnit_1089_Type
-%type <UserDefinedUnit_1089_TypeVal>  y_UserDefinedUnit_1089_UserDefinedUnit_1089_Type
-%type <UserDefinedUnit_1146_TypeVal>  y_UserDefinedUnit_1146_Type
-%type <UserDefinedUnit_1146_TypeChoicePairVal> y_UserDefinedUnit_1146_TypeChoicePair
-%type <UserDefinedUnit_1146_TypeVal>  y_UserDefinedUnit_1146_UserDefinedUnit_1146_Type
-%type <UserDefinedUnit_1194_TypeVal>  y_UserDefinedUnit_1194_Type
-%type <UserDefinedUnit_1194_TypeVal>  y_UserDefinedUnit_1194_UserDefinedUnit_1194_Type
+%type <UserDefinedUnit_1075_TypeVal>  y_UserDefinedUnit_1075_Type
+%type <UserDefinedUnit_1075_TypeChoicePairVal> y_UserDefinedUnit_1075_TypeChoicePair
+%type <UserDefinedUnit_1075_TypeVal>  y_UserDefinedUnit_1075_UserDefinedUnit_1075_Type
+%type <UserDefinedUnit_1090_TypeVal>  y_UserDefinedUnit_1090_Type
+%type <UserDefinedUnit_1090_TypeVal>  y_UserDefinedUnit_1090_UserDefinedUnit_1090_Type
+%type <UserDefinedUnit_1147_TypeVal>  y_UserDefinedUnit_1147_Type
+%type <UserDefinedUnit_1147_TypeChoicePairVal> y_UserDefinedUnit_1147_TypeChoicePair
+%type <UserDefinedUnit_1147_TypeVal>  y_UserDefinedUnit_1147_UserDefinedUnit_1147_Type
 %type <UserDefinedUnit_1195_TypeVal>  y_UserDefinedUnit_1195_Type
 %type <UserDefinedUnit_1195_TypeVal>  y_UserDefinedUnit_1195_UserDefinedUnit_1195_Type
 %type <UserDefinedUnit_1196_TypeVal>  y_UserDefinedUnit_1196_Type
 %type <UserDefinedUnit_1196_TypeVal>  y_UserDefinedUnit_1196_UserDefinedUnit_1196_Type
 %type <UserDefinedUnit_1197_TypeVal>  y_UserDefinedUnit_1197_Type
 %type <UserDefinedUnit_1197_TypeVal>  y_UserDefinedUnit_1197_UserDefinedUnit_1197_Type
+%type <UserDefinedUnit_1198_TypeVal>  y_UserDefinedUnit_1198_Type
+%type <UserDefinedUnit_1198_TypeVal>  y_UserDefinedUnit_1198_UserDefinedUnit_1198_Type
 %type <UserDefinedUnitTypeVal>        y_UserDefinedUnit_UserDefinedUnitType
 %type <UserDefinedUnitsTypeVal>       y_UserDefinedUnitsType
 %type <UserDefinedUnitsTypeVal>       y_UserDefinedUnits_UserDefinedUnitsType_0
@@ -9065,12 +9050,12 @@ int yyerror(const char * s);
 %type <ValidationPartAssemblyInstanceTypeVal> y_ValidationPartAssemblyInstanceType
 %type <ValidationPartAssemblyInstancesTypeVal> y_ValidationPartAssemblyInstancesType
 %type <ValidationPartAssemblyTypeVal> y_ValidationPartAssemblyType
-%type <ValidationPoint_1003_TypeVal>  y_ValidationPoint_1003_Type
-%type <ValidationPoint_1003_TypeChoicePairVal> y_ValidationPoint_1003_TypeChoicePair
-%type <ValidationPoint_1003_TypeVal>  y_ValidationPoint_1003_ValidationPoint_1003_Type
 %type <ValidationPoint_1004_TypeVal>  y_ValidationPoint_1004_Type
 %type <ValidationPoint_1004_TypeChoicePairVal> y_ValidationPoint_1004_TypeChoicePair
-%type <ValidationPoint_1004_TypeVal>  y_ValidationPoint_1004_ValidationPoint_1004_Type_0
+%type <ValidationPoint_1004_TypeVal>  y_ValidationPoint_1004_ValidationPoint_1004_Type
+%type <ValidationPoint_1005_TypeVal>  y_ValidationPoint_1005_Type
+%type <ValidationPoint_1005_TypeChoicePairVal> y_ValidationPoint_1005_TypeChoicePair
+%type <ValidationPoint_1005_TypeVal>  y_ValidationPoint_1005_ValidationPoint_1005_Type_0
 %type <ValidationPointsTypeVal>       y_ValidationPointsType
 %type <ValidationBodyTypeVal>         y_Validation_ValidationBodyType_0
 %type <ValidationEdgeTypeVal>         y_Validation_ValidationEdgeType_0
@@ -9200,12 +9185,12 @@ int yyerror(const char * s);
 %type <WeldEdgeCharacteristicStatsEvalTypeVal> y_WeldEdgeCharacteristicStatsEvalType
 %type <WeldEdgeCharacteristicStatsEvalTypeVal> y_WeldEdgeCharacteristicStats_WeldEdgeCharacteristicStatsEvalType
 %type <WeldFilletBothSidesTypeVal>    y_WeldFilletBothSidesType
-%type <WeldFilletChara_1075_TypeVal>  y_WeldFilletChara_1075_Type
-%type <WeldFilletChara_1075_TypeChoicePairVal> y_WeldFilletChara_1075_TypeChoicePair
-%type <WeldFilletChara_1075_TypeVal>  y_WeldFilletChara_1075_WeldFilletChara_1075_Type_0
 %type <WeldFilletChara_1076_TypeVal>  y_WeldFilletChara_1076_Type
 %type <WeldFilletChara_1076_TypeChoicePairVal> y_WeldFilletChara_1076_TypeChoicePair
 %type <WeldFilletChara_1076_TypeVal>  y_WeldFilletChara_1076_WeldFilletChara_1076_Type_0
+%type <WeldFilletChara_1077_TypeVal>  y_WeldFilletChara_1077_Type
+%type <WeldFilletChara_1077_TypeChoicePairVal> y_WeldFilletChara_1077_TypeChoicePair
+%type <WeldFilletChara_1077_TypeVal>  y_WeldFilletChara_1077_WeldFilletChara_1077_Type_0
 %type <WeldFilletCharacteristicDefinitionTypeVal> y_WeldFilletCharacteristicDefinitionType
 %type <WeldFilletCharacteristicDefinitionTypeVal> y_WeldFilletCharacteristicDefinition_WeldFilletCharacteristicDefinitionType
 %type <WeldFilletCharacteristicItemTypeVal> y_WeldFilletCharacteristicItemType
@@ -9217,9 +9202,9 @@ int yyerror(const char * s);
 %type <WeldFilletCharacteristicStatsEvalTypeVal> y_WeldFilletCharacteristicStatsEvalType
 %type <WeldFilletCharacteristicStatsEvalTypeVal> y_WeldFilletCharacteristicStats_WeldFilletCharacteristicStatsEvalType
 %type <WeldFilletEqualLegLengthTypeVal> y_WeldFilletEqualLegLengthType
-%type <WeldFilletOneSi_1077_TypeVal>  y_WeldFilletOneSi_1077_Type
-%type <WeldFilletOneSi_1077_TypeChoicePairVal> y_WeldFilletOneSi_1077_TypeChoicePair
-%type <WeldFilletOneSi_1077_TypeVal>  y_WeldFilletOneSi_1077_WeldFilletOneSi_1077_Type_0
+%type <WeldFilletOneSi_1078_TypeVal>  y_WeldFilletOneSi_1078_Type
+%type <WeldFilletOneSi_1078_TypeChoicePairVal> y_WeldFilletOneSi_1078_TypeChoicePair
+%type <WeldFilletOneSi_1078_TypeVal>  y_WeldFilletOneSi_1078_WeldFilletOneSi_1078_Type_0
 %type <WeldFilletOneSideInBothSidesTypeVal> y_WeldFilletOneSideInBothSidesType
 %type <WeldFilletOneSideTypeVal>      y_WeldFilletOneSideType
 %type <WeldFilletUnequalLegLengthTypeVal> y_WeldFilletUnequalLegLengthType
@@ -9246,14 +9231,14 @@ int yyerror(const char * s);
 %type <WeldFlareVCharacteristicStatsEvalTypeVal> y_WeldFlareVCharacteristicStatsEvalType
 %type <WeldFlareVCharacteristicStatsEvalTypeVal> y_WeldFlareVCharacteristicStats_WeldFlareVCharacteristicStatsEvalType
 %type <WeldGrooveBothSidesExtendedTypeVal> y_WeldGrooveBothSidesExtendedType
-%type <WeldGrooveChara_1078_TypeVal>  y_WeldGrooveChara_1078_Type
-%type <WeldGrooveChara_1078_TypeChoicePairVal> y_WeldGrooveChara_1078_TypeChoicePair
-%type <WeldGrooveChara_1078_TypeVal>  y_WeldGrooveChara_1078_WeldGrooveChara_1078_Type_0
 %type <WeldGrooveChara_1079_TypeVal>  y_WeldGrooveChara_1079_Type
 %type <WeldGrooveChara_1079_TypeChoicePairVal> y_WeldGrooveChara_1079_TypeChoicePair
 %type <WeldGrooveChara_1079_TypeVal>  y_WeldGrooveChara_1079_WeldGrooveChara_1079_Type_0
-%type <WeldGrooveOneSi_1080_TypeVal>  y_WeldGrooveOneSi_1080_Type
-%type <WeldGrooveOneSi_1080_TypeVal>  y_WeldGrooveOneSi_1080_WeldGrooveOneSi_1080_Type
+%type <WeldGrooveChara_1080_TypeVal>  y_WeldGrooveChara_1080_Type
+%type <WeldGrooveChara_1080_TypeChoicePairVal> y_WeldGrooveChara_1080_TypeChoicePair
+%type <WeldGrooveChara_1080_TypeVal>  y_WeldGrooveChara_1080_WeldGrooveChara_1080_Type_0
+%type <WeldGrooveOneSi_1081_TypeVal>  y_WeldGrooveOneSi_1081_Type
+%type <WeldGrooveOneSi_1081_TypeVal>  y_WeldGrooveOneSi_1081_WeldGrooveOneSi_1081_Type
 %type <WeldGrooveOneSideParametersTypeVal> y_WeldGrooveOneSideParametersType
 %type <WeldGrooveOneSideTypeVal>      y_WeldGrooveOneSideType
 %type <WeldJCharacteristicDefinitionTypeVal> y_WeldJCharacteristicDefinitionType
@@ -9403,10 +9388,10 @@ int yyerror(const char * s);
 %type <LinearValueTypeVal>            y_Width_LinearValueType_0
 %type <MeasuredLinearValueTypeVal>    y_Width_MeasuredLinearValueType_0
 %type <XmlDoubleVal>                  y_Width_XmlDouble
-%type <WitnessLinesTyp_1235_TypeVal>  y_WitnessLinesTyp_1235_Type
-%type <WitnessLinesTyp_1235_TypeVal>  y_WitnessLinesTyp_1235_WitnessLinesTyp_1235_Type
 %type <WitnessLinesTyp_1236_TypeVal>  y_WitnessLinesTyp_1236_Type
 %type <WitnessLinesTyp_1236_TypeVal>  y_WitnessLinesTyp_1236_WitnessLinesTyp_1236_Type
+%type <WitnessLinesTyp_1237_TypeVal>  y_WitnessLinesTyp_1237_Type
+%type <WitnessLinesTyp_1237_TypeVal>  y_WitnessLinesTyp_1237_WitnessLinesTyp_1237_Type
 %type <WitnessLinesTypeVal>           y_WitnessLinesType
 %type <WitnessLinesTypeChoicePairVal> y_WitnessLinesTypeChoicePair
 %type <WitnessLinesTypeVal>           y_WitnessLines_WitnessLinesType_0
@@ -15610,7 +15595,7 @@ y_AACMMType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_Resolution_substituteType_0 y_WorkingVolume_substituteType_0
@@ -16443,7 +16428,7 @@ y_AlgorithmId_QIFReferenceType :
 
 y_AlgorithmType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
-          y_AlgorithmType_1007_AlgorithmType_1007_Type y_Name_XmlString
+          y_AlgorithmType_1008_AlgorithmType_1008_Type y_Name_XmlString
           y_Description_XmlString_0
           {$$ = new AlgorithmType($3, $4, $5, $6);
            yyUnrefMap[$$] = $$;
@@ -16461,47 +16446,33 @@ y_AlgorithmType :
           }
         ;
 
-y_AlgorithmType_1007_AlgorithmType_1007_Type :
-          y_AlgorithmType_1007_Type
+y_AlgorithmType_1008_AlgorithmType_1008_Type :
+          y_AlgorithmType_1008_Type
           {$$ = $1;}
         ;
 
-y_AlgorithmType_1007_Type :
-          y_AlgorithmType_1007_TypeChoicePair
-          {$$ = new AlgorithmType_1007_Type($1);
+y_AlgorithmType_1008_Type :
+          y_AlgorithmType_1008_TypeChoicePair
+          {$$ = new AlgorithmType_1008_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_AlgorithmType_1007_TypeChoicePair :
-          y_AlgorithmType_1_1027_AlgorithmType_1_1027_Type
-          {$$ = new AlgorithmType_1007_TypeChoicePair();
+y_AlgorithmType_1008_TypeChoicePair :
+          y_AlgorithmType_1_1028_AlgorithmType_1_1028_Type
+          {$$ = new AlgorithmType_1008_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->AlgorithmType_1007_TypeType = AlgorithmType_1007_TypeChoicePair::AlgorithmType_1_1027E;
-           $$->AlgorithmType_1007_TypeValue.AlgorithmType_1_1027 = $1;
+           $$->AlgorithmType_1008_TypeType = AlgorithmType_1008_TypeChoicePair::AlgorithmType_1_1028E;
+           $$->AlgorithmType_1008_TypeValue.AlgorithmType_1_1028 = $1;
           }
-        | y_AlgorithmType_1_1028_AlgorithmType_1_1028_Type
-          {$$ = new AlgorithmType_1007_TypeChoicePair();
+        | y_AlgorithmType_1_1029_AlgorithmType_1_1029_Type
+          {$$ = new AlgorithmType_1008_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->AlgorithmType_1007_TypeType = AlgorithmType_1007_TypeChoicePair::AlgorithmType_1_1028E;
-           $$->AlgorithmType_1007_TypeValue.AlgorithmType_1_1028 = $1;
-          }
-        ;
-
-y_AlgorithmType_1_1027_AlgorithmType_1_1027_Type :
-          y_AlgorithmType_1_1027_Type
-          {$$ = $1;}
-        ;
-
-y_AlgorithmType_1_1027_Type :
-          y_SoftwareId_QIFReferenceType y_Parameters_XmlString_0
-          {$$ = new AlgorithmType_1_1027_Type($1, $2);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
+           $$->AlgorithmType_1008_TypeType = AlgorithmType_1008_TypeChoicePair::AlgorithmType_1_1029E;
+           $$->AlgorithmType_1008_TypeValue.AlgorithmType_1_1029 = $1;
           }
         ;
 
@@ -16511,8 +16482,22 @@ y_AlgorithmType_1_1028_AlgorithmType_1_1028_Type :
         ;
 
 y_AlgorithmType_1_1028_Type :
-          y_StandardId_QIFReferenceType y_Section_XmlString_0
+          y_SoftwareId_QIFReferenceType y_Parameters_XmlString_0
           {$$ = new AlgorithmType_1_1028_Type($1, $2);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+          }
+        ;
+
+y_AlgorithmType_1_1029_AlgorithmType_1_1029_Type :
+          y_AlgorithmType_1_1029_Type
+          {$$ = $1;}
+        ;
+
+y_AlgorithmType_1_1029_Type :
+          y_StandardId_QIFReferenceType y_Section_XmlString_0
+          {$$ = new AlgorithmType_1_1029_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
@@ -16549,38 +16534,38 @@ y_AlignmentEnumType :
           }
         ;
 
-y_AlignmentFeatur_1008_AlignmentFeatur_1008_Type :
-          y_AlignmentFeatur_1008_Type
+y_AlignmentFeatur_1009_AlignmentFeatur_1009_Type :
+          y_AlignmentFeatur_1009_Type
           {$$ = $1;}
         ;
 
-y_AlignmentFeatur_1008_Type :
-          y_AlignmentFeatur_1008_TypeChoicePair
-          {$$ = new AlignmentFeatur_1008_Type($1);
+y_AlignmentFeatur_1009_Type :
+          y_AlignmentFeatur_1009_TypeChoicePair
+          {$$ = new AlignmentFeatur_1009_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_AlignmentFeatur_1008_TypeChoicePair :
+y_AlignmentFeatur_1009_TypeChoicePair :
           y_BaseFeature_BaseFeatureType
-          {$$ = new AlignmentFeatur_1008_TypeChoicePair();
+          {$$ = new AlignmentFeatur_1009_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->AlignmentFeatur_1008_TypeType = AlignmentFeatur_1008_TypeChoicePair::BaseFeatureE;
-           $$->AlignmentFeatur_1008_TypeValue.BaseFeature = $1;
+           $$->AlignmentFeatur_1009_TypeType = AlignmentFeatur_1009_TypeChoicePair::BaseFeatureE;
+           $$->AlignmentFeatur_1009_TypeValue.BaseFeature = $1;
           }
         | y_DatumDefinitionId_QIFReferenceFullType
-          {$$ = new AlignmentFeatur_1008_TypeChoicePair();
+          {$$ = new AlignmentFeatur_1009_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->AlignmentFeatur_1008_TypeType = AlignmentFeatur_1008_TypeChoicePair::DatumDefinitionIdE;
-           $$->AlignmentFeatur_1008_TypeValue.DatumDefinitionId = $1;
+           $$->AlignmentFeatur_1009_TypeType = AlignmentFeatur_1009_TypeChoicePair::DatumDefinitionIdE;
+           $$->AlignmentFeatur_1009_TypeValue.DatumDefinitionId = $1;
           }
         ;
 
 y_AlignmentFeatureType :
-          ENDITEM y_AlignmentFeatur_1008_AlignmentFeatur_1008_Type
+          ENDITEM y_AlignmentFeatur_1009_AlignmentFeatur_1009_Type
           {$$ = new AlignmentFeatureType($2);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -16776,7 +16761,7 @@ y_AngleBetweenCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_AngularCharacte_1045_AngularCharacte_1045_Type
+          y_AngularCharacte_1046_AngularCharacte_1046_Type
           {$$ = new AngleBetweenCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -16968,11 +16953,11 @@ y_AngleBetweenCharacteristicNominal_AngleBetweenCharacteristicNominalType :
 
 y_AngleBetweenCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_AngularCharacte_1126_AngularCharacte_1126_Type
+          y_AngularCharacte_1127_AngularCharacte_1127_Type
           {$$ = new AngleBetweenCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -17006,7 +16991,7 @@ y_AngleCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_AngularCharacte_1045_AngularCharacte_1045_Type
+          y_AngularCharacte_1046_AngularCharacte_1046_Type
           {$$ = new AngleCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -17180,11 +17165,11 @@ y_AngleCharacteristicNominal_AngleCharacteristicNominalType :
 
 y_AngleCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_AngularCharacte_1126_AngularCharacte_1126_Type
+          y_AngularCharacte_1127_AngularCharacte_1127_Type
           {$$ = new AngleCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -17217,7 +17202,7 @@ y_AngleFromCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_AngularCharacte_1045_AngularCharacte_1045_Type
+          y_AngularCharacte_1046_AngularCharacte_1046_Type
           {$$ = new AngleFromCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -17408,11 +17393,11 @@ y_AngleFromCharacteristicNominal_AngleFromCharacteristicNominalType :
 
 y_AngleFromCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_AngularCharacte_1126_AngularCharacte_1126_Type
+          y_AngularCharacte_1127_AngularCharacte_1127_Type
           {$$ = new AngleFromCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -17518,108 +17503,91 @@ y_AngularAccuracy_AngularValueType_0 :
           {$$ = $2;}
         ;
 
-y_AngularCharacte_1045_AngularCharacte_1045_Type :
-          y_AngularCharacte_1045_Type
+y_AngularCharacte_1046_AngularCharacte_1046_Type :
+          y_AngularCharacte_1046_Type
           {$$ = $1;}
         ;
 
-y_AngularCharacte_1045_Type :
-          y_AngularCharacte_1045_TypeChoicePair
-          {$$ = new AngularCharacte_1045_Type($1);
+y_AngularCharacte_1046_Type :
+          y_AngularCharacte_1046_TypeChoicePair
+          {$$ = new AngularCharacte_1046_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_AngularCharacte_1045_TypeChoicePair :
+y_AngularCharacte_1046_TypeChoicePair :
           y_NonTolerance_NonToleranceEnumType
-          {$$ = new AngularCharacte_1045_TypeChoicePair();
+          {$$ = new AngularCharacte_1046_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->AngularCharacte_1045_TypeType = AngularCharacte_1045_TypeChoicePair::NonToleranceE;
-           $$->AngularCharacte_1045_TypeValue.NonTolerance = $1;
+           $$->AngularCharacte_1046_TypeType = AngularCharacte_1046_TypeChoicePair::NonToleranceE;
+           $$->AngularCharacte_1046_TypeValue.NonTolerance = $1;
           }
         | y_Tolerance_AngularToleranceType
-          {$$ = new AngularCharacte_1045_TypeChoicePair();
+          {$$ = new AngularCharacte_1046_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->AngularCharacte_1045_TypeType = AngularCharacte_1045_TypeChoicePair::ToleranceE;
-           $$->AngularCharacte_1045_TypeValue.Tolerance = $1;
+           $$->AngularCharacte_1046_TypeType = AngularCharacte_1046_TypeChoicePair::ToleranceE;
+           $$->AngularCharacte_1046_TypeValue.Tolerance = $1;
           }
         ;
 
-y_AngularCharacte_1126_AngularCharacte_1126_Type :
-          y_AngularCharacte_1126_Type
+y_AngularCharacte_1127_AngularCharacte_1127_Type :
+          y_AngularCharacte_1127_Type
           {$$ = $1;}
         ;
 
-y_AngularCharacte_1126_Type :
-          y_AngularCharacte_1126_TypeChoicePair
-          {$$ = new AngularCharacte_1126_Type($1);
+y_AngularCharacte_1127_Type :
+          y_AngularCharacte_1127_TypeChoicePair
+          {$$ = new AngularCharacte_1127_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_AngularCharacte_1126_TypeChoicePair :
-          y_AngularCharacte_1147_AngularCharacte_1147_Type
-          {$$ = new AngularCharacte_1126_TypeChoicePair();
+y_AngularCharacte_1127_TypeChoicePair :
+          y_AngularCharacte_1148_AngularCharacte_1148_Type
+          {$$ = new AngularCharacte_1127_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->AngularCharacte_1126_TypeType = AngularCharacte_1126_TypeChoicePair::AngularCharacte_1147E;
-           $$->AngularCharacte_1126_TypeValue.AngularCharacte_1147 = $1;
-          }
-        | y_AngularCharacte_1148_AngularCharacte_1148_Type
-          {$$ = new AngularCharacte_1126_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->AngularCharacte_1126_TypeType = AngularCharacte_1126_TypeChoicePair::AngularCharacte_1148E;
-           $$->AngularCharacte_1126_TypeValue.AngularCharacte_1148 = $1;
+           $$->AngularCharacte_1127_TypeType = AngularCharacte_1127_TypeChoicePair::AngularCharacte_1148E;
+           $$->AngularCharacte_1127_TypeValue.AngularCharacte_1148 = $1;
           }
         | y_AngularCharacte_1149_AngularCharacte_1149_Type
-          {$$ = new AngularCharacte_1126_TypeChoicePair();
+          {$$ = new AngularCharacte_1127_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->AngularCharacte_1126_TypeType = AngularCharacte_1126_TypeChoicePair::AngularCharacte_1149E;
-           $$->AngularCharacte_1126_TypeValue.AngularCharacte_1149 = $1;
+           $$->AngularCharacte_1127_TypeType = AngularCharacte_1127_TypeChoicePair::AngularCharacte_1149E;
+           $$->AngularCharacte_1127_TypeValue.AngularCharacte_1149 = $1;
           }
         | y_AngularCharacte_1150_AngularCharacte_1150_Type
-          {$$ = new AngularCharacte_1126_TypeChoicePair();
+          {$$ = new AngularCharacte_1127_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->AngularCharacte_1126_TypeType = AngularCharacte_1126_TypeChoicePair::AngularCharacte_1150E;
-           $$->AngularCharacte_1126_TypeValue.AngularCharacte_1150 = $1;
+           $$->AngularCharacte_1127_TypeType = AngularCharacte_1127_TypeChoicePair::AngularCharacte_1150E;
+           $$->AngularCharacte_1127_TypeValue.AngularCharacte_1150 = $1;
+          }
+        | y_AngularCharacte_1151_AngularCharacte_1151_Type
+          {$$ = new AngularCharacte_1127_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->AngularCharacte_1127_TypeType = AngularCharacte_1127_TypeChoicePair::AngularCharacte_1151E;
+           $$->AngularCharacte_1127_TypeValue.AngularCharacte_1151 = $1;
           }
         | y_MinDeviationStats_StatsAngularType
-          {$$ = new AngularCharacte_1126_TypeChoicePair();
+          {$$ = new AngularCharacte_1127_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->AngularCharacte_1126_TypeType = AngularCharacte_1126_TypeChoicePair::MinDeviationStatsE;
-           $$->AngularCharacte_1126_TypeValue.MinDeviationStats = $1;
+           $$->AngularCharacte_1127_TypeType = AngularCharacte_1127_TypeChoicePair::MinDeviationStatsE;
+           $$->AngularCharacte_1127_TypeValue.MinDeviationStats = $1;
           }
         | y_MinValueStats_StatsAngularType
-          {$$ = new AngularCharacte_1126_TypeChoicePair();
+          {$$ = new AngularCharacte_1127_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->AngularCharacte_1126_TypeType = AngularCharacte_1126_TypeChoicePair::MinValueStatsE;
-           $$->AngularCharacte_1126_TypeValue.MinValueStats = $1;
-          }
-        ;
-
-y_AngularCharacte_1147_AngularCharacte_1147_Type :
-          y_AngularCharacte_1147_Type
-          {$$ = $1;}
-        ;
-
-y_AngularCharacte_1147_Type :
-          y_ValueStats_StatsWithTolAngularType
-          y_MaxValueStats_StatsAngularType_0
-          y_MinValueStats_StatsAngularType_0
-          {$$ = new AngularCharacte_1147_Type($1, $2, $3);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
+           $$->AngularCharacte_1127_TypeType = AngularCharacte_1127_TypeChoicePair::MinValueStatsE;
+           $$->AngularCharacte_1127_TypeValue.MinValueStats = $1;
           }
         ;
 
@@ -17629,12 +17597,14 @@ y_AngularCharacte_1148_AngularCharacte_1148_Type :
         ;
 
 y_AngularCharacte_1148_Type :
-          y_MaxValueStats_StatsAngularType
+          y_ValueStats_StatsWithTolAngularType
+          y_MaxValueStats_StatsAngularType_0
           y_MinValueStats_StatsAngularType_0
-          {$$ = new AngularCharacte_1148_Type($1, $2);
+          {$$ = new AngularCharacte_1148_Type($1, $2, $3);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -17644,14 +17614,12 @@ y_AngularCharacte_1149_AngularCharacte_1149_Type :
         ;
 
 y_AngularCharacte_1149_Type :
-          y_DeviationStats_StatsWithTolAngularType
-          y_MaxDeviationStats_StatsAngularType_0
-          y_MinDeviationStats_StatsAngularType_0
-          {$$ = new AngularCharacte_1149_Type($1, $2, $3);
+          y_MaxValueStats_StatsAngularType
+          y_MinValueStats_StatsAngularType_0
+          {$$ = new AngularCharacte_1149_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -17661,9 +17629,26 @@ y_AngularCharacte_1150_AngularCharacte_1150_Type :
         ;
 
 y_AngularCharacte_1150_Type :
+          y_DeviationStats_StatsWithTolAngularType
+          y_MaxDeviationStats_StatsAngularType_0
+          y_MinDeviationStats_StatsAngularType_0
+          {$$ = new AngularCharacte_1150_Type($1, $2, $3);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
+          }
+        ;
+
+y_AngularCharacte_1151_AngularCharacte_1151_Type :
+          y_AngularCharacte_1151_Type
+          {$$ = $1;}
+        ;
+
+y_AngularCharacte_1151_Type :
           y_MaxDeviationStats_StatsAngularType
           y_MinDeviationStats_StatsAngularType_0
-          {$$ = new AngularCharacte_1150_Type($1, $2);
+          {$$ = new AngularCharacte_1151_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
@@ -17672,11 +17657,11 @@ y_AngularCharacte_1150_Type :
 
 y_AngularCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_AngularCharacte_1126_AngularCharacte_1126_Type
+          y_AngularCharacte_1127_AngularCharacte_1127_Type
           {$$ = new AngularCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -17698,33 +17683,33 @@ y_AngularCharacteristicStats_AngularCharacteristicStatsEvalType :
           }
         ;
 
-y_AngularCoordina_1046_AngularCoordina_1046_Type :
-          y_AngularCoordina_1046_Type
+y_AngularCoordina_1047_AngularCoordina_1047_Type :
+          y_AngularCoordina_1047_Type
           {$$ = $1;}
         ;
 
-y_AngularCoordina_1046_Type :
-          y_AngularCoordina_1046_TypeChoicePair
-          {$$ = new AngularCoordina_1046_Type($1);
+y_AngularCoordina_1047_Type :
+          y_AngularCoordina_1047_TypeChoicePair
+          {$$ = new AngularCoordina_1047_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_AngularCoordina_1046_TypeChoicePair :
+y_AngularCoordina_1047_TypeChoicePair :
           y_NonTolerance_NonToleranceEnumType
-          {$$ = new AngularCoordina_1046_TypeChoicePair();
+          {$$ = new AngularCoordina_1047_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->AngularCoordina_1046_TypeType = AngularCoordina_1046_TypeChoicePair::NonToleranceE;
-           $$->AngularCoordina_1046_TypeValue.NonTolerance = $1;
+           $$->AngularCoordina_1047_TypeType = AngularCoordina_1047_TypeChoicePair::NonToleranceE;
+           $$->AngularCoordina_1047_TypeValue.NonTolerance = $1;
           }
         | y_Tolerance_AngularToleranceType
-          {$$ = new AngularCoordina_1046_TypeChoicePair();
+          {$$ = new AngularCoordina_1047_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->AngularCoordina_1046_TypeType = AngularCoordina_1046_TypeChoicePair::ToleranceE;
-           $$->AngularCoordina_1046_TypeValue.Tolerance = $1;
+           $$->AngularCoordina_1047_TypeType = AngularCoordina_1047_TypeChoicePair::ToleranceE;
+           $$->AngularCoordina_1047_TypeValue.Tolerance = $1;
           }
         ;
 
@@ -17740,7 +17725,7 @@ y_AngularCoordinateCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_AngularCoordina_1046_AngularCoordina_1046_Type
+          y_AngularCoordina_1047_AngularCoordina_1047_Type
           {$$ = new AngularCoordinateCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -17922,11 +17907,11 @@ y_AngularCoordinateCharacteristicNominal_AngularCoordinateCharacteristicNominalT
 
 y_AngularCoordinateCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_AngularCharacte_1126_AngularCharacte_1126_Type
+          y_AngularCharacte_1127_AngularCharacte_1127_Type
           {$$ = new AngularCoordinateCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -18007,36 +17992,6 @@ y_AngularStatsSummary_SummaryStatisticsAngularType :
           }
         ;
 
-y_AngularToleranc_1009_AngularToleranc_1009_Type :
-          y_AngularToleranc_1009_Type
-          {$$ = $1;}
-        ;
-
-y_AngularToleranc_1009_Type :
-          y_AngularToleranc_1009_TypeChoicePair
-          {$$ = new AngularToleranc_1009_Type($1);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_AngularToleranc_1009_TypeChoicePair :
-          y_AngularToleranc_1029_AngularToleranc_1029_Type
-          {$$ = new AngularToleranc_1009_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->AngularToleranc_1009_TypeType = AngularToleranc_1009_TypeChoicePair::AngularToleranc_1029E;
-           $$->AngularToleranc_1009_TypeValue.AngularToleranc_1029 = $1;
-          }
-        | y_MinValue_AngularValueType
-          {$$ = new AngularToleranc_1009_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->AngularToleranc_1009_TypeType = AngularToleranc_1009_TypeChoicePair::MinValueE;
-           $$->AngularToleranc_1009_TypeValue.MinValue = $1;
-          }
-        ;
-
 y_AngularToleranc_1010_AngularToleranc_1010_Type :
           y_AngularToleranc_1010_Type
           {$$ = $1;}
@@ -18058,13 +18013,6 @@ y_AngularToleranc_1010_TypeChoicePair :
            $$->AngularToleranc_1010_TypeType = AngularToleranc_1010_TypeChoicePair::AngularToleranc_1030E;
            $$->AngularToleranc_1010_TypeValue.AngularToleranc_1030 = $1;
           }
-        | y_DefinitionId_QIFReferenceFullType
-          {$$ = new AngularToleranc_1010_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->AngularToleranc_1010_TypeType = AngularToleranc_1010_TypeChoicePair::DefinitionIdE;
-           $$->AngularToleranc_1010_TypeValue.DefinitionId = $1;
-          }
         | y_MinValue_AngularValueType
           {$$ = new AngularToleranc_1010_TypeChoicePair();
            yyUnrefMap[$$] = $$;
@@ -18074,17 +18022,40 @@ y_AngularToleranc_1010_TypeChoicePair :
           }
         ;
 
-y_AngularToleranc_1029_AngularToleranc_1029_Type :
-          y_AngularToleranc_1029_Type
+y_AngularToleranc_1011_AngularToleranc_1011_Type :
+          y_AngularToleranc_1011_Type
           {$$ = $1;}
         ;
 
-y_AngularToleranc_1029_Type :
-          y_MaxValue_AngularValueType y_MinValue_AngularValueType_0
-          {$$ = new AngularToleranc_1029_Type($1, $2);
+y_AngularToleranc_1011_Type :
+          y_AngularToleranc_1011_TypeChoicePair
+          {$$ = new AngularToleranc_1011_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
+          }
+        ;
+
+y_AngularToleranc_1011_TypeChoicePair :
+          y_AngularToleranc_1031_AngularToleranc_1031_Type
+          {$$ = new AngularToleranc_1011_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->AngularToleranc_1011_TypeType = AngularToleranc_1011_TypeChoicePair::AngularToleranc_1031E;
+           $$->AngularToleranc_1011_TypeValue.AngularToleranc_1031 = $1;
+          }
+        | y_DefinitionId_QIFReferenceFullType
+          {$$ = new AngularToleranc_1011_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->AngularToleranc_1011_TypeType = AngularToleranc_1011_TypeChoicePair::DefinitionIdE;
+           $$->AngularToleranc_1011_TypeValue.DefinitionId = $1;
+          }
+        | y_MinValue_AngularValueType
+          {$$ = new AngularToleranc_1011_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->AngularToleranc_1011_TypeType = AngularToleranc_1011_TypeChoicePair::MinValueE;
+           $$->AngularToleranc_1011_TypeValue.MinValue = $1;
           }
         ;
 
@@ -18102,9 +18073,23 @@ y_AngularToleranc_1030_Type :
           }
         ;
 
+y_AngularToleranc_1031_AngularToleranc_1031_Type :
+          y_AngularToleranc_1031_Type
+          {$$ = $1;}
+        ;
+
+y_AngularToleranc_1031_Type :
+          y_MaxValue_AngularValueType y_MinValue_AngularValueType_0
+          {$$ = new AngularToleranc_1031_Type($1, $2);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+          }
+        ;
+
 y_AngularToleranceDefinitionType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
-          y_AngularToleranc_1009_AngularToleranc_1009_Type
+          y_AngularToleranc_1010_AngularToleranc_1010_Type
           {$$ = new AngularToleranceDefinitionType($3, $4);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -18120,7 +18105,7 @@ y_AngularToleranceDefinitionType :
         ;
 
 y_AngularToleranceType :
-          ENDITEM y_AngularToleranc_1010_AngularToleranc_1010_Type
+          ENDITEM y_AngularToleranc_1011_AngularToleranc_1011_Type
           y_DefinedAsLimit_XmlBoolean y_Attributes_AttributesType_0
           {$$ = new AngularToleranceType($2, $3, $4);
            yyUnrefMap[$$] = $$;
@@ -18164,11 +18149,15 @@ y_AngularValueType :
           {$$ = new AngularValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad AngularValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new AngularValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad AngularValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -18189,7 +18178,7 @@ y_AngularityCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
@@ -18202,7 +18191,7 @@ y_AngularityCharacteristicDefinitionType :
           y_ZoneShape_OrientationZoneShapeType y_TangentPlane_XmlBoolean_0
           y_MaximumToleranceValue_LinearValueType_0
           y_ProjectedToleranceZoneValue_LinearValueType_0
-          y_OrientationChar_1064_OrientationChar_1064_Type_0
+          y_OrientationChar_1065_OrientationChar_1065_Type_0
           {$$ = new AngularityCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -18397,8 +18386,8 @@ y_AngularityCharacteristicNominal_AngularityCharacteristicNominalType :
 
 y_AngularityCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -18837,33 +18826,33 @@ y_AreaAbsoluteLinearity_MeasuredAreaValueType :
           {$$ = $2;}
         ;
 
-y_AreaCharacteris_1047_AreaCharacteris_1047_Type :
-          y_AreaCharacteris_1047_Type
+y_AreaCharacteris_1048_AreaCharacteris_1048_Type :
+          y_AreaCharacteris_1048_Type
           {$$ = $1;}
         ;
 
-y_AreaCharacteris_1047_Type :
-          y_AreaCharacteris_1047_TypeChoicePair
-          {$$ = new AreaCharacteris_1047_Type($1);
+y_AreaCharacteris_1048_Type :
+          y_AreaCharacteris_1048_TypeChoicePair
+          {$$ = new AreaCharacteris_1048_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_AreaCharacteris_1047_TypeChoicePair :
+y_AreaCharacteris_1048_TypeChoicePair :
           y_NonTolerance_NonToleranceEnumType
-          {$$ = new AreaCharacteris_1047_TypeChoicePair();
+          {$$ = new AreaCharacteris_1048_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->AreaCharacteris_1047_TypeType = AreaCharacteris_1047_TypeChoicePair::NonToleranceE;
-           $$->AreaCharacteris_1047_TypeValue.NonTolerance = $1;
+           $$->AreaCharacteris_1048_TypeType = AreaCharacteris_1048_TypeChoicePair::NonToleranceE;
+           $$->AreaCharacteris_1048_TypeValue.NonTolerance = $1;
           }
         | y_Tolerance_AreaToleranceType
-          {$$ = new AreaCharacteris_1047_TypeChoicePair();
+          {$$ = new AreaCharacteris_1048_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->AreaCharacteris_1047_TypeType = AreaCharacteris_1047_TypeChoicePair::ToleranceE;
-           $$->AreaCharacteris_1047_TypeValue.Tolerance = $1;
+           $$->AreaCharacteris_1048_TypeType = AreaCharacteris_1048_TypeChoicePair::ToleranceE;
+           $$->AreaCharacteris_1048_TypeValue.Tolerance = $1;
           }
         ;
 
@@ -18918,44 +18907,44 @@ y_AreaStatsSummary_SummaryStatisticsAreaType :
           }
         ;
 
-y_AreaToleranceTy_1011_AreaToleranceTy_1011_Type :
-          y_AreaToleranceTy_1011_Type
+y_AreaToleranceTy_1012_AreaToleranceTy_1012_Type :
+          y_AreaToleranceTy_1012_Type
           {$$ = $1;}
         ;
 
-y_AreaToleranceTy_1011_Type :
-          y_AreaToleranceTy_1011_TypeChoicePair
-          {$$ = new AreaToleranceTy_1011_Type($1);
+y_AreaToleranceTy_1012_Type :
+          y_AreaToleranceTy_1012_TypeChoicePair
+          {$$ = new AreaToleranceTy_1012_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_AreaToleranceTy_1011_TypeChoicePair :
-          y_AreaToleranceTy_1031_AreaToleranceTy_1031_Type
-          {$$ = new AreaToleranceTy_1011_TypeChoicePair();
+y_AreaToleranceTy_1012_TypeChoicePair :
+          y_AreaToleranceTy_1032_AreaToleranceTy_1032_Type
+          {$$ = new AreaToleranceTy_1012_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->AreaToleranceTy_1011_TypeType = AreaToleranceTy_1011_TypeChoicePair::AreaToleranceTy_1031E;
-           $$->AreaToleranceTy_1011_TypeValue.AreaToleranceTy_1031 = $1;
+           $$->AreaToleranceTy_1012_TypeType = AreaToleranceTy_1012_TypeChoicePair::AreaToleranceTy_1032E;
+           $$->AreaToleranceTy_1012_TypeValue.AreaToleranceTy_1032 = $1;
           }
         | y_MinValue_AreaValueType
-          {$$ = new AreaToleranceTy_1011_TypeChoicePair();
+          {$$ = new AreaToleranceTy_1012_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->AreaToleranceTy_1011_TypeType = AreaToleranceTy_1011_TypeChoicePair::MinValueE;
-           $$->AreaToleranceTy_1011_TypeValue.MinValue = $1;
+           $$->AreaToleranceTy_1012_TypeType = AreaToleranceTy_1012_TypeChoicePair::MinValueE;
+           $$->AreaToleranceTy_1012_TypeValue.MinValue = $1;
           }
         ;
 
-y_AreaToleranceTy_1031_AreaToleranceTy_1031_Type :
-          y_AreaToleranceTy_1031_Type
+y_AreaToleranceTy_1032_AreaToleranceTy_1032_Type :
+          y_AreaToleranceTy_1032_Type
           {$$ = $1;}
         ;
 
-y_AreaToleranceTy_1031_Type :
+y_AreaToleranceTy_1032_Type :
           y_MaxValue_AreaValueType y_MinValue_AreaValueType_0
-          {$$ = new AreaToleranceTy_1031_Type($1, $2);
+          {$$ = new AreaToleranceTy_1032_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
@@ -18963,7 +18952,7 @@ y_AreaToleranceTy_1031_Type :
         ;
 
 y_AreaToleranceType :
-          ENDITEM y_AreaToleranceTy_1011_AreaToleranceTy_1011_Type
+          ENDITEM y_AreaToleranceTy_1012_AreaToleranceTy_1012_Type
           y_DefinedAsLimit_XmlBoolean y_Attributes_AttributesType_0
           {$$ = new AreaToleranceType($2, $3, $4);
            yyUnrefMap[$$] = $$;
@@ -19001,11 +18990,15 @@ y_AreaValueType :
           {$$ = new AreaValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad AreaValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new AreaValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad AreaValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -19354,6 +19347,8 @@ y_ArrayBinaryType :
           {$$ = new ArrayBinaryType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad ArrayBinaryType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -19944,7 +19939,7 @@ y_AssignableCauseIds_ArrayReferenceType_0 :
 
 y_AssignableCauseType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
-          y_AssignableCause_1127_AssignableCause_1127_Type
+          y_AssignableCause_1128_AssignableCause_1128_Type
           y_CorrectiveActionIds_ArrayReferenceType_0
           {$$ = new AssignableCauseType($3, $4, $5);
            yyUnrefMap[$$] = $$;
@@ -19961,33 +19956,33 @@ y_AssignableCauseType :
           }
         ;
 
-y_AssignableCause_1127_AssignableCause_1127_Type :
-          y_AssignableCause_1127_Type
+y_AssignableCause_1128_AssignableCause_1128_Type :
+          y_AssignableCause_1128_Type
           {$$ = $1;}
         ;
 
-y_AssignableCause_1127_Type :
-          y_AssignableCause_1127_TypeChoicePair
-          {$$ = new AssignableCause_1127_Type($1);
+y_AssignableCause_1128_Type :
+          y_AssignableCause_1128_TypeChoicePair
+          {$$ = new AssignableCause_1128_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_AssignableCause_1127_TypeChoicePair :
+y_AssignableCause_1128_TypeChoicePair :
           y_AssignableCauseEnum_AssignableCauseEnumType
-          {$$ = new AssignableCause_1127_TypeChoicePair();
+          {$$ = new AssignableCause_1128_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->AssignableCause_1127_TypeType = AssignableCause_1127_TypeChoicePair::AssignableCauseEnumE;
-           $$->AssignableCause_1127_TypeValue.AssignableCauseEnum = $1;
+           $$->AssignableCause_1128_TypeType = AssignableCause_1128_TypeChoicePair::AssignableCauseEnumE;
+           $$->AssignableCause_1128_TypeValue.AssignableCauseEnum = $1;
           }
         | y_Description_XmlString
-          {$$ = new AssignableCause_1127_TypeChoicePair();
+          {$$ = new AssignableCause_1128_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->AssignableCause_1127_TypeType = AssignableCause_1127_TypeChoicePair::DescriptionE;
-           $$->AssignableCause_1127_TypeValue.Description = $1;
+           $$->AssignableCause_1128_TypeType = AssignableCause_1128_TypeChoicePair::DescriptionE;
+           $$->AssignableCause_1128_TypeValue.Description = $1;
           }
         ;
 
@@ -20270,8 +20265,39 @@ y_AttributeTime_AttributeTimeType :
           }
         ;
 
+y_AttributeUserTy_1002_AttributeUserTy_1002_Type :
+          y_AttributeUserTy_1002_Type
+          {$$ = $1;}
+        ;
+
+y_AttributeUserTy_1002_Type :
+          y_AttributeUserTy_1002_TypeChoicePair
+          {$$ = new AttributeUserTy_1002_Type($1);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+          }
+        ;
+
+y_AttributeUserTy_1002_TypeChoicePair :
+          y_UserDataBinary_BinaryDataType
+          {$$ = new AttributeUserTy_1002_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->AttributeUserTy_1002_TypeType = AttributeUserTy_1002_TypeChoicePair::UserDataBinaryE;
+           $$->AttributeUserTy_1002_TypeValue.UserDataBinary = $1;
+          }
+        | y_UserDataXML_UserDataXMLType
+          {$$ = new AttributeUserTy_1002_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->AttributeUserTy_1002_TypeType = AttributeUserTy_1002_TypeChoicePair::UserDataXMLE;
+           $$->AttributeUserTy_1002_TypeValue.UserDataXML = $1;
+          }
+        ;
+
 y_AttributeUserType :
-          y_LiztAttributePair ENDITEM y_UserDataBinary_BinaryDataType
+          y_LiztAttributePair ENDITEM
+          y_AttributeUserTy_1002_AttributeUserTy_1002_Type
           {$$ = new AttributeUserType($3);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -20444,7 +20470,7 @@ y_AutocollimatorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_Resolution_substituteType_0 y_WorkingVolume_substituteType_0
@@ -21087,7 +21113,14 @@ y_BasicSize_XmlToken :
         ;
 
 y_BeginPoint_Point2dSimpleType :
-          BeginPointSTART y_Point2dSimpleType BeginPointEND
+          BeginPointSTART ENDWHOLEITEM
+          {$$ = new Point2dSimpleType();
+           $$->Point2dSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad Point2dSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | BeginPointSTART y_Point2dSimpleType BeginPointEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
            if ($2->bad)
@@ -21306,13 +21339,13 @@ y_BetweenRowDirection_VectorType :
 y_BiasStudyPlanType :
           y_LiztAttributePair ENDITEM y_Version_VersionType_0
           y_Attributes_AttributesType_0
-          y_StatisticalStud_1207_StatisticalStud_1207_Type_0
           y_StatisticalStud_1208_StatisticalStud_1208_Type_0
+          y_StatisticalStud_1209_StatisticalStud_1209_Type_0
           y_LiztStatsValuesSummarys_SummaryStatsValuesListType_0_u
           y_PreInspectionTraceability_PreInspectionTraceabilityType_0
           y_Name_XmlToken_0 y_Description_XmlString_0
           y_PlanId_QIFReferenceType_0
-          y_StatisticalStud_1209_StatisticalStud_1209_Type_0
+          y_StatisticalStud_1210_StatisticalStud_1210_Type_0
           y_CorrectiveActionPlanId_QIFReferenceType_0
           y_NumberOfSamples_XmlPositiveInteger
           y_SubgroupSize_XmlPositiveInteger_0
@@ -21354,12 +21387,12 @@ y_BiasStudyResultsType :
           y_LiztAttributePair ENDITEM
           y_ThisStatisticalStudyResultsInstanceQPId_QPIdType_0
           y_Attributes_AttributesType_0 y_Status_StatsEvalStatusType
-          y_StatisticalStud_1210_StatisticalStud_1210_Type_0
+          y_StatisticalStud_1211_StatisticalStud_1211_Type_0
           y_StudyIssues_StudyIssuesType_0
           y_InspectionTraceability_InspectionTraceabilityType_0
           y_Name_XmlToken_0 y_Description_XmlString_0
           y_StudyId_QIFReferenceType_0
-          y_StatisticalStud_1211_StatisticalStud_1211_Type_0
+          y_StatisticalStud_1212_StatisticalStud_1212_Type_0
           y_AverageFeatures_AverageFeaturesType_0
           y_CharacteristicsStats_CharacteristicsStatsType_0
           y_LinearStatsSummaries_SummariesStatisticsLinearType_0
@@ -21441,6 +21474,8 @@ y_BinaryDataType :
           {$$ = new BinaryDataType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad BinaryDataType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -21995,7 +22030,7 @@ y_CMMType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_Resolution_substituteType_0 y_WorkingVolume_substituteType_0
@@ -22185,7 +22220,7 @@ y_CaliperDialType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_MinMeasuringDistance_LinearValueType_0
@@ -22236,7 +22271,7 @@ y_CaliperDigitalType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_MinMeasuringDistance_LinearValueType_0
@@ -22287,7 +22322,7 @@ y_CaliperType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_MinMeasuringDistance_LinearValueType_0
@@ -22438,17 +22473,17 @@ y_CapabilityCalculationMethod_PositionCapabilityCalculationEnumType_0 :
 y_CapabilityStudyPlanType :
           y_LiztAttributePair ENDITEM y_Version_VersionType_0
           y_Attributes_AttributesType_0
-          y_StatisticalStud_1207_StatisticalStud_1207_Type_0
           y_StatisticalStud_1208_StatisticalStud_1208_Type_0
+          y_StatisticalStud_1209_StatisticalStud_1209_Type_0
           y_LiztStatsValuesSummarys_SummaryStatsValuesListType_0_u
           y_PreInspectionTraceability_PreInspectionTraceabilityType_0
           y_Name_XmlToken_0 y_Description_XmlString_0
           y_PlanId_QIFReferenceType_0
-          y_StatisticalStud_1209_StatisticalStud_1209_Type_0
+          y_StatisticalStud_1210_StatisticalStud_1210_Type_0
           y_CorrectiveActionPlanId_QIFReferenceType_0
           y_NumberOfSamples_XmlPositiveInteger
           y_SubgroupSize_XmlPositiveInteger_0
-          y_CapabilityStudy_1198_CapabilityStudy_1198_Type
+          y_CapabilityStudy_1199_CapabilityStudy_1199_Type
           {$$ = new CapabilityStudyPlanType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -22487,12 +22522,12 @@ y_CapabilityStudyResultsType :
           y_LiztAttributePair ENDITEM
           y_ThisStatisticalStudyResultsInstanceQPId_QPIdType_0
           y_Attributes_AttributesType_0 y_Status_StatsEvalStatusType
-          y_StatisticalStud_1210_StatisticalStud_1210_Type_0
+          y_StatisticalStud_1211_StatisticalStud_1211_Type_0
           y_StudyIssues_StudyIssuesType_0
           y_InspectionTraceability_InspectionTraceabilityType_0
           y_Name_XmlToken_0 y_Description_XmlString_0
           y_StudyId_QIFReferenceType_0
-          y_StatisticalStud_1211_StatisticalStud_1211_Type_0
+          y_StatisticalStud_1212_StatisticalStud_1212_Type_0
           y_AverageFeatures_AverageFeaturesType_0
           y_CharacteristicsStats_CharacteristicsStatsType_0
           y_LinearStatsSummaries_SummariesStatisticsLinearType_0
@@ -22553,33 +22588,33 @@ y_CapabilityStudyResults_CapabilityStudyResultsType :
           }
         ;
 
-y_CapabilityStudy_1198_CapabilityStudy_1198_Type :
-          y_CapabilityStudy_1198_Type
+y_CapabilityStudy_1199_CapabilityStudy_1199_Type :
+          y_CapabilityStudy_1199_Type
           {$$ = $1;}
         ;
 
-y_CapabilityStudy_1198_Type :
-          y_CapabilityStudy_1198_TypeChoicePair
-          {$$ = new CapabilityStudy_1198_Type($1);
+y_CapabilityStudy_1199_Type :
+          y_CapabilityStudy_1199_TypeChoicePair
+          {$$ = new CapabilityStudy_1199_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_CapabilityStudy_1198_TypeChoicePair :
+y_CapabilityStudy_1199_TypeChoicePair :
           y_CpkThreshold_CriterionDecimalType
-          {$$ = new CapabilityStudy_1198_TypeChoicePair();
+          {$$ = new CapabilityStudy_1199_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CapabilityStudy_1198_TypeType = CapabilityStudy_1198_TypeChoicePair::CpkThresholdE;
-           $$->CapabilityStudy_1198_TypeValue.CpkThreshold = $1;
+           $$->CapabilityStudy_1199_TypeType = CapabilityStudy_1199_TypeChoicePair::CpkThresholdE;
+           $$->CapabilityStudy_1199_TypeValue.CpkThreshold = $1;
           }
         | y_PpkThreshold_CriterionDecimalType
-          {$$ = new CapabilityStudy_1198_TypeChoicePair();
+          {$$ = new CapabilityStudy_1199_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CapabilityStudy_1198_TypeType = CapabilityStudy_1198_TypeChoicePair::PpkThresholdE;
-           $$->CapabilityStudy_1198_TypeValue.PpkThreshold = $1;
+           $$->CapabilityStudy_1199_TypeType = CapabilityStudy_1199_TypeChoicePair::PpkThresholdE;
+           $$->CapabilityStudy_1199_TypeValue.PpkThreshold = $1;
           }
         ;
 
@@ -22588,7 +22623,7 @@ y_CapacitiveSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_ProtectionClass_XmlString_0
           y_LinearityError_XmlString_0 y_Repeatability_LinearValueType_0
           y_Sensitivity_XmlDecimal_0 y_Resolution_LinearValueType_0
@@ -22647,7 +22682,7 @@ y_CarriageType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_ToolIds_ArrayReferenceType_0
           {$$ = new CarriageType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12);
            yyUnrefMap[$$] = $$;
@@ -22903,7 +22938,7 @@ y_CartesianCMMType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_Resolution_substituteType_0 y_WorkingVolume_substituteType_0
@@ -22985,45 +23020,45 @@ y_CartesianMeasurementDeviceScales_CartesianMeasurementDeviceScalesType :
           }
         ;
 
-y_CartesianResolu_1239_CartesianResolu_1239_Type :
-          y_CartesianResolu_1239_Type
+y_CartesianResolu_1240_CartesianResolu_1240_Type :
+          y_CartesianResolu_1240_Type
           {$$ = $1;}
         ;
 
-y_CartesianResolu_1239_Type :
-          y_CartesianResolu_1239_TypeChoicePair
-          {$$ = new CartesianResolu_1239_Type($1);
+y_CartesianResolu_1240_Type :
+          y_CartesianResolu_1240_TypeChoicePair
+          {$$ = new CartesianResolu_1240_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_CartesianResolu_1239_TypeChoicePair :
-          y_CartesianResolu_1244_CartesianResolu_1244_Type
-          {$$ = new CartesianResolu_1239_TypeChoicePair();
+y_CartesianResolu_1240_TypeChoicePair :
+          y_CartesianResolu_1245_CartesianResolu_1245_Type
+          {$$ = new CartesianResolu_1240_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CartesianResolu_1239_TypeType = CartesianResolu_1239_TypeChoicePair::CartesianResolu_1244E;
-           $$->CartesianResolu_1239_TypeValue.CartesianResolu_1244 = $1;
+           $$->CartesianResolu_1240_TypeType = CartesianResolu_1240_TypeChoicePair::CartesianResolu_1245E;
+           $$->CartesianResolu_1240_TypeValue.CartesianResolu_1245 = $1;
           }
         | y_XYZResolution_XYZResolutionType
-          {$$ = new CartesianResolu_1239_TypeChoicePair();
+          {$$ = new CartesianResolu_1240_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CartesianResolu_1239_TypeType = CartesianResolu_1239_TypeChoicePair::XYZResolutionE;
-           $$->CartesianResolu_1239_TypeValue.XYZResolution = $1;
+           $$->CartesianResolu_1240_TypeType = CartesianResolu_1240_TypeChoicePair::XYZResolutionE;
+           $$->CartesianResolu_1240_TypeValue.XYZResolution = $1;
           }
         ;
 
-y_CartesianResolu_1244_CartesianResolu_1244_Type :
-          y_CartesianResolu_1244_Type
+y_CartesianResolu_1245_CartesianResolu_1245_Type :
+          y_CartesianResolu_1245_Type
           {$$ = $1;}
         ;
 
-y_CartesianResolu_1244_Type :
+y_CartesianResolu_1245_Type :
           y_CombinedCartesianResolution_LinearValueType
           y_XYZResolution_XYZResolutionType_0
-          {$$ = new CartesianResolu_1244_Type($1, $2);
+          {$$ = new CartesianResolu_1245_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
@@ -23031,7 +23066,7 @@ y_CartesianResolu_1244_Type :
         ;
 
 y_CartesianResolutionType :
-          ENDITEM y_CartesianResolu_1239_CartesianResolu_1239_Type
+          ENDITEM y_CartesianResolu_1240_CartesianResolu_1240_Type
           {$$ = new CartesianResolutionType($2);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -23283,7 +23318,14 @@ y_CenterPoint_PointType :
         ;
 
 y_Center_Point2dSimpleType :
-          CenterSTART y_Point2dSimpleType CenterEND
+          CenterSTART ENDWHOLEITEM
+          {$$ = new Point2dSimpleType();
+           $$->Point2dSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad Point2dSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | CenterSTART y_Point2dSimpleType CenterEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
            if ($2->bad)
@@ -23292,7 +23334,14 @@ y_Center_Point2dSimpleType :
         ;
 
 y_Center_PointSimpleType :
-          CenterSTART y_PointSimpleType CenterEND
+          CenterSTART ENDWHOLEITEM
+          {$$ = new PointSimpleType();
+           $$->PointSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad PointSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | CenterSTART y_PointSimpleType CenterEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
            if ($2->bad)
@@ -23308,6 +23357,13 @@ y_Center_PointType :
 y_Centroid_PointSimpleType_0 :
           /* empty */
           {$$ = 0;}
+        | CentroidSTART ENDWHOLEITEM
+          {$$ = new PointSimpleType();
+           $$->PointSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad PointSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
         | CentroidSTART y_PointSimpleType CentroidEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
@@ -25202,45 +25258,6 @@ y_CharacteristicNominals_CharacteristicNominalsType :
           {$$ = $2;}
         ;
 
-y_CharacteristicS_1128_CharacteristicS_1128_Type_0 :
-          /* empty */
-          {$$ = 0;}
-        | y_CharacteristicS_1128_Type
-          {$$ = $1;}
-        ;
-
-y_CharacteristicS_1128_Type :
-          y_CharacteristicS_1128_TypeChoicePair
-          {$$ = new CharacteristicS_1128_Type($1);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_CharacteristicS_1128_TypeChoicePair :
-          y_AlgorithmId_QIFReferenceType
-          {$$ = new CharacteristicS_1128_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->CharacteristicS_1128_TypeType = CharacteristicS_1128_TypeChoicePair::AlgorithmIdE;
-           $$->CharacteristicS_1128_TypeValue.AlgorithmId = $1;
-          }
-        | y_SoftwareId_QIFReferenceType
-          {$$ = new CharacteristicS_1128_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->CharacteristicS_1128_TypeType = CharacteristicS_1128_TypeChoicePair::SoftwareIdE;
-           $$->CharacteristicS_1128_TypeValue.SoftwareId = $1;
-          }
-        | y_StandardId_QIFReferenceType
-          {$$ = new CharacteristicS_1128_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->CharacteristicS_1128_TypeType = CharacteristicS_1128_TypeChoicePair::StandardIdE;
-           $$->CharacteristicS_1128_TypeValue.StandardId = $1;
-          }
-        ;
-
 y_CharacteristicS_1129_CharacteristicS_1129_Type_0 :
           /* empty */
           {$$ = 0;}
@@ -25257,49 +25274,58 @@ y_CharacteristicS_1129_Type :
         ;
 
 y_CharacteristicS_1129_TypeChoicePair :
-          y_CharacteristicS_1151_CharacteristicS_1151_Type
+          y_AlgorithmId_QIFReferenceType
           {$$ = new CharacteristicS_1129_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CharacteristicS_1129_TypeType = CharacteristicS_1129_TypeChoicePair::CharacteristicS_1151E;
-           $$->CharacteristicS_1129_TypeValue.CharacteristicS_1151 = $1;
+           $$->CharacteristicS_1129_TypeType = CharacteristicS_1129_TypeChoicePair::AlgorithmIdE;
+           $$->CharacteristicS_1129_TypeValue.AlgorithmId = $1;
           }
-        | y_CharacteristicS_1152_CharacteristicS_1152_Type
+        | y_SoftwareId_QIFReferenceType
           {$$ = new CharacteristicS_1129_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CharacteristicS_1129_TypeType = CharacteristicS_1129_TypeChoicePair::CharacteristicS_1152E;
-           $$->CharacteristicS_1129_TypeValue.CharacteristicS_1152 = $1;
+           $$->CharacteristicS_1129_TypeType = CharacteristicS_1129_TypeChoicePair::SoftwareIdE;
+           $$->CharacteristicS_1129_TypeValue.SoftwareId = $1;
+          }
+        | y_StandardId_QIFReferenceType
+          {$$ = new CharacteristicS_1129_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->CharacteristicS_1129_TypeType = CharacteristicS_1129_TypeChoicePair::StandardIdE;
+           $$->CharacteristicS_1129_TypeValue.StandardId = $1;
           }
         ;
 
-y_CharacteristicS_1151_CharacteristicS_1151_Type :
-          y_CharacteristicS_1151_Type
+y_CharacteristicS_1130_CharacteristicS_1130_Type_0 :
+          /* empty */
+          {$$ = 0;}
+        | y_CharacteristicS_1130_Type
           {$$ = $1;}
         ;
 
-y_CharacteristicS_1151_Type :
-          y_CharacteristicS_1151_TypeChoicePair
-          {$$ = new CharacteristicS_1151_Type($1);
+y_CharacteristicS_1130_Type :
+          y_CharacteristicS_1130_TypeChoicePair
+          {$$ = new CharacteristicS_1130_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_CharacteristicS_1151_TypeChoicePair :
-          y_MeasuredIds_StatsArrayIdType
-          {$$ = new CharacteristicS_1151_TypeChoicePair();
+y_CharacteristicS_1130_TypeChoicePair :
+          y_CharacteristicS_1152_CharacteristicS_1152_Type
+          {$$ = new CharacteristicS_1130_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CharacteristicS_1151_TypeType = CharacteristicS_1151_TypeChoicePair::MeasuredIdsE;
-           $$->CharacteristicS_1151_TypeValue.MeasuredIds = $1;
+           $$->CharacteristicS_1130_TypeType = CharacteristicS_1130_TypeChoicePair::CharacteristicS_1152E;
+           $$->CharacteristicS_1130_TypeValue.CharacteristicS_1152 = $1;
           }
-        | y_Subgroups_SubgroupsType
-          {$$ = new CharacteristicS_1151_TypeChoicePair();
+        | y_CharacteristicS_1153_CharacteristicS_1153_Type
+          {$$ = new CharacteristicS_1130_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CharacteristicS_1151_TypeType = CharacteristicS_1151_TypeChoicePair::SubgroupsE;
-           $$->CharacteristicS_1151_TypeValue.Subgroups = $1;
+           $$->CharacteristicS_1130_TypeType = CharacteristicS_1130_TypeChoicePair::CharacteristicS_1153E;
+           $$->CharacteristicS_1130_TypeValue.CharacteristicS_1153 = $1;
           }
         ;
 
@@ -25317,19 +25343,49 @@ y_CharacteristicS_1152_Type :
         ;
 
 y_CharacteristicS_1152_TypeChoicePair :
-          y_MeasuredValues_StatsValuesType
+          y_MeasuredIds_StatsArrayIdType
           {$$ = new CharacteristicS_1152_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CharacteristicS_1152_TypeType = CharacteristicS_1152_TypeChoicePair::MeasuredValuesE;
-           $$->CharacteristicS_1152_TypeValue.MeasuredValues = $1;
+           $$->CharacteristicS_1152_TypeType = CharacteristicS_1152_TypeChoicePair::MeasuredIdsE;
+           $$->CharacteristicS_1152_TypeValue.MeasuredIds = $1;
+          }
+        | y_Subgroups_SubgroupsType
+          {$$ = new CharacteristicS_1152_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->CharacteristicS_1152_TypeType = CharacteristicS_1152_TypeChoicePair::SubgroupsE;
+           $$->CharacteristicS_1152_TypeValue.Subgroups = $1;
+          }
+        ;
+
+y_CharacteristicS_1153_CharacteristicS_1153_Type :
+          y_CharacteristicS_1153_Type
+          {$$ = $1;}
+        ;
+
+y_CharacteristicS_1153_Type :
+          y_CharacteristicS_1153_TypeChoicePair
+          {$$ = new CharacteristicS_1153_Type($1);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+          }
+        ;
+
+y_CharacteristicS_1153_TypeChoicePair :
+          y_MeasuredValues_StatsValuesType
+          {$$ = new CharacteristicS_1153_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->CharacteristicS_1153_TypeType = CharacteristicS_1153_TypeChoicePair::MeasuredValuesE;
+           $$->CharacteristicS_1153_TypeValue.MeasuredValues = $1;
           }
         | y_SubgroupValues_SubgroupValuesType
-          {$$ = new CharacteristicS_1152_TypeChoicePair();
+          {$$ = new CharacteristicS_1153_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CharacteristicS_1152_TypeType = CharacteristicS_1152_TypeChoicePair::SubgroupValuesE;
-           $$->CharacteristicS_1152_TypeValue.SubgroupValues = $1;
+           $$->CharacteristicS_1153_TypeType = CharacteristicS_1153_TypeChoicePair::SubgroupValuesE;
+           $$->CharacteristicS_1153_TypeValue.SubgroupValues = $1;
           }
         ;
 
@@ -25837,7 +25893,7 @@ y_ChargeCoupledDeviceCameraSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_ProtectionClass_XmlString_0
           y_LinearityError_XmlString_0 y_Repeatability_LinearValueType_0
           y_Sensitivity_XmlDecimal_0 y_Resolution_LinearValueType_0
@@ -26435,7 +26491,7 @@ y_ChordCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_LinearCharacter_1058_LinearCharacter_1058_Type
+          y_LinearCharacter_1059_LinearCharacter_1059_Type
           {$$ = new ChordCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -26611,11 +26667,11 @@ y_ChordCharacteristicNominal_ChordCharacteristicNominalType :
 
 y_ChordCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_LinearCharacter_1134_LinearCharacter_1134_Type
+          y_LinearCharacter_1135_LinearCharacter_1135_Type
           {$$ = new ChordCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -26671,7 +26727,14 @@ y_CircleCastType :
         ;
 
 y_CircleCenter_Point2dSimpleType :
-          CircleCenterSTART y_Point2dSimpleType CircleCenterEND
+          CircleCenterSTART ENDWHOLEITEM
+          {$$ = new Point2dSimpleType();
+           $$->Point2dSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad Point2dSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | CircleCenterSTART y_Point2dSimpleType CircleCenterEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
            if ($2->bad)
@@ -26994,39 +27057,39 @@ y_CircleFeatureNominal_CircleFeatureNominalType :
           }
         ;
 
-y_CircleFromConeT_1092_CircleFromConeT_1092_Type :
-          y_CircleFromConeT_1092_Type
+y_CircleFromConeT_1093_CircleFromConeT_1093_Type :
+          y_CircleFromConeT_1093_Type
           {$$ = $1;}
         ;
 
-y_CircleFromConeT_1092_Type :
-          y_CircleFromConeT_1092_TypeChoicePair
-          {$$ = new CircleFromConeT_1092_Type($1);
+y_CircleFromConeT_1093_Type :
+          y_CircleFromConeT_1093_TypeChoicePair
+          {$$ = new CircleFromConeT_1093_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_CircleFromConeT_1092_TypeChoicePair :
+y_CircleFromConeT_1093_TypeChoicePair :
           y_Diameter_LinearValueType
-          {$$ = new CircleFromConeT_1092_TypeChoicePair();
+          {$$ = new CircleFromConeT_1093_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CircleFromConeT_1092_TypeType = CircleFromConeT_1092_TypeChoicePair::DiameterE;
-           $$->CircleFromConeT_1092_TypeValue.Diameter = $1;
+           $$->CircleFromConeT_1093_TypeType = CircleFromConeT_1093_TypeChoicePair::DiameterE;
+           $$->CircleFromConeT_1093_TypeValue.Diameter = $1;
           }
         | y_Distance_LinearValueType
-          {$$ = new CircleFromConeT_1092_TypeChoicePair();
+          {$$ = new CircleFromConeT_1093_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CircleFromConeT_1092_TypeType = CircleFromConeT_1092_TypeChoicePair::DistanceE;
-           $$->CircleFromConeT_1092_TypeValue.Distance = $1;
+           $$->CircleFromConeT_1093_TypeType = CircleFromConeT_1093_TypeChoicePair::DistanceE;
+           $$->CircleFromConeT_1093_TypeValue.Distance = $1;
           }
         ;
 
 y_CircleFromConeType :
           ENDITEM y_NominalsCalculated_XmlBoolean_0
-          y_CircleFromConeT_1092_CircleFromConeT_1092_Type
+          y_CircleFromConeT_1093_CircleFromConeT_1093_Type
           {$$ = new CircleFromConeType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -27641,7 +27704,7 @@ y_CircularRunoutCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
@@ -27832,8 +27895,8 @@ y_CircularRunoutCharacteristicNominal_CircularRunoutCharacteristicNominalType :
 
 y_CircularRunoutCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -27885,66 +27948,49 @@ y_CircularUnitArea_CircularUnitAreaType :
           {$$ = $2;}
         ;
 
-y_CircularityChar_1048_CircularityChar_1048_Type :
-          y_CircularityChar_1048_Type
-          {$$ = $1;}
-        ;
-
-y_CircularityChar_1048_Type :
-          y_CircularityChar_1048_TypeChoicePair
-          {$$ = new CircularityChar_1048_Type($1);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_CircularityChar_1048_TypeChoicePair :
-          y_CircularityChar_1081_CircularityChar_1081_Type
-          {$$ = new CircularityChar_1048_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->CircularityChar_1048_TypeType = CircularityChar_1048_TypeChoicePair::CircularityChar_1081E;
-           $$->CircularityChar_1048_TypeValue.CircularityChar_1081 = $1;
-          }
-        | y_CircularityChar_1082_CircularityChar_1082_Type
-          {$$ = new CircularityChar_1048_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->CircularityChar_1048_TypeType = CircularityChar_1048_TypeChoicePair::CircularityChar_1082E;
-           $$->CircularityChar_1048_TypeValue.CircularityChar_1082 = $1;
-          }
-        ;
-
-y_CircularityChar_1049_CircularityChar_1049_Type_0 :
-          /* empty */
-          {$$ = 0;}
-        | y_CircularityChar_1049_Type
+y_CircularityChar_1049_CircularityChar_1049_Type :
+          y_CircularityChar_1049_Type
           {$$ = $1;}
         ;
 
 y_CircularityChar_1049_Type :
-          y_ZoneRadii_MeasuredZoneRadiiType y_ZonePlane_MeasuredPlaneType
-          {$$ = new CircularityChar_1049_Type($1, $2);
+          y_CircularityChar_1049_TypeChoicePair
+          {$$ = new CircularityChar_1049_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
           }
         ;
 
-y_CircularityChar_1081_CircularityChar_1081_Type :
-          y_CircularityChar_1081_Type
+y_CircularityChar_1049_TypeChoicePair :
+          y_CircularityChar_1082_CircularityChar_1082_Type
+          {$$ = new CircularityChar_1049_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->CircularityChar_1049_TypeType = CircularityChar_1049_TypeChoicePair::CircularityChar_1082E;
+           $$->CircularityChar_1049_TypeValue.CircularityChar_1082 = $1;
+          }
+        | y_CircularityChar_1083_CircularityChar_1083_Type
+          {$$ = new CircularityChar_1049_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->CircularityChar_1049_TypeType = CircularityChar_1049_TypeChoicePair::CircularityChar_1083E;
+           $$->CircularityChar_1049_TypeValue.CircularityChar_1083 = $1;
+          }
+        ;
+
+y_CircularityChar_1050_CircularityChar_1050_Type_0 :
+          /* empty */
+          {$$ = 0;}
+        | y_CircularityChar_1050_Type
           {$$ = $1;}
         ;
 
-y_CircularityChar_1081_Type :
-          y_ToleranceValue_LinearValueType
-          y_ToleranceDualValue_LinearDualValueType_0
-          y_CircularityChar_1090_CircularityChar_1090_Type_0
-          {$$ = new CircularityChar_1081_Type($1, $2, $3);
+y_CircularityChar_1050_Type :
+          y_ZoneRadii_MeasuredZoneRadiiType y_ZonePlane_MeasuredPlaneType
+          {$$ = new CircularityChar_1050_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -27954,59 +28000,76 @@ y_CircularityChar_1082_CircularityChar_1082_Type :
         ;
 
 y_CircularityChar_1082_Type :
-          y_CircularityChar_1082_TypeChoicePair
-          {$$ = new CircularityChar_1082_Type($1);
+          y_ToleranceValue_LinearValueType
+          y_ToleranceDualValue_LinearDualValueType_0
+          y_CircularityChar_1091_CircularityChar_1091_Type_0
+          {$$ = new CircularityChar_1082_Type($1, $2, $3);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
-y_CircularityChar_1082_TypeChoicePair :
-          y_ToleranceZonePerUnitAngle_ToleranceZonePerUnitAngleType
-          {$$ = new CircularityChar_1082_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->CircularityChar_1082_TypeType = CircularityChar_1082_TypeChoicePair::ToleranceZonePerUnitAngleE;
-           $$->CircularityChar_1082_TypeValue.ToleranceZonePerUnitAngle = $1;
-          }
-        | y_ToleranceZonePerUnitArcLength_ToleranceZonePerUnitLengthType
-          {$$ = new CircularityChar_1082_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->CircularityChar_1082_TypeType = CircularityChar_1082_TypeChoicePair::ToleranceZonePerUnitArcLengthE;
-           $$->CircularityChar_1082_TypeValue.ToleranceZonePerUnitArcLength = $1;
-          }
-        ;
-
-y_CircularityChar_1090_CircularityChar_1090_Type_0 :
-          /* empty */
-          {$$ = 0;}
-        | y_CircularityChar_1090_Type
+y_CircularityChar_1083_CircularityChar_1083_Type :
+          y_CircularityChar_1083_Type
           {$$ = $1;}
         ;
 
-y_CircularityChar_1090_Type :
-          y_CircularityChar_1090_TypeChoicePair
-          {$$ = new CircularityChar_1090_Type($1);
+y_CircularityChar_1083_Type :
+          y_CircularityChar_1083_TypeChoicePair
+          {$$ = new CircularityChar_1083_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_CircularityChar_1090_TypeChoicePair :
+y_CircularityChar_1083_TypeChoicePair :
           y_ToleranceZonePerUnitAngle_ToleranceZonePerUnitAngleType
-          {$$ = new CircularityChar_1090_TypeChoicePair();
+          {$$ = new CircularityChar_1083_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CircularityChar_1090_TypeType = CircularityChar_1090_TypeChoicePair::ToleranceZonePerUnitAngleE;
-           $$->CircularityChar_1090_TypeValue.ToleranceZonePerUnitAngle = $1;
+           $$->CircularityChar_1083_TypeType = CircularityChar_1083_TypeChoicePair::ToleranceZonePerUnitAngleE;
+           $$->CircularityChar_1083_TypeValue.ToleranceZonePerUnitAngle = $1;
           }
         | y_ToleranceZonePerUnitArcLength_ToleranceZonePerUnitLengthType
-          {$$ = new CircularityChar_1090_TypeChoicePair();
+          {$$ = new CircularityChar_1083_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CircularityChar_1090_TypeType = CircularityChar_1090_TypeChoicePair::ToleranceZonePerUnitArcLengthE;
-           $$->CircularityChar_1090_TypeValue.ToleranceZonePerUnitArcLength = $1;
+           $$->CircularityChar_1083_TypeType = CircularityChar_1083_TypeChoicePair::ToleranceZonePerUnitArcLengthE;
+           $$->CircularityChar_1083_TypeValue.ToleranceZonePerUnitArcLength = $1;
+          }
+        ;
+
+y_CircularityChar_1091_CircularityChar_1091_Type_0 :
+          /* empty */
+          {$$ = 0;}
+        | y_CircularityChar_1091_Type
+          {$$ = $1;}
+        ;
+
+y_CircularityChar_1091_Type :
+          y_CircularityChar_1091_TypeChoicePair
+          {$$ = new CircularityChar_1091_Type($1);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+          }
+        ;
+
+y_CircularityChar_1091_TypeChoicePair :
+          y_ToleranceZonePerUnitAngle_ToleranceZonePerUnitAngleType
+          {$$ = new CircularityChar_1091_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->CircularityChar_1091_TypeType = CircularityChar_1091_TypeChoicePair::ToleranceZonePerUnitAngleE;
+           $$->CircularityChar_1091_TypeValue.ToleranceZonePerUnitAngle = $1;
+          }
+        | y_ToleranceZonePerUnitArcLength_ToleranceZonePerUnitLengthType
+          {$$ = new CircularityChar_1091_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->CircularityChar_1091_TypeType = CircularityChar_1091_TypeChoicePair::ToleranceZonePerUnitArcLengthE;
+           $$->CircularityChar_1091_TypeValue.ToleranceZonePerUnitArcLength = $1;
           }
         ;
 
@@ -28020,12 +28083,12 @@ y_CircularityCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
           y_OrientationPlane_OrientationPlaneType_0
-          y_CircularityChar_1048_CircularityChar_1048_Type
+          y_CircularityChar_1049_CircularityChar_1049_Type
           {$$ = new CircularityCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -28124,7 +28187,7 @@ y_CircularityCharacteristicMeasurementType :
           y_MaxValue_MeasuredLinearValueType_0
           y_MinValue_MeasuredLinearValueType_0
           y_MaxCircularity_MeasuredLinearValueType_0
-          y_CircularityChar_1049_CircularityChar_1049_Type_0
+          y_CircularityChar_1050_CircularityChar_1050_Type_0
           {$$ = new CircularityCharacteristicMeasurementType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -28208,8 +28271,8 @@ y_CircularityCharacteristicNominal_CircularityCharacteristicNominalType :
 
 y_CircularityCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -28391,7 +28454,7 @@ y_CoaxialityCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
@@ -28582,8 +28645,8 @@ y_CoaxialityCharacteristicNominal_CoaxialityCharacteristicNominalType :
 
 y_CoaxialityCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -28706,6 +28769,13 @@ y_ColorType :
 y_Color_ColorType_0 :
           /* empty */
           {$$ = 0;}
+        | ColorSTART ENDWHOLEITEM
+          {$$ = new ColorType();
+           $$->ColorTypeCheck();
+           if ($$->bad)
+             return yyerror("bad ColorType value");
+           yyUnrefMap[$$] = $$;
+          }
         | ColorSTART y_ColorType ColorEND
           {$$ = $2;
            $2->ColorTypeCheck();
@@ -28870,7 +28940,7 @@ y_ComplexTactileProbeSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_ProtectionClass_XmlString_0
           y_LinearityError_XmlString_0 y_Repeatability_LinearValueType_0
           y_Sensitivity_XmlDecimal_0 y_Resolution_LinearValueType_0
@@ -28957,7 +29027,7 @@ y_ComponentType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_Transform_ElementReferenceType_0 y_UUID_QPIdType_0
           y_Traceability_ProductTraceabilityType_0
-          y_ComponentType_1237_ComponentType_1237_Type
+          y_ComponentType_1238_ComponentType_1238_Type
           {$$ = new ComponentType($3, $4, $5, $6, $7);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -28975,33 +29045,33 @@ y_ComponentType :
           }
         ;
 
-y_ComponentType_1237_ComponentType_1237_Type :
-          y_ComponentType_1237_Type
+y_ComponentType_1238_ComponentType_1238_Type :
+          y_ComponentType_1238_Type
           {$$ = $1;}
         ;
 
-y_ComponentType_1237_Type :
-          y_ComponentType_1237_TypeChoicePair
-          {$$ = new ComponentType_1237_Type($1);
+y_ComponentType_1238_Type :
+          y_ComponentType_1238_TypeChoicePair
+          {$$ = new ComponentType_1238_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_ComponentType_1237_TypeChoicePair :
+y_ComponentType_1238_TypeChoicePair :
           y_Assembly_ElementReferenceType
-          {$$ = new ComponentType_1237_TypeChoicePair();
+          {$$ = new ComponentType_1238_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ComponentType_1237_TypeType = ComponentType_1237_TypeChoicePair::AssemblyE;
-           $$->ComponentType_1237_TypeValue.Assembly = $1;
+           $$->ComponentType_1238_TypeType = ComponentType_1238_TypeChoicePair::AssemblyE;
+           $$->ComponentType_1238_TypeValue.Assembly = $1;
           }
         | y_Part_ElementReferenceType
-          {$$ = new ComponentType_1237_TypeChoicePair();
+          {$$ = new ComponentType_1238_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ComponentType_1237_TypeType = ComponentType_1237_TypeChoicePair::PartE;
-           $$->ComponentType_1237_TypeValue.Part = $1;
+           $$->ComponentType_1238_TypeType = ComponentType_1238_TypeChoicePair::PartE;
+           $$->ComponentType_1238_TypeValue.Part = $1;
           }
         ;
 
@@ -29313,7 +29383,7 @@ y_ComputedTomographyType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_Resolution_substituteType_0 y_WorkingVolume_substituteType_0
@@ -29396,7 +29466,7 @@ y_ConcentricityCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
@@ -29587,8 +29657,8 @@ y_ConcentricityCharacteristicNominal_ConcentricityCharacteristicNominalType :
 
 y_ConcentricityCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -29863,47 +29933,47 @@ y_ConeCopyType :
           }
         ;
 
-y_ConeFeatureDefi_1093_ConeFeatureDefi_1093_Type :
-          y_ConeFeatureDefi_1093_Type
-          {$$ = $1;}
-        ;
-
-y_ConeFeatureDefi_1093_Type :
-          y_ConeFeatureDefi_1093_TypeChoicePair
-          {$$ = new ConeFeatureDefi_1093_Type($1);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_ConeFeatureDefi_1093_TypeChoicePair :
-          y_FullAngle_AngularValueType
-          {$$ = new ConeFeatureDefi_1093_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->ConeFeatureDefi_1093_TypeType = ConeFeatureDefi_1093_TypeChoicePair::FullAngleE;
-           $$->ConeFeatureDefi_1093_TypeValue.FullAngle = $1;
-          }
-        | y_HalfAngle_AngularValueType
-          {$$ = new ConeFeatureDefi_1093_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->ConeFeatureDefi_1093_TypeType = ConeFeatureDefi_1093_TypeChoicePair::HalfAngleE;
-           $$->ConeFeatureDefi_1093_TypeValue.HalfAngle = $1;
-          }
-        ;
-
-y_ConeFeatureDefi_1094_ConeFeatureDefi_1094_Type_0 :
-          /* empty */
-          {$$ = 0;}
-        | y_ConeFeatureDefi_1094_Type
+y_ConeFeatureDefi_1094_ConeFeatureDefi_1094_Type :
+          y_ConeFeatureDefi_1094_Type
           {$$ = $1;}
         ;
 
 y_ConeFeatureDefi_1094_Type :
+          y_ConeFeatureDefi_1094_TypeChoicePair
+          {$$ = new ConeFeatureDefi_1094_Type($1);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+          }
+        ;
+
+y_ConeFeatureDefi_1094_TypeChoicePair :
+          y_FullAngle_AngularValueType
+          {$$ = new ConeFeatureDefi_1094_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->ConeFeatureDefi_1094_TypeType = ConeFeatureDefi_1094_TypeChoicePair::FullAngleE;
+           $$->ConeFeatureDefi_1094_TypeValue.FullAngle = $1;
+          }
+        | y_HalfAngle_AngularValueType
+          {$$ = new ConeFeatureDefi_1094_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->ConeFeatureDefi_1094_TypeType = ConeFeatureDefi_1094_TypeChoicePair::HalfAngleE;
+           $$->ConeFeatureDefi_1094_TypeValue.HalfAngle = $1;
+          }
+        ;
+
+y_ConeFeatureDefi_1095_ConeFeatureDefi_1095_Type_0 :
+          /* empty */
+          {$$ = 0;}
+        | y_ConeFeatureDefi_1095_Type
+          {$$ = $1;}
+        ;
+
+y_ConeFeatureDefi_1095_Type :
           y_LargeEndDistance_LinearValueType
           y_SmallEndDistance_LinearValueType_0
-          {$$ = new ConeFeatureDefi_1094_Type($1, $2);
+          {$$ = new ConeFeatureDefi_1095_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
@@ -29914,8 +29984,8 @@ y_ConeFeatureDefinitionType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_InternalExternal_InternalExternalEnumType
           y_Diameter_LinearValueType
-          y_ConeFeatureDefi_1093_ConeFeatureDefi_1093_Type
-          y_ConeFeatureDefi_1094_ConeFeatureDefi_1094_Type_0
+          y_ConeFeatureDefi_1094_ConeFeatureDefi_1094_Type
+          y_ConeFeatureDefi_1095_ConeFeatureDefi_1095_Type_0
           {$$ = new ConeFeatureDefinitionType($3, $4, $5, $6, $7);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -29981,35 +30051,35 @@ y_ConeFeatureItem_ConeFeatureItemType :
           }
         ;
 
-y_ConeFeatureMeas_1095_ConeFeatureMeas_1095_Type_0 :
+y_ConeFeatureMeas_1096_ConeFeatureMeas_1096_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_ConeFeatureMeas_1095_Type
+        | y_ConeFeatureMeas_1096_Type
           {$$ = $1;}
         ;
 
-y_ConeFeatureMeas_1095_Type :
-          y_ConeFeatureMeas_1095_TypeChoicePair
-          {$$ = new ConeFeatureMeas_1095_Type($1);
+y_ConeFeatureMeas_1096_Type :
+          y_ConeFeatureMeas_1096_TypeChoicePair
+          {$$ = new ConeFeatureMeas_1096_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_ConeFeatureMeas_1095_TypeChoicePair :
+y_ConeFeatureMeas_1096_TypeChoicePair :
           y_FullAngle_MeasuredAngularValueType
-          {$$ = new ConeFeatureMeas_1095_TypeChoicePair();
+          {$$ = new ConeFeatureMeas_1096_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ConeFeatureMeas_1095_TypeType = ConeFeatureMeas_1095_TypeChoicePair::FullAngleE;
-           $$->ConeFeatureMeas_1095_TypeValue.FullAngle = $1;
+           $$->ConeFeatureMeas_1096_TypeType = ConeFeatureMeas_1096_TypeChoicePair::FullAngleE;
+           $$->ConeFeatureMeas_1096_TypeValue.FullAngle = $1;
           }
         | y_HalfAngle_MeasuredAngularValueType
-          {$$ = new ConeFeatureMeas_1095_TypeChoicePair();
+          {$$ = new ConeFeatureMeas_1096_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ConeFeatureMeas_1095_TypeType = ConeFeatureMeas_1095_TypeChoicePair::HalfAngleE;
-           $$->ConeFeatureMeas_1095_TypeValue.HalfAngle = $1;
+           $$->ConeFeatureMeas_1096_TypeType = ConeFeatureMeas_1096_TypeChoicePair::HalfAngleE;
+           $$->ConeFeatureMeas_1096_TypeValue.HalfAngle = $1;
           }
         ;
 
@@ -30028,7 +30098,7 @@ y_ConeFeatureMeasurementType :
           y_Diameter_MeasuredLinearValueType_0
           y_DiameterMin_MeasuredLinearValueType_0
           y_DiameterMax_MeasuredLinearValueType_0
-          y_ConeFeatureMeas_1095_ConeFeatureMeas_1095_Type_0
+          y_ConeFeatureMeas_1096_ConeFeatureMeas_1096_Type_0
           y_SmallEndDistance_MeasuredLinearValueType_0
           y_LargeEndDistance_MeasuredLinearValueType_0
           y_SweepMeasurementRange_SweepType_0 y_SweepFull_SweepType_0
@@ -30228,7 +30298,7 @@ y_ConfocalChromaticSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_ProtectionClass_XmlString_0
           y_LinearityError_XmlString_0 y_Repeatability_LinearValueType_0
           y_Sensitivity_XmlDecimal_0 y_Resolution_LinearValueType_0
@@ -30402,50 +30472,33 @@ y_ConicalSegmentCopyType :
           }
         ;
 
-y_ConicalSegmentF_1096_ConicalSegmentF_1096_Type :
-          y_ConicalSegmentF_1096_Type
-          {$$ = $1;}
-        ;
-
-y_ConicalSegmentF_1096_Type :
-          y_ConicalSegmentF_1096_TypeChoicePair
-          {$$ = new ConicalSegmentF_1096_Type($1);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_ConicalSegmentF_1096_TypeChoicePair :
-          y_FullAngle_AngularValueType
-          {$$ = new ConicalSegmentF_1096_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->ConicalSegmentF_1096_TypeType = ConicalSegmentF_1096_TypeChoicePair::FullAngleE;
-           $$->ConicalSegmentF_1096_TypeValue.FullAngle = $1;
-          }
-        | y_HalfAngle_AngularValueType
-          {$$ = new ConicalSegmentF_1096_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->ConicalSegmentF_1096_TypeType = ConicalSegmentF_1096_TypeChoicePair::HalfAngleE;
-           $$->ConicalSegmentF_1096_TypeValue.HalfAngle = $1;
-          }
-        ;
-
-y_ConicalSegmentF_1097_ConicalSegmentF_1097_Type_0 :
-          /* empty */
-          {$$ = 0;}
-        | y_ConicalSegmentF_1097_Type
+y_ConicalSegmentF_1097_ConicalSegmentF_1097_Type :
+          y_ConicalSegmentF_1097_Type
           {$$ = $1;}
         ;
 
 y_ConicalSegmentF_1097_Type :
-          y_LargeEndDistance_LinearValueType
-          y_SmallEndDistance_LinearValueType_0
-          {$$ = new ConicalSegmentF_1097_Type($1, $2);
+          y_ConicalSegmentF_1097_TypeChoicePair
+          {$$ = new ConicalSegmentF_1097_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
+          }
+        ;
+
+y_ConicalSegmentF_1097_TypeChoicePair :
+          y_FullAngle_AngularValueType
+          {$$ = new ConicalSegmentF_1097_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->ConicalSegmentF_1097_TypeType = ConicalSegmentF_1097_TypeChoicePair::FullAngleE;
+           $$->ConicalSegmentF_1097_TypeValue.FullAngle = $1;
+          }
+        | y_HalfAngle_AngularValueType
+          {$$ = new ConicalSegmentF_1097_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->ConicalSegmentF_1097_TypeType = ConicalSegmentF_1097_TypeChoicePair::HalfAngleE;
+           $$->ConicalSegmentF_1097_TypeValue.HalfAngle = $1;
           }
         ;
 
@@ -30457,27 +30510,44 @@ y_ConicalSegmentF_1098_ConicalSegmentF_1098_Type_0 :
         ;
 
 y_ConicalSegmentF_1098_Type :
-          y_ConicalSegmentF_1098_TypeChoicePair
-          {$$ = new ConicalSegmentF_1098_Type($1);
+          y_LargeEndDistance_LinearValueType
+          y_SmallEndDistance_LinearValueType_0
+          {$$ = new ConicalSegmentF_1098_Type($1, $2);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+          }
+        ;
+
+y_ConicalSegmentF_1099_ConicalSegmentF_1099_Type_0 :
+          /* empty */
+          {$$ = 0;}
+        | y_ConicalSegmentF_1099_Type
+          {$$ = $1;}
+        ;
+
+y_ConicalSegmentF_1099_Type :
+          y_ConicalSegmentF_1099_TypeChoicePair
+          {$$ = new ConicalSegmentF_1099_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_ConicalSegmentF_1098_TypeChoicePair :
+y_ConicalSegmentF_1099_TypeChoicePair :
           y_FullAngle_MeasuredAngularValueType
-          {$$ = new ConicalSegmentF_1098_TypeChoicePair();
+          {$$ = new ConicalSegmentF_1099_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ConicalSegmentF_1098_TypeType = ConicalSegmentF_1098_TypeChoicePair::FullAngleE;
-           $$->ConicalSegmentF_1098_TypeValue.FullAngle = $1;
+           $$->ConicalSegmentF_1099_TypeType = ConicalSegmentF_1099_TypeChoicePair::FullAngleE;
+           $$->ConicalSegmentF_1099_TypeValue.FullAngle = $1;
           }
         | y_HalfAngle_MeasuredAngularValueType
-          {$$ = new ConicalSegmentF_1098_TypeChoicePair();
+          {$$ = new ConicalSegmentF_1099_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ConicalSegmentF_1098_TypeType = ConicalSegmentF_1098_TypeChoicePair::HalfAngleE;
-           $$->ConicalSegmentF_1098_TypeValue.HalfAngle = $1;
+           $$->ConicalSegmentF_1099_TypeType = ConicalSegmentF_1099_TypeChoicePair::HalfAngleE;
+           $$->ConicalSegmentF_1099_TypeValue.HalfAngle = $1;
           }
         ;
 
@@ -30485,8 +30555,8 @@ y_ConicalSegmentFeatureDefinitionType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_InternalExternal_InternalExternalEnumType
           y_Diameter_LinearValueType
-          y_ConicalSegmentF_1096_ConicalSegmentF_1096_Type
-          y_ConicalSegmentF_1097_ConicalSegmentF_1097_Type_0
+          y_ConicalSegmentF_1097_ConicalSegmentF_1097_Type
+          y_ConicalSegmentF_1098_ConicalSegmentF_1098_Type_0
           {$$ = new ConicalSegmentFeatureDefinitionType($3, $4, $5, $6, $7);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -30569,7 +30639,7 @@ y_ConicalSegmentFeatureMeasurementType :
           y_Diameter_MeasuredLinearValueType_0
           y_DiameterMin_MeasuredLinearValueType_0
           y_DiameterMax_MeasuredLinearValueType_0
-          y_ConicalSegmentF_1098_ConicalSegmentF_1098_Type_0
+          y_ConicalSegmentF_1099_ConicalSegmentF_1099_Type_0
           y_SmallEndDistance_MeasuredLinearValueType_0
           y_LargeEndDistance_MeasuredLinearValueType_0
           y_SweepMeasurementRange_SweepType_0 y_SweepFull_SweepType_0
@@ -30758,7 +30828,7 @@ y_ConicalTaperCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_LinearCharacter_1058_LinearCharacter_1058_Type
+          y_LinearCharacter_1059_LinearCharacter_1059_Type
           {$$ = new ConicalTaperCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -30940,11 +31010,11 @@ y_ConicalTaperCharacteristicNominal_ConicalTaperCharacteristicNominalType :
 
 y_ConicalTaperCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_LinearCharacter_1134_LinearCharacter_1134_Type
+          y_LinearCharacter_1135_LinearCharacter_1135_Type
           {$$ = new ConicalTaperCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -30976,7 +31046,7 @@ y_ConicityCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
@@ -31159,8 +31229,8 @@ y_ConicityCharacteristicNominal_ConicityCharacteristicNominalType :
 
 y_ConicityCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -32207,110 +32277,110 @@ y_ControlMethodId_QIFReferenceType_0 :
           {$$ = $2;}
         ;
 
-y_ControlMethodTy_1199_ControlMethodTy_1199_Type :
-          y_ControlMethodTy_1199_Type
+y_ControlMethodTy_1200_ControlMethodTy_1200_Type :
+          y_ControlMethodTy_1200_Type
           {$$ = $1;}
         ;
 
-y_ControlMethodTy_1199_Type :
-          y_ControlMethodTy_1199_TypeChoicePair
-          {$$ = new ControlMethodTy_1199_Type($1);
+y_ControlMethodTy_1200_Type :
+          y_ControlMethodTy_1200_TypeChoicePair
+          {$$ = new ControlMethodTy_1200_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_ControlMethodTy_1199_TypeChoicePair :
+y_ControlMethodTy_1200_TypeChoicePair :
           y_CpThreshold_CriterionDecimalType
-          {$$ = new ControlMethodTy_1199_TypeChoicePair();
+          {$$ = new ControlMethodTy_1200_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ControlMethodTy_1199_TypeType = ControlMethodTy_1199_TypeChoicePair::CpThresholdE;
-           $$->ControlMethodTy_1199_TypeValue.CpThreshold = $1;
+           $$->ControlMethodTy_1200_TypeType = ControlMethodTy_1200_TypeChoicePair::CpThresholdE;
+           $$->ControlMethodTy_1200_TypeValue.CpThreshold = $1;
           }
         | y_CpkThreshold_CriterionDecimalType
-          {$$ = new ControlMethodTy_1199_TypeChoicePair();
+          {$$ = new ControlMethodTy_1200_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ControlMethodTy_1199_TypeType = ControlMethodTy_1199_TypeChoicePair::CpkThresholdE;
-           $$->ControlMethodTy_1199_TypeValue.CpkThreshold = $1;
+           $$->ControlMethodTy_1200_TypeType = ControlMethodTy_1200_TypeChoicePair::CpkThresholdE;
+           $$->ControlMethodTy_1200_TypeValue.CpkThreshold = $1;
           }
         | y_NumOutOfControlRng_CriterionIntegerType
-          {$$ = new ControlMethodTy_1199_TypeChoicePair();
+          {$$ = new ControlMethodTy_1200_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ControlMethodTy_1199_TypeType = ControlMethodTy_1199_TypeChoicePair::NumOutOfControlRngE;
-           $$->ControlMethodTy_1199_TypeValue.NumOutOfControlRng = $1;
+           $$->ControlMethodTy_1200_TypeType = ControlMethodTy_1200_TypeChoicePair::NumOutOfControlRngE;
+           $$->ControlMethodTy_1200_TypeValue.NumOutOfControlRng = $1;
           }
         | y_NumOutOfControl_CriterionIntegerType
-          {$$ = new ControlMethodTy_1199_TypeChoicePair();
+          {$$ = new ControlMethodTy_1200_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ControlMethodTy_1199_TypeType = ControlMethodTy_1199_TypeChoicePair::NumOutOfControlE;
-           $$->ControlMethodTy_1199_TypeValue.NumOutOfControl = $1;
+           $$->ControlMethodTy_1200_TypeType = ControlMethodTy_1200_TypeChoicePair::NumOutOfControlE;
+           $$->ControlMethodTy_1200_TypeValue.NumOutOfControl = $1;
           }
         | y_NumOutOfTolerance_CriterionIntegerType
-          {$$ = new ControlMethodTy_1199_TypeChoicePair();
+          {$$ = new ControlMethodTy_1200_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ControlMethodTy_1199_TypeType = ControlMethodTy_1199_TypeChoicePair::NumOutOfToleranceE;
-           $$->ControlMethodTy_1199_TypeValue.NumOutOfTolerance = $1;
+           $$->ControlMethodTy_1200_TypeType = ControlMethodTy_1200_TypeChoicePair::NumOutOfToleranceE;
+           $$->ControlMethodTy_1200_TypeValue.NumOutOfTolerance = $1;
           }
         | y_OneThirdGrouping_CriterionOutOfType
-          {$$ = new ControlMethodTy_1199_TypeChoicePair();
+          {$$ = new ControlMethodTy_1200_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ControlMethodTy_1199_TypeType = ControlMethodTy_1199_TypeChoicePair::OneThirdGroupingE;
-           $$->ControlMethodTy_1199_TypeValue.OneThirdGrouping = $1;
+           $$->ControlMethodTy_1200_TypeType = ControlMethodTy_1200_TypeChoicePair::OneThirdGroupingE;
+           $$->ControlMethodTy_1200_TypeValue.OneThirdGrouping = $1;
           }
         | y_Oscillation_CriterionOutOfType
-          {$$ = new ControlMethodTy_1199_TypeChoicePair();
+          {$$ = new ControlMethodTy_1200_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ControlMethodTy_1199_TypeType = ControlMethodTy_1199_TypeChoicePair::OscillationE;
-           $$->ControlMethodTy_1199_TypeValue.Oscillation = $1;
+           $$->ControlMethodTy_1200_TypeType = ControlMethodTy_1200_TypeChoicePair::OscillationE;
+           $$->ControlMethodTy_1200_TypeValue.Oscillation = $1;
           }
         | y_PpThreshold_CriterionDecimalType
-          {$$ = new ControlMethodTy_1199_TypeChoicePair();
+          {$$ = new ControlMethodTy_1200_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ControlMethodTy_1199_TypeType = ControlMethodTy_1199_TypeChoicePair::PpThresholdE;
-           $$->ControlMethodTy_1199_TypeValue.PpThreshold = $1;
+           $$->ControlMethodTy_1200_TypeType = ControlMethodTy_1200_TypeChoicePair::PpThresholdE;
+           $$->ControlMethodTy_1200_TypeValue.PpThreshold = $1;
           }
         | y_PpkThreshold_CriterionDecimalType
-          {$$ = new ControlMethodTy_1199_TypeChoicePair();
+          {$$ = new ControlMethodTy_1200_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ControlMethodTy_1199_TypeType = ControlMethodTy_1199_TypeChoicePair::PpkThresholdE;
-           $$->ControlMethodTy_1199_TypeValue.PpkThreshold = $1;
+           $$->ControlMethodTy_1200_TypeType = ControlMethodTy_1200_TypeChoicePair::PpkThresholdE;
+           $$->ControlMethodTy_1200_TypeValue.PpkThreshold = $1;
           }
         | y_SkewGrouping_CriterionIntegerType
-          {$$ = new ControlMethodTy_1199_TypeChoicePair();
+          {$$ = new ControlMethodTy_1200_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ControlMethodTy_1199_TypeType = ControlMethodTy_1199_TypeChoicePair::SkewGroupingE;
-           $$->ControlMethodTy_1199_TypeValue.SkewGrouping = $1;
+           $$->ControlMethodTy_1200_TypeType = ControlMethodTy_1200_TypeChoicePair::SkewGroupingE;
+           $$->ControlMethodTy_1200_TypeValue.SkewGrouping = $1;
           }
         | y_Stratification_CriterionOutOfType
-          {$$ = new ControlMethodTy_1199_TypeChoicePair();
+          {$$ = new ControlMethodTy_1200_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ControlMethodTy_1199_TypeType = ControlMethodTy_1199_TypeChoicePair::StratificationE;
-           $$->ControlMethodTy_1199_TypeValue.Stratification = $1;
+           $$->ControlMethodTy_1200_TypeType = ControlMethodTy_1200_TypeChoicePair::StratificationE;
+           $$->ControlMethodTy_1200_TypeValue.Stratification = $1;
           }
         | y_TrendGrouping_CriterionIntegerType
-          {$$ = new ControlMethodTy_1199_TypeChoicePair();
+          {$$ = new ControlMethodTy_1200_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ControlMethodTy_1199_TypeType = ControlMethodTy_1199_TypeChoicePair::TrendGroupingE;
-           $$->ControlMethodTy_1199_TypeValue.TrendGrouping = $1;
+           $$->ControlMethodTy_1200_TypeType = ControlMethodTy_1200_TypeChoicePair::TrendGroupingE;
+           $$->ControlMethodTy_1200_TypeValue.TrendGrouping = $1;
           }
         | y_TwoThirdsGrouping_CriterionOutOfType
-          {$$ = new ControlMethodTy_1199_TypeChoicePair();
+          {$$ = new ControlMethodTy_1200_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ControlMethodTy_1199_TypeType = ControlMethodTy_1199_TypeChoicePair::TwoThirdsGroupingE;
-           $$->ControlMethodTy_1199_TypeValue.TwoThirdsGrouping = $1;
+           $$->ControlMethodTy_1200_TypeType = ControlMethodTy_1200_TypeChoicePair::TwoThirdsGroupingE;
+           $$->ControlMethodTy_1200_TypeValue.TwoThirdsGrouping = $1;
           }
         ;
 
@@ -32318,7 +32388,7 @@ y_ControlMethodType :
           y_LiztAttributePair ENDITEM
           y_AssignableCauseIds_ArrayReferenceType_0
           y_Attributes_AttributesType_0
-          y_ControlMethodTy_1199_ControlMethodTy_1199_Type
+          y_ControlMethodTy_1200_ControlMethodTy_1200_Type
           {$$ = new ControlMethodType($3, $4, $5);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -32859,33 +32929,33 @@ y_CornerPoint_PointType :
           {$$ = $2;}
         ;
 
-y_CorrectiveActio_1130_CorrectiveActio_1130_Type :
-          y_CorrectiveActio_1130_Type
+y_CorrectiveActio_1131_CorrectiveActio_1131_Type :
+          y_CorrectiveActio_1131_Type
           {$$ = $1;}
         ;
 
-y_CorrectiveActio_1130_Type :
-          y_CorrectiveActio_1130_TypeChoicePair
-          {$$ = new CorrectiveActio_1130_Type($1);
+y_CorrectiveActio_1131_Type :
+          y_CorrectiveActio_1131_TypeChoicePair
+          {$$ = new CorrectiveActio_1131_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_CorrectiveActio_1130_TypeChoicePair :
+y_CorrectiveActio_1131_TypeChoicePair :
           y_ActionToTakeEnum_ActionToTakeEnumType
-          {$$ = new CorrectiveActio_1130_TypeChoicePair();
+          {$$ = new CorrectiveActio_1131_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CorrectiveActio_1130_TypeType = CorrectiveActio_1130_TypeChoicePair::ActionToTakeEnumE;
-           $$->CorrectiveActio_1130_TypeValue.ActionToTakeEnum = $1;
+           $$->CorrectiveActio_1131_TypeType = CorrectiveActio_1131_TypeChoicePair::ActionToTakeEnumE;
+           $$->CorrectiveActio_1131_TypeValue.ActionToTakeEnum = $1;
           }
         | y_ActionToTake_XmlString
-          {$$ = new CorrectiveActio_1130_TypeChoicePair();
+          {$$ = new CorrectiveActio_1131_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CorrectiveActio_1130_TypeType = CorrectiveActio_1130_TypeChoicePair::ActionToTakeE;
-           $$->CorrectiveActio_1130_TypeValue.ActionToTake = $1;
+           $$->CorrectiveActio_1131_TypeType = CorrectiveActio_1131_TypeChoicePair::ActionToTakeE;
+           $$->CorrectiveActio_1131_TypeValue.ActionToTake = $1;
           }
         ;
 
@@ -32966,7 +33036,7 @@ y_CorrectiveActionPlans_CorrectiveActionPlansType_0 :
 
 y_CorrectiveActionType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
-          y_CorrectiveActio_1130_CorrectiveActio_1130_Type
+          y_CorrectiveActio_1131_CorrectiveActio_1131_Type
           {$$ = new CorrectiveActionType($3, $4);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -33096,14 +33166,14 @@ y_CriteriaByUnitType :
 
 y_CriterionAngularType :
           ENDITEM y_Limit_XmlDecimal
-          y_CriterionDecima_1131_CriterionDecima_1131_Type_0
+          y_CriterionDecima_1132_CriterionDecima_1132_Type_0
           {$$ = new CriterionAngularType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
            if ($3) yyUnrefMap.erase($3);
           }
         | y_LiztAttributePair ENDITEM y_Limit_XmlDecimal
-          y_CriterionDecima_1131_CriterionDecima_1131_Type_0
+          y_CriterionDecima_1132_CriterionDecima_1132_Type_0
           {$$ = new CriterionAngularType($3, $4);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -33120,14 +33190,14 @@ y_CriterionAngularType :
 
 y_CriterionAreaType :
           ENDITEM y_Limit_XmlDecimal
-          y_CriterionDecima_1131_CriterionDecima_1131_Type_0
+          y_CriterionDecima_1132_CriterionDecima_1132_Type_0
           {$$ = new CriterionAreaType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
            if ($3) yyUnrefMap.erase($3);
           }
         | y_LiztAttributePair ENDITEM y_Limit_XmlDecimal
-          y_CriterionDecima_1131_CriterionDecima_1131_Type_0
+          y_CriterionDecima_1132_CriterionDecima_1132_Type_0
           {$$ = new CriterionAreaType($3, $4);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -33142,17 +33212,17 @@ y_CriterionAreaType :
           }
         ;
 
-y_CriterionDecima_1131_CriterionDecima_1131_Type_0 :
+y_CriterionDecima_1132_CriterionDecima_1132_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_CriterionDecima_1131_Type
+        | y_CriterionDecima_1132_Type
           {$$ = $1;}
         ;
 
-y_CriterionDecima_1131_Type :
+y_CriterionDecima_1132_Type :
           y_NumberAllowedExceptions_LimitingNumberType
           y_ExtremeLimit_XmlDecimal_0
-          {$$ = new CriterionDecima_1131_Type($1, $2);
+          {$$ = new CriterionDecima_1132_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
@@ -33161,7 +33231,7 @@ y_CriterionDecima_1131_Type :
 
 y_CriterionDecimalType :
           ENDITEM y_Limit_XmlDecimal
-          y_CriterionDecima_1131_CriterionDecima_1131_Type_0
+          y_CriterionDecima_1132_CriterionDecima_1132_Type_0
           {$$ = new CriterionDecimalType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -33171,14 +33241,14 @@ y_CriterionDecimalType :
 
 y_CriterionForceType :
           ENDITEM y_Limit_XmlDecimal
-          y_CriterionDecima_1131_CriterionDecima_1131_Type_0
+          y_CriterionDecima_1132_CriterionDecima_1132_Type_0
           {$$ = new CriterionForceType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
            if ($3) yyUnrefMap.erase($3);
           }
         | y_LiztAttributePair ENDITEM y_Limit_XmlDecimal
-          y_CriterionDecima_1131_CriterionDecima_1131_Type_0
+          y_CriterionDecima_1132_CriterionDecima_1132_Type_0
           {$$ = new CriterionForceType($3, $4);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -33193,17 +33263,17 @@ y_CriterionForceType :
           }
         ;
 
-y_CriterionIntege_1132_CriterionIntege_1132_Type_0 :
+y_CriterionIntege_1133_CriterionIntege_1133_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_CriterionIntege_1132_Type
+        | y_CriterionIntege_1133_Type
           {$$ = $1;}
         ;
 
-y_CriterionIntege_1132_Type :
+y_CriterionIntege_1133_Type :
           y_NumberAllowedExceptions_LimitingNumberType
           y_ExtremeLimit_XmlPositiveInteger_0
-          {$$ = new CriterionIntege_1132_Type($1, $2);
+          {$$ = new CriterionIntege_1133_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
@@ -33212,7 +33282,7 @@ y_CriterionIntege_1132_Type :
 
 y_CriterionIntegerType :
           ENDITEM y_Limit_XmlPositiveInteger
-          y_CriterionIntege_1132_CriterionIntege_1132_Type_0
+          y_CriterionIntege_1133_CriterionIntege_1133_Type_0
           {$$ = new CriterionIntegerType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -33222,14 +33292,14 @@ y_CriterionIntegerType :
 
 y_CriterionLinearType :
           ENDITEM y_Limit_XmlDecimal
-          y_CriterionDecima_1131_CriterionDecima_1131_Type_0
+          y_CriterionDecima_1132_CriterionDecima_1132_Type_0
           {$$ = new CriterionLinearType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
            if ($3) yyUnrefMap.erase($3);
           }
         | y_LiztAttributePair ENDITEM y_Limit_XmlDecimal
-          y_CriterionDecima_1131_CriterionDecima_1131_Type_0
+          y_CriterionDecima_1132_CriterionDecima_1132_Type_0
           {$$ = new CriterionLinearType($3, $4);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -33246,14 +33316,14 @@ y_CriterionLinearType :
 
 y_CriterionMassType :
           ENDITEM y_Limit_XmlDecimal
-          y_CriterionDecima_1131_CriterionDecima_1131_Type_0
+          y_CriterionDecima_1132_CriterionDecima_1132_Type_0
           {$$ = new CriterionMassType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
            if ($3) yyUnrefMap.erase($3);
           }
         | y_LiztAttributePair ENDITEM y_Limit_XmlDecimal
-          y_CriterionDecima_1131_CriterionDecima_1131_Type_0
+          y_CriterionDecima_1132_CriterionDecima_1132_Type_0
           {$$ = new CriterionMassType($3, $4);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -33282,14 +33352,14 @@ y_CriterionOutOfType :
 
 y_CriterionPressureType :
           ENDITEM y_Limit_XmlDecimal
-          y_CriterionDecima_1131_CriterionDecima_1131_Type_0
+          y_CriterionDecima_1132_CriterionDecima_1132_Type_0
           {$$ = new CriterionPressureType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
            if ($3) yyUnrefMap.erase($3);
           }
         | y_LiztAttributePair ENDITEM y_Limit_XmlDecimal
-          y_CriterionDecima_1131_CriterionDecima_1131_Type_0
+          y_CriterionDecima_1132_CriterionDecima_1132_Type_0
           {$$ = new CriterionPressureType($3, $4);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -33306,14 +33376,14 @@ y_CriterionPressureType :
 
 y_CriterionSpeedType :
           ENDITEM y_Limit_XmlDecimal
-          y_CriterionDecima_1131_CriterionDecima_1131_Type_0
+          y_CriterionDecima_1132_CriterionDecima_1132_Type_0
           {$$ = new CriterionSpeedType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
            if ($3) yyUnrefMap.erase($3);
           }
         | y_LiztAttributePair ENDITEM y_Limit_XmlDecimal
-          y_CriterionDecima_1131_CriterionDecima_1131_Type_0
+          y_CriterionDecima_1132_CriterionDecima_1132_Type_0
           {$$ = new CriterionSpeedType($3, $4);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -33330,14 +33400,14 @@ y_CriterionSpeedType :
 
 y_CriterionTemperatureType :
           ENDITEM y_Limit_XmlDecimal
-          y_CriterionDecima_1131_CriterionDecima_1131_Type_0
+          y_CriterionDecima_1132_CriterionDecima_1132_Type_0
           {$$ = new CriterionTemperatureType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
            if ($3) yyUnrefMap.erase($3);
           }
         | y_LiztAttributePair ENDITEM y_Limit_XmlDecimal
-          y_CriterionDecima_1131_CriterionDecima_1131_Type_0
+          y_CriterionDecima_1132_CriterionDecima_1132_Type_0
           {$$ = new CriterionTemperatureType($3, $4);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -33354,14 +33424,14 @@ y_CriterionTemperatureType :
 
 y_CriterionTimeType :
           ENDITEM y_Limit_XmlDecimal
-          y_CriterionDecima_1131_CriterionDecima_1131_Type_0
+          y_CriterionDecima_1132_CriterionDecima_1132_Type_0
           {$$ = new CriterionTimeType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
            if ($3) yyUnrefMap.erase($3);
           }
         | y_LiztAttributePair ENDITEM y_Limit_XmlDecimal
-          y_CriterionDecima_1131_CriterionDecima_1131_Type_0
+          y_CriterionDecima_1132_CriterionDecima_1132_Type_0
           {$$ = new CriterionTimeType($3, $4);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -33378,7 +33448,7 @@ y_CriterionTimeType :
 
 y_CriterionUserDefinedUnitType :
           y_LiztAttributePair ENDITEM y_Limit_XmlDecimal
-          y_CriterionDecima_1131_CriterionDecima_1131_Type_0
+          y_CriterionDecima_1132_CriterionDecima_1132_Type_0
           {$$ = new CriterionUserDefinedUnitType($3, $4);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -33414,8 +33484,8 @@ y_CriticalityLevelEnumType :
         ;
 
 y_CriticalityType :
-          ENDITEM y_CriticalityType_1050_CriticalityType_1050_Type
-          y_CriticalityType_1051_CriticalityType_1051_Type_0
+          ENDITEM y_CriticalityType_1051_CriticalityType_1051_Type
+          y_CriticalityType_1052_CriticalityType_1052_Type_0
           {$$ = new CriticalityType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -33423,40 +33493,8 @@ y_CriticalityType :
           }
         ;
 
-y_CriticalityType_1050_CriticalityType_1050_Type :
-          y_CriticalityType_1050_Type
-          {$$ = $1;}
-        ;
-
-y_CriticalityType_1050_Type :
-          y_CriticalityType_1050_TypeChoicePair
-          {$$ = new CriticalityType_1050_Type($1);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_CriticalityType_1050_TypeChoicePair :
-          y_LevelEnum_CriticalityLevelEnumType
-          {$$ = new CriticalityType_1050_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->CriticalityType_1050_TypeType = CriticalityType_1050_TypeChoicePair::LevelEnumE;
-           $$->CriticalityType_1050_TypeValue.LevelEnum = $1;
-          }
-        | y_OtherLevel_XmlString
-          {$$ = new CriticalityType_1050_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->CriticalityType_1050_TypeType = CriticalityType_1050_TypeChoicePair::OtherLevelE;
-           $$->CriticalityType_1050_TypeValue.OtherLevel = $1;
-          }
-        ;
-
-y_CriticalityType_1051_CriticalityType_1051_Type_0 :
-          /* empty */
-          {$$ = 0;}
-        | y_CriticalityType_1051_Type
+y_CriticalityType_1051_CriticalityType_1051_Type :
+          y_CriticalityType_1051_Type
           {$$ = $1;}
         ;
 
@@ -33469,19 +33507,51 @@ y_CriticalityType_1051_Type :
         ;
 
 y_CriticalityType_1051_TypeChoicePair :
-          y_AreaEnum_CriticalityAreaEnumType
+          y_LevelEnum_CriticalityLevelEnumType
           {$$ = new CriticalityType_1051_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CriticalityType_1051_TypeType = CriticalityType_1051_TypeChoicePair::AreaEnumE;
-           $$->CriticalityType_1051_TypeValue.AreaEnum = $1;
+           $$->CriticalityType_1051_TypeType = CriticalityType_1051_TypeChoicePair::LevelEnumE;
+           $$->CriticalityType_1051_TypeValue.LevelEnum = $1;
+          }
+        | y_OtherLevel_XmlString
+          {$$ = new CriticalityType_1051_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->CriticalityType_1051_TypeType = CriticalityType_1051_TypeChoicePair::OtherLevelE;
+           $$->CriticalityType_1051_TypeValue.OtherLevel = $1;
+          }
+        ;
+
+y_CriticalityType_1052_CriticalityType_1052_Type_0 :
+          /* empty */
+          {$$ = 0;}
+        | y_CriticalityType_1052_Type
+          {$$ = $1;}
+        ;
+
+y_CriticalityType_1052_Type :
+          y_CriticalityType_1052_TypeChoicePair
+          {$$ = new CriticalityType_1052_Type($1);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+          }
+        ;
+
+y_CriticalityType_1052_TypeChoicePair :
+          y_AreaEnum_CriticalityAreaEnumType
+          {$$ = new CriticalityType_1052_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->CriticalityType_1052_TypeType = CriticalityType_1052_TypeChoicePair::AreaEnumE;
+           $$->CriticalityType_1052_TypeValue.AreaEnum = $1;
           }
         | y_OtherArea_XmlString
-          {$$ = new CriticalityType_1051_TypeChoicePair();
+          {$$ = new CriticalityType_1052_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CriticalityType_1051_TypeType = CriticalityType_1051_TypeChoicePair::OtherAreaE;
-           $$->CriticalityType_1051_TypeValue.OtherArea = $1;
+           $$->CriticalityType_1052_TypeType = CriticalityType_1052_TypeChoicePair::OtherAreaE;
+           $$->CriticalityType_1052_TypeValue.OtherArea = $1;
           }
         ;
 
@@ -33777,7 +33847,7 @@ y_CurveLengthCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_LinearCharacter_1058_LinearCharacter_1058_Type
+          y_LinearCharacter_1059_LinearCharacter_1059_Type
           {$$ = new CurveLengthCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -33955,11 +34025,11 @@ y_CurveLengthCharacteristicNominal_CurveLengthCharacteristicNominalType :
 
 y_CurveLengthCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_LinearCharacter_1134_LinearCharacter_1134_Type
+          y_LinearCharacter_1135_LinearCharacter_1135_Type
           {$$ = new CurveLengthCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -34937,66 +35007,49 @@ y_CylindricalWorkingVolume_CylindricalWorkingVolumeType :
           }
         ;
 
-y_CylindricityCha_1052_CylindricityCha_1052_Type :
-          y_CylindricityCha_1052_Type
-          {$$ = $1;}
-        ;
-
-y_CylindricityCha_1052_Type :
-          y_CylindricityCha_1052_TypeChoicePair
-          {$$ = new CylindricityCha_1052_Type($1);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_CylindricityCha_1052_TypeChoicePair :
-          y_CylindricityCha_1083_CylindricityCha_1083_Type
-          {$$ = new CylindricityCha_1052_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->CylindricityCha_1052_TypeType = CylindricityCha_1052_TypeChoicePair::CylindricityCha_1083E;
-           $$->CylindricityCha_1052_TypeValue.CylindricityCha_1083 = $1;
-          }
-        | y_CylindricityCha_1084_CylindricityCha_1084_Type
-          {$$ = new CylindricityCha_1052_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->CylindricityCha_1052_TypeType = CylindricityCha_1052_TypeChoicePair::CylindricityCha_1084E;
-           $$->CylindricityCha_1052_TypeValue.CylindricityCha_1084 = $1;
-          }
-        ;
-
-y_CylindricityCha_1053_CylindricityCha_1053_Type_0 :
-          /* empty */
-          {$$ = 0;}
-        | y_CylindricityCha_1053_Type
+y_CylindricityCha_1053_CylindricityCha_1053_Type :
+          y_CylindricityCha_1053_Type
           {$$ = $1;}
         ;
 
 y_CylindricityCha_1053_Type :
-          y_ZoneRadii_MeasuredZoneRadiiType y_ZoneAxis_MeasuredZoneAxisType
-          {$$ = new CylindricityCha_1053_Type($1, $2);
+          y_CylindricityCha_1053_TypeChoicePair
+          {$$ = new CylindricityCha_1053_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
           }
         ;
 
-y_CylindricityCha_1083_CylindricityCha_1083_Type :
-          y_CylindricityCha_1083_Type
+y_CylindricityCha_1053_TypeChoicePair :
+          y_CylindricityCha_1084_CylindricityCha_1084_Type
+          {$$ = new CylindricityCha_1053_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->CylindricityCha_1053_TypeType = CylindricityCha_1053_TypeChoicePair::CylindricityCha_1084E;
+           $$->CylindricityCha_1053_TypeValue.CylindricityCha_1084 = $1;
+          }
+        | y_CylindricityCha_1085_CylindricityCha_1085_Type
+          {$$ = new CylindricityCha_1053_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->CylindricityCha_1053_TypeType = CylindricityCha_1053_TypeChoicePair::CylindricityCha_1085E;
+           $$->CylindricityCha_1053_TypeValue.CylindricityCha_1085 = $1;
+          }
+        ;
+
+y_CylindricityCha_1054_CylindricityCha_1054_Type_0 :
+          /* empty */
+          {$$ = 0;}
+        | y_CylindricityCha_1054_Type
           {$$ = $1;}
         ;
 
-y_CylindricityCha_1083_Type :
-          y_ToleranceValue_LinearValueType
-          y_ToleranceDualValue_LinearDualValueType_0
-          y_CylindricityCha_1091_CylindricityCha_1091_Type_0
-          {$$ = new CylindricityCha_1083_Type($1, $2, $3);
+y_CylindricityCha_1054_Type :
+          y_ZoneRadii_MeasuredZoneRadiiType y_ZoneAxis_MeasuredZoneAxisType
+          {$$ = new CylindricityCha_1054_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -35006,101 +35059,118 @@ y_CylindricityCha_1084_CylindricityCha_1084_Type :
         ;
 
 y_CylindricityCha_1084_Type :
-          y_CylindricityCha_1084_TypeChoicePair
-          {$$ = new CylindricityCha_1084_Type($1);
+          y_ToleranceValue_LinearValueType
+          y_ToleranceDualValue_LinearDualValueType_0
+          y_CylindricityCha_1092_CylindricityCha_1092_Type_0
+          {$$ = new CylindricityCha_1084_Type($1, $2, $3);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
-y_CylindricityCha_1084_TypeChoicePair :
-          y_ToleranceZonePerUnitAngle_ToleranceZonePerUnitAngleType
-          {$$ = new CylindricityCha_1084_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->CylindricityCha_1084_TypeType = CylindricityCha_1084_TypeChoicePair::ToleranceZonePerUnitAngleE;
-           $$->CylindricityCha_1084_TypeValue.ToleranceZonePerUnitAngle = $1;
-          }
-        | y_ToleranceZonePerUnitArcLength_ToleranceZonePerUnitLengthType
-          {$$ = new CylindricityCha_1084_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->CylindricityCha_1084_TypeType = CylindricityCha_1084_TypeChoicePair::ToleranceZonePerUnitArcLengthE;
-           $$->CylindricityCha_1084_TypeValue.ToleranceZonePerUnitArcLength = $1;
-          }
-        | y_ToleranceZonePerUnitArea_ToleranceZonePerUnitAreaType
-          {$$ = new CylindricityCha_1084_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->CylindricityCha_1084_TypeType = CylindricityCha_1084_TypeChoicePair::ToleranceZonePerUnitAreaE;
-           $$->CylindricityCha_1084_TypeValue.ToleranceZonePerUnitArea = $1;
-          }
-        | y_ToleranceZonePerUnitLength_ToleranceZonePerUnitLengthType
-          {$$ = new CylindricityCha_1084_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->CylindricityCha_1084_TypeType = CylindricityCha_1084_TypeChoicePair::ToleranceZonePerUnitLengthE;
-           $$->CylindricityCha_1084_TypeValue.ToleranceZonePerUnitLength = $1;
-          }
-        | y_ToleranceZonePerUnitPolarArea_ToleranceZonePerUnitPolarAreaType
-          {$$ = new CylindricityCha_1084_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->CylindricityCha_1084_TypeType = CylindricityCha_1084_TypeChoicePair::ToleranceZonePerUnitPolarAreaE;
-           $$->CylindricityCha_1084_TypeValue.ToleranceZonePerUnitPolarArea = $1;
-          }
-        ;
-
-y_CylindricityCha_1091_CylindricityCha_1091_Type_0 :
-          /* empty */
-          {$$ = 0;}
-        | y_CylindricityCha_1091_Type
+y_CylindricityCha_1085_CylindricityCha_1085_Type :
+          y_CylindricityCha_1085_Type
           {$$ = $1;}
         ;
 
-y_CylindricityCha_1091_Type :
-          y_CylindricityCha_1091_TypeChoicePair
-          {$$ = new CylindricityCha_1091_Type($1);
+y_CylindricityCha_1085_Type :
+          y_CylindricityCha_1085_TypeChoicePair
+          {$$ = new CylindricityCha_1085_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_CylindricityCha_1091_TypeChoicePair :
+y_CylindricityCha_1085_TypeChoicePair :
           y_ToleranceZonePerUnitAngle_ToleranceZonePerUnitAngleType
-          {$$ = new CylindricityCha_1091_TypeChoicePair();
+          {$$ = new CylindricityCha_1085_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CylindricityCha_1091_TypeType = CylindricityCha_1091_TypeChoicePair::ToleranceZonePerUnitAngleE;
-           $$->CylindricityCha_1091_TypeValue.ToleranceZonePerUnitAngle = $1;
+           $$->CylindricityCha_1085_TypeType = CylindricityCha_1085_TypeChoicePair::ToleranceZonePerUnitAngleE;
+           $$->CylindricityCha_1085_TypeValue.ToleranceZonePerUnitAngle = $1;
           }
         | y_ToleranceZonePerUnitArcLength_ToleranceZonePerUnitLengthType
-          {$$ = new CylindricityCha_1091_TypeChoicePair();
+          {$$ = new CylindricityCha_1085_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CylindricityCha_1091_TypeType = CylindricityCha_1091_TypeChoicePair::ToleranceZonePerUnitArcLengthE;
-           $$->CylindricityCha_1091_TypeValue.ToleranceZonePerUnitArcLength = $1;
+           $$->CylindricityCha_1085_TypeType = CylindricityCha_1085_TypeChoicePair::ToleranceZonePerUnitArcLengthE;
+           $$->CylindricityCha_1085_TypeValue.ToleranceZonePerUnitArcLength = $1;
           }
         | y_ToleranceZonePerUnitArea_ToleranceZonePerUnitAreaType
-          {$$ = new CylindricityCha_1091_TypeChoicePair();
+          {$$ = new CylindricityCha_1085_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CylindricityCha_1091_TypeType = CylindricityCha_1091_TypeChoicePair::ToleranceZonePerUnitAreaE;
-           $$->CylindricityCha_1091_TypeValue.ToleranceZonePerUnitArea = $1;
+           $$->CylindricityCha_1085_TypeType = CylindricityCha_1085_TypeChoicePair::ToleranceZonePerUnitAreaE;
+           $$->CylindricityCha_1085_TypeValue.ToleranceZonePerUnitArea = $1;
           }
         | y_ToleranceZonePerUnitLength_ToleranceZonePerUnitLengthType
-          {$$ = new CylindricityCha_1091_TypeChoicePair();
+          {$$ = new CylindricityCha_1085_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CylindricityCha_1091_TypeType = CylindricityCha_1091_TypeChoicePair::ToleranceZonePerUnitLengthE;
-           $$->CylindricityCha_1091_TypeValue.ToleranceZonePerUnitLength = $1;
+           $$->CylindricityCha_1085_TypeType = CylindricityCha_1085_TypeChoicePair::ToleranceZonePerUnitLengthE;
+           $$->CylindricityCha_1085_TypeValue.ToleranceZonePerUnitLength = $1;
           }
         | y_ToleranceZonePerUnitPolarArea_ToleranceZonePerUnitPolarAreaType
-          {$$ = new CylindricityCha_1091_TypeChoicePair();
+          {$$ = new CylindricityCha_1085_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->CylindricityCha_1091_TypeType = CylindricityCha_1091_TypeChoicePair::ToleranceZonePerUnitPolarAreaE;
-           $$->CylindricityCha_1091_TypeValue.ToleranceZonePerUnitPolarArea = $1;
+           $$->CylindricityCha_1085_TypeType = CylindricityCha_1085_TypeChoicePair::ToleranceZonePerUnitPolarAreaE;
+           $$->CylindricityCha_1085_TypeValue.ToleranceZonePerUnitPolarArea = $1;
+          }
+        ;
+
+y_CylindricityCha_1092_CylindricityCha_1092_Type_0 :
+          /* empty */
+          {$$ = 0;}
+        | y_CylindricityCha_1092_Type
+          {$$ = $1;}
+        ;
+
+y_CylindricityCha_1092_Type :
+          y_CylindricityCha_1092_TypeChoicePair
+          {$$ = new CylindricityCha_1092_Type($1);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+          }
+        ;
+
+y_CylindricityCha_1092_TypeChoicePair :
+          y_ToleranceZonePerUnitAngle_ToleranceZonePerUnitAngleType
+          {$$ = new CylindricityCha_1092_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->CylindricityCha_1092_TypeType = CylindricityCha_1092_TypeChoicePair::ToleranceZonePerUnitAngleE;
+           $$->CylindricityCha_1092_TypeValue.ToleranceZonePerUnitAngle = $1;
+          }
+        | y_ToleranceZonePerUnitArcLength_ToleranceZonePerUnitLengthType
+          {$$ = new CylindricityCha_1092_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->CylindricityCha_1092_TypeType = CylindricityCha_1092_TypeChoicePair::ToleranceZonePerUnitArcLengthE;
+           $$->CylindricityCha_1092_TypeValue.ToleranceZonePerUnitArcLength = $1;
+          }
+        | y_ToleranceZonePerUnitArea_ToleranceZonePerUnitAreaType
+          {$$ = new CylindricityCha_1092_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->CylindricityCha_1092_TypeType = CylindricityCha_1092_TypeChoicePair::ToleranceZonePerUnitAreaE;
+           $$->CylindricityCha_1092_TypeValue.ToleranceZonePerUnitArea = $1;
+          }
+        | y_ToleranceZonePerUnitLength_ToleranceZonePerUnitLengthType
+          {$$ = new CylindricityCha_1092_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->CylindricityCha_1092_TypeType = CylindricityCha_1092_TypeChoicePair::ToleranceZonePerUnitLengthE;
+           $$->CylindricityCha_1092_TypeValue.ToleranceZonePerUnitLength = $1;
+          }
+        | y_ToleranceZonePerUnitPolarArea_ToleranceZonePerUnitPolarAreaType
+          {$$ = new CylindricityCha_1092_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->CylindricityCha_1092_TypeType = CylindricityCha_1092_TypeChoicePair::ToleranceZonePerUnitPolarAreaE;
+           $$->CylindricityCha_1092_TypeValue.ToleranceZonePerUnitPolarArea = $1;
           }
         ;
 
@@ -35114,12 +35184,12 @@ y_CylindricityCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
           y_OrientationPlane_OrientationPlaneType_0
-          y_CylindricityCha_1052_CylindricityCha_1052_Type
+          y_CylindricityCha_1053_CylindricityCha_1053_Type
           {$$ = new CylindricityCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -35218,7 +35288,7 @@ y_CylindricityCharacteristicMeasurementType :
           y_MaxValue_MeasuredLinearValueType_0
           y_MinValue_MeasuredLinearValueType_0
           y_MaxCylindricity_MeasuredLinearValueType_0
-          y_CylindricityCha_1053_CylindricityCha_1053_Type_0
+          y_CylindricityCha_1054_CylindricityCha_1054_Type_0
           {$$ = new CylindricityCharacteristicMeasurementType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -35300,8 +35370,8 @@ y_CylindricityCharacteristicNominal_CylindricityCharacteristicNominalType :
 
 y_CylindricityCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -35992,52 +36062,52 @@ y_DatumType :
           }
         ;
 
-y_DatumWithPreced_1012_DatumWithPreced_1012_Type :
-          y_DatumWithPreced_1012_Type
+y_DatumWithPreced_1013_DatumWithPreced_1013_Type :
+          y_DatumWithPreced_1013_Type
           {$$ = $1;}
         ;
 
-y_DatumWithPreced_1012_Type :
-          y_DatumWithPreced_1012_TypeChoicePair
-          {$$ = new DatumWithPreced_1012_Type($1);
+y_DatumWithPreced_1013_Type :
+          y_DatumWithPreced_1013_TypeChoicePair
+          {$$ = new DatumWithPreced_1013_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_DatumWithPreced_1012_TypeChoicePair :
+y_DatumWithPreced_1013_TypeChoicePair :
           y_CompoundDatum_CompoundDatumType
-          {$$ = new DatumWithPreced_1012_TypeChoicePair();
+          {$$ = new DatumWithPreced_1013_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->DatumWithPreced_1012_TypeType = DatumWithPreced_1012_TypeChoicePair::CompoundDatumE;
-           $$->DatumWithPreced_1012_TypeValue.CompoundDatum = $1;
+           $$->DatumWithPreced_1013_TypeType = DatumWithPreced_1013_TypeChoicePair::CompoundDatumE;
+           $$->DatumWithPreced_1013_TypeValue.CompoundDatum = $1;
           }
         | y_MeasuredDatumFeature_MeasuredDatumFeatureType
-          {$$ = new DatumWithPreced_1012_TypeChoicePair();
+          {$$ = new DatumWithPreced_1013_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->DatumWithPreced_1012_TypeType = DatumWithPreced_1012_TypeChoicePair::MeasuredDatumFeatureE;
-           $$->DatumWithPreced_1012_TypeValue.MeasuredDatumFeature = $1;
+           $$->DatumWithPreced_1013_TypeType = DatumWithPreced_1013_TypeChoicePair::MeasuredDatumFeatureE;
+           $$->DatumWithPreced_1013_TypeValue.MeasuredDatumFeature = $1;
           }
         | y_NominalDatumFeature_NominalDatumFeatureType
-          {$$ = new DatumWithPreced_1012_TypeChoicePair();
+          {$$ = new DatumWithPreced_1013_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->DatumWithPreced_1012_TypeType = DatumWithPreced_1012_TypeChoicePair::NominalDatumFeatureE;
-           $$->DatumWithPreced_1012_TypeValue.NominalDatumFeature = $1;
+           $$->DatumWithPreced_1013_TypeType = DatumWithPreced_1013_TypeChoicePair::NominalDatumFeatureE;
+           $$->DatumWithPreced_1013_TypeValue.NominalDatumFeature = $1;
           }
         | y_SimpleDatum_DatumType
-          {$$ = new DatumWithPreced_1012_TypeChoicePair();
+          {$$ = new DatumWithPreced_1013_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->DatumWithPreced_1012_TypeType = DatumWithPreced_1012_TypeChoicePair::SimpleDatumE;
-           $$->DatumWithPreced_1012_TypeValue.SimpleDatum = $1;
+           $$->DatumWithPreced_1013_TypeType = DatumWithPreced_1013_TypeChoicePair::SimpleDatumE;
+           $$->DatumWithPreced_1013_TypeValue.SimpleDatum = $1;
           }
         ;
 
 y_DatumWithPrecedenceType :
-          ENDITEM y_DatumWithPreced_1012_DatumWithPreced_1012_Type
+          ENDITEM y_DatumWithPreced_1013_DatumWithPreced_1013_Type
           y_Precedence_PrecedenceType
           {$$ = new DatumWithPrecedenceType($2, $3);
            yyUnrefMap[$$] = $$;
@@ -36312,39 +36382,39 @@ y_DegreeOfFreedom_DegreeOfFreedomEnumType :
           {$$ = $4;}
         ;
 
-y_DegreesOfFreedo_1013_DegreesOfFreedo_1013_Type :
-          y_DegreesOfFreedo_1013_Type
+y_DegreesOfFreedo_1014_DegreesOfFreedo_1014_Type :
+          y_DegreesOfFreedo_1014_Type
           {$$ = $1;}
         ;
 
-y_DegreesOfFreedo_1013_Type :
-          y_DegreesOfFreedo_1013_TypeChoicePair
-          {$$ = new DegreesOfFreedo_1013_Type($1);
+y_DegreesOfFreedo_1014_Type :
+          y_DegreesOfFreedo_1014_TypeChoicePair
+          {$$ = new DegreesOfFreedo_1014_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_DegreesOfFreedo_1013_TypeChoicePair :
+y_DegreesOfFreedo_1014_TypeChoicePair :
           y_LiztDegreeOfFreedom_DegreeOfFreedomEnumType_1_6_Check
-          {$$ = new DegreesOfFreedo_1013_TypeChoicePair();
+          {$$ = new DegreesOfFreedo_1014_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->DegreesOfFreedo_1013_TypeType = DegreesOfFreedo_1013_TypeChoicePair::DegreeOfFreedomE;
-           $$->DegreesOfFreedo_1013_TypeValue.DegreeOfFreedom = $1;
+           $$->DegreesOfFreedo_1014_TypeType = DegreesOfFreedo_1014_TypeChoicePair::DegreeOfFreedomE;
+           $$->DegreesOfFreedo_1014_TypeValue.DegreeOfFreedom = $1;
           }
         | y_LiztISODegreeOfFreedom_ISODegreeOfFreedomEnumType_1_6_Check
-          {$$ = new DegreesOfFreedo_1013_TypeChoicePair();
+          {$$ = new DegreesOfFreedo_1014_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->DegreesOfFreedo_1013_TypeType = DegreesOfFreedo_1013_TypeChoicePair::ISODegreeOfFreedomE;
-           $$->DegreesOfFreedo_1013_TypeValue.ISODegreeOfFreedom = $1;
+           $$->DegreesOfFreedo_1014_TypeType = DegreesOfFreedo_1014_TypeChoicePair::ISODegreeOfFreedomE;
+           $$->DegreesOfFreedo_1014_TypeValue.ISODegreeOfFreedom = $1;
           }
         ;
 
 y_DegreesOfFreedomType :
           y_LiztAttributePair ENDITEM
-          y_DegreesOfFreedo_1013_DegreesOfFreedo_1013_Type
+          y_DegreesOfFreedo_1014_DegreesOfFreedo_1014_Type
           {$$ = new DegreesOfFreedomType($3);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -36402,7 +36472,7 @@ y_DepthCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_LinearCharacter_1058_LinearCharacter_1058_Type
+          y_LinearCharacter_1059_LinearCharacter_1059_Type
           {$$ = new DepthCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -36578,11 +36648,11 @@ y_DepthCharacteristicNominal_DepthCharacteristicNominalType :
 
 y_DepthCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_LinearCharacter_1134_LinearCharacter_1134_Type
+          y_LinearCharacter_1135_LinearCharacter_1135_Type
           {$$ = new DepthCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -37071,40 +37141,40 @@ y_DiameterBottom_XmlDouble :
           {$$ = $4;}
         ;
 
-y_DiameterCharact_1054_DiameterCharact_1054_Type :
-          y_DiameterCharact_1054_Type
+y_DiameterCharact_1055_DiameterCharact_1055_Type :
+          y_DiameterCharact_1055_Type
           {$$ = $1;}
         ;
 
-y_DiameterCharact_1054_Type :
-          y_DiameterCharact_1054_TypeChoicePair
-          {$$ = new DiameterCharact_1054_Type($1);
+y_DiameterCharact_1055_Type :
+          y_DiameterCharact_1055_TypeChoicePair
+          {$$ = new DiameterCharact_1055_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_DiameterCharact_1054_TypeChoicePair :
+y_DiameterCharact_1055_TypeChoicePair :
           y_LimitsAndFitsSpecification_LimitsAndFitsSpecificationType
-          {$$ = new DiameterCharact_1054_TypeChoicePair();
+          {$$ = new DiameterCharact_1055_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->DiameterCharact_1054_TypeType = DiameterCharact_1054_TypeChoicePair::LimitsAndFitsSpecificationE;
-           $$->DiameterCharact_1054_TypeValue.LimitsAndFitsSpecification = $1;
+           $$->DiameterCharact_1055_TypeType = DiameterCharact_1055_TypeChoicePair::LimitsAndFitsSpecificationE;
+           $$->DiameterCharact_1055_TypeValue.LimitsAndFitsSpecification = $1;
           }
         | y_NonTolerance_NonToleranceEnumType
-          {$$ = new DiameterCharact_1054_TypeChoicePair();
+          {$$ = new DiameterCharact_1055_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->DiameterCharact_1054_TypeType = DiameterCharact_1054_TypeChoicePair::NonToleranceE;
-           $$->DiameterCharact_1054_TypeValue.NonTolerance = $1;
+           $$->DiameterCharact_1055_TypeType = DiameterCharact_1055_TypeChoicePair::NonToleranceE;
+           $$->DiameterCharact_1055_TypeValue.NonTolerance = $1;
           }
         | y_Tolerance_LinearToleranceType
-          {$$ = new DiameterCharact_1054_TypeChoicePair();
+          {$$ = new DiameterCharact_1055_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->DiameterCharact_1054_TypeType = DiameterCharact_1054_TypeChoicePair::ToleranceE;
-           $$->DiameterCharact_1054_TypeValue.Tolerance = $1;
+           $$->DiameterCharact_1055_TypeType = DiameterCharact_1055_TypeChoicePair::ToleranceE;
+           $$->DiameterCharact_1055_TypeValue.Tolerance = $1;
           }
         ;
 
@@ -37120,7 +37190,7 @@ y_DiameterCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_DiameterCharact_1054_DiameterCharact_1054_Type
+          y_DiameterCharact_1055_DiameterCharact_1055_Type
           {$$ = new DiameterCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -37297,11 +37367,11 @@ y_DiameterCharacteristicNominal_DiameterCharacteristicNominalType :
 
 y_DiameterCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_LinearCharacter_1134_LinearCharacter_1134_Type
+          y_LinearCharacter_1135_LinearCharacter_1135_Type
           {$$ = new DiameterCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -37451,7 +37521,7 @@ y_DifferentialVariableReluctanceTransducerSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_ProtectionClass_XmlString_0
           y_LinearityError_XmlString_0 y_Repeatability_LinearValueType_0
           y_Sensitivity_XmlDecimal_0 y_Resolution_LinearValueType_0
@@ -37691,7 +37761,14 @@ y_Dimensionality_DimensionCountEnumType_0 :
         ;
 
 y_DirBeg_UnitVector2dSimpleType :
-          DirBegSTART y_UnitVector2dSimpleType DirBegEND
+          DirBegSTART ENDWHOLEITEM
+          {$$ = new UnitVector2dSimpleType();
+           $$->UnitVector2dSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad UnitVector2dSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | DirBegSTART y_UnitVector2dSimpleType DirBegEND
           {$$ = $2;
            $2->UnitVector2dSimpleTypeCheck();
            if ($2->bad)
@@ -37700,7 +37777,14 @@ y_DirBeg_UnitVector2dSimpleType :
         ;
 
 y_DirBeg_UnitVectorSimpleType :
-          DirBegSTART y_UnitVectorSimpleType DirBegEND
+          DirBegSTART ENDWHOLEITEM
+          {$$ = new UnitVectorSimpleType();
+           $$->UnitVectorSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad UnitVectorSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | DirBegSTART y_UnitVectorSimpleType DirBegEND
           {$$ = $2;
            $2->UnitVectorSimpleTypeCheck();
            if ($2->bad)
@@ -37724,7 +37808,14 @@ y_DirNorthPole_UnitVectorType :
         ;
 
 y_DirU_VectorSimpleType :
-          DirUSTART y_VectorSimpleType DirUEND
+          DirUSTART ENDWHOLEITEM
+          {$$ = new VectorSimpleType();
+           $$->VectorSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad VectorSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | DirUSTART y_VectorSimpleType DirUEND
           {$$ = $2;
            $2->VectorSimpleTypeCheck();
            if ($2->bad)
@@ -37733,7 +37824,14 @@ y_DirU_VectorSimpleType :
         ;
 
 y_DirV_VectorSimpleType :
-          DirVSTART y_VectorSimpleType DirVEND
+          DirVSTART ENDWHOLEITEM
+          {$$ = new VectorSimpleType();
+           $$->VectorSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad VectorSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | DirVSTART y_VectorSimpleType DirVEND
           {$$ = $2;
            $2->VectorSimpleTypeCheck();
            if ($2->bad)
@@ -37815,39 +37913,39 @@ y_Direction_UnitVectorType_0 :
           {$$ = $2;}
         ;
 
-y_DirectionalOffs_1014_DirectionalOffs_1014_Type :
-          y_DirectionalOffs_1014_Type
+y_DirectionalOffs_1015_DirectionalOffs_1015_Type :
+          y_DirectionalOffs_1015_Type
           {$$ = $1;}
         ;
 
-y_DirectionalOffs_1014_Type :
-          y_DirectionalOffs_1014_TypeChoicePair
-          {$$ = new DirectionalOffs_1014_Type($1);
+y_DirectionalOffs_1015_Type :
+          y_DirectionalOffs_1015_TypeChoicePair
+          {$$ = new DirectionalOffs_1015_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_DirectionalOffs_1014_TypeChoicePair :
+y_DirectionalOffs_1015_TypeChoicePair :
           y_FeatureDirection_BaseFeatureType
-          {$$ = new DirectionalOffs_1014_TypeChoicePair();
+          {$$ = new DirectionalOffs_1015_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->DirectionalOffs_1014_TypeType = DirectionalOffs_1014_TypeChoicePair::FeatureDirectionE;
-           $$->DirectionalOffs_1014_TypeValue.FeatureDirection = $1;
+           $$->DirectionalOffs_1015_TypeType = DirectionalOffs_1015_TypeChoicePair::FeatureDirectionE;
+           $$->DirectionalOffs_1015_TypeValue.FeatureDirection = $1;
           }
         | y_NominalDirection_UnitVectorType
-          {$$ = new DirectionalOffs_1014_TypeChoicePair();
+          {$$ = new DirectionalOffs_1015_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->DirectionalOffs_1014_TypeType = DirectionalOffs_1014_TypeChoicePair::NominalDirectionE;
-           $$->DirectionalOffs_1014_TypeValue.NominalDirection = $1;
+           $$->DirectionalOffs_1015_TypeType = DirectionalOffs_1015_TypeChoicePair::NominalDirectionE;
+           $$->DirectionalOffs_1015_TypeValue.NominalDirection = $1;
           }
         ;
 
 y_DirectionalOffsetType :
           ENDITEM y_Offset_LinearValueType
-          y_DirectionalOffs_1014_DirectionalOffs_1014_Type
+          y_DirectionalOffs_1015_DirectionalOffs_1015_Type
           {$$ = new DirectionalOffsetType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -38019,7 +38117,7 @@ y_DistanceBetweenCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_LinearCharacter_1058_LinearCharacter_1058_Type
+          y_LinearCharacter_1059_LinearCharacter_1059_Type
           {$$ = new DistanceBetweenCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -38209,11 +38307,11 @@ y_DistanceBetweenCharacteristicNominal_DistanceBetweenCharacteristicNominalType 
 
 y_DistanceBetweenCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_LinearCharacter_1134_LinearCharacter_1134_Type
+          y_LinearCharacter_1135_LinearCharacter_1135_Type
           {$$ = new DistanceBetweenCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -38247,7 +38345,7 @@ y_DistanceFromCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_LinearCharacter_1058_LinearCharacter_1058_Type
+          y_LinearCharacter_1059_LinearCharacter_1059_Type
           {$$ = new DistanceFromCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -38437,11 +38535,11 @@ y_DistanceFromCharacteristicNominal_DistanceFromCharacteristicNominalType :
 
 y_DistanceFromCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_LinearCharacter_1134_LinearCharacter_1134_Type
+          y_LinearCharacter_1135_LinearCharacter_1135_Type
           {$$ = new DistanceFromCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -38649,7 +38747,7 @@ y_DrawWireSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_ProtectionClass_XmlString_0
           y_LinearityError_XmlString_0 y_Repeatability_LinearValueType_0
           y_Sensitivity_XmlDecimal_0 y_Resolution_LinearValueType_0
@@ -38780,7 +38878,7 @@ y_EddyCurrentSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_ProtectionClass_XmlString_0
           y_LinearityError_XmlString_0 y_Repeatability_LinearValueType_0
           y_Sensitivity_XmlDecimal_0 y_Resolution_LinearValueType_0
@@ -39109,7 +39207,7 @@ y_EdgePointFeatureNominalType :
           y_EntityExternalIds_ArrayReferenceFullType_0
           y_PointList_PointListType_0
           y_SubstituteFeatureAlgorithm_SubstituteFeatureAlgorithmType_0
-          y_PointFeatureNom_1124_PointFeatureNom_1124_Type_0
+          y_PointFeatureNom_1125_PointFeatureNom_1125_Type_0
           y_Location_PointType y_Normal_UnitVectorType
           y_AdjacentNormal_UnitVectorType_0
           y_Constructed_EdgePointConstructionMethodType_0
@@ -40386,7 +40484,7 @@ y_EllipticityCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
@@ -40570,8 +40668,8 @@ y_EllipticityCharacteristicNominal_EllipticityCharacteristicNominalType :
 
 y_EllipticityCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -41464,7 +41562,14 @@ y_Employee_EmployeeType :
         ;
 
 y_EndPoint_Point2dSimpleType :
-          EndPointSTART y_Point2dSimpleType EndPointEND
+          EndPointSTART ENDWHOLEITEM
+          {$$ = new Point2dSimpleType();
+           $$->Point2dSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad Point2dSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | EndPointSTART y_Point2dSimpleType EndPointEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
            if ($2->bad)
@@ -41473,7 +41578,14 @@ y_EndPoint_Point2dSimpleType :
         ;
 
 y_EndPoint_PointSimpleType :
-          EndPointSTART y_PointSimpleType EndPointEND
+          EndPointSTART ENDWHOLEITEM
+          {$$ = new PointSimpleType();
+           $$->PointSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad PointSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | EndPointSTART y_PointSimpleType EndPointEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
            if ($2->bad)
@@ -41980,38 +42092,38 @@ y_ExplodedViewId_QIFReferenceActiveType_0 :
           {$$ = $2;}
         ;
 
-y_ExplodedViewMov_1230_ExplodedViewMov_1230_Type :
-          y_ExplodedViewMov_1230_Type
+y_ExplodedViewMov_1231_ExplodedViewMov_1231_Type :
+          y_ExplodedViewMov_1231_Type
           {$$ = $1;}
         ;
 
-y_ExplodedViewMov_1230_Type :
-          y_ExplodedViewMov_1230_TypeChoicePair
-          {$$ = new ExplodedViewMov_1230_Type($1);
+y_ExplodedViewMov_1231_Type :
+          y_ExplodedViewMov_1231_TypeChoicePair
+          {$$ = new ExplodedViewMov_1231_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_ExplodedViewMov_1230_TypeChoicePair :
+y_ExplodedViewMov_1231_TypeChoicePair :
           y_Rotate_ExplodedViewRotateType
-          {$$ = new ExplodedViewMov_1230_TypeChoicePair();
+          {$$ = new ExplodedViewMov_1231_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ExplodedViewMov_1230_TypeType = ExplodedViewMov_1230_TypeChoicePair::RotateE;
-           $$->ExplodedViewMov_1230_TypeValue.Rotate = $1;
+           $$->ExplodedViewMov_1231_TypeType = ExplodedViewMov_1231_TypeChoicePair::RotateE;
+           $$->ExplodedViewMov_1231_TypeValue.Rotate = $1;
           }
         | y_Translate_ExplodedViewTranslateType
-          {$$ = new ExplodedViewMov_1230_TypeChoicePair();
+          {$$ = new ExplodedViewMov_1231_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ExplodedViewMov_1230_TypeType = ExplodedViewMov_1230_TypeChoicePair::TranslateE;
-           $$->ExplodedViewMov_1230_TypeValue.Translate = $1;
+           $$->ExplodedViewMov_1231_TypeType = ExplodedViewMov_1231_TypeChoicePair::TranslateE;
+           $$->ExplodedViewMov_1231_TypeValue.Translate = $1;
           }
         ;
 
 y_ExplodedViewMoveGroupType :
-          ENDITEM y_ExplodedViewMov_1230_ExplodedViewMov_1230_Type
+          ENDITEM y_ExplodedViewMov_1231_ExplodedViewMov_1231_Type
           y_ComponentIds_ArrayReferenceFullType_0
           y_BodyIds_ArrayReferenceFullType_0
           {$$ = new ExplodedViewMoveGroupType($2, $3, $4);
@@ -42890,9 +43002,9 @@ y_FaceMeshType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_Validation_ValidationFaceType_0 y_Mesh_ElementReferenceType
           y_LoopIds_ArrayReferenceType_0
-          y_FaceMeshType_1223_FaceMeshType_1223_Type_0
           y_FaceMeshType_1224_FaceMeshType_1224_Type_0
           y_FaceMeshType_1225_FaceMeshType_1225_Type_0
+          y_FaceMeshType_1226_FaceMeshType_1226_Type_0
           {$$ = new FaceMeshType($3, $4, $5, $6, $7, $8, $9);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -42912,38 +43024,6 @@ y_FaceMeshType :
           }
         ;
 
-y_FaceMeshType_1223_FaceMeshType_1223_Type_0 :
-          /* empty */
-          {$$ = 0;}
-        | y_FaceMeshType_1223_Type
-          {$$ = $1;}
-        ;
-
-y_FaceMeshType_1223_Type :
-          y_FaceMeshType_1223_TypeChoicePair
-          {$$ = new FaceMeshType_1223_Type($1);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_FaceMeshType_1223_TypeChoicePair :
-          y_TrianglesBinary_ArrayBinaryType
-          {$$ = new FaceMeshType_1223_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->FaceMeshType_1223_TypeType = FaceMeshType_1223_TypeChoicePair::TrianglesBinaryE;
-           $$->FaceMeshType_1223_TypeValue.TrianglesBinary = $1;
-          }
-        | y_Triangles_ArrayIntType
-          {$$ = new FaceMeshType_1223_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->FaceMeshType_1223_TypeType = FaceMeshType_1223_TypeChoicePair::TrianglesE;
-           $$->FaceMeshType_1223_TypeValue.Triangles = $1;
-          }
-        ;
-
 y_FaceMeshType_1224_FaceMeshType_1224_Type_0 :
           /* empty */
           {$$ = 0;}
@@ -42960,33 +43040,19 @@ y_FaceMeshType_1224_Type :
         ;
 
 y_FaceMeshType_1224_TypeChoicePair :
-          y_TrianglesHiddenBinary_ArrayBinaryType
+          y_TrianglesBinary_ArrayBinaryType
           {$$ = new FaceMeshType_1224_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->FaceMeshType_1224_TypeType = FaceMeshType_1224_TypeChoicePair::TrianglesHiddenBinaryE;
-           $$->FaceMeshType_1224_TypeValue.TrianglesHiddenBinary = $1;
+           $$->FaceMeshType_1224_TypeType = FaceMeshType_1224_TypeChoicePair::TrianglesBinaryE;
+           $$->FaceMeshType_1224_TypeValue.TrianglesBinary = $1;
           }
-        | y_TrianglesHidden_ArrayIntType
+        | y_Triangles_ArrayIntType
           {$$ = new FaceMeshType_1224_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->FaceMeshType_1224_TypeType = FaceMeshType_1224_TypeChoicePair::TrianglesHiddenE;
-           $$->FaceMeshType_1224_TypeValue.TrianglesHidden = $1;
-          }
-        | y_TrianglesVisibleBinary_ArrayBinaryType
-          {$$ = new FaceMeshType_1224_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->FaceMeshType_1224_TypeType = FaceMeshType_1224_TypeChoicePair::TrianglesVisibleBinaryE;
-           $$->FaceMeshType_1224_TypeValue.TrianglesVisibleBinary = $1;
-          }
-        | y_TrianglesVisible_ArrayIntType
-          {$$ = new FaceMeshType_1224_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->FaceMeshType_1224_TypeType = FaceMeshType_1224_TypeChoicePair::TrianglesVisibleE;
-           $$->FaceMeshType_1224_TypeValue.TrianglesVisible = $1;
+           $$->FaceMeshType_1224_TypeType = FaceMeshType_1224_TypeChoicePair::TrianglesE;
+           $$->FaceMeshType_1224_TypeValue.Triangles = $1;
           }
         ;
 
@@ -43006,19 +43072,65 @@ y_FaceMeshType_1225_Type :
         ;
 
 y_FaceMeshType_1225_TypeChoicePair :
-          y_TrianglesColorBinary_ArrayBinaryType
+          y_TrianglesHiddenBinary_ArrayBinaryType
           {$$ = new FaceMeshType_1225_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->FaceMeshType_1225_TypeType = FaceMeshType_1225_TypeChoicePair::TrianglesColorBinaryE;
-           $$->FaceMeshType_1225_TypeValue.TrianglesColorBinary = $1;
+           $$->FaceMeshType_1225_TypeType = FaceMeshType_1225_TypeChoicePair::TrianglesHiddenBinaryE;
+           $$->FaceMeshType_1225_TypeValue.TrianglesHiddenBinary = $1;
+          }
+        | y_TrianglesHidden_ArrayIntType
+          {$$ = new FaceMeshType_1225_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->FaceMeshType_1225_TypeType = FaceMeshType_1225_TypeChoicePair::TrianglesHiddenE;
+           $$->FaceMeshType_1225_TypeValue.TrianglesHidden = $1;
+          }
+        | y_TrianglesVisibleBinary_ArrayBinaryType
+          {$$ = new FaceMeshType_1225_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->FaceMeshType_1225_TypeType = FaceMeshType_1225_TypeChoicePair::TrianglesVisibleBinaryE;
+           $$->FaceMeshType_1225_TypeValue.TrianglesVisibleBinary = $1;
+          }
+        | y_TrianglesVisible_ArrayIntType
+          {$$ = new FaceMeshType_1225_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->FaceMeshType_1225_TypeType = FaceMeshType_1225_TypeChoicePair::TrianglesVisibleE;
+           $$->FaceMeshType_1225_TypeValue.TrianglesVisible = $1;
+          }
+        ;
+
+y_FaceMeshType_1226_FaceMeshType_1226_Type_0 :
+          /* empty */
+          {$$ = 0;}
+        | y_FaceMeshType_1226_Type
+          {$$ = $1;}
+        ;
+
+y_FaceMeshType_1226_Type :
+          y_FaceMeshType_1226_TypeChoicePair
+          {$$ = new FaceMeshType_1226_Type($1);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+          }
+        ;
+
+y_FaceMeshType_1226_TypeChoicePair :
+          y_TrianglesColorBinary_ArrayBinaryType
+          {$$ = new FaceMeshType_1226_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->FaceMeshType_1226_TypeType = FaceMeshType_1226_TypeChoicePair::TrianglesColorBinaryE;
+           $$->FaceMeshType_1226_TypeValue.TrianglesColorBinary = $1;
           }
         | y_TrianglesColor_ArrayUnsignedByteType
-          {$$ = new FaceMeshType_1225_TypeChoicePair();
+          {$$ = new FaceMeshType_1226_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->FaceMeshType_1225_TypeType = FaceMeshType_1225_TypeChoicePair::TrianglesColorE;
-           $$->FaceMeshType_1225_TypeValue.TrianglesColor = $1;
+           $$->FaceMeshType_1226_TypeType = FaceMeshType_1226_TypeChoicePair::TrianglesColorE;
+           $$->FaceMeshType_1226_TypeValue.TrianglesColor = $1;
           }
         ;
 
@@ -44243,9 +44355,9 @@ y_FeatureZoneAreaBetweenType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_Label_XmlToken_0
           y_SurfaceFeatureNominalId_QIFReferenceFullType_0
-          y_FeatureZoneArea_1099_FeatureZoneArea_1099_Type_0
-          y_FeatureZoneArea_1100_FeatureZoneArea_1100_Type
+          y_FeatureZoneArea_1100_FeatureZoneArea_1100_Type_0
           y_FeatureZoneArea_1101_FeatureZoneArea_1101_Type
+          y_FeatureZoneArea_1102_FeatureZoneArea_1102_Type
           y_StartDirection_UnitVectorType_0 y_PlaneNormal_UnitVectorType_0
           {$$ = new FeatureZoneAreaBetweenType($3, $4, $5, $6, $7, $8, $9, $10);
            yyUnrefMap[$$] = $$;
@@ -44279,7 +44391,7 @@ y_FeatureZoneAreaCircularType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_Label_XmlToken_0
           y_SurfaceFeatureNominalId_QIFReferenceFullType_0
-          y_FeatureZoneArea_1099_FeatureZoneArea_1099_Type_0
+          y_FeatureZoneArea_1100_FeatureZoneArea_1100_Type_0
           y_Circle_CircleType
           {$$ = new FeatureZoneAreaCircularType($3, $4, $5, $6, $7);
            yyUnrefMap[$$] = $$;
@@ -44310,7 +44422,7 @@ y_FeatureZoneAreaCylindricalType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_Label_XmlToken_0
           y_SurfaceFeatureNominalId_QIFReferenceFullType_0
-          y_FeatureZoneArea_1099_FeatureZoneArea_1099_Type_0
+          y_FeatureZoneArea_1100_FeatureZoneArea_1100_Type_0
           y_Cylinder_CylinderType
           {$$ = new FeatureZoneAreaCylindricalType($3, $4, $5, $6, $7);
            yyUnrefMap[$$] = $$;
@@ -44341,7 +44453,7 @@ y_FeatureZoneAreaIrregularType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_Label_XmlToken_0
           y_SurfaceFeatureNominalId_QIFReferenceFullType_0
-          y_FeatureZoneArea_1099_FeatureZoneArea_1099_Type_0
+          y_FeatureZoneArea_1100_FeatureZoneArea_1100_Type_0
           {$$ = new FeatureZoneAreaIrregularType($3, $4, $5, $6);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -44382,7 +44494,7 @@ y_FeatureZoneAreaRectangularType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_Label_XmlToken_0
           y_SurfaceFeatureNominalId_QIFReferenceFullType_0
-          y_FeatureZoneArea_1099_FeatureZoneArea_1099_Type_0
+          y_FeatureZoneArea_1100_FeatureZoneArea_1100_Type_0
           y_Rectangle_RectangleType
           {$$ = new FeatureZoneAreaRectangularType($3, $4, $5, $6, $7);
            yyUnrefMap[$$] = $$;
@@ -44413,7 +44525,7 @@ y_FeatureZoneAreaSphericalType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_Label_XmlToken_0
           y_SurfaceFeatureNominalId_QIFReferenceFullType_0
-          y_FeatureZoneArea_1099_FeatureZoneArea_1099_Type_0
+          y_FeatureZoneArea_1100_FeatureZoneArea_1100_Type_0
           y_Sphere_SphereType
           {$$ = new FeatureZoneAreaSphericalType($3, $4, $5, $6, $7);
            yyUnrefMap[$$] = $$;
@@ -44440,40 +44552,10 @@ y_FeatureZoneAreaSpherical_FeatureZoneAreaSphericalType :
           }
         ;
 
-y_FeatureZoneArea_1099_FeatureZoneArea_1099_Type_0 :
+y_FeatureZoneArea_1100_FeatureZoneArea_1100_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_FeatureZoneArea_1099_Type
-          {$$ = $1;}
-        ;
-
-y_FeatureZoneArea_1099_Type :
-          y_FeatureZoneArea_1099_TypeChoicePair
-          {$$ = new FeatureZoneArea_1099_Type($1);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_FeatureZoneArea_1099_TypeChoicePair :
-          y_EdgeIds_ArrayReferenceFullType
-          {$$ = new FeatureZoneArea_1099_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->FeatureZoneArea_1099_TypeType = FeatureZoneArea_1099_TypeChoicePair::EdgeIdsE;
-           $$->FeatureZoneArea_1099_TypeValue.EdgeIds = $1;
-          }
-        | y_FaceIds_ArrayReferenceFullType
-          {$$ = new FeatureZoneArea_1099_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->FeatureZoneArea_1099_TypeType = FeatureZoneArea_1099_TypeChoicePair::FaceIdsE;
-           $$->FeatureZoneArea_1099_TypeValue.FaceIds = $1;
-          }
-        ;
-
-y_FeatureZoneArea_1100_FeatureZoneArea_1100_Type :
-          y_FeatureZoneArea_1100_Type
+        | y_FeatureZoneArea_1100_Type
           {$$ = $1;}
         ;
 
@@ -44486,19 +44568,19 @@ y_FeatureZoneArea_1100_Type :
         ;
 
 y_FeatureZoneArea_1100_TypeChoicePair :
-          y_FromCurveZoneId_QIFReferenceFullType
+          y_EdgeIds_ArrayReferenceFullType
           {$$ = new FeatureZoneArea_1100_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->FeatureZoneArea_1100_TypeType = FeatureZoneArea_1100_TypeChoicePair::FromCurveZoneIdE;
-           $$->FeatureZoneArea_1100_TypeValue.FromCurveZoneId = $1;
+           $$->FeatureZoneArea_1100_TypeType = FeatureZoneArea_1100_TypeChoicePair::EdgeIdsE;
+           $$->FeatureZoneArea_1100_TypeValue.EdgeIds = $1;
           }
-        | y_FromPointZoneId_QIFReferenceFullType
+        | y_FaceIds_ArrayReferenceFullType
           {$$ = new FeatureZoneArea_1100_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->FeatureZoneArea_1100_TypeType = FeatureZoneArea_1100_TypeChoicePair::FromPointZoneIdE;
-           $$->FeatureZoneArea_1100_TypeValue.FromPointZoneId = $1;
+           $$->FeatureZoneArea_1100_TypeType = FeatureZoneArea_1100_TypeChoicePair::FaceIdsE;
+           $$->FeatureZoneArea_1100_TypeValue.FaceIds = $1;
           }
         ;
 
@@ -44516,51 +44598,81 @@ y_FeatureZoneArea_1101_Type :
         ;
 
 y_FeatureZoneArea_1101_TypeChoicePair :
-          y_ToCurveZoneId_QIFReferenceFullType
+          y_FromCurveZoneId_QIFReferenceFullType
           {$$ = new FeatureZoneArea_1101_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->FeatureZoneArea_1101_TypeType = FeatureZoneArea_1101_TypeChoicePair::ToCurveZoneIdE;
-           $$->FeatureZoneArea_1101_TypeValue.ToCurveZoneId = $1;
+           $$->FeatureZoneArea_1101_TypeType = FeatureZoneArea_1101_TypeChoicePair::FromCurveZoneIdE;
+           $$->FeatureZoneArea_1101_TypeValue.FromCurveZoneId = $1;
           }
-        | y_ToPointZoneId_QIFReferenceFullType
+        | y_FromPointZoneId_QIFReferenceFullType
           {$$ = new FeatureZoneArea_1101_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->FeatureZoneArea_1101_TypeType = FeatureZoneArea_1101_TypeChoicePair::ToPointZoneIdE;
-           $$->FeatureZoneArea_1101_TypeValue.ToPointZoneId = $1;
+           $$->FeatureZoneArea_1101_TypeType = FeatureZoneArea_1101_TypeChoicePair::FromPointZoneIdE;
+           $$->FeatureZoneArea_1101_TypeValue.FromPointZoneId = $1;
           }
         ;
 
-y_FeatureZoneCurv_1102_FeatureZoneCurv_1102_Type_0 :
-          /* empty */
-          {$$ = 0;}
-        | y_FeatureZoneCurv_1102_Type
+y_FeatureZoneArea_1102_FeatureZoneArea_1102_Type :
+          y_FeatureZoneArea_1102_Type
           {$$ = $1;}
         ;
 
-y_FeatureZoneCurv_1102_Type :
-          y_FeatureZoneCurv_1102_TypeChoicePair
-          {$$ = new FeatureZoneCurv_1102_Type($1);
+y_FeatureZoneArea_1102_Type :
+          y_FeatureZoneArea_1102_TypeChoicePair
+          {$$ = new FeatureZoneArea_1102_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_FeatureZoneCurv_1102_TypeChoicePair :
-          y_CurveIds_ArrayReferenceFullType
-          {$$ = new FeatureZoneCurv_1102_TypeChoicePair();
+y_FeatureZoneArea_1102_TypeChoicePair :
+          y_ToCurveZoneId_QIFReferenceFullType
+          {$$ = new FeatureZoneArea_1102_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->FeatureZoneCurv_1102_TypeType = FeatureZoneCurv_1102_TypeChoicePair::CurveIdsE;
-           $$->FeatureZoneCurv_1102_TypeValue.CurveIds = $1;
+           $$->FeatureZoneArea_1102_TypeType = FeatureZoneArea_1102_TypeChoicePair::ToCurveZoneIdE;
+           $$->FeatureZoneArea_1102_TypeValue.ToCurveZoneId = $1;
+          }
+        | y_ToPointZoneId_QIFReferenceFullType
+          {$$ = new FeatureZoneArea_1102_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->FeatureZoneArea_1102_TypeType = FeatureZoneArea_1102_TypeChoicePair::ToPointZoneIdE;
+           $$->FeatureZoneArea_1102_TypeValue.ToPointZoneId = $1;
+          }
+        ;
+
+y_FeatureZoneCurv_1103_FeatureZoneCurv_1103_Type_0 :
+          /* empty */
+          {$$ = 0;}
+        | y_FeatureZoneCurv_1103_Type
+          {$$ = $1;}
+        ;
+
+y_FeatureZoneCurv_1103_Type :
+          y_FeatureZoneCurv_1103_TypeChoicePair
+          {$$ = new FeatureZoneCurv_1103_Type($1);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+          }
+        ;
+
+y_FeatureZoneCurv_1103_TypeChoicePair :
+          y_CurveIds_ArrayReferenceFullType
+          {$$ = new FeatureZoneCurv_1103_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->FeatureZoneCurv_1103_TypeType = FeatureZoneCurv_1103_TypeChoicePair::CurveIdsE;
+           $$->FeatureZoneCurv_1103_TypeValue.CurveIds = $1;
           }
         | y_EdgeIds_ArrayReferenceFullType
-          {$$ = new FeatureZoneCurv_1102_TypeChoicePair();
+          {$$ = new FeatureZoneCurv_1103_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->FeatureZoneCurv_1102_TypeType = FeatureZoneCurv_1102_TypeChoicePair::EdgeIdsE;
-           $$->FeatureZoneCurv_1102_TypeValue.EdgeIds = $1;
+           $$->FeatureZoneCurv_1103_TypeType = FeatureZoneCurv_1103_TypeChoicePair::EdgeIdsE;
+           $$->FeatureZoneCurv_1103_TypeValue.EdgeIds = $1;
           }
         ;
 
@@ -44568,7 +44680,7 @@ y_FeatureZoneCurveCircularType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_Label_XmlToken_0
           y_SurfaceFeatureNominalId_QIFReferenceFullType_0
-          y_FeatureZoneCurv_1102_FeatureZoneCurv_1102_Type_0
+          y_FeatureZoneCurv_1103_FeatureZoneCurv_1103_Type_0
           y_Circle_CircleType
           {$$ = new FeatureZoneCurveCircularType($3, $4, $5, $6, $7);
            yyUnrefMap[$$] = $$;
@@ -44599,7 +44711,7 @@ y_FeatureZoneCurveIrregularType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_Label_XmlToken_0
           y_SurfaceFeatureNominalId_QIFReferenceFullType_0
-          y_FeatureZoneCurv_1102_FeatureZoneCurv_1102_Type_0
+          y_FeatureZoneCurv_1103_FeatureZoneCurv_1103_Type_0
           y_CurvePoints_PolyLineType
           {$$ = new FeatureZoneCurveIrregularType($3, $4, $5, $6, $7);
            yyUnrefMap[$$] = $$;
@@ -44630,7 +44742,7 @@ y_FeatureZoneCurveLineType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_Label_XmlToken_0
           y_SurfaceFeatureNominalId_QIFReferenceFullType_0
-          y_FeatureZoneCurv_1102_FeatureZoneCurv_1102_Type_0
+          y_FeatureZoneCurv_1103_FeatureZoneCurv_1103_Type_0
           y_Line_LineSegmentType
           {$$ = new FeatureZoneCurveLineType($3, $4, $5, $6, $7);
            yyUnrefMap[$$] = $$;
@@ -44686,35 +44798,35 @@ y_FeatureZoneListType :
           }
         ;
 
-y_FeatureZonePoin_1103_FeatureZonePoin_1103_Type_0 :
+y_FeatureZonePoin_1104_FeatureZonePoin_1104_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_FeatureZonePoin_1103_Type
+        | y_FeatureZonePoin_1104_Type
           {$$ = $1;}
         ;
 
-y_FeatureZonePoin_1103_Type :
-          y_FeatureZonePoin_1103_TypeChoicePair
-          {$$ = new FeatureZonePoin_1103_Type($1);
+y_FeatureZonePoin_1104_Type :
+          y_FeatureZonePoin_1104_TypeChoicePair
+          {$$ = new FeatureZonePoin_1104_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_FeatureZonePoin_1103_TypeChoicePair :
+y_FeatureZonePoin_1104_TypeChoicePair :
           y_PointId_QIFReferenceFullType
-          {$$ = new FeatureZonePoin_1103_TypeChoicePair();
+          {$$ = new FeatureZonePoin_1104_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->FeatureZonePoin_1103_TypeType = FeatureZonePoin_1103_TypeChoicePair::PointIdE;
-           $$->FeatureZonePoin_1103_TypeValue.PointId = $1;
+           $$->FeatureZonePoin_1104_TypeType = FeatureZonePoin_1104_TypeChoicePair::PointIdE;
+           $$->FeatureZonePoin_1104_TypeValue.PointId = $1;
           }
         | y_VertexId_QIFReferenceFullType
-          {$$ = new FeatureZonePoin_1103_TypeChoicePair();
+          {$$ = new FeatureZonePoin_1104_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->FeatureZonePoin_1103_TypeType = FeatureZonePoin_1103_TypeChoicePair::VertexIdE;
-           $$->FeatureZonePoin_1103_TypeValue.VertexId = $1;
+           $$->FeatureZonePoin_1104_TypeType = FeatureZonePoin_1104_TypeChoicePair::VertexIdE;
+           $$->FeatureZonePoin_1104_TypeValue.VertexId = $1;
           }
         ;
 
@@ -44722,7 +44834,7 @@ y_FeatureZonePointType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_Label_XmlToken_0
           y_SurfaceFeatureNominalId_QIFReferenceFullType_0
-          y_FeatureZonePoin_1103_FeatureZonePoin_1103_Type_0
+          y_FeatureZonePoin_1104_FeatureZonePoin_1104_Type_0
           y_Point_PointType
           {$$ = new FeatureZonePointType($3, $4, $5, $6, $7);
            yyUnrefMap[$$] = $$;
@@ -44968,49 +45080,49 @@ y_Finishing_WeldFinishingType_0 :
           {$$ = $2;}
         ;
 
-y_FirstArticleStu_1200_FirstArticleStu_1200_Type :
-          y_FirstArticleStu_1200_Type
+y_FirstArticleStu_1201_FirstArticleStu_1201_Type :
+          y_FirstArticleStu_1201_Type
           {$$ = $1;}
         ;
 
-y_FirstArticleStu_1200_Type :
-          y_FirstArticleStu_1200_TypeChoicePair
-          {$$ = new FirstArticleStu_1200_Type($1);
+y_FirstArticleStu_1201_Type :
+          y_FirstArticleStu_1201_TypeChoicePair
+          {$$ = new FirstArticleStu_1201_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_FirstArticleStu_1200_TypeChoicePair :
+y_FirstArticleStu_1201_TypeChoicePair :
           y_AbsoluteMaximums_AbsoluteLimitsByUnitType
-          {$$ = new FirstArticleStu_1200_TypeChoicePair();
+          {$$ = new FirstArticleStu_1201_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->FirstArticleStu_1200_TypeType = FirstArticleStu_1200_TypeChoicePair::AbsoluteMaximumsE;
-           $$->FirstArticleStu_1200_TypeValue.AbsoluteMaximums = $1;
+           $$->FirstArticleStu_1201_TypeType = FirstArticleStu_1201_TypeChoicePair::AbsoluteMaximumsE;
+           $$->FirstArticleStu_1201_TypeValue.AbsoluteMaximums = $1;
           }
         | y_RelativeMaximum_XmlDecimal
-          {$$ = new FirstArticleStu_1200_TypeChoicePair();
+          {$$ = new FirstArticleStu_1201_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->FirstArticleStu_1200_TypeType = FirstArticleStu_1200_TypeChoicePair::RelativeMaximumE;
-           $$->FirstArticleStu_1200_TypeValue.RelativeMaximum = $1;
+           $$->FirstArticleStu_1201_TypeType = FirstArticleStu_1201_TypeChoicePair::RelativeMaximumE;
+           $$->FirstArticleStu_1201_TypeValue.RelativeMaximum = $1;
           }
         ;
 
 y_FirstArticleStudyPlanType :
           y_LiztAttributePair ENDITEM y_Version_VersionType_0
           y_Attributes_AttributesType_0
-          y_StatisticalStud_1207_StatisticalStud_1207_Type_0
           y_StatisticalStud_1208_StatisticalStud_1208_Type_0
+          y_StatisticalStud_1209_StatisticalStud_1209_Type_0
           y_LiztStatsValuesSummarys_SummaryStatsValuesListType_0_u
           y_PreInspectionTraceability_PreInspectionTraceabilityType_0
           y_Name_XmlToken_0 y_Description_XmlString_0
           y_PlanId_QIFReferenceType_0
-          y_StatisticalStud_1209_StatisticalStud_1209_Type_0
+          y_StatisticalStud_1210_StatisticalStud_1210_Type_0
           y_CorrectiveActionPlanId_QIFReferenceType_0
           y_InSpecRatio_XmlDecimal
-          y_FirstArticleStu_1200_FirstArticleStu_1200_Type
+          y_FirstArticleStu_1201_FirstArticleStu_1201_Type
           {$$ = new FirstArticleStudyPlanType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -45048,12 +45160,12 @@ y_FirstArticleStudyResultsType :
           y_LiztAttributePair ENDITEM
           y_ThisStatisticalStudyResultsInstanceQPId_QPIdType_0
           y_Attributes_AttributesType_0 y_Status_StatsEvalStatusType
-          y_StatisticalStud_1210_StatisticalStud_1210_Type_0
+          y_StatisticalStud_1211_StatisticalStud_1211_Type_0
           y_StudyIssues_StudyIssuesType_0
           y_InspectionTraceability_InspectionTraceabilityType_0
           y_Name_XmlToken_0 y_Description_XmlString_0
           y_StudyId_QIFReferenceType_0
-          y_StatisticalStud_1211_StatisticalStud_1211_Type_0
+          y_StatisticalStud_1212_StatisticalStud_1212_Type_0
           y_AverageFeatures_AverageFeaturesType_0
           y_CharacteristicsStats_CharacteristicsStatsType_0
           y_LinearStatsSummaries_SummariesStatisticsLinearType_0
@@ -45147,7 +45259,14 @@ y_FirstLegLength_FractionType :
         ;
 
 y_FirstLineOrigin_Point2dSimpleType :
-          FirstLineOriginSTART y_Point2dSimpleType FirstLineOriginEND
+          FirstLineOriginSTART ENDWHOLEITEM
+          {$$ = new Point2dSimpleType();
+           $$->Point2dSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad Point2dSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | FirstLineOriginSTART y_Point2dSimpleType FirstLineOriginEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
            if ($2->bad)
@@ -45174,7 +45293,7 @@ y_FixtureType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0
           {$$ = new FixtureType($3, $4, $5, $6, $7, $8, $9, $10, $11);
            yyUnrefMap[$$] = $$;
@@ -45238,7 +45357,7 @@ y_FlatTaperCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_LinearCharacter_1058_LinearCharacter_1058_Type
+          y_LinearCharacter_1059_LinearCharacter_1059_Type
           {$$ = new FlatTaperCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -45419,11 +45538,11 @@ y_FlatTaperCharacteristicNominal_FlatTaperCharacteristicNominalType :
 
 y_FlatTaperCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_LinearCharacter_1134_LinearCharacter_1134_Type
+          y_LinearCharacter_1135_LinearCharacter_1135_Type
           {$$ = new FlatTaperCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -45445,50 +45564,33 @@ y_FlatTaperCharacteristicStats_FlatTaperCharacteristicStatsEvalType :
           }
         ;
 
-y_FlatnessCharact_1055_FlatnessCharact_1055_Type :
-          y_FlatnessCharact_1055_Type
+y_FlatnessCharact_1056_FlatnessCharact_1056_Type :
+          y_FlatnessCharact_1056_Type
           {$$ = $1;}
         ;
 
-y_FlatnessCharact_1055_Type :
-          y_FlatnessCharact_1055_TypeChoicePair
-          {$$ = new FlatnessCharact_1055_Type($1);
+y_FlatnessCharact_1056_Type :
+          y_FlatnessCharact_1056_TypeChoicePair
+          {$$ = new FlatnessCharact_1056_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_FlatnessCharact_1055_TypeChoicePair :
-          y_FlatnessCharact_1085_FlatnessCharact_1085_Type
-          {$$ = new FlatnessCharact_1055_TypeChoicePair();
+y_FlatnessCharact_1056_TypeChoicePair :
+          y_FlatnessCharact_1086_FlatnessCharact_1086_Type
+          {$$ = new FlatnessCharact_1056_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->FlatnessCharact_1055_TypeType = FlatnessCharact_1055_TypeChoicePair::FlatnessCharact_1085E;
-           $$->FlatnessCharact_1055_TypeValue.FlatnessCharact_1085 = $1;
+           $$->FlatnessCharact_1056_TypeType = FlatnessCharact_1056_TypeChoicePair::FlatnessCharact_1086E;
+           $$->FlatnessCharact_1056_TypeValue.FlatnessCharact_1086 = $1;
           }
-        | y_FlatnessCharact_1086_FlatnessCharact_1086_Type
-          {$$ = new FlatnessCharact_1055_TypeChoicePair();
+        | y_FlatnessCharact_1087_FlatnessCharact_1087_Type
+          {$$ = new FlatnessCharact_1056_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->FlatnessCharact_1055_TypeType = FlatnessCharact_1055_TypeChoicePair::FlatnessCharact_1086E;
-           $$->FlatnessCharact_1055_TypeValue.FlatnessCharact_1086 = $1;
-          }
-        ;
-
-y_FlatnessCharact_1085_FlatnessCharact_1085_Type :
-          y_FlatnessCharact_1085_Type
-          {$$ = $1;}
-        ;
-
-y_FlatnessCharact_1085_Type :
-          y_ToleranceValue_LinearValueType
-          y_ToleranceDualValue_LinearDualValueType_0
-          y_ToleranceZonePerUnitArea_ToleranceZonePerUnitAreaType_0
-          {$$ = new FlatnessCharact_1085_Type($1, $2, $3);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
+           $$->FlatnessCharact_1056_TypeType = FlatnessCharact_1056_TypeChoicePair::FlatnessCharact_1087E;
+           $$->FlatnessCharact_1056_TypeValue.FlatnessCharact_1087 = $1;
           }
         ;
 
@@ -45498,8 +45600,25 @@ y_FlatnessCharact_1086_FlatnessCharact_1086_Type :
         ;
 
 y_FlatnessCharact_1086_Type :
+          y_ToleranceValue_LinearValueType
+          y_ToleranceDualValue_LinearDualValueType_0
+          y_ToleranceZonePerUnitArea_ToleranceZonePerUnitAreaType_0
+          {$$ = new FlatnessCharact_1086_Type($1, $2, $3);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
+          }
+        ;
+
+y_FlatnessCharact_1087_FlatnessCharact_1087_Type :
+          y_FlatnessCharact_1087_Type
+          {$$ = $1;}
+        ;
+
+y_FlatnessCharact_1087_Type :
           y_ToleranceZonePerUnitArea_ToleranceZonePerUnitAreaType
-          {$$ = new FlatnessCharact_1086_Type($1);
+          {$$ = new FlatnessCharact_1087_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
@@ -45515,12 +45634,12 @@ y_FlatnessCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
           y_OrientationPlane_OrientationPlaneType_0
-          y_FlatnessCharact_1055_FlatnessCharact_1055_Type
+          y_FlatnessCharact_1056_FlatnessCharact_1056_Type
           y_MaterialCondition_MaterialModifierEnumType_0
           y_SizeCharacteristicDefinitionId_QIFReferenceType_0
           y_MaximumToleranceValue_LinearValueType_0
@@ -45710,8 +45829,8 @@ y_FlatnessCharacteristicNominal_FlatnessCharacteristicNominalType :
 
 y_FlatnessCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -45970,33 +46089,33 @@ y_ForceAbsoluteLinearity_MeasuredForceValueType :
           {$$ = $2;}
         ;
 
-y_ForceCharacteri_1056_ForceCharacteri_1056_Type :
-          y_ForceCharacteri_1056_Type
+y_ForceCharacteri_1057_ForceCharacteri_1057_Type :
+          y_ForceCharacteri_1057_Type
           {$$ = $1;}
         ;
 
-y_ForceCharacteri_1056_Type :
-          y_ForceCharacteri_1056_TypeChoicePair
-          {$$ = new ForceCharacteri_1056_Type($1);
+y_ForceCharacteri_1057_Type :
+          y_ForceCharacteri_1057_TypeChoicePair
+          {$$ = new ForceCharacteri_1057_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_ForceCharacteri_1056_TypeChoicePair :
+y_ForceCharacteri_1057_TypeChoicePair :
           y_NonTolerance_NonToleranceEnumType
-          {$$ = new ForceCharacteri_1056_TypeChoicePair();
+          {$$ = new ForceCharacteri_1057_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ForceCharacteri_1056_TypeType = ForceCharacteri_1056_TypeChoicePair::NonToleranceE;
-           $$->ForceCharacteri_1056_TypeValue.NonTolerance = $1;
+           $$->ForceCharacteri_1057_TypeType = ForceCharacteri_1057_TypeChoicePair::NonToleranceE;
+           $$->ForceCharacteri_1057_TypeValue.NonTolerance = $1;
           }
         | y_Tolerance_ForceToleranceType
-          {$$ = new ForceCharacteri_1056_TypeChoicePair();
+          {$$ = new ForceCharacteri_1057_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ForceCharacteri_1056_TypeType = ForceCharacteri_1056_TypeChoicePair::ToleranceE;
-           $$->ForceCharacteri_1056_TypeValue.Tolerance = $1;
+           $$->ForceCharacteri_1057_TypeType = ForceCharacteri_1057_TypeChoicePair::ToleranceE;
+           $$->ForceCharacteri_1057_TypeValue.Tolerance = $1;
           }
         ;
 
@@ -46040,44 +46159,44 @@ y_ForceStatsSummary_SummaryStatisticsForceType :
           }
         ;
 
-y_ForceToleranceT_1015_ForceToleranceT_1015_Type :
-          y_ForceToleranceT_1015_Type
+y_ForceToleranceT_1016_ForceToleranceT_1016_Type :
+          y_ForceToleranceT_1016_Type
           {$$ = $1;}
         ;
 
-y_ForceToleranceT_1015_Type :
-          y_ForceToleranceT_1015_TypeChoicePair
-          {$$ = new ForceToleranceT_1015_Type($1);
+y_ForceToleranceT_1016_Type :
+          y_ForceToleranceT_1016_TypeChoicePair
+          {$$ = new ForceToleranceT_1016_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_ForceToleranceT_1015_TypeChoicePair :
-          y_ForceToleranceT_1032_ForceToleranceT_1032_Type
-          {$$ = new ForceToleranceT_1015_TypeChoicePair();
+y_ForceToleranceT_1016_TypeChoicePair :
+          y_ForceToleranceT_1033_ForceToleranceT_1033_Type
+          {$$ = new ForceToleranceT_1016_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ForceToleranceT_1015_TypeType = ForceToleranceT_1015_TypeChoicePair::ForceToleranceT_1032E;
-           $$->ForceToleranceT_1015_TypeValue.ForceToleranceT_1032 = $1;
+           $$->ForceToleranceT_1016_TypeType = ForceToleranceT_1016_TypeChoicePair::ForceToleranceT_1033E;
+           $$->ForceToleranceT_1016_TypeValue.ForceToleranceT_1033 = $1;
           }
         | y_MinValue_ForceValueType
-          {$$ = new ForceToleranceT_1015_TypeChoicePair();
+          {$$ = new ForceToleranceT_1016_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ForceToleranceT_1015_TypeType = ForceToleranceT_1015_TypeChoicePair::MinValueE;
-           $$->ForceToleranceT_1015_TypeValue.MinValue = $1;
+           $$->ForceToleranceT_1016_TypeType = ForceToleranceT_1016_TypeChoicePair::MinValueE;
+           $$->ForceToleranceT_1016_TypeValue.MinValue = $1;
           }
         ;
 
-y_ForceToleranceT_1032_ForceToleranceT_1032_Type :
-          y_ForceToleranceT_1032_Type
+y_ForceToleranceT_1033_ForceToleranceT_1033_Type :
+          y_ForceToleranceT_1033_Type
           {$$ = $1;}
         ;
 
-y_ForceToleranceT_1032_Type :
+y_ForceToleranceT_1033_Type :
           y_MaxValue_ForceValueType y_MinValue_ForceValueType_0
-          {$$ = new ForceToleranceT_1032_Type($1, $2);
+          {$$ = new ForceToleranceT_1033_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
@@ -46085,7 +46204,7 @@ y_ForceToleranceT_1032_Type :
         ;
 
 y_ForceToleranceType :
-          ENDITEM y_ForceToleranceT_1015_ForceToleranceT_1015_Type
+          ENDITEM y_ForceToleranceT_1016_ForceToleranceT_1016_Type
           y_DefinedAsLimit_XmlBoolean y_Attributes_AttributesType_0
           {$$ = new ForceToleranceType($2, $3, $4);
            yyUnrefMap[$$] = $$;
@@ -46123,11 +46242,15 @@ y_ForceValueType :
           {$$ = new ForceValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad ForceValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new ForceValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad ForceValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -46760,7 +46883,7 @@ y_GageDeviceType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_MinMeasuringDistance_LinearValueType_0
@@ -46847,38 +46970,6 @@ y_GageRandRStudyEnumType :
           }
         ;
 
-y_GageRandRStudyP_1201_GageRandRStudyP_1201_Type_0 :
-          /* empty */
-          {$$ = 0;}
-        | y_GageRandRStudyP_1201_Type
-          {$$ = $1;}
-        ;
-
-y_GageRandRStudyP_1201_Type :
-          y_GageRandRStudyP_1201_TypeChoicePair
-          {$$ = new GageRandRStudyP_1201_Type($1);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_GageRandRStudyP_1201_TypeChoicePair :
-          y_MaximumAbsoluteAppraiserVariation_CriteriaByUnitType
-          {$$ = new GageRandRStudyP_1201_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->GageRandRStudyP_1201_TypeType = GageRandRStudyP_1201_TypeChoicePair::MaximumAbsoluteAppraiserVariationE;
-           $$->GageRandRStudyP_1201_TypeValue.MaximumAbsoluteAppraiserVariation = $1;
-          }
-        | y_MaximumRelativeAppraiserVariation_CriterionDecimalType
-          {$$ = new GageRandRStudyP_1201_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->GageRandRStudyP_1201_TypeType = GageRandRStudyP_1201_TypeChoicePair::MaximumRelativeAppraiserVariationE;
-           $$->GageRandRStudyP_1201_TypeValue.MaximumRelativeAppraiserVariation = $1;
-          }
-        ;
-
 y_GageRandRStudyP_1202_GageRandRStudyP_1202_Type_0 :
           /* empty */
           {$$ = 0;}
@@ -46895,19 +46986,19 @@ y_GageRandRStudyP_1202_Type :
         ;
 
 y_GageRandRStudyP_1202_TypeChoicePair :
-          y_MaximumAbsoluteEquipmentVariation_CriteriaByUnitType
+          y_MaximumAbsoluteAppraiserVariation_CriteriaByUnitType
           {$$ = new GageRandRStudyP_1202_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->GageRandRStudyP_1202_TypeType = GageRandRStudyP_1202_TypeChoicePair::MaximumAbsoluteEquipmentVariationE;
-           $$->GageRandRStudyP_1202_TypeValue.MaximumAbsoluteEquipmentVariation = $1;
+           $$->GageRandRStudyP_1202_TypeType = GageRandRStudyP_1202_TypeChoicePair::MaximumAbsoluteAppraiserVariationE;
+           $$->GageRandRStudyP_1202_TypeValue.MaximumAbsoluteAppraiserVariation = $1;
           }
-        | y_MaximumRelativeEquipmentVariation_CriterionDecimalType
+        | y_MaximumRelativeAppraiserVariation_CriterionDecimalType
           {$$ = new GageRandRStudyP_1202_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->GageRandRStudyP_1202_TypeType = GageRandRStudyP_1202_TypeChoicePair::MaximumRelativeEquipmentVariationE;
-           $$->GageRandRStudyP_1202_TypeValue.MaximumRelativeEquipmentVariation = $1;
+           $$->GageRandRStudyP_1202_TypeType = GageRandRStudyP_1202_TypeChoicePair::MaximumRelativeAppraiserVariationE;
+           $$->GageRandRStudyP_1202_TypeValue.MaximumRelativeAppraiserVariation = $1;
           }
         ;
 
@@ -46927,41 +47018,73 @@ y_GageRandRStudyP_1203_Type :
         ;
 
 y_GageRandRStudyP_1203_TypeChoicePair :
-          y_MaximumAbsoluteTotalRandR_CriteriaByUnitType
+          y_MaximumAbsoluteEquipmentVariation_CriteriaByUnitType
           {$$ = new GageRandRStudyP_1203_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->GageRandRStudyP_1203_TypeType = GageRandRStudyP_1203_TypeChoicePair::MaximumAbsoluteTotalRandRE;
-           $$->GageRandRStudyP_1203_TypeValue.MaximumAbsoluteTotalRandR = $1;
+           $$->GageRandRStudyP_1203_TypeType = GageRandRStudyP_1203_TypeChoicePair::MaximumAbsoluteEquipmentVariationE;
+           $$->GageRandRStudyP_1203_TypeValue.MaximumAbsoluteEquipmentVariation = $1;
+          }
+        | y_MaximumRelativeEquipmentVariation_CriterionDecimalType
+          {$$ = new GageRandRStudyP_1203_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->GageRandRStudyP_1203_TypeType = GageRandRStudyP_1203_TypeChoicePair::MaximumRelativeEquipmentVariationE;
+           $$->GageRandRStudyP_1203_TypeValue.MaximumRelativeEquipmentVariation = $1;
+          }
+        ;
+
+y_GageRandRStudyP_1204_GageRandRStudyP_1204_Type_0 :
+          /* empty */
+          {$$ = 0;}
+        | y_GageRandRStudyP_1204_Type
+          {$$ = $1;}
+        ;
+
+y_GageRandRStudyP_1204_Type :
+          y_GageRandRStudyP_1204_TypeChoicePair
+          {$$ = new GageRandRStudyP_1204_Type($1);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+          }
+        ;
+
+y_GageRandRStudyP_1204_TypeChoicePair :
+          y_MaximumAbsoluteTotalRandR_CriteriaByUnitType
+          {$$ = new GageRandRStudyP_1204_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->GageRandRStudyP_1204_TypeType = GageRandRStudyP_1204_TypeChoicePair::MaximumAbsoluteTotalRandRE;
+           $$->GageRandRStudyP_1204_TypeValue.MaximumAbsoluteTotalRandR = $1;
           }
         | y_MaximumRelativeTotalRandR_CriterionDecimalType
-          {$$ = new GageRandRStudyP_1203_TypeChoicePair();
+          {$$ = new GageRandRStudyP_1204_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->GageRandRStudyP_1203_TypeType = GageRandRStudyP_1203_TypeChoicePair::MaximumRelativeTotalRandRE;
-           $$->GageRandRStudyP_1203_TypeValue.MaximumRelativeTotalRandR = $1;
+           $$->GageRandRStudyP_1204_TypeType = GageRandRStudyP_1204_TypeChoicePair::MaximumRelativeTotalRandRE;
+           $$->GageRandRStudyP_1204_TypeValue.MaximumRelativeTotalRandR = $1;
           }
         ;
 
 y_GageRandRStudyPlanType :
           y_LiztAttributePair ENDITEM y_Version_VersionType_0
           y_Attributes_AttributesType_0
-          y_StatisticalStud_1207_StatisticalStud_1207_Type_0
           y_StatisticalStud_1208_StatisticalStud_1208_Type_0
+          y_StatisticalStud_1209_StatisticalStud_1209_Type_0
           y_LiztStatsValuesSummarys_SummaryStatsValuesListType_0_u
           y_PreInspectionTraceability_PreInspectionTraceabilityType_0
           y_Name_XmlToken_0 y_Description_XmlString_0
           y_PlanId_QIFReferenceType_0
-          y_StatisticalStud_1209_StatisticalStud_1209_Type_0
+          y_StatisticalStud_1210_StatisticalStud_1210_Type_0
           y_CorrectiveActionPlanId_QIFReferenceType_0
           y_MeasurementDeviceIds_ArrayReferenceType_0
           y_RandRStudyType_GageRandRStudyEnumType
           y_NumberOfAppraisers_XmlPositiveInteger
           y_NumberOfParts_XmlPositiveInteger
           y_NumberOfTrials_XmlPositiveInteger
-          y_GageRandRStudyP_1201_GageRandRStudyP_1201_Type_0
           y_GageRandRStudyP_1202_GageRandRStudyP_1202_Type_0
           y_GageRandRStudyP_1203_GageRandRStudyP_1203_Type_0
+          y_GageRandRStudyP_1204_GageRandRStudyP_1204_Type_0
           {$$ = new GageRandRStudyPlanType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -47005,12 +47128,12 @@ y_GageRandRStudyResultsType :
           y_LiztAttributePair ENDITEM
           y_ThisStatisticalStudyResultsInstanceQPId_QPIdType_0
           y_Attributes_AttributesType_0 y_Status_StatsEvalStatusType
-          y_StatisticalStud_1210_StatisticalStud_1210_Type_0
+          y_StatisticalStud_1211_StatisticalStud_1211_Type_0
           y_StudyIssues_StudyIssuesType_0
           y_InspectionTraceability_InspectionTraceabilityType_0
           y_Name_XmlToken_0 y_Description_XmlString_0
           y_StudyId_QIFReferenceType_0
-          y_StatisticalStud_1211_StatisticalStud_1211_Type_0
+          y_StatisticalStud_1212_StatisticalStud_1212_Type_0
           y_AverageFeatures_AverageFeaturesType_0
           y_CharacteristicsStats_CharacteristicsStatsType_0
           y_LinearStatsSummaries_SummariesStatisticsLinearType_0
@@ -47087,35 +47210,35 @@ y_Generatrix_Curve13CoreType :
           {$$ = $2;}
         ;
 
-y_GeometricCharac_1057_GeometricCharac_1057_Type_0 :
+y_GeometricCharac_1058_GeometricCharac_1058_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_GeometricCharac_1057_Type
+        | y_GeometricCharac_1058_Type
           {$$ = $1;}
         ;
 
-y_GeometricCharac_1057_Type :
-          y_GeometricCharac_1057_TypeChoicePair
-          {$$ = new GeometricCharac_1057_Type($1);
+y_GeometricCharac_1058_Type :
+          y_GeometricCharac_1058_TypeChoicePair
+          {$$ = new GeometricCharac_1058_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_GeometricCharac_1057_TypeChoicePair :
+y_GeometricCharac_1058_TypeChoicePair :
           y_AssociatedTolerancedFeatureSpecificationElement_AssociatedTolerancedFeatureSpecificationElementEnumType
-          {$$ = new GeometricCharac_1057_TypeChoicePair();
+          {$$ = new GeometricCharac_1058_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->GeometricCharac_1057_TypeType = GeometricCharac_1057_TypeChoicePair::AssociatedTolerancedFeatureSpecificationElementE;
-           $$->GeometricCharac_1057_TypeValue.AssociatedTolerancedFeatureSpecificationElement = $1;
+           $$->GeometricCharac_1058_TypeType = GeometricCharac_1058_TypeChoicePair::AssociatedTolerancedFeatureSpecificationElementE;
+           $$->GeometricCharac_1058_TypeValue.AssociatedTolerancedFeatureSpecificationElement = $1;
           }
         | y_ReferenceFeatureAssociationSpecificationElement_ReferenceFeatureAssociationSpecificationElementType
-          {$$ = new GeometricCharac_1057_TypeChoicePair();
+          {$$ = new GeometricCharac_1058_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->GeometricCharac_1057_TypeType = GeometricCharac_1057_TypeChoicePair::ReferenceFeatureAssociationSpecificationElementE;
-           $$->GeometricCharac_1057_TypeValue.ReferenceFeatureAssociationSpecificationElement = $1;
+           $$->GeometricCharac_1058_TypeType = GeometricCharac_1058_TypeChoicePair::ReferenceFeatureAssociationSpecificationElementE;
+           $$->GeometricCharac_1058_TypeValue.ReferenceFeatureAssociationSpecificationElement = $1;
           }
         ;
 
@@ -47127,8 +47250,8 @@ y_GeometricCharacteristicIds_ArrayReferenceFullType :
 
 y_GeometricCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -47282,49 +47405,49 @@ y_Groove_FractionType_0 :
           {$$ = $2;}
         ;
 
-y_GroupFeatureDef_1104_GroupFeatureDef_1104_Type_0 :
+y_GroupFeatureDef_1105_GroupFeatureDef_1105_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_GroupFeatureDef_1104_Type
+        | y_GroupFeatureDef_1105_Type
           {$$ = $1;}
         ;
 
-y_GroupFeatureDef_1104_Type :
-          y_GroupFeatureDef_1104_TypeChoicePair
-          {$$ = new GroupFeatureDef_1104_Type($1);
+y_GroupFeatureDef_1105_Type :
+          y_GroupFeatureDef_1105_TypeChoicePair
+          {$$ = new GroupFeatureDef_1105_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_GroupFeatureDef_1104_TypeChoicePair :
+y_GroupFeatureDef_1105_TypeChoicePair :
           y_IsCounterboredHole_XmlBoolean
-          {$$ = new GroupFeatureDef_1104_TypeChoicePair();
+          {$$ = new GroupFeatureDef_1105_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->GroupFeatureDef_1104_TypeType = GroupFeatureDef_1104_TypeChoicePair::IsCounterboredHoleE;
-           $$->GroupFeatureDef_1104_TypeValue.IsCounterboredHole = $1;
+           $$->GroupFeatureDef_1105_TypeType = GroupFeatureDef_1105_TypeChoicePair::IsCounterboredHoleE;
+           $$->GroupFeatureDef_1105_TypeValue.IsCounterboredHole = $1;
           }
         | y_IsCountersunkHole_XmlBoolean
-          {$$ = new GroupFeatureDef_1104_TypeChoicePair();
+          {$$ = new GroupFeatureDef_1105_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->GroupFeatureDef_1104_TypeType = GroupFeatureDef_1104_TypeChoicePair::IsCountersunkHoleE;
-           $$->GroupFeatureDef_1104_TypeValue.IsCountersunkHole = $1;
+           $$->GroupFeatureDef_1105_TypeType = GroupFeatureDef_1105_TypeChoicePair::IsCountersunkHoleE;
+           $$->GroupFeatureDef_1105_TypeValue.IsCountersunkHole = $1;
           }
         | y_IsSpotface_XmlBoolean
-          {$$ = new GroupFeatureDef_1104_TypeChoicePair();
+          {$$ = new GroupFeatureDef_1105_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->GroupFeatureDef_1104_TypeType = GroupFeatureDef_1104_TypeChoicePair::IsSpotfaceE;
-           $$->GroupFeatureDef_1104_TypeValue.IsSpotface = $1;
+           $$->GroupFeatureDef_1105_TypeType = GroupFeatureDef_1105_TypeChoicePair::IsSpotfaceE;
+           $$->GroupFeatureDef_1105_TypeValue.IsSpotface = $1;
           }
         ;
 
 y_GroupFeatureDefinitionType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_IsProfileGroup_XmlBoolean_0 y_IsRunoutGroup_XmlBoolean_0
-          y_GroupFeatureDef_1104_GroupFeatureDef_1104_Type_0
+          y_GroupFeatureDef_1105_GroupFeatureDef_1105_Type_0
           {$$ = new GroupFeatureDefinitionType($3, $4, $5, $6);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -47498,6 +47621,13 @@ y_GroupFeatureNominal_GroupFeatureNominalType :
 y_GroupID_I2Type_0 :
           /* empty */
           {$$ = 0;}
+        | GroupIDSTART ENDWHOLEITEM
+          {$$ = new I2Type();
+           $$->I2TypeCheck();
+           if ($$->bad)
+             return yyerror("bad I2Type value");
+           yyUnrefMap[$$] = $$;
+          }
         | GroupIDSTART y_I2Type GroupIDEND
           {$$ = $2;
            $2->I2TypeCheck();
@@ -47731,7 +47861,7 @@ y_HeightCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_LinearCharacter_1058_LinearCharacter_1058_Type
+          y_LinearCharacter_1059_LinearCharacter_1059_Type
           {$$ = new HeightCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -47907,11 +48037,11 @@ y_HeightCharacteristicNominal_HeightCharacteristicNominalType :
 
 y_HeightCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_LinearCharacter_1134_LinearCharacter_1134_Type
+          y_LinearCharacter_1135_LinearCharacter_1135_Type
           {$$ = new HeightCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -47992,45 +48122,45 @@ y_ISBN_XmlNMTOKEN_0 :
           {$$ = $4;}
         ;
 
-y_ISO10360TestTyp_1240_ISO10360TestTyp_1240_Type :
-          y_ISO10360TestTyp_1240_Type
+y_ISO10360TestTyp_1241_ISO10360TestTyp_1241_Type :
+          y_ISO10360TestTyp_1241_Type
           {$$ = $1;}
         ;
 
-y_ISO10360TestTyp_1240_Type :
-          y_ISO10360TestTyp_1240_TypeChoicePair
-          {$$ = new ISO10360TestTyp_1240_Type($1);
+y_ISO10360TestTyp_1241_Type :
+          y_ISO10360TestTyp_1241_TypeChoicePair
+          {$$ = new ISO10360TestTyp_1241_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_ISO10360TestTyp_1240_TypeChoicePair :
+y_ISO10360TestTyp_1241_TypeChoicePair :
           y_LesserError_LesserErrorType
-          {$$ = new ISO10360TestTyp_1240_TypeChoicePair();
+          {$$ = new ISO10360TestTyp_1241_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ISO10360TestTyp_1240_TypeType = ISO10360TestTyp_1240_TypeChoicePair::LesserErrorE;
-           $$->ISO10360TestTyp_1240_TypeValue.LesserError = $1;
+           $$->ISO10360TestTyp_1241_TypeType = ISO10360TestTyp_1241_TypeChoicePair::LesserErrorE;
+           $$->ISO10360TestTyp_1241_TypeValue.LesserError = $1;
           }
         | y_LinearError_LinearErrorType
-          {$$ = new ISO10360TestTyp_1240_TypeChoicePair();
+          {$$ = new ISO10360TestTyp_1241_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ISO10360TestTyp_1240_TypeType = ISO10360TestTyp_1240_TypeChoicePair::LinearErrorE;
-           $$->ISO10360TestTyp_1240_TypeValue.LinearError = $1;
+           $$->ISO10360TestTyp_1241_TypeType = ISO10360TestTyp_1241_TypeChoicePair::LinearErrorE;
+           $$->ISO10360TestTyp_1241_TypeValue.LinearError = $1;
           }
         | y_MaxErrorConstant_LinearValueType
-          {$$ = new ISO10360TestTyp_1240_TypeChoicePair();
+          {$$ = new ISO10360TestTyp_1241_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ISO10360TestTyp_1240_TypeType = ISO10360TestTyp_1240_TypeChoicePair::MaxErrorConstantE;
-           $$->ISO10360TestTyp_1240_TypeValue.MaxErrorConstant = $1;
+           $$->ISO10360TestTyp_1241_TypeType = ISO10360TestTyp_1241_TypeChoicePair::MaxErrorConstantE;
+           $$->ISO10360TestTyp_1241_TypeValue.MaxErrorConstant = $1;
           }
         ;
 
 y_ISO10360TestType :
-          ENDITEM y_ISO10360TestTyp_1240_ISO10360TestTyp_1240_Type
+          ENDITEM y_ISO10360TestTyp_1241_ISO10360TestTyp_1241_Type
           {$$ = new ISO10360TestType($2);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -50222,35 +50352,35 @@ y_InspectionStatus_InspectionStatusType :
           {$$ = $2;}
         ;
 
-y_InspectionTrace_1042_InspectionTrace_1042_Type_0 :
+y_InspectionTrace_1043_InspectionTrace_1043_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_InspectionTrace_1042_Type
+        | y_InspectionTrace_1043_Type
           {$$ = $1;}
         ;
 
-y_InspectionTrace_1042_Type :
-          y_InspectionTrace_1042_TypeChoicePair
-          {$$ = new InspectionTrace_1042_Type($1);
+y_InspectionTrace_1043_Type :
+          y_InspectionTrace_1043_TypeChoicePair
+          {$$ = new InspectionTrace_1043_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_InspectionTrace_1042_TypeChoicePair :
+y_InspectionTrace_1043_TypeChoicePair :
           y_ReferencedQIFPlanInstance_QPIdFullReferenceType
-          {$$ = new InspectionTrace_1042_TypeChoicePair();
+          {$$ = new InspectionTrace_1043_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->InspectionTrace_1042_TypeType = InspectionTrace_1042_TypeChoicePair::ReferencedQIFPlanInstanceE;
-           $$->InspectionTrace_1042_TypeValue.ReferencedQIFPlanInstance = $1;
+           $$->InspectionTrace_1043_TypeType = InspectionTrace_1043_TypeChoicePair::ReferencedQIFPlanInstanceE;
+           $$->InspectionTrace_1043_TypeValue.ReferencedQIFPlanInstance = $1;
           }
         | y_ReferencedQIFPlan_XmlNMTOKEN
-          {$$ = new InspectionTrace_1042_TypeChoicePair();
+          {$$ = new InspectionTrace_1043_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->InspectionTrace_1042_TypeType = InspectionTrace_1042_TypeChoicePair::ReferencedQIFPlanE;
-           $$->InspectionTrace_1042_TypeValue.ReferencedQIFPlan = $1;
+           $$->InspectionTrace_1043_TypeType = InspectionTrace_1043_TypeChoicePair::ReferencedQIFPlanE;
+           $$->InspectionTrace_1043_TypeValue.ReferencedQIFPlan = $1;
           }
         ;
 
@@ -50272,7 +50402,7 @@ y_InspectionTraceabilityType :
           y_ReportPreparationDate_XmlDateTime_0 y_ReportType_XmlToken_0
           y_SecurityClassification_SecurityClassificationType_0
           y_PlantLocation_LocationType_0
-          y_InspectionTrace_1042_InspectionTrace_1042_Type_0
+          y_InspectionTrace_1043_InspectionTrace_1043_Type_0
           y_Errors_ErrorsType_0 y_Attributes_AttributesType_0
           {$$ = new InspectionTraceabilityType($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25);
            yyUnrefMap[$$] = $$;
@@ -50673,7 +50803,7 @@ y_LaserRadarType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_Resolution_substituteType_0 y_WorkingVolume_substituteType_0
@@ -50813,7 +50943,7 @@ y_LaserTrackerType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_Resolution_substituteType_0 y_WorkingVolume_substituteType_0
@@ -50876,7 +51006,7 @@ y_LaserTriangulationSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_ProtectionClass_XmlString_0
           y_LinearityError_XmlString_0 y_Repeatability_LinearValueType_0
           y_Sensitivity_XmlDecimal_0 y_Resolution_LinearValueType_0
@@ -50942,7 +51072,7 @@ y_LaserType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_LaserSource_XmlString_0
           y_LaserWaveLength_LinearValueType_0
           y_LaserPower_UserDefinedUnitValueType_0
@@ -51258,11 +51388,15 @@ y_LeaderHeadFormType :
           {$$ = new LeaderHeadFormType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad LeaderHeadFormType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new LeaderHeadFormType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad LeaderHeadFormType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -51356,7 +51490,7 @@ y_LengthCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_LinearCharacter_1058_LinearCharacter_1058_Type
+          y_LinearCharacter_1059_LinearCharacter_1059_Type
           {$$ = new LengthCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -51532,11 +51666,11 @@ y_LengthCharacteristicNominal_LengthCharacteristicNominalType :
 
 y_LengthCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_LinearCharacter_1134_LinearCharacter_1134_Type
+          y_LinearCharacter_1135_LinearCharacter_1135_Type
           {$$ = new LengthCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -51720,7 +51854,7 @@ y_LightPenCMMType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_Resolution_substituteType_0 y_WorkingVolume_substituteType_0
@@ -51795,38 +51929,38 @@ y_Limit_XmlPositiveInteger :
           {$$ = $4;}
         ;
 
-y_LimitingNumberT_1133_LimitingNumberT_1133_Type :
-          y_LimitingNumberT_1133_Type
+y_LimitingNumberT_1134_LimitingNumberT_1134_Type :
+          y_LimitingNumberT_1134_Type
           {$$ = $1;}
         ;
 
-y_LimitingNumberT_1133_Type :
-          y_LimitingNumberT_1133_TypeChoicePair
-          {$$ = new LimitingNumberT_1133_Type($1);
+y_LimitingNumberT_1134_Type :
+          y_LimitingNumberT_1134_TypeChoicePair
+          {$$ = new LimitingNumberT_1134_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_LimitingNumberT_1133_TypeChoicePair :
+y_LimitingNumberT_1134_TypeChoicePair :
           y_Count_XmlNonNegativeInteger
-          {$$ = new LimitingNumberT_1133_TypeChoicePair();
+          {$$ = new LimitingNumberT_1134_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LimitingNumberT_1133_TypeType = LimitingNumberT_1133_TypeChoicePair::CountE;
-           $$->LimitingNumberT_1133_TypeValue.Count = $1;
+           $$->LimitingNumberT_1134_TypeType = LimitingNumberT_1134_TypeChoicePair::CountE;
+           $$->LimitingNumberT_1134_TypeValue.Count = $1;
           }
         | y_Fraction_XmlDecimal
-          {$$ = new LimitingNumberT_1133_TypeChoicePair();
+          {$$ = new LimitingNumberT_1134_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LimitingNumberT_1133_TypeType = LimitingNumberT_1133_TypeChoicePair::FractionE;
-           $$->LimitingNumberT_1133_TypeValue.Fraction = $1;
+           $$->LimitingNumberT_1134_TypeType = LimitingNumberT_1134_TypeChoicePair::FractionE;
+           $$->LimitingNumberT_1134_TypeValue.Fraction = $1;
           }
         ;
 
 y_LimitingNumberType :
-          ENDITEM y_LimitingNumberT_1133_LimitingNumberT_1133_Type
+          ENDITEM y_LimitingNumberT_1134_LimitingNumberT_1134_Type
           {$$ = new LimitingNumberType($2);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -52373,14 +52507,14 @@ y_LineProfileCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
           y_OrientationPlane_OrientationPlaneType_0
           y_ToleranceValue_LinearValueType
           y_ToleranceDualValue_LinearDualValueType_0
-          y_ProfileCharacte_1067_ProfileCharacte_1067_Type_0
+          y_ProfileCharacte_1068_ProfileCharacte_1068_Type_0
           y_OffsetZone_XmlBoolean_0 y_VariableAngle_XmlBoolean_0
           y_SecondCompositeSegmentProfileDefinition_CompositeSegmentProfileDefinitionType_0
           y_ThirdCompositeSegmentProfileDefinition_CompositeSegmentProfileDefinitionType_0
@@ -52593,8 +52727,8 @@ y_LineProfileCharacteristicNominal_LineProfileCharacteristicNominalType :
 
 y_LineProfileCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -52695,11 +52829,15 @@ y_LineStyleType :
           {$$ = new LineStyleType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad LineStyleType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new LineStyleType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad LineStyleType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -52768,108 +52906,91 @@ y_LinearAxis_LinearAxisType :
           }
         ;
 
-y_LinearCharacter_1058_LinearCharacter_1058_Type :
-          y_LinearCharacter_1058_Type
+y_LinearCharacter_1059_LinearCharacter_1059_Type :
+          y_LinearCharacter_1059_Type
           {$$ = $1;}
         ;
 
-y_LinearCharacter_1058_Type :
-          y_LinearCharacter_1058_TypeChoicePair
-          {$$ = new LinearCharacter_1058_Type($1);
+y_LinearCharacter_1059_Type :
+          y_LinearCharacter_1059_TypeChoicePair
+          {$$ = new LinearCharacter_1059_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_LinearCharacter_1058_TypeChoicePair :
+y_LinearCharacter_1059_TypeChoicePair :
           y_NonTolerance_NonToleranceEnumType
-          {$$ = new LinearCharacter_1058_TypeChoicePair();
+          {$$ = new LinearCharacter_1059_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearCharacter_1058_TypeType = LinearCharacter_1058_TypeChoicePair::NonToleranceE;
-           $$->LinearCharacter_1058_TypeValue.NonTolerance = $1;
+           $$->LinearCharacter_1059_TypeType = LinearCharacter_1059_TypeChoicePair::NonToleranceE;
+           $$->LinearCharacter_1059_TypeValue.NonTolerance = $1;
           }
         | y_Tolerance_LinearToleranceType
-          {$$ = new LinearCharacter_1058_TypeChoicePair();
+          {$$ = new LinearCharacter_1059_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearCharacter_1058_TypeType = LinearCharacter_1058_TypeChoicePair::ToleranceE;
-           $$->LinearCharacter_1058_TypeValue.Tolerance = $1;
+           $$->LinearCharacter_1059_TypeType = LinearCharacter_1059_TypeChoicePair::ToleranceE;
+           $$->LinearCharacter_1059_TypeValue.Tolerance = $1;
           }
         ;
 
-y_LinearCharacter_1134_LinearCharacter_1134_Type :
-          y_LinearCharacter_1134_Type
+y_LinearCharacter_1135_LinearCharacter_1135_Type :
+          y_LinearCharacter_1135_Type
           {$$ = $1;}
         ;
 
-y_LinearCharacter_1134_Type :
-          y_LinearCharacter_1134_TypeChoicePair
-          {$$ = new LinearCharacter_1134_Type($1);
+y_LinearCharacter_1135_Type :
+          y_LinearCharacter_1135_TypeChoicePair
+          {$$ = new LinearCharacter_1135_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_LinearCharacter_1134_TypeChoicePair :
-          y_LinearCharacter_1153_LinearCharacter_1153_Type
-          {$$ = new LinearCharacter_1134_TypeChoicePair();
+y_LinearCharacter_1135_TypeChoicePair :
+          y_LinearCharacter_1154_LinearCharacter_1154_Type
+          {$$ = new LinearCharacter_1135_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearCharacter_1134_TypeType = LinearCharacter_1134_TypeChoicePair::LinearCharacter_1153E;
-           $$->LinearCharacter_1134_TypeValue.LinearCharacter_1153 = $1;
-          }
-        | y_LinearCharacter_1154_LinearCharacter_1154_Type
-          {$$ = new LinearCharacter_1134_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->LinearCharacter_1134_TypeType = LinearCharacter_1134_TypeChoicePair::LinearCharacter_1154E;
-           $$->LinearCharacter_1134_TypeValue.LinearCharacter_1154 = $1;
+           $$->LinearCharacter_1135_TypeType = LinearCharacter_1135_TypeChoicePair::LinearCharacter_1154E;
+           $$->LinearCharacter_1135_TypeValue.LinearCharacter_1154 = $1;
           }
         | y_LinearCharacter_1155_LinearCharacter_1155_Type
-          {$$ = new LinearCharacter_1134_TypeChoicePair();
+          {$$ = new LinearCharacter_1135_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearCharacter_1134_TypeType = LinearCharacter_1134_TypeChoicePair::LinearCharacter_1155E;
-           $$->LinearCharacter_1134_TypeValue.LinearCharacter_1155 = $1;
+           $$->LinearCharacter_1135_TypeType = LinearCharacter_1135_TypeChoicePair::LinearCharacter_1155E;
+           $$->LinearCharacter_1135_TypeValue.LinearCharacter_1155 = $1;
           }
         | y_LinearCharacter_1156_LinearCharacter_1156_Type
-          {$$ = new LinearCharacter_1134_TypeChoicePair();
+          {$$ = new LinearCharacter_1135_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearCharacter_1134_TypeType = LinearCharacter_1134_TypeChoicePair::LinearCharacter_1156E;
-           $$->LinearCharacter_1134_TypeValue.LinearCharacter_1156 = $1;
+           $$->LinearCharacter_1135_TypeType = LinearCharacter_1135_TypeChoicePair::LinearCharacter_1156E;
+           $$->LinearCharacter_1135_TypeValue.LinearCharacter_1156 = $1;
+          }
+        | y_LinearCharacter_1157_LinearCharacter_1157_Type
+          {$$ = new LinearCharacter_1135_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->LinearCharacter_1135_TypeType = LinearCharacter_1135_TypeChoicePair::LinearCharacter_1157E;
+           $$->LinearCharacter_1135_TypeValue.LinearCharacter_1157 = $1;
           }
         | y_MinDeviationStats_StatsLinearType
-          {$$ = new LinearCharacter_1134_TypeChoicePair();
+          {$$ = new LinearCharacter_1135_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearCharacter_1134_TypeType = LinearCharacter_1134_TypeChoicePair::MinDeviationStatsE;
-           $$->LinearCharacter_1134_TypeValue.MinDeviationStats = $1;
+           $$->LinearCharacter_1135_TypeType = LinearCharacter_1135_TypeChoicePair::MinDeviationStatsE;
+           $$->LinearCharacter_1135_TypeValue.MinDeviationStats = $1;
           }
         | y_MinValueStats_StatsLinearType
-          {$$ = new LinearCharacter_1134_TypeChoicePair();
+          {$$ = new LinearCharacter_1135_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearCharacter_1134_TypeType = LinearCharacter_1134_TypeChoicePair::MinValueStatsE;
-           $$->LinearCharacter_1134_TypeValue.MinValueStats = $1;
-          }
-        ;
-
-y_LinearCharacter_1153_LinearCharacter_1153_Type :
-          y_LinearCharacter_1153_Type
-          {$$ = $1;}
-        ;
-
-y_LinearCharacter_1153_Type :
-          y_ValueStats_StatsWithTolLinearType
-          y_MaxValueStats_StatsLinearType_0
-          y_MinValueStats_StatsLinearType_0
-          {$$ = new LinearCharacter_1153_Type($1, $2, $3);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
+           $$->LinearCharacter_1135_TypeType = LinearCharacter_1135_TypeChoicePair::MinValueStatsE;
+           $$->LinearCharacter_1135_TypeValue.MinValueStats = $1;
           }
         ;
 
@@ -52879,11 +53000,14 @@ y_LinearCharacter_1154_LinearCharacter_1154_Type :
         ;
 
 y_LinearCharacter_1154_Type :
-          y_MaxValueStats_StatsLinearType y_MinValueStats_StatsLinearType_0
-          {$$ = new LinearCharacter_1154_Type($1, $2);
+          y_ValueStats_StatsWithTolLinearType
+          y_MaxValueStats_StatsLinearType_0
+          y_MinValueStats_StatsLinearType_0
+          {$$ = new LinearCharacter_1154_Type($1, $2, $3);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -52893,14 +53017,11 @@ y_LinearCharacter_1155_LinearCharacter_1155_Type :
         ;
 
 y_LinearCharacter_1155_Type :
-          y_DeviationStats_StatsWithTolLinearType
-          y_MaxDeviationStats_StatsLinearType_0
-          y_MinDeviationStats_StatsLinearType_0
-          {$$ = new LinearCharacter_1155_Type($1, $2, $3);
+          y_MaxValueStats_StatsLinearType y_MinValueStats_StatsLinearType_0
+          {$$ = new LinearCharacter_1155_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -52910,9 +53031,26 @@ y_LinearCharacter_1156_LinearCharacter_1156_Type :
         ;
 
 y_LinearCharacter_1156_Type :
+          y_DeviationStats_StatsWithTolLinearType
+          y_MaxDeviationStats_StatsLinearType_0
+          y_MinDeviationStats_StatsLinearType_0
+          {$$ = new LinearCharacter_1156_Type($1, $2, $3);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
+          }
+        ;
+
+y_LinearCharacter_1157_LinearCharacter_1157_Type :
+          y_LinearCharacter_1157_Type
+          {$$ = $1;}
+        ;
+
+y_LinearCharacter_1157_Type :
           y_MaxDeviationStats_StatsLinearType
           y_MinDeviationStats_StatsLinearType_0
-          {$$ = new LinearCharacter_1156_Type($1, $2);
+          {$$ = new LinearCharacter_1157_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
@@ -52921,11 +53059,11 @@ y_LinearCharacter_1156_Type :
 
 y_LinearCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_LinearCharacter_1134_LinearCharacter_1134_Type
+          y_LinearCharacter_1135_LinearCharacter_1135_Type
           {$$ = new LinearCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -52946,33 +53084,33 @@ y_LinearCharacteristicStats_LinearCharacteristicStatsEvalType :
           }
         ;
 
-y_LinearCoordinat_1059_LinearCoordinat_1059_Type :
-          y_LinearCoordinat_1059_Type
+y_LinearCoordinat_1060_LinearCoordinat_1060_Type :
+          y_LinearCoordinat_1060_Type
           {$$ = $1;}
         ;
 
-y_LinearCoordinat_1059_Type :
-          y_LinearCoordinat_1059_TypeChoicePair
-          {$$ = new LinearCoordinat_1059_Type($1);
+y_LinearCoordinat_1060_Type :
+          y_LinearCoordinat_1060_TypeChoicePair
+          {$$ = new LinearCoordinat_1060_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_LinearCoordinat_1059_TypeChoicePair :
+y_LinearCoordinat_1060_TypeChoicePair :
           y_NonTolerance_NonToleranceEnumType
-          {$$ = new LinearCoordinat_1059_TypeChoicePair();
+          {$$ = new LinearCoordinat_1060_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearCoordinat_1059_TypeType = LinearCoordinat_1059_TypeChoicePair::NonToleranceE;
-           $$->LinearCoordinat_1059_TypeValue.NonTolerance = $1;
+           $$->LinearCoordinat_1060_TypeType = LinearCoordinat_1060_TypeChoicePair::NonToleranceE;
+           $$->LinearCoordinat_1060_TypeValue.NonTolerance = $1;
           }
         | y_Tolerance_LinearToleranceType
-          {$$ = new LinearCoordinat_1059_TypeChoicePair();
+          {$$ = new LinearCoordinat_1060_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearCoordinat_1059_TypeType = LinearCoordinat_1059_TypeChoicePair::ToleranceE;
-           $$->LinearCoordinat_1059_TypeValue.Tolerance = $1;
+           $$->LinearCoordinat_1060_TypeType = LinearCoordinat_1060_TypeChoicePair::ToleranceE;
+           $$->LinearCoordinat_1060_TypeValue.Tolerance = $1;
           }
         ;
 
@@ -52988,7 +53126,7 @@ y_LinearCoordinateCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_LinearCoordinat_1059_LinearCoordinat_1059_Type
+          y_LinearCoordinat_1060_LinearCoordinat_1060_Type
           {$$ = new LinearCoordinateCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -53170,11 +53308,11 @@ y_LinearCoordinateCharacteristicNominal_LinearCoordinateCharacteristicNominalTyp
 
 y_LinearCoordinateCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_LinearCharacter_1134_LinearCharacter_1134_Type
+          y_LinearCharacter_1135_LinearCharacter_1135_Type
           {$$ = new LinearCoordinateCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -53220,6 +53358,8 @@ y_LinearDualValueType :
           {$$ = new LinearDualValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad LinearDualValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -53314,7 +53454,7 @@ y_LinearStatsSummary_SummaryStatisticsLinearType :
 
 y_LinearToleranceDefinitionType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
-          y_LinearTolerance_1016_LinearTolerance_1016_Type
+          y_LinearTolerance_1017_LinearTolerance_1017_Type
           {$$ = new LinearToleranceDefinitionType($3, $4);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -53330,43 +53470,13 @@ y_LinearToleranceDefinitionType :
         ;
 
 y_LinearToleranceType :
-          ENDITEM y_LinearTolerance_1017_LinearTolerance_1017_Type
+          ENDITEM y_LinearTolerance_1018_LinearTolerance_1018_Type
           y_DefinedAsLimit_XmlBoolean y_Attributes_AttributesType_0
           {$$ = new LinearToleranceType($2, $3, $4);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
            if ($3) yyUnrefMap.erase($3);
            if ($4) yyUnrefMap.erase($4);
-          }
-        ;
-
-y_LinearTolerance_1016_LinearTolerance_1016_Type :
-          y_LinearTolerance_1016_Type
-          {$$ = $1;}
-        ;
-
-y_LinearTolerance_1016_Type :
-          y_LinearTolerance_1016_TypeChoicePair
-          {$$ = new LinearTolerance_1016_Type($1);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_LinearTolerance_1016_TypeChoicePair :
-          y_LinearTolerance_1033_LinearTolerance_1033_Type
-          {$$ = new LinearTolerance_1016_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->LinearTolerance_1016_TypeType = LinearTolerance_1016_TypeChoicePair::LinearTolerance_1033E;
-           $$->LinearTolerance_1016_TypeValue.LinearTolerance_1033 = $1;
-          }
-        | y_MinValue_LinearValueType
-          {$$ = new LinearTolerance_1016_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->LinearTolerance_1016_TypeType = LinearTolerance_1016_TypeChoicePair::MinValueE;
-           $$->LinearTolerance_1016_TypeValue.MinValue = $1;
           }
         ;
 
@@ -53384,40 +53494,56 @@ y_LinearTolerance_1017_Type :
         ;
 
 y_LinearTolerance_1017_TypeChoicePair :
-          y_DefinitionId_QIFReferenceFullType
-          {$$ = new LinearTolerance_1017_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->LinearTolerance_1017_TypeType = LinearTolerance_1017_TypeChoicePair::DefinitionIdE;
-           $$->LinearTolerance_1017_TypeValue.DefinitionId = $1;
-          }
-        | y_LinearTolerance_1034_LinearTolerance_1034_Type
+          y_LinearTolerance_1034_LinearTolerance_1034_Type
           {$$ = new LinearTolerance_1017_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            $$->LinearTolerance_1017_TypeType = LinearTolerance_1017_TypeChoicePair::LinearTolerance_1034E;
            $$->LinearTolerance_1017_TypeValue.LinearTolerance_1034 = $1;
           }
-        | y_LinearTolerance_1035_LinearTolerance_1035_Type
+        | y_MinValue_LinearValueType
           {$$ = new LinearTolerance_1017_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearTolerance_1017_TypeType = LinearTolerance_1017_TypeChoicePair::LinearTolerance_1035E;
-           $$->LinearTolerance_1017_TypeValue.LinearTolerance_1035 = $1;
+           $$->LinearTolerance_1017_TypeType = LinearTolerance_1017_TypeChoicePair::MinValueE;
+           $$->LinearTolerance_1017_TypeValue.MinValue = $1;
           }
         ;
 
-y_LinearTolerance_1033_LinearTolerance_1033_Type :
-          y_LinearTolerance_1033_Type
+y_LinearTolerance_1018_LinearTolerance_1018_Type :
+          y_LinearTolerance_1018_Type
           {$$ = $1;}
         ;
 
-y_LinearTolerance_1033_Type :
-          y_MaxValue_LinearValueType y_MinValue_LinearValueType_0
-          {$$ = new LinearTolerance_1033_Type($1, $2);
+y_LinearTolerance_1018_Type :
+          y_LinearTolerance_1018_TypeChoicePair
+          {$$ = new LinearTolerance_1018_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
+          }
+        ;
+
+y_LinearTolerance_1018_TypeChoicePair :
+          y_DefinitionId_QIFReferenceFullType
+          {$$ = new LinearTolerance_1018_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->LinearTolerance_1018_TypeType = LinearTolerance_1018_TypeChoicePair::DefinitionIdE;
+           $$->LinearTolerance_1018_TypeValue.DefinitionId = $1;
+          }
+        | y_LinearTolerance_1035_LinearTolerance_1035_Type
+          {$$ = new LinearTolerance_1018_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->LinearTolerance_1018_TypeType = LinearTolerance_1018_TypeChoicePair::LinearTolerance_1035E;
+           $$->LinearTolerance_1018_TypeValue.LinearTolerance_1035 = $1;
+          }
+        | y_LinearTolerance_1036_LinearTolerance_1036_Type
+          {$$ = new LinearTolerance_1018_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->LinearTolerance_1018_TypeType = LinearTolerance_1018_TypeChoicePair::LinearTolerance_1036E;
+           $$->LinearTolerance_1018_TypeValue.LinearTolerance_1036 = $1;
           }
         ;
 
@@ -53427,13 +53553,11 @@ y_LinearTolerance_1034_LinearTolerance_1034_Type :
         ;
 
 y_LinearTolerance_1034_Type :
-          y_MaxValue_LinearValueType y_MaxDualValue_LinearDualValueType_0
-          y_LinearTolerance_1041_LinearTolerance_1041_Type_0
-          {$$ = new LinearTolerance_1034_Type($1, $2, $3);
+          y_MaxValue_LinearValueType y_MinValue_LinearValueType_0
+          {$$ = new LinearTolerance_1034_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -53443,24 +53567,40 @@ y_LinearTolerance_1035_LinearTolerance_1035_Type :
         ;
 
 y_LinearTolerance_1035_Type :
+          y_MaxValue_LinearValueType y_MaxDualValue_LinearDualValueType_0
+          y_LinearTolerance_1042_LinearTolerance_1042_Type_0
+          {$$ = new LinearTolerance_1035_Type($1, $2, $3);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
+          }
+        ;
+
+y_LinearTolerance_1036_LinearTolerance_1036_Type :
+          y_LinearTolerance_1036_Type
+          {$$ = $1;}
+        ;
+
+y_LinearTolerance_1036_Type :
           y_MinValue_LinearValueType y_MinDualValue_LinearDualValueType_0
-          {$$ = new LinearTolerance_1035_Type($1, $2);
+          {$$ = new LinearTolerance_1036_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
           }
         ;
 
-y_LinearTolerance_1041_LinearTolerance_1041_Type_0 :
+y_LinearTolerance_1042_LinearTolerance_1042_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_LinearTolerance_1041_Type
+        | y_LinearTolerance_1042_Type
           {$$ = $1;}
         ;
 
-y_LinearTolerance_1041_Type :
+y_LinearTolerance_1042_Type :
           y_MinValue_LinearValueType y_MinDualValue_LinearDualValueType_0
-          {$$ = new LinearTolerance_1041_Type($1, $2);
+          {$$ = new LinearTolerance_1042_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
@@ -53501,11 +53641,15 @@ y_LinearValueType :
           {$$ = new LinearValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad LinearValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new LinearValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad LinearValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -53536,7 +53680,7 @@ y_LinearVariableDifferentialTransformerSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_ProtectionClass_XmlString_0
           y_LinearityError_XmlString_0 y_Repeatability_LinearValueType_0
           y_Sensitivity_XmlDecimal_0 y_Resolution_LinearValueType_0
@@ -53597,50 +53741,50 @@ y_LinearityError_XmlString_0 :
           {$$ = $4;}
         ;
 
-y_LinearityStudyP_1204_LinearityStudyP_1204_Type :
-          y_LinearityStudyP_1204_Type
+y_LinearityStudyP_1205_LinearityStudyP_1205_Type :
+          y_LinearityStudyP_1205_Type
           {$$ = $1;}
         ;
 
-y_LinearityStudyP_1204_Type :
-          y_LinearityStudyP_1204_TypeChoicePair
-          {$$ = new LinearityStudyP_1204_Type($1);
+y_LinearityStudyP_1205_Type :
+          y_LinearityStudyP_1205_TypeChoicePair
+          {$$ = new LinearityStudyP_1205_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_LinearityStudyP_1204_TypeChoicePair :
+y_LinearityStudyP_1205_TypeChoicePair :
           y_AbsoluteMinimums_AbsoluteLimitsByUnitType
-          {$$ = new LinearityStudyP_1204_TypeChoicePair();
+          {$$ = new LinearityStudyP_1205_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearityStudyP_1204_TypeType = LinearityStudyP_1204_TypeChoicePair::AbsoluteMinimumsE;
-           $$->LinearityStudyP_1204_TypeValue.AbsoluteMinimums = $1;
+           $$->LinearityStudyP_1205_TypeType = LinearityStudyP_1205_TypeChoicePair::AbsoluteMinimumsE;
+           $$->LinearityStudyP_1205_TypeValue.AbsoluteMinimums = $1;
           }
         | y_RelativeLinearityMinimum_XmlDecimal
-          {$$ = new LinearityStudyP_1204_TypeChoicePair();
+          {$$ = new LinearityStudyP_1205_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearityStudyP_1204_TypeType = LinearityStudyP_1204_TypeChoicePair::RelativeLinearityMinimumE;
-           $$->LinearityStudyP_1204_TypeValue.RelativeLinearityMinimum = $1;
+           $$->LinearityStudyP_1205_TypeType = LinearityStudyP_1205_TypeChoicePair::RelativeLinearityMinimumE;
+           $$->LinearityStudyP_1205_TypeValue.RelativeLinearityMinimum = $1;
           }
         ;
 
 y_LinearityStudyPlanType :
           y_LiztAttributePair ENDITEM y_Version_VersionType_0
           y_Attributes_AttributesType_0
-          y_StatisticalStud_1207_StatisticalStud_1207_Type_0
           y_StatisticalStud_1208_StatisticalStud_1208_Type_0
+          y_StatisticalStud_1209_StatisticalStud_1209_Type_0
           y_LiztStatsValuesSummarys_SummaryStatsValuesListType_0_u
           y_PreInspectionTraceability_PreInspectionTraceabilityType_0
           y_Name_XmlToken_0 y_Description_XmlString_0
           y_PlanId_QIFReferenceType_0
-          y_StatisticalStud_1209_StatisticalStud_1209_Type_0
+          y_StatisticalStud_1210_StatisticalStud_1210_Type_0
           y_CorrectiveActionPlanId_QIFReferenceType_0
           y_MeasurementDeviceIds_ArrayReferenceType_0
           y_GoodnessOfFitThreshold_XmlDecimal_0
-          y_LinearityStudyP_1204_LinearityStudyP_1204_Type
+          y_LinearityStudyP_1205_LinearityStudyP_1205_Type
           {$$ = new LinearityStudyPlanType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -53675,91 +53819,91 @@ y_LinearityStudyPlan_LinearityStudyPlanType :
           }
         ;
 
-y_LinearityStudyR_1205_LinearityStudyR_1205_Type_0 :
+y_LinearityStudyR_1206_LinearityStudyR_1206_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_LinearityStudyR_1205_Type
+        | y_LinearityStudyR_1206_Type
           {$$ = $1;}
         ;
 
-y_LinearityStudyR_1205_Type :
-          y_LinearityStudyR_1205_TypeChoicePair
-          {$$ = new LinearityStudyR_1205_Type($1);
+y_LinearityStudyR_1206_Type :
+          y_LinearityStudyR_1206_TypeChoicePair
+          {$$ = new LinearityStudyR_1206_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_LinearityStudyR_1205_TypeChoicePair :
+y_LinearityStudyR_1206_TypeChoicePair :
           y_AngularAbsoluteLinearity_MeasuredAngularValueType
-          {$$ = new LinearityStudyR_1205_TypeChoicePair();
+          {$$ = new LinearityStudyR_1206_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearityStudyR_1205_TypeType = LinearityStudyR_1205_TypeChoicePair::AngularAbsoluteLinearityE;
-           $$->LinearityStudyR_1205_TypeValue.AngularAbsoluteLinearity = $1;
+           $$->LinearityStudyR_1206_TypeType = LinearityStudyR_1206_TypeChoicePair::AngularAbsoluteLinearityE;
+           $$->LinearityStudyR_1206_TypeValue.AngularAbsoluteLinearity = $1;
           }
         | y_AreaAbsoluteLinearity_MeasuredAreaValueType
-          {$$ = new LinearityStudyR_1205_TypeChoicePair();
+          {$$ = new LinearityStudyR_1206_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearityStudyR_1205_TypeType = LinearityStudyR_1205_TypeChoicePair::AreaAbsoluteLinearityE;
-           $$->LinearityStudyR_1205_TypeValue.AreaAbsoluteLinearity = $1;
+           $$->LinearityStudyR_1206_TypeType = LinearityStudyR_1206_TypeChoicePair::AreaAbsoluteLinearityE;
+           $$->LinearityStudyR_1206_TypeValue.AreaAbsoluteLinearity = $1;
           }
         | y_ForceAbsoluteLinearity_MeasuredForceValueType
-          {$$ = new LinearityStudyR_1205_TypeChoicePair();
+          {$$ = new LinearityStudyR_1206_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearityStudyR_1205_TypeType = LinearityStudyR_1205_TypeChoicePair::ForceAbsoluteLinearityE;
-           $$->LinearityStudyR_1205_TypeValue.ForceAbsoluteLinearity = $1;
+           $$->LinearityStudyR_1206_TypeType = LinearityStudyR_1206_TypeChoicePair::ForceAbsoluteLinearityE;
+           $$->LinearityStudyR_1206_TypeValue.ForceAbsoluteLinearity = $1;
           }
         | y_LinearAbsoluteLinearity_MeasuredLinearValueType
-          {$$ = new LinearityStudyR_1205_TypeChoicePair();
+          {$$ = new LinearityStudyR_1206_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearityStudyR_1205_TypeType = LinearityStudyR_1205_TypeChoicePair::LinearAbsoluteLinearityE;
-           $$->LinearityStudyR_1205_TypeValue.LinearAbsoluteLinearity = $1;
+           $$->LinearityStudyR_1206_TypeType = LinearityStudyR_1206_TypeChoicePair::LinearAbsoluteLinearityE;
+           $$->LinearityStudyR_1206_TypeValue.LinearAbsoluteLinearity = $1;
           }
         | y_MassAbsoluteLinearity_MeasuredMassValueType
-          {$$ = new LinearityStudyR_1205_TypeChoicePair();
+          {$$ = new LinearityStudyR_1206_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearityStudyR_1205_TypeType = LinearityStudyR_1205_TypeChoicePair::MassAbsoluteLinearityE;
-           $$->LinearityStudyR_1205_TypeValue.MassAbsoluteLinearity = $1;
+           $$->LinearityStudyR_1206_TypeType = LinearityStudyR_1206_TypeChoicePair::MassAbsoluteLinearityE;
+           $$->LinearityStudyR_1206_TypeValue.MassAbsoluteLinearity = $1;
           }
         | y_PressureAbsoluteLinearity_MeasuredPressureValueType
-          {$$ = new LinearityStudyR_1205_TypeChoicePair();
+          {$$ = new LinearityStudyR_1206_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearityStudyR_1205_TypeType = LinearityStudyR_1205_TypeChoicePair::PressureAbsoluteLinearityE;
-           $$->LinearityStudyR_1205_TypeValue.PressureAbsoluteLinearity = $1;
+           $$->LinearityStudyR_1206_TypeType = LinearityStudyR_1206_TypeChoicePair::PressureAbsoluteLinearityE;
+           $$->LinearityStudyR_1206_TypeValue.PressureAbsoluteLinearity = $1;
           }
         | y_SpeedAbsoluteLinearity_MeasuredSpeedValueType
-          {$$ = new LinearityStudyR_1205_TypeChoicePair();
+          {$$ = new LinearityStudyR_1206_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearityStudyR_1205_TypeType = LinearityStudyR_1205_TypeChoicePair::SpeedAbsoluteLinearityE;
-           $$->LinearityStudyR_1205_TypeValue.SpeedAbsoluteLinearity = $1;
+           $$->LinearityStudyR_1206_TypeType = LinearityStudyR_1206_TypeChoicePair::SpeedAbsoluteLinearityE;
+           $$->LinearityStudyR_1206_TypeValue.SpeedAbsoluteLinearity = $1;
           }
         | y_TemperatureAbsoluteLinearity_MeasuredTemperatureValueType
-          {$$ = new LinearityStudyR_1205_TypeChoicePair();
+          {$$ = new LinearityStudyR_1206_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearityStudyR_1205_TypeType = LinearityStudyR_1205_TypeChoicePair::TemperatureAbsoluteLinearityE;
-           $$->LinearityStudyR_1205_TypeValue.TemperatureAbsoluteLinearity = $1;
+           $$->LinearityStudyR_1206_TypeType = LinearityStudyR_1206_TypeChoicePair::TemperatureAbsoluteLinearityE;
+           $$->LinearityStudyR_1206_TypeValue.TemperatureAbsoluteLinearity = $1;
           }
         | y_TimeAbsoluteLinearity_MeasuredTimeValueType
-          {$$ = new LinearityStudyR_1205_TypeChoicePair();
+          {$$ = new LinearityStudyR_1206_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearityStudyR_1205_TypeType = LinearityStudyR_1205_TypeChoicePair::TimeAbsoluteLinearityE;
-           $$->LinearityStudyR_1205_TypeValue.TimeAbsoluteLinearity = $1;
+           $$->LinearityStudyR_1206_TypeType = LinearityStudyR_1206_TypeChoicePair::TimeAbsoluteLinearityE;
+           $$->LinearityStudyR_1206_TypeValue.TimeAbsoluteLinearity = $1;
           }
         | y_UserDefinedUnitAbsoluteLinearity_MeasuredUserDefinedUnitValueType
-          {$$ = new LinearityStudyR_1205_TypeChoicePair();
+          {$$ = new LinearityStudyR_1206_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LinearityStudyR_1205_TypeType = LinearityStudyR_1205_TypeChoicePair::UserDefinedUnitAbsoluteLinearityE;
-           $$->LinearityStudyR_1205_TypeValue.UserDefinedUnitAbsoluteLinearity = $1;
+           $$->LinearityStudyR_1206_TypeType = LinearityStudyR_1206_TypeChoicePair::UserDefinedUnitAbsoluteLinearityE;
+           $$->LinearityStudyR_1206_TypeValue.UserDefinedUnitAbsoluteLinearity = $1;
           }
         ;
 
@@ -53767,12 +53911,12 @@ y_LinearityStudyResultsType :
           y_LiztAttributePair ENDITEM
           y_ThisStatisticalStudyResultsInstanceQPId_QPIdType_0
           y_Attributes_AttributesType_0 y_Status_StatsEvalStatusType
-          y_StatisticalStud_1210_StatisticalStud_1210_Type_0
+          y_StatisticalStud_1211_StatisticalStud_1211_Type_0
           y_StudyIssues_StudyIssuesType_0
           y_InspectionTraceability_InspectionTraceabilityType_0
           y_Name_XmlToken_0 y_Description_XmlString_0
           y_StudyId_QIFReferenceType_0
-          y_StatisticalStud_1211_StatisticalStud_1211_Type_0
+          y_StatisticalStud_1212_StatisticalStud_1212_Type_0
           y_AverageFeatures_AverageFeaturesType_0
           y_CharacteristicsStats_CharacteristicsStatsType_0
           y_LinearStatsSummaries_SummariesStatisticsLinearType_0
@@ -53789,7 +53933,7 @@ y_LinearityStudyResultsType :
           y_SampleSize_XmlPositiveInteger
           y_MeasurementDeviceIds_ArrayReferenceType_0
           y_GoodnessOfFit_MeasuredDecimalType_0
-          y_LinearityStudyR_1205_LinearityStudyR_1205_Type_0
+          y_LinearityStudyR_1206_LinearityStudyR_1206_Type_0
           y_RelativeLinearity_MeasuredDecimalType_0
           {$$ = new LinearityStudyResultsType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30);
            yyUnrefMap[$$] = $$;
@@ -53878,7 +54022,7 @@ y_ListAccumulatedStatsValuesListType :
         ;
 
 y_ListAccumulatedStatsValuesType :
-          ENDITEM y_StatsWithRefere_1006_StatsWithRefere_1006_Type_0
+          ENDITEM y_StatsWithRefere_1007_StatsWithRefere_1007_Type_0
           y_Stats_ListAccumulatedStatsValuesListType
           {$$ = new ListAccumulatedStatsValuesType($2, $3);
            yyUnrefMap[$$] = $$;
@@ -53939,14 +54083,14 @@ y_ListIntType :
           }
         ;
 
-y_ListQIFReferenc_1002_ListQIFReferenc_1002_Type :
-          y_ListQIFReferenc_1002_Type
+y_ListQIFReferenc_1003_ListQIFReferenc_1003_Type :
+          y_ListQIFReferenc_1003_Type
           {$$ = $1;}
         ;
 
-y_ListQIFReferenc_1002_Type :
+y_ListQIFReferenc_1003_Type :
           y_Id_QIFReferenceSimpleType y_XIds_ListQIFReferenceSimpleType
-          {$$ = new ListQIFReferenc_1002_Type($1, $2);
+          {$$ = new ListQIFReferenc_1003_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
@@ -54004,12 +54148,12 @@ y_ListQIFReferenceTypeChoicePair :
            $$->ListQIFReferenceTypeType = ListQIFReferenceTypeChoicePair::IdsE;
            $$->ListQIFReferenceTypeValue.Ids = $1;
           }
-        | y_ListQIFReferenc_1002_ListQIFReferenc_1002_Type
+        | y_ListQIFReferenc_1003_ListQIFReferenc_1003_Type
           {$$ = new ListQIFReferenceTypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ListQIFReferenceTypeType = ListQIFReferenceTypeChoicePair::ListQIFReferenc_1002E;
-           $$->ListQIFReferenceTypeValue.ListQIFReferenc_1002 = $1;
+           $$->ListQIFReferenceTypeType = ListQIFReferenceTypeChoicePair::ListQIFReferenc_1003E;
+           $$->ListQIFReferenceTypeValue.ListQIFReferenc_1003 = $1;
           }
         ;
 
@@ -54027,7 +54171,7 @@ y_ListSubgroupStatsValuesListType :
         ;
 
 y_ListSubgroupStatsValuesType :
-          ENDITEM y_StatsWithRefere_1006_StatsWithRefere_1006_Type_0
+          ENDITEM y_StatsWithRefere_1007_StatsWithRefere_1007_Type_0
           y_Stats_ListSubgroupStatsValuesListType
           {$$ = new ListSubgroupStatsValuesType($2, $3);
            yyUnrefMap[$$] = $$;
@@ -54050,7 +54194,7 @@ y_ListSummaryStatsValuesListType :
         ;
 
 y_ListSummaryStatsValuesType :
-          ENDITEM y_StatsWithRefere_1006_StatsWithRefere_1006_Type_0
+          ENDITEM y_StatsWithRefere_1007_StatsWithRefere_1007_Type_0
           y_Stats_ListSummaryStatsValuesListType
           {$$ = new ListSummaryStatsValuesType($2, $3);
            yyUnrefMap[$$] = $$;
@@ -55882,15 +56026,15 @@ y_LiztLocatedTip_LocatedTipType_1_u :
           }
         ;
 
-y_LiztLogicalOperatio_1231_TypeChoicePair :
-          y_LiztLogicalOperatio_1231_TypeChoicePair
-          y_LogicalOperatio_1231_TypeChoicePair
+y_LiztLogicalOperatio_1232_TypeChoicePair :
+          y_LiztLogicalOperatio_1232_TypeChoicePair
+          y_LogicalOperatio_1232_TypeChoicePair
           {$$ = $1;
            $$->push_back($2);
            if ($2) yyUnrefMap.erase($2);
           }
-        | y_LogicalOperatio_1231_TypeChoicePair
-          {$$ = new LogicalOperatio_1231_TypeChoicePairLisd($1);
+        | y_LogicalOperatio_1232_TypeChoicePair
+          {$$ = new LogicalOperatio_1232_TypeChoicePairLisd($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
@@ -57470,8 +57614,8 @@ y_LocatedTips_LocatedTipsType :
 
 y_LocationCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -57518,33 +57662,19 @@ y_LocationOnCMM_PointType :
           {$$ = $2;}
         ;
 
-y_LocationOnDrawi_1060_LocationOnDrawi_1060_Type :
-          y_LocationOnDrawi_1060_Type
-          {$$ = $1;}
-        ;
-
-y_LocationOnDrawi_1060_Type :
-          y_DrawingId_QIFReferenceFullType y_SheetNumber_XmlString_0
-          y_DrawingZone_XmlString_0
-          {$$ = new LocationOnDrawi_1060_Type($1, $2, $3);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
-          }
-        ;
-
 y_LocationOnDrawi_1061_LocationOnDrawi_1061_Type :
           y_LocationOnDrawi_1061_Type
           {$$ = $1;}
         ;
 
 y_LocationOnDrawi_1061_Type :
-          y_ModelId_QIFReferenceFullType y_View_XmlString
-          {$$ = new LocationOnDrawi_1061_Type($1, $2);
+          y_DrawingId_QIFReferenceFullType y_SheetNumber_XmlString_0
+          y_DrawingZone_XmlString_0
+          {$$ = new LocationOnDrawi_1061_Type($1, $2, $3);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -57554,8 +57684,22 @@ y_LocationOnDrawi_1062_LocationOnDrawi_1062_Type :
         ;
 
 y_LocationOnDrawi_1062_Type :
+          y_ModelId_QIFReferenceFullType y_View_XmlString
+          {$$ = new LocationOnDrawi_1062_Type($1, $2);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+          }
+        ;
+
+y_LocationOnDrawi_1063_LocationOnDrawi_1063_Type :
+          y_LocationOnDrawi_1063_Type
+          {$$ = $1;}
+        ;
+
+y_LocationOnDrawi_1063_Type :
           y_ViewId_QIFReferenceFullType
-          {$$ = new LocationOnDrawi_1062_Type($1);
+          {$$ = new LocationOnDrawi_1063_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
@@ -57570,14 +57714,7 @@ y_LocationOnDrawingType :
         ;
 
 y_LocationOnDrawingTypeChoicePair :
-          y_LocationOnDrawi_1060_LocationOnDrawi_1060_Type
-          {$$ = new LocationOnDrawingTypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->LocationOnDrawingTypeType = LocationOnDrawingTypeChoicePair::LocationOnDrawi_1060E;
-           $$->LocationOnDrawingTypeValue.LocationOnDrawi_1060 = $1;
-          }
-        | y_LocationOnDrawi_1061_LocationOnDrawi_1061_Type
+          y_LocationOnDrawi_1061_LocationOnDrawi_1061_Type
           {$$ = new LocationOnDrawingTypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
@@ -57590,6 +57727,13 @@ y_LocationOnDrawingTypeChoicePair :
            if ($1) yyUnrefMap.erase($1);
            $$->LocationOnDrawingTypeType = LocationOnDrawingTypeChoicePair::LocationOnDrawi_1062E;
            $$->LocationOnDrawingTypeValue.LocationOnDrawi_1062 = $1;
+          }
+        | y_LocationOnDrawi_1063_LocationOnDrawi_1063_Type
+          {$$ = new LocationOnDrawingTypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->LocationOnDrawingTypeType = LocationOnDrawingTypeChoicePair::LocationOnDrawi_1063E;
+           $$->LocationOnDrawingTypeValue.LocationOnDrawi_1063 = $1;
           }
         ;
 
@@ -57679,7 +57823,14 @@ y_Location_MeasuredPointType_0 :
         ;
 
 y_Location_PointSimpleType :
-          LocationSTART y_PointSimpleType LocationEND
+          LocationSTART ENDWHOLEITEM
+          {$$ = new PointSimpleType();
+           $$->PointSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad PointSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | LocationSTART y_PointSimpleType LocationEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
            if ($2->bad)
@@ -57704,14 +57855,14 @@ y_Location_XmlString_0 :
           {$$ = $4;}
         ;
 
-y_LogicalOperatio_1231_LogicalOperatio_1231_Type :
-          y_LogicalOperatio_1231_Type
+y_LogicalOperatio_1232_LogicalOperatio_1232_Type :
+          y_LogicalOperatio_1232_Type
           {$$ = $1;}
         ;
 
-y_LogicalOperatio_1231_Type :
-          y_LiztLogicalOperatio_1231_TypeChoicePair
-          {$$ = new LogicalOperatio_1231_Type($1);
+y_LogicalOperatio_1232_Type :
+          y_LiztLogicalOperatio_1232_TypeChoicePair
+          {$$ = new LogicalOperatio_1232_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($1->size() > 2)
@@ -57721,20 +57872,20 @@ y_LogicalOperatio_1231_Type :
           }
         ;
 
-y_LogicalOperatio_1231_TypeChoicePair :
+y_LogicalOperatio_1232_TypeChoicePair :
           y_LogicalOperationResult_XmlUnsignedInt
-          {$$ = new LogicalOperatio_1231_TypeChoicePair();
+          {$$ = new LogicalOperatio_1232_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LogicalOperatio_1231_TypeType = LogicalOperatio_1231_TypeChoicePair::LogicalOperationResultE;
-           $$->LogicalOperatio_1231_TypeValue.LogicalOperationResult = $1;
+           $$->LogicalOperatio_1232_TypeType = LogicalOperatio_1232_TypeChoicePair::LogicalOperationResultE;
+           $$->LogicalOperatio_1232_TypeValue.LogicalOperationResult = $1;
           }
         | y_SectionPlane_XmlUnsignedInt
-          {$$ = new LogicalOperatio_1231_TypeChoicePair();
+          {$$ = new LogicalOperatio_1232_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->LogicalOperatio_1231_TypeType = LogicalOperatio_1231_TypeChoicePair::SectionPlaneE;
-           $$->LogicalOperatio_1231_TypeValue.SectionPlane = $1;
+           $$->LogicalOperatio_1232_TypeType = LogicalOperatio_1232_TypeChoicePair::SectionPlaneE;
+           $$->LogicalOperatio_1232_TypeValue.SectionPlane = $1;
           }
         ;
 
@@ -57756,7 +57907,7 @@ y_LogicalOperationResult_XmlUnsignedInt :
 
 y_LogicalOperationType :
           y_LiztAttributePair ENDITEM y_Action_LogicalOperationEnumType
-          y_LogicalOperatio_1231_LogicalOperatio_1231_Type
+          y_LogicalOperatio_1232_LogicalOperatio_1232_Type
           {$$ = new LogicalOperationType($3, $4);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -57965,7 +58116,14 @@ y_LowerControlLimit_StatsMeasuredDecimalType :
         ;
 
 y_LowerPoint_Point2dSimpleType :
-          LowerPointSTART y_Point2dSimpleType LowerPointEND
+          LowerPointSTART ENDWHOLEITEM
+          {$$ = new Point2dSimpleType();
+           $$->Point2dSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad Point2dSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | LowerPointSTART y_Point2dSimpleType LowerPointEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
            if ($2->bad)
@@ -58034,7 +58192,7 @@ y_MagnetoInductiveSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_ProtectionClass_XmlString_0
           y_LinearityError_XmlString_0 y_Repeatability_LinearValueType_0
           y_Sensitivity_XmlDecimal_0 y_Resolution_LinearValueType_0
@@ -58170,7 +58328,7 @@ y_ManualMeasurementDeviceType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_MinMeasuringDistance_LinearValueType_0
@@ -58556,33 +58714,33 @@ y_MassAbsoluteLinearity_MeasuredMassValueType :
           {$$ = $2;}
         ;
 
-y_MassCharacteris_1063_MassCharacteris_1063_Type :
-          y_MassCharacteris_1063_Type
+y_MassCharacteris_1064_MassCharacteris_1064_Type :
+          y_MassCharacteris_1064_Type
           {$$ = $1;}
         ;
 
-y_MassCharacteris_1063_Type :
-          y_MassCharacteris_1063_TypeChoicePair
-          {$$ = new MassCharacteris_1063_Type($1);
+y_MassCharacteris_1064_Type :
+          y_MassCharacteris_1064_TypeChoicePair
+          {$$ = new MassCharacteris_1064_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_MassCharacteris_1063_TypeChoicePair :
+y_MassCharacteris_1064_TypeChoicePair :
           y_NonTolerance_NonToleranceEnumType
-          {$$ = new MassCharacteris_1063_TypeChoicePair();
+          {$$ = new MassCharacteris_1064_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MassCharacteris_1063_TypeType = MassCharacteris_1063_TypeChoicePair::NonToleranceE;
-           $$->MassCharacteris_1063_TypeValue.NonTolerance = $1;
+           $$->MassCharacteris_1064_TypeType = MassCharacteris_1064_TypeChoicePair::NonToleranceE;
+           $$->MassCharacteris_1064_TypeValue.NonTolerance = $1;
           }
         | y_Tolerance_MassToleranceType
-          {$$ = new MassCharacteris_1063_TypeChoicePair();
+          {$$ = new MassCharacteris_1064_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MassCharacteris_1063_TypeType = MassCharacteris_1063_TypeChoicePair::ToleranceE;
-           $$->MassCharacteris_1063_TypeValue.Tolerance = $1;
+           $$->MassCharacteris_1064_TypeType = MassCharacteris_1064_TypeChoicePair::ToleranceE;
+           $$->MassCharacteris_1064_TypeValue.Tolerance = $1;
           }
         ;
 
@@ -58641,44 +58799,44 @@ y_MassStatsSummary_SummaryStatisticsMassType :
           }
         ;
 
-y_MassToleranceTy_1018_MassToleranceTy_1018_Type :
-          y_MassToleranceTy_1018_Type
+y_MassToleranceTy_1019_MassToleranceTy_1019_Type :
+          y_MassToleranceTy_1019_Type
           {$$ = $1;}
         ;
 
-y_MassToleranceTy_1018_Type :
-          y_MassToleranceTy_1018_TypeChoicePair
-          {$$ = new MassToleranceTy_1018_Type($1);
+y_MassToleranceTy_1019_Type :
+          y_MassToleranceTy_1019_TypeChoicePair
+          {$$ = new MassToleranceTy_1019_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_MassToleranceTy_1018_TypeChoicePair :
-          y_MassToleranceTy_1036_MassToleranceTy_1036_Type
-          {$$ = new MassToleranceTy_1018_TypeChoicePair();
+y_MassToleranceTy_1019_TypeChoicePair :
+          y_MassToleranceTy_1037_MassToleranceTy_1037_Type
+          {$$ = new MassToleranceTy_1019_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MassToleranceTy_1018_TypeType = MassToleranceTy_1018_TypeChoicePair::MassToleranceTy_1036E;
-           $$->MassToleranceTy_1018_TypeValue.MassToleranceTy_1036 = $1;
+           $$->MassToleranceTy_1019_TypeType = MassToleranceTy_1019_TypeChoicePair::MassToleranceTy_1037E;
+           $$->MassToleranceTy_1019_TypeValue.MassToleranceTy_1037 = $1;
           }
         | y_MinValue_MassValueType
-          {$$ = new MassToleranceTy_1018_TypeChoicePair();
+          {$$ = new MassToleranceTy_1019_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MassToleranceTy_1018_TypeType = MassToleranceTy_1018_TypeChoicePair::MinValueE;
-           $$->MassToleranceTy_1018_TypeValue.MinValue = $1;
+           $$->MassToleranceTy_1019_TypeType = MassToleranceTy_1019_TypeChoicePair::MinValueE;
+           $$->MassToleranceTy_1019_TypeValue.MinValue = $1;
           }
         ;
 
-y_MassToleranceTy_1036_MassToleranceTy_1036_Type :
-          y_MassToleranceTy_1036_Type
+y_MassToleranceTy_1037_MassToleranceTy_1037_Type :
+          y_MassToleranceTy_1037_Type
           {$$ = $1;}
         ;
 
-y_MassToleranceTy_1036_Type :
+y_MassToleranceTy_1037_Type :
           y_MaxValue_MassValueType y_MinValue_MassValueType_0
-          {$$ = new MassToleranceTy_1036_Type($1, $2);
+          {$$ = new MassToleranceTy_1037_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
@@ -58686,7 +58844,7 @@ y_MassToleranceTy_1036_Type :
         ;
 
 y_MassToleranceType :
-          ENDITEM y_MassToleranceTy_1018_MassToleranceTy_1018_Type
+          ENDITEM y_MassToleranceTy_1019_MassToleranceTy_1019_Type
           y_DefinedAsLimit_XmlBoolean y_Attributes_AttributesType_0
           {$$ = new MassToleranceType($2, $3, $4);
            yyUnrefMap[$$] = $$;
@@ -58724,11 +58882,15 @@ y_MassValueType :
           {$$ = new MassValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad MassValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MassValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad MassValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -58801,7 +58963,7 @@ y_MaterialModifier_MaterialModifierEnumType :
 
 y_MaterialType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
-          y_MaterialType_1019_MaterialType_1019_Type_0
+          y_MaterialType_1020_MaterialType_1020_Type_0
           y_Description_XmlString_0 y_MassDensity_XmlDouble_0
           y_PoissonsRatio_XmlDouble_0 y_YoungsModulus_XmlDouble_0
           y_UltimateTensileStress_XmlDouble_0
@@ -58833,35 +58995,35 @@ y_MaterialType :
           }
         ;
 
-y_MaterialType_1019_MaterialType_1019_Type_0 :
+y_MaterialType_1020_MaterialType_1020_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_MaterialType_1019_Type
+        | y_MaterialType_1020_Type
           {$$ = $1;}
         ;
 
-y_MaterialType_1019_Type :
-          y_MaterialType_1019_TypeChoicePair
-          {$$ = new MaterialType_1019_Type($1);
+y_MaterialType_1020_Type :
+          y_MaterialType_1020_TypeChoicePair
+          {$$ = new MaterialType_1020_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_MaterialType_1019_TypeChoicePair :
+y_MaterialType_1020_TypeChoicePair :
           y_MaterialClassEnum_MaterialClassEnumType
-          {$$ = new MaterialType_1019_TypeChoicePair();
+          {$$ = new MaterialType_1020_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MaterialType_1019_TypeType = MaterialType_1019_TypeChoicePair::MaterialClassEnumE;
-           $$->MaterialType_1019_TypeValue.MaterialClassEnum = $1;
+           $$->MaterialType_1020_TypeType = MaterialType_1020_TypeChoicePair::MaterialClassEnumE;
+           $$->MaterialType_1020_TypeValue.MaterialClassEnum = $1;
           }
         | y_OtherMaterialClass_XmlString
-          {$$ = new MaterialType_1019_TypeChoicePair();
+          {$$ = new MaterialType_1020_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MaterialType_1019_TypeType = MaterialType_1019_TypeChoicePair::OtherMaterialClassE;
-           $$->MaterialType_1019_TypeValue.OtherMaterialClass = $1;
+           $$->MaterialType_1020_TypeType = MaterialType_1020_TypeChoicePair::OtherMaterialClassE;
+           $$->MaterialType_1020_TypeValue.OtherMaterialClass = $1;
           }
         ;
 
@@ -60245,11 +60407,15 @@ y_MeasuredAngularValueType :
           {$$ = new MeasuredAngularValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad MeasuredAngularValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MeasuredAngularValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad MeasuredAngularValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -60265,11 +60431,15 @@ y_MeasuredAreaValueType :
           {$$ = new MeasuredAreaValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad MeasuredAreaValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MeasuredAreaValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad MeasuredAreaValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -60334,11 +60504,15 @@ y_MeasuredDecimalType :
           {$$ = new MeasuredDecimalType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad MeasuredDecimalType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MeasuredDecimalType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad MeasuredDecimalType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -60380,11 +60554,15 @@ y_MeasuredForceValueType :
           {$$ = new MeasuredForceValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad MeasuredForceValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MeasuredForceValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad MeasuredForceValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -60405,11 +60583,15 @@ y_MeasuredLinearValueType :
           {$$ = new MeasuredLinearValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad MeasuredLinearValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MeasuredLinearValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad MeasuredLinearValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -60425,11 +60607,15 @@ y_MeasuredMassValueType :
           {$$ = new MeasuredMassValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad MeasuredMassValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MeasuredMassValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad MeasuredMassValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -60464,40 +60650,10 @@ y_MeasuredPointIds_StatsArrayIdType :
           {$$ = $2;}
         ;
 
-y_MeasuredPointSe_1105_MeasuredPointSe_1105_Type_0 :
+y_MeasuredPointSe_1106_MeasuredPointSe_1106_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_MeasuredPointSe_1105_Type
-          {$$ = $1;}
-        ;
-
-y_MeasuredPointSe_1105_Type :
-          y_MeasuredPointSe_1105_TypeChoicePair
-          {$$ = new MeasuredPointSe_1105_Type($1);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_MeasuredPointSe_1105_TypeChoicePair :
-          y_CoordinateSystemId_QIFReferenceFullType
-          {$$ = new MeasuredPointSe_1105_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1105_TypeType = MeasuredPointSe_1105_TypeChoicePair::CoordinateSystemIdE;
-           $$->MeasuredPointSe_1105_TypeValue.CoordinateSystemId = $1;
-          }
-        | y_TranformId_QIFReferenceType
-          {$$ = new MeasuredPointSe_1105_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1105_TypeType = MeasuredPointSe_1105_TypeChoicePair::TranformIdE;
-           $$->MeasuredPointSe_1105_TypeValue.TranformId = $1;
-          }
-        ;
-
-y_MeasuredPointSe_1106_MeasuredPointSe_1106_Type :
-          y_MeasuredPointSe_1106_Type
+        | y_MeasuredPointSe_1106_Type
           {$$ = $1;}
         ;
 
@@ -60510,26 +60666,24 @@ y_MeasuredPointSe_1106_Type :
         ;
 
 y_MeasuredPointSe_1106_TypeChoicePair :
-          y_BinaryPoints_ArrayBinaryType
+          y_CoordinateSystemId_QIFReferenceFullType
           {$$ = new MeasuredPointSe_1106_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1106_TypeType = MeasuredPointSe_1106_TypeChoicePair::BinaryPointsE;
-           $$->MeasuredPointSe_1106_TypeValue.BinaryPoints = $1;
+           $$->MeasuredPointSe_1106_TypeType = MeasuredPointSe_1106_TypeChoicePair::CoordinateSystemIdE;
+           $$->MeasuredPointSe_1106_TypeValue.CoordinateSystemId = $1;
           }
-        | y_Points_ListDoubleType
+        | y_TranformId_QIFReferenceType
           {$$ = new MeasuredPointSe_1106_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1106_TypeType = MeasuredPointSe_1106_TypeChoicePair::PointsE;
-           $$->MeasuredPointSe_1106_TypeValue.Points = $1;
+           $$->MeasuredPointSe_1106_TypeType = MeasuredPointSe_1106_TypeChoicePair::TranformIdE;
+           $$->MeasuredPointSe_1106_TypeValue.TranformId = $1;
           }
         ;
 
-y_MeasuredPointSe_1107_MeasuredPointSe_1107_Type_0 :
-          /* empty */
-          {$$ = 0;}
-        | y_MeasuredPointSe_1107_Type
+y_MeasuredPointSe_1107_MeasuredPointSe_1107_Type :
+          y_MeasuredPointSe_1107_Type
           {$$ = $1;}
         ;
 
@@ -60542,24 +60696,26 @@ y_MeasuredPointSe_1107_Type :
         ;
 
 y_MeasuredPointSe_1107_TypeChoicePair :
-          y_BinaryNormals_ArrayBinaryType
+          y_BinaryPoints_ArrayBinaryType
           {$$ = new MeasuredPointSe_1107_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1107_TypeType = MeasuredPointSe_1107_TypeChoicePair::BinaryNormalsE;
-           $$->MeasuredPointSe_1107_TypeValue.BinaryNormals = $1;
+           $$->MeasuredPointSe_1107_TypeType = MeasuredPointSe_1107_TypeChoicePair::BinaryPointsE;
+           $$->MeasuredPointSe_1107_TypeValue.BinaryPoints = $1;
           }
-        | y_Normals_ListDoubleType
+        | y_Points_ListDoubleType
           {$$ = new MeasuredPointSe_1107_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1107_TypeType = MeasuredPointSe_1107_TypeChoicePair::NormalsE;
-           $$->MeasuredPointSe_1107_TypeValue.Normals = $1;
+           $$->MeasuredPointSe_1107_TypeType = MeasuredPointSe_1107_TypeChoicePair::PointsE;
+           $$->MeasuredPointSe_1107_TypeValue.Points = $1;
           }
         ;
 
-y_MeasuredPointSe_1108_MeasuredPointSe_1108_Type :
-          y_MeasuredPointSe_1108_Type
+y_MeasuredPointSe_1108_MeasuredPointSe_1108_Type_0 :
+          /* empty */
+          {$$ = 0;}
+        | y_MeasuredPointSe_1108_Type
           {$$ = $1;}
         ;
 
@@ -60572,33 +60728,24 @@ y_MeasuredPointSe_1108_Type :
         ;
 
 y_MeasuredPointSe_1108_TypeChoicePair :
-          y_BinaryCompensated_ArrayBinaryType
+          y_BinaryNormals_ArrayBinaryType
           {$$ = new MeasuredPointSe_1108_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1108_TypeType = MeasuredPointSe_1108_TypeChoicePair::BinaryCompensatedE;
-           $$->MeasuredPointSe_1108_TypeValue.BinaryCompensated = $1;
+           $$->MeasuredPointSe_1108_TypeType = MeasuredPointSe_1108_TypeChoicePair::BinaryNormalsE;
+           $$->MeasuredPointSe_1108_TypeValue.BinaryNormals = $1;
           }
-        | y_Compensated_XmlBoolean
+        | y_Normals_ListDoubleType
           {$$ = new MeasuredPointSe_1108_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1108_TypeType = MeasuredPointSe_1108_TypeChoicePair::CompensatedE;
-           $$->MeasuredPointSe_1108_TypeValue.Compensated = $1;
-          }
-        | y_Compensations_ListBooleanType
-          {$$ = new MeasuredPointSe_1108_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1108_TypeType = MeasuredPointSe_1108_TypeChoicePair::CompensationsE;
-           $$->MeasuredPointSe_1108_TypeValue.Compensations = $1;
+           $$->MeasuredPointSe_1108_TypeType = MeasuredPointSe_1108_TypeChoicePair::NormalsE;
+           $$->MeasuredPointSe_1108_TypeValue.Normals = $1;
           }
         ;
 
-y_MeasuredPointSe_1109_MeasuredPointSe_1109_Type_0 :
-          /* empty */
-          {$$ = 0;}
-        | y_MeasuredPointSe_1109_Type
+y_MeasuredPointSe_1109_MeasuredPointSe_1109_Type :
+          y_MeasuredPointSe_1109_Type
           {$$ = $1;}
         ;
 
@@ -60611,26 +60758,26 @@ y_MeasuredPointSe_1109_Type :
         ;
 
 y_MeasuredPointSe_1109_TypeChoicePair :
-          y_BinaryProbeRadii_ArrayBinaryType
+          y_BinaryCompensated_ArrayBinaryType
           {$$ = new MeasuredPointSe_1109_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1109_TypeType = MeasuredPointSe_1109_TypeChoicePair::BinaryProbeRadiiE;
-           $$->MeasuredPointSe_1109_TypeValue.BinaryProbeRadii = $1;
+           $$->MeasuredPointSe_1109_TypeType = MeasuredPointSe_1109_TypeChoicePair::BinaryCompensatedE;
+           $$->MeasuredPointSe_1109_TypeValue.BinaryCompensated = $1;
           }
-        | y_ProbeRadii_ListDoubleType
+        | y_Compensated_XmlBoolean
           {$$ = new MeasuredPointSe_1109_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1109_TypeType = MeasuredPointSe_1109_TypeChoicePair::ProbeRadiiE;
-           $$->MeasuredPointSe_1109_TypeValue.ProbeRadii = $1;
+           $$->MeasuredPointSe_1109_TypeType = MeasuredPointSe_1109_TypeChoicePair::CompensatedE;
+           $$->MeasuredPointSe_1109_TypeValue.Compensated = $1;
           }
-        | y_ProbeRadius_XmlDecimal
+        | y_Compensations_ListBooleanType
           {$$ = new MeasuredPointSe_1109_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1109_TypeType = MeasuredPointSe_1109_TypeChoicePair::ProbeRadiusE;
-           $$->MeasuredPointSe_1109_TypeValue.ProbeRadius = $1;
+           $$->MeasuredPointSe_1109_TypeType = MeasuredPointSe_1109_TypeChoicePair::CompensationsE;
+           $$->MeasuredPointSe_1109_TypeValue.Compensations = $1;
           }
         ;
 
@@ -60650,26 +60797,26 @@ y_MeasuredPointSe_1110_Type :
         ;
 
 y_MeasuredPointSe_1110_TypeChoicePair :
-          y_BinarySensorIds_ArrayBinaryQIFReferenceType
+          y_BinaryProbeRadii_ArrayBinaryType
           {$$ = new MeasuredPointSe_1110_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1110_TypeType = MeasuredPointSe_1110_TypeChoicePair::BinarySensorIdsE;
-           $$->MeasuredPointSe_1110_TypeValue.BinarySensorIds = $1;
+           $$->MeasuredPointSe_1110_TypeType = MeasuredPointSe_1110_TypeChoicePair::BinaryProbeRadiiE;
+           $$->MeasuredPointSe_1110_TypeValue.BinaryProbeRadii = $1;
           }
-        | y_SensorId_QIFReferenceType
+        | y_ProbeRadii_ListDoubleType
           {$$ = new MeasuredPointSe_1110_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1110_TypeType = MeasuredPointSe_1110_TypeChoicePair::SensorIdE;
-           $$->MeasuredPointSe_1110_TypeValue.SensorId = $1;
+           $$->MeasuredPointSe_1110_TypeType = MeasuredPointSe_1110_TypeChoicePair::ProbeRadiiE;
+           $$->MeasuredPointSe_1110_TypeValue.ProbeRadii = $1;
           }
-        | y_SensorIds_ListQIFReferenceType
+        | y_ProbeRadius_XmlDecimal
           {$$ = new MeasuredPointSe_1110_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1110_TypeType = MeasuredPointSe_1110_TypeChoicePair::SensorIdsE;
-           $$->MeasuredPointSe_1110_TypeValue.SensorIds = $1;
+           $$->MeasuredPointSe_1110_TypeType = MeasuredPointSe_1110_TypeChoicePair::ProbeRadiusE;
+           $$->MeasuredPointSe_1110_TypeValue.ProbeRadius = $1;
           }
         ;
 
@@ -60689,26 +60836,26 @@ y_MeasuredPointSe_1111_Type :
         ;
 
 y_MeasuredPointSe_1111_TypeChoicePair :
-          y_BinaryTipIds_ArrayBinaryQIFReferenceType
+          y_BinarySensorIds_ArrayBinaryQIFReferenceType
           {$$ = new MeasuredPointSe_1111_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1111_TypeType = MeasuredPointSe_1111_TypeChoicePair::BinaryTipIdsE;
-           $$->MeasuredPointSe_1111_TypeValue.BinaryTipIds = $1;
+           $$->MeasuredPointSe_1111_TypeType = MeasuredPointSe_1111_TypeChoicePair::BinarySensorIdsE;
+           $$->MeasuredPointSe_1111_TypeValue.BinarySensorIds = $1;
           }
-        | y_TipId_QIFReferenceType
+        | y_SensorId_QIFReferenceType
           {$$ = new MeasuredPointSe_1111_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1111_TypeType = MeasuredPointSe_1111_TypeChoicePair::TipIdE;
-           $$->MeasuredPointSe_1111_TypeValue.TipId = $1;
+           $$->MeasuredPointSe_1111_TypeType = MeasuredPointSe_1111_TypeChoicePair::SensorIdE;
+           $$->MeasuredPointSe_1111_TypeValue.SensorId = $1;
           }
-        | y_TipIds_ListQIFReferenceType
+        | y_SensorIds_ListQIFReferenceType
           {$$ = new MeasuredPointSe_1111_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1111_TypeType = MeasuredPointSe_1111_TypeChoicePair::TipIdsE;
-           $$->MeasuredPointSe_1111_TypeValue.TipIds = $1;
+           $$->MeasuredPointSe_1111_TypeType = MeasuredPointSe_1111_TypeChoicePair::SensorIdsE;
+           $$->MeasuredPointSe_1111_TypeValue.SensorIds = $1;
           }
         ;
 
@@ -60728,19 +60875,26 @@ y_MeasuredPointSe_1112_Type :
         ;
 
 y_MeasuredPointSe_1112_TypeChoicePair :
-          y_BinaryMeasurePointNominalIds_ArrayBinaryQIFReferenceFullType
+          y_BinaryTipIds_ArrayBinaryQIFReferenceType
           {$$ = new MeasuredPointSe_1112_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1112_TypeType = MeasuredPointSe_1112_TypeChoicePair::BinaryMeasurePointNominalIdsE;
-           $$->MeasuredPointSe_1112_TypeValue.BinaryMeasurePointNominalIds = $1;
+           $$->MeasuredPointSe_1112_TypeType = MeasuredPointSe_1112_TypeChoicePair::BinaryTipIdsE;
+           $$->MeasuredPointSe_1112_TypeValue.BinaryTipIds = $1;
           }
-        | y_MeasurePointNominalIds_ListQIFReferenceFullType
+        | y_TipId_QIFReferenceType
           {$$ = new MeasuredPointSe_1112_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1112_TypeType = MeasuredPointSe_1112_TypeChoicePair::MeasurePointNominalIdsE;
-           $$->MeasuredPointSe_1112_TypeValue.MeasurePointNominalIds = $1;
+           $$->MeasuredPointSe_1112_TypeType = MeasuredPointSe_1112_TypeChoicePair::TipIdE;
+           $$->MeasuredPointSe_1112_TypeValue.TipId = $1;
+          }
+        | y_TipIds_ListQIFReferenceType
+          {$$ = new MeasuredPointSe_1112_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->MeasuredPointSe_1112_TypeType = MeasuredPointSe_1112_TypeChoicePair::TipIdsE;
+           $$->MeasuredPointSe_1112_TypeValue.TipIds = $1;
           }
         ;
 
@@ -60760,19 +60914,19 @@ y_MeasuredPointSe_1113_Type :
         ;
 
 y_MeasuredPointSe_1113_TypeChoicePair :
-          y_TimeStamp_XmlDateTime
+          y_BinaryMeasurePointNominalIds_ArrayBinaryQIFReferenceFullType
           {$$ = new MeasuredPointSe_1113_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1113_TypeType = MeasuredPointSe_1113_TypeChoicePair::TimeStampE;
-           $$->MeasuredPointSe_1113_TypeValue.TimeStamp = $1;
+           $$->MeasuredPointSe_1113_TypeType = MeasuredPointSe_1113_TypeChoicePair::BinaryMeasurePointNominalIdsE;
+           $$->MeasuredPointSe_1113_TypeValue.BinaryMeasurePointNominalIds = $1;
           }
-        | y_TimeStamps_ListDateTimeType
+        | y_MeasurePointNominalIds_ListQIFReferenceFullType
           {$$ = new MeasuredPointSe_1113_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1113_TypeType = MeasuredPointSe_1113_TypeChoicePair::TimeStampsE;
-           $$->MeasuredPointSe_1113_TypeValue.TimeStamps = $1;
+           $$->MeasuredPointSe_1113_TypeType = MeasuredPointSe_1113_TypeChoicePair::MeasurePointNominalIdsE;
+           $$->MeasuredPointSe_1113_TypeValue.MeasurePointNominalIds = $1;
           }
         ;
 
@@ -60792,19 +60946,19 @@ y_MeasuredPointSe_1114_Type :
         ;
 
 y_MeasuredPointSe_1114_TypeChoicePair :
-          y_BinaryQuality_ArrayBinaryType
+          y_TimeStamp_XmlDateTime
           {$$ = new MeasuredPointSe_1114_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1114_TypeType = MeasuredPointSe_1114_TypeChoicePair::BinaryQualityE;
-           $$->MeasuredPointSe_1114_TypeValue.BinaryQuality = $1;
+           $$->MeasuredPointSe_1114_TypeType = MeasuredPointSe_1114_TypeChoicePair::TimeStampE;
+           $$->MeasuredPointSe_1114_TypeValue.TimeStamp = $1;
           }
-        | y_Quality_ListDoubleType
+        | y_TimeStamps_ListDateTimeType
           {$$ = new MeasuredPointSe_1114_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1114_TypeType = MeasuredPointSe_1114_TypeChoicePair::QualityE;
-           $$->MeasuredPointSe_1114_TypeValue.Quality = $1;
+           $$->MeasuredPointSe_1114_TypeType = MeasuredPointSe_1114_TypeChoicePair::TimeStampsE;
+           $$->MeasuredPointSe_1114_TypeValue.TimeStamps = $1;
           }
         ;
 
@@ -60824,19 +60978,19 @@ y_MeasuredPointSe_1115_Type :
         ;
 
 y_MeasuredPointSe_1115_TypeChoicePair :
-          y_BinaryDeviations_ArrayBinaryType
+          y_BinaryQuality_ArrayBinaryType
           {$$ = new MeasuredPointSe_1115_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1115_TypeType = MeasuredPointSe_1115_TypeChoicePair::BinaryDeviationsE;
-           $$->MeasuredPointSe_1115_TypeValue.BinaryDeviations = $1;
+           $$->MeasuredPointSe_1115_TypeType = MeasuredPointSe_1115_TypeChoicePair::BinaryQualityE;
+           $$->MeasuredPointSe_1115_TypeValue.BinaryQuality = $1;
           }
-        | y_Deviations_ListDoubleType
+        | y_Quality_ListDoubleType
           {$$ = new MeasuredPointSe_1115_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1115_TypeType = MeasuredPointSe_1115_TypeChoicePair::DeviationsE;
-           $$->MeasuredPointSe_1115_TypeValue.Deviations = $1;
+           $$->MeasuredPointSe_1115_TypeType = MeasuredPointSe_1115_TypeChoicePair::QualityE;
+           $$->MeasuredPointSe_1115_TypeValue.Quality = $1;
           }
         ;
 
@@ -60856,19 +61010,19 @@ y_MeasuredPointSe_1116_Type :
         ;
 
 y_MeasuredPointSe_1116_TypeChoicePair :
-          y_BinaryColors_ArrayBinaryType
+          y_BinaryDeviations_ArrayBinaryType
           {$$ = new MeasuredPointSe_1116_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1116_TypeType = MeasuredPointSe_1116_TypeChoicePair::BinaryColorsE;
-           $$->MeasuredPointSe_1116_TypeValue.BinaryColors = $1;
+           $$->MeasuredPointSe_1116_TypeType = MeasuredPointSe_1116_TypeChoicePair::BinaryDeviationsE;
+           $$->MeasuredPointSe_1116_TypeValue.BinaryDeviations = $1;
           }
-        | y_Colors_ListIntType
+        | y_Deviations_ListDoubleType
           {$$ = new MeasuredPointSe_1116_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1116_TypeType = MeasuredPointSe_1116_TypeChoicePair::ColorsE;
-           $$->MeasuredPointSe_1116_TypeValue.Colors = $1;
+           $$->MeasuredPointSe_1116_TypeType = MeasuredPointSe_1116_TypeChoicePair::DeviationsE;
+           $$->MeasuredPointSe_1116_TypeValue.Deviations = $1;
           }
         ;
 
@@ -60880,55 +61034,86 @@ y_MeasuredPointSe_1117_MeasuredPointSe_1117_Type_0 :
         ;
 
 y_MeasuredPointSe_1117_Type :
+          y_MeasuredPointSe_1117_TypeChoicePair
+          {$$ = new MeasuredPointSe_1117_Type($1);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+          }
+        ;
+
+y_MeasuredPointSe_1117_TypeChoicePair :
+          y_BinaryColors_ArrayBinaryType
+          {$$ = new MeasuredPointSe_1117_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->MeasuredPointSe_1117_TypeType = MeasuredPointSe_1117_TypeChoicePair::BinaryColorsE;
+           $$->MeasuredPointSe_1117_TypeValue.BinaryColors = $1;
+          }
+        | y_Colors_ListIntType
+          {$$ = new MeasuredPointSe_1117_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->MeasuredPointSe_1117_TypeType = MeasuredPointSe_1117_TypeChoicePair::ColorsE;
+           $$->MeasuredPointSe_1117_TypeValue.Colors = $1;
+          }
+        ;
+
+y_MeasuredPointSe_1118_MeasuredPointSe_1118_Type_0 :
+          /* empty */
+          {$$ = 0;}
+        | y_MeasuredPointSe_1118_Type
+          {$$ = $1;}
+        ;
+
+y_MeasuredPointSe_1118_Type :
           y_NumberOfFacets_NaturalType
-          y_MeasuredPointSe_1125_MeasuredPointSe_1125_Type
-          {$$ = new MeasuredPointSe_1117_Type($1, $2);
+          y_MeasuredPointSe_1126_MeasuredPointSe_1126_Type
+          {$$ = new MeasuredPointSe_1118_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
           }
         ;
 
-y_MeasuredPointSe_1125_MeasuredPointSe_1125_Type :
-          y_MeasuredPointSe_1125_Type
+y_MeasuredPointSe_1126_MeasuredPointSe_1126_Type :
+          y_MeasuredPointSe_1126_Type
           {$$ = $1;}
         ;
 
-y_MeasuredPointSe_1125_Type :
-          y_MeasuredPointSe_1125_TypeChoicePair
-          {$$ = new MeasuredPointSe_1125_Type($1);
+y_MeasuredPointSe_1126_Type :
+          y_MeasuredPointSe_1126_TypeChoicePair
+          {$$ = new MeasuredPointSe_1126_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_MeasuredPointSe_1125_TypeChoicePair :
+y_MeasuredPointSe_1126_TypeChoicePair :
           y_BinaryPointIndices_ArrayBinaryType
-          {$$ = new MeasuredPointSe_1125_TypeChoicePair();
+          {$$ = new MeasuredPointSe_1126_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1125_TypeType = MeasuredPointSe_1125_TypeChoicePair::BinaryPointIndicesE;
-           $$->MeasuredPointSe_1125_TypeValue.BinaryPointIndices = $1;
+           $$->MeasuredPointSe_1126_TypeType = MeasuredPointSe_1126_TypeChoicePair::BinaryPointIndicesE;
+           $$->MeasuredPointSe_1126_TypeValue.BinaryPointIndices = $1;
           }
         | y_PointIndices_ArrayI3Type
-          {$$ = new MeasuredPointSe_1125_TypeChoicePair();
+          {$$ = new MeasuredPointSe_1126_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasuredPointSe_1125_TypeType = MeasuredPointSe_1125_TypeChoicePair::PointIndicesE;
-           $$->MeasuredPointSe_1125_TypeValue.PointIndices = $1;
+           $$->MeasuredPointSe_1126_TypeType = MeasuredPointSe_1126_TypeChoicePair::PointIndicesE;
+           $$->MeasuredPointSe_1126_TypeValue.PointIndices = $1;
           }
         ;
 
 y_MeasuredPointSetType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_Units_OtherUnitsType_0
-          y_MeasuredPointSe_1105_MeasuredPointSe_1105_Type_0
-          y_MeasuredPointSe_1106_MeasuredPointSe_1106_Type
-          y_MeasuredPointSe_1107_MeasuredPointSe_1107_Type_0
-          y_MeasuredPointSe_1108_MeasuredPointSe_1108_Type
-          y_MeasuredPointSe_1109_MeasuredPointSe_1109_Type_0
-          y_MeasurementDeviceId_QIFReferenceType_0
+          y_MeasuredPointSe_1106_MeasuredPointSe_1106_Type_0
+          y_MeasuredPointSe_1107_MeasuredPointSe_1107_Type
+          y_MeasuredPointSe_1108_MeasuredPointSe_1108_Type_0
+          y_MeasuredPointSe_1109_MeasuredPointSe_1109_Type
           y_MeasuredPointSe_1110_MeasuredPointSe_1110_Type_0
+          y_MeasurementDeviceId_QIFReferenceType_0
           y_MeasuredPointSe_1111_MeasuredPointSe_1111_Type_0
           y_MeasuredPointSe_1112_MeasuredPointSe_1112_Type_0
           y_MeasuredPointSe_1113_MeasuredPointSe_1113_Type_0
@@ -60936,6 +61121,7 @@ y_MeasuredPointSetType :
           y_MeasuredPointSe_1115_MeasuredPointSe_1115_Type_0
           y_MeasuredPointSe_1116_MeasuredPointSe_1116_Type_0
           y_MeasuredPointSe_1117_MeasuredPointSe_1117_Type_0
+          y_MeasuredPointSe_1118_MeasuredPointSe_1118_Type_0
           {$$ = new MeasuredPointSetType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -61023,11 +61209,15 @@ y_MeasuredPressureValueType :
           {$$ = new MeasuredPressureValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad MeasuredPressureValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MeasuredPressureValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad MeasuredPressureValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -61043,11 +61233,15 @@ y_MeasuredSpeedValueType :
           {$$ = new MeasuredSpeedValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad MeasuredSpeedValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MeasuredSpeedValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad MeasuredSpeedValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -61063,11 +61257,15 @@ y_MeasuredTemperatureValueType :
           {$$ = new MeasuredTemperatureValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad MeasuredTemperatureValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MeasuredTemperatureValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad MeasuredTemperatureValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -61083,11 +61281,15 @@ y_MeasuredTimeValueType :
           {$$ = new MeasuredTimeValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad MeasuredTimeValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new MeasuredTimeValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad MeasuredTimeValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -61128,6 +61330,8 @@ y_MeasuredUserDefinedUnitValueType :
           {$$ = new MeasuredUserDefinedUnitValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad MeasuredUserDefinedUnitValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -61221,7 +61425,7 @@ y_MeasurementDeviceType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           {$$ = new MeasurementDeviceType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13);
@@ -61521,35 +61725,35 @@ y_MeasurementRate_UserDefinedUnitValueType_0 :
           {$$ = $2;}
         ;
 
-y_MeasurementReso_1241_MeasurementReso_1241_Type_0 :
+y_MeasurementReso_1242_MeasurementReso_1242_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_MeasurementReso_1241_Type
+        | y_MeasurementReso_1242_Type
           {$$ = $1;}
         ;
 
-y_MeasurementReso_1241_Type :
-          y_MeasurementReso_1241_TypeChoicePair
-          {$$ = new MeasurementReso_1241_Type($1);
+y_MeasurementReso_1242_Type :
+          y_MeasurementReso_1242_TypeChoicePair
+          {$$ = new MeasurementReso_1242_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_MeasurementReso_1241_TypeChoicePair :
+y_MeasurementReso_1242_TypeChoicePair :
           y_LocationId_QIFReferenceType
-          {$$ = new MeasurementReso_1241_TypeChoicePair();
+          {$$ = new MeasurementReso_1242_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasurementReso_1241_TypeType = MeasurementReso_1241_TypeChoicePair::LocationIdE;
-           $$->MeasurementReso_1241_TypeValue.LocationId = $1;
+           $$->MeasurementReso_1242_TypeType = MeasurementReso_1242_TypeChoicePair::LocationIdE;
+           $$->MeasurementReso_1242_TypeValue.LocationId = $1;
           }
         | y_Location_LocationType
-          {$$ = new MeasurementReso_1241_TypeChoicePair();
+          {$$ = new MeasurementReso_1242_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeasurementReso_1241_TypeType = MeasurementReso_1241_TypeChoicePair::LocationE;
-           $$->MeasurementReso_1241_TypeValue.Location = $1;
+           $$->MeasurementReso_1242_TypeType = MeasurementReso_1242_TypeChoicePair::LocationE;
+           $$->MeasurementReso_1242_TypeValue.Location = $1;
           }
         ;
 
@@ -61657,7 +61861,7 @@ y_MeasurementRoomType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0
           y_TemperatureRangeMin_TemperatureType
           y_TemperatureRangeMax_TemperatureType
@@ -61764,40 +61968,8 @@ y_MedianFeature_XmlBoolean_0 :
           {$$ = $4;}
         ;
 
-y_MeshTriangleCor_1213_MeshTriangleCor_1213_Type :
-          y_MeshTriangleCor_1213_Type
-          {$$ = $1;}
-        ;
-
-y_MeshTriangleCor_1213_Type :
-          y_MeshTriangleCor_1213_TypeChoicePair
-          {$$ = new MeshTriangleCor_1213_Type($1);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_MeshTriangleCor_1213_TypeChoicePair :
-          y_TrianglesBinary_ArrayBinaryType
-          {$$ = new MeshTriangleCor_1213_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->MeshTriangleCor_1213_TypeType = MeshTriangleCor_1213_TypeChoicePair::TrianglesBinaryE;
-           $$->MeshTriangleCor_1213_TypeValue.TrianglesBinary = $1;
-          }
-        | y_Triangles_ArrayI3Type
-          {$$ = new MeshTriangleCor_1213_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->MeshTriangleCor_1213_TypeType = MeshTriangleCor_1213_TypeChoicePair::TrianglesE;
-           $$->MeshTriangleCor_1213_TypeValue.Triangles = $1;
-          }
-        ;
-
-y_MeshTriangleCor_1214_MeshTriangleCor_1214_Type_0 :
-          /* empty */
-          {$$ = 0;}
-        | y_MeshTriangleCor_1214_Type
+y_MeshTriangleCor_1214_MeshTriangleCor_1214_Type :
+          y_MeshTriangleCor_1214_Type
           {$$ = $1;}
         ;
 
@@ -61810,24 +61982,26 @@ y_MeshTriangleCor_1214_Type :
         ;
 
 y_MeshTriangleCor_1214_TypeChoicePair :
-          y_NeighboursBinary_ArrayBinaryType
+          y_TrianglesBinary_ArrayBinaryType
           {$$ = new MeshTriangleCor_1214_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeshTriangleCor_1214_TypeType = MeshTriangleCor_1214_TypeChoicePair::NeighboursBinaryE;
-           $$->MeshTriangleCor_1214_TypeValue.NeighboursBinary = $1;
+           $$->MeshTriangleCor_1214_TypeType = MeshTriangleCor_1214_TypeChoicePair::TrianglesBinaryE;
+           $$->MeshTriangleCor_1214_TypeValue.TrianglesBinary = $1;
           }
-        | y_Neighbours_ArrayI3Type
+        | y_Triangles_ArrayI3Type
           {$$ = new MeshTriangleCor_1214_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeshTriangleCor_1214_TypeType = MeshTriangleCor_1214_TypeChoicePair::NeighboursE;
-           $$->MeshTriangleCor_1214_TypeValue.Neighbours = $1;
+           $$->MeshTriangleCor_1214_TypeType = MeshTriangleCor_1214_TypeChoicePair::TrianglesE;
+           $$->MeshTriangleCor_1214_TypeValue.Triangles = $1;
           }
         ;
 
-y_MeshTriangleCor_1215_MeshTriangleCor_1215_Type :
-          y_MeshTriangleCor_1215_Type
+y_MeshTriangleCor_1215_MeshTriangleCor_1215_Type_0 :
+          /* empty */
+          {$$ = 0;}
+        | y_MeshTriangleCor_1215_Type
           {$$ = $1;}
         ;
 
@@ -61840,26 +62014,24 @@ y_MeshTriangleCor_1215_Type :
         ;
 
 y_MeshTriangleCor_1215_TypeChoicePair :
-          y_VerticesBinary_ArrayBinaryType
+          y_NeighboursBinary_ArrayBinaryType
           {$$ = new MeshTriangleCor_1215_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeshTriangleCor_1215_TypeType = MeshTriangleCor_1215_TypeChoicePair::VerticesBinaryE;
-           $$->MeshTriangleCor_1215_TypeValue.VerticesBinary = $1;
+           $$->MeshTriangleCor_1215_TypeType = MeshTriangleCor_1215_TypeChoicePair::NeighboursBinaryE;
+           $$->MeshTriangleCor_1215_TypeValue.NeighboursBinary = $1;
           }
-        | y_Vertices_ArrayPointType
+        | y_Neighbours_ArrayI3Type
           {$$ = new MeshTriangleCor_1215_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeshTriangleCor_1215_TypeType = MeshTriangleCor_1215_TypeChoicePair::VerticesE;
-           $$->MeshTriangleCor_1215_TypeValue.Vertices = $1;
+           $$->MeshTriangleCor_1215_TypeType = MeshTriangleCor_1215_TypeChoicePair::NeighboursE;
+           $$->MeshTriangleCor_1215_TypeValue.Neighbours = $1;
           }
         ;
 
-y_MeshTriangleCor_1216_MeshTriangleCor_1216_Type_0 :
-          /* empty */
-          {$$ = 0;}
-        | y_MeshTriangleCor_1216_Type
+y_MeshTriangleCor_1216_MeshTriangleCor_1216_Type :
+          y_MeshTriangleCor_1216_Type
           {$$ = $1;}
         ;
 
@@ -61872,27 +62044,59 @@ y_MeshTriangleCor_1216_Type :
         ;
 
 y_MeshTriangleCor_1216_TypeChoicePair :
-          y_NormalsBinary_ArrayBinaryType
+          y_VerticesBinary_ArrayBinaryType
           {$$ = new MeshTriangleCor_1216_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeshTriangleCor_1216_TypeType = MeshTriangleCor_1216_TypeChoicePair::NormalsBinaryE;
-           $$->MeshTriangleCor_1216_TypeValue.NormalsBinary = $1;
+           $$->MeshTriangleCor_1216_TypeType = MeshTriangleCor_1216_TypeChoicePair::VerticesBinaryE;
+           $$->MeshTriangleCor_1216_TypeValue.VerticesBinary = $1;
+          }
+        | y_Vertices_ArrayPointType
+          {$$ = new MeshTriangleCor_1216_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->MeshTriangleCor_1216_TypeType = MeshTriangleCor_1216_TypeChoicePair::VerticesE;
+           $$->MeshTriangleCor_1216_TypeValue.Vertices = $1;
+          }
+        ;
+
+y_MeshTriangleCor_1217_MeshTriangleCor_1217_Type_0 :
+          /* empty */
+          {$$ = 0;}
+        | y_MeshTriangleCor_1217_Type
+          {$$ = $1;}
+        ;
+
+y_MeshTriangleCor_1217_Type :
+          y_MeshTriangleCor_1217_TypeChoicePair
+          {$$ = new MeshTriangleCor_1217_Type($1);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+          }
+        ;
+
+y_MeshTriangleCor_1217_TypeChoicePair :
+          y_NormalsBinary_ArrayBinaryType
+          {$$ = new MeshTriangleCor_1217_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->MeshTriangleCor_1217_TypeType = MeshTriangleCor_1217_TypeChoicePair::NormalsBinaryE;
+           $$->MeshTriangleCor_1217_TypeValue.NormalsBinary = $1;
           }
         | y_Normals_ArrayUnitVectorType
-          {$$ = new MeshTriangleCor_1216_TypeChoicePair();
+          {$$ = new MeshTriangleCor_1217_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeshTriangleCor_1216_TypeType = MeshTriangleCor_1216_TypeChoicePair::NormalsE;
-           $$->MeshTriangleCor_1216_TypeValue.Normals = $1;
+           $$->MeshTriangleCor_1217_TypeType = MeshTriangleCor_1217_TypeChoicePair::NormalsE;
+           $$->MeshTriangleCor_1217_TypeValue.Normals = $1;
           }
         ;
 
 y_MeshTriangleCoreType :
-          ENDITEM y_MeshTriangleCor_1213_MeshTriangleCor_1213_Type
-          y_MeshTriangleCor_1214_MeshTriangleCor_1214_Type_0
-          y_MeshTriangleCor_1215_MeshTriangleCor_1215_Type
-          y_MeshTriangleCor_1216_MeshTriangleCor_1216_Type_0
+          ENDITEM y_MeshTriangleCor_1214_MeshTriangleCor_1214_Type
+          y_MeshTriangleCor_1215_MeshTriangleCor_1215_Type_0
+          y_MeshTriangleCor_1216_MeshTriangleCor_1216_Type
+          y_MeshTriangleCor_1217_MeshTriangleCor_1217_Type_0
           {$$ = new MeshTriangleCoreType($2, $3, $4, $5);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -61907,42 +62111,42 @@ y_MeshTriangleCore_MeshTriangleCoreType :
           {$$ = $2;}
         ;
 
-y_MeshTriangleTyp_1217_MeshTriangleTyp_1217_Type_0 :
+y_MeshTriangleTyp_1218_MeshTriangleTyp_1218_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_MeshTriangleTyp_1217_Type
+        | y_MeshTriangleTyp_1218_Type
           {$$ = $1;}
         ;
 
-y_MeshTriangleTyp_1217_Type :
-          y_MeshTriangleTyp_1217_TypeChoicePair
-          {$$ = new MeshTriangleTyp_1217_Type($1);
+y_MeshTriangleTyp_1218_Type :
+          y_MeshTriangleTyp_1218_TypeChoicePair
+          {$$ = new MeshTriangleTyp_1218_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_MeshTriangleTyp_1217_TypeChoicePair :
+y_MeshTriangleTyp_1218_TypeChoicePair :
           y_NormalsSpecialBinary_ArrayBinaryType
-          {$$ = new MeshTriangleTyp_1217_TypeChoicePair();
+          {$$ = new MeshTriangleTyp_1218_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeshTriangleTyp_1217_TypeType = MeshTriangleTyp_1217_TypeChoicePair::NormalsSpecialBinaryE;
-           $$->MeshTriangleTyp_1217_TypeValue.NormalsSpecialBinary = $1;
+           $$->MeshTriangleTyp_1218_TypeType = MeshTriangleTyp_1218_TypeChoicePair::NormalsSpecialBinaryE;
+           $$->MeshTriangleTyp_1218_TypeValue.NormalsSpecialBinary = $1;
           }
         | y_NormalsSpecial_ArrayTriangleVertexNormalType
-          {$$ = new MeshTriangleTyp_1217_TypeChoicePair();
+          {$$ = new MeshTriangleTyp_1218_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->MeshTriangleTyp_1217_TypeType = MeshTriangleTyp_1217_TypeChoicePair::NormalsSpecialE;
-           $$->MeshTriangleTyp_1217_TypeValue.NormalsSpecial = $1;
+           $$->MeshTriangleTyp_1218_TypeType = MeshTriangleTyp_1218_TypeChoicePair::NormalsSpecialE;
+           $$->MeshTriangleTyp_1218_TypeValue.NormalsSpecial = $1;
           }
         ;
 
 y_MeshTriangleType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_MeshTriangleCore_MeshTriangleCoreType
-          y_MeshTriangleTyp_1217_MeshTriangleTyp_1217_Type_0
+          y_MeshTriangleTyp_1218_MeshTriangleTyp_1218_Type_0
           {$$ = new MeshTriangleType($3, $4, $5);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -61986,7 +62190,7 @@ y_MicrometerAnalogType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_MinMeasuringDistance_LinearValueType_0
@@ -62036,7 +62240,7 @@ y_MicrometerDigitalType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_MinMeasuringDistance_LinearValueType_0
@@ -62087,7 +62291,7 @@ y_MicrometerType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_MinMeasuringDistance_LinearValueType_0
@@ -62179,7 +62383,7 @@ y_MicroscopeType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_Resolution_substituteType_0 y_WorkingVolume_substituteType_0
@@ -63208,7 +63412,7 @@ y_MultipleCarriageCartesianCMMType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_Resolution_substituteType_0 y_WorkingVolume_substituteType_0
@@ -63608,7 +63812,14 @@ y_Normal_MeasuredUnitVectorType_0 :
         ;
 
 y_Normal_UnitVectorSimpleType :
-          NormalSTART y_UnitVectorSimpleType NormalEND
+          NormalSTART ENDWHOLEITEM
+          {$$ = new UnitVectorSimpleType();
+           $$->UnitVectorSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad UnitVectorSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | NormalSTART y_UnitVectorSimpleType NormalEND
           {$$ = $2;
            $2->UnitVectorSimpleTypeCheck();
            if ($2->bad)
@@ -64696,7 +64907,7 @@ y_NumericalLengthAccuracyType :
 y_Nurbs12CoreType :
           y_LiztAttributePair ENDITEM y_Order_NaturalType
           y_Knots_ArrayDoubleType
-          y_Nurbs12CoreType_1218_Nurbs12CoreType_1218_Type
+          y_Nurbs12CoreType_1219_Nurbs12CoreType_1219_Type
           y_Weights_ArrayDoubleType_0
           {$$ = new Nurbs12CoreType($3, $4, $5, $6);
            yyUnrefMap[$$] = $$;
@@ -64714,33 +64925,33 @@ y_Nurbs12CoreType :
           }
         ;
 
-y_Nurbs12CoreType_1218_Nurbs12CoreType_1218_Type :
-          y_Nurbs12CoreType_1218_Type
+y_Nurbs12CoreType_1219_Nurbs12CoreType_1219_Type :
+          y_Nurbs12CoreType_1219_Type
           {$$ = $1;}
         ;
 
-y_Nurbs12CoreType_1218_Type :
-          y_Nurbs12CoreType_1218_TypeChoicePair
-          {$$ = new Nurbs12CoreType_1218_Type($1);
+y_Nurbs12CoreType_1219_Type :
+          y_Nurbs12CoreType_1219_TypeChoicePair
+          {$$ = new Nurbs12CoreType_1219_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_Nurbs12CoreType_1218_TypeChoicePair :
+y_Nurbs12CoreType_1219_TypeChoicePair :
           y_CPsBinary_ArrayBinaryType
-          {$$ = new Nurbs12CoreType_1218_TypeChoicePair();
+          {$$ = new Nurbs12CoreType_1219_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->Nurbs12CoreType_1218_TypeType = Nurbs12CoreType_1218_TypeChoicePair::CPsBinaryE;
-           $$->Nurbs12CoreType_1218_TypeValue.CPsBinary = $1;
+           $$->Nurbs12CoreType_1219_TypeType = Nurbs12CoreType_1219_TypeChoicePair::CPsBinaryE;
+           $$->Nurbs12CoreType_1219_TypeValue.CPsBinary = $1;
           }
         | y_CPs_ArrayPoint2dType
-          {$$ = new Nurbs12CoreType_1218_TypeChoicePair();
+          {$$ = new Nurbs12CoreType_1219_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->Nurbs12CoreType_1218_TypeType = Nurbs12CoreType_1218_TypeChoicePair::CPsE;
-           $$->Nurbs12CoreType_1218_TypeValue.CPs = $1;
+           $$->Nurbs12CoreType_1219_TypeType = Nurbs12CoreType_1219_TypeChoicePair::CPsE;
+           $$->Nurbs12CoreType_1219_TypeValue.CPs = $1;
           }
         ;
 
@@ -64778,7 +64989,7 @@ y_Nurbs12_Nurbs12Type :
 y_Nurbs13CoreType :
           y_LiztAttributePair ENDITEM y_Order_NaturalType
           y_Knots_ArrayDoubleType
-          y_Nurbs13CoreType_1219_Nurbs13CoreType_1219_Type
+          y_Nurbs13CoreType_1220_Nurbs13CoreType_1220_Type
           y_Weights_ArrayDoubleType_0
           {$$ = new Nurbs13CoreType($3, $4, $5, $6);
            yyUnrefMap[$$] = $$;
@@ -64796,33 +65007,33 @@ y_Nurbs13CoreType :
           }
         ;
 
-y_Nurbs13CoreType_1219_Nurbs13CoreType_1219_Type :
-          y_Nurbs13CoreType_1219_Type
+y_Nurbs13CoreType_1220_Nurbs13CoreType_1220_Type :
+          y_Nurbs13CoreType_1220_Type
           {$$ = $1;}
         ;
 
-y_Nurbs13CoreType_1219_Type :
-          y_Nurbs13CoreType_1219_TypeChoicePair
-          {$$ = new Nurbs13CoreType_1219_Type($1);
+y_Nurbs13CoreType_1220_Type :
+          y_Nurbs13CoreType_1220_TypeChoicePair
+          {$$ = new Nurbs13CoreType_1220_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_Nurbs13CoreType_1219_TypeChoicePair :
+y_Nurbs13CoreType_1220_TypeChoicePair :
           y_CPsBinary_ArrayBinaryType
-          {$$ = new Nurbs13CoreType_1219_TypeChoicePair();
+          {$$ = new Nurbs13CoreType_1220_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->Nurbs13CoreType_1219_TypeType = Nurbs13CoreType_1219_TypeChoicePair::CPsBinaryE;
-           $$->Nurbs13CoreType_1219_TypeValue.CPsBinary = $1;
+           $$->Nurbs13CoreType_1220_TypeType = Nurbs13CoreType_1220_TypeChoicePair::CPsBinaryE;
+           $$->Nurbs13CoreType_1220_TypeValue.CPsBinary = $1;
           }
         | y_CPs_ArrayPointType
-          {$$ = new Nurbs13CoreType_1219_TypeChoicePair();
+          {$$ = new Nurbs13CoreType_1220_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->Nurbs13CoreType_1219_TypeType = Nurbs13CoreType_1219_TypeChoicePair::CPsE;
-           $$->Nurbs13CoreType_1219_TypeValue.CPs = $1;
+           $$->Nurbs13CoreType_1220_TypeType = Nurbs13CoreType_1220_TypeChoicePair::CPsE;
+           $$->Nurbs13CoreType_1220_TypeValue.CPs = $1;
           }
         ;
 
@@ -64861,7 +65072,7 @@ y_Nurbs13_Nurbs13Type :
 y_Nurbs23CoreType :
           ENDITEM y_OrderU_NaturalType y_OrderV_NaturalType
           y_KnotsU_ArrayDoubleType y_KnotsV_ArrayDoubleType
-          y_Nurbs23CoreType_1220_Nurbs23CoreType_1220_Type
+          y_Nurbs23CoreType_1221_Nurbs23CoreType_1221_Type
           y_Weights_ArrayDoubleType_0
           {$$ = new Nurbs23CoreType($2, $3, $4, $5, $6, $7);
            yyUnrefMap[$$] = $$;
@@ -64875,7 +65086,7 @@ y_Nurbs23CoreType :
         | y_LiztAttributePair ENDITEM y_OrderU_NaturalType
           y_OrderV_NaturalType y_KnotsU_ArrayDoubleType
           y_KnotsV_ArrayDoubleType
-          y_Nurbs23CoreType_1220_Nurbs23CoreType_1220_Type
+          y_Nurbs23CoreType_1221_Nurbs23CoreType_1221_Type
           y_Weights_ArrayDoubleType_0
           {$$ = new Nurbs23CoreType($3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
@@ -64895,33 +65106,33 @@ y_Nurbs23CoreType :
           }
         ;
 
-y_Nurbs23CoreType_1220_Nurbs23CoreType_1220_Type :
-          y_Nurbs23CoreType_1220_Type
+y_Nurbs23CoreType_1221_Nurbs23CoreType_1221_Type :
+          y_Nurbs23CoreType_1221_Type
           {$$ = $1;}
         ;
 
-y_Nurbs23CoreType_1220_Type :
-          y_Nurbs23CoreType_1220_TypeChoicePair
-          {$$ = new Nurbs23CoreType_1220_Type($1);
+y_Nurbs23CoreType_1221_Type :
+          y_Nurbs23CoreType_1221_TypeChoicePair
+          {$$ = new Nurbs23CoreType_1221_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_Nurbs23CoreType_1220_TypeChoicePair :
+y_Nurbs23CoreType_1221_TypeChoicePair :
           y_CPsBinary_ArrayBinaryType
-          {$$ = new Nurbs23CoreType_1220_TypeChoicePair();
+          {$$ = new Nurbs23CoreType_1221_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->Nurbs23CoreType_1220_TypeType = Nurbs23CoreType_1220_TypeChoicePair::CPsBinaryE;
-           $$->Nurbs23CoreType_1220_TypeValue.CPsBinary = $1;
+           $$->Nurbs23CoreType_1221_TypeType = Nurbs23CoreType_1221_TypeChoicePair::CPsBinaryE;
+           $$->Nurbs23CoreType_1221_TypeValue.CPsBinary = $1;
           }
         | y_CPs_ArrayPointType
-          {$$ = new Nurbs23CoreType_1220_TypeChoicePair();
+          {$$ = new Nurbs23CoreType_1221_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->Nurbs23CoreType_1220_TypeType = Nurbs23CoreType_1220_TypeChoicePair::CPsE;
-           $$->Nurbs23CoreType_1220_TypeValue.CPs = $1;
+           $$->Nurbs23CoreType_1221_TypeType = Nurbs23CoreType_1221_TypeChoicePair::CPsE;
+           $$->Nurbs23CoreType_1221_TypeValue.CPs = $1;
           }
         ;
 
@@ -65634,40 +65845,8 @@ y_OppositeAngledLinesTransformType :
           }
         ;
 
-y_OppositeAngledP_1118_OppositeAngledP_1118_Type :
-          y_OppositeAngledP_1118_Type
-          {$$ = $1;}
-        ;
-
-y_OppositeAngledP_1118_Type :
-          y_OppositeAngledP_1118_TypeChoicePair
-          {$$ = new OppositeAngledP_1118_Type($1);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_OppositeAngledP_1118_TypeChoicePair :
-          y_DraftAngle_AngularValueType
-          {$$ = new OppositeAngledP_1118_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->OppositeAngledP_1118_TypeType = OppositeAngledP_1118_TypeChoicePair::DraftAngleE;
-           $$->OppositeAngledP_1118_TypeValue.DraftAngle = $1;
-          }
-        | y_TaperAngle_AngularValueType
-          {$$ = new OppositeAngledP_1118_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->OppositeAngledP_1118_TypeType = OppositeAngledP_1118_TypeChoicePair::TaperAngleE;
-           $$->OppositeAngledP_1118_TypeValue.TaperAngle = $1;
-          }
-        ;
-
-y_OppositeAngledP_1119_OppositeAngledP_1119_Type_0 :
-          /* empty */
-          {$$ = 0;}
-        | y_OppositeAngledP_1119_Type
+y_OppositeAngledP_1119_OppositeAngledP_1119_Type :
+          y_OppositeAngledP_1119_Type
           {$$ = $1;}
         ;
 
@@ -65680,19 +65859,51 @@ y_OppositeAngledP_1119_Type :
         ;
 
 y_OppositeAngledP_1119_TypeChoicePair :
-          y_DraftAngle_MeasuredAngularValueType
+          y_DraftAngle_AngularValueType
           {$$ = new OppositeAngledP_1119_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            $$->OppositeAngledP_1119_TypeType = OppositeAngledP_1119_TypeChoicePair::DraftAngleE;
            $$->OppositeAngledP_1119_TypeValue.DraftAngle = $1;
           }
-        | y_TaperAngle_MeasuredAngularValueType
+        | y_TaperAngle_AngularValueType
           {$$ = new OppositeAngledP_1119_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            $$->OppositeAngledP_1119_TypeType = OppositeAngledP_1119_TypeChoicePair::TaperAngleE;
            $$->OppositeAngledP_1119_TypeValue.TaperAngle = $1;
+          }
+        ;
+
+y_OppositeAngledP_1120_OppositeAngledP_1120_Type_0 :
+          /* empty */
+          {$$ = 0;}
+        | y_OppositeAngledP_1120_Type
+          {$$ = $1;}
+        ;
+
+y_OppositeAngledP_1120_Type :
+          y_OppositeAngledP_1120_TypeChoicePair
+          {$$ = new OppositeAngledP_1120_Type($1);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+          }
+        ;
+
+y_OppositeAngledP_1120_TypeChoicePair :
+          y_DraftAngle_MeasuredAngularValueType
+          {$$ = new OppositeAngledP_1120_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->OppositeAngledP_1120_TypeType = OppositeAngledP_1120_TypeChoicePair::DraftAngleE;
+           $$->OppositeAngledP_1120_TypeValue.DraftAngle = $1;
+          }
+        | y_TaperAngle_MeasuredAngularValueType
+          {$$ = new OppositeAngledP_1120_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->OppositeAngledP_1120_TypeType = OppositeAngledP_1120_TypeChoicePair::TaperAngleE;
+           $$->OppositeAngledP_1120_TypeValue.TaperAngle = $1;
           }
         ;
 
@@ -65826,7 +66037,7 @@ y_OppositeAngledPlanesFeatureDefinitionType :
           y_EndType_SlotEndType y_Depth_LinearValueType_0
           y_Bottom_BottomType_0 y_SingleOpenEnd_XmlBoolean_0
           y_EndRadius1_EndRadiusType_0 y_EndRadius2_EndRadiusType_0
-          y_OppositeAngledP_1118_OppositeAngledP_1118_Type
+          y_OppositeAngledP_1119_OppositeAngledP_1119_Type
           {$$ = new OppositeAngledPlanesFeatureDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -65923,7 +66134,7 @@ y_OppositeAngledPlanesFeatureMeasurementType :
           y_LengthMin_MeasuredLinearValueType_0
           y_LengthMax_MeasuredLinearValueType_0
           y_Depth_MeasuredLinearValueType_0
-          y_OppositeAngledP_1119_OppositeAngledP_1119_Type_0
+          y_OppositeAngledP_1120_OppositeAngledP_1120_Type_0
           y_EndRadius1_MeasuredEndRadiusType_0
           y_EndRadius2_MeasuredEndRadiusType_0
           y_Form_MeasuredLinearValueType_0
@@ -66992,7 +67203,7 @@ y_OpticalComparatorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_Resolution_substituteType_0 y_WorkingVolume_substituteType_0
@@ -67172,42 +67383,42 @@ y_Organization_XmlString_0 :
           {$$ = $4;}
         ;
 
-y_OrientationChar_1064_OrientationChar_1064_Type_0 :
+y_OrientationChar_1065_OrientationChar_1065_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_OrientationChar_1064_Type
+        | y_OrientationChar_1065_Type
           {$$ = $1;}
         ;
 
-y_OrientationChar_1064_Type :
-          y_OrientationChar_1064_TypeChoicePair
-          {$$ = new OrientationChar_1064_Type($1);
+y_OrientationChar_1065_Type :
+          y_OrientationChar_1065_TypeChoicePair
+          {$$ = new OrientationChar_1065_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_OrientationChar_1064_TypeChoicePair :
+y_OrientationChar_1065_TypeChoicePair :
           y_EachElement_XmlBoolean
-          {$$ = new OrientationChar_1064_TypeChoicePair();
+          {$$ = new OrientationChar_1065_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->OrientationChar_1064_TypeType = OrientationChar_1064_TypeChoicePair::EachElementE;
-           $$->OrientationChar_1064_TypeValue.EachElement = $1;
+           $$->OrientationChar_1065_TypeType = OrientationChar_1065_TypeChoicePair::EachElementE;
+           $$->OrientationChar_1065_TypeValue.EachElement = $1;
           }
         | y_EachRadialElement_XmlBoolean
-          {$$ = new OrientationChar_1064_TypeChoicePair();
+          {$$ = new OrientationChar_1065_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->OrientationChar_1064_TypeType = OrientationChar_1064_TypeChoicePair::EachRadialElementE;
-           $$->OrientationChar_1064_TypeValue.EachRadialElement = $1;
+           $$->OrientationChar_1065_TypeType = OrientationChar_1065_TypeChoicePair::EachRadialElementE;
+           $$->OrientationChar_1065_TypeValue.EachRadialElement = $1;
           }
         ;
 
 y_OrientationCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -67360,24 +67571,24 @@ y_OriginReferenceTypeChoicePair :
            $$->OriginReferenceTypeType = OriginReferenceTypeChoicePair::DatumDefinitionIdE;
            $$->OriginReferenceTypeValue.DatumDefinitionId = $1;
           }
-        | y_OriginReference_1065_OriginReference_1065_Type
+        | y_OriginReference_1066_OriginReference_1066_Type
           {$$ = new OriginReferenceTypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->OriginReferenceTypeType = OriginReferenceTypeChoicePair::OriginReference_1065E;
-           $$->OriginReferenceTypeValue.OriginReference_1065 = $1;
+           $$->OriginReferenceTypeType = OriginReferenceTypeChoicePair::OriginReference_1066E;
+           $$->OriginReferenceTypeValue.OriginReference_1066 = $1;
           }
         ;
 
-y_OriginReference_1065_OriginReference_1065_Type :
-          y_OriginReference_1065_Type
+y_OriginReference_1066_OriginReference_1066_Type :
+          y_OriginReference_1066_Type
           {$$ = $1;}
         ;
 
-y_OriginReference_1065_Type :
+y_OriginReference_1066_Type :
           y_FeatureNominalId_QIFReferenceFullType
           y_ReferencedComponent_ReferencedComponentEnumType
-          {$$ = new OriginReference_1065_Type($1, $2);
+          {$$ = new OriginReference_1066_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
@@ -67397,7 +67608,14 @@ y_Origin_MeasurementOriginOffsetType :
         ;
 
 y_Origin_Point2dSimpleType :
-          OriginSTART y_Point2dSimpleType OriginEND
+          OriginSTART ENDWHOLEITEM
+          {$$ = new Point2dSimpleType();
+           $$->Point2dSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad Point2dSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | OriginSTART y_Point2dSimpleType OriginEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
            if ($2->bad)
@@ -67406,7 +67624,14 @@ y_Origin_Point2dSimpleType :
         ;
 
 y_Origin_PointSimpleType :
-          OriginSTART y_PointSimpleType OriginEND
+          OriginSTART ENDWHOLEITEM
+          {$$ = new PointSimpleType();
+           $$->PointSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad PointSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | OriginSTART y_PointSimpleType OriginEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
            if ($2->bad)
@@ -67417,6 +67642,13 @@ y_Origin_PointSimpleType :
 y_Origin_PointSimpleType_0 :
           /* empty */
           {$$ = 0;}
+        | OriginSTART ENDWHOLEITEM
+          {$$ = new PointSimpleType();
+           $$->PointSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad PointSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
         | OriginSTART y_PointSimpleType OriginEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
@@ -67791,7 +68023,7 @@ y_OtherFormCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
@@ -67974,8 +68206,8 @@ y_OtherFormCharacteristicNominal_OtherFormCharacteristicNominalType :
 
 y_OtherFormCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -68623,42 +68855,42 @@ y_OtherSurfaceConstructionMethodTypeChoicePair :
           }
         ;
 
-y_OtherSurfaceFea_1120_OtherSurfaceFea_1120_Type_0 :
+y_OtherSurfaceFea_1121_OtherSurfaceFea_1121_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_OtherSurfaceFea_1120_Type
+        | y_OtherSurfaceFea_1121_Type
           {$$ = $1;}
         ;
 
-y_OtherSurfaceFea_1120_Type :
-          y_OtherSurfaceFea_1120_TypeChoicePair
-          {$$ = new OtherSurfaceFea_1120_Type($1);
+y_OtherSurfaceFea_1121_Type :
+          y_OtherSurfaceFea_1121_TypeChoicePair
+          {$$ = new OtherSurfaceFea_1121_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_OtherSurfaceFea_1120_TypeChoicePair :
+y_OtherSurfaceFea_1121_TypeChoicePair :
           y_ClosedSurface_InternalExternalEnumType
-          {$$ = new OtherSurfaceFea_1120_TypeChoicePair();
+          {$$ = new OtherSurfaceFea_1121_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->OtherSurfaceFea_1120_TypeType = OtherSurfaceFea_1120_TypeChoicePair::ClosedSurfaceE;
-           $$->OtherSurfaceFea_1120_TypeValue.ClosedSurface = $1;
+           $$->OtherSurfaceFea_1121_TypeType = OtherSurfaceFea_1121_TypeChoicePair::ClosedSurfaceE;
+           $$->OtherSurfaceFea_1121_TypeValue.ClosedSurface = $1;
           }
         | y_Constructed_OtherSurfaceConstructionMethodType
-          {$$ = new OtherSurfaceFea_1120_TypeChoicePair();
+          {$$ = new OtherSurfaceFea_1121_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->OtherSurfaceFea_1120_TypeType = OtherSurfaceFea_1120_TypeChoicePair::ConstructedE;
-           $$->OtherSurfaceFea_1120_TypeValue.Constructed = $1;
+           $$->OtherSurfaceFea_1121_TypeType = OtherSurfaceFea_1121_TypeChoicePair::ConstructedE;
+           $$->OtherSurfaceFea_1121_TypeValue.Constructed = $1;
           }
         | y_PolyLine_PolyLineType
-          {$$ = new OtherSurfaceFea_1120_TypeChoicePair();
+          {$$ = new OtherSurfaceFea_1121_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->OtherSurfaceFea_1120_TypeType = OtherSurfaceFea_1120_TypeChoicePair::PolyLineE;
-           $$->OtherSurfaceFea_1120_TypeValue.PolyLine = $1;
+           $$->OtherSurfaceFea_1121_TypeType = OtherSurfaceFea_1121_TypeChoicePair::PolyLineE;
+           $$->OtherSurfaceFea_1121_TypeValue.PolyLine = $1;
           }
         ;
 
@@ -68818,7 +69050,7 @@ y_OtherSurfaceFeatureNominalType :
           y_EntityExternalIds_ArrayReferenceFullType_0
           y_PointList_PointListType_0
           y_SubstituteFeatureAlgorithm_SubstituteFeatureAlgorithmType_0
-          y_OtherSurfaceFea_1120_OtherSurfaceFea_1120_Type_0
+          y_OtherSurfaceFea_1121_OtherSurfaceFea_1121_Type_0
           {$$ = new OtherSurfaceFeatureNominalType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -69115,7 +69347,7 @@ y_ParallelLinkCMMType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_Resolution_substituteType_0 y_WorkingVolume_substituteType_0
@@ -69204,7 +69436,7 @@ y_ParallelismCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
@@ -69217,7 +69449,7 @@ y_ParallelismCharacteristicDefinitionType :
           y_ZoneShape_OrientationZoneShapeType y_TangentPlane_XmlBoolean_0
           y_MaximumToleranceValue_LinearValueType_0
           y_ProjectedToleranceZoneValue_LinearValueType_0
-          y_OrientationChar_1064_OrientationChar_1064_Type_0
+          y_OrientationChar_1065_OrientationChar_1065_Type_0
           {$$ = new ParallelismCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -69410,8 +69642,8 @@ y_ParallelismCharacteristicNominal_ParallelismCharacteristicNominalType :
 
 y_ParallelismCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -69900,7 +70132,7 @@ y_Paths_SectionPathsType_0 :
 y_PatternFeatureCircleDefinitionType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_IsProfileGroup_XmlBoolean_0 y_IsRunoutGroup_XmlBoolean_0
-          y_GroupFeatureDef_1104_GroupFeatureDef_1104_Type_0
+          y_GroupFeatureDef_1105_GroupFeatureDef_1105_Type_0
           y_Diameter_LinearValueType y_FeatureDirection_UnitVectorType_0
           y_NumberOfFeatures_NaturalType
           {$$ = new PatternFeatureCircleDefinitionType($3, $4, $5, $6, $7, $8, $9);
@@ -70018,7 +70250,7 @@ y_PatternFeatureCircleNominal_PatternFeatureCircleNominalType :
 y_PatternFeatureCircularArcDefinitionType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_IsProfileGroup_XmlBoolean_0 y_IsRunoutGroup_XmlBoolean_0
-          y_GroupFeatureDef_1104_GroupFeatureDef_1104_Type_0
+          y_GroupFeatureDef_1105_GroupFeatureDef_1105_Type_0
           y_ArcRadius_LinearValueType y_IncrementalArc_AngularValueType
           y_FeatureDirection_UnitVectorType_0
           y_NumberOfFeatures_NaturalType
@@ -70140,7 +70372,7 @@ y_PatternFeatureCircularArcNominal_PatternFeatureCircularArcNominalType :
 y_PatternFeatureLinearDefinitionType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_IsProfileGroup_XmlBoolean_0 y_IsRunoutGroup_XmlBoolean_0
-          y_GroupFeatureDef_1104_GroupFeatureDef_1104_Type_0
+          y_GroupFeatureDef_1105_GroupFeatureDef_1105_Type_0
           y_LineDirection_UnitVectorType
           y_IncrementalDistance_LinearValueType
           y_FeatureDirection_UnitVectorType_0
@@ -70258,7 +70490,7 @@ y_PatternFeatureLinearNominal_PatternFeatureLinearNominalType :
 y_PatternFeatureParallelogramDefinitionType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
           y_IsProfileGroup_XmlBoolean_0 y_IsRunoutGroup_XmlBoolean_0
-          y_GroupFeatureDef_1104_GroupFeatureDef_1104_Type_0
+          y_GroupFeatureDef_1105_GroupFeatureDef_1105_Type_0
           y_AlongRowDirection_VectorType
           y_IncrementalRowDistance_LinearValueType
           y_BetweenRowDirection_VectorType
@@ -70436,7 +70668,7 @@ y_PerpendicularityCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
@@ -70449,7 +70681,7 @@ y_PerpendicularityCharacteristicDefinitionType :
           y_ZoneShape_OrientationZoneShapeType y_TangentPlane_XmlBoolean_0
           y_MaximumToleranceValue_LinearValueType_0
           y_ProjectedToleranceZoneValue_LinearValueType_0
-          y_OrientationChar_1064_OrientationChar_1064_Type_0
+          y_OrientationChar_1065_OrientationChar_1065_Type_0
           {$$ = new PerpendicularityCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -70642,8 +70874,8 @@ y_PerpendicularityCharacteristicNominal_PerpendicularityCharacteristicNominalTyp
 
 y_PerpendicularityCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -71308,42 +71540,42 @@ y_PlaneFeatureMeasurement_PlaneFeatureMeasurementType :
           }
         ;
 
-y_PlaneFeatureNom_1121_PlaneFeatureNom_1121_Type_0 :
+y_PlaneFeatureNom_1122_PlaneFeatureNom_1122_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_PlaneFeatureNom_1121_Type
+        | y_PlaneFeatureNom_1122_Type
           {$$ = $1;}
         ;
 
-y_PlaneFeatureNom_1121_Type :
-          y_PlaneFeatureNom_1121_TypeChoicePair
-          {$$ = new PlaneFeatureNom_1121_Type($1);
+y_PlaneFeatureNom_1122_Type :
+          y_PlaneFeatureNom_1122_TypeChoicePair
+          {$$ = new PlaneFeatureNom_1122_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_PlaneFeatureNom_1121_TypeChoicePair :
+y_PlaneFeatureNom_1122_TypeChoicePair :
           y_Circle_CircleType
-          {$$ = new PlaneFeatureNom_1121_TypeChoicePair();
+          {$$ = new PlaneFeatureNom_1122_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PlaneFeatureNom_1121_TypeType = PlaneFeatureNom_1121_TypeChoicePair::CircleE;
-           $$->PlaneFeatureNom_1121_TypeValue.Circle = $1;
+           $$->PlaneFeatureNom_1122_TypeType = PlaneFeatureNom_1122_TypeChoicePair::CircleE;
+           $$->PlaneFeatureNom_1122_TypeValue.Circle = $1;
           }
         | y_PolyLine_PolyLineType
-          {$$ = new PlaneFeatureNom_1121_TypeChoicePair();
+          {$$ = new PlaneFeatureNom_1122_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PlaneFeatureNom_1121_TypeType = PlaneFeatureNom_1121_TypeChoicePair::PolyLineE;
-           $$->PlaneFeatureNom_1121_TypeValue.PolyLine = $1;
+           $$->PlaneFeatureNom_1122_TypeType = PlaneFeatureNom_1122_TypeChoicePair::PolyLineE;
+           $$->PlaneFeatureNom_1122_TypeValue.PolyLine = $1;
           }
         | y_Rectangle_RectangleType
-          {$$ = new PlaneFeatureNom_1121_TypeChoicePair();
+          {$$ = new PlaneFeatureNom_1122_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PlaneFeatureNom_1121_TypeType = PlaneFeatureNom_1121_TypeChoicePair::RectangleE;
-           $$->PlaneFeatureNom_1121_TypeValue.Rectangle = $1;
+           $$->PlaneFeatureNom_1122_TypeType = PlaneFeatureNom_1122_TypeChoicePair::RectangleE;
+           $$->PlaneFeatureNom_1122_TypeValue.Rectangle = $1;
           }
         ;
 
@@ -71357,7 +71589,7 @@ y_PlaneFeatureNominalType :
           y_PointList_PointListType_0
           y_SubstituteFeatureAlgorithm_SubstituteFeatureAlgorithmType_0
           y_Location_PointType y_Normal_UnitVectorType
-          y_PlaneFeatureNom_1121_PlaneFeatureNom_1121_Type_0
+          y_PlaneFeatureNom_1122_PlaneFeatureNom_1122_Type_0
           y_Constructed_PlaneConstructionMethodType_0
           {$$ = new PlaneFeatureNominalType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);
            yyUnrefMap[$$] = $$;
@@ -71782,10 +72014,10 @@ y_PointCloudSet_PointCloudSetType_0 :
 
 y_PointCloudType :
           y_LiztAttributePair ENDITEM y_Attributes_AttributesType_0
-          y_PointCloudType_1226_PointCloudType_1226_Type
-          y_PointCloudType_1227_PointCloudType_1227_Type_0
+          y_PointCloudType_1227_PointCloudType_1227_Type
           y_PointCloudType_1228_PointCloudType_1228_Type_0
           y_PointCloudType_1229_PointCloudType_1229_Type_0
+          y_PointCloudType_1230_PointCloudType_1230_Type_0
           {$$ = new PointCloudType($3, $4, $5, $6, $7);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -71803,40 +72035,8 @@ y_PointCloudType :
           }
         ;
 
-y_PointCloudType_1226_PointCloudType_1226_Type :
-          y_PointCloudType_1226_Type
-          {$$ = $1;}
-        ;
-
-y_PointCloudType_1226_Type :
-          y_PointCloudType_1226_TypeChoicePair
-          {$$ = new PointCloudType_1226_Type($1);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_PointCloudType_1226_TypeChoicePair :
-          y_PointsBinary_ArrayBinaryType
-          {$$ = new PointCloudType_1226_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->PointCloudType_1226_TypeType = PointCloudType_1226_TypeChoicePair::PointsBinaryE;
-           $$->PointCloudType_1226_TypeValue.PointsBinary = $1;
-          }
-        | y_Points_ArrayPointType
-          {$$ = new PointCloudType_1226_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->PointCloudType_1226_TypeType = PointCloudType_1226_TypeChoicePair::PointsE;
-           $$->PointCloudType_1226_TypeValue.Points = $1;
-          }
-        ;
-
-y_PointCloudType_1227_PointCloudType_1227_Type_0 :
-          /* empty */
-          {$$ = 0;}
-        | y_PointCloudType_1227_Type
+y_PointCloudType_1227_PointCloudType_1227_Type :
+          y_PointCloudType_1227_Type
           {$$ = $1;}
         ;
 
@@ -71849,19 +72049,19 @@ y_PointCloudType_1227_Type :
         ;
 
 y_PointCloudType_1227_TypeChoicePair :
-          y_NormalsBinary_ArrayBinaryType
+          y_PointsBinary_ArrayBinaryType
           {$$ = new PointCloudType_1227_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PointCloudType_1227_TypeType = PointCloudType_1227_TypeChoicePair::NormalsBinaryE;
-           $$->PointCloudType_1227_TypeValue.NormalsBinary = $1;
+           $$->PointCloudType_1227_TypeType = PointCloudType_1227_TypeChoicePair::PointsBinaryE;
+           $$->PointCloudType_1227_TypeValue.PointsBinary = $1;
           }
-        | y_Normals_ArrayUnitVectorType
+        | y_Points_ArrayPointType
           {$$ = new PointCloudType_1227_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PointCloudType_1227_TypeType = PointCloudType_1227_TypeChoicePair::NormalsE;
-           $$->PointCloudType_1227_TypeValue.Normals = $1;
+           $$->PointCloudType_1227_TypeType = PointCloudType_1227_TypeChoicePair::PointsE;
+           $$->PointCloudType_1227_TypeValue.Points = $1;
           }
         ;
 
@@ -71881,33 +72081,19 @@ y_PointCloudType_1228_Type :
         ;
 
 y_PointCloudType_1228_TypeChoicePair :
-          y_PointsHiddenBinary_ArrayBinaryType
+          y_NormalsBinary_ArrayBinaryType
           {$$ = new PointCloudType_1228_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PointCloudType_1228_TypeType = PointCloudType_1228_TypeChoicePair::PointsHiddenBinaryE;
-           $$->PointCloudType_1228_TypeValue.PointsHiddenBinary = $1;
+           $$->PointCloudType_1228_TypeType = PointCloudType_1228_TypeChoicePair::NormalsBinaryE;
+           $$->PointCloudType_1228_TypeValue.NormalsBinary = $1;
           }
-        | y_PointsHidden_ArrayIntType
+        | y_Normals_ArrayUnitVectorType
           {$$ = new PointCloudType_1228_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PointCloudType_1228_TypeType = PointCloudType_1228_TypeChoicePair::PointsHiddenE;
-           $$->PointCloudType_1228_TypeValue.PointsHidden = $1;
-          }
-        | y_PointsVisibleBinary_ArrayBinaryType
-          {$$ = new PointCloudType_1228_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->PointCloudType_1228_TypeType = PointCloudType_1228_TypeChoicePair::PointsVisibleBinaryE;
-           $$->PointCloudType_1228_TypeValue.PointsVisibleBinary = $1;
-          }
-        | y_PointsVisible_ArrayIntType
-          {$$ = new PointCloudType_1228_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->PointCloudType_1228_TypeType = PointCloudType_1228_TypeChoicePair::PointsVisibleE;
-           $$->PointCloudType_1228_TypeValue.PointsVisible = $1;
+           $$->PointCloudType_1228_TypeType = PointCloudType_1228_TypeChoicePair::NormalsE;
+           $$->PointCloudType_1228_TypeValue.Normals = $1;
           }
         ;
 
@@ -71927,19 +72113,65 @@ y_PointCloudType_1229_Type :
         ;
 
 y_PointCloudType_1229_TypeChoicePair :
-          y_PointsColorBinary_ArrayBinaryType
+          y_PointsHiddenBinary_ArrayBinaryType
           {$$ = new PointCloudType_1229_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PointCloudType_1229_TypeType = PointCloudType_1229_TypeChoicePair::PointsColorBinaryE;
-           $$->PointCloudType_1229_TypeValue.PointsColorBinary = $1;
+           $$->PointCloudType_1229_TypeType = PointCloudType_1229_TypeChoicePair::PointsHiddenBinaryE;
+           $$->PointCloudType_1229_TypeValue.PointsHiddenBinary = $1;
+          }
+        | y_PointsHidden_ArrayIntType
+          {$$ = new PointCloudType_1229_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->PointCloudType_1229_TypeType = PointCloudType_1229_TypeChoicePair::PointsHiddenE;
+           $$->PointCloudType_1229_TypeValue.PointsHidden = $1;
+          }
+        | y_PointsVisibleBinary_ArrayBinaryType
+          {$$ = new PointCloudType_1229_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->PointCloudType_1229_TypeType = PointCloudType_1229_TypeChoicePair::PointsVisibleBinaryE;
+           $$->PointCloudType_1229_TypeValue.PointsVisibleBinary = $1;
+          }
+        | y_PointsVisible_ArrayIntType
+          {$$ = new PointCloudType_1229_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->PointCloudType_1229_TypeType = PointCloudType_1229_TypeChoicePair::PointsVisibleE;
+           $$->PointCloudType_1229_TypeValue.PointsVisible = $1;
+          }
+        ;
+
+y_PointCloudType_1230_PointCloudType_1230_Type_0 :
+          /* empty */
+          {$$ = 0;}
+        | y_PointCloudType_1230_Type
+          {$$ = $1;}
+        ;
+
+y_PointCloudType_1230_Type :
+          y_PointCloudType_1230_TypeChoicePair
+          {$$ = new PointCloudType_1230_Type($1);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+          }
+        ;
+
+y_PointCloudType_1230_TypeChoicePair :
+          y_PointsColorBinary_ArrayBinaryType
+          {$$ = new PointCloudType_1230_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->PointCloudType_1230_TypeType = PointCloudType_1230_TypeChoicePair::PointsColorBinaryE;
+           $$->PointCloudType_1230_TypeValue.PointsColorBinary = $1;
           }
         | y_PointsColor_ArrayUnsignedByteType
-          {$$ = new PointCloudType_1229_TypeChoicePair();
+          {$$ = new PointCloudType_1230_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PointCloudType_1229_TypeType = PointCloudType_1229_TypeChoicePair::PointsColorE;
-           $$->PointCloudType_1229_TypeValue.PointsColor = $1;
+           $$->PointCloudType_1230_TypeType = PointCloudType_1230_TypeChoicePair::PointsColorE;
+           $$->PointCloudType_1230_TypeValue.PointsColor = $1;
           }
         ;
 
@@ -71951,7 +72183,14 @@ y_PointCloud_PointCloudType :
         ;
 
 y_PointConnection_Point2dSimpleType :
-          PointConnectionSTART y_Point2dSimpleType PointConnectionEND
+          PointConnectionSTART ENDWHOLEITEM
+          {$$ = new Point2dSimpleType();
+           $$->Point2dSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad Point2dSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | PointConnectionSTART y_Point2dSimpleType PointConnectionEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
            if ($2->bad)
@@ -72947,7 +73186,14 @@ y_PointEntityType :
         ;
 
 y_PointExtension_Point2dSimpleType :
-          PointExtensionSTART y_Point2dSimpleType PointExtensionEND
+          PointExtensionSTART ENDWHOLEITEM
+          {$$ = new Point2dSimpleType();
+           $$->Point2dSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad Point2dSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | PointExtensionSTART y_Point2dSimpleType PointExtensionEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
            if ($2->bad)
@@ -73027,68 +73273,68 @@ y_PointFeatureDefinition_PointFeatureDefinitionType :
           }
         ;
 
-y_PointFeatureExt_1122_PointFeatureExt_1122_Type :
-          y_PointFeatureExt_1122_Type
+y_PointFeatureExt_1123_PointFeatureExt_1123_Type :
+          y_PointFeatureExt_1123_Type
           {$$ = $1;}
         ;
 
-y_PointFeatureExt_1122_Type :
-          y_PointFeatureExt_1122_TypeChoicePair
-          {$$ = new PointFeatureExt_1122_Type($1);
+y_PointFeatureExt_1123_Type :
+          y_PointFeatureExt_1123_TypeChoicePair
+          {$$ = new PointFeatureExt_1123_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_PointFeatureExt_1122_TypeChoicePair :
+y_PointFeatureExt_1123_TypeChoicePair :
           y_BaseAxisFeature_BaseFeatureType
-          {$$ = new PointFeatureExt_1122_TypeChoicePair();
+          {$$ = new PointFeatureExt_1123_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PointFeatureExt_1122_TypeType = PointFeatureExt_1122_TypeChoicePair::BaseAxisFeatureE;
-           $$->PointFeatureExt_1122_TypeValue.BaseAxisFeature = $1;
+           $$->PointFeatureExt_1123_TypeType = PointFeatureExt_1123_TypeChoicePair::BaseAxisFeatureE;
+           $$->PointFeatureExt_1123_TypeValue.BaseAxisFeature = $1;
           }
         | y_Radial_XmlToken
-          {$$ = new PointFeatureExt_1122_TypeChoicePair();
+          {$$ = new PointFeatureExt_1123_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PointFeatureExt_1122_TypeType = PointFeatureExt_1122_TypeChoicePair::RadialE;
-           $$->PointFeatureExt_1122_TypeValue.Radial = $1;
+           $$->PointFeatureExt_1123_TypeType = PointFeatureExt_1123_TypeChoicePair::RadialE;
+           $$->PointFeatureExt_1123_TypeValue.Radial = $1;
           }
         | y_Vector_UnitVectorType
-          {$$ = new PointFeatureExt_1122_TypeChoicePair();
+          {$$ = new PointFeatureExt_1123_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PointFeatureExt_1122_TypeType = PointFeatureExt_1122_TypeChoicePair::VectorE;
-           $$->PointFeatureExt_1122_TypeValue.Vector = $1;
+           $$->PointFeatureExt_1123_TypeType = PointFeatureExt_1123_TypeChoicePair::VectorE;
+           $$->PointFeatureExt_1123_TypeValue.Vector = $1;
           }
         | y_Xaxis_XmlToken
-          {$$ = new PointFeatureExt_1122_TypeChoicePair();
+          {$$ = new PointFeatureExt_1123_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PointFeatureExt_1122_TypeType = PointFeatureExt_1122_TypeChoicePair::XaxisE;
-           $$->PointFeatureExt_1122_TypeValue.Xaxis = $1;
+           $$->PointFeatureExt_1123_TypeType = PointFeatureExt_1123_TypeChoicePair::XaxisE;
+           $$->PointFeatureExt_1123_TypeValue.Xaxis = $1;
           }
         | y_Yaxis_XmlToken
-          {$$ = new PointFeatureExt_1122_TypeChoicePair();
+          {$$ = new PointFeatureExt_1123_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PointFeatureExt_1122_TypeType = PointFeatureExt_1122_TypeChoicePair::YaxisE;
-           $$->PointFeatureExt_1122_TypeValue.Yaxis = $1;
+           $$->PointFeatureExt_1123_TypeType = PointFeatureExt_1123_TypeChoicePair::YaxisE;
+           $$->PointFeatureExt_1123_TypeValue.Yaxis = $1;
           }
         | y_Zaxis_XmlToken
-          {$$ = new PointFeatureExt_1122_TypeChoicePair();
+          {$$ = new PointFeatureExt_1123_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PointFeatureExt_1122_TypeType = PointFeatureExt_1122_TypeChoicePair::ZaxisE;
-           $$->PointFeatureExt_1122_TypeValue.Zaxis = $1;
+           $$->PointFeatureExt_1123_TypeType = PointFeatureExt_1123_TypeChoicePair::ZaxisE;
+           $$->PointFeatureExt_1123_TypeValue.Zaxis = $1;
           }
         ;
 
 y_PointFeatureExtremeType :
           ENDITEM y_NominalsCalculated_XmlBoolean_0
           y_BaseFeature_BaseFeatureType y_Minimum_XmlBoolean
-          y_PointFeatureExt_1122_PointFeatureExt_1122_Type
+          y_PointFeatureExt_1123_PointFeatureExt_1123_Type
           {$$ = new PointFeatureExtremeType($2, $3, $4, $5);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -73240,33 +73486,33 @@ y_PointFeatureMidPointType :
           }
         ;
 
-y_PointFeatureMov_1123_PointFeatureMov_1123_Type :
-          y_PointFeatureMov_1123_Type
+y_PointFeatureMov_1124_PointFeatureMov_1124_Type :
+          y_PointFeatureMov_1124_Type
           {$$ = $1;}
         ;
 
-y_PointFeatureMov_1123_Type :
-          y_PointFeatureMov_1123_TypeChoicePair
-          {$$ = new PointFeatureMov_1123_Type($1);
+y_PointFeatureMov_1124_Type :
+          y_PointFeatureMov_1124_TypeChoicePair
+          {$$ = new PointFeatureMov_1124_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_PointFeatureMov_1123_TypeChoicePair :
+y_PointFeatureMov_1124_TypeChoicePair :
           y_DirectionalOffset_DirectionalOffsetType
-          {$$ = new PointFeatureMov_1123_TypeChoicePair();
+          {$$ = new PointFeatureMov_1124_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PointFeatureMov_1123_TypeType = PointFeatureMov_1123_TypeChoicePair::DirectionalOffsetE;
-           $$->PointFeatureMov_1123_TypeValue.DirectionalOffset = $1;
+           $$->PointFeatureMov_1124_TypeType = PointFeatureMov_1124_TypeChoicePair::DirectionalOffsetE;
+           $$->PointFeatureMov_1124_TypeValue.DirectionalOffset = $1;
           }
         | y_Offset_VectorType
-          {$$ = new PointFeatureMov_1123_TypeChoicePair();
+          {$$ = new PointFeatureMov_1124_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PointFeatureMov_1123_TypeType = PointFeatureMov_1123_TypeChoicePair::OffsetE;
-           $$->PointFeatureMov_1123_TypeValue.Offset = $1;
+           $$->PointFeatureMov_1124_TypeType = PointFeatureMov_1124_TypeChoicePair::OffsetE;
+           $$->PointFeatureMov_1124_TypeValue.Offset = $1;
           }
         ;
 
@@ -73286,7 +73532,7 @@ y_PointFeatureMovePointAxisType :
 y_PointFeatureMovePointType :
           ENDITEM y_NominalsCalculated_XmlBoolean_0
           y_BaseFeature_BaseFeatureType
-          y_PointFeatureMov_1123_PointFeatureMov_1123_Type
+          y_PointFeatureMov_1124_PointFeatureMov_1124_Type
           {$$ = new PointFeatureMovePointType($2, $3, $4);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -73308,35 +73554,35 @@ y_PointFeatureMovePointVectorType :
           }
         ;
 
-y_PointFeatureNom_1124_PointFeatureNom_1124_Type_0 :
+y_PointFeatureNom_1125_PointFeatureNom_1125_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_PointFeatureNom_1124_Type
+        | y_PointFeatureNom_1125_Type
           {$$ = $1;}
         ;
 
-y_PointFeatureNom_1124_Type :
-          y_PointFeatureNom_1124_TypeChoicePair
-          {$$ = new PointFeatureNom_1124_Type($1);
+y_PointFeatureNom_1125_Type :
+          y_PointFeatureNom_1125_TypeChoicePair
+          {$$ = new PointFeatureNom_1125_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_PointFeatureNom_1124_TypeChoicePair :
+y_PointFeatureNom_1125_TypeChoicePair :
           y_CurveFeatureNominalId_QIFReferenceFullType
-          {$$ = new PointFeatureNom_1124_TypeChoicePair();
+          {$$ = new PointFeatureNom_1125_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PointFeatureNom_1124_TypeType = PointFeatureNom_1124_TypeChoicePair::CurveFeatureNominalIdE;
-           $$->PointFeatureNom_1124_TypeValue.CurveFeatureNominalId = $1;
+           $$->PointFeatureNom_1125_TypeType = PointFeatureNom_1125_TypeChoicePair::CurveFeatureNominalIdE;
+           $$->PointFeatureNom_1125_TypeValue.CurveFeatureNominalId = $1;
           }
         | y_SurfaceFeatureNominalId_QIFReferenceFullType
-          {$$ = new PointFeatureNom_1124_TypeChoicePair();
+          {$$ = new PointFeatureNom_1125_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PointFeatureNom_1124_TypeType = PointFeatureNom_1124_TypeChoicePair::SurfaceFeatureNominalIdE;
-           $$->PointFeatureNom_1124_TypeValue.SurfaceFeatureNominalId = $1;
+           $$->PointFeatureNom_1125_TypeType = PointFeatureNom_1125_TypeChoicePair::SurfaceFeatureNominalIdE;
+           $$->PointFeatureNom_1125_TypeValue.SurfaceFeatureNominalId = $1;
           }
         ;
 
@@ -73349,7 +73595,7 @@ y_PointFeatureNominalType :
           y_EntityExternalIds_ArrayReferenceFullType_0
           y_PointList_PointListType_0
           y_SubstituteFeatureAlgorithm_SubstituteFeatureAlgorithmType_0
-          y_PointFeatureNom_1124_PointFeatureNom_1124_Type_0
+          y_PointFeatureNom_1125_PointFeatureNom_1125_Type_0
           y_Location_PointType y_Normal_UnitVectorType_0
           y_Constructed_PointConstructionMethodType_0
           {$$ = new PointFeatureNominalType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);
@@ -73495,7 +73741,14 @@ y_PointList_PointListType_0 :
         ;
 
 y_PointMax_PointSimpleType :
-          PointMaxSTART y_PointSimpleType PointMaxEND
+          PointMaxSTART ENDWHOLEITEM
+          {$$ = new PointSimpleType();
+           $$->PointSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad PointSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | PointMaxSTART y_PointSimpleType PointMaxEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
            if ($2->bad)
@@ -73529,7 +73782,14 @@ y_PointMeasurementDeterminationTypeChoicePair :
         ;
 
 y_PointMin_PointSimpleType :
-          PointMinSTART y_PointSimpleType PointMinEND
+          PointMinSTART ENDWHOLEITEM
+          {$$ = new PointSimpleType();
+           $$->PointSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad PointSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | PointMinSTART y_PointSimpleType PointMinEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
            if ($2->bad)
@@ -73582,14 +73842,14 @@ y_PointProfileCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
           y_OrientationPlane_OrientationPlaneType_0
           y_ToleranceValue_LinearValueType
           y_ToleranceDualValue_LinearDualValueType_0
-          y_ProfileCharacte_1067_ProfileCharacte_1067_Type_0
+          y_ProfileCharacte_1068_ProfileCharacte_1068_Type_0
           y_OffsetZone_XmlBoolean_0 y_VariableAngle_XmlBoolean_0
           y_SecondCompositeSegmentProfileDefinition_CompositeSegmentProfileDefinitionType_0
           y_ThirdCompositeSegmentProfileDefinition_CompositeSegmentProfileDefinitionType_0
@@ -73798,8 +74058,8 @@ y_PointProfileCharacteristicNominal_PointProfileCharacteristicNominalType :
 
 y_PointProfileCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -73955,6 +74215,8 @@ y_PointSetReferenceRangeType :
           {$$ = new PointSetReferenceRangeType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad PointSetReferenceRangeType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -73970,6 +74232,8 @@ y_PointSetReferenceSingleType :
           {$$ = new PointSetReferenceSingleType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad PointSetReferenceSingleType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -73985,11 +74249,15 @@ y_PointSetReferenceWholeType :
           {$$ = new PointSetReferenceWholeType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad PointSetReferenceWholeType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new PointSetReferenceWholeType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad PointSetReferenceWholeType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -74071,7 +74339,14 @@ y_Point_MeasuredPointType :
         ;
 
 y_Point_Point2dSimpleType :
-          PointSTART y_Point2dSimpleType PointEND
+          PointSTART ENDWHOLEITEM
+          {$$ = new Point2dSimpleType();
+           $$->Point2dSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad Point2dSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | PointSTART y_Point2dSimpleType PointEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
            if ($2->bad)
@@ -74203,39 +74478,39 @@ y_PolyLine_PolyLineType_0 :
           {$$ = $2;}
         ;
 
-y_Polyline12CoreT_1221_Polyline12CoreT_1221_Type :
-          y_Polyline12CoreT_1221_Type
+y_Polyline12CoreT_1222_Polyline12CoreT_1222_Type :
+          y_Polyline12CoreT_1222_Type
           {$$ = $1;}
         ;
 
-y_Polyline12CoreT_1221_Type :
-          y_Polyline12CoreT_1221_TypeChoicePair
-          {$$ = new Polyline12CoreT_1221_Type($1);
+y_Polyline12CoreT_1222_Type :
+          y_Polyline12CoreT_1222_TypeChoicePair
+          {$$ = new Polyline12CoreT_1222_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_Polyline12CoreT_1221_TypeChoicePair :
+y_Polyline12CoreT_1222_TypeChoicePair :
           y_PointsBinary_ArrayBinaryType
-          {$$ = new Polyline12CoreT_1221_TypeChoicePair();
+          {$$ = new Polyline12CoreT_1222_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->Polyline12CoreT_1221_TypeType = Polyline12CoreT_1221_TypeChoicePair::PointsBinaryE;
-           $$->Polyline12CoreT_1221_TypeValue.PointsBinary = $1;
+           $$->Polyline12CoreT_1222_TypeType = Polyline12CoreT_1222_TypeChoicePair::PointsBinaryE;
+           $$->Polyline12CoreT_1222_TypeValue.PointsBinary = $1;
           }
         | y_Points_ArrayPoint2dType
-          {$$ = new Polyline12CoreT_1221_TypeChoicePair();
+          {$$ = new Polyline12CoreT_1222_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->Polyline12CoreT_1221_TypeType = Polyline12CoreT_1221_TypeChoicePair::PointsE;
-           $$->Polyline12CoreT_1221_TypeValue.Points = $1;
+           $$->Polyline12CoreT_1222_TypeType = Polyline12CoreT_1222_TypeChoicePair::PointsE;
+           $$->Polyline12CoreT_1222_TypeValue.Points = $1;
           }
         ;
 
 y_Polyline12CoreType :
           y_LiztAttributePair ENDITEM
-          y_Polyline12CoreT_1221_Polyline12CoreT_1221_Type
+          y_Polyline12CoreT_1222_Polyline12CoreT_1222_Type
           {$$ = new Polyline12CoreType($3);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -74280,39 +74555,39 @@ y_Polyline12_Polyline12Type :
           }
         ;
 
-y_Polyline13CoreT_1222_Polyline13CoreT_1222_Type :
-          y_Polyline13CoreT_1222_Type
+y_Polyline13CoreT_1223_Polyline13CoreT_1223_Type :
+          y_Polyline13CoreT_1223_Type
           {$$ = $1;}
         ;
 
-y_Polyline13CoreT_1222_Type :
-          y_Polyline13CoreT_1222_TypeChoicePair
-          {$$ = new Polyline13CoreT_1222_Type($1);
+y_Polyline13CoreT_1223_Type :
+          y_Polyline13CoreT_1223_TypeChoicePair
+          {$$ = new Polyline13CoreT_1223_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_Polyline13CoreT_1222_TypeChoicePair :
+y_Polyline13CoreT_1223_TypeChoicePair :
           y_PointsBinary_ArrayBinaryType
-          {$$ = new Polyline13CoreT_1222_TypeChoicePair();
+          {$$ = new Polyline13CoreT_1223_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->Polyline13CoreT_1222_TypeType = Polyline13CoreT_1222_TypeChoicePair::PointsBinaryE;
-           $$->Polyline13CoreT_1222_TypeValue.PointsBinary = $1;
+           $$->Polyline13CoreT_1223_TypeType = Polyline13CoreT_1223_TypeChoicePair::PointsBinaryE;
+           $$->Polyline13CoreT_1223_TypeValue.PointsBinary = $1;
           }
         | y_Points_ArrayPointType
-          {$$ = new Polyline13CoreT_1222_TypeChoicePair();
+          {$$ = new Polyline13CoreT_1223_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->Polyline13CoreT_1222_TypeType = Polyline13CoreT_1222_TypeChoicePair::PointsE;
-           $$->Polyline13CoreT_1222_TypeValue.Points = $1;
+           $$->Polyline13CoreT_1223_TypeType = Polyline13CoreT_1223_TypeChoicePair::PointsE;
+           $$->Polyline13CoreT_1223_TypeValue.Points = $1;
           }
         ;
 
 y_Polyline13CoreType :
           y_LiztAttributePair ENDITEM
-          y_Polyline13CoreT_1222_Polyline13CoreT_1222_Type
+          y_Polyline13CoreT_1223_Polyline13CoreT_1223_Type
           {$$ = new Polyline13CoreType($3);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -74360,13 +74635,13 @@ y_Polyline13_Polyline13Type :
         ;
 
 y_Polyline2dType :
-          ENDITEM y_Polyline2dType_1232_Polyline2dType_1232_Type
+          ENDITEM y_Polyline2dType_1233_Polyline2dType_1233_Type
           {$$ = new Polyline2dType($2);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
           }
         | y_LiztAttributePair ENDITEM
-          y_Polyline2dType_1232_Polyline2dType_1232_Type
+          y_Polyline2dType_1233_Polyline2dType_1233_Type
           {$$ = new Polyline2dType($3);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -74380,33 +74655,33 @@ y_Polyline2dType :
           }
         ;
 
-y_Polyline2dType_1232_Polyline2dType_1232_Type :
-          y_Polyline2dType_1232_Type
+y_Polyline2dType_1233_Polyline2dType_1233_Type :
+          y_Polyline2dType_1233_Type
           {$$ = $1;}
         ;
 
-y_Polyline2dType_1232_Type :
-          y_Polyline2dType_1232_TypeChoicePair
-          {$$ = new Polyline2dType_1232_Type($1);
+y_Polyline2dType_1233_Type :
+          y_Polyline2dType_1233_TypeChoicePair
+          {$$ = new Polyline2dType_1233_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_Polyline2dType_1232_TypeChoicePair :
+y_Polyline2dType_1233_TypeChoicePair :
           y_PointsBinary_ArrayBinaryType
-          {$$ = new Polyline2dType_1232_TypeChoicePair();
+          {$$ = new Polyline2dType_1233_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->Polyline2dType_1232_TypeType = Polyline2dType_1232_TypeChoicePair::PointsBinaryE;
-           $$->Polyline2dType_1232_TypeValue.PointsBinary = $1;
+           $$->Polyline2dType_1233_TypeType = Polyline2dType_1233_TypeChoicePair::PointsBinaryE;
+           $$->Polyline2dType_1233_TypeValue.PointsBinary = $1;
           }
         | y_Points_ArrayPoint2dType
-          {$$ = new Polyline2dType_1232_TypeChoicePair();
+          {$$ = new Polyline2dType_1233_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->Polyline2dType_1232_TypeType = Polyline2dType_1232_TypeChoicePair::PointsE;
-           $$->Polyline2dType_1232_TypeValue.Points = $1;
+           $$->Polyline2dType_1233_TypeType = Polyline2dType_1233_TypeChoicePair::PointsE;
+           $$->Polyline2dType_1233_TypeValue.Points = $1;
           }
         ;
 
@@ -74457,7 +74732,7 @@ y_PositionCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
@@ -74677,8 +74952,8 @@ y_PositionCharacteristicNominal_PositionCharacteristicNominalType :
 
 y_PositionCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -74852,35 +75127,35 @@ y_Ppk_StatsMeasuredDecimalType :
           }
         ;
 
-y_PreInspectionTr_1043_PreInspectionTr_1043_Type_0 :
+y_PreInspectionTr_1044_PreInspectionTr_1044_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_PreInspectionTr_1043_Type
+        | y_PreInspectionTr_1044_Type
           {$$ = $1;}
         ;
 
-y_PreInspectionTr_1043_Type :
-          y_PreInspectionTr_1043_TypeChoicePair
-          {$$ = new PreInspectionTr_1043_Type($1);
+y_PreInspectionTr_1044_Type :
+          y_PreInspectionTr_1044_TypeChoicePair
+          {$$ = new PreInspectionTr_1044_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_PreInspectionTr_1043_TypeChoicePair :
+y_PreInspectionTr_1044_TypeChoicePair :
           y_ReferencedQIFPlanInstance_QPIdFullReferenceType
-          {$$ = new PreInspectionTr_1043_TypeChoicePair();
+          {$$ = new PreInspectionTr_1044_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PreInspectionTr_1043_TypeType = PreInspectionTr_1043_TypeChoicePair::ReferencedQIFPlanInstanceE;
-           $$->PreInspectionTr_1043_TypeValue.ReferencedQIFPlanInstance = $1;
+           $$->PreInspectionTr_1044_TypeType = PreInspectionTr_1044_TypeChoicePair::ReferencedQIFPlanInstanceE;
+           $$->PreInspectionTr_1044_TypeValue.ReferencedQIFPlanInstance = $1;
           }
         | y_ReferencedQIFPlan_XmlNMTOKEN
-          {$$ = new PreInspectionTr_1043_TypeChoicePair();
+          {$$ = new PreInspectionTr_1044_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PreInspectionTr_1043_TypeType = PreInspectionTr_1043_TypeChoicePair::ReferencedQIFPlanE;
-           $$->PreInspectionTr_1043_TypeValue.ReferencedQIFPlan = $1;
+           $$->PreInspectionTr_1044_TypeType = PreInspectionTr_1044_TypeChoicePair::ReferencedQIFPlanE;
+           $$->PreInspectionTr_1044_TypeValue.ReferencedQIFPlan = $1;
           }
         ;
 
@@ -74898,7 +75173,7 @@ y_PreInspectionTraceabilityType :
           y_InspectionProgram_InspectionProgramType_0
           y_SecurityClassification_SecurityClassificationType_0
           y_PlantLocation_LocationType_0
-          y_PreInspectionTr_1043_PreInspectionTr_1043_Type_0
+          y_PreInspectionTr_1044_PreInspectionTr_1044_Type_0
           y_FormalStandardId_QIFReferenceType y_Attributes_AttributesType_0
           {$$ = new PreInspectionTraceabilityType($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19);
            yyUnrefMap[$$] = $$;
@@ -75028,33 +75303,33 @@ y_PressureAbsoluteLinearity_MeasuredPressureValueType :
           {$$ = $2;}
         ;
 
-y_PressureCharact_1066_PressureCharact_1066_Type :
-          y_PressureCharact_1066_Type
+y_PressureCharact_1067_PressureCharact_1067_Type :
+          y_PressureCharact_1067_Type
           {$$ = $1;}
         ;
 
-y_PressureCharact_1066_Type :
-          y_PressureCharact_1066_TypeChoicePair
-          {$$ = new PressureCharact_1066_Type($1);
+y_PressureCharact_1067_Type :
+          y_PressureCharact_1067_TypeChoicePair
+          {$$ = new PressureCharact_1067_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_PressureCharact_1066_TypeChoicePair :
+y_PressureCharact_1067_TypeChoicePair :
           y_NonTolerance_NonToleranceEnumType
-          {$$ = new PressureCharact_1066_TypeChoicePair();
+          {$$ = new PressureCharact_1067_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PressureCharact_1066_TypeType = PressureCharact_1066_TypeChoicePair::NonToleranceE;
-           $$->PressureCharact_1066_TypeValue.NonTolerance = $1;
+           $$->PressureCharact_1067_TypeType = PressureCharact_1067_TypeChoicePair::NonToleranceE;
+           $$->PressureCharact_1067_TypeValue.NonTolerance = $1;
           }
         | y_Tolerance_PressureToleranceType
-          {$$ = new PressureCharact_1066_TypeChoicePair();
+          {$$ = new PressureCharact_1067_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PressureCharact_1066_TypeType = PressureCharact_1066_TypeChoicePair::ToleranceE;
-           $$->PressureCharact_1066_TypeValue.Tolerance = $1;
+           $$->PressureCharact_1067_TypeType = PressureCharact_1067_TypeChoicePair::ToleranceE;
+           $$->PressureCharact_1067_TypeValue.Tolerance = $1;
           }
         ;
 
@@ -75099,44 +75374,44 @@ y_PressureStatsSummary_SummaryStatisticsPressureType :
           }
         ;
 
-y_PressureToleran_1020_PressureToleran_1020_Type :
-          y_PressureToleran_1020_Type
+y_PressureToleran_1021_PressureToleran_1021_Type :
+          y_PressureToleran_1021_Type
           {$$ = $1;}
         ;
 
-y_PressureToleran_1020_Type :
-          y_PressureToleran_1020_TypeChoicePair
-          {$$ = new PressureToleran_1020_Type($1);
+y_PressureToleran_1021_Type :
+          y_PressureToleran_1021_TypeChoicePair
+          {$$ = new PressureToleran_1021_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_PressureToleran_1020_TypeChoicePair :
+y_PressureToleran_1021_TypeChoicePair :
           y_MinValue_PressureValueType
-          {$$ = new PressureToleran_1020_TypeChoicePair();
+          {$$ = new PressureToleran_1021_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PressureToleran_1020_TypeType = PressureToleran_1020_TypeChoicePair::MinValueE;
-           $$->PressureToleran_1020_TypeValue.MinValue = $1;
+           $$->PressureToleran_1021_TypeType = PressureToleran_1021_TypeChoicePair::MinValueE;
+           $$->PressureToleran_1021_TypeValue.MinValue = $1;
           }
-        | y_PressureToleran_1037_PressureToleran_1037_Type
-          {$$ = new PressureToleran_1020_TypeChoicePair();
+        | y_PressureToleran_1038_PressureToleran_1038_Type
+          {$$ = new PressureToleran_1021_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->PressureToleran_1020_TypeType = PressureToleran_1020_TypeChoicePair::PressureToleran_1037E;
-           $$->PressureToleran_1020_TypeValue.PressureToleran_1037 = $1;
+           $$->PressureToleran_1021_TypeType = PressureToleran_1021_TypeChoicePair::PressureToleran_1038E;
+           $$->PressureToleran_1021_TypeValue.PressureToleran_1038 = $1;
           }
         ;
 
-y_PressureToleran_1037_PressureToleran_1037_Type :
-          y_PressureToleran_1037_Type
+y_PressureToleran_1038_PressureToleran_1038_Type :
+          y_PressureToleran_1038_Type
           {$$ = $1;}
         ;
 
-y_PressureToleran_1037_Type :
+y_PressureToleran_1038_Type :
           y_MaxValue_PressureValueType y_MinValue_PressureValueType_0
-          {$$ = new PressureToleran_1037_Type($1, $2);
+          {$$ = new PressureToleran_1038_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
@@ -75144,7 +75419,7 @@ y_PressureToleran_1037_Type :
         ;
 
 y_PressureToleranceType :
-          ENDITEM y_PressureToleran_1020_PressureToleran_1020_Type
+          ENDITEM y_PressureToleran_1021_PressureToleran_1021_Type
           y_DefinedAsLimit_XmlBoolean y_Attributes_AttributesType_0
           {$$ = new PressureToleranceType($2, $3, $4);
            yyUnrefMap[$$] = $$;
@@ -75182,11 +75457,15 @@ y_PressureValueType :
           {$$ = new PressureValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad PressureValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new PressureValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad PressureValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -75337,7 +75616,7 @@ y_ProbeTipType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0
           y_TipEndGeometry_TipEndGeometryType_0
           y_TipEndDiameter_LinearValueType_0 y_TipEndMaterial_XmlString_0
@@ -75375,51 +75654,51 @@ y_ProbeTip_ProbeTipType :
           }
         ;
 
-y_ProcessDifferen_1206_ProcessDifferen_1206_Type :
-          y_ProcessDifferen_1206_Type
+y_ProcessDifferen_1207_ProcessDifferen_1207_Type :
+          y_ProcessDifferen_1207_Type
           {$$ = $1;}
         ;
 
-y_ProcessDifferen_1206_Type :
-          y_ProcessDifferen_1206_TypeChoicePair
-          {$$ = new ProcessDifferen_1206_Type($1);
+y_ProcessDifferen_1207_Type :
+          y_ProcessDifferen_1207_TypeChoicePair
+          {$$ = new ProcessDifferen_1207_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_ProcessDifferen_1206_TypeChoicePair :
+y_ProcessDifferen_1207_TypeChoicePair :
           y_AbsoluteDifferences_AbsoluteLimitsByUnitType
-          {$$ = new ProcessDifferen_1206_TypeChoicePair();
+          {$$ = new ProcessDifferen_1207_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ProcessDifferen_1206_TypeType = ProcessDifferen_1206_TypeChoicePair::AbsoluteDifferencesE;
-           $$->ProcessDifferen_1206_TypeValue.AbsoluteDifferences = $1;
+           $$->ProcessDifferen_1207_TypeType = ProcessDifferen_1207_TypeChoicePair::AbsoluteDifferencesE;
+           $$->ProcessDifferen_1207_TypeValue.AbsoluteDifferences = $1;
           }
         | y_RelativeDifference_XmlDecimal
-          {$$ = new ProcessDifferen_1206_TypeChoicePair();
+          {$$ = new ProcessDifferen_1207_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ProcessDifferen_1206_TypeType = ProcessDifferen_1206_TypeChoicePair::RelativeDifferenceE;
-           $$->ProcessDifferen_1206_TypeValue.RelativeDifference = $1;
+           $$->ProcessDifferen_1207_TypeType = ProcessDifferen_1207_TypeChoicePair::RelativeDifferenceE;
+           $$->ProcessDifferen_1207_TypeValue.RelativeDifference = $1;
           }
         ;
 
 y_ProcessDifferenceStudyPlanType :
           y_LiztAttributePair ENDITEM y_Version_VersionType_0
           y_Attributes_AttributesType_0
-          y_StatisticalStud_1207_StatisticalStud_1207_Type_0
           y_StatisticalStud_1208_StatisticalStud_1208_Type_0
+          y_StatisticalStud_1209_StatisticalStud_1209_Type_0
           y_LiztStatsValuesSummarys_SummaryStatsValuesListType_0_u
           y_PreInspectionTraceability_PreInspectionTraceabilityType_0
           y_Name_XmlToken_0 y_Description_XmlString_0
           y_PlanId_QIFReferenceType_0
-          y_StatisticalStud_1209_StatisticalStud_1209_Type_0
+          y_StatisticalStud_1210_StatisticalStud_1210_Type_0
           y_CorrectiveActionPlanId_QIFReferenceType_0
           y_NumberOfSamples_XmlPositiveInteger
           y_SubgroupSize_XmlPositiveInteger
           y_ManufacturingProcessId_QIFReferenceType_0
-          y_ProcessDifferen_1206_ProcessDifferen_1206_Type
+          y_ProcessDifferen_1207_ProcessDifferen_1207_Type
           {$$ = new ProcessDifferenceStudyPlanType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -75459,12 +75738,12 @@ y_ProcessDifferenceStudyResultsType :
           y_LiztAttributePair ENDITEM
           y_ThisStatisticalStudyResultsInstanceQPId_QPIdType_0
           y_Attributes_AttributesType_0 y_Status_StatsEvalStatusType
-          y_StatisticalStud_1210_StatisticalStud_1210_Type_0
+          y_StatisticalStud_1211_StatisticalStud_1211_Type_0
           y_StudyIssues_StudyIssuesType_0
           y_InspectionTraceability_InspectionTraceabilityType_0
           y_Name_XmlToken_0 y_Description_XmlString_0
           y_StudyId_QIFReferenceType_0
-          y_StatisticalStud_1211_StatisticalStud_1211_Type_0
+          y_StatisticalStud_1212_StatisticalStud_1212_Type_0
           y_AverageFeatures_AverageFeaturesType_0
           y_CharacteristicsStats_CharacteristicsStatsType_0
           y_LinearStatsSummaries_SummariesStatisticsLinearType_0
@@ -75619,33 +75898,33 @@ y_ProductCoordinateSystemSetCount_XmlUnsignedInt_0 :
           {$$ = $4;}
         ;
 
-y_ProductDataQual_1044_ProductDataQual_1044_Type :
-          y_ProductDataQual_1044_Type
+y_ProductDataQual_1045_ProductDataQual_1045_Type :
+          y_ProductDataQual_1045_Type
           {$$ = $1;}
         ;
 
-y_ProductDataQual_1044_Type :
-          y_ProductDataQual_1044_TypeChoicePair
-          {$$ = new ProductDataQual_1044_Type($1);
+y_ProductDataQual_1045_Type :
+          y_ProductDataQual_1045_TypeChoicePair
+          {$$ = new ProductDataQual_1045_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_ProductDataQual_1044_TypeChoicePair :
+y_ProductDataQual_1045_TypeChoicePair :
           y_AreaEnum_ProductDataQualityAreaEnumType
-          {$$ = new ProductDataQual_1044_TypeChoicePair();
+          {$$ = new ProductDataQual_1045_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ProductDataQual_1044_TypeType = ProductDataQual_1044_TypeChoicePair::AreaEnumE;
-           $$->ProductDataQual_1044_TypeValue.AreaEnum = $1;
+           $$->ProductDataQual_1045_TypeType = ProductDataQual_1045_TypeChoicePair::AreaEnumE;
+           $$->ProductDataQual_1045_TypeValue.AreaEnum = $1;
           }
         | y_OtherArea_XmlString
-          {$$ = new ProductDataQual_1044_TypeChoicePair();
+          {$$ = new ProductDataQual_1045_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ProductDataQual_1044_TypeType = ProductDataQual_1044_TypeChoicePair::OtherAreaE;
-           $$->ProductDataQual_1044_TypeValue.OtherArea = $1;
+           $$->ProductDataQual_1045_TypeType = ProductDataQual_1045_TypeChoicePair::OtherAreaE;
+           $$->ProductDataQual_1045_TypeValue.OtherArea = $1;
           }
         ;
 
@@ -75660,7 +75939,7 @@ y_ProductDataQualityAreaEnumType :
         ;
 
 y_ProductDataQualityAreaType :
-          ENDITEM y_ProductDataQual_1044_ProductDataQual_1044_Type
+          ENDITEM y_ProductDataQual_1045_ProductDataQual_1045_Type
           {$$ = new ProductDataQualityAreaType($2);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -75852,7 +76131,7 @@ y_ProductType :
           y_VisualizationSet_VisualizationSetType_0
           y_AuxiliarySet_AuxiliarySetType_0 y_PartSet_PartSetType_0
           y_AssemblySet_AssemblySetType_0 y_ComponentSet_ComponentSetType_0
-          y_ProductType_1238_ProductType_1238_Type_0
+          y_ProductType_1239_ProductType_1239_Type_0
           y_AsmPaths_AsmPathsType_0 y_MaterialLibrary_MaterialsType_0
           {$$ = new ProductType($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
@@ -75876,42 +76155,42 @@ y_ProductType :
           }
         ;
 
-y_ProductType_1238_ProductType_1238_Type_0 :
+y_ProductType_1239_ProductType_1239_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_ProductType_1238_Type
+        | y_ProductType_1239_Type
           {$$ = $1;}
         ;
 
-y_ProductType_1238_Type :
-          y_ProductType_1238_TypeChoicePair
-          {$$ = new ProductType_1238_Type($1);
+y_ProductType_1239_Type :
+          y_ProductType_1239_TypeChoicePair
+          {$$ = new ProductType_1239_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_ProductType_1238_TypeChoicePair :
+y_ProductType_1239_TypeChoicePair :
           y_RootAssembly_ElementReferenceType
-          {$$ = new ProductType_1238_TypeChoicePair();
+          {$$ = new ProductType_1239_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ProductType_1238_TypeType = ProductType_1238_TypeChoicePair::RootAssemblyE;
-           $$->ProductType_1238_TypeValue.RootAssembly = $1;
+           $$->ProductType_1239_TypeType = ProductType_1239_TypeChoicePair::RootAssemblyE;
+           $$->ProductType_1239_TypeValue.RootAssembly = $1;
           }
         | y_RootComponent_ElementReferenceType
-          {$$ = new ProductType_1238_TypeChoicePair();
+          {$$ = new ProductType_1239_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ProductType_1238_TypeType = ProductType_1238_TypeChoicePair::RootComponentE;
-           $$->ProductType_1238_TypeValue.RootComponent = $1;
+           $$->ProductType_1239_TypeType = ProductType_1239_TypeChoicePair::RootComponentE;
+           $$->ProductType_1239_TypeValue.RootComponent = $1;
           }
         | y_RootPart_ElementReferenceType
-          {$$ = new ProductType_1238_TypeChoicePair();
+          {$$ = new ProductType_1239_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ProductType_1238_TypeType = ProductType_1238_TypeChoicePair::RootPartE;
-           $$->ProductType_1238_TypeValue.RootPart = $1;
+           $$->ProductType_1239_TypeType = ProductType_1239_TypeChoicePair::RootPartE;
+           $$->ProductType_1239_TypeValue.RootPart = $1;
           }
         ;
 
@@ -75953,13 +76232,13 @@ y_ProductionMethod_XmlToken_0 :
 y_ProductionStudyPlanType :
           y_LiztAttributePair ENDITEM y_Version_VersionType_0
           y_Attributes_AttributesType_0
-          y_StatisticalStud_1207_StatisticalStud_1207_Type_0
           y_StatisticalStud_1208_StatisticalStud_1208_Type_0
+          y_StatisticalStud_1209_StatisticalStud_1209_Type_0
           y_LiztStatsValuesSummarys_SummaryStatsValuesListType_0_u
           y_PreInspectionTraceability_PreInspectionTraceabilityType_0
           y_Name_XmlToken_0 y_Description_XmlString_0
           y_PlanId_QIFReferenceType_0
-          y_StatisticalStud_1209_StatisticalStud_1209_Type_0
+          y_StatisticalStud_1210_StatisticalStud_1210_Type_0
           y_CorrectiveActionPlanId_QIFReferenceType_0
           y_NumberOfSamples_XmlPositiveInteger
           y_SubgroupSize_XmlPositiveInteger_0
@@ -76004,12 +76283,12 @@ y_ProductionStudyResultsType :
           y_LiztAttributePair ENDITEM
           y_ThisStatisticalStudyResultsInstanceQPId_QPIdType_0
           y_Attributes_AttributesType_0 y_Status_StatsEvalStatusType
-          y_StatisticalStud_1210_StatisticalStud_1210_Type_0
+          y_StatisticalStud_1211_StatisticalStud_1211_Type_0
           y_StudyIssues_StudyIssuesType_0
           y_InspectionTraceability_InspectionTraceabilityType_0
           y_Name_XmlToken_0 y_Description_XmlString_0
           y_StudyId_QIFReferenceType_0
-          y_StatisticalStud_1211_StatisticalStud_1211_Type_0
+          y_StatisticalStud_1212_StatisticalStud_1212_Type_0
           y_AverageFeatures_AverageFeaturesType_0
           y_CharacteristicsStats_CharacteristicsStatsType_0
           y_LinearStatsSummaries_SummariesStatisticsLinearType_0
@@ -76072,35 +76351,35 @@ y_ProductionStudyResults_ProductionStudyResultsType :
           }
         ;
 
-y_ProfileCharacte_1067_ProfileCharacte_1067_Type_0 :
+y_ProfileCharacte_1068_ProfileCharacte_1068_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_ProfileCharacte_1067_Type
+        | y_ProfileCharacte_1068_Type
           {$$ = $1;}
         ;
 
-y_ProfileCharacte_1067_Type :
-          y_ProfileCharacte_1067_TypeChoicePair
-          {$$ = new ProfileCharacte_1067_Type($1);
+y_ProfileCharacte_1068_Type :
+          y_ProfileCharacte_1068_TypeChoicePair
+          {$$ = new ProfileCharacte_1068_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_ProfileCharacte_1067_TypeChoicePair :
+y_ProfileCharacte_1068_TypeChoicePair :
           y_OuterDisposition_LinearValueType
-          {$$ = new ProfileCharacte_1067_TypeChoicePair();
+          {$$ = new ProfileCharacte_1068_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ProfileCharacte_1067_TypeType = ProfileCharacte_1067_TypeChoicePair::OuterDispositionE;
-           $$->ProfileCharacte_1067_TypeValue.OuterDisposition = $1;
+           $$->ProfileCharacte_1068_TypeType = ProfileCharacte_1068_TypeChoicePair::OuterDispositionE;
+           $$->ProfileCharacte_1068_TypeValue.OuterDisposition = $1;
           }
         | y_UnequallyDisposedZone_LinearValueType
-          {$$ = new ProfileCharacte_1067_TypeChoicePair();
+          {$$ = new ProfileCharacte_1068_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ProfileCharacte_1067_TypeType = ProfileCharacte_1067_TypeChoicePair::UnequallyDisposedZoneE;
-           $$->ProfileCharacte_1067_TypeValue.UnequallyDisposedZone = $1;
+           $$->ProfileCharacte_1068_TypeType = ProfileCharacte_1068_TypeChoicePair::UnequallyDisposedZoneE;
+           $$->ProfileCharacte_1068_TypeValue.UnequallyDisposedZone = $1;
           }
         ;
 
@@ -76340,7 +76619,7 @@ y_QIFDocumentType :
           y_Plan_PlanType_0 y_Results_ResultsType_0
           y_Statistics_StatisticsType_0
           y_ManufacturingProcessTraceabilities_ManufacturingProcessTraceabilitiesType_0
-          y_Rules_QIFRulesType_0 y_UserDataXML_XmlString_0
+          y_Rules_QIFRulesType_0 y_UserDataXML_UserDataXMLType_0
           y_Signature_XmlString_0
           {$$ = new QIFDocumentType($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31);
            yyUnrefMap[$$] = $$;
@@ -76429,11 +76708,15 @@ y_QIFReferenceActiveType :
           {$$ = new QIFReferenceActiveType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad QIFReferenceActiveType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new QIFReferenceActiveType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad QIFReferenceActiveType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -76449,11 +76732,15 @@ y_QIFReferenceFullType :
           {$$ = new QIFReferenceFullType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad QIFReferenceFullType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new QIFReferenceFullType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad QIFReferenceFullType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -76479,11 +76766,15 @@ y_QIFReferenceType :
           {$$ = new QIFReferenceType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad QIFReferenceType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new QIFReferenceType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad QIFReferenceType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -76681,7 +76972,7 @@ y_RadiusCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_LinearCharacter_1058_LinearCharacter_1058_Type
+          y_LinearCharacter_1059_LinearCharacter_1059_Type
           y_ControlledRadius_XmlBoolean_0
           {$$ = new RadiusCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19);
            yyUnrefMap[$$] = $$;
@@ -76859,11 +77150,11 @@ y_RadiusCharacteristicNominal_RadiusCharacteristicNominalType :
 
 y_RadiusCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_LinearCharacter_1134_LinearCharacter_1134_Type
+          y_LinearCharacter_1135_LinearCharacter_1135_Type
           {$$ = new RadiusCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -77318,7 +77609,14 @@ y_ReferenceLength_LinearValueType_0 :
         ;
 
 y_ReferenceLineBeginPoint_Point2dSimpleType :
-          ReferenceLineBeginPointSTART y_Point2dSimpleType
+          ReferenceLineBeginPointSTART ENDWHOLEITEM
+          {$$ = new Point2dSimpleType();
+           $$->Point2dSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad Point2dSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | ReferenceLineBeginPointSTART y_Point2dSimpleType
           ReferenceLineBeginPointEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
@@ -77328,7 +77626,14 @@ y_ReferenceLineBeginPoint_Point2dSimpleType :
         ;
 
 y_ReferenceLineEndPoint_Point2dSimpleType :
-          ReferenceLineEndPointSTART y_Point2dSimpleType
+          ReferenceLineEndPointSTART ENDWHOLEITEM
+          {$$ = new Point2dSimpleType();
+           $$->Point2dSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad Point2dSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | ReferenceLineEndPointSTART y_Point2dSimpleType
           ReferenceLineEndPointEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
@@ -78164,45 +78469,45 @@ y_SamplingInterval_SamplingIntervalType :
           {$$ = $2;}
         ;
 
-y_SamplingMethodT_1135_SamplingMethodT_1135_Type :
-          y_SamplingMethodT_1135_Type
+y_SamplingMethodT_1136_SamplingMethodT_1136_Type :
+          y_SamplingMethodT_1136_Type
           {$$ = $1;}
         ;
 
-y_SamplingMethodT_1135_Type :
-          y_SamplingMethodT_1135_TypeChoicePair
-          {$$ = new SamplingMethodT_1135_Type($1);
+y_SamplingMethodT_1136_Type :
+          y_SamplingMethodT_1136_TypeChoicePair
+          {$$ = new SamplingMethodT_1136_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_SamplingMethodT_1135_TypeChoicePair :
-          y_SamplingMethodT_1157_SamplingMethodT_1157_Type
-          {$$ = new SamplingMethodT_1135_TypeChoicePair();
+y_SamplingMethodT_1136_TypeChoicePair :
+          y_SamplingMethodT_1158_SamplingMethodT_1158_Type
+          {$$ = new SamplingMethodT_1136_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->SamplingMethodT_1135_TypeType = SamplingMethodT_1135_TypeChoicePair::SamplingMethodT_1157E;
-           $$->SamplingMethodT_1135_TypeValue.SamplingMethodT_1157 = $1;
+           $$->SamplingMethodT_1136_TypeType = SamplingMethodT_1136_TypeChoicePair::SamplingMethodT_1158E;
+           $$->SamplingMethodT_1136_TypeValue.SamplingMethodT_1158 = $1;
           }
         | y_SamplingPeriod_XmlPositiveInteger
-          {$$ = new SamplingMethodT_1135_TypeChoicePair();
+          {$$ = new SamplingMethodT_1136_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->SamplingMethodT_1135_TypeType = SamplingMethodT_1135_TypeChoicePair::SamplingPeriodE;
-           $$->SamplingMethodT_1135_TypeValue.SamplingPeriod = $1;
+           $$->SamplingMethodT_1136_TypeType = SamplingMethodT_1136_TypeChoicePair::SamplingPeriodE;
+           $$->SamplingMethodT_1136_TypeValue.SamplingPeriod = $1;
           }
         ;
 
-y_SamplingMethodT_1157_SamplingMethodT_1157_Type :
-          y_SamplingMethodT_1157_Type
+y_SamplingMethodT_1158_SamplingMethodT_1158_Type :
+          y_SamplingMethodT_1158_Type
           {$$ = $1;}
         ;
 
-y_SamplingMethodT_1157_Type :
+y_SamplingMethodT_1158_Type :
           y_SamplingFrequency_XmlPositiveInteger
           y_SamplingInterval_SamplingIntervalType
-          {$$ = new SamplingMethodT_1157_Type($1, $2);
+          {$$ = new SamplingMethodT_1158_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
@@ -78211,7 +78516,7 @@ y_SamplingMethodT_1157_Type :
 
 y_SamplingMethodType :
           ENDITEM y_SampleSize_XmlPositiveInteger
-          y_SamplingMethodT_1135_SamplingMethodT_1135_Type
+          y_SamplingMethodT_1136_SamplingMethodT_1136_Type
           {$$ = new SamplingMethodType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -78377,7 +78682,7 @@ y_ScaleResolution_LinearValueType_0 :
         ;
 
 y_ScaleType :
-          ENDITEM y_Origin_PointType y_ScaleType_1005_ScaleType_1005_Type
+          ENDITEM y_Origin_PointType y_ScaleType_1006_ScaleType_1006_Type
           {$$ = new ScaleType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -78385,40 +78690,40 @@ y_ScaleType :
           }
         ;
 
-y_ScaleType_1005_ScaleType_1005_Type :
-          y_ScaleType_1005_Type
+y_ScaleType_1006_ScaleType_1006_Type :
+          y_ScaleType_1006_Type
           {$$ = $1;}
         ;
 
-y_ScaleType_1005_Type :
-          y_ScaleType_1005_TypeChoicePair
-          {$$ = new ScaleType_1005_Type($1);
+y_ScaleType_1006_Type :
+          y_ScaleType_1006_TypeChoicePair
+          {$$ = new ScaleType_1006_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_ScaleType_1005_TypeChoicePair :
+y_ScaleType_1006_TypeChoicePair :
           y_AxialDifferentialScale_AxialDifferentialScaleType
-          {$$ = new ScaleType_1005_TypeChoicePair();
+          {$$ = new ScaleType_1006_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ScaleType_1005_TypeType = ScaleType_1005_TypeChoicePair::AxialDifferentialScaleE;
-           $$->ScaleType_1005_TypeValue.AxialDifferentialScale = $1;
+           $$->ScaleType_1006_TypeType = ScaleType_1006_TypeChoicePair::AxialDifferentialScaleE;
+           $$->ScaleType_1006_TypeValue.AxialDifferentialScale = $1;
           }
         | y_RadialDifferentialScale_RadialDifferentialScaleType
-          {$$ = new ScaleType_1005_TypeChoicePair();
+          {$$ = new ScaleType_1006_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ScaleType_1005_TypeType = ScaleType_1005_TypeChoicePair::RadialDifferentialScaleE;
-           $$->ScaleType_1005_TypeValue.RadialDifferentialScale = $1;
+           $$->ScaleType_1006_TypeType = ScaleType_1006_TypeChoicePair::RadialDifferentialScaleE;
+           $$->ScaleType_1006_TypeValue.RadialDifferentialScale = $1;
           }
         | y_UniformScale_UniformScaleType
-          {$$ = new ScaleType_1005_TypeChoicePair();
+          {$$ = new ScaleType_1006_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ScaleType_1005_TypeType = ScaleType_1005_TypeChoicePair::UniformScaleE;
-           $$->ScaleType_1005_TypeValue.UniformScale = $1;
+           $$->ScaleType_1006_TypeType = ScaleType_1006_TypeChoicePair::UniformScaleE;
+           $$->ScaleType_1006_TypeValue.UniformScale = $1;
           }
         ;
 
@@ -78624,7 +78929,14 @@ y_SecondLegLength_FractionType :
         ;
 
 y_SecondLineOrigin_Point2dSimpleType :
-          SecondLineOriginSTART y_Point2dSimpleType SecondLineOriginEND
+          SecondLineOriginSTART ENDWHOLEITEM
+          {$$ = new Point2dSimpleType();
+           $$->Point2dSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad Point2dSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | SecondLineOriginSTART y_Point2dSimpleType SecondLineOriginEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
            if ($2->bad)
@@ -79079,38 +79391,38 @@ y_SequencedBaseFeatureType :
           }
         ;
 
-y_SequencedDatumT_1021_SequencedDatumT_1021_Type :
-          y_SequencedDatumT_1021_Type
+y_SequencedDatumT_1022_SequencedDatumT_1022_Type :
+          y_SequencedDatumT_1022_Type
           {$$ = $1;}
         ;
 
-y_SequencedDatumT_1021_Type :
-          y_SequencedDatumT_1021_TypeChoicePair
-          {$$ = new SequencedDatumT_1021_Type($1);
+y_SequencedDatumT_1022_Type :
+          y_SequencedDatumT_1022_TypeChoicePair
+          {$$ = new SequencedDatumT_1022_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_SequencedDatumT_1021_TypeChoicePair :
+y_SequencedDatumT_1022_TypeChoicePair :
           y_CompoundDatum_CompoundDatumType
-          {$$ = new SequencedDatumT_1021_TypeChoicePair();
+          {$$ = new SequencedDatumT_1022_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->SequencedDatumT_1021_TypeType = SequencedDatumT_1021_TypeChoicePair::CompoundDatumE;
-           $$->SequencedDatumT_1021_TypeValue.CompoundDatum = $1;
+           $$->SequencedDatumT_1022_TypeType = SequencedDatumT_1022_TypeChoicePair::CompoundDatumE;
+           $$->SequencedDatumT_1022_TypeValue.CompoundDatum = $1;
           }
         | y_SimpleDatum_DatumType
-          {$$ = new SequencedDatumT_1021_TypeChoicePair();
+          {$$ = new SequencedDatumT_1022_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->SequencedDatumT_1021_TypeType = SequencedDatumT_1021_TypeChoicePair::SimpleDatumE;
-           $$->SequencedDatumT_1021_TypeValue.SimpleDatum = $1;
+           $$->SequencedDatumT_1022_TypeType = SequencedDatumT_1022_TypeChoicePair::SimpleDatumE;
+           $$->SequencedDatumT_1022_TypeValue.SimpleDatum = $1;
           }
         ;
 
 y_SequencedDatumType :
-          ENDITEM y_SequencedDatumT_1021_SequencedDatumT_1021_Type
+          ENDITEM y_SequencedDatumT_1022_SequencedDatumT_1022_Type
           y_SequenceNumber_NaturalType
           {$$ = new SequencedDatumType($2, $3);
            yyUnrefMap[$$] = $$;
@@ -79445,13 +79757,13 @@ y_SimpleDatum_DatumType :
 y_SimpleStudyPlanType :
           y_LiztAttributePair ENDITEM y_Version_VersionType_0
           y_Attributes_AttributesType_0
-          y_StatisticalStud_1207_StatisticalStud_1207_Type_0
           y_StatisticalStud_1208_StatisticalStud_1208_Type_0
+          y_StatisticalStud_1209_StatisticalStud_1209_Type_0
           y_LiztStatsValuesSummarys_SummaryStatsValuesListType_0_u
           y_PreInspectionTraceability_PreInspectionTraceabilityType_0
           y_Name_XmlToken_0 y_Description_XmlString_0
           y_PlanId_QIFReferenceType_0
-          y_StatisticalStud_1209_StatisticalStud_1209_Type_0
+          y_StatisticalStud_1210_StatisticalStud_1210_Type_0
           y_CorrectiveActionPlanId_QIFReferenceType_0
           y_NumberOfSamples_XmlPositiveInteger
           y_SubgroupSize_XmlPositiveInteger_0
@@ -79491,12 +79803,12 @@ y_SimpleStudyResultsType :
           y_LiztAttributePair ENDITEM
           y_ThisStatisticalStudyResultsInstanceQPId_QPIdType_0
           y_Attributes_AttributesType_0 y_Status_StatsEvalStatusType
-          y_StatisticalStud_1210_StatisticalStud_1210_Type_0
+          y_StatisticalStud_1211_StatisticalStud_1211_Type_0
           y_StudyIssues_StudyIssuesType_0
           y_InspectionTraceability_InspectionTraceabilityType_0
           y_Name_XmlToken_0 y_Description_XmlString_0
           y_StudyId_QIFReferenceType_0
-          y_StatisticalStud_1211_StatisticalStud_1211_Type_0
+          y_StatisticalStud_1212_StatisticalStud_1212_Type_0
           y_AverageFeatures_AverageFeaturesType_0
           y_CharacteristicsStats_CharacteristicsStatsType_0
           y_LinearStatsSummaries_SummariesStatisticsLinearType_0
@@ -79562,7 +79874,7 @@ y_SimpleTactileProbeSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_ProtectionClass_XmlString_0
           y_LinearityError_XmlString_0 y_Repeatability_LinearValueType_0
           y_Sensitivity_XmlDecimal_0 y_Resolution_LinearValueType_0
@@ -79785,7 +80097,7 @@ y_SineBarType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_MinMeasuringDistance_LinearValueType_0
@@ -80150,11 +80462,15 @@ y_SpecifiedDecimalType :
           {$$ = new SpecifiedDecimalType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad SpecifiedDecimalType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new SpecifiedDecimalType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad SpecifiedDecimalType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -80171,33 +80487,33 @@ y_SpeedAbsoluteLinearity_MeasuredSpeedValueType :
           {$$ = $2;}
         ;
 
-y_SpeedCharacteri_1068_SpeedCharacteri_1068_Type :
-          y_SpeedCharacteri_1068_Type
+y_SpeedCharacteri_1069_SpeedCharacteri_1069_Type :
+          y_SpeedCharacteri_1069_Type
           {$$ = $1;}
         ;
 
-y_SpeedCharacteri_1068_Type :
-          y_SpeedCharacteri_1068_TypeChoicePair
-          {$$ = new SpeedCharacteri_1068_Type($1);
+y_SpeedCharacteri_1069_Type :
+          y_SpeedCharacteri_1069_TypeChoicePair
+          {$$ = new SpeedCharacteri_1069_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_SpeedCharacteri_1068_TypeChoicePair :
+y_SpeedCharacteri_1069_TypeChoicePair :
           y_NonTolerance_NonToleranceEnumType
-          {$$ = new SpeedCharacteri_1068_TypeChoicePair();
+          {$$ = new SpeedCharacteri_1069_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->SpeedCharacteri_1068_TypeType = SpeedCharacteri_1068_TypeChoicePair::NonToleranceE;
-           $$->SpeedCharacteri_1068_TypeValue.NonTolerance = $1;
+           $$->SpeedCharacteri_1069_TypeType = SpeedCharacteri_1069_TypeChoicePair::NonToleranceE;
+           $$->SpeedCharacteri_1069_TypeValue.NonTolerance = $1;
           }
         | y_Tolerance_SpeedToleranceType
-          {$$ = new SpeedCharacteri_1068_TypeChoicePair();
+          {$$ = new SpeedCharacteri_1069_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->SpeedCharacteri_1068_TypeType = SpeedCharacteri_1068_TypeChoicePair::ToleranceE;
-           $$->SpeedCharacteri_1068_TypeValue.Tolerance = $1;
+           $$->SpeedCharacteri_1069_TypeType = SpeedCharacteri_1069_TypeChoicePair::ToleranceE;
+           $$->SpeedCharacteri_1069_TypeValue.Tolerance = $1;
           }
         ;
 
@@ -80241,44 +80557,44 @@ y_SpeedStatsSummary_SummaryStatisticsSpeedType :
           }
         ;
 
-y_SpeedToleranceT_1022_SpeedToleranceT_1022_Type :
-          y_SpeedToleranceT_1022_Type
+y_SpeedToleranceT_1023_SpeedToleranceT_1023_Type :
+          y_SpeedToleranceT_1023_Type
           {$$ = $1;}
         ;
 
-y_SpeedToleranceT_1022_Type :
-          y_SpeedToleranceT_1022_TypeChoicePair
-          {$$ = new SpeedToleranceT_1022_Type($1);
+y_SpeedToleranceT_1023_Type :
+          y_SpeedToleranceT_1023_TypeChoicePair
+          {$$ = new SpeedToleranceT_1023_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_SpeedToleranceT_1022_TypeChoicePair :
+y_SpeedToleranceT_1023_TypeChoicePair :
           y_MinValue_SpeedValueType
-          {$$ = new SpeedToleranceT_1022_TypeChoicePair();
+          {$$ = new SpeedToleranceT_1023_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->SpeedToleranceT_1022_TypeType = SpeedToleranceT_1022_TypeChoicePair::MinValueE;
-           $$->SpeedToleranceT_1022_TypeValue.MinValue = $1;
+           $$->SpeedToleranceT_1023_TypeType = SpeedToleranceT_1023_TypeChoicePair::MinValueE;
+           $$->SpeedToleranceT_1023_TypeValue.MinValue = $1;
           }
-        | y_SpeedToleranceT_1038_SpeedToleranceT_1038_Type
-          {$$ = new SpeedToleranceT_1022_TypeChoicePair();
+        | y_SpeedToleranceT_1039_SpeedToleranceT_1039_Type
+          {$$ = new SpeedToleranceT_1023_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->SpeedToleranceT_1022_TypeType = SpeedToleranceT_1022_TypeChoicePair::SpeedToleranceT_1038E;
-           $$->SpeedToleranceT_1022_TypeValue.SpeedToleranceT_1038 = $1;
+           $$->SpeedToleranceT_1023_TypeType = SpeedToleranceT_1023_TypeChoicePair::SpeedToleranceT_1039E;
+           $$->SpeedToleranceT_1023_TypeValue.SpeedToleranceT_1039 = $1;
           }
         ;
 
-y_SpeedToleranceT_1038_SpeedToleranceT_1038_Type :
-          y_SpeedToleranceT_1038_Type
+y_SpeedToleranceT_1039_SpeedToleranceT_1039_Type :
+          y_SpeedToleranceT_1039_Type
           {$$ = $1;}
         ;
 
-y_SpeedToleranceT_1038_Type :
+y_SpeedToleranceT_1039_Type :
           y_MaxValue_SpeedValueType y_MinValue_SpeedValueType_0
-          {$$ = new SpeedToleranceT_1038_Type($1, $2);
+          {$$ = new SpeedToleranceT_1039_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
@@ -80286,7 +80602,7 @@ y_SpeedToleranceT_1038_Type :
         ;
 
 y_SpeedToleranceType :
-          ENDITEM y_SpeedToleranceT_1022_SpeedToleranceT_1022_Type
+          ENDITEM y_SpeedToleranceT_1023_SpeedToleranceT_1023_Type
           y_DefinedAsLimit_XmlBoolean y_Attributes_AttributesType_0
           {$$ = new SpeedToleranceType($2, $3, $4);
            yyUnrefMap[$$] = $$;
@@ -80324,11 +80640,15 @@ y_SpeedValueType :
           {$$ = new SpeedValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad SpeedValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new SpeedValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad SpeedValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -80825,7 +81145,7 @@ y_SphericalDiameterCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_LinearCharacter_1058_LinearCharacter_1058_Type
+          y_LinearCharacter_1059_LinearCharacter_1059_Type
           {$$ = new SphericalDiameterCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -81003,11 +81323,11 @@ y_SphericalDiameterCharacteristicNominal_SphericalDiameterCharacteristicNominalT
 
 y_SphericalDiameterCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_LinearCharacter_1134_LinearCharacter_1134_Type
+          y_LinearCharacter_1135_LinearCharacter_1135_Type
           {$$ = new SphericalDiameterCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -81041,7 +81361,7 @@ y_SphericalRadiusCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_LinearCharacter_1058_LinearCharacter_1058_Type
+          y_LinearCharacter_1059_LinearCharacter_1059_Type
           {$$ = new SphericalRadiusCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -81219,11 +81539,11 @@ y_SphericalRadiusCharacteristicNominal_SphericalRadiusCharacteristicNominalType 
 
 y_SphericalRadiusCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_LinearCharacter_1134_LinearCharacter_1134_Type
+          y_LinearCharacter_1135_LinearCharacter_1135_Type
           {$$ = new SphericalRadiusCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -81245,45 +81565,45 @@ y_SphericalRadiusCharacteristicStats_SphericalRadiusCharacteristicStatsEvalType 
           }
         ;
 
-y_SphericalResolu_1242_SphericalResolu_1242_Type :
-          y_SphericalResolu_1242_Type
+y_SphericalResolu_1243_SphericalResolu_1243_Type :
+          y_SphericalResolu_1243_Type
           {$$ = $1;}
         ;
 
-y_SphericalResolu_1242_Type :
-          y_SphericalResolu_1242_TypeChoicePair
-          {$$ = new SphericalResolu_1242_Type($1);
+y_SphericalResolu_1243_Type :
+          y_SphericalResolu_1243_TypeChoicePair
+          {$$ = new SphericalResolu_1243_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_SphericalResolu_1242_TypeChoicePair :
+y_SphericalResolu_1243_TypeChoicePair :
           y_RAPResolution_RAPZResolutionType
-          {$$ = new SphericalResolu_1242_TypeChoicePair();
+          {$$ = new SphericalResolu_1243_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->SphericalResolu_1242_TypeType = SphericalResolu_1242_TypeChoicePair::RAPResolutionE;
-           $$->SphericalResolu_1242_TypeValue.RAPResolution = $1;
+           $$->SphericalResolu_1243_TypeType = SphericalResolu_1243_TypeChoicePair::RAPResolutionE;
+           $$->SphericalResolu_1243_TypeValue.RAPResolution = $1;
           }
-        | y_SphericalResolu_1245_SphericalResolu_1245_Type
-          {$$ = new SphericalResolu_1242_TypeChoicePair();
+        | y_SphericalResolu_1246_SphericalResolu_1246_Type
+          {$$ = new SphericalResolu_1243_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->SphericalResolu_1242_TypeType = SphericalResolu_1242_TypeChoicePair::SphericalResolu_1245E;
-           $$->SphericalResolu_1242_TypeValue.SphericalResolu_1245 = $1;
+           $$->SphericalResolu_1243_TypeType = SphericalResolu_1243_TypeChoicePair::SphericalResolu_1246E;
+           $$->SphericalResolu_1243_TypeValue.SphericalResolu_1246 = $1;
           }
         ;
 
-y_SphericalResolu_1245_SphericalResolu_1245_Type :
-          y_SphericalResolu_1245_Type
+y_SphericalResolu_1246_SphericalResolu_1246_Type :
+          y_SphericalResolu_1246_Type
           {$$ = $1;}
         ;
 
-y_SphericalResolu_1245_Type :
+y_SphericalResolu_1246_Type :
           y_CombinedSphericalResolution_CombinedSphericalResolutionType
           y_RAPZResolution_RAPZResolutionType
-          {$$ = new SphericalResolu_1245_Type($1, $2);
+          {$$ = new SphericalResolu_1246_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
@@ -81291,7 +81611,7 @@ y_SphericalResolu_1245_Type :
         ;
 
 y_SphericalResolutionType :
-          ENDITEM y_SphericalResolu_1242_SphericalResolu_1242_Type
+          ENDITEM y_SphericalResolu_1243_SphericalResolu_1243_Type
           {$$ = new SphericalResolutionType($2);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -81718,16 +82038,16 @@ y_SphericalZone_PositionSphericalZoneType :
           {$$ = $2;}
         ;
 
-y_SphericityChara_1069_SphericityChara_1069_Type_0 :
+y_SphericityChara_1070_SphericityChara_1070_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_SphericityChara_1069_Type
+        | y_SphericityChara_1070_Type
           {$$ = $1;}
         ;
 
-y_SphericityChara_1069_Type :
+y_SphericityChara_1070_Type :
           y_ZoneRadii_MeasuredZoneRadiiType y_ZonePoint_MeasuredPointType
-          {$$ = new SphericityChara_1069_Type($1, $2);
+          {$$ = new SphericityChara_1070_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
@@ -81744,7 +82064,7 @@ y_SphericityCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
@@ -81849,7 +82169,7 @@ y_SphericityCharacteristicMeasurementType :
           y_Value_MeasuredLinearValueType_0
           y_MaxValue_MeasuredLinearValueType_0
           y_MinValue_MeasuredLinearValueType_0
-          y_SphericityChara_1069_SphericityChara_1069_Type_0
+          y_SphericityChara_1070_SphericityChara_1070_Type_0
           {$$ = new SphericityCharacteristicMeasurementType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -81930,8 +82250,8 @@ y_SphericityCharacteristicNominal_SphericityCharacteristicNominalType :
 
 y_SphericityCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -82146,7 +82466,7 @@ y_SquareCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_LinearCharacter_1058_LinearCharacter_1058_Type
+          y_LinearCharacter_1059_LinearCharacter_1059_Type
           {$$ = new SquareCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -82322,11 +82642,11 @@ y_SquareCharacteristicNominal_SquareCharacteristicNominalType :
 
 y_SquareCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_LinearCharacter_1134_LinearCharacter_1134_Type
+          y_LinearCharacter_1135_LinearCharacter_1135_Type
           {$$ = new SquareCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -82350,13 +82670,13 @@ y_SquareCharacteristicStats_SquareCharacteristicStatsEvalType :
 y_StabilityStudyPlanType :
           y_LiztAttributePair ENDITEM y_Version_VersionType_0
           y_Attributes_AttributesType_0
-          y_StatisticalStud_1207_StatisticalStud_1207_Type_0
           y_StatisticalStud_1208_StatisticalStud_1208_Type_0
+          y_StatisticalStud_1209_StatisticalStud_1209_Type_0
           y_LiztStatsValuesSummarys_SummaryStatsValuesListType_0_u
           y_PreInspectionTraceability_PreInspectionTraceabilityType_0
           y_Name_XmlToken_0 y_Description_XmlString_0
           y_PlanId_QIFReferenceType_0
-          y_StatisticalStud_1209_StatisticalStud_1209_Type_0
+          y_StatisticalStud_1210_StatisticalStud_1210_Type_0
           y_CorrectiveActionPlanId_QIFReferenceType_0
           y_MeasurementDeviceIds_ArrayReferenceType_0
           y_SampleSize_XmlPositiveInteger
@@ -82401,12 +82721,12 @@ y_StabilityStudyResultsType :
           y_LiztAttributePair ENDITEM
           y_ThisStatisticalStudyResultsInstanceQPId_QPIdType_0
           y_Attributes_AttributesType_0 y_Status_StatsEvalStatusType
-          y_StatisticalStud_1210_StatisticalStud_1210_Type_0
+          y_StatisticalStud_1211_StatisticalStud_1211_Type_0
           y_StudyIssues_StudyIssuesType_0
           y_InspectionTraceability_InspectionTraceabilityType_0
           y_Name_XmlToken_0 y_Description_XmlString_0
           y_StudyId_QIFReferenceType_0
-          y_StatisticalStud_1211_StatisticalStud_1211_Type_0
+          y_StatisticalStud_1212_StatisticalStud_1212_Type_0
           y_AverageFeatures_AverageFeaturesType_0
           y_CharacteristicsStats_CharacteristicsStatsType_0
           y_LinearStatsSummaries_SummariesStatisticsLinearType_0
@@ -82649,7 +82969,14 @@ y_StartPoint_MeasuredPointType :
         ;
 
 y_StartPoint_Point2dSimpleType :
-          StartPointSTART y_Point2dSimpleType StartPointEND
+          StartPointSTART ENDWHOLEITEM
+          {$$ = new Point2dSimpleType();
+           $$->Point2dSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad Point2dSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | StartPointSTART y_Point2dSimpleType StartPointEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
            if ($2->bad)
@@ -82658,7 +82985,14 @@ y_StartPoint_Point2dSimpleType :
         ;
 
 y_StartPoint_PointSimpleType :
-          StartPointSTART y_PointSimpleType StartPointEND
+          StartPointSTART ENDWHOLEITEM
+          {$$ = new PointSimpleType();
+           $$->PointSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad PointSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | StartPointSTART y_PointSimpleType StartPointEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
            if ($2->bad)
@@ -82684,23 +83018,6 @@ y_StatisticalCharacteristic_XmlBoolean_0 :
           {$$ = $4;}
         ;
 
-y_StatisticalStud_1207_StatisticalStud_1207_Type_0 :
-          /* empty */
-          {$$ = 0;}
-        | y_StatisticalStud_1207_Type
-          {$$ = $1;}
-        ;
-
-y_StatisticalStud_1207_Type :
-          y_FeatureItemIds_ArrayReferenceType
-          y_CalculateAverageFeatures_XmlBoolean_0
-          {$$ = new StatisticalStud_1207_Type($1, $2);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
-          }
-        ;
-
 y_StatisticalStud_1208_StatisticalStud_1208_Type_0 :
           /* empty */
           {$$ = 0;}
@@ -82709,14 +83026,12 @@ y_StatisticalStud_1208_StatisticalStud_1208_Type_0 :
         ;
 
 y_StatisticalStud_1208_Type :
-          y_CharacteristicItemIds_ArrayReferenceType
-          y_LiztStatsValuesPerChar_ListAccumulatedStatsValuesType_0_u
-          y_LiztStatsValuesPerSubgroup_ListSubgroupStatsValuesType_0_u
-          {$$ = new StatisticalStud_1208_Type($1, $2, $3);
+          y_FeatureItemIds_ArrayReferenceType
+          y_CalculateAverageFeatures_XmlBoolean_0
+          {$$ = new StatisticalStud_1208_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -82728,27 +83043,14 @@ y_StatisticalStud_1209_StatisticalStud_1209_Type_0 :
         ;
 
 y_StatisticalStud_1209_Type :
-          y_StatisticalStud_1209_TypeChoicePair
-          {$$ = new StatisticalStud_1209_Type($1);
+          y_CharacteristicItemIds_ArrayReferenceType
+          y_LiztStatsValuesPerChar_ListAccumulatedStatsValuesType_0_u
+          y_LiztStatsValuesPerSubgroup_ListSubgroupStatsValuesType_0_u
+          {$$ = new StatisticalStud_1209_Type($1, $2, $3);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_StatisticalStud_1209_TypeChoicePair :
-          y_SoftwareId_QIFReferenceType
-          {$$ = new StatisticalStud_1209_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->StatisticalStud_1209_TypeType = StatisticalStud_1209_TypeChoicePair::SoftwareIdE;
-           $$->StatisticalStud_1209_TypeValue.SoftwareId = $1;
-          }
-        | y_StandardId_QIFReferenceType
-          {$$ = new StatisticalStud_1209_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->StatisticalStud_1209_TypeType = StatisticalStud_1209_TypeChoicePair::StandardIdE;
-           $$->StatisticalStud_1209_TypeValue.StandardId = $1;
+           if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -82800,26 +83102,58 @@ y_StatisticalStud_1211_Type :
         ;
 
 y_StatisticalStud_1211_TypeChoicePair :
-          y_LiztResultsQPIds_ArrayQPIdFullReferenceType_1_u
+          y_SoftwareId_QIFReferenceType
           {$$ = new StatisticalStud_1211_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->StatisticalStud_1211_TypeType = StatisticalStud_1211_TypeChoicePair::ResultsQPIdsE;
-           $$->StatisticalStud_1211_TypeValue.ResultsQPIds = $1;
+           $$->StatisticalStud_1211_TypeType = StatisticalStud_1211_TypeChoicePair::SoftwareIdE;
+           $$->StatisticalStud_1211_TypeValue.SoftwareId = $1;
+          }
+        | y_StandardId_QIFReferenceType
+          {$$ = new StatisticalStud_1211_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->StatisticalStud_1211_TypeType = StatisticalStud_1211_TypeChoicePair::StandardIdE;
+           $$->StatisticalStud_1211_TypeValue.StandardId = $1;
+          }
+        ;
+
+y_StatisticalStud_1212_StatisticalStud_1212_Type_0 :
+          /* empty */
+          {$$ = 0;}
+        | y_StatisticalStud_1212_Type
+          {$$ = $1;}
+        ;
+
+y_StatisticalStud_1212_Type :
+          y_StatisticalStud_1212_TypeChoicePair
+          {$$ = new StatisticalStud_1212_Type($1);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+          }
+        ;
+
+y_StatisticalStud_1212_TypeChoicePair :
+          y_LiztResultsQPIds_ArrayQPIdFullReferenceType_1_u
+          {$$ = new StatisticalStud_1212_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->StatisticalStud_1212_TypeType = StatisticalStud_1212_TypeChoicePair::ResultsQPIdsE;
+           $$->StatisticalStud_1212_TypeValue.ResultsQPIds = $1;
           }
         | y_ResultsFiles_ExternalFileReferencesType
-          {$$ = new StatisticalStud_1211_TypeChoicePair();
+          {$$ = new StatisticalStud_1212_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->StatisticalStud_1211_TypeType = StatisticalStud_1211_TypeChoicePair::ResultsFilesE;
-           $$->StatisticalStud_1211_TypeValue.ResultsFiles = $1;
+           $$->StatisticalStud_1212_TypeType = StatisticalStud_1212_TypeChoicePair::ResultsFilesE;
+           $$->StatisticalStud_1212_TypeValue.ResultsFiles = $1;
           }
         | y_ResultsIds_ArrayReferenceType
-          {$$ = new StatisticalStud_1211_TypeChoicePair();
+          {$$ = new StatisticalStud_1212_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->StatisticalStud_1211_TypeType = StatisticalStud_1211_TypeChoicePair::ResultsIdsE;
-           $$->StatisticalStud_1211_TypeValue.ResultsIds = $1;
+           $$->StatisticalStud_1212_TypeType = StatisticalStud_1212_TypeChoicePair::ResultsIdsE;
+           $$->StatisticalStud_1212_TypeValue.ResultsIds = $1;
           }
         ;
 
@@ -83177,7 +83511,7 @@ y_StatsMassType :
         ;
 
 y_StatsMeasuredDecimalType :
-          ENDITEM y_StatsWithRefere_1006_StatsWithRefere_1006_Type_0
+          ENDITEM y_StatsWithRefere_1007_StatsWithRefere_1007_Type_0
           y_Value_MeasuredDecimalType
           {$$ = new StatsMeasuredDecimalType($2, $3);
            yyUnrefMap[$$] = $$;
@@ -83187,7 +83521,7 @@ y_StatsMeasuredDecimalType :
         ;
 
 y_StatsMeasuredDecimalWithReferenceType :
-          ENDITEM y_StatsWithRefere_1006_StatsWithRefere_1006_Type_0
+          ENDITEM y_StatsWithRefere_1007_StatsWithRefere_1007_Type_0
           y_Value_MeasuredDecimalType y_Id_QIFReferenceType_0
           {$$ = new StatsMeasuredDecimalWithReferenceType($2, $3, $4);
            yyUnrefMap[$$] = $$;
@@ -83198,7 +83532,7 @@ y_StatsMeasuredDecimalWithReferenceType :
         ;
 
 y_StatsNonNegativeIntegerType :
-          ENDITEM y_StatsWithRefere_1006_StatsWithRefere_1006_Type_0
+          ENDITEM y_StatsWithRefere_1007_StatsWithRefere_1007_Type_0
           y_Value_XmlNonNegativeInteger
           {$$ = new StatsNonNegativeIntegerType($2, $3);
            yyUnrefMap[$$] = $$;
@@ -83208,7 +83542,7 @@ y_StatsNonNegativeIntegerType :
         ;
 
 y_StatsNonNegativeIntegerWithReferencesType :
-          ENDITEM y_StatsWithRefere_1006_StatsWithRefere_1006_Type_0
+          ENDITEM y_StatsWithRefere_1007_StatsWithRefere_1007_Type_0
           y_Value_XmlNonNegativeInteger y_Ids_ArrayReferenceType_0
           {$$ = new StatsNonNegativeIntegerWithReferencesType($2, $3, $4);
            yyUnrefMap[$$] = $$;
@@ -83396,42 +83730,42 @@ y_StatsValuesType :
           }
         ;
 
-y_StatsWithRefere_1006_StatsWithRefere_1006_Type_0 :
+y_StatsWithRefere_1007_StatsWithRefere_1007_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_StatsWithRefere_1006_Type
+        | y_StatsWithRefere_1007_Type
           {$$ = $1;}
         ;
 
-y_StatsWithRefere_1006_Type :
-          y_StatsWithRefere_1006_TypeChoicePair
-          {$$ = new StatsWithRefere_1006_Type($1);
+y_StatsWithRefere_1007_Type :
+          y_StatsWithRefere_1007_TypeChoicePair
+          {$$ = new StatsWithRefere_1007_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_StatsWithRefere_1006_TypeChoicePair :
+y_StatsWithRefere_1007_TypeChoicePair :
           y_AlgorithmId_QIFReferenceType
-          {$$ = new StatsWithRefere_1006_TypeChoicePair();
+          {$$ = new StatsWithRefere_1007_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->StatsWithRefere_1006_TypeType = StatsWithRefere_1006_TypeChoicePair::AlgorithmIdE;
-           $$->StatsWithRefere_1006_TypeValue.AlgorithmId = $1;
+           $$->StatsWithRefere_1007_TypeType = StatsWithRefere_1007_TypeChoicePair::AlgorithmIdE;
+           $$->StatsWithRefere_1007_TypeValue.AlgorithmId = $1;
           }
         | y_SoftwareId_QIFReferenceType
-          {$$ = new StatsWithRefere_1006_TypeChoicePair();
+          {$$ = new StatsWithRefere_1007_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->StatsWithRefere_1006_TypeType = StatsWithRefere_1006_TypeChoicePair::SoftwareIdE;
-           $$->StatsWithRefere_1006_TypeValue.SoftwareId = $1;
+           $$->StatsWithRefere_1007_TypeType = StatsWithRefere_1007_TypeChoicePair::SoftwareIdE;
+           $$->StatsWithRefere_1007_TypeValue.SoftwareId = $1;
           }
         | y_StandardId_QIFReferenceType
-          {$$ = new StatsWithRefere_1006_TypeChoicePair();
+          {$$ = new StatsWithRefere_1007_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->StatsWithRefere_1006_TypeType = StatsWithRefere_1006_TypeChoicePair::StandardIdE;
-           $$->StatsWithRefere_1006_TypeValue.StandardId = $1;
+           $$->StatsWithRefere_1007_TypeType = StatsWithRefere_1007_TypeChoicePair::StandardIdE;
+           $$->StatsWithRefere_1007_TypeValue.StandardId = $1;
           }
         ;
 
@@ -83783,50 +84117,33 @@ y_Stop_NaturalType :
           {$$ = $4;}
         ;
 
-y_StraightnessCha_1070_StraightnessCha_1070_Type :
-          y_StraightnessCha_1070_Type
+y_StraightnessCha_1071_StraightnessCha_1071_Type :
+          y_StraightnessCha_1071_Type
           {$$ = $1;}
         ;
 
-y_StraightnessCha_1070_Type :
-          y_StraightnessCha_1070_TypeChoicePair
-          {$$ = new StraightnessCha_1070_Type($1);
+y_StraightnessCha_1071_Type :
+          y_StraightnessCha_1071_TypeChoicePair
+          {$$ = new StraightnessCha_1071_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_StraightnessCha_1070_TypeChoicePair :
-          y_StraightnessCha_1087_StraightnessCha_1087_Type
-          {$$ = new StraightnessCha_1070_TypeChoicePair();
+y_StraightnessCha_1071_TypeChoicePair :
+          y_StraightnessCha_1088_StraightnessCha_1088_Type
+          {$$ = new StraightnessCha_1071_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->StraightnessCha_1070_TypeType = StraightnessCha_1070_TypeChoicePair::StraightnessCha_1087E;
-           $$->StraightnessCha_1070_TypeValue.StraightnessCha_1087 = $1;
+           $$->StraightnessCha_1071_TypeType = StraightnessCha_1071_TypeChoicePair::StraightnessCha_1088E;
+           $$->StraightnessCha_1071_TypeValue.StraightnessCha_1088 = $1;
           }
-        | y_StraightnessCha_1088_StraightnessCha_1088_Type
-          {$$ = new StraightnessCha_1070_TypeChoicePair();
+        | y_StraightnessCha_1089_StraightnessCha_1089_Type
+          {$$ = new StraightnessCha_1071_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->StraightnessCha_1070_TypeType = StraightnessCha_1070_TypeChoicePair::StraightnessCha_1088E;
-           $$->StraightnessCha_1070_TypeValue.StraightnessCha_1088 = $1;
-          }
-        ;
-
-y_StraightnessCha_1087_StraightnessCha_1087_Type :
-          y_StraightnessCha_1087_Type
-          {$$ = $1;}
-        ;
-
-y_StraightnessCha_1087_Type :
-          y_ToleranceValue_LinearValueType
-          y_ToleranceDualValue_LinearDualValueType_0
-          y_ToleranceZonePerUnitLength_ToleranceZonePerUnitLengthType_0
-          {$$ = new StraightnessCha_1087_Type($1, $2, $3);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
+           $$->StraightnessCha_1071_TypeType = StraightnessCha_1071_TypeChoicePair::StraightnessCha_1089E;
+           $$->StraightnessCha_1071_TypeValue.StraightnessCha_1089 = $1;
           }
         ;
 
@@ -83836,8 +84153,25 @@ y_StraightnessCha_1088_StraightnessCha_1088_Type :
         ;
 
 y_StraightnessCha_1088_Type :
+          y_ToleranceValue_LinearValueType
+          y_ToleranceDualValue_LinearDualValueType_0
+          y_ToleranceZonePerUnitLength_ToleranceZonePerUnitLengthType_0
+          {$$ = new StraightnessCha_1088_Type($1, $2, $3);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
+          }
+        ;
+
+y_StraightnessCha_1089_StraightnessCha_1089_Type :
+          y_StraightnessCha_1089_Type
+          {$$ = $1;}
+        ;
+
+y_StraightnessCha_1089_Type :
           y_ToleranceZonePerUnitLength_ToleranceZonePerUnitLengthType
-          {$$ = new StraightnessCha_1088_Type($1);
+          {$$ = new StraightnessCha_1089_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
@@ -83853,12 +84187,12 @@ y_StraightnessCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
           y_OrientationPlane_OrientationPlaneType_0
-          y_StraightnessCha_1070_StraightnessCha_1070_Type
+          y_StraightnessCha_1071_StraightnessCha_1071_Type
           y_MaterialCondition_MaterialModifierEnumType_0
           y_SizeCharacteristicDefinitionId_QIFReferenceType_0
           y_ZoneShape_StraightnessZoneShapeType
@@ -84053,8 +84387,8 @@ y_StraightnessCharacteristicNominal_StraightnessCharacteristicNominalType :
 
 y_StraightnessCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -84176,7 +84510,7 @@ y_StructuredLightSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_ProtectionClass_XmlString_0
           y_LinearityError_XmlString_0 y_Repeatability_LinearValueType_0
           y_Sensitivity_XmlDecimal_0 y_Resolution_LinearValueType_0
@@ -84253,7 +84587,7 @@ y_StudyIssueType :
           y_AssignableCauseIds_ArrayReferenceType_0
           y_CorrectiveActionIds_ArrayReferenceType_0
           y_Resolution_XmlString_0
-          y_StudyIssueType_1136_StudyIssueType_1136_Type_0
+          y_StudyIssueType_1137_StudyIssueType_1137_Type_0
           {$$ = new StudyIssueType($3, $4, $5, $6, $7);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -84271,35 +84605,35 @@ y_StudyIssueType :
           }
         ;
 
-y_StudyIssueType_1136_StudyIssueType_1136_Type_0 :
+y_StudyIssueType_1137_StudyIssueType_1137_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_StudyIssueType_1136_Type
+        | y_StudyIssueType_1137_Type
           {$$ = $1;}
         ;
 
-y_StudyIssueType_1136_Type :
-          y_StudyIssueType_1136_TypeChoicePair
-          {$$ = new StudyIssueType_1136_Type($1);
+y_StudyIssueType_1137_Type :
+          y_StudyIssueType_1137_TypeChoicePair
+          {$$ = new StudyIssueType_1137_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_StudyIssueType_1136_TypeChoicePair :
+y_StudyIssueType_1137_TypeChoicePair :
           y_CharacteristicMeasurementIds_ArrayReferenceType
-          {$$ = new StudyIssueType_1136_TypeChoicePair();
+          {$$ = new StudyIssueType_1137_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->StudyIssueType_1136_TypeType = StudyIssueType_1136_TypeChoicePair::CharacteristicMeasurementIdsE;
-           $$->StudyIssueType_1136_TypeValue.CharacteristicMeasurementIds = $1;
+           $$->StudyIssueType_1137_TypeType = StudyIssueType_1137_TypeChoicePair::CharacteristicMeasurementIdsE;
+           $$->StudyIssueType_1137_TypeValue.CharacteristicMeasurementIds = $1;
           }
         | y_SubgroupIds_ArrayReferenceType
-          {$$ = new StudyIssueType_1136_TypeChoicePair();
+          {$$ = new StudyIssueType_1137_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->StudyIssueType_1136_TypeType = StudyIssueType_1136_TypeChoicePair::SubgroupIdsE;
-           $$->StudyIssueType_1136_TypeValue.SubgroupIds = $1;
+           $$->StudyIssueType_1137_TypeType = StudyIssueType_1137_TypeChoicePair::SubgroupIdsE;
+           $$->StudyIssueType_1137_TypeValue.SubgroupIds = $1;
           }
         ;
 
@@ -84389,6 +84723,8 @@ y_SubgroupDecimalType :
           {$$ = new SubgroupDecimalType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad SubgroupDecimalType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -84405,7 +84741,7 @@ y_SubgroupDecimal_SubgroupDecimalType :
         ;
 
 y_SubgroupDecimalsType :
-          ENDITEM y_StatsWithRefere_1006_StatsWithRefere_1006_Type_0
+          ENDITEM y_StatsWithRefere_1007_StatsWithRefere_1007_Type_0
           y_Values_SubgroupDecimalArrayType
           {$$ = new SubgroupDecimalsType($2, $3);
            yyUnrefMap[$$] = $$;
@@ -84456,6 +84792,8 @@ y_SubgroupIntegerType :
           {$$ = new SubgroupIntegerType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad SubgroupIntegerType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -84472,7 +84810,7 @@ y_SubgroupInteger_SubgroupIntegerType :
         ;
 
 y_SubgroupIntegersType :
-          ENDITEM y_StatsWithRefere_1006_StatsWithRefere_1006_Type_0
+          ENDITEM y_StatsWithRefere_1007_StatsWithRefere_1007_Type_0
           y_Values_SubgroupIntegerArrayType
           {$$ = new SubgroupIntegersType($2, $3);
            yyUnrefMap[$$] = $$;
@@ -84623,40 +84961,40 @@ y_Subgroups_SubgroupsType :
           {$$ = $2;}
         ;
 
-y_SubstituteFeatu_1023_SubstituteFeatu_1023_Type :
-          y_SubstituteFeatu_1023_Type
+y_SubstituteFeatu_1024_SubstituteFeatu_1024_Type :
+          y_SubstituteFeatu_1024_Type
           {$$ = $1;}
         ;
 
-y_SubstituteFeatu_1023_Type :
-          y_SubstituteFeatu_1023_TypeChoicePair
-          {$$ = new SubstituteFeatu_1023_Type($1);
+y_SubstituteFeatu_1024_Type :
+          y_SubstituteFeatu_1024_TypeChoicePair
+          {$$ = new SubstituteFeatu_1024_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_SubstituteFeatu_1023_TypeChoicePair :
+y_SubstituteFeatu_1024_TypeChoicePair :
           y_OtherSubstituteFeatureAlgorithm_XmlString
-          {$$ = new SubstituteFeatu_1023_TypeChoicePair();
+          {$$ = new SubstituteFeatu_1024_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->SubstituteFeatu_1023_TypeType = SubstituteFeatu_1023_TypeChoicePair::OtherSubstituteFeatureAlgorithmE;
-           $$->SubstituteFeatu_1023_TypeValue.OtherSubstituteFeatureAlgorithm = $1;
+           $$->SubstituteFeatu_1024_TypeType = SubstituteFeatu_1024_TypeChoicePair::OtherSubstituteFeatureAlgorithmE;
+           $$->SubstituteFeatu_1024_TypeValue.OtherSubstituteFeatureAlgorithm = $1;
           }
         | y_SubstituteFeatureAlgorithmEnum_SubstituteFeatureAlgorithmEnumType
-          {$$ = new SubstituteFeatu_1023_TypeChoicePair();
+          {$$ = new SubstituteFeatu_1024_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->SubstituteFeatu_1023_TypeType = SubstituteFeatu_1023_TypeChoicePair::SubstituteFeatureAlgorithmEnumE;
-           $$->SubstituteFeatu_1023_TypeValue.SubstituteFeatureAlgorithmEnum = $1;
+           $$->SubstituteFeatu_1024_TypeType = SubstituteFeatu_1024_TypeChoicePair::SubstituteFeatureAlgorithmEnumE;
+           $$->SubstituteFeatu_1024_TypeValue.SubstituteFeatureAlgorithmEnum = $1;
           }
         | y_SubstituteFeatureAlgorithmId_QIFReferenceType
-          {$$ = new SubstituteFeatu_1023_TypeChoicePair();
+          {$$ = new SubstituteFeatu_1024_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->SubstituteFeatu_1023_TypeType = SubstituteFeatu_1023_TypeChoicePair::SubstituteFeatureAlgorithmIdE;
-           $$->SubstituteFeatu_1023_TypeValue.SubstituteFeatureAlgorithmId = $1;
+           $$->SubstituteFeatu_1024_TypeType = SubstituteFeatu_1024_TypeChoicePair::SubstituteFeatureAlgorithmIdE;
+           $$->SubstituteFeatu_1024_TypeValue.SubstituteFeatureAlgorithmId = $1;
           }
         ;
 
@@ -84685,7 +85023,7 @@ y_SubstituteFeatureAlgorithmId_QIFReferenceType :
 
 y_SubstituteFeatureAlgorithmType :
           ENDITEM y_Attributes_AttributesType_0
-          y_SubstituteFeatu_1023_SubstituteFeatu_1023_Type
+          y_SubstituteFeatu_1024_SubstituteFeatu_1024_Type
           {$$ = new SubstituteFeatureAlgorithmType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -85827,14 +86165,14 @@ y_SurfaceProfileCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
           y_OrientationPlane_OrientationPlaneType_0
           y_ToleranceValue_LinearValueType
           y_ToleranceDualValue_LinearDualValueType_0
-          y_ProfileCharacte_1067_ProfileCharacte_1067_Type_0
+          y_ProfileCharacte_1068_ProfileCharacte_1068_Type_0
           y_OffsetZone_XmlBoolean_0 y_VariableAngle_XmlBoolean_0
           y_SecondCompositeSegmentProfileDefinition_CompositeSegmentProfileDefinitionType_0
           y_ThirdCompositeSegmentProfileDefinition_CompositeSegmentProfileDefinitionType_0
@@ -86044,8 +86382,8 @@ y_SurfaceProfileCharacteristicNominal_SurfaceProfileCharacteristicNominalType :
 
 y_SurfaceProfileCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -86086,35 +86424,35 @@ y_SurfaceProfileCharacteristicStats_SurfaceProfileCharacteristicStatsEvalType :
           }
         ;
 
-y_SurfaceProfileN_1071_SurfaceProfileN_1071_Type_0 :
+y_SurfaceProfileN_1072_SurfaceProfileN_1072_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_SurfaceProfileN_1071_Type
+        | y_SurfaceProfileN_1072_Type
           {$$ = $1;}
         ;
 
-y_SurfaceProfileN_1071_Type :
-          y_SurfaceProfileN_1071_TypeChoicePair
-          {$$ = new SurfaceProfileN_1071_Type($1);
+y_SurfaceProfileN_1072_Type :
+          y_SurfaceProfileN_1072_TypeChoicePair
+          {$$ = new SurfaceProfileN_1072_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_SurfaceProfileN_1071_TypeChoicePair :
+y_SurfaceProfileN_1072_TypeChoicePair :
           y_ToPointOuterDisposition_LinearValueType
-          {$$ = new SurfaceProfileN_1071_TypeChoicePair();
+          {$$ = new SurfaceProfileN_1072_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->SurfaceProfileN_1071_TypeType = SurfaceProfileN_1071_TypeChoicePair::ToPointOuterDispositionE;
-           $$->SurfaceProfileN_1071_TypeValue.ToPointOuterDisposition = $1;
+           $$->SurfaceProfileN_1072_TypeType = SurfaceProfileN_1072_TypeChoicePair::ToPointOuterDispositionE;
+           $$->SurfaceProfileN_1072_TypeValue.ToPointOuterDisposition = $1;
           }
         | y_ToPointUnequallyDisposedZone_LinearValueType
-          {$$ = new SurfaceProfileN_1071_TypeChoicePair();
+          {$$ = new SurfaceProfileN_1072_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->SurfaceProfileN_1071_TypeType = SurfaceProfileN_1071_TypeChoicePair::ToPointUnequallyDisposedZoneE;
-           $$->SurfaceProfileN_1071_TypeValue.ToPointUnequallyDisposedZone = $1;
+           $$->SurfaceProfileN_1072_TypeType = SurfaceProfileN_1072_TypeChoicePair::ToPointUnequallyDisposedZoneE;
+           $$->SurfaceProfileN_1072_TypeValue.ToPointUnequallyDisposedZone = $1;
           }
         ;
 
@@ -86128,14 +86466,14 @@ y_SurfaceProfileNonUniformCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
           y_OrientationPlane_OrientationPlaneType_0
           y_ToleranceValue_LinearValueType
           y_ToleranceDualValue_LinearDualValueType_0
-          y_ProfileCharacte_1067_ProfileCharacte_1067_Type_0
+          y_ProfileCharacte_1068_ProfileCharacte_1068_Type_0
           y_OffsetZone_XmlBoolean_0 y_VariableAngle_XmlBoolean_0
           y_SecondCompositeSegmentProfileDefinition_CompositeSegmentProfileDefinitionType_0
           y_ThirdCompositeSegmentProfileDefinition_CompositeSegmentProfileDefinitionType_0
@@ -86143,7 +86481,7 @@ y_SurfaceProfileNonUniformCharacteristicDefinitionType :
           y_DatumReferenceFrameId_QIFReferenceFullType_0
           y_OrientationOnly_XmlBoolean_0
           y_ToPointToleranceValue_LinearValueType
-          y_SurfaceProfileN_1071_SurfaceProfileN_1071_Type_0
+          y_SurfaceProfileN_1072_SurfaceProfileN_1072_Type_0
           {$$ = new SurfaceProfileNonUniformCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30, $31, $32);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -86348,8 +86686,8 @@ y_SurfaceProfileNonUniformCharacteristicNominal_SurfaceProfileNonUniformCharacte
 
 y_SurfaceProfileNonUniformCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -86604,8 +86942,8 @@ y_SurfaceTextureCharacteristicNominal_SurfaceTextureCharacteristicNominalType :
 
 y_SurfaceTextureCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_RoughnessAverageValueStats_StatsWithTolLinearType_0
@@ -86781,7 +87119,7 @@ y_SymmetryCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
@@ -86977,8 +87315,8 @@ y_SymmetryCharacteristicNominal_SymmetryCharacteristicNominalType :
 
 y_SymmetryCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -87240,33 +87578,33 @@ y_TemperatureAbsoluteLinearity_MeasuredTemperatureValueType :
           {$$ = $2;}
         ;
 
-y_TemperatureChar_1072_TemperatureChar_1072_Type :
-          y_TemperatureChar_1072_Type
+y_TemperatureChar_1073_TemperatureChar_1073_Type :
+          y_TemperatureChar_1073_Type
           {$$ = $1;}
         ;
 
-y_TemperatureChar_1072_Type :
-          y_TemperatureChar_1072_TypeChoicePair
-          {$$ = new TemperatureChar_1072_Type($1);
+y_TemperatureChar_1073_Type :
+          y_TemperatureChar_1073_TypeChoicePair
+          {$$ = new TemperatureChar_1073_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_TemperatureChar_1072_TypeChoicePair :
+y_TemperatureChar_1073_TypeChoicePair :
           y_NonTolerance_NonToleranceEnumType
-          {$$ = new TemperatureChar_1072_TypeChoicePair();
+          {$$ = new TemperatureChar_1073_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->TemperatureChar_1072_TypeType = TemperatureChar_1072_TypeChoicePair::NonToleranceE;
-           $$->TemperatureChar_1072_TypeValue.NonTolerance = $1;
+           $$->TemperatureChar_1073_TypeType = TemperatureChar_1073_TypeChoicePair::NonToleranceE;
+           $$->TemperatureChar_1073_TypeValue.NonTolerance = $1;
           }
         | y_Tolerance_TemperatureToleranceType
-          {$$ = new TemperatureChar_1072_TypeChoicePair();
+          {$$ = new TemperatureChar_1073_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->TemperatureChar_1072_TypeType = TemperatureChar_1072_TypeChoicePair::ToleranceE;
-           $$->TemperatureChar_1072_TypeValue.Tolerance = $1;
+           $$->TemperatureChar_1073_TypeType = TemperatureChar_1073_TypeChoicePair::ToleranceE;
+           $$->TemperatureChar_1073_TypeValue.Tolerance = $1;
           }
         ;
 
@@ -87390,44 +87728,44 @@ y_TemperatureStatsSummary_SummaryStatisticsTemperatureType :
           }
         ;
 
-y_TemperatureTole_1024_TemperatureTole_1024_Type :
-          y_TemperatureTole_1024_Type
+y_TemperatureTole_1025_TemperatureTole_1025_Type :
+          y_TemperatureTole_1025_Type
           {$$ = $1;}
         ;
 
-y_TemperatureTole_1024_Type :
-          y_TemperatureTole_1024_TypeChoicePair
-          {$$ = new TemperatureTole_1024_Type($1);
+y_TemperatureTole_1025_Type :
+          y_TemperatureTole_1025_TypeChoicePair
+          {$$ = new TemperatureTole_1025_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_TemperatureTole_1024_TypeChoicePair :
+y_TemperatureTole_1025_TypeChoicePair :
           y_MinValue_TemperatureValueType
-          {$$ = new TemperatureTole_1024_TypeChoicePair();
+          {$$ = new TemperatureTole_1025_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->TemperatureTole_1024_TypeType = TemperatureTole_1024_TypeChoicePair::MinValueE;
-           $$->TemperatureTole_1024_TypeValue.MinValue = $1;
+           $$->TemperatureTole_1025_TypeType = TemperatureTole_1025_TypeChoicePair::MinValueE;
+           $$->TemperatureTole_1025_TypeValue.MinValue = $1;
           }
-        | y_TemperatureTole_1039_TemperatureTole_1039_Type
-          {$$ = new TemperatureTole_1024_TypeChoicePair();
+        | y_TemperatureTole_1040_TemperatureTole_1040_Type
+          {$$ = new TemperatureTole_1025_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->TemperatureTole_1024_TypeType = TemperatureTole_1024_TypeChoicePair::TemperatureTole_1039E;
-           $$->TemperatureTole_1024_TypeValue.TemperatureTole_1039 = $1;
+           $$->TemperatureTole_1025_TypeType = TemperatureTole_1025_TypeChoicePair::TemperatureTole_1040E;
+           $$->TemperatureTole_1025_TypeValue.TemperatureTole_1040 = $1;
           }
         ;
 
-y_TemperatureTole_1039_TemperatureTole_1039_Type :
-          y_TemperatureTole_1039_Type
+y_TemperatureTole_1040_TemperatureTole_1040_Type :
+          y_TemperatureTole_1040_Type
           {$$ = $1;}
         ;
 
-y_TemperatureTole_1039_Type :
+y_TemperatureTole_1040_Type :
           y_MaxValue_TemperatureValueType y_MinValue_TemperatureValueType_0
-          {$$ = new TemperatureTole_1039_Type($1, $2);
+          {$$ = new TemperatureTole_1040_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
@@ -87435,7 +87773,7 @@ y_TemperatureTole_1039_Type :
         ;
 
 y_TemperatureToleranceType :
-          ENDITEM y_TemperatureTole_1024_TemperatureTole_1024_Type
+          ENDITEM y_TemperatureTole_1025_TemperatureTole_1025_Type
           y_DefinedAsLimit_XmlBoolean y_Attributes_AttributesType_0
           {$$ = new TemperatureToleranceType($2, $3, $4);
            yyUnrefMap[$$] = $$;
@@ -87484,11 +87822,15 @@ y_TemperatureValueType :
           {$$ = new TemperatureValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad TemperatureValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new TemperatureValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad TemperatureValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -87540,7 +87882,14 @@ y_TensileYieldStress_XmlDouble_0 :
         ;
 
 y_TerminationPoint_PointSimpleType :
-          TerminationPointSTART y_PointSimpleType TerminationPointEND
+          TerminationPointSTART ENDWHOLEITEM
+          {$$ = new PointSimpleType();
+           $$->PointSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad PointSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | TerminationPointSTART y_PointSimpleType TerminationPointEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
            if ($2->bad)
@@ -87888,56 +88237,56 @@ y_ThenPointStrategy_TorusPointSamplingStrategyType_0 :
         ;
 
 y_ThenPointsType :
-          ENDITEM y_ThenPointsType_1212_ThenPointsType_1212_Type_0
+          ENDITEM y_ThenPointsType_1213_ThenPointsType_1213_Type_0
           {$$ = new ThenPointsType($2);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
           }
         ;
 
-y_ThenPointsType_1212_ThenPointsType_1212_Type_0 :
+y_ThenPointsType_1213_ThenPointsType_1213_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_ThenPointsType_1212_Type
+        | y_ThenPointsType_1213_Type
           {$$ = $1;}
         ;
 
-y_ThenPointsType_1212_Type :
-          y_ThenPointsType_1212_TypeChoicePair
-          {$$ = new ThenPointsType_1212_Type($1);
+y_ThenPointsType_1213_Type :
+          y_ThenPointsType_1213_TypeChoicePair
+          {$$ = new ThenPointsType_1213_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_ThenPointsType_1212_TypeChoicePair :
+y_ThenPointsType_1213_TypeChoicePair :
           y_MinPointDensity_PositiveDecimalType
-          {$$ = new ThenPointsType_1212_TypeChoicePair();
+          {$$ = new ThenPointsType_1213_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ThenPointsType_1212_TypeType = ThenPointsType_1212_TypeChoicePair::MinPointDensityE;
-           $$->ThenPointsType_1212_TypeValue.MinPointDensity = $1;
+           $$->ThenPointsType_1213_TypeType = ThenPointsType_1213_TypeChoicePair::MinPointDensityE;
+           $$->ThenPointsType_1213_TypeValue.MinPointDensity = $1;
           }
         | y_MinPoints_XmlUnsignedInt
-          {$$ = new ThenPointsType_1212_TypeChoicePair();
+          {$$ = new ThenPointsType_1213_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ThenPointsType_1212_TypeType = ThenPointsType_1212_TypeChoicePair::MinPointsE;
-           $$->ThenPointsType_1212_TypeValue.MinPoints = $1;
+           $$->ThenPointsType_1213_TypeType = ThenPointsType_1213_TypeChoicePair::MinPointsE;
+           $$->ThenPointsType_1213_TypeValue.MinPoints = $1;
           }
         | y_NumberOfPoints_XmlUnsignedInt
-          {$$ = new ThenPointsType_1212_TypeChoicePair();
+          {$$ = new ThenPointsType_1213_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ThenPointsType_1212_TypeType = ThenPointsType_1212_TypeChoicePair::NumberOfPointsE;
-           $$->ThenPointsType_1212_TypeValue.NumberOfPoints = $1;
+           $$->ThenPointsType_1213_TypeType = ThenPointsType_1213_TypeChoicePair::NumberOfPointsE;
+           $$->ThenPointsType_1213_TypeValue.NumberOfPoints = $1;
           }
         | y_PointDensity_PositiveDecimalType
-          {$$ = new ThenPointsType_1212_TypeChoicePair();
+          {$$ = new ThenPointsType_1213_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ThenPointsType_1212_TypeType = ThenPointsType_1212_TypeChoicePair::PointDensityE;
-           $$->ThenPointsType_1212_TypeValue.PointDensity = $1;
+           $$->ThenPointsType_1213_TypeType = ThenPointsType_1213_TypeChoicePair::PointDensityE;
+           $$->ThenPointsType_1213_TypeValue.PointDensity = $1;
           }
         ;
 
@@ -88008,7 +88357,7 @@ y_TheodoliteType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_Resolution_substituteType_0 y_WorkingVolume_substituteType_0
@@ -88108,7 +88457,7 @@ y_ThicknessCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_LinearCharacter_1058_LinearCharacter_1058_Type
+          y_LinearCharacter_1059_LinearCharacter_1059_Type
           {$$ = new ThicknessCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -88285,11 +88634,11 @@ y_ThicknessCharacteristicNominal_ThicknessCharacteristicNominalType :
 
 y_ThicknessCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_LinearCharacter_1134_LinearCharacter_1134_Type
+          y_LinearCharacter_1135_LinearCharacter_1135_Type
           {$$ = new ThicknessCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -88634,8 +88983,8 @@ y_ThreadCharacteristicNominal_ThreadCharacteristicNominalType :
 
 y_ThreadCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ThreadStats_StatsPassFailType_0
@@ -89240,33 +89589,33 @@ y_TimeAbsoluteLinearity_MeasuredTimeValueType :
           {$$ = $2;}
         ;
 
-y_TimeCharacteris_1073_TimeCharacteris_1073_Type :
-          y_TimeCharacteris_1073_Type
+y_TimeCharacteris_1074_TimeCharacteris_1074_Type :
+          y_TimeCharacteris_1074_Type
           {$$ = $1;}
         ;
 
-y_TimeCharacteris_1073_Type :
-          y_TimeCharacteris_1073_TypeChoicePair
-          {$$ = new TimeCharacteris_1073_Type($1);
+y_TimeCharacteris_1074_Type :
+          y_TimeCharacteris_1074_TypeChoicePair
+          {$$ = new TimeCharacteris_1074_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_TimeCharacteris_1073_TypeChoicePair :
+y_TimeCharacteris_1074_TypeChoicePair :
           y_NonTolerance_NonToleranceEnumType
-          {$$ = new TimeCharacteris_1073_TypeChoicePair();
+          {$$ = new TimeCharacteris_1074_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->TimeCharacteris_1073_TypeType = TimeCharacteris_1073_TypeChoicePair::NonToleranceE;
-           $$->TimeCharacteris_1073_TypeValue.NonTolerance = $1;
+           $$->TimeCharacteris_1074_TypeType = TimeCharacteris_1074_TypeChoicePair::NonToleranceE;
+           $$->TimeCharacteris_1074_TypeValue.NonTolerance = $1;
           }
         | y_Tolerance_TimeToleranceType
-          {$$ = new TimeCharacteris_1073_TypeChoicePair();
+          {$$ = new TimeCharacteris_1074_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->TimeCharacteris_1073_TypeType = TimeCharacteris_1073_TypeChoicePair::ToleranceE;
-           $$->TimeCharacteris_1073_TypeValue.Tolerance = $1;
+           $$->TimeCharacteris_1074_TypeType = TimeCharacteris_1074_TypeChoicePair::ToleranceE;
+           $$->TimeCharacteris_1074_TypeValue.Tolerance = $1;
           }
         ;
 
@@ -89392,44 +89741,44 @@ y_TimeStatsSummary_SummaryStatisticsTimeType :
           }
         ;
 
-y_TimeToleranceTy_1025_TimeToleranceTy_1025_Type :
-          y_TimeToleranceTy_1025_Type
+y_TimeToleranceTy_1026_TimeToleranceTy_1026_Type :
+          y_TimeToleranceTy_1026_Type
           {$$ = $1;}
         ;
 
-y_TimeToleranceTy_1025_Type :
-          y_TimeToleranceTy_1025_TypeChoicePair
-          {$$ = new TimeToleranceTy_1025_Type($1);
+y_TimeToleranceTy_1026_Type :
+          y_TimeToleranceTy_1026_TypeChoicePair
+          {$$ = new TimeToleranceTy_1026_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_TimeToleranceTy_1025_TypeChoicePair :
+y_TimeToleranceTy_1026_TypeChoicePair :
           y_MinValue_TimeValueType
-          {$$ = new TimeToleranceTy_1025_TypeChoicePair();
+          {$$ = new TimeToleranceTy_1026_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->TimeToleranceTy_1025_TypeType = TimeToleranceTy_1025_TypeChoicePair::MinValueE;
-           $$->TimeToleranceTy_1025_TypeValue.MinValue = $1;
+           $$->TimeToleranceTy_1026_TypeType = TimeToleranceTy_1026_TypeChoicePair::MinValueE;
+           $$->TimeToleranceTy_1026_TypeValue.MinValue = $1;
           }
-        | y_TimeToleranceTy_1040_TimeToleranceTy_1040_Type
-          {$$ = new TimeToleranceTy_1025_TypeChoicePair();
+        | y_TimeToleranceTy_1041_TimeToleranceTy_1041_Type
+          {$$ = new TimeToleranceTy_1026_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->TimeToleranceTy_1025_TypeType = TimeToleranceTy_1025_TypeChoicePair::TimeToleranceTy_1040E;
-           $$->TimeToleranceTy_1025_TypeValue.TimeToleranceTy_1040 = $1;
+           $$->TimeToleranceTy_1026_TypeType = TimeToleranceTy_1026_TypeChoicePair::TimeToleranceTy_1041E;
+           $$->TimeToleranceTy_1026_TypeValue.TimeToleranceTy_1041 = $1;
           }
         ;
 
-y_TimeToleranceTy_1040_TimeToleranceTy_1040_Type :
-          y_TimeToleranceTy_1040_Type
+y_TimeToleranceTy_1041_TimeToleranceTy_1041_Type :
+          y_TimeToleranceTy_1041_Type
           {$$ = $1;}
         ;
 
-y_TimeToleranceTy_1040_Type :
+y_TimeToleranceTy_1041_Type :
           y_MaxValue_TimeValueType y_MinValue_TimeValueType_0
-          {$$ = new TimeToleranceTy_1040_Type($1, $2);
+          {$$ = new TimeToleranceTy_1041_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
@@ -89437,7 +89786,7 @@ y_TimeToleranceTy_1040_Type :
         ;
 
 y_TimeToleranceType :
-          ENDITEM y_TimeToleranceTy_1025_TimeToleranceTy_1025_Type
+          ENDITEM y_TimeToleranceTy_1026_TimeToleranceTy_1026_Type
           y_DefinedAsLimit_XmlBoolean y_Attributes_AttributesType_0
           {$$ = new TimeToleranceType($2, $3, $4);
            yyUnrefMap[$$] = $$;
@@ -89475,11 +89824,15 @@ y_TimeValueType :
           {$$ = new TimeValueType($3);
            yyUnrefMap[$$] = $$;
            free($3);
+           if ($$->bad)
+             return yyerror("bad TimeValueType value");
           }
         | y_LiztAttributePair ENDITEM {yyReadData = 1;} DATASTRING
           {$$ = new TimeValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad TimeValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -89751,33 +90104,33 @@ y_ToleranceValue_LinearValueType :
           {$$ = $2;}
         ;
 
-y_ToleranceZonePe_1026_ToleranceZonePe_1026_Type :
-          y_ToleranceZonePe_1026_Type
+y_ToleranceZonePe_1027_ToleranceZonePe_1027_Type :
+          y_ToleranceZonePe_1027_Type
           {$$ = $1;}
         ;
 
-y_ToleranceZonePe_1026_Type :
-          y_ToleranceZonePe_1026_TypeChoicePair
-          {$$ = new ToleranceZonePe_1026_Type($1);
+y_ToleranceZonePe_1027_Type :
+          y_ToleranceZonePe_1027_TypeChoicePair
+          {$$ = new ToleranceZonePe_1027_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_ToleranceZonePe_1026_TypeChoicePair :
+y_ToleranceZonePe_1027_TypeChoicePair :
           y_CircularUnitArea_CircularUnitAreaType
-          {$$ = new ToleranceZonePe_1026_TypeChoicePair();
+          {$$ = new ToleranceZonePe_1027_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ToleranceZonePe_1026_TypeType = ToleranceZonePe_1026_TypeChoicePair::CircularUnitAreaE;
-           $$->ToleranceZonePe_1026_TypeValue.CircularUnitArea = $1;
+           $$->ToleranceZonePe_1027_TypeType = ToleranceZonePe_1027_TypeChoicePair::CircularUnitAreaE;
+           $$->ToleranceZonePe_1027_TypeValue.CircularUnitArea = $1;
           }
         | y_RectangularUnitArea_RectangularUnitAreaType
-          {$$ = new ToleranceZonePe_1026_TypeChoicePair();
+          {$$ = new ToleranceZonePe_1027_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ToleranceZonePe_1026_TypeType = ToleranceZonePe_1026_TypeChoicePair::RectangularUnitAreaE;
-           $$->ToleranceZonePe_1026_TypeValue.RectangularUnitArea = $1;
+           $$->ToleranceZonePe_1027_TypeType = ToleranceZonePe_1027_TypeChoicePair::RectangularUnitAreaE;
+           $$->ToleranceZonePe_1027_TypeValue.RectangularUnitArea = $1;
           }
         ;
 
@@ -89805,7 +90158,7 @@ y_ToleranceZonePerUnitArcLength_ToleranceZonePerUnitLengthType :
 
 y_ToleranceZonePerUnitAreaType :
           ENDITEM y_ToleranceValuePerUnit_LinearValueType
-          y_ToleranceZonePe_1026_ToleranceZonePe_1026_Type
+          y_ToleranceZonePe_1027_ToleranceZonePe_1027_Type
           {$$ = new ToleranceZonePerUnitAreaType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -89926,7 +90279,7 @@ y_ToolWithCCDCameraSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0
           y_ChargeCoupledDeviceCameraSensor_ChargeCoupledDeviceCameraSensorType
           {$$ = new ToolWithCCDCameraSensorType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12);
@@ -89964,7 +90317,7 @@ y_ToolWithCapacitiveSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0
           y_CapacitiveSensor_CapacitiveSensorType
           {$$ = new ToolWithCapacitiveSensorType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12);
@@ -90002,7 +90355,7 @@ y_ToolWithComplexTactileProbeSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0
           y_ComplexTactileProbeSensor_ComplexTactileProbeSensorType
           {$$ = new ToolWithComplexTactileProbeSensorType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12);
@@ -90041,7 +90394,7 @@ y_ToolWithConfocalChromaticSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0
           y_ConfocalChromaticSensor_ConfocalChromaticSensorType
           {$$ = new ToolWithConfocalChromaticSensorType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12);
@@ -90080,7 +90433,7 @@ y_ToolWithDVRTSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0
           y_DVRTSensor_DifferentialVariableReluctanceTransducerSensorType
           {$$ = new ToolWithDVRTSensorType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12);
@@ -90118,7 +90471,7 @@ y_ToolWithDetachableSensorsType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_SensorIds_ArrayReferenceType_0
           {$$ = new ToolWithDetachableSensorsType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12);
            yyUnrefMap[$$] = $$;
@@ -90155,7 +90508,7 @@ y_ToolWithDrawWireSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_DrawWireSensor_DrawWireSensorType
           {$$ = new ToolWithDrawWireSensorType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12);
            yyUnrefMap[$$] = $$;
@@ -90192,7 +90545,7 @@ y_ToolWithEddyCurrentSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0
           y_EddyCurrentSensor_EddyCurrentSensorType
           {$$ = new ToolWithEddyCurrentSensorType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12);
@@ -90230,7 +90583,7 @@ y_ToolWithLVDTSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0
           y_LVDTSensor_LinearVariableDifferentialTransformerSensorType
           {$$ = new ToolWithLVDTSensorType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12);
@@ -90268,7 +90621,7 @@ y_ToolWithLaserTriangulationSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0
           y_LaserTriangulationSensor_LaserTriangulationSensorType
           {$$ = new ToolWithLaserTriangulationSensorType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12);
@@ -90307,7 +90660,7 @@ y_ToolWithMagnetoInductiveSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0
           y_MagnetoInductiveSensor_MagnetoInductiveSensorType
           {$$ = new ToolWithMagnetoInductiveSensorType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12);
@@ -90346,7 +90699,7 @@ y_ToolWithSimpleTactileProbeSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0
           y_SimpleTactileProbeSensor_SimpleTactileProbeSensorType
           {$$ = new ToolWithSimpleTactileProbeSensorType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12);
@@ -90385,7 +90738,7 @@ y_ToolWithStructuredLightSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0
           y_StructuredLightSensor_StructuredLightSensorType
           {$$ = new ToolWithStructuredLightSensorType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12);
@@ -90424,7 +90777,7 @@ y_ToolWithUltrasonicSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0
           y_UltrasonicSensor_UltrasonicSensorType
           {$$ = new ToolWithUltrasonicSensorType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12);
@@ -90991,7 +91344,7 @@ y_ToroidicityCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
@@ -91175,8 +91528,8 @@ y_ToroidicityCharacteristicNominal_ToroidicityCharacteristicNominalType :
 
 y_ToroidicityCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -91683,7 +92036,7 @@ y_TotalRunoutCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_GeometricCharac_1057_GeometricCharac_1057_Type_0
+          y_GeometricCharac_1058_GeometricCharac_1058_Type_0
           y_DirectionFeature_DirectionFeatureType_0
           y_CollectionPlane_CollectionPlaneType_0
           y_IntersectionPlane_IntersectionPlaneType_0
@@ -91870,8 +92223,8 @@ y_TotalRunoutCharacteristicNominal_TotalRunoutCharacteristicNominalType :
 
 y_TotalRunoutCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_ValueStats_StatsWithTolLinearType_0
@@ -92494,42 +92847,12 @@ y_Triangles_ArrayIntType :
         ;
 
 y_Triangulation2dType :
-          ENDITEM y_Triangulation2d_1233_Triangulation2d_1233_Type
-          y_Triangulation2d_1234_Triangulation2d_1234_Type
+          ENDITEM y_Triangulation2d_1234_Triangulation2d_1234_Type
+          y_Triangulation2d_1235_Triangulation2d_1235_Type
           {$$ = new Triangulation2dType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
            if ($3) yyUnrefMap.erase($3);
-          }
-        ;
-
-y_Triangulation2d_1233_Triangulation2d_1233_Type :
-          y_Triangulation2d_1233_Type
-          {$$ = $1;}
-        ;
-
-y_Triangulation2d_1233_Type :
-          y_Triangulation2d_1233_TypeChoicePair
-          {$$ = new Triangulation2d_1233_Type($1);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_Triangulation2d_1233_TypeChoicePair :
-          y_VerticesBinary_ArrayBinaryType
-          {$$ = new Triangulation2d_1233_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->Triangulation2d_1233_TypeType = Triangulation2d_1233_TypeChoicePair::VerticesBinaryE;
-           $$->Triangulation2d_1233_TypeValue.VerticesBinary = $1;
-          }
-        | y_Vertices_ArrayPoint2dType
-          {$$ = new Triangulation2d_1233_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->Triangulation2d_1233_TypeType = Triangulation2d_1233_TypeChoicePair::VerticesE;
-           $$->Triangulation2d_1233_TypeValue.Vertices = $1;
           }
         ;
 
@@ -92547,33 +92870,63 @@ y_Triangulation2d_1234_Type :
         ;
 
 y_Triangulation2d_1234_TypeChoicePair :
-          y_TrianglesBinary_ArrayBinaryType
+          y_VerticesBinary_ArrayBinaryType
           {$$ = new Triangulation2d_1234_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->Triangulation2d_1234_TypeType = Triangulation2d_1234_TypeChoicePair::TrianglesBinaryE;
-           $$->Triangulation2d_1234_TypeValue.TrianglesBinary = $1;
+           $$->Triangulation2d_1234_TypeType = Triangulation2d_1234_TypeChoicePair::VerticesBinaryE;
+           $$->Triangulation2d_1234_TypeValue.VerticesBinary = $1;
+          }
+        | y_Vertices_ArrayPoint2dType
+          {$$ = new Triangulation2d_1234_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->Triangulation2d_1234_TypeType = Triangulation2d_1234_TypeChoicePair::VerticesE;
+           $$->Triangulation2d_1234_TypeValue.Vertices = $1;
+          }
+        ;
+
+y_Triangulation2d_1235_Triangulation2d_1235_Type :
+          y_Triangulation2d_1235_Type
+          {$$ = $1;}
+        ;
+
+y_Triangulation2d_1235_Type :
+          y_Triangulation2d_1235_TypeChoicePair
+          {$$ = new Triangulation2d_1235_Type($1);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+          }
+        ;
+
+y_Triangulation2d_1235_TypeChoicePair :
+          y_TrianglesBinary_ArrayBinaryType
+          {$$ = new Triangulation2d_1235_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->Triangulation2d_1235_TypeType = Triangulation2d_1235_TypeChoicePair::TrianglesBinaryE;
+           $$->Triangulation2d_1235_TypeValue.TrianglesBinary = $1;
           }
         | y_TrianglesColorBinary_ArrayBinaryType
-          {$$ = new Triangulation2d_1234_TypeChoicePair();
+          {$$ = new Triangulation2d_1235_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->Triangulation2d_1234_TypeType = Triangulation2d_1234_TypeChoicePair::TrianglesColorBinaryE;
-           $$->Triangulation2d_1234_TypeValue.TrianglesColorBinary = $1;
+           $$->Triangulation2d_1235_TypeType = Triangulation2d_1235_TypeChoicePair::TrianglesColorBinaryE;
+           $$->Triangulation2d_1235_TypeValue.TrianglesColorBinary = $1;
           }
         | y_TrianglesColor_ArrayUnsignedByteType
-          {$$ = new Triangulation2d_1234_TypeChoicePair();
+          {$$ = new Triangulation2d_1235_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->Triangulation2d_1234_TypeType = Triangulation2d_1234_TypeChoicePair::TrianglesColorE;
-           $$->Triangulation2d_1234_TypeValue.TrianglesColor = $1;
+           $$->Triangulation2d_1235_TypeType = Triangulation2d_1235_TypeChoicePair::TrianglesColorE;
+           $$->Triangulation2d_1235_TypeValue.TrianglesColor = $1;
           }
         | y_Triangles_ArrayI3Type
-          {$$ = new Triangulation2d_1234_TypeChoicePair();
+          {$$ = new Triangulation2d_1235_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->Triangulation2d_1234_TypeType = Triangulation2d_1234_TypeChoicePair::TrianglesE;
-           $$->Triangulation2d_1234_TypeValue.Triangles = $1;
+           $$->Triangulation2d_1235_TypeType = Triangulation2d_1235_TypeChoicePair::TrianglesE;
+           $$->Triangulation2d_1235_TypeValue.Triangles = $1;
           }
         ;
 
@@ -92764,7 +93117,7 @@ y_UltrasonicSensorType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_ProtectionClass_XmlString_0
           y_LinearityError_XmlString_0 y_Repeatability_LinearValueType_0
           y_Sensitivity_XmlDecimal_0 y_Resolution_LinearValueType_0
@@ -93001,7 +93354,7 @@ y_UniversalLengthMeasuringType :
           y_Description_XmlString_0 y_Manufacturer_XmlString_0
           y_ModelNumber_XmlString_0 y_SerialNumber_XmlString_0
           y_Mass_MassValueType_0 y_Size_CartesianWorkingVolumeType_0
-          y_MeasurementReso_1241_MeasurementReso_1241_Type_0
+          y_MeasurementReso_1242_MeasurementReso_1242_Type_0
           y_Attributes_AttributesType_0 y_Calibrations_CalibrationsType_0
           y_EnvironmentalRange_EnvironmentalRangeType_0
           y_Resolution_substituteType_0 y_WorkingVolume_substituteType_0
@@ -93124,7 +93477,14 @@ y_UpperControlLimit_StatsMeasuredDecimalType :
         ;
 
 y_UpperPoint_Point2dSimpleType :
-          UpperPointSTART y_Point2dSimpleType UpperPointEND
+          UpperPointSTART ENDWHOLEITEM
+          {$$ = new Point2dSimpleType();
+           $$->Point2dSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad Point2dSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | UpperPointSTART y_Point2dSimpleType UpperPointEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
            if ($2->bad)
@@ -93137,96 +93497,93 @@ y_UserDataBinary_BinaryDataType :
           {$$ = $2;}
         ;
 
-y_UserDataXML_XmlString_0 :
+y_UserDataXML_UserDataXMLType :
+          UserDataXMLSTART ENDITEM {yyReadXML = 1;} UserDataXMLEND
+          {yyXMLbuffer[yyBufferIndex] = 0;
+           if (yyCheckXml())
+             return yyerror("invalid UserDataXML");
+           $$ = new UserDataXMLType(yyXMLbuffer);
+          }
+        ;
+
+y_UserDataXML_UserDataXMLType_0 :
           /* empty */
           {$$ = 0;}
-        | UserDataXMLSTART ENDITEM {yyReadData = 1;} y_XmlString
-          UserDataXMLEND
-          {$$ = $4;}
+        | UserDataXMLSTART ENDITEM {yyReadXML = 1;} UserDataXMLEND
+          {yyXMLbuffer[yyBufferIndex] = 0;
+           if (yyCheckXml())
+             return yyerror("invalid UserDataXML");
+           $$ = new UserDataXMLType(yyXMLbuffer);
+          }
         ;
 
-y_UserDefinedAngu_1137_Type :
-          y_UserDefinedAngu_1137_TypeChoicePair
-          {$$ = new UserDefinedAngu_1137_Type($1);
+y_UserDefinedAngu_1138_Type :
+          y_UserDefinedAngu_1138_TypeChoicePair
+          {$$ = new UserDefinedAngu_1138_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_UserDefinedAngu_1137_TypeChoicePair :
+y_UserDefinedAngu_1138_TypeChoicePair :
           y_MinDeviationStats_StatsAngularType
-          {$$ = new UserDefinedAngu_1137_TypeChoicePair();
+          {$$ = new UserDefinedAngu_1138_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedAngu_1137_TypeType = UserDefinedAngu_1137_TypeChoicePair::MinDeviationStatsE;
-           $$->UserDefinedAngu_1137_TypeValue.MinDeviationStats = $1;
+           $$->UserDefinedAngu_1138_TypeType = UserDefinedAngu_1138_TypeChoicePair::MinDeviationStatsE;
+           $$->UserDefinedAngu_1138_TypeValue.MinDeviationStats = $1;
           }
         | y_MinValueStats_StatsAngularType
-          {$$ = new UserDefinedAngu_1137_TypeChoicePair();
+          {$$ = new UserDefinedAngu_1138_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedAngu_1137_TypeType = UserDefinedAngu_1137_TypeChoicePair::MinValueStatsE;
-           $$->UserDefinedAngu_1137_TypeValue.MinValueStats = $1;
-          }
-        | y_UserDefinedAngu_1158_UserDefinedAngu_1158_Type
-          {$$ = new UserDefinedAngu_1137_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedAngu_1137_TypeType = UserDefinedAngu_1137_TypeChoicePair::UserDefinedAngu_1158E;
-           $$->UserDefinedAngu_1137_TypeValue.UserDefinedAngu_1158 = $1;
+           $$->UserDefinedAngu_1138_TypeType = UserDefinedAngu_1138_TypeChoicePair::MinValueStatsE;
+           $$->UserDefinedAngu_1138_TypeValue.MinValueStats = $1;
           }
         | y_UserDefinedAngu_1159_UserDefinedAngu_1159_Type
-          {$$ = new UserDefinedAngu_1137_TypeChoicePair();
+          {$$ = new UserDefinedAngu_1138_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedAngu_1137_TypeType = UserDefinedAngu_1137_TypeChoicePair::UserDefinedAngu_1159E;
-           $$->UserDefinedAngu_1137_TypeValue.UserDefinedAngu_1159 = $1;
+           $$->UserDefinedAngu_1138_TypeType = UserDefinedAngu_1138_TypeChoicePair::UserDefinedAngu_1159E;
+           $$->UserDefinedAngu_1138_TypeValue.UserDefinedAngu_1159 = $1;
           }
         | y_UserDefinedAngu_1160_UserDefinedAngu_1160_Type
-          {$$ = new UserDefinedAngu_1137_TypeChoicePair();
+          {$$ = new UserDefinedAngu_1138_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedAngu_1137_TypeType = UserDefinedAngu_1137_TypeChoicePair::UserDefinedAngu_1160E;
-           $$->UserDefinedAngu_1137_TypeValue.UserDefinedAngu_1160 = $1;
+           $$->UserDefinedAngu_1138_TypeType = UserDefinedAngu_1138_TypeChoicePair::UserDefinedAngu_1160E;
+           $$->UserDefinedAngu_1138_TypeValue.UserDefinedAngu_1160 = $1;
           }
         | y_UserDefinedAngu_1161_UserDefinedAngu_1161_Type
-          {$$ = new UserDefinedAngu_1137_TypeChoicePair();
+          {$$ = new UserDefinedAngu_1138_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedAngu_1137_TypeType = UserDefinedAngu_1137_TypeChoicePair::UserDefinedAngu_1161E;
-           $$->UserDefinedAngu_1137_TypeValue.UserDefinedAngu_1161 = $1;
+           $$->UserDefinedAngu_1138_TypeType = UserDefinedAngu_1138_TypeChoicePair::UserDefinedAngu_1161E;
+           $$->UserDefinedAngu_1138_TypeValue.UserDefinedAngu_1161 = $1;
+          }
+        | y_UserDefinedAngu_1162_UserDefinedAngu_1162_Type
+          {$$ = new UserDefinedAngu_1138_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->UserDefinedAngu_1138_TypeType = UserDefinedAngu_1138_TypeChoicePair::UserDefinedAngu_1162E;
+           $$->UserDefinedAngu_1138_TypeValue.UserDefinedAngu_1162 = $1;
           }
         ;
 
-y_UserDefinedAngu_1137_UserDefinedAngu_1137_Type :
-          y_UserDefinedAngu_1137_Type
-          {$$ = $1;}
-        ;
-
-y_UserDefinedAngu_1158_Type :
-          y_ValueStats_StatsWithTolAngularType
-          y_MaxValueStats_StatsAngularType_0
-          y_MinValueStats_StatsAngularType_0
-          {$$ = new UserDefinedAngu_1158_Type($1, $2, $3);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
-          }
-        ;
-
-y_UserDefinedAngu_1158_UserDefinedAngu_1158_Type :
-          y_UserDefinedAngu_1158_Type
+y_UserDefinedAngu_1138_UserDefinedAngu_1138_Type :
+          y_UserDefinedAngu_1138_Type
           {$$ = $1;}
         ;
 
 y_UserDefinedAngu_1159_Type :
-          y_MaxValueStats_StatsAngularType
+          y_ValueStats_StatsWithTolAngularType
+          y_MaxValueStats_StatsAngularType_0
           y_MinValueStats_StatsAngularType_0
-          {$$ = new UserDefinedAngu_1159_Type($1, $2);
+          {$$ = new UserDefinedAngu_1159_Type($1, $2, $3);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -93236,14 +93593,12 @@ y_UserDefinedAngu_1159_UserDefinedAngu_1159_Type :
         ;
 
 y_UserDefinedAngu_1160_Type :
-          y_DeviationStats_StatsWithTolAngularType
-          y_MaxDeviationStats_StatsAngularType_0
-          y_MinDeviationStats_StatsAngularType_0
-          {$$ = new UserDefinedAngu_1160_Type($1, $2, $3);
+          y_MaxValueStats_StatsAngularType
+          y_MinValueStats_StatsAngularType_0
+          {$$ = new UserDefinedAngu_1160_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -93253,17 +93608,34 @@ y_UserDefinedAngu_1160_UserDefinedAngu_1160_Type :
         ;
 
 y_UserDefinedAngu_1161_Type :
+          y_DeviationStats_StatsWithTolAngularType
+          y_MaxDeviationStats_StatsAngularType_0
+          y_MinDeviationStats_StatsAngularType_0
+          {$$ = new UserDefinedAngu_1161_Type($1, $2, $3);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
+          }
+        ;
+
+y_UserDefinedAngu_1161_UserDefinedAngu_1161_Type :
+          y_UserDefinedAngu_1161_Type
+          {$$ = $1;}
+        ;
+
+y_UserDefinedAngu_1162_Type :
           y_MaxDeviationStats_StatsAngularType
           y_MinDeviationStats_StatsAngularType_0
-          {$$ = new UserDefinedAngu_1161_Type($1, $2);
+          {$$ = new UserDefinedAngu_1162_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
           }
         ;
 
-y_UserDefinedAngu_1161_UserDefinedAngu_1161_Type :
-          y_UserDefinedAngu_1161_Type
+y_UserDefinedAngu_1162_UserDefinedAngu_1162_Type :
+          y_UserDefinedAngu_1162_Type
           {$$ = $1;}
         ;
 
@@ -93279,7 +93651,7 @@ y_UserDefinedAngularCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_AngularCharacte_1045_AngularCharacte_1045_Type
+          y_AngularCharacte_1046_AngularCharacte_1046_Type
           y_WhatToMeasure_XmlString
           {$$ = new UserDefinedAngularCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19);
            yyUnrefMap[$$] = $$;
@@ -93457,11 +93829,11 @@ y_UserDefinedAngularCharacteristicNominal_UserDefinedAngularCharacteristicNomina
 
 y_UserDefinedAngularCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_UserDefinedAngu_1137_UserDefinedAngu_1137_Type
+          y_UserDefinedAngu_1138_UserDefinedAngu_1138_Type
           {$$ = new UserDefinedAngularCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -93493,7 +93865,7 @@ y_UserDefinedAreaCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_AreaCharacteris_1047_AreaCharacteris_1047_Type
+          y_AreaCharacteris_1048_AreaCharacteris_1048_Type
           y_WhatToMeasure_XmlString
           {$$ = new UserDefinedAreaCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17);
            yyUnrefMap[$$] = $$;
@@ -93669,11 +94041,11 @@ y_UserDefinedAreaCharacteristicNominal_UserDefinedAreaCharacteristicNominalType 
 
 y_UserDefinedAreaCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_UserDefinedArea_1138_UserDefinedArea_1138_Type
+          y_UserDefinedArea_1139_UserDefinedArea_1139_Type
           {$$ = new UserDefinedAreaCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -93695,86 +94067,72 @@ y_UserDefinedAreaCharacteristicStats_UserDefinedAreaCharacteristicStatsEvalType 
           }
         ;
 
-y_UserDefinedArea_1138_Type :
-          y_UserDefinedArea_1138_TypeChoicePair
-          {$$ = new UserDefinedArea_1138_Type($1);
+y_UserDefinedArea_1139_Type :
+          y_UserDefinedArea_1139_TypeChoicePair
+          {$$ = new UserDefinedArea_1139_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_UserDefinedArea_1138_TypeChoicePair :
+y_UserDefinedArea_1139_TypeChoicePair :
           y_MinDeviationStats_StatsAreaType
-          {$$ = new UserDefinedArea_1138_TypeChoicePair();
+          {$$ = new UserDefinedArea_1139_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedArea_1138_TypeType = UserDefinedArea_1138_TypeChoicePair::MinDeviationStatsE;
-           $$->UserDefinedArea_1138_TypeValue.MinDeviationStats = $1;
+           $$->UserDefinedArea_1139_TypeType = UserDefinedArea_1139_TypeChoicePair::MinDeviationStatsE;
+           $$->UserDefinedArea_1139_TypeValue.MinDeviationStats = $1;
           }
         | y_MinValueStats_StatsAreaType
-          {$$ = new UserDefinedArea_1138_TypeChoicePair();
+          {$$ = new UserDefinedArea_1139_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedArea_1138_TypeType = UserDefinedArea_1138_TypeChoicePair::MinValueStatsE;
-           $$->UserDefinedArea_1138_TypeValue.MinValueStats = $1;
-          }
-        | y_UserDefinedArea_1162_UserDefinedArea_1162_Type
-          {$$ = new UserDefinedArea_1138_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedArea_1138_TypeType = UserDefinedArea_1138_TypeChoicePair::UserDefinedArea_1162E;
-           $$->UserDefinedArea_1138_TypeValue.UserDefinedArea_1162 = $1;
+           $$->UserDefinedArea_1139_TypeType = UserDefinedArea_1139_TypeChoicePair::MinValueStatsE;
+           $$->UserDefinedArea_1139_TypeValue.MinValueStats = $1;
           }
         | y_UserDefinedArea_1163_UserDefinedArea_1163_Type
-          {$$ = new UserDefinedArea_1138_TypeChoicePair();
+          {$$ = new UserDefinedArea_1139_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedArea_1138_TypeType = UserDefinedArea_1138_TypeChoicePair::UserDefinedArea_1163E;
-           $$->UserDefinedArea_1138_TypeValue.UserDefinedArea_1163 = $1;
+           $$->UserDefinedArea_1139_TypeType = UserDefinedArea_1139_TypeChoicePair::UserDefinedArea_1163E;
+           $$->UserDefinedArea_1139_TypeValue.UserDefinedArea_1163 = $1;
           }
         | y_UserDefinedArea_1164_UserDefinedArea_1164_Type
-          {$$ = new UserDefinedArea_1138_TypeChoicePair();
+          {$$ = new UserDefinedArea_1139_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedArea_1138_TypeType = UserDefinedArea_1138_TypeChoicePair::UserDefinedArea_1164E;
-           $$->UserDefinedArea_1138_TypeValue.UserDefinedArea_1164 = $1;
+           $$->UserDefinedArea_1139_TypeType = UserDefinedArea_1139_TypeChoicePair::UserDefinedArea_1164E;
+           $$->UserDefinedArea_1139_TypeValue.UserDefinedArea_1164 = $1;
           }
         | y_UserDefinedArea_1165_UserDefinedArea_1165_Type
-          {$$ = new UserDefinedArea_1138_TypeChoicePair();
+          {$$ = new UserDefinedArea_1139_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedArea_1138_TypeType = UserDefinedArea_1138_TypeChoicePair::UserDefinedArea_1165E;
-           $$->UserDefinedArea_1138_TypeValue.UserDefinedArea_1165 = $1;
+           $$->UserDefinedArea_1139_TypeType = UserDefinedArea_1139_TypeChoicePair::UserDefinedArea_1165E;
+           $$->UserDefinedArea_1139_TypeValue.UserDefinedArea_1165 = $1;
+          }
+        | y_UserDefinedArea_1166_UserDefinedArea_1166_Type
+          {$$ = new UserDefinedArea_1139_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->UserDefinedArea_1139_TypeType = UserDefinedArea_1139_TypeChoicePair::UserDefinedArea_1166E;
+           $$->UserDefinedArea_1139_TypeValue.UserDefinedArea_1166 = $1;
           }
         ;
 
-y_UserDefinedArea_1138_UserDefinedArea_1138_Type :
-          y_UserDefinedArea_1138_Type
-          {$$ = $1;}
-        ;
-
-y_UserDefinedArea_1162_Type :
-          y_ValueStats_StatsWithTolAreaType y_MaxValueStats_StatsAreaType_0
-          y_MinValueStats_StatsAreaType_0
-          {$$ = new UserDefinedArea_1162_Type($1, $2, $3);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
-          }
-        ;
-
-y_UserDefinedArea_1162_UserDefinedArea_1162_Type :
-          y_UserDefinedArea_1162_Type
+y_UserDefinedArea_1139_UserDefinedArea_1139_Type :
+          y_UserDefinedArea_1139_Type
           {$$ = $1;}
         ;
 
 y_UserDefinedArea_1163_Type :
-          y_MaxValueStats_StatsAreaType y_MinValueStats_StatsAreaType_0
-          {$$ = new UserDefinedArea_1163_Type($1, $2);
+          y_ValueStats_StatsWithTolAreaType y_MaxValueStats_StatsAreaType_0
+          y_MinValueStats_StatsAreaType_0
+          {$$ = new UserDefinedArea_1163_Type($1, $2, $3);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -93784,14 +94142,11 @@ y_UserDefinedArea_1163_UserDefinedArea_1163_Type :
         ;
 
 y_UserDefinedArea_1164_Type :
-          y_DeviationStats_StatsWithTolAreaType
-          y_MaxDeviationStats_StatsAreaType_0
-          y_MinDeviationStats_StatsAreaType_0
-          {$$ = new UserDefinedArea_1164_Type($1, $2, $3);
+          y_MaxValueStats_StatsAreaType y_MinValueStats_StatsAreaType_0
+          {$$ = new UserDefinedArea_1164_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -93801,17 +94156,34 @@ y_UserDefinedArea_1164_UserDefinedArea_1164_Type :
         ;
 
 y_UserDefinedArea_1165_Type :
+          y_DeviationStats_StatsWithTolAreaType
+          y_MaxDeviationStats_StatsAreaType_0
+          y_MinDeviationStats_StatsAreaType_0
+          {$$ = new UserDefinedArea_1165_Type($1, $2, $3);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
+          }
+        ;
+
+y_UserDefinedArea_1165_UserDefinedArea_1165_Type :
+          y_UserDefinedArea_1165_Type
+          {$$ = $1;}
+        ;
+
+y_UserDefinedArea_1166_Type :
           y_MaxDeviationStats_StatsAreaType
           y_MinDeviationStats_StatsAreaType_0
-          {$$ = new UserDefinedArea_1165_Type($1, $2);
+          {$$ = new UserDefinedArea_1166_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
           }
         ;
 
-y_UserDefinedArea_1165_UserDefinedArea_1165_Type :
-          y_UserDefinedArea_1165_Type
+y_UserDefinedArea_1166_UserDefinedArea_1166_Type :
+          y_UserDefinedArea_1166_Type
           {$$ = $1;}
         ;
 
@@ -93994,8 +94366,8 @@ y_UserDefinedAttributeCharacteristicNominal_UserDefinedAttributeCharacteristicNo
 
 y_UserDefinedAttributeCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_AttributeStats_StatsPassFailType_0
@@ -94031,86 +94403,72 @@ y_UserDefinedAxisType :
           }
         ;
 
-y_UserDefinedForc_1139_Type :
-          y_UserDefinedForc_1139_TypeChoicePair
-          {$$ = new UserDefinedForc_1139_Type($1);
+y_UserDefinedForc_1140_Type :
+          y_UserDefinedForc_1140_TypeChoicePair
+          {$$ = new UserDefinedForc_1140_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_UserDefinedForc_1139_TypeChoicePair :
+y_UserDefinedForc_1140_TypeChoicePair :
           y_MinDeviationStats_StatsForceType
-          {$$ = new UserDefinedForc_1139_TypeChoicePair();
+          {$$ = new UserDefinedForc_1140_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedForc_1139_TypeType = UserDefinedForc_1139_TypeChoicePair::MinDeviationStatsE;
-           $$->UserDefinedForc_1139_TypeValue.MinDeviationStats = $1;
+           $$->UserDefinedForc_1140_TypeType = UserDefinedForc_1140_TypeChoicePair::MinDeviationStatsE;
+           $$->UserDefinedForc_1140_TypeValue.MinDeviationStats = $1;
           }
         | y_MinValueStats_StatsForceType
-          {$$ = new UserDefinedForc_1139_TypeChoicePair();
+          {$$ = new UserDefinedForc_1140_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedForc_1139_TypeType = UserDefinedForc_1139_TypeChoicePair::MinValueStatsE;
-           $$->UserDefinedForc_1139_TypeValue.MinValueStats = $1;
-          }
-        | y_UserDefinedForc_1166_UserDefinedForc_1166_Type
-          {$$ = new UserDefinedForc_1139_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedForc_1139_TypeType = UserDefinedForc_1139_TypeChoicePair::UserDefinedForc_1166E;
-           $$->UserDefinedForc_1139_TypeValue.UserDefinedForc_1166 = $1;
+           $$->UserDefinedForc_1140_TypeType = UserDefinedForc_1140_TypeChoicePair::MinValueStatsE;
+           $$->UserDefinedForc_1140_TypeValue.MinValueStats = $1;
           }
         | y_UserDefinedForc_1167_UserDefinedForc_1167_Type
-          {$$ = new UserDefinedForc_1139_TypeChoicePair();
+          {$$ = new UserDefinedForc_1140_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedForc_1139_TypeType = UserDefinedForc_1139_TypeChoicePair::UserDefinedForc_1167E;
-           $$->UserDefinedForc_1139_TypeValue.UserDefinedForc_1167 = $1;
+           $$->UserDefinedForc_1140_TypeType = UserDefinedForc_1140_TypeChoicePair::UserDefinedForc_1167E;
+           $$->UserDefinedForc_1140_TypeValue.UserDefinedForc_1167 = $1;
           }
         | y_UserDefinedForc_1168_UserDefinedForc_1168_Type
-          {$$ = new UserDefinedForc_1139_TypeChoicePair();
+          {$$ = new UserDefinedForc_1140_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedForc_1139_TypeType = UserDefinedForc_1139_TypeChoicePair::UserDefinedForc_1168E;
-           $$->UserDefinedForc_1139_TypeValue.UserDefinedForc_1168 = $1;
+           $$->UserDefinedForc_1140_TypeType = UserDefinedForc_1140_TypeChoicePair::UserDefinedForc_1168E;
+           $$->UserDefinedForc_1140_TypeValue.UserDefinedForc_1168 = $1;
           }
         | y_UserDefinedForc_1169_UserDefinedForc_1169_Type
-          {$$ = new UserDefinedForc_1139_TypeChoicePair();
+          {$$ = new UserDefinedForc_1140_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedForc_1139_TypeType = UserDefinedForc_1139_TypeChoicePair::UserDefinedForc_1169E;
-           $$->UserDefinedForc_1139_TypeValue.UserDefinedForc_1169 = $1;
+           $$->UserDefinedForc_1140_TypeType = UserDefinedForc_1140_TypeChoicePair::UserDefinedForc_1169E;
+           $$->UserDefinedForc_1140_TypeValue.UserDefinedForc_1169 = $1;
+          }
+        | y_UserDefinedForc_1170_UserDefinedForc_1170_Type
+          {$$ = new UserDefinedForc_1140_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->UserDefinedForc_1140_TypeType = UserDefinedForc_1140_TypeChoicePair::UserDefinedForc_1170E;
+           $$->UserDefinedForc_1140_TypeValue.UserDefinedForc_1170 = $1;
           }
         ;
 
-y_UserDefinedForc_1139_UserDefinedForc_1139_Type :
-          y_UserDefinedForc_1139_Type
-          {$$ = $1;}
-        ;
-
-y_UserDefinedForc_1166_Type :
-          y_ValueStats_StatsWithTolForceType
-          y_MaxValueStats_StatsForceType_0 y_MinValueStats_StatsForceType_0
-          {$$ = new UserDefinedForc_1166_Type($1, $2, $3);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
-          }
-        ;
-
-y_UserDefinedForc_1166_UserDefinedForc_1166_Type :
-          y_UserDefinedForc_1166_Type
+y_UserDefinedForc_1140_UserDefinedForc_1140_Type :
+          y_UserDefinedForc_1140_Type
           {$$ = $1;}
         ;
 
 y_UserDefinedForc_1167_Type :
-          y_MaxValueStats_StatsForceType y_MinValueStats_StatsForceType_0
-          {$$ = new UserDefinedForc_1167_Type($1, $2);
+          y_ValueStats_StatsWithTolForceType
+          y_MaxValueStats_StatsForceType_0 y_MinValueStats_StatsForceType_0
+          {$$ = new UserDefinedForc_1167_Type($1, $2, $3);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -94120,14 +94478,11 @@ y_UserDefinedForc_1167_UserDefinedForc_1167_Type :
         ;
 
 y_UserDefinedForc_1168_Type :
-          y_DeviationStats_StatsWithTolForceType
-          y_MaxDeviationStats_StatsForceType_0
-          y_MinDeviationStats_StatsForceType_0
-          {$$ = new UserDefinedForc_1168_Type($1, $2, $3);
+          y_MaxValueStats_StatsForceType y_MinValueStats_StatsForceType_0
+          {$$ = new UserDefinedForc_1168_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -94137,17 +94492,34 @@ y_UserDefinedForc_1168_UserDefinedForc_1168_Type :
         ;
 
 y_UserDefinedForc_1169_Type :
+          y_DeviationStats_StatsWithTolForceType
+          y_MaxDeviationStats_StatsForceType_0
+          y_MinDeviationStats_StatsForceType_0
+          {$$ = new UserDefinedForc_1169_Type($1, $2, $3);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
+          }
+        ;
+
+y_UserDefinedForc_1169_UserDefinedForc_1169_Type :
+          y_UserDefinedForc_1169_Type
+          {$$ = $1;}
+        ;
+
+y_UserDefinedForc_1170_Type :
           y_MaxDeviationStats_StatsForceType
           y_MinDeviationStats_StatsForceType_0
-          {$$ = new UserDefinedForc_1169_Type($1, $2);
+          {$$ = new UserDefinedForc_1170_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
           }
         ;
 
-y_UserDefinedForc_1169_UserDefinedForc_1169_Type :
-          y_UserDefinedForc_1169_Type
+y_UserDefinedForc_1170_UserDefinedForc_1170_Type :
+          y_UserDefinedForc_1170_Type
           {$$ = $1;}
         ;
 
@@ -94161,7 +94533,7 @@ y_UserDefinedForceCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_ForceCharacteri_1056_ForceCharacteri_1056_Type
+          y_ForceCharacteri_1057_ForceCharacteri_1057_Type
           y_WhatToMeasure_XmlString
           {$$ = new UserDefinedForceCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17);
            yyUnrefMap[$$] = $$;
@@ -94337,11 +94709,11 @@ y_UserDefinedForceCharacteristicNominal_UserDefinedForceCharacteristicNominalTyp
 
 y_UserDefinedForceCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_UserDefinedForc_1139_UserDefinedForc_1139_Type
+          y_UserDefinedForc_1140_UserDefinedForc_1140_Type
           {$$ = new UserDefinedForceCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -94363,87 +94735,73 @@ y_UserDefinedForceCharacteristicStats_UserDefinedForceCharacteristicStatsEvalTyp
           }
         ;
 
-y_UserDefinedLine_1140_Type :
-          y_UserDefinedLine_1140_TypeChoicePair
-          {$$ = new UserDefinedLine_1140_Type($1);
+y_UserDefinedLine_1141_Type :
+          y_UserDefinedLine_1141_TypeChoicePair
+          {$$ = new UserDefinedLine_1141_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_UserDefinedLine_1140_TypeChoicePair :
+y_UserDefinedLine_1141_TypeChoicePair :
           y_MinDeviationStats_StatsLinearType
-          {$$ = new UserDefinedLine_1140_TypeChoicePair();
+          {$$ = new UserDefinedLine_1141_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedLine_1140_TypeType = UserDefinedLine_1140_TypeChoicePair::MinDeviationStatsE;
-           $$->UserDefinedLine_1140_TypeValue.MinDeviationStats = $1;
+           $$->UserDefinedLine_1141_TypeType = UserDefinedLine_1141_TypeChoicePair::MinDeviationStatsE;
+           $$->UserDefinedLine_1141_TypeValue.MinDeviationStats = $1;
           }
         | y_MinValueStats_StatsLinearType
-          {$$ = new UserDefinedLine_1140_TypeChoicePair();
+          {$$ = new UserDefinedLine_1141_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedLine_1140_TypeType = UserDefinedLine_1140_TypeChoicePair::MinValueStatsE;
-           $$->UserDefinedLine_1140_TypeValue.MinValueStats = $1;
-          }
-        | y_UserDefinedLine_1170_UserDefinedLine_1170_Type
-          {$$ = new UserDefinedLine_1140_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedLine_1140_TypeType = UserDefinedLine_1140_TypeChoicePair::UserDefinedLine_1170E;
-           $$->UserDefinedLine_1140_TypeValue.UserDefinedLine_1170 = $1;
+           $$->UserDefinedLine_1141_TypeType = UserDefinedLine_1141_TypeChoicePair::MinValueStatsE;
+           $$->UserDefinedLine_1141_TypeValue.MinValueStats = $1;
           }
         | y_UserDefinedLine_1171_UserDefinedLine_1171_Type
-          {$$ = new UserDefinedLine_1140_TypeChoicePair();
+          {$$ = new UserDefinedLine_1141_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedLine_1140_TypeType = UserDefinedLine_1140_TypeChoicePair::UserDefinedLine_1171E;
-           $$->UserDefinedLine_1140_TypeValue.UserDefinedLine_1171 = $1;
+           $$->UserDefinedLine_1141_TypeType = UserDefinedLine_1141_TypeChoicePair::UserDefinedLine_1171E;
+           $$->UserDefinedLine_1141_TypeValue.UserDefinedLine_1171 = $1;
           }
         | y_UserDefinedLine_1172_UserDefinedLine_1172_Type
-          {$$ = new UserDefinedLine_1140_TypeChoicePair();
+          {$$ = new UserDefinedLine_1141_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedLine_1140_TypeType = UserDefinedLine_1140_TypeChoicePair::UserDefinedLine_1172E;
-           $$->UserDefinedLine_1140_TypeValue.UserDefinedLine_1172 = $1;
+           $$->UserDefinedLine_1141_TypeType = UserDefinedLine_1141_TypeChoicePair::UserDefinedLine_1172E;
+           $$->UserDefinedLine_1141_TypeValue.UserDefinedLine_1172 = $1;
           }
         | y_UserDefinedLine_1173_UserDefinedLine_1173_Type
-          {$$ = new UserDefinedLine_1140_TypeChoicePair();
+          {$$ = new UserDefinedLine_1141_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedLine_1140_TypeType = UserDefinedLine_1140_TypeChoicePair::UserDefinedLine_1173E;
-           $$->UserDefinedLine_1140_TypeValue.UserDefinedLine_1173 = $1;
+           $$->UserDefinedLine_1141_TypeType = UserDefinedLine_1141_TypeChoicePair::UserDefinedLine_1173E;
+           $$->UserDefinedLine_1141_TypeValue.UserDefinedLine_1173 = $1;
+          }
+        | y_UserDefinedLine_1174_UserDefinedLine_1174_Type
+          {$$ = new UserDefinedLine_1141_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->UserDefinedLine_1141_TypeType = UserDefinedLine_1141_TypeChoicePair::UserDefinedLine_1174E;
+           $$->UserDefinedLine_1141_TypeValue.UserDefinedLine_1174 = $1;
           }
         ;
 
-y_UserDefinedLine_1140_UserDefinedLine_1140_Type :
-          y_UserDefinedLine_1140_Type
-          {$$ = $1;}
-        ;
-
-y_UserDefinedLine_1170_Type :
-          y_ValueStats_StatsWithTolLinearType
-          y_MaxValueStats_StatsLinearType_0
-          y_MinValueStats_StatsLinearType_0
-          {$$ = new UserDefinedLine_1170_Type($1, $2, $3);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
-          }
-        ;
-
-y_UserDefinedLine_1170_UserDefinedLine_1170_Type :
-          y_UserDefinedLine_1170_Type
+y_UserDefinedLine_1141_UserDefinedLine_1141_Type :
+          y_UserDefinedLine_1141_Type
           {$$ = $1;}
         ;
 
 y_UserDefinedLine_1171_Type :
-          y_MaxValueStats_StatsLinearType y_MinValueStats_StatsLinearType_0
-          {$$ = new UserDefinedLine_1171_Type($1, $2);
+          y_ValueStats_StatsWithTolLinearType
+          y_MaxValueStats_StatsLinearType_0
+          y_MinValueStats_StatsLinearType_0
+          {$$ = new UserDefinedLine_1171_Type($1, $2, $3);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -94453,14 +94811,11 @@ y_UserDefinedLine_1171_UserDefinedLine_1171_Type :
         ;
 
 y_UserDefinedLine_1172_Type :
-          y_DeviationStats_StatsWithTolLinearType
-          y_MaxDeviationStats_StatsLinearType_0
-          y_MinDeviationStats_StatsLinearType_0
-          {$$ = new UserDefinedLine_1172_Type($1, $2, $3);
+          y_MaxValueStats_StatsLinearType y_MinValueStats_StatsLinearType_0
+          {$$ = new UserDefinedLine_1172_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -94470,17 +94825,34 @@ y_UserDefinedLine_1172_UserDefinedLine_1172_Type :
         ;
 
 y_UserDefinedLine_1173_Type :
+          y_DeviationStats_StatsWithTolLinearType
+          y_MaxDeviationStats_StatsLinearType_0
+          y_MinDeviationStats_StatsLinearType_0
+          {$$ = new UserDefinedLine_1173_Type($1, $2, $3);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
+          }
+        ;
+
+y_UserDefinedLine_1173_UserDefinedLine_1173_Type :
+          y_UserDefinedLine_1173_Type
+          {$$ = $1;}
+        ;
+
+y_UserDefinedLine_1174_Type :
           y_MaxDeviationStats_StatsLinearType
           y_MinDeviationStats_StatsLinearType_0
-          {$$ = new UserDefinedLine_1173_Type($1, $2);
+          {$$ = new UserDefinedLine_1174_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
           }
         ;
 
-y_UserDefinedLine_1173_UserDefinedLine_1173_Type :
-          y_UserDefinedLine_1173_Type
+y_UserDefinedLine_1174_UserDefinedLine_1174_Type :
+          y_UserDefinedLine_1174_Type
           {$$ = $1;}
         ;
 
@@ -94496,7 +94868,7 @@ y_UserDefinedLinearCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_LinearCharacter_1058_LinearCharacter_1058_Type
+          y_LinearCharacter_1059_LinearCharacter_1059_Type
           y_WhatToMeasure_XmlString
           {$$ = new UserDefinedLinearCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19);
            yyUnrefMap[$$] = $$;
@@ -94676,11 +95048,11 @@ y_UserDefinedLinearCharacteristicNominal_UserDefinedLinearCharacteristicNominalT
 
 y_UserDefinedLinearCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_UserDefinedLine_1140_UserDefinedLine_1140_Type
+          y_UserDefinedLine_1141_UserDefinedLine_1141_Type
           {$$ = new UserDefinedLinearCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -94712,7 +95084,7 @@ y_UserDefinedMassCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_MassCharacteris_1063_MassCharacteris_1063_Type
+          y_MassCharacteris_1064_MassCharacteris_1064_Type
           y_WhatToMeasure_XmlString
           {$$ = new UserDefinedMassCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17);
            yyUnrefMap[$$] = $$;
@@ -94888,11 +95260,11 @@ y_UserDefinedMassCharacteristicNominal_UserDefinedMassCharacteristicNominalType 
 
 y_UserDefinedMassCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_UserDefinedMass_1141_UserDefinedMass_1141_Type
+          y_UserDefinedMass_1142_UserDefinedMass_1142_Type
           {$$ = new UserDefinedMassCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -94914,86 +95286,72 @@ y_UserDefinedMassCharacteristicStats_UserDefinedMassCharacteristicStatsEvalType 
           }
         ;
 
-y_UserDefinedMass_1141_Type :
-          y_UserDefinedMass_1141_TypeChoicePair
-          {$$ = new UserDefinedMass_1141_Type($1);
+y_UserDefinedMass_1142_Type :
+          y_UserDefinedMass_1142_TypeChoicePair
+          {$$ = new UserDefinedMass_1142_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_UserDefinedMass_1141_TypeChoicePair :
+y_UserDefinedMass_1142_TypeChoicePair :
           y_MinDeviationStats_StatsMassType
-          {$$ = new UserDefinedMass_1141_TypeChoicePair();
+          {$$ = new UserDefinedMass_1142_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedMass_1141_TypeType = UserDefinedMass_1141_TypeChoicePair::MinDeviationStatsE;
-           $$->UserDefinedMass_1141_TypeValue.MinDeviationStats = $1;
+           $$->UserDefinedMass_1142_TypeType = UserDefinedMass_1142_TypeChoicePair::MinDeviationStatsE;
+           $$->UserDefinedMass_1142_TypeValue.MinDeviationStats = $1;
           }
         | y_MinValueStats_StatsMassType
-          {$$ = new UserDefinedMass_1141_TypeChoicePair();
+          {$$ = new UserDefinedMass_1142_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedMass_1141_TypeType = UserDefinedMass_1141_TypeChoicePair::MinValueStatsE;
-           $$->UserDefinedMass_1141_TypeValue.MinValueStats = $1;
-          }
-        | y_UserDefinedMass_1174_UserDefinedMass_1174_Type
-          {$$ = new UserDefinedMass_1141_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedMass_1141_TypeType = UserDefinedMass_1141_TypeChoicePair::UserDefinedMass_1174E;
-           $$->UserDefinedMass_1141_TypeValue.UserDefinedMass_1174 = $1;
+           $$->UserDefinedMass_1142_TypeType = UserDefinedMass_1142_TypeChoicePair::MinValueStatsE;
+           $$->UserDefinedMass_1142_TypeValue.MinValueStats = $1;
           }
         | y_UserDefinedMass_1175_UserDefinedMass_1175_Type
-          {$$ = new UserDefinedMass_1141_TypeChoicePair();
+          {$$ = new UserDefinedMass_1142_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedMass_1141_TypeType = UserDefinedMass_1141_TypeChoicePair::UserDefinedMass_1175E;
-           $$->UserDefinedMass_1141_TypeValue.UserDefinedMass_1175 = $1;
+           $$->UserDefinedMass_1142_TypeType = UserDefinedMass_1142_TypeChoicePair::UserDefinedMass_1175E;
+           $$->UserDefinedMass_1142_TypeValue.UserDefinedMass_1175 = $1;
           }
         | y_UserDefinedMass_1176_UserDefinedMass_1176_Type
-          {$$ = new UserDefinedMass_1141_TypeChoicePair();
+          {$$ = new UserDefinedMass_1142_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedMass_1141_TypeType = UserDefinedMass_1141_TypeChoicePair::UserDefinedMass_1176E;
-           $$->UserDefinedMass_1141_TypeValue.UserDefinedMass_1176 = $1;
+           $$->UserDefinedMass_1142_TypeType = UserDefinedMass_1142_TypeChoicePair::UserDefinedMass_1176E;
+           $$->UserDefinedMass_1142_TypeValue.UserDefinedMass_1176 = $1;
           }
         | y_UserDefinedMass_1177_UserDefinedMass_1177_Type
-          {$$ = new UserDefinedMass_1141_TypeChoicePair();
+          {$$ = new UserDefinedMass_1142_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedMass_1141_TypeType = UserDefinedMass_1141_TypeChoicePair::UserDefinedMass_1177E;
-           $$->UserDefinedMass_1141_TypeValue.UserDefinedMass_1177 = $1;
+           $$->UserDefinedMass_1142_TypeType = UserDefinedMass_1142_TypeChoicePair::UserDefinedMass_1177E;
+           $$->UserDefinedMass_1142_TypeValue.UserDefinedMass_1177 = $1;
+          }
+        | y_UserDefinedMass_1178_UserDefinedMass_1178_Type
+          {$$ = new UserDefinedMass_1142_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->UserDefinedMass_1142_TypeType = UserDefinedMass_1142_TypeChoicePair::UserDefinedMass_1178E;
+           $$->UserDefinedMass_1142_TypeValue.UserDefinedMass_1178 = $1;
           }
         ;
 
-y_UserDefinedMass_1141_UserDefinedMass_1141_Type :
-          y_UserDefinedMass_1141_Type
-          {$$ = $1;}
-        ;
-
-y_UserDefinedMass_1174_Type :
-          y_ValueStats_StatsWithTolMassType y_MaxValueStats_StatsMassType_0
-          y_MinValueStats_StatsMassType_0
-          {$$ = new UserDefinedMass_1174_Type($1, $2, $3);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
-          }
-        ;
-
-y_UserDefinedMass_1174_UserDefinedMass_1174_Type :
-          y_UserDefinedMass_1174_Type
+y_UserDefinedMass_1142_UserDefinedMass_1142_Type :
+          y_UserDefinedMass_1142_Type
           {$$ = $1;}
         ;
 
 y_UserDefinedMass_1175_Type :
-          y_MaxValueStats_StatsMassType y_MinValueStats_StatsMassType_0
-          {$$ = new UserDefinedMass_1175_Type($1, $2);
+          y_ValueStats_StatsWithTolMassType y_MaxValueStats_StatsMassType_0
+          y_MinValueStats_StatsMassType_0
+          {$$ = new UserDefinedMass_1175_Type($1, $2, $3);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -95003,14 +95361,11 @@ y_UserDefinedMass_1175_UserDefinedMass_1175_Type :
         ;
 
 y_UserDefinedMass_1176_Type :
-          y_DeviationStats_StatsWithTolMassType
-          y_MaxDeviationStats_StatsMassType_0
-          y_MinDeviationStats_StatsMassType_0
-          {$$ = new UserDefinedMass_1176_Type($1, $2, $3);
+          y_MaxValueStats_StatsMassType y_MinValueStats_StatsMassType_0
+          {$$ = new UserDefinedMass_1176_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -95020,12 +95375,14 @@ y_UserDefinedMass_1176_UserDefinedMass_1176_Type :
         ;
 
 y_UserDefinedMass_1177_Type :
-          y_MaxDeviationStats_StatsMassType
+          y_DeviationStats_StatsWithTolMassType
+          y_MaxDeviationStats_StatsMassType_0
           y_MinDeviationStats_StatsMassType_0
-          {$$ = new UserDefinedMass_1177_Type($1, $2);
+          {$$ = new UserDefinedMass_1177_Type($1, $2, $3);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -95034,88 +95391,88 @@ y_UserDefinedMass_1177_UserDefinedMass_1177_Type :
           {$$ = $1;}
         ;
 
-y_UserDefinedPres_1142_Type :
-          y_UserDefinedPres_1142_TypeChoicePair
-          {$$ = new UserDefinedPres_1142_Type($1);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_UserDefinedPres_1142_TypeChoicePair :
-          y_MinDeviationStats_StatsPressureType
-          {$$ = new UserDefinedPres_1142_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedPres_1142_TypeType = UserDefinedPres_1142_TypeChoicePair::MinDeviationStatsE;
-           $$->UserDefinedPres_1142_TypeValue.MinDeviationStats = $1;
-          }
-        | y_MinValueStats_StatsPressureType
-          {$$ = new UserDefinedPres_1142_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedPres_1142_TypeType = UserDefinedPres_1142_TypeChoicePair::MinValueStatsE;
-           $$->UserDefinedPres_1142_TypeValue.MinValueStats = $1;
-          }
-        | y_UserDefinedPres_1178_UserDefinedPres_1178_Type
-          {$$ = new UserDefinedPres_1142_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedPres_1142_TypeType = UserDefinedPres_1142_TypeChoicePair::UserDefinedPres_1178E;
-           $$->UserDefinedPres_1142_TypeValue.UserDefinedPres_1178 = $1;
-          }
-        | y_UserDefinedPres_1179_UserDefinedPres_1179_Type
-          {$$ = new UserDefinedPres_1142_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedPres_1142_TypeType = UserDefinedPres_1142_TypeChoicePair::UserDefinedPres_1179E;
-           $$->UserDefinedPres_1142_TypeValue.UserDefinedPres_1179 = $1;
-          }
-        | y_UserDefinedPres_1180_UserDefinedPres_1180_Type
-          {$$ = new UserDefinedPres_1142_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedPres_1142_TypeType = UserDefinedPres_1142_TypeChoicePair::UserDefinedPres_1180E;
-           $$->UserDefinedPres_1142_TypeValue.UserDefinedPres_1180 = $1;
-          }
-        | y_UserDefinedPres_1181_UserDefinedPres_1181_Type
-          {$$ = new UserDefinedPres_1142_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedPres_1142_TypeType = UserDefinedPres_1142_TypeChoicePair::UserDefinedPres_1181E;
-           $$->UserDefinedPres_1142_TypeValue.UserDefinedPres_1181 = $1;
-          }
-        ;
-
-y_UserDefinedPres_1142_UserDefinedPres_1142_Type :
-          y_UserDefinedPres_1142_Type
-          {$$ = $1;}
-        ;
-
-y_UserDefinedPres_1178_Type :
-          y_ValueStats_StatsWithTolPressureType
-          y_MaxValueStats_StatsPressureType_0
-          y_MinValueStats_StatsPressureType_0
-          {$$ = new UserDefinedPres_1178_Type($1, $2, $3);
+y_UserDefinedMass_1178_Type :
+          y_MaxDeviationStats_StatsMassType
+          y_MinDeviationStats_StatsMassType_0
+          {$$ = new UserDefinedMass_1178_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
-y_UserDefinedPres_1178_UserDefinedPres_1178_Type :
-          y_UserDefinedPres_1178_Type
+y_UserDefinedMass_1178_UserDefinedMass_1178_Type :
+          y_UserDefinedMass_1178_Type
+          {$$ = $1;}
+        ;
+
+y_UserDefinedPres_1143_Type :
+          y_UserDefinedPres_1143_TypeChoicePair
+          {$$ = new UserDefinedPres_1143_Type($1);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+          }
+        ;
+
+y_UserDefinedPres_1143_TypeChoicePair :
+          y_MinDeviationStats_StatsPressureType
+          {$$ = new UserDefinedPres_1143_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->UserDefinedPres_1143_TypeType = UserDefinedPres_1143_TypeChoicePair::MinDeviationStatsE;
+           $$->UserDefinedPres_1143_TypeValue.MinDeviationStats = $1;
+          }
+        | y_MinValueStats_StatsPressureType
+          {$$ = new UserDefinedPres_1143_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->UserDefinedPres_1143_TypeType = UserDefinedPres_1143_TypeChoicePair::MinValueStatsE;
+           $$->UserDefinedPres_1143_TypeValue.MinValueStats = $1;
+          }
+        | y_UserDefinedPres_1179_UserDefinedPres_1179_Type
+          {$$ = new UserDefinedPres_1143_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->UserDefinedPres_1143_TypeType = UserDefinedPres_1143_TypeChoicePair::UserDefinedPres_1179E;
+           $$->UserDefinedPres_1143_TypeValue.UserDefinedPres_1179 = $1;
+          }
+        | y_UserDefinedPres_1180_UserDefinedPres_1180_Type
+          {$$ = new UserDefinedPres_1143_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->UserDefinedPres_1143_TypeType = UserDefinedPres_1143_TypeChoicePair::UserDefinedPres_1180E;
+           $$->UserDefinedPres_1143_TypeValue.UserDefinedPres_1180 = $1;
+          }
+        | y_UserDefinedPres_1181_UserDefinedPres_1181_Type
+          {$$ = new UserDefinedPres_1143_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->UserDefinedPres_1143_TypeType = UserDefinedPres_1143_TypeChoicePair::UserDefinedPres_1181E;
+           $$->UserDefinedPres_1143_TypeValue.UserDefinedPres_1181 = $1;
+          }
+        | y_UserDefinedPres_1182_UserDefinedPres_1182_Type
+          {$$ = new UserDefinedPres_1143_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->UserDefinedPres_1143_TypeType = UserDefinedPres_1143_TypeChoicePair::UserDefinedPres_1182E;
+           $$->UserDefinedPres_1143_TypeValue.UserDefinedPres_1182 = $1;
+          }
+        ;
+
+y_UserDefinedPres_1143_UserDefinedPres_1143_Type :
+          y_UserDefinedPres_1143_Type
           {$$ = $1;}
         ;
 
 y_UserDefinedPres_1179_Type :
-          y_MaxValueStats_StatsPressureType
+          y_ValueStats_StatsWithTolPressureType
+          y_MaxValueStats_StatsPressureType_0
           y_MinValueStats_StatsPressureType_0
-          {$$ = new UserDefinedPres_1179_Type($1, $2);
+          {$$ = new UserDefinedPres_1179_Type($1, $2, $3);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -95125,14 +95482,12 @@ y_UserDefinedPres_1179_UserDefinedPres_1179_Type :
         ;
 
 y_UserDefinedPres_1180_Type :
-          y_DeviationStats_StatsWithTolPressureType
-          y_MaxDeviationStats_StatsPressureType_0
-          y_MinDeviationStats_StatsPressureType_0
-          {$$ = new UserDefinedPres_1180_Type($1, $2, $3);
+          y_MaxValueStats_StatsPressureType
+          y_MinValueStats_StatsPressureType_0
+          {$$ = new UserDefinedPres_1180_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -95142,17 +95497,34 @@ y_UserDefinedPres_1180_UserDefinedPres_1180_Type :
         ;
 
 y_UserDefinedPres_1181_Type :
+          y_DeviationStats_StatsWithTolPressureType
+          y_MaxDeviationStats_StatsPressureType_0
+          y_MinDeviationStats_StatsPressureType_0
+          {$$ = new UserDefinedPres_1181_Type($1, $2, $3);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
+          }
+        ;
+
+y_UserDefinedPres_1181_UserDefinedPres_1181_Type :
+          y_UserDefinedPres_1181_Type
+          {$$ = $1;}
+        ;
+
+y_UserDefinedPres_1182_Type :
           y_MaxDeviationStats_StatsPressureType
           y_MinDeviationStats_StatsPressureType_0
-          {$$ = new UserDefinedPres_1181_Type($1, $2);
+          {$$ = new UserDefinedPres_1182_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
           }
         ;
 
-y_UserDefinedPres_1181_UserDefinedPres_1181_Type :
-          y_UserDefinedPres_1181_Type
+y_UserDefinedPres_1182_UserDefinedPres_1182_Type :
+          y_UserDefinedPres_1182_Type
           {$$ = $1;}
         ;
 
@@ -95166,7 +95538,7 @@ y_UserDefinedPressureCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_PressureCharact_1066_PressureCharact_1066_Type
+          y_PressureCharact_1067_PressureCharact_1067_Type
           y_WhatToMeasure_XmlString
           {$$ = new UserDefinedPressureCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17);
            yyUnrefMap[$$] = $$;
@@ -95342,11 +95714,11 @@ y_UserDefinedPressureCharacteristicNominal_UserDefinedPressureCharacteristicNomi
 
 y_UserDefinedPressureCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_UserDefinedPres_1142_UserDefinedPres_1142_Type
+          y_UserDefinedPres_1143_UserDefinedPres_1143_Type
           {$$ = new UserDefinedPressureCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -95368,53 +95740,53 @@ y_UserDefinedPressureCharacteristicStats_UserDefinedPressureCharacteristicStatsE
           }
         ;
 
-y_UserDefinedReso_1243_Type :
-          y_UserDefinedReso_1243_TypeChoicePair
-          {$$ = new UserDefinedReso_1243_Type($1);
+y_UserDefinedReso_1244_Type :
+          y_UserDefinedReso_1244_TypeChoicePair
+          {$$ = new UserDefinedReso_1244_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_UserDefinedReso_1243_TypeChoicePair :
+y_UserDefinedReso_1244_TypeChoicePair :
           y_ABCResolution_ABCResolutionType
-          {$$ = new UserDefinedReso_1243_TypeChoicePair();
+          {$$ = new UserDefinedReso_1244_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedReso_1243_TypeType = UserDefinedReso_1243_TypeChoicePair::ABCResolutionE;
-           $$->UserDefinedReso_1243_TypeValue.ABCResolution = $1;
+           $$->UserDefinedReso_1244_TypeType = UserDefinedReso_1244_TypeChoicePair::ABCResolutionE;
+           $$->UserDefinedReso_1244_TypeValue.ABCResolution = $1;
           }
-        | y_UserDefinedReso_1246_UserDefinedReso_1246_Type
-          {$$ = new UserDefinedReso_1243_TypeChoicePair();
+        | y_UserDefinedReso_1247_UserDefinedReso_1247_Type
+          {$$ = new UserDefinedReso_1244_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedReso_1243_TypeType = UserDefinedReso_1243_TypeChoicePair::UserDefinedReso_1246E;
-           $$->UserDefinedReso_1243_TypeValue.UserDefinedReso_1246 = $1;
+           $$->UserDefinedReso_1244_TypeType = UserDefinedReso_1244_TypeChoicePair::UserDefinedReso_1247E;
+           $$->UserDefinedReso_1244_TypeValue.UserDefinedReso_1247 = $1;
           }
         ;
 
-y_UserDefinedReso_1243_UserDefinedReso_1243_Type :
-          y_UserDefinedReso_1243_Type
+y_UserDefinedReso_1244_UserDefinedReso_1244_Type :
+          y_UserDefinedReso_1244_Type
           {$$ = $1;}
         ;
 
-y_UserDefinedReso_1246_Type :
+y_UserDefinedReso_1247_Type :
           y_CombinedUserDefinedResolution_CombinedUserDefinedResolutionType
           y_ABCResolution_ABCResolutionType
-          {$$ = new UserDefinedReso_1246_Type($1, $2);
+          {$$ = new UserDefinedReso_1247_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
           }
         ;
 
-y_UserDefinedReso_1246_UserDefinedReso_1246_Type :
-          y_UserDefinedReso_1246_Type
+y_UserDefinedReso_1247_UserDefinedReso_1247_Type :
+          y_UserDefinedReso_1247_Type
           {$$ = $1;}
         ;
 
 y_UserDefinedResolutionType :
-          ENDITEM y_UserDefinedReso_1243_UserDefinedReso_1243_Type
+          ENDITEM y_UserDefinedReso_1244_UserDefinedReso_1244_Type
           {$$ = new UserDefinedResolutionType($2);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -95429,86 +95801,72 @@ y_UserDefinedResolution_UserDefinedResolutionType :
           }
         ;
 
-y_UserDefinedSpee_1143_Type :
-          y_UserDefinedSpee_1143_TypeChoicePair
-          {$$ = new UserDefinedSpee_1143_Type($1);
+y_UserDefinedSpee_1144_Type :
+          y_UserDefinedSpee_1144_TypeChoicePair
+          {$$ = new UserDefinedSpee_1144_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_UserDefinedSpee_1143_TypeChoicePair :
+y_UserDefinedSpee_1144_TypeChoicePair :
           y_MinDeviationStats_StatsSpeedType
-          {$$ = new UserDefinedSpee_1143_TypeChoicePair();
+          {$$ = new UserDefinedSpee_1144_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedSpee_1143_TypeType = UserDefinedSpee_1143_TypeChoicePair::MinDeviationStatsE;
-           $$->UserDefinedSpee_1143_TypeValue.MinDeviationStats = $1;
+           $$->UserDefinedSpee_1144_TypeType = UserDefinedSpee_1144_TypeChoicePair::MinDeviationStatsE;
+           $$->UserDefinedSpee_1144_TypeValue.MinDeviationStats = $1;
           }
         | y_MinValueStats_StatsSpeedType
-          {$$ = new UserDefinedSpee_1143_TypeChoicePair();
+          {$$ = new UserDefinedSpee_1144_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedSpee_1143_TypeType = UserDefinedSpee_1143_TypeChoicePair::MinValueStatsE;
-           $$->UserDefinedSpee_1143_TypeValue.MinValueStats = $1;
-          }
-        | y_UserDefinedSpee_1182_UserDefinedSpee_1182_Type
-          {$$ = new UserDefinedSpee_1143_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedSpee_1143_TypeType = UserDefinedSpee_1143_TypeChoicePair::UserDefinedSpee_1182E;
-           $$->UserDefinedSpee_1143_TypeValue.UserDefinedSpee_1182 = $1;
+           $$->UserDefinedSpee_1144_TypeType = UserDefinedSpee_1144_TypeChoicePair::MinValueStatsE;
+           $$->UserDefinedSpee_1144_TypeValue.MinValueStats = $1;
           }
         | y_UserDefinedSpee_1183_UserDefinedSpee_1183_Type
-          {$$ = new UserDefinedSpee_1143_TypeChoicePair();
+          {$$ = new UserDefinedSpee_1144_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedSpee_1143_TypeType = UserDefinedSpee_1143_TypeChoicePair::UserDefinedSpee_1183E;
-           $$->UserDefinedSpee_1143_TypeValue.UserDefinedSpee_1183 = $1;
+           $$->UserDefinedSpee_1144_TypeType = UserDefinedSpee_1144_TypeChoicePair::UserDefinedSpee_1183E;
+           $$->UserDefinedSpee_1144_TypeValue.UserDefinedSpee_1183 = $1;
           }
         | y_UserDefinedSpee_1184_UserDefinedSpee_1184_Type
-          {$$ = new UserDefinedSpee_1143_TypeChoicePair();
+          {$$ = new UserDefinedSpee_1144_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedSpee_1143_TypeType = UserDefinedSpee_1143_TypeChoicePair::UserDefinedSpee_1184E;
-           $$->UserDefinedSpee_1143_TypeValue.UserDefinedSpee_1184 = $1;
+           $$->UserDefinedSpee_1144_TypeType = UserDefinedSpee_1144_TypeChoicePair::UserDefinedSpee_1184E;
+           $$->UserDefinedSpee_1144_TypeValue.UserDefinedSpee_1184 = $1;
           }
         | y_UserDefinedSpee_1185_UserDefinedSpee_1185_Type
-          {$$ = new UserDefinedSpee_1143_TypeChoicePair();
+          {$$ = new UserDefinedSpee_1144_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedSpee_1143_TypeType = UserDefinedSpee_1143_TypeChoicePair::UserDefinedSpee_1185E;
-           $$->UserDefinedSpee_1143_TypeValue.UserDefinedSpee_1185 = $1;
+           $$->UserDefinedSpee_1144_TypeType = UserDefinedSpee_1144_TypeChoicePair::UserDefinedSpee_1185E;
+           $$->UserDefinedSpee_1144_TypeValue.UserDefinedSpee_1185 = $1;
+          }
+        | y_UserDefinedSpee_1186_UserDefinedSpee_1186_Type
+          {$$ = new UserDefinedSpee_1144_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->UserDefinedSpee_1144_TypeType = UserDefinedSpee_1144_TypeChoicePair::UserDefinedSpee_1186E;
+           $$->UserDefinedSpee_1144_TypeValue.UserDefinedSpee_1186 = $1;
           }
         ;
 
-y_UserDefinedSpee_1143_UserDefinedSpee_1143_Type :
-          y_UserDefinedSpee_1143_Type
-          {$$ = $1;}
-        ;
-
-y_UserDefinedSpee_1182_Type :
-          y_ValueStats_StatsWithTolSpeedType
-          y_MaxValueStats_StatsSpeedType_0 y_MinValueStats_StatsSpeedType_0
-          {$$ = new UserDefinedSpee_1182_Type($1, $2, $3);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
-          }
-        ;
-
-y_UserDefinedSpee_1182_UserDefinedSpee_1182_Type :
-          y_UserDefinedSpee_1182_Type
+y_UserDefinedSpee_1144_UserDefinedSpee_1144_Type :
+          y_UserDefinedSpee_1144_Type
           {$$ = $1;}
         ;
 
 y_UserDefinedSpee_1183_Type :
-          y_MaxValueStats_StatsSpeedType y_MinValueStats_StatsSpeedType_0
-          {$$ = new UserDefinedSpee_1183_Type($1, $2);
+          y_ValueStats_StatsWithTolSpeedType
+          y_MaxValueStats_StatsSpeedType_0 y_MinValueStats_StatsSpeedType_0
+          {$$ = new UserDefinedSpee_1183_Type($1, $2, $3);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -95518,14 +95876,11 @@ y_UserDefinedSpee_1183_UserDefinedSpee_1183_Type :
         ;
 
 y_UserDefinedSpee_1184_Type :
-          y_DeviationStats_StatsWithTolSpeedType
-          y_MaxDeviationStats_StatsSpeedType_0
-          y_MinDeviationStats_StatsSpeedType_0
-          {$$ = new UserDefinedSpee_1184_Type($1, $2, $3);
+          y_MaxValueStats_StatsSpeedType y_MinValueStats_StatsSpeedType_0
+          {$$ = new UserDefinedSpee_1184_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -95535,17 +95890,34 @@ y_UserDefinedSpee_1184_UserDefinedSpee_1184_Type :
         ;
 
 y_UserDefinedSpee_1185_Type :
+          y_DeviationStats_StatsWithTolSpeedType
+          y_MaxDeviationStats_StatsSpeedType_0
+          y_MinDeviationStats_StatsSpeedType_0
+          {$$ = new UserDefinedSpee_1185_Type($1, $2, $3);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
+          }
+        ;
+
+y_UserDefinedSpee_1185_UserDefinedSpee_1185_Type :
+          y_UserDefinedSpee_1185_Type
+          {$$ = $1;}
+        ;
+
+y_UserDefinedSpee_1186_Type :
           y_MaxDeviationStats_StatsSpeedType
           y_MinDeviationStats_StatsSpeedType_0
-          {$$ = new UserDefinedSpee_1185_Type($1, $2);
+          {$$ = new UserDefinedSpee_1186_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
           }
         ;
 
-y_UserDefinedSpee_1185_UserDefinedSpee_1185_Type :
-          y_UserDefinedSpee_1185_Type
+y_UserDefinedSpee_1186_UserDefinedSpee_1186_Type :
+          y_UserDefinedSpee_1186_Type
           {$$ = $1;}
         ;
 
@@ -95559,7 +95931,7 @@ y_UserDefinedSpeedCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_SpeedCharacteri_1068_SpeedCharacteri_1068_Type
+          y_SpeedCharacteri_1069_SpeedCharacteri_1069_Type
           y_WhatToMeasure_XmlString
           {$$ = new UserDefinedSpeedCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17);
            yyUnrefMap[$$] = $$;
@@ -95735,11 +96107,11 @@ y_UserDefinedSpeedCharacteristicNominal_UserDefinedSpeedCharacteristicNominalTyp
 
 y_UserDefinedSpeedCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_UserDefinedSpee_1143_UserDefinedSpee_1143_Type
+          y_UserDefinedSpee_1144_UserDefinedSpee_1144_Type
           {$$ = new UserDefinedSpeedCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -95767,88 +96139,73 @@ y_UserDefinedStrategy_XmlToken :
           {$$ = $4;}
         ;
 
-y_UserDefinedTemp_1144_Type :
-          y_UserDefinedTemp_1144_TypeChoicePair
-          {$$ = new UserDefinedTemp_1144_Type($1);
+y_UserDefinedTemp_1145_Type :
+          y_UserDefinedTemp_1145_TypeChoicePair
+          {$$ = new UserDefinedTemp_1145_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_UserDefinedTemp_1144_TypeChoicePair :
+y_UserDefinedTemp_1145_TypeChoicePair :
           y_MinDeviationStats_StatsTemperatureType
-          {$$ = new UserDefinedTemp_1144_TypeChoicePair();
+          {$$ = new UserDefinedTemp_1145_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedTemp_1144_TypeType = UserDefinedTemp_1144_TypeChoicePair::MinDeviationStatsE;
-           $$->UserDefinedTemp_1144_TypeValue.MinDeviationStats = $1;
+           $$->UserDefinedTemp_1145_TypeType = UserDefinedTemp_1145_TypeChoicePair::MinDeviationStatsE;
+           $$->UserDefinedTemp_1145_TypeValue.MinDeviationStats = $1;
           }
         | y_MinValueStats_StatsTemperatureType
-          {$$ = new UserDefinedTemp_1144_TypeChoicePair();
+          {$$ = new UserDefinedTemp_1145_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedTemp_1144_TypeType = UserDefinedTemp_1144_TypeChoicePair::MinValueStatsE;
-           $$->UserDefinedTemp_1144_TypeValue.MinValueStats = $1;
-          }
-        | y_UserDefinedTemp_1186_UserDefinedTemp_1186_Type
-          {$$ = new UserDefinedTemp_1144_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedTemp_1144_TypeType = UserDefinedTemp_1144_TypeChoicePair::UserDefinedTemp_1186E;
-           $$->UserDefinedTemp_1144_TypeValue.UserDefinedTemp_1186 = $1;
+           $$->UserDefinedTemp_1145_TypeType = UserDefinedTemp_1145_TypeChoicePair::MinValueStatsE;
+           $$->UserDefinedTemp_1145_TypeValue.MinValueStats = $1;
           }
         | y_UserDefinedTemp_1187_UserDefinedTemp_1187_Type
-          {$$ = new UserDefinedTemp_1144_TypeChoicePair();
+          {$$ = new UserDefinedTemp_1145_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedTemp_1144_TypeType = UserDefinedTemp_1144_TypeChoicePair::UserDefinedTemp_1187E;
-           $$->UserDefinedTemp_1144_TypeValue.UserDefinedTemp_1187 = $1;
+           $$->UserDefinedTemp_1145_TypeType = UserDefinedTemp_1145_TypeChoicePair::UserDefinedTemp_1187E;
+           $$->UserDefinedTemp_1145_TypeValue.UserDefinedTemp_1187 = $1;
           }
         | y_UserDefinedTemp_1188_UserDefinedTemp_1188_Type
-          {$$ = new UserDefinedTemp_1144_TypeChoicePair();
+          {$$ = new UserDefinedTemp_1145_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedTemp_1144_TypeType = UserDefinedTemp_1144_TypeChoicePair::UserDefinedTemp_1188E;
-           $$->UserDefinedTemp_1144_TypeValue.UserDefinedTemp_1188 = $1;
+           $$->UserDefinedTemp_1145_TypeType = UserDefinedTemp_1145_TypeChoicePair::UserDefinedTemp_1188E;
+           $$->UserDefinedTemp_1145_TypeValue.UserDefinedTemp_1188 = $1;
           }
         | y_UserDefinedTemp_1189_UserDefinedTemp_1189_Type
-          {$$ = new UserDefinedTemp_1144_TypeChoicePair();
+          {$$ = new UserDefinedTemp_1145_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedTemp_1144_TypeType = UserDefinedTemp_1144_TypeChoicePair::UserDefinedTemp_1189E;
-           $$->UserDefinedTemp_1144_TypeValue.UserDefinedTemp_1189 = $1;
+           $$->UserDefinedTemp_1145_TypeType = UserDefinedTemp_1145_TypeChoicePair::UserDefinedTemp_1189E;
+           $$->UserDefinedTemp_1145_TypeValue.UserDefinedTemp_1189 = $1;
+          }
+        | y_UserDefinedTemp_1190_UserDefinedTemp_1190_Type
+          {$$ = new UserDefinedTemp_1145_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->UserDefinedTemp_1145_TypeType = UserDefinedTemp_1145_TypeChoicePair::UserDefinedTemp_1190E;
+           $$->UserDefinedTemp_1145_TypeValue.UserDefinedTemp_1190 = $1;
           }
         ;
 
-y_UserDefinedTemp_1144_UserDefinedTemp_1144_Type :
-          y_UserDefinedTemp_1144_Type
-          {$$ = $1;}
-        ;
-
-y_UserDefinedTemp_1186_Type :
-          y_ValueStats_StatsWithTolTemperatureType
-          y_MaxValueStats_StatsTemperatureType_0
-          y_MinValueStats_StatsTemperatureType_0
-          {$$ = new UserDefinedTemp_1186_Type($1, $2, $3);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
-          }
-        ;
-
-y_UserDefinedTemp_1186_UserDefinedTemp_1186_Type :
-          y_UserDefinedTemp_1186_Type
+y_UserDefinedTemp_1145_UserDefinedTemp_1145_Type :
+          y_UserDefinedTemp_1145_Type
           {$$ = $1;}
         ;
 
 y_UserDefinedTemp_1187_Type :
-          y_MaxValueStats_StatsTemperatureType
+          y_ValueStats_StatsWithTolTemperatureType
+          y_MaxValueStats_StatsTemperatureType_0
           y_MinValueStats_StatsTemperatureType_0
-          {$$ = new UserDefinedTemp_1187_Type($1, $2);
+          {$$ = new UserDefinedTemp_1187_Type($1, $2, $3);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -95858,14 +96215,12 @@ y_UserDefinedTemp_1187_UserDefinedTemp_1187_Type :
         ;
 
 y_UserDefinedTemp_1188_Type :
-          y_DeviationStats_StatsWithTolTemperatureType
-          y_MaxDeviationStats_StatsTemperatureType_0
-          y_MinDeviationStats_StatsTemperatureType_0
-          {$$ = new UserDefinedTemp_1188_Type($1, $2, $3);
+          y_MaxValueStats_StatsTemperatureType
+          y_MinValueStats_StatsTemperatureType_0
+          {$$ = new UserDefinedTemp_1188_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -95875,17 +96230,34 @@ y_UserDefinedTemp_1188_UserDefinedTemp_1188_Type :
         ;
 
 y_UserDefinedTemp_1189_Type :
+          y_DeviationStats_StatsWithTolTemperatureType
+          y_MaxDeviationStats_StatsTemperatureType_0
+          y_MinDeviationStats_StatsTemperatureType_0
+          {$$ = new UserDefinedTemp_1189_Type($1, $2, $3);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
+          }
+        ;
+
+y_UserDefinedTemp_1189_UserDefinedTemp_1189_Type :
+          y_UserDefinedTemp_1189_Type
+          {$$ = $1;}
+        ;
+
+y_UserDefinedTemp_1190_Type :
           y_MaxDeviationStats_StatsTemperatureType
           y_MinDeviationStats_StatsTemperatureType_0
-          {$$ = new UserDefinedTemp_1189_Type($1, $2);
+          {$$ = new UserDefinedTemp_1190_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
           }
         ;
 
-y_UserDefinedTemp_1189_UserDefinedTemp_1189_Type :
-          y_UserDefinedTemp_1189_Type
+y_UserDefinedTemp_1190_UserDefinedTemp_1190_Type :
+          y_UserDefinedTemp_1190_Type
           {$$ = $1;}
         ;
 
@@ -95899,7 +96271,7 @@ y_UserDefinedTemperatureCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_TemperatureChar_1072_TemperatureChar_1072_Type
+          y_TemperatureChar_1073_TemperatureChar_1073_Type
           y_WhatToMeasure_XmlString
           {$$ = new UserDefinedTemperatureCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17);
            yyUnrefMap[$$] = $$;
@@ -96075,11 +96447,11 @@ y_UserDefinedTemperatureCharacteristicNominal_UserDefinedTemperatureCharacterist
 
 y_UserDefinedTemperatureCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_UserDefinedTemp_1144_UserDefinedTemp_1144_Type
+          y_UserDefinedTemp_1145_UserDefinedTemp_1145_Type
           {$$ = new UserDefinedTemperatureCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -96111,7 +96483,7 @@ y_UserDefinedTimeCharacteristicDefinitionType :
           y_Independency_XmlBoolean_0
           y_UnitedOrContinuousFeature_XmlBoolean_0
           y_SeparateZone_XmlBoolean_0
-          y_TimeCharacteris_1073_TimeCharacteris_1073_Type
+          y_TimeCharacteris_1074_TimeCharacteris_1074_Type
           y_WhatToMeasure_XmlString
           {$$ = new UserDefinedTimeCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17);
            yyUnrefMap[$$] = $$;
@@ -96287,11 +96659,11 @@ y_UserDefinedTimeCharacteristicNominal_UserDefinedTimeCharacteristicNominalType 
 
 y_UserDefinedTimeCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_UserDefinedTime_1145_UserDefinedTime_1145_Type
+          y_UserDefinedTime_1146_UserDefinedTime_1146_Type
           {$$ = new UserDefinedTimeCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -96313,86 +96685,72 @@ y_UserDefinedTimeCharacteristicStats_UserDefinedTimeCharacteristicStatsEvalType 
           }
         ;
 
-y_UserDefinedTime_1145_Type :
-          y_UserDefinedTime_1145_TypeChoicePair
-          {$$ = new UserDefinedTime_1145_Type($1);
+y_UserDefinedTime_1146_Type :
+          y_UserDefinedTime_1146_TypeChoicePair
+          {$$ = new UserDefinedTime_1146_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_UserDefinedTime_1145_TypeChoicePair :
+y_UserDefinedTime_1146_TypeChoicePair :
           y_MinDeviationStats_StatsTimeType
-          {$$ = new UserDefinedTime_1145_TypeChoicePair();
+          {$$ = new UserDefinedTime_1146_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedTime_1145_TypeType = UserDefinedTime_1145_TypeChoicePair::MinDeviationStatsE;
-           $$->UserDefinedTime_1145_TypeValue.MinDeviationStats = $1;
+           $$->UserDefinedTime_1146_TypeType = UserDefinedTime_1146_TypeChoicePair::MinDeviationStatsE;
+           $$->UserDefinedTime_1146_TypeValue.MinDeviationStats = $1;
           }
         | y_MinValueStats_StatsTimeType
-          {$$ = new UserDefinedTime_1145_TypeChoicePair();
+          {$$ = new UserDefinedTime_1146_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedTime_1145_TypeType = UserDefinedTime_1145_TypeChoicePair::MinValueStatsE;
-           $$->UserDefinedTime_1145_TypeValue.MinValueStats = $1;
-          }
-        | y_UserDefinedTime_1190_UserDefinedTime_1190_Type
-          {$$ = new UserDefinedTime_1145_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedTime_1145_TypeType = UserDefinedTime_1145_TypeChoicePair::UserDefinedTime_1190E;
-           $$->UserDefinedTime_1145_TypeValue.UserDefinedTime_1190 = $1;
+           $$->UserDefinedTime_1146_TypeType = UserDefinedTime_1146_TypeChoicePair::MinValueStatsE;
+           $$->UserDefinedTime_1146_TypeValue.MinValueStats = $1;
           }
         | y_UserDefinedTime_1191_UserDefinedTime_1191_Type
-          {$$ = new UserDefinedTime_1145_TypeChoicePair();
+          {$$ = new UserDefinedTime_1146_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedTime_1145_TypeType = UserDefinedTime_1145_TypeChoicePair::UserDefinedTime_1191E;
-           $$->UserDefinedTime_1145_TypeValue.UserDefinedTime_1191 = $1;
+           $$->UserDefinedTime_1146_TypeType = UserDefinedTime_1146_TypeChoicePair::UserDefinedTime_1191E;
+           $$->UserDefinedTime_1146_TypeValue.UserDefinedTime_1191 = $1;
           }
         | y_UserDefinedTime_1192_UserDefinedTime_1192_Type
-          {$$ = new UserDefinedTime_1145_TypeChoicePair();
+          {$$ = new UserDefinedTime_1146_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedTime_1145_TypeType = UserDefinedTime_1145_TypeChoicePair::UserDefinedTime_1192E;
-           $$->UserDefinedTime_1145_TypeValue.UserDefinedTime_1192 = $1;
+           $$->UserDefinedTime_1146_TypeType = UserDefinedTime_1146_TypeChoicePair::UserDefinedTime_1192E;
+           $$->UserDefinedTime_1146_TypeValue.UserDefinedTime_1192 = $1;
           }
         | y_UserDefinedTime_1193_UserDefinedTime_1193_Type
-          {$$ = new UserDefinedTime_1145_TypeChoicePair();
+          {$$ = new UserDefinedTime_1146_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedTime_1145_TypeType = UserDefinedTime_1145_TypeChoicePair::UserDefinedTime_1193E;
-           $$->UserDefinedTime_1145_TypeValue.UserDefinedTime_1193 = $1;
+           $$->UserDefinedTime_1146_TypeType = UserDefinedTime_1146_TypeChoicePair::UserDefinedTime_1193E;
+           $$->UserDefinedTime_1146_TypeValue.UserDefinedTime_1193 = $1;
+          }
+        | y_UserDefinedTime_1194_UserDefinedTime_1194_Type
+          {$$ = new UserDefinedTime_1146_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->UserDefinedTime_1146_TypeType = UserDefinedTime_1146_TypeChoicePair::UserDefinedTime_1194E;
+           $$->UserDefinedTime_1146_TypeValue.UserDefinedTime_1194 = $1;
           }
         ;
 
-y_UserDefinedTime_1145_UserDefinedTime_1145_Type :
-          y_UserDefinedTime_1145_Type
-          {$$ = $1;}
-        ;
-
-y_UserDefinedTime_1190_Type :
-          y_ValueStats_StatsWithTolTimeType y_MaxValueStats_StatsTimeType_0
-          y_MinValueStats_StatsTimeType_0
-          {$$ = new UserDefinedTime_1190_Type($1, $2, $3);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
-          }
-        ;
-
-y_UserDefinedTime_1190_UserDefinedTime_1190_Type :
-          y_UserDefinedTime_1190_Type
+y_UserDefinedTime_1146_UserDefinedTime_1146_Type :
+          y_UserDefinedTime_1146_Type
           {$$ = $1;}
         ;
 
 y_UserDefinedTime_1191_Type :
-          y_MaxValueStats_StatsTimeType y_MinValueStats_StatsTimeType_0
-          {$$ = new UserDefinedTime_1191_Type($1, $2);
+          y_ValueStats_StatsWithTolTimeType y_MaxValueStats_StatsTimeType_0
+          y_MinValueStats_StatsTimeType_0
+          {$$ = new UserDefinedTime_1191_Type($1, $2, $3);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -96402,14 +96760,11 @@ y_UserDefinedTime_1191_UserDefinedTime_1191_Type :
         ;
 
 y_UserDefinedTime_1192_Type :
-          y_DeviationStats_StatsWithTolTimeType
-          y_MaxDeviationStats_StatsTimeType_0
-          y_MinDeviationStats_StatsTimeType_0
-          {$$ = new UserDefinedTime_1192_Type($1, $2, $3);
+          y_MaxValueStats_StatsTimeType y_MinValueStats_StatsTimeType_0
+          {$$ = new UserDefinedTime_1192_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -96419,17 +96774,34 @@ y_UserDefinedTime_1192_UserDefinedTime_1192_Type :
         ;
 
 y_UserDefinedTime_1193_Type :
+          y_DeviationStats_StatsWithTolTimeType
+          y_MaxDeviationStats_StatsTimeType_0
+          y_MinDeviationStats_StatsTimeType_0
+          {$$ = new UserDefinedTime_1193_Type($1, $2, $3);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
+          }
+        ;
+
+y_UserDefinedTime_1193_UserDefinedTime_1193_Type :
+          y_UserDefinedTime_1193_Type
+          {$$ = $1;}
+        ;
+
+y_UserDefinedTime_1194_Type :
           y_MaxDeviationStats_StatsTimeType
           y_MinDeviationStats_StatsTimeType_0
-          {$$ = new UserDefinedTime_1193_Type($1, $2);
+          {$$ = new UserDefinedTime_1194_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
           }
         ;
 
-y_UserDefinedTime_1193_UserDefinedTime_1193_Type :
-          y_UserDefinedTime_1193_Type
+y_UserDefinedTime_1194_UserDefinedTime_1194_Type :
+          y_UserDefinedTime_1194_Type
           {$$ = $1;}
         ;
 
@@ -96601,7 +96973,7 @@ y_UserDefinedUnitCharacteristicNominalType :
           y_EntityExternalIds_ArrayReferenceFullType_0 y_Name_XmlToken_0
           y_CharacteristicDesignator_CharacteristicDesignatorType_0
           y_TargetValue_UserDefinedUnitValueType
-          y_UserDefinedUnit_1074_UserDefinedUnit_1074_Type
+          y_UserDefinedUnit_1075_UserDefinedUnit_1075_Type
           y_DefinedAsLimit_XmlBoolean
           {$$ = new UserDefinedUnitCharacteristicNominalType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);
            yyUnrefMap[$$] = $$;
@@ -96639,11 +97011,11 @@ y_UserDefinedUnitCharacteristicNominal_UserDefinedUnitCharacteristicNominalType 
 
 y_UserDefinedUnitCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_UserDefinedUnit_1146_UserDefinedUnit_1146_Type
+          y_UserDefinedUnit_1147_UserDefinedUnit_1147_Type
           {$$ = new UserDefinedUnitCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -96719,6 +97091,8 @@ y_UserDefinedUnitValueType :
           {$$ = new UserDefinedUnitValueType($4);
            yyUnrefMap[$$] = $$;
            free($4);
+           if ($$->bad)
+             return yyerror("bad UserDefinedUnitValueType value");
            yyUnrefMap.erase($1);
            if ($$->badAttributes($1))
              {
@@ -96729,133 +97103,118 @@ y_UserDefinedUnitValueType :
           }
         ;
 
-y_UserDefinedUnit_1074_Type :
-          y_UserDefinedUnit_1074_TypeChoicePair
-          {$$ = new UserDefinedUnit_1074_Type($1);
+y_UserDefinedUnit_1075_Type :
+          y_UserDefinedUnit_1075_TypeChoicePair
+          {$$ = new UserDefinedUnit_1075_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_UserDefinedUnit_1074_TypeChoicePair :
+y_UserDefinedUnit_1075_TypeChoicePair :
           y_MinValue_UserDefinedUnitValueType
-          {$$ = new UserDefinedUnit_1074_TypeChoicePair();
+          {$$ = new UserDefinedUnit_1075_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedUnit_1074_TypeType = UserDefinedUnit_1074_TypeChoicePair::MinValueE;
-           $$->UserDefinedUnit_1074_TypeValue.MinValue = $1;
+           $$->UserDefinedUnit_1075_TypeType = UserDefinedUnit_1075_TypeChoicePair::MinValueE;
+           $$->UserDefinedUnit_1075_TypeValue.MinValue = $1;
           }
-        | y_UserDefinedUnit_1089_UserDefinedUnit_1089_Type
-          {$$ = new UserDefinedUnit_1074_TypeChoicePair();
+        | y_UserDefinedUnit_1090_UserDefinedUnit_1090_Type
+          {$$ = new UserDefinedUnit_1075_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedUnit_1074_TypeType = UserDefinedUnit_1074_TypeChoicePair::UserDefinedUnit_1089E;
-           $$->UserDefinedUnit_1074_TypeValue.UserDefinedUnit_1089 = $1;
+           $$->UserDefinedUnit_1075_TypeType = UserDefinedUnit_1075_TypeChoicePair::UserDefinedUnit_1090E;
+           $$->UserDefinedUnit_1075_TypeValue.UserDefinedUnit_1090 = $1;
           }
         ;
 
-y_UserDefinedUnit_1074_UserDefinedUnit_1074_Type :
-          y_UserDefinedUnit_1074_Type
+y_UserDefinedUnit_1075_UserDefinedUnit_1075_Type :
+          y_UserDefinedUnit_1075_Type
           {$$ = $1;}
         ;
 
-y_UserDefinedUnit_1089_Type :
+y_UserDefinedUnit_1090_Type :
           y_MaxValue_UserDefinedUnitValueType
           y_MinValue_UserDefinedUnitValueType_0
-          {$$ = new UserDefinedUnit_1089_Type($1, $2);
+          {$$ = new UserDefinedUnit_1090_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
           }
         ;
 
-y_UserDefinedUnit_1089_UserDefinedUnit_1089_Type :
-          y_UserDefinedUnit_1089_Type
+y_UserDefinedUnit_1090_UserDefinedUnit_1090_Type :
+          y_UserDefinedUnit_1090_Type
           {$$ = $1;}
         ;
 
-y_UserDefinedUnit_1146_Type :
-          y_UserDefinedUnit_1146_TypeChoicePair
-          {$$ = new UserDefinedUnit_1146_Type($1);
+y_UserDefinedUnit_1147_Type :
+          y_UserDefinedUnit_1147_TypeChoicePair
+          {$$ = new UserDefinedUnit_1147_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_UserDefinedUnit_1146_TypeChoicePair :
+y_UserDefinedUnit_1147_TypeChoicePair :
           y_MinDeviationStats_StatsUserDefinedUnitType
-          {$$ = new UserDefinedUnit_1146_TypeChoicePair();
+          {$$ = new UserDefinedUnit_1147_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedUnit_1146_TypeType = UserDefinedUnit_1146_TypeChoicePair::MinDeviationStatsE;
-           $$->UserDefinedUnit_1146_TypeValue.MinDeviationStats = $1;
+           $$->UserDefinedUnit_1147_TypeType = UserDefinedUnit_1147_TypeChoicePair::MinDeviationStatsE;
+           $$->UserDefinedUnit_1147_TypeValue.MinDeviationStats = $1;
           }
         | y_MinValueStats_StatsUserDefinedUnitType
-          {$$ = new UserDefinedUnit_1146_TypeChoicePair();
+          {$$ = new UserDefinedUnit_1147_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedUnit_1146_TypeType = UserDefinedUnit_1146_TypeChoicePair::MinValueStatsE;
-           $$->UserDefinedUnit_1146_TypeValue.MinValueStats = $1;
-          }
-        | y_UserDefinedUnit_1194_UserDefinedUnit_1194_Type
-          {$$ = new UserDefinedUnit_1146_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedUnit_1146_TypeType = UserDefinedUnit_1146_TypeChoicePair::UserDefinedUnit_1194E;
-           $$->UserDefinedUnit_1146_TypeValue.UserDefinedUnit_1194 = $1;
+           $$->UserDefinedUnit_1147_TypeType = UserDefinedUnit_1147_TypeChoicePair::MinValueStatsE;
+           $$->UserDefinedUnit_1147_TypeValue.MinValueStats = $1;
           }
         | y_UserDefinedUnit_1195_UserDefinedUnit_1195_Type
-          {$$ = new UserDefinedUnit_1146_TypeChoicePair();
+          {$$ = new UserDefinedUnit_1147_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedUnit_1146_TypeType = UserDefinedUnit_1146_TypeChoicePair::UserDefinedUnit_1195E;
-           $$->UserDefinedUnit_1146_TypeValue.UserDefinedUnit_1195 = $1;
+           $$->UserDefinedUnit_1147_TypeType = UserDefinedUnit_1147_TypeChoicePair::UserDefinedUnit_1195E;
+           $$->UserDefinedUnit_1147_TypeValue.UserDefinedUnit_1195 = $1;
           }
         | y_UserDefinedUnit_1196_UserDefinedUnit_1196_Type
-          {$$ = new UserDefinedUnit_1146_TypeChoicePair();
+          {$$ = new UserDefinedUnit_1147_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedUnit_1146_TypeType = UserDefinedUnit_1146_TypeChoicePair::UserDefinedUnit_1196E;
-           $$->UserDefinedUnit_1146_TypeValue.UserDefinedUnit_1196 = $1;
+           $$->UserDefinedUnit_1147_TypeType = UserDefinedUnit_1147_TypeChoicePair::UserDefinedUnit_1196E;
+           $$->UserDefinedUnit_1147_TypeValue.UserDefinedUnit_1196 = $1;
           }
         | y_UserDefinedUnit_1197_UserDefinedUnit_1197_Type
-          {$$ = new UserDefinedUnit_1146_TypeChoicePair();
+          {$$ = new UserDefinedUnit_1147_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->UserDefinedUnit_1146_TypeType = UserDefinedUnit_1146_TypeChoicePair::UserDefinedUnit_1197E;
-           $$->UserDefinedUnit_1146_TypeValue.UserDefinedUnit_1197 = $1;
+           $$->UserDefinedUnit_1147_TypeType = UserDefinedUnit_1147_TypeChoicePair::UserDefinedUnit_1197E;
+           $$->UserDefinedUnit_1147_TypeValue.UserDefinedUnit_1197 = $1;
+          }
+        | y_UserDefinedUnit_1198_UserDefinedUnit_1198_Type
+          {$$ = new UserDefinedUnit_1147_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->UserDefinedUnit_1147_TypeType = UserDefinedUnit_1147_TypeChoicePair::UserDefinedUnit_1198E;
+           $$->UserDefinedUnit_1147_TypeValue.UserDefinedUnit_1198 = $1;
           }
         ;
 
-y_UserDefinedUnit_1146_UserDefinedUnit_1146_Type :
-          y_UserDefinedUnit_1146_Type
-          {$$ = $1;}
-        ;
-
-y_UserDefinedUnit_1194_Type :
-          y_ValueStats_StatsWithTolUserDefinedUnitType
-          y_MaxValueStats_StatsUserDefinedUnitType_0
-          y_MinValueStats_StatsUserDefinedUnitType_0
-          {$$ = new UserDefinedUnit_1194_Type($1, $2, $3);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
-          }
-        ;
-
-y_UserDefinedUnit_1194_UserDefinedUnit_1194_Type :
-          y_UserDefinedUnit_1194_Type
+y_UserDefinedUnit_1147_UserDefinedUnit_1147_Type :
+          y_UserDefinedUnit_1147_Type
           {$$ = $1;}
         ;
 
 y_UserDefinedUnit_1195_Type :
-          y_MaxValueStats_StatsUserDefinedUnitType
+          y_ValueStats_StatsWithTolUserDefinedUnitType
+          y_MaxValueStats_StatsUserDefinedUnitType_0
           y_MinValueStats_StatsUserDefinedUnitType_0
-          {$$ = new UserDefinedUnit_1195_Type($1, $2);
+          {$$ = new UserDefinedUnit_1195_Type($1, $2, $3);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -96865,14 +97224,12 @@ y_UserDefinedUnit_1195_UserDefinedUnit_1195_Type :
         ;
 
 y_UserDefinedUnit_1196_Type :
-          y_DeviationStats_StatsWithTolUserDefinedUnitType
-          y_MaxDeviationStats_StatsUserDefinedUnitType_0
-          y_MinDeviationStats_StatsUserDefinedUnitType_0
-          {$$ = new UserDefinedUnit_1196_Type($1, $2, $3);
+          y_MaxValueStats_StatsUserDefinedUnitType
+          y_MinValueStats_StatsUserDefinedUnitType_0
+          {$$ = new UserDefinedUnit_1196_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
           }
         ;
 
@@ -96882,17 +97239,34 @@ y_UserDefinedUnit_1196_UserDefinedUnit_1196_Type :
         ;
 
 y_UserDefinedUnit_1197_Type :
+          y_DeviationStats_StatsWithTolUserDefinedUnitType
+          y_MaxDeviationStats_StatsUserDefinedUnitType_0
+          y_MinDeviationStats_StatsUserDefinedUnitType_0
+          {$$ = new UserDefinedUnit_1197_Type($1, $2, $3);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
+          }
+        ;
+
+y_UserDefinedUnit_1197_UserDefinedUnit_1197_Type :
+          y_UserDefinedUnit_1197_Type
+          {$$ = $1;}
+        ;
+
+y_UserDefinedUnit_1198_Type :
           y_MaxDeviationStats_StatsUserDefinedUnitType
           y_MinDeviationStats_StatsUserDefinedUnitType_0
-          {$$ = new UserDefinedUnit_1197_Type($1, $2);
+          {$$ = new UserDefinedUnit_1198_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
           }
         ;
 
-y_UserDefinedUnit_1197_UserDefinedUnit_1197_Type :
-          y_UserDefinedUnit_1197_Type
+y_UserDefinedUnit_1198_UserDefinedUnit_1198_Type :
+          y_UserDefinedUnit_1198_Type
           {$$ = $1;}
         ;
 
@@ -97140,36 +97514,6 @@ y_ValidationPartAssemblyType :
           }
         ;
 
-y_ValidationPoint_1003_Type :
-          y_ValidationPoint_1003_TypeChoicePair
-          {$$ = new ValidationPoint_1003_Type($1);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_ValidationPoint_1003_TypeChoicePair :
-          y_PointsBinary_ArrayBinaryType
-          {$$ = new ValidationPoint_1003_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->ValidationPoint_1003_TypeType = ValidationPoint_1003_TypeChoicePair::PointsBinaryE;
-           $$->ValidationPoint_1003_TypeValue.PointsBinary = $1;
-          }
-        | y_Points_ArrayPointType
-          {$$ = new ValidationPoint_1003_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->ValidationPoint_1003_TypeType = ValidationPoint_1003_TypeChoicePair::PointsE;
-           $$->ValidationPoint_1003_TypeValue.Points = $1;
-          }
-        ;
-
-y_ValidationPoint_1003_ValidationPoint_1003_Type :
-          y_ValidationPoint_1003_Type
-          {$$ = $1;}
-        ;
-
 y_ValidationPoint_1004_Type :
           y_ValidationPoint_1004_TypeChoicePair
           {$$ = new ValidationPoint_1004_Type($1);
@@ -97179,32 +97523,62 @@ y_ValidationPoint_1004_Type :
         ;
 
 y_ValidationPoint_1004_TypeChoicePair :
-          y_DirectionsBinary_ArrayBinaryType
+          y_PointsBinary_ArrayBinaryType
           {$$ = new ValidationPoint_1004_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ValidationPoint_1004_TypeType = ValidationPoint_1004_TypeChoicePair::DirectionsBinaryE;
-           $$->ValidationPoint_1004_TypeValue.DirectionsBinary = $1;
+           $$->ValidationPoint_1004_TypeType = ValidationPoint_1004_TypeChoicePair::PointsBinaryE;
+           $$->ValidationPoint_1004_TypeValue.PointsBinary = $1;
           }
-        | y_Directions_ArrayUnitVectorType
+        | y_Points_ArrayPointType
           {$$ = new ValidationPoint_1004_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->ValidationPoint_1004_TypeType = ValidationPoint_1004_TypeChoicePair::DirectionsE;
-           $$->ValidationPoint_1004_TypeValue.Directions = $1;
+           $$->ValidationPoint_1004_TypeType = ValidationPoint_1004_TypeChoicePair::PointsE;
+           $$->ValidationPoint_1004_TypeValue.Points = $1;
           }
         ;
 
-y_ValidationPoint_1004_ValidationPoint_1004_Type_0 :
+y_ValidationPoint_1004_ValidationPoint_1004_Type :
+          y_ValidationPoint_1004_Type
+          {$$ = $1;}
+        ;
+
+y_ValidationPoint_1005_Type :
+          y_ValidationPoint_1005_TypeChoicePair
+          {$$ = new ValidationPoint_1005_Type($1);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+          }
+        ;
+
+y_ValidationPoint_1005_TypeChoicePair :
+          y_DirectionsBinary_ArrayBinaryType
+          {$$ = new ValidationPoint_1005_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->ValidationPoint_1005_TypeType = ValidationPoint_1005_TypeChoicePair::DirectionsBinaryE;
+           $$->ValidationPoint_1005_TypeValue.DirectionsBinary = $1;
+          }
+        | y_Directions_ArrayUnitVectorType
+          {$$ = new ValidationPoint_1005_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->ValidationPoint_1005_TypeType = ValidationPoint_1005_TypeChoicePair::DirectionsE;
+           $$->ValidationPoint_1005_TypeValue.Directions = $1;
+          }
+        ;
+
+y_ValidationPoint_1005_ValidationPoint_1005_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_ValidationPoint_1004_Type
+        | y_ValidationPoint_1005_Type
           {$$ = $1;}
         ;
 
 y_ValidationPointsType :
-          ENDITEM y_ValidationPoint_1003_ValidationPoint_1003_Type
-          y_ValidationPoint_1004_ValidationPoint_1004_Type_0
+          ENDITEM y_ValidationPoint_1004_ValidationPoint_1004_Type
+          y_ValidationPoint_1005_ValidationPoint_1005_Type_0
           {$$ = new ValidationPointsType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -97336,7 +97710,14 @@ y_ValueStats_StatsWithTolUserDefinedUnitType :
         ;
 
 y_Value_D4Type :
-          ValueSTART y_D4Type ValueEND
+          ValueSTART ENDWHOLEITEM
+          {$$ = new D4Type();
+           $$->D4TypeCheck();
+           if ($$->bad)
+             return yyerror("bad D4Type value");
+           yyUnrefMap[$$] = $$;
+          }
+        | ValueSTART y_D4Type ValueEND
           {$$ = $2;
            $2->D4TypeCheck();
            if ($2->bad)
@@ -97830,7 +98211,14 @@ y_ViewIds_ArrayReferenceType_0 :
         ;
 
 y_ViewPlaneOrigin_PointSimpleType :
-          ViewPlaneOriginSTART y_PointSimpleType ViewPlaneOriginEND
+          ViewPlaneOriginSTART ENDWHOLEITEM
+          {$$ = new PointSimpleType();
+           $$->PointSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad PointSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | ViewPlaneOriginSTART y_PointSimpleType ViewPlaneOriginEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
            if ($2->bad)
@@ -98072,7 +98460,7 @@ y_WeldBevelCharacteristicMeasurementType :
           y_ManufacturingProcessId_QIFReferenceType_0
           y_NotedEventIds_ArrayReferenceType_0
           y_NonConformanceDesignator_XmlToken_0
-          y_WeldGrooveChara_1078_WeldGrooveChara_1078_Type_0
+          y_WeldGrooveChara_1079_WeldGrooveChara_1079_Type_0
           {$$ = new WeldBevelCharacteristicMeasurementType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -98120,7 +98508,7 @@ y_WeldBevelCharacteristicNominalType :
           y_AllAround_XmlBoolean_0 y_Field_XmlBoolean_0
           y_Specification_XmlToken_0 y_WeldingProcess_WeldingProcessType_0
           y_NonDestructiveTesting_ArrayNonDestructiveTestingType_0
-          y_WeldGrooveChara_1079_WeldGrooveChara_1079_Type_0
+          y_WeldGrooveChara_1080_WeldGrooveChara_1080_Type_0
           {$$ = new WeldBevelCharacteristicNominalType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -98160,8 +98548,8 @@ y_WeldBevelCharacteristicNominal_WeldBevelCharacteristicNominalType :
 
 y_WeldBevelCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_WeldStats_StatsPassFailType_0
@@ -98400,8 +98788,8 @@ y_WeldCompoundCharacteristicNominal_WeldCompoundCharacteristicNominalType :
 
 y_WeldCompoundCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_WeldStats_StatsPassFailType_0
@@ -98648,8 +99036,8 @@ y_WeldEdgeCharacteristicNominal_WeldEdgeCharacteristicNominalType :
 
 y_WeldEdgeCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_WeldStats_StatsPassFailType_0
@@ -98686,38 +99074,6 @@ y_WeldFilletBothSidesType :
           }
         ;
 
-y_WeldFilletChara_1075_Type :
-          y_WeldFilletChara_1075_TypeChoicePair
-          {$$ = new WeldFilletChara_1075_Type($1);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_WeldFilletChara_1075_TypeChoicePair :
-          y_BothSides_WeldFilletBothSidesType
-          {$$ = new WeldFilletChara_1075_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->WeldFilletChara_1075_TypeType = WeldFilletChara_1075_TypeChoicePair::BothSidesE;
-           $$->WeldFilletChara_1075_TypeValue.BothSides = $1;
-          }
-        | y_OneSide_WeldFilletOneSideType
-          {$$ = new WeldFilletChara_1075_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->WeldFilletChara_1075_TypeType = WeldFilletChara_1075_TypeChoicePair::OneSideE;
-           $$->WeldFilletChara_1075_TypeValue.OneSide = $1;
-          }
-        ;
-
-y_WeldFilletChara_1075_WeldFilletChara_1075_Type_0 :
-          /* empty */
-          {$$ = 0;}
-        | y_WeldFilletChara_1075_Type
-          {$$ = $1;}
-        ;
-
 y_WeldFilletChara_1076_Type :
           y_WeldFilletChara_1076_TypeChoicePair
           {$$ = new WeldFilletChara_1076_Type($1);
@@ -98747,6 +99103,38 @@ y_WeldFilletChara_1076_WeldFilletChara_1076_Type_0 :
           /* empty */
           {$$ = 0;}
         | y_WeldFilletChara_1076_Type
+          {$$ = $1;}
+        ;
+
+y_WeldFilletChara_1077_Type :
+          y_WeldFilletChara_1077_TypeChoicePair
+          {$$ = new WeldFilletChara_1077_Type($1);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+          }
+        ;
+
+y_WeldFilletChara_1077_TypeChoicePair :
+          y_BothSides_WeldFilletBothSidesType
+          {$$ = new WeldFilletChara_1077_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->WeldFilletChara_1077_TypeType = WeldFilletChara_1077_TypeChoicePair::BothSidesE;
+           $$->WeldFilletChara_1077_TypeValue.BothSides = $1;
+          }
+        | y_OneSide_WeldFilletOneSideType
+          {$$ = new WeldFilletChara_1077_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->WeldFilletChara_1077_TypeType = WeldFilletChara_1077_TypeChoicePair::OneSideE;
+           $$->WeldFilletChara_1077_TypeValue.OneSide = $1;
+          }
+        ;
+
+y_WeldFilletChara_1077_WeldFilletChara_1077_Type_0 :
+          /* empty */
+          {$$ = 0;}
+        | y_WeldFilletChara_1077_Type
           {$$ = $1;}
         ;
 
@@ -98862,7 +99250,7 @@ y_WeldFilletCharacteristicMeasurementType :
           y_NotedEventIds_ArrayReferenceType_0
           y_NonConformanceDesignator_XmlToken_0
           y_LocationSignificance_LocationSignificanceAllEnumType
-          y_WeldFilletChara_1075_WeldFilletChara_1075_Type_0
+          y_WeldFilletChara_1076_WeldFilletChara_1076_Type_0
           {$$ = new WeldFilletCharacteristicMeasurementType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -98912,7 +99300,7 @@ y_WeldFilletCharacteristicNominalType :
           y_Specification_XmlToken_0 y_WeldingProcess_WeldingProcessType_0
           y_NonDestructiveTesting_ArrayNonDestructiveTestingType_0
           y_LocationSignificance_LocationSignificanceAllEnumType
-          y_WeldFilletChara_1076_WeldFilletChara_1076_Type_0
+          y_WeldFilletChara_1077_WeldFilletChara_1077_Type_0
           {$$ = new WeldFilletCharacteristicNominalType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -98953,8 +99341,8 @@ y_WeldFilletCharacteristicNominal_WeldFilletCharacteristicNominalType :
 
 y_WeldFilletCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_WeldStats_StatsPassFailType_0
@@ -98990,35 +99378,35 @@ y_WeldFilletEqualLegLengthType :
           }
         ;
 
-y_WeldFilletOneSi_1077_Type :
-          y_WeldFilletOneSi_1077_TypeChoicePair
-          {$$ = new WeldFilletOneSi_1077_Type($1);
+y_WeldFilletOneSi_1078_Type :
+          y_WeldFilletOneSi_1078_TypeChoicePair
+          {$$ = new WeldFilletOneSi_1078_Type($1);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
           }
         ;
 
-y_WeldFilletOneSi_1077_TypeChoicePair :
+y_WeldFilletOneSi_1078_TypeChoicePair :
           y_EqualLegLength_WeldFilletEqualLegLengthType
-          {$$ = new WeldFilletOneSi_1077_TypeChoicePair();
+          {$$ = new WeldFilletOneSi_1078_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->WeldFilletOneSi_1077_TypeType = WeldFilletOneSi_1077_TypeChoicePair::EqualLegLengthE;
-           $$->WeldFilletOneSi_1077_TypeValue.EqualLegLength = $1;
+           $$->WeldFilletOneSi_1078_TypeType = WeldFilletOneSi_1078_TypeChoicePair::EqualLegLengthE;
+           $$->WeldFilletOneSi_1078_TypeValue.EqualLegLength = $1;
           }
         | y_UnEqualLegLength_WeldFilletUnequalLegLengthType
-          {$$ = new WeldFilletOneSi_1077_TypeChoicePair();
+          {$$ = new WeldFilletOneSi_1078_TypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
-           $$->WeldFilletOneSi_1077_TypeType = WeldFilletOneSi_1077_TypeChoicePair::UnEqualLegLengthE;
-           $$->WeldFilletOneSi_1077_TypeValue.UnEqualLegLength = $1;
+           $$->WeldFilletOneSi_1078_TypeType = WeldFilletOneSi_1078_TypeChoicePair::UnEqualLegLengthE;
+           $$->WeldFilletOneSi_1078_TypeValue.UnEqualLegLength = $1;
           }
         ;
 
-y_WeldFilletOneSi_1077_WeldFilletOneSi_1077_Type_0 :
+y_WeldFilletOneSi_1078_WeldFilletOneSi_1078_Type_0 :
           /* empty */
           {$$ = 0;}
-        | y_WeldFilletOneSi_1077_Type
+        | y_WeldFilletOneSi_1078_Type
           {$$ = $1;}
         ;
 
@@ -99036,7 +99424,7 @@ y_WeldFilletOneSideInBothSidesType :
 
 y_WeldFilletOneSideType :
           ENDITEM y_Finishing_WeldFinishingType_0
-          y_WeldFilletOneSi_1077_WeldFilletOneSi_1077_Type_0
+          y_WeldFilletOneSi_1078_WeldFilletOneSi_1078_Type_0
           {$$ = new WeldFilletOneSideType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -99185,7 +99573,7 @@ y_WeldFlareBevelCharacteristicMeasurementType :
           y_ManufacturingProcessId_QIFReferenceType_0
           y_NotedEventIds_ArrayReferenceType_0
           y_NonConformanceDesignator_XmlToken_0
-          y_WeldGrooveChara_1078_WeldGrooveChara_1078_Type_0
+          y_WeldGrooveChara_1079_WeldGrooveChara_1079_Type_0
           {$$ = new WeldFlareBevelCharacteristicMeasurementType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -99233,7 +99621,7 @@ y_WeldFlareBevelCharacteristicNominalType :
           y_AllAround_XmlBoolean_0 y_Field_XmlBoolean_0
           y_Specification_XmlToken_0 y_WeldingProcess_WeldingProcessType_0
           y_NonDestructiveTesting_ArrayNonDestructiveTestingType_0
-          y_WeldGrooveChara_1079_WeldGrooveChara_1079_Type_0
+          y_WeldGrooveChara_1080_WeldGrooveChara_1080_Type_0
           {$$ = new WeldFlareBevelCharacteristicNominalType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -99273,8 +99661,8 @@ y_WeldFlareBevelCharacteristicNominal_WeldFlareBevelCharacteristicNominalType :
 
 y_WeldFlareBevelCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_WeldStats_StatsPassFailType_0
@@ -99410,7 +99798,7 @@ y_WeldFlareVCharacteristicMeasurementType :
           y_ManufacturingProcessId_QIFReferenceType_0
           y_NotedEventIds_ArrayReferenceType_0
           y_NonConformanceDesignator_XmlToken_0
-          y_WeldGrooveChara_1078_WeldGrooveChara_1078_Type_0
+          y_WeldGrooveChara_1079_WeldGrooveChara_1079_Type_0
           {$$ = new WeldFlareVCharacteristicMeasurementType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -99458,7 +99846,7 @@ y_WeldFlareVCharacteristicNominalType :
           y_AllAround_XmlBoolean_0 y_Field_XmlBoolean_0
           y_Specification_XmlToken_0 y_WeldingProcess_WeldingProcessType_0
           y_NonDestructiveTesting_ArrayNonDestructiveTestingType_0
-          y_WeldGrooveChara_1079_WeldGrooveChara_1079_Type_0
+          y_WeldGrooveChara_1080_WeldGrooveChara_1080_Type_0
           {$$ = new WeldFlareVCharacteristicNominalType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -99498,8 +99886,8 @@ y_WeldFlareVCharacteristicNominal_WeldFlareVCharacteristicNominalType :
 
 y_WeldFlareVCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_WeldStats_StatsPassFailType_0
@@ -99536,38 +99924,6 @@ y_WeldGrooveBothSidesExtendedType :
           }
         ;
 
-y_WeldGrooveChara_1078_Type :
-          y_WeldGrooveChara_1078_TypeChoicePair
-          {$$ = new WeldGrooveChara_1078_Type($1);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-          }
-        ;
-
-y_WeldGrooveChara_1078_TypeChoicePair :
-          y_BothSides_WeldGrooveBothSidesExtendedType
-          {$$ = new WeldGrooveChara_1078_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->WeldGrooveChara_1078_TypeType = WeldGrooveChara_1078_TypeChoicePair::BothSidesE;
-           $$->WeldGrooveChara_1078_TypeValue.BothSides = $1;
-          }
-        | y_OneSide_WeldGrooveOneSideType
-          {$$ = new WeldGrooveChara_1078_TypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->WeldGrooveChara_1078_TypeType = WeldGrooveChara_1078_TypeChoicePair::OneSideE;
-           $$->WeldGrooveChara_1078_TypeValue.OneSide = $1;
-          }
-        ;
-
-y_WeldGrooveChara_1078_WeldGrooveChara_1078_Type_0 :
-          /* empty */
-          {$$ = 0;}
-        | y_WeldGrooveChara_1078_Type
-          {$$ = $1;}
-        ;
-
 y_WeldGrooveChara_1079_Type :
           y_WeldGrooveChara_1079_TypeChoicePair
           {$$ = new WeldGrooveChara_1079_Type($1);
@@ -99600,18 +99956,50 @@ y_WeldGrooveChara_1079_WeldGrooveChara_1079_Type_0 :
           {$$ = $1;}
         ;
 
-y_WeldGrooveOneSi_1080_Type :
+y_WeldGrooveChara_1080_Type :
+          y_WeldGrooveChara_1080_TypeChoicePair
+          {$$ = new WeldGrooveChara_1080_Type($1);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+          }
+        ;
+
+y_WeldGrooveChara_1080_TypeChoicePair :
+          y_BothSides_WeldGrooveBothSidesExtendedType
+          {$$ = new WeldGrooveChara_1080_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->WeldGrooveChara_1080_TypeType = WeldGrooveChara_1080_TypeChoicePair::BothSidesE;
+           $$->WeldGrooveChara_1080_TypeValue.BothSides = $1;
+          }
+        | y_OneSide_WeldGrooveOneSideType
+          {$$ = new WeldGrooveChara_1080_TypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->WeldGrooveChara_1080_TypeType = WeldGrooveChara_1080_TypeChoicePair::OneSideE;
+           $$->WeldGrooveChara_1080_TypeValue.OneSide = $1;
+          }
+        ;
+
+y_WeldGrooveChara_1080_WeldGrooveChara_1080_Type_0 :
+          /* empty */
+          {$$ = 0;}
+        | y_WeldGrooveChara_1080_Type
+          {$$ = $1;}
+        ;
+
+y_WeldGrooveOneSi_1081_Type :
           y_SideParameters_WeldGrooveOneSideParametersType_0
           y_SupplementarySymbol_WeldSupplementarySymbolEnumType_0
-          {$$ = new WeldGrooveOneSi_1080_Type($1, $2);
+          {$$ = new WeldGrooveOneSi_1081_Type($1, $2);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            if ($2) yyUnrefMap.erase($2);
           }
         ;
 
-y_WeldGrooveOneSi_1080_WeldGrooveOneSi_1080_Type :
-          y_WeldGrooveOneSi_1080_Type
+y_WeldGrooveOneSi_1081_WeldGrooveOneSi_1081_Type :
+          y_WeldGrooveOneSi_1081_Type
           {$$ = $1;}
         ;
 
@@ -99635,7 +100023,7 @@ y_WeldGrooveOneSideParametersType :
 y_WeldGrooveOneSideType :
           ENDITEM
           y_LocationSignificance_LocationSignificanceOneSidesEnumType
-          y_WeldGrooveOneSi_1080_WeldGrooveOneSi_1080_Type
+          y_WeldGrooveOneSi_1081_WeldGrooveOneSi_1081_Type
           {$$ = new WeldGrooveOneSideType($2, $3);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -99753,7 +100141,7 @@ y_WeldJCharacteristicMeasurementType :
           y_ManufacturingProcessId_QIFReferenceType_0
           y_NotedEventIds_ArrayReferenceType_0
           y_NonConformanceDesignator_XmlToken_0
-          y_WeldGrooveChara_1078_WeldGrooveChara_1078_Type_0
+          y_WeldGrooveChara_1079_WeldGrooveChara_1079_Type_0
           {$$ = new WeldJCharacteristicMeasurementType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -99801,7 +100189,7 @@ y_WeldJCharacteristicNominalType :
           y_AllAround_XmlBoolean_0 y_Field_XmlBoolean_0
           y_Specification_XmlToken_0 y_WeldingProcess_WeldingProcessType_0
           y_NonDestructiveTesting_ArrayNonDestructiveTestingType_0
-          y_WeldGrooveChara_1079_WeldGrooveChara_1079_Type_0
+          y_WeldGrooveChara_1080_WeldGrooveChara_1080_Type_0
           {$$ = new WeldJCharacteristicNominalType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -99840,8 +100228,8 @@ y_WeldJCharacteristicNominal_WeldJCharacteristicNominalType :
 
 y_WeldJCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_WeldStats_StatsPassFailType_0
@@ -100118,8 +100506,8 @@ y_WeldPlugCharacteristicNominal_WeldPlugCharacteristicNominalType :
 
 y_WeldPlugCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_WeldStats_StatsPassFailType_0
@@ -100271,7 +100659,7 @@ y_WeldScarfCharacteristicMeasurementType :
           y_ManufacturingProcessId_QIFReferenceType_0
           y_NotedEventIds_ArrayReferenceType_0
           y_NonConformanceDesignator_XmlToken_0
-          y_WeldGrooveChara_1078_WeldGrooveChara_1078_Type_0
+          y_WeldGrooveChara_1079_WeldGrooveChara_1079_Type_0
           {$$ = new WeldScarfCharacteristicMeasurementType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -100319,7 +100707,7 @@ y_WeldScarfCharacteristicNominalType :
           y_AllAround_XmlBoolean_0 y_Field_XmlBoolean_0
           y_Specification_XmlToken_0 y_WeldingProcess_WeldingProcessType_0
           y_NonDestructiveTesting_ArrayNonDestructiveTestingType_0
-          y_WeldGrooveChara_1079_WeldGrooveChara_1079_Type_0
+          y_WeldGrooveChara_1080_WeldGrooveChara_1080_Type_0
           {$$ = new WeldScarfCharacteristicNominalType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -100359,8 +100747,8 @@ y_WeldScarfCharacteristicNominal_WeldScarfCharacteristicNominalType :
 
 y_WeldScarfCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_WeldStats_StatsPassFailType_0
@@ -100587,8 +100975,8 @@ y_WeldSeamCharacteristicNominal_WeldSeamCharacteristicNominalType :
 
 y_WeldSeamCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_WeldStats_StatsPassFailType_0
@@ -100815,8 +101203,8 @@ y_WeldSlotCharacteristicNominal_WeldSlotCharacteristicNominalType :
 
 y_WeldSlotCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_WeldStats_StatsPassFailType_0
@@ -101047,8 +101435,8 @@ y_WeldSpotCharacteristicNominal_WeldSpotCharacteristicNominalType :
 
 y_WeldSpotCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_WeldStats_StatsPassFailType_0
@@ -101196,7 +101584,7 @@ y_WeldSquareCharacteristicMeasurementType :
           y_ManufacturingProcessId_QIFReferenceType_0
           y_NotedEventIds_ArrayReferenceType_0
           y_NonConformanceDesignator_XmlToken_0
-          y_WeldGrooveChara_1078_WeldGrooveChara_1078_Type_0
+          y_WeldGrooveChara_1079_WeldGrooveChara_1079_Type_0
           {$$ = new WeldSquareCharacteristicMeasurementType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -101244,7 +101632,7 @@ y_WeldSquareCharacteristicNominalType :
           y_AllAround_XmlBoolean_0 y_Field_XmlBoolean_0
           y_Specification_XmlToken_0 y_WeldingProcess_WeldingProcessType_0
           y_NonDestructiveTesting_ArrayNonDestructiveTestingType_0
-          y_WeldGrooveChara_1079_WeldGrooveChara_1079_Type_0
+          y_WeldGrooveChara_1080_WeldGrooveChara_1080_Type_0
           {$$ = new WeldSquareCharacteristicNominalType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -101284,8 +101672,8 @@ y_WeldSquareCharacteristicNominal_WeldSquareCharacteristicNominalType :
 
 y_WeldSquareCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_WeldStats_StatsPassFailType_0
@@ -101517,8 +101905,8 @@ y_WeldStudCharacteristicNominal_WeldStudCharacteristicNominalType :
 
 y_WeldStudCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_WeldStats_StatsPassFailType_0
@@ -101762,8 +102150,8 @@ y_WeldSurfacingCharacteristicNominal_WeldSurfacingCharacteristicNominalType :
 
 y_WeldSurfacingCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_WeldStats_StatsPassFailType_0
@@ -101906,7 +102294,7 @@ y_WeldUCharacteristicMeasurementType :
           y_ManufacturingProcessId_QIFReferenceType_0
           y_NotedEventIds_ArrayReferenceType_0
           y_NonConformanceDesignator_XmlToken_0
-          y_WeldGrooveChara_1078_WeldGrooveChara_1078_Type_0
+          y_WeldGrooveChara_1079_WeldGrooveChara_1079_Type_0
           {$$ = new WeldUCharacteristicMeasurementType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -101954,7 +102342,7 @@ y_WeldUCharacteristicNominalType :
           y_AllAround_XmlBoolean_0 y_Field_XmlBoolean_0
           y_Specification_XmlToken_0 y_WeldingProcess_WeldingProcessType_0
           y_NonDestructiveTesting_ArrayNonDestructiveTestingType_0
-          y_WeldGrooveChara_1079_WeldGrooveChara_1079_Type_0
+          y_WeldGrooveChara_1080_WeldGrooveChara_1080_Type_0
           {$$ = new WeldUCharacteristicNominalType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -101993,8 +102381,8 @@ y_WeldUCharacteristicNominal_WeldUCharacteristicNominalType :
 
 y_WeldUCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_WeldStats_StatsPassFailType_0
@@ -102128,7 +102516,7 @@ y_WeldVCharacteristicMeasurementType :
           y_ManufacturingProcessId_QIFReferenceType_0
           y_NotedEventIds_ArrayReferenceType_0
           y_NonConformanceDesignator_XmlToken_0
-          y_WeldGrooveChara_1078_WeldGrooveChara_1078_Type_0
+          y_WeldGrooveChara_1079_WeldGrooveChara_1079_Type_0
           {$$ = new WeldVCharacteristicMeasurementType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -102176,7 +102564,7 @@ y_WeldVCharacteristicNominalType :
           y_AllAround_XmlBoolean_0 y_Field_XmlBoolean_0
           y_Specification_XmlToken_0 y_WeldingProcess_WeldingProcessType_0
           y_NonDestructiveTesting_ArrayNonDestructiveTestingType_0
-          y_WeldGrooveChara_1079_WeldGrooveChara_1079_Type_0
+          y_WeldGrooveChara_1080_WeldGrooveChara_1080_Type_0
           {$$ = new WeldVCharacteristicNominalType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -102215,8 +102603,8 @@ y_WeldVCharacteristicNominal_WeldVCharacteristicNominalType :
 
 y_WeldVCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
           y_WeldStats_StatsPassFailType_0
@@ -102331,7 +102719,7 @@ y_WidthCharacteristicDefinitionType :
           y_SeparateZone_XmlBoolean_0
           y_DimensionType_DimensionModifierEnumType_0
           y_DimensionModifiers_DimensionModifiersType_0
-          y_LinearCharacter_1058_LinearCharacter_1058_Type
+          y_LinearCharacter_1059_LinearCharacter_1059_Type
           {$$ = new WidthCharacteristicDefinitionType($3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);
            yyUnrefMap[$$] = $$;
            if ($3) yyUnrefMap.erase($3);
@@ -102507,11 +102895,11 @@ y_WidthCharacteristicNominal_WidthCharacteristicNominalType :
 
 y_WidthCharacteristicStatsEvalType :
           ENDITEM y_Attributes_AttributesType_0
-          y_CharacteristicS_1128_CharacteristicS_1128_Type_0
           y_CharacteristicS_1129_CharacteristicS_1129_Type_0
+          y_CharacteristicS_1130_CharacteristicS_1130_Type_0
           y_Status_StatsEvalStatusType y_StudyIssues_StudyIssuesType_0
           y_DistributionTransformation_DistributionTransformationType_0
-          y_LinearCharacter_1134_LinearCharacter_1134_Type
+          y_LinearCharacter_1135_LinearCharacter_1135_Type
           {$$ = new WidthCharacteristicStatsEvalType($2, $3, $4, $5, $6, $7, $8);
            yyUnrefMap[$$] = $$;
            if ($2) yyUnrefMap.erase($2);
@@ -102575,27 +102963,9 @@ y_Width_XmlDouble :
           {$$ = $4;}
         ;
 
-y_WitnessLinesTyp_1235_Type :
+y_WitnessLinesTyp_1236_Type :
           y_Segment1_LineSegment2dType y_ZextensionPoint1_PointSimpleType_0
           y_Segment2_LineSegment2dType y_ZextensionPoint2_PointSimpleType_0
-          {$$ = new WitnessLinesTyp_1235_Type($1, $2, $3, $4);
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           if ($2) yyUnrefMap.erase($2);
-           if ($3) yyUnrefMap.erase($3);
-           if ($4) yyUnrefMap.erase($4);
-          }
-        ;
-
-y_WitnessLinesTyp_1235_WitnessLinesTyp_1235_Type :
-          y_WitnessLinesTyp_1235_Type
-          {$$ = $1;}
-        ;
-
-y_WitnessLinesTyp_1236_Type :
-          y_BeginPoint_Point2dSimpleType y_EndPoint_Point2dSimpleType
-          y_CircleCenter_Point2dSimpleType
-          y_CircleRadius_DoublePositiveType
           {$$ = new WitnessLinesTyp_1236_Type($1, $2, $3, $4);
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
@@ -102607,6 +102977,24 @@ y_WitnessLinesTyp_1236_Type :
 
 y_WitnessLinesTyp_1236_WitnessLinesTyp_1236_Type :
           y_WitnessLinesTyp_1236_Type
+          {$$ = $1;}
+        ;
+
+y_WitnessLinesTyp_1237_Type :
+          y_BeginPoint_Point2dSimpleType y_EndPoint_Point2dSimpleType
+          y_CircleCenter_Point2dSimpleType
+          y_CircleRadius_DoublePositiveType
+          {$$ = new WitnessLinesTyp_1237_Type($1, $2, $3, $4);
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           if ($2) yyUnrefMap.erase($2);
+           if ($3) yyUnrefMap.erase($3);
+           if ($4) yyUnrefMap.erase($4);
+          }
+        ;
+
+y_WitnessLinesTyp_1237_WitnessLinesTyp_1237_Type :
+          y_WitnessLinesTyp_1237_Type
           {$$ = $1;}
         ;
 
@@ -102626,19 +103014,19 @@ y_WitnessLinesType :
         ;
 
 y_WitnessLinesTypeChoicePair :
-          y_WitnessLinesTyp_1235_WitnessLinesTyp_1235_Type
-          {$$ = new WitnessLinesTypeChoicePair();
-           yyUnrefMap[$$] = $$;
-           if ($1) yyUnrefMap.erase($1);
-           $$->WitnessLinesTypeType = WitnessLinesTypeChoicePair::WitnessLinesTyp_1235E;
-           $$->WitnessLinesTypeValue.WitnessLinesTyp_1235 = $1;
-          }
-        | y_WitnessLinesTyp_1236_WitnessLinesTyp_1236_Type
+          y_WitnessLinesTyp_1236_WitnessLinesTyp_1236_Type
           {$$ = new WitnessLinesTypeChoicePair();
            yyUnrefMap[$$] = $$;
            if ($1) yyUnrefMap.erase($1);
            $$->WitnessLinesTypeType = WitnessLinesTypeChoicePair::WitnessLinesTyp_1236E;
            $$->WitnessLinesTypeValue.WitnessLinesTyp_1236 = $1;
+          }
+        | y_WitnessLinesTyp_1237_WitnessLinesTyp_1237_Type
+          {$$ = new WitnessLinesTypeChoicePair();
+           yyUnrefMap[$$] = $$;
+           if ($1) yyUnrefMap.erase($1);
+           $$->WitnessLinesTypeType = WitnessLinesTypeChoicePair::WitnessLinesTyp_1237E;
+           $$->WitnessLinesTypeValue.WitnessLinesTyp_1237 = $1;
           }
         ;
 
@@ -102833,7 +103221,14 @@ y_XAxisYaw_AngleFunctionDiscreteType :
         ;
 
 y_XDirection_UnitVectorSimpleType :
-          XDirectionSTART y_UnitVectorSimpleType XDirectionEND
+          XDirectionSTART ENDWHOLEITEM
+          {$$ = new UnitVectorSimpleType();
+           $$->UnitVectorSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad UnitVectorSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | XDirectionSTART y_UnitVectorSimpleType XDirectionEND
           {$$ = $2;
            $2->UnitVectorSimpleTypeCheck();
            if ($2->bad)
@@ -102931,7 +103326,14 @@ y_XYZResolution_XYZResolutionType_0 :
         ;
 
 y_XYZ_PointSimpleType :
-          XYZSTART y_PointSimpleType XYZEND
+          XYZSTART ENDWHOLEITEM
+          {$$ = new PointSimpleType();
+           $$->PointSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad PointSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | XYZSTART y_PointSimpleType XYZEND
           {$$ = $2;
            $2->PointSimpleTypeCheck();
            if ($2->bad)
@@ -102945,7 +103347,14 @@ y_XYZ_PointType :
         ;
 
 y_XY_Point2dSimpleType :
-          XYSTART y_Point2dSimpleType XYEND
+          XYSTART ENDWHOLEITEM
+          {$$ = new Point2dSimpleType();
+           $$->Point2dSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad Point2dSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | XYSTART y_Point2dSimpleType XYEND
           {$$ = $2;
            $2->Point2dSimpleTypeCheck();
            if ($2->bad)
@@ -103034,7 +103443,14 @@ y_YAxisYaw_AngleFunctionDiscreteType :
         ;
 
 y_YDirection_UnitVectorSimpleType :
-          YDirectionSTART y_UnitVectorSimpleType YDirectionEND
+          YDirectionSTART ENDWHOLEITEM
+          {$$ = new UnitVectorSimpleType();
+           $$->UnitVectorSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad UnitVectorSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | YDirectionSTART y_UnitVectorSimpleType YDirectionEND
           {$$ = $2;
            $2->UnitVectorSimpleTypeCheck();
            if ($2->bad)
@@ -103175,7 +103591,14 @@ y_ZAxisYaw_AngleFunctionDiscreteType :
         ;
 
 y_ZDirection_UnitVectorSimpleType :
-          ZDirectionSTART y_UnitVectorSimpleType ZDirectionEND
+          ZDirectionSTART ENDWHOLEITEM
+          {$$ = new UnitVectorSimpleType();
+           $$->UnitVectorSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad UnitVectorSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
+        | ZDirectionSTART y_UnitVectorSimpleType ZDirectionEND
           {$$ = $2;
            $2->UnitVectorSimpleTypeCheck();
            if ($2->bad)
@@ -103247,6 +103670,13 @@ y_ZeroIndexDirection_UnitVectorType :
 y_ZextensionPoint1_PointSimpleType_0 :
           /* empty */
           {$$ = 0;}
+        | ZextensionPoint1START ENDWHOLEITEM
+          {$$ = new PointSimpleType();
+           $$->PointSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad PointSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
         | ZextensionPoint1START y_PointSimpleType ZextensionPoint1END
           {$$ = $2;
            $2->PointSimpleTypeCheck();
@@ -103258,6 +103688,13 @@ y_ZextensionPoint1_PointSimpleType_0 :
 y_ZextensionPoint2_PointSimpleType_0 :
           /* empty */
           {$$ = 0;}
+        | ZextensionPoint2START ENDWHOLEITEM
+          {$$ = new PointSimpleType();
+           $$->PointSimpleTypeCheck();
+           if ($$->bad)
+             return yyerror("bad PointSimpleType value");
+           yyUnrefMap[$$] = $$;
+          }
         | ZextensionPoint2START y_PointSimpleType ZextensionPoint2END
           {$$ = $2;
            $2->PointSimpleTypeCheck();
@@ -103497,7 +103934,195 @@ y_ZoneShape_StraightnessZoneShapeType :
 
 %%
 
-/*********************************************************************/
+/* ***************************************************************** */
+
+/* yyIsName
+
+Returned Value: bool
+ (true if the text can be the name of an element or attribute, false if not)
+
+This checks whether the text can be the name of an element or
+attribute. A name might have one colon in the middle (to separate a
+prefix).
+
+*/
+
+bool yyIsName(char * text)
+{
+  int k; //index for text
+  bool foundColon = false;
+  
+  if (!(isalpha(text[0]) || (text[0] == '_')))
+    return false;
+  for (k = 1; text[k]; k++)
+    {
+      if (text[k] == ':')
+        {
+          if (foundColon || (text[k+1] == 0))
+            return false;
+          foundColon = true;
+        }
+      else if (!(isalnum(text[k]) || (text[k] == '_') ||
+                 (text[k] == '-') || (text[k] == '.')))
+        return false;
+    }
+  return true;
+}
+
+/* ***************************************************************** */
+
+/* yyAttributesBad
+
+Returned Value: int
+  This returns 0 if the next character is / or >
+  Otherwise, this returns what a call to itself returns if the next part
+  of the yyXMLbuffer is a valid attribute setting, or a call to yyerror
+  if not (which always returns 1).
+
+  A valid attribute setting has a valid attribute name followed by an
+  equal sign followed by a string in quotes. There may be white space in
+  several places, which is skipped.
+
+*/
+
+int yyAttributesBad(int * index1)
+{
+  int k;
+  char saveChar;   // place to save character before changing to 0
+
+  for (k = *index1; isspace(yyXMLbuffer[k]); k++); // skip white space
+  if ((yyXMLbuffer[k] == '/') || (yyXMLbuffer[k] == '>'))
+    {
+      *index1 = k;
+      return 0;
+    }
+  // at start of attribute name; find end of name
+  *index1 = k;
+  for (k++; ((yyXMLbuffer[k] != '>') &&
+             (yyXMLbuffer[k] != '=') &&
+             (!isspace(yyXMLbuffer[k]))); k++);
+  saveChar = yyXMLbuffer[k];
+  yyXMLbuffer[k] = 0;
+  // found end of name; check name
+  if (!yyIsName(yyXMLbuffer + *index1))
+    {
+      yyXMLbuffer[k] = saveChar;
+      return yyerror("foreign XML has invalid attribute name");
+    }
+  yyXMLbuffer[k] = saveChar;
+  // find equal sign
+  for (; isspace(yyXMLbuffer[k]); k++); // skip white space
+  if (yyXMLbuffer[k] != '=')
+    return yyerror("foreign XML attribute is missing equal sign");
+  // found equal sign; find attribute value string
+  for (k++; isspace(yyXMLbuffer[k]); k++); // skip white space
+  if (yyXMLbuffer[k] != '"')
+    return yyerror("foreign XML attribute is missing \" at start of value");
+  for (k++; (yyXMLbuffer[k] && (yyXMLbuffer[k] != '"')); k++);
+  if (yyXMLbuffer[k] != '"')
+    return yyerror("foreign XML attribute is missing \" at end of value");
+  *index1 = k+1;
+  return yyAttributesBad(index1);
+}
+
+/* ***************************************************************** */
+
+/* yyCheckXml
+
+Returned Value: int
+  If the XML is OK, this returns 0. If not, this calls yyerror,
+  which returns 1.
+
+Called By: the action for productions using the global yyXMLbuffer, which
+collects as a string foreign XML allowed by xs:any
+
+This is providing only the lax check without a schema for the foreign XML.
+This begins by removing leading and trailing white space in the yyXMLbuffer.
+Then this checks only that:
+1. The yyXMLbuffer starts with one of the forms
+  < xxx att1 = "abc" att2 = "def" ... attN = "xyz" />
+  < xxx att1 = "abc" att2 = "def" ... attN = "xyz" >
+  where there might be no attributes and all the white space other that
+  between xxx and att1 is optional.
+2. If the yyXMLbuffer starts with the first form, there must be no more
+   characters.
+3. If the yyXMLbuffer starts with the second form, it must end with
+   </ xxx > where the white space is optional.
+
+The xxx and atts must be valid element and attribute names.
+
+Note that this disallows leading and trailing comments.
+
+If there is an error, this calls yyerror.
+
+*/
+
+int yyCheckXml()
+{
+  int start;       // index of first non-white character
+  int end;         // index of last non-white character
+  int index1;      // moving index of starting character
+  int index2;      // moving index of stopping character
+  char saveChar;   // place to save character before changing to 0
+  std::string startTag; // name of element at start
+  std::string endTag;
+
+  for (start = 0; isspace(yyXMLbuffer[start]); start++);
+  for (end = yyBufferIndex - 1; isspace(yyXMLbuffer[end]); end--);
+  if (yyXMLbuffer[end] != '>')
+    {
+      return yyerror("foreign XML does not end with >");
+    }
+  if (yyXMLbuffer[start] != '<')
+    {
+      return yyerror("foreign XML does not start with <");
+    }
+  // find and check the name at the beginning
+  index1 = start+1; // no space allowed after <
+  for (index2 = index1+1; ((yyXMLbuffer[index2] != '>') &&
+                           (yyXMLbuffer[index2] != '/') &&
+                           (!isspace(yyXMLbuffer[index2]))); index2++);
+  saveChar = yyXMLbuffer[index2];
+  yyXMLbuffer[index2] = 0;
+  if (!yyIsName(yyXMLbuffer + index1))
+    {
+      yyXMLbuffer[index2] = saveChar;
+      return yyerror("foreign XML does not start with a valid element name");
+    }
+  startTag = (yyXMLbuffer + index1);
+  yyXMLbuffer[index2] = saveChar;
+  if (yyAttributesBad(&index2))
+    return yyerror("foreign XML has bad attributes");
+  // at this point, yyXMLbuffer[index2] must be / or >
+  if (yyXMLbuffer[index2] == '/')
+    {
+      if ((index2+1) != end) // we know the end character is >
+        return yyerror("foreign XML is not valid");
+    }
+  else if (yyXMLbuffer[index2] == '>')
+    { // check that the end tag matches the start tag
+      for (; isspace(yyXMLbuffer[index2-1]); index2--);
+      saveChar = yyXMLbuffer[index2];
+      yyXMLbuffer[index2] = 0;
+      index1 = index2 - (int)startTag.size();
+      endTag = yyXMLbuffer[index1];
+      yyXMLbuffer[index2] = saveChar;
+      if (endTag != startTag)
+        {
+          return yyerror("end tag of foreign XML does not match start tag");
+        }
+      if ((yyXMLbuffer[index1 - 1] != '/') ||
+          (yyXMLbuffer[index1 - 2] != '<'))
+        {
+          return yyerror("end tag of foreign XML has bad format");
+        }
+    }
+  else
+    return yyerror("bug in yyCheckXml");
+  return 0;
+}
+
+/* ***************************************************************** */
 
 /* yyerror
 
@@ -103531,4 +104156,4 @@ int yyerror(      /* ARGUMENTS       */
   return 1;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */

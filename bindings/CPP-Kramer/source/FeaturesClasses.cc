@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #include <stdio.h>             // for printf, etc.
 #include <string.h>            // for strdup
@@ -10,8 +10,8 @@
 
 #define INDENT 2
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 /* class BaseFeaturePointListType
 
@@ -169,7 +169,7 @@ BaseFeaturePointSetTypeLisd * BaseFeaturePointListType::getBaseFeaturePointSet()
 void BaseFeaturePointListType::setBaseFeaturePointSet(BaseFeaturePointSetTypeLisd * BaseFeaturePointSetIn)
 {BaseFeaturePointSet = BaseFeaturePointSetIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class BaseFeaturePointSetType
 
@@ -253,7 +253,7 @@ NaturalType * BaseFeaturePointSetType::getSequenceNumber()
 void BaseFeaturePointSetType::setSequenceNumber(NaturalType * SequenceNumberIn)
 {SequenceNumber = SequenceNumberIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class BaseFeaturePointSetTypeLisd
 
@@ -280,7 +280,7 @@ BaseFeaturePointSetTypeLisd::~BaseFeaturePointSetTypeLisd()
 
 void BaseFeaturePointSetTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleBestFitType
 
@@ -452,7 +452,7 @@ SequencedBaseFeatureTypeLisd * CircleBestFitType::getBaseFeature()
 void CircleBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleCastType
 
@@ -505,7 +505,7 @@ BaseFeatureType * CircleCastType::getBaseFeature()
 void CircleCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleCheckedFeatureType
 
@@ -550,7 +550,7 @@ CircleCheckedType * CircleCheckedFeatureType::getCheckDetails()
 void CircleCheckedFeatureType::setCheckDetails(CircleCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleCheckedType
 
@@ -588,7 +588,7 @@ CircleCheckedTypeChoicePair * CircleCheckedType::getCircleCheckedTypePair()
 void CircleCheckedType::setCircleCheckedTypePair(CircleCheckedTypeChoicePair * CircleCheckedTypePairIn)
 {CircleCheckedTypePair = CircleCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleCheckedTypeChoicePair
 
@@ -634,7 +634,7 @@ void CircleCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleConstructionMethodType
 
@@ -675,7 +675,7 @@ CircleConstructionMethodTypeChoicePair * CircleConstructionMethodType::getCircle
 void CircleConstructionMethodType::setCircleConstructionMethodTypePair(CircleConstructionMethodTypeChoicePair * CircleConstructionMethodTypePairIn)
 {CircleConstructionMethodTypePair = CircleConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleConstructionMethodTypeChoicePair
 
@@ -811,7 +811,7 @@ void CircleConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleCopyType
 
@@ -864,7 +864,7 @@ BaseFeatureType * CircleCopyType::getBaseCircle()
 void CircleCopyType::setBaseCircle(BaseFeatureType * BaseCircleIn)
 {BaseCircle = BaseCircleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleFeatureDefinitionType
 
@@ -1026,7 +1026,7 @@ LinearValueType * CircleFeatureDefinitionType::getDiameter()
 void CircleFeatureDefinitionType::setDiameter(LinearValueType * DiameterIn)
 {Diameter = DiameterIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleFeatureItemType
 
@@ -1268,7 +1268,7 @@ CircleMeasurementDeterminationType * CircleFeatureItemType::getDeterminationMode
 void CircleFeatureItemType::setDeterminationMode(CircleMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleFeatureMeasurementType
 
@@ -1677,7 +1677,7 @@ SweepType * CircleFeatureMeasurementType::getSweepFull()
 void CircleFeatureMeasurementType::setSweepFull(SweepType * SweepFullIn)
 {SweepFull = SweepFullIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleFeatureNominalType
 
@@ -1979,7 +1979,7 @@ CircleConstructionMethodType * CircleFeatureNominalType::getConstructed()
 void CircleFeatureNominalType::setConstructed(CircleConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleFromConeType
 
@@ -1988,22 +1988,22 @@ void CircleFeatureNominalType::setConstructed(CircleConstructionMethodType * Con
 CircleFromConeType::CircleFromConeType() :
   ConstructionMethodBaseType()
 {
-  CircleFromConeT_1092 = 0;
+  CircleFromConeT_1093 = 0;
 }
 
 CircleFromConeType::CircleFromConeType(
  XmlBoolean * NominalsCalculatedIn,
- CircleFromConeT_1092_Type * CircleFromConeT_1092In) :
+ CircleFromConeT_1093_Type * CircleFromConeT_1093In) :
   ConstructionMethodBaseType(
     NominalsCalculatedIn)
 {
-  CircleFromConeT_1092 = CircleFromConeT_1092In;
+  CircleFromConeT_1093 = CircleFromConeT_1093In;
 }
 
 CircleFromConeType::~CircleFromConeType()
 {
   #ifndef NODESTRUCT
-  delete CircleFromConeT_1092;
+  delete CircleFromConeT_1093;
   #endif
 }
 
@@ -2018,17 +2018,17 @@ void CircleFromConeType::printSelf(FILE * outFile)
       NominalsCalculated->printSelf(outFile);
       fprintf(outFile, "</NominalsCalculated>\n");
     }
-  CircleFromConeT_1092->printSelf(outFile);
+  CircleFromConeT_1093->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-CircleFromConeT_1092_Type * CircleFromConeType::getCircleFromConeT_1092()
-{return CircleFromConeT_1092;}
+CircleFromConeT_1093_Type * CircleFromConeType::getCircleFromConeT_1093()
+{return CircleFromConeT_1093;}
 
-void CircleFromConeType::setCircleFromConeT_1092(CircleFromConeT_1092_Type * CircleFromConeT_1092In)
-{CircleFromConeT_1092 = CircleFromConeT_1092In;}
+void CircleFromConeType::setCircleFromConeT_1093(CircleFromConeT_1093_Type * CircleFromConeT_1093In)
+{CircleFromConeT_1093 = CircleFromConeT_1093In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleFromScanType
 
@@ -2109,7 +2109,7 @@ LinearValueType * CircleFromScanType::getDepth()
 void CircleFromScanType::setDepth(LinearValueType * DepthIn)
 {Depth = DepthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleIntersectionType
 
@@ -2179,7 +2179,7 @@ SequencedBaseFeatureTypeLisd * CircleIntersectionType::getIntersectionFeature()
 void CircleIntersectionType::setIntersectionFeature(SequencedBaseFeatureTypeLisd * IntersectionFeatureIn)
 {IntersectionFeature = IntersectionFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleMeasurementDeterminationType
 
@@ -2217,7 +2217,7 @@ CircleMeasurementDeterminationTypeChoicePair * CircleMeasurementDeterminationTyp
 void CircleMeasurementDeterminationType::setCircleMeasurementDeterminationTypePair(CircleMeasurementDeterminationTypeChoicePair * CircleMeasurementDeterminationTypePairIn)
 {CircleMeasurementDeterminationTypePair = CircleMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleMeasurementDeterminationTypeChoicePair
 
@@ -2261,7 +2261,7 @@ void CircleMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleProjectionType
 
@@ -2329,7 +2329,7 @@ BaseFeatureType * CircleProjectionType::getProjectionPlane()
 void CircleProjectionType::setProjectionPlane(BaseFeatureType * ProjectionPlaneIn)
 {ProjectionPlane = ProjectionPlaneIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleRecompType
 
@@ -2382,7 +2382,7 @@ BaseFeaturePointListType * CircleRecompType::getBaseFeaturePointList()
 void CircleRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleTangentThroughType
 
@@ -2450,7 +2450,7 @@ BaseFeatureType * CircleTangentThroughType::getPointFeature()
 void CircleTangentThroughType::setPointFeature(BaseFeatureType * PointFeatureIn)
 {PointFeature = PointFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleTangentType
 
@@ -2520,7 +2520,7 @@ SequencedBaseFeatureTypeLisd * CircleTangentType::getTangentFeature()
 void CircleTangentType::setTangentFeature(SequencedBaseFeatureTypeLisd * TangentFeatureIn)
 {TangentFeature = TangentFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleTransformType
 
@@ -2588,7 +2588,7 @@ TransformationReferenceType * CircleTransformType::getTransformation()
 void CircleTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcBestFitType
 
@@ -2760,7 +2760,7 @@ SequencedBaseFeatureTypeLisd * CircularArcBestFitType::getBaseFeature()
 void CircularArcBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcCastType
 
@@ -2813,7 +2813,7 @@ BaseFeatureType * CircularArcCastType::getBaseFeature()
 void CircularArcCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcCheckedFeatureType
 
@@ -2858,7 +2858,7 @@ CircularArcCheckedType * CircularArcCheckedFeatureType::getCheckDetails()
 void CircularArcCheckedFeatureType::setCheckDetails(CircularArcCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcCheckedType
 
@@ -2896,7 +2896,7 @@ CircularArcCheckedTypeChoicePair * CircularArcCheckedType::getCircularArcChecked
 void CircularArcCheckedType::setCircularArcCheckedTypePair(CircularArcCheckedTypeChoicePair * CircularArcCheckedTypePairIn)
 {CircularArcCheckedTypePair = CircularArcCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcCheckedTypeChoicePair
 
@@ -2942,7 +2942,7 @@ void CircularArcCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcConstructionMethodType
 
@@ -2983,7 +2983,7 @@ CircularArcConstructionMethodTypeChoicePair * CircularArcConstructionMethodType:
 void CircularArcConstructionMethodType::setCircularArcConstructionMethodTypePair(CircularArcConstructionMethodTypeChoicePair * CircularArcConstructionMethodTypePairIn)
 {CircularArcConstructionMethodTypePair = CircularArcConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcConstructionMethodTypeChoicePair
 
@@ -3099,7 +3099,7 @@ void CircularArcConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcCopyType
 
@@ -3152,7 +3152,7 @@ BaseFeatureType * CircularArcCopyType::getBaseArc()
 void CircularArcCopyType::setBaseArc(BaseFeatureType * BaseArcIn)
 {BaseArc = BaseArcIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcExtractType
 
@@ -3205,7 +3205,7 @@ BaseFeatureType * CircularArcExtractType::getCurveFeature()
 void CircularArcExtractType::setCurveFeature(BaseFeatureType * CurveFeatureIn)
 {CurveFeature = CurveFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcFeatureDefinitionType
 
@@ -3367,7 +3367,7 @@ LinearValueType * CircularArcFeatureDefinitionType::getRadius()
 void CircularArcFeatureDefinitionType::setRadius(LinearValueType * RadiusIn)
 {Radius = RadiusIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcFeatureItemType
 
@@ -3609,7 +3609,7 @@ CircularArcMeasurementDeterminationType * CircularArcFeatureItemType::getDetermi
 void CircularArcFeatureItemType::setDeterminationMode(CircularArcMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcFeatureMeasurementType
 
@@ -4018,7 +4018,7 @@ MeasuredLinearValueType * CircularArcFeatureMeasurementType::getForm()
 void CircularArcFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcFeatureNominalType
 
@@ -4317,7 +4317,7 @@ CircularArcConstructionMethodType * CircularArcFeatureNominalType::getConstructe
 void CircularArcFeatureNominalType::setConstructed(CircularArcConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcFromScanType
 
@@ -4398,7 +4398,7 @@ LinearValueType * CircularArcFromScanType::getDepth()
 void CircularArcFromScanType::setDepth(LinearValueType * DepthIn)
 {Depth = DepthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcIntersectionType
 
@@ -4468,7 +4468,7 @@ SequencedBaseFeatureTypeLisd * CircularArcIntersectionType::getIntersectionFeatu
 void CircularArcIntersectionType::setIntersectionFeature(SequencedBaseFeatureTypeLisd * IntersectionFeatureIn)
 {IntersectionFeature = IntersectionFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcMeasurementDeterminationType
 
@@ -4506,7 +4506,7 @@ CircularArcMeasurementDeterminationTypeChoicePair * CircularArcMeasurementDeterm
 void CircularArcMeasurementDeterminationType::setCircularArcMeasurementDeterminationTypePair(CircularArcMeasurementDeterminationTypeChoicePair * CircularArcMeasurementDeterminationTypePairIn)
 {CircularArcMeasurementDeterminationTypePair = CircularArcMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcMeasurementDeterminationTypeChoicePair
 
@@ -4550,7 +4550,7 @@ void CircularArcMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcProjectionType
 
@@ -4618,7 +4618,7 @@ BaseFeatureType * CircularArcProjectionType::getProjectionPlane()
 void CircularArcProjectionType::setProjectionPlane(BaseFeatureType * ProjectionPlaneIn)
 {ProjectionPlane = ProjectionPlaneIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcRecompType
 
@@ -4671,7 +4671,7 @@ BaseFeaturePointListType * CircularArcRecompType::getBaseFeaturePointList()
 void CircularArcRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcTransformType
 
@@ -4739,7 +4739,7 @@ TransformationReferenceType * CircularArcTransformType::getTransformation()
 void CircularArcTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConeBestFitType
 
@@ -4911,7 +4911,7 @@ SequencedBaseFeatureTypeLisd * ConeBestFitType::getBaseFeature()
 void ConeBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConeCastType
 
@@ -4964,7 +4964,7 @@ BaseFeatureType * ConeCastType::getBaseFeature()
 void ConeCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConeCheckedFeatureType
 
@@ -5009,7 +5009,7 @@ ConeCheckedType * ConeCheckedFeatureType::getCheckDetails()
 void ConeCheckedFeatureType::setCheckDetails(ConeCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConeCheckedType
 
@@ -5047,7 +5047,7 @@ ConeCheckedTypeChoicePair * ConeCheckedType::getConeCheckedTypePair()
 void ConeCheckedType::setConeCheckedTypePair(ConeCheckedTypeChoicePair * ConeCheckedTypePairIn)
 {ConeCheckedTypePair = ConeCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConeCheckedTypeChoicePair
 
@@ -5093,7 +5093,7 @@ void ConeCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConeConstructionMethodType
 
@@ -5134,7 +5134,7 @@ ConeConstructionMethodTypeChoicePair * ConeConstructionMethodType::getConeConstr
 void ConeConstructionMethodType::setConeConstructionMethodTypePair(ConeConstructionMethodTypeChoicePair * ConeConstructionMethodTypePairIn)
 {ConeConstructionMethodTypePair = ConeConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConeConstructionMethodTypeChoicePair
 
@@ -5220,7 +5220,7 @@ void ConeConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConeCopyType
 
@@ -5273,7 +5273,7 @@ BaseFeatureType * ConeCopyType::getBaseCone()
 void ConeCopyType::setBaseCone(BaseFeatureType * BaseConeIn)
 {BaseCone = BaseConeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConeFeatureDefinitionType
 
@@ -5284,23 +5284,23 @@ ConeFeatureDefinitionType::ConeFeatureDefinitionType() :
 {
   InternalExternal = 0;
   Diameter = 0;
-  ConeFeatureDefi_1093 = 0;
   ConeFeatureDefi_1094 = 0;
+  ConeFeatureDefi_1095 = 0;
 }
 
 ConeFeatureDefinitionType::ConeFeatureDefinitionType(
  AttributesType * AttributesIn,
  InternalExternalEnumType * InternalExternalIn,
  LinearValueType * DiameterIn,
- ConeFeatureDefi_1093_Type * ConeFeatureDefi_1093In,
- ConeFeatureDefi_1094_Type * ConeFeatureDefi_1094In) :
+ ConeFeatureDefi_1094_Type * ConeFeatureDefi_1094In,
+ ConeFeatureDefi_1095_Type * ConeFeatureDefi_1095In) :
   SurfaceFeatureDefinitionBaseType(
     AttributesIn)
 {
   InternalExternal = InternalExternalIn;
   Diameter = DiameterIn;
-  ConeFeatureDefi_1093 = ConeFeatureDefi_1093In;
   ConeFeatureDefi_1094 = ConeFeatureDefi_1094In;
+  ConeFeatureDefi_1095 = ConeFeatureDefi_1095In;
 }
 
 ConeFeatureDefinitionType::ConeFeatureDefinitionType(
@@ -5308,16 +5308,16 @@ ConeFeatureDefinitionType::ConeFeatureDefinitionType(
  AttributesType * AttributesIn,
  InternalExternalEnumType * InternalExternalIn,
  LinearValueType * DiameterIn,
- ConeFeatureDefi_1093_Type * ConeFeatureDefi_1093In,
- ConeFeatureDefi_1094_Type * ConeFeatureDefi_1094In) :
+ ConeFeatureDefi_1094_Type * ConeFeatureDefi_1094In,
+ ConeFeatureDefi_1095_Type * ConeFeatureDefi_1095In) :
   SurfaceFeatureDefinitionBaseType(
     idIn,
     AttributesIn)
 {
   InternalExternal = InternalExternalIn;
   Diameter = DiameterIn;
-  ConeFeatureDefi_1093 = ConeFeatureDefi_1093In;
   ConeFeatureDefi_1094 = ConeFeatureDefi_1094In;
+  ConeFeatureDefi_1095 = ConeFeatureDefi_1095In;
 }
 
 ConeFeatureDefinitionType::~ConeFeatureDefinitionType()
@@ -5325,8 +5325,8 @@ ConeFeatureDefinitionType::~ConeFeatureDefinitionType()
   #ifndef NODESTRUCT
   delete InternalExternal;
   delete Diameter;
-  delete ConeFeatureDefi_1093;
   delete ConeFeatureDefi_1094;
+  delete ConeFeatureDefi_1095;
   #endif
 }
 
@@ -5375,10 +5375,10 @@ void ConeFeatureDefinitionType::printSelf(FILE * outFile)
   fprintf(outFile, "<Diameter");
   Diameter->printSelf(outFile);
   fprintf(outFile, "</Diameter>\n");
-  ConeFeatureDefi_1093->printSelf(outFile);
-  if (ConeFeatureDefi_1094)
+  ConeFeatureDefi_1094->printSelf(outFile);
+  if (ConeFeatureDefi_1095)
     {
-      ConeFeatureDefi_1094->printSelf(outFile);
+      ConeFeatureDefi_1095->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -5452,19 +5452,19 @@ LinearValueType * ConeFeatureDefinitionType::getDiameter()
 void ConeFeatureDefinitionType::setDiameter(LinearValueType * DiameterIn)
 {Diameter = DiameterIn;}
 
-ConeFeatureDefi_1093_Type * ConeFeatureDefinitionType::getConeFeatureDefi_1093()
-{return ConeFeatureDefi_1093;}
-
-void ConeFeatureDefinitionType::setConeFeatureDefi_1093(ConeFeatureDefi_1093_Type * ConeFeatureDefi_1093In)
-{ConeFeatureDefi_1093 = ConeFeatureDefi_1093In;}
-
 ConeFeatureDefi_1094_Type * ConeFeatureDefinitionType::getConeFeatureDefi_1094()
 {return ConeFeatureDefi_1094;}
 
 void ConeFeatureDefinitionType::setConeFeatureDefi_1094(ConeFeatureDefi_1094_Type * ConeFeatureDefi_1094In)
 {ConeFeatureDefi_1094 = ConeFeatureDefi_1094In;}
 
-/*********************************************************************/
+ConeFeatureDefi_1095_Type * ConeFeatureDefinitionType::getConeFeatureDefi_1095()
+{return ConeFeatureDefi_1095;}
+
+void ConeFeatureDefinitionType::setConeFeatureDefi_1095(ConeFeatureDefi_1095_Type * ConeFeatureDefi_1095In)
+{ConeFeatureDefi_1095 = ConeFeatureDefi_1095In;}
+
+/* ***************************************************************** */
 
 /* class ConeFeatureItemType
 
@@ -5706,7 +5706,7 @@ ConeMeasurementDeterminationType * ConeFeatureItemType::getDeterminationMode()
 void ConeFeatureItemType::setDeterminationMode(ConeMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConeFeatureMeasurementType
 
@@ -5719,7 +5719,7 @@ ConeFeatureMeasurementType::ConeFeatureMeasurementType() :
   Diameter = 0;
   DiameterMin = 0;
   DiameterMax = 0;
-  ConeFeatureMeas_1095 = 0;
+  ConeFeatureMeas_1096 = 0;
   SmallEndDistance = 0;
   LargeEndDistance = 0;
   SweepMeasurementRange = 0;
@@ -5744,7 +5744,7 @@ ConeFeatureMeasurementType::ConeFeatureMeasurementType(
  MeasuredLinearValueType * DiameterIn,
  MeasuredLinearValueType * DiameterMinIn,
  MeasuredLinearValueType * DiameterMaxIn,
- ConeFeatureMeas_1095_Type * ConeFeatureMeas_1095In,
+ ConeFeatureMeas_1096_Type * ConeFeatureMeas_1096In,
  MeasuredLinearValueType * SmallEndDistanceIn,
  MeasuredLinearValueType * LargeEndDistanceIn,
  SweepType * SweepMeasurementRangeIn,
@@ -5768,7 +5768,7 @@ ConeFeatureMeasurementType::ConeFeatureMeasurementType(
   Diameter = DiameterIn;
   DiameterMin = DiameterMinIn;
   DiameterMax = DiameterMaxIn;
-  ConeFeatureMeas_1095 = ConeFeatureMeas_1095In;
+  ConeFeatureMeas_1096 = ConeFeatureMeas_1096In;
   SmallEndDistance = SmallEndDistanceIn;
   LargeEndDistance = LargeEndDistanceIn;
   SweepMeasurementRange = SweepMeasurementRangeIn;
@@ -5794,7 +5794,7 @@ ConeFeatureMeasurementType::ConeFeatureMeasurementType(
  MeasuredLinearValueType * DiameterIn,
  MeasuredLinearValueType * DiameterMinIn,
  MeasuredLinearValueType * DiameterMaxIn,
- ConeFeatureMeas_1095_Type * ConeFeatureMeas_1095In,
+ ConeFeatureMeas_1096_Type * ConeFeatureMeas_1096In,
  MeasuredLinearValueType * SmallEndDistanceIn,
  MeasuredLinearValueType * LargeEndDistanceIn,
  SweepType * SweepMeasurementRangeIn,
@@ -5819,7 +5819,7 @@ ConeFeatureMeasurementType::ConeFeatureMeasurementType(
   Diameter = DiameterIn;
   DiameterMin = DiameterMinIn;
   DiameterMax = DiameterMaxIn;
-  ConeFeatureMeas_1095 = ConeFeatureMeas_1095In;
+  ConeFeatureMeas_1096 = ConeFeatureMeas_1096In;
   SmallEndDistance = SmallEndDistanceIn;
   LargeEndDistance = LargeEndDistanceIn;
   SweepMeasurementRange = SweepMeasurementRangeIn;
@@ -5834,7 +5834,7 @@ ConeFeatureMeasurementType::~ConeFeatureMeasurementType()
   delete Diameter;
   delete DiameterMin;
   delete DiameterMax;
-  delete ConeFeatureMeas_1095;
+  delete ConeFeatureMeas_1096;
   delete SmallEndDistance;
   delete LargeEndDistance;
   delete SweepMeasurementRange;
@@ -5990,9 +5990,9 @@ void ConeFeatureMeasurementType::printSelf(FILE * outFile)
       DiameterMax->printSelf(outFile);
       fprintf(outFile, "</DiameterMax>\n");
     }
-  if (ConeFeatureMeas_1095)
+  if (ConeFeatureMeas_1096)
     {
-      ConeFeatureMeas_1095->printSelf(outFile);
+      ConeFeatureMeas_1096->printSelf(outFile);
     }
   if (SmallEndDistance)
     {
@@ -6115,11 +6115,11 @@ MeasuredLinearValueType * ConeFeatureMeasurementType::getDiameterMax()
 void ConeFeatureMeasurementType::setDiameterMax(MeasuredLinearValueType * DiameterMaxIn)
 {DiameterMax = DiameterMaxIn;}
 
-ConeFeatureMeas_1095_Type * ConeFeatureMeasurementType::getConeFeatureMeas_1095()
-{return ConeFeatureMeas_1095;}
+ConeFeatureMeas_1096_Type * ConeFeatureMeasurementType::getConeFeatureMeas_1096()
+{return ConeFeatureMeas_1096;}
 
-void ConeFeatureMeasurementType::setConeFeatureMeas_1095(ConeFeatureMeas_1095_Type * ConeFeatureMeas_1095In)
-{ConeFeatureMeas_1095 = ConeFeatureMeas_1095In;}
+void ConeFeatureMeasurementType::setConeFeatureMeas_1096(ConeFeatureMeas_1096_Type * ConeFeatureMeas_1096In)
+{ConeFeatureMeas_1096 = ConeFeatureMeas_1096In;}
 
 MeasuredLinearValueType * ConeFeatureMeasurementType::getSmallEndDistance()
 {return SmallEndDistance;}
@@ -6151,7 +6151,7 @@ MeasuredLinearValueType * ConeFeatureMeasurementType::getForm()
 void ConeFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConeFeatureNominalType
 
@@ -6427,7 +6427,7 @@ ConeConstructionMethodType * ConeFeatureNominalType::getConstructed()
 void ConeFeatureNominalType::setConstructed(ConeConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConeFromScanType
 
@@ -6494,7 +6494,7 @@ LinearValueType * ConeFromScanType::getSearchRadius()
 void ConeFromScanType::setSearchRadius(LinearValueType * SearchRadiusIn)
 {SearchRadius = SearchRadiusIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConeMeasurementDeterminationType
 
@@ -6532,7 +6532,7 @@ ConeMeasurementDeterminationTypeChoicePair * ConeMeasurementDeterminationType::g
 void ConeMeasurementDeterminationType::setConeMeasurementDeterminationTypePair(ConeMeasurementDeterminationTypeChoicePair * ConeMeasurementDeterminationTypePairIn)
 {ConeMeasurementDeterminationTypePair = ConeMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConeMeasurementDeterminationTypeChoicePair
 
@@ -6576,7 +6576,7 @@ void ConeMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConeRecompType
 
@@ -6629,7 +6629,7 @@ BaseFeaturePointListType * ConeRecompType::getBaseFeaturePointList()
 void ConeRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConeTransformType
 
@@ -6697,7 +6697,7 @@ TransformationReferenceType * ConeTransformType::getTransformation()
 void ConeTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalSegmentBestFitType
 
@@ -6869,7 +6869,7 @@ SequencedBaseFeatureTypeLisd * ConicalSegmentBestFitType::getBaseFeature()
 void ConicalSegmentBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalSegmentCastType
 
@@ -6922,7 +6922,7 @@ BaseFeatureType * ConicalSegmentCastType::getBaseFeature()
 void ConicalSegmentCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalSegmentCheckedFeatureType
 
@@ -6967,7 +6967,7 @@ ConicalSegmentCheckedType * ConicalSegmentCheckedFeatureType::getCheckDetails()
 void ConicalSegmentCheckedFeatureType::setCheckDetails(ConicalSegmentCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalSegmentCheckedType
 
@@ -7005,7 +7005,7 @@ ConicalSegmentCheckedTypeChoicePair * ConicalSegmentCheckedType::getConicalSegme
 void ConicalSegmentCheckedType::setConicalSegmentCheckedTypePair(ConicalSegmentCheckedTypeChoicePair * ConicalSegmentCheckedTypePairIn)
 {ConicalSegmentCheckedTypePair = ConicalSegmentCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalSegmentCheckedTypeChoicePair
 
@@ -7051,7 +7051,7 @@ void ConicalSegmentCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalSegmentConstructionMethodType
 
@@ -7092,7 +7092,7 @@ ConicalSegmentConstructionMethodTypeChoicePair * ConicalSegmentConstructionMetho
 void ConicalSegmentConstructionMethodType::setConicalSegmentConstructionMethodTypePair(ConicalSegmentConstructionMethodTypeChoicePair * ConicalSegmentConstructionMethodTypePairIn)
 {ConicalSegmentConstructionMethodTypePair = ConicalSegmentConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalSegmentConstructionMethodTypeChoicePair
 
@@ -7168,7 +7168,7 @@ void ConicalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalSegmentCopyType
 
@@ -7221,7 +7221,7 @@ BaseFeatureType * ConicalSegmentCopyType::getBaseConicalSegment()
 void ConicalSegmentCopyType::setBaseConicalSegment(BaseFeatureType * BaseConicalSegmentIn)
 {BaseConicalSegment = BaseConicalSegmentIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalSegmentFeatureDefinitionType
 
@@ -7232,23 +7232,23 @@ ConicalSegmentFeatureDefinitionType::ConicalSegmentFeatureDefinitionType() :
 {
   InternalExternal = 0;
   Diameter = 0;
-  ConicalSegmentF_1096 = 0;
   ConicalSegmentF_1097 = 0;
+  ConicalSegmentF_1098 = 0;
 }
 
 ConicalSegmentFeatureDefinitionType::ConicalSegmentFeatureDefinitionType(
  AttributesType * AttributesIn,
  InternalExternalEnumType * InternalExternalIn,
  LinearValueType * DiameterIn,
- ConicalSegmentF_1096_Type * ConicalSegmentF_1096In,
- ConicalSegmentF_1097_Type * ConicalSegmentF_1097In) :
+ ConicalSegmentF_1097_Type * ConicalSegmentF_1097In,
+ ConicalSegmentF_1098_Type * ConicalSegmentF_1098In) :
   SurfaceFeatureDefinitionBaseType(
     AttributesIn)
 {
   InternalExternal = InternalExternalIn;
   Diameter = DiameterIn;
-  ConicalSegmentF_1096 = ConicalSegmentF_1096In;
   ConicalSegmentF_1097 = ConicalSegmentF_1097In;
+  ConicalSegmentF_1098 = ConicalSegmentF_1098In;
 }
 
 ConicalSegmentFeatureDefinitionType::ConicalSegmentFeatureDefinitionType(
@@ -7256,16 +7256,16 @@ ConicalSegmentFeatureDefinitionType::ConicalSegmentFeatureDefinitionType(
  AttributesType * AttributesIn,
  InternalExternalEnumType * InternalExternalIn,
  LinearValueType * DiameterIn,
- ConicalSegmentF_1096_Type * ConicalSegmentF_1096In,
- ConicalSegmentF_1097_Type * ConicalSegmentF_1097In) :
+ ConicalSegmentF_1097_Type * ConicalSegmentF_1097In,
+ ConicalSegmentF_1098_Type * ConicalSegmentF_1098In) :
   SurfaceFeatureDefinitionBaseType(
     idIn,
     AttributesIn)
 {
   InternalExternal = InternalExternalIn;
   Diameter = DiameterIn;
-  ConicalSegmentF_1096 = ConicalSegmentF_1096In;
   ConicalSegmentF_1097 = ConicalSegmentF_1097In;
+  ConicalSegmentF_1098 = ConicalSegmentF_1098In;
 }
 
 ConicalSegmentFeatureDefinitionType::~ConicalSegmentFeatureDefinitionType()
@@ -7273,8 +7273,8 @@ ConicalSegmentFeatureDefinitionType::~ConicalSegmentFeatureDefinitionType()
   #ifndef NODESTRUCT
   delete InternalExternal;
   delete Diameter;
-  delete ConicalSegmentF_1096;
   delete ConicalSegmentF_1097;
+  delete ConicalSegmentF_1098;
   #endif
 }
 
@@ -7323,10 +7323,10 @@ void ConicalSegmentFeatureDefinitionType::printSelf(FILE * outFile)
   fprintf(outFile, "<Diameter");
   Diameter->printSelf(outFile);
   fprintf(outFile, "</Diameter>\n");
-  ConicalSegmentF_1096->printSelf(outFile);
-  if (ConicalSegmentF_1097)
+  ConicalSegmentF_1097->printSelf(outFile);
+  if (ConicalSegmentF_1098)
     {
-      ConicalSegmentF_1097->printSelf(outFile);
+      ConicalSegmentF_1098->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -7400,19 +7400,19 @@ LinearValueType * ConicalSegmentFeatureDefinitionType::getDiameter()
 void ConicalSegmentFeatureDefinitionType::setDiameter(LinearValueType * DiameterIn)
 {Diameter = DiameterIn;}
 
-ConicalSegmentF_1096_Type * ConicalSegmentFeatureDefinitionType::getConicalSegmentF_1096()
-{return ConicalSegmentF_1096;}
-
-void ConicalSegmentFeatureDefinitionType::setConicalSegmentF_1096(ConicalSegmentF_1096_Type * ConicalSegmentF_1096In)
-{ConicalSegmentF_1096 = ConicalSegmentF_1096In;}
-
 ConicalSegmentF_1097_Type * ConicalSegmentFeatureDefinitionType::getConicalSegmentF_1097()
 {return ConicalSegmentF_1097;}
 
 void ConicalSegmentFeatureDefinitionType::setConicalSegmentF_1097(ConicalSegmentF_1097_Type * ConicalSegmentF_1097In)
 {ConicalSegmentF_1097 = ConicalSegmentF_1097In;}
 
-/*********************************************************************/
+ConicalSegmentF_1098_Type * ConicalSegmentFeatureDefinitionType::getConicalSegmentF_1098()
+{return ConicalSegmentF_1098;}
+
+void ConicalSegmentFeatureDefinitionType::setConicalSegmentF_1098(ConicalSegmentF_1098_Type * ConicalSegmentF_1098In)
+{ConicalSegmentF_1098 = ConicalSegmentF_1098In;}
+
+/* ***************************************************************** */
 
 /* class ConicalSegmentFeatureItemType
 
@@ -7654,7 +7654,7 @@ ConicalSegmentMeasurementDeterminationType * ConicalSegmentFeatureItemType::getD
 void ConicalSegmentFeatureItemType::setDeterminationMode(ConicalSegmentMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalSegmentFeatureMeasurementType
 
@@ -7667,7 +7667,7 @@ ConicalSegmentFeatureMeasurementType::ConicalSegmentFeatureMeasurementType() :
   Diameter = 0;
   DiameterMin = 0;
   DiameterMax = 0;
-  ConicalSegmentF_1098 = 0;
+  ConicalSegmentF_1099 = 0;
   SmallEndDistance = 0;
   LargeEndDistance = 0;
   SweepMeasurementRange = 0;
@@ -7692,7 +7692,7 @@ ConicalSegmentFeatureMeasurementType::ConicalSegmentFeatureMeasurementType(
  MeasuredLinearValueType * DiameterIn,
  MeasuredLinearValueType * DiameterMinIn,
  MeasuredLinearValueType * DiameterMaxIn,
- ConicalSegmentF_1098_Type * ConicalSegmentF_1098In,
+ ConicalSegmentF_1099_Type * ConicalSegmentF_1099In,
  MeasuredLinearValueType * SmallEndDistanceIn,
  MeasuredLinearValueType * LargeEndDistanceIn,
  SweepType * SweepMeasurementRangeIn,
@@ -7716,7 +7716,7 @@ ConicalSegmentFeatureMeasurementType::ConicalSegmentFeatureMeasurementType(
   Diameter = DiameterIn;
   DiameterMin = DiameterMinIn;
   DiameterMax = DiameterMaxIn;
-  ConicalSegmentF_1098 = ConicalSegmentF_1098In;
+  ConicalSegmentF_1099 = ConicalSegmentF_1099In;
   SmallEndDistance = SmallEndDistanceIn;
   LargeEndDistance = LargeEndDistanceIn;
   SweepMeasurementRange = SweepMeasurementRangeIn;
@@ -7742,7 +7742,7 @@ ConicalSegmentFeatureMeasurementType::ConicalSegmentFeatureMeasurementType(
  MeasuredLinearValueType * DiameterIn,
  MeasuredLinearValueType * DiameterMinIn,
  MeasuredLinearValueType * DiameterMaxIn,
- ConicalSegmentF_1098_Type * ConicalSegmentF_1098In,
+ ConicalSegmentF_1099_Type * ConicalSegmentF_1099In,
  MeasuredLinearValueType * SmallEndDistanceIn,
  MeasuredLinearValueType * LargeEndDistanceIn,
  SweepType * SweepMeasurementRangeIn,
@@ -7767,7 +7767,7 @@ ConicalSegmentFeatureMeasurementType::ConicalSegmentFeatureMeasurementType(
   Diameter = DiameterIn;
   DiameterMin = DiameterMinIn;
   DiameterMax = DiameterMaxIn;
-  ConicalSegmentF_1098 = ConicalSegmentF_1098In;
+  ConicalSegmentF_1099 = ConicalSegmentF_1099In;
   SmallEndDistance = SmallEndDistanceIn;
   LargeEndDistance = LargeEndDistanceIn;
   SweepMeasurementRange = SweepMeasurementRangeIn;
@@ -7782,7 +7782,7 @@ ConicalSegmentFeatureMeasurementType::~ConicalSegmentFeatureMeasurementType()
   delete Diameter;
   delete DiameterMin;
   delete DiameterMax;
-  delete ConicalSegmentF_1098;
+  delete ConicalSegmentF_1099;
   delete SmallEndDistance;
   delete LargeEndDistance;
   delete SweepMeasurementRange;
@@ -7938,9 +7938,9 @@ void ConicalSegmentFeatureMeasurementType::printSelf(FILE * outFile)
       DiameterMax->printSelf(outFile);
       fprintf(outFile, "</DiameterMax>\n");
     }
-  if (ConicalSegmentF_1098)
+  if (ConicalSegmentF_1099)
     {
-      ConicalSegmentF_1098->printSelf(outFile);
+      ConicalSegmentF_1099->printSelf(outFile);
     }
   if (SmallEndDistance)
     {
@@ -8063,11 +8063,11 @@ MeasuredLinearValueType * ConicalSegmentFeatureMeasurementType::getDiameterMax()
 void ConicalSegmentFeatureMeasurementType::setDiameterMax(MeasuredLinearValueType * DiameterMaxIn)
 {DiameterMax = DiameterMaxIn;}
 
-ConicalSegmentF_1098_Type * ConicalSegmentFeatureMeasurementType::getConicalSegmentF_1098()
-{return ConicalSegmentF_1098;}
+ConicalSegmentF_1099_Type * ConicalSegmentFeatureMeasurementType::getConicalSegmentF_1099()
+{return ConicalSegmentF_1099;}
 
-void ConicalSegmentFeatureMeasurementType::setConicalSegmentF_1098(ConicalSegmentF_1098_Type * ConicalSegmentF_1098In)
-{ConicalSegmentF_1098 = ConicalSegmentF_1098In;}
+void ConicalSegmentFeatureMeasurementType::setConicalSegmentF_1099(ConicalSegmentF_1099_Type * ConicalSegmentF_1099In)
+{ConicalSegmentF_1099 = ConicalSegmentF_1099In;}
 
 MeasuredLinearValueType * ConicalSegmentFeatureMeasurementType::getSmallEndDistance()
 {return SmallEndDistance;}
@@ -8099,7 +8099,7 @@ MeasuredLinearValueType * ConicalSegmentFeatureMeasurementType::getForm()
 void ConicalSegmentFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalSegmentFeatureNominalType
 
@@ -8372,7 +8372,7 @@ ConicalSegmentConstructionMethodType * ConicalSegmentFeatureNominalType::getCons
 void ConicalSegmentFeatureNominalType::setConstructed(ConicalSegmentConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalSegmentMeasurementDeterminationType
 
@@ -8410,7 +8410,7 @@ ConicalSegmentMeasurementDeterminationTypeChoicePair * ConicalSegmentMeasurement
 void ConicalSegmentMeasurementDeterminationType::setConicalSegmentMeasurementDeterminationTypePair(ConicalSegmentMeasurementDeterminationTypeChoicePair * ConicalSegmentMeasurementDeterminationTypePairIn)
 {ConicalSegmentMeasurementDeterminationTypePair = ConicalSegmentMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalSegmentMeasurementDeterminationTypeChoicePair
 
@@ -8454,7 +8454,7 @@ void ConicalSegmentMeasurementDeterminationTypeChoicePair::printSelf(FILE * outF
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalSegmentRecompType
 
@@ -8507,7 +8507,7 @@ BaseFeaturePointListType * ConicalSegmentRecompType::getBaseFeaturePointList()
 void ConicalSegmentRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalSegmentTransformType
 
@@ -8575,7 +8575,7 @@ TransformationReferenceType * ConicalSegmentTransformType::getTransformation()
 void ConicalSegmentTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConstructionMethodBaseType
 
@@ -8619,7 +8619,7 @@ XmlBoolean * ConstructionMethodBaseType::getNominalsCalculated()
 void ConstructionMethodBaseType::setNominalsCalculated(XmlBoolean * NominalsCalculatedIn)
 {NominalsCalculated = NominalsCalculatedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CurveFeatureDefinitionBaseType
 
@@ -8749,7 +8749,7 @@ bool CurveFeatureDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CurveFeatureItemBaseType
 
@@ -8974,7 +8974,7 @@ bool CurveFeatureItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CurveFeatureMeasurementBaseType
 
@@ -9229,7 +9229,7 @@ bool CurveFeatureMeasurementBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CurveFeatureNominalBaseType
 
@@ -9467,7 +9467,7 @@ QIFReferenceFullType * CurveFeatureNominalBaseType::getSurfaceFeatureNominalId()
 void CurveFeatureNominalBaseType::setSurfaceFeatureNominalId(QIFReferenceFullType * SurfaceFeatureNominalIdIn)
 {SurfaceFeatureNominalId = SurfaceFeatureNominalIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylinderBestFitType
 
@@ -9639,7 +9639,7 @@ SequencedBaseFeatureTypeLisd * CylinderBestFitType::getBaseFeature()
 void CylinderBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylinderCastType
 
@@ -9692,7 +9692,7 @@ BaseFeatureType * CylinderCastType::getBaseFeature()
 void CylinderCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylinderCheckedFeatureType
 
@@ -9737,7 +9737,7 @@ CylinderCheckedType * CylinderCheckedFeatureType::getCheckDetails()
 void CylinderCheckedFeatureType::setCheckDetails(CylinderCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylinderCheckedType
 
@@ -9775,7 +9775,7 @@ CylinderCheckedTypeChoicePair * CylinderCheckedType::getCylinderCheckedTypePair(
 void CylinderCheckedType::setCylinderCheckedTypePair(CylinderCheckedTypeChoicePair * CylinderCheckedTypePairIn)
 {CylinderCheckedTypePair = CylinderCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylinderCheckedTypeChoicePair
 
@@ -9821,7 +9821,7 @@ void CylinderCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylinderConstructionMethodType
 
@@ -9862,7 +9862,7 @@ CylinderConstructionMethodTypeChoicePair * CylinderConstructionMethodType::getCy
 void CylinderConstructionMethodType::setCylinderConstructionMethodTypePair(CylinderConstructionMethodTypeChoicePair * CylinderConstructionMethodTypePairIn)
 {CylinderConstructionMethodTypePair = CylinderConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylinderConstructionMethodTypeChoicePair
 
@@ -9948,7 +9948,7 @@ void CylinderConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylinderCopyType
 
@@ -10001,7 +10001,7 @@ BaseFeatureType * CylinderCopyType::getBaseCylinder()
 void CylinderCopyType::setBaseCylinder(BaseFeatureType * BaseCylinderIn)
 {BaseCylinder = BaseCylinderIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylinderFeatureDefinitionType
 
@@ -10202,7 +10202,7 @@ BottomType * CylinderFeatureDefinitionType::getBottom()
 void CylinderFeatureDefinitionType::setBottom(BottomType * BottomIn)
 {Bottom = BottomIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylinderFeatureItemType
 
@@ -10444,7 +10444,7 @@ CylinderMeasurementDeterminationType * CylinderFeatureItemType::getDetermination
 void CylinderFeatureItemType::setDeterminationMode(CylinderMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylinderFeatureMeasurementType
 
@@ -10854,7 +10854,7 @@ MeasuredLinearValueType * CylinderFeatureMeasurementType::getForm()
 void CylinderFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylinderFeatureNominalType
 
@@ -11130,7 +11130,7 @@ CylinderConstructionMethodType * CylinderFeatureNominalType::getConstructed()
 void CylinderFeatureNominalType::setConstructed(CylinderConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylinderFromScanType
 
@@ -11197,7 +11197,7 @@ LinearValueType * CylinderFromScanType::getSearchRadius()
 void CylinderFromScanType::setSearchRadius(LinearValueType * SearchRadiusIn)
 {SearchRadius = SearchRadiusIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylinderMeasurementDeterminationType
 
@@ -11235,7 +11235,7 @@ CylinderMeasurementDeterminationTypeChoicePair * CylinderMeasurementDeterminatio
 void CylinderMeasurementDeterminationType::setCylinderMeasurementDeterminationTypePair(CylinderMeasurementDeterminationTypeChoicePair * CylinderMeasurementDeterminationTypePairIn)
 {CylinderMeasurementDeterminationTypePair = CylinderMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylinderMeasurementDeterminationTypeChoicePair
 
@@ -11279,7 +11279,7 @@ void CylinderMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylinderRecompType
 
@@ -11332,7 +11332,7 @@ BaseFeaturePointListType * CylinderRecompType::getBaseFeaturePointList()
 void CylinderRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylinderTransformType
 
@@ -11400,7 +11400,7 @@ TransformationReferenceType * CylinderTransformType::getTransformation()
 void CylinderTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricalSegmentBestFitType
 
@@ -11572,7 +11572,7 @@ SequencedBaseFeatureTypeLisd * CylindricalSegmentBestFitType::getBaseFeature()
 void CylindricalSegmentBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricalSegmentCastType
 
@@ -11625,7 +11625,7 @@ BaseFeatureType * CylindricalSegmentCastType::getBaseFeature()
 void CylindricalSegmentCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricalSegmentCheckedFeatureType
 
@@ -11670,7 +11670,7 @@ CylindricalSegmentCheckedType * CylindricalSegmentCheckedFeatureType::getCheckDe
 void CylindricalSegmentCheckedFeatureType::setCheckDetails(CylindricalSegmentCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricalSegmentCheckedType
 
@@ -11708,7 +11708,7 @@ CylindricalSegmentCheckedTypeChoicePair * CylindricalSegmentCheckedType::getCyli
 void CylindricalSegmentCheckedType::setCylindricalSegmentCheckedTypePair(CylindricalSegmentCheckedTypeChoicePair * CylindricalSegmentCheckedTypePairIn)
 {CylindricalSegmentCheckedTypePair = CylindricalSegmentCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricalSegmentCheckedTypeChoicePair
 
@@ -11754,7 +11754,7 @@ void CylindricalSegmentCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricalSegmentConstructionMethodType
 
@@ -11795,7 +11795,7 @@ CylindricalSegmentConstructionMethodTypeChoicePair * CylindricalSegmentConstruct
 void CylindricalSegmentConstructionMethodType::setCylindricalSegmentConstructionMethodTypePair(CylindricalSegmentConstructionMethodTypeChoicePair * CylindricalSegmentConstructionMethodTypePairIn)
 {CylindricalSegmentConstructionMethodTypePair = CylindricalSegmentConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricalSegmentConstructionMethodTypeChoicePair
 
@@ -11871,7 +11871,7 @@ void CylindricalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFil
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricalSegmentCopyType
 
@@ -11924,7 +11924,7 @@ BaseFeatureType * CylindricalSegmentCopyType::getBaseCylindricalSegment()
 void CylindricalSegmentCopyType::setBaseCylindricalSegment(BaseFeatureType * BaseCylindricalSegmentIn)
 {BaseCylindricalSegment = BaseCylindricalSegmentIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricalSegmentFeatureDefinitionType
 
@@ -12125,7 +12125,7 @@ BottomType * CylindricalSegmentFeatureDefinitionType::getBottom()
 void CylindricalSegmentFeatureDefinitionType::setBottom(BottomType * BottomIn)
 {Bottom = BottomIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricalSegmentFeatureItemType
 
@@ -12367,7 +12367,7 @@ CylindricalSegmentMeasurementDeterminationType * CylindricalSegmentFeatureItemTy
 void CylindricalSegmentFeatureItemType::setDeterminationMode(CylindricalSegmentMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricalSegmentFeatureMeasurementType
 
@@ -12777,7 +12777,7 @@ MeasuredLinearValueType * CylindricalSegmentFeatureMeasurementType::getForm()
 void CylindricalSegmentFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricalSegmentFeatureNominalType
 
@@ -13050,7 +13050,7 @@ CylindricalSegmentConstructionMethodType * CylindricalSegmentFeatureNominalType:
 void CylindricalSegmentFeatureNominalType::setConstructed(CylindricalSegmentConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricalSegmentMeasurementDeterminationType
 
@@ -13088,7 +13088,7 @@ CylindricalSegmentMeasurementDeterminationTypeChoicePair * CylindricalSegmentMea
 void CylindricalSegmentMeasurementDeterminationType::setCylindricalSegmentMeasurementDeterminationTypePair(CylindricalSegmentMeasurementDeterminationTypeChoicePair * CylindricalSegmentMeasurementDeterminationTypePairIn)
 {CylindricalSegmentMeasurementDeterminationTypePair = CylindricalSegmentMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricalSegmentMeasurementDeterminationTypeChoicePair
 
@@ -13132,7 +13132,7 @@ void CylindricalSegmentMeasurementDeterminationTypeChoicePair::printSelf(FILE * 
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricalSegmentRecompType
 
@@ -13185,7 +13185,7 @@ BaseFeaturePointListType * CylindricalSegmentRecompType::getBaseFeaturePointList
 void CylindricalSegmentRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricalSegmentTransformType
 
@@ -13253,7 +13253,7 @@ TransformationReferenceType * CylindricalSegmentTransformType::getTransformation
 void CylindricalSegmentTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DefiningPointsMeasurementType
 
@@ -14482,7 +14482,7 @@ DefiningPointMeasurementTypeLisd * DefiningPointsMeasurementType::getDefiningPoi
 void DefiningPointsMeasurementType::setDefiningPoint(DefiningPointMeasurementTypeLisd * DefiningPointIn)
 {DefiningPoint = DefiningPointIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DefiningPointsNominalType
 
@@ -15303,7 +15303,7 @@ DefiningPointNominalTypeLisd * DefiningPointsNominalType::getDefiningPoint()
 void DefiningPointsNominalType::setDefiningPoint(DefiningPointNominalTypeLisd * DefiningPointIn)
 {DefiningPoint = DefiningPointIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EdgePointCastType
 
@@ -15356,7 +15356,7 @@ BaseFeatureType * EdgePointCastType::getBaseFeature()
 void EdgePointCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EdgePointCheckedFeatureType
 
@@ -15401,7 +15401,7 @@ EdgePointCheckedType * EdgePointCheckedFeatureType::getCheckDetails()
 void EdgePointCheckedFeatureType::setCheckDetails(EdgePointCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EdgePointCheckedType
 
@@ -15439,7 +15439,7 @@ EdgePointCheckedTypeChoicePair * EdgePointCheckedType::getEdgePointCheckedTypePa
 void EdgePointCheckedType::setEdgePointCheckedTypePair(EdgePointCheckedTypeChoicePair * EdgePointCheckedTypePairIn)
 {EdgePointCheckedTypePair = EdgePointCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EdgePointCheckedTypeChoicePair
 
@@ -15485,7 +15485,7 @@ void EdgePointCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EdgePointConstructionMethodType
 
@@ -15526,7 +15526,7 @@ EdgePointConstructionMethodTypeChoicePair * EdgePointConstructionMethodType::get
 void EdgePointConstructionMethodType::setEdgePointConstructionMethodTypePair(EdgePointConstructionMethodTypeChoicePair * EdgePointConstructionMethodTypePairIn)
 {EdgePointConstructionMethodTypePair = EdgePointConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EdgePointConstructionMethodTypeChoicePair
 
@@ -15592,7 +15592,7 @@ void EdgePointConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EdgePointCopyType
 
@@ -15645,7 +15645,7 @@ BaseFeatureType * EdgePointCopyType::getBaseEdgePoint()
 void EdgePointCopyType::setBaseEdgePoint(BaseFeatureType * BaseEdgePointIn)
 {BaseEdgePoint = BaseEdgePointIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EdgePointFeatureDefinitionType
 
@@ -15791,7 +15791,7 @@ InternalExternalEnumType * EdgePointFeatureDefinitionType::getInternalExternal()
 void EdgePointFeatureDefinitionType::setInternalExternal(InternalExternalEnumType * InternalExternalIn)
 {InternalExternal = InternalExternalIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EdgePointFeatureItemType
 
@@ -16033,7 +16033,7 @@ EdgePointMeasurementDeterminationType * EdgePointFeatureItemType::getDeterminati
 void EdgePointFeatureItemType::setDeterminationMode(EdgePointMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EdgePointFeatureMeasurementType
 
@@ -16345,7 +16345,7 @@ MeasuredUnitVectorType * EdgePointFeatureMeasurementType::getAdjacentNormal()
 void EdgePointFeatureMeasurementType::setAdjacentNormal(MeasuredUnitVectorType * AdjacentNormalIn)
 {AdjacentNormal = AdjacentNormalIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EdgePointFeatureNominalType
 
@@ -16370,7 +16370,7 @@ EdgePointFeatureNominalType::EdgePointFeatureNominalType(
  ArrayReferenceFullType * EntityExternalIdsIn,
  PointListType * PointListIn,
  SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
- PointFeatureNom_1124_Type * PointFeatureNom_1124In,
+ PointFeatureNom_1125_Type * PointFeatureNom_1125In,
  PointType * LocationIn,
  UnitVectorType * NormalIn,
  UnitVectorType * AdjacentNormalIn,
@@ -16385,7 +16385,7 @@ EdgePointFeatureNominalType::EdgePointFeatureNominalType(
     EntityExternalIdsIn,
     PointListIn,
     SubstituteFeatureAlgorithmIn,
-    PointFeatureNom_1124In)
+    PointFeatureNom_1125In)
 {
   Location = LocationIn;
   Normal = NormalIn;
@@ -16404,7 +16404,7 @@ EdgePointFeatureNominalType::EdgePointFeatureNominalType(
  ArrayReferenceFullType * EntityExternalIdsIn,
  PointListType * PointListIn,
  SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
- PointFeatureNom_1124_Type * PointFeatureNom_1124In,
+ PointFeatureNom_1125_Type * PointFeatureNom_1125In,
  PointType * LocationIn,
  UnitVectorType * NormalIn,
  UnitVectorType * AdjacentNormalIn,
@@ -16420,7 +16420,7 @@ EdgePointFeatureNominalType::EdgePointFeatureNominalType(
     EntityExternalIdsIn,
     PointListIn,
     SubstituteFeatureAlgorithmIn,
-    PointFeatureNom_1124In)
+    PointFeatureNom_1125In)
 {
   Location = LocationIn;
   Normal = NormalIn;
@@ -16532,9 +16532,9 @@ void EdgePointFeatureNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</SubstituteFeatureAlgorithm>\n");
     }
-  if (PointFeatureNom_1124)
+  if (PointFeatureNom_1125)
     {
-      PointFeatureNom_1124->printSelf(outFile);
+      PointFeatureNom_1125->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Location");
@@ -16643,7 +16643,7 @@ EdgePointConstructionMethodType * EdgePointFeatureNominalType::getConstructed()
 void EdgePointFeatureNominalType::setConstructed(EdgePointConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EdgePointFromScanType
 
@@ -16766,7 +16766,7 @@ RetrievalMethodEnumType * EdgePointFromScanType::getRetrievalMethod()
 void EdgePointFromScanType::setRetrievalMethod(RetrievalMethodEnumType * RetrievalMethodIn)
 {RetrievalMethod = RetrievalMethodIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EdgePointMeasurementDeterminationType
 
@@ -16804,7 +16804,7 @@ EdgePointMeasurementDeterminationTypeChoicePair * EdgePointMeasurementDeterminat
 void EdgePointMeasurementDeterminationType::setEdgePointMeasurementDeterminationTypePair(EdgePointMeasurementDeterminationTypeChoicePair * EdgePointMeasurementDeterminationTypePairIn)
 {EdgePointMeasurementDeterminationTypePair = EdgePointMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EdgePointMeasurementDeterminationTypeChoicePair
 
@@ -16848,7 +16848,7 @@ void EdgePointMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EdgePointTransformType
 
@@ -16916,7 +16916,7 @@ TransformationReferenceType * EdgePointTransformType::getTransformation()
 void EdgePointTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipseBestFitType
 
@@ -17088,7 +17088,7 @@ SequencedBaseFeatureTypeLisd * EllipseBestFitType::getBaseFeature()
 void EllipseBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipseCastType
 
@@ -17141,7 +17141,7 @@ BaseFeatureType * EllipseCastType::getBaseFeature()
 void EllipseCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipseCheckedFeatureType
 
@@ -17186,7 +17186,7 @@ EllipseCheckedType * EllipseCheckedFeatureType::getCheckDetails()
 void EllipseCheckedFeatureType::setCheckDetails(EllipseCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipseCheckedType
 
@@ -17224,7 +17224,7 @@ EllipseCheckedTypeChoicePair * EllipseCheckedType::getEllipseCheckedTypePair()
 void EllipseCheckedType::setEllipseCheckedTypePair(EllipseCheckedTypeChoicePair * EllipseCheckedTypePairIn)
 {EllipseCheckedTypePair = EllipseCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipseCheckedTypeChoicePair
 
@@ -17270,7 +17270,7 @@ void EllipseCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipseConstructionMethodType
 
@@ -17311,7 +17311,7 @@ EllipseConstructionMethodTypeChoicePair * EllipseConstructionMethodType::getElli
 void EllipseConstructionMethodType::setEllipseConstructionMethodTypePair(EllipseConstructionMethodTypeChoicePair * EllipseConstructionMethodTypePairIn)
 {EllipseConstructionMethodTypePair = EllipseConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipseConstructionMethodTypeChoicePair
 
@@ -17417,7 +17417,7 @@ void EllipseConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipseCopyType
 
@@ -17470,7 +17470,7 @@ BaseFeatureType * EllipseCopyType::getBaseEllipse()
 void EllipseCopyType::setBaseEllipse(BaseFeatureType * BaseEllipseIn)
 {BaseEllipse = BaseEllipseIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipseFeatureDefinitionType
 
@@ -17648,7 +17648,7 @@ LinearValueType * EllipseFeatureDefinitionType::getMinorDiameter()
 void EllipseFeatureDefinitionType::setMinorDiameter(LinearValueType * MinorDiameterIn)
 {MinorDiameter = MinorDiameterIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipseFeatureItemType
 
@@ -17890,7 +17890,7 @@ EllipseMeasurementDeterminationType * EllipseFeatureItemType::getDeterminationMo
 void EllipseFeatureItemType::setDeterminationMode(EllipseMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipseFeatureMeasurementType
 
@@ -18281,7 +18281,7 @@ MeasuredLinearValueType * EllipseFeatureMeasurementType::getForm()
 void EllipseFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipseFeatureNominalType
 
@@ -18584,7 +18584,7 @@ EllipseConstructionMethodType * EllipseFeatureNominalType::getConstructed()
 void EllipseFeatureNominalType::setConstructed(EllipseConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipseFromScanType
 
@@ -18665,7 +18665,7 @@ LinearValueType * EllipseFromScanType::getDepth()
 void EllipseFromScanType::setDepth(LinearValueType * DepthIn)
 {Depth = DepthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipseIntersectionType
 
@@ -18733,7 +18733,7 @@ BaseFeatureType * EllipseIntersectionType::getIntersectionFeature()
 void EllipseIntersectionType::setIntersectionFeature(BaseFeatureType * IntersectionFeatureIn)
 {IntersectionFeature = IntersectionFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipseMeasurementDeterminationType
 
@@ -18771,7 +18771,7 @@ EllipseMeasurementDeterminationTypeChoicePair * EllipseMeasurementDeterminationT
 void EllipseMeasurementDeterminationType::setEllipseMeasurementDeterminationTypePair(EllipseMeasurementDeterminationTypeChoicePair * EllipseMeasurementDeterminationTypePairIn)
 {EllipseMeasurementDeterminationTypePair = EllipseMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipseMeasurementDeterminationTypeChoicePair
 
@@ -18815,7 +18815,7 @@ void EllipseMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipseProjectionType
 
@@ -18883,7 +18883,7 @@ BaseFeatureType * EllipseProjectionType::getProjectionPlane()
 void EllipseProjectionType::setProjectionPlane(BaseFeatureType * ProjectionPlaneIn)
 {ProjectionPlane = ProjectionPlaneIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipseRecompType
 
@@ -18936,7 +18936,7 @@ BaseFeaturePointListType * EllipseRecompType::getBaseFeaturePointList()
 void EllipseRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipseTransformType
 
@@ -19004,7 +19004,7 @@ TransformationReferenceType * EllipseTransformType::getTransformation()
 void EllipseTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcBestFitType
 
@@ -19176,7 +19176,7 @@ SequencedBaseFeatureTypeLisd * EllipticalArcBestFitType::getBaseFeature()
 void EllipticalArcBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcCastType
 
@@ -19229,7 +19229,7 @@ BaseFeatureType * EllipticalArcCastType::getBaseFeature()
 void EllipticalArcCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcCheckedFeatureType
 
@@ -19274,7 +19274,7 @@ EllipticalArcCheckedType * EllipticalArcCheckedFeatureType::getCheckDetails()
 void EllipticalArcCheckedFeatureType::setCheckDetails(EllipticalArcCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcCheckedType
 
@@ -19312,7 +19312,7 @@ EllipticalArcCheckedTypeChoicePair * EllipticalArcCheckedType::getEllipticalArcC
 void EllipticalArcCheckedType::setEllipticalArcCheckedTypePair(EllipticalArcCheckedTypeChoicePair * EllipticalArcCheckedTypePairIn)
 {EllipticalArcCheckedTypePair = EllipticalArcCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcCheckedTypeChoicePair
 
@@ -19358,7 +19358,7 @@ void EllipticalArcCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcConstructionMethodType
 
@@ -19399,7 +19399,7 @@ EllipticalArcConstructionMethodTypeChoicePair * EllipticalArcConstructionMethodT
 void EllipticalArcConstructionMethodType::setEllipticalArcConstructionMethodTypePair(EllipticalArcConstructionMethodTypeChoicePair * EllipticalArcConstructionMethodTypePairIn)
 {EllipticalArcConstructionMethodTypePair = EllipticalArcConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcConstructionMethodTypeChoicePair
 
@@ -19505,7 +19505,7 @@ void EllipticalArcConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcCopyType
 
@@ -19558,7 +19558,7 @@ BaseFeatureType * EllipticalArcCopyType::getBaseEllipticalArc()
 void EllipticalArcCopyType::setBaseEllipticalArc(BaseFeatureType * BaseEllipticalArcIn)
 {BaseEllipticalArc = BaseEllipticalArcIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcFeatureDefinitionType
 
@@ -19736,7 +19736,7 @@ LinearValueType * EllipticalArcFeatureDefinitionType::getMinorDiameter()
 void EllipticalArcFeatureDefinitionType::setMinorDiameter(LinearValueType * MinorDiameterIn)
 {MinorDiameter = MinorDiameterIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcFeatureItemType
 
@@ -19978,7 +19978,7 @@ EllipticalArcMeasurementDeterminationType * EllipticalArcFeatureItemType::getDet
 void EllipticalArcFeatureItemType::setDeterminationMode(EllipticalArcMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcFeatureMeasurementType
 
@@ -20369,7 +20369,7 @@ MeasuredLinearValueType * EllipticalArcFeatureMeasurementType::getForm()
 void EllipticalArcFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcFeatureNominalType
 
@@ -20669,7 +20669,7 @@ EllipticalArcConstructionMethodType * EllipticalArcFeatureNominalType::getConstr
 void EllipticalArcFeatureNominalType::setConstructed(EllipticalArcConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcFromScanType
 
@@ -20750,7 +20750,7 @@ LinearValueType * EllipticalArcFromScanType::getDepth()
 void EllipticalArcFromScanType::setDepth(LinearValueType * DepthIn)
 {Depth = DepthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcIntersectionType
 
@@ -20818,7 +20818,7 @@ BaseFeatureType * EllipticalArcIntersectionType::getIntersectionFeature()
 void EllipticalArcIntersectionType::setIntersectionFeature(BaseFeatureType * IntersectionFeatureIn)
 {IntersectionFeature = IntersectionFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcMeasurementDeterminationType
 
@@ -20856,7 +20856,7 @@ EllipticalArcMeasurementDeterminationTypeChoicePair * EllipticalArcMeasurementDe
 void EllipticalArcMeasurementDeterminationType::setEllipticalArcMeasurementDeterminationTypePair(EllipticalArcMeasurementDeterminationTypeChoicePair * EllipticalArcMeasurementDeterminationTypePairIn)
 {EllipticalArcMeasurementDeterminationTypePair = EllipticalArcMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcMeasurementDeterminationTypeChoicePair
 
@@ -20900,7 +20900,7 @@ void EllipticalArcMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFi
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcProjectionType
 
@@ -20968,7 +20968,7 @@ BaseFeatureType * EllipticalArcProjectionType::getProjectionPlane()
 void EllipticalArcProjectionType::setProjectionPlane(BaseFeatureType * ProjectionPlaneIn)
 {ProjectionPlane = ProjectionPlaneIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcRecompType
 
@@ -21021,7 +21021,7 @@ BaseFeaturePointListType * EllipticalArcRecompType::getBaseFeaturePointList()
 void EllipticalArcRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcTransformType
 
@@ -21089,7 +21089,7 @@ TransformationReferenceType * EllipticalArcTransformType::getTransformation()
 void EllipticalArcTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCircleBestFitType
 
@@ -21261,7 +21261,7 @@ SequencedBaseFeatureTypeLisd * ElongatedCircleBestFitType::getBaseFeature()
 void ElongatedCircleBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCircleCastType
 
@@ -21314,7 +21314,7 @@ BaseFeatureType * ElongatedCircleCastType::getBaseFeature()
 void ElongatedCircleCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCircleCheckedFeatureType
 
@@ -21359,7 +21359,7 @@ ElongatedCircleCheckedType * ElongatedCircleCheckedFeatureType::getCheckDetails(
 void ElongatedCircleCheckedFeatureType::setCheckDetails(ElongatedCircleCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCircleCheckedType
 
@@ -21397,7 +21397,7 @@ ElongatedCircleCheckedTypeChoicePair * ElongatedCircleCheckedType::getElongatedC
 void ElongatedCircleCheckedType::setElongatedCircleCheckedTypePair(ElongatedCircleCheckedTypeChoicePair * ElongatedCircleCheckedTypePairIn)
 {ElongatedCircleCheckedTypePair = ElongatedCircleCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCircleCheckedTypeChoicePair
 
@@ -21443,7 +21443,7 @@ void ElongatedCircleCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCircleConstructionMethodType
 
@@ -21484,7 +21484,7 @@ ElongatedCircleConstructionMethodTypeChoicePair * ElongatedCircleConstructionMet
 void ElongatedCircleConstructionMethodType::setElongatedCircleConstructionMethodTypePair(ElongatedCircleConstructionMethodTypeChoicePair * ElongatedCircleConstructionMethodTypePairIn)
 {ElongatedCircleConstructionMethodTypePair = ElongatedCircleConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCircleConstructionMethodTypeChoicePair
 
@@ -21560,7 +21560,7 @@ void ElongatedCircleConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCircleCopyType
 
@@ -21613,7 +21613,7 @@ BaseFeatureType * ElongatedCircleCopyType::getBaseElongatedCircle()
 void ElongatedCircleCopyType::setBaseElongatedCircle(BaseFeatureType * BaseElongatedCircleIn)
 {BaseElongatedCircle = BaseElongatedCircleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCircleFeatureDefinitionType
 
@@ -21791,7 +21791,7 @@ LinearValueType * ElongatedCircleFeatureDefinitionType::getLength()
 void ElongatedCircleFeatureDefinitionType::setLength(LinearValueType * LengthIn)
 {Length = LengthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCircleFeatureItemType
 
@@ -22033,7 +22033,7 @@ ElongatedCircleMeasurementDeterminationType * ElongatedCircleFeatureItemType::ge
 void ElongatedCircleFeatureItemType::setDeterminationMode(ElongatedCircleMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCircleFeatureMeasurementType
 
@@ -22460,7 +22460,7 @@ MeasuredLinearValueType * ElongatedCircleFeatureMeasurementType::getForm()
 void ElongatedCircleFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCircleFeatureNominalType
 
@@ -22743,7 +22743,7 @@ ElongatedCircleConstructionMethodType * ElongatedCircleFeatureNominalType::getCo
 void ElongatedCircleFeatureNominalType::setConstructed(ElongatedCircleConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCircleMeasurementDeterminationType
 
@@ -22781,7 +22781,7 @@ ElongatedCircleMeasurementDeterminationTypeChoicePair * ElongatedCircleMeasureme
 void ElongatedCircleMeasurementDeterminationType::setElongatedCircleMeasurementDeterminationTypePair(ElongatedCircleMeasurementDeterminationTypeChoicePair * ElongatedCircleMeasurementDeterminationTypePairIn)
 {ElongatedCircleMeasurementDeterminationTypePair = ElongatedCircleMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCircleMeasurementDeterminationTypeChoicePair
 
@@ -22825,7 +22825,7 @@ void ElongatedCircleMeasurementDeterminationTypeChoicePair::printSelf(FILE * out
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCircleRecompType
 
@@ -22878,7 +22878,7 @@ BaseFeaturePointListType * ElongatedCircleRecompType::getBaseFeaturePointList()
 void ElongatedCircleRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCircleTransformType
 
@@ -22946,7 +22946,7 @@ TransformationReferenceType * ElongatedCircleTransformType::getTransformation()
 void ElongatedCircleTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCylinderBestFitType
 
@@ -23118,7 +23118,7 @@ SequencedBaseFeatureTypeLisd * ElongatedCylinderBestFitType::getBaseFeature()
 void ElongatedCylinderBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCylinderCastType
 
@@ -23171,7 +23171,7 @@ BaseFeatureType * ElongatedCylinderCastType::getBaseFeature()
 void ElongatedCylinderCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCylinderCheckedFeatureType
 
@@ -23216,7 +23216,7 @@ ElongatedCylinderCheckedType * ElongatedCylinderCheckedFeatureType::getCheckDeta
 void ElongatedCylinderCheckedFeatureType::setCheckDetails(ElongatedCylinderCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCylinderCheckedType
 
@@ -23254,7 +23254,7 @@ ElongatedCylinderCheckedTypeChoicePair * ElongatedCylinderCheckedType::getElonga
 void ElongatedCylinderCheckedType::setElongatedCylinderCheckedTypePair(ElongatedCylinderCheckedTypeChoicePair * ElongatedCylinderCheckedTypePairIn)
 {ElongatedCylinderCheckedTypePair = ElongatedCylinderCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCylinderCheckedTypeChoicePair
 
@@ -23300,7 +23300,7 @@ void ElongatedCylinderCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCylinderConstructionMethodType
 
@@ -23341,7 +23341,7 @@ ElongatedCylinderConstructionMethodTypeChoicePair * ElongatedCylinderConstructio
 void ElongatedCylinderConstructionMethodType::setElongatedCylinderConstructionMethodTypePair(ElongatedCylinderConstructionMethodTypeChoicePair * ElongatedCylinderConstructionMethodTypePairIn)
 {ElongatedCylinderConstructionMethodTypePair = ElongatedCylinderConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCylinderConstructionMethodTypeChoicePair
 
@@ -23417,7 +23417,7 @@ void ElongatedCylinderConstructionMethodTypeChoicePair::printSelf(FILE * outFile
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCylinderCopyType
 
@@ -23470,7 +23470,7 @@ BaseFeatureType * ElongatedCylinderCopyType::getBaseElongatedCylinder()
 void ElongatedCylinderCopyType::setBaseElongatedCylinder(BaseFeatureType * BaseElongatedCylinderIn)
 {BaseElongatedCylinder = BaseElongatedCylinderIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCylinderFeatureDefinitionType
 
@@ -23667,7 +23667,7 @@ LinearValueType * ElongatedCylinderFeatureDefinitionType::getDepth()
 void ElongatedCylinderFeatureDefinitionType::setDepth(LinearValueType * DepthIn)
 {Depth = DepthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCylinderFeatureItemType
 
@@ -23909,7 +23909,7 @@ ElongatedCylinderMeasurementDeterminationType * ElongatedCylinderFeatureItemType
 void ElongatedCylinderFeatureItemType::setDeterminationMode(ElongatedCylinderMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCylinderFeatureMeasurementType
 
@@ -24393,7 +24393,7 @@ MeasuredLinearValueType * ElongatedCylinderFeatureMeasurementType::getForm()
 void ElongatedCylinderFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCylinderFeatureNominalType
 
@@ -24665,7 +24665,7 @@ ElongatedCylinderConstructionMethodType * ElongatedCylinderFeatureNominalType::g
 void ElongatedCylinderFeatureNominalType::setConstructed(ElongatedCylinderConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCylinderMeasurementDeterminationType
 
@@ -24703,7 +24703,7 @@ ElongatedCylinderMeasurementDeterminationTypeChoicePair * ElongatedCylinderMeasu
 void ElongatedCylinderMeasurementDeterminationType::setElongatedCylinderMeasurementDeterminationTypePair(ElongatedCylinderMeasurementDeterminationTypeChoicePair * ElongatedCylinderMeasurementDeterminationTypePairIn)
 {ElongatedCylinderMeasurementDeterminationTypePair = ElongatedCylinderMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCylinderMeasurementDeterminationTypeChoicePair
 
@@ -24747,7 +24747,7 @@ void ElongatedCylinderMeasurementDeterminationTypeChoicePair::printSelf(FILE * o
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCylinderRecompType
 
@@ -24800,7 +24800,7 @@ BaseFeaturePointListType * ElongatedCylinderRecompType::getBaseFeaturePointList(
 void ElongatedCylinderRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCylinderTransformType
 
@@ -24868,7 +24868,7 @@ TransformationReferenceType * ElongatedCylinderTransformType::getTransformation(
 void ElongatedCylinderTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtrudedCrossSectionBestFitType
 
@@ -25040,7 +25040,7 @@ SequencedBaseFeatureTypeLisd * ExtrudedCrossSectionBestFitType::getBaseFeature()
 void ExtrudedCrossSectionBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtrudedCrossSectionCastType
 
@@ -25093,7 +25093,7 @@ BaseFeatureType * ExtrudedCrossSectionCastType::getBaseFeature()
 void ExtrudedCrossSectionCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtrudedCrossSectionCheckedFeatureType
 
@@ -25138,7 +25138,7 @@ ExtrudedCrossSectionCheckedType * ExtrudedCrossSectionCheckedFeatureType::getChe
 void ExtrudedCrossSectionCheckedFeatureType::setCheckDetails(ExtrudedCrossSectionCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtrudedCrossSectionCheckedType
 
@@ -25176,7 +25176,7 @@ ExtrudedCrossSectionCheckedTypeChoicePair * ExtrudedCrossSectionCheckedType::get
 void ExtrudedCrossSectionCheckedType::setExtrudedCrossSectionCheckedTypePair(ExtrudedCrossSectionCheckedTypeChoicePair * ExtrudedCrossSectionCheckedTypePairIn)
 {ExtrudedCrossSectionCheckedTypePair = ExtrudedCrossSectionCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtrudedCrossSectionCheckedTypeChoicePair
 
@@ -25222,7 +25222,7 @@ void ExtrudedCrossSectionCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtrudedCrossSectionConstructionMethodType
 
@@ -25263,7 +25263,7 @@ ExtrudedCrossSectionConstructionMethodTypeChoicePair * ExtrudedCrossSectionConst
 void ExtrudedCrossSectionConstructionMethodType::setExtrudedCrossSectionConstructionMethodTypePair(ExtrudedCrossSectionConstructionMethodTypeChoicePair * ExtrudedCrossSectionConstructionMethodTypePairIn)
 {ExtrudedCrossSectionConstructionMethodTypePair = ExtrudedCrossSectionConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtrudedCrossSectionConstructionMethodTypeChoicePair
 
@@ -25339,7 +25339,7 @@ void ExtrudedCrossSectionConstructionMethodTypeChoicePair::printSelf(FILE * outF
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtrudedCrossSectionCopyType
 
@@ -25392,7 +25392,7 @@ BaseFeatureType * ExtrudedCrossSectionCopyType::getBaseExtrudedCrossSection()
 void ExtrudedCrossSectionCopyType::setBaseExtrudedCrossSection(BaseFeatureType * BaseExtrudedCrossSectionIn)
 {BaseExtrudedCrossSection = BaseExtrudedCrossSectionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtrudedCrossSectionFeatureDefinitionType
 
@@ -25554,7 +25554,7 @@ LinearValueType * ExtrudedCrossSectionFeatureDefinitionType::getLength()
 void ExtrudedCrossSectionFeatureDefinitionType::setLength(LinearValueType * LengthIn)
 {Length = LengthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtrudedCrossSectionFeatureItemType
 
@@ -25796,7 +25796,7 @@ ExtrudedCrossSectionMeasurementDeterminationType * ExtrudedCrossSectionFeatureIt
 void ExtrudedCrossSectionFeatureItemType::setDeterminationMode(ExtrudedCrossSectionMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtrudedCrossSectionFeatureMeasurementType
 
@@ -26108,7 +26108,7 @@ MeasuredLinearValueType * ExtrudedCrossSectionFeatureMeasurementType::getForm()
 void ExtrudedCrossSectionFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtrudedCrossSectionFeatureNominalType
 
@@ -26380,7 +26380,7 @@ ExtrudedCrossSectionConstructionMethodType * ExtrudedCrossSectionFeatureNominalT
 void ExtrudedCrossSectionFeatureNominalType::setConstructed(ExtrudedCrossSectionConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtrudedCrossSectionMeasurementDeterminationType
 
@@ -26418,7 +26418,7 @@ ExtrudedCrossSectionMeasurementDeterminationTypeChoicePair * ExtrudedCrossSectio
 void ExtrudedCrossSectionMeasurementDeterminationType::setExtrudedCrossSectionMeasurementDeterminationTypePair(ExtrudedCrossSectionMeasurementDeterminationTypeChoicePair * ExtrudedCrossSectionMeasurementDeterminationTypePairIn)
 {ExtrudedCrossSectionMeasurementDeterminationTypePair = ExtrudedCrossSectionMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtrudedCrossSectionMeasurementDeterminationTypeChoicePair
 
@@ -26462,7 +26462,7 @@ void ExtrudedCrossSectionMeasurementDeterminationTypeChoicePair::printSelf(FILE 
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtrudedCrossSectionRecompType
 
@@ -26515,7 +26515,7 @@ BaseFeaturePointListType * ExtrudedCrossSectionRecompType::getBaseFeaturePointLi
 void ExtrudedCrossSectionRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtrudedCrossSectionTransformType
 
@@ -26583,7 +26583,7 @@ TransformationReferenceType * ExtrudedCrossSectionTransformType::getTransformati
 void ExtrudedCrossSectionTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureAspectsListsType
 
@@ -26682,7 +26682,7 @@ NominalPointSetListType * FeatureAspectsListsType::getNominalPointSets()
 void FeatureAspectsListsType::setNominalPointSets(NominalPointSetListType * NominalPointSetsIn)
 {NominalPointSets = NominalPointSetsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureBaseType
 
@@ -26826,7 +26826,7 @@ AttributesType * FeatureBaseType::getAttributes()
 void FeatureBaseType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureDefinitionBaseType
 
@@ -26956,7 +26956,7 @@ bool FeatureDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureDefinitionBaseTypeLisd
 
@@ -26983,7 +26983,7 @@ FeatureDefinitionBaseTypeLisd::~FeatureDefinitionBaseTypeLisd()
 
 void FeatureDefinitionBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureDefinitionsType
 
@@ -27742,7 +27742,7 @@ FeatureDefinitionBaseTypeLisd * FeatureDefinitionsType::getFeatureDefinition()
 void FeatureDefinitionsType::setFeatureDefinition(FeatureDefinitionBaseTypeLisd * FeatureDefinitionIn)
 {FeatureDefinition = FeatureDefinitionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureItemBaseType
 
@@ -27981,7 +27981,7 @@ QIFReferenceFullType * FeatureItemBaseType::getCoordinateSystemId()
 void FeatureItemBaseType::setCoordinateSystemId(QIFReferenceFullType * CoordinateSystemIdIn)
 {CoordinateSystemId = CoordinateSystemIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureItemBaseTypeLisd
 
@@ -28008,7 +28008,7 @@ FeatureItemBaseTypeLisd::~FeatureItemBaseTypeLisd()
 
 void FeatureItemBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureItemsType
 
@@ -28767,7 +28767,7 @@ FeatureItemBaseTypeLisd * FeatureItemsType::getFeatureItem()
 void FeatureItemsType::setFeatureItem(FeatureItemBaseTypeLisd * FeatureItemIn)
 {FeatureItem = FeatureItemIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureMeasurementBaseType
 
@@ -29051,7 +29051,7 @@ ArrayReferenceFullType * FeatureMeasurementBaseType::getNotedEventIds()
 void FeatureMeasurementBaseType::setNotedEventIds(ArrayReferenceFullType * NotedEventIdsIn)
 {NotedEventIds = NotedEventIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureMeasurementBaseTypeLisd
 
@@ -29078,7 +29078,7 @@ FeatureMeasurementBaseTypeLisd::~FeatureMeasurementBaseTypeLisd()
 
 void FeatureMeasurementBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureMeasurementsType
 
@@ -29773,7 +29773,7 @@ FeatureMeasurementBaseTypeLisd * FeatureMeasurementsType::getFeatureMeasurement(
 void FeatureMeasurementsType::setFeatureMeasurement(FeatureMeasurementBaseTypeLisd * FeatureMeasurementIn)
 {FeatureMeasurement = FeatureMeasurementIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureNominalBaseType
 
@@ -30016,7 +30016,7 @@ ArrayReferenceFullType * FeatureNominalBaseType::getEntityExternalIds()
 void FeatureNominalBaseType::setEntityExternalIds(ArrayReferenceFullType * EntityExternalIdsIn)
 {EntityExternalIds = EntityExternalIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureNominalBaseTypeLisd
 
@@ -30043,7 +30043,7 @@ FeatureNominalBaseTypeLisd::~FeatureNominalBaseTypeLisd()
 
 void FeatureNominalBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureNominalsType
 
@@ -30802,7 +30802,7 @@ FeatureNominalBaseTypeLisd * FeatureNominalsType::getFeatureNominal()
 void FeatureNominalsType::setFeatureNominal(FeatureNominalBaseTypeLisd * FeatureNominalIn)
 {FeatureNominal = FeatureNominalIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureZoneAreaBaseType
 
@@ -30811,20 +30811,20 @@ void FeatureNominalsType::setFeatureNominal(FeatureNominalBaseTypeLisd * Feature
 FeatureZoneAreaBaseType::FeatureZoneAreaBaseType() :
   FeatureZoneBaseType()
 {
-  FeatureZoneArea_1099 = 0;
+  FeatureZoneArea_1100 = 0;
 }
 
 FeatureZoneAreaBaseType::FeatureZoneAreaBaseType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneArea_1099_Type * FeatureZoneArea_1099In) :
+ FeatureZoneArea_1100_Type * FeatureZoneArea_1100In) :
   FeatureZoneBaseType(
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn)
 {
-  FeatureZoneArea_1099 = FeatureZoneArea_1099In;
+  FeatureZoneArea_1100 = FeatureZoneArea_1100In;
 }
 
 FeatureZoneAreaBaseType::FeatureZoneAreaBaseType(
@@ -30832,20 +30832,20 @@ FeatureZoneAreaBaseType::FeatureZoneAreaBaseType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneArea_1099_Type * FeatureZoneArea_1099In) :
+ FeatureZoneArea_1100_Type * FeatureZoneArea_1100In) :
   FeatureZoneBaseType(
     idIn,
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn)
 {
-  FeatureZoneArea_1099 = FeatureZoneArea_1099In;
+  FeatureZoneArea_1100 = FeatureZoneArea_1100In;
 }
 
 FeatureZoneAreaBaseType::~FeatureZoneAreaBaseType()
 {
   #ifndef NODESTRUCT
-  delete FeatureZoneArea_1099;
+  delete FeatureZoneArea_1100;
   #endif
 }
 
@@ -30900,9 +30900,9 @@ void FeatureZoneAreaBaseType::printSelf(FILE * outFile)
       SurfaceFeatureNominalId->printSelf(outFile);
       fprintf(outFile, "</SurfaceFeatureNominalId>\n");
     }
-  if (FeatureZoneArea_1099)
+  if (FeatureZoneArea_1100)
     {
-      FeatureZoneArea_1099->printSelf(outFile);
+      FeatureZoneArea_1100->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -30964,13 +30964,13 @@ bool FeatureZoneAreaBaseType::badAttributes(
   return returnValue;
 }
 
-FeatureZoneArea_1099_Type * FeatureZoneAreaBaseType::getFeatureZoneArea_1099()
-{return FeatureZoneArea_1099;}
+FeatureZoneArea_1100_Type * FeatureZoneAreaBaseType::getFeatureZoneArea_1100()
+{return FeatureZoneArea_1100;}
 
-void FeatureZoneAreaBaseType::setFeatureZoneArea_1099(FeatureZoneArea_1099_Type * FeatureZoneArea_1099In)
-{FeatureZoneArea_1099 = FeatureZoneArea_1099In;}
+void FeatureZoneAreaBaseType::setFeatureZoneArea_1100(FeatureZoneArea_1100_Type * FeatureZoneArea_1100In)
+{FeatureZoneArea_1100 = FeatureZoneArea_1100In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureZoneAreaBetweenType
 
@@ -30979,8 +30979,8 @@ void FeatureZoneAreaBaseType::setFeatureZoneArea_1099(FeatureZoneArea_1099_Type 
 FeatureZoneAreaBetweenType::FeatureZoneAreaBetweenType() :
   FeatureZoneAreaBaseType()
 {
-  FeatureZoneArea_1100 = 0;
   FeatureZoneArea_1101 = 0;
+  FeatureZoneArea_1102 = 0;
   StartDirection = 0;
   PlaneNormal = 0;
 }
@@ -30989,19 +30989,19 @@ FeatureZoneAreaBetweenType::FeatureZoneAreaBetweenType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneArea_1099_Type * FeatureZoneArea_1099In,
  FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
  FeatureZoneArea_1101_Type * FeatureZoneArea_1101In,
+ FeatureZoneArea_1102_Type * FeatureZoneArea_1102In,
  UnitVectorType * StartDirectionIn,
  UnitVectorType * PlaneNormalIn) :
   FeatureZoneAreaBaseType(
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099In)
+    FeatureZoneArea_1100In)
 {
-  FeatureZoneArea_1100 = FeatureZoneArea_1100In;
   FeatureZoneArea_1101 = FeatureZoneArea_1101In;
+  FeatureZoneArea_1102 = FeatureZoneArea_1102In;
   StartDirection = StartDirectionIn;
   PlaneNormal = PlaneNormalIn;
 }
@@ -31011,9 +31011,9 @@ FeatureZoneAreaBetweenType::FeatureZoneAreaBetweenType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneArea_1099_Type * FeatureZoneArea_1099In,
  FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
  FeatureZoneArea_1101_Type * FeatureZoneArea_1101In,
+ FeatureZoneArea_1102_Type * FeatureZoneArea_1102In,
  UnitVectorType * StartDirectionIn,
  UnitVectorType * PlaneNormalIn) :
   FeatureZoneAreaBaseType(
@@ -31021,10 +31021,10 @@ FeatureZoneAreaBetweenType::FeatureZoneAreaBetweenType(
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099In)
+    FeatureZoneArea_1100In)
 {
-  FeatureZoneArea_1100 = FeatureZoneArea_1100In;
   FeatureZoneArea_1101 = FeatureZoneArea_1101In;
+  FeatureZoneArea_1102 = FeatureZoneArea_1102In;
   StartDirection = StartDirectionIn;
   PlaneNormal = PlaneNormalIn;
 }
@@ -31032,8 +31032,8 @@ FeatureZoneAreaBetweenType::FeatureZoneAreaBetweenType(
 FeatureZoneAreaBetweenType::~FeatureZoneAreaBetweenType()
 {
   #ifndef NODESTRUCT
-  delete FeatureZoneArea_1100;
   delete FeatureZoneArea_1101;
+  delete FeatureZoneArea_1102;
   delete StartDirection;
   delete PlaneNormal;
   #endif
@@ -31090,12 +31090,12 @@ void FeatureZoneAreaBetweenType::printSelf(FILE * outFile)
       SurfaceFeatureNominalId->printSelf(outFile);
       fprintf(outFile, "</SurfaceFeatureNominalId>\n");
     }
-  if (FeatureZoneArea_1099)
+  if (FeatureZoneArea_1100)
     {
-      FeatureZoneArea_1099->printSelf(outFile);
+      FeatureZoneArea_1100->printSelf(outFile);
     }
-  FeatureZoneArea_1100->printSelf(outFile);
   FeatureZoneArea_1101->printSelf(outFile);
+  FeatureZoneArea_1102->printSelf(outFile);
   if (StartDirection)
     {
       doSpaces(0, outFile);
@@ -31170,17 +31170,17 @@ bool FeatureZoneAreaBetweenType::badAttributes(
   return returnValue;
 }
 
-FeatureZoneArea_1100_Type * FeatureZoneAreaBetweenType::getFeatureZoneArea_1100()
-{return FeatureZoneArea_1100;}
-
-void FeatureZoneAreaBetweenType::setFeatureZoneArea_1100(FeatureZoneArea_1100_Type * FeatureZoneArea_1100In)
-{FeatureZoneArea_1100 = FeatureZoneArea_1100In;}
-
 FeatureZoneArea_1101_Type * FeatureZoneAreaBetweenType::getFeatureZoneArea_1101()
 {return FeatureZoneArea_1101;}
 
 void FeatureZoneAreaBetweenType::setFeatureZoneArea_1101(FeatureZoneArea_1101_Type * FeatureZoneArea_1101In)
 {FeatureZoneArea_1101 = FeatureZoneArea_1101In;}
+
+FeatureZoneArea_1102_Type * FeatureZoneAreaBetweenType::getFeatureZoneArea_1102()
+{return FeatureZoneArea_1102;}
+
+void FeatureZoneAreaBetweenType::setFeatureZoneArea_1102(FeatureZoneArea_1102_Type * FeatureZoneArea_1102In)
+{FeatureZoneArea_1102 = FeatureZoneArea_1102In;}
 
 UnitVectorType * FeatureZoneAreaBetweenType::getStartDirection()
 {return StartDirection;}
@@ -31194,7 +31194,7 @@ UnitVectorType * FeatureZoneAreaBetweenType::getPlaneNormal()
 void FeatureZoneAreaBetweenType::setPlaneNormal(UnitVectorType * PlaneNormalIn)
 {PlaneNormal = PlaneNormalIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureZoneAreaCircularType
 
@@ -31210,13 +31210,13 @@ FeatureZoneAreaCircularType::FeatureZoneAreaCircularType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneArea_1099_Type * FeatureZoneArea_1099In,
+ FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
  CircleType * CircleIn) :
   FeatureZoneAreaBaseType(
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099In)
+    FeatureZoneArea_1100In)
 {
   Circle = CircleIn;
 }
@@ -31226,14 +31226,14 @@ FeatureZoneAreaCircularType::FeatureZoneAreaCircularType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneArea_1099_Type * FeatureZoneArea_1099In,
+ FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
  CircleType * CircleIn) :
   FeatureZoneAreaBaseType(
     idIn,
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099In)
+    FeatureZoneArea_1100In)
 {
   Circle = CircleIn;
 }
@@ -31296,9 +31296,9 @@ void FeatureZoneAreaCircularType::printSelf(FILE * outFile)
       SurfaceFeatureNominalId->printSelf(outFile);
       fprintf(outFile, "</SurfaceFeatureNominalId>\n");
     }
-  if (FeatureZoneArea_1099)
+  if (FeatureZoneArea_1100)
     {
-      FeatureZoneArea_1099->printSelf(outFile);
+      FeatureZoneArea_1100->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Circle");
@@ -31371,7 +31371,7 @@ CircleType * FeatureZoneAreaCircularType::getCircle()
 void FeatureZoneAreaCircularType::setCircle(CircleType * CircleIn)
 {Circle = CircleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureZoneAreaCylindricalType
 
@@ -31387,13 +31387,13 @@ FeatureZoneAreaCylindricalType::FeatureZoneAreaCylindricalType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneArea_1099_Type * FeatureZoneArea_1099In,
+ FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
  CylinderType * CylinderIn) :
   FeatureZoneAreaBaseType(
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099In)
+    FeatureZoneArea_1100In)
 {
   Cylinder = CylinderIn;
 }
@@ -31403,14 +31403,14 @@ FeatureZoneAreaCylindricalType::FeatureZoneAreaCylindricalType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneArea_1099_Type * FeatureZoneArea_1099In,
+ FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
  CylinderType * CylinderIn) :
   FeatureZoneAreaBaseType(
     idIn,
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099In)
+    FeatureZoneArea_1100In)
 {
   Cylinder = CylinderIn;
 }
@@ -31473,9 +31473,9 @@ void FeatureZoneAreaCylindricalType::printSelf(FILE * outFile)
       SurfaceFeatureNominalId->printSelf(outFile);
       fprintf(outFile, "</SurfaceFeatureNominalId>\n");
     }
-  if (FeatureZoneArea_1099)
+  if (FeatureZoneArea_1100)
     {
-      FeatureZoneArea_1099->printSelf(outFile);
+      FeatureZoneArea_1100->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Cylinder");
@@ -31548,7 +31548,7 @@ CylinderType * FeatureZoneAreaCylindricalType::getCylinder()
 void FeatureZoneAreaCylindricalType::setCylinder(CylinderType * CylinderIn)
 {Cylinder = CylinderIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureZoneAreaIrregularType
 
@@ -31563,12 +31563,12 @@ FeatureZoneAreaIrregularType::FeatureZoneAreaIrregularType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneArea_1099_Type * FeatureZoneArea_1099In) :
+ FeatureZoneArea_1100_Type * FeatureZoneArea_1100In) :
   FeatureZoneAreaBaseType(
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099In)
+    FeatureZoneArea_1100In)
 {
 }
 
@@ -31577,13 +31577,13 @@ FeatureZoneAreaIrregularType::FeatureZoneAreaIrregularType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneArea_1099_Type * FeatureZoneArea_1099In) :
+ FeatureZoneArea_1100_Type * FeatureZoneArea_1100In) :
   FeatureZoneAreaBaseType(
     idIn,
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099In)
+    FeatureZoneArea_1100In)
 {
 }
 
@@ -31644,9 +31644,9 @@ void FeatureZoneAreaIrregularType::printSelf(FILE * outFile)
       SurfaceFeatureNominalId->printSelf(outFile);
       fprintf(outFile, "</SurfaceFeatureNominalId>\n");
     }
-  if (FeatureZoneArea_1099)
+  if (FeatureZoneArea_1100)
     {
-      FeatureZoneArea_1099->printSelf(outFile);
+      FeatureZoneArea_1100->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -31708,7 +31708,7 @@ bool FeatureZoneAreaIrregularType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureZoneAreaRectangularType
 
@@ -31724,13 +31724,13 @@ FeatureZoneAreaRectangularType::FeatureZoneAreaRectangularType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneArea_1099_Type * FeatureZoneArea_1099In,
+ FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
  RectangleType * RectangleIn) :
   FeatureZoneAreaBaseType(
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099In)
+    FeatureZoneArea_1100In)
 {
   Rectangle = RectangleIn;
 }
@@ -31740,14 +31740,14 @@ FeatureZoneAreaRectangularType::FeatureZoneAreaRectangularType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneArea_1099_Type * FeatureZoneArea_1099In,
+ FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
  RectangleType * RectangleIn) :
   FeatureZoneAreaBaseType(
     idIn,
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099In)
+    FeatureZoneArea_1100In)
 {
   Rectangle = RectangleIn;
 }
@@ -31810,9 +31810,9 @@ void FeatureZoneAreaRectangularType::printSelf(FILE * outFile)
       SurfaceFeatureNominalId->printSelf(outFile);
       fprintf(outFile, "</SurfaceFeatureNominalId>\n");
     }
-  if (FeatureZoneArea_1099)
+  if (FeatureZoneArea_1100)
     {
-      FeatureZoneArea_1099->printSelf(outFile);
+      FeatureZoneArea_1100->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Rectangle");
@@ -31885,7 +31885,7 @@ RectangleType * FeatureZoneAreaRectangularType::getRectangle()
 void FeatureZoneAreaRectangularType::setRectangle(RectangleType * RectangleIn)
 {Rectangle = RectangleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureZoneAreaSphericalType
 
@@ -31901,13 +31901,13 @@ FeatureZoneAreaSphericalType::FeatureZoneAreaSphericalType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneArea_1099_Type * FeatureZoneArea_1099In,
+ FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
  SphereType * SphereIn) :
   FeatureZoneAreaBaseType(
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099In)
+    FeatureZoneArea_1100In)
 {
   Sphere = SphereIn;
 }
@@ -31917,14 +31917,14 @@ FeatureZoneAreaSphericalType::FeatureZoneAreaSphericalType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneArea_1099_Type * FeatureZoneArea_1099In,
+ FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
  SphereType * SphereIn) :
   FeatureZoneAreaBaseType(
     idIn,
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1099In)
+    FeatureZoneArea_1100In)
 {
   Sphere = SphereIn;
 }
@@ -31987,9 +31987,9 @@ void FeatureZoneAreaSphericalType::printSelf(FILE * outFile)
       SurfaceFeatureNominalId->printSelf(outFile);
       fprintf(outFile, "</SurfaceFeatureNominalId>\n");
     }
-  if (FeatureZoneArea_1099)
+  if (FeatureZoneArea_1100)
     {
-      FeatureZoneArea_1099->printSelf(outFile);
+      FeatureZoneArea_1100->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Sphere");
@@ -32062,7 +32062,7 @@ SphereType * FeatureZoneAreaSphericalType::getSphere()
 void FeatureZoneAreaSphericalType::setSphere(SphereType * SphereIn)
 {Sphere = SphereIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureZoneBaseType
 
@@ -32244,7 +32244,7 @@ QIFReferenceFullType * FeatureZoneBaseType::getSurfaceFeatureNominalId()
 void FeatureZoneBaseType::setSurfaceFeatureNominalId(QIFReferenceFullType * SurfaceFeatureNominalIdIn)
 {SurfaceFeatureNominalId = SurfaceFeatureNominalIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureZoneBaseTypeLisd
 
@@ -32271,7 +32271,7 @@ FeatureZoneBaseTypeLisd::~FeatureZoneBaseTypeLisd()
 
 void FeatureZoneBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureZoneCurveBaseType
 
@@ -32280,20 +32280,20 @@ void FeatureZoneBaseTypeLisd::printSelf(FILE * outFile){}
 FeatureZoneCurveBaseType::FeatureZoneCurveBaseType() :
   FeatureZoneBaseType()
 {
-  FeatureZoneCurv_1102 = 0;
+  FeatureZoneCurv_1103 = 0;
 }
 
 FeatureZoneCurveBaseType::FeatureZoneCurveBaseType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneCurv_1102_Type * FeatureZoneCurv_1102In) :
+ FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In) :
   FeatureZoneBaseType(
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn)
 {
-  FeatureZoneCurv_1102 = FeatureZoneCurv_1102In;
+  FeatureZoneCurv_1103 = FeatureZoneCurv_1103In;
 }
 
 FeatureZoneCurveBaseType::FeatureZoneCurveBaseType(
@@ -32301,20 +32301,20 @@ FeatureZoneCurveBaseType::FeatureZoneCurveBaseType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneCurv_1102_Type * FeatureZoneCurv_1102In) :
+ FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In) :
   FeatureZoneBaseType(
     idIn,
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn)
 {
-  FeatureZoneCurv_1102 = FeatureZoneCurv_1102In;
+  FeatureZoneCurv_1103 = FeatureZoneCurv_1103In;
 }
 
 FeatureZoneCurveBaseType::~FeatureZoneCurveBaseType()
 {
   #ifndef NODESTRUCT
-  delete FeatureZoneCurv_1102;
+  delete FeatureZoneCurv_1103;
   #endif
 }
 
@@ -32369,9 +32369,9 @@ void FeatureZoneCurveBaseType::printSelf(FILE * outFile)
       SurfaceFeatureNominalId->printSelf(outFile);
       fprintf(outFile, "</SurfaceFeatureNominalId>\n");
     }
-  if (FeatureZoneCurv_1102)
+  if (FeatureZoneCurv_1103)
     {
-      FeatureZoneCurv_1102->printSelf(outFile);
+      FeatureZoneCurv_1103->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -32433,13 +32433,13 @@ bool FeatureZoneCurveBaseType::badAttributes(
   return returnValue;
 }
 
-FeatureZoneCurv_1102_Type * FeatureZoneCurveBaseType::getFeatureZoneCurv_1102()
-{return FeatureZoneCurv_1102;}
+FeatureZoneCurv_1103_Type * FeatureZoneCurveBaseType::getFeatureZoneCurv_1103()
+{return FeatureZoneCurv_1103;}
 
-void FeatureZoneCurveBaseType::setFeatureZoneCurv_1102(FeatureZoneCurv_1102_Type * FeatureZoneCurv_1102In)
-{FeatureZoneCurv_1102 = FeatureZoneCurv_1102In;}
+void FeatureZoneCurveBaseType::setFeatureZoneCurv_1103(FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In)
+{FeatureZoneCurv_1103 = FeatureZoneCurv_1103In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureZoneCurveCircularType
 
@@ -32455,13 +32455,13 @@ FeatureZoneCurveCircularType::FeatureZoneCurveCircularType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneCurv_1102_Type * FeatureZoneCurv_1102In,
+ FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In,
  CircleType * CircleIn) :
   FeatureZoneCurveBaseType(
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1102In)
+    FeatureZoneCurv_1103In)
 {
   Circle = CircleIn;
 }
@@ -32471,14 +32471,14 @@ FeatureZoneCurveCircularType::FeatureZoneCurveCircularType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneCurv_1102_Type * FeatureZoneCurv_1102In,
+ FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In,
  CircleType * CircleIn) :
   FeatureZoneCurveBaseType(
     idIn,
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1102In)
+    FeatureZoneCurv_1103In)
 {
   Circle = CircleIn;
 }
@@ -32541,9 +32541,9 @@ void FeatureZoneCurveCircularType::printSelf(FILE * outFile)
       SurfaceFeatureNominalId->printSelf(outFile);
       fprintf(outFile, "</SurfaceFeatureNominalId>\n");
     }
-  if (FeatureZoneCurv_1102)
+  if (FeatureZoneCurv_1103)
     {
-      FeatureZoneCurv_1102->printSelf(outFile);
+      FeatureZoneCurv_1103->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Circle");
@@ -32616,7 +32616,7 @@ CircleType * FeatureZoneCurveCircularType::getCircle()
 void FeatureZoneCurveCircularType::setCircle(CircleType * CircleIn)
 {Circle = CircleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureZoneCurveIrregularType
 
@@ -32632,13 +32632,13 @@ FeatureZoneCurveIrregularType::FeatureZoneCurveIrregularType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneCurv_1102_Type * FeatureZoneCurv_1102In,
+ FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In,
  PolyLineType * CurvePointsIn) :
   FeatureZoneCurveBaseType(
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1102In)
+    FeatureZoneCurv_1103In)
 {
   CurvePoints = CurvePointsIn;
 }
@@ -32648,14 +32648,14 @@ FeatureZoneCurveIrregularType::FeatureZoneCurveIrregularType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneCurv_1102_Type * FeatureZoneCurv_1102In,
+ FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In,
  PolyLineType * CurvePointsIn) :
   FeatureZoneCurveBaseType(
     idIn,
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1102In)
+    FeatureZoneCurv_1103In)
 {
   CurvePoints = CurvePointsIn;
 }
@@ -32718,9 +32718,9 @@ void FeatureZoneCurveIrregularType::printSelf(FILE * outFile)
       SurfaceFeatureNominalId->printSelf(outFile);
       fprintf(outFile, "</SurfaceFeatureNominalId>\n");
     }
-  if (FeatureZoneCurv_1102)
+  if (FeatureZoneCurv_1103)
     {
-      FeatureZoneCurv_1102->printSelf(outFile);
+      FeatureZoneCurv_1103->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<CurvePoints");
@@ -32792,7 +32792,7 @@ PolyLineType * FeatureZoneCurveIrregularType::getCurvePoints()
 void FeatureZoneCurveIrregularType::setCurvePoints(PolyLineType * CurvePointsIn)
 {CurvePoints = CurvePointsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureZoneCurveLineType
 
@@ -32808,13 +32808,13 @@ FeatureZoneCurveLineType::FeatureZoneCurveLineType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneCurv_1102_Type * FeatureZoneCurv_1102In,
+ FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In,
  LineSegmentType * LineIn) :
   FeatureZoneCurveBaseType(
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1102In)
+    FeatureZoneCurv_1103In)
 {
   Line = LineIn;
 }
@@ -32824,14 +32824,14 @@ FeatureZoneCurveLineType::FeatureZoneCurveLineType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZoneCurv_1102_Type * FeatureZoneCurv_1102In,
+ FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In,
  LineSegmentType * LineIn) :
   FeatureZoneCurveBaseType(
     idIn,
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1102In)
+    FeatureZoneCurv_1103In)
 {
   Line = LineIn;
 }
@@ -32894,9 +32894,9 @@ void FeatureZoneCurveLineType::printSelf(FILE * outFile)
       SurfaceFeatureNominalId->printSelf(outFile);
       fprintf(outFile, "</SurfaceFeatureNominalId>\n");
     }
-  if (FeatureZoneCurv_1102)
+  if (FeatureZoneCurv_1103)
     {
-      FeatureZoneCurv_1102->printSelf(outFile);
+      FeatureZoneCurv_1103->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Line");
@@ -32969,7 +32969,7 @@ LineSegmentType * FeatureZoneCurveLineType::getLine()
 void FeatureZoneCurveLineType::setLine(LineSegmentType * LineIn)
 {Line = LineIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureZoneListType
 
@@ -33296,7 +33296,7 @@ FeatureZoneBaseTypeLisd * FeatureZoneListType::getFeatureZone()
 void FeatureZoneListType::setFeatureZone(FeatureZoneBaseTypeLisd * FeatureZoneIn)
 {FeatureZone = FeatureZoneIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureZonePointType
 
@@ -33305,7 +33305,7 @@ void FeatureZoneListType::setFeatureZone(FeatureZoneBaseTypeLisd * FeatureZoneIn
 FeatureZonePointType::FeatureZonePointType() :
   FeatureZoneBaseType()
 {
-  FeatureZonePoin_1103 = 0;
+  FeatureZonePoin_1104 = 0;
   Point = 0;
 }
 
@@ -33313,14 +33313,14 @@ FeatureZonePointType::FeatureZonePointType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZonePoin_1103_Type * FeatureZonePoin_1103In,
+ FeatureZonePoin_1104_Type * FeatureZonePoin_1104In,
  PointType * PointIn) :
   FeatureZoneBaseType(
     AttributesIn,
     LabelIn,
     SurfaceFeatureNominalIdIn)
 {
-  FeatureZonePoin_1103 = FeatureZonePoin_1103In;
+  FeatureZonePoin_1104 = FeatureZonePoin_1104In;
   Point = PointIn;
 }
 
@@ -33329,7 +33329,7 @@ FeatureZonePointType::FeatureZonePointType(
  AttributesType * AttributesIn,
  XmlToken * LabelIn,
  QIFReferenceFullType * SurfaceFeatureNominalIdIn,
- FeatureZonePoin_1103_Type * FeatureZonePoin_1103In,
+ FeatureZonePoin_1104_Type * FeatureZonePoin_1104In,
  PointType * PointIn) :
   FeatureZoneBaseType(
     idIn,
@@ -33337,14 +33337,14 @@ FeatureZonePointType::FeatureZonePointType(
     LabelIn,
     SurfaceFeatureNominalIdIn)
 {
-  FeatureZonePoin_1103 = FeatureZonePoin_1103In;
+  FeatureZonePoin_1104 = FeatureZonePoin_1104In;
   Point = PointIn;
 }
 
 FeatureZonePointType::~FeatureZonePointType()
 {
   #ifndef NODESTRUCT
-  delete FeatureZonePoin_1103;
+  delete FeatureZonePoin_1104;
   delete Point;
   #endif
 }
@@ -33400,9 +33400,9 @@ void FeatureZonePointType::printSelf(FILE * outFile)
       SurfaceFeatureNominalId->printSelf(outFile);
       fprintf(outFile, "</SurfaceFeatureNominalId>\n");
     }
-  if (FeatureZonePoin_1103)
+  if (FeatureZonePoin_1104)
     {
-      FeatureZonePoin_1103->printSelf(outFile);
+      FeatureZonePoin_1104->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Point");
@@ -33468,11 +33468,11 @@ bool FeatureZonePointType::badAttributes(
   return returnValue;
 }
 
-FeatureZonePoin_1103_Type * FeatureZonePointType::getFeatureZonePoin_1103()
-{return FeatureZonePoin_1103;}
+FeatureZonePoin_1104_Type * FeatureZonePointType::getFeatureZonePoin_1104()
+{return FeatureZonePoin_1104;}
 
-void FeatureZonePointType::setFeatureZonePoin_1103(FeatureZonePoin_1103_Type * FeatureZonePoin_1103In)
-{FeatureZonePoin_1103 = FeatureZonePoin_1103In;}
+void FeatureZonePointType::setFeatureZonePoin_1104(FeatureZonePoin_1104_Type * FeatureZonePoin_1104In)
+{FeatureZonePoin_1104 = FeatureZonePoin_1104In;}
 
 PointType * FeatureZonePointType::getPoint()
 {return Point;}
@@ -33480,7 +33480,7 @@ PointType * FeatureZonePointType::getPoint()
 void FeatureZonePointType::setPoint(PointType * PointIn)
 {Point = PointIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class GroupFeatureDefinitionType
 
@@ -33491,20 +33491,20 @@ GroupFeatureDefinitionType::GroupFeatureDefinitionType() :
 {
   IsProfileGroup = 0;
   IsRunoutGroup = 0;
-  GroupFeatureDef_1104 = 0;
+  GroupFeatureDef_1105 = 0;
 }
 
 GroupFeatureDefinitionType::GroupFeatureDefinitionType(
  AttributesType * AttributesIn,
  XmlBoolean * IsProfileGroupIn,
  XmlBoolean * IsRunoutGroupIn,
- GroupFeatureDef_1104_Type * GroupFeatureDef_1104In) :
+ GroupFeatureDef_1105_Type * GroupFeatureDef_1105In) :
   ShapeFeatureDefinitionBaseType(
     AttributesIn)
 {
   IsProfileGroup = IsProfileGroupIn;
   IsRunoutGroup = IsRunoutGroupIn;
-  GroupFeatureDef_1104 = GroupFeatureDef_1104In;
+  GroupFeatureDef_1105 = GroupFeatureDef_1105In;
 }
 
 GroupFeatureDefinitionType::GroupFeatureDefinitionType(
@@ -33512,14 +33512,14 @@ GroupFeatureDefinitionType::GroupFeatureDefinitionType(
  AttributesType * AttributesIn,
  XmlBoolean * IsProfileGroupIn,
  XmlBoolean * IsRunoutGroupIn,
- GroupFeatureDef_1104_Type * GroupFeatureDef_1104In) :
+ GroupFeatureDef_1105_Type * GroupFeatureDef_1105In) :
   ShapeFeatureDefinitionBaseType(
     idIn,
     AttributesIn)
 {
   IsProfileGroup = IsProfileGroupIn;
   IsRunoutGroup = IsRunoutGroupIn;
-  GroupFeatureDef_1104 = GroupFeatureDef_1104In;
+  GroupFeatureDef_1105 = GroupFeatureDef_1105In;
 }
 
 GroupFeatureDefinitionType::~GroupFeatureDefinitionType()
@@ -33527,7 +33527,7 @@ GroupFeatureDefinitionType::~GroupFeatureDefinitionType()
   #ifndef NODESTRUCT
   delete IsProfileGroup;
   delete IsRunoutGroup;
-  delete GroupFeatureDef_1104;
+  delete GroupFeatureDef_1105;
   #endif
 }
 
@@ -33582,9 +33582,9 @@ void GroupFeatureDefinitionType::printSelf(FILE * outFile)
       IsRunoutGroup->printSelf(outFile);
       fprintf(outFile, "</IsRunoutGroup>\n");
     }
-  if (GroupFeatureDef_1104)
+  if (GroupFeatureDef_1105)
     {
-      GroupFeatureDef_1104->printSelf(outFile);
+      GroupFeatureDef_1105->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -33658,13 +33658,13 @@ XmlBoolean * GroupFeatureDefinitionType::getIsRunoutGroup()
 void GroupFeatureDefinitionType::setIsRunoutGroup(XmlBoolean * IsRunoutGroupIn)
 {IsRunoutGroup = IsRunoutGroupIn;}
 
-GroupFeatureDef_1104_Type * GroupFeatureDefinitionType::getGroupFeatureDef_1104()
-{return GroupFeatureDef_1104;}
+GroupFeatureDef_1105_Type * GroupFeatureDefinitionType::getGroupFeatureDef_1105()
+{return GroupFeatureDef_1105;}
 
-void GroupFeatureDefinitionType::setGroupFeatureDef_1104(GroupFeatureDef_1104_Type * GroupFeatureDef_1104In)
-{GroupFeatureDef_1104 = GroupFeatureDef_1104In;}
+void GroupFeatureDefinitionType::setGroupFeatureDef_1105(GroupFeatureDef_1105_Type * GroupFeatureDef_1105In)
+{GroupFeatureDef_1105 = GroupFeatureDef_1105In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class GroupFeatureItemType
 
@@ -33889,7 +33889,7 @@ bool GroupFeatureItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class GroupFeatureMeasurementType
 
@@ -34144,7 +34144,7 @@ bool GroupFeatureMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class GroupFeatureNominalType
 
@@ -34380,7 +34380,7 @@ ArrayReferenceFullType * GroupFeatureNominalType::getFeatureNominalIds()
 void GroupFeatureNominalType::setFeatureNominalIds(ArrayReferenceFullType * FeatureNominalIdsIn)
 {FeatureNominalIds = FeatureNominalIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineBestFitType
 
@@ -34552,7 +34552,7 @@ SequencedBaseFeatureTypeLisd * LineBestFitType::getBaseFeature()
 void LineBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineCastType
 
@@ -34605,7 +34605,7 @@ BaseFeatureType * LineCastType::getBaseFeature()
 void LineCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineCheckedFeatureType
 
@@ -34650,7 +34650,7 @@ LineCheckedType * LineCheckedFeatureType::getCheckDetails()
 void LineCheckedFeatureType::setCheckDetails(LineCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineCheckedType
 
@@ -34688,7 +34688,7 @@ LineCheckedTypeChoicePair * LineCheckedType::getLineCheckedTypePair()
 void LineCheckedType::setLineCheckedTypePair(LineCheckedTypeChoicePair * LineCheckedTypePairIn)
 {LineCheckedTypePair = LineCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineCheckedTypeChoicePair
 
@@ -34734,7 +34734,7 @@ void LineCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineConstructionMethodType
 
@@ -34775,7 +34775,7 @@ LineConstructionMethodTypeChoicePair * LineConstructionMethodType::getLineConstr
 void LineConstructionMethodType::setLineConstructionMethodTypePair(LineConstructionMethodTypeChoicePair * LineConstructionMethodTypePairIn)
 {LineConstructionMethodTypePair = LineConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineConstructionMethodTypeChoicePair
 
@@ -34931,7 +34931,7 @@ void LineConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineCopyType
 
@@ -34984,7 +34984,7 @@ BaseFeatureType * LineCopyType::getBaseLine()
 void LineCopyType::setBaseLine(BaseFeatureType * BaseLineIn)
 {BaseLine = BaseLineIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineExtractType
 
@@ -35037,7 +35037,7 @@ BaseFeatureType * LineExtractType::getCurveFeature()
 void LineExtractType::setCurveFeature(BaseFeatureType * CurveFeatureIn)
 {CurveFeature = CurveFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineFeatureDefinitionType
 
@@ -35167,7 +35167,7 @@ bool LineFeatureDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineFeatureItemType
 
@@ -35409,7 +35409,7 @@ LineMeasurementDeterminationType * LineFeatureItemType::getDeterminationMode()
 void LineFeatureItemType::setDeterminationMode(LineMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineFeatureMeasurementType
 
@@ -35759,7 +35759,7 @@ MeasuredLinearValueType * LineFeatureMeasurementType::getForm()
 void LineFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineFeatureNominalType
 
@@ -36079,7 +36079,7 @@ LineConstructionMethodType * LineFeatureNominalType::getConstructed()
 void LineFeatureNominalType::setConstructed(LineConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineFromScanType
 
@@ -36146,7 +36146,7 @@ LinearValueType * LineFromScanType::getSearchRadius()
 void LineFromScanType::setSearchRadius(LinearValueType * SearchRadiusIn)
 {SearchRadius = SearchRadiusIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineIntersectionType
 
@@ -36216,7 +36216,7 @@ SequencedBaseFeatureTypeLisd * LineIntersectionType::getIntersectionFeature()
 void LineIntersectionType::setIntersectionFeature(SequencedBaseFeatureTypeLisd * IntersectionFeatureIn)
 {IntersectionFeature = IntersectionFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineMeasurementDeterminationType
 
@@ -36254,7 +36254,7 @@ LineMeasurementDeterminationTypeChoicePair * LineMeasurementDeterminationType::g
 void LineMeasurementDeterminationType::setLineMeasurementDeterminationTypePair(LineMeasurementDeterminationTypeChoicePair * LineMeasurementDeterminationTypePairIn)
 {LineMeasurementDeterminationTypePair = LineMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineMeasurementDeterminationTypeChoicePair
 
@@ -36298,7 +36298,7 @@ void LineMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineMidlineType
 
@@ -36368,7 +36368,7 @@ SequencedBaseFeatureTypeLisd * LineMidlineType::getBaseLine()
 void LineMidlineType::setBaseLine(SequencedBaseFeatureTypeLisd * BaseLineIn)
 {BaseLine = BaseLineIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineParallelType
 
@@ -36436,7 +36436,7 @@ BaseFeatureType * LineParallelType::getPointFeature()
 void LineParallelType::setPointFeature(BaseFeatureType * PointFeatureIn)
 {PointFeature = PointFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinePerpendicularType
 
@@ -36504,7 +36504,7 @@ BaseFeatureType * LinePerpendicularType::getPointFeature()
 void LinePerpendicularType::setPointFeature(BaseFeatureType * PointFeatureIn)
 {PointFeature = PointFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineProjectionType
 
@@ -36572,7 +36572,7 @@ BaseFeatureType * LineProjectionType::getProjectionLine()
 void LineProjectionType::setProjectionLine(BaseFeatureType * ProjectionLineIn)
 {ProjectionLine = ProjectionLineIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineRecompType
 
@@ -36625,7 +36625,7 @@ BaseFeaturePointListType * LineRecompType::getBaseFeaturePointList()
 void LineRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineTangentThroughType
 
@@ -36693,7 +36693,7 @@ BaseFeatureType * LineTangentThroughType::getPointFeature()
 void LineTangentThroughType::setPointFeature(BaseFeatureType * PointFeatureIn)
 {PointFeature = PointFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineTransformType
 
@@ -36761,7 +36761,7 @@ TransformationReferenceType * LineTransformType::getTransformation()
 void LineTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MarkingFeatureDefinitionType
 
@@ -36924,7 +36924,7 @@ MarkingMethodType * MarkingFeatureDefinitionType::getMarkingMethod()
 void MarkingFeatureDefinitionType::setMarkingMethod(MarkingMethodType * MarkingMethodIn)
 {MarkingMethod = MarkingMethodIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MarkingFeatureItemType
 
@@ -37115,7 +37115,7 @@ bool MarkingFeatureItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MarkingFeatureMeasurementType
 
@@ -37368,7 +37368,7 @@ RectangleType * MarkingFeatureMeasurementType::getLocation()
 void MarkingFeatureMeasurementType::setLocation(RectangleType * LocationIn)
 {Location = LocationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MarkingFeatureNominalType
 
@@ -37580,7 +37580,7 @@ RectangleType * MarkingFeatureNominalType::getLocation()
 void MarkingFeatureNominalType::setLocation(RectangleType * LocationIn)
 {Location = LocationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MarkingMethodEnumType
 
@@ -37642,7 +37642,7 @@ void MarkingMethodEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MarkingMethodType
 
@@ -37680,7 +37680,7 @@ MarkingMethodTypeChoicePair * MarkingMethodType::getMarkingMethodTypePair()
 void MarkingMethodType::setMarkingMethodTypePair(MarkingMethodTypeChoicePair * MarkingMethodTypePairIn)
 {MarkingMethodTypePair = MarkingMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MarkingMethodTypeChoicePair
 
@@ -37724,7 +37724,7 @@ void MarkingMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredFeatureType
 
@@ -37769,7 +37769,7 @@ PointListType * MeasuredFeatureType::getPointList()
 void MeasuredFeatureType::setPointList(PointListType * PointListIn)
 {PointList = PointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSetType
 
@@ -37802,13 +37802,12 @@ MeasuredPointSetType::MeasuredPointSetType()
   zValidity = 0;
   Attributes = 0;
   Units = 0;
-  MeasuredPointSe_1105 = 0;
   MeasuredPointSe_1106 = 0;
   MeasuredPointSe_1107 = 0;
   MeasuredPointSe_1108 = 0;
   MeasuredPointSe_1109 = 0;
-  MeasurementDeviceId = 0;
   MeasuredPointSe_1110 = 0;
+  MeasurementDeviceId = 0;
   MeasuredPointSe_1111 = 0;
   MeasuredPointSe_1112 = 0;
   MeasuredPointSe_1113 = 0;
@@ -37816,25 +37815,26 @@ MeasuredPointSetType::MeasuredPointSetType()
   MeasuredPointSe_1115 = 0;
   MeasuredPointSe_1116 = 0;
   MeasuredPointSe_1117 = 0;
+  MeasuredPointSe_1118 = 0;
 }
 
 MeasuredPointSetType::MeasuredPointSetType(
  AttributesType * AttributesIn,
  OtherUnitsType * UnitsIn,
- MeasuredPointSe_1105_Type * MeasuredPointSe_1105In,
  MeasuredPointSe_1106_Type * MeasuredPointSe_1106In,
  MeasuredPointSe_1107_Type * MeasuredPointSe_1107In,
  MeasuredPointSe_1108_Type * MeasuredPointSe_1108In,
  MeasuredPointSe_1109_Type * MeasuredPointSe_1109In,
- QIFReferenceType * MeasurementDeviceIdIn,
  MeasuredPointSe_1110_Type * MeasuredPointSe_1110In,
+ QIFReferenceType * MeasurementDeviceIdIn,
  MeasuredPointSe_1111_Type * MeasuredPointSe_1111In,
  MeasuredPointSe_1112_Type * MeasuredPointSe_1112In,
  MeasuredPointSe_1113_Type * MeasuredPointSe_1113In,
  MeasuredPointSe_1114_Type * MeasuredPointSe_1114In,
  MeasuredPointSe_1115_Type * MeasuredPointSe_1115In,
  MeasuredPointSe_1116_Type * MeasuredPointSe_1116In,
- MeasuredPointSe_1117_Type * MeasuredPointSe_1117In)
+ MeasuredPointSe_1117_Type * MeasuredPointSe_1117In,
+ MeasuredPointSe_1118_Type * MeasuredPointSe_1118In)
 {
   combinedUncertainty = 0;
   count = 0;
@@ -37861,13 +37861,12 @@ MeasuredPointSetType::MeasuredPointSetType(
   zValidity = 0;
   Attributes = AttributesIn;
   Units = UnitsIn;
-  MeasuredPointSe_1105 = MeasuredPointSe_1105In;
   MeasuredPointSe_1106 = MeasuredPointSe_1106In;
   MeasuredPointSe_1107 = MeasuredPointSe_1107In;
   MeasuredPointSe_1108 = MeasuredPointSe_1108In;
   MeasuredPointSe_1109 = MeasuredPointSe_1109In;
-  MeasurementDeviceId = MeasurementDeviceIdIn;
   MeasuredPointSe_1110 = MeasuredPointSe_1110In;
+  MeasurementDeviceId = MeasurementDeviceIdIn;
   MeasuredPointSe_1111 = MeasuredPointSe_1111In;
   MeasuredPointSe_1112 = MeasuredPointSe_1112In;
   MeasuredPointSe_1113 = MeasuredPointSe_1113In;
@@ -37875,6 +37874,7 @@ MeasuredPointSetType::MeasuredPointSetType(
   MeasuredPointSe_1115 = MeasuredPointSe_1115In;
   MeasuredPointSe_1116 = MeasuredPointSe_1116In;
   MeasuredPointSe_1117 = MeasuredPointSe_1117In;
+  MeasuredPointSe_1118 = MeasuredPointSe_1118In;
 }
 
 MeasuredPointSetType::MeasuredPointSetType(
@@ -37903,20 +37903,20 @@ MeasuredPointSetType::MeasuredPointSetType(
  ValidityEnumType * zValidityIn,
  AttributesType * AttributesIn,
  OtherUnitsType * UnitsIn,
- MeasuredPointSe_1105_Type * MeasuredPointSe_1105In,
  MeasuredPointSe_1106_Type * MeasuredPointSe_1106In,
  MeasuredPointSe_1107_Type * MeasuredPointSe_1107In,
  MeasuredPointSe_1108_Type * MeasuredPointSe_1108In,
  MeasuredPointSe_1109_Type * MeasuredPointSe_1109In,
- QIFReferenceType * MeasurementDeviceIdIn,
  MeasuredPointSe_1110_Type * MeasuredPointSe_1110In,
+ QIFReferenceType * MeasurementDeviceIdIn,
  MeasuredPointSe_1111_Type * MeasuredPointSe_1111In,
  MeasuredPointSe_1112_Type * MeasuredPointSe_1112In,
  MeasuredPointSe_1113_Type * MeasuredPointSe_1113In,
  MeasuredPointSe_1114_Type * MeasuredPointSe_1114In,
  MeasuredPointSe_1115_Type * MeasuredPointSe_1115In,
  MeasuredPointSe_1116_Type * MeasuredPointSe_1116In,
- MeasuredPointSe_1117_Type * MeasuredPointSe_1117In)
+ MeasuredPointSe_1117_Type * MeasuredPointSe_1117In,
+ MeasuredPointSe_1118_Type * MeasuredPointSe_1118In)
 {
   combinedUncertainty = combinedUncertaintyIn;
   count = countIn;
@@ -37943,13 +37943,12 @@ MeasuredPointSetType::MeasuredPointSetType(
   zValidity = zValidityIn;
   Attributes = AttributesIn;
   Units = UnitsIn;
-  MeasuredPointSe_1105 = MeasuredPointSe_1105In;
   MeasuredPointSe_1106 = MeasuredPointSe_1106In;
   MeasuredPointSe_1107 = MeasuredPointSe_1107In;
   MeasuredPointSe_1108 = MeasuredPointSe_1108In;
   MeasuredPointSe_1109 = MeasuredPointSe_1109In;
-  MeasurementDeviceId = MeasurementDeviceIdIn;
   MeasuredPointSe_1110 = MeasuredPointSe_1110In;
+  MeasurementDeviceId = MeasurementDeviceIdIn;
   MeasuredPointSe_1111 = MeasuredPointSe_1111In;
   MeasuredPointSe_1112 = MeasuredPointSe_1112In;
   MeasuredPointSe_1113 = MeasuredPointSe_1113In;
@@ -37957,6 +37956,7 @@ MeasuredPointSetType::MeasuredPointSetType(
   MeasuredPointSe_1115 = MeasuredPointSe_1115In;
   MeasuredPointSe_1116 = MeasuredPointSe_1116In;
   MeasuredPointSe_1117 = MeasuredPointSe_1117In;
+  MeasuredPointSe_1118 = MeasuredPointSe_1118In;
 }
 
 MeasuredPointSetType::~MeasuredPointSetType()
@@ -37987,13 +37987,12 @@ MeasuredPointSetType::~MeasuredPointSetType()
   delete zValidity;
   delete Attributes;
   delete Units;
-  delete MeasuredPointSe_1105;
   delete MeasuredPointSe_1106;
   delete MeasuredPointSe_1107;
   delete MeasuredPointSe_1108;
   delete MeasuredPointSe_1109;
-  delete MeasurementDeviceId;
   delete MeasuredPointSe_1110;
+  delete MeasurementDeviceId;
   delete MeasuredPointSe_1111;
   delete MeasuredPointSe_1112;
   delete MeasuredPointSe_1113;
@@ -38001,6 +38000,7 @@ MeasuredPointSetType::~MeasuredPointSetType()
   delete MeasuredPointSe_1115;
   delete MeasuredPointSe_1116;
   delete MeasuredPointSe_1117;
+  delete MeasuredPointSe_1118;
   #endif
 }
 
@@ -38428,19 +38428,19 @@ void MeasuredPointSetType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Units>\n");
     }
-  if (MeasuredPointSe_1105)
+  if (MeasuredPointSe_1106)
     {
-      MeasuredPointSe_1105->printSelf(outFile);
+      MeasuredPointSe_1106->printSelf(outFile);
     }
-  MeasuredPointSe_1106->printSelf(outFile);
-  if (MeasuredPointSe_1107)
+  MeasuredPointSe_1107->printSelf(outFile);
+  if (MeasuredPointSe_1108)
     {
-      MeasuredPointSe_1107->printSelf(outFile);
+      MeasuredPointSe_1108->printSelf(outFile);
     }
-  MeasuredPointSe_1108->printSelf(outFile);
-  if (MeasuredPointSe_1109)
+  MeasuredPointSe_1109->printSelf(outFile);
+  if (MeasuredPointSe_1110)
     {
-      MeasuredPointSe_1109->printSelf(outFile);
+      MeasuredPointSe_1110->printSelf(outFile);
     }
   if (MeasurementDeviceId)
     {
@@ -38448,10 +38448,6 @@ void MeasuredPointSetType::printSelf(FILE * outFile)
       fprintf(outFile, "<MeasurementDeviceId");
       MeasurementDeviceId->printSelf(outFile);
       fprintf(outFile, "</MeasurementDeviceId>\n");
-    }
-  if (MeasuredPointSe_1110)
-    {
-      MeasuredPointSe_1110->printSelf(outFile);
     }
   if (MeasuredPointSe_1111)
     {
@@ -38480,6 +38476,10 @@ void MeasuredPointSetType::printSelf(FILE * outFile)
   if (MeasuredPointSe_1117)
     {
       MeasuredPointSe_1117->printSelf(outFile);
+    }
+  if (MeasuredPointSe_1118)
+    {
+      MeasuredPointSe_1118->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -39202,12 +39202,6 @@ OtherUnitsType * MeasuredPointSetType::getUnits()
 void MeasuredPointSetType::setUnits(OtherUnitsType * UnitsIn)
 {Units = UnitsIn;}
 
-MeasuredPointSe_1105_Type * MeasuredPointSetType::getMeasuredPointSe_1105()
-{return MeasuredPointSe_1105;}
-
-void MeasuredPointSetType::setMeasuredPointSe_1105(MeasuredPointSe_1105_Type * MeasuredPointSe_1105In)
-{MeasuredPointSe_1105 = MeasuredPointSe_1105In;}
-
 MeasuredPointSe_1106_Type * MeasuredPointSetType::getMeasuredPointSe_1106()
 {return MeasuredPointSe_1106;}
 
@@ -39232,17 +39226,17 @@ MeasuredPointSe_1109_Type * MeasuredPointSetType::getMeasuredPointSe_1109()
 void MeasuredPointSetType::setMeasuredPointSe_1109(MeasuredPointSe_1109_Type * MeasuredPointSe_1109In)
 {MeasuredPointSe_1109 = MeasuredPointSe_1109In;}
 
-QIFReferenceType * MeasuredPointSetType::getMeasurementDeviceId()
-{return MeasurementDeviceId;}
-
-void MeasuredPointSetType::setMeasurementDeviceId(QIFReferenceType * MeasurementDeviceIdIn)
-{MeasurementDeviceId = MeasurementDeviceIdIn;}
-
 MeasuredPointSe_1110_Type * MeasuredPointSetType::getMeasuredPointSe_1110()
 {return MeasuredPointSe_1110;}
 
 void MeasuredPointSetType::setMeasuredPointSe_1110(MeasuredPointSe_1110_Type * MeasuredPointSe_1110In)
 {MeasuredPointSe_1110 = MeasuredPointSe_1110In;}
+
+QIFReferenceType * MeasuredPointSetType::getMeasurementDeviceId()
+{return MeasurementDeviceId;}
+
+void MeasuredPointSetType::setMeasurementDeviceId(QIFReferenceType * MeasurementDeviceIdIn)
+{MeasurementDeviceId = MeasurementDeviceIdIn;}
 
 MeasuredPointSe_1111_Type * MeasuredPointSetType::getMeasuredPointSe_1111()
 {return MeasuredPointSe_1111;}
@@ -39286,7 +39280,13 @@ MeasuredPointSe_1117_Type * MeasuredPointSetType::getMeasuredPointSe_1117()
 void MeasuredPointSetType::setMeasuredPointSe_1117(MeasuredPointSe_1117_Type * MeasuredPointSe_1117In)
 {MeasuredPointSe_1117 = MeasuredPointSe_1117In;}
 
-/*********************************************************************/
+MeasuredPointSe_1118_Type * MeasuredPointSetType::getMeasuredPointSe_1118()
+{return MeasuredPointSe_1118;}
+
+void MeasuredPointSetType::setMeasuredPointSe_1118(MeasuredPointSe_1118_Type * MeasuredPointSe_1118In)
+{MeasuredPointSe_1118 = MeasuredPointSe_1118In;}
+
+/* ***************************************************************** */
 
 /* class MeasuredPointSetTypeLisd
 
@@ -39313,7 +39313,7 @@ MeasuredPointSetTypeLisd::~MeasuredPointSetTypeLisd()
 
 void MeasuredPointSetTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSetsType
 
@@ -39471,7 +39471,7 @@ MeasuredPointSetTypeLisd * MeasuredPointSetsType::getMeasuredPointSet()
 void MeasuredPointSetsType::setMeasuredPointSet(MeasuredPointSetTypeLisd * MeasuredPointSetIn)
 {MeasuredPointSet = MeasuredPointSetIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NominalPointSetListType
 
@@ -39629,7 +39629,7 @@ PointSetNominalTypeLisd * NominalPointSetListType::getNominalPointSet()
 void NominalPointSetListType::setNominalPointSet(PointSetNominalTypeLisd * NominalPointSetIn)
 {NominalPointSet = NominalPointSetIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NonShapeFeatureDefinitionBaseType
 
@@ -39759,7 +39759,7 @@ bool NonShapeFeatureDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NonShapeFeatureItemBaseType
 
@@ -39950,7 +39950,7 @@ bool NonShapeFeatureItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NonShapeFeatureMeasurementBaseType
 
@@ -40170,7 +40170,7 @@ bool NonShapeFeatureMeasurementBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NonShapeFeatureNominalBaseType
 
@@ -40365,7 +40365,7 @@ bool NonShapeFeatureNominalBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesBestFitType
 
@@ -40537,7 +40537,7 @@ SequencedBaseFeatureTypeLisd * OppositeAngledLinesBestFitType::getBaseFeature()
 void OppositeAngledLinesBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesCastType
 
@@ -40590,7 +40590,7 @@ BaseFeatureType * OppositeAngledLinesCastType::getBaseFeature()
 void OppositeAngledLinesCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesCheckedFeatureType
 
@@ -40635,7 +40635,7 @@ OppositeAngledLinesCheckedType * OppositeAngledLinesCheckedFeatureType::getCheck
 void OppositeAngledLinesCheckedFeatureType::setCheckDetails(OppositeAngledLinesCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesCheckedType
 
@@ -40673,7 +40673,7 @@ OppositeAngledLinesCheckedTypeChoicePair * OppositeAngledLinesCheckedType::getOp
 void OppositeAngledLinesCheckedType::setOppositeAngledLinesCheckedTypePair(OppositeAngledLinesCheckedTypeChoicePair * OppositeAngledLinesCheckedTypePairIn)
 {OppositeAngledLinesCheckedTypePair = OppositeAngledLinesCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesCheckedTypeChoicePair
 
@@ -40719,7 +40719,7 @@ void OppositeAngledLinesCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesConstructionMethodType
 
@@ -40760,7 +40760,7 @@ OppositeAngledLinesConstructionMethodTypeChoicePair * OppositeAngledLinesConstru
 void OppositeAngledLinesConstructionMethodType::setOppositeAngledLinesConstructionMethodTypePair(OppositeAngledLinesConstructionMethodTypeChoicePair * OppositeAngledLinesConstructionMethodTypePairIn)
 {OppositeAngledLinesConstructionMethodTypePair = OppositeAngledLinesConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesConstructionMethodTypeChoicePair
 
@@ -40866,7 +40866,7 @@ void OppositeAngledLinesConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesCopyType
 
@@ -40919,7 +40919,7 @@ BaseFeatureType * OppositeAngledLinesCopyType::getBaseOppositeAngledLines()
 void OppositeAngledLinesCopyType::setBaseOppositeAngledLines(BaseFeatureType * BaseOppositeAngledLinesIn)
 {BaseOppositeAngledLines = BaseOppositeAngledLinesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesFeatureDefinitionType
 
@@ -41192,7 +41192,7 @@ EndRadiusType * OppositeAngledLinesFeatureDefinitionType::getEndRadius2()
 void OppositeAngledLinesFeatureDefinitionType::setEndRadius2(EndRadiusType * EndRadius2In)
 {EndRadius2 = EndRadius2In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesFeatureItemType
 
@@ -41434,7 +41434,7 @@ OppositeAngledLinesMeasurementDeterminationType * OppositeAngledLinesFeatureItem
 void OppositeAngledLinesFeatureItemType::setDeterminationMode(OppositeAngledLinesMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesFeatureMeasurementType
 
@@ -41920,7 +41920,7 @@ MeasuredLinearValueType * OppositeAngledLinesFeatureMeasurementType::getForm()
 void OppositeAngledLinesFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesFeatureNominalType
 
@@ -42203,7 +42203,7 @@ OppositeAngledLinesConstructionMethodType * OppositeAngledLinesFeatureNominalTyp
 void OppositeAngledLinesFeatureNominalType::setConstructed(OppositeAngledLinesConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesFromScanType
 
@@ -42284,7 +42284,7 @@ LinearValueType * OppositeAngledLinesFromScanType::getDepth()
 void OppositeAngledLinesFromScanType::setDepth(LinearValueType * DepthIn)
 {Depth = DepthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesIntersectionType
 
@@ -42352,7 +42352,7 @@ BaseFeatureType * OppositeAngledLinesIntersectionType::getIntersectionFeature()
 void OppositeAngledLinesIntersectionType::setIntersectionFeature(BaseFeatureType * IntersectionFeatureIn)
 {IntersectionFeature = IntersectionFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesMeasurementDeterminationType
 
@@ -42390,7 +42390,7 @@ OppositeAngledLinesMeasurementDeterminationTypeChoicePair * OppositeAngledLinesM
 void OppositeAngledLinesMeasurementDeterminationType::setOppositeAngledLinesMeasurementDeterminationTypePair(OppositeAngledLinesMeasurementDeterminationTypeChoicePair * OppositeAngledLinesMeasurementDeterminationTypePairIn)
 {OppositeAngledLinesMeasurementDeterminationTypePair = OppositeAngledLinesMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesMeasurementDeterminationTypeChoicePair
 
@@ -42434,7 +42434,7 @@ void OppositeAngledLinesMeasurementDeterminationTypeChoicePair::printSelf(FILE *
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesProjectionType
 
@@ -42502,7 +42502,7 @@ BaseFeatureType * OppositeAngledLinesProjectionType::getProjectionOppositeAngled
 void OppositeAngledLinesProjectionType::setProjectionOppositeAngledLines(BaseFeatureType * ProjectionOppositeAngledLinesIn)
 {ProjectionOppositeAngledLines = ProjectionOppositeAngledLinesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesRecompType
 
@@ -42555,7 +42555,7 @@ BaseFeaturePointListType * OppositeAngledLinesRecompType::getBaseFeaturePointLis
 void OppositeAngledLinesRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesTransformType
 
@@ -42623,7 +42623,7 @@ TransformationReferenceType * OppositeAngledLinesTransformType::getTransformatio
 void OppositeAngledLinesTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledPlanesBestFitType
 
@@ -42795,7 +42795,7 @@ SequencedBaseFeatureTypeLisd * OppositeAngledPlanesBestFitType::getBaseFeature()
 void OppositeAngledPlanesBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledPlanesCastType
 
@@ -42848,7 +42848,7 @@ BaseFeatureType * OppositeAngledPlanesCastType::getBaseFeature()
 void OppositeAngledPlanesCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledPlanesCheckedFeatureType
 
@@ -42893,7 +42893,7 @@ OppositeAngledPlanesCheckedType * OppositeAngledPlanesCheckedFeatureType::getChe
 void OppositeAngledPlanesCheckedFeatureType::setCheckDetails(OppositeAngledPlanesCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledPlanesCheckedType
 
@@ -42931,7 +42931,7 @@ OppositeAngledPlanesCheckedTypeChoicePair * OppositeAngledPlanesCheckedType::get
 void OppositeAngledPlanesCheckedType::setOppositeAngledPlanesCheckedTypePair(OppositeAngledPlanesCheckedTypeChoicePair * OppositeAngledPlanesCheckedTypePairIn)
 {OppositeAngledPlanesCheckedTypePair = OppositeAngledPlanesCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledPlanesCheckedTypeChoicePair
 
@@ -42977,7 +42977,7 @@ void OppositeAngledPlanesCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledPlanesConstructionMethodType
 
@@ -43018,7 +43018,7 @@ OppositeAngledPlanesConstructionMethodTypeChoicePair * OppositeAngledPlanesConst
 void OppositeAngledPlanesConstructionMethodType::setOppositeAngledPlanesConstructionMethodTypePair(OppositeAngledPlanesConstructionMethodTypeChoicePair * OppositeAngledPlanesConstructionMethodTypePairIn)
 {OppositeAngledPlanesConstructionMethodTypePair = OppositeAngledPlanesConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledPlanesConstructionMethodTypeChoicePair
 
@@ -43104,7 +43104,7 @@ void OppositeAngledPlanesConstructionMethodTypeChoicePair::printSelf(FILE * outF
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledPlanesCopyType
 
@@ -43157,7 +43157,7 @@ BaseFeatureType * OppositeAngledPlanesCopyType::getBaseOppositeAngledPlanes()
 void OppositeAngledPlanesCopyType::setBaseOppositeAngledPlanes(BaseFeatureType * BaseOppositeAngledPlanesIn)
 {BaseOppositeAngledPlanes = BaseOppositeAngledPlanesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledPlanesFeatureDefinitionType
 
@@ -43175,7 +43175,7 @@ OppositeAngledPlanesFeatureDefinitionType::OppositeAngledPlanesFeatureDefinition
   SingleOpenEnd = 0;
   EndRadius1 = 0;
   EndRadius2 = 0;
-  OppositeAngledP_1118 = 0;
+  OppositeAngledP_1119 = 0;
 }
 
 OppositeAngledPlanesFeatureDefinitionType::OppositeAngledPlanesFeatureDefinitionType(
@@ -43189,7 +43189,7 @@ OppositeAngledPlanesFeatureDefinitionType::OppositeAngledPlanesFeatureDefinition
  XmlBoolean * SingleOpenEndIn,
  EndRadiusType * EndRadius1In,
  EndRadiusType * EndRadius2In,
- OppositeAngledP_1118_Type * OppositeAngledP_1118In) :
+ OppositeAngledP_1119_Type * OppositeAngledP_1119In) :
   SurfaceFeatureDefinitionBaseType(
     AttributesIn)
 {
@@ -43202,7 +43202,7 @@ OppositeAngledPlanesFeatureDefinitionType::OppositeAngledPlanesFeatureDefinition
   SingleOpenEnd = SingleOpenEndIn;
   EndRadius1 = EndRadius1In;
   EndRadius2 = EndRadius2In;
-  OppositeAngledP_1118 = OppositeAngledP_1118In;
+  OppositeAngledP_1119 = OppositeAngledP_1119In;
 }
 
 OppositeAngledPlanesFeatureDefinitionType::OppositeAngledPlanesFeatureDefinitionType(
@@ -43217,7 +43217,7 @@ OppositeAngledPlanesFeatureDefinitionType::OppositeAngledPlanesFeatureDefinition
  XmlBoolean * SingleOpenEndIn,
  EndRadiusType * EndRadius1In,
  EndRadiusType * EndRadius2In,
- OppositeAngledP_1118_Type * OppositeAngledP_1118In) :
+ OppositeAngledP_1119_Type * OppositeAngledP_1119In) :
   SurfaceFeatureDefinitionBaseType(
     idIn,
     AttributesIn)
@@ -43231,7 +43231,7 @@ OppositeAngledPlanesFeatureDefinitionType::OppositeAngledPlanesFeatureDefinition
   SingleOpenEnd = SingleOpenEndIn;
   EndRadius1 = EndRadius1In;
   EndRadius2 = EndRadius2In;
-  OppositeAngledP_1118 = OppositeAngledP_1118In;
+  OppositeAngledP_1119 = OppositeAngledP_1119In;
 }
 
 OppositeAngledPlanesFeatureDefinitionType::~OppositeAngledPlanesFeatureDefinitionType()
@@ -43246,7 +43246,7 @@ OppositeAngledPlanesFeatureDefinitionType::~OppositeAngledPlanesFeatureDefinitio
   delete SingleOpenEnd;
   delete EndRadius1;
   delete EndRadius2;
-  delete OppositeAngledP_1118;
+  delete OppositeAngledP_1119;
   #endif
 }
 
@@ -43345,7 +43345,7 @@ void OppositeAngledPlanesFeatureDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</EndRadius2>\n");
     }
-  OppositeAngledP_1118->printSelf(outFile);
+  OppositeAngledP_1119->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -43460,13 +43460,13 @@ EndRadiusType * OppositeAngledPlanesFeatureDefinitionType::getEndRadius2()
 void OppositeAngledPlanesFeatureDefinitionType::setEndRadius2(EndRadiusType * EndRadius2In)
 {EndRadius2 = EndRadius2In;}
 
-OppositeAngledP_1118_Type * OppositeAngledPlanesFeatureDefinitionType::getOppositeAngledP_1118()
-{return OppositeAngledP_1118;}
+OppositeAngledP_1119_Type * OppositeAngledPlanesFeatureDefinitionType::getOppositeAngledP_1119()
+{return OppositeAngledP_1119;}
 
-void OppositeAngledPlanesFeatureDefinitionType::setOppositeAngledP_1118(OppositeAngledP_1118_Type * OppositeAngledP_1118In)
-{OppositeAngledP_1118 = OppositeAngledP_1118In;}
+void OppositeAngledPlanesFeatureDefinitionType::setOppositeAngledP_1119(OppositeAngledP_1119_Type * OppositeAngledP_1119In)
+{OppositeAngledP_1119 = OppositeAngledP_1119In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledPlanesFeatureItemType
 
@@ -43708,7 +43708,7 @@ OppositeAngledPlanesMeasurementDeterminationType * OppositeAngledPlanesFeatureIt
 void OppositeAngledPlanesFeatureItemType::setDeterminationMode(OppositeAngledPlanesMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledPlanesFeatureMeasurementType
 
@@ -43727,7 +43727,7 @@ OppositeAngledPlanesFeatureMeasurementType::OppositeAngledPlanesFeatureMeasureme
   LengthMin = 0;
   LengthMax = 0;
   Depth = 0;
-  OppositeAngledP_1119 = 0;
+  OppositeAngledP_1120 = 0;
   EndRadius1 = 0;
   EndRadius2 = 0;
   Form = 0;
@@ -43756,7 +43756,7 @@ OppositeAngledPlanesFeatureMeasurementType::OppositeAngledPlanesFeatureMeasureme
  MeasuredLinearValueType * LengthMinIn,
  MeasuredLinearValueType * LengthMaxIn,
  MeasuredLinearValueType * DepthIn,
- OppositeAngledP_1119_Type * OppositeAngledP_1119In,
+ OppositeAngledP_1120_Type * OppositeAngledP_1120In,
  MeasuredEndRadiusType * EndRadius1In,
  MeasuredEndRadiusType * EndRadius2In,
  MeasuredLinearValueType * FormIn) :
@@ -43784,7 +43784,7 @@ OppositeAngledPlanesFeatureMeasurementType::OppositeAngledPlanesFeatureMeasureme
   LengthMin = LengthMinIn;
   LengthMax = LengthMaxIn;
   Depth = DepthIn;
-  OppositeAngledP_1119 = OppositeAngledP_1119In;
+  OppositeAngledP_1120 = OppositeAngledP_1120In;
   EndRadius1 = EndRadius1In;
   EndRadius2 = EndRadius2In;
   Form = FormIn;
@@ -43814,7 +43814,7 @@ OppositeAngledPlanesFeatureMeasurementType::OppositeAngledPlanesFeatureMeasureme
  MeasuredLinearValueType * LengthMinIn,
  MeasuredLinearValueType * LengthMaxIn,
  MeasuredLinearValueType * DepthIn,
- OppositeAngledP_1119_Type * OppositeAngledP_1119In,
+ OppositeAngledP_1120_Type * OppositeAngledP_1120In,
  MeasuredEndRadiusType * EndRadius1In,
  MeasuredEndRadiusType * EndRadius2In,
  MeasuredLinearValueType * FormIn) :
@@ -43843,7 +43843,7 @@ OppositeAngledPlanesFeatureMeasurementType::OppositeAngledPlanesFeatureMeasureme
   LengthMin = LengthMinIn;
   LengthMax = LengthMaxIn;
   Depth = DepthIn;
-  OppositeAngledP_1119 = OppositeAngledP_1119In;
+  OppositeAngledP_1120 = OppositeAngledP_1120In;
   EndRadius1 = EndRadius1In;
   EndRadius2 = EndRadius2In;
   Form = FormIn;
@@ -43862,7 +43862,7 @@ OppositeAngledPlanesFeatureMeasurementType::~OppositeAngledPlanesFeatureMeasurem
   delete LengthMin;
   delete LengthMax;
   delete Depth;
-  delete OppositeAngledP_1119;
+  delete OppositeAngledP_1120;
   delete EndRadius1;
   delete EndRadius2;
   delete Form;
@@ -44058,9 +44058,9 @@ void OppositeAngledPlanesFeatureMeasurementType::printSelf(FILE * outFile)
       Depth->printSelf(outFile);
       fprintf(outFile, "</Depth>\n");
     }
-  if (OppositeAngledP_1119)
+  if (OppositeAngledP_1120)
     {
-      OppositeAngledP_1119->printSelf(outFile);
+      OppositeAngledP_1120->printSelf(outFile);
     }
   if (EndRadius1)
     {
@@ -44205,11 +44205,11 @@ MeasuredLinearValueType * OppositeAngledPlanesFeatureMeasurementType::getDepth()
 void OppositeAngledPlanesFeatureMeasurementType::setDepth(MeasuredLinearValueType * DepthIn)
 {Depth = DepthIn;}
 
-OppositeAngledP_1119_Type * OppositeAngledPlanesFeatureMeasurementType::getOppositeAngledP_1119()
-{return OppositeAngledP_1119;}
+OppositeAngledP_1120_Type * OppositeAngledPlanesFeatureMeasurementType::getOppositeAngledP_1120()
+{return OppositeAngledP_1120;}
 
-void OppositeAngledPlanesFeatureMeasurementType::setOppositeAngledP_1119(OppositeAngledP_1119_Type * OppositeAngledP_1119In)
-{OppositeAngledP_1119 = OppositeAngledP_1119In;}
+void OppositeAngledPlanesFeatureMeasurementType::setOppositeAngledP_1120(OppositeAngledP_1120_Type * OppositeAngledP_1120In)
+{OppositeAngledP_1120 = OppositeAngledP_1120In;}
 
 MeasuredEndRadiusType * OppositeAngledPlanesFeatureMeasurementType::getEndRadius1()
 {return EndRadius1;}
@@ -44229,7 +44229,7 @@ MeasuredLinearValueType * OppositeAngledPlanesFeatureMeasurementType::getForm()
 void OppositeAngledPlanesFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledPlanesFeatureNominalType
 
@@ -44542,7 +44542,7 @@ OppositeAngledPlanesConstructionMethodType * OppositeAngledPlanesFeatureNominalT
 void OppositeAngledPlanesFeatureNominalType::setConstructed(OppositeAngledPlanesConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledPlanesFromScanType
 
@@ -44609,7 +44609,7 @@ LinearValueType * OppositeAngledPlanesFromScanType::getSearchRadius()
 void OppositeAngledPlanesFromScanType::setSearchRadius(LinearValueType * SearchRadiusIn)
 {SearchRadius = SearchRadiusIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledPlanesMeasurementDeterminationType
 
@@ -44647,7 +44647,7 @@ OppositeAngledPlanesMeasurementDeterminationTypeChoicePair * OppositeAngledPlane
 void OppositeAngledPlanesMeasurementDeterminationType::setOppositeAngledPlanesMeasurementDeterminationTypePair(OppositeAngledPlanesMeasurementDeterminationTypeChoicePair * OppositeAngledPlanesMeasurementDeterminationTypePairIn)
 {OppositeAngledPlanesMeasurementDeterminationTypePair = OppositeAngledPlanesMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledPlanesMeasurementDeterminationTypeChoicePair
 
@@ -44691,7 +44691,7 @@ void OppositeAngledPlanesMeasurementDeterminationTypeChoicePair::printSelf(FILE 
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledPlanesRecompType
 
@@ -44744,7 +44744,7 @@ BaseFeaturePointListType * OppositeAngledPlanesRecompType::getBaseFeaturePointLi
 void OppositeAngledPlanesRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledPlanesTransformType
 
@@ -44812,7 +44812,7 @@ TransformationReferenceType * OppositeAngledPlanesTransformType::getTransformati
 void OppositeAngledPlanesTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesBestFitType
 
@@ -44984,7 +44984,7 @@ SequencedBaseFeatureTypeLisd * OppositeParallelLinesBestFitType::getBaseFeature(
 void OppositeParallelLinesBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesCastType
 
@@ -45037,7 +45037,7 @@ BaseFeatureType * OppositeParallelLinesCastType::getBaseFeature()
 void OppositeParallelLinesCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesCheckedFeatureType
 
@@ -45082,7 +45082,7 @@ OppositeParallelLinesCheckedType * OppositeParallelLinesCheckedFeatureType::getC
 void OppositeParallelLinesCheckedFeatureType::setCheckDetails(OppositeParallelLinesCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesCheckedType
 
@@ -45120,7 +45120,7 @@ OppositeParallelLinesCheckedTypeChoicePair * OppositeParallelLinesCheckedType::g
 void OppositeParallelLinesCheckedType::setOppositeParallelLinesCheckedTypePair(OppositeParallelLinesCheckedTypeChoicePair * OppositeParallelLinesCheckedTypePairIn)
 {OppositeParallelLinesCheckedTypePair = OppositeParallelLinesCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesCheckedTypeChoicePair
 
@@ -45166,7 +45166,7 @@ void OppositeParallelLinesCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesConstructionMethodType
 
@@ -45207,7 +45207,7 @@ OppositeParallelLinesConstructionMethodTypeChoicePair * OppositeParallelLinesCon
 void OppositeParallelLinesConstructionMethodType::setOppositeParallelLinesConstructionMethodTypePair(OppositeParallelLinesConstructionMethodTypeChoicePair * OppositeParallelLinesConstructionMethodTypePairIn)
 {OppositeParallelLinesConstructionMethodTypePair = OppositeParallelLinesConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesConstructionMethodTypeChoicePair
 
@@ -45313,7 +45313,7 @@ void OppositeParallelLinesConstructionMethodTypeChoicePair::printSelf(FILE * out
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesCopyType
 
@@ -45366,7 +45366,7 @@ BaseFeatureType * OppositeParallelLinesCopyType::getBaseOppositeParallelLines()
 void OppositeParallelLinesCopyType::setBaseOppositeParallelLines(BaseFeatureType * BaseOppositeParallelLinesIn)
 {BaseOppositeParallelLines = BaseOppositeParallelLinesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesFeatureDefinitionType
 
@@ -45623,7 +45623,7 @@ EndRadiusType * OppositeParallelLinesFeatureDefinitionType::getEndRadius2()
 void OppositeParallelLinesFeatureDefinitionType::setEndRadius2(EndRadiusType * EndRadius2In)
 {EndRadius2 = EndRadius2In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesFeatureItemType
 
@@ -45865,7 +45865,7 @@ OppositeParallelLinesMeasurementDeterminationType * OppositeParallelLinesFeature
 void OppositeParallelLinesFeatureItemType::setDeterminationMode(OppositeParallelLinesMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesFeatureMeasurementType
 
@@ -46332,7 +46332,7 @@ MeasuredLinearValueType * OppositeParallelLinesFeatureMeasurementType::getForm()
 void OppositeParallelLinesFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesFeatureNominalType
 
@@ -46615,7 +46615,7 @@ OppositeParallelLinesConstructionMethodType * OppositeParallelLinesFeatureNomina
 void OppositeParallelLinesFeatureNominalType::setConstructed(OppositeParallelLinesConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesFromScanType
 
@@ -46696,7 +46696,7 @@ LinearValueType * OppositeParallelLinesFromScanType::getDepth()
 void OppositeParallelLinesFromScanType::setDepth(LinearValueType * DepthIn)
 {Depth = DepthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesIntersectionType
 
@@ -46764,7 +46764,7 @@ BaseFeatureType * OppositeParallelLinesIntersectionType::getIntersectionFeature(
 void OppositeParallelLinesIntersectionType::setIntersectionFeature(BaseFeatureType * IntersectionFeatureIn)
 {IntersectionFeature = IntersectionFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesMeasurementDeterminationType
 
@@ -46802,7 +46802,7 @@ OppositeParallelLinesMeasurementDeterminationTypeChoicePair * OppositeParallelLi
 void OppositeParallelLinesMeasurementDeterminationType::setOppositeParallelLinesMeasurementDeterminationTypePair(OppositeParallelLinesMeasurementDeterminationTypeChoicePair * OppositeParallelLinesMeasurementDeterminationTypePairIn)
 {OppositeParallelLinesMeasurementDeterminationTypePair = OppositeParallelLinesMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesMeasurementDeterminationTypeChoicePair
 
@@ -46846,7 +46846,7 @@ void OppositeParallelLinesMeasurementDeterminationTypeChoicePair::printSelf(FILE
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesProjectionType
 
@@ -46914,7 +46914,7 @@ BaseFeatureType * OppositeParallelLinesProjectionType::getProjectionOppositePara
 void OppositeParallelLinesProjectionType::setProjectionOppositeParallelLines(BaseFeatureType * ProjectionOppositeParallelLinesIn)
 {ProjectionOppositeParallelLines = ProjectionOppositeParallelLinesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesRecompType
 
@@ -46967,7 +46967,7 @@ BaseFeaturePointListType * OppositeParallelLinesRecompType::getBaseFeaturePointL
 void OppositeParallelLinesRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesTransformType
 
@@ -47035,7 +47035,7 @@ TransformationReferenceType * OppositeParallelLinesTransformType::getTransformat
 void OppositeParallelLinesTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelPlanesBestFitType
 
@@ -47207,7 +47207,7 @@ SequencedBaseFeatureTypeLisd * OppositeParallelPlanesBestFitType::getBaseFeature
 void OppositeParallelPlanesBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelPlanesCastType
 
@@ -47260,7 +47260,7 @@ BaseFeatureType * OppositeParallelPlanesCastType::getBaseFeature()
 void OppositeParallelPlanesCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelPlanesCheckedFeatureType
 
@@ -47305,7 +47305,7 @@ OppositeParallelPlanesCheckedType * OppositeParallelPlanesCheckedFeatureType::ge
 void OppositeParallelPlanesCheckedFeatureType::setCheckDetails(OppositeParallelPlanesCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelPlanesCheckedType
 
@@ -47343,7 +47343,7 @@ OppositeParallelPlanesCheckedTypeChoicePair * OppositeParallelPlanesCheckedType:
 void OppositeParallelPlanesCheckedType::setOppositeParallelPlanesCheckedTypePair(OppositeParallelPlanesCheckedTypeChoicePair * OppositeParallelPlanesCheckedTypePairIn)
 {OppositeParallelPlanesCheckedTypePair = OppositeParallelPlanesCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelPlanesCheckedTypeChoicePair
 
@@ -47389,7 +47389,7 @@ void OppositeParallelPlanesCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelPlanesConstructionMethodType
 
@@ -47430,7 +47430,7 @@ OppositeParallelPlanesConstructionMethodTypeChoicePair * OppositeParallelPlanesC
 void OppositeParallelPlanesConstructionMethodType::setOppositeParallelPlanesConstructionMethodTypePair(OppositeParallelPlanesConstructionMethodTypeChoicePair * OppositeParallelPlanesConstructionMethodTypePairIn)
 {OppositeParallelPlanesConstructionMethodTypePair = OppositeParallelPlanesConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelPlanesConstructionMethodTypeChoicePair
 
@@ -47516,7 +47516,7 @@ void OppositeParallelPlanesConstructionMethodTypeChoicePair::printSelf(FILE * ou
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelPlanesCopyType
 
@@ -47569,7 +47569,7 @@ BaseFeatureType * OppositeParallelPlanesCopyType::getBaseOppositeParallelPlanes(
 void OppositeParallelPlanesCopyType::setBaseOppositeParallelPlanes(BaseFeatureType * BaseOppositeParallelPlanesIn)
 {BaseOppositeParallelPlanes = BaseOppositeParallelPlanesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelPlanesFeatureDefinitionType
 
@@ -47865,7 +47865,7 @@ EndRadiusType * OppositeParallelPlanesFeatureDefinitionType::getEndRadius2()
 void OppositeParallelPlanesFeatureDefinitionType::setEndRadius2(EndRadiusType * EndRadius2In)
 {EndRadius2 = EndRadius2In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelPlanesFeatureItemType
 
@@ -48107,7 +48107,7 @@ OppositeParallelPlanesMeasurementDeterminationType * OppositeParallelPlanesFeatu
 void OppositeParallelPlanesFeatureItemType::setDeterminationMode(OppositeParallelPlanesMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelPlanesFeatureMeasurementType
 
@@ -48612,7 +48612,7 @@ MeasuredLinearValueType * OppositeParallelPlanesFeatureMeasurementType::getForm(
 void OppositeParallelPlanesFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelPlanesFeatureNominalType
 
@@ -48906,7 +48906,7 @@ OppositeParallelPlanesConstructionMethodType * OppositeParallelPlanesFeatureNomi
 void OppositeParallelPlanesFeatureNominalType::setConstructed(OppositeParallelPlanesConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelPlanesFromScanType
 
@@ -48973,7 +48973,7 @@ LinearValueType * OppositeParallelPlanesFromScanType::getSearchRadius()
 void OppositeParallelPlanesFromScanType::setSearchRadius(LinearValueType * SearchRadiusIn)
 {SearchRadius = SearchRadiusIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelPlanesMeasurementDeterminationType
 
@@ -49011,7 +49011,7 @@ OppositeParallelPlanesMeasurementDeterminationTypeChoicePair * OppositeParallelP
 void OppositeParallelPlanesMeasurementDeterminationType::setOppositeParallelPlanesMeasurementDeterminationTypePair(OppositeParallelPlanesMeasurementDeterminationTypeChoicePair * OppositeParallelPlanesMeasurementDeterminationTypePairIn)
 {OppositeParallelPlanesMeasurementDeterminationTypePair = OppositeParallelPlanesMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelPlanesMeasurementDeterminationTypeChoicePair
 
@@ -49055,7 +49055,7 @@ void OppositeParallelPlanesMeasurementDeterminationTypeChoicePair::printSelf(FIL
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelPlanesRecompType
 
@@ -49108,7 +49108,7 @@ BaseFeaturePointListType * OppositeParallelPlanesRecompType::getBaseFeaturePoint
 void OppositeParallelPlanesRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelPlanesTransformType
 
@@ -49176,7 +49176,7 @@ TransformationReferenceType * OppositeParallelPlanesTransformType::getTransforma
 void OppositeParallelPlanesTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherCurveCheckedFeatureType
 
@@ -49221,7 +49221,7 @@ OtherCurveCheckedType * OtherCurveCheckedFeatureType::getCheckDetails()
 void OtherCurveCheckedFeatureType::setCheckDetails(OtherCurveCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherCurveCheckedType
 
@@ -49259,7 +49259,7 @@ OtherCurveCheckedTypeChoicePair * OtherCurveCheckedType::getOtherCurveCheckedTyp
 void OtherCurveCheckedType::setOtherCurveCheckedTypePair(OtherCurveCheckedTypeChoicePair * OtherCurveCheckedTypePairIn)
 {OtherCurveCheckedTypePair = OtherCurveCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherCurveCheckedTypeChoicePair
 
@@ -49305,7 +49305,7 @@ void OtherCurveCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherCurveConstructionMethodType
 
@@ -49346,7 +49346,7 @@ OtherCurveConstructionMethodTypeChoicePair * OtherCurveConstructionMethodType::g
 void OtherCurveConstructionMethodType::setOtherCurveConstructionMethodTypePair(OtherCurveConstructionMethodTypeChoicePair * OtherCurveConstructionMethodTypePairIn)
 {OtherCurveConstructionMethodTypePair = OtherCurveConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherCurveConstructionMethodTypeChoicePair
 
@@ -49382,7 +49382,7 @@ void OtherCurveConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherCurveFeatureCopyType
 
@@ -49435,7 +49435,7 @@ BaseFeatureType * OtherCurveFeatureCopyType::getBaseOtherCurveFeature()
 void OtherCurveFeatureCopyType::setBaseOtherCurveFeature(BaseFeatureType * BaseOtherCurveFeatureIn)
 {BaseOtherCurveFeature = BaseOtherCurveFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherCurveFeatureDefinitionType
 
@@ -49565,7 +49565,7 @@ bool OtherCurveFeatureDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherCurveFeatureItemType
 
@@ -49807,7 +49807,7 @@ OtherCurveMeasurementDeterminationType * OtherCurveFeatureItemType::getDetermina
 void OtherCurveFeatureItemType::setDeterminationMode(OtherCurveMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherCurveFeatureMeasurementType
 
@@ -50062,7 +50062,7 @@ bool OtherCurveFeatureMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherCurveFeatureNominalType
 
@@ -50312,7 +50312,7 @@ OtherCurveConstructionMethodType * OtherCurveFeatureNominalType::getConstructed(
 void OtherCurveFeatureNominalType::setConstructed(OtherCurveConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherCurveMeasurementDeterminationType
 
@@ -50350,7 +50350,7 @@ OtherCurveMeasurementDeterminationTypeChoicePair * OtherCurveMeasurementDetermin
 void OtherCurveMeasurementDeterminationType::setOtherCurveMeasurementDeterminationTypePair(OtherCurveMeasurementDeterminationTypeChoicePair * OtherCurveMeasurementDeterminationTypePairIn)
 {OtherCurveMeasurementDeterminationTypePair = OtherCurveMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherCurveMeasurementDeterminationTypeChoicePair
 
@@ -50394,7 +50394,7 @@ void OtherCurveMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherNonShapeFeatureDefinitionType
 
@@ -50540,7 +50540,7 @@ XmlString * OtherNonShapeFeatureDefinitionType::getDescription()
 void OtherNonShapeFeatureDefinitionType::setDescription(XmlString * DescriptionIn)
 {Description = DescriptionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherNonShapeFeatureItemType
 
@@ -50731,7 +50731,7 @@ bool OtherNonShapeFeatureItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherNonShapeFeatureMeasurementType
 
@@ -50951,7 +50951,7 @@ bool OtherNonShapeFeatureMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherNonShapeFeatureNominalType
 
@@ -51166,7 +51166,7 @@ ArrayReferenceFullType * OtherNonShapeFeatureNominalType::getReferenceFeatureNom
 void OtherNonShapeFeatureNominalType::setReferenceFeatureNominalIds(ArrayReferenceFullType * ReferenceFeatureNominalIdsIn)
 {ReferenceFeatureNominalIds = ReferenceFeatureNominalIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherShapeCheckedFeatureType
 
@@ -51211,7 +51211,7 @@ OtherShapeCheckedType * OtherShapeCheckedFeatureType::getCheckDetails()
 void OtherShapeCheckedFeatureType::setCheckDetails(OtherShapeCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherShapeCheckedType
 
@@ -51249,7 +51249,7 @@ OtherShapeCheckedTypeChoicePair * OtherShapeCheckedType::getOtherShapeCheckedTyp
 void OtherShapeCheckedType::setOtherShapeCheckedTypePair(OtherShapeCheckedTypeChoicePair * OtherShapeCheckedTypePairIn)
 {OtherShapeCheckedTypePair = OtherShapeCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherShapeCheckedTypeChoicePair
 
@@ -51295,7 +51295,7 @@ void OtherShapeCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherShapeConstructionMethodType
 
@@ -51336,7 +51336,7 @@ OtherShapeConstructionMethodTypeChoicePair * OtherShapeConstructionMethodType::g
 void OtherShapeConstructionMethodType::setOtherShapeConstructionMethodTypePair(OtherShapeConstructionMethodTypeChoicePair * OtherShapeConstructionMethodTypePairIn)
 {OtherShapeConstructionMethodTypePair = OtherShapeConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherShapeConstructionMethodTypeChoicePair
 
@@ -51372,7 +51372,7 @@ void OtherShapeConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherShapeFeatureCopyType
 
@@ -51425,7 +51425,7 @@ BaseFeatureType * OtherShapeFeatureCopyType::getBaseOtherShapeFeature()
 void OtherShapeFeatureCopyType::setBaseOtherShapeFeature(BaseFeatureType * BaseOtherShapeFeatureIn)
 {BaseOtherShapeFeature = BaseOtherShapeFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherShapeFeatureDefinitionType
 
@@ -51571,7 +51571,7 @@ XmlString * OtherShapeFeatureDefinitionType::getDescription()
 void OtherShapeFeatureDefinitionType::setDescription(XmlString * DescriptionIn)
 {Description = DescriptionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherShapeFeatureItemType
 
@@ -51813,7 +51813,7 @@ OtherShapeMeasurementDeterminationType * OtherShapeFeatureItemType::getDetermina
 void OtherShapeFeatureItemType::setDeterminationMode(OtherShapeMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherShapeFeatureMeasurementType
 
@@ -52068,7 +52068,7 @@ bool OtherShapeFeatureMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherShapeFeatureNominalType
 
@@ -52307,7 +52307,7 @@ OtherShapeConstructionMethodType * OtherShapeFeatureNominalType::getConstructed(
 void OtherShapeFeatureNominalType::setConstructed(OtherShapeConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherShapeMeasurementDeterminationType
 
@@ -52345,7 +52345,7 @@ OtherShapeMeasurementDeterminationTypeChoicePair * OtherShapeMeasurementDetermin
 void OtherShapeMeasurementDeterminationType::setOtherShapeMeasurementDeterminationTypePair(OtherShapeMeasurementDeterminationTypeChoicePair * OtherShapeMeasurementDeterminationTypePairIn)
 {OtherShapeMeasurementDeterminationTypePair = OtherShapeMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherShapeMeasurementDeterminationTypeChoicePair
 
@@ -52389,7 +52389,7 @@ void OtherShapeMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherSurfaceCheckedFeatureType
 
@@ -52434,7 +52434,7 @@ OtherSurfaceCheckedType * OtherSurfaceCheckedFeatureType::getCheckDetails()
 void OtherSurfaceCheckedFeatureType::setCheckDetails(OtherSurfaceCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherSurfaceCheckedType
 
@@ -52472,7 +52472,7 @@ OtherSurfaceCheckedTypeChoicePair * OtherSurfaceCheckedType::getOtherSurfaceChec
 void OtherSurfaceCheckedType::setOtherSurfaceCheckedTypePair(OtherSurfaceCheckedTypeChoicePair * OtherSurfaceCheckedTypePairIn)
 {OtherSurfaceCheckedTypePair = OtherSurfaceCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherSurfaceCheckedTypeChoicePair
 
@@ -52518,7 +52518,7 @@ void OtherSurfaceCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherSurfaceConstructionMethodType
 
@@ -52559,7 +52559,7 @@ OtherSurfaceConstructionMethodTypeChoicePair * OtherSurfaceConstructionMethodTyp
 void OtherSurfaceConstructionMethodType::setOtherSurfaceConstructionMethodTypePair(OtherSurfaceConstructionMethodTypeChoicePair * OtherSurfaceConstructionMethodTypePairIn)
 {OtherSurfaceConstructionMethodTypePair = OtherSurfaceConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherSurfaceConstructionMethodTypeChoicePair
 
@@ -52595,7 +52595,7 @@ void OtherSurfaceConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherSurfaceFeatureCopyType
 
@@ -52648,7 +52648,7 @@ BaseFeatureType * OtherSurfaceFeatureCopyType::getBaseOtherSurfaceFeature()
 void OtherSurfaceFeatureCopyType::setBaseOtherSurfaceFeature(BaseFeatureType * BaseOtherSurfaceFeatureIn)
 {BaseOtherSurfaceFeature = BaseOtherSurfaceFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherSurfaceFeatureDefinitionType
 
@@ -52778,7 +52778,7 @@ bool OtherSurfaceFeatureDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherSurfaceFeatureItemType
 
@@ -53020,7 +53020,7 @@ OtherSurfaceMeasurementDeterminationType * OtherSurfaceFeatureItemType::getDeter
 void OtherSurfaceFeatureItemType::setDeterminationMode(OtherSurfaceMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherSurfaceFeatureMeasurementType
 
@@ -53294,7 +53294,7 @@ PolyLineType * OtherSurfaceFeatureMeasurementType::getPolyLine()
 void OtherSurfaceFeatureMeasurementType::setPolyLine(PolyLineType * PolyLineIn)
 {PolyLine = PolyLineIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherSurfaceFeatureNominalType
 
@@ -53303,7 +53303,7 @@ void OtherSurfaceFeatureMeasurementType::setPolyLine(PolyLineType * PolyLineIn)
 OtherSurfaceFeatureNominalType::OtherSurfaceFeatureNominalType() :
   SurfaceFeatureNominalBaseType()
 {
-  OtherSurfaceFea_1120 = 0;
+  OtherSurfaceFea_1121 = 0;
 }
 
 OtherSurfaceFeatureNominalType::OtherSurfaceFeatureNominalType(
@@ -53316,7 +53316,7 @@ OtherSurfaceFeatureNominalType::OtherSurfaceFeatureNominalType(
  ArrayReferenceFullType * EntityExternalIdsIn,
  PointListType * PointListIn,
  SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
- OtherSurfaceFea_1120_Type * OtherSurfaceFea_1120In) :
+ OtherSurfaceFea_1121_Type * OtherSurfaceFea_1121In) :
   SurfaceFeatureNominalBaseType(
     AttributesIn,
     NameIn,
@@ -53328,7 +53328,7 @@ OtherSurfaceFeatureNominalType::OtherSurfaceFeatureNominalType(
     PointListIn,
     SubstituteFeatureAlgorithmIn)
 {
-  OtherSurfaceFea_1120 = OtherSurfaceFea_1120In;
+  OtherSurfaceFea_1121 = OtherSurfaceFea_1121In;
 }
 
 OtherSurfaceFeatureNominalType::OtherSurfaceFeatureNominalType(
@@ -53342,7 +53342,7 @@ OtherSurfaceFeatureNominalType::OtherSurfaceFeatureNominalType(
  ArrayReferenceFullType * EntityExternalIdsIn,
  PointListType * PointListIn,
  SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
- OtherSurfaceFea_1120_Type * OtherSurfaceFea_1120In) :
+ OtherSurfaceFea_1121_Type * OtherSurfaceFea_1121In) :
   SurfaceFeatureNominalBaseType(
     idIn,
     AttributesIn,
@@ -53355,13 +53355,13 @@ OtherSurfaceFeatureNominalType::OtherSurfaceFeatureNominalType(
     PointListIn,
     SubstituteFeatureAlgorithmIn)
 {
-  OtherSurfaceFea_1120 = OtherSurfaceFea_1120In;
+  OtherSurfaceFea_1121 = OtherSurfaceFea_1121In;
 }
 
 OtherSurfaceFeatureNominalType::~OtherSurfaceFeatureNominalType()
 {
   #ifndef NODESTRUCT
-  delete OtherSurfaceFea_1120;
+  delete OtherSurfaceFea_1121;
   #endif
 }
 
@@ -53459,9 +53459,9 @@ void OtherSurfaceFeatureNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</SubstituteFeatureAlgorithm>\n");
     }
-  if (OtherSurfaceFea_1120)
+  if (OtherSurfaceFea_1121)
     {
-      OtherSurfaceFea_1120->printSelf(outFile);
+      OtherSurfaceFea_1121->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -53523,13 +53523,13 @@ bool OtherSurfaceFeatureNominalType::badAttributes(
   return returnValue;
 }
 
-OtherSurfaceFea_1120_Type * OtherSurfaceFeatureNominalType::getOtherSurfaceFea_1120()
-{return OtherSurfaceFea_1120;}
+OtherSurfaceFea_1121_Type * OtherSurfaceFeatureNominalType::getOtherSurfaceFea_1121()
+{return OtherSurfaceFea_1121;}
 
-void OtherSurfaceFeatureNominalType::setOtherSurfaceFea_1120(OtherSurfaceFea_1120_Type * OtherSurfaceFea_1120In)
-{OtherSurfaceFea_1120 = OtherSurfaceFea_1120In;}
+void OtherSurfaceFeatureNominalType::setOtherSurfaceFea_1121(OtherSurfaceFea_1121_Type * OtherSurfaceFea_1121In)
+{OtherSurfaceFea_1121 = OtherSurfaceFea_1121In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherSurfaceMeasurementDeterminationType
 
@@ -53567,7 +53567,7 @@ OtherSurfaceMeasurementDeterminationTypeChoicePair * OtherSurfaceMeasurementDete
 void OtherSurfaceMeasurementDeterminationType::setOtherSurfaceMeasurementDeterminationTypePair(OtherSurfaceMeasurementDeterminationTypeChoicePair * OtherSurfaceMeasurementDeterminationTypePairIn)
 {OtherSurfaceMeasurementDeterminationTypePair = OtherSurfaceMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherSurfaceMeasurementDeterminationTypeChoicePair
 
@@ -53611,7 +53611,7 @@ void OtherSurfaceMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFil
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PatternFeatureCircleDefinitionType
 
@@ -53629,7 +53629,7 @@ PatternFeatureCircleDefinitionType::PatternFeatureCircleDefinitionType(
  AttributesType * AttributesIn,
  XmlBoolean * IsProfileGroupIn,
  XmlBoolean * IsRunoutGroupIn,
- GroupFeatureDef_1104_Type * GroupFeatureDef_1104In,
+ GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
  LinearValueType * DiameterIn,
  UnitVectorType * FeatureDirectionIn,
  NaturalType * NumberOfFeaturesIn) :
@@ -53637,7 +53637,7 @@ PatternFeatureCircleDefinitionType::PatternFeatureCircleDefinitionType(
     AttributesIn,
     IsProfileGroupIn,
     IsRunoutGroupIn,
-    GroupFeatureDef_1104In)
+    GroupFeatureDef_1105In)
 {
   Diameter = DiameterIn;
   FeatureDirection = FeatureDirectionIn;
@@ -53649,7 +53649,7 @@ PatternFeatureCircleDefinitionType::PatternFeatureCircleDefinitionType(
  AttributesType * AttributesIn,
  XmlBoolean * IsProfileGroupIn,
  XmlBoolean * IsRunoutGroupIn,
- GroupFeatureDef_1104_Type * GroupFeatureDef_1104In,
+ GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
  LinearValueType * DiameterIn,
  UnitVectorType * FeatureDirectionIn,
  NaturalType * NumberOfFeaturesIn) :
@@ -53658,7 +53658,7 @@ PatternFeatureCircleDefinitionType::PatternFeatureCircleDefinitionType(
     AttributesIn,
     IsProfileGroupIn,
     IsRunoutGroupIn,
-    GroupFeatureDef_1104In)
+    GroupFeatureDef_1105In)
 {
   Diameter = DiameterIn;
   FeatureDirection = FeatureDirectionIn;
@@ -53725,9 +53725,9 @@ void PatternFeatureCircleDefinitionType::printSelf(FILE * outFile)
       IsRunoutGroup->printSelf(outFile);
       fprintf(outFile, "</IsRunoutGroup>\n");
     }
-  if (GroupFeatureDef_1104)
+  if (GroupFeatureDef_1105)
     {
-      GroupFeatureDef_1104->printSelf(outFile);
+      GroupFeatureDef_1105->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Diameter");
@@ -53822,7 +53822,7 @@ NaturalType * PatternFeatureCircleDefinitionType::getNumberOfFeatures()
 void PatternFeatureCircleDefinitionType::setNumberOfFeatures(NaturalType * NumberOfFeaturesIn)
 {NumberOfFeatures = NumberOfFeaturesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PatternFeatureCircleItemType
 
@@ -54047,7 +54047,7 @@ bool PatternFeatureCircleItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PatternFeatureCircleNominalType
 
@@ -54323,7 +54323,7 @@ QIFReferenceType * PatternFeatureCircleNominalType::getFirstFeatureLocation()
 void PatternFeatureCircleNominalType::setFirstFeatureLocation(QIFReferenceType * FirstFeatureLocationIn)
 {FirstFeatureLocation = FirstFeatureLocationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PatternFeatureCircularArcDefinitionType
 
@@ -54342,7 +54342,7 @@ PatternFeatureCircularArcDefinitionType::PatternFeatureCircularArcDefinitionType
  AttributesType * AttributesIn,
  XmlBoolean * IsProfileGroupIn,
  XmlBoolean * IsRunoutGroupIn,
- GroupFeatureDef_1104_Type * GroupFeatureDef_1104In,
+ GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
  LinearValueType * ArcRadiusIn,
  AngularValueType * IncrementalArcIn,
  UnitVectorType * FeatureDirectionIn,
@@ -54351,7 +54351,7 @@ PatternFeatureCircularArcDefinitionType::PatternFeatureCircularArcDefinitionType
     AttributesIn,
     IsProfileGroupIn,
     IsRunoutGroupIn,
-    GroupFeatureDef_1104In)
+    GroupFeatureDef_1105In)
 {
   ArcRadius = ArcRadiusIn;
   IncrementalArc = IncrementalArcIn;
@@ -54364,7 +54364,7 @@ PatternFeatureCircularArcDefinitionType::PatternFeatureCircularArcDefinitionType
  AttributesType * AttributesIn,
  XmlBoolean * IsProfileGroupIn,
  XmlBoolean * IsRunoutGroupIn,
- GroupFeatureDef_1104_Type * GroupFeatureDef_1104In,
+ GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
  LinearValueType * ArcRadiusIn,
  AngularValueType * IncrementalArcIn,
  UnitVectorType * FeatureDirectionIn,
@@ -54374,7 +54374,7 @@ PatternFeatureCircularArcDefinitionType::PatternFeatureCircularArcDefinitionType
     AttributesIn,
     IsProfileGroupIn,
     IsRunoutGroupIn,
-    GroupFeatureDef_1104In)
+    GroupFeatureDef_1105In)
 {
   ArcRadius = ArcRadiusIn;
   IncrementalArc = IncrementalArcIn;
@@ -54443,9 +54443,9 @@ void PatternFeatureCircularArcDefinitionType::printSelf(FILE * outFile)
       IsRunoutGroup->printSelf(outFile);
       fprintf(outFile, "</IsRunoutGroup>\n");
     }
-  if (GroupFeatureDef_1104)
+  if (GroupFeatureDef_1105)
     {
-      GroupFeatureDef_1104->printSelf(outFile);
+      GroupFeatureDef_1105->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<ArcRadius");
@@ -54550,7 +54550,7 @@ NaturalType * PatternFeatureCircularArcDefinitionType::getNumberOfFeatures()
 void PatternFeatureCircularArcDefinitionType::setNumberOfFeatures(NaturalType * NumberOfFeaturesIn)
 {NumberOfFeatures = NumberOfFeaturesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PatternFeatureCircularArcItemType
 
@@ -54775,7 +54775,7 @@ bool PatternFeatureCircularArcItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PatternFeatureCircularArcNominalType
 
@@ -55051,7 +55051,7 @@ QIFReferenceType * PatternFeatureCircularArcNominalType::getFirstFeatureLocation
 void PatternFeatureCircularArcNominalType::setFirstFeatureLocation(QIFReferenceType * FirstFeatureLocationIn)
 {FirstFeatureLocation = FirstFeatureLocationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PatternFeatureDefinitionBaseType
 
@@ -55066,12 +55066,12 @@ PatternFeatureDefinitionBaseType::PatternFeatureDefinitionBaseType(
  AttributesType * AttributesIn,
  XmlBoolean * IsProfileGroupIn,
  XmlBoolean * IsRunoutGroupIn,
- GroupFeatureDef_1104_Type * GroupFeatureDef_1104In) :
+ GroupFeatureDef_1105_Type * GroupFeatureDef_1105In) :
   GroupFeatureDefinitionType(
     AttributesIn,
     IsProfileGroupIn,
     IsRunoutGroupIn,
-    GroupFeatureDef_1104In)
+    GroupFeatureDef_1105In)
 {
 }
 
@@ -55080,13 +55080,13 @@ PatternFeatureDefinitionBaseType::PatternFeatureDefinitionBaseType(
  AttributesType * AttributesIn,
  XmlBoolean * IsProfileGroupIn,
  XmlBoolean * IsRunoutGroupIn,
- GroupFeatureDef_1104_Type * GroupFeatureDef_1104In) :
+ GroupFeatureDef_1105_Type * GroupFeatureDef_1105In) :
   GroupFeatureDefinitionType(
     idIn,
     AttributesIn,
     IsProfileGroupIn,
     IsRunoutGroupIn,
-    GroupFeatureDef_1104In)
+    GroupFeatureDef_1105In)
 {
 }
 
@@ -55147,9 +55147,9 @@ void PatternFeatureDefinitionBaseType::printSelf(FILE * outFile)
       IsRunoutGroup->printSelf(outFile);
       fprintf(outFile, "</IsRunoutGroup>\n");
     }
-  if (GroupFeatureDef_1104)
+  if (GroupFeatureDef_1105)
     {
-      GroupFeatureDef_1104->printSelf(outFile);
+      GroupFeatureDef_1105->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -55211,7 +55211,7 @@ bool PatternFeatureDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PatternFeatureItemBaseType
 
@@ -55436,7 +55436,7 @@ bool PatternFeatureItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PatternFeatureLinearDefinitionType
 
@@ -55455,7 +55455,7 @@ PatternFeatureLinearDefinitionType::PatternFeatureLinearDefinitionType(
  AttributesType * AttributesIn,
  XmlBoolean * IsProfileGroupIn,
  XmlBoolean * IsRunoutGroupIn,
- GroupFeatureDef_1104_Type * GroupFeatureDef_1104In,
+ GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
  UnitVectorType * LineDirectionIn,
  LinearValueType * IncrementalDistanceIn,
  UnitVectorType * FeatureDirectionIn,
@@ -55464,7 +55464,7 @@ PatternFeatureLinearDefinitionType::PatternFeatureLinearDefinitionType(
     AttributesIn,
     IsProfileGroupIn,
     IsRunoutGroupIn,
-    GroupFeatureDef_1104In)
+    GroupFeatureDef_1105In)
 {
   LineDirection = LineDirectionIn;
   IncrementalDistance = IncrementalDistanceIn;
@@ -55477,7 +55477,7 @@ PatternFeatureLinearDefinitionType::PatternFeatureLinearDefinitionType(
  AttributesType * AttributesIn,
  XmlBoolean * IsProfileGroupIn,
  XmlBoolean * IsRunoutGroupIn,
- GroupFeatureDef_1104_Type * GroupFeatureDef_1104In,
+ GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
  UnitVectorType * LineDirectionIn,
  LinearValueType * IncrementalDistanceIn,
  UnitVectorType * FeatureDirectionIn,
@@ -55487,7 +55487,7 @@ PatternFeatureLinearDefinitionType::PatternFeatureLinearDefinitionType(
     AttributesIn,
     IsProfileGroupIn,
     IsRunoutGroupIn,
-    GroupFeatureDef_1104In)
+    GroupFeatureDef_1105In)
 {
   LineDirection = LineDirectionIn;
   IncrementalDistance = IncrementalDistanceIn;
@@ -55556,9 +55556,9 @@ void PatternFeatureLinearDefinitionType::printSelf(FILE * outFile)
       IsRunoutGroup->printSelf(outFile);
       fprintf(outFile, "</IsRunoutGroup>\n");
     }
-  if (GroupFeatureDef_1104)
+  if (GroupFeatureDef_1105)
     {
-      GroupFeatureDef_1104->printSelf(outFile);
+      GroupFeatureDef_1105->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<LineDirection");
@@ -55663,7 +55663,7 @@ NaturalType * PatternFeatureLinearDefinitionType::getNumberOfFeatures()
 void PatternFeatureLinearDefinitionType::setNumberOfFeatures(NaturalType * NumberOfFeaturesIn)
 {NumberOfFeatures = NumberOfFeaturesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PatternFeatureLinearItemType
 
@@ -55888,7 +55888,7 @@ bool PatternFeatureLinearItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PatternFeatureLinearNominalType
 
@@ -56132,7 +56132,7 @@ QIFReferenceType * PatternFeatureLinearNominalType::getFirstFeatureLocation()
 void PatternFeatureLinearNominalType::setFirstFeatureLocation(QIFReferenceType * FirstFeatureLocationIn)
 {FirstFeatureLocation = FirstFeatureLocationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PatternFeatureNominalBaseType
 
@@ -56360,7 +56360,7 @@ bool PatternFeatureNominalBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PatternFeatureParallelogramDefinitionType
 
@@ -56382,7 +56382,7 @@ PatternFeatureParallelogramDefinitionType::PatternFeatureParallelogramDefinition
  AttributesType * AttributesIn,
  XmlBoolean * IsProfileGroupIn,
  XmlBoolean * IsRunoutGroupIn,
- GroupFeatureDef_1104_Type * GroupFeatureDef_1104In,
+ GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
  VectorType * AlongRowDirectionIn,
  LinearValueType * IncrementalRowDistanceIn,
  VectorType * BetweenRowDirectionIn,
@@ -56394,7 +56394,7 @@ PatternFeatureParallelogramDefinitionType::PatternFeatureParallelogramDefinition
     AttributesIn,
     IsProfileGroupIn,
     IsRunoutGroupIn,
-    GroupFeatureDef_1104In)
+    GroupFeatureDef_1105In)
 {
   AlongRowDirection = AlongRowDirectionIn;
   IncrementalRowDistance = IncrementalRowDistanceIn;
@@ -56410,7 +56410,7 @@ PatternFeatureParallelogramDefinitionType::PatternFeatureParallelogramDefinition
  AttributesType * AttributesIn,
  XmlBoolean * IsProfileGroupIn,
  XmlBoolean * IsRunoutGroupIn,
- GroupFeatureDef_1104_Type * GroupFeatureDef_1104In,
+ GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
  VectorType * AlongRowDirectionIn,
  LinearValueType * IncrementalRowDistanceIn,
  VectorType * BetweenRowDirectionIn,
@@ -56423,7 +56423,7 @@ PatternFeatureParallelogramDefinitionType::PatternFeatureParallelogramDefinition
     AttributesIn,
     IsProfileGroupIn,
     IsRunoutGroupIn,
-    GroupFeatureDef_1104In)
+    GroupFeatureDef_1105In)
 {
   AlongRowDirection = AlongRowDirectionIn;
   IncrementalRowDistance = IncrementalRowDistanceIn;
@@ -56498,9 +56498,9 @@ void PatternFeatureParallelogramDefinitionType::printSelf(FILE * outFile)
       IsRunoutGroup->printSelf(outFile);
       fprintf(outFile, "</IsRunoutGroup>\n");
     }
-  if (GroupFeatureDef_1104)
+  if (GroupFeatureDef_1105)
     {
-      GroupFeatureDef_1104->printSelf(outFile);
+      GroupFeatureDef_1105->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<AlongRowDirection");
@@ -56635,7 +56635,7 @@ NaturalType * PatternFeatureParallelogramDefinitionType::getNumberOfRows()
 void PatternFeatureParallelogramDefinitionType::setNumberOfRows(NaturalType * NumberOfRowsIn)
 {NumberOfRows = NumberOfRowsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PatternFeatureParallelogramItemType
 
@@ -56860,7 +56860,7 @@ bool PatternFeatureParallelogramItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PatternFeatureParallelogramNominalType
 
@@ -57104,7 +57104,7 @@ QIFReferenceType * PatternFeatureParallelogramNominalType::getFirstFeatureLocati
 void PatternFeatureParallelogramNominalType::setFirstFeatureLocation(QIFReferenceType * FirstFeatureLocationIn)
 {FirstFeatureLocation = FirstFeatureLocationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneBestFitType
 
@@ -57276,7 +57276,7 @@ SequencedBaseFeatureTypeLisd * PlaneBestFitType::getBaseFeature()
 void PlaneBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneCastType
 
@@ -57329,7 +57329,7 @@ BaseFeatureType * PlaneCastType::getBaseFeature()
 void PlaneCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneCheckedFeatureType
 
@@ -57374,7 +57374,7 @@ PlaneCheckedType * PlaneCheckedFeatureType::getCheckDetails()
 void PlaneCheckedFeatureType::setCheckDetails(PlaneCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneCheckedType
 
@@ -57412,7 +57412,7 @@ PlaneCheckedTypeChoicePair * PlaneCheckedType::getPlaneCheckedTypePair()
 void PlaneCheckedType::setPlaneCheckedTypePair(PlaneCheckedTypeChoicePair * PlaneCheckedTypePairIn)
 {PlaneCheckedTypePair = PlaneCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneCheckedTypeChoicePair
 
@@ -57458,7 +57458,7 @@ void PlaneCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneConstructionMethodType
 
@@ -57499,7 +57499,7 @@ PlaneConstructionMethodTypeChoicePair * PlaneConstructionMethodType::getPlaneCon
 void PlaneConstructionMethodType::setPlaneConstructionMethodTypePair(PlaneConstructionMethodTypeChoicePair * PlaneConstructionMethodTypePairIn)
 {PlaneConstructionMethodTypePair = PlaneConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneConstructionMethodTypeChoicePair
 
@@ -57645,7 +57645,7 @@ void PlaneConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneCopyType
 
@@ -57698,7 +57698,7 @@ BaseFeatureType * PlaneCopyType::getBasePlane()
 void PlaneCopyType::setBasePlane(BaseFeatureType * BasePlaneIn)
 {BasePlane = BasePlaneIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneExtractType
 
@@ -57751,7 +57751,7 @@ BaseFeatureType * PlaneExtractType::getSurfaceFeature()
 void PlaneExtractType::setSurfaceFeature(BaseFeatureType * SurfaceFeatureIn)
 {SurfaceFeature = SurfaceFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneFeatureDefinitionType
 
@@ -57881,7 +57881,7 @@ bool PlaneFeatureDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneFeatureItemType
 
@@ -58123,7 +58123,7 @@ PlaneMeasurementDeterminationType * PlaneFeatureItemType::getDeterminationMode()
 void PlaneFeatureItemType::setDeterminationMode(PlaneMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneFeatureMeasurementType
 
@@ -58454,7 +58454,7 @@ MeasuredLinearValueType * PlaneFeatureMeasurementType::getForm()
 void PlaneFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneFeatureNominalType
 
@@ -58465,7 +58465,7 @@ PlaneFeatureNominalType::PlaneFeatureNominalType() :
 {
   Location = 0;
   Normal = 0;
-  PlaneFeatureNom_1121 = 0;
+  PlaneFeatureNom_1122 = 0;
   Constructed = 0;
 }
 
@@ -58481,7 +58481,7 @@ PlaneFeatureNominalType::PlaneFeatureNominalType(
  SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
  PointType * LocationIn,
  UnitVectorType * NormalIn,
- PlaneFeatureNom_1121_Type * PlaneFeatureNom_1121In,
+ PlaneFeatureNom_1122_Type * PlaneFeatureNom_1122In,
  PlaneConstructionMethodType * ConstructedIn) :
   SurfaceFeatureNominalBaseType(
     AttributesIn,
@@ -58496,7 +58496,7 @@ PlaneFeatureNominalType::PlaneFeatureNominalType(
 {
   Location = LocationIn;
   Normal = NormalIn;
-  PlaneFeatureNom_1121 = PlaneFeatureNom_1121In;
+  PlaneFeatureNom_1122 = PlaneFeatureNom_1122In;
   Constructed = ConstructedIn;
 }
 
@@ -58513,7 +58513,7 @@ PlaneFeatureNominalType::PlaneFeatureNominalType(
  SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
  PointType * LocationIn,
  UnitVectorType * NormalIn,
- PlaneFeatureNom_1121_Type * PlaneFeatureNom_1121In,
+ PlaneFeatureNom_1122_Type * PlaneFeatureNom_1122In,
  PlaneConstructionMethodType * ConstructedIn) :
   SurfaceFeatureNominalBaseType(
     idIn,
@@ -58529,7 +58529,7 @@ PlaneFeatureNominalType::PlaneFeatureNominalType(
 {
   Location = LocationIn;
   Normal = NormalIn;
-  PlaneFeatureNom_1121 = PlaneFeatureNom_1121In;
+  PlaneFeatureNom_1122 = PlaneFeatureNom_1122In;
   Constructed = ConstructedIn;
 }
 
@@ -58538,7 +58538,7 @@ PlaneFeatureNominalType::~PlaneFeatureNominalType()
   #ifndef NODESTRUCT
   delete Location;
   delete Normal;
-  delete PlaneFeatureNom_1121;
+  delete PlaneFeatureNom_1122;
   delete Constructed;
   #endif
 }
@@ -58645,9 +58645,9 @@ void PlaneFeatureNominalType::printSelf(FILE * outFile)
   fprintf(outFile, "<Normal");
   Normal->printSelf(outFile);
   fprintf(outFile, "</Normal>\n");
-  if (PlaneFeatureNom_1121)
+  if (PlaneFeatureNom_1122)
     {
-      PlaneFeatureNom_1121->printSelf(outFile);
+      PlaneFeatureNom_1122->printSelf(outFile);
     }
   if (Constructed)
     {
@@ -58729,11 +58729,11 @@ UnitVectorType * PlaneFeatureNominalType::getNormal()
 void PlaneFeatureNominalType::setNormal(UnitVectorType * NormalIn)
 {Normal = NormalIn;}
 
-PlaneFeatureNom_1121_Type * PlaneFeatureNominalType::getPlaneFeatureNom_1121()
-{return PlaneFeatureNom_1121;}
+PlaneFeatureNom_1122_Type * PlaneFeatureNominalType::getPlaneFeatureNom_1122()
+{return PlaneFeatureNom_1122;}
 
-void PlaneFeatureNominalType::setPlaneFeatureNom_1121(PlaneFeatureNom_1121_Type * PlaneFeatureNom_1121In)
-{PlaneFeatureNom_1121 = PlaneFeatureNom_1121In;}
+void PlaneFeatureNominalType::setPlaneFeatureNom_1122(PlaneFeatureNom_1122_Type * PlaneFeatureNom_1122In)
+{PlaneFeatureNom_1122 = PlaneFeatureNom_1122In;}
 
 PlaneConstructionMethodType * PlaneFeatureNominalType::getConstructed()
 {return Constructed;}
@@ -58741,7 +58741,7 @@ PlaneConstructionMethodType * PlaneFeatureNominalType::getConstructed()
 void PlaneFeatureNominalType::setConstructed(PlaneConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneMeasurementDeterminationType
 
@@ -58779,7 +58779,7 @@ PlaneMeasurementDeterminationTypeChoicePair * PlaneMeasurementDeterminationType:
 void PlaneMeasurementDeterminationType::setPlaneMeasurementDeterminationTypePair(PlaneMeasurementDeterminationTypeChoicePair * PlaneMeasurementDeterminationTypePairIn)
 {PlaneMeasurementDeterminationTypePair = PlaneMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneMeasurementDeterminationTypeChoicePair
 
@@ -58823,7 +58823,7 @@ void PlaneMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneMidplaneType
 
@@ -58893,7 +58893,7 @@ SequencedBaseFeatureTypeLisd * PlaneMidplaneType::getBasePlane()
 void PlaneMidplaneType::setBasePlane(SequencedBaseFeatureTypeLisd * BasePlaneIn)
 {BasePlane = BasePlaneIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneOffsetType
 
@@ -58960,7 +58960,7 @@ LinearValueType * PlaneOffsetType::getOffset()
 void PlaneOffsetType::setOffset(LinearValueType * OffsetIn)
 {Offset = OffsetIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneParallelType
 
@@ -59028,7 +59028,7 @@ BaseFeatureType * PlaneParallelType::getPointFeature()
 void PlaneParallelType::setPointFeature(BaseFeatureType * PointFeatureIn)
 {PointFeature = PointFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlanePerpendicularType
 
@@ -59096,7 +59096,7 @@ BaseFeatureType * PlanePerpendicularType::getPointFeature()
 void PlanePerpendicularType::setPointFeature(BaseFeatureType * PointFeatureIn)
 {PointFeature = PointFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneRecompType
 
@@ -59149,7 +59149,7 @@ BaseFeaturePointListType * PlaneRecompType::getBaseFeaturePointList()
 void PlaneRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneTangentThroughType
 
@@ -59217,7 +59217,7 @@ BaseFeatureType * PlaneTangentThroughType::getPointFeature()
 void PlaneTangentThroughType::setPointFeature(BaseFeatureType * PointFeatureIn)
 {PointFeature = PointFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneThroughType
 
@@ -59287,7 +59287,7 @@ SequencedBaseFeatureTypeLisd * PlaneThroughType::getBaseFeature()
 void PlaneThroughType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneTransformType
 
@@ -59355,7 +59355,7 @@ TransformationReferenceType * PlaneTransformType::getTransformation()
 void PlaneTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointCheckedFeatureType
 
@@ -59400,7 +59400,7 @@ PointCheckedType * PointCheckedFeatureType::getCheckDetails()
 void PointCheckedFeatureType::setCheckDetails(PointCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointCheckedType
 
@@ -59438,7 +59438,7 @@ PointCheckedTypeChoicePair * PointCheckedType::getPointCheckedTypePair()
 void PointCheckedType::setPointCheckedTypePair(PointCheckedTypeChoicePair * PointCheckedTypePairIn)
 {PointCheckedTypePair = PointCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointCheckedTypeChoicePair
 
@@ -59484,7 +59484,7 @@ void PointCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointConstructionMethodType
 
@@ -59525,7 +59525,7 @@ PointConstructionMethodTypeChoicePair * PointConstructionMethodType::getPointCon
 void PointConstructionMethodType::setPointConstructionMethodTypePair(PointConstructionMethodTypeChoicePair * PointConstructionMethodTypePairIn)
 {PointConstructionMethodTypePair = PointConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointConstructionMethodTypeChoicePair
 
@@ -59691,7 +59691,7 @@ void PointConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedCurveBestFitType
 
@@ -59863,7 +59863,7 @@ SequencedBaseFeatureTypeLisd * PointDefinedCurveBestFitType::getBaseFeature()
 void PointDefinedCurveBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedCurveCheckedFeatureType
 
@@ -59908,7 +59908,7 @@ PointDefinedCurveCheckedType * PointDefinedCurveCheckedFeatureType::getCheckDeta
 void PointDefinedCurveCheckedFeatureType::setCheckDetails(PointDefinedCurveCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedCurveCheckedType
 
@@ -59946,7 +59946,7 @@ PointDefinedCurveCheckedTypeChoicePair * PointDefinedCurveCheckedType::getPointD
 void PointDefinedCurveCheckedType::setPointDefinedCurveCheckedTypePair(PointDefinedCurveCheckedTypeChoicePair * PointDefinedCurveCheckedTypePairIn)
 {PointDefinedCurveCheckedTypePair = PointDefinedCurveCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedCurveCheckedTypeChoicePair
 
@@ -59992,7 +59992,7 @@ void PointDefinedCurveCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedCurveConstructionMethodType
 
@@ -60033,7 +60033,7 @@ PointDefinedCurveConstructionMethodTypeChoicePair * PointDefinedCurveConstructio
 void PointDefinedCurveConstructionMethodType::setPointDefinedCurveConstructionMethodTypePair(PointDefinedCurveConstructionMethodTypeChoicePair * PointDefinedCurveConstructionMethodTypePairIn)
 {PointDefinedCurveConstructionMethodTypePair = PointDefinedCurveConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedCurveConstructionMethodTypeChoicePair
 
@@ -60119,7 +60119,7 @@ void PointDefinedCurveConstructionMethodTypeChoicePair::printSelf(FILE * outFile
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedCurveCopyType
 
@@ -60172,7 +60172,7 @@ BaseFeatureType * PointDefinedCurveCopyType::getBasePointDefinedCurve()
 void PointDefinedCurveCopyType::setBasePointDefinedCurve(BaseFeatureType * BasePointDefinedCurveIn)
 {BasePointDefinedCurve = BasePointDefinedCurveIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedCurveExtractType
 
@@ -60225,7 +60225,7 @@ BaseFeatureType * PointDefinedCurveExtractType::getCurveFeature()
 void PointDefinedCurveExtractType::setCurveFeature(BaseFeatureType * CurveFeatureIn)
 {CurveFeature = CurveFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedCurveFeatureDefinitionType
 
@@ -60355,7 +60355,7 @@ bool PointDefinedCurveFeatureDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedCurveFeatureItemType
 
@@ -60597,7 +60597,7 @@ PointDefinedCurveMeasurementDeterminationType * PointDefinedCurveFeatureItemType
 void PointDefinedCurveFeatureItemType::setDeterminationMode(PointDefinedCurveMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedCurveFeatureMeasurementType
 
@@ -60911,7 +60911,7 @@ MeasuredLinearValueType * PointDefinedCurveFeatureMeasurementType::getForm()
 void PointDefinedCurveFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedCurveFeatureNominalType
 
@@ -61198,7 +61198,7 @@ PointDefinedCurveConstructionMethodType * PointDefinedCurveFeatureNominalType::g
 void PointDefinedCurveFeatureNominalType::setConstructed(PointDefinedCurveConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedCurveFromScanType
 
@@ -61265,7 +61265,7 @@ LinearValueType * PointDefinedCurveFromScanType::getSearchRadius()
 void PointDefinedCurveFromScanType::setSearchRadius(LinearValueType * SearchRadiusIn)
 {SearchRadius = SearchRadiusIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedCurveMeasurementDeterminationType
 
@@ -61303,7 +61303,7 @@ PointDefinedCurveMeasurementDeterminationTypeChoicePair * PointDefinedCurveMeasu
 void PointDefinedCurveMeasurementDeterminationType::setPointDefinedCurveMeasurementDeterminationTypePair(PointDefinedCurveMeasurementDeterminationTypeChoicePair * PointDefinedCurveMeasurementDeterminationTypePairIn)
 {PointDefinedCurveMeasurementDeterminationTypePair = PointDefinedCurveMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedCurveMeasurementDeterminationTypeChoicePair
 
@@ -61347,7 +61347,7 @@ void PointDefinedCurveMeasurementDeterminationTypeChoicePair::printSelf(FILE * o
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedCurveRecompType
 
@@ -61400,7 +61400,7 @@ BaseFeaturePointListType * PointDefinedCurveRecompType::getBaseFeaturePointList(
 void PointDefinedCurveRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedCurveTransformType
 
@@ -61468,7 +61468,7 @@ TransformationReferenceType * PointDefinedCurveTransformType::getTransformation(
 void PointDefinedCurveTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedSurfaceBestFitType
 
@@ -61640,7 +61640,7 @@ SequencedBaseFeatureTypeLisd * PointDefinedSurfaceBestFitType::getBaseFeature()
 void PointDefinedSurfaceBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedSurfaceCheckedFeatureType
 
@@ -61685,7 +61685,7 @@ PointDefinedSurfaceCheckedType * PointDefinedSurfaceCheckedFeatureType::getCheck
 void PointDefinedSurfaceCheckedFeatureType::setCheckDetails(PointDefinedSurfaceCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedSurfaceCheckedType
 
@@ -61723,7 +61723,7 @@ PointDefinedSurfaceCheckedTypeChoicePair * PointDefinedSurfaceCheckedType::getPo
 void PointDefinedSurfaceCheckedType::setPointDefinedSurfaceCheckedTypePair(PointDefinedSurfaceCheckedTypeChoicePair * PointDefinedSurfaceCheckedTypePairIn)
 {PointDefinedSurfaceCheckedTypePair = PointDefinedSurfaceCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedSurfaceCheckedTypeChoicePair
 
@@ -61769,7 +61769,7 @@ void PointDefinedSurfaceCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedSurfaceConstructionMethodType
 
@@ -61810,7 +61810,7 @@ PointDefinedSurfaceConstructionMethodTypeChoicePair * PointDefinedSurfaceConstru
 void PointDefinedSurfaceConstructionMethodType::setPointDefinedSurfaceConstructionMethodTypePair(PointDefinedSurfaceConstructionMethodTypeChoicePair * PointDefinedSurfaceConstructionMethodTypePairIn)
 {PointDefinedSurfaceConstructionMethodTypePair = PointDefinedSurfaceConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedSurfaceConstructionMethodTypeChoicePair
 
@@ -61886,7 +61886,7 @@ void PointDefinedSurfaceConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedSurfaceCopyType
 
@@ -61939,7 +61939,7 @@ BaseFeatureType * PointDefinedSurfaceCopyType::getBasePointDefinedSurface()
 void PointDefinedSurfaceCopyType::setBasePointDefinedSurface(BaseFeatureType * BasePointDefinedSurfaceIn)
 {BasePointDefinedSurface = BasePointDefinedSurfaceIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedSurfaceExtractType
 
@@ -61992,7 +61992,7 @@ BaseFeatureType * PointDefinedSurfaceExtractType::getSurfaceFeature()
 void PointDefinedSurfaceExtractType::setSurfaceFeature(BaseFeatureType * SurfaceFeatureIn)
 {SurfaceFeature = SurfaceFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedSurfaceFeatureDefinitionType
 
@@ -62122,7 +62122,7 @@ bool PointDefinedSurfaceFeatureDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedSurfaceFeatureItemType
 
@@ -62364,7 +62364,7 @@ PointDefinedSurfaceMeasurementDeterminationType * PointDefinedSurfaceFeatureItem
 void PointDefinedSurfaceFeatureItemType::setDeterminationMode(PointDefinedSurfaceMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedSurfaceFeatureMeasurementType
 
@@ -62658,7 +62658,7 @@ MeasuredLinearValueType * PointDefinedSurfaceFeatureMeasurementType::getForm()
 void PointDefinedSurfaceFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedSurfaceFeatureNominalType
 
@@ -62914,7 +62914,7 @@ PointDefinedSurfaceConstructionMethodType * PointDefinedSurfaceFeatureNominalTyp
 void PointDefinedSurfaceFeatureNominalType::setConstructed(PointDefinedSurfaceConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedSurfaceMeasurementDeterminationType
 
@@ -62952,7 +62952,7 @@ PointDefinedSurfaceMeasurementDeterminationTypeChoicePair * PointDefinedSurfaceM
 void PointDefinedSurfaceMeasurementDeterminationType::setPointDefinedSurfaceMeasurementDeterminationTypePair(PointDefinedSurfaceMeasurementDeterminationTypeChoicePair * PointDefinedSurfaceMeasurementDeterminationTypePairIn)
 {PointDefinedSurfaceMeasurementDeterminationTypePair = PointDefinedSurfaceMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedSurfaceMeasurementDeterminationTypeChoicePair
 
@@ -62996,7 +62996,7 @@ void PointDefinedSurfaceMeasurementDeterminationTypeChoicePair::printSelf(FILE *
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedSurfaceRecompType
 
@@ -63049,7 +63049,7 @@ BaseFeaturePointListType * PointDefinedSurfaceRecompType::getBaseFeaturePointLis
 void PointDefinedSurfaceRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedSurfaceTransformType
 
@@ -63117,7 +63117,7 @@ TransformationReferenceType * PointDefinedSurfaceTransformType::getTransformatio
 void PointDefinedSurfaceTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureCastType
 
@@ -63170,7 +63170,7 @@ BaseFeatureType * PointFeatureCastType::getBaseFeature()
 void PointFeatureCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureCenterOfGravityType
 
@@ -63342,7 +63342,7 @@ BaseFeatureTypeLisd * PointFeatureCenterOfGravityType::getBaseFeature()
 void PointFeatureCenterOfGravityType::setBaseFeature(BaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureCopyType
 
@@ -63395,7 +63395,7 @@ BaseFeatureType * PointFeatureCopyType::getBasePointFeature()
 void PointFeatureCopyType::setBasePointFeature(BaseFeatureType * BasePointFeatureIn)
 {BasePointFeature = BasePointFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureDefinitionBaseType
 
@@ -63525,7 +63525,7 @@ bool PointFeatureDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureDefinitionType
 
@@ -63655,7 +63655,7 @@ bool PointFeatureDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureExtremeType
 
@@ -63666,20 +63666,20 @@ PointFeatureExtremeType::PointFeatureExtremeType() :
 {
   BaseFeature = 0;
   Minimum = 0;
-  PointFeatureExt_1122 = 0;
+  PointFeatureExt_1123 = 0;
 }
 
 PointFeatureExtremeType::PointFeatureExtremeType(
  XmlBoolean * NominalsCalculatedIn,
  BaseFeatureType * BaseFeatureIn,
  XmlBoolean * MinimumIn,
- PointFeatureExt_1122_Type * PointFeatureExt_1122In) :
+ PointFeatureExt_1123_Type * PointFeatureExt_1123In) :
   ConstructionMethodBaseType(
     NominalsCalculatedIn)
 {
   BaseFeature = BaseFeatureIn;
   Minimum = MinimumIn;
-  PointFeatureExt_1122 = PointFeatureExt_1122In;
+  PointFeatureExt_1123 = PointFeatureExt_1123In;
 }
 
 PointFeatureExtremeType::~PointFeatureExtremeType()
@@ -63687,7 +63687,7 @@ PointFeatureExtremeType::~PointFeatureExtremeType()
   #ifndef NODESTRUCT
   delete BaseFeature;
   delete Minimum;
-  delete PointFeatureExt_1122;
+  delete PointFeatureExt_1123;
   #endif
 }
 
@@ -63711,7 +63711,7 @@ void PointFeatureExtremeType::printSelf(FILE * outFile)
   fprintf(outFile, "<Minimum");
   Minimum->printSelf(outFile);
   fprintf(outFile, "</Minimum>\n");
-  PointFeatureExt_1122->printSelf(outFile);
+  PointFeatureExt_1123->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -63727,13 +63727,13 @@ XmlBoolean * PointFeatureExtremeType::getMinimum()
 void PointFeatureExtremeType::setMinimum(XmlBoolean * MinimumIn)
 {Minimum = MinimumIn;}
 
-PointFeatureExt_1122_Type * PointFeatureExtremeType::getPointFeatureExt_1122()
-{return PointFeatureExt_1122;}
+PointFeatureExt_1123_Type * PointFeatureExtremeType::getPointFeatureExt_1123()
+{return PointFeatureExt_1123;}
 
-void PointFeatureExtremeType::setPointFeatureExt_1122(PointFeatureExt_1122_Type * PointFeatureExt_1122In)
-{PointFeatureExt_1122 = PointFeatureExt_1122In;}
+void PointFeatureExtremeType::setPointFeatureExt_1123(PointFeatureExt_1123_Type * PointFeatureExt_1123In)
+{PointFeatureExt_1123 = PointFeatureExt_1123In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureFromConeType
 
@@ -63786,7 +63786,7 @@ BaseFeatureType * PointFeatureFromConeType::getBaseCone()
 void PointFeatureFromConeType::setBaseCone(BaseFeatureType * BaseConeIn)
 {BaseCone = BaseConeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureFromScanType
 
@@ -63867,7 +63867,7 @@ RetrievalMethodEnumType * PointFeatureFromScanType::getRetrievalMethod()
 void PointFeatureFromScanType::setRetrievalMethod(RetrievalMethodEnumType * RetrievalMethodIn)
 {RetrievalMethod = RetrievalMethodIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureIntersectionType
 
@@ -63937,7 +63937,7 @@ SequencedBaseFeatureTypeLisd * PointFeatureIntersectionType::getIntersectionFeat
 void PointFeatureIntersectionType::setIntersectionFeature(SequencedBaseFeatureTypeLisd * IntersectionFeatureIn)
 {IntersectionFeature = IntersectionFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureItemBaseType
 
@@ -64162,7 +64162,7 @@ bool PointFeatureItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureItemType
 
@@ -64404,7 +64404,7 @@ PointMeasurementDeterminationType * PointFeatureItemType::getDeterminationMode()
 void PointFeatureItemType::setDeterminationMode(PointMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureMeasurementBaseType
 
@@ -64659,7 +64659,7 @@ bool PointFeatureMeasurementBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureMeasurementType
 
@@ -64952,7 +64952,7 @@ MeasuredUnitVectorType * PointFeatureMeasurementType::getNormal()
 void PointFeatureMeasurementType::setNormal(MeasuredUnitVectorType * NormalIn)
 {Normal = NormalIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureMidPointType
 
@@ -65022,7 +65022,7 @@ SequencedBaseFeatureTypeLisd * PointFeatureMidPointType::getBaseFeature()
 void PointFeatureMidPointType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureMovePointAxisType
 
@@ -65104,7 +65104,7 @@ BaseFeatureType * PointFeatureMovePointAxisType::getBaseAxisFeature()
 void PointFeatureMovePointAxisType::setBaseAxisFeature(BaseFeatureType * BaseAxisFeatureIn)
 {BaseAxisFeature = BaseAxisFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureMovePointType
 
@@ -65114,25 +65114,25 @@ PointFeatureMovePointType::PointFeatureMovePointType() :
   ConstructionMethodBaseType()
 {
   BaseFeature = 0;
-  PointFeatureMov_1123 = 0;
+  PointFeatureMov_1124 = 0;
 }
 
 PointFeatureMovePointType::PointFeatureMovePointType(
  XmlBoolean * NominalsCalculatedIn,
  BaseFeatureType * BaseFeatureIn,
- PointFeatureMov_1123_Type * PointFeatureMov_1123In) :
+ PointFeatureMov_1124_Type * PointFeatureMov_1124In) :
   ConstructionMethodBaseType(
     NominalsCalculatedIn)
 {
   BaseFeature = BaseFeatureIn;
-  PointFeatureMov_1123 = PointFeatureMov_1123In;
+  PointFeatureMov_1124 = PointFeatureMov_1124In;
 }
 
 PointFeatureMovePointType::~PointFeatureMovePointType()
 {
   #ifndef NODESTRUCT
   delete BaseFeature;
-  delete PointFeatureMov_1123;
+  delete PointFeatureMov_1124;
   #endif
 }
 
@@ -65152,7 +65152,7 @@ void PointFeatureMovePointType::printSelf(FILE * outFile)
   BaseFeature->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "</BaseFeature>\n");
-  PointFeatureMov_1123->printSelf(outFile);
+  PointFeatureMov_1124->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -65162,13 +65162,13 @@ BaseFeatureType * PointFeatureMovePointType::getBaseFeature()
 void PointFeatureMovePointType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-PointFeatureMov_1123_Type * PointFeatureMovePointType::getPointFeatureMov_1123()
-{return PointFeatureMov_1123;}
+PointFeatureMov_1124_Type * PointFeatureMovePointType::getPointFeatureMov_1124()
+{return PointFeatureMov_1124;}
 
-void PointFeatureMovePointType::setPointFeatureMov_1123(PointFeatureMov_1123_Type * PointFeatureMov_1123In)
-{PointFeatureMov_1123 = PointFeatureMov_1123In;}
+void PointFeatureMovePointType::setPointFeatureMov_1124(PointFeatureMov_1124_Type * PointFeatureMov_1124In)
+{PointFeatureMov_1124 = PointFeatureMov_1124In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureMovePointVectorType
 
@@ -65249,7 +65249,7 @@ UnitVectorType * PointFeatureMovePointVectorType::getVector()
 void PointFeatureMovePointVectorType::setVector(UnitVectorType * VectorIn)
 {Vector = VectorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureNominalBaseType
 
@@ -65258,7 +65258,7 @@ void PointFeatureMovePointVectorType::setVector(UnitVectorType * VectorIn)
 PointFeatureNominalBaseType::PointFeatureNominalBaseType() :
   ShapeFeatureNominalBaseType()
 {
-  PointFeatureNom_1124 = 0;
+  PointFeatureNom_1125 = 0;
 }
 
 PointFeatureNominalBaseType::PointFeatureNominalBaseType(
@@ -65271,7 +65271,7 @@ PointFeatureNominalBaseType::PointFeatureNominalBaseType(
  ArrayReferenceFullType * EntityExternalIdsIn,
  PointListType * PointListIn,
  SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
- PointFeatureNom_1124_Type * PointFeatureNom_1124In) :
+ PointFeatureNom_1125_Type * PointFeatureNom_1125In) :
   ShapeFeatureNominalBaseType(
     AttributesIn,
     NameIn,
@@ -65283,7 +65283,7 @@ PointFeatureNominalBaseType::PointFeatureNominalBaseType(
     PointListIn,
     SubstituteFeatureAlgorithmIn)
 {
-  PointFeatureNom_1124 = PointFeatureNom_1124In;
+  PointFeatureNom_1125 = PointFeatureNom_1125In;
 }
 
 PointFeatureNominalBaseType::PointFeatureNominalBaseType(
@@ -65297,7 +65297,7 @@ PointFeatureNominalBaseType::PointFeatureNominalBaseType(
  ArrayReferenceFullType * EntityExternalIdsIn,
  PointListType * PointListIn,
  SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
- PointFeatureNom_1124_Type * PointFeatureNom_1124In) :
+ PointFeatureNom_1125_Type * PointFeatureNom_1125In) :
   ShapeFeatureNominalBaseType(
     idIn,
     AttributesIn,
@@ -65310,13 +65310,13 @@ PointFeatureNominalBaseType::PointFeatureNominalBaseType(
     PointListIn,
     SubstituteFeatureAlgorithmIn)
 {
-  PointFeatureNom_1124 = PointFeatureNom_1124In;
+  PointFeatureNom_1125 = PointFeatureNom_1125In;
 }
 
 PointFeatureNominalBaseType::~PointFeatureNominalBaseType()
 {
   #ifndef NODESTRUCT
-  delete PointFeatureNom_1124;
+  delete PointFeatureNom_1125;
   #endif
 }
 
@@ -65414,9 +65414,9 @@ void PointFeatureNominalBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</SubstituteFeatureAlgorithm>\n");
     }
-  if (PointFeatureNom_1124)
+  if (PointFeatureNom_1125)
     {
-      PointFeatureNom_1124->printSelf(outFile);
+      PointFeatureNom_1125->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -65478,13 +65478,13 @@ bool PointFeatureNominalBaseType::badAttributes(
   return returnValue;
 }
 
-PointFeatureNom_1124_Type * PointFeatureNominalBaseType::getPointFeatureNom_1124()
-{return PointFeatureNom_1124;}
+PointFeatureNom_1125_Type * PointFeatureNominalBaseType::getPointFeatureNom_1125()
+{return PointFeatureNom_1125;}
 
-void PointFeatureNominalBaseType::setPointFeatureNom_1124(PointFeatureNom_1124_Type * PointFeatureNom_1124In)
-{PointFeatureNom_1124 = PointFeatureNom_1124In;}
+void PointFeatureNominalBaseType::setPointFeatureNom_1125(PointFeatureNom_1125_Type * PointFeatureNom_1125In)
+{PointFeatureNom_1125 = PointFeatureNom_1125In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureNominalType
 
@@ -65508,7 +65508,7 @@ PointFeatureNominalType::PointFeatureNominalType(
  ArrayReferenceFullType * EntityExternalIdsIn,
  PointListType * PointListIn,
  SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
- PointFeatureNom_1124_Type * PointFeatureNom_1124In,
+ PointFeatureNom_1125_Type * PointFeatureNom_1125In,
  PointType * LocationIn,
  UnitVectorType * NormalIn,
  PointConstructionMethodType * ConstructedIn) :
@@ -65522,7 +65522,7 @@ PointFeatureNominalType::PointFeatureNominalType(
     EntityExternalIdsIn,
     PointListIn,
     SubstituteFeatureAlgorithmIn,
-    PointFeatureNom_1124In)
+    PointFeatureNom_1125In)
 {
   Location = LocationIn;
   Normal = NormalIn;
@@ -65540,7 +65540,7 @@ PointFeatureNominalType::PointFeatureNominalType(
  ArrayReferenceFullType * EntityExternalIdsIn,
  PointListType * PointListIn,
  SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
- PointFeatureNom_1124_Type * PointFeatureNom_1124In,
+ PointFeatureNom_1125_Type * PointFeatureNom_1125In,
  PointType * LocationIn,
  UnitVectorType * NormalIn,
  PointConstructionMethodType * ConstructedIn) :
@@ -65555,7 +65555,7 @@ PointFeatureNominalType::PointFeatureNominalType(
     EntityExternalIdsIn,
     PointListIn,
     SubstituteFeatureAlgorithmIn,
-    PointFeatureNom_1124In)
+    PointFeatureNom_1125In)
 {
   Location = LocationIn;
   Normal = NormalIn;
@@ -65665,9 +65665,9 @@ void PointFeatureNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</SubstituteFeatureAlgorithm>\n");
     }
-  if (PointFeatureNom_1124)
+  if (PointFeatureNom_1125)
     {
-      PointFeatureNom_1124->printSelf(outFile);
+      PointFeatureNom_1125->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Location");
@@ -65766,7 +65766,7 @@ PointConstructionMethodType * PointFeatureNominalType::getConstructed()
 void PointFeatureNominalType::setConstructed(PointConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeaturePierceType
 
@@ -65834,7 +65834,7 @@ BaseFeatureType * PointFeaturePierceType::getCurveFeature()
 void PointFeaturePierceType::setCurveFeature(BaseFeatureType * CurveFeatureIn)
 {CurveFeature = CurveFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureProjectionType
 
@@ -65902,7 +65902,7 @@ BaseFeatureType * PointFeatureProjectionType::getProjectionFeature()
 void PointFeatureProjectionType::setProjectionFeature(BaseFeatureType * ProjectionFeatureIn)
 {ProjectionFeature = ProjectionFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointFeatureTransformType
 
@@ -65970,7 +65970,7 @@ TransformationReferenceType * PointFeatureTransformType::getTransformation()
 void PointFeatureTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointIndexType
 
@@ -66008,7 +66008,7 @@ PointIndexTypeChoicePair * PointIndexType::getPointIndexTypePair()
 void PointIndexType::setPointIndexTypePair(PointIndexTypeChoicePair * PointIndexTypePairIn)
 {PointIndexTypePair = PointIndexTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointIndexTypeChoicePair
 
@@ -66062,7 +66062,7 @@ void PointIndexTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointListType
 
@@ -66274,7 +66274,7 @@ PointSetReferenceBaseTypeLisd * PointListType::getPointSetId()
 void PointListType::setPointSetId(PointSetReferenceBaseTypeLisd * PointSetIdIn)
 {PointSetId = PointSetIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointMeasurementDeterminationType
 
@@ -66312,7 +66312,7 @@ PointMeasurementDeterminationTypeChoicePair * PointMeasurementDeterminationType:
 void PointMeasurementDeterminationType::setPointMeasurementDeterminationTypePair(PointMeasurementDeterminationTypeChoicePair * PointMeasurementDeterminationTypePairIn)
 {PointMeasurementDeterminationTypePair = PointMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointMeasurementDeterminationTypeChoicePair
 
@@ -66356,7 +66356,7 @@ void PointMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointRangeType
 
@@ -66411,7 +66411,7 @@ NaturalType * PointRangeType::getStop()
 void PointRangeType::setStop(NaturalType * StopIn)
 {Stop = StopIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointSetNominalType
 
@@ -67293,7 +67293,7 @@ MeasurePointNominalTypeLisd * PointSetNominalType::getMeasurePoint()
 void PointSetNominalType::setMeasurePoint(MeasurePointNominalTypeLisd * MeasurePointIn)
 {MeasurePoint = MeasurePointIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointSetNominalTypeLisd
 
@@ -67320,7 +67320,7 @@ PointSetNominalTypeLisd::~PointSetNominalTypeLisd()
 
 void PointSetNominalTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SetFeatureType
 
@@ -67336,7 +67336,7 @@ void SetFeatureType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ShapeFeatureDefinitionBaseType
 
@@ -67466,7 +67466,7 @@ bool ShapeFeatureDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ShapeFeatureItemBaseType
 
@@ -67715,7 +67715,7 @@ VirtualMeasurementType * ShapeFeatureItemBaseType::getVirtualMeasurement()
 void ShapeFeatureItemBaseType::setVirtualMeasurement(VirtualMeasurementType * VirtualMeasurementIn)
 {VirtualMeasurement = VirtualMeasurementIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ShapeFeatureMeasurementBaseType
 
@@ -67994,7 +67994,7 @@ QIFReferenceType * ShapeFeatureMeasurementBaseType::getProxyMeasurementId()
 void ShapeFeatureMeasurementBaseType::setProxyMeasurementId(QIFReferenceType * ProxyMeasurementIdIn)
 {ProxyMeasurementId = ProxyMeasurementIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ShapeFeatureNominalBaseType
 
@@ -68229,7 +68229,7 @@ SubstituteFeatureAlgorithmType * ShapeFeatureNominalBaseType::getSubstituteFeatu
 void ShapeFeatureNominalBaseType::setSubstituteFeatureAlgorithm(SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn)
 {SubstituteFeatureAlgorithm = SubstituteFeatureAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SpecifiedFeatureDefinitionBaseType
 
@@ -68359,7 +68359,7 @@ bool SpecifiedFeatureDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SpecifiedFeatureItemBaseType
 
@@ -68584,7 +68584,7 @@ bool SpecifiedFeatureItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SpecifiedFeatureMeasurementBaseType
 
@@ -68839,7 +68839,7 @@ bool SpecifiedFeatureMeasurementBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SpecifiedFeatureNominalBaseType
 
@@ -69058,7 +69058,7 @@ bool SpecifiedFeatureNominalBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphereBestFitType
 
@@ -69230,7 +69230,7 @@ SequencedBaseFeatureTypeLisd * SphereBestFitType::getBaseFeature()
 void SphereBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphereCastType
 
@@ -69283,7 +69283,7 @@ BaseFeatureType * SphereCastType::getBaseFeature()
 void SphereCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphereCheckedFeatureType
 
@@ -69328,7 +69328,7 @@ SphereCheckedType * SphereCheckedFeatureType::getCheckDetails()
 void SphereCheckedFeatureType::setCheckDetails(SphereCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphereCheckedType
 
@@ -69366,7 +69366,7 @@ SphereCheckedTypeChoicePair * SphereCheckedType::getSphereCheckedTypePair()
 void SphereCheckedType::setSphereCheckedTypePair(SphereCheckedTypeChoicePair * SphereCheckedTypePairIn)
 {SphereCheckedTypePair = SphereCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphereCheckedTypeChoicePair
 
@@ -69412,7 +69412,7 @@ void SphereCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphereConstructionMethodType
 
@@ -69453,7 +69453,7 @@ SphereConstructionMethodTypeChoicePair * SphereConstructionMethodType::getSphere
 void SphereConstructionMethodType::setSphereConstructionMethodTypePair(SphereConstructionMethodTypeChoicePair * SphereConstructionMethodTypePairIn)
 {SphereConstructionMethodTypePair = SphereConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphereConstructionMethodTypeChoicePair
 
@@ -69539,7 +69539,7 @@ void SphereConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphereCopyType
 
@@ -69592,7 +69592,7 @@ BaseFeatureType * SphereCopyType::getBaseSphere()
 void SphereCopyType::setBaseSphere(BaseFeatureType * BaseSphereIn)
 {BaseSphere = BaseSphereIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphereFeatureDefinitionType
 
@@ -69754,7 +69754,7 @@ LinearValueType * SphereFeatureDefinitionType::getDiameter()
 void SphereFeatureDefinitionType::setDiameter(LinearValueType * DiameterIn)
 {Diameter = DiameterIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphereFeatureItemType
 
@@ -69996,7 +69996,7 @@ SphereMeasurementDeterminationType * SphereFeatureItemType::getDeterminationMode
 void SphereFeatureItemType::setDeterminationMode(SphereMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphereFeatureMeasurementType
 
@@ -70386,7 +70386,7 @@ MeasuredLinearValueType * SphereFeatureMeasurementType::getForm()
 void SphereFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphereFeatureNominalType
 
@@ -70661,7 +70661,7 @@ SphereConstructionMethodType * SphereFeatureNominalType::getConstructed()
 void SphereFeatureNominalType::setConstructed(SphereConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphereFromScanType
 
@@ -70745,7 +70745,7 @@ UnitVectorType * SphereFromScanType::getVector()
 void SphereFromScanType::setVector(UnitVectorType * VectorIn)
 {Vector = VectorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphereMeasurementDeterminationType
 
@@ -70783,7 +70783,7 @@ SphereMeasurementDeterminationTypeChoicePair * SphereMeasurementDeterminationTyp
 void SphereMeasurementDeterminationType::setSphereMeasurementDeterminationTypePair(SphereMeasurementDeterminationTypeChoicePair * SphereMeasurementDeterminationTypePairIn)
 {SphereMeasurementDeterminationTypePair = SphereMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphereMeasurementDeterminationTypeChoicePair
 
@@ -70827,7 +70827,7 @@ void SphereMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphereRecompType
 
@@ -70880,7 +70880,7 @@ BaseFeaturePointListType * SphereRecompType::getBaseFeaturePointList()
 void SphereRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphereTransformType
 
@@ -70948,7 +70948,7 @@ TransformationReferenceType * SphereTransformType::getTransformation()
 void SphereTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalSegmentBestFitType
 
@@ -71120,7 +71120,7 @@ SequencedBaseFeatureTypeLisd * SphericalSegmentBestFitType::getBaseFeature()
 void SphericalSegmentBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalSegmentCastType
 
@@ -71173,7 +71173,7 @@ BaseFeatureType * SphericalSegmentCastType::getBaseFeature()
 void SphericalSegmentCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalSegmentCheckedFeatureType
 
@@ -71218,7 +71218,7 @@ SphericalSegmentCheckedType * SphericalSegmentCheckedFeatureType::getCheckDetail
 void SphericalSegmentCheckedFeatureType::setCheckDetails(SphericalSegmentCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalSegmentCheckedType
 
@@ -71256,7 +71256,7 @@ SphericalSegmentCheckedTypeChoicePair * SphericalSegmentCheckedType::getSpherica
 void SphericalSegmentCheckedType::setSphericalSegmentCheckedTypePair(SphericalSegmentCheckedTypeChoicePair * SphericalSegmentCheckedTypePairIn)
 {SphericalSegmentCheckedTypePair = SphericalSegmentCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalSegmentCheckedTypeChoicePair
 
@@ -71302,7 +71302,7 @@ void SphericalSegmentCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalSegmentConstructionMethodType
 
@@ -71343,7 +71343,7 @@ SphericalSegmentConstructionMethodTypeChoicePair * SphericalSegmentConstructionM
 void SphericalSegmentConstructionMethodType::setSphericalSegmentConstructionMethodTypePair(SphericalSegmentConstructionMethodTypeChoicePair * SphericalSegmentConstructionMethodTypePairIn)
 {SphericalSegmentConstructionMethodTypePair = SphericalSegmentConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalSegmentConstructionMethodTypeChoicePair
 
@@ -71419,7 +71419,7 @@ void SphericalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalSegmentCopyType
 
@@ -71472,7 +71472,7 @@ BaseFeatureType * SphericalSegmentCopyType::getBaseSphericalSegment()
 void SphericalSegmentCopyType::setBaseSphericalSegment(BaseFeatureType * BaseSphericalSegmentIn)
 {BaseSphericalSegment = BaseSphericalSegmentIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalSegmentFeatureDefinitionType
 
@@ -71634,7 +71634,7 @@ LinearValueType * SphericalSegmentFeatureDefinitionType::getDiameter()
 void SphericalSegmentFeatureDefinitionType::setDiameter(LinearValueType * DiameterIn)
 {Diameter = DiameterIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalSegmentFeatureItemType
 
@@ -71876,7 +71876,7 @@ SphericalSegmentMeasurementDeterminationType * SphericalSegmentFeatureItemType::
 void SphericalSegmentFeatureItemType::setDeterminationMode(SphericalSegmentMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalSegmentFeatureMeasurementType
 
@@ -72266,7 +72266,7 @@ MeasuredLinearValueType * SphericalSegmentFeatureMeasurementType::getForm()
 void SphericalSegmentFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalSegmentFeatureNominalType
 
@@ -72538,7 +72538,7 @@ SphericalSegmentConstructionMethodType * SphericalSegmentFeatureNominalType::get
 void SphericalSegmentFeatureNominalType::setConstructed(SphericalSegmentConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalSegmentMeasurementDeterminationType
 
@@ -72576,7 +72576,7 @@ SphericalSegmentMeasurementDeterminationTypeChoicePair * SphericalSegmentMeasure
 void SphericalSegmentMeasurementDeterminationType::setSphericalSegmentMeasurementDeterminationTypePair(SphericalSegmentMeasurementDeterminationTypeChoicePair * SphericalSegmentMeasurementDeterminationTypePairIn)
 {SphericalSegmentMeasurementDeterminationTypePair = SphericalSegmentMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalSegmentMeasurementDeterminationTypeChoicePair
 
@@ -72620,7 +72620,7 @@ void SphericalSegmentMeasurementDeterminationTypeChoicePair::printSelf(FILE * ou
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalSegmentRecompType
 
@@ -72673,7 +72673,7 @@ BaseFeaturePointListType * SphericalSegmentRecompType::getBaseFeaturePointList()
 void SphericalSegmentRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalSegmentTransformType
 
@@ -72741,7 +72741,7 @@ TransformationReferenceType * SphericalSegmentTransformType::getTransformation()
 void SphericalSegmentTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceFeatureDefinitionBaseType
 
@@ -72871,7 +72871,7 @@ bool SurfaceFeatureDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceFeatureItemBaseType
 
@@ -73096,7 +73096,7 @@ bool SurfaceFeatureItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceFeatureMeasurementBaseType
 
@@ -73351,7 +73351,7 @@ bool SurfaceFeatureMeasurementBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceFeatureNominalBaseType
 
@@ -73570,7 +73570,7 @@ bool SurfaceFeatureNominalBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceOfRevolutionBestFitType
 
@@ -73742,7 +73742,7 @@ SequencedBaseFeatureTypeLisd * SurfaceOfRevolutionBestFitType::getBaseFeature()
 void SurfaceOfRevolutionBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceOfRevolutionCastType
 
@@ -73795,7 +73795,7 @@ BaseFeatureType * SurfaceOfRevolutionCastType::getBaseFeature()
 void SurfaceOfRevolutionCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceOfRevolutionCheckedFeatureType
 
@@ -73840,7 +73840,7 @@ SurfaceOfRevolutionCheckedType * SurfaceOfRevolutionCheckedFeatureType::getCheck
 void SurfaceOfRevolutionCheckedFeatureType::setCheckDetails(SurfaceOfRevolutionCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceOfRevolutionCheckedType
 
@@ -73878,7 +73878,7 @@ SurfaceOfRevolutionCheckedTypeChoicePair * SurfaceOfRevolutionCheckedType::getSu
 void SurfaceOfRevolutionCheckedType::setSurfaceOfRevolutionCheckedTypePair(SurfaceOfRevolutionCheckedTypeChoicePair * SurfaceOfRevolutionCheckedTypePairIn)
 {SurfaceOfRevolutionCheckedTypePair = SurfaceOfRevolutionCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceOfRevolutionCheckedTypeChoicePair
 
@@ -73924,7 +73924,7 @@ void SurfaceOfRevolutionCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceOfRevolutionConstructionMethodType
 
@@ -73965,7 +73965,7 @@ SurfaceOfRevolutionConstructionMethodTypeChoicePair * SurfaceOfRevolutionConstru
 void SurfaceOfRevolutionConstructionMethodType::setSurfaceOfRevolutionConstructionMethodTypePair(SurfaceOfRevolutionConstructionMethodTypeChoicePair * SurfaceOfRevolutionConstructionMethodTypePairIn)
 {SurfaceOfRevolutionConstructionMethodTypePair = SurfaceOfRevolutionConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceOfRevolutionConstructionMethodTypeChoicePair
 
@@ -74041,7 +74041,7 @@ void SurfaceOfRevolutionConstructionMethodTypeChoicePair::printSelf(FILE * outFi
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceOfRevolutionCopyType
 
@@ -74094,7 +74094,7 @@ BaseFeatureType * SurfaceOfRevolutionCopyType::getBaseSurfaceOfRevolution()
 void SurfaceOfRevolutionCopyType::setBaseSurfaceOfRevolution(BaseFeatureType * BaseSurfaceOfRevolutionIn)
 {BaseSurfaceOfRevolution = BaseSurfaceOfRevolutionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceOfRevolutionFeatureDefinitionType
 
@@ -74259,7 +74259,7 @@ LinearValueType * SurfaceOfRevolutionFeatureDefinitionType::getLength()
 void SurfaceOfRevolutionFeatureDefinitionType::setLength(LinearValueType * LengthIn)
 {Length = LengthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceOfRevolutionFeatureItemType
 
@@ -74501,7 +74501,7 @@ SurfaceOfRevolutionMeasurementDeterminationType * SurfaceOfRevolutionFeatureItem
 void SurfaceOfRevolutionFeatureItemType::setDeterminationMode(SurfaceOfRevolutionMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceOfRevolutionFeatureMeasurementType
 
@@ -74854,7 +74854,7 @@ MeasuredLinearValueType * SurfaceOfRevolutionFeatureMeasurementType::getForm()
 void SurfaceOfRevolutionFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceOfRevolutionFeatureNominalType
 
@@ -75149,7 +75149,7 @@ SurfaceOfRevolutionConstructionMethodType * SurfaceOfRevolutionFeatureNominalTyp
 void SurfaceOfRevolutionFeatureNominalType::setConstructed(SurfaceOfRevolutionConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceOfRevolutionMeasurementDeterminationType
 
@@ -75187,7 +75187,7 @@ SurfaceOfRevolutionMeasurementDeterminationTypeChoicePair * SurfaceOfRevolutionM
 void SurfaceOfRevolutionMeasurementDeterminationType::setSurfaceOfRevolutionMeasurementDeterminationTypePair(SurfaceOfRevolutionMeasurementDeterminationTypeChoicePair * SurfaceOfRevolutionMeasurementDeterminationTypePairIn)
 {SurfaceOfRevolutionMeasurementDeterminationTypePair = SurfaceOfRevolutionMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceOfRevolutionMeasurementDeterminationTypeChoicePair
 
@@ -75231,7 +75231,7 @@ void SurfaceOfRevolutionMeasurementDeterminationTypeChoicePair::printSelf(FILE *
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceOfRevolutionRecompType
 
@@ -75284,7 +75284,7 @@ BaseFeaturePointListType * SurfaceOfRevolutionRecompType::getBaseFeaturePointLis
 void SurfaceOfRevolutionRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceOfRevolutionTransformType
 
@@ -75352,7 +75352,7 @@ TransformationReferenceType * SurfaceOfRevolutionTransformType::getTransformatio
 void SurfaceOfRevolutionTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadedFeatureBestFitType
 
@@ -75524,7 +75524,7 @@ SequencedBaseFeatureTypeLisd * ThreadedFeatureBestFitType::getBaseFeature()
 void ThreadedFeatureBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadedFeatureCastType
 
@@ -75577,7 +75577,7 @@ BaseFeatureType * ThreadedFeatureCastType::getBaseFeature()
 void ThreadedFeatureCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadedFeatureCheckedFeatureType
 
@@ -75622,7 +75622,7 @@ ThreadedFeatureCheckedType * ThreadedFeatureCheckedFeatureType::getCheckDetails(
 void ThreadedFeatureCheckedFeatureType::setCheckDetails(ThreadedFeatureCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadedFeatureCheckedType
 
@@ -75660,7 +75660,7 @@ ThreadedFeatureCheckedTypeChoicePair * ThreadedFeatureCheckedType::getThreadedFe
 void ThreadedFeatureCheckedType::setThreadedFeatureCheckedTypePair(ThreadedFeatureCheckedTypeChoicePair * ThreadedFeatureCheckedTypePairIn)
 {ThreadedFeatureCheckedTypePair = ThreadedFeatureCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadedFeatureCheckedTypeChoicePair
 
@@ -75706,7 +75706,7 @@ void ThreadedFeatureCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadedFeatureConstructionMethodType
 
@@ -75747,7 +75747,7 @@ ThreadedFeatureConstructionMethodTypeChoicePair * ThreadedFeatureConstructionMet
 void ThreadedFeatureConstructionMethodType::setThreadedFeatureConstructionMethodTypePair(ThreadedFeatureConstructionMethodTypeChoicePair * ThreadedFeatureConstructionMethodTypePairIn)
 {ThreadedFeatureConstructionMethodTypePair = ThreadedFeatureConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadedFeatureConstructionMethodTypeChoicePair
 
@@ -75833,7 +75833,7 @@ void ThreadedFeatureConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadedFeatureCopyType
 
@@ -75886,7 +75886,7 @@ BaseFeatureType * ThreadedFeatureCopyType::getBaseThreadedFeature()
 void ThreadedFeatureCopyType::setBaseThreadedFeature(BaseFeatureType * BaseThreadedFeatureIn)
 {BaseThreadedFeature = BaseThreadedFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadedFeatureDefinitionType
 
@@ -76087,7 +76087,7 @@ BottomType * ThreadedFeatureDefinitionType::getBottom()
 void ThreadedFeatureDefinitionType::setBottom(BottomType * BottomIn)
 {Bottom = BottomIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadedFeatureFromCylinderType
 
@@ -76157,7 +76157,7 @@ LinearValueType * ThreadedFeatureFromCylinderType::getOffset()
 void ThreadedFeatureFromCylinderType::setOffset(LinearValueType * OffsetIn)
 {Offset = OffsetIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadedFeatureItemType
 
@@ -76399,7 +76399,7 @@ ThreadedFeatureMeasurementDeterminationType * ThreadedFeatureItemType::getDeterm
 void ThreadedFeatureItemType::setDeterminationMode(ThreadedFeatureMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadedFeatureMeasurementDeterminationType
 
@@ -76437,7 +76437,7 @@ ThreadedFeatureMeasurementDeterminationTypeChoicePair * ThreadedFeatureMeasureme
 void ThreadedFeatureMeasurementDeterminationType::setThreadedFeatureMeasurementDeterminationTypePair(ThreadedFeatureMeasurementDeterminationTypeChoicePair * ThreadedFeatureMeasurementDeterminationTypePairIn)
 {ThreadedFeatureMeasurementDeterminationTypePair = ThreadedFeatureMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadedFeatureMeasurementDeterminationTypeChoicePair
 
@@ -76481,7 +76481,7 @@ void ThreadedFeatureMeasurementDeterminationTypeChoicePair::printSelf(FILE * out
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadedFeatureMeasurementType
 
@@ -76813,7 +76813,7 @@ MeasuredLinearValueType * ThreadedFeatureMeasurementType::getLength()
 void ThreadedFeatureMeasurementType::setLength(MeasuredLinearValueType * LengthIn)
 {Length = LengthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadedFeatureNominalType
 
@@ -77069,7 +77069,7 @@ ThreadedFeatureConstructionMethodType * ThreadedFeatureNominalType::getConstruct
 void ThreadedFeatureNominalType::setConstructed(ThreadedFeatureConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadedFeatureRecompType
 
@@ -77122,7 +77122,7 @@ BaseFeaturePointListType * ThreadedFeatureRecompType::getBaseFeaturePointList()
 void ThreadedFeatureRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadedFeatureTransformType
 
@@ -77190,7 +77190,7 @@ TransformationReferenceType * ThreadedFeatureTransformType::getTransformation()
 void ThreadedFeatureTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidalSegmentBestFitType
 
@@ -77362,7 +77362,7 @@ SequencedBaseFeatureTypeLisd * ToroidalSegmentBestFitType::getBaseFeature()
 void ToroidalSegmentBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidalSegmentCastType
 
@@ -77415,7 +77415,7 @@ BaseFeatureType * ToroidalSegmentCastType::getBaseFeature()
 void ToroidalSegmentCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidalSegmentCheckedFeatureType
 
@@ -77460,7 +77460,7 @@ ToroidalSegmentCheckedType * ToroidalSegmentCheckedFeatureType::getCheckDetails(
 void ToroidalSegmentCheckedFeatureType::setCheckDetails(ToroidalSegmentCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidalSegmentCheckedType
 
@@ -77498,7 +77498,7 @@ ToroidalSegmentCheckedTypeChoicePair * ToroidalSegmentCheckedType::getToroidalSe
 void ToroidalSegmentCheckedType::setToroidalSegmentCheckedTypePair(ToroidalSegmentCheckedTypeChoicePair * ToroidalSegmentCheckedTypePairIn)
 {ToroidalSegmentCheckedTypePair = ToroidalSegmentCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidalSegmentCheckedTypeChoicePair
 
@@ -77544,7 +77544,7 @@ void ToroidalSegmentCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidalSegmentConstructionMethodType
 
@@ -77585,7 +77585,7 @@ ToroidalSegmentConstructionMethodTypeChoicePair * ToroidalSegmentConstructionMet
 void ToroidalSegmentConstructionMethodType::setToroidalSegmentConstructionMethodTypePair(ToroidalSegmentConstructionMethodTypeChoicePair * ToroidalSegmentConstructionMethodTypePairIn)
 {ToroidalSegmentConstructionMethodTypePair = ToroidalSegmentConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidalSegmentConstructionMethodTypeChoicePair
 
@@ -77661,7 +77661,7 @@ void ToroidalSegmentConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidalSegmentCopyType
 
@@ -77714,7 +77714,7 @@ BaseFeatureType * ToroidalSegmentCopyType::getBaseToroidalSegment()
 void ToroidalSegmentCopyType::setBaseToroidalSegment(BaseFeatureType * BaseToroidalSegmentIn)
 {BaseToroidalSegment = BaseToroidalSegmentIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidalSegmentFeatureDefinitionType
 
@@ -77892,7 +77892,7 @@ LinearValueType * ToroidalSegmentFeatureDefinitionType::getMajorDiameter()
 void ToroidalSegmentFeatureDefinitionType::setMajorDiameter(LinearValueType * MajorDiameterIn)
 {MajorDiameter = MajorDiameterIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidalSegmentFeatureItemType
 
@@ -78134,7 +78134,7 @@ ToroidalSegmentMeasurementDeterminationType * ToroidalSegmentFeatureItemType::ge
 void ToroidalSegmentFeatureItemType::setDeterminationMode(ToroidalSegmentMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidalSegmentFeatureMeasurementType
 
@@ -78524,7 +78524,7 @@ MeasuredLinearValueType * ToroidalSegmentFeatureMeasurementType::getForm()
 void ToroidalSegmentFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidalSegmentFeatureNominalType
 
@@ -78812,7 +78812,7 @@ ToroidalSegmentConstructionMethodType * ToroidalSegmentFeatureNominalType::getCo
 void ToroidalSegmentFeatureNominalType::setConstructed(ToroidalSegmentConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidalSegmentMeasurementDeterminationType
 
@@ -78850,7 +78850,7 @@ ToroidalSegmentMeasurementDeterminationTypeChoicePair * ToroidalSegmentMeasureme
 void ToroidalSegmentMeasurementDeterminationType::setToroidalSegmentMeasurementDeterminationTypePair(ToroidalSegmentMeasurementDeterminationTypeChoicePair * ToroidalSegmentMeasurementDeterminationTypePairIn)
 {ToroidalSegmentMeasurementDeterminationTypePair = ToroidalSegmentMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidalSegmentMeasurementDeterminationTypeChoicePair
 
@@ -78894,7 +78894,7 @@ void ToroidalSegmentMeasurementDeterminationTypeChoicePair::printSelf(FILE * out
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidalSegmentRecompType
 
@@ -78947,7 +78947,7 @@ BaseFeaturePointListType * ToroidalSegmentRecompType::getBaseFeaturePointList()
 void ToroidalSegmentRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidalSegmentTransformType
 
@@ -79015,7 +79015,7 @@ TransformationReferenceType * ToroidalSegmentTransformType::getTransformation()
 void ToroidalSegmentTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TorusBestFitType
 
@@ -79187,7 +79187,7 @@ SequencedBaseFeatureTypeLisd * TorusBestFitType::getBaseFeature()
 void TorusBestFitType::setBaseFeature(SequencedBaseFeatureTypeLisd * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TorusCastType
 
@@ -79240,7 +79240,7 @@ BaseFeatureType * TorusCastType::getBaseFeature()
 void TorusCastType::setBaseFeature(BaseFeatureType * BaseFeatureIn)
 {BaseFeature = BaseFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TorusCheckedFeatureType
 
@@ -79285,7 +79285,7 @@ TorusCheckedType * TorusCheckedFeatureType::getCheckDetails()
 void TorusCheckedFeatureType::setCheckDetails(TorusCheckedType * CheckDetailsIn)
 {CheckDetails = CheckDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TorusCheckedType
 
@@ -79323,7 +79323,7 @@ TorusCheckedTypeChoicePair * TorusCheckedType::getTorusCheckedTypePair()
 void TorusCheckedType::setTorusCheckedTypePair(TorusCheckedTypeChoicePair * TorusCheckedTypePairIn)
 {TorusCheckedTypePair = TorusCheckedTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TorusCheckedTypeChoicePair
 
@@ -79369,7 +79369,7 @@ void TorusCheckedTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TorusConstructionMethodType
 
@@ -79410,7 +79410,7 @@ TorusConstructionMethodTypeChoicePair * TorusConstructionMethodType::getTorusCon
 void TorusConstructionMethodType::setTorusConstructionMethodTypePair(TorusConstructionMethodTypeChoicePair * TorusConstructionMethodTypePairIn)
 {TorusConstructionMethodTypePair = TorusConstructionMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TorusConstructionMethodTypeChoicePair
 
@@ -79496,7 +79496,7 @@ void TorusConstructionMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TorusCopyType
 
@@ -79549,7 +79549,7 @@ BaseFeatureType * TorusCopyType::getBaseTorus()
 void TorusCopyType::setBaseTorus(BaseFeatureType * BaseTorusIn)
 {BaseTorus = BaseTorusIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TorusFeatureDefinitionType
 
@@ -79727,7 +79727,7 @@ LinearValueType * TorusFeatureDefinitionType::getMajorDiameter()
 void TorusFeatureDefinitionType::setMajorDiameter(LinearValueType * MajorDiameterIn)
 {MajorDiameter = MajorDiameterIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TorusFeatureItemType
 
@@ -79969,7 +79969,7 @@ TorusMeasurementDeterminationType * TorusFeatureItemType::getDeterminationMode()
 void TorusFeatureItemType::setDeterminationMode(TorusMeasurementDeterminationType * DeterminationModeIn)
 {DeterminationMode = DeterminationModeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TorusFeatureMeasurementType
 
@@ -80359,7 +80359,7 @@ MeasuredLinearValueType * TorusFeatureMeasurementType::getForm()
 void TorusFeatureMeasurementType::setForm(MeasuredLinearValueType * FormIn)
 {Form = FormIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TorusFeatureNominalType
 
@@ -80650,7 +80650,7 @@ TorusConstructionMethodType * TorusFeatureNominalType::getConstructed()
 void TorusFeatureNominalType::setConstructed(TorusConstructionMethodType * ConstructedIn)
 {Constructed = ConstructedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TorusFromScanType
 
@@ -80717,7 +80717,7 @@ LinearValueType * TorusFromScanType::getSearchRadius()
 void TorusFromScanType::setSearchRadius(LinearValueType * SearchRadiusIn)
 {SearchRadius = SearchRadiusIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TorusMeasurementDeterminationType
 
@@ -80755,7 +80755,7 @@ TorusMeasurementDeterminationTypeChoicePair * TorusMeasurementDeterminationType:
 void TorusMeasurementDeterminationType::setTorusMeasurementDeterminationTypePair(TorusMeasurementDeterminationTypeChoicePair * TorusMeasurementDeterminationTypePairIn)
 {TorusMeasurementDeterminationTypePair = TorusMeasurementDeterminationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TorusMeasurementDeterminationTypeChoicePair
 
@@ -80799,7 +80799,7 @@ void TorusMeasurementDeterminationTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TorusRecompType
 
@@ -80852,7 +80852,7 @@ BaseFeaturePointListType * TorusRecompType::getBaseFeaturePointList()
 void TorusRecompType::setBaseFeaturePointList(BaseFeaturePointListType * BaseFeaturePointListIn)
 {BaseFeaturePointList = BaseFeaturePointListIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TorusTransformType
 
@@ -80920,7 +80920,7 @@ TransformationReferenceType * TorusTransformType::getTransformation()
 void TorusTransformType::setTransformation(TransformationReferenceType * TransformationIn)
 {Transformation = TransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TransformationReferenceType
 
@@ -80989,165 +80989,86 @@ NaturalType * TransformationReferenceType::getSequenceNumber()
 void TransformationReferenceType::setSequenceNumber(NaturalType * SequenceNumberIn)
 {SequenceNumber = SequenceNumberIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class CircleFromConeT_1092_Type
-
-*/
-
-CircleFromConeT_1092_Type::CircleFromConeT_1092_Type()
-{
-  CircleFromConeT_1092_TypePair = 0;
-}
-
-CircleFromConeT_1092_Type::CircleFromConeT_1092_Type(
- CircleFromConeT_1092_TypeChoicePair * CircleFromConeT_1092_TypePairIn)
-{
-  CircleFromConeT_1092_TypePair = CircleFromConeT_1092_TypePairIn;
-}
-
-CircleFromConeT_1092_Type::~CircleFromConeT_1092_Type()
-{
-  #ifndef NODESTRUCT
-  delete CircleFromConeT_1092_TypePair;
-  #endif
-}
-
-void CircleFromConeT_1092_Type::printSelf(FILE * outFile)
-{
-  CircleFromConeT_1092_TypePair->printSelf(outFile);
-}
-
-CircleFromConeT_1092_TypeChoicePair * CircleFromConeT_1092_Type::getCircleFromConeT_1092_TypePair()
-{return CircleFromConeT_1092_TypePair;}
-
-void CircleFromConeT_1092_Type::setCircleFromConeT_1092_TypePair(CircleFromConeT_1092_TypeChoicePair * CircleFromConeT_1092_TypePairIn)
-{CircleFromConeT_1092_TypePair = CircleFromConeT_1092_TypePairIn;}
-
-/*********************************************************************/
-
-/* class CircleFromConeT_1092_TypeChoicePair
+/* class CircleFromConeT_1093_Type
 
 */
 
-CircleFromConeT_1092_TypeChoicePair::CircleFromConeT_1092_TypeChoicePair() {}
-
-CircleFromConeT_1092_TypeChoicePair::CircleFromConeT_1092_TypeChoicePair(
- whichOne CircleFromConeT_1092_TypeTypeIn,
- CircleFromConeT_1092_TypeVal CircleFromConeT_1092_TypeValueIn)
+CircleFromConeT_1093_Type::CircleFromConeT_1093_Type()
 {
-  CircleFromConeT_1092_TypeType = CircleFromConeT_1092_TypeTypeIn;
-  CircleFromConeT_1092_TypeValue = CircleFromConeT_1092_TypeValueIn;
+  CircleFromConeT_1093_TypePair = 0;
 }
 
-CircleFromConeT_1092_TypeChoicePair::~CircleFromConeT_1092_TypeChoicePair()
+CircleFromConeT_1093_Type::CircleFromConeT_1093_Type(
+ CircleFromConeT_1093_TypeChoicePair * CircleFromConeT_1093_TypePairIn)
+{
+  CircleFromConeT_1093_TypePair = CircleFromConeT_1093_TypePairIn;
+}
+
+CircleFromConeT_1093_Type::~CircleFromConeT_1093_Type()
 {
   #ifndef NODESTRUCT
-  if (CircleFromConeT_1092_TypeType == DiameterE)
-    delete CircleFromConeT_1092_TypeValue.Diameter;
-  else if (CircleFromConeT_1092_TypeType == DistanceE)
-    delete CircleFromConeT_1092_TypeValue.Distance;
+  delete CircleFromConeT_1093_TypePair;
   #endif
 }
 
-void CircleFromConeT_1092_TypeChoicePair::printSelf(FILE * outFile)
+void CircleFromConeT_1093_Type::printSelf(FILE * outFile)
 {
-  if (CircleFromConeT_1092_TypeType == DiameterE)
+  CircleFromConeT_1093_TypePair->printSelf(outFile);
+}
+
+CircleFromConeT_1093_TypeChoicePair * CircleFromConeT_1093_Type::getCircleFromConeT_1093_TypePair()
+{return CircleFromConeT_1093_TypePair;}
+
+void CircleFromConeT_1093_Type::setCircleFromConeT_1093_TypePair(CircleFromConeT_1093_TypeChoicePair * CircleFromConeT_1093_TypePairIn)
+{CircleFromConeT_1093_TypePair = CircleFromConeT_1093_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class CircleFromConeT_1093_TypeChoicePair
+
+*/
+
+CircleFromConeT_1093_TypeChoicePair::CircleFromConeT_1093_TypeChoicePair() {}
+
+CircleFromConeT_1093_TypeChoicePair::CircleFromConeT_1093_TypeChoicePair(
+ whichOne CircleFromConeT_1093_TypeTypeIn,
+ CircleFromConeT_1093_TypeVal CircleFromConeT_1093_TypeValueIn)
+{
+  CircleFromConeT_1093_TypeType = CircleFromConeT_1093_TypeTypeIn;
+  CircleFromConeT_1093_TypeValue = CircleFromConeT_1093_TypeValueIn;
+}
+
+CircleFromConeT_1093_TypeChoicePair::~CircleFromConeT_1093_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (CircleFromConeT_1093_TypeType == DiameterE)
+    delete CircleFromConeT_1093_TypeValue.Diameter;
+  else if (CircleFromConeT_1093_TypeType == DistanceE)
+    delete CircleFromConeT_1093_TypeValue.Distance;
+  #endif
+}
+
+void CircleFromConeT_1093_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (CircleFromConeT_1093_TypeType == DiameterE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Diameter");
-      CircleFromConeT_1092_TypeValue.Diameter->printSelf(outFile);
+      CircleFromConeT_1093_TypeValue.Diameter->printSelf(outFile);
       fprintf(outFile, "</Diameter>\n");
     }
-  else if (CircleFromConeT_1092_TypeType == DistanceE)
+  else if (CircleFromConeT_1093_TypeType == DistanceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Distance");
-      CircleFromConeT_1092_TypeValue.Distance->printSelf(outFile);
+      CircleFromConeT_1093_TypeValue.Distance->printSelf(outFile);
       fprintf(outFile, "</Distance>\n");
     }
 }
 
-/*********************************************************************/
-
-/* class ConeFeatureDefi_1093_Type
-
-*/
-
-ConeFeatureDefi_1093_Type::ConeFeatureDefi_1093_Type()
-{
-  ConeFeatureDefi_1093_TypePair = 0;
-}
-
-ConeFeatureDefi_1093_Type::ConeFeatureDefi_1093_Type(
- ConeFeatureDefi_1093_TypeChoicePair * ConeFeatureDefi_1093_TypePairIn)
-{
-  ConeFeatureDefi_1093_TypePair = ConeFeatureDefi_1093_TypePairIn;
-}
-
-ConeFeatureDefi_1093_Type::~ConeFeatureDefi_1093_Type()
-{
-  #ifndef NODESTRUCT
-  delete ConeFeatureDefi_1093_TypePair;
-  #endif
-}
-
-void ConeFeatureDefi_1093_Type::printSelf(FILE * outFile)
-{
-  ConeFeatureDefi_1093_TypePair->printSelf(outFile);
-}
-
-ConeFeatureDefi_1093_TypeChoicePair * ConeFeatureDefi_1093_Type::getConeFeatureDefi_1093_TypePair()
-{return ConeFeatureDefi_1093_TypePair;}
-
-void ConeFeatureDefi_1093_Type::setConeFeatureDefi_1093_TypePair(ConeFeatureDefi_1093_TypeChoicePair * ConeFeatureDefi_1093_TypePairIn)
-{ConeFeatureDefi_1093_TypePair = ConeFeatureDefi_1093_TypePairIn;}
-
-/*********************************************************************/
-
-/* class ConeFeatureDefi_1093_TypeChoicePair
-
-*/
-
-ConeFeatureDefi_1093_TypeChoicePair::ConeFeatureDefi_1093_TypeChoicePair() {}
-
-ConeFeatureDefi_1093_TypeChoicePair::ConeFeatureDefi_1093_TypeChoicePair(
- whichOne ConeFeatureDefi_1093_TypeTypeIn,
- ConeFeatureDefi_1093_TypeVal ConeFeatureDefi_1093_TypeValueIn)
-{
-  ConeFeatureDefi_1093_TypeType = ConeFeatureDefi_1093_TypeTypeIn;
-  ConeFeatureDefi_1093_TypeValue = ConeFeatureDefi_1093_TypeValueIn;
-}
-
-ConeFeatureDefi_1093_TypeChoicePair::~ConeFeatureDefi_1093_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (ConeFeatureDefi_1093_TypeType == HalfAngleE)
-    delete ConeFeatureDefi_1093_TypeValue.HalfAngle;
-  else if (ConeFeatureDefi_1093_TypeType == FullAngleE)
-    delete ConeFeatureDefi_1093_TypeValue.FullAngle;
-  #endif
-}
-
-void ConeFeatureDefi_1093_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (ConeFeatureDefi_1093_TypeType == HalfAngleE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<HalfAngle");
-      ConeFeatureDefi_1093_TypeValue.HalfAngle->printSelf(outFile);
-      fprintf(outFile, "</HalfAngle>\n");
-    }
-  else if (ConeFeatureDefi_1093_TypeType == FullAngleE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<FullAngle");
-      ConeFeatureDefi_1093_TypeValue.FullAngle->printSelf(outFile);
-      fprintf(outFile, "</FullAngle>\n");
-    }
-}
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConeFeatureDefi_1094_Type
 
@@ -81155,11 +81076,90 @@ void ConeFeatureDefi_1093_TypeChoicePair::printSelf(FILE * outFile)
 
 ConeFeatureDefi_1094_Type::ConeFeatureDefi_1094_Type()
 {
+  ConeFeatureDefi_1094_TypePair = 0;
+}
+
+ConeFeatureDefi_1094_Type::ConeFeatureDefi_1094_Type(
+ ConeFeatureDefi_1094_TypeChoicePair * ConeFeatureDefi_1094_TypePairIn)
+{
+  ConeFeatureDefi_1094_TypePair = ConeFeatureDefi_1094_TypePairIn;
+}
+
+ConeFeatureDefi_1094_Type::~ConeFeatureDefi_1094_Type()
+{
+  #ifndef NODESTRUCT
+  delete ConeFeatureDefi_1094_TypePair;
+  #endif
+}
+
+void ConeFeatureDefi_1094_Type::printSelf(FILE * outFile)
+{
+  ConeFeatureDefi_1094_TypePair->printSelf(outFile);
+}
+
+ConeFeatureDefi_1094_TypeChoicePair * ConeFeatureDefi_1094_Type::getConeFeatureDefi_1094_TypePair()
+{return ConeFeatureDefi_1094_TypePair;}
+
+void ConeFeatureDefi_1094_Type::setConeFeatureDefi_1094_TypePair(ConeFeatureDefi_1094_TypeChoicePair * ConeFeatureDefi_1094_TypePairIn)
+{ConeFeatureDefi_1094_TypePair = ConeFeatureDefi_1094_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class ConeFeatureDefi_1094_TypeChoicePair
+
+*/
+
+ConeFeatureDefi_1094_TypeChoicePair::ConeFeatureDefi_1094_TypeChoicePair() {}
+
+ConeFeatureDefi_1094_TypeChoicePair::ConeFeatureDefi_1094_TypeChoicePair(
+ whichOne ConeFeatureDefi_1094_TypeTypeIn,
+ ConeFeatureDefi_1094_TypeVal ConeFeatureDefi_1094_TypeValueIn)
+{
+  ConeFeatureDefi_1094_TypeType = ConeFeatureDefi_1094_TypeTypeIn;
+  ConeFeatureDefi_1094_TypeValue = ConeFeatureDefi_1094_TypeValueIn;
+}
+
+ConeFeatureDefi_1094_TypeChoicePair::~ConeFeatureDefi_1094_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (ConeFeatureDefi_1094_TypeType == HalfAngleE)
+    delete ConeFeatureDefi_1094_TypeValue.HalfAngle;
+  else if (ConeFeatureDefi_1094_TypeType == FullAngleE)
+    delete ConeFeatureDefi_1094_TypeValue.FullAngle;
+  #endif
+}
+
+void ConeFeatureDefi_1094_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (ConeFeatureDefi_1094_TypeType == HalfAngleE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<HalfAngle");
+      ConeFeatureDefi_1094_TypeValue.HalfAngle->printSelf(outFile);
+      fprintf(outFile, "</HalfAngle>\n");
+    }
+  else if (ConeFeatureDefi_1094_TypeType == FullAngleE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<FullAngle");
+      ConeFeatureDefi_1094_TypeValue.FullAngle->printSelf(outFile);
+      fprintf(outFile, "</FullAngle>\n");
+    }
+}
+
+/* ***************************************************************** */
+
+/* class ConeFeatureDefi_1095_Type
+
+*/
+
+ConeFeatureDefi_1095_Type::ConeFeatureDefi_1095_Type()
+{
   LargeEndDistance = 0;
   SmallEndDistance = 0;
 }
 
-ConeFeatureDefi_1094_Type::ConeFeatureDefi_1094_Type(
+ConeFeatureDefi_1095_Type::ConeFeatureDefi_1095_Type(
  LinearValueType * LargeEndDistanceIn,
  LinearValueType * SmallEndDistanceIn)
 {
@@ -81167,7 +81167,7 @@ ConeFeatureDefi_1094_Type::ConeFeatureDefi_1094_Type(
   SmallEndDistance = SmallEndDistanceIn;
 }
 
-ConeFeatureDefi_1094_Type::~ConeFeatureDefi_1094_Type()
+ConeFeatureDefi_1095_Type::~ConeFeatureDefi_1095_Type()
 {
   #ifndef NODESTRUCT
   delete LargeEndDistance;
@@ -81175,7 +81175,7 @@ ConeFeatureDefi_1094_Type::~ConeFeatureDefi_1094_Type()
   #endif
 }
 
-void ConeFeatureDefi_1094_Type::printSelf(FILE * outFile)
+void ConeFeatureDefi_1095_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<LargeEndDistance");
@@ -81190,180 +81190,101 @@ void ConeFeatureDefi_1094_Type::printSelf(FILE * outFile)
     }
 }
 
-LinearValueType * ConeFeatureDefi_1094_Type::getLargeEndDistance()
+LinearValueType * ConeFeatureDefi_1095_Type::getLargeEndDistance()
 {return LargeEndDistance;}
 
-void ConeFeatureDefi_1094_Type::setLargeEndDistance(LinearValueType * LargeEndDistanceIn)
+void ConeFeatureDefi_1095_Type::setLargeEndDistance(LinearValueType * LargeEndDistanceIn)
 {LargeEndDistance = LargeEndDistanceIn;}
 
-LinearValueType * ConeFeatureDefi_1094_Type::getSmallEndDistance()
+LinearValueType * ConeFeatureDefi_1095_Type::getSmallEndDistance()
 {return SmallEndDistance;}
 
-void ConeFeatureDefi_1094_Type::setSmallEndDistance(LinearValueType * SmallEndDistanceIn)
+void ConeFeatureDefi_1095_Type::setSmallEndDistance(LinearValueType * SmallEndDistanceIn)
 {SmallEndDistance = SmallEndDistanceIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class ConeFeatureMeas_1095_Type
+/* class ConeFeatureMeas_1096_Type
 
 */
 
-ConeFeatureMeas_1095_Type::ConeFeatureMeas_1095_Type()
+ConeFeatureMeas_1096_Type::ConeFeatureMeas_1096_Type()
 {
-  ConeFeatureMeas_1095_TypePair = 0;
+  ConeFeatureMeas_1096_TypePair = 0;
 }
 
-ConeFeatureMeas_1095_Type::ConeFeatureMeas_1095_Type(
- ConeFeatureMeas_1095_TypeChoicePair * ConeFeatureMeas_1095_TypePairIn)
+ConeFeatureMeas_1096_Type::ConeFeatureMeas_1096_Type(
+ ConeFeatureMeas_1096_TypeChoicePair * ConeFeatureMeas_1096_TypePairIn)
 {
-  ConeFeatureMeas_1095_TypePair = ConeFeatureMeas_1095_TypePairIn;
+  ConeFeatureMeas_1096_TypePair = ConeFeatureMeas_1096_TypePairIn;
 }
 
-ConeFeatureMeas_1095_Type::~ConeFeatureMeas_1095_Type()
+ConeFeatureMeas_1096_Type::~ConeFeatureMeas_1096_Type()
 {
   #ifndef NODESTRUCT
-  delete ConeFeatureMeas_1095_TypePair;
+  delete ConeFeatureMeas_1096_TypePair;
   #endif
 }
 
-void ConeFeatureMeas_1095_Type::printSelf(FILE * outFile)
+void ConeFeatureMeas_1096_Type::printSelf(FILE * outFile)
 {
-  if (ConeFeatureMeas_1095_TypePair)
+  if (ConeFeatureMeas_1096_TypePair)
     {
-      ConeFeatureMeas_1095_TypePair->printSelf(outFile);
+      ConeFeatureMeas_1096_TypePair->printSelf(outFile);
     }
 }
 
-ConeFeatureMeas_1095_TypeChoicePair * ConeFeatureMeas_1095_Type::getConeFeatureMeas_1095_TypePair()
-{return ConeFeatureMeas_1095_TypePair;}
+ConeFeatureMeas_1096_TypeChoicePair * ConeFeatureMeas_1096_Type::getConeFeatureMeas_1096_TypePair()
+{return ConeFeatureMeas_1096_TypePair;}
 
-void ConeFeatureMeas_1095_Type::setConeFeatureMeas_1095_TypePair(ConeFeatureMeas_1095_TypeChoicePair * ConeFeatureMeas_1095_TypePairIn)
-{ConeFeatureMeas_1095_TypePair = ConeFeatureMeas_1095_TypePairIn;}
+void ConeFeatureMeas_1096_Type::setConeFeatureMeas_1096_TypePair(ConeFeatureMeas_1096_TypeChoicePair * ConeFeatureMeas_1096_TypePairIn)
+{ConeFeatureMeas_1096_TypePair = ConeFeatureMeas_1096_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class ConeFeatureMeas_1095_TypeChoicePair
+/* class ConeFeatureMeas_1096_TypeChoicePair
 
 */
 
-ConeFeatureMeas_1095_TypeChoicePair::ConeFeatureMeas_1095_TypeChoicePair() {}
+ConeFeatureMeas_1096_TypeChoicePair::ConeFeatureMeas_1096_TypeChoicePair() {}
 
-ConeFeatureMeas_1095_TypeChoicePair::ConeFeatureMeas_1095_TypeChoicePair(
- whichOne ConeFeatureMeas_1095_TypeTypeIn,
- ConeFeatureMeas_1095_TypeVal ConeFeatureMeas_1095_TypeValueIn)
+ConeFeatureMeas_1096_TypeChoicePair::ConeFeatureMeas_1096_TypeChoicePair(
+ whichOne ConeFeatureMeas_1096_TypeTypeIn,
+ ConeFeatureMeas_1096_TypeVal ConeFeatureMeas_1096_TypeValueIn)
 {
-  ConeFeatureMeas_1095_TypeType = ConeFeatureMeas_1095_TypeTypeIn;
-  ConeFeatureMeas_1095_TypeValue = ConeFeatureMeas_1095_TypeValueIn;
+  ConeFeatureMeas_1096_TypeType = ConeFeatureMeas_1096_TypeTypeIn;
+  ConeFeatureMeas_1096_TypeValue = ConeFeatureMeas_1096_TypeValueIn;
 }
 
-ConeFeatureMeas_1095_TypeChoicePair::~ConeFeatureMeas_1095_TypeChoicePair()
+ConeFeatureMeas_1096_TypeChoicePair::~ConeFeatureMeas_1096_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (ConeFeatureMeas_1095_TypeType == HalfAngleE)
-    delete ConeFeatureMeas_1095_TypeValue.HalfAngle;
-  else if (ConeFeatureMeas_1095_TypeType == FullAngleE)
-    delete ConeFeatureMeas_1095_TypeValue.FullAngle;
+  if (ConeFeatureMeas_1096_TypeType == HalfAngleE)
+    delete ConeFeatureMeas_1096_TypeValue.HalfAngle;
+  else if (ConeFeatureMeas_1096_TypeType == FullAngleE)
+    delete ConeFeatureMeas_1096_TypeValue.FullAngle;
   #endif
 }
 
-void ConeFeatureMeas_1095_TypeChoicePair::printSelf(FILE * outFile)
+void ConeFeatureMeas_1096_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (ConeFeatureMeas_1095_TypeType == HalfAngleE)
+  if (ConeFeatureMeas_1096_TypeType == HalfAngleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<HalfAngle");
-      ConeFeatureMeas_1095_TypeValue.HalfAngle->printSelf(outFile);
+      ConeFeatureMeas_1096_TypeValue.HalfAngle->printSelf(outFile);
       fprintf(outFile, "</HalfAngle>\n");
     }
-  else if (ConeFeatureMeas_1095_TypeType == FullAngleE)
+  else if (ConeFeatureMeas_1096_TypeType == FullAngleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FullAngle");
-      ConeFeatureMeas_1095_TypeValue.FullAngle->printSelf(outFile);
+      ConeFeatureMeas_1096_TypeValue.FullAngle->printSelf(outFile);
       fprintf(outFile, "</FullAngle>\n");
     }
 }
 
-/*********************************************************************/
-
-/* class ConicalSegmentF_1096_Type
-
-*/
-
-ConicalSegmentF_1096_Type::ConicalSegmentF_1096_Type()
-{
-  ConicalSegmentF_1096_TypePair = 0;
-}
-
-ConicalSegmentF_1096_Type::ConicalSegmentF_1096_Type(
- ConicalSegmentF_1096_TypeChoicePair * ConicalSegmentF_1096_TypePairIn)
-{
-  ConicalSegmentF_1096_TypePair = ConicalSegmentF_1096_TypePairIn;
-}
-
-ConicalSegmentF_1096_Type::~ConicalSegmentF_1096_Type()
-{
-  #ifndef NODESTRUCT
-  delete ConicalSegmentF_1096_TypePair;
-  #endif
-}
-
-void ConicalSegmentF_1096_Type::printSelf(FILE * outFile)
-{
-  ConicalSegmentF_1096_TypePair->printSelf(outFile);
-}
-
-ConicalSegmentF_1096_TypeChoicePair * ConicalSegmentF_1096_Type::getConicalSegmentF_1096_TypePair()
-{return ConicalSegmentF_1096_TypePair;}
-
-void ConicalSegmentF_1096_Type::setConicalSegmentF_1096_TypePair(ConicalSegmentF_1096_TypeChoicePair * ConicalSegmentF_1096_TypePairIn)
-{ConicalSegmentF_1096_TypePair = ConicalSegmentF_1096_TypePairIn;}
-
-/*********************************************************************/
-
-/* class ConicalSegmentF_1096_TypeChoicePair
-
-*/
-
-ConicalSegmentF_1096_TypeChoicePair::ConicalSegmentF_1096_TypeChoicePair() {}
-
-ConicalSegmentF_1096_TypeChoicePair::ConicalSegmentF_1096_TypeChoicePair(
- whichOne ConicalSegmentF_1096_TypeTypeIn,
- ConicalSegmentF_1096_TypeVal ConicalSegmentF_1096_TypeValueIn)
-{
-  ConicalSegmentF_1096_TypeType = ConicalSegmentF_1096_TypeTypeIn;
-  ConicalSegmentF_1096_TypeValue = ConicalSegmentF_1096_TypeValueIn;
-}
-
-ConicalSegmentF_1096_TypeChoicePair::~ConicalSegmentF_1096_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (ConicalSegmentF_1096_TypeType == HalfAngleE)
-    delete ConicalSegmentF_1096_TypeValue.HalfAngle;
-  else if (ConicalSegmentF_1096_TypeType == FullAngleE)
-    delete ConicalSegmentF_1096_TypeValue.FullAngle;
-  #endif
-}
-
-void ConicalSegmentF_1096_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (ConicalSegmentF_1096_TypeType == HalfAngleE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<HalfAngle");
-      ConicalSegmentF_1096_TypeValue.HalfAngle->printSelf(outFile);
-      fprintf(outFile, "</HalfAngle>\n");
-    }
-  else if (ConicalSegmentF_1096_TypeType == FullAngleE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<FullAngle");
-      ConicalSegmentF_1096_TypeValue.FullAngle->printSelf(outFile);
-      fprintf(outFile, "</FullAngle>\n");
-    }
-}
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalSegmentF_1097_Type
 
@@ -81371,11 +81292,90 @@ void ConicalSegmentF_1096_TypeChoicePair::printSelf(FILE * outFile)
 
 ConicalSegmentF_1097_Type::ConicalSegmentF_1097_Type()
 {
+  ConicalSegmentF_1097_TypePair = 0;
+}
+
+ConicalSegmentF_1097_Type::ConicalSegmentF_1097_Type(
+ ConicalSegmentF_1097_TypeChoicePair * ConicalSegmentF_1097_TypePairIn)
+{
+  ConicalSegmentF_1097_TypePair = ConicalSegmentF_1097_TypePairIn;
+}
+
+ConicalSegmentF_1097_Type::~ConicalSegmentF_1097_Type()
+{
+  #ifndef NODESTRUCT
+  delete ConicalSegmentF_1097_TypePair;
+  #endif
+}
+
+void ConicalSegmentF_1097_Type::printSelf(FILE * outFile)
+{
+  ConicalSegmentF_1097_TypePair->printSelf(outFile);
+}
+
+ConicalSegmentF_1097_TypeChoicePair * ConicalSegmentF_1097_Type::getConicalSegmentF_1097_TypePair()
+{return ConicalSegmentF_1097_TypePair;}
+
+void ConicalSegmentF_1097_Type::setConicalSegmentF_1097_TypePair(ConicalSegmentF_1097_TypeChoicePair * ConicalSegmentF_1097_TypePairIn)
+{ConicalSegmentF_1097_TypePair = ConicalSegmentF_1097_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class ConicalSegmentF_1097_TypeChoicePair
+
+*/
+
+ConicalSegmentF_1097_TypeChoicePair::ConicalSegmentF_1097_TypeChoicePair() {}
+
+ConicalSegmentF_1097_TypeChoicePair::ConicalSegmentF_1097_TypeChoicePair(
+ whichOne ConicalSegmentF_1097_TypeTypeIn,
+ ConicalSegmentF_1097_TypeVal ConicalSegmentF_1097_TypeValueIn)
+{
+  ConicalSegmentF_1097_TypeType = ConicalSegmentF_1097_TypeTypeIn;
+  ConicalSegmentF_1097_TypeValue = ConicalSegmentF_1097_TypeValueIn;
+}
+
+ConicalSegmentF_1097_TypeChoicePair::~ConicalSegmentF_1097_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (ConicalSegmentF_1097_TypeType == HalfAngleE)
+    delete ConicalSegmentF_1097_TypeValue.HalfAngle;
+  else if (ConicalSegmentF_1097_TypeType == FullAngleE)
+    delete ConicalSegmentF_1097_TypeValue.FullAngle;
+  #endif
+}
+
+void ConicalSegmentF_1097_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (ConicalSegmentF_1097_TypeType == HalfAngleE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<HalfAngle");
+      ConicalSegmentF_1097_TypeValue.HalfAngle->printSelf(outFile);
+      fprintf(outFile, "</HalfAngle>\n");
+    }
+  else if (ConicalSegmentF_1097_TypeType == FullAngleE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<FullAngle");
+      ConicalSegmentF_1097_TypeValue.FullAngle->printSelf(outFile);
+      fprintf(outFile, "</FullAngle>\n");
+    }
+}
+
+/* ***************************************************************** */
+
+/* class ConicalSegmentF_1098_Type
+
+*/
+
+ConicalSegmentF_1098_Type::ConicalSegmentF_1098_Type()
+{
   LargeEndDistance = 0;
   SmallEndDistance = 0;
 }
 
-ConicalSegmentF_1097_Type::ConicalSegmentF_1097_Type(
+ConicalSegmentF_1098_Type::ConicalSegmentF_1098_Type(
  LinearValueType * LargeEndDistanceIn,
  LinearValueType * SmallEndDistanceIn)
 {
@@ -81383,7 +81383,7 @@ ConicalSegmentF_1097_Type::ConicalSegmentF_1097_Type(
   SmallEndDistance = SmallEndDistanceIn;
 }
 
-ConicalSegmentF_1097_Type::~ConicalSegmentF_1097_Type()
+ConicalSegmentF_1098_Type::~ConicalSegmentF_1098_Type()
 {
   #ifndef NODESTRUCT
   delete LargeEndDistance;
@@ -81391,7 +81391,7 @@ ConicalSegmentF_1097_Type::~ConicalSegmentF_1097_Type()
   #endif
 }
 
-void ConicalSegmentF_1097_Type::printSelf(FILE * outFile)
+void ConicalSegmentF_1098_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<LargeEndDistance");
@@ -81406,185 +81406,101 @@ void ConicalSegmentF_1097_Type::printSelf(FILE * outFile)
     }
 }
 
-LinearValueType * ConicalSegmentF_1097_Type::getLargeEndDistance()
+LinearValueType * ConicalSegmentF_1098_Type::getLargeEndDistance()
 {return LargeEndDistance;}
 
-void ConicalSegmentF_1097_Type::setLargeEndDistance(LinearValueType * LargeEndDistanceIn)
+void ConicalSegmentF_1098_Type::setLargeEndDistance(LinearValueType * LargeEndDistanceIn)
 {LargeEndDistance = LargeEndDistanceIn;}
 
-LinearValueType * ConicalSegmentF_1097_Type::getSmallEndDistance()
+LinearValueType * ConicalSegmentF_1098_Type::getSmallEndDistance()
 {return SmallEndDistance;}
 
-void ConicalSegmentF_1097_Type::setSmallEndDistance(LinearValueType * SmallEndDistanceIn)
+void ConicalSegmentF_1098_Type::setSmallEndDistance(LinearValueType * SmallEndDistanceIn)
 {SmallEndDistance = SmallEndDistanceIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class ConicalSegmentF_1098_Type
+/* class ConicalSegmentF_1099_Type
 
 */
 
-ConicalSegmentF_1098_Type::ConicalSegmentF_1098_Type()
+ConicalSegmentF_1099_Type::ConicalSegmentF_1099_Type()
 {
-  ConicalSegmentF_1098_TypePair = 0;
+  ConicalSegmentF_1099_TypePair = 0;
 }
 
-ConicalSegmentF_1098_Type::ConicalSegmentF_1098_Type(
- ConicalSegmentF_1098_TypeChoicePair * ConicalSegmentF_1098_TypePairIn)
+ConicalSegmentF_1099_Type::ConicalSegmentF_1099_Type(
+ ConicalSegmentF_1099_TypeChoicePair * ConicalSegmentF_1099_TypePairIn)
 {
-  ConicalSegmentF_1098_TypePair = ConicalSegmentF_1098_TypePairIn;
+  ConicalSegmentF_1099_TypePair = ConicalSegmentF_1099_TypePairIn;
 }
 
-ConicalSegmentF_1098_Type::~ConicalSegmentF_1098_Type()
+ConicalSegmentF_1099_Type::~ConicalSegmentF_1099_Type()
 {
   #ifndef NODESTRUCT
-  delete ConicalSegmentF_1098_TypePair;
+  delete ConicalSegmentF_1099_TypePair;
   #endif
 }
 
-void ConicalSegmentF_1098_Type::printSelf(FILE * outFile)
+void ConicalSegmentF_1099_Type::printSelf(FILE * outFile)
 {
-  if (ConicalSegmentF_1098_TypePair)
+  if (ConicalSegmentF_1099_TypePair)
     {
-      ConicalSegmentF_1098_TypePair->printSelf(outFile);
+      ConicalSegmentF_1099_TypePair->printSelf(outFile);
     }
 }
 
-ConicalSegmentF_1098_TypeChoicePair * ConicalSegmentF_1098_Type::getConicalSegmentF_1098_TypePair()
-{return ConicalSegmentF_1098_TypePair;}
+ConicalSegmentF_1099_TypeChoicePair * ConicalSegmentF_1099_Type::getConicalSegmentF_1099_TypePair()
+{return ConicalSegmentF_1099_TypePair;}
 
-void ConicalSegmentF_1098_Type::setConicalSegmentF_1098_TypePair(ConicalSegmentF_1098_TypeChoicePair * ConicalSegmentF_1098_TypePairIn)
-{ConicalSegmentF_1098_TypePair = ConicalSegmentF_1098_TypePairIn;}
+void ConicalSegmentF_1099_Type::setConicalSegmentF_1099_TypePair(ConicalSegmentF_1099_TypeChoicePair * ConicalSegmentF_1099_TypePairIn)
+{ConicalSegmentF_1099_TypePair = ConicalSegmentF_1099_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class ConicalSegmentF_1098_TypeChoicePair
+/* class ConicalSegmentF_1099_TypeChoicePair
 
 */
 
-ConicalSegmentF_1098_TypeChoicePair::ConicalSegmentF_1098_TypeChoicePair() {}
+ConicalSegmentF_1099_TypeChoicePair::ConicalSegmentF_1099_TypeChoicePair() {}
 
-ConicalSegmentF_1098_TypeChoicePair::ConicalSegmentF_1098_TypeChoicePair(
- whichOne ConicalSegmentF_1098_TypeTypeIn,
- ConicalSegmentF_1098_TypeVal ConicalSegmentF_1098_TypeValueIn)
+ConicalSegmentF_1099_TypeChoicePair::ConicalSegmentF_1099_TypeChoicePair(
+ whichOne ConicalSegmentF_1099_TypeTypeIn,
+ ConicalSegmentF_1099_TypeVal ConicalSegmentF_1099_TypeValueIn)
 {
-  ConicalSegmentF_1098_TypeType = ConicalSegmentF_1098_TypeTypeIn;
-  ConicalSegmentF_1098_TypeValue = ConicalSegmentF_1098_TypeValueIn;
+  ConicalSegmentF_1099_TypeType = ConicalSegmentF_1099_TypeTypeIn;
+  ConicalSegmentF_1099_TypeValue = ConicalSegmentF_1099_TypeValueIn;
 }
 
-ConicalSegmentF_1098_TypeChoicePair::~ConicalSegmentF_1098_TypeChoicePair()
+ConicalSegmentF_1099_TypeChoicePair::~ConicalSegmentF_1099_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (ConicalSegmentF_1098_TypeType == HalfAngleE)
-    delete ConicalSegmentF_1098_TypeValue.HalfAngle;
-  else if (ConicalSegmentF_1098_TypeType == FullAngleE)
-    delete ConicalSegmentF_1098_TypeValue.FullAngle;
+  if (ConicalSegmentF_1099_TypeType == HalfAngleE)
+    delete ConicalSegmentF_1099_TypeValue.HalfAngle;
+  else if (ConicalSegmentF_1099_TypeType == FullAngleE)
+    delete ConicalSegmentF_1099_TypeValue.FullAngle;
   #endif
 }
 
-void ConicalSegmentF_1098_TypeChoicePair::printSelf(FILE * outFile)
+void ConicalSegmentF_1099_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (ConicalSegmentF_1098_TypeType == HalfAngleE)
+  if (ConicalSegmentF_1099_TypeType == HalfAngleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<HalfAngle");
-      ConicalSegmentF_1098_TypeValue.HalfAngle->printSelf(outFile);
+      ConicalSegmentF_1099_TypeValue.HalfAngle->printSelf(outFile);
       fprintf(outFile, "</HalfAngle>\n");
     }
-  else if (ConicalSegmentF_1098_TypeType == FullAngleE)
+  else if (ConicalSegmentF_1099_TypeType == FullAngleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FullAngle");
-      ConicalSegmentF_1098_TypeValue.FullAngle->printSelf(outFile);
+      ConicalSegmentF_1099_TypeValue.FullAngle->printSelf(outFile);
       fprintf(outFile, "</FullAngle>\n");
     }
 }
 
-/*********************************************************************/
-
-/* class FeatureZoneArea_1099_Type
-
-*/
-
-FeatureZoneArea_1099_Type::FeatureZoneArea_1099_Type()
-{
-  FeatureZoneArea_1099_TypePair = 0;
-}
-
-FeatureZoneArea_1099_Type::FeatureZoneArea_1099_Type(
- FeatureZoneArea_1099_TypeChoicePair * FeatureZoneArea_1099_TypePairIn)
-{
-  FeatureZoneArea_1099_TypePair = FeatureZoneArea_1099_TypePairIn;
-}
-
-FeatureZoneArea_1099_Type::~FeatureZoneArea_1099_Type()
-{
-  #ifndef NODESTRUCT
-  delete FeatureZoneArea_1099_TypePair;
-  #endif
-}
-
-void FeatureZoneArea_1099_Type::printSelf(FILE * outFile)
-{
-  if (FeatureZoneArea_1099_TypePair)
-    {
-      FeatureZoneArea_1099_TypePair->printSelf(outFile);
-    }
-}
-
-FeatureZoneArea_1099_TypeChoicePair * FeatureZoneArea_1099_Type::getFeatureZoneArea_1099_TypePair()
-{return FeatureZoneArea_1099_TypePair;}
-
-void FeatureZoneArea_1099_Type::setFeatureZoneArea_1099_TypePair(FeatureZoneArea_1099_TypeChoicePair * FeatureZoneArea_1099_TypePairIn)
-{FeatureZoneArea_1099_TypePair = FeatureZoneArea_1099_TypePairIn;}
-
-/*********************************************************************/
-
-/* class FeatureZoneArea_1099_TypeChoicePair
-
-*/
-
-FeatureZoneArea_1099_TypeChoicePair::FeatureZoneArea_1099_TypeChoicePair() {}
-
-FeatureZoneArea_1099_TypeChoicePair::FeatureZoneArea_1099_TypeChoicePair(
- whichOne FeatureZoneArea_1099_TypeTypeIn,
- FeatureZoneArea_1099_TypeVal FeatureZoneArea_1099_TypeValueIn)
-{
-  FeatureZoneArea_1099_TypeType = FeatureZoneArea_1099_TypeTypeIn;
-  FeatureZoneArea_1099_TypeValue = FeatureZoneArea_1099_TypeValueIn;
-}
-
-FeatureZoneArea_1099_TypeChoicePair::~FeatureZoneArea_1099_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (FeatureZoneArea_1099_TypeType == FaceIdsE)
-    delete FeatureZoneArea_1099_TypeValue.FaceIds;
-  else if (FeatureZoneArea_1099_TypeType == EdgeIdsE)
-    delete FeatureZoneArea_1099_TypeValue.EdgeIds;
-  #endif
-}
-
-void FeatureZoneArea_1099_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (FeatureZoneArea_1099_TypeType == FaceIdsE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<FaceIds");
-      FeatureZoneArea_1099_TypeValue.FaceIds->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</FaceIds>\n");
-    }
-  else if (FeatureZoneArea_1099_TypeType == EdgeIdsE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<EdgeIds");
-      FeatureZoneArea_1099_TypeValue.EdgeIds->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</EdgeIds>\n");
-    }
-}
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureZoneArea_1100_Type
 
@@ -81610,7 +81526,10 @@ FeatureZoneArea_1100_Type::~FeatureZoneArea_1100_Type()
 
 void FeatureZoneArea_1100_Type::printSelf(FILE * outFile)
 {
-  FeatureZoneArea_1100_TypePair->printSelf(outFile);
+  if (FeatureZoneArea_1100_TypePair)
+    {
+      FeatureZoneArea_1100_TypePair->printSelf(outFile);
+    }
 }
 
 FeatureZoneArea_1100_TypeChoicePair * FeatureZoneArea_1100_Type::getFeatureZoneArea_1100_TypePair()
@@ -81619,7 +81538,7 @@ FeatureZoneArea_1100_TypeChoicePair * FeatureZoneArea_1100_Type::getFeatureZoneA
 void FeatureZoneArea_1100_Type::setFeatureZoneArea_1100_TypePair(FeatureZoneArea_1100_TypeChoicePair * FeatureZoneArea_1100_TypePairIn)
 {FeatureZoneArea_1100_TypePair = FeatureZoneArea_1100_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureZoneArea_1100_TypeChoicePair
 
@@ -81638,32 +81557,34 @@ FeatureZoneArea_1100_TypeChoicePair::FeatureZoneArea_1100_TypeChoicePair(
 FeatureZoneArea_1100_TypeChoicePair::~FeatureZoneArea_1100_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (FeatureZoneArea_1100_TypeType == FromPointZoneIdE)
-    delete FeatureZoneArea_1100_TypeValue.FromPointZoneId;
-  else if (FeatureZoneArea_1100_TypeType == FromCurveZoneIdE)
-    delete FeatureZoneArea_1100_TypeValue.FromCurveZoneId;
+  if (FeatureZoneArea_1100_TypeType == FaceIdsE)
+    delete FeatureZoneArea_1100_TypeValue.FaceIds;
+  else if (FeatureZoneArea_1100_TypeType == EdgeIdsE)
+    delete FeatureZoneArea_1100_TypeValue.EdgeIds;
   #endif
 }
 
 void FeatureZoneArea_1100_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (FeatureZoneArea_1100_TypeType == FromPointZoneIdE)
+  if (FeatureZoneArea_1100_TypeType == FaceIdsE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<FromPointZoneId");
-      FeatureZoneArea_1100_TypeValue.FromPointZoneId->printSelf(outFile);
-      fprintf(outFile, "</FromPointZoneId>\n");
+      fprintf(outFile, "<FaceIds");
+      FeatureZoneArea_1100_TypeValue.FaceIds->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</FaceIds>\n");
     }
-  else if (FeatureZoneArea_1100_TypeType == FromCurveZoneIdE)
+  else if (FeatureZoneArea_1100_TypeType == EdgeIdsE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<FromCurveZoneId");
-      FeatureZoneArea_1100_TypeValue.FromCurveZoneId->printSelf(outFile);
-      fprintf(outFile, "</FromCurveZoneId>\n");
+      fprintf(outFile, "<EdgeIds");
+      FeatureZoneArea_1100_TypeValue.EdgeIds->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</EdgeIds>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureZoneArea_1101_Type
 
@@ -81698,7 +81619,7 @@ FeatureZoneArea_1101_TypeChoicePair * FeatureZoneArea_1101_Type::getFeatureZoneA
 void FeatureZoneArea_1101_Type::setFeatureZoneArea_1101_TypePair(FeatureZoneArea_1101_TypeChoicePair * FeatureZoneArea_1101_TypePairIn)
 {FeatureZoneArea_1101_TypePair = FeatureZoneArea_1101_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureZoneArea_1101_TypeChoicePair
 
@@ -81717,371 +81638,368 @@ FeatureZoneArea_1101_TypeChoicePair::FeatureZoneArea_1101_TypeChoicePair(
 FeatureZoneArea_1101_TypeChoicePair::~FeatureZoneArea_1101_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (FeatureZoneArea_1101_TypeType == ToPointZoneIdE)
-    delete FeatureZoneArea_1101_TypeValue.ToPointZoneId;
-  else if (FeatureZoneArea_1101_TypeType == ToCurveZoneIdE)
-    delete FeatureZoneArea_1101_TypeValue.ToCurveZoneId;
+  if (FeatureZoneArea_1101_TypeType == FromPointZoneIdE)
+    delete FeatureZoneArea_1101_TypeValue.FromPointZoneId;
+  else if (FeatureZoneArea_1101_TypeType == FromCurveZoneIdE)
+    delete FeatureZoneArea_1101_TypeValue.FromCurveZoneId;
   #endif
 }
 
 void FeatureZoneArea_1101_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (FeatureZoneArea_1101_TypeType == ToPointZoneIdE)
+  if (FeatureZoneArea_1101_TypeType == FromPointZoneIdE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<FromPointZoneId");
+      FeatureZoneArea_1101_TypeValue.FromPointZoneId->printSelf(outFile);
+      fprintf(outFile, "</FromPointZoneId>\n");
+    }
+  else if (FeatureZoneArea_1101_TypeType == FromCurveZoneIdE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<FromCurveZoneId");
+      FeatureZoneArea_1101_TypeValue.FromCurveZoneId->printSelf(outFile);
+      fprintf(outFile, "</FromCurveZoneId>\n");
+    }
+}
+
+/* ***************************************************************** */
+
+/* class FeatureZoneArea_1102_Type
+
+*/
+
+FeatureZoneArea_1102_Type::FeatureZoneArea_1102_Type()
+{
+  FeatureZoneArea_1102_TypePair = 0;
+}
+
+FeatureZoneArea_1102_Type::FeatureZoneArea_1102_Type(
+ FeatureZoneArea_1102_TypeChoicePair * FeatureZoneArea_1102_TypePairIn)
+{
+  FeatureZoneArea_1102_TypePair = FeatureZoneArea_1102_TypePairIn;
+}
+
+FeatureZoneArea_1102_Type::~FeatureZoneArea_1102_Type()
+{
+  #ifndef NODESTRUCT
+  delete FeatureZoneArea_1102_TypePair;
+  #endif
+}
+
+void FeatureZoneArea_1102_Type::printSelf(FILE * outFile)
+{
+  FeatureZoneArea_1102_TypePair->printSelf(outFile);
+}
+
+FeatureZoneArea_1102_TypeChoicePair * FeatureZoneArea_1102_Type::getFeatureZoneArea_1102_TypePair()
+{return FeatureZoneArea_1102_TypePair;}
+
+void FeatureZoneArea_1102_Type::setFeatureZoneArea_1102_TypePair(FeatureZoneArea_1102_TypeChoicePair * FeatureZoneArea_1102_TypePairIn)
+{FeatureZoneArea_1102_TypePair = FeatureZoneArea_1102_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class FeatureZoneArea_1102_TypeChoicePair
+
+*/
+
+FeatureZoneArea_1102_TypeChoicePair::FeatureZoneArea_1102_TypeChoicePair() {}
+
+FeatureZoneArea_1102_TypeChoicePair::FeatureZoneArea_1102_TypeChoicePair(
+ whichOne FeatureZoneArea_1102_TypeTypeIn,
+ FeatureZoneArea_1102_TypeVal FeatureZoneArea_1102_TypeValueIn)
+{
+  FeatureZoneArea_1102_TypeType = FeatureZoneArea_1102_TypeTypeIn;
+  FeatureZoneArea_1102_TypeValue = FeatureZoneArea_1102_TypeValueIn;
+}
+
+FeatureZoneArea_1102_TypeChoicePair::~FeatureZoneArea_1102_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (FeatureZoneArea_1102_TypeType == ToPointZoneIdE)
+    delete FeatureZoneArea_1102_TypeValue.ToPointZoneId;
+  else if (FeatureZoneArea_1102_TypeType == ToCurveZoneIdE)
+    delete FeatureZoneArea_1102_TypeValue.ToCurveZoneId;
+  #endif
+}
+
+void FeatureZoneArea_1102_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (FeatureZoneArea_1102_TypeType == ToPointZoneIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToPointZoneId");
-      FeatureZoneArea_1101_TypeValue.ToPointZoneId->printSelf(outFile);
+      FeatureZoneArea_1102_TypeValue.ToPointZoneId->printSelf(outFile);
       fprintf(outFile, "</ToPointZoneId>\n");
     }
-  else if (FeatureZoneArea_1101_TypeType == ToCurveZoneIdE)
+  else if (FeatureZoneArea_1102_TypeType == ToCurveZoneIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToCurveZoneId");
-      FeatureZoneArea_1101_TypeValue.ToCurveZoneId->printSelf(outFile);
+      FeatureZoneArea_1102_TypeValue.ToCurveZoneId->printSelf(outFile);
       fprintf(outFile, "</ToCurveZoneId>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class FeatureZoneCurv_1102_Type
+/* class FeatureZoneCurv_1103_Type
 
 */
 
-FeatureZoneCurv_1102_Type::FeatureZoneCurv_1102_Type()
+FeatureZoneCurv_1103_Type::FeatureZoneCurv_1103_Type()
 {
-  FeatureZoneCurv_1102_TypePair = 0;
+  FeatureZoneCurv_1103_TypePair = 0;
 }
 
-FeatureZoneCurv_1102_Type::FeatureZoneCurv_1102_Type(
- FeatureZoneCurv_1102_TypeChoicePair * FeatureZoneCurv_1102_TypePairIn)
+FeatureZoneCurv_1103_Type::FeatureZoneCurv_1103_Type(
+ FeatureZoneCurv_1103_TypeChoicePair * FeatureZoneCurv_1103_TypePairIn)
 {
-  FeatureZoneCurv_1102_TypePair = FeatureZoneCurv_1102_TypePairIn;
+  FeatureZoneCurv_1103_TypePair = FeatureZoneCurv_1103_TypePairIn;
 }
 
-FeatureZoneCurv_1102_Type::~FeatureZoneCurv_1102_Type()
+FeatureZoneCurv_1103_Type::~FeatureZoneCurv_1103_Type()
 {
   #ifndef NODESTRUCT
-  delete FeatureZoneCurv_1102_TypePair;
+  delete FeatureZoneCurv_1103_TypePair;
   #endif
 }
 
-void FeatureZoneCurv_1102_Type::printSelf(FILE * outFile)
+void FeatureZoneCurv_1103_Type::printSelf(FILE * outFile)
 {
-  if (FeatureZoneCurv_1102_TypePair)
+  if (FeatureZoneCurv_1103_TypePair)
     {
-      FeatureZoneCurv_1102_TypePair->printSelf(outFile);
+      FeatureZoneCurv_1103_TypePair->printSelf(outFile);
     }
 }
 
-FeatureZoneCurv_1102_TypeChoicePair * FeatureZoneCurv_1102_Type::getFeatureZoneCurv_1102_TypePair()
-{return FeatureZoneCurv_1102_TypePair;}
+FeatureZoneCurv_1103_TypeChoicePair * FeatureZoneCurv_1103_Type::getFeatureZoneCurv_1103_TypePair()
+{return FeatureZoneCurv_1103_TypePair;}
 
-void FeatureZoneCurv_1102_Type::setFeatureZoneCurv_1102_TypePair(FeatureZoneCurv_1102_TypeChoicePair * FeatureZoneCurv_1102_TypePairIn)
-{FeatureZoneCurv_1102_TypePair = FeatureZoneCurv_1102_TypePairIn;}
+void FeatureZoneCurv_1103_Type::setFeatureZoneCurv_1103_TypePair(FeatureZoneCurv_1103_TypeChoicePair * FeatureZoneCurv_1103_TypePairIn)
+{FeatureZoneCurv_1103_TypePair = FeatureZoneCurv_1103_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class FeatureZoneCurv_1102_TypeChoicePair
+/* class FeatureZoneCurv_1103_TypeChoicePair
 
 */
 
-FeatureZoneCurv_1102_TypeChoicePair::FeatureZoneCurv_1102_TypeChoicePair() {}
+FeatureZoneCurv_1103_TypeChoicePair::FeatureZoneCurv_1103_TypeChoicePair() {}
 
-FeatureZoneCurv_1102_TypeChoicePair::FeatureZoneCurv_1102_TypeChoicePair(
- whichOne FeatureZoneCurv_1102_TypeTypeIn,
- FeatureZoneCurv_1102_TypeVal FeatureZoneCurv_1102_TypeValueIn)
+FeatureZoneCurv_1103_TypeChoicePair::FeatureZoneCurv_1103_TypeChoicePair(
+ whichOne FeatureZoneCurv_1103_TypeTypeIn,
+ FeatureZoneCurv_1103_TypeVal FeatureZoneCurv_1103_TypeValueIn)
 {
-  FeatureZoneCurv_1102_TypeType = FeatureZoneCurv_1102_TypeTypeIn;
-  FeatureZoneCurv_1102_TypeValue = FeatureZoneCurv_1102_TypeValueIn;
+  FeatureZoneCurv_1103_TypeType = FeatureZoneCurv_1103_TypeTypeIn;
+  FeatureZoneCurv_1103_TypeValue = FeatureZoneCurv_1103_TypeValueIn;
 }
 
-FeatureZoneCurv_1102_TypeChoicePair::~FeatureZoneCurv_1102_TypeChoicePair()
+FeatureZoneCurv_1103_TypeChoicePair::~FeatureZoneCurv_1103_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (FeatureZoneCurv_1102_TypeType == EdgeIdsE)
-    delete FeatureZoneCurv_1102_TypeValue.EdgeIds;
-  else if (FeatureZoneCurv_1102_TypeType == CurveIdsE)
-    delete FeatureZoneCurv_1102_TypeValue.CurveIds;
+  if (FeatureZoneCurv_1103_TypeType == EdgeIdsE)
+    delete FeatureZoneCurv_1103_TypeValue.EdgeIds;
+  else if (FeatureZoneCurv_1103_TypeType == CurveIdsE)
+    delete FeatureZoneCurv_1103_TypeValue.CurveIds;
   #endif
 }
 
-void FeatureZoneCurv_1102_TypeChoicePair::printSelf(FILE * outFile)
+void FeatureZoneCurv_1103_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (FeatureZoneCurv_1102_TypeType == EdgeIdsE)
+  if (FeatureZoneCurv_1103_TypeType == EdgeIdsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<EdgeIds");
-      FeatureZoneCurv_1102_TypeValue.EdgeIds->printSelf(outFile);
+      FeatureZoneCurv_1103_TypeValue.EdgeIds->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</EdgeIds>\n");
     }
-  else if (FeatureZoneCurv_1102_TypeType == CurveIdsE)
+  else if (FeatureZoneCurv_1103_TypeType == CurveIdsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CurveIds");
-      FeatureZoneCurv_1102_TypeValue.CurveIds->printSelf(outFile);
+      FeatureZoneCurv_1103_TypeValue.CurveIds->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</CurveIds>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class FeatureZonePoin_1103_Type
+/* class FeatureZonePoin_1104_Type
 
 */
 
-FeatureZonePoin_1103_Type::FeatureZonePoin_1103_Type()
+FeatureZonePoin_1104_Type::FeatureZonePoin_1104_Type()
 {
-  FeatureZonePoin_1103_TypePair = 0;
+  FeatureZonePoin_1104_TypePair = 0;
 }
 
-FeatureZonePoin_1103_Type::FeatureZonePoin_1103_Type(
- FeatureZonePoin_1103_TypeChoicePair * FeatureZonePoin_1103_TypePairIn)
+FeatureZonePoin_1104_Type::FeatureZonePoin_1104_Type(
+ FeatureZonePoin_1104_TypeChoicePair * FeatureZonePoin_1104_TypePairIn)
 {
-  FeatureZonePoin_1103_TypePair = FeatureZonePoin_1103_TypePairIn;
+  FeatureZonePoin_1104_TypePair = FeatureZonePoin_1104_TypePairIn;
 }
 
-FeatureZonePoin_1103_Type::~FeatureZonePoin_1103_Type()
+FeatureZonePoin_1104_Type::~FeatureZonePoin_1104_Type()
 {
   #ifndef NODESTRUCT
-  delete FeatureZonePoin_1103_TypePair;
+  delete FeatureZonePoin_1104_TypePair;
   #endif
 }
 
-void FeatureZonePoin_1103_Type::printSelf(FILE * outFile)
+void FeatureZonePoin_1104_Type::printSelf(FILE * outFile)
 {
-  if (FeatureZonePoin_1103_TypePair)
+  if (FeatureZonePoin_1104_TypePair)
     {
-      FeatureZonePoin_1103_TypePair->printSelf(outFile);
+      FeatureZonePoin_1104_TypePair->printSelf(outFile);
     }
 }
 
-FeatureZonePoin_1103_TypeChoicePair * FeatureZonePoin_1103_Type::getFeatureZonePoin_1103_TypePair()
-{return FeatureZonePoin_1103_TypePair;}
+FeatureZonePoin_1104_TypeChoicePair * FeatureZonePoin_1104_Type::getFeatureZonePoin_1104_TypePair()
+{return FeatureZonePoin_1104_TypePair;}
 
-void FeatureZonePoin_1103_Type::setFeatureZonePoin_1103_TypePair(FeatureZonePoin_1103_TypeChoicePair * FeatureZonePoin_1103_TypePairIn)
-{FeatureZonePoin_1103_TypePair = FeatureZonePoin_1103_TypePairIn;}
+void FeatureZonePoin_1104_Type::setFeatureZonePoin_1104_TypePair(FeatureZonePoin_1104_TypeChoicePair * FeatureZonePoin_1104_TypePairIn)
+{FeatureZonePoin_1104_TypePair = FeatureZonePoin_1104_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class FeatureZonePoin_1103_TypeChoicePair
+/* class FeatureZonePoin_1104_TypeChoicePair
 
 */
 
-FeatureZonePoin_1103_TypeChoicePair::FeatureZonePoin_1103_TypeChoicePair() {}
+FeatureZonePoin_1104_TypeChoicePair::FeatureZonePoin_1104_TypeChoicePair() {}
 
-FeatureZonePoin_1103_TypeChoicePair::FeatureZonePoin_1103_TypeChoicePair(
- whichOne FeatureZonePoin_1103_TypeTypeIn,
- FeatureZonePoin_1103_TypeVal FeatureZonePoin_1103_TypeValueIn)
+FeatureZonePoin_1104_TypeChoicePair::FeatureZonePoin_1104_TypeChoicePair(
+ whichOne FeatureZonePoin_1104_TypeTypeIn,
+ FeatureZonePoin_1104_TypeVal FeatureZonePoin_1104_TypeValueIn)
 {
-  FeatureZonePoin_1103_TypeType = FeatureZonePoin_1103_TypeTypeIn;
-  FeatureZonePoin_1103_TypeValue = FeatureZonePoin_1103_TypeValueIn;
+  FeatureZonePoin_1104_TypeType = FeatureZonePoin_1104_TypeTypeIn;
+  FeatureZonePoin_1104_TypeValue = FeatureZonePoin_1104_TypeValueIn;
 }
 
-FeatureZonePoin_1103_TypeChoicePair::~FeatureZonePoin_1103_TypeChoicePair()
+FeatureZonePoin_1104_TypeChoicePair::~FeatureZonePoin_1104_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (FeatureZonePoin_1103_TypeType == VertexIdE)
-    delete FeatureZonePoin_1103_TypeValue.VertexId;
-  else if (FeatureZonePoin_1103_TypeType == PointIdE)
-    delete FeatureZonePoin_1103_TypeValue.PointId;
+  if (FeatureZonePoin_1104_TypeType == VertexIdE)
+    delete FeatureZonePoin_1104_TypeValue.VertexId;
+  else if (FeatureZonePoin_1104_TypeType == PointIdE)
+    delete FeatureZonePoin_1104_TypeValue.PointId;
   #endif
 }
 
-void FeatureZonePoin_1103_TypeChoicePair::printSelf(FILE * outFile)
+void FeatureZonePoin_1104_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (FeatureZonePoin_1103_TypeType == VertexIdE)
+  if (FeatureZonePoin_1104_TypeType == VertexIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<VertexId");
-      FeatureZonePoin_1103_TypeValue.VertexId->printSelf(outFile);
+      FeatureZonePoin_1104_TypeValue.VertexId->printSelf(outFile);
       fprintf(outFile, "</VertexId>\n");
     }
-  else if (FeatureZonePoin_1103_TypeType == PointIdE)
+  else if (FeatureZonePoin_1104_TypeType == PointIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointId");
-      FeatureZonePoin_1103_TypeValue.PointId->printSelf(outFile);
+      FeatureZonePoin_1104_TypeValue.PointId->printSelf(outFile);
       fprintf(outFile, "</PointId>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class GroupFeatureDef_1104_Type
+/* class GroupFeatureDef_1105_Type
 
 */
 
-GroupFeatureDef_1104_Type::GroupFeatureDef_1104_Type()
+GroupFeatureDef_1105_Type::GroupFeatureDef_1105_Type()
 {
-  GroupFeatureDef_1104_TypePair = 0;
+  GroupFeatureDef_1105_TypePair = 0;
 }
 
-GroupFeatureDef_1104_Type::GroupFeatureDef_1104_Type(
- GroupFeatureDef_1104_TypeChoicePair * GroupFeatureDef_1104_TypePairIn)
+GroupFeatureDef_1105_Type::GroupFeatureDef_1105_Type(
+ GroupFeatureDef_1105_TypeChoicePair * GroupFeatureDef_1105_TypePairIn)
 {
-  GroupFeatureDef_1104_TypePair = GroupFeatureDef_1104_TypePairIn;
+  GroupFeatureDef_1105_TypePair = GroupFeatureDef_1105_TypePairIn;
 }
 
-GroupFeatureDef_1104_Type::~GroupFeatureDef_1104_Type()
+GroupFeatureDef_1105_Type::~GroupFeatureDef_1105_Type()
 {
   #ifndef NODESTRUCT
-  delete GroupFeatureDef_1104_TypePair;
+  delete GroupFeatureDef_1105_TypePair;
   #endif
 }
 
-void GroupFeatureDef_1104_Type::printSelf(FILE * outFile)
+void GroupFeatureDef_1105_Type::printSelf(FILE * outFile)
 {
-  if (GroupFeatureDef_1104_TypePair)
+  if (GroupFeatureDef_1105_TypePair)
     {
-      GroupFeatureDef_1104_TypePair->printSelf(outFile);
+      GroupFeatureDef_1105_TypePair->printSelf(outFile);
     }
 }
 
-GroupFeatureDef_1104_TypeChoicePair * GroupFeatureDef_1104_Type::getGroupFeatureDef_1104_TypePair()
-{return GroupFeatureDef_1104_TypePair;}
+GroupFeatureDef_1105_TypeChoicePair * GroupFeatureDef_1105_Type::getGroupFeatureDef_1105_TypePair()
+{return GroupFeatureDef_1105_TypePair;}
 
-void GroupFeatureDef_1104_Type::setGroupFeatureDef_1104_TypePair(GroupFeatureDef_1104_TypeChoicePair * GroupFeatureDef_1104_TypePairIn)
-{GroupFeatureDef_1104_TypePair = GroupFeatureDef_1104_TypePairIn;}
+void GroupFeatureDef_1105_Type::setGroupFeatureDef_1105_TypePair(GroupFeatureDef_1105_TypeChoicePair * GroupFeatureDef_1105_TypePairIn)
+{GroupFeatureDef_1105_TypePair = GroupFeatureDef_1105_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class GroupFeatureDef_1104_TypeChoicePair
+/* class GroupFeatureDef_1105_TypeChoicePair
 
 */
 
-GroupFeatureDef_1104_TypeChoicePair::GroupFeatureDef_1104_TypeChoicePair() {}
+GroupFeatureDef_1105_TypeChoicePair::GroupFeatureDef_1105_TypeChoicePair() {}
 
-GroupFeatureDef_1104_TypeChoicePair::GroupFeatureDef_1104_TypeChoicePair(
- whichOne GroupFeatureDef_1104_TypeTypeIn,
- GroupFeatureDef_1104_TypeVal GroupFeatureDef_1104_TypeValueIn)
+GroupFeatureDef_1105_TypeChoicePair::GroupFeatureDef_1105_TypeChoicePair(
+ whichOne GroupFeatureDef_1105_TypeTypeIn,
+ GroupFeatureDef_1105_TypeVal GroupFeatureDef_1105_TypeValueIn)
 {
-  GroupFeatureDef_1104_TypeType = GroupFeatureDef_1104_TypeTypeIn;
-  GroupFeatureDef_1104_TypeValue = GroupFeatureDef_1104_TypeValueIn;
+  GroupFeatureDef_1105_TypeType = GroupFeatureDef_1105_TypeTypeIn;
+  GroupFeatureDef_1105_TypeValue = GroupFeatureDef_1105_TypeValueIn;
 }
 
-GroupFeatureDef_1104_TypeChoicePair::~GroupFeatureDef_1104_TypeChoicePair()
+GroupFeatureDef_1105_TypeChoicePair::~GroupFeatureDef_1105_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (GroupFeatureDef_1104_TypeType == IsCountersunkHoleE)
-    delete GroupFeatureDef_1104_TypeValue.IsCountersunkHole;
-  else if (GroupFeatureDef_1104_TypeType == IsCounterboredHoleE)
-    delete GroupFeatureDef_1104_TypeValue.IsCounterboredHole;
-  else if (GroupFeatureDef_1104_TypeType == IsSpotfaceE)
-    delete GroupFeatureDef_1104_TypeValue.IsSpotface;
+  if (GroupFeatureDef_1105_TypeType == IsCountersunkHoleE)
+    delete GroupFeatureDef_1105_TypeValue.IsCountersunkHole;
+  else if (GroupFeatureDef_1105_TypeType == IsCounterboredHoleE)
+    delete GroupFeatureDef_1105_TypeValue.IsCounterboredHole;
+  else if (GroupFeatureDef_1105_TypeType == IsSpotfaceE)
+    delete GroupFeatureDef_1105_TypeValue.IsSpotface;
   #endif
 }
 
-void GroupFeatureDef_1104_TypeChoicePair::printSelf(FILE * outFile)
+void GroupFeatureDef_1105_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (GroupFeatureDef_1104_TypeType == IsCountersunkHoleE)
+  if (GroupFeatureDef_1105_TypeType == IsCountersunkHoleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<IsCountersunkHole");
-      GroupFeatureDef_1104_TypeValue.IsCountersunkHole->printSelf(outFile);
+      GroupFeatureDef_1105_TypeValue.IsCountersunkHole->printSelf(outFile);
       fprintf(outFile, "</IsCountersunkHole>\n");
     }
-  else if (GroupFeatureDef_1104_TypeType == IsCounterboredHoleE)
+  else if (GroupFeatureDef_1105_TypeType == IsCounterboredHoleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<IsCounterboredHole");
-      GroupFeatureDef_1104_TypeValue.IsCounterboredHole->printSelf(outFile);
+      GroupFeatureDef_1105_TypeValue.IsCounterboredHole->printSelf(outFile);
       fprintf(outFile, "</IsCounterboredHole>\n");
     }
-  else if (GroupFeatureDef_1104_TypeType == IsSpotfaceE)
+  else if (GroupFeatureDef_1105_TypeType == IsSpotfaceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<IsSpotface");
-      GroupFeatureDef_1104_TypeValue.IsSpotface->printSelf(outFile);
+      GroupFeatureDef_1105_TypeValue.IsSpotface->printSelf(outFile);
       fprintf(outFile, "</IsSpotface>\n");
     }
 }
 
-/*********************************************************************/
-
-/* class MeasuredPointSe_1105_Type
-
-*/
-
-MeasuredPointSe_1105_Type::MeasuredPointSe_1105_Type()
-{
-  MeasuredPointSe_1105_TypePair = 0;
-}
-
-MeasuredPointSe_1105_Type::MeasuredPointSe_1105_Type(
- MeasuredPointSe_1105_TypeChoicePair * MeasuredPointSe_1105_TypePairIn)
-{
-  MeasuredPointSe_1105_TypePair = MeasuredPointSe_1105_TypePairIn;
-}
-
-MeasuredPointSe_1105_Type::~MeasuredPointSe_1105_Type()
-{
-  #ifndef NODESTRUCT
-  delete MeasuredPointSe_1105_TypePair;
-  #endif
-}
-
-void MeasuredPointSe_1105_Type::printSelf(FILE * outFile)
-{
-  if (MeasuredPointSe_1105_TypePair)
-    {
-      MeasuredPointSe_1105_TypePair->printSelf(outFile);
-    }
-}
-
-MeasuredPointSe_1105_TypeChoicePair * MeasuredPointSe_1105_Type::getMeasuredPointSe_1105_TypePair()
-{return MeasuredPointSe_1105_TypePair;}
-
-void MeasuredPointSe_1105_Type::setMeasuredPointSe_1105_TypePair(MeasuredPointSe_1105_TypeChoicePair * MeasuredPointSe_1105_TypePairIn)
-{MeasuredPointSe_1105_TypePair = MeasuredPointSe_1105_TypePairIn;}
-
-/*********************************************************************/
-
-/* class MeasuredPointSe_1105_TypeChoicePair
-
-*/
-
-MeasuredPointSe_1105_TypeChoicePair::MeasuredPointSe_1105_TypeChoicePair() {}
-
-MeasuredPointSe_1105_TypeChoicePair::MeasuredPointSe_1105_TypeChoicePair(
- whichOne MeasuredPointSe_1105_TypeTypeIn,
- MeasuredPointSe_1105_TypeVal MeasuredPointSe_1105_TypeValueIn)
-{
-  MeasuredPointSe_1105_TypeType = MeasuredPointSe_1105_TypeTypeIn;
-  MeasuredPointSe_1105_TypeValue = MeasuredPointSe_1105_TypeValueIn;
-}
-
-MeasuredPointSe_1105_TypeChoicePair::~MeasuredPointSe_1105_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (MeasuredPointSe_1105_TypeType == CoordinateSystemIdE)
-    delete MeasuredPointSe_1105_TypeValue.CoordinateSystemId;
-  else if (MeasuredPointSe_1105_TypeType == TranformIdE)
-    delete MeasuredPointSe_1105_TypeValue.TranformId;
-  #endif
-}
-
-void MeasuredPointSe_1105_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (MeasuredPointSe_1105_TypeType == CoordinateSystemIdE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<CoordinateSystemId");
-      MeasuredPointSe_1105_TypeValue.CoordinateSystemId->printSelf(outFile);
-      fprintf(outFile, "</CoordinateSystemId>\n");
-    }
-  else if (MeasuredPointSe_1105_TypeType == TranformIdE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<TranformId");
-      MeasuredPointSe_1105_TypeValue.TranformId->printSelf(outFile);
-      fprintf(outFile, "</TranformId>\n");
-    }
-}
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1106_Type
 
@@ -82107,7 +82025,10 @@ MeasuredPointSe_1106_Type::~MeasuredPointSe_1106_Type()
 
 void MeasuredPointSe_1106_Type::printSelf(FILE * outFile)
 {
-  MeasuredPointSe_1106_TypePair->printSelf(outFile);
+  if (MeasuredPointSe_1106_TypePair)
+    {
+      MeasuredPointSe_1106_TypePair->printSelf(outFile);
+    }
 }
 
 MeasuredPointSe_1106_TypeChoicePair * MeasuredPointSe_1106_Type::getMeasuredPointSe_1106_TypePair()
@@ -82116,7 +82037,7 @@ MeasuredPointSe_1106_TypeChoicePair * MeasuredPointSe_1106_Type::getMeasuredPoin
 void MeasuredPointSe_1106_Type::setMeasuredPointSe_1106_TypePair(MeasuredPointSe_1106_TypeChoicePair * MeasuredPointSe_1106_TypePairIn)
 {MeasuredPointSe_1106_TypePair = MeasuredPointSe_1106_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1106_TypeChoicePair
 
@@ -82135,32 +82056,32 @@ MeasuredPointSe_1106_TypeChoicePair::MeasuredPointSe_1106_TypeChoicePair(
 MeasuredPointSe_1106_TypeChoicePair::~MeasuredPointSe_1106_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (MeasuredPointSe_1106_TypeType == PointsE)
-    delete MeasuredPointSe_1106_TypeValue.Points;
-  else if (MeasuredPointSe_1106_TypeType == BinaryPointsE)
-    delete MeasuredPointSe_1106_TypeValue.BinaryPoints;
+  if (MeasuredPointSe_1106_TypeType == CoordinateSystemIdE)
+    delete MeasuredPointSe_1106_TypeValue.CoordinateSystemId;
+  else if (MeasuredPointSe_1106_TypeType == TranformIdE)
+    delete MeasuredPointSe_1106_TypeValue.TranformId;
   #endif
 }
 
 void MeasuredPointSe_1106_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (MeasuredPointSe_1106_TypeType == PointsE)
+  if (MeasuredPointSe_1106_TypeType == CoordinateSystemIdE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<Points");
-      MeasuredPointSe_1106_TypeValue.Points->printSelf(outFile);
-      fprintf(outFile, "</Points>\n");
+      fprintf(outFile, "<CoordinateSystemId");
+      MeasuredPointSe_1106_TypeValue.CoordinateSystemId->printSelf(outFile);
+      fprintf(outFile, "</CoordinateSystemId>\n");
     }
-  else if (MeasuredPointSe_1106_TypeType == BinaryPointsE)
+  else if (MeasuredPointSe_1106_TypeType == TranformIdE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<BinaryPoints");
-      MeasuredPointSe_1106_TypeValue.BinaryPoints->printSelf(outFile);
-      fprintf(outFile, "</BinaryPoints>\n");
+      fprintf(outFile, "<TranformId");
+      MeasuredPointSe_1106_TypeValue.TranformId->printSelf(outFile);
+      fprintf(outFile, "</TranformId>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1107_Type
 
@@ -82186,10 +82107,7 @@ MeasuredPointSe_1107_Type::~MeasuredPointSe_1107_Type()
 
 void MeasuredPointSe_1107_Type::printSelf(FILE * outFile)
 {
-  if (MeasuredPointSe_1107_TypePair)
-    {
-      MeasuredPointSe_1107_TypePair->printSelf(outFile);
-    }
+  MeasuredPointSe_1107_TypePair->printSelf(outFile);
 }
 
 MeasuredPointSe_1107_TypeChoicePair * MeasuredPointSe_1107_Type::getMeasuredPointSe_1107_TypePair()
@@ -82198,7 +82116,7 @@ MeasuredPointSe_1107_TypeChoicePair * MeasuredPointSe_1107_Type::getMeasuredPoin
 void MeasuredPointSe_1107_Type::setMeasuredPointSe_1107_TypePair(MeasuredPointSe_1107_TypeChoicePair * MeasuredPointSe_1107_TypePairIn)
 {MeasuredPointSe_1107_TypePair = MeasuredPointSe_1107_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1107_TypeChoicePair
 
@@ -82217,32 +82135,32 @@ MeasuredPointSe_1107_TypeChoicePair::MeasuredPointSe_1107_TypeChoicePair(
 MeasuredPointSe_1107_TypeChoicePair::~MeasuredPointSe_1107_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (MeasuredPointSe_1107_TypeType == NormalsE)
-    delete MeasuredPointSe_1107_TypeValue.Normals;
-  else if (MeasuredPointSe_1107_TypeType == BinaryNormalsE)
-    delete MeasuredPointSe_1107_TypeValue.BinaryNormals;
+  if (MeasuredPointSe_1107_TypeType == PointsE)
+    delete MeasuredPointSe_1107_TypeValue.Points;
+  else if (MeasuredPointSe_1107_TypeType == BinaryPointsE)
+    delete MeasuredPointSe_1107_TypeValue.BinaryPoints;
   #endif
 }
 
 void MeasuredPointSe_1107_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (MeasuredPointSe_1107_TypeType == NormalsE)
+  if (MeasuredPointSe_1107_TypeType == PointsE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<Normals");
-      MeasuredPointSe_1107_TypeValue.Normals->printSelf(outFile);
-      fprintf(outFile, "</Normals>\n");
+      fprintf(outFile, "<Points");
+      MeasuredPointSe_1107_TypeValue.Points->printSelf(outFile);
+      fprintf(outFile, "</Points>\n");
     }
-  else if (MeasuredPointSe_1107_TypeType == BinaryNormalsE)
+  else if (MeasuredPointSe_1107_TypeType == BinaryPointsE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<BinaryNormals");
-      MeasuredPointSe_1107_TypeValue.BinaryNormals->printSelf(outFile);
-      fprintf(outFile, "</BinaryNormals>\n");
+      fprintf(outFile, "<BinaryPoints");
+      MeasuredPointSe_1107_TypeValue.BinaryPoints->printSelf(outFile);
+      fprintf(outFile, "</BinaryPoints>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1108_Type
 
@@ -82268,7 +82186,10 @@ MeasuredPointSe_1108_Type::~MeasuredPointSe_1108_Type()
 
 void MeasuredPointSe_1108_Type::printSelf(FILE * outFile)
 {
-  MeasuredPointSe_1108_TypePair->printSelf(outFile);
+  if (MeasuredPointSe_1108_TypePair)
+    {
+      MeasuredPointSe_1108_TypePair->printSelf(outFile);
+    }
 }
 
 MeasuredPointSe_1108_TypeChoicePair * MeasuredPointSe_1108_Type::getMeasuredPointSe_1108_TypePair()
@@ -82277,7 +82198,7 @@ MeasuredPointSe_1108_TypeChoicePair * MeasuredPointSe_1108_Type::getMeasuredPoin
 void MeasuredPointSe_1108_Type::setMeasuredPointSe_1108_TypePair(MeasuredPointSe_1108_TypeChoicePair * MeasuredPointSe_1108_TypePairIn)
 {MeasuredPointSe_1108_TypePair = MeasuredPointSe_1108_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1108_TypeChoicePair
 
@@ -82296,41 +82217,32 @@ MeasuredPointSe_1108_TypeChoicePair::MeasuredPointSe_1108_TypeChoicePair(
 MeasuredPointSe_1108_TypeChoicePair::~MeasuredPointSe_1108_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (MeasuredPointSe_1108_TypeType == CompensatedE)
-    delete MeasuredPointSe_1108_TypeValue.Compensated;
-  else if (MeasuredPointSe_1108_TypeType == CompensationsE)
-    delete MeasuredPointSe_1108_TypeValue.Compensations;
-  else if (MeasuredPointSe_1108_TypeType == BinaryCompensatedE)
-    delete MeasuredPointSe_1108_TypeValue.BinaryCompensated;
+  if (MeasuredPointSe_1108_TypeType == NormalsE)
+    delete MeasuredPointSe_1108_TypeValue.Normals;
+  else if (MeasuredPointSe_1108_TypeType == BinaryNormalsE)
+    delete MeasuredPointSe_1108_TypeValue.BinaryNormals;
   #endif
 }
 
 void MeasuredPointSe_1108_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (MeasuredPointSe_1108_TypeType == CompensatedE)
+  if (MeasuredPointSe_1108_TypeType == NormalsE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<Compensated");
-      MeasuredPointSe_1108_TypeValue.Compensated->printSelf(outFile);
-      fprintf(outFile, "</Compensated>\n");
+      fprintf(outFile, "<Normals");
+      MeasuredPointSe_1108_TypeValue.Normals->printSelf(outFile);
+      fprintf(outFile, "</Normals>\n");
     }
-  else if (MeasuredPointSe_1108_TypeType == CompensationsE)
+  else if (MeasuredPointSe_1108_TypeType == BinaryNormalsE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<Compensations");
-      MeasuredPointSe_1108_TypeValue.Compensations->printSelf(outFile);
-      fprintf(outFile, "</Compensations>\n");
-    }
-  else if (MeasuredPointSe_1108_TypeType == BinaryCompensatedE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<BinaryCompensated");
-      MeasuredPointSe_1108_TypeValue.BinaryCompensated->printSelf(outFile);
-      fprintf(outFile, "</BinaryCompensated>\n");
+      fprintf(outFile, "<BinaryNormals");
+      MeasuredPointSe_1108_TypeValue.BinaryNormals->printSelf(outFile);
+      fprintf(outFile, "</BinaryNormals>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1109_Type
 
@@ -82356,10 +82268,7 @@ MeasuredPointSe_1109_Type::~MeasuredPointSe_1109_Type()
 
 void MeasuredPointSe_1109_Type::printSelf(FILE * outFile)
 {
-  if (MeasuredPointSe_1109_TypePair)
-    {
-      MeasuredPointSe_1109_TypePair->printSelf(outFile);
-    }
+  MeasuredPointSe_1109_TypePair->printSelf(outFile);
 }
 
 MeasuredPointSe_1109_TypeChoicePair * MeasuredPointSe_1109_Type::getMeasuredPointSe_1109_TypePair()
@@ -82368,7 +82277,7 @@ MeasuredPointSe_1109_TypeChoicePair * MeasuredPointSe_1109_Type::getMeasuredPoin
 void MeasuredPointSe_1109_Type::setMeasuredPointSe_1109_TypePair(MeasuredPointSe_1109_TypeChoicePair * MeasuredPointSe_1109_TypePairIn)
 {MeasuredPointSe_1109_TypePair = MeasuredPointSe_1109_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1109_TypeChoicePair
 
@@ -82387,41 +82296,41 @@ MeasuredPointSe_1109_TypeChoicePair::MeasuredPointSe_1109_TypeChoicePair(
 MeasuredPointSe_1109_TypeChoicePair::~MeasuredPointSe_1109_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (MeasuredPointSe_1109_TypeType == ProbeRadiusE)
-    delete MeasuredPointSe_1109_TypeValue.ProbeRadius;
-  else if (MeasuredPointSe_1109_TypeType == ProbeRadiiE)
-    delete MeasuredPointSe_1109_TypeValue.ProbeRadii;
-  else if (MeasuredPointSe_1109_TypeType == BinaryProbeRadiiE)
-    delete MeasuredPointSe_1109_TypeValue.BinaryProbeRadii;
+  if (MeasuredPointSe_1109_TypeType == CompensatedE)
+    delete MeasuredPointSe_1109_TypeValue.Compensated;
+  else if (MeasuredPointSe_1109_TypeType == CompensationsE)
+    delete MeasuredPointSe_1109_TypeValue.Compensations;
+  else if (MeasuredPointSe_1109_TypeType == BinaryCompensatedE)
+    delete MeasuredPointSe_1109_TypeValue.BinaryCompensated;
   #endif
 }
 
 void MeasuredPointSe_1109_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (MeasuredPointSe_1109_TypeType == ProbeRadiusE)
+  if (MeasuredPointSe_1109_TypeType == CompensatedE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<ProbeRadius");
-      MeasuredPointSe_1109_TypeValue.ProbeRadius->printSelf(outFile);
-      fprintf(outFile, "</ProbeRadius>\n");
+      fprintf(outFile, "<Compensated");
+      MeasuredPointSe_1109_TypeValue.Compensated->printSelf(outFile);
+      fprintf(outFile, "</Compensated>\n");
     }
-  else if (MeasuredPointSe_1109_TypeType == ProbeRadiiE)
+  else if (MeasuredPointSe_1109_TypeType == CompensationsE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<ProbeRadii");
-      MeasuredPointSe_1109_TypeValue.ProbeRadii->printSelf(outFile);
-      fprintf(outFile, "</ProbeRadii>\n");
+      fprintf(outFile, "<Compensations");
+      MeasuredPointSe_1109_TypeValue.Compensations->printSelf(outFile);
+      fprintf(outFile, "</Compensations>\n");
     }
-  else if (MeasuredPointSe_1109_TypeType == BinaryProbeRadiiE)
+  else if (MeasuredPointSe_1109_TypeType == BinaryCompensatedE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<BinaryProbeRadii");
-      MeasuredPointSe_1109_TypeValue.BinaryProbeRadii->printSelf(outFile);
-      fprintf(outFile, "</BinaryProbeRadii>\n");
+      fprintf(outFile, "<BinaryCompensated");
+      MeasuredPointSe_1109_TypeValue.BinaryCompensated->printSelf(outFile);
+      fprintf(outFile, "</BinaryCompensated>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1110_Type
 
@@ -82459,7 +82368,7 @@ MeasuredPointSe_1110_TypeChoicePair * MeasuredPointSe_1110_Type::getMeasuredPoin
 void MeasuredPointSe_1110_Type::setMeasuredPointSe_1110_TypePair(MeasuredPointSe_1110_TypeChoicePair * MeasuredPointSe_1110_TypePairIn)
 {MeasuredPointSe_1110_TypePair = MeasuredPointSe_1110_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1110_TypeChoicePair
 
@@ -82478,43 +82387,41 @@ MeasuredPointSe_1110_TypeChoicePair::MeasuredPointSe_1110_TypeChoicePair(
 MeasuredPointSe_1110_TypeChoicePair::~MeasuredPointSe_1110_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (MeasuredPointSe_1110_TypeType == SensorIdE)
-    delete MeasuredPointSe_1110_TypeValue.SensorId;
-  else if (MeasuredPointSe_1110_TypeType == SensorIdsE)
-    delete MeasuredPointSe_1110_TypeValue.SensorIds;
-  else if (MeasuredPointSe_1110_TypeType == BinarySensorIdsE)
-    delete MeasuredPointSe_1110_TypeValue.BinarySensorIds;
+  if (MeasuredPointSe_1110_TypeType == ProbeRadiusE)
+    delete MeasuredPointSe_1110_TypeValue.ProbeRadius;
+  else if (MeasuredPointSe_1110_TypeType == ProbeRadiiE)
+    delete MeasuredPointSe_1110_TypeValue.ProbeRadii;
+  else if (MeasuredPointSe_1110_TypeType == BinaryProbeRadiiE)
+    delete MeasuredPointSe_1110_TypeValue.BinaryProbeRadii;
   #endif
 }
 
 void MeasuredPointSe_1110_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (MeasuredPointSe_1110_TypeType == SensorIdE)
+  if (MeasuredPointSe_1110_TypeType == ProbeRadiusE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<SensorId");
-      MeasuredPointSe_1110_TypeValue.SensorId->printSelf(outFile);
-      fprintf(outFile, "</SensorId>\n");
+      fprintf(outFile, "<ProbeRadius");
+      MeasuredPointSe_1110_TypeValue.ProbeRadius->printSelf(outFile);
+      fprintf(outFile, "</ProbeRadius>\n");
     }
-  else if (MeasuredPointSe_1110_TypeType == SensorIdsE)
+  else if (MeasuredPointSe_1110_TypeType == ProbeRadiiE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<SensorIds");
-      MeasuredPointSe_1110_TypeValue.SensorIds->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</SensorIds>\n");
+      fprintf(outFile, "<ProbeRadii");
+      MeasuredPointSe_1110_TypeValue.ProbeRadii->printSelf(outFile);
+      fprintf(outFile, "</ProbeRadii>\n");
     }
-  else if (MeasuredPointSe_1110_TypeType == BinarySensorIdsE)
+  else if (MeasuredPointSe_1110_TypeType == BinaryProbeRadiiE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<BinarySensorIds");
-      MeasuredPointSe_1110_TypeValue.BinarySensorIds->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</BinarySensorIds>\n");
+      fprintf(outFile, "<BinaryProbeRadii");
+      MeasuredPointSe_1110_TypeValue.BinaryProbeRadii->printSelf(outFile);
+      fprintf(outFile, "</BinaryProbeRadii>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1111_Type
 
@@ -82552,7 +82459,7 @@ MeasuredPointSe_1111_TypeChoicePair * MeasuredPointSe_1111_Type::getMeasuredPoin
 void MeasuredPointSe_1111_Type::setMeasuredPointSe_1111_TypePair(MeasuredPointSe_1111_TypeChoicePair * MeasuredPointSe_1111_TypePairIn)
 {MeasuredPointSe_1111_TypePair = MeasuredPointSe_1111_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1111_TypeChoicePair
 
@@ -82571,43 +82478,43 @@ MeasuredPointSe_1111_TypeChoicePair::MeasuredPointSe_1111_TypeChoicePair(
 MeasuredPointSe_1111_TypeChoicePair::~MeasuredPointSe_1111_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (MeasuredPointSe_1111_TypeType == TipIdE)
-    delete MeasuredPointSe_1111_TypeValue.TipId;
-  else if (MeasuredPointSe_1111_TypeType == TipIdsE)
-    delete MeasuredPointSe_1111_TypeValue.TipIds;
-  else if (MeasuredPointSe_1111_TypeType == BinaryTipIdsE)
-    delete MeasuredPointSe_1111_TypeValue.BinaryTipIds;
+  if (MeasuredPointSe_1111_TypeType == SensorIdE)
+    delete MeasuredPointSe_1111_TypeValue.SensorId;
+  else if (MeasuredPointSe_1111_TypeType == SensorIdsE)
+    delete MeasuredPointSe_1111_TypeValue.SensorIds;
+  else if (MeasuredPointSe_1111_TypeType == BinarySensorIdsE)
+    delete MeasuredPointSe_1111_TypeValue.BinarySensorIds;
   #endif
 }
 
 void MeasuredPointSe_1111_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (MeasuredPointSe_1111_TypeType == TipIdE)
+  if (MeasuredPointSe_1111_TypeType == SensorIdE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<TipId");
-      MeasuredPointSe_1111_TypeValue.TipId->printSelf(outFile);
-      fprintf(outFile, "</TipId>\n");
+      fprintf(outFile, "<SensorId");
+      MeasuredPointSe_1111_TypeValue.SensorId->printSelf(outFile);
+      fprintf(outFile, "</SensorId>\n");
     }
-  else if (MeasuredPointSe_1111_TypeType == TipIdsE)
+  else if (MeasuredPointSe_1111_TypeType == SensorIdsE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<TipIds");
-      MeasuredPointSe_1111_TypeValue.TipIds->printSelf(outFile);
+      fprintf(outFile, "<SensorIds");
+      MeasuredPointSe_1111_TypeValue.SensorIds->printSelf(outFile);
       doSpaces(0, outFile);
-      fprintf(outFile, "</TipIds>\n");
+      fprintf(outFile, "</SensorIds>\n");
     }
-  else if (MeasuredPointSe_1111_TypeType == BinaryTipIdsE)
+  else if (MeasuredPointSe_1111_TypeType == BinarySensorIdsE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<BinaryTipIds");
-      MeasuredPointSe_1111_TypeValue.BinaryTipIds->printSelf(outFile);
+      fprintf(outFile, "<BinarySensorIds");
+      MeasuredPointSe_1111_TypeValue.BinarySensorIds->printSelf(outFile);
       doSpaces(0, outFile);
-      fprintf(outFile, "</BinaryTipIds>\n");
+      fprintf(outFile, "</BinarySensorIds>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1112_Type
 
@@ -82645,7 +82552,7 @@ MeasuredPointSe_1112_TypeChoicePair * MeasuredPointSe_1112_Type::getMeasuredPoin
 void MeasuredPointSe_1112_Type::setMeasuredPointSe_1112_TypePair(MeasuredPointSe_1112_TypeChoicePair * MeasuredPointSe_1112_TypePairIn)
 {MeasuredPointSe_1112_TypePair = MeasuredPointSe_1112_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1112_TypeChoicePair
 
@@ -82664,34 +82571,43 @@ MeasuredPointSe_1112_TypeChoicePair::MeasuredPointSe_1112_TypeChoicePair(
 MeasuredPointSe_1112_TypeChoicePair::~MeasuredPointSe_1112_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (MeasuredPointSe_1112_TypeType == MeasurePointNominalIdsE)
-    delete MeasuredPointSe_1112_TypeValue.MeasurePointNominalIds;
-  else if (MeasuredPointSe_1112_TypeType == BinaryMeasurePointNominalIdsE)
-    delete MeasuredPointSe_1112_TypeValue.BinaryMeasurePointNominalIds;
+  if (MeasuredPointSe_1112_TypeType == TipIdE)
+    delete MeasuredPointSe_1112_TypeValue.TipId;
+  else if (MeasuredPointSe_1112_TypeType == TipIdsE)
+    delete MeasuredPointSe_1112_TypeValue.TipIds;
+  else if (MeasuredPointSe_1112_TypeType == BinaryTipIdsE)
+    delete MeasuredPointSe_1112_TypeValue.BinaryTipIds;
   #endif
 }
 
 void MeasuredPointSe_1112_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (MeasuredPointSe_1112_TypeType == MeasurePointNominalIdsE)
+  if (MeasuredPointSe_1112_TypeType == TipIdE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<MeasurePointNominalIds");
-      MeasuredPointSe_1112_TypeValue.MeasurePointNominalIds->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MeasurePointNominalIds>\n");
+      fprintf(outFile, "<TipId");
+      MeasuredPointSe_1112_TypeValue.TipId->printSelf(outFile);
+      fprintf(outFile, "</TipId>\n");
     }
-  else if (MeasuredPointSe_1112_TypeType == BinaryMeasurePointNominalIdsE)
+  else if (MeasuredPointSe_1112_TypeType == TipIdsE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<BinaryMeasurePointNominalIds");
-      MeasuredPointSe_1112_TypeValue.BinaryMeasurePointNominalIds->printSelf(outFile);
+      fprintf(outFile, "<TipIds");
+      MeasuredPointSe_1112_TypeValue.TipIds->printSelf(outFile);
       doSpaces(0, outFile);
-      fprintf(outFile, "</BinaryMeasurePointNominalIds>\n");
+      fprintf(outFile, "</TipIds>\n");
+    }
+  else if (MeasuredPointSe_1112_TypeType == BinaryTipIdsE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<BinaryTipIds");
+      MeasuredPointSe_1112_TypeValue.BinaryTipIds->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</BinaryTipIds>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1113_Type
 
@@ -82729,7 +82645,7 @@ MeasuredPointSe_1113_TypeChoicePair * MeasuredPointSe_1113_Type::getMeasuredPoin
 void MeasuredPointSe_1113_Type::setMeasuredPointSe_1113_TypePair(MeasuredPointSe_1113_TypeChoicePair * MeasuredPointSe_1113_TypePairIn)
 {MeasuredPointSe_1113_TypePair = MeasuredPointSe_1113_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1113_TypeChoicePair
 
@@ -82748,32 +82664,34 @@ MeasuredPointSe_1113_TypeChoicePair::MeasuredPointSe_1113_TypeChoicePair(
 MeasuredPointSe_1113_TypeChoicePair::~MeasuredPointSe_1113_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (MeasuredPointSe_1113_TypeType == TimeStampE)
-    delete MeasuredPointSe_1113_TypeValue.TimeStamp;
-  else if (MeasuredPointSe_1113_TypeType == TimeStampsE)
-    delete MeasuredPointSe_1113_TypeValue.TimeStamps;
+  if (MeasuredPointSe_1113_TypeType == MeasurePointNominalIdsE)
+    delete MeasuredPointSe_1113_TypeValue.MeasurePointNominalIds;
+  else if (MeasuredPointSe_1113_TypeType == BinaryMeasurePointNominalIdsE)
+    delete MeasuredPointSe_1113_TypeValue.BinaryMeasurePointNominalIds;
   #endif
 }
 
 void MeasuredPointSe_1113_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (MeasuredPointSe_1113_TypeType == TimeStampE)
+  if (MeasuredPointSe_1113_TypeType == MeasurePointNominalIdsE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<TimeStamp");
-      MeasuredPointSe_1113_TypeValue.TimeStamp->printSelf(outFile);
-      fprintf(outFile, "</TimeStamp>\n");
+      fprintf(outFile, "<MeasurePointNominalIds");
+      MeasuredPointSe_1113_TypeValue.MeasurePointNominalIds->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MeasurePointNominalIds>\n");
     }
-  else if (MeasuredPointSe_1113_TypeType == TimeStampsE)
+  else if (MeasuredPointSe_1113_TypeType == BinaryMeasurePointNominalIdsE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<TimeStamps");
-      MeasuredPointSe_1113_TypeValue.TimeStamps->printSelf(outFile);
-      fprintf(outFile, "</TimeStamps>\n");
+      fprintf(outFile, "<BinaryMeasurePointNominalIds");
+      MeasuredPointSe_1113_TypeValue.BinaryMeasurePointNominalIds->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</BinaryMeasurePointNominalIds>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1114_Type
 
@@ -82811,7 +82729,7 @@ MeasuredPointSe_1114_TypeChoicePair * MeasuredPointSe_1114_Type::getMeasuredPoin
 void MeasuredPointSe_1114_Type::setMeasuredPointSe_1114_TypePair(MeasuredPointSe_1114_TypeChoicePair * MeasuredPointSe_1114_TypePairIn)
 {MeasuredPointSe_1114_TypePair = MeasuredPointSe_1114_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1114_TypeChoicePair
 
@@ -82830,32 +82748,32 @@ MeasuredPointSe_1114_TypeChoicePair::MeasuredPointSe_1114_TypeChoicePair(
 MeasuredPointSe_1114_TypeChoicePair::~MeasuredPointSe_1114_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (MeasuredPointSe_1114_TypeType == QualityE)
-    delete MeasuredPointSe_1114_TypeValue.Quality;
-  else if (MeasuredPointSe_1114_TypeType == BinaryQualityE)
-    delete MeasuredPointSe_1114_TypeValue.BinaryQuality;
+  if (MeasuredPointSe_1114_TypeType == TimeStampE)
+    delete MeasuredPointSe_1114_TypeValue.TimeStamp;
+  else if (MeasuredPointSe_1114_TypeType == TimeStampsE)
+    delete MeasuredPointSe_1114_TypeValue.TimeStamps;
   #endif
 }
 
 void MeasuredPointSe_1114_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (MeasuredPointSe_1114_TypeType == QualityE)
+  if (MeasuredPointSe_1114_TypeType == TimeStampE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<Quality");
-      MeasuredPointSe_1114_TypeValue.Quality->printSelf(outFile);
-      fprintf(outFile, "</Quality>\n");
+      fprintf(outFile, "<TimeStamp");
+      MeasuredPointSe_1114_TypeValue.TimeStamp->printSelf(outFile);
+      fprintf(outFile, "</TimeStamp>\n");
     }
-  else if (MeasuredPointSe_1114_TypeType == BinaryQualityE)
+  else if (MeasuredPointSe_1114_TypeType == TimeStampsE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<BinaryQuality");
-      MeasuredPointSe_1114_TypeValue.BinaryQuality->printSelf(outFile);
-      fprintf(outFile, "</BinaryQuality>\n");
+      fprintf(outFile, "<TimeStamps");
+      MeasuredPointSe_1114_TypeValue.TimeStamps->printSelf(outFile);
+      fprintf(outFile, "</TimeStamps>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1115_Type
 
@@ -82893,7 +82811,7 @@ MeasuredPointSe_1115_TypeChoicePair * MeasuredPointSe_1115_Type::getMeasuredPoin
 void MeasuredPointSe_1115_Type::setMeasuredPointSe_1115_TypePair(MeasuredPointSe_1115_TypeChoicePair * MeasuredPointSe_1115_TypePairIn)
 {MeasuredPointSe_1115_TypePair = MeasuredPointSe_1115_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1115_TypeChoicePair
 
@@ -82912,32 +82830,32 @@ MeasuredPointSe_1115_TypeChoicePair::MeasuredPointSe_1115_TypeChoicePair(
 MeasuredPointSe_1115_TypeChoicePair::~MeasuredPointSe_1115_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (MeasuredPointSe_1115_TypeType == DeviationsE)
-    delete MeasuredPointSe_1115_TypeValue.Deviations;
-  else if (MeasuredPointSe_1115_TypeType == BinaryDeviationsE)
-    delete MeasuredPointSe_1115_TypeValue.BinaryDeviations;
+  if (MeasuredPointSe_1115_TypeType == QualityE)
+    delete MeasuredPointSe_1115_TypeValue.Quality;
+  else if (MeasuredPointSe_1115_TypeType == BinaryQualityE)
+    delete MeasuredPointSe_1115_TypeValue.BinaryQuality;
   #endif
 }
 
 void MeasuredPointSe_1115_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (MeasuredPointSe_1115_TypeType == DeviationsE)
+  if (MeasuredPointSe_1115_TypeType == QualityE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<Deviations");
-      MeasuredPointSe_1115_TypeValue.Deviations->printSelf(outFile);
-      fprintf(outFile, "</Deviations>\n");
+      fprintf(outFile, "<Quality");
+      MeasuredPointSe_1115_TypeValue.Quality->printSelf(outFile);
+      fprintf(outFile, "</Quality>\n");
     }
-  else if (MeasuredPointSe_1115_TypeType == BinaryDeviationsE)
+  else if (MeasuredPointSe_1115_TypeType == BinaryQualityE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<BinaryDeviations");
-      MeasuredPointSe_1115_TypeValue.BinaryDeviations->printSelf(outFile);
-      fprintf(outFile, "</BinaryDeviations>\n");
+      fprintf(outFile, "<BinaryQuality");
+      MeasuredPointSe_1115_TypeValue.BinaryQuality->printSelf(outFile);
+      fprintf(outFile, "</BinaryQuality>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1116_Type
 
@@ -82975,7 +82893,7 @@ MeasuredPointSe_1116_TypeChoicePair * MeasuredPointSe_1116_Type::getMeasuredPoin
 void MeasuredPointSe_1116_Type::setMeasuredPointSe_1116_TypePair(MeasuredPointSe_1116_TypeChoicePair * MeasuredPointSe_1116_TypePairIn)
 {MeasuredPointSe_1116_TypePair = MeasuredPointSe_1116_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1116_TypeChoicePair
 
@@ -82994,32 +82912,32 @@ MeasuredPointSe_1116_TypeChoicePair::MeasuredPointSe_1116_TypeChoicePair(
 MeasuredPointSe_1116_TypeChoicePair::~MeasuredPointSe_1116_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (MeasuredPointSe_1116_TypeType == ColorsE)
-    delete MeasuredPointSe_1116_TypeValue.Colors;
-  else if (MeasuredPointSe_1116_TypeType == BinaryColorsE)
-    delete MeasuredPointSe_1116_TypeValue.BinaryColors;
+  if (MeasuredPointSe_1116_TypeType == DeviationsE)
+    delete MeasuredPointSe_1116_TypeValue.Deviations;
+  else if (MeasuredPointSe_1116_TypeType == BinaryDeviationsE)
+    delete MeasuredPointSe_1116_TypeValue.BinaryDeviations;
   #endif
 }
 
 void MeasuredPointSe_1116_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (MeasuredPointSe_1116_TypeType == ColorsE)
+  if (MeasuredPointSe_1116_TypeType == DeviationsE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<Colors");
-      MeasuredPointSe_1116_TypeValue.Colors->printSelf(outFile);
-      fprintf(outFile, "</Colors>\n");
+      fprintf(outFile, "<Deviations");
+      MeasuredPointSe_1116_TypeValue.Deviations->printSelf(outFile);
+      fprintf(outFile, "</Deviations>\n");
     }
-  else if (MeasuredPointSe_1116_TypeType == BinaryColorsE)
+  else if (MeasuredPointSe_1116_TypeType == BinaryDeviationsE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<BinaryColors");
-      MeasuredPointSe_1116_TypeValue.BinaryColors->printSelf(outFile);
-      fprintf(outFile, "</BinaryColors>\n");
+      fprintf(outFile, "<BinaryDeviations");
+      MeasuredPointSe_1116_TypeValue.BinaryDeviations->printSelf(outFile);
+      fprintf(outFile, "</BinaryDeviations>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointSe_1117_Type
 
@@ -83027,127 +82945,130 @@ void MeasuredPointSe_1116_TypeChoicePair::printSelf(FILE * outFile)
 
 MeasuredPointSe_1117_Type::MeasuredPointSe_1117_Type()
 {
-  NumberOfFacets = 0;
-  MeasuredPointSe_1125 = 0;
+  MeasuredPointSe_1117_TypePair = 0;
 }
 
 MeasuredPointSe_1117_Type::MeasuredPointSe_1117_Type(
- NaturalType * NumberOfFacetsIn,
- MeasuredPointSe_1125_Type * MeasuredPointSe_1125In)
+ MeasuredPointSe_1117_TypeChoicePair * MeasuredPointSe_1117_TypePairIn)
 {
-  NumberOfFacets = NumberOfFacetsIn;
-  MeasuredPointSe_1125 = MeasuredPointSe_1125In;
+  MeasuredPointSe_1117_TypePair = MeasuredPointSe_1117_TypePairIn;
 }
 
 MeasuredPointSe_1117_Type::~MeasuredPointSe_1117_Type()
 {
   #ifndef NODESTRUCT
-  delete NumberOfFacets;
-  delete MeasuredPointSe_1125;
+  delete MeasuredPointSe_1117_TypePair;
   #endif
 }
 
 void MeasuredPointSe_1117_Type::printSelf(FILE * outFile)
 {
+  if (MeasuredPointSe_1117_TypePair)
+    {
+      MeasuredPointSe_1117_TypePair->printSelf(outFile);
+    }
+}
+
+MeasuredPointSe_1117_TypeChoicePair * MeasuredPointSe_1117_Type::getMeasuredPointSe_1117_TypePair()
+{return MeasuredPointSe_1117_TypePair;}
+
+void MeasuredPointSe_1117_Type::setMeasuredPointSe_1117_TypePair(MeasuredPointSe_1117_TypeChoicePair * MeasuredPointSe_1117_TypePairIn)
+{MeasuredPointSe_1117_TypePair = MeasuredPointSe_1117_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class MeasuredPointSe_1117_TypeChoicePair
+
+*/
+
+MeasuredPointSe_1117_TypeChoicePair::MeasuredPointSe_1117_TypeChoicePair() {}
+
+MeasuredPointSe_1117_TypeChoicePair::MeasuredPointSe_1117_TypeChoicePair(
+ whichOne MeasuredPointSe_1117_TypeTypeIn,
+ MeasuredPointSe_1117_TypeVal MeasuredPointSe_1117_TypeValueIn)
+{
+  MeasuredPointSe_1117_TypeType = MeasuredPointSe_1117_TypeTypeIn;
+  MeasuredPointSe_1117_TypeValue = MeasuredPointSe_1117_TypeValueIn;
+}
+
+MeasuredPointSe_1117_TypeChoicePair::~MeasuredPointSe_1117_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (MeasuredPointSe_1117_TypeType == ColorsE)
+    delete MeasuredPointSe_1117_TypeValue.Colors;
+  else if (MeasuredPointSe_1117_TypeType == BinaryColorsE)
+    delete MeasuredPointSe_1117_TypeValue.BinaryColors;
+  #endif
+}
+
+void MeasuredPointSe_1117_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (MeasuredPointSe_1117_TypeType == ColorsE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Colors");
+      MeasuredPointSe_1117_TypeValue.Colors->printSelf(outFile);
+      fprintf(outFile, "</Colors>\n");
+    }
+  else if (MeasuredPointSe_1117_TypeType == BinaryColorsE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<BinaryColors");
+      MeasuredPointSe_1117_TypeValue.BinaryColors->printSelf(outFile);
+      fprintf(outFile, "</BinaryColors>\n");
+    }
+}
+
+/* ***************************************************************** */
+
+/* class MeasuredPointSe_1118_Type
+
+*/
+
+MeasuredPointSe_1118_Type::MeasuredPointSe_1118_Type()
+{
+  NumberOfFacets = 0;
+  MeasuredPointSe_1126 = 0;
+}
+
+MeasuredPointSe_1118_Type::MeasuredPointSe_1118_Type(
+ NaturalType * NumberOfFacetsIn,
+ MeasuredPointSe_1126_Type * MeasuredPointSe_1126In)
+{
+  NumberOfFacets = NumberOfFacetsIn;
+  MeasuredPointSe_1126 = MeasuredPointSe_1126In;
+}
+
+MeasuredPointSe_1118_Type::~MeasuredPointSe_1118_Type()
+{
+  #ifndef NODESTRUCT
+  delete NumberOfFacets;
+  delete MeasuredPointSe_1126;
+  #endif
+}
+
+void MeasuredPointSe_1118_Type::printSelf(FILE * outFile)
+{
   doSpaces(0, outFile);
   fprintf(outFile, "<NumberOfFacets");
   NumberOfFacets->printSelf(outFile);
   fprintf(outFile, "</NumberOfFacets>\n");
-  MeasuredPointSe_1125->printSelf(outFile);
+  MeasuredPointSe_1126->printSelf(outFile);
 }
 
-NaturalType * MeasuredPointSe_1117_Type::getNumberOfFacets()
+NaturalType * MeasuredPointSe_1118_Type::getNumberOfFacets()
 {return NumberOfFacets;}
 
-void MeasuredPointSe_1117_Type::setNumberOfFacets(NaturalType * NumberOfFacetsIn)
+void MeasuredPointSe_1118_Type::setNumberOfFacets(NaturalType * NumberOfFacetsIn)
 {NumberOfFacets = NumberOfFacetsIn;}
 
-MeasuredPointSe_1125_Type * MeasuredPointSe_1117_Type::getMeasuredPointSe_1125()
-{return MeasuredPointSe_1125;}
+MeasuredPointSe_1126_Type * MeasuredPointSe_1118_Type::getMeasuredPointSe_1126()
+{return MeasuredPointSe_1126;}
 
-void MeasuredPointSe_1117_Type::setMeasuredPointSe_1125(MeasuredPointSe_1125_Type * MeasuredPointSe_1125In)
-{MeasuredPointSe_1125 = MeasuredPointSe_1125In;}
+void MeasuredPointSe_1118_Type::setMeasuredPointSe_1126(MeasuredPointSe_1126_Type * MeasuredPointSe_1126In)
+{MeasuredPointSe_1126 = MeasuredPointSe_1126In;}
 
-/*********************************************************************/
-
-/* class OppositeAngledP_1118_Type
-
-*/
-
-OppositeAngledP_1118_Type::OppositeAngledP_1118_Type()
-{
-  OppositeAngledP_1118_TypePair = 0;
-}
-
-OppositeAngledP_1118_Type::OppositeAngledP_1118_Type(
- OppositeAngledP_1118_TypeChoicePair * OppositeAngledP_1118_TypePairIn)
-{
-  OppositeAngledP_1118_TypePair = OppositeAngledP_1118_TypePairIn;
-}
-
-OppositeAngledP_1118_Type::~OppositeAngledP_1118_Type()
-{
-  #ifndef NODESTRUCT
-  delete OppositeAngledP_1118_TypePair;
-  #endif
-}
-
-void OppositeAngledP_1118_Type::printSelf(FILE * outFile)
-{
-  OppositeAngledP_1118_TypePair->printSelf(outFile);
-}
-
-OppositeAngledP_1118_TypeChoicePair * OppositeAngledP_1118_Type::getOppositeAngledP_1118_TypePair()
-{return OppositeAngledP_1118_TypePair;}
-
-void OppositeAngledP_1118_Type::setOppositeAngledP_1118_TypePair(OppositeAngledP_1118_TypeChoicePair * OppositeAngledP_1118_TypePairIn)
-{OppositeAngledP_1118_TypePair = OppositeAngledP_1118_TypePairIn;}
-
-/*********************************************************************/
-
-/* class OppositeAngledP_1118_TypeChoicePair
-
-*/
-
-OppositeAngledP_1118_TypeChoicePair::OppositeAngledP_1118_TypeChoicePair() {}
-
-OppositeAngledP_1118_TypeChoicePair::OppositeAngledP_1118_TypeChoicePair(
- whichOne OppositeAngledP_1118_TypeTypeIn,
- OppositeAngledP_1118_TypeVal OppositeAngledP_1118_TypeValueIn)
-{
-  OppositeAngledP_1118_TypeType = OppositeAngledP_1118_TypeTypeIn;
-  OppositeAngledP_1118_TypeValue = OppositeAngledP_1118_TypeValueIn;
-}
-
-OppositeAngledP_1118_TypeChoicePair::~OppositeAngledP_1118_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (OppositeAngledP_1118_TypeType == TaperAngleE)
-    delete OppositeAngledP_1118_TypeValue.TaperAngle;
-  else if (OppositeAngledP_1118_TypeType == DraftAngleE)
-    delete OppositeAngledP_1118_TypeValue.DraftAngle;
-  #endif
-}
-
-void OppositeAngledP_1118_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (OppositeAngledP_1118_TypeType == TaperAngleE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<TaperAngle");
-      OppositeAngledP_1118_TypeValue.TaperAngle->printSelf(outFile);
-      fprintf(outFile, "</TaperAngle>\n");
-    }
-  else if (OppositeAngledP_1118_TypeType == DraftAngleE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<DraftAngle");
-      OppositeAngledP_1118_TypeValue.DraftAngle->printSelf(outFile);
-      fprintf(outFile, "</DraftAngle>\n");
-    }
-}
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledP_1119_Type
 
@@ -83173,10 +83094,7 @@ OppositeAngledP_1119_Type::~OppositeAngledP_1119_Type()
 
 void OppositeAngledP_1119_Type::printSelf(FILE * outFile)
 {
-  if (OppositeAngledP_1119_TypePair)
-    {
-      OppositeAngledP_1119_TypePair->printSelf(outFile);
-    }
+  OppositeAngledP_1119_TypePair->printSelf(outFile);
 }
 
 OppositeAngledP_1119_TypeChoicePair * OppositeAngledP_1119_Type::getOppositeAngledP_1119_TypePair()
@@ -83185,7 +83103,7 @@ OppositeAngledP_1119_TypeChoicePair * OppositeAngledP_1119_Type::getOppositeAngl
 void OppositeAngledP_1119_Type::setOppositeAngledP_1119_TypePair(OppositeAngledP_1119_TypeChoicePair * OppositeAngledP_1119_TypePairIn)
 {OppositeAngledP_1119_TypePair = OppositeAngledP_1119_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledP_1119_TypeChoicePair
 
@@ -83229,547 +83147,629 @@ void OppositeAngledP_1119_TypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class OtherSurfaceFea_1120_Type
+/* class OppositeAngledP_1120_Type
 
 */
 
-OtherSurfaceFea_1120_Type::OtherSurfaceFea_1120_Type()
+OppositeAngledP_1120_Type::OppositeAngledP_1120_Type()
 {
-  OtherSurfaceFea_1120_TypePair = 0;
+  OppositeAngledP_1120_TypePair = 0;
 }
 
-OtherSurfaceFea_1120_Type::OtherSurfaceFea_1120_Type(
- OtherSurfaceFea_1120_TypeChoicePair * OtherSurfaceFea_1120_TypePairIn)
+OppositeAngledP_1120_Type::OppositeAngledP_1120_Type(
+ OppositeAngledP_1120_TypeChoicePair * OppositeAngledP_1120_TypePairIn)
 {
-  OtherSurfaceFea_1120_TypePair = OtherSurfaceFea_1120_TypePairIn;
+  OppositeAngledP_1120_TypePair = OppositeAngledP_1120_TypePairIn;
 }
 
-OtherSurfaceFea_1120_Type::~OtherSurfaceFea_1120_Type()
+OppositeAngledP_1120_Type::~OppositeAngledP_1120_Type()
 {
   #ifndef NODESTRUCT
-  delete OtherSurfaceFea_1120_TypePair;
+  delete OppositeAngledP_1120_TypePair;
   #endif
 }
 
-void OtherSurfaceFea_1120_Type::printSelf(FILE * outFile)
+void OppositeAngledP_1120_Type::printSelf(FILE * outFile)
 {
-  if (OtherSurfaceFea_1120_TypePair)
+  if (OppositeAngledP_1120_TypePair)
     {
-      OtherSurfaceFea_1120_TypePair->printSelf(outFile);
+      OppositeAngledP_1120_TypePair->printSelf(outFile);
     }
 }
 
-OtherSurfaceFea_1120_TypeChoicePair * OtherSurfaceFea_1120_Type::getOtherSurfaceFea_1120_TypePair()
-{return OtherSurfaceFea_1120_TypePair;}
+OppositeAngledP_1120_TypeChoicePair * OppositeAngledP_1120_Type::getOppositeAngledP_1120_TypePair()
+{return OppositeAngledP_1120_TypePair;}
 
-void OtherSurfaceFea_1120_Type::setOtherSurfaceFea_1120_TypePair(OtherSurfaceFea_1120_TypeChoicePair * OtherSurfaceFea_1120_TypePairIn)
-{OtherSurfaceFea_1120_TypePair = OtherSurfaceFea_1120_TypePairIn;}
+void OppositeAngledP_1120_Type::setOppositeAngledP_1120_TypePair(OppositeAngledP_1120_TypeChoicePair * OppositeAngledP_1120_TypePairIn)
+{OppositeAngledP_1120_TypePair = OppositeAngledP_1120_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class OtherSurfaceFea_1120_TypeChoicePair
+/* class OppositeAngledP_1120_TypeChoicePair
 
 */
 
-OtherSurfaceFea_1120_TypeChoicePair::OtherSurfaceFea_1120_TypeChoicePair() {}
+OppositeAngledP_1120_TypeChoicePair::OppositeAngledP_1120_TypeChoicePair() {}
 
-OtherSurfaceFea_1120_TypeChoicePair::OtherSurfaceFea_1120_TypeChoicePair(
- whichOne OtherSurfaceFea_1120_TypeTypeIn,
- OtherSurfaceFea_1120_TypeVal OtherSurfaceFea_1120_TypeValueIn)
+OppositeAngledP_1120_TypeChoicePair::OppositeAngledP_1120_TypeChoicePair(
+ whichOne OppositeAngledP_1120_TypeTypeIn,
+ OppositeAngledP_1120_TypeVal OppositeAngledP_1120_TypeValueIn)
 {
-  OtherSurfaceFea_1120_TypeType = OtherSurfaceFea_1120_TypeTypeIn;
-  OtherSurfaceFea_1120_TypeValue = OtherSurfaceFea_1120_TypeValueIn;
+  OppositeAngledP_1120_TypeType = OppositeAngledP_1120_TypeTypeIn;
+  OppositeAngledP_1120_TypeValue = OppositeAngledP_1120_TypeValueIn;
 }
 
-OtherSurfaceFea_1120_TypeChoicePair::~OtherSurfaceFea_1120_TypeChoicePair()
+OppositeAngledP_1120_TypeChoicePair::~OppositeAngledP_1120_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (OtherSurfaceFea_1120_TypeType == PolyLineE)
-    delete OtherSurfaceFea_1120_TypeValue.PolyLine;
-  else if (OtherSurfaceFea_1120_TypeType == ClosedSurfaceE)
-    delete OtherSurfaceFea_1120_TypeValue.ClosedSurface;
-  else if (OtherSurfaceFea_1120_TypeType == ConstructedE)
-    delete OtherSurfaceFea_1120_TypeValue.Constructed;
+  if (OppositeAngledP_1120_TypeType == TaperAngleE)
+    delete OppositeAngledP_1120_TypeValue.TaperAngle;
+  else if (OppositeAngledP_1120_TypeType == DraftAngleE)
+    delete OppositeAngledP_1120_TypeValue.DraftAngle;
   #endif
 }
 
-void OtherSurfaceFea_1120_TypeChoicePair::printSelf(FILE * outFile)
+void OppositeAngledP_1120_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (OtherSurfaceFea_1120_TypeType == PolyLineE)
+  if (OppositeAngledP_1120_TypeType == TaperAngleE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<TaperAngle");
+      OppositeAngledP_1120_TypeValue.TaperAngle->printSelf(outFile);
+      fprintf(outFile, "</TaperAngle>\n");
+    }
+  else if (OppositeAngledP_1120_TypeType == DraftAngleE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<DraftAngle");
+      OppositeAngledP_1120_TypeValue.DraftAngle->printSelf(outFile);
+      fprintf(outFile, "</DraftAngle>\n");
+    }
+}
+
+/* ***************************************************************** */
+
+/* class OtherSurfaceFea_1121_Type
+
+*/
+
+OtherSurfaceFea_1121_Type::OtherSurfaceFea_1121_Type()
+{
+  OtherSurfaceFea_1121_TypePair = 0;
+}
+
+OtherSurfaceFea_1121_Type::OtherSurfaceFea_1121_Type(
+ OtherSurfaceFea_1121_TypeChoicePair * OtherSurfaceFea_1121_TypePairIn)
+{
+  OtherSurfaceFea_1121_TypePair = OtherSurfaceFea_1121_TypePairIn;
+}
+
+OtherSurfaceFea_1121_Type::~OtherSurfaceFea_1121_Type()
+{
+  #ifndef NODESTRUCT
+  delete OtherSurfaceFea_1121_TypePair;
+  #endif
+}
+
+void OtherSurfaceFea_1121_Type::printSelf(FILE * outFile)
+{
+  if (OtherSurfaceFea_1121_TypePair)
+    {
+      OtherSurfaceFea_1121_TypePair->printSelf(outFile);
+    }
+}
+
+OtherSurfaceFea_1121_TypeChoicePair * OtherSurfaceFea_1121_Type::getOtherSurfaceFea_1121_TypePair()
+{return OtherSurfaceFea_1121_TypePair;}
+
+void OtherSurfaceFea_1121_Type::setOtherSurfaceFea_1121_TypePair(OtherSurfaceFea_1121_TypeChoicePair * OtherSurfaceFea_1121_TypePairIn)
+{OtherSurfaceFea_1121_TypePair = OtherSurfaceFea_1121_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class OtherSurfaceFea_1121_TypeChoicePair
+
+*/
+
+OtherSurfaceFea_1121_TypeChoicePair::OtherSurfaceFea_1121_TypeChoicePair() {}
+
+OtherSurfaceFea_1121_TypeChoicePair::OtherSurfaceFea_1121_TypeChoicePair(
+ whichOne OtherSurfaceFea_1121_TypeTypeIn,
+ OtherSurfaceFea_1121_TypeVal OtherSurfaceFea_1121_TypeValueIn)
+{
+  OtherSurfaceFea_1121_TypeType = OtherSurfaceFea_1121_TypeTypeIn;
+  OtherSurfaceFea_1121_TypeValue = OtherSurfaceFea_1121_TypeValueIn;
+}
+
+OtherSurfaceFea_1121_TypeChoicePair::~OtherSurfaceFea_1121_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (OtherSurfaceFea_1121_TypeType == PolyLineE)
+    delete OtherSurfaceFea_1121_TypeValue.PolyLine;
+  else if (OtherSurfaceFea_1121_TypeType == ClosedSurfaceE)
+    delete OtherSurfaceFea_1121_TypeValue.ClosedSurface;
+  else if (OtherSurfaceFea_1121_TypeType == ConstructedE)
+    delete OtherSurfaceFea_1121_TypeValue.Constructed;
+  #endif
+}
+
+void OtherSurfaceFea_1121_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (OtherSurfaceFea_1121_TypeType == PolyLineE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PolyLine");
-      OtherSurfaceFea_1120_TypeValue.PolyLine->printSelf(outFile);
+      OtherSurfaceFea_1121_TypeValue.PolyLine->printSelf(outFile);
       fprintf(outFile, "</PolyLine>\n");
     }
-  else if (OtherSurfaceFea_1120_TypeType == ClosedSurfaceE)
+  else if (OtherSurfaceFea_1121_TypeType == ClosedSurfaceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ClosedSurface");
-      OtherSurfaceFea_1120_TypeValue.ClosedSurface->printSelf(outFile);
+      OtherSurfaceFea_1121_TypeValue.ClosedSurface->printSelf(outFile);
       fprintf(outFile, "</ClosedSurface>\n");
     }
-  else if (OtherSurfaceFea_1120_TypeType == ConstructedE)
+  else if (OtherSurfaceFea_1121_TypeType == ConstructedE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Constructed");
-      OtherSurfaceFea_1120_TypeValue.Constructed->printSelf(outFile);
+      OtherSurfaceFea_1121_TypeValue.Constructed->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Constructed>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class PlaneFeatureNom_1121_Type
+/* class PlaneFeatureNom_1122_Type
 
 */
 
-PlaneFeatureNom_1121_Type::PlaneFeatureNom_1121_Type()
+PlaneFeatureNom_1122_Type::PlaneFeatureNom_1122_Type()
 {
-  PlaneFeatureNom_1121_TypePair = 0;
+  PlaneFeatureNom_1122_TypePair = 0;
 }
 
-PlaneFeatureNom_1121_Type::PlaneFeatureNom_1121_Type(
- PlaneFeatureNom_1121_TypeChoicePair * PlaneFeatureNom_1121_TypePairIn)
+PlaneFeatureNom_1122_Type::PlaneFeatureNom_1122_Type(
+ PlaneFeatureNom_1122_TypeChoicePair * PlaneFeatureNom_1122_TypePairIn)
 {
-  PlaneFeatureNom_1121_TypePair = PlaneFeatureNom_1121_TypePairIn;
+  PlaneFeatureNom_1122_TypePair = PlaneFeatureNom_1122_TypePairIn;
 }
 
-PlaneFeatureNom_1121_Type::~PlaneFeatureNom_1121_Type()
+PlaneFeatureNom_1122_Type::~PlaneFeatureNom_1122_Type()
 {
   #ifndef NODESTRUCT
-  delete PlaneFeatureNom_1121_TypePair;
+  delete PlaneFeatureNom_1122_TypePair;
   #endif
 }
 
-void PlaneFeatureNom_1121_Type::printSelf(FILE * outFile)
+void PlaneFeatureNom_1122_Type::printSelf(FILE * outFile)
 {
-  if (PlaneFeatureNom_1121_TypePair)
+  if (PlaneFeatureNom_1122_TypePair)
     {
-      PlaneFeatureNom_1121_TypePair->printSelf(outFile);
+      PlaneFeatureNom_1122_TypePair->printSelf(outFile);
     }
 }
 
-PlaneFeatureNom_1121_TypeChoicePair * PlaneFeatureNom_1121_Type::getPlaneFeatureNom_1121_TypePair()
-{return PlaneFeatureNom_1121_TypePair;}
+PlaneFeatureNom_1122_TypeChoicePair * PlaneFeatureNom_1122_Type::getPlaneFeatureNom_1122_TypePair()
+{return PlaneFeatureNom_1122_TypePair;}
 
-void PlaneFeatureNom_1121_Type::setPlaneFeatureNom_1121_TypePair(PlaneFeatureNom_1121_TypeChoicePair * PlaneFeatureNom_1121_TypePairIn)
-{PlaneFeatureNom_1121_TypePair = PlaneFeatureNom_1121_TypePairIn;}
+void PlaneFeatureNom_1122_Type::setPlaneFeatureNom_1122_TypePair(PlaneFeatureNom_1122_TypeChoicePair * PlaneFeatureNom_1122_TypePairIn)
+{PlaneFeatureNom_1122_TypePair = PlaneFeatureNom_1122_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class PlaneFeatureNom_1121_TypeChoicePair
+/* class PlaneFeatureNom_1122_TypeChoicePair
 
 */
 
-PlaneFeatureNom_1121_TypeChoicePair::PlaneFeatureNom_1121_TypeChoicePair() {}
+PlaneFeatureNom_1122_TypeChoicePair::PlaneFeatureNom_1122_TypeChoicePair() {}
 
-PlaneFeatureNom_1121_TypeChoicePair::PlaneFeatureNom_1121_TypeChoicePair(
- whichOne PlaneFeatureNom_1121_TypeTypeIn,
- PlaneFeatureNom_1121_TypeVal PlaneFeatureNom_1121_TypeValueIn)
+PlaneFeatureNom_1122_TypeChoicePair::PlaneFeatureNom_1122_TypeChoicePair(
+ whichOne PlaneFeatureNom_1122_TypeTypeIn,
+ PlaneFeatureNom_1122_TypeVal PlaneFeatureNom_1122_TypeValueIn)
 {
-  PlaneFeatureNom_1121_TypeType = PlaneFeatureNom_1121_TypeTypeIn;
-  PlaneFeatureNom_1121_TypeValue = PlaneFeatureNom_1121_TypeValueIn;
+  PlaneFeatureNom_1122_TypeType = PlaneFeatureNom_1122_TypeTypeIn;
+  PlaneFeatureNom_1122_TypeValue = PlaneFeatureNom_1122_TypeValueIn;
 }
 
-PlaneFeatureNom_1121_TypeChoicePair::~PlaneFeatureNom_1121_TypeChoicePair()
+PlaneFeatureNom_1122_TypeChoicePair::~PlaneFeatureNom_1122_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (PlaneFeatureNom_1121_TypeType == PolyLineE)
-    delete PlaneFeatureNom_1121_TypeValue.PolyLine;
-  else if (PlaneFeatureNom_1121_TypeType == RectangleE)
-    delete PlaneFeatureNom_1121_TypeValue.Rectangle;
-  else if (PlaneFeatureNom_1121_TypeType == CircleE)
-    delete PlaneFeatureNom_1121_TypeValue.Circle;
+  if (PlaneFeatureNom_1122_TypeType == PolyLineE)
+    delete PlaneFeatureNom_1122_TypeValue.PolyLine;
+  else if (PlaneFeatureNom_1122_TypeType == RectangleE)
+    delete PlaneFeatureNom_1122_TypeValue.Rectangle;
+  else if (PlaneFeatureNom_1122_TypeType == CircleE)
+    delete PlaneFeatureNom_1122_TypeValue.Circle;
   #endif
 }
 
-void PlaneFeatureNom_1121_TypeChoicePair::printSelf(FILE * outFile)
+void PlaneFeatureNom_1122_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (PlaneFeatureNom_1121_TypeType == PolyLineE)
+  if (PlaneFeatureNom_1122_TypeType == PolyLineE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PolyLine");
-      PlaneFeatureNom_1121_TypeValue.PolyLine->printSelf(outFile);
+      PlaneFeatureNom_1122_TypeValue.PolyLine->printSelf(outFile);
       fprintf(outFile, "</PolyLine>\n");
     }
-  else if (PlaneFeatureNom_1121_TypeType == RectangleE)
+  else if (PlaneFeatureNom_1122_TypeType == RectangleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Rectangle");
-      PlaneFeatureNom_1121_TypeValue.Rectangle->printSelf(outFile);
+      PlaneFeatureNom_1122_TypeValue.Rectangle->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Rectangle>\n");
     }
-  else if (PlaneFeatureNom_1121_TypeType == CircleE)
+  else if (PlaneFeatureNom_1122_TypeType == CircleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Circle");
-      PlaneFeatureNom_1121_TypeValue.Circle->printSelf(outFile);
+      PlaneFeatureNom_1122_TypeValue.Circle->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Circle>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class PointFeatureExt_1122_Type
-
-*/
-
-PointFeatureExt_1122_Type::PointFeatureExt_1122_Type()
-{
-  PointFeatureExt_1122_TypePair = 0;
-}
-
-PointFeatureExt_1122_Type::PointFeatureExt_1122_Type(
- PointFeatureExt_1122_TypeChoicePair * PointFeatureExt_1122_TypePairIn)
-{
-  PointFeatureExt_1122_TypePair = PointFeatureExt_1122_TypePairIn;
-}
-
-PointFeatureExt_1122_Type::~PointFeatureExt_1122_Type()
-{
-  #ifndef NODESTRUCT
-  delete PointFeatureExt_1122_TypePair;
-  #endif
-}
-
-void PointFeatureExt_1122_Type::printSelf(FILE * outFile)
-{
-  PointFeatureExt_1122_TypePair->printSelf(outFile);
-}
-
-PointFeatureExt_1122_TypeChoicePair * PointFeatureExt_1122_Type::getPointFeatureExt_1122_TypePair()
-{return PointFeatureExt_1122_TypePair;}
-
-void PointFeatureExt_1122_Type::setPointFeatureExt_1122_TypePair(PointFeatureExt_1122_TypeChoicePair * PointFeatureExt_1122_TypePairIn)
-{PointFeatureExt_1122_TypePair = PointFeatureExt_1122_TypePairIn;}
-
-/*********************************************************************/
-
-/* class PointFeatureExt_1122_TypeChoicePair
+/* class PointFeatureExt_1123_Type
 
 */
 
-PointFeatureExt_1122_TypeChoicePair::PointFeatureExt_1122_TypeChoicePair() {}
-
-PointFeatureExt_1122_TypeChoicePair::PointFeatureExt_1122_TypeChoicePair(
- whichOne PointFeatureExt_1122_TypeTypeIn,
- PointFeatureExt_1122_TypeVal PointFeatureExt_1122_TypeValueIn)
+PointFeatureExt_1123_Type::PointFeatureExt_1123_Type()
 {
-  PointFeatureExt_1122_TypeType = PointFeatureExt_1122_TypeTypeIn;
-  PointFeatureExt_1122_TypeValue = PointFeatureExt_1122_TypeValueIn;
+  PointFeatureExt_1123_TypePair = 0;
 }
 
-PointFeatureExt_1122_TypeChoicePair::~PointFeatureExt_1122_TypeChoicePair()
+PointFeatureExt_1123_Type::PointFeatureExt_1123_Type(
+ PointFeatureExt_1123_TypeChoicePair * PointFeatureExt_1123_TypePairIn)
+{
+  PointFeatureExt_1123_TypePair = PointFeatureExt_1123_TypePairIn;
+}
+
+PointFeatureExt_1123_Type::~PointFeatureExt_1123_Type()
 {
   #ifndef NODESTRUCT
-  if (PointFeatureExt_1122_TypeType == BaseAxisFeatureE)
-    delete PointFeatureExt_1122_TypeValue.BaseAxisFeature;
-  else if (PointFeatureExt_1122_TypeType == VectorE)
-    delete PointFeatureExt_1122_TypeValue.Vector;
-  else if (PointFeatureExt_1122_TypeType == RadialE)
-    delete PointFeatureExt_1122_TypeValue.Radial;
-  else if (PointFeatureExt_1122_TypeType == XaxisE)
-    delete PointFeatureExt_1122_TypeValue.Xaxis;
-  else if (PointFeatureExt_1122_TypeType == YaxisE)
-    delete PointFeatureExt_1122_TypeValue.Yaxis;
-  else if (PointFeatureExt_1122_TypeType == ZaxisE)
-    delete PointFeatureExt_1122_TypeValue.Zaxis;
+  delete PointFeatureExt_1123_TypePair;
   #endif
 }
 
-void PointFeatureExt_1122_TypeChoicePair::printSelf(FILE * outFile)
+void PointFeatureExt_1123_Type::printSelf(FILE * outFile)
 {
-  if (PointFeatureExt_1122_TypeType == BaseAxisFeatureE)
+  PointFeatureExt_1123_TypePair->printSelf(outFile);
+}
+
+PointFeatureExt_1123_TypeChoicePair * PointFeatureExt_1123_Type::getPointFeatureExt_1123_TypePair()
+{return PointFeatureExt_1123_TypePair;}
+
+void PointFeatureExt_1123_Type::setPointFeatureExt_1123_TypePair(PointFeatureExt_1123_TypeChoicePair * PointFeatureExt_1123_TypePairIn)
+{PointFeatureExt_1123_TypePair = PointFeatureExt_1123_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class PointFeatureExt_1123_TypeChoicePair
+
+*/
+
+PointFeatureExt_1123_TypeChoicePair::PointFeatureExt_1123_TypeChoicePair() {}
+
+PointFeatureExt_1123_TypeChoicePair::PointFeatureExt_1123_TypeChoicePair(
+ whichOne PointFeatureExt_1123_TypeTypeIn,
+ PointFeatureExt_1123_TypeVal PointFeatureExt_1123_TypeValueIn)
+{
+  PointFeatureExt_1123_TypeType = PointFeatureExt_1123_TypeTypeIn;
+  PointFeatureExt_1123_TypeValue = PointFeatureExt_1123_TypeValueIn;
+}
+
+PointFeatureExt_1123_TypeChoicePair::~PointFeatureExt_1123_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (PointFeatureExt_1123_TypeType == BaseAxisFeatureE)
+    delete PointFeatureExt_1123_TypeValue.BaseAxisFeature;
+  else if (PointFeatureExt_1123_TypeType == VectorE)
+    delete PointFeatureExt_1123_TypeValue.Vector;
+  else if (PointFeatureExt_1123_TypeType == RadialE)
+    delete PointFeatureExt_1123_TypeValue.Radial;
+  else if (PointFeatureExt_1123_TypeType == XaxisE)
+    delete PointFeatureExt_1123_TypeValue.Xaxis;
+  else if (PointFeatureExt_1123_TypeType == YaxisE)
+    delete PointFeatureExt_1123_TypeValue.Yaxis;
+  else if (PointFeatureExt_1123_TypeType == ZaxisE)
+    delete PointFeatureExt_1123_TypeValue.Zaxis;
+  #endif
+}
+
+void PointFeatureExt_1123_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (PointFeatureExt_1123_TypeType == BaseAxisFeatureE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BaseAxisFeature");
-      PointFeatureExt_1122_TypeValue.BaseAxisFeature->printSelf(outFile);
+      PointFeatureExt_1123_TypeValue.BaseAxisFeature->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BaseAxisFeature>\n");
     }
-  else if (PointFeatureExt_1122_TypeType == VectorE)
+  else if (PointFeatureExt_1123_TypeType == VectorE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Vector");
-      PointFeatureExt_1122_TypeValue.Vector->printSelf(outFile);
+      PointFeatureExt_1123_TypeValue.Vector->printSelf(outFile);
       fprintf(outFile, "</Vector>\n");
     }
-  else if (PointFeatureExt_1122_TypeType == RadialE)
+  else if (PointFeatureExt_1123_TypeType == RadialE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Radial");
-      PointFeatureExt_1122_TypeValue.Radial->printSelf(outFile);
+      PointFeatureExt_1123_TypeValue.Radial->printSelf(outFile);
       fprintf(outFile, "</Radial>\n");
     }
-  else if (PointFeatureExt_1122_TypeType == XaxisE)
+  else if (PointFeatureExt_1123_TypeType == XaxisE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Xaxis");
-      PointFeatureExt_1122_TypeValue.Xaxis->printSelf(outFile);
+      PointFeatureExt_1123_TypeValue.Xaxis->printSelf(outFile);
       fprintf(outFile, "</Xaxis>\n");
     }
-  else if (PointFeatureExt_1122_TypeType == YaxisE)
+  else if (PointFeatureExt_1123_TypeType == YaxisE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Yaxis");
-      PointFeatureExt_1122_TypeValue.Yaxis->printSelf(outFile);
+      PointFeatureExt_1123_TypeValue.Yaxis->printSelf(outFile);
       fprintf(outFile, "</Yaxis>\n");
     }
-  else if (PointFeatureExt_1122_TypeType == ZaxisE)
+  else if (PointFeatureExt_1123_TypeType == ZaxisE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Zaxis");
-      PointFeatureExt_1122_TypeValue.Zaxis->printSelf(outFile);
+      PointFeatureExt_1123_TypeValue.Zaxis->printSelf(outFile);
       fprintf(outFile, "</Zaxis>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class PointFeatureMov_1123_Type
-
-*/
-
-PointFeatureMov_1123_Type::PointFeatureMov_1123_Type()
-{
-  PointFeatureMov_1123_TypePair = 0;
-}
-
-PointFeatureMov_1123_Type::PointFeatureMov_1123_Type(
- PointFeatureMov_1123_TypeChoicePair * PointFeatureMov_1123_TypePairIn)
-{
-  PointFeatureMov_1123_TypePair = PointFeatureMov_1123_TypePairIn;
-}
-
-PointFeatureMov_1123_Type::~PointFeatureMov_1123_Type()
-{
-  #ifndef NODESTRUCT
-  delete PointFeatureMov_1123_TypePair;
-  #endif
-}
-
-void PointFeatureMov_1123_Type::printSelf(FILE * outFile)
-{
-  PointFeatureMov_1123_TypePair->printSelf(outFile);
-}
-
-PointFeatureMov_1123_TypeChoicePair * PointFeatureMov_1123_Type::getPointFeatureMov_1123_TypePair()
-{return PointFeatureMov_1123_TypePair;}
-
-void PointFeatureMov_1123_Type::setPointFeatureMov_1123_TypePair(PointFeatureMov_1123_TypeChoicePair * PointFeatureMov_1123_TypePairIn)
-{PointFeatureMov_1123_TypePair = PointFeatureMov_1123_TypePairIn;}
-
-/*********************************************************************/
-
-/* class PointFeatureMov_1123_TypeChoicePair
+/* class PointFeatureMov_1124_Type
 
 */
 
-PointFeatureMov_1123_TypeChoicePair::PointFeatureMov_1123_TypeChoicePair() {}
-
-PointFeatureMov_1123_TypeChoicePair::PointFeatureMov_1123_TypeChoicePair(
- whichOne PointFeatureMov_1123_TypeTypeIn,
- PointFeatureMov_1123_TypeVal PointFeatureMov_1123_TypeValueIn)
+PointFeatureMov_1124_Type::PointFeatureMov_1124_Type()
 {
-  PointFeatureMov_1123_TypeType = PointFeatureMov_1123_TypeTypeIn;
-  PointFeatureMov_1123_TypeValue = PointFeatureMov_1123_TypeValueIn;
+  PointFeatureMov_1124_TypePair = 0;
 }
 
-PointFeatureMov_1123_TypeChoicePair::~PointFeatureMov_1123_TypeChoicePair()
+PointFeatureMov_1124_Type::PointFeatureMov_1124_Type(
+ PointFeatureMov_1124_TypeChoicePair * PointFeatureMov_1124_TypePairIn)
+{
+  PointFeatureMov_1124_TypePair = PointFeatureMov_1124_TypePairIn;
+}
+
+PointFeatureMov_1124_Type::~PointFeatureMov_1124_Type()
 {
   #ifndef NODESTRUCT
-  if (PointFeatureMov_1123_TypeType == OffsetE)
-    delete PointFeatureMov_1123_TypeValue.Offset;
-  else if (PointFeatureMov_1123_TypeType == DirectionalOffsetE)
-    delete PointFeatureMov_1123_TypeValue.DirectionalOffset;
+  delete PointFeatureMov_1124_TypePair;
   #endif
 }
 
-void PointFeatureMov_1123_TypeChoicePair::printSelf(FILE * outFile)
+void PointFeatureMov_1124_Type::printSelf(FILE * outFile)
 {
-  if (PointFeatureMov_1123_TypeType == OffsetE)
+  PointFeatureMov_1124_TypePair->printSelf(outFile);
+}
+
+PointFeatureMov_1124_TypeChoicePair * PointFeatureMov_1124_Type::getPointFeatureMov_1124_TypePair()
+{return PointFeatureMov_1124_TypePair;}
+
+void PointFeatureMov_1124_Type::setPointFeatureMov_1124_TypePair(PointFeatureMov_1124_TypeChoicePair * PointFeatureMov_1124_TypePairIn)
+{PointFeatureMov_1124_TypePair = PointFeatureMov_1124_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class PointFeatureMov_1124_TypeChoicePair
+
+*/
+
+PointFeatureMov_1124_TypeChoicePair::PointFeatureMov_1124_TypeChoicePair() {}
+
+PointFeatureMov_1124_TypeChoicePair::PointFeatureMov_1124_TypeChoicePair(
+ whichOne PointFeatureMov_1124_TypeTypeIn,
+ PointFeatureMov_1124_TypeVal PointFeatureMov_1124_TypeValueIn)
+{
+  PointFeatureMov_1124_TypeType = PointFeatureMov_1124_TypeTypeIn;
+  PointFeatureMov_1124_TypeValue = PointFeatureMov_1124_TypeValueIn;
+}
+
+PointFeatureMov_1124_TypeChoicePair::~PointFeatureMov_1124_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (PointFeatureMov_1124_TypeType == OffsetE)
+    delete PointFeatureMov_1124_TypeValue.Offset;
+  else if (PointFeatureMov_1124_TypeType == DirectionalOffsetE)
+    delete PointFeatureMov_1124_TypeValue.DirectionalOffset;
+  #endif
+}
+
+void PointFeatureMov_1124_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (PointFeatureMov_1124_TypeType == OffsetE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Offset");
-      PointFeatureMov_1123_TypeValue.Offset->printSelf(outFile);
+      PointFeatureMov_1124_TypeValue.Offset->printSelf(outFile);
       fprintf(outFile, "</Offset>\n");
     }
-  else if (PointFeatureMov_1123_TypeType == DirectionalOffsetE)
+  else if (PointFeatureMov_1124_TypeType == DirectionalOffsetE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DirectionalOffset");
-      PointFeatureMov_1123_TypeValue.DirectionalOffset->printSelf(outFile);
+      PointFeatureMov_1124_TypeValue.DirectionalOffset->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</DirectionalOffset>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class PointFeatureNom_1124_Type
+/* class PointFeatureNom_1125_Type
 
 */
 
-PointFeatureNom_1124_Type::PointFeatureNom_1124_Type()
+PointFeatureNom_1125_Type::PointFeatureNom_1125_Type()
 {
-  PointFeatureNom_1124_TypePair = 0;
+  PointFeatureNom_1125_TypePair = 0;
 }
 
-PointFeatureNom_1124_Type::PointFeatureNom_1124_Type(
- PointFeatureNom_1124_TypeChoicePair * PointFeatureNom_1124_TypePairIn)
+PointFeatureNom_1125_Type::PointFeatureNom_1125_Type(
+ PointFeatureNom_1125_TypeChoicePair * PointFeatureNom_1125_TypePairIn)
 {
-  PointFeatureNom_1124_TypePair = PointFeatureNom_1124_TypePairIn;
+  PointFeatureNom_1125_TypePair = PointFeatureNom_1125_TypePairIn;
 }
 
-PointFeatureNom_1124_Type::~PointFeatureNom_1124_Type()
+PointFeatureNom_1125_Type::~PointFeatureNom_1125_Type()
 {
   #ifndef NODESTRUCT
-  delete PointFeatureNom_1124_TypePair;
+  delete PointFeatureNom_1125_TypePair;
   #endif
 }
 
-void PointFeatureNom_1124_Type::printSelf(FILE * outFile)
+void PointFeatureNom_1125_Type::printSelf(FILE * outFile)
 {
-  if (PointFeatureNom_1124_TypePair)
+  if (PointFeatureNom_1125_TypePair)
     {
-      PointFeatureNom_1124_TypePair->printSelf(outFile);
+      PointFeatureNom_1125_TypePair->printSelf(outFile);
     }
 }
 
-PointFeatureNom_1124_TypeChoicePair * PointFeatureNom_1124_Type::getPointFeatureNom_1124_TypePair()
-{return PointFeatureNom_1124_TypePair;}
+PointFeatureNom_1125_TypeChoicePair * PointFeatureNom_1125_Type::getPointFeatureNom_1125_TypePair()
+{return PointFeatureNom_1125_TypePair;}
 
-void PointFeatureNom_1124_Type::setPointFeatureNom_1124_TypePair(PointFeatureNom_1124_TypeChoicePair * PointFeatureNom_1124_TypePairIn)
-{PointFeatureNom_1124_TypePair = PointFeatureNom_1124_TypePairIn;}
+void PointFeatureNom_1125_Type::setPointFeatureNom_1125_TypePair(PointFeatureNom_1125_TypeChoicePair * PointFeatureNom_1125_TypePairIn)
+{PointFeatureNom_1125_TypePair = PointFeatureNom_1125_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class PointFeatureNom_1124_TypeChoicePair
+/* class PointFeatureNom_1125_TypeChoicePair
 
 */
 
-PointFeatureNom_1124_TypeChoicePair::PointFeatureNom_1124_TypeChoicePair() {}
+PointFeatureNom_1125_TypeChoicePair::PointFeatureNom_1125_TypeChoicePair() {}
 
-PointFeatureNom_1124_TypeChoicePair::PointFeatureNom_1124_TypeChoicePair(
- whichOne PointFeatureNom_1124_TypeTypeIn,
- PointFeatureNom_1124_TypeVal PointFeatureNom_1124_TypeValueIn)
+PointFeatureNom_1125_TypeChoicePair::PointFeatureNom_1125_TypeChoicePair(
+ whichOne PointFeatureNom_1125_TypeTypeIn,
+ PointFeatureNom_1125_TypeVal PointFeatureNom_1125_TypeValueIn)
 {
-  PointFeatureNom_1124_TypeType = PointFeatureNom_1124_TypeTypeIn;
-  PointFeatureNom_1124_TypeValue = PointFeatureNom_1124_TypeValueIn;
+  PointFeatureNom_1125_TypeType = PointFeatureNom_1125_TypeTypeIn;
+  PointFeatureNom_1125_TypeValue = PointFeatureNom_1125_TypeValueIn;
 }
 
-PointFeatureNom_1124_TypeChoicePair::~PointFeatureNom_1124_TypeChoicePair()
+PointFeatureNom_1125_TypeChoicePair::~PointFeatureNom_1125_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (PointFeatureNom_1124_TypeType == SurfaceFeatureNominalIdE)
-    delete PointFeatureNom_1124_TypeValue.SurfaceFeatureNominalId;
-  else if (PointFeatureNom_1124_TypeType == CurveFeatureNominalIdE)
-    delete PointFeatureNom_1124_TypeValue.CurveFeatureNominalId;
+  if (PointFeatureNom_1125_TypeType == SurfaceFeatureNominalIdE)
+    delete PointFeatureNom_1125_TypeValue.SurfaceFeatureNominalId;
+  else if (PointFeatureNom_1125_TypeType == CurveFeatureNominalIdE)
+    delete PointFeatureNom_1125_TypeValue.CurveFeatureNominalId;
   #endif
 }
 
-void PointFeatureNom_1124_TypeChoicePair::printSelf(FILE * outFile)
+void PointFeatureNom_1125_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (PointFeatureNom_1124_TypeType == SurfaceFeatureNominalIdE)
+  if (PointFeatureNom_1125_TypeType == SurfaceFeatureNominalIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SurfaceFeatureNominalId");
-      PointFeatureNom_1124_TypeValue.SurfaceFeatureNominalId->printSelf(outFile);
+      PointFeatureNom_1125_TypeValue.SurfaceFeatureNominalId->printSelf(outFile);
       fprintf(outFile, "</SurfaceFeatureNominalId>\n");
     }
-  else if (PointFeatureNom_1124_TypeType == CurveFeatureNominalIdE)
+  else if (PointFeatureNom_1125_TypeType == CurveFeatureNominalIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CurveFeatureNominalId");
-      PointFeatureNom_1124_TypeValue.CurveFeatureNominalId->printSelf(outFile);
+      PointFeatureNom_1125_TypeValue.CurveFeatureNominalId->printSelf(outFile);
       fprintf(outFile, "</CurveFeatureNominalId>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class MeasuredPointSe_1125_Type
-
-*/
-
-MeasuredPointSe_1125_Type::MeasuredPointSe_1125_Type()
-{
-  MeasuredPointSe_1125_TypePair = 0;
-}
-
-MeasuredPointSe_1125_Type::MeasuredPointSe_1125_Type(
- MeasuredPointSe_1125_TypeChoicePair * MeasuredPointSe_1125_TypePairIn)
-{
-  MeasuredPointSe_1125_TypePair = MeasuredPointSe_1125_TypePairIn;
-}
-
-MeasuredPointSe_1125_Type::~MeasuredPointSe_1125_Type()
-{
-  #ifndef NODESTRUCT
-  delete MeasuredPointSe_1125_TypePair;
-  #endif
-}
-
-void MeasuredPointSe_1125_Type::printSelf(FILE * outFile)
-{
-  MeasuredPointSe_1125_TypePair->printSelf(outFile);
-}
-
-MeasuredPointSe_1125_TypeChoicePair * MeasuredPointSe_1125_Type::getMeasuredPointSe_1125_TypePair()
-{return MeasuredPointSe_1125_TypePair;}
-
-void MeasuredPointSe_1125_Type::setMeasuredPointSe_1125_TypePair(MeasuredPointSe_1125_TypeChoicePair * MeasuredPointSe_1125_TypePairIn)
-{MeasuredPointSe_1125_TypePair = MeasuredPointSe_1125_TypePairIn;}
-
-/*********************************************************************/
-
-/* class MeasuredPointSe_1125_TypeChoicePair
+/* class MeasuredPointSe_1126_Type
 
 */
 
-MeasuredPointSe_1125_TypeChoicePair::MeasuredPointSe_1125_TypeChoicePair() {}
-
-MeasuredPointSe_1125_TypeChoicePair::MeasuredPointSe_1125_TypeChoicePair(
- whichOne MeasuredPointSe_1125_TypeTypeIn,
- MeasuredPointSe_1125_TypeVal MeasuredPointSe_1125_TypeValueIn)
+MeasuredPointSe_1126_Type::MeasuredPointSe_1126_Type()
 {
-  MeasuredPointSe_1125_TypeType = MeasuredPointSe_1125_TypeTypeIn;
-  MeasuredPointSe_1125_TypeValue = MeasuredPointSe_1125_TypeValueIn;
+  MeasuredPointSe_1126_TypePair = 0;
 }
 
-MeasuredPointSe_1125_TypeChoicePair::~MeasuredPointSe_1125_TypeChoicePair()
+MeasuredPointSe_1126_Type::MeasuredPointSe_1126_Type(
+ MeasuredPointSe_1126_TypeChoicePair * MeasuredPointSe_1126_TypePairIn)
+{
+  MeasuredPointSe_1126_TypePair = MeasuredPointSe_1126_TypePairIn;
+}
+
+MeasuredPointSe_1126_Type::~MeasuredPointSe_1126_Type()
 {
   #ifndef NODESTRUCT
-  if (MeasuredPointSe_1125_TypeType == PointIndicesE)
-    delete MeasuredPointSe_1125_TypeValue.PointIndices;
-  else if (MeasuredPointSe_1125_TypeType == BinaryPointIndicesE)
-    delete MeasuredPointSe_1125_TypeValue.BinaryPointIndices;
+  delete MeasuredPointSe_1126_TypePair;
   #endif
 }
 
-void MeasuredPointSe_1125_TypeChoicePair::printSelf(FILE * outFile)
+void MeasuredPointSe_1126_Type::printSelf(FILE * outFile)
 {
-  if (MeasuredPointSe_1125_TypeType == PointIndicesE)
+  MeasuredPointSe_1126_TypePair->printSelf(outFile);
+}
+
+MeasuredPointSe_1126_TypeChoicePair * MeasuredPointSe_1126_Type::getMeasuredPointSe_1126_TypePair()
+{return MeasuredPointSe_1126_TypePair;}
+
+void MeasuredPointSe_1126_Type::setMeasuredPointSe_1126_TypePair(MeasuredPointSe_1126_TypeChoicePair * MeasuredPointSe_1126_TypePairIn)
+{MeasuredPointSe_1126_TypePair = MeasuredPointSe_1126_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class MeasuredPointSe_1126_TypeChoicePair
+
+*/
+
+MeasuredPointSe_1126_TypeChoicePair::MeasuredPointSe_1126_TypeChoicePair() {}
+
+MeasuredPointSe_1126_TypeChoicePair::MeasuredPointSe_1126_TypeChoicePair(
+ whichOne MeasuredPointSe_1126_TypeTypeIn,
+ MeasuredPointSe_1126_TypeVal MeasuredPointSe_1126_TypeValueIn)
+{
+  MeasuredPointSe_1126_TypeType = MeasuredPointSe_1126_TypeTypeIn;
+  MeasuredPointSe_1126_TypeValue = MeasuredPointSe_1126_TypeValueIn;
+}
+
+MeasuredPointSe_1126_TypeChoicePair::~MeasuredPointSe_1126_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (MeasuredPointSe_1126_TypeType == PointIndicesE)
+    delete MeasuredPointSe_1126_TypeValue.PointIndices;
+  else if (MeasuredPointSe_1126_TypeType == BinaryPointIndicesE)
+    delete MeasuredPointSe_1126_TypeValue.BinaryPointIndices;
+  #endif
+}
+
+void MeasuredPointSe_1126_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (MeasuredPointSe_1126_TypeType == PointIndicesE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointIndices");
-      MeasuredPointSe_1125_TypeValue.PointIndices->printSelf(outFile);
+      MeasuredPointSe_1126_TypeValue.PointIndices->printSelf(outFile);
       fprintf(outFile, "</PointIndices>\n");
     }
-  else if (MeasuredPointSe_1125_TypeType == BinaryPointIndicesE)
+  else if (MeasuredPointSe_1126_TypeType == BinaryPointIndicesE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BinaryPointIndices");
-      MeasuredPointSe_1125_TypeValue.BinaryPointIndices->printSelf(outFile);
+      MeasuredPointSe_1126_TypeValue.BinaryPointIndices->printSelf(outFile);
       fprintf(outFile, "</BinaryPointIndices>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 

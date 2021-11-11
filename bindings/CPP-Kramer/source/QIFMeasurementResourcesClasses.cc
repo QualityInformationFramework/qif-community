@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #include <stdio.h>             // for printf, etc.
 #include <string.h>            // for strdup
@@ -10,8 +10,8 @@
 
 #define INDENT 2
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 /* class AACMMAccuraciesType
 
@@ -169,7 +169,7 @@ AACMMAccuracyTypeLisd * AACMMAccuraciesType::getAACMMAccuracy()
 void AACMMAccuraciesType::setAACMMAccuracy(AACMMAccuracyTypeLisd * AACMMAccuracyIn)
 {AACMMAccuracy = AACMMAccuracyIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AACMMAccuracyType
 
@@ -292,7 +292,7 @@ AccuracySourceType * AACMMAccuracyType::getAccuracySource()
 void AACMMAccuracyType::setAccuracySource(AccuracySourceType * AccuracySourceIn)
 {AccuracySource = AccuracySourceIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AACMMAccuracyTypeLisd
 
@@ -319,7 +319,7 @@ AACMMAccuracyTypeLisd::~AACMMAccuracyTypeLisd()
 
 void AACMMAccuracyTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AACMMB89TestType
 
@@ -402,7 +402,7 @@ VolumetricPerformanceTestType * AACMMB89TestType::getVolumetricPerformanceTest()
 void AACMMB89TestType::setVolumetricPerformanceTest(VolumetricPerformanceTestType * VolumetricPerformanceTestIn)
 {VolumetricPerformanceTest = VolumetricPerformanceTestIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AACMMType
 
@@ -427,7 +427,7 @@ AACMMType::AACMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -449,7 +449,7 @@ AACMMType::AACMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -475,7 +475,7 @@ AACMMType::AACMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -498,7 +498,7 @@ AACMMType::AACMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -603,9 +603,9 @@ void AACMMType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -1053,7 +1053,7 @@ AACMMAccuraciesType * AACMMType::getAccuracies()
 void AACMMType::setAccuracies(AACMMAccuraciesType * AccuraciesIn)
 {Accuracies = AccuraciesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ABCResolutionType
 
@@ -1125,7 +1125,7 @@ LinearOrRotaryAxisType * ABCResolutionType::getCAxisResolution()
 void ABCResolutionType::setCAxisResolution(LinearOrRotaryAxisType * CAxisResolutionIn)
 {CAxisResolution = CAxisResolutionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AccuracySourceEnumType
 
@@ -1183,7 +1183,7 @@ void AccuracySourceEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AccuracySourceType
 
@@ -1221,7 +1221,7 @@ AccuracySourceTypeChoicePair * AccuracySourceType::getAccuracySourceTypePair()
 void AccuracySourceType::setAccuracySourceTypePair(AccuracySourceTypeChoicePair * AccuracySourceTypePairIn)
 {AccuracySourceTypePair = AccuracySourceTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AccuracySourceTypeChoicePair
 
@@ -1265,7 +1265,7 @@ void AccuracySourceTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngleFunctionDiscreteType
 
@@ -1431,7 +1431,7 @@ XmlToken * AngleFunctionDiscreteType::getRangeAngularUnit()
 void AngleFunctionDiscreteType::setRangeAngularUnit(XmlToken * RangeAngularUnitIn)
 {RangeAngularUnit = RangeAngularUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularErrorType
 
@@ -1486,7 +1486,7 @@ XmlDecimal * AngularErrorType::getErrorRate()
 void AngularErrorType::setErrorRate(XmlDecimal * ErrorRateIn)
 {ErrorRate = ErrorRateIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AutocollimatorType
 
@@ -1513,7 +1513,7 @@ AutocollimatorType::AutocollimatorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -1537,7 +1537,7 @@ AutocollimatorType::AutocollimatorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -1565,7 +1565,7 @@ AutocollimatorType::AutocollimatorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -1590,7 +1590,7 @@ AutocollimatorType::AutocollimatorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -1699,9 +1699,9 @@ void AutocollimatorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -2175,7 +2175,7 @@ AngularValueType * AutocollimatorType::getFieldOfView()
 void AutocollimatorType::setFieldOfView(AngularValueType * FieldOfViewIn)
 {FieldOfView = FieldOfViewIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CMMAccuracyTestBaseType
 
@@ -2191,7 +2191,7 @@ void CMMAccuracyTestBaseType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CMMAxisDirectionsBaseType
 
@@ -2207,7 +2207,7 @@ void CMMAxisDirectionsBaseType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CMMDirectionEnumType
 
@@ -2273,7 +2273,7 @@ void CMMDirectionEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CMMSpeedsBaseType
 
@@ -2289,7 +2289,7 @@ void CMMSpeedsBaseType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CMMType
 
@@ -2308,7 +2308,7 @@ CMMType::CMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -2324,7 +2324,7 @@ CMMType::CMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -2344,7 +2344,7 @@ CMMType::CMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -2361,7 +2361,7 @@ CMMType::CMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -2454,9 +2454,9 @@ void CMMType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -2825,7 +2825,7 @@ bool CMMType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CalibrationMasterType
 
@@ -2883,7 +2883,7 @@ XmlString * CalibrationMasterType::getDescription()
 void CalibrationMasterType::setDescription(XmlString * DescriptionIn)
 {Description = DescriptionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CalibrationType
 
@@ -2977,7 +2977,7 @@ XmlDateTime * CalibrationType::getExpirationDate()
 void CalibrationType::setExpirationDate(XmlDateTime * ExpirationDateIn)
 {ExpirationDate = ExpirationDateIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CalibrationTypeLisd
 
@@ -3004,7 +3004,7 @@ CalibrationTypeLisd::~CalibrationTypeLisd()
 
 void CalibrationTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CalibrationsType
 
@@ -3162,7 +3162,7 @@ CalibrationTypeLisd * CalibrationsType::getCalibration()
 void CalibrationsType::setCalibration(CalibrationTypeLisd * CalibrationIn)
 {Calibration = CalibrationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CaliperDialType
 
@@ -3181,7 +3181,7 @@ CaliperDialType::CaliperDialType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -3200,7 +3200,7 @@ CaliperDialType::CaliperDialType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -3223,7 +3223,7 @@ CaliperDialType::CaliperDialType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -3243,7 +3243,7 @@ CaliperDialType::CaliperDialType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -3339,9 +3339,9 @@ void CaliperDialType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -3478,7 +3478,7 @@ bool CaliperDialType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CaliperDigitalType
 
@@ -3497,7 +3497,7 @@ CaliperDigitalType::CaliperDigitalType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -3516,7 +3516,7 @@ CaliperDigitalType::CaliperDigitalType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -3539,7 +3539,7 @@ CaliperDigitalType::CaliperDigitalType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -3559,7 +3559,7 @@ CaliperDigitalType::CaliperDigitalType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -3655,9 +3655,9 @@ void CaliperDigitalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -3794,7 +3794,7 @@ bool CaliperDigitalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CaliperType
 
@@ -3818,7 +3818,7 @@ CaliperType::CaliperType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -3837,7 +3837,7 @@ CaliperType::CaliperType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -3860,7 +3860,7 @@ CaliperType::CaliperType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -3880,7 +3880,7 @@ CaliperType::CaliperType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -3981,9 +3981,9 @@ void CaliperType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -4150,7 +4150,7 @@ XmlBoolean * CaliperType::getCanMeasureDepth()
 void CaliperType::setCanMeasureDepth(XmlBoolean * CanMeasureDepthIn)
 {CanMeasureDepth = CanMeasureDepthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CapacitiveSensorType
 
@@ -4177,7 +4177,7 @@ CapacitiveSensorType::CapacitiveSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -4201,7 +4201,7 @@ CapacitiveSensorType::CapacitiveSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -4229,7 +4229,7 @@ CapacitiveSensorType::CapacitiveSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -4254,7 +4254,7 @@ CapacitiveSensorType::CapacitiveSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -4363,9 +4363,9 @@ void CapacitiveSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -4582,7 +4582,7 @@ XmlString * CapacitiveSensorType::getMounting()
 void CapacitiveSensorType::setMounting(XmlString * MountingIn)
 {Mounting = MountingIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CarriageType
 
@@ -4602,7 +4602,7 @@ CarriageType::CarriageType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  ArrayReferenceType * ToolIdsIn) :
   MeasurementResourceBaseType(
@@ -4613,7 +4613,7 @@ CarriageType::CarriageType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   ToolIds = ToolIdsIn;
@@ -4628,7 +4628,7 @@ CarriageType::CarriageType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  ArrayReferenceType * ToolIdsIn) :
   MeasurementResourceBaseType(
@@ -4640,7 +4640,7 @@ CarriageType::CarriageType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   ToolIds = ToolIdsIn;
@@ -4729,9 +4729,9 @@ void CarriageType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -4815,7 +4815,7 @@ ArrayReferenceType * CarriageType::getToolIds()
 void CarriageType::setToolIds(ArrayReferenceType * ToolIdsIn)
 {ToolIds = ToolIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CarriageTypeLisd
 
@@ -4842,7 +4842,7 @@ CarriageTypeLisd::~CarriageTypeLisd()
 
 void CarriageTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CarriagesType
 
@@ -5000,7 +5000,7 @@ CarriageTypeLisd * CarriagesType::getCarriage()
 void CarriagesType::setCarriage(CarriageTypeLisd * CarriageIn)
 {Carriage = CarriageIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CartesianCMMAccuraciesType
 
@@ -5158,7 +5158,7 @@ CartesianCMMAccuracyTypeLisd * CartesianCMMAccuraciesType::getCartesianCMMAccura
 void CartesianCMMAccuraciesType::setCartesianCMMAccuracy(CartesianCMMAccuracyTypeLisd * CartesianCMMAccuracyIn)
 {CartesianCMMAccuracy = CartesianCMMAccuracyIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CartesianCMMAccuracyType
 
@@ -5297,7 +5297,7 @@ AccuracySourceType * CartesianCMMAccuracyType::getAccuracySource()
 void CartesianCMMAccuracyType::setAccuracySource(AccuracySourceType * AccuracySourceIn)
 {AccuracySource = AccuracySourceIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CartesianCMMAccuracyTypeLisd
 
@@ -5324,7 +5324,7 @@ CartesianCMMAccuracyTypeLisd::~CartesianCMMAccuracyTypeLisd()
 
 void CartesianCMMAccuracyTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CartesianCMMAxisDirectionsType
 
@@ -5395,7 +5395,7 @@ CMMDirectionEnumType * CartesianCMMAxisDirectionsType::getZAxisDirection()
 void CartesianCMMAxisDirectionsType::setZAxisDirection(CMMDirectionEnumType * ZAxisDirectionIn)
 {ZAxisDirection = ZAxisDirectionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CartesianCMMB89TestType
 
@@ -5508,7 +5508,7 @@ LinearValueType * CartesianCMMB89TestType::getRepeatability()
 void CartesianCMMB89TestType::setRepeatability(LinearValueType * RepeatabilityIn)
 {Repeatability = RepeatabilityIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CartesianCMMGeometryEnumType
 
@@ -5582,7 +5582,7 @@ void CartesianCMMGeometryEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CartesianCMMGeometryType
 
@@ -5620,7 +5620,7 @@ CartesianCMMGeometryTypeChoicePair * CartesianCMMGeometryType::getCartesianCMMGe
 void CartesianCMMGeometryType::setCartesianCMMGeometryTypePair(CartesianCMMGeometryTypeChoicePair * CartesianCMMGeometryTypePairIn)
 {CartesianCMMGeometryTypePair = CartesianCMMGeometryTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CartesianCMMGeometryTypeChoicePair
 
@@ -5664,7 +5664,7 @@ void CartesianCMMGeometryTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CartesianCMMSpeedsType
 
@@ -5795,7 +5795,7 @@ SpeedValueType * CartesianCMMSpeedsType::getMaxZProbingSpeed()
 void CartesianCMMSpeedsType::setMaxZProbingSpeed(SpeedValueType * MaxZProbingSpeedIn)
 {MaxZProbingSpeed = MaxZProbingSpeedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CartesianCMMType
 
@@ -5826,7 +5826,7 @@ CartesianCMMType::CartesianCMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -5854,7 +5854,7 @@ CartesianCMMType::CartesianCMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -5886,7 +5886,7 @@ CartesianCMMType::CartesianCMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -5915,7 +5915,7 @@ CartesianCMMType::CartesianCMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -6032,9 +6032,9 @@ void CartesianCMMType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -6659,7 +6659,7 @@ ArrayReferenceType * CartesianCMMType::getSensorIds()
 void CartesianCMMType::setSensorIds(ArrayReferenceType * SensorIdsIn)
 {SensorIds = SensorIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CartesianMeasurementDeviceScalesType
 
@@ -6733,7 +6733,7 @@ MeasurementDeviceScaleType * CartesianMeasurementDeviceScalesType::getZScale()
 void CartesianMeasurementDeviceScalesType::setZScale(MeasurementDeviceScaleType * ZScaleIn)
 {ZScale = ZScaleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CartesianResolutionType
 
@@ -6742,20 +6742,20 @@ void CartesianMeasurementDeviceScalesType::setZScale(MeasurementDeviceScaleType 
 CartesianResolutionType::CartesianResolutionType() :
   ResolutionBaseType()
 {
-  CartesianResolu_1239 = 0;
+  CartesianResolu_1240 = 0;
 }
 
 CartesianResolutionType::CartesianResolutionType(
- CartesianResolu_1239_Type * CartesianResolu_1239In) :
+ CartesianResolu_1240_Type * CartesianResolu_1240In) :
   ResolutionBaseType()
 {
-  CartesianResolu_1239 = CartesianResolu_1239In;
+  CartesianResolu_1240 = CartesianResolu_1240In;
 }
 
 CartesianResolutionType::~CartesianResolutionType()
 {
   #ifndef NODESTRUCT
-  delete CartesianResolu_1239;
+  delete CartesianResolu_1240;
   #endif
 }
 
@@ -6763,17 +6763,17 @@ void CartesianResolutionType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  CartesianResolu_1239->printSelf(outFile);
+  CartesianResolu_1240->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-CartesianResolu_1239_Type * CartesianResolutionType::getCartesianResolu_1239()
-{return CartesianResolu_1239;}
+CartesianResolu_1240_Type * CartesianResolutionType::getCartesianResolu_1240()
+{return CartesianResolu_1240;}
 
-void CartesianResolutionType::setCartesianResolu_1239(CartesianResolu_1239_Type * CartesianResolu_1239In)
-{CartesianResolu_1239 = CartesianResolu_1239In;}
+void CartesianResolutionType::setCartesianResolu_1240(CartesianResolu_1240_Type * CartesianResolu_1240In)
+{CartesianResolu_1240 = CartesianResolu_1240In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CartesianWorkingVolumeType
 
@@ -6853,7 +6853,7 @@ LinearValueType * CartesianWorkingVolumeType::getZAxisLength()
 void CartesianWorkingVolumeType::setZAxisLength(LinearValueType * ZAxisLengthIn)
 {ZAxisLength = ZAxisLengthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ChargeCoupledDeviceCameraSensorType
 
@@ -6884,7 +6884,7 @@ ChargeCoupledDeviceCameraSensorType::ChargeCoupledDeviceCameraSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -6912,7 +6912,7 @@ ChargeCoupledDeviceCameraSensorType::ChargeCoupledDeviceCameraSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -6944,7 +6944,7 @@ ChargeCoupledDeviceCameraSensorType::ChargeCoupledDeviceCameraSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -6973,7 +6973,7 @@ ChargeCoupledDeviceCameraSensorType::ChargeCoupledDeviceCameraSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -7090,9 +7090,9 @@ void ChargeCoupledDeviceCameraSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -7361,7 +7361,7 @@ UserDefinedUnitValueType * ChargeCoupledDeviceCameraSensorType::getMaxOutputVolt
 void ChargeCoupledDeviceCameraSensorType::setMaxOutputVoltage(UserDefinedUnitValueType * MaxOutputVoltageIn)
 {MaxOutputVoltage = MaxOutputVoltageIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ClosedShellSetType
 
@@ -7583,7 +7583,7 @@ ShellSetType * ClosedShellSetType::getShellSet()
 void ClosedShellSetType::setShellSet(ShellSetType * ShellSetIn)
 {ShellSet = ShellSetIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ClosedShellSetWorkingVolumeType
 
@@ -7627,7 +7627,7 @@ ClosedShellSetType * ClosedShellSetWorkingVolumeType::getWorkingClosedShellSet()
 void ClosedShellSetWorkingVolumeType::setWorkingClosedShellSet(ClosedShellSetType * WorkingClosedShellSetIn)
 {WorkingClosedShellSet = WorkingClosedShellSetIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CombinedSphericalResolutionType
 
@@ -7696,7 +7696,7 @@ AngularValueType * CombinedSphericalResolutionType::getCombinedPolarResolution()
 void CombinedSphericalResolutionType::setCombinedPolarResolution(AngularValueType * CombinedPolarResolutionIn)
 {CombinedPolarResolution = CombinedPolarResolutionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CombinedUserDefinedResolutionType
 
@@ -7768,7 +7768,7 @@ LinearOrRotaryAxisType * CombinedUserDefinedResolutionType::getCCombinedResoluti
 void CombinedUserDefinedResolutionType::setCCombinedResolution(LinearOrRotaryAxisType * CCombinedResolutionIn)
 {CCombinedResolution = CCombinedResolutionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ComplexTactileProbeSensorType
 
@@ -7788,7 +7788,7 @@ ComplexTactileProbeSensorType::ComplexTactileProbeSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -7805,7 +7805,7 @@ ComplexTactileProbeSensorType::ComplexTactileProbeSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -7826,7 +7826,7 @@ ComplexTactileProbeSensorType::ComplexTactileProbeSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -7844,7 +7844,7 @@ ComplexTactileProbeSensorType::ComplexTactileProbeSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -7939,9 +7939,9 @@ void ComplexTactileProbeSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -8065,7 +8065,7 @@ LocatedTipsType * ComplexTactileProbeSensorType::getLocatedTips()
 void ComplexTactileProbeSensorType::setLocatedTips(LocatedTipsType * LocatedTipsIn)
 {LocatedTips = LocatedTipsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ComputedTomographyType
 
@@ -8101,7 +8101,7 @@ ComputedTomographyType::ComputedTomographyType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -8134,7 +8134,7 @@ ComputedTomographyType::ComputedTomographyType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -8171,7 +8171,7 @@ ComputedTomographyType::ComputedTomographyType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -8205,7 +8205,7 @@ ComputedTomographyType::ComputedTomographyType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -8332,9 +8332,9 @@ void ComputedTomographyType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -8928,7 +8928,7 @@ ArrayReferenceType * ComputedTomographyType::getToolIds()
 void ComputedTomographyType::setToolIds(ArrayReferenceType * ToolIdsIn)
 {ToolIds = ToolIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConfocalChromaticSensorType
 
@@ -8957,7 +8957,7 @@ ConfocalChromaticSensorType::ConfocalChromaticSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -8983,7 +8983,7 @@ ConfocalChromaticSensorType::ConfocalChromaticSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -9013,7 +9013,7 @@ ConfocalChromaticSensorType::ConfocalChromaticSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -9040,7 +9040,7 @@ ConfocalChromaticSensorType::ConfocalChromaticSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -9153,9 +9153,9 @@ void ConfocalChromaticSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -9398,7 +9398,7 @@ UserDefinedUnitValueType * ConfocalChromaticSensorType::getVibrationTolerance()
 void ConfocalChromaticSensorType::setVibrationTolerance(UserDefinedUnitValueType * VibrationToleranceIn)
 {VibrationTolerance = VibrationToleranceIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricalWorkingVolumeType
 
@@ -9483,7 +9483,7 @@ LinearValueType * CylindricalWorkingVolumeType::getZAxisLength()
 void CylindricalWorkingVolumeType::setZAxisLength(LinearValueType * ZAxisLengthIn)
 {ZAxisLength = ZAxisLengthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DetachableSensorBaseType
 
@@ -9502,7 +9502,7 @@ DetachableSensorBaseType::DetachableSensorBaseType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -9518,7 +9518,7 @@ DetachableSensorBaseType::DetachableSensorBaseType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -9538,7 +9538,7 @@ DetachableSensorBaseType::DetachableSensorBaseType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -9555,7 +9555,7 @@ DetachableSensorBaseType::DetachableSensorBaseType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -9648,9 +9648,9 @@ void DetachableSensorBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -9763,7 +9763,7 @@ bool DetachableSensorBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DetachableSensorBaseTypeLisd
 
@@ -9790,7 +9790,7 @@ DetachableSensorBaseTypeLisd::~DetachableSensorBaseTypeLisd()
 
 void DetachableSensorBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DetachableSensorsType
 
@@ -10037,7 +10037,7 @@ DetachableSensorBaseTypeLisd * DetachableSensorsType::getDetachableSensor()
 void DetachableSensorsType::setDetachableSensor(DetachableSensorBaseTypeLisd * DetachableSensorIn)
 {DetachableSensor = DetachableSensorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DifferentialVariableReluctanceTransducerSensorType
 
@@ -10062,7 +10062,7 @@ DifferentialVariableReluctanceTransducerSensorType::DifferentialVariableReluctan
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -10084,7 +10084,7 @@ DifferentialVariableReluctanceTransducerSensorType::DifferentialVariableReluctan
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -10110,7 +10110,7 @@ DifferentialVariableReluctanceTransducerSensorType::DifferentialVariableReluctan
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -10133,7 +10133,7 @@ DifferentialVariableReluctanceTransducerSensorType::DifferentialVariableReluctan
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -10238,9 +10238,9 @@ void DifferentialVariableReluctanceTransducerSensorType::printSelf(FILE * outFil
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -10431,7 +10431,7 @@ XmlString * DifferentialVariableReluctanceTransducerSensorType::getHousingMateri
 void DifferentialVariableReluctanceTransducerSensorType::setHousingMaterial(XmlString * HousingMaterialIn)
 {HousingMaterial = HousingMaterialIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DrawWireSensorType
 
@@ -10455,7 +10455,7 @@ DrawWireSensorType::DrawWireSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -10476,7 +10476,7 @@ DrawWireSensorType::DrawWireSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -10501,7 +10501,7 @@ DrawWireSensorType::DrawWireSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -10523,7 +10523,7 @@ DrawWireSensorType::DrawWireSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -10626,9 +10626,9 @@ void DrawWireSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -10806,7 +10806,7 @@ XmlString * DrawWireSensorType::getMaxWireAcceleration()
 void DrawWireSensorType::setMaxWireAcceleration(XmlString * MaxWireAccelerationIn)
 {MaxWireAcceleration = MaxWireAccelerationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EddyCurrentSensorType
 
@@ -10836,7 +10836,7 @@ EddyCurrentSensorType::EddyCurrentSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -10863,7 +10863,7 @@ EddyCurrentSensorType::EddyCurrentSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -10894,7 +10894,7 @@ EddyCurrentSensorType::EddyCurrentSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -10922,7 +10922,7 @@ EddyCurrentSensorType::EddyCurrentSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -11037,9 +11037,9 @@ void EddyCurrentSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -11295,7 +11295,7 @@ XmlString * EddyCurrentSensorType::getMeasurementObjectMaterial()
 void EddyCurrentSensorType::setMeasurementObjectMaterial(XmlString * MeasurementObjectMaterialIn)
 {MeasurementObjectMaterial = MeasurementObjectMaterialIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EffectiveCartesianWorkingVolumeType
 
@@ -11352,7 +11352,7 @@ PointType * EffectiveCartesianWorkingVolumeType::getMaxPoint()
 void EffectiveCartesianWorkingVolumeType::setMaxPoint(PointType * MaxPointIn)
 {MaxPoint = MaxPointIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EffectiveClosedShellSetWorkingVolumeType
 
@@ -11396,7 +11396,7 @@ ClosedShellSetType * EffectiveClosedShellSetWorkingVolumeType::getWorkingClosedS
 void EffectiveClosedShellSetWorkingVolumeType::setWorkingClosedShellSet(ClosedShellSetType * WorkingClosedShellSetIn)
 {WorkingClosedShellSet = WorkingClosedShellSetIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EffectiveCylindricalWorkingVolumeType
 
@@ -11509,7 +11509,7 @@ LinearValueType * EffectiveCylindricalWorkingVolumeType::getMaxZAxis()
 void EffectiveCylindricalWorkingVolumeType::setMaxZAxis(LinearValueType * MaxZAxisIn)
 {MaxZAxis = MaxZAxisIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EffectiveDiameterPerformanceTestType
 
@@ -11564,7 +11564,7 @@ XmlDecimal * EffectiveDiameterPerformanceTestType::getStandardDeviation()
 void EffectiveDiameterPerformanceTestType::setStandardDeviation(XmlDecimal * StandardDeviationIn)
 {StandardDeviation = StandardDeviationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EffectiveSphericalWorkingVolumeType
 
@@ -11677,7 +11677,7 @@ AngularValueType * EffectiveSphericalWorkingVolumeType::getMaxPolarAxis()
 void EffectiveSphericalWorkingVolumeType::setMaxPolarAxis(AngularValueType * MaxPolarAxisIn)
 {MaxPolarAxis = MaxPolarAxisIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EffectiveUserDefinedWorkingVolumeType
 
@@ -11804,7 +11804,7 @@ MeasuredDecimalType * EffectiveUserDefinedWorkingVolumeType::getMaxThirdAxis()
 void EffectiveUserDefinedWorkingVolumeType::setMaxThirdAxis(MeasuredDecimalType * MaxThirdAxisIn)
 {MaxThirdAxis = MaxThirdAxisIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EffectiveWorkingVolumeBaseType
 
@@ -11820,7 +11820,7 @@ void EffectiveWorkingVolumeBaseType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EnvironmentalRangeType
 
@@ -12018,7 +12018,7 @@ AttributesType * EnvironmentalRangeType::getAttributes()
 void EnvironmentalRangeType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FPSTestType
 
@@ -12359,7 +12359,7 @@ XmlDouble * FPSTestType::getYZSquareness()
 void FPSTestType::setYZSquareness(XmlDouble * YZSquarenessIn)
 {YZSquareness = YZSquarenessIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FixtureType
 
@@ -12378,7 +12378,7 @@ FixtureType::FixtureType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn) :
   MeasurementResourceBaseType(
     NameIn,
@@ -12388,7 +12388,7 @@ FixtureType::FixtureType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
 }
@@ -12402,7 +12402,7 @@ FixtureType::FixtureType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn) :
   MeasurementResourceBaseType(
     idIn,
@@ -12413,7 +12413,7 @@ FixtureType::FixtureType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
 }
@@ -12500,9 +12500,9 @@ void FixtureType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -12572,7 +12572,7 @@ bool FixtureType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FixtureTypeLisd
 
@@ -12599,7 +12599,7 @@ FixtureTypeLisd::~FixtureTypeLisd()
 
 void FixtureTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FixturesType
 
@@ -12757,7 +12757,7 @@ FixtureTypeLisd * FixturesType::getFixture()
 void FixturesType::setFixture(FixtureTypeLisd * FixtureIn)
 {Fixture = FixtureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FunctionDiscreteType
 
@@ -12913,7 +12913,7 @@ ListDoubleType * FunctionDiscreteType::getRangeValues()
 void FunctionDiscreteType::setRangeValues(ListDoubleType * RangeValuesIn)
 {RangeValues = RangeValuesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class GageDeviceType
 
@@ -12932,7 +12932,7 @@ GageDeviceType::GageDeviceType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -12946,7 +12946,7 @@ GageDeviceType::GageDeviceType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -12964,7 +12964,7 @@ GageDeviceType::GageDeviceType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -12979,7 +12979,7 @@ GageDeviceType::GageDeviceType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -13070,9 +13070,9 @@ void GageDeviceType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -13172,7 +13172,7 @@ bool GageDeviceType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ISO10360TestType
 
@@ -13181,20 +13181,20 @@ bool GageDeviceType::badAttributes(
 ISO10360TestType::ISO10360TestType() :
   CMMAccuracyTestBaseType()
 {
-  ISO10360TestTyp_1240 = 0;
+  ISO10360TestTyp_1241 = 0;
 }
 
 ISO10360TestType::ISO10360TestType(
- ISO10360TestTyp_1240_Type * ISO10360TestTyp_1240In) :
+ ISO10360TestTyp_1241_Type * ISO10360TestTyp_1241In) :
   CMMAccuracyTestBaseType()
 {
-  ISO10360TestTyp_1240 = ISO10360TestTyp_1240In;
+  ISO10360TestTyp_1241 = ISO10360TestTyp_1241In;
 }
 
 ISO10360TestType::~ISO10360TestType()
 {
   #ifndef NODESTRUCT
-  delete ISO10360TestTyp_1240;
+  delete ISO10360TestTyp_1241;
   #endif
 }
 
@@ -13202,17 +13202,17 @@ void ISO10360TestType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  ISO10360TestTyp_1240->printSelf(outFile);
+  ISO10360TestTyp_1241->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-ISO10360TestTyp_1240_Type * ISO10360TestType::getISO10360TestTyp_1240()
-{return ISO10360TestTyp_1240;}
+ISO10360TestTyp_1241_Type * ISO10360TestType::getISO10360TestTyp_1241()
+{return ISO10360TestTyp_1241;}
 
-void ISO10360TestType::setISO10360TestTyp_1240(ISO10360TestTyp_1240_Type * ISO10360TestTyp_1240In)
-{ISO10360TestTyp_1240 = ISO10360TestTyp_1240In;}
+void ISO10360TestType::setISO10360TestTyp_1241(ISO10360TestTyp_1241_Type * ISO10360TestTyp_1241In)
+{ISO10360TestTyp_1241 = ISO10360TestTyp_1241In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LaserRadarType
 
@@ -13247,7 +13247,7 @@ LaserRadarType::LaserRadarType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -13279,7 +13279,7 @@ LaserRadarType::LaserRadarType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -13315,7 +13315,7 @@ LaserRadarType::LaserRadarType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -13348,7 +13348,7 @@ LaserRadarType::LaserRadarType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -13473,9 +13473,9 @@ void LaserRadarType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -14057,7 +14057,7 @@ TimeValueType * LaserRadarType::getFeatureSpeed()
 void LaserRadarType::setFeatureSpeed(TimeValueType * FeatureSpeedIn)
 {FeatureSpeed = FeatureSpeedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LaserTrackerType
 
@@ -14086,7 +14086,7 @@ LaserTrackerType::LaserTrackerType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -14112,7 +14112,7 @@ LaserTrackerType::LaserTrackerType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -14142,7 +14142,7 @@ LaserTrackerType::LaserTrackerType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -14169,7 +14169,7 @@ LaserTrackerType::LaserTrackerType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -14282,9 +14282,9 @@ void LaserTrackerType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -14787,7 +14787,7 @@ LinearValueType * LaserTrackerType::getRepeatability()
 void LaserTrackerType::setRepeatability(LinearValueType * RepeatabilityIn)
 {Repeatability = RepeatabilityIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LaserTriangulationSensorType
 
@@ -14817,7 +14817,7 @@ LaserTriangulationSensorType::LaserTriangulationSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -14844,7 +14844,7 @@ LaserTriangulationSensorType::LaserTriangulationSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -14875,7 +14875,7 @@ LaserTriangulationSensorType::LaserTriangulationSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -14903,7 +14903,7 @@ LaserTriangulationSensorType::LaserTriangulationSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -15018,9 +15018,9 @@ void LaserTriangulationSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -15277,7 +15277,7 @@ LaserType * LaserTriangulationSensorType::getLaser()
 void LaserTriangulationSensorType::setLaser(LaserType * LaserIn)
 {Laser = LaserIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LaserType
 
@@ -15303,7 +15303,7 @@ LaserType::LaserType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * LaserSourceIn,
  LinearValueType * LaserWaveLengthIn,
@@ -15320,7 +15320,7 @@ LaserType::LaserType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   LaserSource = LaserSourceIn;
@@ -15341,7 +15341,7 @@ LaserType::LaserType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * LaserSourceIn,
  LinearValueType * LaserWaveLengthIn,
@@ -15359,7 +15359,7 @@ LaserType::LaserType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   LaserSource = LaserSourceIn;
@@ -15460,9 +15460,9 @@ void LaserType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -15623,7 +15623,7 @@ UserDefinedUnitValueType * LaserType::getLaserPowerSupply()
 void LaserType::setLaserPowerSupply(UserDefinedUnitValueType * LaserPowerSupplyIn)
 {LaserPowerSupply = LaserPowerSupplyIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LengthFunctionDiscreteType
 
@@ -15789,7 +15789,7 @@ XmlToken * LengthFunctionDiscreteType::getRangeLinearUnit()
 void LengthFunctionDiscreteType::setRangeLinearUnit(XmlToken * RangeLinearUnitIn)
 {RangeLinearUnit = RangeLinearUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LesserErrorType
 
@@ -15845,7 +15845,7 @@ LinearErrorType * LesserErrorType::getLinearError()
 void LesserErrorType::setLinearError(LinearErrorType * LinearErrorIn)
 {LinearError = LinearErrorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LightPenCMMType
 
@@ -15872,7 +15872,7 @@ LightPenCMMType::LightPenCMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -15896,7 +15896,7 @@ LightPenCMMType::LightPenCMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -15924,7 +15924,7 @@ LightPenCMMType::LightPenCMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -15949,7 +15949,7 @@ LightPenCMMType::LightPenCMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -16058,9 +16058,9 @@ void LightPenCMMType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -16534,7 +16534,7 @@ XmlString * LightPenCMMType::getLaserClass()
 void LightPenCMMType::setLaserClass(XmlString * LaserClassIn)
 {LaserClass = LaserClassIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearAxisType
 
@@ -16591,7 +16591,7 @@ LinearValueType * LinearAxisType::getMaxLinearAxis()
 void LinearAxisType::setMaxLinearAxis(LinearValueType * MaxLinearAxisIn)
 {MaxLinearAxis = MaxLinearAxisIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearErrorType
 
@@ -16646,7 +16646,7 @@ XmlDecimal * LinearErrorType::getErrorRate()
 void LinearErrorType::setErrorRate(XmlDecimal * ErrorRateIn)
 {ErrorRate = ErrorRateIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearOrRotaryAxisType
 
@@ -16729,7 +16729,7 @@ UserAxisBaseType * LinearOrRotaryAxisType::getAxis()
 void LinearOrRotaryAxisType::setAxis(UserAxisBaseType * AxisIn)
 {Axis = AxisIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearResolutionType
 
@@ -16772,7 +16772,7 @@ LinearValueType * LinearResolutionType::getLinearValue()
 void LinearResolutionType::setLinearValue(LinearValueType * LinearValueIn)
 {LinearValue = LinearValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearVariableDifferentialTransformerEnumType
 
@@ -16830,7 +16830,7 @@ void LinearVariableDifferentialTransformerEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearVariableDifferentialTransformerSensorType
 
@@ -16860,7 +16860,7 @@ LinearVariableDifferentialTransformerSensorType::LinearVariableDifferentialTrans
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -16887,7 +16887,7 @@ LinearVariableDifferentialTransformerSensorType::LinearVariableDifferentialTrans
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -16918,7 +16918,7 @@ LinearVariableDifferentialTransformerSensorType::LinearVariableDifferentialTrans
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -16946,7 +16946,7 @@ LinearVariableDifferentialTransformerSensorType::LinearVariableDifferentialTrans
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -17061,9 +17061,9 @@ void LinearVariableDifferentialTransformerSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -17319,7 +17319,7 @@ XmlString * LinearVariableDifferentialTransformerSensorType::getElectronicDescri
 void LinearVariableDifferentialTransformerSensorType::setElectronicDescription(XmlString * ElectronicDescriptionIn)
 {ElectronicDescription = ElectronicDescriptionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LocatedTipType
 
@@ -17375,7 +17375,7 @@ PointType * LocatedTipType::getTipEndLocation()
 void LocatedTipType::setTipEndLocation(PointType * TipEndLocationIn)
 {TipEndLocation = TipEndLocationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LocatedTipTypeLisd
 
@@ -17402,7 +17402,7 @@ LocatedTipTypeLisd::~LocatedTipTypeLisd()
 
 void LocatedTipTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LocatedTipsType
 
@@ -17560,7 +17560,7 @@ LocatedTipTypeLisd * LocatedTipsType::getLocatedTip()
 void LocatedTipsType::setLocatedTip(LocatedTipTypeLisd * LocatedTipIn)
 {LocatedTip = LocatedTipIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MagnetoInductiveSensorType
 
@@ -17590,7 +17590,7 @@ MagnetoInductiveSensorType::MagnetoInductiveSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -17617,7 +17617,7 @@ MagnetoInductiveSensorType::MagnetoInductiveSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -17648,7 +17648,7 @@ MagnetoInductiveSensorType::MagnetoInductiveSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -17676,7 +17676,7 @@ MagnetoInductiveSensorType::MagnetoInductiveSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -17791,9 +17791,9 @@ void MagnetoInductiveSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -18049,7 +18049,7 @@ UserDefinedUnitValueType * MagnetoInductiveSensorType::getMaxPowerSupplyVoltage(
 void MagnetoInductiveSensorType::setMaxPowerSupplyVoltage(UserDefinedUnitValueType * MaxPowerSupplyVoltageIn)
 {MaxPowerSupplyVoltage = MaxPowerSupplyVoltageIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ManualMeasurementDeviceType
 
@@ -18070,7 +18070,7 @@ ManualMeasurementDeviceType::ManualMeasurementDeviceType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -18084,7 +18084,7 @@ ManualMeasurementDeviceType::ManualMeasurementDeviceType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn)
@@ -18102,7 +18102,7 @@ ManualMeasurementDeviceType::ManualMeasurementDeviceType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -18117,7 +18117,7 @@ ManualMeasurementDeviceType::ManualMeasurementDeviceType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn)
@@ -18210,9 +18210,9 @@ void ManualMeasurementDeviceType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -18324,7 +18324,7 @@ LinearValueType * ManualMeasurementDeviceType::getMaxMeasuringDistance()
 void ManualMeasurementDeviceType::setMaxMeasuringDistance(LinearValueType * MaxMeasuringDistanceIn)
 {MaxMeasuringDistance = MaxMeasuringDistanceIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurementDeviceAccuracyBaseType
 
@@ -18366,7 +18366,7 @@ EnvironmentalRangeType * MeasurementDeviceAccuracyBaseType::getEnvironmentalRang
 void MeasurementDeviceAccuracyBaseType::setEnvironmentalRange(EnvironmentalRangeType * EnvironmentalRangeIn)
 {EnvironmentalRange = EnvironmentalRangeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurementDeviceScaleType
 
@@ -18496,7 +18496,7 @@ ScaleReferenceEnumType * MeasurementDeviceScaleType::getScaleReference()
 void MeasurementDeviceScaleType::setScaleReference(ScaleReferenceEnumType * ScaleReferenceIn)
 {ScaleReference = ScaleReferenceIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurementDeviceScalesBaseType
 
@@ -18512,7 +18512,7 @@ void MeasurementDeviceScalesBaseType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurementDeviceType
 
@@ -18533,7 +18533,7 @@ MeasurementDeviceType::MeasurementDeviceType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn) :
@@ -18545,7 +18545,7 @@ MeasurementDeviceType::MeasurementDeviceType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   Calibrations = CalibrationsIn;
@@ -18561,7 +18561,7 @@ MeasurementDeviceType::MeasurementDeviceType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn) :
@@ -18574,7 +18574,7 @@ MeasurementDeviceType::MeasurementDeviceType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   Calibrations = CalibrationsIn;
@@ -18665,9 +18665,9 @@ void MeasurementDeviceType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -18765,7 +18765,7 @@ EnvironmentalRangeType * MeasurementDeviceType::getEnvironmentalRange()
 void MeasurementDeviceType::setEnvironmentalRange(EnvironmentalRangeType * EnvironmentalRangeIn)
 {EnvironmentalRange = EnvironmentalRangeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurementDeviceTypeLisd
 
@@ -18792,7 +18792,7 @@ MeasurementDeviceTypeLisd::~MeasurementDeviceTypeLisd()
 
 void MeasurementDeviceTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurementDevicesType
 
@@ -19343,7 +19343,7 @@ MeasurementDeviceTypeLisd * MeasurementDevicesType::getMeasurementDevice()
 void MeasurementDevicesType::setMeasurementDevice(MeasurementDeviceTypeLisd * MeasurementDeviceIn)
 {MeasurementDevice = MeasurementDeviceIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurementResourceBaseType
 
@@ -19359,7 +19359,7 @@ MeasurementResourceBaseType::MeasurementResourceBaseType()
   SerialNumber = 0;
   Mass = 0;
   Size = 0;
-  MeasurementReso_1241 = 0;
+  MeasurementReso_1242 = 0;
   Attributes = 0;
 }
 
@@ -19371,7 +19371,7 @@ MeasurementResourceBaseType::MeasurementResourceBaseType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn)
 {
   id = 0;
@@ -19382,7 +19382,7 @@ MeasurementResourceBaseType::MeasurementResourceBaseType(
   SerialNumber = SerialNumberIn;
   Mass = MassIn;
   Size = SizeIn;
-  MeasurementReso_1241 = MeasurementReso_1241In;
+  MeasurementReso_1242 = MeasurementReso_1242In;
   Attributes = AttributesIn;
 }
 
@@ -19395,7 +19395,7 @@ MeasurementResourceBaseType::MeasurementResourceBaseType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn)
 {
   id = idIn;
@@ -19406,7 +19406,7 @@ MeasurementResourceBaseType::MeasurementResourceBaseType(
   SerialNumber = SerialNumberIn;
   Mass = MassIn;
   Size = SizeIn;
-  MeasurementReso_1241 = MeasurementReso_1241In;
+  MeasurementReso_1242 = MeasurementReso_1242In;
   Attributes = AttributesIn;
 }
 
@@ -19421,7 +19421,7 @@ MeasurementResourceBaseType::~MeasurementResourceBaseType()
   delete SerialNumber;
   delete Mass;
   delete Size;
-  delete MeasurementReso_1241;
+  delete MeasurementReso_1242;
   delete Attributes;
   #endif
 }
@@ -19502,9 +19502,9 @@ void MeasurementResourceBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -19622,11 +19622,11 @@ CartesianWorkingVolumeType * MeasurementResourceBaseType::getSize()
 void MeasurementResourceBaseType::setSize(CartesianWorkingVolumeType * SizeIn)
 {Size = SizeIn;}
 
-MeasurementReso_1241_Type * MeasurementResourceBaseType::getMeasurementReso_1241()
-{return MeasurementReso_1241;}
+MeasurementReso_1242_Type * MeasurementResourceBaseType::getMeasurementReso_1242()
+{return MeasurementReso_1242;}
 
-void MeasurementResourceBaseType::setMeasurementReso_1241(MeasurementReso_1241_Type * MeasurementReso_1241In)
-{MeasurementReso_1241 = MeasurementReso_1241In;}
+void MeasurementResourceBaseType::setMeasurementReso_1242(MeasurementReso_1242_Type * MeasurementReso_1242In)
+{MeasurementReso_1242 = MeasurementReso_1242In;}
 
 AttributesType * MeasurementResourceBaseType::getAttributes()
 {return Attributes;}
@@ -19634,7 +19634,7 @@ AttributesType * MeasurementResourceBaseType::getAttributes()
 void MeasurementResourceBaseType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurementResourcesType
 
@@ -19769,7 +19769,7 @@ ToolsType * MeasurementResourcesType::getTools()
 void MeasurementResourcesType::setTools(ToolsType * ToolsIn)
 {Tools = ToolsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurementRoomType
 
@@ -19796,7 +19796,7 @@ MeasurementRoomType::MeasurementRoomType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  TemperatureType * TemperatureRangeMinIn,
  TemperatureType * TemperatureRangeMaxIn,
@@ -19814,7 +19814,7 @@ MeasurementRoomType::MeasurementRoomType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   TemperatureRangeMin = TemperatureRangeMinIn;
@@ -19836,7 +19836,7 @@ MeasurementRoomType::MeasurementRoomType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  TemperatureType * TemperatureRangeMinIn,
  TemperatureType * TemperatureRangeMaxIn,
@@ -19855,7 +19855,7 @@ MeasurementRoomType::MeasurementRoomType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   TemperatureRangeMin = TemperatureRangeMinIn;
@@ -19958,9 +19958,9 @@ void MeasurementRoomType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -20118,7 +20118,7 @@ FractionType * MeasurementRoomType::getRelativeHumidityControlMax()
 void MeasurementRoomType::setRelativeHumidityControlMax(FractionType * RelativeHumidityControlMaxIn)
 {RelativeHumidityControlMax = RelativeHumidityControlMaxIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurementRoomTypeLisd
 
@@ -20145,7 +20145,7 @@ MeasurementRoomTypeLisd::~MeasurementRoomTypeLisd()
 
 void MeasurementRoomTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurementRoomsType
 
@@ -20303,7 +20303,7 @@ MeasurementRoomTypeLisd * MeasurementRoomsType::getMeasurementRoom()
 void MeasurementRoomsType::setMeasurementRoom(MeasurementRoomTypeLisd * MeasurementRoomIn)
 {MeasurementRoom = MeasurementRoomIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MicrometerAnalogType
 
@@ -20322,7 +20322,7 @@ MicrometerAnalogType::MicrometerAnalogType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -20340,7 +20340,7 @@ MicrometerAnalogType::MicrometerAnalogType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -20362,7 +20362,7 @@ MicrometerAnalogType::MicrometerAnalogType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -20381,7 +20381,7 @@ MicrometerAnalogType::MicrometerAnalogType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -20476,9 +20476,9 @@ void MicrometerAnalogType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -20608,7 +20608,7 @@ bool MicrometerAnalogType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MicrometerDigitalType
 
@@ -20627,7 +20627,7 @@ MicrometerDigitalType::MicrometerDigitalType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -20645,7 +20645,7 @@ MicrometerDigitalType::MicrometerDigitalType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -20667,7 +20667,7 @@ MicrometerDigitalType::MicrometerDigitalType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -20686,7 +20686,7 @@ MicrometerDigitalType::MicrometerDigitalType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -20781,9 +20781,9 @@ void MicrometerDigitalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -20913,7 +20913,7 @@ bool MicrometerDigitalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MicrometerType
 
@@ -20936,7 +20936,7 @@ MicrometerType::MicrometerType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -20954,7 +20954,7 @@ MicrometerType::MicrometerType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -20976,7 +20976,7 @@ MicrometerType::MicrometerType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -20995,7 +20995,7 @@ MicrometerType::MicrometerType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -21094,9 +21094,9 @@ void MicrometerType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -21250,7 +21250,7 @@ InternalExternalEnumType * MicrometerType::getInternalExternal()
 void MicrometerType::setInternalExternal(InternalExternalEnumType * InternalExternalIn)
 {InternalExternal = InternalExternalIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MicroscopeType
 
@@ -21278,7 +21278,7 @@ MicroscopeType::MicroscopeType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -21303,7 +21303,7 @@ MicroscopeType::MicroscopeType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -21332,7 +21332,7 @@ MicroscopeType::MicroscopeType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -21358,7 +21358,7 @@ MicroscopeType::MicroscopeType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -21469,9 +21469,9 @@ void MicroscopeType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -21959,7 +21959,7 @@ ArrayReferenceType * MicroscopeType::getToolIds()
 void MicroscopeType::setToolIds(ArrayReferenceType * ToolIdsIn)
 {ToolIds = ToolIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MultipleCarriageCartesianCMMType
 
@@ -21979,7 +21979,7 @@ MultipleCarriageCartesianCMMType::MultipleCarriageCartesianCMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -22008,7 +22008,7 @@ MultipleCarriageCartesianCMMType::MultipleCarriageCartesianCMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -22041,7 +22041,7 @@ MultipleCarriageCartesianCMMType::MultipleCarriageCartesianCMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -22071,7 +22071,7 @@ MultipleCarriageCartesianCMMType::MultipleCarriageCartesianCMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -22178,9 +22178,9 @@ void MultipleCarriageCartesianCMMType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -22744,7 +22744,7 @@ CarriagesType * MultipleCarriageCartesianCMMType::getCarriages()
 void MultipleCarriageCartesianCMMType::setCarriages(CarriagesType * CarriagesIn)
 {Carriages = CarriagesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NumericalLengthAccuracyType
 
@@ -22794,7 +22794,7 @@ LinearValueType * NumericalLengthAccuracyType::getAccuracyValue()
 void NumericalLengthAccuracyType::setAccuracyValue(LinearValueType * AccuracyValueIn)
 {AccuracyValue = AccuracyValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OpticalComparatorType
 
@@ -22822,7 +22822,7 @@ OpticalComparatorType::OpticalComparatorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -22847,7 +22847,7 @@ OpticalComparatorType::OpticalComparatorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -22876,7 +22876,7 @@ OpticalComparatorType::OpticalComparatorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -22902,7 +22902,7 @@ OpticalComparatorType::OpticalComparatorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -23013,9 +23013,9 @@ void OpticalComparatorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -23502,7 +23502,7 @@ ArrayReferenceType * OpticalComparatorType::getToolIds()
 void OpticalComparatorType::setToolIds(ArrayReferenceType * ToolIdsIn)
 {ToolIds = ToolIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ParallelLinkCMMSpeedsType
 
@@ -23684,7 +23684,7 @@ UserDefinedUnitValueType * ParallelLinkCMMSpeedsType::getMaxZRotation()
 void ParallelLinkCMMSpeedsType::setMaxZRotation(UserDefinedUnitValueType * MaxZRotationIn)
 {MaxZRotation = MaxZRotationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ParallelLinkCMMType
 
@@ -23714,7 +23714,7 @@ ParallelLinkCMMType::ParallelLinkCMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -23741,7 +23741,7 @@ ParallelLinkCMMType::ParallelLinkCMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -23772,7 +23772,7 @@ ParallelLinkCMMType::ParallelLinkCMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -23800,7 +23800,7 @@ ParallelLinkCMMType::ParallelLinkCMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -23915,9 +23915,9 @@ void ParallelLinkCMMType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -24476,7 +24476,7 @@ ArrayReferenceType * ParallelLinkCMMType::getToolIds()
 void ParallelLinkCMMType::setToolIds(ArrayReferenceType * ToolIdsIn)
 {ToolIds = ToolIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointAccuracyTestType
 
@@ -24519,7 +24519,7 @@ LinearValueType * PointAccuracyTestType::getAccuracy()
 void PointAccuracyTestType::setAccuracy(LinearValueType * AccuracyIn)
 {Accuracy = AccuracyIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ProbeTipType
 
@@ -24543,7 +24543,7 @@ ProbeTipType::ProbeTipType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  TipEndGeometryType * TipEndGeometryIn,
  LinearValueType * TipEndDiameterIn,
@@ -24558,7 +24558,7 @@ ProbeTipType::ProbeTipType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   TipEndGeometry = TipEndGeometryIn;
@@ -24577,7 +24577,7 @@ ProbeTipType::ProbeTipType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  TipEndGeometryType * TipEndGeometryIn,
  LinearValueType * TipEndDiameterIn,
@@ -24593,7 +24593,7 @@ ProbeTipType::ProbeTipType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   TipEndGeometry = TipEndGeometryIn;
@@ -24690,9 +24690,9 @@ void ProbeTipType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -24828,7 +24828,7 @@ LinearValueType * ProbeTipType::getStemDiameter()
 void ProbeTipType::setStemDiameter(LinearValueType * StemDiameterIn)
 {StemDiameter = StemDiameterIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QualificationType
 
@@ -24887,7 +24887,7 @@ XmlString * QualificationType::getDescription()
 void QualificationType::setDescription(XmlString * DescriptionIn)
 {Description = DescriptionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QualificationTypeLisd
 
@@ -24914,7 +24914,7 @@ QualificationTypeLisd::~QualificationTypeLisd()
 
 void QualificationTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QualificationsType
 
@@ -25072,7 +25072,7 @@ QualificationTypeLisd * QualificationsType::getQualification()
 void QualificationsType::setQualification(QualificationTypeLisd * QualificationIn)
 {Qualification = QualificationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RAPZResolutionType
 
@@ -25141,7 +25141,7 @@ AngularValueType * RAPZResolutionType::getPolarAngleResolution()
 void RAPZResolutionType::setPolarAngleResolution(AngularValueType * PolarAngleResolutionIn)
 {PolarAngleResolution = PolarAngleResolutionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ResolutionBaseType
 
@@ -25157,7 +25157,7 @@ void ResolutionBaseType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RotaryAxisType
 
@@ -25214,7 +25214,7 @@ AngularValueType * RotaryAxisType::getMaxRotaryAxis()
 void RotaryAxisType::setMaxRotaryAxis(AngularValueType * MaxRotaryAxisIn)
 {MaxRotaryAxis = MaxRotaryAxisIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RotaryTableType
 
@@ -25312,7 +25312,7 @@ TableErrorsType * RotaryTableType::getTableErrors()
 void RotaryTableType::setTableErrors(TableErrorsType * TableErrorsIn)
 {TableErrors = TableErrorsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ScaleReferenceEnumType
 
@@ -25370,7 +25370,7 @@ void ScaleReferenceEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SensorType
 
@@ -25395,7 +25395,7 @@ SensorType::SensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -25411,7 +25411,7 @@ SensorType::SensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   ProtectionClass = ProtectionClassIn;
@@ -25431,7 +25431,7 @@ SensorType::SensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -25448,7 +25448,7 @@ SensorType::SensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   ProtectionClass = ProtectionClassIn;
@@ -25547,9 +25547,9 @@ void SensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -25698,7 +25698,7 @@ EnvironmentalRangeType * SensorType::getEnvironmentalRange()
 void SensorType::setEnvironmentalRange(EnvironmentalRangeType * EnvironmentalRangeIn)
 {EnvironmentalRange = EnvironmentalRangeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SimpleTactileProbeSensorType
 
@@ -25724,7 +25724,7 @@ SimpleTactileProbeSensorType::SimpleTactileProbeSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -25747,7 +25747,7 @@ SimpleTactileProbeSensorType::SimpleTactileProbeSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -25774,7 +25774,7 @@ SimpleTactileProbeSensorType::SimpleTactileProbeSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -25798,7 +25798,7 @@ SimpleTactileProbeSensorType::SimpleTactileProbeSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -25905,9 +25905,9 @@ void SimpleTactileProbeSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -26113,7 +26113,7 @@ LinearValueType * SimpleTactileProbeSensorType::getStemDiameter()
 void SimpleTactileProbeSensorType::setStemDiameter(LinearValueType * StemDiameterIn)
 {StemDiameter = StemDiameterIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SineBarType
 
@@ -26139,7 +26139,7 @@ SineBarType::SineBarType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -26160,7 +26160,7 @@ SineBarType::SineBarType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -26185,7 +26185,7 @@ SineBarType::SineBarType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -26207,7 +26207,7 @@ SineBarType::SineBarType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -26312,9 +26312,9 @@ void SineBarType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -26505,7 +26505,7 @@ LinearValueType * SineBarType::getWidth()
 void SineBarType::setWidth(LinearValueType * WidthIn)
 {Width = WidthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SinglePointArticulationPerformanceTestType
 
@@ -26616,7 +26616,7 @@ LinearValueType * SinglePointArticulationPerformanceTestType::getTwiceStandardDe
 void SinglePointArticulationPerformanceTestType::setTwiceStandardDeviationMiddle(LinearValueType * TwiceStandardDeviationMiddleIn)
 {TwiceStandardDeviationMiddle = TwiceStandardDeviationMiddleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalResolutionType
 
@@ -26625,20 +26625,20 @@ void SinglePointArticulationPerformanceTestType::setTwiceStandardDeviationMiddle
 SphericalResolutionType::SphericalResolutionType() :
   ResolutionBaseType()
 {
-  SphericalResolu_1242 = 0;
+  SphericalResolu_1243 = 0;
 }
 
 SphericalResolutionType::SphericalResolutionType(
- SphericalResolu_1242_Type * SphericalResolu_1242In) :
+ SphericalResolu_1243_Type * SphericalResolu_1243In) :
   ResolutionBaseType()
 {
-  SphericalResolu_1242 = SphericalResolu_1242In;
+  SphericalResolu_1243 = SphericalResolu_1243In;
 }
 
 SphericalResolutionType::~SphericalResolutionType()
 {
   #ifndef NODESTRUCT
-  delete SphericalResolu_1242;
+  delete SphericalResolu_1243;
   #endif
 }
 
@@ -26646,17 +26646,17 @@ void SphericalResolutionType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  SphericalResolu_1242->printSelf(outFile);
+  SphericalResolu_1243->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-SphericalResolu_1242_Type * SphericalResolutionType::getSphericalResolu_1242()
-{return SphericalResolu_1242;}
+SphericalResolu_1243_Type * SphericalResolutionType::getSphericalResolu_1243()
+{return SphericalResolu_1243;}
 
-void SphericalResolutionType::setSphericalResolu_1242(SphericalResolu_1242_Type * SphericalResolu_1242In)
-{SphericalResolu_1242 = SphericalResolu_1242In;}
+void SphericalResolutionType::setSphericalResolu_1243(SphericalResolu_1243_Type * SphericalResolu_1243In)
+{SphericalResolu_1243 = SphericalResolu_1243In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalWorkingVolumeType
 
@@ -26755,7 +26755,7 @@ AngularValueType * SphericalWorkingVolumeType::getMaxPolarAxisAngle()
 void SphericalWorkingVolumeType::setMaxPolarAxisAngle(AngularValueType * MaxPolarAxisAngleIn)
 {MaxPolarAxisAngle = MaxPolarAxisAngleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StiffnessType
 
@@ -26833,7 +26833,7 @@ UserDefinedUnitValueType * StiffnessType::getZStiffness()
 void StiffnessType::setZStiffness(UserDefinedUnitValueType * ZStiffnessIn)
 {ZStiffness = ZStiffnessIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StructuredLightSensorType
 
@@ -26861,7 +26861,7 @@ StructuredLightSensorType::StructuredLightSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -26886,7 +26886,7 @@ StructuredLightSensorType::StructuredLightSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -26915,7 +26915,7 @@ StructuredLightSensorType::StructuredLightSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -26941,7 +26941,7 @@ StructuredLightSensorType::StructuredLightSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -27052,9 +27052,9 @@ void StructuredLightSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -27375,7 +27375,7 @@ LaserType * StructuredLightSensorType::getLaser()
 void StructuredLightSensorType::setLaser(LaserType * LaserIn)
 {Laser = LaserIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TableErrorsType
 
@@ -27444,7 +27444,7 @@ LinearValueType * TableErrorsType::getTangentialError()
 void TableErrorsType::setTangentialError(LinearValueType * TangentialErrorIn)
 {TangentialError = TangentialErrorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TactileProbeSensorBaseType
 
@@ -27463,7 +27463,7 @@ TactileProbeSensorBaseType::TactileProbeSensorBaseType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -27479,7 +27479,7 @@ TactileProbeSensorBaseType::TactileProbeSensorBaseType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -27499,7 +27499,7 @@ TactileProbeSensorBaseType::TactileProbeSensorBaseType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -27516,7 +27516,7 @@ TactileProbeSensorBaseType::TactileProbeSensorBaseType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -27609,9 +27609,9 @@ void TactileProbeSensorBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -27724,7 +27724,7 @@ bool TactileProbeSensorBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TargetMirrorEnumType
 
@@ -27784,7 +27784,7 @@ void TargetMirrorEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TemperatureCompensationEnumType
 
@@ -27846,7 +27846,7 @@ void TemperatureCompensationEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TemperatureCompensationType
 
@@ -27884,7 +27884,7 @@ TemperatureCompensationTypeChoicePair * TemperatureCompensationType::getTemperat
 void TemperatureCompensationType::setTemperatureCompensationTypePair(TemperatureCompensationTypeChoicePair * TemperatureCompensationTypePairIn)
 {TemperatureCompensationTypePair = TemperatureCompensationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TemperatureCompensationTypeChoicePair
 
@@ -27928,7 +27928,7 @@ void TemperatureCompensationTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TemperatureType
 
@@ -28004,7 +28004,7 @@ XmlDateTime * TemperatureType::getTimeStamp()
 void TemperatureType::setTimeStamp(XmlDateTime * TimeStampIn)
 {TimeStamp = TimeStampIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TemperatureTypeLisd
 
@@ -28031,7 +28031,7 @@ TemperatureTypeLisd::~TemperatureTypeLisd()
 
 void TemperatureTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TemperaturesType
 
@@ -28189,7 +28189,7 @@ TemperatureTypeLisd * TemperaturesType::getTemperature()
 void TemperaturesType::setTemperature(TemperatureTypeLisd * TemperatureIn)
 {Temperature = TemperatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TheodoliteType
 
@@ -28224,7 +28224,7 @@ TheodoliteType::TheodoliteType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -28256,7 +28256,7 @@ TheodoliteType::TheodoliteType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -28292,7 +28292,7 @@ TheodoliteType::TheodoliteType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -28325,7 +28325,7 @@ TheodoliteType::TheodoliteType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -28450,9 +28450,9 @@ void TheodoliteType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -29031,7 +29031,7 @@ LaserType * TheodoliteType::getLaser()
 void TheodoliteType::setLaser(LaserType * LaserIn)
 {Laser = LaserIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TipEndGeometryEnumType
 
@@ -29097,7 +29097,7 @@ void TipEndGeometryEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TipEndGeometryType
 
@@ -29135,7 +29135,7 @@ TipEndGeometryTypeChoicePair * TipEndGeometryType::getTipEndGeometryTypePair()
 void TipEndGeometryType::setTipEndGeometryTypePair(TipEndGeometryTypeChoicePair * TipEndGeometryTypePairIn)
 {TipEndGeometryTypePair = TipEndGeometryTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TipEndGeometryTypeChoicePair
 
@@ -29179,7 +29179,7 @@ void TipEndGeometryTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToolBaseType
 
@@ -29198,7 +29198,7 @@ ToolBaseType::ToolBaseType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn) :
   MeasurementResourceBaseType(
     NameIn,
@@ -29208,7 +29208,7 @@ ToolBaseType::ToolBaseType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
 }
@@ -29222,7 +29222,7 @@ ToolBaseType::ToolBaseType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn) :
   MeasurementResourceBaseType(
     idIn,
@@ -29233,7 +29233,7 @@ ToolBaseType::ToolBaseType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
 }
@@ -29320,9 +29320,9 @@ void ToolBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -29392,7 +29392,7 @@ bool ToolBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToolBaseTypeLisd
 
@@ -29419,7 +29419,7 @@ ToolBaseTypeLisd::~ToolBaseTypeLisd()
 
 void ToolBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToolWithCCDCameraSensorType
 
@@ -29439,7 +29439,7 @@ ToolWithCCDCameraSensorType::ToolWithCCDCameraSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  ChargeCoupledDeviceCameraSensorType * ChargeCoupledDeviceCameraSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -29450,7 +29450,7 @@ ToolWithCCDCameraSensorType::ToolWithCCDCameraSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   ChargeCoupledDeviceCameraSensor = ChargeCoupledDeviceCameraSensorIn;
@@ -29465,7 +29465,7 @@ ToolWithCCDCameraSensorType::ToolWithCCDCameraSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  ChargeCoupledDeviceCameraSensorType * ChargeCoupledDeviceCameraSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -29477,7 +29477,7 @@ ToolWithCCDCameraSensorType::ToolWithCCDCameraSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   ChargeCoupledDeviceCameraSensor = ChargeCoupledDeviceCameraSensorIn;
@@ -29566,9 +29566,9 @@ void ToolWithCCDCameraSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -29649,7 +29649,7 @@ ChargeCoupledDeviceCameraSensorType * ToolWithCCDCameraSensorType::getChargeCoup
 void ToolWithCCDCameraSensorType::setChargeCoupledDeviceCameraSensor(ChargeCoupledDeviceCameraSensorType * ChargeCoupledDeviceCameraSensorIn)
 {ChargeCoupledDeviceCameraSensor = ChargeCoupledDeviceCameraSensorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToolWithCapacitiveSensorType
 
@@ -29669,7 +29669,7 @@ ToolWithCapacitiveSensorType::ToolWithCapacitiveSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CapacitiveSensorType * CapacitiveSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -29680,7 +29680,7 @@ ToolWithCapacitiveSensorType::ToolWithCapacitiveSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   CapacitiveSensor = CapacitiveSensorIn;
@@ -29695,7 +29695,7 @@ ToolWithCapacitiveSensorType::ToolWithCapacitiveSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CapacitiveSensorType * CapacitiveSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -29707,7 +29707,7 @@ ToolWithCapacitiveSensorType::ToolWithCapacitiveSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   CapacitiveSensor = CapacitiveSensorIn;
@@ -29796,9 +29796,9 @@ void ToolWithCapacitiveSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -29879,7 +29879,7 @@ CapacitiveSensorType * ToolWithCapacitiveSensorType::getCapacitiveSensor()
 void ToolWithCapacitiveSensorType::setCapacitiveSensor(CapacitiveSensorType * CapacitiveSensorIn)
 {CapacitiveSensor = CapacitiveSensorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToolWithComplexTactileProbeSensorType
 
@@ -29899,7 +29899,7 @@ ToolWithComplexTactileProbeSensorType::ToolWithComplexTactileProbeSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  ComplexTactileProbeSensorType * ComplexTactileProbeSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -29910,7 +29910,7 @@ ToolWithComplexTactileProbeSensorType::ToolWithComplexTactileProbeSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   ComplexTactileProbeSensor = ComplexTactileProbeSensorIn;
@@ -29925,7 +29925,7 @@ ToolWithComplexTactileProbeSensorType::ToolWithComplexTactileProbeSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  ComplexTactileProbeSensorType * ComplexTactileProbeSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -29937,7 +29937,7 @@ ToolWithComplexTactileProbeSensorType::ToolWithComplexTactileProbeSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   ComplexTactileProbeSensor = ComplexTactileProbeSensorIn;
@@ -30026,9 +30026,9 @@ void ToolWithComplexTactileProbeSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -30109,7 +30109,7 @@ ComplexTactileProbeSensorType * ToolWithComplexTactileProbeSensorType::getComple
 void ToolWithComplexTactileProbeSensorType::setComplexTactileProbeSensor(ComplexTactileProbeSensorType * ComplexTactileProbeSensorIn)
 {ComplexTactileProbeSensor = ComplexTactileProbeSensorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToolWithConfocalChromaticSensorType
 
@@ -30129,7 +30129,7 @@ ToolWithConfocalChromaticSensorType::ToolWithConfocalChromaticSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  ConfocalChromaticSensorType * ConfocalChromaticSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -30140,7 +30140,7 @@ ToolWithConfocalChromaticSensorType::ToolWithConfocalChromaticSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   ConfocalChromaticSensor = ConfocalChromaticSensorIn;
@@ -30155,7 +30155,7 @@ ToolWithConfocalChromaticSensorType::ToolWithConfocalChromaticSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  ConfocalChromaticSensorType * ConfocalChromaticSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -30167,7 +30167,7 @@ ToolWithConfocalChromaticSensorType::ToolWithConfocalChromaticSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   ConfocalChromaticSensor = ConfocalChromaticSensorIn;
@@ -30256,9 +30256,9 @@ void ToolWithConfocalChromaticSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -30339,7 +30339,7 @@ ConfocalChromaticSensorType * ToolWithConfocalChromaticSensorType::getConfocalCh
 void ToolWithConfocalChromaticSensorType::setConfocalChromaticSensor(ConfocalChromaticSensorType * ConfocalChromaticSensorIn)
 {ConfocalChromaticSensor = ConfocalChromaticSensorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToolWithDVRTSensorType
 
@@ -30359,7 +30359,7 @@ ToolWithDVRTSensorType::ToolWithDVRTSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  DifferentialVariableReluctanceTransducerSensorType * DVRTSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -30370,7 +30370,7 @@ ToolWithDVRTSensorType::ToolWithDVRTSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   DVRTSensor = DVRTSensorIn;
@@ -30385,7 +30385,7 @@ ToolWithDVRTSensorType::ToolWithDVRTSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  DifferentialVariableReluctanceTransducerSensorType * DVRTSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -30397,7 +30397,7 @@ ToolWithDVRTSensorType::ToolWithDVRTSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   DVRTSensor = DVRTSensorIn;
@@ -30486,9 +30486,9 @@ void ToolWithDVRTSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -30569,7 +30569,7 @@ DifferentialVariableReluctanceTransducerSensorType * ToolWithDVRTSensorType::get
 void ToolWithDVRTSensorType::setDVRTSensor(DifferentialVariableReluctanceTransducerSensorType * DVRTSensorIn)
 {DVRTSensor = DVRTSensorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToolWithDetachableSensorsType
 
@@ -30589,7 +30589,7 @@ ToolWithDetachableSensorsType::ToolWithDetachableSensorsType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  ArrayReferenceType * SensorIdsIn) :
   ToolBaseType(
@@ -30600,7 +30600,7 @@ ToolWithDetachableSensorsType::ToolWithDetachableSensorsType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   SensorIds = SensorIdsIn;
@@ -30615,7 +30615,7 @@ ToolWithDetachableSensorsType::ToolWithDetachableSensorsType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  ArrayReferenceType * SensorIdsIn) :
   ToolBaseType(
@@ -30627,7 +30627,7 @@ ToolWithDetachableSensorsType::ToolWithDetachableSensorsType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   SensorIds = SensorIdsIn;
@@ -30716,9 +30716,9 @@ void ToolWithDetachableSensorsType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -30802,7 +30802,7 @@ ArrayReferenceType * ToolWithDetachableSensorsType::getSensorIds()
 void ToolWithDetachableSensorsType::setSensorIds(ArrayReferenceType * SensorIdsIn)
 {SensorIds = SensorIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToolWithDrawWireSensorType
 
@@ -30822,7 +30822,7 @@ ToolWithDrawWireSensorType::ToolWithDrawWireSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  DrawWireSensorType * DrawWireSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -30833,7 +30833,7 @@ ToolWithDrawWireSensorType::ToolWithDrawWireSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   DrawWireSensor = DrawWireSensorIn;
@@ -30848,7 +30848,7 @@ ToolWithDrawWireSensorType::ToolWithDrawWireSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  DrawWireSensorType * DrawWireSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -30860,7 +30860,7 @@ ToolWithDrawWireSensorType::ToolWithDrawWireSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   DrawWireSensor = DrawWireSensorIn;
@@ -30949,9 +30949,9 @@ void ToolWithDrawWireSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -31032,7 +31032,7 @@ DrawWireSensorType * ToolWithDrawWireSensorType::getDrawWireSensor()
 void ToolWithDrawWireSensorType::setDrawWireSensor(DrawWireSensorType * DrawWireSensorIn)
 {DrawWireSensor = DrawWireSensorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToolWithEddyCurrentSensorType
 
@@ -31052,7 +31052,7 @@ ToolWithEddyCurrentSensorType::ToolWithEddyCurrentSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  EddyCurrentSensorType * EddyCurrentSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -31063,7 +31063,7 @@ ToolWithEddyCurrentSensorType::ToolWithEddyCurrentSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   EddyCurrentSensor = EddyCurrentSensorIn;
@@ -31078,7 +31078,7 @@ ToolWithEddyCurrentSensorType::ToolWithEddyCurrentSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  EddyCurrentSensorType * EddyCurrentSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -31090,7 +31090,7 @@ ToolWithEddyCurrentSensorType::ToolWithEddyCurrentSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   EddyCurrentSensor = EddyCurrentSensorIn;
@@ -31179,9 +31179,9 @@ void ToolWithEddyCurrentSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -31262,7 +31262,7 @@ EddyCurrentSensorType * ToolWithEddyCurrentSensorType::getEddyCurrentSensor()
 void ToolWithEddyCurrentSensorType::setEddyCurrentSensor(EddyCurrentSensorType * EddyCurrentSensorIn)
 {EddyCurrentSensor = EddyCurrentSensorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToolWithIntegratedSensorBaseType
 
@@ -31281,7 +31281,7 @@ ToolWithIntegratedSensorBaseType::ToolWithIntegratedSensorBaseType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn) :
   ToolBaseType(
     NameIn,
@@ -31291,7 +31291,7 @@ ToolWithIntegratedSensorBaseType::ToolWithIntegratedSensorBaseType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
 }
@@ -31305,7 +31305,7 @@ ToolWithIntegratedSensorBaseType::ToolWithIntegratedSensorBaseType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn) :
   ToolBaseType(
     idIn,
@@ -31316,7 +31316,7 @@ ToolWithIntegratedSensorBaseType::ToolWithIntegratedSensorBaseType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
 }
@@ -31403,9 +31403,9 @@ void ToolWithIntegratedSensorBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -31475,7 +31475,7 @@ bool ToolWithIntegratedSensorBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToolWithLVDTSensorType
 
@@ -31495,7 +31495,7 @@ ToolWithLVDTSensorType::ToolWithLVDTSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  LinearVariableDifferentialTransformerSensorType * LVDTSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -31506,7 +31506,7 @@ ToolWithLVDTSensorType::ToolWithLVDTSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   LVDTSensor = LVDTSensorIn;
@@ -31521,7 +31521,7 @@ ToolWithLVDTSensorType::ToolWithLVDTSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  LinearVariableDifferentialTransformerSensorType * LVDTSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -31533,7 +31533,7 @@ ToolWithLVDTSensorType::ToolWithLVDTSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   LVDTSensor = LVDTSensorIn;
@@ -31622,9 +31622,9 @@ void ToolWithLVDTSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -31705,7 +31705,7 @@ LinearVariableDifferentialTransformerSensorType * ToolWithLVDTSensorType::getLVD
 void ToolWithLVDTSensorType::setLVDTSensor(LinearVariableDifferentialTransformerSensorType * LVDTSensorIn)
 {LVDTSensor = LVDTSensorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToolWithLaserTriangulationSensorType
 
@@ -31725,7 +31725,7 @@ ToolWithLaserTriangulationSensorType::ToolWithLaserTriangulationSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  LaserTriangulationSensorType * LaserTriangulationSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -31736,7 +31736,7 @@ ToolWithLaserTriangulationSensorType::ToolWithLaserTriangulationSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   LaserTriangulationSensor = LaserTriangulationSensorIn;
@@ -31751,7 +31751,7 @@ ToolWithLaserTriangulationSensorType::ToolWithLaserTriangulationSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  LaserTriangulationSensorType * LaserTriangulationSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -31763,7 +31763,7 @@ ToolWithLaserTriangulationSensorType::ToolWithLaserTriangulationSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   LaserTriangulationSensor = LaserTriangulationSensorIn;
@@ -31852,9 +31852,9 @@ void ToolWithLaserTriangulationSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -31935,7 +31935,7 @@ LaserTriangulationSensorType * ToolWithLaserTriangulationSensorType::getLaserTri
 void ToolWithLaserTriangulationSensorType::setLaserTriangulationSensor(LaserTriangulationSensorType * LaserTriangulationSensorIn)
 {LaserTriangulationSensor = LaserTriangulationSensorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToolWithMagnetoInductiveSensorType
 
@@ -31955,7 +31955,7 @@ ToolWithMagnetoInductiveSensorType::ToolWithMagnetoInductiveSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  MagnetoInductiveSensorType * MagnetoInductiveSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -31966,7 +31966,7 @@ ToolWithMagnetoInductiveSensorType::ToolWithMagnetoInductiveSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   MagnetoInductiveSensor = MagnetoInductiveSensorIn;
@@ -31981,7 +31981,7 @@ ToolWithMagnetoInductiveSensorType::ToolWithMagnetoInductiveSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  MagnetoInductiveSensorType * MagnetoInductiveSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -31993,7 +31993,7 @@ ToolWithMagnetoInductiveSensorType::ToolWithMagnetoInductiveSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   MagnetoInductiveSensor = MagnetoInductiveSensorIn;
@@ -32082,9 +32082,9 @@ void ToolWithMagnetoInductiveSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -32165,7 +32165,7 @@ MagnetoInductiveSensorType * ToolWithMagnetoInductiveSensorType::getMagnetoInduc
 void ToolWithMagnetoInductiveSensorType::setMagnetoInductiveSensor(MagnetoInductiveSensorType * MagnetoInductiveSensorIn)
 {MagnetoInductiveSensor = MagnetoInductiveSensorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToolWithSimpleTactileProbeSensorType
 
@@ -32185,7 +32185,7 @@ ToolWithSimpleTactileProbeSensorType::ToolWithSimpleTactileProbeSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  SimpleTactileProbeSensorType * SimpleTactileProbeSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -32196,7 +32196,7 @@ ToolWithSimpleTactileProbeSensorType::ToolWithSimpleTactileProbeSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   SimpleTactileProbeSensor = SimpleTactileProbeSensorIn;
@@ -32211,7 +32211,7 @@ ToolWithSimpleTactileProbeSensorType::ToolWithSimpleTactileProbeSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  SimpleTactileProbeSensorType * SimpleTactileProbeSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -32223,7 +32223,7 @@ ToolWithSimpleTactileProbeSensorType::ToolWithSimpleTactileProbeSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   SimpleTactileProbeSensor = SimpleTactileProbeSensorIn;
@@ -32312,9 +32312,9 @@ void ToolWithSimpleTactileProbeSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -32395,7 +32395,7 @@ SimpleTactileProbeSensorType * ToolWithSimpleTactileProbeSensorType::getSimpleTa
 void ToolWithSimpleTactileProbeSensorType::setSimpleTactileProbeSensor(SimpleTactileProbeSensorType * SimpleTactileProbeSensorIn)
 {SimpleTactileProbeSensor = SimpleTactileProbeSensorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToolWithStructuredLightSensorType
 
@@ -32415,7 +32415,7 @@ ToolWithStructuredLightSensorType::ToolWithStructuredLightSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  StructuredLightSensorType * StructuredLightSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -32426,7 +32426,7 @@ ToolWithStructuredLightSensorType::ToolWithStructuredLightSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   StructuredLightSensor = StructuredLightSensorIn;
@@ -32441,7 +32441,7 @@ ToolWithStructuredLightSensorType::ToolWithStructuredLightSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  StructuredLightSensorType * StructuredLightSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -32453,7 +32453,7 @@ ToolWithStructuredLightSensorType::ToolWithStructuredLightSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   StructuredLightSensor = StructuredLightSensorIn;
@@ -32542,9 +32542,9 @@ void ToolWithStructuredLightSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -32625,7 +32625,7 @@ StructuredLightSensorType * ToolWithStructuredLightSensorType::getStructuredLigh
 void ToolWithStructuredLightSensorType::setStructuredLightSensor(StructuredLightSensorType * StructuredLightSensorIn)
 {StructuredLightSensor = StructuredLightSensorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToolWithUltrasonicSensorType
 
@@ -32645,7 +32645,7 @@ ToolWithUltrasonicSensorType::ToolWithUltrasonicSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  UltrasonicSensorType * UltrasonicSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -32656,7 +32656,7 @@ ToolWithUltrasonicSensorType::ToolWithUltrasonicSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   UltrasonicSensor = UltrasonicSensorIn;
@@ -32671,7 +32671,7 @@ ToolWithUltrasonicSensorType::ToolWithUltrasonicSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  UltrasonicSensorType * UltrasonicSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -32683,7 +32683,7 @@ ToolWithUltrasonicSensorType::ToolWithUltrasonicSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn)
 {
   UltrasonicSensor = UltrasonicSensorIn;
@@ -32772,9 +32772,9 @@ void ToolWithUltrasonicSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -32855,7 +32855,7 @@ UltrasonicSensorType * ToolWithUltrasonicSensorType::getUltrasonicSensor()
 void ToolWithUltrasonicSensorType::setUltrasonicSensor(UltrasonicSensorType * UltrasonicSensorIn)
 {UltrasonicSensor = UltrasonicSensorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToolsType
 
@@ -33262,7 +33262,7 @@ ToolBaseTypeLisd * ToolsType::getTool()
 void ToolsType::setTool(ToolBaseTypeLisd * ToolIn)
 {Tool = ToolIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TwentyLinearValuesType
 
@@ -33419,7 +33419,7 @@ LinearValueTypeLisd * TwentyLinearValuesType::getLinearValue()
 void TwentyLinearValuesType::setLinearValue(LinearValueTypeLisd * LinearValueIn)
 {LinearValue = LinearValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TypeOfScaleEnumType
 
@@ -33481,7 +33481,7 @@ void TypeOfScaleEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TypeOfScaleType
 
@@ -33519,7 +33519,7 @@ TypeOfScaleTypeChoicePair * TypeOfScaleType::getTypeOfScaleTypePair()
 void TypeOfScaleType::setTypeOfScaleTypePair(TypeOfScaleTypeChoicePair * TypeOfScaleTypePairIn)
 {TypeOfScaleTypePair = TypeOfScaleTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TypeOfScaleTypeChoicePair
 
@@ -33563,7 +33563,7 @@ void TypeOfScaleTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UltrasonicSensorType
 
@@ -33591,7 +33591,7 @@ UltrasonicSensorType::UltrasonicSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -33616,7 +33616,7 @@ UltrasonicSensorType::UltrasonicSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -33645,7 +33645,7 @@ UltrasonicSensorType::UltrasonicSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -33671,7 +33671,7 @@ UltrasonicSensorType::UltrasonicSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -33782,9 +33782,9 @@ void UltrasonicSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -34014,7 +34014,7 @@ UserDefinedUnitValueType * UltrasonicSensorType::getMaxPowerSupplyVoltage()
 void UltrasonicSensorType::setMaxPowerSupplyVoltage(UserDefinedUnitValueType * MaxPowerSupplyVoltageIn)
 {MaxPowerSupplyVoltage = MaxPowerSupplyVoltageIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UniversalDeviceType
 
@@ -34037,7 +34037,7 @@ UniversalDeviceType::UniversalDeviceType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -34053,7 +34053,7 @@ UniversalDeviceType::UniversalDeviceType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn)
@@ -34073,7 +34073,7 @@ UniversalDeviceType::UniversalDeviceType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -34090,7 +34090,7 @@ UniversalDeviceType::UniversalDeviceType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn)
@@ -34187,9 +34187,9 @@ void UniversalDeviceType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -34582,7 +34582,7 @@ TemperatureCompensationType * UniversalDeviceType::getTemperatureCompensation()
 void UniversalDeviceType::setTemperatureCompensation(TemperatureCompensationType * TemperatureCompensationIn)
 {TemperatureCompensation = TemperatureCompensationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UniversalLengthMeasuringType
 
@@ -34608,7 +34608,7 @@ UniversalLengthMeasuringType::UniversalLengthMeasuringType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -34631,7 +34631,7 @@ UniversalLengthMeasuringType::UniversalLengthMeasuringType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -34658,7 +34658,7 @@ UniversalLengthMeasuringType::UniversalLengthMeasuringType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1241_Type * MeasurementReso_1241In,
+ MeasurementReso_1242_Type * MeasurementReso_1242In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -34682,7 +34682,7 @@ UniversalLengthMeasuringType::UniversalLengthMeasuringType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1241In,
+    MeasurementReso_1242In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -34789,9 +34789,9 @@ void UniversalLengthMeasuringType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1241)
+  if (MeasurementReso_1242)
     {
-      MeasurementReso_1241->printSelf(outFile);
+      MeasurementReso_1242->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -35253,7 +35253,7 @@ MassValueType * UniversalLengthMeasuringType::getMaxWorkpieceWeight()
 void UniversalLengthMeasuringType::setMaxWorkpieceWeight(MassValueType * MaxWorkpieceWeightIn)
 {MaxWorkpieceWeight = MaxWorkpieceWeightIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserAxisBaseType
 
@@ -35269,7 +35269,7 @@ void UserAxisBaseType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedAxisType
 
@@ -35378,7 +35378,7 @@ XmlToken * UserDefinedAxisType::getAxisName()
 void UserDefinedAxisType::setAxisName(XmlToken * AxisNameIn)
 {AxisName = AxisNameIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedResolutionType
 
@@ -35387,20 +35387,20 @@ void UserDefinedAxisType::setAxisName(XmlToken * AxisNameIn)
 UserDefinedResolutionType::UserDefinedResolutionType() :
   ResolutionBaseType()
 {
-  UserDefinedReso_1243 = 0;
+  UserDefinedReso_1244 = 0;
 }
 
 UserDefinedResolutionType::UserDefinedResolutionType(
- UserDefinedReso_1243_Type * UserDefinedReso_1243In) :
+ UserDefinedReso_1244_Type * UserDefinedReso_1244In) :
   ResolutionBaseType()
 {
-  UserDefinedReso_1243 = UserDefinedReso_1243In;
+  UserDefinedReso_1244 = UserDefinedReso_1244In;
 }
 
 UserDefinedResolutionType::~UserDefinedResolutionType()
 {
   #ifndef NODESTRUCT
-  delete UserDefinedReso_1243;
+  delete UserDefinedReso_1244;
   #endif
 }
 
@@ -35408,17 +35408,17 @@ void UserDefinedResolutionType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  UserDefinedReso_1243->printSelf(outFile);
+  UserDefinedReso_1244->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-UserDefinedReso_1243_Type * UserDefinedResolutionType::getUserDefinedReso_1243()
-{return UserDefinedReso_1243;}
+UserDefinedReso_1244_Type * UserDefinedResolutionType::getUserDefinedReso_1244()
+{return UserDefinedReso_1244;}
 
-void UserDefinedResolutionType::setUserDefinedReso_1243(UserDefinedReso_1243_Type * UserDefinedReso_1243In)
-{UserDefinedReso_1243 = UserDefinedReso_1243In;}
+void UserDefinedResolutionType::setUserDefinedReso_1244(UserDefinedReso_1244_Type * UserDefinedReso_1244In)
+{UserDefinedReso_1244 = UserDefinedReso_1244In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedWorkingVolumeType
 
@@ -35492,7 +35492,7 @@ UserDefinedAxisType * UserDefinedWorkingVolumeType::getThirdAxis()
 void UserDefinedWorkingVolumeType::setThirdAxis(UserDefinedAxisType * ThirdAxisIn)
 {ThirdAxis = ThirdAxisIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class VolumetricPerformanceTestType
 
@@ -35548,7 +35548,7 @@ LinearValueType * VolumetricPerformanceTestType::getTwiceStandardDeviation()
 void VolumetricPerformanceTestType::setTwiceStandardDeviation(LinearValueType * TwiceStandardDeviationIn)
 {TwiceStandardDeviation = TwiceStandardDeviationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WorkingVolumeBaseType
 
@@ -35564,7 +35564,7 @@ void WorkingVolumeBaseType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class XYZLinearSpecificationType
 
@@ -35642,7 +35642,7 @@ LinearValueType * XYZLinearSpecificationType::getZ()
 void XYZLinearSpecificationType::setZ(LinearValueType * ZIn)
 {Z = ZIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class XYZResolutionType
 
@@ -35711,423 +35711,423 @@ LinearValueType * XYZResolutionType::getZResolution()
 void XYZResolutionType::setZResolution(LinearValueType * ZResolutionIn)
 {ZResolution = ZResolutionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class CartesianResolu_1239_Type
-
-*/
-
-CartesianResolu_1239_Type::CartesianResolu_1239_Type()
-{
-  CartesianResolu_1239_TypePair = 0;
-}
-
-CartesianResolu_1239_Type::CartesianResolu_1239_Type(
- CartesianResolu_1239_TypeChoicePair * CartesianResolu_1239_TypePairIn)
-{
-  CartesianResolu_1239_TypePair = CartesianResolu_1239_TypePairIn;
-}
-
-CartesianResolu_1239_Type::~CartesianResolu_1239_Type()
-{
-  #ifndef NODESTRUCT
-  delete CartesianResolu_1239_TypePair;
-  #endif
-}
-
-void CartesianResolu_1239_Type::printSelf(FILE * outFile)
-{
-  CartesianResolu_1239_TypePair->printSelf(outFile);
-}
-
-CartesianResolu_1239_TypeChoicePair * CartesianResolu_1239_Type::getCartesianResolu_1239_TypePair()
-{return CartesianResolu_1239_TypePair;}
-
-void CartesianResolu_1239_Type::setCartesianResolu_1239_TypePair(CartesianResolu_1239_TypeChoicePair * CartesianResolu_1239_TypePairIn)
-{CartesianResolu_1239_TypePair = CartesianResolu_1239_TypePairIn;}
-
-/*********************************************************************/
-
-/* class CartesianResolu_1239_TypeChoicePair
+/* class CartesianResolu_1240_Type
 
 */
 
-CartesianResolu_1239_TypeChoicePair::CartesianResolu_1239_TypeChoicePair() {}
-
-CartesianResolu_1239_TypeChoicePair::CartesianResolu_1239_TypeChoicePair(
- whichOne CartesianResolu_1239_TypeTypeIn,
- CartesianResolu_1239_TypeVal CartesianResolu_1239_TypeValueIn)
+CartesianResolu_1240_Type::CartesianResolu_1240_Type()
 {
-  CartesianResolu_1239_TypeType = CartesianResolu_1239_TypeTypeIn;
-  CartesianResolu_1239_TypeValue = CartesianResolu_1239_TypeValueIn;
+  CartesianResolu_1240_TypePair = 0;
 }
 
-CartesianResolu_1239_TypeChoicePair::~CartesianResolu_1239_TypeChoicePair()
+CartesianResolu_1240_Type::CartesianResolu_1240_Type(
+ CartesianResolu_1240_TypeChoicePair * CartesianResolu_1240_TypePairIn)
+{
+  CartesianResolu_1240_TypePair = CartesianResolu_1240_TypePairIn;
+}
+
+CartesianResolu_1240_Type::~CartesianResolu_1240_Type()
 {
   #ifndef NODESTRUCT
-  if (CartesianResolu_1239_TypeType == CartesianResolu_1244E)
-    delete CartesianResolu_1239_TypeValue.CartesianResolu_1244;
-  else if (CartesianResolu_1239_TypeType == XYZResolutionE)
-    delete CartesianResolu_1239_TypeValue.XYZResolution;
+  delete CartesianResolu_1240_TypePair;
   #endif
 }
 
-void CartesianResolu_1239_TypeChoicePair::printSelf(FILE * outFile)
+void CartesianResolu_1240_Type::printSelf(FILE * outFile)
 {
-  if (CartesianResolu_1239_TypeType == CartesianResolu_1244E)
+  CartesianResolu_1240_TypePair->printSelf(outFile);
+}
+
+CartesianResolu_1240_TypeChoicePair * CartesianResolu_1240_Type::getCartesianResolu_1240_TypePair()
+{return CartesianResolu_1240_TypePair;}
+
+void CartesianResolu_1240_Type::setCartesianResolu_1240_TypePair(CartesianResolu_1240_TypeChoicePair * CartesianResolu_1240_TypePairIn)
+{CartesianResolu_1240_TypePair = CartesianResolu_1240_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class CartesianResolu_1240_TypeChoicePair
+
+*/
+
+CartesianResolu_1240_TypeChoicePair::CartesianResolu_1240_TypeChoicePair() {}
+
+CartesianResolu_1240_TypeChoicePair::CartesianResolu_1240_TypeChoicePair(
+ whichOne CartesianResolu_1240_TypeTypeIn,
+ CartesianResolu_1240_TypeVal CartesianResolu_1240_TypeValueIn)
+{
+  CartesianResolu_1240_TypeType = CartesianResolu_1240_TypeTypeIn;
+  CartesianResolu_1240_TypeValue = CartesianResolu_1240_TypeValueIn;
+}
+
+CartesianResolu_1240_TypeChoicePair::~CartesianResolu_1240_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (CartesianResolu_1240_TypeType == CartesianResolu_1245E)
+    delete CartesianResolu_1240_TypeValue.CartesianResolu_1245;
+  else if (CartesianResolu_1240_TypeType == XYZResolutionE)
+    delete CartesianResolu_1240_TypeValue.XYZResolution;
+  #endif
+}
+
+void CartesianResolu_1240_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (CartesianResolu_1240_TypeType == CartesianResolu_1245E)
     {
-      CartesianResolu_1239_TypeValue.CartesianResolu_1244->printSelf(outFile);
+      CartesianResolu_1240_TypeValue.CartesianResolu_1245->printSelf(outFile);
     }
-  else if (CartesianResolu_1239_TypeType == XYZResolutionE)
+  else if (CartesianResolu_1240_TypeType == XYZResolutionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<XYZResolution");
-      CartesianResolu_1239_TypeValue.XYZResolution->printSelf(outFile);
+      CartesianResolu_1240_TypeValue.XYZResolution->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</XYZResolution>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class ISO10360TestTyp_1240_Type
-
-*/
-
-ISO10360TestTyp_1240_Type::ISO10360TestTyp_1240_Type()
-{
-  ISO10360TestTyp_1240_TypePair = 0;
-}
-
-ISO10360TestTyp_1240_Type::ISO10360TestTyp_1240_Type(
- ISO10360TestTyp_1240_TypeChoicePair * ISO10360TestTyp_1240_TypePairIn)
-{
-  ISO10360TestTyp_1240_TypePair = ISO10360TestTyp_1240_TypePairIn;
-}
-
-ISO10360TestTyp_1240_Type::~ISO10360TestTyp_1240_Type()
-{
-  #ifndef NODESTRUCT
-  delete ISO10360TestTyp_1240_TypePair;
-  #endif
-}
-
-void ISO10360TestTyp_1240_Type::printSelf(FILE * outFile)
-{
-  ISO10360TestTyp_1240_TypePair->printSelf(outFile);
-}
-
-ISO10360TestTyp_1240_TypeChoicePair * ISO10360TestTyp_1240_Type::getISO10360TestTyp_1240_TypePair()
-{return ISO10360TestTyp_1240_TypePair;}
-
-void ISO10360TestTyp_1240_Type::setISO10360TestTyp_1240_TypePair(ISO10360TestTyp_1240_TypeChoicePair * ISO10360TestTyp_1240_TypePairIn)
-{ISO10360TestTyp_1240_TypePair = ISO10360TestTyp_1240_TypePairIn;}
-
-/*********************************************************************/
-
-/* class ISO10360TestTyp_1240_TypeChoicePair
+/* class ISO10360TestTyp_1241_Type
 
 */
 
-ISO10360TestTyp_1240_TypeChoicePair::ISO10360TestTyp_1240_TypeChoicePair() {}
-
-ISO10360TestTyp_1240_TypeChoicePair::ISO10360TestTyp_1240_TypeChoicePair(
- whichOne ISO10360TestTyp_1240_TypeTypeIn,
- ISO10360TestTyp_1240_TypeVal ISO10360TestTyp_1240_TypeValueIn)
+ISO10360TestTyp_1241_Type::ISO10360TestTyp_1241_Type()
 {
-  ISO10360TestTyp_1240_TypeType = ISO10360TestTyp_1240_TypeTypeIn;
-  ISO10360TestTyp_1240_TypeValue = ISO10360TestTyp_1240_TypeValueIn;
+  ISO10360TestTyp_1241_TypePair = 0;
 }
 
-ISO10360TestTyp_1240_TypeChoicePair::~ISO10360TestTyp_1240_TypeChoicePair()
+ISO10360TestTyp_1241_Type::ISO10360TestTyp_1241_Type(
+ ISO10360TestTyp_1241_TypeChoicePair * ISO10360TestTyp_1241_TypePairIn)
+{
+  ISO10360TestTyp_1241_TypePair = ISO10360TestTyp_1241_TypePairIn;
+}
+
+ISO10360TestTyp_1241_Type::~ISO10360TestTyp_1241_Type()
 {
   #ifndef NODESTRUCT
-  if (ISO10360TestTyp_1240_TypeType == MaxErrorConstantE)
-    delete ISO10360TestTyp_1240_TypeValue.MaxErrorConstant;
-  else if (ISO10360TestTyp_1240_TypeType == LinearErrorE)
-    delete ISO10360TestTyp_1240_TypeValue.LinearError;
-  else if (ISO10360TestTyp_1240_TypeType == LesserErrorE)
-    delete ISO10360TestTyp_1240_TypeValue.LesserError;
+  delete ISO10360TestTyp_1241_TypePair;
   #endif
 }
 
-void ISO10360TestTyp_1240_TypeChoicePair::printSelf(FILE * outFile)
+void ISO10360TestTyp_1241_Type::printSelf(FILE * outFile)
 {
-  if (ISO10360TestTyp_1240_TypeType == MaxErrorConstantE)
+  ISO10360TestTyp_1241_TypePair->printSelf(outFile);
+}
+
+ISO10360TestTyp_1241_TypeChoicePair * ISO10360TestTyp_1241_Type::getISO10360TestTyp_1241_TypePair()
+{return ISO10360TestTyp_1241_TypePair;}
+
+void ISO10360TestTyp_1241_Type::setISO10360TestTyp_1241_TypePair(ISO10360TestTyp_1241_TypeChoicePair * ISO10360TestTyp_1241_TypePairIn)
+{ISO10360TestTyp_1241_TypePair = ISO10360TestTyp_1241_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class ISO10360TestTyp_1241_TypeChoicePair
+
+*/
+
+ISO10360TestTyp_1241_TypeChoicePair::ISO10360TestTyp_1241_TypeChoicePair() {}
+
+ISO10360TestTyp_1241_TypeChoicePair::ISO10360TestTyp_1241_TypeChoicePair(
+ whichOne ISO10360TestTyp_1241_TypeTypeIn,
+ ISO10360TestTyp_1241_TypeVal ISO10360TestTyp_1241_TypeValueIn)
+{
+  ISO10360TestTyp_1241_TypeType = ISO10360TestTyp_1241_TypeTypeIn;
+  ISO10360TestTyp_1241_TypeValue = ISO10360TestTyp_1241_TypeValueIn;
+}
+
+ISO10360TestTyp_1241_TypeChoicePair::~ISO10360TestTyp_1241_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (ISO10360TestTyp_1241_TypeType == MaxErrorConstantE)
+    delete ISO10360TestTyp_1241_TypeValue.MaxErrorConstant;
+  else if (ISO10360TestTyp_1241_TypeType == LinearErrorE)
+    delete ISO10360TestTyp_1241_TypeValue.LinearError;
+  else if (ISO10360TestTyp_1241_TypeType == LesserErrorE)
+    delete ISO10360TestTyp_1241_TypeValue.LesserError;
+  #endif
+}
+
+void ISO10360TestTyp_1241_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (ISO10360TestTyp_1241_TypeType == MaxErrorConstantE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MaxErrorConstant");
-      ISO10360TestTyp_1240_TypeValue.MaxErrorConstant->printSelf(outFile);
+      ISO10360TestTyp_1241_TypeValue.MaxErrorConstant->printSelf(outFile);
       fprintf(outFile, "</MaxErrorConstant>\n");
     }
-  else if (ISO10360TestTyp_1240_TypeType == LinearErrorE)
+  else if (ISO10360TestTyp_1241_TypeType == LinearErrorE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<LinearError");
-      ISO10360TestTyp_1240_TypeValue.LinearError->printSelf(outFile);
+      ISO10360TestTyp_1241_TypeValue.LinearError->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</LinearError>\n");
     }
-  else if (ISO10360TestTyp_1240_TypeType == LesserErrorE)
+  else if (ISO10360TestTyp_1241_TypeType == LesserErrorE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<LesserError");
-      ISO10360TestTyp_1240_TypeValue.LesserError->printSelf(outFile);
+      ISO10360TestTyp_1241_TypeValue.LesserError->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</LesserError>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class MeasurementReso_1241_Type
+/* class MeasurementReso_1242_Type
 
 */
 
-MeasurementReso_1241_Type::MeasurementReso_1241_Type()
+MeasurementReso_1242_Type::MeasurementReso_1242_Type()
 {
-  MeasurementReso_1241_TypePair = 0;
+  MeasurementReso_1242_TypePair = 0;
 }
 
-MeasurementReso_1241_Type::MeasurementReso_1241_Type(
- MeasurementReso_1241_TypeChoicePair * MeasurementReso_1241_TypePairIn)
+MeasurementReso_1242_Type::MeasurementReso_1242_Type(
+ MeasurementReso_1242_TypeChoicePair * MeasurementReso_1242_TypePairIn)
 {
-  MeasurementReso_1241_TypePair = MeasurementReso_1241_TypePairIn;
+  MeasurementReso_1242_TypePair = MeasurementReso_1242_TypePairIn;
 }
 
-MeasurementReso_1241_Type::~MeasurementReso_1241_Type()
+MeasurementReso_1242_Type::~MeasurementReso_1242_Type()
 {
   #ifndef NODESTRUCT
-  delete MeasurementReso_1241_TypePair;
+  delete MeasurementReso_1242_TypePair;
   #endif
 }
 
-void MeasurementReso_1241_Type::printSelf(FILE * outFile)
+void MeasurementReso_1242_Type::printSelf(FILE * outFile)
 {
-  if (MeasurementReso_1241_TypePair)
+  if (MeasurementReso_1242_TypePair)
     {
-      MeasurementReso_1241_TypePair->printSelf(outFile);
+      MeasurementReso_1242_TypePair->printSelf(outFile);
     }
 }
 
-MeasurementReso_1241_TypeChoicePair * MeasurementReso_1241_Type::getMeasurementReso_1241_TypePair()
-{return MeasurementReso_1241_TypePair;}
+MeasurementReso_1242_TypeChoicePair * MeasurementReso_1242_Type::getMeasurementReso_1242_TypePair()
+{return MeasurementReso_1242_TypePair;}
 
-void MeasurementReso_1241_Type::setMeasurementReso_1241_TypePair(MeasurementReso_1241_TypeChoicePair * MeasurementReso_1241_TypePairIn)
-{MeasurementReso_1241_TypePair = MeasurementReso_1241_TypePairIn;}
+void MeasurementReso_1242_Type::setMeasurementReso_1242_TypePair(MeasurementReso_1242_TypeChoicePair * MeasurementReso_1242_TypePairIn)
+{MeasurementReso_1242_TypePair = MeasurementReso_1242_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class MeasurementReso_1241_TypeChoicePair
+/* class MeasurementReso_1242_TypeChoicePair
 
 */
 
-MeasurementReso_1241_TypeChoicePair::MeasurementReso_1241_TypeChoicePair() {}
+MeasurementReso_1242_TypeChoicePair::MeasurementReso_1242_TypeChoicePair() {}
 
-MeasurementReso_1241_TypeChoicePair::MeasurementReso_1241_TypeChoicePair(
- whichOne MeasurementReso_1241_TypeTypeIn,
- MeasurementReso_1241_TypeVal MeasurementReso_1241_TypeValueIn)
+MeasurementReso_1242_TypeChoicePair::MeasurementReso_1242_TypeChoicePair(
+ whichOne MeasurementReso_1242_TypeTypeIn,
+ MeasurementReso_1242_TypeVal MeasurementReso_1242_TypeValueIn)
 {
-  MeasurementReso_1241_TypeType = MeasurementReso_1241_TypeTypeIn;
-  MeasurementReso_1241_TypeValue = MeasurementReso_1241_TypeValueIn;
+  MeasurementReso_1242_TypeType = MeasurementReso_1242_TypeTypeIn;
+  MeasurementReso_1242_TypeValue = MeasurementReso_1242_TypeValueIn;
 }
 
-MeasurementReso_1241_TypeChoicePair::~MeasurementReso_1241_TypeChoicePair()
+MeasurementReso_1242_TypeChoicePair::~MeasurementReso_1242_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (MeasurementReso_1241_TypeType == LocationIdE)
-    delete MeasurementReso_1241_TypeValue.LocationId;
-  else if (MeasurementReso_1241_TypeType == LocationE)
-    delete MeasurementReso_1241_TypeValue.Location;
+  if (MeasurementReso_1242_TypeType == LocationIdE)
+    delete MeasurementReso_1242_TypeValue.LocationId;
+  else if (MeasurementReso_1242_TypeType == LocationE)
+    delete MeasurementReso_1242_TypeValue.Location;
   #endif
 }
 
-void MeasurementReso_1241_TypeChoicePair::printSelf(FILE * outFile)
+void MeasurementReso_1242_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (MeasurementReso_1241_TypeType == LocationIdE)
+  if (MeasurementReso_1242_TypeType == LocationIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<LocationId");
-      MeasurementReso_1241_TypeValue.LocationId->printSelf(outFile);
+      MeasurementReso_1242_TypeValue.LocationId->printSelf(outFile);
       fprintf(outFile, "</LocationId>\n");
     }
-  else if (MeasurementReso_1241_TypeType == LocationE)
+  else if (MeasurementReso_1242_TypeType == LocationE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Location");
-      MeasurementReso_1241_TypeValue.Location->printSelf(outFile);
+      MeasurementReso_1242_TypeValue.Location->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Location>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class SphericalResolu_1242_Type
-
-*/
-
-SphericalResolu_1242_Type::SphericalResolu_1242_Type()
-{
-  SphericalResolu_1242_TypePair = 0;
-}
-
-SphericalResolu_1242_Type::SphericalResolu_1242_Type(
- SphericalResolu_1242_TypeChoicePair * SphericalResolu_1242_TypePairIn)
-{
-  SphericalResolu_1242_TypePair = SphericalResolu_1242_TypePairIn;
-}
-
-SphericalResolu_1242_Type::~SphericalResolu_1242_Type()
-{
-  #ifndef NODESTRUCT
-  delete SphericalResolu_1242_TypePair;
-  #endif
-}
-
-void SphericalResolu_1242_Type::printSelf(FILE * outFile)
-{
-  SphericalResolu_1242_TypePair->printSelf(outFile);
-}
-
-SphericalResolu_1242_TypeChoicePair * SphericalResolu_1242_Type::getSphericalResolu_1242_TypePair()
-{return SphericalResolu_1242_TypePair;}
-
-void SphericalResolu_1242_Type::setSphericalResolu_1242_TypePair(SphericalResolu_1242_TypeChoicePair * SphericalResolu_1242_TypePairIn)
-{SphericalResolu_1242_TypePair = SphericalResolu_1242_TypePairIn;}
-
-/*********************************************************************/
-
-/* class SphericalResolu_1242_TypeChoicePair
+/* class SphericalResolu_1243_Type
 
 */
 
-SphericalResolu_1242_TypeChoicePair::SphericalResolu_1242_TypeChoicePair() {}
-
-SphericalResolu_1242_TypeChoicePair::SphericalResolu_1242_TypeChoicePair(
- whichOne SphericalResolu_1242_TypeTypeIn,
- SphericalResolu_1242_TypeVal SphericalResolu_1242_TypeValueIn)
+SphericalResolu_1243_Type::SphericalResolu_1243_Type()
 {
-  SphericalResolu_1242_TypeType = SphericalResolu_1242_TypeTypeIn;
-  SphericalResolu_1242_TypeValue = SphericalResolu_1242_TypeValueIn;
+  SphericalResolu_1243_TypePair = 0;
 }
 
-SphericalResolu_1242_TypeChoicePair::~SphericalResolu_1242_TypeChoicePair()
+SphericalResolu_1243_Type::SphericalResolu_1243_Type(
+ SphericalResolu_1243_TypeChoicePair * SphericalResolu_1243_TypePairIn)
+{
+  SphericalResolu_1243_TypePair = SphericalResolu_1243_TypePairIn;
+}
+
+SphericalResolu_1243_Type::~SphericalResolu_1243_Type()
 {
   #ifndef NODESTRUCT
-  if (SphericalResolu_1242_TypeType == SphericalResolu_1245E)
-    delete SphericalResolu_1242_TypeValue.SphericalResolu_1245;
-  else if (SphericalResolu_1242_TypeType == RAPResolutionE)
-    delete SphericalResolu_1242_TypeValue.RAPResolution;
+  delete SphericalResolu_1243_TypePair;
   #endif
 }
 
-void SphericalResolu_1242_TypeChoicePair::printSelf(FILE * outFile)
+void SphericalResolu_1243_Type::printSelf(FILE * outFile)
 {
-  if (SphericalResolu_1242_TypeType == SphericalResolu_1245E)
+  SphericalResolu_1243_TypePair->printSelf(outFile);
+}
+
+SphericalResolu_1243_TypeChoicePair * SphericalResolu_1243_Type::getSphericalResolu_1243_TypePair()
+{return SphericalResolu_1243_TypePair;}
+
+void SphericalResolu_1243_Type::setSphericalResolu_1243_TypePair(SphericalResolu_1243_TypeChoicePair * SphericalResolu_1243_TypePairIn)
+{SphericalResolu_1243_TypePair = SphericalResolu_1243_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class SphericalResolu_1243_TypeChoicePair
+
+*/
+
+SphericalResolu_1243_TypeChoicePair::SphericalResolu_1243_TypeChoicePair() {}
+
+SphericalResolu_1243_TypeChoicePair::SphericalResolu_1243_TypeChoicePair(
+ whichOne SphericalResolu_1243_TypeTypeIn,
+ SphericalResolu_1243_TypeVal SphericalResolu_1243_TypeValueIn)
+{
+  SphericalResolu_1243_TypeType = SphericalResolu_1243_TypeTypeIn;
+  SphericalResolu_1243_TypeValue = SphericalResolu_1243_TypeValueIn;
+}
+
+SphericalResolu_1243_TypeChoicePair::~SphericalResolu_1243_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (SphericalResolu_1243_TypeType == SphericalResolu_1246E)
+    delete SphericalResolu_1243_TypeValue.SphericalResolu_1246;
+  else if (SphericalResolu_1243_TypeType == RAPResolutionE)
+    delete SphericalResolu_1243_TypeValue.RAPResolution;
+  #endif
+}
+
+void SphericalResolu_1243_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (SphericalResolu_1243_TypeType == SphericalResolu_1246E)
     {
-      SphericalResolu_1242_TypeValue.SphericalResolu_1245->printSelf(outFile);
+      SphericalResolu_1243_TypeValue.SphericalResolu_1246->printSelf(outFile);
     }
-  else if (SphericalResolu_1242_TypeType == RAPResolutionE)
+  else if (SphericalResolu_1243_TypeType == RAPResolutionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RAPResolution");
-      SphericalResolu_1242_TypeValue.RAPResolution->printSelf(outFile);
+      SphericalResolu_1243_TypeValue.RAPResolution->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</RAPResolution>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedReso_1243_Type
-
-*/
-
-UserDefinedReso_1243_Type::UserDefinedReso_1243_Type()
-{
-  UserDefinedReso_1243_TypePair = 0;
-}
-
-UserDefinedReso_1243_Type::UserDefinedReso_1243_Type(
- UserDefinedReso_1243_TypeChoicePair * UserDefinedReso_1243_TypePairIn)
-{
-  UserDefinedReso_1243_TypePair = UserDefinedReso_1243_TypePairIn;
-}
-
-UserDefinedReso_1243_Type::~UserDefinedReso_1243_Type()
-{
-  #ifndef NODESTRUCT
-  delete UserDefinedReso_1243_TypePair;
-  #endif
-}
-
-void UserDefinedReso_1243_Type::printSelf(FILE * outFile)
-{
-  UserDefinedReso_1243_TypePair->printSelf(outFile);
-}
-
-UserDefinedReso_1243_TypeChoicePair * UserDefinedReso_1243_Type::getUserDefinedReso_1243_TypePair()
-{return UserDefinedReso_1243_TypePair;}
-
-void UserDefinedReso_1243_Type::setUserDefinedReso_1243_TypePair(UserDefinedReso_1243_TypeChoicePair * UserDefinedReso_1243_TypePairIn)
-{UserDefinedReso_1243_TypePair = UserDefinedReso_1243_TypePairIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedReso_1243_TypeChoicePair
+/* class UserDefinedReso_1244_Type
 
 */
 
-UserDefinedReso_1243_TypeChoicePair::UserDefinedReso_1243_TypeChoicePair() {}
-
-UserDefinedReso_1243_TypeChoicePair::UserDefinedReso_1243_TypeChoicePair(
- whichOne UserDefinedReso_1243_TypeTypeIn,
- UserDefinedReso_1243_TypeVal UserDefinedReso_1243_TypeValueIn)
+UserDefinedReso_1244_Type::UserDefinedReso_1244_Type()
 {
-  UserDefinedReso_1243_TypeType = UserDefinedReso_1243_TypeTypeIn;
-  UserDefinedReso_1243_TypeValue = UserDefinedReso_1243_TypeValueIn;
+  UserDefinedReso_1244_TypePair = 0;
 }
 
-UserDefinedReso_1243_TypeChoicePair::~UserDefinedReso_1243_TypeChoicePair()
+UserDefinedReso_1244_Type::UserDefinedReso_1244_Type(
+ UserDefinedReso_1244_TypeChoicePair * UserDefinedReso_1244_TypePairIn)
+{
+  UserDefinedReso_1244_TypePair = UserDefinedReso_1244_TypePairIn;
+}
+
+UserDefinedReso_1244_Type::~UserDefinedReso_1244_Type()
 {
   #ifndef NODESTRUCT
-  if (UserDefinedReso_1243_TypeType == UserDefinedReso_1246E)
-    delete UserDefinedReso_1243_TypeValue.UserDefinedReso_1246;
-  else if (UserDefinedReso_1243_TypeType == ABCResolutionE)
-    delete UserDefinedReso_1243_TypeValue.ABCResolution;
+  delete UserDefinedReso_1244_TypePair;
   #endif
 }
 
-void UserDefinedReso_1243_TypeChoicePair::printSelf(FILE * outFile)
+void UserDefinedReso_1244_Type::printSelf(FILE * outFile)
 {
-  if (UserDefinedReso_1243_TypeType == UserDefinedReso_1246E)
+  UserDefinedReso_1244_TypePair->printSelf(outFile);
+}
+
+UserDefinedReso_1244_TypeChoicePair * UserDefinedReso_1244_Type::getUserDefinedReso_1244_TypePair()
+{return UserDefinedReso_1244_TypePair;}
+
+void UserDefinedReso_1244_Type::setUserDefinedReso_1244_TypePair(UserDefinedReso_1244_TypeChoicePair * UserDefinedReso_1244_TypePairIn)
+{UserDefinedReso_1244_TypePair = UserDefinedReso_1244_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedReso_1244_TypeChoicePair
+
+*/
+
+UserDefinedReso_1244_TypeChoicePair::UserDefinedReso_1244_TypeChoicePair() {}
+
+UserDefinedReso_1244_TypeChoicePair::UserDefinedReso_1244_TypeChoicePair(
+ whichOne UserDefinedReso_1244_TypeTypeIn,
+ UserDefinedReso_1244_TypeVal UserDefinedReso_1244_TypeValueIn)
+{
+  UserDefinedReso_1244_TypeType = UserDefinedReso_1244_TypeTypeIn;
+  UserDefinedReso_1244_TypeValue = UserDefinedReso_1244_TypeValueIn;
+}
+
+UserDefinedReso_1244_TypeChoicePair::~UserDefinedReso_1244_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (UserDefinedReso_1244_TypeType == UserDefinedReso_1247E)
+    delete UserDefinedReso_1244_TypeValue.UserDefinedReso_1247;
+  else if (UserDefinedReso_1244_TypeType == ABCResolutionE)
+    delete UserDefinedReso_1244_TypeValue.ABCResolution;
+  #endif
+}
+
+void UserDefinedReso_1244_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (UserDefinedReso_1244_TypeType == UserDefinedReso_1247E)
     {
-      UserDefinedReso_1243_TypeValue.UserDefinedReso_1246->printSelf(outFile);
+      UserDefinedReso_1244_TypeValue.UserDefinedReso_1247->printSelf(outFile);
     }
-  else if (UserDefinedReso_1243_TypeType == ABCResolutionE)
+  else if (UserDefinedReso_1244_TypeType == ABCResolutionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ABCResolution");
-      UserDefinedReso_1243_TypeValue.ABCResolution->printSelf(outFile);
+      UserDefinedReso_1244_TypeValue.ABCResolution->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ABCResolution>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class CartesianResolu_1244_Type
+/* class CartesianResolu_1245_Type
 
 */
 
-CartesianResolu_1244_Type::CartesianResolu_1244_Type()
+CartesianResolu_1245_Type::CartesianResolu_1245_Type()
 {
   CombinedCartesianResolution = 0;
   XYZResolution = 0;
 }
 
-CartesianResolu_1244_Type::CartesianResolu_1244_Type(
+CartesianResolu_1245_Type::CartesianResolu_1245_Type(
  LinearValueType * CombinedCartesianResolutionIn,
  XYZResolutionType * XYZResolutionIn)
 {
@@ -36135,7 +36135,7 @@ CartesianResolu_1244_Type::CartesianResolu_1244_Type(
   XYZResolution = XYZResolutionIn;
 }
 
-CartesianResolu_1244_Type::~CartesianResolu_1244_Type()
+CartesianResolu_1245_Type::~CartesianResolu_1245_Type()
 {
   #ifndef NODESTRUCT
   delete CombinedCartesianResolution;
@@ -36143,7 +36143,7 @@ CartesianResolu_1244_Type::~CartesianResolu_1244_Type()
   #endif
 }
 
-void CartesianResolu_1244_Type::printSelf(FILE * outFile)
+void CartesianResolu_1245_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<CombinedCartesianResolution");
@@ -36159,31 +36159,31 @@ void CartesianResolu_1244_Type::printSelf(FILE * outFile)
     }
 }
 
-LinearValueType * CartesianResolu_1244_Type::getCombinedCartesianResolution()
+LinearValueType * CartesianResolu_1245_Type::getCombinedCartesianResolution()
 {return CombinedCartesianResolution;}
 
-void CartesianResolu_1244_Type::setCombinedCartesianResolution(LinearValueType * CombinedCartesianResolutionIn)
+void CartesianResolu_1245_Type::setCombinedCartesianResolution(LinearValueType * CombinedCartesianResolutionIn)
 {CombinedCartesianResolution = CombinedCartesianResolutionIn;}
 
-XYZResolutionType * CartesianResolu_1244_Type::getXYZResolution()
+XYZResolutionType * CartesianResolu_1245_Type::getXYZResolution()
 {return XYZResolution;}
 
-void CartesianResolu_1244_Type::setXYZResolution(XYZResolutionType * XYZResolutionIn)
+void CartesianResolu_1245_Type::setXYZResolution(XYZResolutionType * XYZResolutionIn)
 {XYZResolution = XYZResolutionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class SphericalResolu_1245_Type
+/* class SphericalResolu_1246_Type
 
 */
 
-SphericalResolu_1245_Type::SphericalResolu_1245_Type()
+SphericalResolu_1246_Type::SphericalResolu_1246_Type()
 {
   CombinedSphericalResolution = 0;
   RAPZResolution = 0;
 }
 
-SphericalResolu_1245_Type::SphericalResolu_1245_Type(
+SphericalResolu_1246_Type::SphericalResolu_1246_Type(
  CombinedSphericalResolutionType * CombinedSphericalResolutionIn,
  RAPZResolutionType * RAPZResolutionIn)
 {
@@ -36191,7 +36191,7 @@ SphericalResolu_1245_Type::SphericalResolu_1245_Type(
   RAPZResolution = RAPZResolutionIn;
 }
 
-SphericalResolu_1245_Type::~SphericalResolu_1245_Type()
+SphericalResolu_1246_Type::~SphericalResolu_1246_Type()
 {
   #ifndef NODESTRUCT
   delete CombinedSphericalResolution;
@@ -36199,7 +36199,7 @@ SphericalResolu_1245_Type::~SphericalResolu_1245_Type()
   #endif
 }
 
-void SphericalResolu_1245_Type::printSelf(FILE * outFile)
+void SphericalResolu_1246_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<CombinedSphericalResolution");
@@ -36213,31 +36213,31 @@ void SphericalResolu_1245_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</RAPZResolution>\n");
 }
 
-CombinedSphericalResolutionType * SphericalResolu_1245_Type::getCombinedSphericalResolution()
+CombinedSphericalResolutionType * SphericalResolu_1246_Type::getCombinedSphericalResolution()
 {return CombinedSphericalResolution;}
 
-void SphericalResolu_1245_Type::setCombinedSphericalResolution(CombinedSphericalResolutionType * CombinedSphericalResolutionIn)
+void SphericalResolu_1246_Type::setCombinedSphericalResolution(CombinedSphericalResolutionType * CombinedSphericalResolutionIn)
 {CombinedSphericalResolution = CombinedSphericalResolutionIn;}
 
-RAPZResolutionType * SphericalResolu_1245_Type::getRAPZResolution()
+RAPZResolutionType * SphericalResolu_1246_Type::getRAPZResolution()
 {return RAPZResolution;}
 
-void SphericalResolu_1245_Type::setRAPZResolution(RAPZResolutionType * RAPZResolutionIn)
+void SphericalResolu_1246_Type::setRAPZResolution(RAPZResolutionType * RAPZResolutionIn)
 {RAPZResolution = RAPZResolutionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedReso_1246_Type
+/* class UserDefinedReso_1247_Type
 
 */
 
-UserDefinedReso_1246_Type::UserDefinedReso_1246_Type()
+UserDefinedReso_1247_Type::UserDefinedReso_1247_Type()
 {
   CombinedUserDefinedResolution = 0;
   ABCResolution = 0;
 }
 
-UserDefinedReso_1246_Type::UserDefinedReso_1246_Type(
+UserDefinedReso_1247_Type::UserDefinedReso_1247_Type(
  CombinedUserDefinedResolutionType * CombinedUserDefinedResolutionIn,
  ABCResolutionType * ABCResolutionIn)
 {
@@ -36245,7 +36245,7 @@ UserDefinedReso_1246_Type::UserDefinedReso_1246_Type(
   ABCResolution = ABCResolutionIn;
 }
 
-UserDefinedReso_1246_Type::~UserDefinedReso_1246_Type()
+UserDefinedReso_1247_Type::~UserDefinedReso_1247_Type()
 {
   #ifndef NODESTRUCT
   delete CombinedUserDefinedResolution;
@@ -36253,7 +36253,7 @@ UserDefinedReso_1246_Type::~UserDefinedReso_1246_Type()
   #endif
 }
 
-void UserDefinedReso_1246_Type::printSelf(FILE * outFile)
+void UserDefinedReso_1247_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<CombinedUserDefinedResolution");
@@ -36267,17 +36267,17 @@ void UserDefinedReso_1246_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</ABCResolution>\n");
 }
 
-CombinedUserDefinedResolutionType * UserDefinedReso_1246_Type::getCombinedUserDefinedResolution()
+CombinedUserDefinedResolutionType * UserDefinedReso_1247_Type::getCombinedUserDefinedResolution()
 {return CombinedUserDefinedResolution;}
 
-void UserDefinedReso_1246_Type::setCombinedUserDefinedResolution(CombinedUserDefinedResolutionType * CombinedUserDefinedResolutionIn)
+void UserDefinedReso_1247_Type::setCombinedUserDefinedResolution(CombinedUserDefinedResolutionType * CombinedUserDefinedResolutionIn)
 {CombinedUserDefinedResolution = CombinedUserDefinedResolutionIn;}
 
-ABCResolutionType * UserDefinedReso_1246_Type::getABCResolution()
+ABCResolutionType * UserDefinedReso_1247_Type::getABCResolution()
 {return ABCResolution;}
 
-void UserDefinedReso_1246_Type::setABCResolution(ABCResolutionType * ABCResolutionIn)
+void UserDefinedReso_1247_Type::setABCResolution(ABCResolutionType * ABCResolutionIn)
 {ABCResolution = ABCResolutionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 

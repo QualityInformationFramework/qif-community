@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #ifndef AUXILIARY_HH
 #define AUXILIARY_HH
@@ -7,7 +7,7 @@
 #include <xmlSchemaInstance.hh>
 #include "PrimitivesPDClasses.hh"
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AuxiliaryBaseType;
 class AuxiliaryBaseTypeLisd;
@@ -20,8 +20,8 @@ class LineAuxiliaryType;
 class PlaneReferenceType;
 class PointAuxiliaryType;
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 class AuxiliaryBaseType :
   public DrawableBaseType
@@ -43,7 +43,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AuxiliaryBaseTypeLisd :
   public std::list<AuxiliaryBaseType *>,
@@ -57,7 +57,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AuxiliaryPlaneBaseType :
   public AuxiliaryBaseType
@@ -87,7 +87,7 @@ protected:
   PlaneType * Plane;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AuxiliarySetType :
   public XmlTypeBase
@@ -114,7 +114,7 @@ protected:
   AuxiliaryBaseTypeLisd * Auxiliary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CADCoordinateSystemType :
   public DrawableBaseType
@@ -144,7 +144,7 @@ protected:
   CoordinateSystemCoreType * CoordinateSystemCore;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CADCoordinateSystemTypeLisd :
   public std::list<CADCoordinateSystemType *>,
@@ -158,7 +158,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CoordinateSystemSetType :
   public XmlTypeBase
@@ -185,7 +185,7 @@ protected:
   CADCoordinateSystemTypeLisd * CoordinateSystem;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LineAuxiliaryType :
   public AuxiliaryBaseType
@@ -225,7 +225,7 @@ protected:
   LineStyleType * LineStyle;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlaneReferenceType :
   public AuxiliaryPlaneBaseType
@@ -249,7 +249,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointAuxiliaryType :
   public AuxiliaryBaseType
@@ -279,6 +279,6 @@ protected:
   PointType * XYZ;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 #endif // AUXILIARY_HH

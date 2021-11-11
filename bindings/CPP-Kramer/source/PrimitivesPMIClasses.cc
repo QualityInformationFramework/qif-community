@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #include <stdio.h>             // for printf, etc.
 #include <string.h>            // for strdup
@@ -10,8 +10,8 @@
 
 #define INDENT 2
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 /* class AxialDifferentialScaleType
 
@@ -122,7 +122,7 @@ UnitVectorType * AxialDifferentialScaleType::getZaxisDirection()
 void AxialDifferentialScaleType::setZaxisDirection(UnitVectorType * ZaxisDirectionIn)
 {ZaxisDirection = ZaxisDirectionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class BottomEnumType
 
@@ -182,7 +182,7 @@ void BottomEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class BottomType
 
@@ -220,7 +220,7 @@ BottomTypeChoicePair * BottomType::getBottomTypePair()
 void BottomType::setBottomTypePair(BottomTypeChoicePair * BottomTypePairIn)
 {BottomTypePair = BottomTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class BottomTypeChoicePair
 
@@ -264,7 +264,7 @@ void BottomTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class BoundingBoxType
 
@@ -333,7 +333,7 @@ LinearValueType * BoundingBoxType::getHeight()
 void BoundingBoxType::setHeight(LinearValueType * HeightIn)
 {Height = HeightIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircleType
 
@@ -402,7 +402,7 @@ UnitVectorType * CircleType::getNormal()
 void CircleType::setNormal(UnitVectorType * NormalIn)
 {Normal = NormalIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularUnitAreaType
 
@@ -443,7 +443,7 @@ LinearValueType * CircularUnitAreaType::getCircularUnitAreaDiameter()
 void CircularUnitAreaType::setCircularUnitAreaDiameter(LinearValueType * CircularUnitAreaDiameterIn)
 {CircularUnitAreaDiameter = CircularUnitAreaDiameterIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoordinateEnumType
 
@@ -509,7 +509,7 @@ void CoordinateEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylinderType
 
@@ -592,7 +592,7 @@ LinearValueType * CylinderType::getLength()
 void CylinderType::setLength(LinearValueType * LengthIn)
 {Length = LengthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DigitalModelFormatEnumType
 
@@ -676,7 +676,7 @@ void DigitalModelFormatEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DigitalModelFormatType
 
@@ -714,7 +714,7 @@ DigitalModelFormatTypeChoicePair * DigitalModelFormatType::getDigitalModelFormat
 void DigitalModelFormatType::setDigitalModelFormatTypePair(DigitalModelFormatTypeChoicePair * DigitalModelFormatTypePairIn)
 {DigitalModelFormatTypePair = DigitalModelFormatTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DigitalModelFormatTypeChoicePair
 
@@ -758,7 +758,7 @@ void DigitalModelFormatTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DimensionCountEnumType
 
@@ -816,7 +816,7 @@ void DimensionCountEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EndRadiusType
 
@@ -874,7 +874,7 @@ XmlBoolean * EndRadiusType::getExpanded()
 void EndRadiusType::setExpanded(XmlBoolean * ExpandedIn)
 {Expanded = ExpandedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class InternalExternalEnumType
 
@@ -934,7 +934,7 @@ void InternalExternalEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ListAccumulatedStatsValuesListType
 
@@ -1030,7 +1030,7 @@ void ListAccumulatedStatsValuesListType::oPrintSelf(FILE * outFile)
     } 
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ListAccumulatedStatsValuesType
 
@@ -1043,10 +1043,10 @@ ListAccumulatedStatsValuesType::ListAccumulatedStatsValuesType() :
 }
 
 ListAccumulatedStatsValuesType::ListAccumulatedStatsValuesType(
- StatsWithRefere_1006_Type * StatsWithRefere_1006In,
+ StatsWithRefere_1007_Type * StatsWithRefere_1007In,
  ListAccumulatedStatsValuesListType * StatsIn) :
   StatsWithReferenceBaseType(
-    StatsWithRefere_1006In)
+    StatsWithRefere_1007In)
 {
   Stats = StatsIn;
 }
@@ -1062,9 +1062,9 @@ void ListAccumulatedStatsValuesType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (StatsWithRefere_1006)
+  if (StatsWithRefere_1007)
     {
-      StatsWithRefere_1006->printSelf(outFile);
+      StatsWithRefere_1007->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Stats");
@@ -1079,7 +1079,7 @@ ListAccumulatedStatsValuesListType * ListAccumulatedStatsValuesType::getStats()
 void ListAccumulatedStatsValuesType::setStats(ListAccumulatedStatsValuesListType * StatsIn)
 {Stats = StatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ListAccumulatedStatsValuesTypeLisd
 
@@ -1106,7 +1106,7 @@ ListAccumulatedStatsValuesTypeLisd::~ListAccumulatedStatsValuesTypeLisd()
 
 void ListAccumulatedStatsValuesTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ListSubgroupStatsValuesListType
 
@@ -1202,7 +1202,7 @@ void ListSubgroupStatsValuesListType::oPrintSelf(FILE * outFile)
     } 
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ListSubgroupStatsValuesType
 
@@ -1215,10 +1215,10 @@ ListSubgroupStatsValuesType::ListSubgroupStatsValuesType() :
 }
 
 ListSubgroupStatsValuesType::ListSubgroupStatsValuesType(
- StatsWithRefere_1006_Type * StatsWithRefere_1006In,
+ StatsWithRefere_1007_Type * StatsWithRefere_1007In,
  ListSubgroupStatsValuesListType * StatsIn) :
   StatsWithReferenceBaseType(
-    StatsWithRefere_1006In)
+    StatsWithRefere_1007In)
 {
   Stats = StatsIn;
 }
@@ -1234,9 +1234,9 @@ void ListSubgroupStatsValuesType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (StatsWithRefere_1006)
+  if (StatsWithRefere_1007)
     {
-      StatsWithRefere_1006->printSelf(outFile);
+      StatsWithRefere_1007->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Stats");
@@ -1251,7 +1251,7 @@ ListSubgroupStatsValuesListType * ListSubgroupStatsValuesType::getStats()
 void ListSubgroupStatsValuesType::setStats(ListSubgroupStatsValuesListType * StatsIn)
 {Stats = StatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ListSubgroupStatsValuesTypeLisd
 
@@ -1278,7 +1278,7 @@ ListSubgroupStatsValuesTypeLisd::~ListSubgroupStatsValuesTypeLisd()
 
 void ListSubgroupStatsValuesTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ListSummaryStatsValuesListType
 
@@ -1374,7 +1374,7 @@ void ListSummaryStatsValuesListType::oPrintSelf(FILE * outFile)
     } 
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ListSummaryStatsValuesType
 
@@ -1387,10 +1387,10 @@ ListSummaryStatsValuesType::ListSummaryStatsValuesType() :
 }
 
 ListSummaryStatsValuesType::ListSummaryStatsValuesType(
- StatsWithRefere_1006_Type * StatsWithRefere_1006In,
+ StatsWithRefere_1007_Type * StatsWithRefere_1007In,
  ListSummaryStatsValuesListType * StatsIn) :
   StatsWithReferenceBaseType(
-    StatsWithRefere_1006In)
+    StatsWithRefere_1007In)
 {
   Stats = StatsIn;
 }
@@ -1406,9 +1406,9 @@ void ListSummaryStatsValuesType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (StatsWithRefere_1006)
+  if (StatsWithRefere_1007)
     {
-      StatsWithRefere_1006->printSelf(outFile);
+      StatsWithRefere_1007->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Stats");
@@ -1423,7 +1423,7 @@ ListSummaryStatsValuesListType * ListSummaryStatsValuesType::getStats()
 void ListSummaryStatsValuesType::setStats(ListSummaryStatsValuesListType * StatsIn)
 {Stats = StatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ManufacturingMethodEnumType
 
@@ -1493,7 +1493,7 @@ void ManufacturingMethodEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ManufacturingMethodType
 
@@ -1531,7 +1531,7 @@ ManufacturingMethodTypeChoicePair * ManufacturingMethodType::getManufacturingMet
 void ManufacturingMethodType::setManufacturingMethodTypePair(ManufacturingMethodTypeChoicePair * ManufacturingMethodTypePairIn)
 {ManufacturingMethodTypePair = ManufacturingMethodTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ManufacturingMethodTypeChoicePair
 
@@ -1575,7 +1575,7 @@ void ManufacturingMethodTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredAxisType
 
@@ -1630,7 +1630,7 @@ MeasuredUnitVectorType * MeasuredAxisType::getDirection()
 void MeasuredAxisType::setDirection(MeasuredUnitVectorType * DirectionIn)
 {Direction = DirectionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredEndRadiusType
 
@@ -1688,7 +1688,7 @@ XmlBoolean * MeasuredEndRadiusType::getExpanded()
 void MeasuredEndRadiusType::setExpanded(XmlBoolean * ExpandedIn)
 {Expanded = ExpandedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPlaneType
 
@@ -1743,7 +1743,7 @@ MeasuredUnitVectorType * MeasuredPlaneType::getNormal()
 void MeasuredPlaneType::setNormal(MeasuredUnitVectorType * NormalIn)
 {Normal = NormalIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointAndVectorType
 
@@ -1798,7 +1798,7 @@ MeasuredUnitVectorType * MeasuredPointAndVectorType::getVector()
 void MeasuredPointAndVectorType::setVector(MeasuredUnitVectorType * VectorIn)
 {Vector = VectorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPointType
 
@@ -2835,7 +2835,7 @@ XmlDecimal * MeasuredPointType::getzMeanError()
 void MeasuredPointType::setzMeanError(XmlDecimal * zMeanErrorIn)
 {zMeanError = zMeanErrorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredUnitVectorType
 
@@ -3872,7 +3872,7 @@ XmlDecimal * MeasuredUnitVectorType::getzMeanError()
 void MeasuredUnitVectorType::setzMeanError(XmlDecimal * zMeanErrorIn)
 {zMeanError = zMeanErrorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredZoneAxisType
 
@@ -3927,7 +3927,7 @@ MeasuredLinearValueType * MeasuredZoneAxisType::getLength()
 void MeasuredZoneAxisType::setLength(MeasuredLinearValueType * LengthIn)
 {Length = LengthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointAndVectorType
 
@@ -3982,7 +3982,7 @@ UnitVectorType * PointAndVectorType::getVector()
 void PointAndVectorType::setVector(UnitVectorType * VectorIn)
 {Vector = VectorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RadialDifferentialScaleType
 
@@ -4051,7 +4051,7 @@ UnitVectorType * RadialDifferentialScaleType::getDirection()
 void RadialDifferentialScaleType::setDirection(UnitVectorType * DirectionIn)
 {Direction = DirectionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RectangleType
 
@@ -4148,7 +4148,7 @@ UnitVectorType * RectangleType::getLengthDirection()
 void RectangleType::setLengthDirection(UnitVectorType * LengthDirectionIn)
 {LengthDirection = LengthDirectionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RectangularUnitAreaType
 
@@ -4220,7 +4220,7 @@ UnitVectorType * RectangularUnitAreaType::getRectangularUnitAreaOrientation()
 void RectangularUnitAreaType::setRectangularUnitAreaOrientation(UnitVectorType * RectangularUnitAreaOrientationIn)
 {RectangularUnitAreaOrientation = RectangularUnitAreaOrientationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ScaleType
 
@@ -4229,22 +4229,22 @@ void RectangularUnitAreaType::setRectangularUnitAreaOrientation(UnitVectorType *
 ScaleType::ScaleType()
 {
   Origin = 0;
-  ScaleType_1005 = 0;
+  ScaleType_1006 = 0;
 }
 
 ScaleType::ScaleType(
  PointType * OriginIn,
- ScaleType_1005_Type * ScaleType_1005In)
+ ScaleType_1006_Type * ScaleType_1006In)
 {
   Origin = OriginIn;
-  ScaleType_1005 = ScaleType_1005In;
+  ScaleType_1006 = ScaleType_1006In;
 }
 
 ScaleType::~ScaleType()
 {
   #ifndef NODESTRUCT
   delete Origin;
-  delete ScaleType_1005;
+  delete ScaleType_1006;
   #endif
 }
 
@@ -4256,7 +4256,7 @@ void ScaleType::printSelf(FILE * outFile)
   fprintf(outFile, "<Origin");
   Origin->printSelf(outFile);
   fprintf(outFile, "</Origin>\n");
-  ScaleType_1005->printSelf(outFile);
+  ScaleType_1006->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -4266,13 +4266,13 @@ PointType * ScaleType::getOrigin()
 void ScaleType::setOrigin(PointType * OriginIn)
 {Origin = OriginIn;}
 
-ScaleType_1005_Type * ScaleType::getScaleType_1005()
-{return ScaleType_1005;}
+ScaleType_1006_Type * ScaleType::getScaleType_1006()
+{return ScaleType_1006;}
 
-void ScaleType::setScaleType_1005(ScaleType_1005_Type * ScaleType_1005In)
-{ScaleType_1005 = ScaleType_1005In;}
+void ScaleType::setScaleType_1006(ScaleType_1006_Type * ScaleType_1006In)
+{ScaleType_1006 = ScaleType_1006In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SecurityClassificationEnumType
 
@@ -4390,7 +4390,7 @@ void SecurityClassificationEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SecurityClassificationType
 
@@ -4428,7 +4428,7 @@ SecurityClassificationTypeChoicePair * SecurityClassificationType::getSecurityCl
 void SecurityClassificationType::setSecurityClassificationTypePair(SecurityClassificationTypeChoicePair * SecurityClassificationTypePairIn)
 {SecurityClassificationTypePair = SecurityClassificationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SecurityClassificationTypeChoicePair
 
@@ -4472,7 +4472,7 @@ void SecurityClassificationTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ShapeClassEnumType
 
@@ -4536,7 +4536,7 @@ void ShapeClassEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ShapeClassType
 
@@ -4574,7 +4574,7 @@ ShapeClassTypeChoicePair * ShapeClassType::getShapeClassTypePair()
 void ShapeClassType::setShapeClassTypePair(ShapeClassTypeChoicePair * ShapeClassTypePairIn)
 {ShapeClassTypePair = ShapeClassTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ShapeClassTypeChoicePair
 
@@ -4618,7 +4618,7 @@ void ShapeClassTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SlotEndEnumType
 
@@ -4680,7 +4680,7 @@ void SlotEndEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SlotEndType
 
@@ -4718,7 +4718,7 @@ SlotEndTypeChoicePair * SlotEndType::getSlotEndTypePair()
 void SlotEndType::setSlotEndTypePair(SlotEndTypeChoicePair * SlotEndTypePairIn)
 {SlotEndTypePair = SlotEndTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SlotEndTypeChoicePair
 
@@ -4762,7 +4762,7 @@ void SlotEndTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphereType
 
@@ -4817,7 +4817,7 @@ LinearValueType * SphereType::getDiameter()
 void SphereType::setDiameter(LinearValueType * DiameterIn)
 {Diameter = DiameterIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsMeasuredDecimalType
 
@@ -4830,10 +4830,10 @@ StatsMeasuredDecimalType::StatsMeasuredDecimalType() :
 }
 
 StatsMeasuredDecimalType::StatsMeasuredDecimalType(
- StatsWithRefere_1006_Type * StatsWithRefere_1006In,
+ StatsWithRefere_1007_Type * StatsWithRefere_1007In,
  MeasuredDecimalType * ValueIn) :
   StatsWithReferenceBaseType(
-    StatsWithRefere_1006In)
+    StatsWithRefere_1007In)
 {
   Value = ValueIn;
 }
@@ -4849,9 +4849,9 @@ void StatsMeasuredDecimalType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (StatsWithRefere_1006)
+  if (StatsWithRefere_1007)
     {
-      StatsWithRefere_1006->printSelf(outFile);
+      StatsWithRefere_1007->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Value");
@@ -4866,7 +4866,7 @@ MeasuredDecimalType * StatsMeasuredDecimalType::getValue()
 void StatsMeasuredDecimalType::setValue(MeasuredDecimalType * ValueIn)
 {Value = ValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsMeasuredDecimalWithReferenceType
 
@@ -4879,11 +4879,11 @@ StatsMeasuredDecimalWithReferenceType::StatsMeasuredDecimalWithReferenceType() :
 }
 
 StatsMeasuredDecimalWithReferenceType::StatsMeasuredDecimalWithReferenceType(
- StatsWithRefere_1006_Type * StatsWithRefere_1006In,
+ StatsWithRefere_1007_Type * StatsWithRefere_1007In,
  MeasuredDecimalType * ValueIn,
  QIFReferenceType * IdIn) :
   StatsMeasuredDecimalType(
-    StatsWithRefere_1006In,
+    StatsWithRefere_1007In,
     ValueIn)
 {
   Id = IdIn;
@@ -4900,9 +4900,9 @@ void StatsMeasuredDecimalWithReferenceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (StatsWithRefere_1006)
+  if (StatsWithRefere_1007)
     {
-      StatsWithRefere_1006->printSelf(outFile);
+      StatsWithRefere_1007->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Value");
@@ -4924,7 +4924,7 @@ QIFReferenceType * StatsMeasuredDecimalWithReferenceType::getId()
 void StatsMeasuredDecimalWithReferenceType::setId(QIFReferenceType * IdIn)
 {Id = IdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsNonNegativeIntegerType
 
@@ -4937,10 +4937,10 @@ StatsNonNegativeIntegerType::StatsNonNegativeIntegerType() :
 }
 
 StatsNonNegativeIntegerType::StatsNonNegativeIntegerType(
- StatsWithRefere_1006_Type * StatsWithRefere_1006In,
+ StatsWithRefere_1007_Type * StatsWithRefere_1007In,
  XmlNonNegativeInteger * ValueIn) :
   StatsWithReferenceBaseType(
-    StatsWithRefere_1006In)
+    StatsWithRefere_1007In)
 {
   Value = ValueIn;
 }
@@ -4956,9 +4956,9 @@ void StatsNonNegativeIntegerType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (StatsWithRefere_1006)
+  if (StatsWithRefere_1007)
     {
-      StatsWithRefere_1006->printSelf(outFile);
+      StatsWithRefere_1007->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Value");
@@ -4973,7 +4973,7 @@ XmlNonNegativeInteger * StatsNonNegativeIntegerType::getValue()
 void StatsNonNegativeIntegerType::setValue(XmlNonNegativeInteger * ValueIn)
 {Value = ValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsNonNegativeIntegerWithReferencesType
 
@@ -4986,11 +4986,11 @@ StatsNonNegativeIntegerWithReferencesType::StatsNonNegativeIntegerWithReferences
 }
 
 StatsNonNegativeIntegerWithReferencesType::StatsNonNegativeIntegerWithReferencesType(
- StatsWithRefere_1006_Type * StatsWithRefere_1006In,
+ StatsWithRefere_1007_Type * StatsWithRefere_1007In,
  XmlNonNegativeInteger * ValueIn,
  ArrayReferenceType * IdsIn) :
   StatsNonNegativeIntegerType(
-    StatsWithRefere_1006In,
+    StatsWithRefere_1007In,
     ValueIn)
 {
   Ids = IdsIn;
@@ -5007,9 +5007,9 @@ void StatsNonNegativeIntegerWithReferencesType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (StatsWithRefere_1006)
+  if (StatsWithRefere_1007)
     {
-      StatsWithRefere_1006->printSelf(outFile);
+      StatsWithRefere_1007->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Value");
@@ -5032,7 +5032,7 @@ ArrayReferenceType * StatsNonNegativeIntegerWithReferencesType::getIds()
 void StatsNonNegativeIntegerWithReferencesType::setIds(ArrayReferenceType * IdsIn)
 {Ids = IdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsValuesEnumType
 
@@ -5192,7 +5192,7 @@ void StatsValuesEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsWithReferenceBaseType
 
@@ -5200,19 +5200,19 @@ void StatsValuesEnumType::oPrintSelf(FILE * outFile)
 
 StatsWithReferenceBaseType::StatsWithReferenceBaseType()
 {
-  StatsWithRefere_1006 = 0;
+  StatsWithRefere_1007 = 0;
 }
 
 StatsWithReferenceBaseType::StatsWithReferenceBaseType(
- StatsWithRefere_1006_Type * StatsWithRefere_1006In)
+ StatsWithRefere_1007_Type * StatsWithRefere_1007In)
 {
-  StatsWithRefere_1006 = StatsWithRefere_1006In;
+  StatsWithRefere_1007 = StatsWithRefere_1007In;
 }
 
 StatsWithReferenceBaseType::~StatsWithReferenceBaseType()
 {
   #ifndef NODESTRUCT
-  delete StatsWithRefere_1006;
+  delete StatsWithRefere_1007;
   #endif
 }
 
@@ -5220,20 +5220,20 @@ void StatsWithReferenceBaseType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (StatsWithRefere_1006)
+  if (StatsWithRefere_1007)
     {
-      StatsWithRefere_1006->printSelf(outFile);
+      StatsWithRefere_1007->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
 
-StatsWithRefere_1006_Type * StatsWithReferenceBaseType::getStatsWithRefere_1006()
-{return StatsWithRefere_1006;}
+StatsWithRefere_1007_Type * StatsWithReferenceBaseType::getStatsWithRefere_1007()
+{return StatsWithRefere_1007;}
 
-void StatsWithReferenceBaseType::setStatsWithRefere_1006(StatsWithRefere_1006_Type * StatsWithRefere_1006In)
-{StatsWithRefere_1006 = StatsWithRefere_1006In;}
+void StatsWithReferenceBaseType::setStatsWithRefere_1007(StatsWithRefere_1007_Type * StatsWithRefere_1007In)
+{StatsWithRefere_1007 = StatsWithRefere_1007In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsWithReferenceBaseTypeLisd
 
@@ -5260,7 +5260,7 @@ StatsWithReferenceBaseTypeLisd::~StatsWithReferenceBaseTypeLisd()
 
 void StatsWithReferenceBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SubgroupDecimalArrayType
 
@@ -5417,7 +5417,7 @@ SubgroupDecimalTypeLisd * SubgroupDecimalArrayType::getSubgroupDecimal()
 void SubgroupDecimalArrayType::setSubgroupDecimal(SubgroupDecimalTypeLisd * SubgroupDecimalIn)
 {SubgroupDecimal = SubgroupDecimalIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SubgroupDecimalType
 
@@ -5718,7 +5718,7 @@ QIFIdType * SubgroupDecimalType::getsubgroupId()
 void SubgroupDecimalType::setsubgroupId(QIFIdType * subgroupIdIn)
 {subgroupId = subgroupIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SubgroupDecimalTypeLisd
 
@@ -5745,7 +5745,7 @@ SubgroupDecimalTypeLisd::~SubgroupDecimalTypeLisd()
 
 void SubgroupDecimalTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SubgroupDecimalsType
 
@@ -5758,10 +5758,10 @@ SubgroupDecimalsType::SubgroupDecimalsType() :
 }
 
 SubgroupDecimalsType::SubgroupDecimalsType(
- StatsWithRefere_1006_Type * StatsWithRefere_1006In,
+ StatsWithRefere_1007_Type * StatsWithRefere_1007In,
  SubgroupDecimalArrayType * ValuesIn) :
   StatsWithReferenceBaseType(
-    StatsWithRefere_1006In)
+    StatsWithRefere_1007In)
 {
   Values = ValuesIn;
 }
@@ -5777,9 +5777,9 @@ void SubgroupDecimalsType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (StatsWithRefere_1006)
+  if (StatsWithRefere_1007)
     {
-      StatsWithRefere_1006->printSelf(outFile);
+      StatsWithRefere_1007->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Values");
@@ -5795,7 +5795,7 @@ SubgroupDecimalArrayType * SubgroupDecimalsType::getValues()
 void SubgroupDecimalsType::setValues(SubgroupDecimalArrayType * ValuesIn)
 {Values = ValuesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SubgroupIntegerArrayType
 
@@ -5952,7 +5952,7 @@ SubgroupIntegerTypeLisd * SubgroupIntegerArrayType::getSubgroupInteger()
 void SubgroupIntegerArrayType::setSubgroupInteger(SubgroupIntegerTypeLisd * SubgroupIntegerIn)
 {SubgroupInteger = SubgroupIntegerIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SubgroupIntegerType
 
@@ -6084,7 +6084,7 @@ QIFIdType * SubgroupIntegerType::getsubgroupId()
 void SubgroupIntegerType::setsubgroupId(QIFIdType * subgroupIdIn)
 {subgroupId = subgroupIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SubgroupIntegerTypeLisd
 
@@ -6111,7 +6111,7 @@ SubgroupIntegerTypeLisd::~SubgroupIntegerTypeLisd()
 
 void SubgroupIntegerTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SubgroupIntegersType
 
@@ -6124,10 +6124,10 @@ SubgroupIntegersType::SubgroupIntegersType() :
 }
 
 SubgroupIntegersType::SubgroupIntegersType(
- StatsWithRefere_1006_Type * StatsWithRefere_1006In,
+ StatsWithRefere_1007_Type * StatsWithRefere_1007In,
  SubgroupIntegerArrayType * ValuesIn) :
   StatsWithReferenceBaseType(
-    StatsWithRefere_1006In)
+    StatsWithRefere_1007In)
 {
   Values = ValuesIn;
 }
@@ -6143,9 +6143,9 @@ void SubgroupIntegersType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (StatsWithRefere_1006)
+  if (StatsWithRefere_1007)
     {
-      StatsWithRefere_1006->printSelf(outFile);
+      StatsWithRefere_1007->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Values");
@@ -6161,7 +6161,7 @@ SubgroupIntegerArrayType * SubgroupIntegersType::getValues()
 void SubgroupIntegersType::setValues(SubgroupIntegerArrayType * ValuesIn)
 {Values = ValuesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SubgroupStatsValuesEnumType
 
@@ -6235,7 +6235,7 @@ void SubgroupStatsValuesEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatsValuesEnumType
 
@@ -6299,7 +6299,7 @@ void SummaryStatsValuesEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatsValuesListType
 
@@ -6457,7 +6457,7 @@ SummaryStatsValuesTypeLisd * SummaryStatsValuesListType::getSummaryStatsValues()
 void SummaryStatsValuesListType::setSummaryStatsValues(SummaryStatsValuesTypeLisd * SummaryStatsValuesIn)
 {SummaryStatsValues = SummaryStatsValuesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatsValuesListTypeLisd
 
@@ -6484,7 +6484,7 @@ SummaryStatsValuesListTypeLisd::~SummaryStatsValuesListTypeLisd()
 
 void SummaryStatsValuesListTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatsValuesType
 
@@ -6540,7 +6540,7 @@ ListSummaryStatsValuesType * SummaryStatsValuesType::getSummaryStats()
 void SummaryStatsValuesType::setSummaryStats(ListSummaryStatsValuesType * SummaryStatsIn)
 {SummaryStats = SummaryStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatsValuesTypeLisd
 
@@ -6567,7 +6567,7 @@ SummaryStatsValuesTypeLisd::~SummaryStatsValuesTypeLisd()
 
 void SummaryStatsValuesTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadClassEnumType
 
@@ -6721,7 +6721,7 @@ void ThreadClassEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadClassType
 
@@ -6759,7 +6759,7 @@ ThreadClassTypeChoicePair * ThreadClassType::getThreadClassTypePair()
 void ThreadClassType::setThreadClassTypePair(ThreadClassTypeChoicePair * ThreadClassTypePairIn)
 {ThreadClassTypePair = ThreadClassTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadClassTypeChoicePair
 
@@ -6803,7 +6803,7 @@ void ThreadClassTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadSeriesEnumType
 
@@ -6969,7 +6969,7 @@ void ThreadSeriesEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadSeriesType
 
@@ -7007,7 +7007,7 @@ ThreadSeriesTypeChoicePair * ThreadSeriesType::getThreadSeriesTypePair()
 void ThreadSeriesType::setThreadSeriesTypePair(ThreadSeriesTypeChoicePair * ThreadSeriesTypePairIn)
 {ThreadSeriesTypePair = ThreadSeriesTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadSeriesTypeChoicePair
 
@@ -7051,7 +7051,7 @@ void ThreadSeriesTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TypeOfCoordinatesType
 
@@ -7089,7 +7089,7 @@ TypeOfCoordinatesTypeChoicePair * TypeOfCoordinatesType::getTypeOfCoordinatesTyp
 void TypeOfCoordinatesType::setTypeOfCoordinatesTypePair(TypeOfCoordinatesTypeChoicePair * TypeOfCoordinatesTypePairIn)
 {TypeOfCoordinatesTypePair = TypeOfCoordinatesTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TypeOfCoordinatesTypeChoicePair
 
@@ -7133,7 +7133,7 @@ void TypeOfCoordinatesTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UniformScaleType
 
@@ -7174,7 +7174,7 @@ XmlDecimal * UniformScaleType::getScaleFactor()
 void UniformScaleType::setScaleFactor(XmlDecimal * ScaleFactorIn)
 {ScaleFactor = ScaleFactorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ZoneOrientationEnumType
 
@@ -7236,187 +7236,187 @@ void ZoneOrientationEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class ScaleType_1005_Type
-
-*/
-
-ScaleType_1005_Type::ScaleType_1005_Type()
-{
-  ScaleType_1005_TypePair = 0;
-}
-
-ScaleType_1005_Type::ScaleType_1005_Type(
- ScaleType_1005_TypeChoicePair * ScaleType_1005_TypePairIn)
-{
-  ScaleType_1005_TypePair = ScaleType_1005_TypePairIn;
-}
-
-ScaleType_1005_Type::~ScaleType_1005_Type()
-{
-  #ifndef NODESTRUCT
-  delete ScaleType_1005_TypePair;
-  #endif
-}
-
-void ScaleType_1005_Type::printSelf(FILE * outFile)
-{
-  ScaleType_1005_TypePair->printSelf(outFile);
-}
-
-ScaleType_1005_TypeChoicePair * ScaleType_1005_Type::getScaleType_1005_TypePair()
-{return ScaleType_1005_TypePair;}
-
-void ScaleType_1005_Type::setScaleType_1005_TypePair(ScaleType_1005_TypeChoicePair * ScaleType_1005_TypePairIn)
-{ScaleType_1005_TypePair = ScaleType_1005_TypePairIn;}
-
-/*********************************************************************/
-
-/* class ScaleType_1005_TypeChoicePair
+/* class ScaleType_1006_Type
 
 */
 
-ScaleType_1005_TypeChoicePair::ScaleType_1005_TypeChoicePair() {}
-
-ScaleType_1005_TypeChoicePair::ScaleType_1005_TypeChoicePair(
- whichOne ScaleType_1005_TypeTypeIn,
- ScaleType_1005_TypeVal ScaleType_1005_TypeValueIn)
+ScaleType_1006_Type::ScaleType_1006_Type()
 {
-  ScaleType_1005_TypeType = ScaleType_1005_TypeTypeIn;
-  ScaleType_1005_TypeValue = ScaleType_1005_TypeValueIn;
+  ScaleType_1006_TypePair = 0;
 }
 
-ScaleType_1005_TypeChoicePair::~ScaleType_1005_TypeChoicePair()
+ScaleType_1006_Type::ScaleType_1006_Type(
+ ScaleType_1006_TypeChoicePair * ScaleType_1006_TypePairIn)
+{
+  ScaleType_1006_TypePair = ScaleType_1006_TypePairIn;
+}
+
+ScaleType_1006_Type::~ScaleType_1006_Type()
 {
   #ifndef NODESTRUCT
-  if (ScaleType_1005_TypeType == UniformScaleE)
-    delete ScaleType_1005_TypeValue.UniformScale;
-  else if (ScaleType_1005_TypeType == RadialDifferentialScaleE)
-    delete ScaleType_1005_TypeValue.RadialDifferentialScale;
-  else if (ScaleType_1005_TypeType == AxialDifferentialScaleE)
-    delete ScaleType_1005_TypeValue.AxialDifferentialScale;
+  delete ScaleType_1006_TypePair;
   #endif
 }
 
-void ScaleType_1005_TypeChoicePair::printSelf(FILE * outFile)
+void ScaleType_1006_Type::printSelf(FILE * outFile)
 {
-  if (ScaleType_1005_TypeType == UniformScaleE)
+  ScaleType_1006_TypePair->printSelf(outFile);
+}
+
+ScaleType_1006_TypeChoicePair * ScaleType_1006_Type::getScaleType_1006_TypePair()
+{return ScaleType_1006_TypePair;}
+
+void ScaleType_1006_Type::setScaleType_1006_TypePair(ScaleType_1006_TypeChoicePair * ScaleType_1006_TypePairIn)
+{ScaleType_1006_TypePair = ScaleType_1006_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class ScaleType_1006_TypeChoicePair
+
+*/
+
+ScaleType_1006_TypeChoicePair::ScaleType_1006_TypeChoicePair() {}
+
+ScaleType_1006_TypeChoicePair::ScaleType_1006_TypeChoicePair(
+ whichOne ScaleType_1006_TypeTypeIn,
+ ScaleType_1006_TypeVal ScaleType_1006_TypeValueIn)
+{
+  ScaleType_1006_TypeType = ScaleType_1006_TypeTypeIn;
+  ScaleType_1006_TypeValue = ScaleType_1006_TypeValueIn;
+}
+
+ScaleType_1006_TypeChoicePair::~ScaleType_1006_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (ScaleType_1006_TypeType == UniformScaleE)
+    delete ScaleType_1006_TypeValue.UniformScale;
+  else if (ScaleType_1006_TypeType == RadialDifferentialScaleE)
+    delete ScaleType_1006_TypeValue.RadialDifferentialScale;
+  else if (ScaleType_1006_TypeType == AxialDifferentialScaleE)
+    delete ScaleType_1006_TypeValue.AxialDifferentialScale;
+  #endif
+}
+
+void ScaleType_1006_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (ScaleType_1006_TypeType == UniformScaleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UniformScale");
-      ScaleType_1005_TypeValue.UniformScale->printSelf(outFile);
+      ScaleType_1006_TypeValue.UniformScale->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</UniformScale>\n");
     }
-  else if (ScaleType_1005_TypeType == RadialDifferentialScaleE)
+  else if (ScaleType_1006_TypeType == RadialDifferentialScaleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RadialDifferentialScale");
-      ScaleType_1005_TypeValue.RadialDifferentialScale->printSelf(outFile);
+      ScaleType_1006_TypeValue.RadialDifferentialScale->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</RadialDifferentialScale>\n");
     }
-  else if (ScaleType_1005_TypeType == AxialDifferentialScaleE)
+  else if (ScaleType_1006_TypeType == AxialDifferentialScaleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AxialDifferentialScale");
-      ScaleType_1005_TypeValue.AxialDifferentialScale->printSelf(outFile);
+      ScaleType_1006_TypeValue.AxialDifferentialScale->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</AxialDifferentialScale>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class StatsWithRefere_1006_Type
+/* class StatsWithRefere_1007_Type
 
 */
 
-StatsWithRefere_1006_Type::StatsWithRefere_1006_Type()
+StatsWithRefere_1007_Type::StatsWithRefere_1007_Type()
 {
-  StatsWithRefere_1006_TypePair = 0;
+  StatsWithRefere_1007_TypePair = 0;
 }
 
-StatsWithRefere_1006_Type::StatsWithRefere_1006_Type(
- StatsWithRefere_1006_TypeChoicePair * StatsWithRefere_1006_TypePairIn)
+StatsWithRefere_1007_Type::StatsWithRefere_1007_Type(
+ StatsWithRefere_1007_TypeChoicePair * StatsWithRefere_1007_TypePairIn)
 {
-  StatsWithRefere_1006_TypePair = StatsWithRefere_1006_TypePairIn;
+  StatsWithRefere_1007_TypePair = StatsWithRefere_1007_TypePairIn;
 }
 
-StatsWithRefere_1006_Type::~StatsWithRefere_1006_Type()
+StatsWithRefere_1007_Type::~StatsWithRefere_1007_Type()
 {
   #ifndef NODESTRUCT
-  delete StatsWithRefere_1006_TypePair;
+  delete StatsWithRefere_1007_TypePair;
   #endif
 }
 
-void StatsWithRefere_1006_Type::printSelf(FILE * outFile)
+void StatsWithRefere_1007_Type::printSelf(FILE * outFile)
 {
-  if (StatsWithRefere_1006_TypePair)
+  if (StatsWithRefere_1007_TypePair)
     {
-      StatsWithRefere_1006_TypePair->printSelf(outFile);
+      StatsWithRefere_1007_TypePair->printSelf(outFile);
     }
 }
 
-StatsWithRefere_1006_TypeChoicePair * StatsWithRefere_1006_Type::getStatsWithRefere_1006_TypePair()
-{return StatsWithRefere_1006_TypePair;}
+StatsWithRefere_1007_TypeChoicePair * StatsWithRefere_1007_Type::getStatsWithRefere_1007_TypePair()
+{return StatsWithRefere_1007_TypePair;}
 
-void StatsWithRefere_1006_Type::setStatsWithRefere_1006_TypePair(StatsWithRefere_1006_TypeChoicePair * StatsWithRefere_1006_TypePairIn)
-{StatsWithRefere_1006_TypePair = StatsWithRefere_1006_TypePairIn;}
+void StatsWithRefere_1007_Type::setStatsWithRefere_1007_TypePair(StatsWithRefere_1007_TypeChoicePair * StatsWithRefere_1007_TypePairIn)
+{StatsWithRefere_1007_TypePair = StatsWithRefere_1007_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class StatsWithRefere_1006_TypeChoicePair
+/* class StatsWithRefere_1007_TypeChoicePair
 
 */
 
-StatsWithRefere_1006_TypeChoicePair::StatsWithRefere_1006_TypeChoicePair() {}
+StatsWithRefere_1007_TypeChoicePair::StatsWithRefere_1007_TypeChoicePair() {}
 
-StatsWithRefere_1006_TypeChoicePair::StatsWithRefere_1006_TypeChoicePair(
- whichOne StatsWithRefere_1006_TypeTypeIn,
- StatsWithRefere_1006_TypeVal StatsWithRefere_1006_TypeValueIn)
+StatsWithRefere_1007_TypeChoicePair::StatsWithRefere_1007_TypeChoicePair(
+ whichOne StatsWithRefere_1007_TypeTypeIn,
+ StatsWithRefere_1007_TypeVal StatsWithRefere_1007_TypeValueIn)
 {
-  StatsWithRefere_1006_TypeType = StatsWithRefere_1006_TypeTypeIn;
-  StatsWithRefere_1006_TypeValue = StatsWithRefere_1006_TypeValueIn;
+  StatsWithRefere_1007_TypeType = StatsWithRefere_1007_TypeTypeIn;
+  StatsWithRefere_1007_TypeValue = StatsWithRefere_1007_TypeValueIn;
 }
 
-StatsWithRefere_1006_TypeChoicePair::~StatsWithRefere_1006_TypeChoicePair()
+StatsWithRefere_1007_TypeChoicePair::~StatsWithRefere_1007_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (StatsWithRefere_1006_TypeType == SoftwareIdE)
-    delete StatsWithRefere_1006_TypeValue.SoftwareId;
-  else if (StatsWithRefere_1006_TypeType == StandardIdE)
-    delete StatsWithRefere_1006_TypeValue.StandardId;
-  else if (StatsWithRefere_1006_TypeType == AlgorithmIdE)
-    delete StatsWithRefere_1006_TypeValue.AlgorithmId;
+  if (StatsWithRefere_1007_TypeType == SoftwareIdE)
+    delete StatsWithRefere_1007_TypeValue.SoftwareId;
+  else if (StatsWithRefere_1007_TypeType == StandardIdE)
+    delete StatsWithRefere_1007_TypeValue.StandardId;
+  else if (StatsWithRefere_1007_TypeType == AlgorithmIdE)
+    delete StatsWithRefere_1007_TypeValue.AlgorithmId;
   #endif
 }
 
-void StatsWithRefere_1006_TypeChoicePair::printSelf(FILE * outFile)
+void StatsWithRefere_1007_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (StatsWithRefere_1006_TypeType == SoftwareIdE)
+  if (StatsWithRefere_1007_TypeType == SoftwareIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SoftwareId");
-      StatsWithRefere_1006_TypeValue.SoftwareId->printSelf(outFile);
+      StatsWithRefere_1007_TypeValue.SoftwareId->printSelf(outFile);
       fprintf(outFile, "</SoftwareId>\n");
     }
-  else if (StatsWithRefere_1006_TypeType == StandardIdE)
+  else if (StatsWithRefere_1007_TypeType == StandardIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<StandardId");
-      StatsWithRefere_1006_TypeValue.StandardId->printSelf(outFile);
+      StatsWithRefere_1007_TypeValue.StandardId->printSelf(outFile);
       fprintf(outFile, "</StandardId>\n");
     }
-  else if (StatsWithRefere_1006_TypeType == AlgorithmIdE)
+  else if (StatsWithRefere_1007_TypeType == AlgorithmIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AlgorithmId");
-      StatsWithRefere_1006_TypeValue.AlgorithmId->printSelf(outFile);
+      StatsWithRefere_1007_TypeValue.AlgorithmId->printSelf(outFile);
       fprintf(outFile, "</AlgorithmId>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 

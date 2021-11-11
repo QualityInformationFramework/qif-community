@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #include <stdio.h>             // for printf, etc.
 #include <string.h>            // for strdup
@@ -10,8 +10,8 @@
 
 #define INDENT 2
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 /* class AndType
 
@@ -439,7 +439,7 @@ BooleanExpressionBaseTypeLisd * AndType::getBooleanExpression()
 void AndType::setBooleanExpression(BooleanExpressionBaseTypeLisd * BooleanExpressionIn)
 {BooleanExpression = BooleanExpressionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArithmeticComparisonBaseType
 
@@ -787,7 +787,7 @@ ArithmeticExpressionBaseTypeLisd * ArithmeticComparisonBaseType::getArithmeticEx
 void ArithmeticComparisonBaseType::setArithmeticExpression(ArithmeticExpressionBaseTypeLisd * ArithmeticExpressionIn)
 {ArithmeticExpression = ArithmeticExpressionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArithmeticConstantType
 
@@ -906,7 +906,7 @@ XmlDecimal * ArithmeticConstantType::getval()
 void ArithmeticConstantType::setval(XmlDecimal * valIn)
 {val = valIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArithmeticEqualType
 
@@ -1240,7 +1240,7 @@ void ArithmeticEqualType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArithmeticExpressionBaseType
 
@@ -1256,7 +1256,7 @@ void ArithmeticExpressionBaseType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArithmeticExpressionBaseTypeLisd
 
@@ -1283,7 +1283,7 @@ ArithmeticExpressionBaseTypeLisd::~ArithmeticExpressionBaseTypeLisd()
 
 void ArithmeticExpressionBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class BinaryArithmeticExpressionBaseType
 
@@ -1631,7 +1631,7 @@ ArithmeticExpressionBaseTypeLisd * BinaryArithmeticExpressionBaseType::getArithm
 void BinaryArithmeticExpressionBaseType::setArithmeticExpression(ArithmeticExpressionBaseTypeLisd * ArithmeticExpressionIn)
 {ArithmeticExpression = ArithmeticExpressionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class BinaryBooleanExpressionBaseType
 
@@ -1959,7 +1959,7 @@ BooleanExpressionBaseTypeLisd * BinaryBooleanExpressionBaseType::getBooleanExpre
 void BinaryBooleanExpressionBaseType::setBooleanExpression(BooleanExpressionBaseTypeLisd * BooleanExpressionIn)
 {BooleanExpression = BooleanExpressionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class BooleanConstantEnumType
 
@@ -2017,7 +2017,7 @@ void BooleanConstantEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class BooleanEqualType
 
@@ -2331,7 +2331,7 @@ void BooleanEqualType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class BooleanExpressionBaseType
 
@@ -2347,7 +2347,7 @@ void BooleanExpressionBaseType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class BooleanExpressionBaseTypeLisd
 
@@ -2374,7 +2374,7 @@ BooleanExpressionBaseTypeLisd::~BooleanExpressionBaseTypeLisd()
 
 void BooleanExpressionBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConstantIsType
 
@@ -2493,7 +2493,7 @@ BooleanConstantEnumType * ConstantIsType::getval()
 void ConstantIsType::setval(BooleanConstantEnumType * valIn)
 {val = valIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DividedByType
 
@@ -2827,7 +2827,7 @@ void DividedByType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class GreaterOrEqualType
 
@@ -3161,7 +3161,7 @@ void GreaterOrEqualType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class GreaterThanType
 
@@ -3495,7 +3495,7 @@ void GreaterThanType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LessOrEqualType
 
@@ -3829,7 +3829,7 @@ void LessOrEqualType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LessThanType
 
@@ -4163,7 +4163,7 @@ void LessThanType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MaxType
 
@@ -4497,7 +4497,7 @@ void MaxType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MinType
 
@@ -4831,7 +4831,7 @@ void MinType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MinusType
 
@@ -5165,7 +5165,7 @@ void MinusType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NegateType
 
@@ -5496,7 +5496,7 @@ ArithmeticExpressionBaseType * NegateType::getArithmeticExpression()
 void NegateType::setArithmeticExpression(ArithmeticExpressionBaseType * ArithmeticExpressionIn)
 {ArithmeticExpression = ArithmeticExpressionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NotType
 
@@ -5807,7 +5807,7 @@ BooleanExpressionBaseType * NotType::getBooleanExpression()
 void NotType::setBooleanExpression(BooleanExpressionBaseType * BooleanExpressionIn)
 {BooleanExpression = BooleanExpressionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OrType
 
@@ -6235,7 +6235,7 @@ BooleanExpressionBaseTypeLisd * OrType::getBooleanExpression()
 void OrType::setBooleanExpression(BooleanExpressionBaseTypeLisd * BooleanExpressionIn)
 {BooleanExpression = BooleanExpressionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlusType
 
@@ -6569,7 +6569,7 @@ void PlusType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PolyadicArithmeticExpressionBaseType
 
@@ -6917,7 +6917,7 @@ ArithmeticExpressionBaseTypeLisd * PolyadicArithmeticExpressionBaseType::getArit
 void PolyadicArithmeticExpressionBaseType::setArithmeticExpression(ArithmeticExpressionBaseTypeLisd * ArithmeticExpressionIn)
 {ArithmeticExpression = ArithmeticExpressionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TimesType
 
@@ -7251,7 +7251,7 @@ void TimesType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TokenConstantType
 
@@ -7370,7 +7370,7 @@ XmlToken * TokenConstantType::getval()
 void TokenConstantType::setval(XmlToken * valIn)
 {val = valIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TokenEqualType
 
@@ -7470,7 +7470,7 @@ TokenExpressionBaseTypeLisd * TokenEqualType::getTokenExpression()
 void TokenEqualType::setTokenExpression(TokenExpressionBaseTypeLisd * TokenExpressionIn)
 {TokenExpression = TokenExpressionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TokenExpressionBaseType
 
@@ -7486,7 +7486,7 @@ void TokenExpressionBaseType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TokenExpressionBaseTypeLisd
 
@@ -7513,7 +7513,7 @@ TokenExpressionBaseTypeLisd::~TokenExpressionBaseTypeLisd()
 
 void TokenExpressionBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TokenParameterValueType
 
@@ -7570,5 +7570,5 @@ QIFReferenceFullType * TokenParameterValueType::getObjectId()
 void TokenParameterValueType::setObjectId(QIFReferenceFullType * ObjectIdIn)
 {ObjectId = ObjectIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 

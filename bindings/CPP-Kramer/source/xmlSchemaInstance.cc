@@ -19,7 +19,7 @@ The XmlSchemaInstanceBase::places is an externally defined integer
 indicating how to deal with decimal places when printing non-integer
 numbers. If XmlSchemaInstanceBase::places is negative, that means
 -XmlSchemaInstanceBase::places should be used for printing regardless
-of the number of places in numbers that are read in.
+of the number of places in numbers that are read in. If
 XmlSchemaInstanceBase::places is positive, that means that, for
 printing, numbers that are read in should keep the number of places as
 read, but other numbers should use XmlSchemaInstanceBase::places
@@ -324,11 +324,15 @@ for the allowed characters.
 
 The checkers below check rules 1-3 but not 4-6.
 
+Since the empty string ("") is a valid value, it is not used to
+represent a bad value. Rather, "!" (which is bad by both 1 and 3
+above) is used for a bad value.
+
 */
 
 XmlBase64Binary::XmlBase64Binary()
 {
-  val = "";
+  val = "!";
   bad = true;
 }
 
@@ -349,8 +353,8 @@ XmlBase64Binary::XmlBase64Binary(
 	break;
     }
   if (valIn[n] || (count % 4))
-    { // if valIn is bad, set val to the empty string
-      val = "";
+    {
+      val = "!";
       bad = true;
     }
   else
@@ -2922,6 +2926,234 @@ void XmlLongLisd::OPRINTSELFDECL
       (*iter)->OPRINTSELF;
       if (*iter != back())
 	XFPRINTF " ");
+    }
+}
+
+/*********************************************************************/
+
+/* class XmlNCName
+
+This is a class for handling XML basic type NCName.
+
+The constructor that takes a char* argument checks that valIn contains a
+valid NCName, possibly with leading and trailing white space.  If so,
+val (a std::string) is set to the non-white part of valIn and bad is
+set to false.  If not, val is set to the empty string and bad is set
+to true.
+
+On reading, a valid NCName may have leading and/or trailing white
+space characters, but otherwise, it must be a member of [a-zA-Z0-9_.-]+.
+
+This is removing leading and trailing white space since the whitespace
+value of NCName is collapse.
+
+*/
+
+XmlNCName::XmlNCName()
+{
+  val = "";
+  bad = true;
+}
+
+XmlNCName::XmlNCName(
+  const char * valIn)
+{
+  int n;
+  int start;
+  int end;
+  static char buffer[NAMESIZE];
+
+  if (strlen(valIn) > NAMESIZE)
+    {
+      fprintf(stderr, "NCName %s is too long", valIn);
+      exit(1);
+    }
+  strncpy(buffer, valIn, NAMESIZE);
+  for (n=0; isspace(buffer[n]); n++);
+  start = n;
+  if ((buffer[n] != '_') &&
+      ((buffer[n] < 'a') || (buffer[n] > 'z')) &&
+      ((buffer[n] < 'A') || (buffer[n] > 'Z')))
+    { // first non-white-space character is not allowed
+      val = "";
+      bad = true;
+      fprintf(stderr, "%s is not a valid NCName\n", valIn);
+      return;
+    }
+  for (n++; ((buffer[n] == '_') ||
+             (buffer[n] == '.') ||
+             (buffer[n] == '-') ||
+             ((buffer[n] >= 'a') && (buffer[n] <= 'z')) ||
+             ((buffer[n] >= 'A') && (buffer[n] <= 'Z')) ||
+             ((buffer[n] >= '0') && (buffer[n] <= '9'))); n++);
+  end = n;
+  for ( ; isspace(buffer[n]); n++);
+  if (buffer[n])
+    { // buffer[n] should be 0 but isn't
+      val = "";
+      bad = true;
+      fprintf(stderr, "%s is not a valid NCName\n", valIn);
+      return;
+    }
+  buffer[end] = 0;
+  val = (buffer + start); // automatic write to std::string
+  bad = false;
+}
+
+XmlNCName::~XmlNCName() {}
+
+// This returns true if there are any bad characters or white space.
+bool XmlNCName::XmlNCNameIsBad()
+{
+  int n;
+
+  if (bad)
+    return true;
+  for (n=0; ((val[n] == '_') ||
+             (val[n] == '.') ||
+             (val[n] == '-') ||
+             ((val[n] >= 'a') && (val[n] <= 'z')) ||
+             ((val[n] >= 'A') && (val[n] <= 'Z')) ||
+             ((val[n] >= '0') && (val[n] <= '9'))); n++);
+  if ((n == 0) || val[n])
+    return true;
+  else if ((val[0] == '.') || (val[0] == '-') ||
+	   ((val[0] >= '0') && (val[0] <= '9')))
+    return true;
+  else
+    return false;
+}
+
+void XmlNCName::PRINTSELFDECL
+{
+  if (XmlNCNameIsBad())
+    {
+      fprintf(stderr, "NCName value %s is bad\n", val.c_str());
+      exit(1);
+    }
+  XFPRINTF ">%s", val.c_str());
+}
+
+void XmlNCName::OPRINTSELFDECL
+{
+  if (XmlNCNameIsBad())
+    {
+      fprintf(stderr, "NCName value %s is bad\n", val.c_str());
+      exit(1);
+    }
+  XFPRINTF "%s", val.c_str());
+}
+
+void XmlNCName::printBad(FILE * badFile)
+{
+  fprintf(badFile, "%s", val.c_str());
+}
+
+#ifdef ACCESS
+  std::string XmlNCName::getval()
+  {return val;}
+
+  void XmlNCName::setval(std::string valIn)
+  {val = valIn;}
+#endif
+
+/*********************************************************************/
+
+/* class XmlNCNameLisd
+
+*/
+
+XmlNCNameLisd::XmlNCNameLisd() {}
+
+XmlNCNameLisd::XmlNCNameLisd(
+  XmlNCName * ncnameIn)
+{
+  push_back(ncnameIn);
+}
+
+XmlNCNameLisd::XmlNCNameLisd(
+  XmlNCNameLisd * ncnameLisdIn)
+{
+  *this = *ncnameLisdIn;
+}
+
+XmlNCNameLisd::XmlNCNameLisd(
+ const char * valueString)
+{
+  XmlNCName * val;
+  int n;
+  int start;
+  char buffer[200];
+
+  for (n = 0; valueString[n]; n++)
+    {
+      for (; (valueString[n] != 0) && (isspace(valueString[n])); n++)
+        { //skip leading white space and handle empty or white string
+          if (valueString[n] == 0)
+            break;
+        }
+      if (valueString[n] == 0)
+            break;
+      start = n;
+      for (; (valueString[n] != 0) && (!isspace(valueString[n])); n++);
+      if ((n - start) > 199)
+        {
+          fprintf(stderr, "%s is not a valid NCName list\n", valueString);
+          bad = true;
+          break;
+        }
+      strncpy(buffer, valueString + start, 199);
+      buffer[n - start] = 0;
+      val = new XmlNCName(buffer);
+#ifdef ACCESS
+      if (val->getbad())
+#else
+      if (val->bad)
+#endif
+        {
+          fprintf(stderr, "%s is not a valid NCName list\n", valueString);
+          bad = true;
+          break;
+        }
+      else
+        push_back(val);
+      if (valueString[n] == 0)
+            break;
+    }
+}
+
+XmlNCNameLisd::~XmlNCNameLisd()
+{
+  #ifndef NODESTRUCT
+  std::list<XmlNCName *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      delete *iter;
+    }
+  #endif
+}
+
+void XmlNCNameLisd::PRINTNAMEDECL
+{
+  XFPRINTF "XmlNCNameLisd");
+}
+
+void XmlNCNameLisd::PRINTSELFDECL
+{
+  XFPRINTF ">");
+  OPRINTSELF;
+}
+
+void XmlNCNameLisd::OPRINTSELFDECL
+{
+  std::list<XmlNCName *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->OPRINTSELF;
+      if (*iter != back())
+        XFPRINTF " ");
     }
 }
 

@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #include <stdio.h>             // for printf, etc.
 #include <string.h>            // for strdup
@@ -10,8 +10,8 @@
 
 #define INDENT 2
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 /* class AngleRangeType
 
@@ -145,7 +145,7 @@ XmlToken * AngleRangeType::getangularUnit()
 void AngleRangeType::setangularUnit(XmlToken * angularUnitIn)
 {angularUnit = angularUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayBinaryQIFReferenceFullType
 
@@ -318,7 +318,7 @@ QIFReferenceSimpleType * ArrayBinaryQIFReferenceFullType::getasmPathXId()
 void ArrayBinaryQIFReferenceFullType::setasmPathXId(QIFReferenceSimpleType * asmPathXIdIn)
 {asmPathXId = asmPathXIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayBinaryQIFReferenceType
 
@@ -356,7 +356,7 @@ ArrayBinaryQIFReferenceTypeChoicePair * ArrayBinaryQIFReferenceType::getArrayBin
 void ArrayBinaryQIFReferenceType::setArrayBinaryQIFReferenceTypePair(ArrayBinaryQIFReferenceTypeChoicePair * ArrayBinaryQIFReferenceTypePairIn)
 {ArrayBinaryQIFReferenceTypePair = ArrayBinaryQIFReferenceTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayBinaryQIFReferenceTypeChoicePair
 
@@ -397,7 +397,7 @@ void ArrayBinaryQIFReferenceTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayBinaryType
 
@@ -590,7 +590,7 @@ XmlUnsignedInt * ArrayBinaryType::getsizeElement()
 void ArrayBinaryType::setsizeElement(XmlUnsignedInt * sizeElementIn)
 {sizeElement = sizeElementIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayDoubleType
 
@@ -722,7 +722,7 @@ NaturalType * ArrayDoubleType::getcount()
 void ArrayDoubleType::setcount(NaturalType * countIn)
 {count = countIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayI2Type
 
@@ -854,7 +854,7 @@ NaturalType * ArrayI2Type::getcount()
 void ArrayI2Type::setcount(NaturalType * countIn)
 {count = countIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayI3Type
 
@@ -986,7 +986,7 @@ NaturalType * ArrayI3Type::getcount()
 void ArrayI3Type::setcount(NaturalType * countIn)
 {count = countIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayIntType
 
@@ -1118,7 +1118,7 @@ NaturalType * ArrayIntType::getcount()
 void ArrayIntType::setcount(NaturalType * countIn)
 {count = countIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayNaturalType
 
@@ -1250,7 +1250,7 @@ NaturalType * ArrayNaturalType::getcount()
 void ArrayNaturalType::setcount(NaturalType * countIn)
 {count = countIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayPairReferenceFullType
 
@@ -1408,7 +1408,7 @@ QIFFeaturePairTypeLisd * ArrayPairReferenceFullType::getFeaturePair()
 void ArrayPairReferenceFullType::setFeaturePair(QIFFeaturePairTypeLisd * FeaturePairIn)
 {FeaturePair = FeaturePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayPoint2dType
 
@@ -1540,7 +1540,7 @@ NaturalType * ArrayPoint2dType::getcount()
 void ArrayPoint2dType::setcount(NaturalType * countIn)
 {count = countIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayPointType
 
@@ -2335,7 +2335,7 @@ ValidityEnumType * ArrayPointType::getzValidity()
 void ArrayPointType::setzValidity(ValidityEnumType * zValidityIn)
 {zValidity = zValidityIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayQPIdFullReferenceType
 
@@ -2493,7 +2493,7 @@ QPIdFullReferenceTypeLisd * ArrayQPIdFullReferenceType::getQPId()
 void ArrayQPIdFullReferenceType::setQPId(QPIdFullReferenceTypeLisd * QPIdIn)
 {QPId = QPIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayQPIdFullReferenceTypeLisd
 
@@ -2520,7 +2520,7 @@ ArrayQPIdFullReferenceTypeLisd::~ArrayQPIdFullReferenceTypeLisd()
 
 void ArrayQPIdFullReferenceTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayReferenceActiveType
 
@@ -2677,7 +2677,7 @@ QIFReferenceActiveTypeLisd * ArrayReferenceActiveType::getId()
 void ArrayReferenceActiveType::setId(QIFReferenceActiveTypeLisd * IdIn)
 {Id = IdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayReferenceFullType
 
@@ -2834,7 +2834,7 @@ QIFReferenceFullTypeLisd * ArrayReferenceFullType::getId()
 void ArrayReferenceFullType::setId(QIFReferenceFullTypeLisd * IdIn)
 {Id = IdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayReferenceType
 
@@ -2991,7 +2991,7 @@ QIFReferenceTypeLisd * ArrayReferenceType::getId()
 void ArrayReferenceType::setId(QIFReferenceTypeLisd * IdIn)
 {Id = IdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayUnitVectorType
 
@@ -3786,7 +3786,7 @@ ValidityEnumType * ArrayUnitVectorType::getzValidity()
 void ArrayUnitVectorType::setzValidity(ValidityEnumType * zValidityIn)
 {zValidity = zValidityIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayUnsignedByteType
 
@@ -3918,7 +3918,7 @@ NaturalType * ArrayUnsignedByteType::getcount()
 void ArrayUnsignedByteType::setcount(NaturalType * countIn)
 {count = countIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AttributeBaseType
 
@@ -4033,7 +4033,7 @@ XmlString * AttributeBaseType::getname()
 void AttributeBaseType::setname(XmlString * nameIn)
 {name = nameIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AttributeBaseTypeLisd
 
@@ -4060,7 +4060,7 @@ AttributeBaseTypeLisd::~AttributeBaseTypeLisd()
 
 void AttributeBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AttributeBoolType
 
@@ -4231,7 +4231,7 @@ XmlBoolean * AttributeBoolType::getvalue()
 void AttributeBoolType::setvalue(XmlBoolean * valueIn)
 {value = valueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AttributeD1Type
 
@@ -4402,7 +4402,7 @@ XmlDouble * AttributeD1Type::getvalue()
 void AttributeD1Type::setvalue(XmlDouble * valueIn)
 {value = valueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AttributeD2Type
 
@@ -4573,7 +4573,7 @@ D2Type * AttributeD2Type::getvalue()
 void AttributeD2Type::setvalue(D2Type * valueIn)
 {value = valueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AttributeD3Type
 
@@ -4744,7 +4744,7 @@ D3Type * AttributeD3Type::getvalue()
 void AttributeD3Type::setvalue(D3Type * valueIn)
 {value = valueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AttributeI1Type
 
@@ -4915,7 +4915,7 @@ XmlInteger * AttributeI1Type::getvalue()
 void AttributeI1Type::setvalue(XmlInteger * valueIn)
 {value = valueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AttributeI2Type
 
@@ -5086,7 +5086,7 @@ I2Type * AttributeI2Type::getvalue()
 void AttributeI2Type::setvalue(I2Type * valueIn)
 {value = valueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AttributeI3Type
 
@@ -5257,7 +5257,7 @@ I3Type * AttributeI3Type::getvalue()
 void AttributeI3Type::setvalue(I3Type * valueIn)
 {value = valueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AttributeQPIdType
 
@@ -5391,7 +5391,7 @@ QPIdType * AttributeQPIdType::getValue()
 void AttributeQPIdType::setValue(QPIdType * ValueIn)
 {Value = ValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AttributeStrType
 
@@ -5562,7 +5562,7 @@ XmlString * AttributeStrType::getvalue()
 void AttributeStrType::setvalue(XmlString * valueIn)
 {value = valueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AttributeTimeType
 
@@ -5733,7 +5733,7 @@ XmlDateTime * AttributeTimeType::getvalue()
 void AttributeTimeType::setvalue(XmlDateTime * valueIn)
 {value = valueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AttributeUserType
 
@@ -5743,33 +5743,33 @@ AttributeUserType::AttributeUserType() :
   AttributeBaseType()
 {
   nameUserAttribute = 0;
-  UserDataBinary = 0;
+  AttributeUserTy_1002 = 0;
 }
 
 AttributeUserType::AttributeUserType(
- BinaryDataType * UserDataBinaryIn) :
+ AttributeUserTy_1002_Type * AttributeUserTy_1002In) :
   AttributeBaseType()
 {
   nameUserAttribute = 0;
-  UserDataBinary = UserDataBinaryIn;
+  AttributeUserTy_1002 = AttributeUserTy_1002In;
 }
 
 AttributeUserType::AttributeUserType(
  XmlString * nameIn,
  XmlString * nameUserAttributeIn,
- BinaryDataType * UserDataBinaryIn) :
+ AttributeUserTy_1002_Type * AttributeUserTy_1002In) :
   AttributeBaseType(
     nameIn)
 {
   nameUserAttribute = nameUserAttributeIn;
-  UserDataBinary = UserDataBinaryIn;
+  AttributeUserTy_1002 = AttributeUserTy_1002In;
 }
 
 AttributeUserType::~AttributeUserType()
 {
   #ifndef NODESTRUCT
   delete nameUserAttribute;
-  delete UserDataBinary;
+  delete AttributeUserTy_1002;
   #endif
 }
 
@@ -5824,10 +5824,7 @@ void AttributeUserType::printSelf(FILE * outFile)
     }
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "<UserDataBinary");
-  UserDataBinary->printSelf(outFile);
-  fprintf(outFile, "</UserDataBinary>\n");
+  AttributeUserTy_1002->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -5922,13 +5919,13 @@ XmlString * AttributeUserType::getnameUserAttribute()
 void AttributeUserType::setnameUserAttribute(XmlString * nameUserAttributeIn)
 {nameUserAttribute = nameUserAttributeIn;}
 
-BinaryDataType * AttributeUserType::getUserDataBinary()
-{return UserDataBinary;}
+AttributeUserTy_1002_Type * AttributeUserType::getAttributeUserTy_1002()
+{return AttributeUserTy_1002;}
 
-void AttributeUserType::setUserDataBinary(BinaryDataType * UserDataBinaryIn)
-{UserDataBinary = UserDataBinaryIn;}
+void AttributeUserType::setAttributeUserTy_1002(AttributeUserTy_1002_Type * AttributeUserTy_1002In)
+{AttributeUserTy_1002 = AttributeUserTy_1002In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AttributesType
 
@@ -6253,7 +6250,7 @@ AttributeBaseTypeLisd * AttributesType::getAttribute()
 void AttributesType::setAttribute(AttributeBaseTypeLisd * AttributeIn)
 {Attribute = AttributeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AxisType
 
@@ -6308,7 +6305,7 @@ UnitVectorType * AxisType::getDirection()
 void AxisType::setDirection(UnitVectorType * DirectionIn)
 {Direction = DirectionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class BinaryDataType
 
@@ -6440,7 +6437,7 @@ NaturalType * BinaryDataType::getcount()
 void BinaryDataType::setcount(NaturalType * countIn)
 {count = countIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class BoundingBoxAxisAlignedType
 
@@ -6495,7 +6492,7 @@ PointSimpleType * BoundingBoxAxisAlignedType::getPointMax()
 void BoundingBoxAxisAlignedType::setPointMax(PointSimpleType * PointMaxIn)
 {PointMax = PointMaxIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoordinateSystemCoreType
 
@@ -6557,7 +6554,7 @@ PointSimpleType * CoordinateSystemCoreType::getOrigin()
 void CoordinateSystemCoreType::setOrigin(PointSimpleType * OriginIn)
 {Origin = OriginIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class D2Type
 
@@ -6621,7 +6618,7 @@ bool D2Type::D2TypeCheck()
   return bad;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class D3Type
 
@@ -6685,7 +6682,7 @@ bool D3Type::D3TypeCheck()
   return bad;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class D4Type
 
@@ -6749,7 +6746,7 @@ bool D4Type::D4TypeCheck()
   return bad;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DoublePositiveType
 
@@ -6807,7 +6804,7 @@ void DoublePositiveType::oPrintSelf(FILE * outFile)
   XmlDouble::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElementReferenceFullType
 
@@ -6848,7 +6845,7 @@ QIFReferenceFullType * ElementReferenceFullType::getId()
 void ElementReferenceFullType::setId(QIFReferenceFullType * IdIn)
 {Id = IdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElementReferenceType
 
@@ -6889,7 +6886,7 @@ QIFReferenceType * ElementReferenceType::getId()
 void ElementReferenceType::setId(QIFReferenceType * IdIn)
 {Id = IdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FractionType
 
@@ -6944,7 +6941,7 @@ NaturalType * FractionType::getDenominator()
 void FractionType::setDenominator(NaturalType * DenominatorIn)
 {Denominator = DenominatorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class I2Type
 
@@ -7008,7 +7005,7 @@ bool I2Type::I2TypeCheck()
   return bad;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class I3Type
 
@@ -7072,7 +7069,7 @@ bool I3Type::I3TypeCheck()
   return bad;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LatitudeLongitudeSweepType
 
@@ -7141,7 +7138,7 @@ AngleRangeType * LatitudeLongitudeSweepType::getDomainLongitude()
 void LatitudeLongitudeSweepType::setDomainLongitude(AngleRangeType * DomainLongitudeIn)
 {DomainLongitude = DomainLongitudeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineSegment2dType
 
@@ -7196,7 +7193,7 @@ Point2dSimpleType * LineSegment2dType::getEndPoint()
 void LineSegment2dType::setEndPoint(Point2dSimpleType * EndPointIn)
 {EndPoint = EndPointIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineSegmentType
 
@@ -7954,7 +7951,7 @@ PointSimpleType * LineSegmentType::getEndPoint()
 void LineSegmentType::setEndPoint(PointSimpleType * EndPointIn)
 {EndPoint = EndPointIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ListBooleanType
 
@@ -7995,7 +7992,7 @@ void ListBooleanType::oPrintSelf(FILE * outFile)
   XmlBooleanLisd::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ListDateTimeType
 
@@ -8036,7 +8033,7 @@ void ListDateTimeType::oPrintSelf(FILE * outFile)
   XmlDateTimeLisd::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ListDoubleType
 
@@ -8077,7 +8074,7 @@ void ListDoubleType::oPrintSelf(FILE * outFile)
   XmlDoubleLisd::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ListIntType
 
@@ -8118,7 +8115,7 @@ void ListIntType::oPrintSelf(FILE * outFile)
   XmlIntegerLisd::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ListNaturalType
 
@@ -8214,7 +8211,7 @@ void ListNaturalType::oPrintSelf(FILE * outFile)
     } 
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ListQIFReferenceFullType
 
@@ -8439,7 +8436,7 @@ QIFReferenceSimpleType * ListQIFReferenceFullType::getasmPathXId()
 void ListQIFReferenceFullType::setasmPathXId(QIFReferenceSimpleType * asmPathXIdIn)
 {asmPathXId = asmPathXIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ListQIFReferenceSimpleType
 
@@ -8535,7 +8532,7 @@ void ListQIFReferenceSimpleType::oPrintSelf(FILE * outFile)
     } 
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ListQIFReferenceType
 
@@ -8609,7 +8606,7 @@ ListQIFReferenceTypeChoicePair * ListQIFReferenceType::getListQIFReferenceTypePa
 void ListQIFReferenceType::setListQIFReferenceTypePair(ListQIFReferenceTypeChoicePair * ListQIFReferenceTypePairIn)
 {ListQIFReferenceTypePair = ListQIFReferenceTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ListQIFReferenceTypeChoicePair
 
@@ -8630,8 +8627,8 @@ ListQIFReferenceTypeChoicePair::~ListQIFReferenceTypeChoicePair()
   #ifndef NODESTRUCT
   if (ListQIFReferenceTypeType == IdsE)
     delete ListQIFReferenceTypeValue.Ids;
-  else if (ListQIFReferenceTypeType == ListQIFReferenc_1002E)
-    delete ListQIFReferenceTypeValue.ListQIFReferenc_1002;
+  else if (ListQIFReferenceTypeType == ListQIFReferenc_1003E)
+    delete ListQIFReferenceTypeValue.ListQIFReferenc_1003;
   #endif
 }
 
@@ -8644,9 +8641,9 @@ void ListQIFReferenceTypeChoicePair::printSelf(FILE * outFile)
       ListQIFReferenceTypeValue.Ids->printSelf(outFile);
       fprintf(outFile, "</Ids>\n");
     }
-  else if (ListQIFReferenceTypeType == ListQIFReferenc_1002E)
+  else if (ListQIFReferenceTypeType == ListQIFReferenc_1003E)
     {
-      ListQIFReferenceTypeValue.ListQIFReferenc_1002->printSelf(outFile);
+      ListQIFReferenceTypeValue.ListQIFReferenc_1003->printSelf(outFile);
     }
 }
 
@@ -8713,7 +8710,7 @@ NaturalType * ListQIFReferenceType::getn()
 void ListQIFReferenceType::setn(NaturalType * nIn)
 {n = nIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ListTokenType
 
@@ -8754,7 +8751,7 @@ void ListTokenType::oPrintSelf(FILE * outFile)
   XmlNMTOKENLisd::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ListUnsignedByteType
 
@@ -8795,7 +8792,7 @@ void ListUnsignedByteType::oPrintSelf(FILE * outFile)
   XmlUnsignedByteLisd::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Natural2Type
 
@@ -8859,7 +8856,7 @@ bool Natural2Type::Natural2TypeCheck()
   return bad;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NaturalType
 
@@ -8917,7 +8914,7 @@ void NaturalType::oPrintSelf(FILE * outFile)
   XmlUnsignedInt::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OrientedLatitudeLongitudeSweepType
 
@@ -8978,7 +8975,7 @@ UnitVectorType * OrientedLatitudeLongitudeSweepType::getDirNorthPole()
 void OrientedLatitudeLongitudeSweepType::setDirNorthPole(UnitVectorType * DirNorthPoleIn)
 {DirNorthPole = DirNorthPoleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ParameterRangeType
 
@@ -9042,7 +9039,7 @@ bool ParameterRangeType::ParameterRangeTypeCheck()
   return bad;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneType
 
@@ -9097,7 +9094,7 @@ UnitVectorType * PlaneType::getNormal()
 void PlaneType::setNormal(UnitVectorType * NormalIn)
 {Normal = NormalIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlaneXType
 
@@ -9152,7 +9149,7 @@ UnitVectorType * PlaneXType::getDirection()
 void PlaneXType::setDirection(UnitVectorType * DirectionIn)
 {Direction = DirectionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Point2dSimpleType
 
@@ -9216,7 +9213,7 @@ bool Point2dSimpleType::Point2dSimpleTypeCheck()
   return bad;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Point2dSimpleTypeLisd
 
@@ -9261,7 +9258,7 @@ void Point2dSimpleTypeLisd::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointSimpleType
 
@@ -9325,7 +9322,7 @@ bool PointSimpleType::PointSimpleTypeCheck()
   return bad;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointType
 
@@ -10071,7 +10068,7 @@ ValidityEnumType * PointType::getzValidity()
 void PointType::setzValidity(ValidityEnumType * zValidityIn)
 {zValidity = zValidityIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PolyLineType
 
@@ -10736,7 +10733,7 @@ bool PolyLineType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QIFFeaturePairType
 
@@ -10825,7 +10822,7 @@ QIFReferenceFullType * QIFFeaturePairType::getSecondFeatureZone()
 void QIFFeaturePairType::setSecondFeatureZone(QIFReferenceFullType * SecondFeatureZoneIn)
 {SecondFeatureZone = SecondFeatureZoneIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QIFFeaturePairTypeLisd
 
@@ -10852,7 +10849,7 @@ QIFFeaturePairTypeLisd::~QIFFeaturePairTypeLisd()
 
 void QIFFeaturePairTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QIFIdAndReferenceBaseType
 
@@ -10910,7 +10907,7 @@ void QIFIdAndReferenceBaseType::oPrintSelf(FILE * outFile)
   XmlUnsignedInt::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QIFIdType
 
@@ -10963,7 +10960,7 @@ void QIFIdType::oPrintSelf(FILE * outFile)
   XmlUnsignedInt::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QIFReferenceActiveType
 
@@ -11140,7 +11137,7 @@ XmlBoolean * QIFReferenceActiveType::getactive()
 void QIFReferenceActiveType::setactive(XmlBoolean * activeIn)
 {active = activeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QIFReferenceActiveTypeLisd
 
@@ -11167,7 +11164,7 @@ QIFReferenceActiveTypeLisd::~QIFReferenceActiveTypeLisd()
 
 void QIFReferenceActiveTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QIFReferenceBaseType
 
@@ -11220,7 +11217,7 @@ void QIFReferenceBaseType::oPrintSelf(FILE * outFile)
   XmlUnsignedInt::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QIFReferenceFullType
 
@@ -11448,7 +11445,7 @@ QIFReferenceSimpleType * QIFReferenceFullType::getasmPathXId()
 void QIFReferenceFullType::setasmPathXId(QIFReferenceSimpleType * asmPathXIdIn)
 {asmPathXId = asmPathXIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QIFReferenceFullTypeLisd
 
@@ -11475,7 +11472,7 @@ QIFReferenceFullTypeLisd::~QIFReferenceFullTypeLisd()
 
 void QIFReferenceFullTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QIFReferenceSimpleType
 
@@ -11528,7 +11525,7 @@ void QIFReferenceSimpleType::oPrintSelf(FILE * outFile)
   XmlUnsignedInt::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QIFReferenceType
 
@@ -11663,7 +11660,7 @@ QIFReferenceSimpleType * QIFReferenceType::getxId()
 void QIFReferenceType::setxId(QIFReferenceSimpleType * xIdIn)
 {xId = xIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QIFReferenceTypeLisd
 
@@ -11690,7 +11687,7 @@ QIFReferenceTypeLisd::~QIFReferenceTypeLisd()
 
 void QIFReferenceTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QPIdFullReferenceType
 
@@ -11756,7 +11753,7 @@ QPIdReferenceTypeLisd * QPIdFullReferenceType::getDocumentQPId()
 void QPIdFullReferenceType::setDocumentQPId(QPIdReferenceTypeLisd * DocumentQPIdIn)
 {DocumentQPId = DocumentQPIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QPIdFullReferenceTypeLisd
 
@@ -11783,7 +11780,7 @@ QPIdFullReferenceTypeLisd::~QPIdFullReferenceTypeLisd()
 
 void QPIdFullReferenceTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QPIdReferenceType
 
@@ -11863,7 +11860,7 @@ void QPIdReferenceType::oPrintSelf(FILE * outFile)
   XmlToken::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QPIdReferenceTypeLisd
 
@@ -11908,7 +11905,7 @@ void QPIdReferenceTypeLisd::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QPIdType
 
@@ -11988,7 +11985,7 @@ void QPIdType::oPrintSelf(FILE * outFile)
   XmlToken::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SweepType
 
@@ -12043,7 +12040,7 @@ AngleRangeType * SweepType::getDomainAngle()
 void SweepType::setDomainAngle(AngleRangeType * DomainAngleIn)
 {DomainAngle = DomainAngleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TransformMatrixType
 
@@ -12795,7 +12792,7 @@ ValidityEnumType * TransformMatrixType::getzValidity()
 void TransformMatrixType::setzValidity(ValidityEnumType * zValidityIn)
 {zValidity = zValidityIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TransformRotationType
 
@@ -12864,7 +12861,7 @@ UnitVectorSimpleType * TransformRotationType::getZDirection()
 void TransformRotationType::setZDirection(UnitVectorSimpleType * ZDirectionIn)
 {ZDirection = ZDirectionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UnitVector2dSimpleType
 
@@ -12928,7 +12925,7 @@ bool UnitVector2dSimpleType::UnitVector2dSimpleTypeCheck()
   return bad;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UnitVectorSimpleType
 
@@ -12992,7 +12989,7 @@ bool UnitVectorSimpleType::UnitVectorSimpleTypeCheck()
   return bad;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UnitVectorType
 
@@ -13738,7 +13735,60 @@ ValidityEnumType * UnitVectorType::getzValidity()
 void UnitVectorType::setzValidity(ValidityEnumType * zValidityIn)
 {zValidity = zValidityIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
+
+/* class UserDataXMLType
+
+*/
+
+UserDataXMLType::UserDataXMLType() :
+  XmlString()
+{
+}
+
+UserDataXMLType::UserDataXMLType(
+ const char * valIn) :
+  XmlString(
+    valIn)
+{}
+
+UserDataXMLType::~UserDataXMLType() {}
+
+bool UserDataXMLType::UserDataXMLTypeIsBad()
+{
+  return (false);
+}
+
+void UserDataXMLType::printName(FILE * outFile)
+{
+  fprintf(outFile, "UserDataXMLType");
+}
+
+void UserDataXMLType::printSelf(FILE * outFile)
+{
+  if (UserDataXMLTypeIsBad())
+    {
+      fprintf(stderr, "bad UserDataXMLType value, ");
+      XmlString::printBad(stderr);
+      fprintf(stderr, " exiting\n");
+      exit(1);
+    }
+  XmlString::printSelf(outFile);
+}
+
+void UserDataXMLType::oPrintSelf(FILE * outFile)
+{
+  if (UserDataXMLTypeIsBad())
+    {
+      fprintf(stderr, "bad UserDataXMLType value, ");
+      XmlString::printBad(stderr);
+      fprintf(stderr, " exiting\n");
+      exit(1);
+    }
+  XmlString::oPrintSelf(outFile);
+}
+
+/* ***************************************************************** */
 
 /* class ValidationPointsType
 
@@ -13746,23 +13796,23 @@ void UnitVectorType::setzValidity(ValidityEnumType * zValidityIn)
 
 ValidationPointsType::ValidationPointsType()
 {
-  ValidationPoint_1003 = 0;
   ValidationPoint_1004 = 0;
+  ValidationPoint_1005 = 0;
 }
 
 ValidationPointsType::ValidationPointsType(
- ValidationPoint_1003_Type * ValidationPoint_1003In,
- ValidationPoint_1004_Type * ValidationPoint_1004In)
+ ValidationPoint_1004_Type * ValidationPoint_1004In,
+ ValidationPoint_1005_Type * ValidationPoint_1005In)
 {
-  ValidationPoint_1003 = ValidationPoint_1003In;
   ValidationPoint_1004 = ValidationPoint_1004In;
+  ValidationPoint_1005 = ValidationPoint_1005In;
 }
 
 ValidationPointsType::~ValidationPointsType()
 {
   #ifndef NODESTRUCT
-  delete ValidationPoint_1003;
   delete ValidationPoint_1004;
+  delete ValidationPoint_1005;
   #endif
 }
 
@@ -13770,19 +13820,13 @@ void ValidationPointsType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  ValidationPoint_1003->printSelf(outFile);
-  if (ValidationPoint_1004)
+  ValidationPoint_1004->printSelf(outFile);
+  if (ValidationPoint_1005)
     {
-      ValidationPoint_1004->printSelf(outFile);
+      ValidationPoint_1005->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
-
-ValidationPoint_1003_Type * ValidationPointsType::getValidationPoint_1003()
-{return ValidationPoint_1003;}
-
-void ValidationPointsType::setValidationPoint_1003(ValidationPoint_1003_Type * ValidationPoint_1003In)
-{ValidationPoint_1003 = ValidationPoint_1003In;}
 
 ValidationPoint_1004_Type * ValidationPointsType::getValidationPoint_1004()
 {return ValidationPoint_1004;}
@@ -13790,7 +13834,13 @@ ValidationPoint_1004_Type * ValidationPointsType::getValidationPoint_1004()
 void ValidationPointsType::setValidationPoint_1004(ValidationPoint_1004_Type * ValidationPoint_1004In)
 {ValidationPoint_1004 = ValidationPoint_1004In;}
 
-/*********************************************************************/
+ValidationPoint_1005_Type * ValidationPointsType::getValidationPoint_1005()
+{return ValidationPoint_1005;}
+
+void ValidationPointsType::setValidationPoint_1005(ValidationPoint_1005_Type * ValidationPoint_1005In)
+{ValidationPoint_1005 = ValidationPoint_1005In;}
+
+/* ***************************************************************** */
 
 /* class ValidityEnumType
 
@@ -13854,7 +13904,7 @@ void ValidityEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class VectorSimpleType
 
@@ -13918,7 +13968,7 @@ bool VectorSimpleType::VectorSimpleTypeCheck()
   return bad;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class VectorType
 
@@ -14664,7 +14714,7 @@ ValidityEnumType * VectorType::getzValidity()
 void VectorType::setzValidity(ValidityEnumType * zValidityIn)
 {zValidity = zValidityIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayBinaryQIFR_1001_Type
 
@@ -14716,19 +14766,98 @@ ArrayBinaryType * ArrayBinaryQIFR_1001_Type::getXIds()
 void ArrayBinaryQIFR_1001_Type::setXIds(ArrayBinaryType * XIdsIn)
 {XIds = XIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class ListQIFReferenc_1002_Type
+/* class AttributeUserTy_1002_Type
 
 */
 
-ListQIFReferenc_1002_Type::ListQIFReferenc_1002_Type()
+AttributeUserTy_1002_Type::AttributeUserTy_1002_Type()
+{
+  AttributeUserTy_1002_TypePair = 0;
+}
+
+AttributeUserTy_1002_Type::AttributeUserTy_1002_Type(
+ AttributeUserTy_1002_TypeChoicePair * AttributeUserTy_1002_TypePairIn)
+{
+  AttributeUserTy_1002_TypePair = AttributeUserTy_1002_TypePairIn;
+}
+
+AttributeUserTy_1002_Type::~AttributeUserTy_1002_Type()
+{
+  #ifndef NODESTRUCT
+  delete AttributeUserTy_1002_TypePair;
+  #endif
+}
+
+void AttributeUserTy_1002_Type::printSelf(FILE * outFile)
+{
+  AttributeUserTy_1002_TypePair->printSelf(outFile);
+}
+
+AttributeUserTy_1002_TypeChoicePair * AttributeUserTy_1002_Type::getAttributeUserTy_1002_TypePair()
+{return AttributeUserTy_1002_TypePair;}
+
+void AttributeUserTy_1002_Type::setAttributeUserTy_1002_TypePair(AttributeUserTy_1002_TypeChoicePair * AttributeUserTy_1002_TypePairIn)
+{AttributeUserTy_1002_TypePair = AttributeUserTy_1002_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class AttributeUserTy_1002_TypeChoicePair
+
+*/
+
+AttributeUserTy_1002_TypeChoicePair::AttributeUserTy_1002_TypeChoicePair() {}
+
+AttributeUserTy_1002_TypeChoicePair::AttributeUserTy_1002_TypeChoicePair(
+ whichOne AttributeUserTy_1002_TypeTypeIn,
+ AttributeUserTy_1002_TypeVal AttributeUserTy_1002_TypeValueIn)
+{
+  AttributeUserTy_1002_TypeType = AttributeUserTy_1002_TypeTypeIn;
+  AttributeUserTy_1002_TypeValue = AttributeUserTy_1002_TypeValueIn;
+}
+
+AttributeUserTy_1002_TypeChoicePair::~AttributeUserTy_1002_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (AttributeUserTy_1002_TypeType == UserDataXMLE)
+    delete AttributeUserTy_1002_TypeValue.UserDataXML;
+  else if (AttributeUserTy_1002_TypeType == UserDataBinaryE)
+    delete AttributeUserTy_1002_TypeValue.UserDataBinary;
+  #endif
+}
+
+void AttributeUserTy_1002_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (AttributeUserTy_1002_TypeType == UserDataXMLE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<UserDataXML");
+      AttributeUserTy_1002_TypeValue.UserDataXML->printSelf(outFile);
+      fprintf(outFile, "</UserDataXML>\n");
+    }
+  else if (AttributeUserTy_1002_TypeType == UserDataBinaryE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<UserDataBinary");
+      AttributeUserTy_1002_TypeValue.UserDataBinary->printSelf(outFile);
+      fprintf(outFile, "</UserDataBinary>\n");
+    }
+}
+
+/* ***************************************************************** */
+
+/* class ListQIFReferenc_1003_Type
+
+*/
+
+ListQIFReferenc_1003_Type::ListQIFReferenc_1003_Type()
 {
   Id = 0;
   XIds = 0;
 }
 
-ListQIFReferenc_1002_Type::ListQIFReferenc_1002_Type(
+ListQIFReferenc_1003_Type::ListQIFReferenc_1003_Type(
  QIFReferenceSimpleType * IdIn,
  ListQIFReferenceSimpleType * XIdsIn)
 {
@@ -14736,7 +14865,7 @@ ListQIFReferenc_1002_Type::ListQIFReferenc_1002_Type(
   XIds = XIdsIn;
 }
 
-ListQIFReferenc_1002_Type::~ListQIFReferenc_1002_Type()
+ListQIFReferenc_1003_Type::~ListQIFReferenc_1003_Type()
 {
   #ifndef NODESTRUCT
   delete Id;
@@ -14744,7 +14873,7 @@ ListQIFReferenc_1002_Type::~ListQIFReferenc_1002_Type()
   #endif
 }
 
-void ListQIFReferenc_1002_Type::printSelf(FILE * outFile)
+void ListQIFReferenc_1003_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<Id");
@@ -14756,98 +14885,19 @@ void ListQIFReferenc_1002_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</XIds>\n");
 }
 
-QIFReferenceSimpleType * ListQIFReferenc_1002_Type::getId()
+QIFReferenceSimpleType * ListQIFReferenc_1003_Type::getId()
 {return Id;}
 
-void ListQIFReferenc_1002_Type::setId(QIFReferenceSimpleType * IdIn)
+void ListQIFReferenc_1003_Type::setId(QIFReferenceSimpleType * IdIn)
 {Id = IdIn;}
 
-ListQIFReferenceSimpleType * ListQIFReferenc_1002_Type::getXIds()
+ListQIFReferenceSimpleType * ListQIFReferenc_1003_Type::getXIds()
 {return XIds;}
 
-void ListQIFReferenc_1002_Type::setXIds(ListQIFReferenceSimpleType * XIdsIn)
+void ListQIFReferenc_1003_Type::setXIds(ListQIFReferenceSimpleType * XIdsIn)
 {XIds = XIdsIn;}
 
-/*********************************************************************/
-
-/* class ValidationPoint_1003_Type
-
-*/
-
-ValidationPoint_1003_Type::ValidationPoint_1003_Type()
-{
-  ValidationPoint_1003_TypePair = 0;
-}
-
-ValidationPoint_1003_Type::ValidationPoint_1003_Type(
- ValidationPoint_1003_TypeChoicePair * ValidationPoint_1003_TypePairIn)
-{
-  ValidationPoint_1003_TypePair = ValidationPoint_1003_TypePairIn;
-}
-
-ValidationPoint_1003_Type::~ValidationPoint_1003_Type()
-{
-  #ifndef NODESTRUCT
-  delete ValidationPoint_1003_TypePair;
-  #endif
-}
-
-void ValidationPoint_1003_Type::printSelf(FILE * outFile)
-{
-  ValidationPoint_1003_TypePair->printSelf(outFile);
-}
-
-ValidationPoint_1003_TypeChoicePair * ValidationPoint_1003_Type::getValidationPoint_1003_TypePair()
-{return ValidationPoint_1003_TypePair;}
-
-void ValidationPoint_1003_Type::setValidationPoint_1003_TypePair(ValidationPoint_1003_TypeChoicePair * ValidationPoint_1003_TypePairIn)
-{ValidationPoint_1003_TypePair = ValidationPoint_1003_TypePairIn;}
-
-/*********************************************************************/
-
-/* class ValidationPoint_1003_TypeChoicePair
-
-*/
-
-ValidationPoint_1003_TypeChoicePair::ValidationPoint_1003_TypeChoicePair() {}
-
-ValidationPoint_1003_TypeChoicePair::ValidationPoint_1003_TypeChoicePair(
- whichOne ValidationPoint_1003_TypeTypeIn,
- ValidationPoint_1003_TypeVal ValidationPoint_1003_TypeValueIn)
-{
-  ValidationPoint_1003_TypeType = ValidationPoint_1003_TypeTypeIn;
-  ValidationPoint_1003_TypeValue = ValidationPoint_1003_TypeValueIn;
-}
-
-ValidationPoint_1003_TypeChoicePair::~ValidationPoint_1003_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (ValidationPoint_1003_TypeType == PointsE)
-    delete ValidationPoint_1003_TypeValue.Points;
-  else if (ValidationPoint_1003_TypeType == PointsBinaryE)
-    delete ValidationPoint_1003_TypeValue.PointsBinary;
-  #endif
-}
-
-void ValidationPoint_1003_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (ValidationPoint_1003_TypeType == PointsE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<Points");
-      ValidationPoint_1003_TypeValue.Points->printSelf(outFile);
-      fprintf(outFile, "</Points>\n");
-    }
-  else if (ValidationPoint_1003_TypeType == PointsBinaryE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<PointsBinary");
-      ValidationPoint_1003_TypeValue.PointsBinary->printSelf(outFile);
-      fprintf(outFile, "</PointsBinary>\n");
-    }
-}
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ValidationPoint_1004_Type
 
@@ -14873,10 +14923,7 @@ ValidationPoint_1004_Type::~ValidationPoint_1004_Type()
 
 void ValidationPoint_1004_Type::printSelf(FILE * outFile)
 {
-  if (ValidationPoint_1004_TypePair)
-    {
-      ValidationPoint_1004_TypePair->printSelf(outFile);
-    }
+  ValidationPoint_1004_TypePair->printSelf(outFile);
 }
 
 ValidationPoint_1004_TypeChoicePair * ValidationPoint_1004_Type::getValidationPoint_1004_TypePair()
@@ -14885,7 +14932,7 @@ ValidationPoint_1004_TypeChoicePair * ValidationPoint_1004_Type::getValidationPo
 void ValidationPoint_1004_Type::setValidationPoint_1004_TypePair(ValidationPoint_1004_TypeChoicePair * ValidationPoint_1004_TypePairIn)
 {ValidationPoint_1004_TypePair = ValidationPoint_1004_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ValidationPoint_1004_TypeChoicePair
 
@@ -14904,30 +14951,112 @@ ValidationPoint_1004_TypeChoicePair::ValidationPoint_1004_TypeChoicePair(
 ValidationPoint_1004_TypeChoicePair::~ValidationPoint_1004_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (ValidationPoint_1004_TypeType == DirectionsE)
-    delete ValidationPoint_1004_TypeValue.Directions;
-  else if (ValidationPoint_1004_TypeType == DirectionsBinaryE)
-    delete ValidationPoint_1004_TypeValue.DirectionsBinary;
+  if (ValidationPoint_1004_TypeType == PointsE)
+    delete ValidationPoint_1004_TypeValue.Points;
+  else if (ValidationPoint_1004_TypeType == PointsBinaryE)
+    delete ValidationPoint_1004_TypeValue.PointsBinary;
   #endif
 }
 
 void ValidationPoint_1004_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (ValidationPoint_1004_TypeType == DirectionsE)
+  if (ValidationPoint_1004_TypeType == PointsE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Points");
+      ValidationPoint_1004_TypeValue.Points->printSelf(outFile);
+      fprintf(outFile, "</Points>\n");
+    }
+  else if (ValidationPoint_1004_TypeType == PointsBinaryE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<PointsBinary");
+      ValidationPoint_1004_TypeValue.PointsBinary->printSelf(outFile);
+      fprintf(outFile, "</PointsBinary>\n");
+    }
+}
+
+/* ***************************************************************** */
+
+/* class ValidationPoint_1005_Type
+
+*/
+
+ValidationPoint_1005_Type::ValidationPoint_1005_Type()
+{
+  ValidationPoint_1005_TypePair = 0;
+}
+
+ValidationPoint_1005_Type::ValidationPoint_1005_Type(
+ ValidationPoint_1005_TypeChoicePair * ValidationPoint_1005_TypePairIn)
+{
+  ValidationPoint_1005_TypePair = ValidationPoint_1005_TypePairIn;
+}
+
+ValidationPoint_1005_Type::~ValidationPoint_1005_Type()
+{
+  #ifndef NODESTRUCT
+  delete ValidationPoint_1005_TypePair;
+  #endif
+}
+
+void ValidationPoint_1005_Type::printSelf(FILE * outFile)
+{
+  if (ValidationPoint_1005_TypePair)
+    {
+      ValidationPoint_1005_TypePair->printSelf(outFile);
+    }
+}
+
+ValidationPoint_1005_TypeChoicePair * ValidationPoint_1005_Type::getValidationPoint_1005_TypePair()
+{return ValidationPoint_1005_TypePair;}
+
+void ValidationPoint_1005_Type::setValidationPoint_1005_TypePair(ValidationPoint_1005_TypeChoicePair * ValidationPoint_1005_TypePairIn)
+{ValidationPoint_1005_TypePair = ValidationPoint_1005_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class ValidationPoint_1005_TypeChoicePair
+
+*/
+
+ValidationPoint_1005_TypeChoicePair::ValidationPoint_1005_TypeChoicePair() {}
+
+ValidationPoint_1005_TypeChoicePair::ValidationPoint_1005_TypeChoicePair(
+ whichOne ValidationPoint_1005_TypeTypeIn,
+ ValidationPoint_1005_TypeVal ValidationPoint_1005_TypeValueIn)
+{
+  ValidationPoint_1005_TypeType = ValidationPoint_1005_TypeTypeIn;
+  ValidationPoint_1005_TypeValue = ValidationPoint_1005_TypeValueIn;
+}
+
+ValidationPoint_1005_TypeChoicePair::~ValidationPoint_1005_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (ValidationPoint_1005_TypeType == DirectionsE)
+    delete ValidationPoint_1005_TypeValue.Directions;
+  else if (ValidationPoint_1005_TypeType == DirectionsBinaryE)
+    delete ValidationPoint_1005_TypeValue.DirectionsBinary;
+  #endif
+}
+
+void ValidationPoint_1005_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (ValidationPoint_1005_TypeType == DirectionsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Directions");
-      ValidationPoint_1004_TypeValue.Directions->printSelf(outFile);
+      ValidationPoint_1005_TypeValue.Directions->printSelf(outFile);
       fprintf(outFile, "</Directions>\n");
     }
-  else if (ValidationPoint_1004_TypeType == DirectionsBinaryE)
+  else if (ValidationPoint_1005_TypeType == DirectionsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DirectionsBinary");
-      ValidationPoint_1004_TypeValue.DirectionsBinary->printSelf(outFile);
+      ValidationPoint_1005_TypeValue.DirectionsBinary->printSelf(outFile);
       fprintf(outFile, "</DirectionsBinary>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 

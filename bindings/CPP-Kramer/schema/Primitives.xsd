@@ -2015,45 +2015,32 @@ end in 'Id'.
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="AttributeBaseType">
-        <xs:sequence>
-<!--
-          <xs:choice>
+        <xs:choice>
+          <xs:annotation>
+            <xs:documentation>
+              This compositor selects the representation method for data
+              of the user-defined entity attribute.
+            </xs:documentation>
+          </xs:annotation>
+          <xs:element name="UserDataXML"
+            type="UserDataXMLType">
             <xs:annotation>
               <xs:documentation>
-                This compositor selects the representation method for data
-                of the user-defined entity attribute.
+                The UserDataXML element is the user-defined data
+                represented as an XML structure.
               </xs:documentation>
             </xs:annotation>
-            <xs:element name="UserDataXML"
-              type="UserDataXMLType">
-              <xs:annotation>
-                <xs:documentation>
-                  The UserDataXML element is the user-defined data
-                  represented as an XML structure.
-                </xs:documentation>
-              </xs:annotation>
-            </xs:element>
-            <xs:element name="UserDataBinary"
-              type="BinaryDataType">
-              <xs:annotation>
-                <xs:documentation>
-                  The UserDataBinary element is a binary block of user
-                  data.
-                </xs:documentation>
-              </xs:annotation>
-            </xs:element>
-          </xs:choice>
--->
-            <xs:element name="UserDataBinary"
-              type="BinaryDataType">
-              <xs:annotation>
-                <xs:documentation>
-                  The UserDataBinary element is a binary block of user
-                  data.
-                </xs:documentation>
-              </xs:annotation>
-            </xs:element>
-        </xs:sequence>
+          </xs:element>
+          <xs:element name="UserDataBinary"
+            type="BinaryDataType">
+            <xs:annotation>
+              <xs:documentation>
+                The UserDataBinary element is a binary block of user
+                data.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
         <xs:attribute name="nameUserAttribute"
           type="xs:string"
           use="required">
@@ -2096,6 +2083,10 @@ end in 'Id'.
     </xs:sequence>
   </xs:complexType>
 -->
+
+  <xs:simpleType name="UserDataXMLType">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
 
   <xs:element name="Attributes"
     type="AttributesType">

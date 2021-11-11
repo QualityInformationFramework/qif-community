@@ -134,10 +134,10 @@ int main()
 
   // add datum A to DRF as primary datum
   DatumWithPrecedenceType dwpA_A;
-  DatumWithPreced_1012_TypeVal dwpA_Aval;
+  DatumWithPreced_1013_TypeVal dwpA_Aval;
   dwpA_Aval.SimpleDatum = &dtA_A;
-  DatumWithPreced_1012_TypeChoicePair DwpA_Achoice
-    (DatumWithPreced_1012_TypeChoicePair::SimpleDatumE, dwpA_Aval);
+  DatumWithPreced_1013_TypeChoicePair DwpA_Achoice
+    (DatumWithPreced_1013_TypeChoicePair::SimpleDatumE, dwpA_Aval);
 
   PrecedenceType prcA_A;
   PrecedenceTypeVal prcA_Aval;
@@ -147,8 +147,8 @@ int main()
     (PrecedenceTypeChoicePair::PrecedenceEnumE, prcA_Aval);
   prcA_A.setPrecedenceTypePair(&prcA_AChoicePair);
   dwpA_A.setPrecedence(&prcA_A);
-  DatumWithPreced_1012_Type dwpA_ADatWithPrec(&DwpA_Achoice);
-  dwpA_A.setDatumWithPreced_1012(&dwpA_ADatWithPrec);
+  DatumWithPreced_1013_Type dwpA_ADatWithPrec(&DwpA_Achoice);
+  dwpA_A.setDatumWithPreced_1013(&dwpA_ADatWithPrec);
   // add simple primary datum A to the datums list
   DatumWithPrecedenceTypeLisd drfAdatsList;
   drfAdats.setDatum(&drfAdatsList);
@@ -189,10 +189,10 @@ int main()
 
   // add datum A to DRF as primary datum
   DatumWithPrecedenceType dwpA_AB;
-  DatumWithPreced_1012_TypeVal dwpA_ABval;
+  DatumWithPreced_1013_TypeVal dwpA_ABval;
   dwpA_ABval.SimpleDatum = &dtA_AB;
-  DatumWithPreced_1012_TypeChoicePair DwpA_ABchoice
-    (DatumWithPreced_1012_TypeChoicePair::SimpleDatumE, dwpA_ABval);
+  DatumWithPreced_1013_TypeChoicePair DwpA_ABchoice
+    (DatumWithPreced_1013_TypeChoicePair::SimpleDatumE, dwpA_ABval);
 
   PrecedenceType prcA_AB;
   PrecedenceTypeVal prcA_ABval;
@@ -202,8 +202,8 @@ int main()
     (PrecedenceTypeChoicePair::PrecedenceEnumE, prcA_ABval);
   prcA_AB.setPrecedenceTypePair(&prcA_ABChoicePair);
   dwpA_AB.setPrecedence(&prcA_AB);
-  DatumWithPreced_1012_Type dwpA_ABDatWithPrec(&DwpA_ABchoice);
-  dwpA_AB.setDatumWithPreced_1012(&dwpA_ABDatWithPrec);
+  DatumWithPreced_1013_Type dwpA_ABDatWithPrec(&DwpA_ABchoice);
+  dwpA_AB.setDatumWithPreced_1013(&dwpA_ABDatWithPrec);
   // add simple primary datum A to the datums list
   DatumWithPrecedenceTypeLisd drfABdatsList;
   drfABdats.setDatum(&drfABdatsList);
@@ -226,10 +226,10 @@ int main()
   dtB_AB.setReferencedComponent(&dtB_ABcomp);
   // add datum B to DRF as secondary datum
   DatumWithPrecedenceType dwpB_AB;
-  DatumWithPreced_1012_TypeVal dwpB_ABval;
+  DatumWithPreced_1013_TypeVal dwpB_ABval;
   dwpB_ABval.SimpleDatum = &dtB_AB;
-  DatumWithPreced_1012_TypeChoicePair DwpB_ABchoice
-    (DatumWithPreced_1012_TypeChoicePair::SimpleDatumE, dwpB_ABval);
+  DatumWithPreced_1013_TypeChoicePair DwpB_ABchoice
+    (DatumWithPreced_1013_TypeChoicePair::SimpleDatumE, dwpB_ABval);
 
   PrecedenceType prcB_AB;
   PrecedenceTypeVal prcB_ABval;
@@ -240,8 +240,8 @@ int main()
   prcB_AB.setPrecedenceTypePair(&prcB_ABChoicePair);
 
   dwpB_AB.setPrecedence(&prcB_AB);
-  DatumWithPreced_1012_Type dwpB_ABDatWithPrec(&DwpB_ABchoice);
-  dwpB_AB.setDatumWithPreced_1012(&dwpB_ABDatWithPrec);
+  DatumWithPreced_1013_Type dwpB_ABDatWithPrec(&DwpB_ABchoice);
+  dwpB_AB.setDatumWithPreced_1013(&dwpB_ABDatWithPrec);
   // add simple primary datum B to the datums list
   drfABdatsList.push_back(&dwpB_AB);
   drfABdatsN.setval(1 + drfABdatsN.getval()); // increment n
@@ -279,10 +279,10 @@ int main()
 
   // add datum A to DRF as primary datum
   DatumWithPrecedenceType dwpA_ABC;
-  DatumWithPreced_1012_TypeVal dwpA_ABCval;
+  DatumWithPreced_1013_TypeVal dwpA_ABCval;
   dwpA_ABCval.SimpleDatum = &dtA_ABC;
-  DatumWithPreced_1012_TypeChoicePair DwpA_ABCchoice
-    (DatumWithPreced_1012_TypeChoicePair::SimpleDatumE, dwpA_ABCval);
+  DatumWithPreced_1013_TypeChoicePair DwpA_ABCchoice
+    (DatumWithPreced_1013_TypeChoicePair::SimpleDatumE, dwpA_ABCval);
 
   PrecedenceType prcA_ABC;
   PrecedenceTypeVal prcA_ABCval;
@@ -292,8 +292,8 @@ int main()
     (PrecedenceTypeChoicePair::PrecedenceEnumE, prcA_ABCval);
   prcA_ABC.setPrecedenceTypePair(&prcA_ABCChoicePair);
   dwpA_ABC.setPrecedence(&prcA_ABC);
-  DatumWithPreced_1012_Type prcA_ABCDatWithPrec(&DwpA_ABCchoice);
-  dwpA_ABC.setDatumWithPreced_1012(&prcA_ABCDatWithPrec);
+  DatumWithPreced_1013_Type prcA_ABCDatWithPrec(&DwpA_ABCchoice);
+  dwpA_ABC.setDatumWithPreced_1013(&prcA_ABCDatWithPrec);
   // add simple primary datum A to the datums list
   DatumWithPrecedenceTypeLisd drfABCdatsList;
   drfABCdats.setDatum(&drfABCdatsList);
@@ -316,10 +316,10 @@ int main()
   dtB_ABC.setReferencedComponent(&dtB_ABCcomp);
   // add datum B to DRF as secondary datum
   DatumWithPrecedenceType dwpB_ABC;
-  DatumWithPreced_1012_TypeVal dwpB_ABCval;
+  DatumWithPreced_1013_TypeVal dwpB_ABCval;
   dwpB_ABCval.SimpleDatum = &dtB_ABC;
-  DatumWithPreced_1012_TypeChoicePair DwpB_ABCchoice
-    (DatumWithPreced_1012_TypeChoicePair::SimpleDatumE, dwpB_ABCval);
+  DatumWithPreced_1013_TypeChoicePair DwpB_ABCchoice
+    (DatumWithPreced_1013_TypeChoicePair::SimpleDatumE, dwpB_ABCval);
 
   PrecedenceType prcB_ABC;
   PrecedenceTypeVal prcB_ABCval;
@@ -329,8 +329,8 @@ int main()
     (PrecedenceTypeChoicePair::PrecedenceEnumE, prcB_ABCval);
   prcB_ABC.setPrecedenceTypePair(&prcB_ABCChoicePair);
   dwpB_ABC.setPrecedence(&prcB_ABC);
-  DatumWithPreced_1012_Type prcB_ABCDatumWithPrec(&DwpB_ABCchoice);
-  dwpB_ABC.setDatumWithPreced_1012(&prcB_ABCDatumWithPrec);
+  DatumWithPreced_1013_Type prcB_ABCDatumWithPrec(&DwpB_ABCchoice);
+  dwpB_ABC.setDatumWithPreced_1013(&prcB_ABCDatumWithPrec);
   // add simple primary datum B to the datums list
   drfABCdatsList.push_back(&dwpB_ABC);
   drfABCdatsN.setval(1 + drfABCdatsN.getval()); // increment n
@@ -350,10 +350,10 @@ int main()
   dtC_ABC.setReferencedComponent(&dtC_ABCcomp);
   // add datum C to DRF as tertiary datum
   DatumWithPrecedenceType dwpC_ABC;
-  DatumWithPreced_1012_TypeVal dwpC_ABCval;
+  DatumWithPreced_1013_TypeVal dwpC_ABCval;
   dwpC_ABCval.SimpleDatum = &dtC_ABC;
-  DatumWithPreced_1012_TypeChoicePair DwpC_ABCchoice
-    (DatumWithPreced_1012_TypeChoicePair::SimpleDatumE, dwpC_ABCval);
+  DatumWithPreced_1013_TypeChoicePair DwpC_ABCchoice
+    (DatumWithPreced_1013_TypeChoicePair::SimpleDatumE, dwpC_ABCval);
 
   PrecedenceType prcC_ABC;
   PrecedenceTypeVal prcC_ABCval;
@@ -363,8 +363,8 @@ int main()
     (PrecedenceTypeChoicePair::PrecedenceEnumE, prcC_ABCval);
   prcC_ABC.setPrecedenceTypePair(&prcC_ABCChoicePair);
   dwpC_ABC.setPrecedence(&prcC_ABC);
-  DatumWithPreced_1012_Type prcC_ABCDatumWithPrec(&DwpC_ABCchoice);
-  dwpC_ABC.setDatumWithPreced_1012(&prcC_ABCDatumWithPrec);
+  DatumWithPreced_1013_Type prcC_ABCDatumWithPrec(&DwpC_ABCchoice);
+  dwpC_ABC.setDatumWithPreced_1013(&prcC_ABCDatumWithPrec);
   // add simple primary datum C to the datums list
   drfABCdatsList.push_back(&dwpC_ABC);
   drfABCdatsN.setval(1 + drfABCdatsN.getval()); // increment n
@@ -551,15 +551,15 @@ int main()
   LinearValueType flatZone("0.1");
   // a flatness can be simple, per-unit-area, or both.
   // Items is used to store this hierachy of objects
-  FlatnessCharact_1085_Type flatDefLinear;
+  FlatnessCharact_1086_Type flatDefLinear;
   flatDefLinear.setToleranceValue(&flatZone);
-  FlatnessCharact_1055_TypeVal flatDefVal;
-  flatDefVal.FlatnessCharact_1085 = &flatDefLinear; 
-  FlatnessCharact_1055_TypeChoicePair flatDefChoice
-    (FlatnessCharact_1055_TypeChoicePair::FlatnessCharact_1085E, flatDefVal);
-  FlatnessCharact_1055_Type flatDef1055;
-  flatDef1055.setFlatnessCharact_1055_TypePair(&flatDefChoice);
-  flatDef.setFlatnessCharact_1055(&flatDef1055);
+  FlatnessCharact_1056_TypeVal flatDefVal;
+  flatDefVal.FlatnessCharact_1086 = &flatDefLinear; 
+  FlatnessCharact_1056_TypeChoicePair flatDefChoice
+    (FlatnessCharact_1056_TypeChoicePair::FlatnessCharact_1086E, flatDefVal);
+  FlatnessCharact_1056_Type flatDef1056;
+  flatDef1056.setFlatnessCharact_1056_TypePair(&flatDefChoice);
+  flatDef.setFlatnessCharact_1056(&flatDef1056);
 
   // add to list
   charDefsList.push_back(&flatDef);
@@ -841,25 +841,25 @@ int main()
   LinearToleranceType diaBCTol;
   XmlBoolean diaBCTolBool("false");
   diaBCTol.setDefinedAsLimit(&diaBCTolBool);
-  LinearTolerance_1041_Type minBCTol;
+  LinearTolerance_1042_Type minBCTol;
   minBCTol.setMinValue(&minusTolBC);
-  LinearTolerance_1034_Type maxMinBCTol;
+  LinearTolerance_1035_Type maxMinBCTol;
   maxMinBCTol.setMaxValue(&plusTolBC);
-  maxMinBCTol.setLinearTolerance_1041(&minBCTol);
-  LinearTolerance_1017_TypeVal diaBCTolVal;
-  diaBCTolVal.LinearTolerance_1034 = &maxMinBCTol; 
-  LinearTolerance_1017_TypeChoicePair diaBCTolChoice
-    (LinearTolerance_1017_TypeChoicePair::LinearTolerance_1034E, diaBCTolVal);
-  LinearTolerance_1017_Type diaBCTol1017;
-  diaBCTol1017.setLinearTolerance_1017_TypePair(&diaBCTolChoice);
-  diaBCTol.setLinearTolerance_1017(&diaBCTol1017);
-  DiameterCharact_1054_TypeVal diaBCTolSelVal;
+  maxMinBCTol.setLinearTolerance_1042(&minBCTol);
+  LinearTolerance_1018_TypeVal diaBCTolVal;
+  diaBCTolVal.LinearTolerance_1035 = &maxMinBCTol; 
+  LinearTolerance_1018_TypeChoicePair diaBCTolChoice
+    (LinearTolerance_1018_TypeChoicePair::LinearTolerance_1035E, diaBCTolVal);
+  LinearTolerance_1018_Type diaBCTol1018;
+  diaBCTol1018.setLinearTolerance_1018_TypePair(&diaBCTolChoice);
+  diaBCTol.setLinearTolerance_1018(&diaBCTol1018);
+  DiameterCharact_1055_TypeVal diaBCTolSelVal;
   diaBCTolSelVal.Tolerance = &diaBCTol;
-  DiameterCharact_1054_TypeChoicePair diaBCTolSelChoice
-    (DiameterCharact_1054_TypeChoicePair::ToleranceE, diaBCTolSelVal);
-  DiameterCharact_1054_Type diaBCTolSel;
-  diaBCTolSel.setDiameterCharact_1054_TypePair(&diaBCTolSelChoice);
-  diaBCDef.setDiameterCharact_1054(&diaBCTolSel);
+  DiameterCharact_1055_TypeChoicePair diaBCTolSelChoice
+    (DiameterCharact_1055_TypeChoicePair::ToleranceE, diaBCTolSelVal);
+  DiameterCharact_1055_Type diaBCTolSel;
+  diaBCTolSel.setDiameterCharact_1055_TypePair(&diaBCTolSelChoice);
+  diaBCDef.setDiameterCharact_1055(&diaBCTolSel);
 
   // add to list
   charDefsList.push_back(&diaBCDef);
@@ -1615,25 +1615,25 @@ int main()
   XmlBoolean diaDiaTolBool("true");
   diaDiaTol.setDefinedAsLimit(&diaDiaTolBool);
 
-  LinearTolerance_1041_Type minDiaTol;
+  LinearTolerance_1042_Type minDiaTol;
   minDiaTol.setMinValue(&lowSize);
-  LinearTolerance_1034_Type maxMinDiaTol;
+  LinearTolerance_1035_Type maxMinDiaTol;
   maxMinDiaTol.setMaxValue(&highSize);
-  maxMinDiaTol.setLinearTolerance_1041(&minDiaTol);
-  LinearTolerance_1017_TypeVal diaDiaTolVal;
-  diaDiaTolVal.LinearTolerance_1034 = &maxMinDiaTol; 
-  LinearTolerance_1017_TypeChoicePair diaDiaTolChoice
-    (LinearTolerance_1017_TypeChoicePair::LinearTolerance_1034E, diaDiaTolVal);
-  LinearTolerance_1017_Type diaDiaTol1017;
-  diaDiaTol1017.setLinearTolerance_1017_TypePair(&diaDiaTolChoice);
-  diaDiaTol.setLinearTolerance_1017(&diaDiaTol1017);
-  DiameterCharact_1054_TypeVal diaDiaTolSelVal;
+  maxMinDiaTol.setLinearTolerance_1042(&minDiaTol);
+  LinearTolerance_1018_TypeVal diaDiaTolVal;
+  diaDiaTolVal.LinearTolerance_1035 = &maxMinDiaTol; 
+  LinearTolerance_1018_TypeChoicePair diaDiaTolChoice
+    (LinearTolerance_1018_TypeChoicePair::LinearTolerance_1035E, diaDiaTolVal);
+  LinearTolerance_1018_Type diaDiaTol1018;
+  diaDiaTol1018.setLinearTolerance_1018_TypePair(&diaDiaTolChoice);
+  diaDiaTol.setLinearTolerance_1018(&diaDiaTol1018);
+  DiameterCharact_1055_TypeVal diaDiaTolSelVal;
   diaDiaTolSelVal.Tolerance = &diaDiaTol;
-  DiameterCharact_1054_TypeChoicePair diaDiaTolSelChoice
-    (DiameterCharact_1054_TypeChoicePair::ToleranceE,diaDiaTolSelVal);
-  DiameterCharact_1054_Type diaDiaTolSel;
-  diaDiaTolSel.setDiameterCharact_1054_TypePair(&diaDiaTolSelChoice);
-  diaDef.setDiameterCharact_1054(&diaDiaTolSel);
+  DiameterCharact_1055_TypeChoicePair diaDiaTolSelChoice
+    (DiameterCharact_1055_TypeChoicePair::ToleranceE,diaDiaTolSelVal);
+  DiameterCharact_1055_Type diaDiaTolSel;
+  diaDiaTolSel.setDiameterCharact_1055_TypePair(&diaDiaTolSelChoice);
+  diaDef.setDiameterCharact_1055(&diaDiaTolSel);
 
   // add to list
   charDefsList.push_back(&diaDef);

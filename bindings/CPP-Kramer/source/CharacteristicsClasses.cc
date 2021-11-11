@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #include <stdio.h>             // for printf, etc.
 #include <string.h>            // for strdup
@@ -10,8 +10,8 @@
 
 #define INDENT 2
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 /* class AngleBetweenCharacteristicDefinitionType
 
@@ -38,7 +38,7 @@ AngleBetweenCharacteristicDefinitionType::AngleBetweenCharacteristicDefinitionTy
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCharacte_1045_Type * AngularCharacte_1045In) :
+ AngularCharacte_1046_Type * AngularCharacte_1046In) :
   AngularCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -55,7 +55,7 @@ AngleBetweenCharacteristicDefinitionType::AngleBetweenCharacteristicDefinitionTy
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    AngularCharacte_1045In)
+    AngularCharacte_1046In)
 {
 }
 
@@ -76,7 +76,7 @@ AngleBetweenCharacteristicDefinitionType::AngleBetweenCharacteristicDefinitionTy
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCharacte_1045_Type * AngularCharacte_1045In) :
+ AngularCharacte_1046_Type * AngularCharacte_1046In) :
   AngularCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -94,7 +94,7 @@ AngleBetweenCharacteristicDefinitionType::AngleBetweenCharacteristicDefinitionTy
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    AngularCharacte_1045In)
+    AngularCharacte_1046In)
 {
 }
 
@@ -241,7 +241,7 @@ void AngleBetweenCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  AngularCharacte_1045->printSelf(outFile);
+  AngularCharacte_1046->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -302,7 +302,7 @@ bool AngleBetweenCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngleBetweenCharacteristicItemType
 
@@ -544,7 +544,7 @@ bool AngleBetweenCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngleBetweenCharacteristicMeasurementType
 
@@ -865,7 +865,7 @@ MeasuredPointType * AngleBetweenCharacteristicMeasurementType::getVertex()
 void AngleBetweenCharacteristicMeasurementType::setVertex(MeasuredPointType * VertexIn)
 {Vertex = VertexIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngleBetweenCharacteristicNominalType
 
@@ -1221,7 +1221,7 @@ PointType * AngleBetweenCharacteristicNominalType::getVertex()
 void AngleBetweenCharacteristicNominalType::setVertex(PointType * VertexIn)
 {Vertex = VertexIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngleCharacteristicDefinitionType
 
@@ -1248,7 +1248,7 @@ AngleCharacteristicDefinitionType::AngleCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCharacte_1045_Type * AngularCharacte_1045In) :
+ AngularCharacte_1046_Type * AngularCharacte_1046In) :
   AngularCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -1265,7 +1265,7 @@ AngleCharacteristicDefinitionType::AngleCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    AngularCharacte_1045In)
+    AngularCharacte_1046In)
 {
 }
 
@@ -1286,7 +1286,7 @@ AngleCharacteristicDefinitionType::AngleCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCharacte_1045_Type * AngularCharacte_1045In) :
+ AngularCharacte_1046_Type * AngularCharacte_1046In) :
   AngularCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -1304,7 +1304,7 @@ AngleCharacteristicDefinitionType::AngleCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    AngularCharacte_1045In)
+    AngularCharacte_1046In)
 {
 }
 
@@ -1451,7 +1451,7 @@ void AngleCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  AngularCharacte_1045->printSelf(outFile);
+  AngularCharacte_1046->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -1512,7 +1512,7 @@ bool AngleCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngleCharacteristicItemType
 
@@ -1754,7 +1754,7 @@ bool AngleCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngleCharacteristicMeasurementType
 
@@ -2037,7 +2037,7 @@ bool AngleCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngleCharacteristicNominalType
 
@@ -2280,7 +2280,7 @@ bool AngleCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngleFromCharacteristicDefinitionType
 
@@ -2307,7 +2307,7 @@ AngleFromCharacteristicDefinitionType::AngleFromCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCharacte_1045_Type * AngularCharacte_1045In) :
+ AngularCharacte_1046_Type * AngularCharacte_1046In) :
   AngularCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -2324,7 +2324,7 @@ AngleFromCharacteristicDefinitionType::AngleFromCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    AngularCharacte_1045In)
+    AngularCharacte_1046In)
 {
 }
 
@@ -2345,7 +2345,7 @@ AngleFromCharacteristicDefinitionType::AngleFromCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCharacte_1045_Type * AngularCharacte_1045In) :
+ AngularCharacte_1046_Type * AngularCharacte_1046In) :
   AngularCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -2363,7 +2363,7 @@ AngleFromCharacteristicDefinitionType::AngleFromCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    AngularCharacte_1045In)
+    AngularCharacte_1046In)
 {
 }
 
@@ -2510,7 +2510,7 @@ void AngleFromCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  AngularCharacte_1045->printSelf(outFile);
+  AngularCharacte_1046->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -2571,7 +2571,7 @@ bool AngleFromCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngleFromCharacteristicItemType
 
@@ -2813,7 +2813,7 @@ bool AngleFromCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngleFromCharacteristicMeasurementType
 
@@ -3134,7 +3134,7 @@ MeasuredPointType * AngleFromCharacteristicMeasurementType::getVertex()
 void AngleFromCharacteristicMeasurementType::setVertex(MeasuredPointType * VertexIn)
 {Vertex = VertexIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngleFromCharacteristicNominalType
 
@@ -3490,7 +3490,7 @@ PointType * AngleFromCharacteristicNominalType::getVertex()
 void AngleFromCharacteristicNominalType::setVertex(PointType * VertexIn)
 {Vertex = VertexIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularCharacteristicDefinitionBaseType
 
@@ -3499,7 +3499,7 @@ void AngleFromCharacteristicNominalType::setVertex(PointType * VertexIn)
 AngularCharacteristicDefinitionBaseType::AngularCharacteristicDefinitionBaseType() :
   DimensionalCharacteristicDefinitionBaseType()
 {
-  AngularCharacte_1045 = 0;
+  AngularCharacte_1046 = 0;
 }
 
 AngularCharacteristicDefinitionBaseType::AngularCharacteristicDefinitionBaseType(
@@ -3518,7 +3518,7 @@ AngularCharacteristicDefinitionBaseType::AngularCharacteristicDefinitionBaseType
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCharacte_1045_Type * AngularCharacte_1045In) :
+ AngularCharacte_1046_Type * AngularCharacte_1046In) :
   DimensionalCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -3536,7 +3536,7 @@ AngularCharacteristicDefinitionBaseType::AngularCharacteristicDefinitionBaseType
     DimensionTypeIn,
     DimensionModifiersIn)
 {
-  AngularCharacte_1045 = AngularCharacte_1045In;
+  AngularCharacte_1046 = AngularCharacte_1046In;
 }
 
 AngularCharacteristicDefinitionBaseType::AngularCharacteristicDefinitionBaseType(
@@ -3556,7 +3556,7 @@ AngularCharacteristicDefinitionBaseType::AngularCharacteristicDefinitionBaseType
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCharacte_1045_Type * AngularCharacte_1045In) :
+ AngularCharacte_1046_Type * AngularCharacte_1046In) :
   DimensionalCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -3575,13 +3575,13 @@ AngularCharacteristicDefinitionBaseType::AngularCharacteristicDefinitionBaseType
     DimensionTypeIn,
     DimensionModifiersIn)
 {
-  AngularCharacte_1045 = AngularCharacte_1045In;
+  AngularCharacte_1046 = AngularCharacte_1046In;
 }
 
 AngularCharacteristicDefinitionBaseType::~AngularCharacteristicDefinitionBaseType()
 {
   #ifndef NODESTRUCT
-  delete AngularCharacte_1045;
+  delete AngularCharacte_1046;
   #endif
 }
 
@@ -3722,7 +3722,7 @@ void AngularCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  AngularCharacte_1045->printSelf(outFile);
+  AngularCharacte_1046->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -3783,13 +3783,13 @@ bool AngularCharacteristicDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-AngularCharacte_1045_Type * AngularCharacteristicDefinitionBaseType::getAngularCharacte_1045()
-{return AngularCharacte_1045;}
+AngularCharacte_1046_Type * AngularCharacteristicDefinitionBaseType::getAngularCharacte_1046()
+{return AngularCharacte_1046;}
 
-void AngularCharacteristicDefinitionBaseType::setAngularCharacte_1045(AngularCharacte_1045_Type * AngularCharacte_1045In)
-{AngularCharacte_1045 = AngularCharacte_1045In;}
+void AngularCharacteristicDefinitionBaseType::setAngularCharacte_1046(AngularCharacte_1046_Type * AngularCharacte_1046In)
+{AngularCharacte_1046 = AngularCharacte_1046In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularCharacteristicItemBaseType
 
@@ -4031,7 +4031,7 @@ bool AngularCharacteristicItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularCharacteristicMeasurementBaseType
 
@@ -4338,7 +4338,7 @@ MeasuredAngularValueType * AngularCharacteristicMeasurementBaseType::getMinValue
 void AngularCharacteristicMeasurementBaseType::setMinValue(MeasuredAngularValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularCharacteristicNominalBaseType
 
@@ -4589,7 +4589,7 @@ AngularValueType * AngularCharacteristicNominalBaseType::getTargetValue()
 void AngularCharacteristicNominalBaseType::setTargetValue(AngularValueType * TargetValueIn)
 {TargetValue = TargetValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularCoordinateCharacteristicDefinitionType
 
@@ -4598,7 +4598,7 @@ void AngularCharacteristicNominalBaseType::setTargetValue(AngularValueType * Tar
 AngularCoordinateCharacteristicDefinitionType::AngularCoordinateCharacteristicDefinitionType() :
   CoordinateCharacteristicDefinitionBaseType()
 {
-  AngularCoordina_1046 = 0;
+  AngularCoordina_1047 = 0;
 }
 
 AngularCoordinateCharacteristicDefinitionType::AngularCoordinateCharacteristicDefinitionType(
@@ -4617,7 +4617,7 @@ AngularCoordinateCharacteristicDefinitionType::AngularCoordinateCharacteristicDe
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCoordina_1046_Type * AngularCoordina_1046In) :
+ AngularCoordina_1047_Type * AngularCoordina_1047In) :
   CoordinateCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -4635,7 +4635,7 @@ AngularCoordinateCharacteristicDefinitionType::AngularCoordinateCharacteristicDe
     DimensionTypeIn,
     DimensionModifiersIn)
 {
-  AngularCoordina_1046 = AngularCoordina_1046In;
+  AngularCoordina_1047 = AngularCoordina_1047In;
 }
 
 AngularCoordinateCharacteristicDefinitionType::AngularCoordinateCharacteristicDefinitionType(
@@ -4655,7 +4655,7 @@ AngularCoordinateCharacteristicDefinitionType::AngularCoordinateCharacteristicDe
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCoordina_1046_Type * AngularCoordina_1046In) :
+ AngularCoordina_1047_Type * AngularCoordina_1047In) :
   CoordinateCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -4674,13 +4674,13 @@ AngularCoordinateCharacteristicDefinitionType::AngularCoordinateCharacteristicDe
     DimensionTypeIn,
     DimensionModifiersIn)
 {
-  AngularCoordina_1046 = AngularCoordina_1046In;
+  AngularCoordina_1047 = AngularCoordina_1047In;
 }
 
 AngularCoordinateCharacteristicDefinitionType::~AngularCoordinateCharacteristicDefinitionType()
 {
   #ifndef NODESTRUCT
-  delete AngularCoordina_1046;
+  delete AngularCoordina_1047;
   #endif
 }
 
@@ -4821,7 +4821,7 @@ void AngularCoordinateCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  AngularCoordina_1046->printSelf(outFile);
+  AngularCoordina_1047->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -4882,13 +4882,13 @@ bool AngularCoordinateCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-AngularCoordina_1046_Type * AngularCoordinateCharacteristicDefinitionType::getAngularCoordina_1046()
-{return AngularCoordina_1046;}
+AngularCoordina_1047_Type * AngularCoordinateCharacteristicDefinitionType::getAngularCoordina_1047()
+{return AngularCoordina_1047;}
 
-void AngularCoordinateCharacteristicDefinitionType::setAngularCoordina_1046(AngularCoordina_1046_Type * AngularCoordina_1046In)
-{AngularCoordina_1046 = AngularCoordina_1046In;}
+void AngularCoordinateCharacteristicDefinitionType::setAngularCoordina_1047(AngularCoordina_1047_Type * AngularCoordina_1047In)
+{AngularCoordina_1047 = AngularCoordina_1047In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularCoordinateCharacteristicItemType
 
@@ -5130,7 +5130,7 @@ bool AngularCoordinateCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularCoordinateCharacteristicMeasurementType
 
@@ -5446,7 +5446,7 @@ MeasuredAngularValueType * AngularCoordinateCharacteristicMeasurementType::getMi
 void AngularCoordinateCharacteristicMeasurementType::setMinValue(MeasuredAngularValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularCoordinateCharacteristicNominalType
 
@@ -5732,7 +5732,7 @@ QIFReferenceFullType * AngularCoordinateCharacteristicNominalType::getCoordinate
 void AngularCoordinateCharacteristicNominalType::setCoordinateSystemId(QIFReferenceFullType * CoordinateSystemIdIn)
 {CoordinateSystemId = CoordinateSystemIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularityCharacteristicDefinitionType
 
@@ -5757,7 +5757,7 @@ AngularityCharacteristicDefinitionType::AngularityCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -5771,7 +5771,7 @@ AngularityCharacteristicDefinitionType::AngularityCharacteristicDefinitionType(
  XmlBoolean * TangentPlaneIn,
  LinearValueType * MaximumToleranceValueIn,
  LinearValueType * ProjectedToleranceZoneValueIn,
- OrientationChar_1064_Type * OrientationChar_1064In) :
+ OrientationChar_1065_Type * OrientationChar_1065In) :
   OrientationCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -5786,7 +5786,7 @@ AngularityCharacteristicDefinitionType::AngularityCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -5800,7 +5800,7 @@ AngularityCharacteristicDefinitionType::AngularityCharacteristicDefinitionType(
     TangentPlaneIn,
     MaximumToleranceValueIn,
     ProjectedToleranceZoneValueIn,
-    OrientationChar_1064In)
+    OrientationChar_1065In)
 {
 }
 
@@ -5819,7 +5819,7 @@ AngularityCharacteristicDefinitionType::AngularityCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -5833,7 +5833,7 @@ AngularityCharacteristicDefinitionType::AngularityCharacteristicDefinitionType(
  XmlBoolean * TangentPlaneIn,
  LinearValueType * MaximumToleranceValueIn,
  LinearValueType * ProjectedToleranceZoneValueIn,
- OrientationChar_1064_Type * OrientationChar_1064In) :
+ OrientationChar_1065_Type * OrientationChar_1065In) :
   OrientationCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -5849,7 +5849,7 @@ AngularityCharacteristicDefinitionType::AngularityCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -5863,7 +5863,7 @@ AngularityCharacteristicDefinitionType::AngularityCharacteristicDefinitionType(
     TangentPlaneIn,
     MaximumToleranceValueIn,
     ProjectedToleranceZoneValueIn,
-    OrientationChar_1064In)
+    OrientationChar_1065In)
 {
 }
 
@@ -5995,9 +5995,9 @@ void AngularityCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -6086,9 +6086,9 @@ void AngularityCharacteristicDefinitionType::printSelf(FILE * outFile)
       ProjectedToleranceZoneValue->printSelf(outFile);
       fprintf(outFile, "</ProjectedToleranceZoneValue>\n");
     }
-  if (OrientationChar_1064)
+  if (OrientationChar_1065)
     {
-      OrientationChar_1064->printSelf(outFile);
+      OrientationChar_1065->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -6150,7 +6150,7 @@ bool AngularityCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularityCharacteristicItemType
 
@@ -6392,7 +6392,7 @@ bool AngularityCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularityCharacteristicMeasurementType
 
@@ -6719,7 +6719,7 @@ bool AngularityCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularityCharacteristicNominalType
 
@@ -6970,7 +6970,7 @@ AngularValueType * AngularityCharacteristicNominalType::getAngle()
 void AngularityCharacteristicNominalType::setAngle(AngularValueType * AngleIn)
 {Angle = AngleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AreaCharacteristicDefinitionBaseType
 
@@ -6979,7 +6979,7 @@ void AngularityCharacteristicNominalType::setAngle(AngularValueType * AngleIn)
 AreaCharacteristicDefinitionBaseType::AreaCharacteristicDefinitionBaseType() :
   CharacteristicDefinitionBaseType()
 {
-  AreaCharacteris_1047 = 0;
+  AreaCharacteris_1048 = 0;
 }
 
 AreaCharacteristicDefinitionBaseType::AreaCharacteristicDefinitionBaseType(
@@ -6996,7 +6996,7 @@ AreaCharacteristicDefinitionBaseType::AreaCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- AreaCharacteris_1047_Type * AreaCharacteris_1047In) :
+ AreaCharacteris_1048_Type * AreaCharacteris_1048In) :
   CharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -7012,7 +7012,7 @@ AreaCharacteristicDefinitionBaseType::AreaCharacteristicDefinitionBaseType(
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  AreaCharacteris_1047 = AreaCharacteris_1047In;
+  AreaCharacteris_1048 = AreaCharacteris_1048In;
 }
 
 AreaCharacteristicDefinitionBaseType::AreaCharacteristicDefinitionBaseType(
@@ -7030,7 +7030,7 @@ AreaCharacteristicDefinitionBaseType::AreaCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- AreaCharacteris_1047_Type * AreaCharacteris_1047In) :
+ AreaCharacteris_1048_Type * AreaCharacteris_1048In) :
   CharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -7047,13 +7047,13 @@ AreaCharacteristicDefinitionBaseType::AreaCharacteristicDefinitionBaseType(
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  AreaCharacteris_1047 = AreaCharacteris_1047In;
+  AreaCharacteris_1048 = AreaCharacteris_1048In;
 }
 
 AreaCharacteristicDefinitionBaseType::~AreaCharacteristicDefinitionBaseType()
 {
   #ifndef NODESTRUCT
-  delete AreaCharacteris_1047;
+  delete AreaCharacteris_1048;
   #endif
 }
 
@@ -7179,7 +7179,7 @@ void AreaCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  AreaCharacteris_1047->printSelf(outFile);
+  AreaCharacteris_1048->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -7240,13 +7240,13 @@ bool AreaCharacteristicDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-AreaCharacteris_1047_Type * AreaCharacteristicDefinitionBaseType::getAreaCharacteris_1047()
-{return AreaCharacteris_1047;}
+AreaCharacteris_1048_Type * AreaCharacteristicDefinitionBaseType::getAreaCharacteris_1048()
+{return AreaCharacteris_1048;}
 
-void AreaCharacteristicDefinitionBaseType::setAreaCharacteris_1047(AreaCharacteris_1047_Type * AreaCharacteris_1047In)
-{AreaCharacteris_1047 = AreaCharacteris_1047In;}
+void AreaCharacteristicDefinitionBaseType::setAreaCharacteris_1048(AreaCharacteris_1048_Type * AreaCharacteris_1048In)
+{AreaCharacteris_1048 = AreaCharacteris_1048In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AreaCharacteristicItemBaseType
 
@@ -7488,7 +7488,7 @@ bool AreaCharacteristicItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AreaCharacteristicMeasurementBaseType
 
@@ -7795,7 +7795,7 @@ MeasuredAreaValueType * AreaCharacteristicMeasurementBaseType::getMinValue()
 void AreaCharacteristicMeasurementBaseType::setMinValue(MeasuredAreaValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AreaCharacteristicNominalBaseType
 
@@ -8046,7 +8046,7 @@ AreaValueType * AreaCharacteristicNominalBaseType::getTargetValue()
 void AreaCharacteristicNominalBaseType::setTargetValue(AreaValueType * TargetValueIn)
 {TargetValue = TargetValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayNonDestructiveTestingType
 
@@ -8203,7 +8203,7 @@ NonDestructiveTestingEnumTypeLisd * ArrayNonDestructiveTestingType::getTypeOfTes
 void ArrayNonDestructiveTestingType::setTypeOfTest(NonDestructiveTestingEnumTypeLisd * TypeOfTestIn)
 {TypeOfTest = TypeOfTestIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AssociatedTolerancedFeatureSpecificationElementEnumType
 
@@ -8267,7 +8267,7 @@ void AssociatedTolerancedFeatureSpecificationElementEnumType::oPrintSelf(FILE * 
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicAspectsListsType
 
@@ -8428,7 +8428,7 @@ SimultaneousRequirementGroupsType * CharacteristicAspectsListsType::getSimultane
 void CharacteristicAspectsListsType::setSimultaneousRequirementGroups(SimultaneousRequirementGroupsType * SimultaneousRequirementGroupsIn)
 {SimultaneousRequirementGroups = SimultaneousRequirementGroupsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicBalloonLocationEnumType
 
@@ -8494,7 +8494,7 @@ void CharacteristicBalloonLocationEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicBalloonStyleEnumType
 
@@ -8576,7 +8576,7 @@ void CharacteristicBalloonStyleEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicBalloonType
 
@@ -8631,7 +8631,7 @@ CharacteristicBalloonStyleEnumType * CharacteristicBalloonType::getBalloonStyle(
 void CharacteristicBalloonType::setBalloonStyle(CharacteristicBalloonStyleEnumType * BalloonStyleIn)
 {BalloonStyle = BalloonStyleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicBaseType
 
@@ -8794,7 +8794,7 @@ XmlString * CharacteristicBaseType::getDescription()
 void CharacteristicBaseType::setDescription(XmlString * DescriptionIn)
 {Description = DescriptionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicDefinitionBaseType
 
@@ -9145,7 +9145,7 @@ XmlBoolean * CharacteristicDefinitionBaseType::getSeparateZone()
 void CharacteristicDefinitionBaseType::setSeparateZone(XmlBoolean * SeparateZoneIn)
 {SeparateZone = SeparateZoneIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicDefinitionBaseTypeLisd
 
@@ -9172,7 +9172,7 @@ CharacteristicDefinitionBaseTypeLisd::~CharacteristicDefinitionBaseTypeLisd()
 
 void CharacteristicDefinitionBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicDefinitionsType
 
@@ -10507,7 +10507,7 @@ CharacteristicDefinitionBaseTypeLisd * CharacteristicDefinitionsType::getCharact
 void CharacteristicDefinitionsType::setCharacteristicDefinition(CharacteristicDefinitionBaseTypeLisd * CharacteristicDefinitionIn)
 {CharacteristicDefinition = CharacteristicDefinitionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicDesignatorType
 
@@ -10601,7 +10601,7 @@ CharacteristicBalloonType * CharacteristicDesignatorType::getBalloon()
 void CharacteristicDesignatorType::setBalloon(CharacteristicBalloonType * BalloonIn)
 {Balloon = BalloonIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicGroupStatusType
 
@@ -10657,7 +10657,7 @@ QIFReferenceFullType * CharacteristicGroupStatusType::getGroupId()
 void CharacteristicGroupStatusType::setGroupId(QIFReferenceFullType * GroupIdIn)
 {GroupId = GroupIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicGroupStatusTypeLisd
 
@@ -10684,7 +10684,7 @@ CharacteristicGroupStatusTypeLisd::~CharacteristicGroupStatusTypeLisd()
 
 void CharacteristicGroupStatusTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicGroupStatusesType
 
@@ -10842,7 +10842,7 @@ CharacteristicGroupStatusTypeLisd * CharacteristicGroupStatusesType::getCharacte
 void CharacteristicGroupStatusesType::setCharacteristicGroupStatus(CharacteristicGroupStatusTypeLisd * CharacteristicGroupStatusIn)
 {CharacteristicGroupStatus = CharacteristicGroupStatusIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicGroupType
 
@@ -11100,7 +11100,7 @@ AttributesType * CharacteristicGroupType::getAttributes()
 void CharacteristicGroupType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicGroupTypeLisd
 
@@ -11127,7 +11127,7 @@ CharacteristicGroupTypeLisd::~CharacteristicGroupTypeLisd()
 
 void CharacteristicGroupTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicGroupsType
 
@@ -11326,7 +11326,7 @@ CharacteristicGroupTypeLisd * CharacteristicGroupsType::getCharacteristicGroup()
 void CharacteristicGroupsType::setCharacteristicGroup(CharacteristicGroupTypeLisd * CharacteristicGroupIn)
 {CharacteristicGroup = CharacteristicGroupIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicItemBaseType
 
@@ -11640,7 +11640,7 @@ VirtualMeasurementType * CharacteristicItemBaseType::getVirtualMeasurement()
 void CharacteristicItemBaseType::setVirtualMeasurement(VirtualMeasurementType * VirtualMeasurementIn)
 {VirtualMeasurement = VirtualMeasurementIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicItemBaseTypeLisd
 
@@ -11667,7 +11667,7 @@ CharacteristicItemBaseTypeLisd::~CharacteristicItemBaseTypeLisd()
 
 void CharacteristicItemBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicItemsType
 
@@ -13002,7 +13002,7 @@ CharacteristicItemBaseTypeLisd * CharacteristicItemsType::getCharacteristicItem(
 void CharacteristicItemsType::setCharacteristicItem(CharacteristicItemBaseTypeLisd * CharacteristicItemIn)
 {CharacteristicItem = CharacteristicItemIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicManufacturingProcessGroupType
 
@@ -13217,7 +13217,7 @@ QIFReferenceType * CharacteristicManufacturingProcessGroupType::getManufacturing
 void CharacteristicManufacturingProcessGroupType::setManufacturingProcessId(QIFReferenceType * ManufacturingProcessIdIn)
 {ManufacturingProcessId = ManufacturingProcessIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicMeasurementBaseType
 
@@ -13547,7 +13547,7 @@ XmlToken * CharacteristicMeasurementBaseType::getNonConformanceDesignator()
 void CharacteristicMeasurementBaseType::setNonConformanceDesignator(XmlToken * NonConformanceDesignatorIn)
 {NonConformanceDesignator = NonConformanceDesignatorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicMeasurementBaseTypeLisd
 
@@ -13574,7 +13574,7 @@ CharacteristicMeasurementBaseTypeLisd::~CharacteristicMeasurementBaseTypeLisd()
 
 void CharacteristicMeasurementBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicMeasurementsType
 
@@ -14909,7 +14909,7 @@ CharacteristicMeasurementBaseTypeLisd * CharacteristicMeasurementsType::getChara
 void CharacteristicMeasurementsType::setCharacteristicMeasurement(CharacteristicMeasurementBaseTypeLisd * CharacteristicMeasurementIn)
 {CharacteristicMeasurement = CharacteristicMeasurementIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicNominalBaseType
 
@@ -15205,7 +15205,7 @@ CharacteristicDesignatorType * CharacteristicNominalBaseType::getCharacteristicD
 void CharacteristicNominalBaseType::setCharacteristicDesignator(CharacteristicDesignatorType * CharacteristicDesignatorIn)
 {CharacteristicDesignator = CharacteristicDesignatorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicNominalBaseTypeLisd
 
@@ -15232,7 +15232,7 @@ CharacteristicNominalBaseTypeLisd::~CharacteristicNominalBaseTypeLisd()
 
 void CharacteristicNominalBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicNominalsType
 
@@ -16567,7 +16567,7 @@ CharacteristicNominalBaseTypeLisd * CharacteristicNominalsType::getCharacteristi
 void CharacteristicNominalsType::setCharacteristicNominal(CharacteristicNominalBaseTypeLisd * CharacteristicNominalIn)
 {CharacteristicNominal = CharacteristicNominalIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicStatusEnumType
 
@@ -16637,7 +16637,7 @@ void CharacteristicStatusEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicStatusType
 
@@ -16675,7 +16675,7 @@ CharacteristicStatusTypeChoicePair * CharacteristicStatusType::getCharacteristic
 void CharacteristicStatusType::setCharacteristicStatusTypePair(CharacteristicStatusTypeChoicePair * CharacteristicStatusTypePairIn)
 {CharacteristicStatusTypePair = CharacteristicStatusTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicStatusTypeChoicePair
 
@@ -16719,7 +16719,7 @@ void CharacteristicStatusTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ChordCharacteristicDefinitionType
 
@@ -16746,7 +16746,7 @@ ChordCharacteristicDefinitionType::ChordCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -16763,7 +16763,7 @@ ChordCharacteristicDefinitionType::ChordCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -16784,7 +16784,7 @@ ChordCharacteristicDefinitionType::ChordCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -16802,7 +16802,7 @@ ChordCharacteristicDefinitionType::ChordCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -16949,7 +16949,7 @@ void ChordCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1058->printSelf(outFile);
+  LinearCharacter_1059->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -17010,7 +17010,7 @@ bool ChordCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ChordCharacteristicItemType
 
@@ -17252,7 +17252,7 @@ bool ChordCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ChordCharacteristicMeasurementType
 
@@ -17535,7 +17535,7 @@ bool ChordCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ChordCharacteristicNominalType
 
@@ -17789,7 +17789,7 @@ bool ChordCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularRunoutCharacteristicDefinitionType
 
@@ -17814,7 +17814,7 @@ CircularRunoutCharacteristicDefinitionType::CircularRunoutCharacteristicDefiniti
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -17836,7 +17836,7 @@ CircularRunoutCharacteristicDefinitionType::CircularRunoutCharacteristicDefiniti
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -17862,7 +17862,7 @@ CircularRunoutCharacteristicDefinitionType::CircularRunoutCharacteristicDefiniti
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -17885,7 +17885,7 @@ CircularRunoutCharacteristicDefinitionType::CircularRunoutCharacteristicDefiniti
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -18024,9 +18024,9 @@ void CircularRunoutCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -18138,7 +18138,7 @@ bool CircularRunoutCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularRunoutCharacteristicItemType
 
@@ -18380,7 +18380,7 @@ bool CircularRunoutCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularRunoutCharacteristicMeasurementType
 
@@ -18674,7 +18674,7 @@ bool CircularRunoutCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularRunoutCharacteristicNominalType
 
@@ -18944,7 +18944,7 @@ QIFReferenceFullType * CircularRunoutCharacteristicNominalType::getProfileCurveI
 void CircularRunoutCharacteristicNominalType::setProfileCurveId(QIFReferenceFullType * ProfileCurveIdIn)
 {ProfileCurveId = ProfileCurveIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularityCharacteristicDefinitionType
 
@@ -18953,7 +18953,7 @@ void CircularRunoutCharacteristicNominalType::setProfileCurveId(QIFReferenceFull
 CircularityCharacteristicDefinitionType::CircularityCharacteristicDefinitionType() :
   FormCharacteristicDefinitionBaseType()
 {
-  CircularityChar_1048 = 0;
+  CircularityChar_1049 = 0;
 }
 
 CircularityCharacteristicDefinitionType::CircularityCharacteristicDefinitionType(
@@ -18970,12 +18970,12 @@ CircularityCharacteristicDefinitionType::CircularityCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
- CircularityChar_1048_Type * CircularityChar_1048In) :
+ CircularityChar_1049_Type * CircularityChar_1049In) :
   FormCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -18990,13 +18990,13 @@ CircularityCharacteristicDefinitionType::CircularityCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn)
 {
-  CircularityChar_1048 = CircularityChar_1048In;
+  CircularityChar_1049 = CircularityChar_1049In;
 }
 
 CircularityCharacteristicDefinitionType::CircularityCharacteristicDefinitionType(
@@ -19014,12 +19014,12 @@ CircularityCharacteristicDefinitionType::CircularityCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
- CircularityChar_1048_Type * CircularityChar_1048In) :
+ CircularityChar_1049_Type * CircularityChar_1049In) :
   FormCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -19035,19 +19035,19 @@ CircularityCharacteristicDefinitionType::CircularityCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn)
 {
-  CircularityChar_1048 = CircularityChar_1048In;
+  CircularityChar_1049 = CircularityChar_1049In;
 }
 
 CircularityCharacteristicDefinitionType::~CircularityCharacteristicDefinitionType()
 {
   #ifndef NODESTRUCT
-  delete CircularityChar_1048;
+  delete CircularityChar_1049;
   #endif
 }
 
@@ -19173,9 +19173,9 @@ void CircularityCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -19209,7 +19209,7 @@ void CircularityCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</OrientationPlane>\n");
     }
-  CircularityChar_1048->printSelf(outFile);
+  CircularityChar_1049->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -19270,13 +19270,13 @@ bool CircularityCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-CircularityChar_1048_Type * CircularityCharacteristicDefinitionType::getCircularityChar_1048()
-{return CircularityChar_1048;}
+CircularityChar_1049_Type * CircularityCharacteristicDefinitionType::getCircularityChar_1049()
+{return CircularityChar_1049;}
 
-void CircularityCharacteristicDefinitionType::setCircularityChar_1048(CircularityChar_1048_Type * CircularityChar_1048In)
-{CircularityChar_1048 = CircularityChar_1048In;}
+void CircularityCharacteristicDefinitionType::setCircularityChar_1049(CircularityChar_1049_Type * CircularityChar_1049In)
+{CircularityChar_1049 = CircularityChar_1049In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularityCharacteristicItemType
 
@@ -19518,7 +19518,7 @@ bool CircularityCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularityCharacteristicMeasurementType
 
@@ -19528,7 +19528,7 @@ CircularityCharacteristicMeasurementType::CircularityCharacteristicMeasurementTy
   FormCharacteristicMeasurementBaseType()
 {
   MaxCircularity = 0;
-  CircularityChar_1049 = 0;
+  CircularityChar_1050 = 0;
 }
 
 CircularityCharacteristicMeasurementType::CircularityCharacteristicMeasurementType(
@@ -19548,7 +19548,7 @@ CircularityCharacteristicMeasurementType::CircularityCharacteristicMeasurementTy
  MeasuredLinearValueType * MaxValueIn,
  MeasuredLinearValueType * MinValueIn,
  MeasuredLinearValueType * MaxCircularityIn,
- CircularityChar_1049_Type * CircularityChar_1049In) :
+ CircularityChar_1050_Type * CircularityChar_1050In) :
   FormCharacteristicMeasurementBaseType(
     AttributesIn,
     DescriptionIn,
@@ -19567,7 +19567,7 @@ CircularityCharacteristicMeasurementType::CircularityCharacteristicMeasurementTy
     MinValueIn)
 {
   MaxCircularity = MaxCircularityIn;
-  CircularityChar_1049 = CircularityChar_1049In;
+  CircularityChar_1050 = CircularityChar_1050In;
 }
 
 CircularityCharacteristicMeasurementType::CircularityCharacteristicMeasurementType(
@@ -19588,7 +19588,7 @@ CircularityCharacteristicMeasurementType::CircularityCharacteristicMeasurementTy
  MeasuredLinearValueType * MaxValueIn,
  MeasuredLinearValueType * MinValueIn,
  MeasuredLinearValueType * MaxCircularityIn,
- CircularityChar_1049_Type * CircularityChar_1049In) :
+ CircularityChar_1050_Type * CircularityChar_1050In) :
   FormCharacteristicMeasurementBaseType(
     idIn,
     AttributesIn,
@@ -19608,14 +19608,14 @@ CircularityCharacteristicMeasurementType::CircularityCharacteristicMeasurementTy
     MinValueIn)
 {
   MaxCircularity = MaxCircularityIn;
-  CircularityChar_1049 = CircularityChar_1049In;
+  CircularityChar_1050 = CircularityChar_1050In;
 }
 
 CircularityCharacteristicMeasurementType::~CircularityCharacteristicMeasurementType()
 {
   #ifndef NODESTRUCT
   delete MaxCircularity;
-  delete CircularityChar_1049;
+  delete CircularityChar_1050;
   #endif
 }
 
@@ -19760,9 +19760,9 @@ void CircularityCharacteristicMeasurementType::printSelf(FILE * outFile)
       MaxCircularity->printSelf(outFile);
       fprintf(outFile, "</MaxCircularity>\n");
     }
-  if (CircularityChar_1049)
+  if (CircularityChar_1050)
     {
-      CircularityChar_1049->printSelf(outFile);
+      CircularityChar_1050->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -19830,13 +19830,13 @@ MeasuredLinearValueType * CircularityCharacteristicMeasurementType::getMaxCircul
 void CircularityCharacteristicMeasurementType::setMaxCircularity(MeasuredLinearValueType * MaxCircularityIn)
 {MaxCircularity = MaxCircularityIn;}
 
-CircularityChar_1049_Type * CircularityCharacteristicMeasurementType::getCircularityChar_1049()
-{return CircularityChar_1049;}
+CircularityChar_1050_Type * CircularityCharacteristicMeasurementType::getCircularityChar_1050()
+{return CircularityChar_1050;}
 
-void CircularityCharacteristicMeasurementType::setCircularityChar_1049(CircularityChar_1049_Type * CircularityChar_1049In)
-{CircularityChar_1049 = CircularityChar_1049In;}
+void CircularityCharacteristicMeasurementType::setCircularityChar_1050(CircularityChar_1050_Type * CircularityChar_1050In)
+{CircularityChar_1050 = CircularityChar_1050In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularityCharacteristicNominalType
 
@@ -20087,7 +20087,7 @@ QIFReferenceFullType * CircularityCharacteristicNominalType::getProfileCurveId()
 void CircularityCharacteristicNominalType::setProfileCurveId(QIFReferenceFullType * ProfileCurveIdIn)
 {ProfileCurveId = ProfileCurveIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoaxialityCharacteristicDefinitionType
 
@@ -20113,7 +20113,7 @@ CoaxialityCharacteristicDefinitionType::CoaxialityCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -20136,7 +20136,7 @@ CoaxialityCharacteristicDefinitionType::CoaxialityCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -20163,7 +20163,7 @@ CoaxialityCharacteristicDefinitionType::CoaxialityCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -20187,7 +20187,7 @@ CoaxialityCharacteristicDefinitionType::CoaxialityCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -20328,9 +20328,9 @@ void CoaxialityCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -20453,7 +20453,7 @@ CoaxialityZoneShapeType * CoaxialityCharacteristicDefinitionType::getZoneShape()
 void CoaxialityCharacteristicDefinitionType::setZoneShape(CoaxialityZoneShapeType * ZoneShapeIn)
 {ZoneShape = ZoneShapeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoaxialityCharacteristicItemType
 
@@ -20695,7 +20695,7 @@ bool CoaxialityCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoaxialityCharacteristicMeasurementType
 
@@ -21001,7 +21001,7 @@ bool CoaxialityCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoaxialityCharacteristicNominalType
 
@@ -21233,7 +21233,7 @@ bool CoaxialityCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoaxialityDiametricalZoneType
 
@@ -21249,7 +21249,7 @@ void CoaxialityDiametricalZoneType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoaxialityNonDiametricalZoneType
 
@@ -21265,7 +21265,7 @@ void CoaxialityNonDiametricalZoneType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoaxialityZoneShapeType
 
@@ -21303,7 +21303,7 @@ CoaxialityZoneShapeTypeChoicePair * CoaxialityZoneShapeType::getCoaxialityZoneSh
 void CoaxialityZoneShapeType::setCoaxialityZoneShapeTypePair(CoaxialityZoneShapeTypeChoicePair * CoaxialityZoneShapeTypePairIn)
 {CoaxialityZoneShapeTypePair = CoaxialityZoneShapeTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoaxialityZoneShapeTypeChoicePair
 
@@ -21345,7 +21345,7 @@ void CoaxialityZoneShapeTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CompositeSegmentDefinitionBaseType
 
@@ -21438,7 +21438,7 @@ CharacteristicDesignatorType * CompositeSegmentDefinitionBaseType::getCharacteri
 void CompositeSegmentDefinitionBaseType::setCharacteristicDesignator(CharacteristicDesignatorType * CharacteristicDesignatorIn)
 {CharacteristicDesignator = CharacteristicDesignatorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CompositeSegmentLowerLevelEnumType
 
@@ -21500,7 +21500,7 @@ void CompositeSegmentLowerLevelEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CompositeSegmentMeasurementBaseType
 
@@ -21628,7 +21628,7 @@ ZoneDataSetType * CompositeSegmentMeasurementBaseType::getZoneDataSet()
 void CompositeSegmentMeasurementBaseType::setZoneDataSet(ZoneDataSetType * ZoneDataSetIn)
 {ZoneDataSet = ZoneDataSetIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CompositeSegmentPositionDefinitionType
 
@@ -21754,7 +21754,7 @@ LinearValueType * CompositeSegmentPositionDefinitionType::getProjectedToleranceZ
 void CompositeSegmentPositionDefinitionType::setProjectedToleranceZone(LinearValueType * ProjectedToleranceZoneIn)
 {ProjectedToleranceZone = ProjectedToleranceZoneIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CompositeSegmentPositionMeasurementType
 
@@ -21830,7 +21830,7 @@ void CompositeSegmentPositionMeasurementType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CompositeSegmentProfileDefinitionType
 
@@ -21910,7 +21910,7 @@ LinearValueType * CompositeSegmentProfileDefinitionType::getOuterDisposition()
 void CompositeSegmentProfileDefinitionType::setOuterDisposition(LinearValueType * OuterDispositionIn)
 {OuterDisposition = OuterDispositionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CompositeSegmentProfileMeasurementType
 
@@ -21986,7 +21986,7 @@ void CompositeSegmentProfileMeasurementType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CompositeSegmentSymmetryDefinitionType
 
@@ -22043,7 +22043,7 @@ void CompositeSegmentSymmetryDefinitionType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CompositeSegmentSymmetryMeasurementType
 
@@ -22119,7 +22119,7 @@ void CompositeSegmentSymmetryMeasurementType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConcentricityCharacteristicDefinitionType
 
@@ -22145,7 +22145,7 @@ ConcentricityCharacteristicDefinitionType::ConcentricityCharacteristicDefinition
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -22168,7 +22168,7 @@ ConcentricityCharacteristicDefinitionType::ConcentricityCharacteristicDefinition
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -22195,7 +22195,7 @@ ConcentricityCharacteristicDefinitionType::ConcentricityCharacteristicDefinition
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -22219,7 +22219,7 @@ ConcentricityCharacteristicDefinitionType::ConcentricityCharacteristicDefinition
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -22360,9 +22360,9 @@ void ConcentricityCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -22485,7 +22485,7 @@ ConcentricityZoneShapeType * ConcentricityCharacteristicDefinitionType::getZoneS
 void ConcentricityCharacteristicDefinitionType::setZoneShape(ConcentricityZoneShapeType * ZoneShapeIn)
 {ZoneShape = ZoneShapeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConcentricityCharacteristicItemType
 
@@ -22727,7 +22727,7 @@ bool ConcentricityCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConcentricityCharacteristicMeasurementType
 
@@ -23033,7 +23033,7 @@ bool ConcentricityCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConcentricityCharacteristicNominalType
 
@@ -23265,7 +23265,7 @@ bool ConcentricityCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConcentricityDiametricalZoneType
 
@@ -23281,7 +23281,7 @@ void ConcentricityDiametricalZoneType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConcentricityNonDiametricalZoneType
 
@@ -23297,7 +23297,7 @@ void ConcentricityNonDiametricalZoneType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConcentricitySphericalZoneType
 
@@ -23313,7 +23313,7 @@ void ConcentricitySphericalZoneType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConcentricityZoneShapeType
 
@@ -23351,7 +23351,7 @@ ConcentricityZoneShapeTypeChoicePair * ConcentricityZoneShapeType::getConcentric
 void ConcentricityZoneShapeType::setConcentricityZoneShapeTypePair(ConcentricityZoneShapeTypeChoicePair * ConcentricityZoneShapeTypePairIn)
 {ConcentricityZoneShapeTypePair = ConcentricityZoneShapeTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConcentricityZoneShapeTypeChoicePair
 
@@ -23401,7 +23401,7 @@ void ConcentricityZoneShapeTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalTaperCharacteristicDefinitionType
 
@@ -23428,7 +23428,7 @@ ConicalTaperCharacteristicDefinitionType::ConicalTaperCharacteristicDefinitionTy
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -23445,7 +23445,7 @@ ConicalTaperCharacteristicDefinitionType::ConicalTaperCharacteristicDefinitionTy
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -23466,7 +23466,7 @@ ConicalTaperCharacteristicDefinitionType::ConicalTaperCharacteristicDefinitionTy
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -23484,7 +23484,7 @@ ConicalTaperCharacteristicDefinitionType::ConicalTaperCharacteristicDefinitionTy
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -23631,7 +23631,7 @@ void ConicalTaperCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1058->printSelf(outFile);
+  LinearCharacter_1059->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -23692,7 +23692,7 @@ bool ConicalTaperCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalTaperCharacteristicItemType
 
@@ -23934,7 +23934,7 @@ bool ConicalTaperCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalTaperCharacteristicMeasurementType
 
@@ -24236,7 +24236,7 @@ MeasuredLinearValueType * ConicalTaperCharacteristicMeasurementType::getDistance
 void ConicalTaperCharacteristicMeasurementType::setDistance(MeasuredLinearValueType * DistanceIn)
 {Distance = DistanceIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalTaperCharacteristicNominalType
 
@@ -24506,7 +24506,7 @@ LinearValueType * ConicalTaperCharacteristicNominalType::getDistance()
 void ConicalTaperCharacteristicNominalType::setDistance(LinearValueType * DistanceIn)
 {Distance = DistanceIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicityCharacteristicDefinitionType
 
@@ -24533,7 +24533,7 @@ ConicityCharacteristicDefinitionType::ConicityCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -24554,7 +24554,7 @@ ConicityCharacteristicDefinitionType::ConicityCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -24579,7 +24579,7 @@ ConicityCharacteristicDefinitionType::ConicityCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -24601,7 +24601,7 @@ ConicityCharacteristicDefinitionType::ConicityCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -24741,9 +24741,9 @@ void ConicityCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -24860,7 +24860,7 @@ LinearDualValueType * ConicityCharacteristicDefinitionType::getToleranceDualValu
 void ConicityCharacteristicDefinitionType::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
 {ToleranceDualValue = ToleranceDualValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicityCharacteristicItemType
 
@@ -25102,7 +25102,7 @@ bool ConicityCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicityCharacteristicMeasurementType
 
@@ -25385,7 +25385,7 @@ bool ConicityCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicityCharacteristicNominalType
 
@@ -25617,7 +25617,7 @@ bool ConicityCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoordinateCharacteristicDefinitionBaseType
 
@@ -25903,7 +25903,7 @@ bool CoordinateCharacteristicDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoordinateCharacteristicItemBaseType
 
@@ -26145,7 +26145,7 @@ bool CoordinateCharacteristicItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoordinateCharacteristicMeasurementBaseType
 
@@ -26412,7 +26412,7 @@ TypeOfCoordinatesType * CoordinateCharacteristicMeasurementBaseType::getTypeOfCo
 void CoordinateCharacteristicMeasurementBaseType::setTypeOfCoordinates(TypeOfCoordinatesType * TypeOfCoordinatesIn)
 {TypeOfCoordinates = TypeOfCoordinatesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoordinateCharacteristicNominalBaseType
 
@@ -26644,7 +26644,7 @@ bool CoordinateCharacteristicNominalBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CriticalityAreaEnumType
 
@@ -26710,7 +26710,7 @@ void CriticalityAreaEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CriticalityLevelEnumType
 
@@ -26774,7 +26774,7 @@ void CriticalityLevelEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CriticalityType
 
@@ -26782,23 +26782,23 @@ void CriticalityLevelEnumType::oPrintSelf(FILE * outFile)
 
 CriticalityType::CriticalityType()
 {
-  CriticalityType_1050 = 0;
   CriticalityType_1051 = 0;
+  CriticalityType_1052 = 0;
 }
 
 CriticalityType::CriticalityType(
- CriticalityType_1050_Type * CriticalityType_1050In,
- CriticalityType_1051_Type * CriticalityType_1051In)
+ CriticalityType_1051_Type * CriticalityType_1051In,
+ CriticalityType_1052_Type * CriticalityType_1052In)
 {
-  CriticalityType_1050 = CriticalityType_1050In;
   CriticalityType_1051 = CriticalityType_1051In;
+  CriticalityType_1052 = CriticalityType_1052In;
 }
 
 CriticalityType::~CriticalityType()
 {
   #ifndef NODESTRUCT
-  delete CriticalityType_1050;
   delete CriticalityType_1051;
+  delete CriticalityType_1052;
   #endif
 }
 
@@ -26806,19 +26806,13 @@ void CriticalityType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  CriticalityType_1050->printSelf(outFile);
-  if (CriticalityType_1051)
+  CriticalityType_1051->printSelf(outFile);
+  if (CriticalityType_1052)
     {
-      CriticalityType_1051->printSelf(outFile);
+      CriticalityType_1052->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
-
-CriticalityType_1050_Type * CriticalityType::getCriticalityType_1050()
-{return CriticalityType_1050;}
-
-void CriticalityType::setCriticalityType_1050(CriticalityType_1050_Type * CriticalityType_1050In)
-{CriticalityType_1050 = CriticalityType_1050In;}
 
 CriticalityType_1051_Type * CriticalityType::getCriticalityType_1051()
 {return CriticalityType_1051;}
@@ -26826,7 +26820,13 @@ CriticalityType_1051_Type * CriticalityType::getCriticalityType_1051()
 void CriticalityType::setCriticalityType_1051(CriticalityType_1051_Type * CriticalityType_1051In)
 {CriticalityType_1051 = CriticalityType_1051In;}
 
-/*********************************************************************/
+CriticalityType_1052_Type * CriticalityType::getCriticalityType_1052()
+{return CriticalityType_1052;}
+
+void CriticalityType::setCriticalityType_1052(CriticalityType_1052_Type * CriticalityType_1052In)
+{CriticalityType_1052 = CriticalityType_1052In;}
+
+/* ***************************************************************** */
 
 /* class CurveLengthCharacteristicDefinitionType
 
@@ -26853,7 +26853,7 @@ CurveLengthCharacteristicDefinitionType::CurveLengthCharacteristicDefinitionType
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -26870,7 +26870,7 @@ CurveLengthCharacteristicDefinitionType::CurveLengthCharacteristicDefinitionType
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -26891,7 +26891,7 @@ CurveLengthCharacteristicDefinitionType::CurveLengthCharacteristicDefinitionType
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -26909,7 +26909,7 @@ CurveLengthCharacteristicDefinitionType::CurveLengthCharacteristicDefinitionType
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -27056,7 +27056,7 @@ void CurveLengthCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1058->printSelf(outFile);
+  LinearCharacter_1059->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -27117,7 +27117,7 @@ bool CurveLengthCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CurveLengthCharacteristicItemType
 
@@ -27359,7 +27359,7 @@ bool CurveLengthCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CurveLengthCharacteristicMeasurementType
 
@@ -27642,7 +27642,7 @@ bool CurveLengthCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CurveLengthCharacteristicNominalType
 
@@ -27896,7 +27896,7 @@ bool CurveLengthCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricityCharacteristicDefinitionType
 
@@ -27905,7 +27905,7 @@ bool CurveLengthCharacteristicNominalType::badAttributes(
 CylindricityCharacteristicDefinitionType::CylindricityCharacteristicDefinitionType() :
   FormCharacteristicDefinitionBaseType()
 {
-  CylindricityCha_1052 = 0;
+  CylindricityCha_1053 = 0;
 }
 
 CylindricityCharacteristicDefinitionType::CylindricityCharacteristicDefinitionType(
@@ -27922,12 +27922,12 @@ CylindricityCharacteristicDefinitionType::CylindricityCharacteristicDefinitionTy
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
- CylindricityCha_1052_Type * CylindricityCha_1052In) :
+ CylindricityCha_1053_Type * CylindricityCha_1053In) :
   FormCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -27942,13 +27942,13 @@ CylindricityCharacteristicDefinitionType::CylindricityCharacteristicDefinitionTy
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn)
 {
-  CylindricityCha_1052 = CylindricityCha_1052In;
+  CylindricityCha_1053 = CylindricityCha_1053In;
 }
 
 CylindricityCharacteristicDefinitionType::CylindricityCharacteristicDefinitionType(
@@ -27966,12 +27966,12 @@ CylindricityCharacteristicDefinitionType::CylindricityCharacteristicDefinitionTy
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
- CylindricityCha_1052_Type * CylindricityCha_1052In) :
+ CylindricityCha_1053_Type * CylindricityCha_1053In) :
   FormCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -27987,19 +27987,19 @@ CylindricityCharacteristicDefinitionType::CylindricityCharacteristicDefinitionTy
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn)
 {
-  CylindricityCha_1052 = CylindricityCha_1052In;
+  CylindricityCha_1053 = CylindricityCha_1053In;
 }
 
 CylindricityCharacteristicDefinitionType::~CylindricityCharacteristicDefinitionType()
 {
   #ifndef NODESTRUCT
-  delete CylindricityCha_1052;
+  delete CylindricityCha_1053;
   #endif
 }
 
@@ -28125,9 +28125,9 @@ void CylindricityCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -28161,7 +28161,7 @@ void CylindricityCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</OrientationPlane>\n");
     }
-  CylindricityCha_1052->printSelf(outFile);
+  CylindricityCha_1053->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -28222,13 +28222,13 @@ bool CylindricityCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-CylindricityCha_1052_Type * CylindricityCharacteristicDefinitionType::getCylindricityCha_1052()
-{return CylindricityCha_1052;}
+CylindricityCha_1053_Type * CylindricityCharacteristicDefinitionType::getCylindricityCha_1053()
+{return CylindricityCha_1053;}
 
-void CylindricityCharacteristicDefinitionType::setCylindricityCha_1052(CylindricityCha_1052_Type * CylindricityCha_1052In)
-{CylindricityCha_1052 = CylindricityCha_1052In;}
+void CylindricityCharacteristicDefinitionType::setCylindricityCha_1053(CylindricityCha_1053_Type * CylindricityCha_1053In)
+{CylindricityCha_1053 = CylindricityCha_1053In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricityCharacteristicItemType
 
@@ -28470,7 +28470,7 @@ bool CylindricityCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricityCharacteristicMeasurementType
 
@@ -28480,7 +28480,7 @@ CylindricityCharacteristicMeasurementType::CylindricityCharacteristicMeasurement
   FormCharacteristicMeasurementBaseType()
 {
   MaxCylindricity = 0;
-  CylindricityCha_1053 = 0;
+  CylindricityCha_1054 = 0;
 }
 
 CylindricityCharacteristicMeasurementType::CylindricityCharacteristicMeasurementType(
@@ -28500,7 +28500,7 @@ CylindricityCharacteristicMeasurementType::CylindricityCharacteristicMeasurement
  MeasuredLinearValueType * MaxValueIn,
  MeasuredLinearValueType * MinValueIn,
  MeasuredLinearValueType * MaxCylindricityIn,
- CylindricityCha_1053_Type * CylindricityCha_1053In) :
+ CylindricityCha_1054_Type * CylindricityCha_1054In) :
   FormCharacteristicMeasurementBaseType(
     AttributesIn,
     DescriptionIn,
@@ -28519,7 +28519,7 @@ CylindricityCharacteristicMeasurementType::CylindricityCharacteristicMeasurement
     MinValueIn)
 {
   MaxCylindricity = MaxCylindricityIn;
-  CylindricityCha_1053 = CylindricityCha_1053In;
+  CylindricityCha_1054 = CylindricityCha_1054In;
 }
 
 CylindricityCharacteristicMeasurementType::CylindricityCharacteristicMeasurementType(
@@ -28540,7 +28540,7 @@ CylindricityCharacteristicMeasurementType::CylindricityCharacteristicMeasurement
  MeasuredLinearValueType * MaxValueIn,
  MeasuredLinearValueType * MinValueIn,
  MeasuredLinearValueType * MaxCylindricityIn,
- CylindricityCha_1053_Type * CylindricityCha_1053In) :
+ CylindricityCha_1054_Type * CylindricityCha_1054In) :
   FormCharacteristicMeasurementBaseType(
     idIn,
     AttributesIn,
@@ -28560,14 +28560,14 @@ CylindricityCharacteristicMeasurementType::CylindricityCharacteristicMeasurement
     MinValueIn)
 {
   MaxCylindricity = MaxCylindricityIn;
-  CylindricityCha_1053 = CylindricityCha_1053In;
+  CylindricityCha_1054 = CylindricityCha_1054In;
 }
 
 CylindricityCharacteristicMeasurementType::~CylindricityCharacteristicMeasurementType()
 {
   #ifndef NODESTRUCT
   delete MaxCylindricity;
-  delete CylindricityCha_1053;
+  delete CylindricityCha_1054;
   #endif
 }
 
@@ -28712,9 +28712,9 @@ void CylindricityCharacteristicMeasurementType::printSelf(FILE * outFile)
       MaxCylindricity->printSelf(outFile);
       fprintf(outFile, "</MaxCylindricity>\n");
     }
-  if (CylindricityCha_1053)
+  if (CylindricityCha_1054)
     {
-      CylindricityCha_1053->printSelf(outFile);
+      CylindricityCha_1054->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -28782,13 +28782,13 @@ MeasuredLinearValueType * CylindricityCharacteristicMeasurementType::getMaxCylin
 void CylindricityCharacteristicMeasurementType::setMaxCylindricity(MeasuredLinearValueType * MaxCylindricityIn)
 {MaxCylindricity = MaxCylindricityIn;}
 
-CylindricityCha_1053_Type * CylindricityCharacteristicMeasurementType::getCylindricityCha_1053()
-{return CylindricityCha_1053;}
+CylindricityCha_1054_Type * CylindricityCharacteristicMeasurementType::getCylindricityCha_1054()
+{return CylindricityCha_1054;}
 
-void CylindricityCharacteristicMeasurementType::setCylindricityCha_1053(CylindricityCha_1053_Type * CylindricityCha_1053In)
-{CylindricityCha_1053 = CylindricityCha_1053In;}
+void CylindricityCharacteristicMeasurementType::setCylindricityCha_1054(CylindricityCha_1054_Type * CylindricityCha_1054In)
+{CylindricityCha_1054 = CylindricityCha_1054In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricityCharacteristicNominalType
 
@@ -29020,7 +29020,7 @@ bool CylindricityCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DepthCharacteristicDefinitionType
 
@@ -29047,7 +29047,7 @@ DepthCharacteristicDefinitionType::DepthCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -29064,7 +29064,7 @@ DepthCharacteristicDefinitionType::DepthCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -29085,7 +29085,7 @@ DepthCharacteristicDefinitionType::DepthCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -29103,7 +29103,7 @@ DepthCharacteristicDefinitionType::DepthCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -29250,7 +29250,7 @@ void DepthCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1058->printSelf(outFile);
+  LinearCharacter_1059->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -29311,7 +29311,7 @@ bool DepthCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DepthCharacteristicItemType
 
@@ -29553,7 +29553,7 @@ bool DepthCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DepthCharacteristicMeasurementType
 
@@ -29836,7 +29836,7 @@ bool DepthCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DepthCharacteristicNominalType
 
@@ -30090,7 +30090,7 @@ bool DepthCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DiameterCharacteristicDefinitionType
 
@@ -30099,7 +30099,7 @@ bool DepthCharacteristicNominalType::badAttributes(
 DiameterCharacteristicDefinitionType::DiameterCharacteristicDefinitionType() :
   DimensionalCharacteristicDefinitionBaseType()
 {
-  DiameterCharact_1054 = 0;
+  DiameterCharact_1055 = 0;
 }
 
 DiameterCharacteristicDefinitionType::DiameterCharacteristicDefinitionType(
@@ -30118,7 +30118,7 @@ DiameterCharacteristicDefinitionType::DiameterCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- DiameterCharact_1054_Type * DiameterCharact_1054In) :
+ DiameterCharact_1055_Type * DiameterCharact_1055In) :
   DimensionalCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -30136,7 +30136,7 @@ DiameterCharacteristicDefinitionType::DiameterCharacteristicDefinitionType(
     DimensionTypeIn,
     DimensionModifiersIn)
 {
-  DiameterCharact_1054 = DiameterCharact_1054In;
+  DiameterCharact_1055 = DiameterCharact_1055In;
 }
 
 DiameterCharacteristicDefinitionType::DiameterCharacteristicDefinitionType(
@@ -30156,7 +30156,7 @@ DiameterCharacteristicDefinitionType::DiameterCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- DiameterCharact_1054_Type * DiameterCharact_1054In) :
+ DiameterCharact_1055_Type * DiameterCharact_1055In) :
   DimensionalCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -30175,13 +30175,13 @@ DiameterCharacteristicDefinitionType::DiameterCharacteristicDefinitionType(
     DimensionTypeIn,
     DimensionModifiersIn)
 {
-  DiameterCharact_1054 = DiameterCharact_1054In;
+  DiameterCharact_1055 = DiameterCharact_1055In;
 }
 
 DiameterCharacteristicDefinitionType::~DiameterCharacteristicDefinitionType()
 {
   #ifndef NODESTRUCT
-  delete DiameterCharact_1054;
+  delete DiameterCharact_1055;
   #endif
 }
 
@@ -30322,7 +30322,7 @@ void DiameterCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  DiameterCharact_1054->printSelf(outFile);
+  DiameterCharact_1055->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -30383,13 +30383,13 @@ bool DiameterCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-DiameterCharact_1054_Type * DiameterCharacteristicDefinitionType::getDiameterCharact_1054()
-{return DiameterCharact_1054;}
+DiameterCharact_1055_Type * DiameterCharacteristicDefinitionType::getDiameterCharact_1055()
+{return DiameterCharact_1055;}
 
-void DiameterCharacteristicDefinitionType::setDiameterCharact_1054(DiameterCharact_1054_Type * DiameterCharact_1054In)
-{DiameterCharact_1054 = DiameterCharact_1054In;}
+void DiameterCharacteristicDefinitionType::setDiameterCharact_1055(DiameterCharact_1055_Type * DiameterCharact_1055In)
+{DiameterCharact_1055 = DiameterCharact_1055In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DiameterCharacteristicItemType
 
@@ -30631,7 +30631,7 @@ bool DiameterCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DiameterCharacteristicMeasurementType
 
@@ -30914,7 +30914,7 @@ bool DiameterCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DiameterCharacteristicNominalType
 
@@ -31168,7 +31168,7 @@ bool DiameterCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DimensionalCharacteristicDefinitionBaseType
 
@@ -31470,7 +31470,7 @@ DimensionModifiersType * DimensionalCharacteristicDefinitionBaseType::getDimensi
 void DimensionalCharacteristicDefinitionBaseType::setDimensionModifiers(DimensionModifiersType * DimensionModifiersIn)
 {DimensionModifiers = DimensionModifiersIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DimensionalCharacteristicItemBaseType
 
@@ -31712,7 +31712,7 @@ bool DimensionalCharacteristicItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DimensionalCharacteristicMeasurementBaseType
 
@@ -31962,7 +31962,7 @@ bool DimensionalCharacteristicMeasurementBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DimensionalCharacteristicNominalBaseType
 
@@ -32194,7 +32194,7 @@ bool DimensionalCharacteristicNominalBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DistanceBetweenCharacteristicDefinitionType
 
@@ -32221,7 +32221,7 @@ DistanceBetweenCharacteristicDefinitionType::DistanceBetweenCharacteristicDefini
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -32238,7 +32238,7 @@ DistanceBetweenCharacteristicDefinitionType::DistanceBetweenCharacteristicDefini
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -32259,7 +32259,7 @@ DistanceBetweenCharacteristicDefinitionType::DistanceBetweenCharacteristicDefini
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -32277,7 +32277,7 @@ DistanceBetweenCharacteristicDefinitionType::DistanceBetweenCharacteristicDefini
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -32424,7 +32424,7 @@ void DistanceBetweenCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1058->printSelf(outFile);
+  LinearCharacter_1059->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -32485,7 +32485,7 @@ bool DistanceBetweenCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DistanceBetweenCharacteristicItemType
 
@@ -32727,7 +32727,7 @@ bool DistanceBetweenCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DistanceBetweenCharacteristicMeasurementType
 
@@ -33029,7 +33029,7 @@ MeasuredUnitVectorType * DistanceBetweenCharacteristicMeasurementType::getAnalys
 void DistanceBetweenCharacteristicMeasurementType::setAnalysisVector(MeasuredUnitVectorType * AnalysisVectorIn)
 {AnalysisVector = AnalysisVectorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DistanceBetweenCharacteristicNominalType
 
@@ -33377,7 +33377,7 @@ QIFReferenceFullType * DistanceBetweenCharacteristicNominalType::getCoordinateSy
 void DistanceBetweenCharacteristicNominalType::setCoordinateSystemId(QIFReferenceFullType * CoordinateSystemIdIn)
 {CoordinateSystemId = CoordinateSystemIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DistanceFromCharacteristicDefinitionType
 
@@ -33404,7 +33404,7 @@ DistanceFromCharacteristicDefinitionType::DistanceFromCharacteristicDefinitionTy
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -33421,7 +33421,7 @@ DistanceFromCharacteristicDefinitionType::DistanceFromCharacteristicDefinitionTy
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -33442,7 +33442,7 @@ DistanceFromCharacteristicDefinitionType::DistanceFromCharacteristicDefinitionTy
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -33460,7 +33460,7 @@ DistanceFromCharacteristicDefinitionType::DistanceFromCharacteristicDefinitionTy
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -33607,7 +33607,7 @@ void DistanceFromCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1058->printSelf(outFile);
+  LinearCharacter_1059->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -33668,7 +33668,7 @@ bool DistanceFromCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DistanceFromCharacteristicItemType
 
@@ -33910,7 +33910,7 @@ bool DistanceFromCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DistanceFromCharacteristicMeasurementType
 
@@ -34212,7 +34212,7 @@ MeasuredUnitVectorType * DistanceFromCharacteristicMeasurementType::getAnalysisV
 void DistanceFromCharacteristicMeasurementType::setAnalysisVector(MeasuredUnitVectorType * AnalysisVectorIn)
 {AnalysisVector = AnalysisVectorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DistanceFromCharacteristicNominalType
 
@@ -34560,7 +34560,7 @@ QIFReferenceFullType * DistanceFromCharacteristicNominalType::getCoordinateSyste
 void DistanceFromCharacteristicNominalType::setCoordinateSystemId(QIFReferenceFullType * CoordinateSystemIdIn)
 {CoordinateSystemId = CoordinateSystemIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DualNestingIndexFilterSymbolEnumType
 
@@ -34628,7 +34628,7 @@ void DualNestingIndexFilterSymbolEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DualNestingIndexFilterType
 
@@ -34737,7 +34737,7 @@ LinearValueType * DualNestingIndexFilterType::getSecondDirectionSecondNestingInd
 void DualNestingIndexFilterType::setSecondDirectionSecondNestingIndex(LinearValueType * SecondDirectionSecondNestingIndexIn)
 {SecondDirectionSecondNestingIndex = SecondDirectionSecondNestingIndexIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticityCharacteristicDefinitionType
 
@@ -34764,7 +34764,7 @@ EllipticityCharacteristicDefinitionType::EllipticityCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -34785,7 +34785,7 @@ EllipticityCharacteristicDefinitionType::EllipticityCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -34810,7 +34810,7 @@ EllipticityCharacteristicDefinitionType::EllipticityCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -34832,7 +34832,7 @@ EllipticityCharacteristicDefinitionType::EllipticityCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -34972,9 +34972,9 @@ void EllipticityCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -35091,7 +35091,7 @@ LinearDualValueType * EllipticityCharacteristicDefinitionType::getToleranceDualV
 void EllipticityCharacteristicDefinitionType::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
 {ToleranceDualValue = ToleranceDualValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticityCharacteristicItemType
 
@@ -35333,7 +35333,7 @@ bool EllipticityCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticityCharacteristicMeasurementType
 
@@ -35616,7 +35616,7 @@ bool EllipticityCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticityCharacteristicNominalType
 
@@ -35848,7 +35848,7 @@ bool EllipticityCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtentEnumType
 
@@ -35912,7 +35912,7 @@ void ExtentEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtentType
 
@@ -35950,7 +35950,7 @@ ExtentTypeChoicePair * ExtentType::getExtentTypePair()
 void ExtentType::setExtentTypePair(ExtentTypeChoicePair * ExtentTypePairIn)
 {ExtentTypePair = ExtentTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtentTypeChoicePair
 
@@ -35994,7 +35994,7 @@ void ExtentTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FilterType
 
@@ -36032,7 +36032,7 @@ FilterTypeChoicePair * FilterType::getFilterTypePair()
 void FilterType::setFilterTypePair(FilterTypeChoicePair * FilterTypePairIn)
 {FilterTypePair = FilterTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FilterTypeChoicePair
 
@@ -36078,7 +36078,7 @@ void FilterTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FlatTaperCharacteristicDefinitionType
 
@@ -36105,7 +36105,7 @@ FlatTaperCharacteristicDefinitionType::FlatTaperCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -36122,7 +36122,7 @@ FlatTaperCharacteristicDefinitionType::FlatTaperCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -36143,7 +36143,7 @@ FlatTaperCharacteristicDefinitionType::FlatTaperCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -36161,7 +36161,7 @@ FlatTaperCharacteristicDefinitionType::FlatTaperCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -36308,7 +36308,7 @@ void FlatTaperCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1058->printSelf(outFile);
+  LinearCharacter_1059->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -36369,7 +36369,7 @@ bool FlatTaperCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FlatTaperCharacteristicItemType
 
@@ -36611,7 +36611,7 @@ bool FlatTaperCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FlatTaperCharacteristicMeasurementType
 
@@ -36913,7 +36913,7 @@ MeasuredLinearValueType * FlatTaperCharacteristicMeasurementType::getDistance()
 void FlatTaperCharacteristicMeasurementType::setDistance(MeasuredLinearValueType * DistanceIn)
 {Distance = DistanceIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FlatTaperCharacteristicNominalType
 
@@ -37183,7 +37183,7 @@ LinearValueType * FlatTaperCharacteristicNominalType::getDistance()
 void FlatTaperCharacteristicNominalType::setDistance(LinearValueType * DistanceIn)
 {Distance = DistanceIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FlatnessCharacteristicDefinitionType
 
@@ -37192,7 +37192,7 @@ void FlatTaperCharacteristicNominalType::setDistance(LinearValueType * DistanceI
 FlatnessCharacteristicDefinitionType::FlatnessCharacteristicDefinitionType() :
   FormCharacteristicDefinitionBaseType()
 {
-  FlatnessCharact_1055 = 0;
+  FlatnessCharact_1056 = 0;
   MaterialCondition = 0;
   SizeCharacteristicDefinitionId = 0;
   MaximumToleranceValue = 0;
@@ -37213,12 +37213,12 @@ FlatnessCharacteristicDefinitionType::FlatnessCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
- FlatnessCharact_1055_Type * FlatnessCharact_1055In,
+ FlatnessCharact_1056_Type * FlatnessCharact_1056In,
  MaterialModifierEnumType * MaterialConditionIn,
  QIFReferenceType * SizeCharacteristicDefinitionIdIn,
  LinearValueType * MaximumToleranceValueIn,
@@ -37237,13 +37237,13 @@ FlatnessCharacteristicDefinitionType::FlatnessCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn)
 {
-  FlatnessCharact_1055 = FlatnessCharact_1055In;
+  FlatnessCharact_1056 = FlatnessCharact_1056In;
   MaterialCondition = MaterialConditionIn;
   SizeCharacteristicDefinitionId = SizeCharacteristicDefinitionIdIn;
   MaximumToleranceValue = MaximumToleranceValueIn;
@@ -37265,12 +37265,12 @@ FlatnessCharacteristicDefinitionType::FlatnessCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
- FlatnessCharact_1055_Type * FlatnessCharact_1055In,
+ FlatnessCharact_1056_Type * FlatnessCharact_1056In,
  MaterialModifierEnumType * MaterialConditionIn,
  QIFReferenceType * SizeCharacteristicDefinitionIdIn,
  LinearValueType * MaximumToleranceValueIn,
@@ -37290,13 +37290,13 @@ FlatnessCharacteristicDefinitionType::FlatnessCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn)
 {
-  FlatnessCharact_1055 = FlatnessCharact_1055In;
+  FlatnessCharact_1056 = FlatnessCharact_1056In;
   MaterialCondition = MaterialConditionIn;
   SizeCharacteristicDefinitionId = SizeCharacteristicDefinitionIdIn;
   MaximumToleranceValue = MaximumToleranceValueIn;
@@ -37306,7 +37306,7 @@ FlatnessCharacteristicDefinitionType::FlatnessCharacteristicDefinitionType(
 FlatnessCharacteristicDefinitionType::~FlatnessCharacteristicDefinitionType()
 {
   #ifndef NODESTRUCT
-  delete FlatnessCharact_1055;
+  delete FlatnessCharact_1056;
   delete MaterialCondition;
   delete SizeCharacteristicDefinitionId;
   delete MaximumToleranceValue;
@@ -37436,9 +37436,9 @@ void FlatnessCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -37472,7 +37472,7 @@ void FlatnessCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</OrientationPlane>\n");
     }
-  FlatnessCharact_1055->printSelf(outFile);
+  FlatnessCharact_1056->printSelf(outFile);
   if (MaterialCondition)
     {
       doSpaces(0, outFile);
@@ -37561,11 +37561,11 @@ bool FlatnessCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-FlatnessCharact_1055_Type * FlatnessCharacteristicDefinitionType::getFlatnessCharact_1055()
-{return FlatnessCharact_1055;}
+FlatnessCharact_1056_Type * FlatnessCharacteristicDefinitionType::getFlatnessCharact_1056()
+{return FlatnessCharact_1056;}
 
-void FlatnessCharacteristicDefinitionType::setFlatnessCharact_1055(FlatnessCharact_1055_Type * FlatnessCharact_1055In)
-{FlatnessCharact_1055 = FlatnessCharact_1055In;}
+void FlatnessCharacteristicDefinitionType::setFlatnessCharact_1056(FlatnessCharact_1056_Type * FlatnessCharact_1056In)
+{FlatnessCharact_1056 = FlatnessCharact_1056In;}
 
 MaterialModifierEnumType * FlatnessCharacteristicDefinitionType::getMaterialCondition()
 {return MaterialCondition;}
@@ -37591,7 +37591,7 @@ XmlBoolean * FlatnessCharacteristicDefinitionType::getNotConvex()
 void FlatnessCharacteristicDefinitionType::setNotConvex(XmlBoolean * NotConvexIn)
 {NotConvex = NotConvexIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FlatnessCharacteristicItemType
 
@@ -37833,7 +37833,7 @@ bool FlatnessCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FlatnessCharacteristicMeasurementType
 
@@ -38174,7 +38174,7 @@ MeasuredPlaneType * FlatnessCharacteristicMeasurementType::getZonePlane()
 void FlatnessCharacteristicMeasurementType::setZonePlane(MeasuredPlaneType * ZonePlaneIn)
 {ZonePlane = ZonePlaneIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FlatnessCharacteristicNominalType
 
@@ -38406,7 +38406,7 @@ bool FlatnessCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ForceCharacteristicDefinitionBaseType
 
@@ -38415,7 +38415,7 @@ bool FlatnessCharacteristicNominalType::badAttributes(
 ForceCharacteristicDefinitionBaseType::ForceCharacteristicDefinitionBaseType() :
   CharacteristicDefinitionBaseType()
 {
-  ForceCharacteri_1056 = 0;
+  ForceCharacteri_1057 = 0;
 }
 
 ForceCharacteristicDefinitionBaseType::ForceCharacteristicDefinitionBaseType(
@@ -38432,7 +38432,7 @@ ForceCharacteristicDefinitionBaseType::ForceCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- ForceCharacteri_1056_Type * ForceCharacteri_1056In) :
+ ForceCharacteri_1057_Type * ForceCharacteri_1057In) :
   CharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -38448,7 +38448,7 @@ ForceCharacteristicDefinitionBaseType::ForceCharacteristicDefinitionBaseType(
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  ForceCharacteri_1056 = ForceCharacteri_1056In;
+  ForceCharacteri_1057 = ForceCharacteri_1057In;
 }
 
 ForceCharacteristicDefinitionBaseType::ForceCharacteristicDefinitionBaseType(
@@ -38466,7 +38466,7 @@ ForceCharacteristicDefinitionBaseType::ForceCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- ForceCharacteri_1056_Type * ForceCharacteri_1056In) :
+ ForceCharacteri_1057_Type * ForceCharacteri_1057In) :
   CharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -38483,13 +38483,13 @@ ForceCharacteristicDefinitionBaseType::ForceCharacteristicDefinitionBaseType(
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  ForceCharacteri_1056 = ForceCharacteri_1056In;
+  ForceCharacteri_1057 = ForceCharacteri_1057In;
 }
 
 ForceCharacteristicDefinitionBaseType::~ForceCharacteristicDefinitionBaseType()
 {
   #ifndef NODESTRUCT
-  delete ForceCharacteri_1056;
+  delete ForceCharacteri_1057;
   #endif
 }
 
@@ -38615,7 +38615,7 @@ void ForceCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  ForceCharacteri_1056->printSelf(outFile);
+  ForceCharacteri_1057->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -38676,13 +38676,13 @@ bool ForceCharacteristicDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-ForceCharacteri_1056_Type * ForceCharacteristicDefinitionBaseType::getForceCharacteri_1056()
-{return ForceCharacteri_1056;}
+ForceCharacteri_1057_Type * ForceCharacteristicDefinitionBaseType::getForceCharacteri_1057()
+{return ForceCharacteri_1057;}
 
-void ForceCharacteristicDefinitionBaseType::setForceCharacteri_1056(ForceCharacteri_1056_Type * ForceCharacteri_1056In)
-{ForceCharacteri_1056 = ForceCharacteri_1056In;}
+void ForceCharacteristicDefinitionBaseType::setForceCharacteri_1057(ForceCharacteri_1057_Type * ForceCharacteri_1057In)
+{ForceCharacteri_1057 = ForceCharacteri_1057In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ForceCharacteristicItemBaseType
 
@@ -38924,7 +38924,7 @@ bool ForceCharacteristicItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ForceCharacteristicMeasurementBaseType
 
@@ -39231,7 +39231,7 @@ MeasuredForceValueType * ForceCharacteristicMeasurementBaseType::getMinValue()
 void ForceCharacteristicMeasurementBaseType::setMinValue(MeasuredForceValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ForceCharacteristicNominalBaseType
 
@@ -39482,7 +39482,7 @@ ForceValueType * ForceCharacteristicNominalBaseType::getTargetValue()
 void ForceCharacteristicNominalBaseType::setTargetValue(ForceValueType * TargetValueIn)
 {TargetValue = TargetValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FormCharacteristicDefinitionBaseType
 
@@ -39507,7 +39507,7 @@ FormCharacteristicDefinitionBaseType::FormCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -39526,7 +39526,7 @@ FormCharacteristicDefinitionBaseType::FormCharacteristicDefinitionBaseType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -39549,7 +39549,7 @@ FormCharacteristicDefinitionBaseType::FormCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -39569,7 +39569,7 @@ FormCharacteristicDefinitionBaseType::FormCharacteristicDefinitionBaseType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -39705,9 +39705,9 @@ void FormCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -39801,7 +39801,7 @@ bool FormCharacteristicDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FormCharacteristicItemBaseType
 
@@ -40043,7 +40043,7 @@ bool FormCharacteristicItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FormCharacteristicMeasurementBaseType
 
@@ -40326,7 +40326,7 @@ bool FormCharacteristicMeasurementBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FormCharacteristicNominalBaseType
 
@@ -40558,7 +40558,7 @@ bool FormCharacteristicNominalBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class GeometricCharacteristicDefinitionBaseType
 
@@ -40567,7 +40567,7 @@ bool FormCharacteristicNominalBaseType::badAttributes(
 GeometricCharacteristicDefinitionBaseType::GeometricCharacteristicDefinitionBaseType() :
   CharacteristicDefinitionBaseType()
 {
-  GeometricCharac_1057 = 0;
+  GeometricCharac_1058 = 0;
   DirectionFeature = 0;
   CollectionPlane = 0;
   IntersectionPlane = 0;
@@ -40588,7 +40588,7 @@ GeometricCharacteristicDefinitionBaseType::GeometricCharacteristicDefinitionBase
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -40608,7 +40608,7 @@ GeometricCharacteristicDefinitionBaseType::GeometricCharacteristicDefinitionBase
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  GeometricCharac_1057 = GeometricCharac_1057In;
+  GeometricCharac_1058 = GeometricCharac_1058In;
   DirectionFeature = DirectionFeatureIn;
   CollectionPlane = CollectionPlaneIn;
   IntersectionPlane = IntersectionPlaneIn;
@@ -40630,7 +40630,7 @@ GeometricCharacteristicDefinitionBaseType::GeometricCharacteristicDefinitionBase
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -40651,7 +40651,7 @@ GeometricCharacteristicDefinitionBaseType::GeometricCharacteristicDefinitionBase
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  GeometricCharac_1057 = GeometricCharac_1057In;
+  GeometricCharac_1058 = GeometricCharac_1058In;
   DirectionFeature = DirectionFeatureIn;
   CollectionPlane = CollectionPlaneIn;
   IntersectionPlane = IntersectionPlaneIn;
@@ -40661,7 +40661,7 @@ GeometricCharacteristicDefinitionBaseType::GeometricCharacteristicDefinitionBase
 GeometricCharacteristicDefinitionBaseType::~GeometricCharacteristicDefinitionBaseType()
 {
   #ifndef NODESTRUCT
-  delete GeometricCharac_1057;
+  delete GeometricCharac_1058;
   delete DirectionFeature;
   delete CollectionPlane;
   delete IntersectionPlane;
@@ -40791,9 +40791,9 @@ void GeometricCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -40887,11 +40887,11 @@ bool GeometricCharacteristicDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-GeometricCharac_1057_Type * GeometricCharacteristicDefinitionBaseType::getGeometricCharac_1057()
-{return GeometricCharac_1057;}
+GeometricCharac_1058_Type * GeometricCharacteristicDefinitionBaseType::getGeometricCharac_1058()
+{return GeometricCharac_1058;}
 
-void GeometricCharacteristicDefinitionBaseType::setGeometricCharac_1057(GeometricCharac_1057_Type * GeometricCharac_1057In)
-{GeometricCharac_1057 = GeometricCharac_1057In;}
+void GeometricCharacteristicDefinitionBaseType::setGeometricCharac_1058(GeometricCharac_1058_Type * GeometricCharac_1058In)
+{GeometricCharac_1058 = GeometricCharac_1058In;}
 
 DirectionFeatureType * GeometricCharacteristicDefinitionBaseType::getDirectionFeature()
 {return DirectionFeature;}
@@ -40917,7 +40917,7 @@ OrientationPlaneType * GeometricCharacteristicDefinitionBaseType::getOrientation
 void GeometricCharacteristicDefinitionBaseType::setOrientationPlane(OrientationPlaneType * OrientationPlaneIn)
 {OrientationPlane = OrientationPlaneIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class GeometricCharacteristicItemBaseType
 
@@ -41159,7 +41159,7 @@ bool GeometricCharacteristicItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class GeometricCharacteristicMeasurementBaseType
 
@@ -41466,7 +41466,7 @@ MeasuredLinearValueType * GeometricCharacteristicMeasurementBaseType::getMinValu
 void GeometricCharacteristicMeasurementBaseType::setMinValue(MeasuredLinearValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class GeometricCharacteristicNominalBaseType
 
@@ -41698,7 +41698,7 @@ bool GeometricCharacteristicNominalBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class HeightCharacteristicDefinitionType
 
@@ -41725,7 +41725,7 @@ HeightCharacteristicDefinitionType::HeightCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -41742,7 +41742,7 @@ HeightCharacteristicDefinitionType::HeightCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -41763,7 +41763,7 @@ HeightCharacteristicDefinitionType::HeightCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -41781,7 +41781,7 @@ HeightCharacteristicDefinitionType::HeightCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -41928,7 +41928,7 @@ void HeightCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1058->printSelf(outFile);
+  LinearCharacter_1059->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -41989,7 +41989,7 @@ bool HeightCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class HeightCharacteristicItemType
 
@@ -42231,7 +42231,7 @@ bool HeightCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class HeightCharacteristicMeasurementType
 
@@ -42514,7 +42514,7 @@ bool HeightCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class HeightCharacteristicNominalType
 
@@ -42768,7 +42768,7 @@ bool HeightCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LengthCharacteristicDefinitionType
 
@@ -42795,7 +42795,7 @@ LengthCharacteristicDefinitionType::LengthCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -42812,7 +42812,7 @@ LengthCharacteristicDefinitionType::LengthCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -42833,7 +42833,7 @@ LengthCharacteristicDefinitionType::LengthCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -42851,7 +42851,7 @@ LengthCharacteristicDefinitionType::LengthCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -42998,7 +42998,7 @@ void LengthCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1058->printSelf(outFile);
+  LinearCharacter_1059->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -43059,7 +43059,7 @@ bool LengthCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LengthCharacteristicItemType
 
@@ -43301,7 +43301,7 @@ bool LengthCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LengthCharacteristicMeasurementType
 
@@ -43584,7 +43584,7 @@ bool LengthCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LengthCharacteristicNominalType
 
@@ -43838,7 +43838,7 @@ bool LengthCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineProfileCharacteristicDefinitionType
 
@@ -43864,14 +43864,14 @@ LineProfileCharacteristicDefinitionType::LineProfileCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
- ProfileCharacte_1067_Type * ProfileCharacte_1067In,
+ ProfileCharacte_1068_Type * ProfileCharacte_1068In,
  XmlBoolean * OffsetZoneIn,
  XmlBoolean * VariableAngleIn,
  CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -43894,14 +43894,14 @@ LineProfileCharacteristicDefinitionType::LineProfileCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn,
     ToleranceValueIn,
     ToleranceDualValueIn,
-    ProfileCharacte_1067In,
+    ProfileCharacte_1068In,
     OffsetZoneIn,
     VariableAngleIn,
     SecondCompositeSegmentProfileDefinitionIn,
@@ -43928,14 +43928,14 @@ LineProfileCharacteristicDefinitionType::LineProfileCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
- ProfileCharacte_1067_Type * ProfileCharacte_1067In,
+ ProfileCharacte_1068_Type * ProfileCharacte_1068In,
  XmlBoolean * OffsetZoneIn,
  XmlBoolean * VariableAngleIn,
  CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -43959,14 +43959,14 @@ LineProfileCharacteristicDefinitionType::LineProfileCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn,
     ToleranceValueIn,
     ToleranceDualValueIn,
-    ProfileCharacte_1067In,
+    ProfileCharacte_1068In,
     OffsetZoneIn,
     VariableAngleIn,
     SecondCompositeSegmentProfileDefinitionIn,
@@ -44107,9 +44107,9 @@ void LineProfileCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -44154,9 +44154,9 @@ void LineProfileCharacteristicDefinitionType::printSelf(FILE * outFile)
       ToleranceDualValue->printSelf(outFile);
       fprintf(outFile, "</ToleranceDualValue>\n");
     }
-  if (ProfileCharacte_1067)
+  if (ProfileCharacte_1068)
     {
-      ProfileCharacte_1067->printSelf(outFile);
+      ProfileCharacte_1068->printSelf(outFile);
     }
   if (OffsetZone)
     {
@@ -44284,7 +44284,7 @@ ExtentType * LineProfileCharacteristicDefinitionType::getExtent()
 void LineProfileCharacteristicDefinitionType::setExtent(ExtentType * ExtentIn)
 {Extent = ExtentIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineProfileCharacteristicItemType
 
@@ -44526,7 +44526,7 @@ bool LineProfileCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineProfileCharacteristicMeasurementType
 
@@ -44901,7 +44901,7 @@ bool LineProfileCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineProfileCharacteristicNominalType
 
@@ -45179,7 +45179,7 @@ QIFReferenceFullType * LineProfileCharacteristicNominalType::getProfileCurveId()
 void LineProfileCharacteristicNominalType::setProfileCurveId(QIFReferenceFullType * ProfileCurveIdIn)
 {ProfileCurveId = ProfileCurveIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearCharacteristicDefinitionBaseType
 
@@ -45188,7 +45188,7 @@ void LineProfileCharacteristicNominalType::setProfileCurveId(QIFReferenceFullTyp
 LinearCharacteristicDefinitionBaseType::LinearCharacteristicDefinitionBaseType() :
   DimensionalCharacteristicDefinitionBaseType()
 {
-  LinearCharacter_1058 = 0;
+  LinearCharacter_1059 = 0;
 }
 
 LinearCharacteristicDefinitionBaseType::LinearCharacteristicDefinitionBaseType(
@@ -45207,7 +45207,7 @@ LinearCharacteristicDefinitionBaseType::LinearCharacteristicDefinitionBaseType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   DimensionalCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -45225,7 +45225,7 @@ LinearCharacteristicDefinitionBaseType::LinearCharacteristicDefinitionBaseType(
     DimensionTypeIn,
     DimensionModifiersIn)
 {
-  LinearCharacter_1058 = LinearCharacter_1058In;
+  LinearCharacter_1059 = LinearCharacter_1059In;
 }
 
 LinearCharacteristicDefinitionBaseType::LinearCharacteristicDefinitionBaseType(
@@ -45245,7 +45245,7 @@ LinearCharacteristicDefinitionBaseType::LinearCharacteristicDefinitionBaseType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   DimensionalCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -45264,13 +45264,13 @@ LinearCharacteristicDefinitionBaseType::LinearCharacteristicDefinitionBaseType(
     DimensionTypeIn,
     DimensionModifiersIn)
 {
-  LinearCharacter_1058 = LinearCharacter_1058In;
+  LinearCharacter_1059 = LinearCharacter_1059In;
 }
 
 LinearCharacteristicDefinitionBaseType::~LinearCharacteristicDefinitionBaseType()
 {
   #ifndef NODESTRUCT
-  delete LinearCharacter_1058;
+  delete LinearCharacter_1059;
   #endif
 }
 
@@ -45411,7 +45411,7 @@ void LinearCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1058->printSelf(outFile);
+  LinearCharacter_1059->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -45472,13 +45472,13 @@ bool LinearCharacteristicDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-LinearCharacter_1058_Type * LinearCharacteristicDefinitionBaseType::getLinearCharacter_1058()
-{return LinearCharacter_1058;}
+LinearCharacter_1059_Type * LinearCharacteristicDefinitionBaseType::getLinearCharacter_1059()
+{return LinearCharacter_1059;}
 
-void LinearCharacteristicDefinitionBaseType::setLinearCharacter_1058(LinearCharacter_1058_Type * LinearCharacter_1058In)
-{LinearCharacter_1058 = LinearCharacter_1058In;}
+void LinearCharacteristicDefinitionBaseType::setLinearCharacter_1059(LinearCharacter_1059_Type * LinearCharacter_1059In)
+{LinearCharacter_1059 = LinearCharacter_1059In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearCharacteristicItemBaseType
 
@@ -45720,7 +45720,7 @@ bool LinearCharacteristicItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearCharacteristicMeasurementBaseType
 
@@ -46027,7 +46027,7 @@ MeasuredLinearValueType * LinearCharacteristicMeasurementBaseType::getMinValue()
 void LinearCharacteristicMeasurementBaseType::setMinValue(MeasuredLinearValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearCharacteristicNominalBaseType
 
@@ -46297,7 +46297,7 @@ LinearDualValueType * LinearCharacteristicNominalBaseType::getTargetDualValue()
 void LinearCharacteristicNominalBaseType::setTargetDualValue(LinearDualValueType * TargetDualValueIn)
 {TargetDualValue = TargetDualValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearCoordinateCharacteristicDefinitionType
 
@@ -46306,7 +46306,7 @@ void LinearCharacteristicNominalBaseType::setTargetDualValue(LinearDualValueType
 LinearCoordinateCharacteristicDefinitionType::LinearCoordinateCharacteristicDefinitionType() :
   CoordinateCharacteristicDefinitionBaseType()
 {
-  LinearCoordinat_1059 = 0;
+  LinearCoordinat_1060 = 0;
 }
 
 LinearCoordinateCharacteristicDefinitionType::LinearCoordinateCharacteristicDefinitionType(
@@ -46325,7 +46325,7 @@ LinearCoordinateCharacteristicDefinitionType::LinearCoordinateCharacteristicDefi
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCoordinat_1059_Type * LinearCoordinat_1059In) :
+ LinearCoordinat_1060_Type * LinearCoordinat_1060In) :
   CoordinateCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -46343,7 +46343,7 @@ LinearCoordinateCharacteristicDefinitionType::LinearCoordinateCharacteristicDefi
     DimensionTypeIn,
     DimensionModifiersIn)
 {
-  LinearCoordinat_1059 = LinearCoordinat_1059In;
+  LinearCoordinat_1060 = LinearCoordinat_1060In;
 }
 
 LinearCoordinateCharacteristicDefinitionType::LinearCoordinateCharacteristicDefinitionType(
@@ -46363,7 +46363,7 @@ LinearCoordinateCharacteristicDefinitionType::LinearCoordinateCharacteristicDefi
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCoordinat_1059_Type * LinearCoordinat_1059In) :
+ LinearCoordinat_1060_Type * LinearCoordinat_1060In) :
   CoordinateCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -46382,13 +46382,13 @@ LinearCoordinateCharacteristicDefinitionType::LinearCoordinateCharacteristicDefi
     DimensionTypeIn,
     DimensionModifiersIn)
 {
-  LinearCoordinat_1059 = LinearCoordinat_1059In;
+  LinearCoordinat_1060 = LinearCoordinat_1060In;
 }
 
 LinearCoordinateCharacteristicDefinitionType::~LinearCoordinateCharacteristicDefinitionType()
 {
   #ifndef NODESTRUCT
-  delete LinearCoordinat_1059;
+  delete LinearCoordinat_1060;
   #endif
 }
 
@@ -46529,7 +46529,7 @@ void LinearCoordinateCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCoordinat_1059->printSelf(outFile);
+  LinearCoordinat_1060->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -46590,13 +46590,13 @@ bool LinearCoordinateCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-LinearCoordinat_1059_Type * LinearCoordinateCharacteristicDefinitionType::getLinearCoordinat_1059()
-{return LinearCoordinat_1059;}
+LinearCoordinat_1060_Type * LinearCoordinateCharacteristicDefinitionType::getLinearCoordinat_1060()
+{return LinearCoordinat_1060;}
 
-void LinearCoordinateCharacteristicDefinitionType::setLinearCoordinat_1059(LinearCoordinat_1059_Type * LinearCoordinat_1059In)
-{LinearCoordinat_1059 = LinearCoordinat_1059In;}
+void LinearCoordinateCharacteristicDefinitionType::setLinearCoordinat_1060(LinearCoordinat_1060_Type * LinearCoordinat_1060In)
+{LinearCoordinat_1060 = LinearCoordinat_1060In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearCoordinateCharacteristicItemType
 
@@ -46838,7 +46838,7 @@ bool LinearCoordinateCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearCoordinateCharacteristicMeasurementType
 
@@ -47154,7 +47154,7 @@ MeasuredLinearValueType * LinearCoordinateCharacteristicMeasurementType::getMinV
 void LinearCoordinateCharacteristicMeasurementType::setMinValue(MeasuredLinearValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearCoordinateCharacteristicNominalType
 
@@ -47440,7 +47440,7 @@ QIFReferenceFullType * LinearCoordinateCharacteristicNominalType::getCoordinateS
 void LinearCoordinateCharacteristicNominalType::setCoordinateSystemId(QIFReferenceFullType * CoordinateSystemIdIn)
 {CoordinateSystemId = CoordinateSystemIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LocationCharacteristicDefinitionBaseType
 
@@ -47468,7 +47468,7 @@ LocationCharacteristicDefinitionBaseType::LocationCharacteristicDefinitionBaseTy
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -47490,7 +47490,7 @@ LocationCharacteristicDefinitionBaseType::LocationCharacteristicDefinitionBaseTy
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -47516,7 +47516,7 @@ LocationCharacteristicDefinitionBaseType::LocationCharacteristicDefinitionBaseTy
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -47539,7 +47539,7 @@ LocationCharacteristicDefinitionBaseType::LocationCharacteristicDefinitionBaseTy
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -47681,9 +47681,9 @@ void LocationCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -47813,7 +47813,7 @@ QIFReferenceFullType * LocationCharacteristicDefinitionBaseType::getDatumReferen
 void LocationCharacteristicDefinitionBaseType::setDatumReferenceFrameId(QIFReferenceFullType * DatumReferenceFrameIdIn)
 {DatumReferenceFrameId = DatumReferenceFrameIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LocationCharacteristicItemBaseType
 
@@ -48055,7 +48055,7 @@ bool LocationCharacteristicItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LocationCharacteristicMeasurementBaseType
 
@@ -48377,7 +48377,7 @@ XmlBoolean * LocationCharacteristicMeasurementBaseType::getDatumsOk()
 void LocationCharacteristicMeasurementBaseType::setDatumsOk(XmlBoolean * DatumsOkIn)
 {DatumsOk = DatumsOkIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LocationCharacteristicNominalBaseType
 
@@ -48609,7 +48609,7 @@ bool LocationCharacteristicNominalBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LocationOnDrawingType
 
@@ -48647,7 +48647,7 @@ LocationOnDrawingTypeChoicePair * LocationOnDrawingType::getLocationOnDrawingTyp
 void LocationOnDrawingType::setLocationOnDrawingTypePair(LocationOnDrawingTypeChoicePair * LocationOnDrawingTypePairIn)
 {LocationOnDrawingTypePair = LocationOnDrawingTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LocationOnDrawingTypeChoicePair
 
@@ -48666,22 +48666,18 @@ LocationOnDrawingTypeChoicePair::LocationOnDrawingTypeChoicePair(
 LocationOnDrawingTypeChoicePair::~LocationOnDrawingTypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (LocationOnDrawingTypeType == LocationOnDrawi_1060E)
-    delete LocationOnDrawingTypeValue.LocationOnDrawi_1060;
-  else if (LocationOnDrawingTypeType == LocationOnDrawi_1061E)
+  if (LocationOnDrawingTypeType == LocationOnDrawi_1061E)
     delete LocationOnDrawingTypeValue.LocationOnDrawi_1061;
   else if (LocationOnDrawingTypeType == LocationOnDrawi_1062E)
     delete LocationOnDrawingTypeValue.LocationOnDrawi_1062;
+  else if (LocationOnDrawingTypeType == LocationOnDrawi_1063E)
+    delete LocationOnDrawingTypeValue.LocationOnDrawi_1063;
   #endif
 }
 
 void LocationOnDrawingTypeChoicePair::printSelf(FILE * outFile)
 {
-  if (LocationOnDrawingTypeType == LocationOnDrawi_1060E)
-    {
-      LocationOnDrawingTypeValue.LocationOnDrawi_1060->printSelf(outFile);
-    }
-  else if (LocationOnDrawingTypeType == LocationOnDrawi_1061E)
+  if (LocationOnDrawingTypeType == LocationOnDrawi_1061E)
     {
       LocationOnDrawingTypeValue.LocationOnDrawi_1061->printSelf(outFile);
     }
@@ -48689,9 +48685,13 @@ void LocationOnDrawingTypeChoicePair::printSelf(FILE * outFile)
     {
       LocationOnDrawingTypeValue.LocationOnDrawi_1062->printSelf(outFile);
     }
+  else if (LocationOnDrawingTypeType == LocationOnDrawi_1063E)
+    {
+      LocationOnDrawingTypeValue.LocationOnDrawi_1063->printSelf(outFile);
+    }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LocationSignificanceAllEnumType
 
@@ -48751,7 +48751,7 @@ void LocationSignificanceAllEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LocationSignificanceOneSidesEnumType
 
@@ -48809,7 +48809,7 @@ void LocationSignificanceOneSidesEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LocationSignificanceSpotSeamEnumType
 
@@ -48869,7 +48869,7 @@ void LocationSignificanceSpotSeamEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MassCharacteristicDefinitionBaseType
 
@@ -48878,7 +48878,7 @@ void LocationSignificanceSpotSeamEnumType::oPrintSelf(FILE * outFile)
 MassCharacteristicDefinitionBaseType::MassCharacteristicDefinitionBaseType() :
   CharacteristicDefinitionBaseType()
 {
-  MassCharacteris_1063 = 0;
+  MassCharacteris_1064 = 0;
 }
 
 MassCharacteristicDefinitionBaseType::MassCharacteristicDefinitionBaseType(
@@ -48895,7 +48895,7 @@ MassCharacteristicDefinitionBaseType::MassCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- MassCharacteris_1063_Type * MassCharacteris_1063In) :
+ MassCharacteris_1064_Type * MassCharacteris_1064In) :
   CharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -48911,7 +48911,7 @@ MassCharacteristicDefinitionBaseType::MassCharacteristicDefinitionBaseType(
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  MassCharacteris_1063 = MassCharacteris_1063In;
+  MassCharacteris_1064 = MassCharacteris_1064In;
 }
 
 MassCharacteristicDefinitionBaseType::MassCharacteristicDefinitionBaseType(
@@ -48929,7 +48929,7 @@ MassCharacteristicDefinitionBaseType::MassCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- MassCharacteris_1063_Type * MassCharacteris_1063In) :
+ MassCharacteris_1064_Type * MassCharacteris_1064In) :
   CharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -48946,13 +48946,13 @@ MassCharacteristicDefinitionBaseType::MassCharacteristicDefinitionBaseType(
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  MassCharacteris_1063 = MassCharacteris_1063In;
+  MassCharacteris_1064 = MassCharacteris_1064In;
 }
 
 MassCharacteristicDefinitionBaseType::~MassCharacteristicDefinitionBaseType()
 {
   #ifndef NODESTRUCT
-  delete MassCharacteris_1063;
+  delete MassCharacteris_1064;
   #endif
 }
 
@@ -49078,7 +49078,7 @@ void MassCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  MassCharacteris_1063->printSelf(outFile);
+  MassCharacteris_1064->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -49139,13 +49139,13 @@ bool MassCharacteristicDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-MassCharacteris_1063_Type * MassCharacteristicDefinitionBaseType::getMassCharacteris_1063()
-{return MassCharacteris_1063;}
+MassCharacteris_1064_Type * MassCharacteristicDefinitionBaseType::getMassCharacteris_1064()
+{return MassCharacteris_1064;}
 
-void MassCharacteristicDefinitionBaseType::setMassCharacteris_1063(MassCharacteris_1063_Type * MassCharacteris_1063In)
-{MassCharacteris_1063 = MassCharacteris_1063In;}
+void MassCharacteristicDefinitionBaseType::setMassCharacteris_1064(MassCharacteris_1064_Type * MassCharacteris_1064In)
+{MassCharacteris_1064 = MassCharacteris_1064In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MassCharacteristicItemBaseType
 
@@ -49387,7 +49387,7 @@ bool MassCharacteristicItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MassCharacteristicMeasurementBaseType
 
@@ -49694,7 +49694,7 @@ MeasuredMassValueType * MassCharacteristicMeasurementBaseType::getMinValue()
 void MassCharacteristicMeasurementBaseType::setMinValue(MeasuredMassValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MassCharacteristicNominalBaseType
 
@@ -49945,7 +49945,7 @@ MassValueType * MassCharacteristicNominalBaseType::getTargetValue()
 void MassCharacteristicNominalBaseType::setTargetValue(MassValueType * TargetValueIn)
 {TargetValue = TargetValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredCharacteristicsType
 
@@ -50005,7 +50005,7 @@ CharacteristicGroupStatusesType * MeasuredCharacteristicsType::getCharacteristic
 void MeasuredCharacteristicsType::setCharacteristicGroupStatuses(CharacteristicGroupStatusesType * CharacteristicGroupStatusesIn)
 {CharacteristicGroupStatuses = CharacteristicGroupStatusesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredZoneRadiiType
 
@@ -50060,7 +50060,7 @@ MeasuredLinearValueType * MeasuredZoneRadiiType::getMaxRadius()
 void MeasuredZoneRadiiType::setMaxRadius(MeasuredLinearValueType * MaxRadiusIn)
 {MaxRadius = MaxRadiusIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NonDestructiveTestingEnumType
 
@@ -50134,7 +50134,7 @@ void NonDestructiveTestingEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NonDestructiveTestingEnumTypeLisd
 
@@ -50179,7 +50179,7 @@ void NonDestructiveTestingEnumTypeLisd::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OrientationCharacteristicDefinitionBaseType
 
@@ -50197,7 +50197,7 @@ OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinition
   TangentPlane = 0;
   MaximumToleranceValue = 0;
   ProjectedToleranceZoneValue = 0;
-  OrientationChar_1064 = 0;
+  OrientationChar_1065 = 0;
 }
 
 OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinitionBaseType(
@@ -50214,7 +50214,7 @@ OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinition
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -50228,7 +50228,7 @@ OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinition
  XmlBoolean * TangentPlaneIn,
  LinearValueType * MaximumToleranceValueIn,
  LinearValueType * ProjectedToleranceZoneValueIn,
- OrientationChar_1064_Type * OrientationChar_1064In) :
+ OrientationChar_1065_Type * OrientationChar_1065In) :
   GeometricCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -50243,7 +50243,7 @@ OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinition
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -50258,7 +50258,7 @@ OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinition
   TangentPlane = TangentPlaneIn;
   MaximumToleranceValue = MaximumToleranceValueIn;
   ProjectedToleranceZoneValue = ProjectedToleranceZoneValueIn;
-  OrientationChar_1064 = OrientationChar_1064In;
+  OrientationChar_1065 = OrientationChar_1065In;
 }
 
 OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinitionBaseType(
@@ -50276,7 +50276,7 @@ OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinition
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -50290,7 +50290,7 @@ OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinition
  XmlBoolean * TangentPlaneIn,
  LinearValueType * MaximumToleranceValueIn,
  LinearValueType * ProjectedToleranceZoneValueIn,
- OrientationChar_1064_Type * OrientationChar_1064In) :
+ OrientationChar_1065_Type * OrientationChar_1065In) :
   GeometricCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -50306,7 +50306,7 @@ OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinition
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -50321,7 +50321,7 @@ OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinition
   TangentPlane = TangentPlaneIn;
   MaximumToleranceValue = MaximumToleranceValueIn;
   ProjectedToleranceZoneValue = ProjectedToleranceZoneValueIn;
-  OrientationChar_1064 = OrientationChar_1064In;
+  OrientationChar_1065 = OrientationChar_1065In;
 }
 
 OrientationCharacteristicDefinitionBaseType::~OrientationCharacteristicDefinitionBaseType()
@@ -50336,7 +50336,7 @@ OrientationCharacteristicDefinitionBaseType::~OrientationCharacteristicDefinitio
   delete TangentPlane;
   delete MaximumToleranceValue;
   delete ProjectedToleranceZoneValue;
-  delete OrientationChar_1064;
+  delete OrientationChar_1065;
   #endif
 }
 
@@ -50462,9 +50462,9 @@ void OrientationCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -50553,9 +50553,9 @@ void OrientationCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       ProjectedToleranceZoneValue->printSelf(outFile);
       fprintf(outFile, "</ProjectedToleranceZoneValue>\n");
     }
-  if (OrientationChar_1064)
+  if (OrientationChar_1065)
     {
-      OrientationChar_1064->printSelf(outFile);
+      OrientationChar_1065->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -50671,13 +50671,13 @@ LinearValueType * OrientationCharacteristicDefinitionBaseType::getProjectedToler
 void OrientationCharacteristicDefinitionBaseType::setProjectedToleranceZoneValue(LinearValueType * ProjectedToleranceZoneValueIn)
 {ProjectedToleranceZoneValue = ProjectedToleranceZoneValueIn;}
 
-OrientationChar_1064_Type * OrientationCharacteristicDefinitionBaseType::getOrientationChar_1064()
-{return OrientationChar_1064;}
+OrientationChar_1065_Type * OrientationCharacteristicDefinitionBaseType::getOrientationChar_1065()
+{return OrientationChar_1065;}
 
-void OrientationCharacteristicDefinitionBaseType::setOrientationChar_1064(OrientationChar_1064_Type * OrientationChar_1064In)
-{OrientationChar_1064 = OrientationChar_1064In;}
+void OrientationCharacteristicDefinitionBaseType::setOrientationChar_1065(OrientationChar_1065_Type * OrientationChar_1065In)
+{OrientationChar_1065 = OrientationChar_1065In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OrientationCharacteristicItemBaseType
 
@@ -50919,7 +50919,7 @@ bool OrientationCharacteristicItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OrientationCharacteristicMeasurementBaseType
 
@@ -51278,7 +51278,7 @@ QIFReferenceType * OrientationCharacteristicMeasurementBaseType::getDRFTransform
 void OrientationCharacteristicMeasurementBaseType::setDRFTransformActualId(QIFReferenceType * DRFTransformActualIdIn)
 {DRFTransformActualId = DRFTransformActualIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OrientationCharacteristicNominalBaseType
 
@@ -51510,7 +51510,7 @@ bool OrientationCharacteristicNominalBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OrientationDiametricalZoneType
 
@@ -51554,7 +51554,7 @@ UnitVectorType * OrientationDiametricalZoneType::getZoneOrientationVector()
 void OrientationDiametricalZoneType::setZoneOrientationVector(UnitVectorType * ZoneOrientationVectorIn)
 {ZoneOrientationVector = ZoneOrientationVectorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OrientationPlanarZoneType
 
@@ -51598,7 +51598,7 @@ UnitVectorType * OrientationPlanarZoneType::getZoneOrientationVector()
 void OrientationPlanarZoneType::setZoneOrientationVector(UnitVectorType * ZoneOrientationVectorIn)
 {ZoneOrientationVector = ZoneOrientationVectorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OrientationZoneShapeType
 
@@ -51636,7 +51636,7 @@ OrientationZoneShapeTypeChoicePair * OrientationZoneShapeType::getOrientationZon
 void OrientationZoneShapeType::setOrientationZoneShapeTypePair(OrientationZoneShapeTypeChoicePair * OrientationZoneShapeTypePairIn)
 {OrientationZoneShapeTypePair = OrientationZoneShapeTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OrientationZoneShapeTypeChoicePair
 
@@ -51682,7 +51682,7 @@ void OrientationZoneShapeTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OriginReferenceType
 
@@ -51720,7 +51720,7 @@ OriginReferenceTypeChoicePair * OriginReferenceType::getOriginReferenceTypePair(
 void OriginReferenceType::setOriginReferenceTypePair(OriginReferenceTypeChoicePair * OriginReferenceTypePairIn)
 {OriginReferenceTypePair = OriginReferenceTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OriginReferenceTypeChoicePair
 
@@ -51739,8 +51739,8 @@ OriginReferenceTypeChoicePair::OriginReferenceTypeChoicePair(
 OriginReferenceTypeChoicePair::~OriginReferenceTypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (OriginReferenceTypeType == OriginReference_1065E)
-    delete OriginReferenceTypeValue.OriginReference_1065;
+  if (OriginReferenceTypeType == OriginReference_1066E)
+    delete OriginReferenceTypeValue.OriginReference_1066;
   else if (OriginReferenceTypeType == DatumDefinitionIdE)
     delete OriginReferenceTypeValue.DatumDefinitionId;
   #endif
@@ -51748,9 +51748,9 @@ OriginReferenceTypeChoicePair::~OriginReferenceTypeChoicePair()
 
 void OriginReferenceTypeChoicePair::printSelf(FILE * outFile)
 {
-  if (OriginReferenceTypeType == OriginReference_1065E)
+  if (OriginReferenceTypeType == OriginReference_1066E)
     {
-      OriginReferenceTypeValue.OriginReference_1065->printSelf(outFile);
+      OriginReferenceTypeValue.OriginReference_1066->printSelf(outFile);
     }
   else if (OriginReferenceTypeType == DatumDefinitionIdE)
     {
@@ -51761,7 +51761,7 @@ void OriginReferenceTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherFormCharacteristicDefinitionType
 
@@ -51788,7 +51788,7 @@ OtherFormCharacteristicDefinitionType::OtherFormCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -51809,7 +51809,7 @@ OtherFormCharacteristicDefinitionType::OtherFormCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -51834,7 +51834,7 @@ OtherFormCharacteristicDefinitionType::OtherFormCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -51856,7 +51856,7 @@ OtherFormCharacteristicDefinitionType::OtherFormCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -51996,9 +51996,9 @@ void OtherFormCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -52115,7 +52115,7 @@ LinearDualValueType * OtherFormCharacteristicDefinitionType::getToleranceDualVal
 void OtherFormCharacteristicDefinitionType::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
 {ToleranceDualValue = ToleranceDualValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherFormCharacteristicItemType
 
@@ -52357,7 +52357,7 @@ bool OtherFormCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherFormCharacteristicMeasurementType
 
@@ -52640,7 +52640,7 @@ bool OtherFormCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherFormCharacteristicNominalType
 
@@ -52872,7 +52872,7 @@ bool OtherFormCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ParallelismCharacteristicDefinitionType
 
@@ -52897,7 +52897,7 @@ ParallelismCharacteristicDefinitionType::ParallelismCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -52911,7 +52911,7 @@ ParallelismCharacteristicDefinitionType::ParallelismCharacteristicDefinitionType
  XmlBoolean * TangentPlaneIn,
  LinearValueType * MaximumToleranceValueIn,
  LinearValueType * ProjectedToleranceZoneValueIn,
- OrientationChar_1064_Type * OrientationChar_1064In) :
+ OrientationChar_1065_Type * OrientationChar_1065In) :
   OrientationCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -52926,7 +52926,7 @@ ParallelismCharacteristicDefinitionType::ParallelismCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -52940,7 +52940,7 @@ ParallelismCharacteristicDefinitionType::ParallelismCharacteristicDefinitionType
     TangentPlaneIn,
     MaximumToleranceValueIn,
     ProjectedToleranceZoneValueIn,
-    OrientationChar_1064In)
+    OrientationChar_1065In)
 {
 }
 
@@ -52959,7 +52959,7 @@ ParallelismCharacteristicDefinitionType::ParallelismCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -52973,7 +52973,7 @@ ParallelismCharacteristicDefinitionType::ParallelismCharacteristicDefinitionType
  XmlBoolean * TangentPlaneIn,
  LinearValueType * MaximumToleranceValueIn,
  LinearValueType * ProjectedToleranceZoneValueIn,
- OrientationChar_1064_Type * OrientationChar_1064In) :
+ OrientationChar_1065_Type * OrientationChar_1065In) :
   OrientationCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -52989,7 +52989,7 @@ ParallelismCharacteristicDefinitionType::ParallelismCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -53003,7 +53003,7 @@ ParallelismCharacteristicDefinitionType::ParallelismCharacteristicDefinitionType
     TangentPlaneIn,
     MaximumToleranceValueIn,
     ProjectedToleranceZoneValueIn,
-    OrientationChar_1064In)
+    OrientationChar_1065In)
 {
 }
 
@@ -53135,9 +53135,9 @@ void ParallelismCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -53226,9 +53226,9 @@ void ParallelismCharacteristicDefinitionType::printSelf(FILE * outFile)
       ProjectedToleranceZoneValue->printSelf(outFile);
       fprintf(outFile, "</ProjectedToleranceZoneValue>\n");
     }
-  if (OrientationChar_1064)
+  if (OrientationChar_1065)
     {
-      OrientationChar_1064->printSelf(outFile);
+      OrientationChar_1065->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -53290,7 +53290,7 @@ bool ParallelismCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ParallelismCharacteristicItemType
 
@@ -53532,7 +53532,7 @@ bool ParallelismCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ParallelismCharacteristicMeasurementType
 
@@ -53859,7 +53859,7 @@ bool ParallelismCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ParallelismCharacteristicNominalType
 
@@ -54091,7 +54091,7 @@ bool ParallelismCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PerpendicularityCharacteristicDefinitionType
 
@@ -54116,7 +54116,7 @@ PerpendicularityCharacteristicDefinitionType::PerpendicularityCharacteristicDefi
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -54130,7 +54130,7 @@ PerpendicularityCharacteristicDefinitionType::PerpendicularityCharacteristicDefi
  XmlBoolean * TangentPlaneIn,
  LinearValueType * MaximumToleranceValueIn,
  LinearValueType * ProjectedToleranceZoneValueIn,
- OrientationChar_1064_Type * OrientationChar_1064In) :
+ OrientationChar_1065_Type * OrientationChar_1065In) :
   OrientationCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -54145,7 +54145,7 @@ PerpendicularityCharacteristicDefinitionType::PerpendicularityCharacteristicDefi
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -54159,7 +54159,7 @@ PerpendicularityCharacteristicDefinitionType::PerpendicularityCharacteristicDefi
     TangentPlaneIn,
     MaximumToleranceValueIn,
     ProjectedToleranceZoneValueIn,
-    OrientationChar_1064In)
+    OrientationChar_1065In)
 {
 }
 
@@ -54178,7 +54178,7 @@ PerpendicularityCharacteristicDefinitionType::PerpendicularityCharacteristicDefi
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -54192,7 +54192,7 @@ PerpendicularityCharacteristicDefinitionType::PerpendicularityCharacteristicDefi
  XmlBoolean * TangentPlaneIn,
  LinearValueType * MaximumToleranceValueIn,
  LinearValueType * ProjectedToleranceZoneValueIn,
- OrientationChar_1064_Type * OrientationChar_1064In) :
+ OrientationChar_1065_Type * OrientationChar_1065In) :
   OrientationCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -54208,7 +54208,7 @@ PerpendicularityCharacteristicDefinitionType::PerpendicularityCharacteristicDefi
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -54222,7 +54222,7 @@ PerpendicularityCharacteristicDefinitionType::PerpendicularityCharacteristicDefi
     TangentPlaneIn,
     MaximumToleranceValueIn,
     ProjectedToleranceZoneValueIn,
-    OrientationChar_1064In)
+    OrientationChar_1065In)
 {
 }
 
@@ -54354,9 +54354,9 @@ void PerpendicularityCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -54445,9 +54445,9 @@ void PerpendicularityCharacteristicDefinitionType::printSelf(FILE * outFile)
       ProjectedToleranceZoneValue->printSelf(outFile);
       fprintf(outFile, "</ProjectedToleranceZoneValue>\n");
     }
-  if (OrientationChar_1064)
+  if (OrientationChar_1065)
     {
-      OrientationChar_1064->printSelf(outFile);
+      OrientationChar_1065->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -54509,7 +54509,7 @@ bool PerpendicularityCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PerpendicularityCharacteristicItemType
 
@@ -54751,7 +54751,7 @@ bool PerpendicularityCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PerpendicularityCharacteristicMeasurementType
 
@@ -55078,7 +55078,7 @@ bool PerpendicularityCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PerpendicularityCharacteristicNominalType
 
@@ -55310,7 +55310,7 @@ bool PerpendicularityCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDeviationType
 
@@ -55365,7 +55365,7 @@ LinearValueType * PointDeviationType::getDeviation()
 void PointDeviationType::setDeviation(LinearValueType * DeviationIn)
 {Deviation = DeviationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDeviationTypeLisd
 
@@ -55392,7 +55392,7 @@ PointDeviationTypeLisd::~PointDeviationTypeLisd()
 
 void PointDeviationTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDeviationsType
 
@@ -55550,7 +55550,7 @@ PointDeviationTypeLisd * PointDeviationsType::getPointDeviation()
 void PointDeviationsType::setPointDeviation(PointDeviationTypeLisd * PointDeviationIn)
 {PointDeviation = PointDeviationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointProfileCharacteristicDefinitionType
 
@@ -55575,14 +55575,14 @@ PointProfileCharacteristicDefinitionType::PointProfileCharacteristicDefinitionTy
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
- ProfileCharacte_1067_Type * ProfileCharacte_1067In,
+ ProfileCharacte_1068_Type * ProfileCharacte_1068In,
  XmlBoolean * OffsetZoneIn,
  XmlBoolean * VariableAngleIn,
  CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -55604,14 +55604,14 @@ PointProfileCharacteristicDefinitionType::PointProfileCharacteristicDefinitionTy
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn,
     ToleranceValueIn,
     ToleranceDualValueIn,
-    ProfileCharacte_1067In,
+    ProfileCharacte_1068In,
     OffsetZoneIn,
     VariableAngleIn,
     SecondCompositeSegmentProfileDefinitionIn,
@@ -55637,14 +55637,14 @@ PointProfileCharacteristicDefinitionType::PointProfileCharacteristicDefinitionTy
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
- ProfileCharacte_1067_Type * ProfileCharacte_1067In,
+ ProfileCharacte_1068_Type * ProfileCharacte_1068In,
  XmlBoolean * OffsetZoneIn,
  XmlBoolean * VariableAngleIn,
  CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -55667,14 +55667,14 @@ PointProfileCharacteristicDefinitionType::PointProfileCharacteristicDefinitionTy
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn,
     ToleranceValueIn,
     ToleranceDualValueIn,
-    ProfileCharacte_1067In,
+    ProfileCharacte_1068In,
     OffsetZoneIn,
     VariableAngleIn,
     SecondCompositeSegmentProfileDefinitionIn,
@@ -55813,9 +55813,9 @@ void PointProfileCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -55860,9 +55860,9 @@ void PointProfileCharacteristicDefinitionType::printSelf(FILE * outFile)
       ToleranceDualValue->printSelf(outFile);
       fprintf(outFile, "</ToleranceDualValue>\n");
     }
-  if (ProfileCharacte_1067)
+  if (ProfileCharacte_1068)
     {
-      ProfileCharacte_1067->printSelf(outFile);
+      ProfileCharacte_1068->printSelf(outFile);
     }
   if (OffsetZone)
     {
@@ -55976,7 +55976,7 @@ bool PointProfileCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointProfileCharacteristicItemType
 
@@ -56218,7 +56218,7 @@ bool PointProfileCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointProfileCharacteristicMeasurementType
 
@@ -56593,7 +56593,7 @@ bool PointProfileCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointProfileCharacteristicNominalType
 
@@ -56836,7 +56836,7 @@ bool PointProfileCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PositionCharacteristicDefinitionType
 
@@ -56871,7 +56871,7 @@ PositionCharacteristicDefinitionType::PositionCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -56903,7 +56903,7 @@ PositionCharacteristicDefinitionType::PositionCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -56939,7 +56939,7 @@ PositionCharacteristicDefinitionType::PositionCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -56972,7 +56972,7 @@ PositionCharacteristicDefinitionType::PositionCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -57131,9 +57131,9 @@ void PositionCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -57373,7 +57373,7 @@ XmlBoolean * PositionCharacteristicDefinitionType::getOrientationOnly()
 void PositionCharacteristicDefinitionType::setOrientationOnly(XmlBoolean * OrientationOnlyIn)
 {OrientationOnly = OrientationOnlyIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PositionCharacteristicItemType
 
@@ -57615,7 +57615,7 @@ bool PositionCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PositionCharacteristicMeasurementType
 
@@ -58019,7 +58019,7 @@ CompositeSegmentPositionMeasurementType * PositionCharacteristicMeasurementType:
 void PositionCharacteristicMeasurementType::setFourthCompositeSegmentPositionMeasurement(CompositeSegmentPositionMeasurementType * FourthCompositeSegmentPositionMeasurementIn)
 {FourthCompositeSegmentPositionMeasurement = FourthCompositeSegmentPositionMeasurementIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PositionCharacteristicNominalType
 
@@ -58271,7 +58271,7 @@ PositionCoordinateMethodType * PositionCharacteristicNominalType::getCoordinateM
 void PositionCharacteristicNominalType::setCoordinateMethod(PositionCoordinateMethodType * CoordinateMethodIn)
 {CoordinateMethod = CoordinateMethodIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PositionCoordinateMethodEnumType
 
@@ -58329,7 +58329,7 @@ void PositionCoordinateMethodEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PositionCoordinateMethodType
 
@@ -58388,7 +58388,7 @@ ArrayReferenceFullType * PositionCoordinateMethodType::getFeatureZoneIds()
 void PositionCoordinateMethodType::setFeatureZoneIds(ArrayReferenceFullType * FeatureZoneIdsIn)
 {FeatureZoneIds = FeatureZoneIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PositionDiametricalZoneType
 
@@ -58466,7 +58466,7 @@ XmlBoolean * PositionDiametricalZoneType::getElongatedZone()
 void PositionDiametricalZoneType::setElongatedZone(XmlBoolean * ElongatedZoneIn)
 {ElongatedZone = ElongatedZoneIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PositionNonDiametricalZoneType
 
@@ -58578,7 +58578,7 @@ QIFReferenceFullType * PositionNonDiametricalZoneType::getCoordinateSystemId()
 void PositionNonDiametricalZoneType::setCoordinateSystemId(QIFReferenceFullType * CoordinateSystemIdIn)
 {CoordinateSystemId = CoordinateSystemIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PositionSphericalZoneType
 
@@ -58622,7 +58622,7 @@ DimensionCountEnumType * PositionSphericalZoneType::getDimensionality()
 void PositionSphericalZoneType::setDimensionality(DimensionCountEnumType * DimensionalityIn)
 {Dimensionality = DimensionalityIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PositionZoneShapeType
 
@@ -58660,7 +58660,7 @@ PositionZoneShapeTypeChoicePair * PositionZoneShapeType::getPositionZoneShapeTyp
 void PositionZoneShapeType::setPositionZoneShapeTypePair(PositionZoneShapeTypeChoicePair * PositionZoneShapeTypePairIn)
 {PositionZoneShapeTypePair = PositionZoneShapeTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PositionZoneShapeTypeChoicePair
 
@@ -58716,7 +58716,7 @@ void PositionZoneShapeTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PressureCharacteristicDefinitionBaseType
 
@@ -58725,7 +58725,7 @@ void PositionZoneShapeTypeChoicePair::printSelf(FILE * outFile)
 PressureCharacteristicDefinitionBaseType::PressureCharacteristicDefinitionBaseType() :
   CharacteristicDefinitionBaseType()
 {
-  PressureCharact_1066 = 0;
+  PressureCharact_1067 = 0;
 }
 
 PressureCharacteristicDefinitionBaseType::PressureCharacteristicDefinitionBaseType(
@@ -58742,7 +58742,7 @@ PressureCharacteristicDefinitionBaseType::PressureCharacteristicDefinitionBaseTy
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- PressureCharact_1066_Type * PressureCharact_1066In) :
+ PressureCharact_1067_Type * PressureCharact_1067In) :
   CharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -58758,7 +58758,7 @@ PressureCharacteristicDefinitionBaseType::PressureCharacteristicDefinitionBaseTy
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  PressureCharact_1066 = PressureCharact_1066In;
+  PressureCharact_1067 = PressureCharact_1067In;
 }
 
 PressureCharacteristicDefinitionBaseType::PressureCharacteristicDefinitionBaseType(
@@ -58776,7 +58776,7 @@ PressureCharacteristicDefinitionBaseType::PressureCharacteristicDefinitionBaseTy
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- PressureCharact_1066_Type * PressureCharact_1066In) :
+ PressureCharact_1067_Type * PressureCharact_1067In) :
   CharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -58793,13 +58793,13 @@ PressureCharacteristicDefinitionBaseType::PressureCharacteristicDefinitionBaseTy
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  PressureCharact_1066 = PressureCharact_1066In;
+  PressureCharact_1067 = PressureCharact_1067In;
 }
 
 PressureCharacteristicDefinitionBaseType::~PressureCharacteristicDefinitionBaseType()
 {
   #ifndef NODESTRUCT
-  delete PressureCharact_1066;
+  delete PressureCharact_1067;
   #endif
 }
 
@@ -58925,7 +58925,7 @@ void PressureCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  PressureCharact_1066->printSelf(outFile);
+  PressureCharact_1067->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -58986,13 +58986,13 @@ bool PressureCharacteristicDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-PressureCharact_1066_Type * PressureCharacteristicDefinitionBaseType::getPressureCharact_1066()
-{return PressureCharact_1066;}
+PressureCharact_1067_Type * PressureCharacteristicDefinitionBaseType::getPressureCharact_1067()
+{return PressureCharact_1067;}
 
-void PressureCharacteristicDefinitionBaseType::setPressureCharact_1066(PressureCharact_1066_Type * PressureCharact_1066In)
-{PressureCharact_1066 = PressureCharact_1066In;}
+void PressureCharacteristicDefinitionBaseType::setPressureCharact_1067(PressureCharact_1067_Type * PressureCharact_1067In)
+{PressureCharact_1067 = PressureCharact_1067In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PressureCharacteristicItemBaseType
 
@@ -59234,7 +59234,7 @@ bool PressureCharacteristicItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PressureCharacteristicMeasurementBaseType
 
@@ -59541,7 +59541,7 @@ MeasuredPressureValueType * PressureCharacteristicMeasurementBaseType::getMinVal
 void PressureCharacteristicMeasurementBaseType::setMinValue(MeasuredPressureValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PressureCharacteristicNominalBaseType
 
@@ -59792,7 +59792,7 @@ PressureValueType * PressureCharacteristicNominalBaseType::getTargetValue()
 void PressureCharacteristicNominalBaseType::setTargetValue(PressureValueType * TargetValueIn)
 {TargetValue = TargetValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ProfileCharacteristicDefinitionBaseType
 
@@ -59803,7 +59803,7 @@ ProfileCharacteristicDefinitionBaseType::ProfileCharacteristicDefinitionBaseType
 {
   ToleranceValue = 0;
   ToleranceDualValue = 0;
-  ProfileCharacte_1067 = 0;
+  ProfileCharacte_1068 = 0;
   OffsetZone = 0;
   VariableAngle = 0;
   SecondCompositeSegmentProfileDefinition = 0;
@@ -59827,14 +59827,14 @@ ProfileCharacteristicDefinitionBaseType::ProfileCharacteristicDefinitionBaseType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
- ProfileCharacte_1067_Type * ProfileCharacte_1067In,
+ ProfileCharacte_1068_Type * ProfileCharacte_1068In,
  XmlBoolean * OffsetZoneIn,
  XmlBoolean * VariableAngleIn,
  CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -59856,7 +59856,7 @@ ProfileCharacteristicDefinitionBaseType::ProfileCharacteristicDefinitionBaseType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -59864,7 +59864,7 @@ ProfileCharacteristicDefinitionBaseType::ProfileCharacteristicDefinitionBaseType
 {
   ToleranceValue = ToleranceValueIn;
   ToleranceDualValue = ToleranceDualValueIn;
-  ProfileCharacte_1067 = ProfileCharacte_1067In;
+  ProfileCharacte_1068 = ProfileCharacte_1068In;
   OffsetZone = OffsetZoneIn;
   VariableAngle = VariableAngleIn;
   SecondCompositeSegmentProfileDefinition = SecondCompositeSegmentProfileDefinitionIn;
@@ -59889,14 +59889,14 @@ ProfileCharacteristicDefinitionBaseType::ProfileCharacteristicDefinitionBaseType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
- ProfileCharacte_1067_Type * ProfileCharacte_1067In,
+ ProfileCharacte_1068_Type * ProfileCharacte_1068In,
  XmlBoolean * OffsetZoneIn,
  XmlBoolean * VariableAngleIn,
  CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -59919,7 +59919,7 @@ ProfileCharacteristicDefinitionBaseType::ProfileCharacteristicDefinitionBaseType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -59927,7 +59927,7 @@ ProfileCharacteristicDefinitionBaseType::ProfileCharacteristicDefinitionBaseType
 {
   ToleranceValue = ToleranceValueIn;
   ToleranceDualValue = ToleranceDualValueIn;
-  ProfileCharacte_1067 = ProfileCharacte_1067In;
+  ProfileCharacte_1068 = ProfileCharacte_1068In;
   OffsetZone = OffsetZoneIn;
   VariableAngle = VariableAngleIn;
   SecondCompositeSegmentProfileDefinition = SecondCompositeSegmentProfileDefinitionIn;
@@ -59942,7 +59942,7 @@ ProfileCharacteristicDefinitionBaseType::~ProfileCharacteristicDefinitionBaseTyp
   #ifndef NODESTRUCT
   delete ToleranceValue;
   delete ToleranceDualValue;
-  delete ProfileCharacte_1067;
+  delete ProfileCharacte_1068;
   delete OffsetZone;
   delete VariableAngle;
   delete SecondCompositeSegmentProfileDefinition;
@@ -60075,9 +60075,9 @@ void ProfileCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -60122,9 +60122,9 @@ void ProfileCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       ToleranceDualValue->printSelf(outFile);
       fprintf(outFile, "</ToleranceDualValue>\n");
     }
-  if (ProfileCharacte_1067)
+  if (ProfileCharacte_1068)
     {
-      ProfileCharacte_1067->printSelf(outFile);
+      ProfileCharacte_1068->printSelf(outFile);
     }
   if (OffsetZone)
     {
@@ -60250,11 +60250,11 @@ LinearDualValueType * ProfileCharacteristicDefinitionBaseType::getToleranceDualV
 void ProfileCharacteristicDefinitionBaseType::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
 {ToleranceDualValue = ToleranceDualValueIn;}
 
-ProfileCharacte_1067_Type * ProfileCharacteristicDefinitionBaseType::getProfileCharacte_1067()
-{return ProfileCharacte_1067;}
+ProfileCharacte_1068_Type * ProfileCharacteristicDefinitionBaseType::getProfileCharacte_1068()
+{return ProfileCharacte_1068;}
 
-void ProfileCharacteristicDefinitionBaseType::setProfileCharacte_1067(ProfileCharacte_1067_Type * ProfileCharacte_1067In)
-{ProfileCharacte_1067 = ProfileCharacte_1067In;}
+void ProfileCharacteristicDefinitionBaseType::setProfileCharacte_1068(ProfileCharacte_1068_Type * ProfileCharacte_1068In)
+{ProfileCharacte_1068 = ProfileCharacte_1068In;}
 
 XmlBoolean * ProfileCharacteristicDefinitionBaseType::getOffsetZone()
 {return OffsetZone;}
@@ -60298,7 +60298,7 @@ XmlBoolean * ProfileCharacteristicDefinitionBaseType::getOrientationOnly()
 void ProfileCharacteristicDefinitionBaseType::setOrientationOnly(XmlBoolean * OrientationOnlyIn)
 {OrientationOnly = OrientationOnlyIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ProfileCharacteristicItemBaseType
 
@@ -60540,7 +60540,7 @@ bool ProfileCharacteristicItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ProfileCharacteristicMeasurementBaseType
 
@@ -60979,7 +60979,7 @@ CompositeSegmentProfileMeasurementType * ProfileCharacteristicMeasurementBaseTyp
 void ProfileCharacteristicMeasurementBaseType::setFourthCompositeSegmentProfileMeasurement(CompositeSegmentProfileMeasurementType * FourthCompositeSegmentProfileMeasurementIn)
 {FourthCompositeSegmentProfileMeasurement = FourthCompositeSegmentProfileMeasurementIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ProfileCharacteristicNominalBaseType
 
@@ -61230,7 +61230,7 @@ LinearValueType * ProfileCharacteristicNominalBaseType::getTargetValue()
 void ProfileCharacteristicNominalBaseType::setTargetValue(LinearValueType * TargetValueIn)
 {TargetValue = TargetValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RadiusCharacteristicDefinitionType
 
@@ -61258,7 +61258,7 @@ RadiusCharacteristicDefinitionType::RadiusCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In,
+ LinearCharacter_1059_Type * LinearCharacter_1059In,
  XmlBoolean * ControlledRadiusIn) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
@@ -61276,7 +61276,7 @@ RadiusCharacteristicDefinitionType::RadiusCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
   ControlledRadius = ControlledRadiusIn;
 }
@@ -61298,7 +61298,7 @@ RadiusCharacteristicDefinitionType::RadiusCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In,
+ LinearCharacter_1059_Type * LinearCharacter_1059In,
  XmlBoolean * ControlledRadiusIn) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
@@ -61317,7 +61317,7 @@ RadiusCharacteristicDefinitionType::RadiusCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
   ControlledRadius = ControlledRadiusIn;
 }
@@ -61466,7 +61466,7 @@ void RadiusCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1058->printSelf(outFile);
+  LinearCharacter_1059->printSelf(outFile);
   if (ControlledRadius)
     {
       doSpaces(0, outFile);
@@ -61540,7 +61540,7 @@ XmlBoolean * RadiusCharacteristicDefinitionType::getControlledRadius()
 void RadiusCharacteristicDefinitionType::setControlledRadius(XmlBoolean * ControlledRadiusIn)
 {ControlledRadius = ControlledRadiusIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RadiusCharacteristicItemType
 
@@ -61782,7 +61782,7 @@ bool RadiusCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RadiusCharacteristicMeasurementType
 
@@ -62065,7 +62065,7 @@ bool RadiusCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RadiusCharacteristicNominalType
 
@@ -62319,7 +62319,7 @@ bool RadiusCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ReferenceFeatureAssociationSpecificationElementEnumType
 
@@ -62389,7 +62389,7 @@ void ReferenceFeatureAssociationSpecificationElementEnumType::oPrintSelf(FILE * 
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ReferenceFeatureAssociationSpecificationElementType
 
@@ -62462,7 +62462,7 @@ ReferenceFeatureAssociationSpecificationParameterEnumType * ReferenceFeatureAsso
 void ReferenceFeatureAssociationSpecificationElementType::setParameter(ReferenceFeatureAssociationSpecificationParameterEnumType * ParameterIn)
 {Parameter = ParameterIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ReferenceFeatureAssociationSpecificationParameterEnumType
 
@@ -62524,7 +62524,7 @@ void ReferenceFeatureAssociationSpecificationParameterEnumType::oPrintSelf(FILE 
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RoughnessApplicabilityEnumType
 
@@ -62586,7 +62586,7 @@ void RoughnessApplicabilityEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RoughnessLayEnumType
 
@@ -62654,7 +62654,7 @@ void RoughnessLayEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RoughnessObtentionEnumType
 
@@ -62716,7 +62716,7 @@ void RoughnessObtentionEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RunoutCharacteristicDefinitionBaseType
 
@@ -62744,7 +62744,7 @@ RunoutCharacteristicDefinitionBaseType::RunoutCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -62766,7 +62766,7 @@ RunoutCharacteristicDefinitionBaseType::RunoutCharacteristicDefinitionBaseType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -62792,7 +62792,7 @@ RunoutCharacteristicDefinitionBaseType::RunoutCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -62815,7 +62815,7 @@ RunoutCharacteristicDefinitionBaseType::RunoutCharacteristicDefinitionBaseType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -62957,9 +62957,9 @@ void RunoutCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -63089,7 +63089,7 @@ QIFReferenceFullType * RunoutCharacteristicDefinitionBaseType::getDatumReference
 void RunoutCharacteristicDefinitionBaseType::setDatumReferenceFrameId(QIFReferenceFullType * DatumReferenceFrameIdIn)
 {DatumReferenceFrameId = DatumReferenceFrameIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RunoutCharacteristicItemBaseType
 
@@ -63331,7 +63331,7 @@ bool RunoutCharacteristicItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RunoutCharacteristicMeasurementBaseType
 
@@ -63633,7 +63633,7 @@ XmlBoolean * RunoutCharacteristicMeasurementBaseType::getDatumsOk()
 void RunoutCharacteristicMeasurementBaseType::setDatumsOk(XmlBoolean * DatumsOkIn)
 {DatumsOk = DatumsOkIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RunoutCharacteristicNominalBaseType
 
@@ -63865,7 +63865,7 @@ bool RunoutCharacteristicNominalBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SimultaneousRequirementEnumType
 
@@ -63923,7 +63923,7 @@ void SimultaneousRequirementEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SimultaneousRequirementGroupType
 
@@ -63996,7 +63996,7 @@ CompositeSegmentLowerLevelEnumType * SimultaneousRequirementGroupType::getCompos
 void SimultaneousRequirementGroupType::setCompositeLevel(CompositeSegmentLowerLevelEnumType * CompositeLevelIn)
 {CompositeLevel = CompositeLevelIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SimultaneousRequirementGroupTypeLisd
 
@@ -64023,7 +64023,7 @@ SimultaneousRequirementGroupTypeLisd::~SimultaneousRequirementGroupTypeLisd()
 
 void SimultaneousRequirementGroupTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SimultaneousRequirementGroupsType
 
@@ -64181,7 +64181,7 @@ SimultaneousRequirementGroupTypeLisd * SimultaneousRequirementGroupsType::getSim
 void SimultaneousRequirementGroupsType::setSimultaneousRequirementGroup(SimultaneousRequirementGroupTypeLisd * SimultaneousRequirementGroupIn)
 {SimultaneousRequirementGroup = SimultaneousRequirementGroupIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SingleNestingIndexFilterSymbolEnumType
 
@@ -64255,7 +64255,7 @@ void SingleNestingIndexFilterSymbolEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SingleNestingIndexFilterType
 
@@ -64327,7 +64327,7 @@ LinearValueType * SingleNestingIndexFilterType::getSecondDirectionNestingIndex()
 void SingleNestingIndexFilterType::setSecondDirectionNestingIndex(LinearValueType * SecondDirectionNestingIndexIn)
 {SecondDirectionNestingIndex = SecondDirectionNestingIndexIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SpeedCharacteristicDefinitionBaseType
 
@@ -64336,7 +64336,7 @@ void SingleNestingIndexFilterType::setSecondDirectionNestingIndex(LinearValueTyp
 SpeedCharacteristicDefinitionBaseType::SpeedCharacteristicDefinitionBaseType() :
   CharacteristicDefinitionBaseType()
 {
-  SpeedCharacteri_1068 = 0;
+  SpeedCharacteri_1069 = 0;
 }
 
 SpeedCharacteristicDefinitionBaseType::SpeedCharacteristicDefinitionBaseType(
@@ -64353,7 +64353,7 @@ SpeedCharacteristicDefinitionBaseType::SpeedCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- SpeedCharacteri_1068_Type * SpeedCharacteri_1068In) :
+ SpeedCharacteri_1069_Type * SpeedCharacteri_1069In) :
   CharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -64369,7 +64369,7 @@ SpeedCharacteristicDefinitionBaseType::SpeedCharacteristicDefinitionBaseType(
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  SpeedCharacteri_1068 = SpeedCharacteri_1068In;
+  SpeedCharacteri_1069 = SpeedCharacteri_1069In;
 }
 
 SpeedCharacteristicDefinitionBaseType::SpeedCharacteristicDefinitionBaseType(
@@ -64387,7 +64387,7 @@ SpeedCharacteristicDefinitionBaseType::SpeedCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- SpeedCharacteri_1068_Type * SpeedCharacteri_1068In) :
+ SpeedCharacteri_1069_Type * SpeedCharacteri_1069In) :
   CharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -64404,13 +64404,13 @@ SpeedCharacteristicDefinitionBaseType::SpeedCharacteristicDefinitionBaseType(
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  SpeedCharacteri_1068 = SpeedCharacteri_1068In;
+  SpeedCharacteri_1069 = SpeedCharacteri_1069In;
 }
 
 SpeedCharacteristicDefinitionBaseType::~SpeedCharacteristicDefinitionBaseType()
 {
   #ifndef NODESTRUCT
-  delete SpeedCharacteri_1068;
+  delete SpeedCharacteri_1069;
   #endif
 }
 
@@ -64536,7 +64536,7 @@ void SpeedCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  SpeedCharacteri_1068->printSelf(outFile);
+  SpeedCharacteri_1069->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -64597,13 +64597,13 @@ bool SpeedCharacteristicDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-SpeedCharacteri_1068_Type * SpeedCharacteristicDefinitionBaseType::getSpeedCharacteri_1068()
-{return SpeedCharacteri_1068;}
+SpeedCharacteri_1069_Type * SpeedCharacteristicDefinitionBaseType::getSpeedCharacteri_1069()
+{return SpeedCharacteri_1069;}
 
-void SpeedCharacteristicDefinitionBaseType::setSpeedCharacteri_1068(SpeedCharacteri_1068_Type * SpeedCharacteri_1068In)
-{SpeedCharacteri_1068 = SpeedCharacteri_1068In;}
+void SpeedCharacteristicDefinitionBaseType::setSpeedCharacteri_1069(SpeedCharacteri_1069_Type * SpeedCharacteri_1069In)
+{SpeedCharacteri_1069 = SpeedCharacteri_1069In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SpeedCharacteristicItemBaseType
 
@@ -64845,7 +64845,7 @@ bool SpeedCharacteristicItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SpeedCharacteristicMeasurementBaseType
 
@@ -65152,7 +65152,7 @@ MeasuredSpeedValueType * SpeedCharacteristicMeasurementBaseType::getMinValue()
 void SpeedCharacteristicMeasurementBaseType::setMinValue(MeasuredSpeedValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SpeedCharacteristicNominalBaseType
 
@@ -65403,7 +65403,7 @@ SpeedValueType * SpeedCharacteristicNominalBaseType::getTargetValue()
 void SpeedCharacteristicNominalBaseType::setTargetValue(SpeedValueType * TargetValueIn)
 {TargetValue = TargetValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalDiameterCharacteristicDefinitionType
 
@@ -65430,7 +65430,7 @@ SphericalDiameterCharacteristicDefinitionType::SphericalDiameterCharacteristicDe
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -65447,7 +65447,7 @@ SphericalDiameterCharacteristicDefinitionType::SphericalDiameterCharacteristicDe
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -65468,7 +65468,7 @@ SphericalDiameterCharacteristicDefinitionType::SphericalDiameterCharacteristicDe
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -65486,7 +65486,7 @@ SphericalDiameterCharacteristicDefinitionType::SphericalDiameterCharacteristicDe
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -65633,7 +65633,7 @@ void SphericalDiameterCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1058->printSelf(outFile);
+  LinearCharacter_1059->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -65694,7 +65694,7 @@ bool SphericalDiameterCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalDiameterCharacteristicItemType
 
@@ -65936,7 +65936,7 @@ bool SphericalDiameterCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalDiameterCharacteristicMeasurementType
 
@@ -66219,7 +66219,7 @@ bool SphericalDiameterCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalDiameterCharacteristicNominalType
 
@@ -66473,7 +66473,7 @@ bool SphericalDiameterCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalRadiusCharacteristicDefinitionType
 
@@ -66500,7 +66500,7 @@ SphericalRadiusCharacteristicDefinitionType::SphericalRadiusCharacteristicDefini
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -66517,7 +66517,7 @@ SphericalRadiusCharacteristicDefinitionType::SphericalRadiusCharacteristicDefini
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -66538,7 +66538,7 @@ SphericalRadiusCharacteristicDefinitionType::SphericalRadiusCharacteristicDefini
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -66556,7 +66556,7 @@ SphericalRadiusCharacteristicDefinitionType::SphericalRadiusCharacteristicDefini
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -66703,7 +66703,7 @@ void SphericalRadiusCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1058->printSelf(outFile);
+  LinearCharacter_1059->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -66764,7 +66764,7 @@ bool SphericalRadiusCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalRadiusCharacteristicItemType
 
@@ -67006,7 +67006,7 @@ bool SphericalRadiusCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalRadiusCharacteristicMeasurementType
 
@@ -67289,7 +67289,7 @@ bool SphericalRadiusCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalRadiusCharacteristicNominalType
 
@@ -67543,7 +67543,7 @@ bool SphericalRadiusCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericityCharacteristicDefinitionType
 
@@ -67570,7 +67570,7 @@ SphericityCharacteristicDefinitionType::SphericityCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -67591,7 +67591,7 @@ SphericityCharacteristicDefinitionType::SphericityCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -67616,7 +67616,7 @@ SphericityCharacteristicDefinitionType::SphericityCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -67638,7 +67638,7 @@ SphericityCharacteristicDefinitionType::SphericityCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -67778,9 +67778,9 @@ void SphericityCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -67897,7 +67897,7 @@ LinearDualValueType * SphericityCharacteristicDefinitionType::getToleranceDualVa
 void SphericityCharacteristicDefinitionType::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
 {ToleranceDualValue = ToleranceDualValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericityCharacteristicItemType
 
@@ -68139,7 +68139,7 @@ bool SphericityCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericityCharacteristicMeasurementType
 
@@ -68148,7 +68148,7 @@ bool SphericityCharacteristicItemType::badAttributes(
 SphericityCharacteristicMeasurementType::SphericityCharacteristicMeasurementType() :
   FormCharacteristicMeasurementBaseType()
 {
-  SphericityChara_1069 = 0;
+  SphericityChara_1070 = 0;
 }
 
 SphericityCharacteristicMeasurementType::SphericityCharacteristicMeasurementType(
@@ -68167,7 +68167,7 @@ SphericityCharacteristicMeasurementType::SphericityCharacteristicMeasurementType
  MeasuredLinearValueType * ValueIn,
  MeasuredLinearValueType * MaxValueIn,
  MeasuredLinearValueType * MinValueIn,
- SphericityChara_1069_Type * SphericityChara_1069In) :
+ SphericityChara_1070_Type * SphericityChara_1070In) :
   FormCharacteristicMeasurementBaseType(
     AttributesIn,
     DescriptionIn,
@@ -68185,7 +68185,7 @@ SphericityCharacteristicMeasurementType::SphericityCharacteristicMeasurementType
     MaxValueIn,
     MinValueIn)
 {
-  SphericityChara_1069 = SphericityChara_1069In;
+  SphericityChara_1070 = SphericityChara_1070In;
 }
 
 SphericityCharacteristicMeasurementType::SphericityCharacteristicMeasurementType(
@@ -68205,7 +68205,7 @@ SphericityCharacteristicMeasurementType::SphericityCharacteristicMeasurementType
  MeasuredLinearValueType * ValueIn,
  MeasuredLinearValueType * MaxValueIn,
  MeasuredLinearValueType * MinValueIn,
- SphericityChara_1069_Type * SphericityChara_1069In) :
+ SphericityChara_1070_Type * SphericityChara_1070In) :
   FormCharacteristicMeasurementBaseType(
     idIn,
     AttributesIn,
@@ -68224,13 +68224,13 @@ SphericityCharacteristicMeasurementType::SphericityCharacteristicMeasurementType
     MaxValueIn,
     MinValueIn)
 {
-  SphericityChara_1069 = SphericityChara_1069In;
+  SphericityChara_1070 = SphericityChara_1070In;
 }
 
 SphericityCharacteristicMeasurementType::~SphericityCharacteristicMeasurementType()
 {
   #ifndef NODESTRUCT
-  delete SphericityChara_1069;
+  delete SphericityChara_1070;
   #endif
 }
 
@@ -68368,9 +68368,9 @@ void SphericityCharacteristicMeasurementType::printSelf(FILE * outFile)
       MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
-  if (SphericityChara_1069)
+  if (SphericityChara_1070)
     {
-      SphericityChara_1069->printSelf(outFile);
+      SphericityChara_1070->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -68432,13 +68432,13 @@ bool SphericityCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-SphericityChara_1069_Type * SphericityCharacteristicMeasurementType::getSphericityChara_1069()
-{return SphericityChara_1069;}
+SphericityChara_1070_Type * SphericityCharacteristicMeasurementType::getSphericityChara_1070()
+{return SphericityChara_1070;}
 
-void SphericityCharacteristicMeasurementType::setSphericityChara_1069(SphericityChara_1069_Type * SphericityChara_1069In)
-{SphericityChara_1069 = SphericityChara_1069In;}
+void SphericityCharacteristicMeasurementType::setSphericityChara_1070(SphericityChara_1070_Type * SphericityChara_1070In)
+{SphericityChara_1070 = SphericityChara_1070In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericityCharacteristicNominalType
 
@@ -68670,7 +68670,7 @@ bool SphericityCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SquareCharacteristicDefinitionType
 
@@ -68697,7 +68697,7 @@ SquareCharacteristicDefinitionType::SquareCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -68714,7 +68714,7 @@ SquareCharacteristicDefinitionType::SquareCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -68735,7 +68735,7 @@ SquareCharacteristicDefinitionType::SquareCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -68753,7 +68753,7 @@ SquareCharacteristicDefinitionType::SquareCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -68900,7 +68900,7 @@ void SquareCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1058->printSelf(outFile);
+  LinearCharacter_1059->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -68961,7 +68961,7 @@ bool SquareCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SquareCharacteristicItemType
 
@@ -69203,7 +69203,7 @@ bool SquareCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SquareCharacteristicMeasurementType
 
@@ -69486,7 +69486,7 @@ bool SquareCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SquareCharacteristicNominalType
 
@@ -69740,7 +69740,7 @@ bool SquareCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StraightnessCharacteristicDefinitionType
 
@@ -69749,7 +69749,7 @@ bool SquareCharacteristicNominalType::badAttributes(
 StraightnessCharacteristicDefinitionType::StraightnessCharacteristicDefinitionType() :
   FormCharacteristicDefinitionBaseType()
 {
-  StraightnessCha_1070 = 0;
+  StraightnessCha_1071 = 0;
   MaterialCondition = 0;
   SizeCharacteristicDefinitionId = 0;
   ZoneShape = 0;
@@ -69770,12 +69770,12 @@ StraightnessCharacteristicDefinitionType::StraightnessCharacteristicDefinitionTy
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
- StraightnessCha_1070_Type * StraightnessCha_1070In,
+ StraightnessCha_1071_Type * StraightnessCha_1071In,
  MaterialModifierEnumType * MaterialConditionIn,
  QIFReferenceType * SizeCharacteristicDefinitionIdIn,
  StraightnessZoneShapeType * ZoneShapeIn,
@@ -69794,13 +69794,13 @@ StraightnessCharacteristicDefinitionType::StraightnessCharacteristicDefinitionTy
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn)
 {
-  StraightnessCha_1070 = StraightnessCha_1070In;
+  StraightnessCha_1071 = StraightnessCha_1071In;
   MaterialCondition = MaterialConditionIn;
   SizeCharacteristicDefinitionId = SizeCharacteristicDefinitionIdIn;
   ZoneShape = ZoneShapeIn;
@@ -69822,12 +69822,12 @@ StraightnessCharacteristicDefinitionType::StraightnessCharacteristicDefinitionTy
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
- StraightnessCha_1070_Type * StraightnessCha_1070In,
+ StraightnessCha_1071_Type * StraightnessCha_1071In,
  MaterialModifierEnumType * MaterialConditionIn,
  QIFReferenceType * SizeCharacteristicDefinitionIdIn,
  StraightnessZoneShapeType * ZoneShapeIn,
@@ -69847,13 +69847,13 @@ StraightnessCharacteristicDefinitionType::StraightnessCharacteristicDefinitionTy
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn)
 {
-  StraightnessCha_1070 = StraightnessCha_1070In;
+  StraightnessCha_1071 = StraightnessCha_1071In;
   MaterialCondition = MaterialConditionIn;
   SizeCharacteristicDefinitionId = SizeCharacteristicDefinitionIdIn;
   ZoneShape = ZoneShapeIn;
@@ -69863,7 +69863,7 @@ StraightnessCharacteristicDefinitionType::StraightnessCharacteristicDefinitionTy
 StraightnessCharacteristicDefinitionType::~StraightnessCharacteristicDefinitionType()
 {
   #ifndef NODESTRUCT
-  delete StraightnessCha_1070;
+  delete StraightnessCha_1071;
   delete MaterialCondition;
   delete SizeCharacteristicDefinitionId;
   delete ZoneShape;
@@ -69993,9 +69993,9 @@ void StraightnessCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -70029,7 +70029,7 @@ void StraightnessCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</OrientationPlane>\n");
     }
-  StraightnessCha_1070->printSelf(outFile);
+  StraightnessCha_1071->printSelf(outFile);
   if (MaterialCondition)
     {
       doSpaces(0, outFile);
@@ -70116,11 +70116,11 @@ bool StraightnessCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-StraightnessCha_1070_Type * StraightnessCharacteristicDefinitionType::getStraightnessCha_1070()
-{return StraightnessCha_1070;}
+StraightnessCha_1071_Type * StraightnessCharacteristicDefinitionType::getStraightnessCha_1071()
+{return StraightnessCha_1071;}
 
-void StraightnessCharacteristicDefinitionType::setStraightnessCha_1070(StraightnessCha_1070_Type * StraightnessCha_1070In)
-{StraightnessCha_1070 = StraightnessCha_1070In;}
+void StraightnessCharacteristicDefinitionType::setStraightnessCha_1071(StraightnessCha_1071_Type * StraightnessCha_1071In)
+{StraightnessCha_1071 = StraightnessCha_1071In;}
 
 MaterialModifierEnumType * StraightnessCharacteristicDefinitionType::getMaterialCondition()
 {return MaterialCondition;}
@@ -70146,7 +70146,7 @@ LinearValueType * StraightnessCharacteristicDefinitionType::getMaximumToleranceV
 void StraightnessCharacteristicDefinitionType::setMaximumToleranceValue(LinearValueType * MaximumToleranceValueIn)
 {MaximumToleranceValue = MaximumToleranceValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StraightnessCharacteristicItemType
 
@@ -70388,7 +70388,7 @@ bool StraightnessCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StraightnessCharacteristicMeasurementType
 
@@ -70748,7 +70748,7 @@ MeasuredZoneAxisType * StraightnessCharacteristicMeasurementType::getZoneLine()
 void StraightnessCharacteristicMeasurementType::setZoneLine(MeasuredZoneAxisType * ZoneLineIn)
 {ZoneLine = ZoneLineIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StraightnessCharacteristicNominalType
 
@@ -70999,7 +70999,7 @@ QIFReferenceFullType * StraightnessCharacteristicNominalType::getDirectionCurveI
 void StraightnessCharacteristicNominalType::setDirectionCurveId(QIFReferenceFullType * DirectionCurveIdIn)
 {DirectionCurveId = DirectionCurveIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StraightnessDiametricalZoneType
 
@@ -71015,7 +71015,7 @@ void StraightnessDiametricalZoneType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StraightnessNonDiametricalZoneType
 
@@ -71059,7 +71059,7 @@ UnitVectorType * StraightnessNonDiametricalZoneType::getZoneOrientationVector()
 void StraightnessNonDiametricalZoneType::setZoneOrientationVector(UnitVectorType * ZoneOrientationVectorIn)
 {ZoneOrientationVector = ZoneOrientationVectorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StraightnessZoneShapeType
 
@@ -71097,7 +71097,7 @@ StraightnessZoneShapeTypeChoicePair * StraightnessZoneShapeType::getStraightness
 void StraightnessZoneShapeType::setStraightnessZoneShapeTypePair(StraightnessZoneShapeTypeChoicePair * StraightnessZoneShapeTypePairIn)
 {StraightnessZoneShapeTypePair = StraightnessZoneShapeTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StraightnessZoneShapeTypeChoicePair
 
@@ -71141,7 +71141,7 @@ void StraightnessZoneShapeTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StringValuesType
 
@@ -71298,7 +71298,7 @@ XmlStringLisd * StringValuesType::getStringValue()
 void StringValuesType::setStringValue(XmlStringLisd * StringValueIn)
 {StringValue = StringValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceProfileCharacteristicDefinitionType
 
@@ -71324,14 +71324,14 @@ SurfaceProfileCharacteristicDefinitionType::SurfaceProfileCharacteristicDefiniti
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
- ProfileCharacte_1067_Type * ProfileCharacte_1067In,
+ ProfileCharacte_1068_Type * ProfileCharacte_1068In,
  XmlBoolean * OffsetZoneIn,
  XmlBoolean * VariableAngleIn,
  CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -71354,14 +71354,14 @@ SurfaceProfileCharacteristicDefinitionType::SurfaceProfileCharacteristicDefiniti
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn,
     ToleranceValueIn,
     ToleranceDualValueIn,
-    ProfileCharacte_1067In,
+    ProfileCharacte_1068In,
     OffsetZoneIn,
     VariableAngleIn,
     SecondCompositeSegmentProfileDefinitionIn,
@@ -71388,14 +71388,14 @@ SurfaceProfileCharacteristicDefinitionType::SurfaceProfileCharacteristicDefiniti
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
- ProfileCharacte_1067_Type * ProfileCharacte_1067In,
+ ProfileCharacte_1068_Type * ProfileCharacte_1068In,
  XmlBoolean * OffsetZoneIn,
  XmlBoolean * VariableAngleIn,
  CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -71419,14 +71419,14 @@ SurfaceProfileCharacteristicDefinitionType::SurfaceProfileCharacteristicDefiniti
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn,
     ToleranceValueIn,
     ToleranceDualValueIn,
-    ProfileCharacte_1067In,
+    ProfileCharacte_1068In,
     OffsetZoneIn,
     VariableAngleIn,
     SecondCompositeSegmentProfileDefinitionIn,
@@ -71567,9 +71567,9 @@ void SurfaceProfileCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -71614,9 +71614,9 @@ void SurfaceProfileCharacteristicDefinitionType::printSelf(FILE * outFile)
       ToleranceDualValue->printSelf(outFile);
       fprintf(outFile, "</ToleranceDualValue>\n");
     }
-  if (ProfileCharacte_1067)
+  if (ProfileCharacte_1068)
     {
-      ProfileCharacte_1067->printSelf(outFile);
+      ProfileCharacte_1068->printSelf(outFile);
     }
   if (OffsetZone)
     {
@@ -71744,7 +71744,7 @@ ExtentType * SurfaceProfileCharacteristicDefinitionType::getExtent()
 void SurfaceProfileCharacteristicDefinitionType::setExtent(ExtentType * ExtentIn)
 {Extent = ExtentIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceProfileCharacteristicItemType
 
@@ -71986,7 +71986,7 @@ bool SurfaceProfileCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceProfileCharacteristicMeasurementType
 
@@ -72361,7 +72361,7 @@ bool SurfaceProfileCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceProfileCharacteristicNominalType
 
@@ -72604,7 +72604,7 @@ bool SurfaceProfileCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceProfileNonUniformCharacteristicDefinitionType
 
@@ -72614,7 +72614,7 @@ SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCh
   ProfileCharacteristicDefinitionBaseType()
 {
   ToPointToleranceValue = 0;
-  SurfaceProfileN_1071 = 0;
+  SurfaceProfileN_1072 = 0;
 }
 
 SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCharacteristicDefinitionType(
@@ -72631,14 +72631,14 @@ SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCh
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
- ProfileCharacte_1067_Type * ProfileCharacte_1067In,
+ ProfileCharacte_1068_Type * ProfileCharacte_1068In,
  XmlBoolean * OffsetZoneIn,
  XmlBoolean * VariableAngleIn,
  CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -72647,7 +72647,7 @@ SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCh
  QIFReferenceFullType * DatumReferenceFrameIdIn,
  XmlBoolean * OrientationOnlyIn,
  LinearValueType * ToPointToleranceValueIn,
- SurfaceProfileN_1071_Type * SurfaceProfileN_1071In) :
+ SurfaceProfileN_1072_Type * SurfaceProfileN_1072In) :
   ProfileCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -72662,14 +72662,14 @@ SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCh
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn,
     ToleranceValueIn,
     ToleranceDualValueIn,
-    ProfileCharacte_1067In,
+    ProfileCharacte_1068In,
     OffsetZoneIn,
     VariableAngleIn,
     SecondCompositeSegmentProfileDefinitionIn,
@@ -72679,7 +72679,7 @@ SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCh
     OrientationOnlyIn)
 {
   ToPointToleranceValue = ToPointToleranceValueIn;
-  SurfaceProfileN_1071 = SurfaceProfileN_1071In;
+  SurfaceProfileN_1072 = SurfaceProfileN_1072In;
 }
 
 SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCharacteristicDefinitionType(
@@ -72697,14 +72697,14 @@ SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCh
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
- ProfileCharacte_1067_Type * ProfileCharacte_1067In,
+ ProfileCharacte_1068_Type * ProfileCharacte_1068In,
  XmlBoolean * OffsetZoneIn,
  XmlBoolean * VariableAngleIn,
  CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -72713,7 +72713,7 @@ SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCh
  QIFReferenceFullType * DatumReferenceFrameIdIn,
  XmlBoolean * OrientationOnlyIn,
  LinearValueType * ToPointToleranceValueIn,
- SurfaceProfileN_1071_Type * SurfaceProfileN_1071In) :
+ SurfaceProfileN_1072_Type * SurfaceProfileN_1072In) :
   ProfileCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -72729,14 +72729,14 @@ SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCh
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn,
     ToleranceValueIn,
     ToleranceDualValueIn,
-    ProfileCharacte_1067In,
+    ProfileCharacte_1068In,
     OffsetZoneIn,
     VariableAngleIn,
     SecondCompositeSegmentProfileDefinitionIn,
@@ -72746,14 +72746,14 @@ SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCh
     OrientationOnlyIn)
 {
   ToPointToleranceValue = ToPointToleranceValueIn;
-  SurfaceProfileN_1071 = SurfaceProfileN_1071In;
+  SurfaceProfileN_1072 = SurfaceProfileN_1072In;
 }
 
 SurfaceProfileNonUniformCharacteristicDefinitionType::~SurfaceProfileNonUniformCharacteristicDefinitionType()
 {
   #ifndef NODESTRUCT
   delete ToPointToleranceValue;
-  delete SurfaceProfileN_1071;
+  delete SurfaceProfileN_1072;
   #endif
 }
 
@@ -72879,9 +72879,9 @@ void SurfaceProfileNonUniformCharacteristicDefinitionType::printSelf(FILE * outF
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -72926,9 +72926,9 @@ void SurfaceProfileNonUniformCharacteristicDefinitionType::printSelf(FILE * outF
       ToleranceDualValue->printSelf(outFile);
       fprintf(outFile, "</ToleranceDualValue>\n");
     }
-  if (ProfileCharacte_1067)
+  if (ProfileCharacte_1068)
     {
-      ProfileCharacte_1067->printSelf(outFile);
+      ProfileCharacte_1068->printSelf(outFile);
     }
   if (OffsetZone)
     {
@@ -72986,9 +72986,9 @@ void SurfaceProfileNonUniformCharacteristicDefinitionType::printSelf(FILE * outF
   fprintf(outFile, "<ToPointToleranceValue");
   ToPointToleranceValue->printSelf(outFile);
   fprintf(outFile, "</ToPointToleranceValue>\n");
-  if (SurfaceProfileN_1071)
+  if (SurfaceProfileN_1072)
     {
-      SurfaceProfileN_1071->printSelf(outFile);
+      SurfaceProfileN_1072->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -73056,13 +73056,13 @@ LinearValueType * SurfaceProfileNonUniformCharacteristicDefinitionType::getToPoi
 void SurfaceProfileNonUniformCharacteristicDefinitionType::setToPointToleranceValue(LinearValueType * ToPointToleranceValueIn)
 {ToPointToleranceValue = ToPointToleranceValueIn;}
 
-SurfaceProfileN_1071_Type * SurfaceProfileNonUniformCharacteristicDefinitionType::getSurfaceProfileN_1071()
-{return SurfaceProfileN_1071;}
+SurfaceProfileN_1072_Type * SurfaceProfileNonUniformCharacteristicDefinitionType::getSurfaceProfileN_1072()
+{return SurfaceProfileN_1072;}
 
-void SurfaceProfileNonUniformCharacteristicDefinitionType::setSurfaceProfileN_1071(SurfaceProfileN_1071_Type * SurfaceProfileN_1071In)
-{SurfaceProfileN_1071 = SurfaceProfileN_1071In;}
+void SurfaceProfileNonUniformCharacteristicDefinitionType::setSurfaceProfileN_1072(SurfaceProfileN_1072_Type * SurfaceProfileN_1072In)
+{SurfaceProfileN_1072 = SurfaceProfileN_1072In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceProfileNonUniformCharacteristicItemType
 
@@ -73304,7 +73304,7 @@ bool SurfaceProfileNonUniformCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceProfileNonUniformCharacteristicMeasurementType
 
@@ -73679,7 +73679,7 @@ bool SurfaceProfileNonUniformCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceProfileNonUniformCharacteristicNominalType
 
@@ -73922,7 +73922,7 @@ bool SurfaceProfileNonUniformCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceTextureCharacteristicDefinitionType
 
@@ -74201,7 +74201,7 @@ LinearValueType * SurfaceTextureCharacteristicDefinitionType::getRoughnessAverag
 void SurfaceTextureCharacteristicDefinitionType::setRoughnessAverage(LinearValueType * RoughnessAverageIn)
 {RoughnessAverage = RoughnessAverageIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceTextureCharacteristicItemType
 
@@ -74443,7 +74443,7 @@ bool SurfaceTextureCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceTextureCharacteristicMeasurementType
 
@@ -74712,7 +74712,7 @@ MeasuredLinearValueType * SurfaceTextureCharacteristicMeasurementType::getRoughn
 void SurfaceTextureCharacteristicMeasurementType::setRoughnessAverageValue(MeasuredLinearValueType * RoughnessAverageValueIn)
 {RoughnessAverageValue = RoughnessAverageValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceTextureCharacteristicNominalType
 
@@ -75096,7 +75096,7 @@ XmlToken * SurfaceTextureCharacteristicNominalType::getOtherSurfaceParameter()
 void SurfaceTextureCharacteristicNominalType::setOtherSurfaceParameter(XmlToken * OtherSurfaceParameterIn)
 {OtherSurfaceParameter = OtherSurfaceParameterIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SymmetryCharacteristicDefinitionType
 
@@ -75123,7 +75123,7 @@ SymmetryCharacteristicDefinitionType::SymmetryCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -75147,7 +75147,7 @@ SymmetryCharacteristicDefinitionType::SymmetryCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -75175,7 +75175,7 @@ SymmetryCharacteristicDefinitionType::SymmetryCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -75200,7 +75200,7 @@ SymmetryCharacteristicDefinitionType::SymmetryCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -75343,9 +75343,9 @@ void SymmetryCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -75485,7 +75485,7 @@ CompositeSegmentSymmetryDefinitionType * SymmetryCharacteristicDefinitionType::g
 void SymmetryCharacteristicDefinitionType::setThirdCompositeSegmentSymmetryDefinition(CompositeSegmentSymmetryDefinitionType * ThirdCompositeSegmentSymmetryDefinitionIn)
 {ThirdCompositeSegmentSymmetryDefinition = ThirdCompositeSegmentSymmetryDefinitionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SymmetryCharacteristicItemType
 
@@ -75727,7 +75727,7 @@ bool SymmetryCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SymmetryCharacteristicMeasurementType
 
@@ -76073,7 +76073,7 @@ CompositeSegmentSymmetryMeasurementType * SymmetryCharacteristicMeasurementType:
 void SymmetryCharacteristicMeasurementType::setThirdCompositeSegmentSymmetryMeasurement(CompositeSegmentSymmetryMeasurementType * ThirdCompositeSegmentSymmetryMeasurementIn)
 {ThirdCompositeSegmentSymmetryMeasurement = ThirdCompositeSegmentSymmetryMeasurementIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SymmetryCharacteristicNominalType
 
@@ -76305,7 +76305,7 @@ bool SymmetryCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TemperatureCharacteristicDefinitionBaseType
 
@@ -76314,7 +76314,7 @@ bool SymmetryCharacteristicNominalType::badAttributes(
 TemperatureCharacteristicDefinitionBaseType::TemperatureCharacteristicDefinitionBaseType() :
   CharacteristicDefinitionBaseType()
 {
-  TemperatureChar_1072 = 0;
+  TemperatureChar_1073 = 0;
 }
 
 TemperatureCharacteristicDefinitionBaseType::TemperatureCharacteristicDefinitionBaseType(
@@ -76331,7 +76331,7 @@ TemperatureCharacteristicDefinitionBaseType::TemperatureCharacteristicDefinition
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- TemperatureChar_1072_Type * TemperatureChar_1072In) :
+ TemperatureChar_1073_Type * TemperatureChar_1073In) :
   CharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -76347,7 +76347,7 @@ TemperatureCharacteristicDefinitionBaseType::TemperatureCharacteristicDefinition
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  TemperatureChar_1072 = TemperatureChar_1072In;
+  TemperatureChar_1073 = TemperatureChar_1073In;
 }
 
 TemperatureCharacteristicDefinitionBaseType::TemperatureCharacteristicDefinitionBaseType(
@@ -76365,7 +76365,7 @@ TemperatureCharacteristicDefinitionBaseType::TemperatureCharacteristicDefinition
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- TemperatureChar_1072_Type * TemperatureChar_1072In) :
+ TemperatureChar_1073_Type * TemperatureChar_1073In) :
   CharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -76382,13 +76382,13 @@ TemperatureCharacteristicDefinitionBaseType::TemperatureCharacteristicDefinition
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  TemperatureChar_1072 = TemperatureChar_1072In;
+  TemperatureChar_1073 = TemperatureChar_1073In;
 }
 
 TemperatureCharacteristicDefinitionBaseType::~TemperatureCharacteristicDefinitionBaseType()
 {
   #ifndef NODESTRUCT
-  delete TemperatureChar_1072;
+  delete TemperatureChar_1073;
   #endif
 }
 
@@ -76514,7 +76514,7 @@ void TemperatureCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  TemperatureChar_1072->printSelf(outFile);
+  TemperatureChar_1073->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -76575,13 +76575,13 @@ bool TemperatureCharacteristicDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-TemperatureChar_1072_Type * TemperatureCharacteristicDefinitionBaseType::getTemperatureChar_1072()
-{return TemperatureChar_1072;}
+TemperatureChar_1073_Type * TemperatureCharacteristicDefinitionBaseType::getTemperatureChar_1073()
+{return TemperatureChar_1073;}
 
-void TemperatureCharacteristicDefinitionBaseType::setTemperatureChar_1072(TemperatureChar_1072_Type * TemperatureChar_1072In)
-{TemperatureChar_1072 = TemperatureChar_1072In;}
+void TemperatureCharacteristicDefinitionBaseType::setTemperatureChar_1073(TemperatureChar_1073_Type * TemperatureChar_1073In)
+{TemperatureChar_1073 = TemperatureChar_1073In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TemperatureCharacteristicItemBaseType
 
@@ -76823,7 +76823,7 @@ bool TemperatureCharacteristicItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TemperatureCharacteristicMeasurementBaseType
 
@@ -77130,7 +77130,7 @@ MeasuredTemperatureValueType * TemperatureCharacteristicMeasurementBaseType::get
 void TemperatureCharacteristicMeasurementBaseType::setMinValue(MeasuredTemperatureValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TemperatureCharacteristicNominalBaseType
 
@@ -77381,7 +77381,7 @@ TemperatureValueType * TemperatureCharacteristicNominalBaseType::getTargetValue(
 void TemperatureCharacteristicNominalBaseType::setTargetValue(TemperatureValueType * TargetValueIn)
 {TargetValue = TargetValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThicknessCharacteristicDefinitionType
 
@@ -77408,7 +77408,7 @@ ThicknessCharacteristicDefinitionType::ThicknessCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -77425,7 +77425,7 @@ ThicknessCharacteristicDefinitionType::ThicknessCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -77446,7 +77446,7 @@ ThicknessCharacteristicDefinitionType::ThicknessCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -77464,7 +77464,7 @@ ThicknessCharacteristicDefinitionType::ThicknessCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -77611,7 +77611,7 @@ void ThicknessCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1058->printSelf(outFile);
+  LinearCharacter_1059->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -77672,7 +77672,7 @@ bool ThicknessCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThicknessCharacteristicItemType
 
@@ -77914,7 +77914,7 @@ bool ThicknessCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThicknessCharacteristicMeasurementType
 
@@ -78197,7 +78197,7 @@ bool ThicknessCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThicknessCharacteristicNominalType
 
@@ -78451,7 +78451,7 @@ bool ThicknessCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadCharacteristicDefinitionType
 
@@ -78730,7 +78730,7 @@ QIFReferenceType * ThreadCharacteristicDefinitionType::getThreadSpecificationId(
 void ThreadCharacteristicDefinitionType::setThreadSpecificationId(QIFReferenceType * ThreadSpecificationIdIn)
 {ThreadSpecificationId = ThreadSpecificationIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadCharacteristicItemType
 
@@ -78972,7 +78972,7 @@ bool ThreadCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadCharacteristicMeasurementType
 
@@ -79260,7 +79260,7 @@ MeasuredLinearValueType * ThreadCharacteristicMeasurementType::getFunctionalSize
 void ThreadCharacteristicMeasurementType::setFunctionalSize(MeasuredLinearValueType * FunctionalSizeIn)
 {FunctionalSize = FunctionalSizeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadCharacteristicNominalType
 
@@ -79492,7 +79492,7 @@ bool ThreadCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TimeCharacteristicDefinitionBaseType
 
@@ -79501,7 +79501,7 @@ bool ThreadCharacteristicNominalType::badAttributes(
 TimeCharacteristicDefinitionBaseType::TimeCharacteristicDefinitionBaseType() :
   CharacteristicDefinitionBaseType()
 {
-  TimeCharacteris_1073 = 0;
+  TimeCharacteris_1074 = 0;
 }
 
 TimeCharacteristicDefinitionBaseType::TimeCharacteristicDefinitionBaseType(
@@ -79518,7 +79518,7 @@ TimeCharacteristicDefinitionBaseType::TimeCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- TimeCharacteris_1073_Type * TimeCharacteris_1073In) :
+ TimeCharacteris_1074_Type * TimeCharacteris_1074In) :
   CharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -79534,7 +79534,7 @@ TimeCharacteristicDefinitionBaseType::TimeCharacteristicDefinitionBaseType(
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  TimeCharacteris_1073 = TimeCharacteris_1073In;
+  TimeCharacteris_1074 = TimeCharacteris_1074In;
 }
 
 TimeCharacteristicDefinitionBaseType::TimeCharacteristicDefinitionBaseType(
@@ -79552,7 +79552,7 @@ TimeCharacteristicDefinitionBaseType::TimeCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- TimeCharacteris_1073_Type * TimeCharacteris_1073In) :
+ TimeCharacteris_1074_Type * TimeCharacteris_1074In) :
   CharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -79569,13 +79569,13 @@ TimeCharacteristicDefinitionBaseType::TimeCharacteristicDefinitionBaseType(
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  TimeCharacteris_1073 = TimeCharacteris_1073In;
+  TimeCharacteris_1074 = TimeCharacteris_1074In;
 }
 
 TimeCharacteristicDefinitionBaseType::~TimeCharacteristicDefinitionBaseType()
 {
   #ifndef NODESTRUCT
-  delete TimeCharacteris_1073;
+  delete TimeCharacteris_1074;
   #endif
 }
 
@@ -79701,7 +79701,7 @@ void TimeCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  TimeCharacteris_1073->printSelf(outFile);
+  TimeCharacteris_1074->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -79762,13 +79762,13 @@ bool TimeCharacteristicDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-TimeCharacteris_1073_Type * TimeCharacteristicDefinitionBaseType::getTimeCharacteris_1073()
-{return TimeCharacteris_1073;}
+TimeCharacteris_1074_Type * TimeCharacteristicDefinitionBaseType::getTimeCharacteris_1074()
+{return TimeCharacteris_1074;}
 
-void TimeCharacteristicDefinitionBaseType::setTimeCharacteris_1073(TimeCharacteris_1073_Type * TimeCharacteris_1073In)
-{TimeCharacteris_1073 = TimeCharacteris_1073In;}
+void TimeCharacteristicDefinitionBaseType::setTimeCharacteris_1074(TimeCharacteris_1074_Type * TimeCharacteris_1074In)
+{TimeCharacteris_1074 = TimeCharacteris_1074In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TimeCharacteristicItemBaseType
 
@@ -80010,7 +80010,7 @@ bool TimeCharacteristicItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TimeCharacteristicMeasurementBaseType
 
@@ -80317,7 +80317,7 @@ MeasuredTimeValueType * TimeCharacteristicMeasurementBaseType::getMinValue()
 void TimeCharacteristicMeasurementBaseType::setMinValue(MeasuredTimeValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TimeCharacteristicNominalBaseType
 
@@ -80568,7 +80568,7 @@ TimeValueType * TimeCharacteristicNominalBaseType::getTargetValue()
 void TimeCharacteristicNominalBaseType::setTargetValue(TimeValueType * TargetValueIn)
 {TargetValue = TargetValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToleranceDefinitionsType
 
@@ -80647,7 +80647,7 @@ ToleranceDefinitionsTypeChoicePairLisd * ToleranceDefinitionsType::getToleranceD
 void ToleranceDefinitionsType::setToleranceDefinitionsTypePairs(ToleranceDefinitionsTypeChoicePairLisd * ToleranceDefinitionsTypePairsIn)
 {ToleranceDefinitionsTypePairs = ToleranceDefinitionsTypePairsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToleranceDefinitionsTypeChoicePair
 
@@ -80693,7 +80693,7 @@ void ToleranceDefinitionsTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToleranceDefinitionsTypeChoicePairLisd
 
@@ -80794,7 +80794,7 @@ NaturalType * ToleranceDefinitionsType::getn()
 void ToleranceDefinitionsType::setn(NaturalType * nIn)
 {n = nIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidicityCharacteristicDefinitionType
 
@@ -80821,7 +80821,7 @@ ToroidicityCharacteristicDefinitionType::ToroidicityCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -80842,7 +80842,7 @@ ToroidicityCharacteristicDefinitionType::ToroidicityCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -80867,7 +80867,7 @@ ToroidicityCharacteristicDefinitionType::ToroidicityCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -80889,7 +80889,7 @@ ToroidicityCharacteristicDefinitionType::ToroidicityCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -81029,9 +81029,9 @@ void ToroidicityCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -81148,7 +81148,7 @@ LinearDualValueType * ToroidicityCharacteristicDefinitionType::getToleranceDualV
 void ToroidicityCharacteristicDefinitionType::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
 {ToleranceDualValue = ToleranceDualValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidicityCharacteristicItemType
 
@@ -81390,7 +81390,7 @@ bool ToroidicityCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidicityCharacteristicMeasurementType
 
@@ -81673,7 +81673,7 @@ bool ToroidicityCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidicityCharacteristicNominalType
 
@@ -81905,7 +81905,7 @@ bool ToroidicityCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TotalRunoutCharacteristicDefinitionType
 
@@ -81930,7 +81930,7 @@ TotalRunoutCharacteristicDefinitionType::TotalRunoutCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -81952,7 +81952,7 @@ TotalRunoutCharacteristicDefinitionType::TotalRunoutCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -81978,7 +81978,7 @@ TotalRunoutCharacteristicDefinitionType::TotalRunoutCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1057_Type * GeometricCharac_1057In,
+ GeometricCharac_1058_Type * GeometricCharac_1058In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -82001,7 +82001,7 @@ TotalRunoutCharacteristicDefinitionType::TotalRunoutCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1057In,
+    GeometricCharac_1058In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -82140,9 +82140,9 @@ void TotalRunoutCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1057)
+  if (GeometricCharac_1058)
     {
-      GeometricCharac_1057->printSelf(outFile);
+      GeometricCharac_1058->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -82254,7 +82254,7 @@ bool TotalRunoutCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TotalRunoutCharacteristicItemType
 
@@ -82496,7 +82496,7 @@ bool TotalRunoutCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TotalRunoutCharacteristicMeasurementType
 
@@ -82790,7 +82790,7 @@ bool TotalRunoutCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TotalRunoutCharacteristicNominalType
 
@@ -83022,7 +83022,7 @@ bool TotalRunoutCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedAngularCharacteristicDefinitionType
 
@@ -83050,7 +83050,7 @@ UserDefinedAngularCharacteristicDefinitionType::UserDefinedAngularCharacteristic
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCharacte_1045_Type * AngularCharacte_1045In,
+ AngularCharacte_1046_Type * AngularCharacte_1046In,
  XmlString * WhatToMeasureIn) :
   AngularCharacteristicDefinitionBaseType(
     AttributesIn,
@@ -83068,7 +83068,7 @@ UserDefinedAngularCharacteristicDefinitionType::UserDefinedAngularCharacteristic
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    AngularCharacte_1045In)
+    AngularCharacte_1046In)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -83090,7 +83090,7 @@ UserDefinedAngularCharacteristicDefinitionType::UserDefinedAngularCharacteristic
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCharacte_1045_Type * AngularCharacte_1045In,
+ AngularCharacte_1046_Type * AngularCharacte_1046In,
  XmlString * WhatToMeasureIn) :
   AngularCharacteristicDefinitionBaseType(
     idIn,
@@ -83109,7 +83109,7 @@ UserDefinedAngularCharacteristicDefinitionType::UserDefinedAngularCharacteristic
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    AngularCharacte_1045In)
+    AngularCharacte_1046In)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -83258,7 +83258,7 @@ void UserDefinedAngularCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  AngularCharacte_1045->printSelf(outFile);
+  AngularCharacte_1046->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<WhatToMeasure");
   WhatToMeasure->printSelf(outFile);
@@ -83329,7 +83329,7 @@ XmlString * UserDefinedAngularCharacteristicDefinitionType::getWhatToMeasure()
 void UserDefinedAngularCharacteristicDefinitionType::setWhatToMeasure(XmlString * WhatToMeasureIn)
 {WhatToMeasure = WhatToMeasureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedAngularCharacteristicItemType
 
@@ -83571,7 +83571,7 @@ bool UserDefinedAngularCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedAngularCharacteristicMeasurementType
 
@@ -83854,7 +83854,7 @@ bool UserDefinedAngularCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedAngularCharacteristicNominalType
 
@@ -84097,7 +84097,7 @@ bool UserDefinedAngularCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedAreaCharacteristicDefinitionType
 
@@ -84123,7 +84123,7 @@ UserDefinedAreaCharacteristicDefinitionType::UserDefinedAreaCharacteristicDefini
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- AreaCharacteris_1047_Type * AreaCharacteris_1047In,
+ AreaCharacteris_1048_Type * AreaCharacteris_1048In,
  XmlString * WhatToMeasureIn) :
   AreaCharacteristicDefinitionBaseType(
     AttributesIn,
@@ -84139,7 +84139,7 @@ UserDefinedAreaCharacteristicDefinitionType::UserDefinedAreaCharacteristicDefini
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    AreaCharacteris_1047In)
+    AreaCharacteris_1048In)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -84159,7 +84159,7 @@ UserDefinedAreaCharacteristicDefinitionType::UserDefinedAreaCharacteristicDefini
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- AreaCharacteris_1047_Type * AreaCharacteris_1047In,
+ AreaCharacteris_1048_Type * AreaCharacteris_1048In,
  XmlString * WhatToMeasureIn) :
   AreaCharacteristicDefinitionBaseType(
     idIn,
@@ -84176,7 +84176,7 @@ UserDefinedAreaCharacteristicDefinitionType::UserDefinedAreaCharacteristicDefini
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    AreaCharacteris_1047In)
+    AreaCharacteris_1048In)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -84310,7 +84310,7 @@ void UserDefinedAreaCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  AreaCharacteris_1047->printSelf(outFile);
+  AreaCharacteris_1048->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<WhatToMeasure");
   WhatToMeasure->printSelf(outFile);
@@ -84381,7 +84381,7 @@ XmlString * UserDefinedAreaCharacteristicDefinitionType::getWhatToMeasure()
 void UserDefinedAreaCharacteristicDefinitionType::setWhatToMeasure(XmlString * WhatToMeasureIn)
 {WhatToMeasure = WhatToMeasureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedAreaCharacteristicItemType
 
@@ -84623,7 +84623,7 @@ bool UserDefinedAreaCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedAreaCharacteristicMeasurementType
 
@@ -84906,7 +84906,7 @@ bool UserDefinedAreaCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedAreaCharacteristicNominalType
 
@@ -85149,7 +85149,7 @@ bool UserDefinedAreaCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedAttributeCharacteristicDefinitionType
 
@@ -85428,7 +85428,7 @@ XmlString * UserDefinedAttributeCharacteristicDefinitionType::getWhatToMeasure()
 void UserDefinedAttributeCharacteristicDefinitionType::setWhatToMeasure(XmlString * WhatToMeasureIn)
 {WhatToMeasure = WhatToMeasureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedAttributeCharacteristicItemType
 
@@ -85670,7 +85670,7 @@ bool UserDefinedAttributeCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedAttributeCharacteristicMeasurementType
 
@@ -85939,7 +85939,7 @@ XmlString * UserDefinedAttributeCharacteristicMeasurementType::getValue()
 void UserDefinedAttributeCharacteristicMeasurementType::setValue(XmlString * ValueIn)
 {Value = ValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedAttributeCharacteristicNominalType
 
@@ -86211,7 +86211,7 @@ StringValuesType * UserDefinedAttributeCharacteristicNominalType::getFailValues(
 void UserDefinedAttributeCharacteristicNominalType::setFailValues(StringValuesType * FailValuesIn)
 {FailValues = FailValuesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedForceCharacteristicDefinitionType
 
@@ -86237,7 +86237,7 @@ UserDefinedForceCharacteristicDefinitionType::UserDefinedForceCharacteristicDefi
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- ForceCharacteri_1056_Type * ForceCharacteri_1056In,
+ ForceCharacteri_1057_Type * ForceCharacteri_1057In,
  XmlString * WhatToMeasureIn) :
   ForceCharacteristicDefinitionBaseType(
     AttributesIn,
@@ -86253,7 +86253,7 @@ UserDefinedForceCharacteristicDefinitionType::UserDefinedForceCharacteristicDefi
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    ForceCharacteri_1056In)
+    ForceCharacteri_1057In)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -86273,7 +86273,7 @@ UserDefinedForceCharacteristicDefinitionType::UserDefinedForceCharacteristicDefi
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- ForceCharacteri_1056_Type * ForceCharacteri_1056In,
+ ForceCharacteri_1057_Type * ForceCharacteri_1057In,
  XmlString * WhatToMeasureIn) :
   ForceCharacteristicDefinitionBaseType(
     idIn,
@@ -86290,7 +86290,7 @@ UserDefinedForceCharacteristicDefinitionType::UserDefinedForceCharacteristicDefi
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    ForceCharacteri_1056In)
+    ForceCharacteri_1057In)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -86424,7 +86424,7 @@ void UserDefinedForceCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  ForceCharacteri_1056->printSelf(outFile);
+  ForceCharacteri_1057->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<WhatToMeasure");
   WhatToMeasure->printSelf(outFile);
@@ -86495,7 +86495,7 @@ XmlString * UserDefinedForceCharacteristicDefinitionType::getWhatToMeasure()
 void UserDefinedForceCharacteristicDefinitionType::setWhatToMeasure(XmlString * WhatToMeasureIn)
 {WhatToMeasure = WhatToMeasureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedForceCharacteristicItemType
 
@@ -86737,7 +86737,7 @@ bool UserDefinedForceCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedForceCharacteristicMeasurementType
 
@@ -87020,7 +87020,7 @@ bool UserDefinedForceCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedForceCharacteristicNominalType
 
@@ -87263,7 +87263,7 @@ bool UserDefinedForceCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedLinearCharacteristicDefinitionType
 
@@ -87291,7 +87291,7 @@ UserDefinedLinearCharacteristicDefinitionType::UserDefinedLinearCharacteristicDe
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In,
+ LinearCharacter_1059_Type * LinearCharacter_1059In,
  XmlString * WhatToMeasureIn) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
@@ -87309,7 +87309,7 @@ UserDefinedLinearCharacteristicDefinitionType::UserDefinedLinearCharacteristicDe
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -87331,7 +87331,7 @@ UserDefinedLinearCharacteristicDefinitionType::UserDefinedLinearCharacteristicDe
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In,
+ LinearCharacter_1059_Type * LinearCharacter_1059In,
  XmlString * WhatToMeasureIn) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
@@ -87350,7 +87350,7 @@ UserDefinedLinearCharacteristicDefinitionType::UserDefinedLinearCharacteristicDe
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -87499,7 +87499,7 @@ void UserDefinedLinearCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1058->printSelf(outFile);
+  LinearCharacter_1059->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<WhatToMeasure");
   WhatToMeasure->printSelf(outFile);
@@ -87570,7 +87570,7 @@ XmlString * UserDefinedLinearCharacteristicDefinitionType::getWhatToMeasure()
 void UserDefinedLinearCharacteristicDefinitionType::setWhatToMeasure(XmlString * WhatToMeasureIn)
 {WhatToMeasure = WhatToMeasureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedLinearCharacteristicItemType
 
@@ -87812,7 +87812,7 @@ bool UserDefinedLinearCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedLinearCharacteristicMeasurementType
 
@@ -88095,7 +88095,7 @@ bool UserDefinedLinearCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedLinearCharacteristicNominalType
 
@@ -88349,7 +88349,7 @@ bool UserDefinedLinearCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedMassCharacteristicDefinitionType
 
@@ -88375,7 +88375,7 @@ UserDefinedMassCharacteristicDefinitionType::UserDefinedMassCharacteristicDefini
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- MassCharacteris_1063_Type * MassCharacteris_1063In,
+ MassCharacteris_1064_Type * MassCharacteris_1064In,
  XmlString * WhatToMeasureIn) :
   MassCharacteristicDefinitionBaseType(
     AttributesIn,
@@ -88391,7 +88391,7 @@ UserDefinedMassCharacteristicDefinitionType::UserDefinedMassCharacteristicDefini
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    MassCharacteris_1063In)
+    MassCharacteris_1064In)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -88411,7 +88411,7 @@ UserDefinedMassCharacteristicDefinitionType::UserDefinedMassCharacteristicDefini
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- MassCharacteris_1063_Type * MassCharacteris_1063In,
+ MassCharacteris_1064_Type * MassCharacteris_1064In,
  XmlString * WhatToMeasureIn) :
   MassCharacteristicDefinitionBaseType(
     idIn,
@@ -88428,7 +88428,7 @@ UserDefinedMassCharacteristicDefinitionType::UserDefinedMassCharacteristicDefini
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    MassCharacteris_1063In)
+    MassCharacteris_1064In)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -88562,7 +88562,7 @@ void UserDefinedMassCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  MassCharacteris_1063->printSelf(outFile);
+  MassCharacteris_1064->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<WhatToMeasure");
   WhatToMeasure->printSelf(outFile);
@@ -88633,7 +88633,7 @@ XmlString * UserDefinedMassCharacteristicDefinitionType::getWhatToMeasure()
 void UserDefinedMassCharacteristicDefinitionType::setWhatToMeasure(XmlString * WhatToMeasureIn)
 {WhatToMeasure = WhatToMeasureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedMassCharacteristicItemType
 
@@ -88875,7 +88875,7 @@ bool UserDefinedMassCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedMassCharacteristicMeasurementType
 
@@ -89158,7 +89158,7 @@ bool UserDefinedMassCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedMassCharacteristicNominalType
 
@@ -89401,7 +89401,7 @@ bool UserDefinedMassCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedPressureCharacteristicDefinitionType
 
@@ -89427,7 +89427,7 @@ UserDefinedPressureCharacteristicDefinitionType::UserDefinedPressureCharacterist
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- PressureCharact_1066_Type * PressureCharact_1066In,
+ PressureCharact_1067_Type * PressureCharact_1067In,
  XmlString * WhatToMeasureIn) :
   PressureCharacteristicDefinitionBaseType(
     AttributesIn,
@@ -89443,7 +89443,7 @@ UserDefinedPressureCharacteristicDefinitionType::UserDefinedPressureCharacterist
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    PressureCharact_1066In)
+    PressureCharact_1067In)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -89463,7 +89463,7 @@ UserDefinedPressureCharacteristicDefinitionType::UserDefinedPressureCharacterist
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- PressureCharact_1066_Type * PressureCharact_1066In,
+ PressureCharact_1067_Type * PressureCharact_1067In,
  XmlString * WhatToMeasureIn) :
   PressureCharacteristicDefinitionBaseType(
     idIn,
@@ -89480,7 +89480,7 @@ UserDefinedPressureCharacteristicDefinitionType::UserDefinedPressureCharacterist
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    PressureCharact_1066In)
+    PressureCharact_1067In)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -89614,7 +89614,7 @@ void UserDefinedPressureCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  PressureCharact_1066->printSelf(outFile);
+  PressureCharact_1067->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<WhatToMeasure");
   WhatToMeasure->printSelf(outFile);
@@ -89685,7 +89685,7 @@ XmlString * UserDefinedPressureCharacteristicDefinitionType::getWhatToMeasure()
 void UserDefinedPressureCharacteristicDefinitionType::setWhatToMeasure(XmlString * WhatToMeasureIn)
 {WhatToMeasure = WhatToMeasureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedPressureCharacteristicItemType
 
@@ -89927,7 +89927,7 @@ bool UserDefinedPressureCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedPressureCharacteristicMeasurementType
 
@@ -90210,7 +90210,7 @@ bool UserDefinedPressureCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedPressureCharacteristicNominalType
 
@@ -90453,7 +90453,7 @@ bool UserDefinedPressureCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedSpeedCharacteristicDefinitionType
 
@@ -90479,7 +90479,7 @@ UserDefinedSpeedCharacteristicDefinitionType::UserDefinedSpeedCharacteristicDefi
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- SpeedCharacteri_1068_Type * SpeedCharacteri_1068In,
+ SpeedCharacteri_1069_Type * SpeedCharacteri_1069In,
  XmlString * WhatToMeasureIn) :
   SpeedCharacteristicDefinitionBaseType(
     AttributesIn,
@@ -90495,7 +90495,7 @@ UserDefinedSpeedCharacteristicDefinitionType::UserDefinedSpeedCharacteristicDefi
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    SpeedCharacteri_1068In)
+    SpeedCharacteri_1069In)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -90515,7 +90515,7 @@ UserDefinedSpeedCharacteristicDefinitionType::UserDefinedSpeedCharacteristicDefi
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- SpeedCharacteri_1068_Type * SpeedCharacteri_1068In,
+ SpeedCharacteri_1069_Type * SpeedCharacteri_1069In,
  XmlString * WhatToMeasureIn) :
   SpeedCharacteristicDefinitionBaseType(
     idIn,
@@ -90532,7 +90532,7 @@ UserDefinedSpeedCharacteristicDefinitionType::UserDefinedSpeedCharacteristicDefi
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    SpeedCharacteri_1068In)
+    SpeedCharacteri_1069In)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -90666,7 +90666,7 @@ void UserDefinedSpeedCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  SpeedCharacteri_1068->printSelf(outFile);
+  SpeedCharacteri_1069->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<WhatToMeasure");
   WhatToMeasure->printSelf(outFile);
@@ -90737,7 +90737,7 @@ XmlString * UserDefinedSpeedCharacteristicDefinitionType::getWhatToMeasure()
 void UserDefinedSpeedCharacteristicDefinitionType::setWhatToMeasure(XmlString * WhatToMeasureIn)
 {WhatToMeasure = WhatToMeasureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedSpeedCharacteristicItemType
 
@@ -90979,7 +90979,7 @@ bool UserDefinedSpeedCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedSpeedCharacteristicMeasurementType
 
@@ -91262,7 +91262,7 @@ bool UserDefinedSpeedCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedSpeedCharacteristicNominalType
 
@@ -91505,7 +91505,7 @@ bool UserDefinedSpeedCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedTemperatureCharacteristicDefinitionType
 
@@ -91531,7 +91531,7 @@ UserDefinedTemperatureCharacteristicDefinitionType::UserDefinedTemperatureCharac
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- TemperatureChar_1072_Type * TemperatureChar_1072In,
+ TemperatureChar_1073_Type * TemperatureChar_1073In,
  XmlString * WhatToMeasureIn) :
   TemperatureCharacteristicDefinitionBaseType(
     AttributesIn,
@@ -91547,7 +91547,7 @@ UserDefinedTemperatureCharacteristicDefinitionType::UserDefinedTemperatureCharac
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    TemperatureChar_1072In)
+    TemperatureChar_1073In)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -91567,7 +91567,7 @@ UserDefinedTemperatureCharacteristicDefinitionType::UserDefinedTemperatureCharac
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- TemperatureChar_1072_Type * TemperatureChar_1072In,
+ TemperatureChar_1073_Type * TemperatureChar_1073In,
  XmlString * WhatToMeasureIn) :
   TemperatureCharacteristicDefinitionBaseType(
     idIn,
@@ -91584,7 +91584,7 @@ UserDefinedTemperatureCharacteristicDefinitionType::UserDefinedTemperatureCharac
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    TemperatureChar_1072In)
+    TemperatureChar_1073In)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -91718,7 +91718,7 @@ void UserDefinedTemperatureCharacteristicDefinitionType::printSelf(FILE * outFil
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  TemperatureChar_1072->printSelf(outFile);
+  TemperatureChar_1073->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<WhatToMeasure");
   WhatToMeasure->printSelf(outFile);
@@ -91789,7 +91789,7 @@ XmlString * UserDefinedTemperatureCharacteristicDefinitionType::getWhatToMeasure
 void UserDefinedTemperatureCharacteristicDefinitionType::setWhatToMeasure(XmlString * WhatToMeasureIn)
 {WhatToMeasure = WhatToMeasureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedTemperatureCharacteristicItemType
 
@@ -92031,7 +92031,7 @@ bool UserDefinedTemperatureCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedTemperatureCharacteristicMeasurementType
 
@@ -92314,7 +92314,7 @@ bool UserDefinedTemperatureCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedTemperatureCharacteristicNominalType
 
@@ -92557,7 +92557,7 @@ bool UserDefinedTemperatureCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedTimeCharacteristicDefinitionType
 
@@ -92583,7 +92583,7 @@ UserDefinedTimeCharacteristicDefinitionType::UserDefinedTimeCharacteristicDefini
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- TimeCharacteris_1073_Type * TimeCharacteris_1073In,
+ TimeCharacteris_1074_Type * TimeCharacteris_1074In,
  XmlString * WhatToMeasureIn) :
   TimeCharacteristicDefinitionBaseType(
     AttributesIn,
@@ -92599,7 +92599,7 @@ UserDefinedTimeCharacteristicDefinitionType::UserDefinedTimeCharacteristicDefini
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    TimeCharacteris_1073In)
+    TimeCharacteris_1074In)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -92619,7 +92619,7 @@ UserDefinedTimeCharacteristicDefinitionType::UserDefinedTimeCharacteristicDefini
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- TimeCharacteris_1073_Type * TimeCharacteris_1073In,
+ TimeCharacteris_1074_Type * TimeCharacteris_1074In,
  XmlString * WhatToMeasureIn) :
   TimeCharacteristicDefinitionBaseType(
     idIn,
@@ -92636,7 +92636,7 @@ UserDefinedTimeCharacteristicDefinitionType::UserDefinedTimeCharacteristicDefini
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    TimeCharacteris_1073In)
+    TimeCharacteris_1074In)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -92770,7 +92770,7 @@ void UserDefinedTimeCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  TimeCharacteris_1073->printSelf(outFile);
+  TimeCharacteris_1074->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<WhatToMeasure");
   WhatToMeasure->printSelf(outFile);
@@ -92841,7 +92841,7 @@ XmlString * UserDefinedTimeCharacteristicDefinitionType::getWhatToMeasure()
 void UserDefinedTimeCharacteristicDefinitionType::setWhatToMeasure(XmlString * WhatToMeasureIn)
 {WhatToMeasure = WhatToMeasureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedTimeCharacteristicItemType
 
@@ -93083,7 +93083,7 @@ bool UserDefinedTimeCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedTimeCharacteristicMeasurementType
 
@@ -93366,7 +93366,7 @@ bool UserDefinedTimeCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedTimeCharacteristicNominalType
 
@@ -93609,7 +93609,7 @@ bool UserDefinedTimeCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedUnitCharacteristicDefinitionType
 
@@ -93872,7 +93872,7 @@ bool UserDefinedUnitCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedUnitCharacteristicItemType
 
@@ -94114,7 +94114,7 @@ bool UserDefinedUnitCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedUnitCharacteristicMeasurementType
 
@@ -94421,7 +94421,7 @@ MeasuredUserDefinedUnitValueType * UserDefinedUnitCharacteristicMeasurementType:
 void UserDefinedUnitCharacteristicMeasurementType::setMinValue(MeasuredUserDefinedUnitValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedUnitCharacteristicNominalType
 
@@ -94431,7 +94431,7 @@ UserDefinedUnitCharacteristicNominalType::UserDefinedUnitCharacteristicNominalTy
   CharacteristicNominalBaseType()
 {
   TargetValue = 0;
-  UserDefinedUnit_1074 = 0;
+  UserDefinedUnit_1075 = 0;
   DefinedAsLimit = 0;
 }
 
@@ -94447,7 +94447,7 @@ UserDefinedUnitCharacteristicNominalType::UserDefinedUnitCharacteristicNominalTy
  XmlToken * NameIn,
  CharacteristicDesignatorType * CharacteristicDesignatorIn,
  UserDefinedUnitValueType * TargetValueIn,
- UserDefinedUnit_1074_Type * UserDefinedUnit_1074In,
+ UserDefinedUnit_1075_Type * UserDefinedUnit_1075In,
  XmlBoolean * DefinedAsLimitIn) :
   CharacteristicNominalBaseType(
     AttributesIn,
@@ -94462,7 +94462,7 @@ UserDefinedUnitCharacteristicNominalType::UserDefinedUnitCharacteristicNominalTy
     CharacteristicDesignatorIn)
 {
   TargetValue = TargetValueIn;
-  UserDefinedUnit_1074 = UserDefinedUnit_1074In;
+  UserDefinedUnit_1075 = UserDefinedUnit_1075In;
   DefinedAsLimit = DefinedAsLimitIn;
 }
 
@@ -94479,7 +94479,7 @@ UserDefinedUnitCharacteristicNominalType::UserDefinedUnitCharacteristicNominalTy
  XmlToken * NameIn,
  CharacteristicDesignatorType * CharacteristicDesignatorIn,
  UserDefinedUnitValueType * TargetValueIn,
- UserDefinedUnit_1074_Type * UserDefinedUnit_1074In,
+ UserDefinedUnit_1075_Type * UserDefinedUnit_1075In,
  XmlBoolean * DefinedAsLimitIn) :
   CharacteristicNominalBaseType(
     idIn,
@@ -94495,7 +94495,7 @@ UserDefinedUnitCharacteristicNominalType::UserDefinedUnitCharacteristicNominalTy
     CharacteristicDesignatorIn)
 {
   TargetValue = TargetValueIn;
-  UserDefinedUnit_1074 = UserDefinedUnit_1074In;
+  UserDefinedUnit_1075 = UserDefinedUnit_1075In;
   DefinedAsLimit = DefinedAsLimitIn;
 }
 
@@ -94503,7 +94503,7 @@ UserDefinedUnitCharacteristicNominalType::~UserDefinedUnitCharacteristicNominalT
 {
   #ifndef NODESTRUCT
   delete TargetValue;
-  delete UserDefinedUnit_1074;
+  delete UserDefinedUnit_1075;
   delete DefinedAsLimit;
   #endif
 }
@@ -94615,7 +94615,7 @@ void UserDefinedUnitCharacteristicNominalType::printSelf(FILE * outFile)
   fprintf(outFile, "<TargetValue");
   TargetValue->printSelf(outFile);
   fprintf(outFile, "</TargetValue>\n");
-  UserDefinedUnit_1074->printSelf(outFile);
+  UserDefinedUnit_1075->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<DefinedAsLimit");
   DefinedAsLimit->printSelf(outFile);
@@ -94686,11 +94686,11 @@ UserDefinedUnitValueType * UserDefinedUnitCharacteristicNominalType::getTargetVa
 void UserDefinedUnitCharacteristicNominalType::setTargetValue(UserDefinedUnitValueType * TargetValueIn)
 {TargetValue = TargetValueIn;}
 
-UserDefinedUnit_1074_Type * UserDefinedUnitCharacteristicNominalType::getUserDefinedUnit_1074()
-{return UserDefinedUnit_1074;}
+UserDefinedUnit_1075_Type * UserDefinedUnitCharacteristicNominalType::getUserDefinedUnit_1075()
+{return UserDefinedUnit_1075;}
 
-void UserDefinedUnitCharacteristicNominalType::setUserDefinedUnit_1074(UserDefinedUnit_1074_Type * UserDefinedUnit_1074In)
-{UserDefinedUnit_1074 = UserDefinedUnit_1074In;}
+void UserDefinedUnitCharacteristicNominalType::setUserDefinedUnit_1075(UserDefinedUnit_1075_Type * UserDefinedUnit_1075In)
+{UserDefinedUnit_1075 = UserDefinedUnit_1075In;}
 
 XmlBoolean * UserDefinedUnitCharacteristicNominalType::getDefinedAsLimit()
 {return DefinedAsLimit;}
@@ -94698,7 +94698,7 @@ XmlBoolean * UserDefinedUnitCharacteristicNominalType::getDefinedAsLimit()
 void UserDefinedUnitCharacteristicNominalType::setDefinedAsLimit(XmlBoolean * DefinedAsLimitIn)
 {DefinedAsLimit = DefinedAsLimitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldBevelCharacteristicDefinitionType
 
@@ -94961,7 +94961,7 @@ bool WeldBevelCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldBevelCharacteristicItemType
 
@@ -95203,7 +95203,7 @@ bool WeldBevelCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldBevelCharacteristicMeasurementType
 
@@ -95227,7 +95227,7 @@ WeldBevelCharacteristicMeasurementType::WeldBevelCharacteristicMeasurementType(
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1078_Type * WeldGrooveChara_1078In) :
+ WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
   WeldGrooveCharacteristicMeasurementType(
     AttributesIn,
     DescriptionIn,
@@ -95241,7 +95241,7 @@ WeldBevelCharacteristicMeasurementType::WeldBevelCharacteristicMeasurementType(
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1078In)
+    WeldGrooveChara_1079In)
 {
 }
 
@@ -95259,7 +95259,7 @@ WeldBevelCharacteristicMeasurementType::WeldBevelCharacteristicMeasurementType(
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1078_Type * WeldGrooveChara_1078In) :
+ WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
   WeldGrooveCharacteristicMeasurementType(
     idIn,
     AttributesIn,
@@ -95274,7 +95274,7 @@ WeldBevelCharacteristicMeasurementType::WeldBevelCharacteristicMeasurementType(
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1078In)
+    WeldGrooveChara_1079In)
 {
 }
 
@@ -95397,9 +95397,9 @@ void WeldBevelCharacteristicMeasurementType::printSelf(FILE * outFile)
       NonConformanceDesignator->printSelf(outFile);
       fprintf(outFile, "</NonConformanceDesignator>\n");
     }
-  if (WeldGrooveChara_1078)
+  if (WeldGrooveChara_1079)
     {
-      WeldGrooveChara_1078->printSelf(outFile);
+      WeldGrooveChara_1079->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -95461,7 +95461,7 @@ bool WeldBevelCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldBevelCharacteristicNominalType
 
@@ -95488,7 +95488,7 @@ WeldBevelCharacteristicNominalType::WeldBevelCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
   WeldGrooveCharacteristicNominalType(
     AttributesIn,
     DescriptionIn,
@@ -95505,7 +95505,7 @@ WeldBevelCharacteristicNominalType::WeldBevelCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveChara_1080In)
 {
 }
 
@@ -95526,7 +95526,7 @@ WeldBevelCharacteristicNominalType::WeldBevelCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
   WeldGrooveCharacteristicNominalType(
     idIn,
     AttributesIn,
@@ -95544,7 +95544,7 @@ WeldBevelCharacteristicNominalType::WeldBevelCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveChara_1080In)
 {
 }
 
@@ -95694,9 +95694,9 @@ void WeldBevelCharacteristicNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</NonDestructiveTesting>\n");
     }
-  if (WeldGrooveChara_1079)
+  if (WeldGrooveChara_1080)
     {
-      WeldGrooveChara_1079->printSelf(outFile);
+      WeldGrooveChara_1080->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -95758,7 +95758,7 @@ bool WeldBevelCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldCharacteristicDefinitionBaseType
 
@@ -96021,7 +96021,7 @@ bool WeldCharacteristicDefinitionBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldCharacteristicItemBaseType
 
@@ -96263,7 +96263,7 @@ bool WeldCharacteristicItemBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldCharacteristicMeasurementBaseType
 
@@ -96513,7 +96513,7 @@ bool WeldCharacteristicMeasurementBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldCharacteristicNominalBaseType
 
@@ -96842,7 +96842,7 @@ ArrayNonDestructiveTestingType * WeldCharacteristicNominalBaseType::getNonDestru
 void WeldCharacteristicNominalBaseType::setNonDestructiveTesting(ArrayNonDestructiveTestingType * NonDestructiveTestingIn)
 {NonDestructiveTesting = NonDestructiveTestingIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldCompoundCharacteristicDefinitionType
 
@@ -97122,7 +97122,7 @@ ArrayReferenceFullType * WeldCompoundCharacteristicDefinitionType::getWeldCharac
 void WeldCompoundCharacteristicDefinitionType::setWeldCharacteristicDefinitionIds(ArrayReferenceFullType * WeldCharacteristicDefinitionIdsIn)
 {WeldCharacteristicDefinitionIds = WeldCharacteristicDefinitionIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldCompoundCharacteristicItemType
 
@@ -97381,7 +97381,7 @@ ArrayReferenceType * WeldCompoundCharacteristicItemType::getWeldCharacteristicIt
 void WeldCompoundCharacteristicItemType::setWeldCharacteristicItemIds(ArrayReferenceType * WeldCharacteristicItemIdsIn)
 {WeldCharacteristicItemIds = WeldCharacteristicItemIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldCompoundCharacteristicMeasurementType
 
@@ -97648,7 +97648,7 @@ ArrayReferenceType * WeldCompoundCharacteristicMeasurementType::getWeldCharacter
 void WeldCompoundCharacteristicMeasurementType::setWeldCharacteristicMeasurementIds(ArrayReferenceType * WeldCharacteristicMeasurementIdsIn)
 {WeldCharacteristicMeasurementIds = WeldCharacteristicMeasurementIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldCompoundCharacteristicNominalType
 
@@ -97954,7 +97954,7 @@ ArrayReferenceFullType * WeldCompoundCharacteristicNominalType::getWeldCharacter
 void WeldCompoundCharacteristicNominalType::setWeldCharacteristicNominalIds(ArrayReferenceFullType * WeldCharacteristicNominalIdsIn)
 {WeldCharacteristicNominalIds = WeldCharacteristicNominalIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldContourSymbolEnumType
 
@@ -98020,7 +98020,7 @@ void WeldContourSymbolEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldEdgeCharacteristicDefinitionType
 
@@ -98283,7 +98283,7 @@ bool WeldEdgeCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldEdgeCharacteristicItemType
 
@@ -98525,7 +98525,7 @@ bool WeldEdgeCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldEdgeCharacteristicMeasurementType
 
@@ -98811,7 +98811,7 @@ WeldOneSideParametersExtendSizeType * WeldEdgeCharacteristicMeasurementType::get
 void WeldEdgeCharacteristicMeasurementType::setSideParameters(WeldOneSideParametersExtendSizeType * SideParametersIn)
 {SideParameters = SideParametersIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldEdgeCharacteristicNominalType
 
@@ -99136,7 +99136,7 @@ WeldOneSideParametersExtendSizeType * WeldEdgeCharacteristicNominalType::getSide
 void WeldEdgeCharacteristicNominalType::setSideParameters(WeldOneSideParametersExtendSizeType * SideParametersIn)
 {SideParameters = SideParametersIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFilletBothSidesType
 
@@ -99216,7 +99216,7 @@ XmlBoolean * WeldFilletBothSidesType::getStaggered()
 void WeldFilletBothSidesType::setStaggered(XmlBoolean * StaggeredIn)
 {Staggered = StaggeredIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFilletCharacteristicDefinitionType
 
@@ -99479,7 +99479,7 @@ bool WeldFilletCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFilletCharacteristicItemType
 
@@ -99721,7 +99721,7 @@ bool WeldFilletCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFilletCharacteristicMeasurementType
 
@@ -99731,7 +99731,7 @@ WeldFilletCharacteristicMeasurementType::WeldFilletCharacteristicMeasurementType
   WeldCharacteristicMeasurementBaseType()
 {
   LocationSignificance = 0;
-  WeldFilletChara_1075 = 0;
+  WeldFilletChara_1076 = 0;
 }
 
 WeldFilletCharacteristicMeasurementType::WeldFilletCharacteristicMeasurementType(
@@ -99748,7 +99748,7 @@ WeldFilletCharacteristicMeasurementType::WeldFilletCharacteristicMeasurementType
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
  LocationSignificanceAllEnumType * LocationSignificanceIn,
- WeldFilletChara_1075_Type * WeldFilletChara_1075In) :
+ WeldFilletChara_1076_Type * WeldFilletChara_1076In) :
   WeldCharacteristicMeasurementBaseType(
     AttributesIn,
     DescriptionIn,
@@ -99764,7 +99764,7 @@ WeldFilletCharacteristicMeasurementType::WeldFilletCharacteristicMeasurementType
     NonConformanceDesignatorIn)
 {
   LocationSignificance = LocationSignificanceIn;
-  WeldFilletChara_1075 = WeldFilletChara_1075In;
+  WeldFilletChara_1076 = WeldFilletChara_1076In;
 }
 
 WeldFilletCharacteristicMeasurementType::WeldFilletCharacteristicMeasurementType(
@@ -99782,7 +99782,7 @@ WeldFilletCharacteristicMeasurementType::WeldFilletCharacteristicMeasurementType
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
  LocationSignificanceAllEnumType * LocationSignificanceIn,
- WeldFilletChara_1075_Type * WeldFilletChara_1075In) :
+ WeldFilletChara_1076_Type * WeldFilletChara_1076In) :
   WeldCharacteristicMeasurementBaseType(
     idIn,
     AttributesIn,
@@ -99799,14 +99799,14 @@ WeldFilletCharacteristicMeasurementType::WeldFilletCharacteristicMeasurementType
     NonConformanceDesignatorIn)
 {
   LocationSignificance = LocationSignificanceIn;
-  WeldFilletChara_1075 = WeldFilletChara_1075In;
+  WeldFilletChara_1076 = WeldFilletChara_1076In;
 }
 
 WeldFilletCharacteristicMeasurementType::~WeldFilletCharacteristicMeasurementType()
 {
   #ifndef NODESTRUCT
   delete LocationSignificance;
-  delete WeldFilletChara_1075;
+  delete WeldFilletChara_1076;
   #endif
 }
 
@@ -99927,9 +99927,9 @@ void WeldFilletCharacteristicMeasurementType::printSelf(FILE * outFile)
   fprintf(outFile, "<LocationSignificance");
   LocationSignificance->printSelf(outFile);
   fprintf(outFile, "</LocationSignificance>\n");
-  if (WeldFilletChara_1075)
+  if (WeldFilletChara_1076)
     {
-      WeldFilletChara_1075->printSelf(outFile);
+      WeldFilletChara_1076->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -99997,13 +99997,13 @@ LocationSignificanceAllEnumType * WeldFilletCharacteristicMeasurementType::getLo
 void WeldFilletCharacteristicMeasurementType::setLocationSignificance(LocationSignificanceAllEnumType * LocationSignificanceIn)
 {LocationSignificance = LocationSignificanceIn;}
 
-WeldFilletChara_1075_Type * WeldFilletCharacteristicMeasurementType::getWeldFilletChara_1075()
-{return WeldFilletChara_1075;}
+WeldFilletChara_1076_Type * WeldFilletCharacteristicMeasurementType::getWeldFilletChara_1076()
+{return WeldFilletChara_1076;}
 
-void WeldFilletCharacteristicMeasurementType::setWeldFilletChara_1075(WeldFilletChara_1075_Type * WeldFilletChara_1075In)
-{WeldFilletChara_1075 = WeldFilletChara_1075In;}
+void WeldFilletCharacteristicMeasurementType::setWeldFilletChara_1076(WeldFilletChara_1076_Type * WeldFilletChara_1076In)
+{WeldFilletChara_1076 = WeldFilletChara_1076In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFilletCharacteristicNominalType
 
@@ -100013,7 +100013,7 @@ WeldFilletCharacteristicNominalType::WeldFilletCharacteristicNominalType() :
   WeldCharacteristicNominalBaseType()
 {
   LocationSignificance = 0;
-  WeldFilletChara_1076 = 0;
+  WeldFilletChara_1077 = 0;
 }
 
 WeldFilletCharacteristicNominalType::WeldFilletCharacteristicNominalType(
@@ -100033,7 +100033,7 @@ WeldFilletCharacteristicNominalType::WeldFilletCharacteristicNominalType(
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
  LocationSignificanceAllEnumType * LocationSignificanceIn,
- WeldFilletChara_1076_Type * WeldFilletChara_1076In) :
+ WeldFilletChara_1077_Type * WeldFilletChara_1077In) :
   WeldCharacteristicNominalBaseType(
     AttributesIn,
     DescriptionIn,
@@ -100052,7 +100052,7 @@ WeldFilletCharacteristicNominalType::WeldFilletCharacteristicNominalType(
     NonDestructiveTestingIn)
 {
   LocationSignificance = LocationSignificanceIn;
-  WeldFilletChara_1076 = WeldFilletChara_1076In;
+  WeldFilletChara_1077 = WeldFilletChara_1077In;
 }
 
 WeldFilletCharacteristicNominalType::WeldFilletCharacteristicNominalType(
@@ -100073,7 +100073,7 @@ WeldFilletCharacteristicNominalType::WeldFilletCharacteristicNominalType(
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
  LocationSignificanceAllEnumType * LocationSignificanceIn,
- WeldFilletChara_1076_Type * WeldFilletChara_1076In) :
+ WeldFilletChara_1077_Type * WeldFilletChara_1077In) :
   WeldCharacteristicNominalBaseType(
     idIn,
     AttributesIn,
@@ -100093,14 +100093,14 @@ WeldFilletCharacteristicNominalType::WeldFilletCharacteristicNominalType(
     NonDestructiveTestingIn)
 {
   LocationSignificance = LocationSignificanceIn;
-  WeldFilletChara_1076 = WeldFilletChara_1076In;
+  WeldFilletChara_1077 = WeldFilletChara_1077In;
 }
 
 WeldFilletCharacteristicNominalType::~WeldFilletCharacteristicNominalType()
 {
   #ifndef NODESTRUCT
   delete LocationSignificance;
-  delete WeldFilletChara_1076;
+  delete WeldFilletChara_1077;
   #endif
 }
 
@@ -100248,9 +100248,9 @@ void WeldFilletCharacteristicNominalType::printSelf(FILE * outFile)
   fprintf(outFile, "<LocationSignificance");
   LocationSignificance->printSelf(outFile);
   fprintf(outFile, "</LocationSignificance>\n");
-  if (WeldFilletChara_1076)
+  if (WeldFilletChara_1077)
     {
-      WeldFilletChara_1076->printSelf(outFile);
+      WeldFilletChara_1077->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -100318,13 +100318,13 @@ LocationSignificanceAllEnumType * WeldFilletCharacteristicNominalType::getLocati
 void WeldFilletCharacteristicNominalType::setLocationSignificance(LocationSignificanceAllEnumType * LocationSignificanceIn)
 {LocationSignificance = LocationSignificanceIn;}
 
-WeldFilletChara_1076_Type * WeldFilletCharacteristicNominalType::getWeldFilletChara_1076()
-{return WeldFilletChara_1076;}
+WeldFilletChara_1077_Type * WeldFilletCharacteristicNominalType::getWeldFilletChara_1077()
+{return WeldFilletChara_1077;}
 
-void WeldFilletCharacteristicNominalType::setWeldFilletChara_1076(WeldFilletChara_1076_Type * WeldFilletChara_1076In)
-{WeldFilletChara_1076 = WeldFilletChara_1076In;}
+void WeldFilletCharacteristicNominalType::setWeldFilletChara_1077(WeldFilletChara_1077_Type * WeldFilletChara_1077In)
+{WeldFilletChara_1077 = WeldFilletChara_1077In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFilletEqualLegLengthType
 
@@ -100403,7 +100403,7 @@ LinearValueType * WeldFilletEqualLegLengthType::getPitch()
 void WeldFilletEqualLegLengthType::setPitch(LinearValueType * PitchIn)
 {Pitch = PitchIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFilletOneSideInBothSidesType
 
@@ -100486,7 +100486,7 @@ LinearValueType * WeldFilletOneSideInBothSidesType::getPitch()
 void WeldFilletOneSideInBothSidesType::setPitch(LinearValueType * PitchIn)
 {Pitch = PitchIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFilletOneSideType
 
@@ -100495,22 +100495,22 @@ void WeldFilletOneSideInBothSidesType::setPitch(LinearValueType * PitchIn)
 WeldFilletOneSideType::WeldFilletOneSideType() :
   WeldOneSideParametersBaseType()
 {
-  WeldFilletOneSi_1077 = 0;
+  WeldFilletOneSi_1078 = 0;
 }
 
 WeldFilletOneSideType::WeldFilletOneSideType(
  WeldFinishingType * FinishingIn,
- WeldFilletOneSi_1077_Type * WeldFilletOneSi_1077In) :
+ WeldFilletOneSi_1078_Type * WeldFilletOneSi_1078In) :
   WeldOneSideParametersBaseType(
     FinishingIn)
 {
-  WeldFilletOneSi_1077 = WeldFilletOneSi_1077In;
+  WeldFilletOneSi_1078 = WeldFilletOneSi_1078In;
 }
 
 WeldFilletOneSideType::~WeldFilletOneSideType()
 {
   #ifndef NODESTRUCT
-  delete WeldFilletOneSi_1077;
+  delete WeldFilletOneSi_1078;
   #endif
 }
 
@@ -100526,20 +100526,20 @@ void WeldFilletOneSideType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Finishing>\n");
     }
-  if (WeldFilletOneSi_1077)
+  if (WeldFilletOneSi_1078)
     {
-      WeldFilletOneSi_1077->printSelf(outFile);
+      WeldFilletOneSi_1078->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
 
-WeldFilletOneSi_1077_Type * WeldFilletOneSideType::getWeldFilletOneSi_1077()
-{return WeldFilletOneSi_1077;}
+WeldFilletOneSi_1078_Type * WeldFilletOneSideType::getWeldFilletOneSi_1078()
+{return WeldFilletOneSi_1078;}
 
-void WeldFilletOneSideType::setWeldFilletOneSi_1077(WeldFilletOneSi_1077_Type * WeldFilletOneSi_1077In)
-{WeldFilletOneSi_1077 = WeldFilletOneSi_1077In;}
+void WeldFilletOneSideType::setWeldFilletOneSi_1078(WeldFilletOneSi_1078_Type * WeldFilletOneSi_1078In)
+{WeldFilletOneSi_1078 = WeldFilletOneSi_1078In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFilletUnequalLegLengthType
 
@@ -100596,7 +100596,7 @@ FractionType * WeldFilletUnequalLegLengthType::getSecondLegLength()
 void WeldFilletUnequalLegLengthType::setSecondLegLength(FractionType * SecondLegLengthIn)
 {SecondLegLength = SecondLegLengthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFinishingDesignatorEnumType
 
@@ -100662,7 +100662,7 @@ void WeldFinishingDesignatorEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFinishingType
 
@@ -100720,7 +100720,7 @@ WeldFinishingDesignatorEnumType * WeldFinishingType::getFinishingDesignator()
 void WeldFinishingType::setFinishingDesignator(WeldFinishingDesignatorEnumType * FinishingDesignatorIn)
 {FinishingDesignator = FinishingDesignatorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFlareBevelCharacteristicDefinitionType
 
@@ -100983,7 +100983,7 @@ bool WeldFlareBevelCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFlareBevelCharacteristicItemType
 
@@ -101225,7 +101225,7 @@ bool WeldFlareBevelCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFlareBevelCharacteristicMeasurementType
 
@@ -101249,7 +101249,7 @@ WeldFlareBevelCharacteristicMeasurementType::WeldFlareBevelCharacteristicMeasure
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1078_Type * WeldGrooveChara_1078In) :
+ WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
   WeldGrooveCharacteristicMeasurementType(
     AttributesIn,
     DescriptionIn,
@@ -101263,7 +101263,7 @@ WeldFlareBevelCharacteristicMeasurementType::WeldFlareBevelCharacteristicMeasure
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1078In)
+    WeldGrooveChara_1079In)
 {
 }
 
@@ -101281,7 +101281,7 @@ WeldFlareBevelCharacteristicMeasurementType::WeldFlareBevelCharacteristicMeasure
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1078_Type * WeldGrooveChara_1078In) :
+ WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
   WeldGrooveCharacteristicMeasurementType(
     idIn,
     AttributesIn,
@@ -101296,7 +101296,7 @@ WeldFlareBevelCharacteristicMeasurementType::WeldFlareBevelCharacteristicMeasure
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1078In)
+    WeldGrooveChara_1079In)
 {
 }
 
@@ -101419,9 +101419,9 @@ void WeldFlareBevelCharacteristicMeasurementType::printSelf(FILE * outFile)
       NonConformanceDesignator->printSelf(outFile);
       fprintf(outFile, "</NonConformanceDesignator>\n");
     }
-  if (WeldGrooveChara_1078)
+  if (WeldGrooveChara_1079)
     {
-      WeldGrooveChara_1078->printSelf(outFile);
+      WeldGrooveChara_1079->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -101483,7 +101483,7 @@ bool WeldFlareBevelCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFlareBevelCharacteristicNominalType
 
@@ -101510,7 +101510,7 @@ WeldFlareBevelCharacteristicNominalType::WeldFlareBevelCharacteristicNominalType
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
   WeldGrooveCharacteristicNominalType(
     AttributesIn,
     DescriptionIn,
@@ -101527,7 +101527,7 @@ WeldFlareBevelCharacteristicNominalType::WeldFlareBevelCharacteristicNominalType
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveChara_1080In)
 {
 }
 
@@ -101548,7 +101548,7 @@ WeldFlareBevelCharacteristicNominalType::WeldFlareBevelCharacteristicNominalType
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
   WeldGrooveCharacteristicNominalType(
     idIn,
     AttributesIn,
@@ -101566,7 +101566,7 @@ WeldFlareBevelCharacteristicNominalType::WeldFlareBevelCharacteristicNominalType
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveChara_1080In)
 {
 }
 
@@ -101716,9 +101716,9 @@ void WeldFlareBevelCharacteristicNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</NonDestructiveTesting>\n");
     }
-  if (WeldGrooveChara_1079)
+  if (WeldGrooveChara_1080)
     {
-      WeldGrooveChara_1079->printSelf(outFile);
+      WeldGrooveChara_1080->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -101780,7 +101780,7 @@ bool WeldFlareBevelCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFlareVCharacteristicDefinitionType
 
@@ -102043,7 +102043,7 @@ bool WeldFlareVCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFlareVCharacteristicItemType
 
@@ -102285,7 +102285,7 @@ bool WeldFlareVCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFlareVCharacteristicMeasurementType
 
@@ -102309,7 +102309,7 @@ WeldFlareVCharacteristicMeasurementType::WeldFlareVCharacteristicMeasurementType
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1078_Type * WeldGrooveChara_1078In) :
+ WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
   WeldGrooveCharacteristicMeasurementType(
     AttributesIn,
     DescriptionIn,
@@ -102323,7 +102323,7 @@ WeldFlareVCharacteristicMeasurementType::WeldFlareVCharacteristicMeasurementType
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1078In)
+    WeldGrooveChara_1079In)
 {
 }
 
@@ -102341,7 +102341,7 @@ WeldFlareVCharacteristicMeasurementType::WeldFlareVCharacteristicMeasurementType
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1078_Type * WeldGrooveChara_1078In) :
+ WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
   WeldGrooveCharacteristicMeasurementType(
     idIn,
     AttributesIn,
@@ -102356,7 +102356,7 @@ WeldFlareVCharacteristicMeasurementType::WeldFlareVCharacteristicMeasurementType
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1078In)
+    WeldGrooveChara_1079In)
 {
 }
 
@@ -102479,9 +102479,9 @@ void WeldFlareVCharacteristicMeasurementType::printSelf(FILE * outFile)
       NonConformanceDesignator->printSelf(outFile);
       fprintf(outFile, "</NonConformanceDesignator>\n");
     }
-  if (WeldGrooveChara_1078)
+  if (WeldGrooveChara_1079)
     {
-      WeldGrooveChara_1078->printSelf(outFile);
+      WeldGrooveChara_1079->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -102543,7 +102543,7 @@ bool WeldFlareVCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFlareVCharacteristicNominalType
 
@@ -102570,7 +102570,7 @@ WeldFlareVCharacteristicNominalType::WeldFlareVCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
   WeldGrooveCharacteristicNominalType(
     AttributesIn,
     DescriptionIn,
@@ -102587,7 +102587,7 @@ WeldFlareVCharacteristicNominalType::WeldFlareVCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveChara_1080In)
 {
 }
 
@@ -102608,7 +102608,7 @@ WeldFlareVCharacteristicNominalType::WeldFlareVCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
   WeldGrooveCharacteristicNominalType(
     idIn,
     AttributesIn,
@@ -102626,7 +102626,7 @@ WeldFlareVCharacteristicNominalType::WeldFlareVCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveChara_1080In)
 {
 }
 
@@ -102776,9 +102776,9 @@ void WeldFlareVCharacteristicNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</NonDestructiveTesting>\n");
     }
-  if (WeldGrooveChara_1079)
+  if (WeldGrooveChara_1080)
     {
-      WeldGrooveChara_1079->printSelf(outFile);
+      WeldGrooveChara_1080->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -102840,7 +102840,7 @@ bool WeldFlareVCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldGrooveBothSidesBaseType
 
@@ -102903,7 +102903,7 @@ WeldGrooveOneSideParametersType * WeldGrooveBothSidesBaseType::getOtherSideParam
 void WeldGrooveBothSidesBaseType::setOtherSideParameters(WeldGrooveOneSideParametersType * OtherSideParametersIn)
 {OtherSideParameters = OtherSideParametersIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldGrooveBothSidesExtendedType
 
@@ -102969,7 +102969,7 @@ XmlBoolean * WeldGrooveBothSidesExtendedType::getSpacer()
 void WeldGrooveBothSidesExtendedType::setSpacer(XmlBoolean * SpacerIn)
 {Spacer = SpacerIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldGrooveCharacteristicMeasurementType
 
@@ -102978,7 +102978,7 @@ void WeldGrooveBothSidesExtendedType::setSpacer(XmlBoolean * SpacerIn)
 WeldGrooveCharacteristicMeasurementType::WeldGrooveCharacteristicMeasurementType() :
   WeldCharacteristicMeasurementBaseType()
 {
-  WeldGrooveChara_1078 = 0;
+  WeldGrooveChara_1079 = 0;
 }
 
 WeldGrooveCharacteristicMeasurementType::WeldGrooveCharacteristicMeasurementType(
@@ -102994,7 +102994,7 @@ WeldGrooveCharacteristicMeasurementType::WeldGrooveCharacteristicMeasurementType
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1078_Type * WeldGrooveChara_1078In) :
+ WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
   WeldCharacteristicMeasurementBaseType(
     AttributesIn,
     DescriptionIn,
@@ -103009,7 +103009,7 @@ WeldGrooveCharacteristicMeasurementType::WeldGrooveCharacteristicMeasurementType
     NotedEventIdsIn,
     NonConformanceDesignatorIn)
 {
-  WeldGrooveChara_1078 = WeldGrooveChara_1078In;
+  WeldGrooveChara_1079 = WeldGrooveChara_1079In;
 }
 
 WeldGrooveCharacteristicMeasurementType::WeldGrooveCharacteristicMeasurementType(
@@ -103026,7 +103026,7 @@ WeldGrooveCharacteristicMeasurementType::WeldGrooveCharacteristicMeasurementType
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1078_Type * WeldGrooveChara_1078In) :
+ WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
   WeldCharacteristicMeasurementBaseType(
     idIn,
     AttributesIn,
@@ -103042,13 +103042,13 @@ WeldGrooveCharacteristicMeasurementType::WeldGrooveCharacteristicMeasurementType
     NotedEventIdsIn,
     NonConformanceDesignatorIn)
 {
-  WeldGrooveChara_1078 = WeldGrooveChara_1078In;
+  WeldGrooveChara_1079 = WeldGrooveChara_1079In;
 }
 
 WeldGrooveCharacteristicMeasurementType::~WeldGrooveCharacteristicMeasurementType()
 {
   #ifndef NODESTRUCT
-  delete WeldGrooveChara_1078;
+  delete WeldGrooveChara_1079;
   #endif
 }
 
@@ -103165,9 +103165,9 @@ void WeldGrooveCharacteristicMeasurementType::printSelf(FILE * outFile)
       NonConformanceDesignator->printSelf(outFile);
       fprintf(outFile, "</NonConformanceDesignator>\n");
     }
-  if (WeldGrooveChara_1078)
+  if (WeldGrooveChara_1079)
     {
-      WeldGrooveChara_1078->printSelf(outFile);
+      WeldGrooveChara_1079->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -103229,13 +103229,13 @@ bool WeldGrooveCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-WeldGrooveChara_1078_Type * WeldGrooveCharacteristicMeasurementType::getWeldGrooveChara_1078()
-{return WeldGrooveChara_1078;}
+WeldGrooveChara_1079_Type * WeldGrooveCharacteristicMeasurementType::getWeldGrooveChara_1079()
+{return WeldGrooveChara_1079;}
 
-void WeldGrooveCharacteristicMeasurementType::setWeldGrooveChara_1078(WeldGrooveChara_1078_Type * WeldGrooveChara_1078In)
-{WeldGrooveChara_1078 = WeldGrooveChara_1078In;}
+void WeldGrooveCharacteristicMeasurementType::setWeldGrooveChara_1079(WeldGrooveChara_1079_Type * WeldGrooveChara_1079In)
+{WeldGrooveChara_1079 = WeldGrooveChara_1079In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldGrooveCharacteristicNominalType
 
@@ -103244,7 +103244,7 @@ void WeldGrooveCharacteristicMeasurementType::setWeldGrooveChara_1078(WeldGroove
 WeldGrooveCharacteristicNominalType::WeldGrooveCharacteristicNominalType() :
   WeldCharacteristicNominalBaseType()
 {
-  WeldGrooveChara_1079 = 0;
+  WeldGrooveChara_1080 = 0;
 }
 
 WeldGrooveCharacteristicNominalType::WeldGrooveCharacteristicNominalType(
@@ -103263,7 +103263,7 @@ WeldGrooveCharacteristicNominalType::WeldGrooveCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
   WeldCharacteristicNominalBaseType(
     AttributesIn,
     DescriptionIn,
@@ -103281,7 +103281,7 @@ WeldGrooveCharacteristicNominalType::WeldGrooveCharacteristicNominalType(
     WeldingProcessIn,
     NonDestructiveTestingIn)
 {
-  WeldGrooveChara_1079 = WeldGrooveChara_1079In;
+  WeldGrooveChara_1080 = WeldGrooveChara_1080In;
 }
 
 WeldGrooveCharacteristicNominalType::WeldGrooveCharacteristicNominalType(
@@ -103301,7 +103301,7 @@ WeldGrooveCharacteristicNominalType::WeldGrooveCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
   WeldCharacteristicNominalBaseType(
     idIn,
     AttributesIn,
@@ -103320,13 +103320,13 @@ WeldGrooveCharacteristicNominalType::WeldGrooveCharacteristicNominalType(
     WeldingProcessIn,
     NonDestructiveTestingIn)
 {
-  WeldGrooveChara_1079 = WeldGrooveChara_1079In;
+  WeldGrooveChara_1080 = WeldGrooveChara_1080In;
 }
 
 WeldGrooveCharacteristicNominalType::~WeldGrooveCharacteristicNominalType()
 {
   #ifndef NODESTRUCT
-  delete WeldGrooveChara_1079;
+  delete WeldGrooveChara_1080;
   #endif
 }
 
@@ -103470,9 +103470,9 @@ void WeldGrooveCharacteristicNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</NonDestructiveTesting>\n");
     }
-  if (WeldGrooveChara_1079)
+  if (WeldGrooveChara_1080)
     {
-      WeldGrooveChara_1079->printSelf(outFile);
+      WeldGrooveChara_1080->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -103534,13 +103534,13 @@ bool WeldGrooveCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-WeldGrooveChara_1079_Type * WeldGrooveCharacteristicNominalType::getWeldGrooveChara_1079()
-{return WeldGrooveChara_1079;}
+WeldGrooveChara_1080_Type * WeldGrooveCharacteristicNominalType::getWeldGrooveChara_1080()
+{return WeldGrooveChara_1080;}
 
-void WeldGrooveCharacteristicNominalType::setWeldGrooveChara_1079(WeldGrooveChara_1079_Type * WeldGrooveChara_1079In)
-{WeldGrooveChara_1079 = WeldGrooveChara_1079In;}
+void WeldGrooveCharacteristicNominalType::setWeldGrooveChara_1080(WeldGrooveChara_1080_Type * WeldGrooveChara_1080In)
+{WeldGrooveChara_1080 = WeldGrooveChara_1080In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldGrooveOneSideParametersType
 
@@ -103676,7 +103676,7 @@ LinearValueType * WeldGrooveOneSideParametersType::getPitch()
 void WeldGrooveOneSideParametersType::setPitch(LinearValueType * PitchIn)
 {Pitch = PitchIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldGrooveOneSideType
 
@@ -103685,22 +103685,22 @@ void WeldGrooveOneSideParametersType::setPitch(LinearValueType * PitchIn)
 WeldGrooveOneSideType::WeldGrooveOneSideType()
 {
   LocationSignificance = 0;
-  WeldGrooveOneSi_1080 = 0;
+  WeldGrooveOneSi_1081 = 0;
 }
 
 WeldGrooveOneSideType::WeldGrooveOneSideType(
  LocationSignificanceOneSidesEnumType * LocationSignificanceIn,
- WeldGrooveOneSi_1080_Type * WeldGrooveOneSi_1080In)
+ WeldGrooveOneSi_1081_Type * WeldGrooveOneSi_1081In)
 {
   LocationSignificance = LocationSignificanceIn;
-  WeldGrooveOneSi_1080 = WeldGrooveOneSi_1080In;
+  WeldGrooveOneSi_1081 = WeldGrooveOneSi_1081In;
 }
 
 WeldGrooveOneSideType::~WeldGrooveOneSideType()
 {
   #ifndef NODESTRUCT
   delete LocationSignificance;
-  delete WeldGrooveOneSi_1080;
+  delete WeldGrooveOneSi_1081;
   #endif
 }
 
@@ -103712,7 +103712,7 @@ void WeldGrooveOneSideType::printSelf(FILE * outFile)
   fprintf(outFile, "<LocationSignificance");
   LocationSignificance->printSelf(outFile);
   fprintf(outFile, "</LocationSignificance>\n");
-  WeldGrooveOneSi_1080->printSelf(outFile);
+  WeldGrooveOneSi_1081->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -103722,13 +103722,13 @@ LocationSignificanceOneSidesEnumType * WeldGrooveOneSideType::getLocationSignifi
 void WeldGrooveOneSideType::setLocationSignificance(LocationSignificanceOneSidesEnumType * LocationSignificanceIn)
 {LocationSignificance = LocationSignificanceIn;}
 
-WeldGrooveOneSi_1080_Type * WeldGrooveOneSideType::getWeldGrooveOneSi_1080()
-{return WeldGrooveOneSi_1080;}
+WeldGrooveOneSi_1081_Type * WeldGrooveOneSideType::getWeldGrooveOneSi_1081()
+{return WeldGrooveOneSi_1081;}
 
-void WeldGrooveOneSideType::setWeldGrooveOneSi_1080(WeldGrooveOneSi_1080_Type * WeldGrooveOneSi_1080In)
-{WeldGrooveOneSi_1080 = WeldGrooveOneSi_1080In;}
+void WeldGrooveOneSideType::setWeldGrooveOneSi_1081(WeldGrooveOneSi_1081_Type * WeldGrooveOneSi_1081In)
+{WeldGrooveOneSi_1081 = WeldGrooveOneSi_1081In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldJCharacteristicDefinitionType
 
@@ -103991,7 +103991,7 @@ bool WeldJCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldJCharacteristicItemType
 
@@ -104233,7 +104233,7 @@ bool WeldJCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldJCharacteristicMeasurementType
 
@@ -104257,7 +104257,7 @@ WeldJCharacteristicMeasurementType::WeldJCharacteristicMeasurementType(
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1078_Type * WeldGrooveChara_1078In) :
+ WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
   WeldGrooveCharacteristicMeasurementType(
     AttributesIn,
     DescriptionIn,
@@ -104271,7 +104271,7 @@ WeldJCharacteristicMeasurementType::WeldJCharacteristicMeasurementType(
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1078In)
+    WeldGrooveChara_1079In)
 {
 }
 
@@ -104289,7 +104289,7 @@ WeldJCharacteristicMeasurementType::WeldJCharacteristicMeasurementType(
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1078_Type * WeldGrooveChara_1078In) :
+ WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
   WeldGrooveCharacteristicMeasurementType(
     idIn,
     AttributesIn,
@@ -104304,7 +104304,7 @@ WeldJCharacteristicMeasurementType::WeldJCharacteristicMeasurementType(
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1078In)
+    WeldGrooveChara_1079In)
 {
 }
 
@@ -104427,9 +104427,9 @@ void WeldJCharacteristicMeasurementType::printSelf(FILE * outFile)
       NonConformanceDesignator->printSelf(outFile);
       fprintf(outFile, "</NonConformanceDesignator>\n");
     }
-  if (WeldGrooveChara_1078)
+  if (WeldGrooveChara_1079)
     {
-      WeldGrooveChara_1078->printSelf(outFile);
+      WeldGrooveChara_1079->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -104491,7 +104491,7 @@ bool WeldJCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldJCharacteristicNominalType
 
@@ -104518,7 +104518,7 @@ WeldJCharacteristicNominalType::WeldJCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
   WeldGrooveCharacteristicNominalType(
     AttributesIn,
     DescriptionIn,
@@ -104535,7 +104535,7 @@ WeldJCharacteristicNominalType::WeldJCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveChara_1080In)
 {
 }
 
@@ -104556,7 +104556,7 @@ WeldJCharacteristicNominalType::WeldJCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
   WeldGrooveCharacteristicNominalType(
     idIn,
     AttributesIn,
@@ -104574,7 +104574,7 @@ WeldJCharacteristicNominalType::WeldJCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveChara_1080In)
 {
 }
 
@@ -104724,9 +104724,9 @@ void WeldJCharacteristicNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</NonDestructiveTesting>\n");
     }
-  if (WeldGrooveChara_1079)
+  if (WeldGrooveChara_1080)
     {
-      WeldGrooveChara_1079->printSelf(outFile);
+      WeldGrooveChara_1080->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -104788,7 +104788,7 @@ bool WeldJCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldOneSideParametersBaseType
 
@@ -104833,7 +104833,7 @@ WeldFinishingType * WeldOneSideParametersBaseType::getFinishing()
 void WeldOneSideParametersBaseType::setFinishing(WeldFinishingType * FinishingIn)
 {Finishing = FinishingIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldOneSideParametersExtendSizeType
 
@@ -104890,7 +104890,7 @@ FractionType * WeldOneSideParametersExtendSizeType::getSize()
 void WeldOneSideParametersExtendSizeType::setSize(FractionType * SizeIn)
 {Size = SizeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldOneSideParametersExtendType
 
@@ -104990,7 +104990,7 @@ NaturalType * WeldOneSideParametersExtendType::getWeldNumber()
 void WeldOneSideParametersExtendType::setWeldNumber(NaturalType * WeldNumberIn)
 {WeldNumber = WeldNumberIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldPlugCharacteristicDefinitionType
 
@@ -105253,7 +105253,7 @@ bool WeldPlugCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldPlugCharacteristicItemType
 
@@ -105495,7 +105495,7 @@ bool WeldPlugCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldPlugCharacteristicMeasurementType
 
@@ -105781,7 +105781,7 @@ WeldPlugOneSideParametersType * WeldPlugCharacteristicMeasurementType::getSidePa
 void WeldPlugCharacteristicMeasurementType::setSideParameters(WeldPlugOneSideParametersType * SideParametersIn)
 {SideParameters = SideParametersIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldPlugCharacteristicNominalType
 
@@ -106106,7 +106106,7 @@ WeldPlugOneSideParametersType * WeldPlugCharacteristicNominalType::getSideParame
 void WeldPlugCharacteristicNominalType::setSideParameters(WeldPlugOneSideParametersType * SideParametersIn)
 {SideParameters = SideParametersIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldPlugOneSideParametersType
 
@@ -106217,7 +106217,7 @@ FractionType * WeldPlugOneSideParametersType::getDepth()
 void WeldPlugOneSideParametersType::setDepth(FractionType * DepthIn)
 {Depth = DepthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldScarfCharacteristicDefinitionType
 
@@ -106480,7 +106480,7 @@ bool WeldScarfCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldScarfCharacteristicItemType
 
@@ -106722,7 +106722,7 @@ bool WeldScarfCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldScarfCharacteristicMeasurementType
 
@@ -106746,7 +106746,7 @@ WeldScarfCharacteristicMeasurementType::WeldScarfCharacteristicMeasurementType(
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1078_Type * WeldGrooveChara_1078In) :
+ WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
   WeldGrooveCharacteristicMeasurementType(
     AttributesIn,
     DescriptionIn,
@@ -106760,7 +106760,7 @@ WeldScarfCharacteristicMeasurementType::WeldScarfCharacteristicMeasurementType(
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1078In)
+    WeldGrooveChara_1079In)
 {
 }
 
@@ -106778,7 +106778,7 @@ WeldScarfCharacteristicMeasurementType::WeldScarfCharacteristicMeasurementType(
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1078_Type * WeldGrooveChara_1078In) :
+ WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
   WeldGrooveCharacteristicMeasurementType(
     idIn,
     AttributesIn,
@@ -106793,7 +106793,7 @@ WeldScarfCharacteristicMeasurementType::WeldScarfCharacteristicMeasurementType(
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1078In)
+    WeldGrooveChara_1079In)
 {
 }
 
@@ -106916,9 +106916,9 @@ void WeldScarfCharacteristicMeasurementType::printSelf(FILE * outFile)
       NonConformanceDesignator->printSelf(outFile);
       fprintf(outFile, "</NonConformanceDesignator>\n");
     }
-  if (WeldGrooveChara_1078)
+  if (WeldGrooveChara_1079)
     {
-      WeldGrooveChara_1078->printSelf(outFile);
+      WeldGrooveChara_1079->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -106980,7 +106980,7 @@ bool WeldScarfCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldScarfCharacteristicNominalType
 
@@ -107007,7 +107007,7 @@ WeldScarfCharacteristicNominalType::WeldScarfCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
   WeldGrooveCharacteristicNominalType(
     AttributesIn,
     DescriptionIn,
@@ -107024,7 +107024,7 @@ WeldScarfCharacteristicNominalType::WeldScarfCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveChara_1080In)
 {
 }
 
@@ -107045,7 +107045,7 @@ WeldScarfCharacteristicNominalType::WeldScarfCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
   WeldGrooveCharacteristicNominalType(
     idIn,
     AttributesIn,
@@ -107063,7 +107063,7 @@ WeldScarfCharacteristicNominalType::WeldScarfCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveChara_1080In)
 {
 }
 
@@ -107213,9 +107213,9 @@ void WeldScarfCharacteristicNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</NonDestructiveTesting>\n");
     }
-  if (WeldGrooveChara_1079)
+  if (WeldGrooveChara_1080)
     {
-      WeldGrooveChara_1079->printSelf(outFile);
+      WeldGrooveChara_1080->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -107277,7 +107277,7 @@ bool WeldScarfCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSeamCharacteristicDefinitionType
 
@@ -107540,7 +107540,7 @@ bool WeldSeamCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSeamCharacteristicItemType
 
@@ -107782,7 +107782,7 @@ bool WeldSeamCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSeamCharacteristicMeasurementType
 
@@ -108068,7 +108068,7 @@ WeldOneSideParametersExtendType * WeldSeamCharacteristicMeasurementType::getSide
 void WeldSeamCharacteristicMeasurementType::setSideParameters(WeldOneSideParametersExtendType * SideParametersIn)
 {SideParameters = SideParametersIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSeamCharacteristicNominalType
 
@@ -108393,7 +108393,7 @@ WeldOneSideParametersExtendType * WeldSeamCharacteristicNominalType::getSidePara
 void WeldSeamCharacteristicNominalType::setSideParameters(WeldOneSideParametersExtendType * SideParametersIn)
 {SideParameters = SideParametersIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSlotCharacteristicDefinitionType
 
@@ -108656,7 +108656,7 @@ bool WeldSlotCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSlotCharacteristicItemType
 
@@ -108898,7 +108898,7 @@ bool WeldSlotCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSlotCharacteristicMeasurementType
 
@@ -109184,7 +109184,7 @@ WeldPlugOneSideParametersType * WeldSlotCharacteristicMeasurementType::getSidePa
 void WeldSlotCharacteristicMeasurementType::setSideParameters(WeldPlugOneSideParametersType * SideParametersIn)
 {SideParameters = SideParametersIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSlotCharacteristicNominalType
 
@@ -109509,7 +109509,7 @@ WeldPlugOneSideParametersType * WeldSlotCharacteristicNominalType::getSideParame
 void WeldSlotCharacteristicNominalType::setSideParameters(WeldPlugOneSideParametersType * SideParametersIn)
 {SideParameters = SideParametersIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSpotCharacteristicDefinitionType
 
@@ -109772,7 +109772,7 @@ bool WeldSpotCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSpotCharacteristicItemType
 
@@ -110014,7 +110014,7 @@ bool WeldSpotCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSpotCharacteristicMeasurementType
 
@@ -110319,7 +110319,7 @@ XmlBoolean * WeldSpotCharacteristicMeasurementType::getProjection()
 void WeldSpotCharacteristicMeasurementType::setProjection(XmlBoolean * ProjectionIn)
 {Projection = ProjectionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSpotCharacteristicNominalType
 
@@ -110663,7 +110663,7 @@ XmlBoolean * WeldSpotCharacteristicNominalType::getProjection()
 void WeldSpotCharacteristicNominalType::setProjection(XmlBoolean * ProjectionIn)
 {Projection = ProjectionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSpotOneSideParametersType
 
@@ -110746,7 +110746,7 @@ NaturalType * WeldSpotOneSideParametersType::getWeldNumber()
 void WeldSpotOneSideParametersType::setWeldNumber(NaturalType * WeldNumberIn)
 {WeldNumber = WeldNumberIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSquareCharacteristicDefinitionType
 
@@ -111009,7 +111009,7 @@ bool WeldSquareCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSquareCharacteristicItemType
 
@@ -111251,7 +111251,7 @@ bool WeldSquareCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSquareCharacteristicMeasurementType
 
@@ -111275,7 +111275,7 @@ WeldSquareCharacteristicMeasurementType::WeldSquareCharacteristicMeasurementType
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1078_Type * WeldGrooveChara_1078In) :
+ WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
   WeldGrooveCharacteristicMeasurementType(
     AttributesIn,
     DescriptionIn,
@@ -111289,7 +111289,7 @@ WeldSquareCharacteristicMeasurementType::WeldSquareCharacteristicMeasurementType
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1078In)
+    WeldGrooveChara_1079In)
 {
 }
 
@@ -111307,7 +111307,7 @@ WeldSquareCharacteristicMeasurementType::WeldSquareCharacteristicMeasurementType
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1078_Type * WeldGrooveChara_1078In) :
+ WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
   WeldGrooveCharacteristicMeasurementType(
     idIn,
     AttributesIn,
@@ -111322,7 +111322,7 @@ WeldSquareCharacteristicMeasurementType::WeldSquareCharacteristicMeasurementType
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1078In)
+    WeldGrooveChara_1079In)
 {
 }
 
@@ -111445,9 +111445,9 @@ void WeldSquareCharacteristicMeasurementType::printSelf(FILE * outFile)
       NonConformanceDesignator->printSelf(outFile);
       fprintf(outFile, "</NonConformanceDesignator>\n");
     }
-  if (WeldGrooveChara_1078)
+  if (WeldGrooveChara_1079)
     {
-      WeldGrooveChara_1078->printSelf(outFile);
+      WeldGrooveChara_1079->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -111509,7 +111509,7 @@ bool WeldSquareCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSquareCharacteristicNominalType
 
@@ -111536,7 +111536,7 @@ WeldSquareCharacteristicNominalType::WeldSquareCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
   WeldGrooveCharacteristicNominalType(
     AttributesIn,
     DescriptionIn,
@@ -111553,7 +111553,7 @@ WeldSquareCharacteristicNominalType::WeldSquareCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveChara_1080In)
 {
 }
 
@@ -111574,7 +111574,7 @@ WeldSquareCharacteristicNominalType::WeldSquareCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
   WeldGrooveCharacteristicNominalType(
     idIn,
     AttributesIn,
@@ -111592,7 +111592,7 @@ WeldSquareCharacteristicNominalType::WeldSquareCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveChara_1080In)
 {
 }
 
@@ -111742,9 +111742,9 @@ void WeldSquareCharacteristicNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</NonDestructiveTesting>\n");
     }
-  if (WeldGrooveChara_1079)
+  if (WeldGrooveChara_1080)
     {
-      WeldGrooveChara_1079->printSelf(outFile);
+      WeldGrooveChara_1080->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -111806,7 +111806,7 @@ bool WeldSquareCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldStudCharacteristicDefinitionType
 
@@ -112069,7 +112069,7 @@ bool WeldStudCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldStudCharacteristicItemType
 
@@ -112311,7 +112311,7 @@ bool WeldStudCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldStudCharacteristicMeasurementType
 
@@ -112581,7 +112581,7 @@ WeldOneSideParametersExtendType * WeldStudCharacteristicMeasurementType::getArro
 void WeldStudCharacteristicMeasurementType::setArrowSideParameters(WeldOneSideParametersExtendType * ArrowSideParametersIn)
 {ArrowSideParameters = ArrowSideParametersIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldStudCharacteristicNominalType
 
@@ -112890,7 +112890,7 @@ WeldOneSideParametersExtendType * WeldStudCharacteristicNominalType::getArrowSid
 void WeldStudCharacteristicNominalType::setArrowSideParameters(WeldOneSideParametersExtendType * ArrowSideParametersIn)
 {ArrowSideParameters = ArrowSideParametersIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSupplementarySymbolEnumType
 
@@ -112952,7 +112952,7 @@ void WeldSupplementarySymbolEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSurfacingCharacteristicDefinitionType
 
@@ -113215,7 +113215,7 @@ bool WeldSurfacingCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSurfacingCharacteristicItemType
 
@@ -113457,7 +113457,7 @@ bool WeldSurfacingCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSurfacingCharacteristicMeasurementType
 
@@ -113727,7 +113727,7 @@ WeldOneSideParametersExtendSizeType * WeldSurfacingCharacteristicMeasurementType
 void WeldSurfacingCharacteristicMeasurementType::setArrowSideParameters(WeldOneSideParametersExtendSizeType * ArrowSideParametersIn)
 {ArrowSideParameters = ArrowSideParametersIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSurfacingCharacteristicNominalType
 
@@ -114036,7 +114036,7 @@ WeldOneSideParametersExtendSizeType * WeldSurfacingCharacteristicNominalType::ge
 void WeldSurfacingCharacteristicNominalType::setArrowSideParameters(WeldOneSideParametersExtendSizeType * ArrowSideParametersIn)
 {ArrowSideParameters = ArrowSideParametersIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldUCharacteristicDefinitionType
 
@@ -114299,7 +114299,7 @@ bool WeldUCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldUCharacteristicItemType
 
@@ -114541,7 +114541,7 @@ bool WeldUCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldUCharacteristicMeasurementType
 
@@ -114565,7 +114565,7 @@ WeldUCharacteristicMeasurementType::WeldUCharacteristicMeasurementType(
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1078_Type * WeldGrooveChara_1078In) :
+ WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
   WeldGrooveCharacteristicMeasurementType(
     AttributesIn,
     DescriptionIn,
@@ -114579,7 +114579,7 @@ WeldUCharacteristicMeasurementType::WeldUCharacteristicMeasurementType(
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1078In)
+    WeldGrooveChara_1079In)
 {
 }
 
@@ -114597,7 +114597,7 @@ WeldUCharacteristicMeasurementType::WeldUCharacteristicMeasurementType(
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1078_Type * WeldGrooveChara_1078In) :
+ WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
   WeldGrooveCharacteristicMeasurementType(
     idIn,
     AttributesIn,
@@ -114612,7 +114612,7 @@ WeldUCharacteristicMeasurementType::WeldUCharacteristicMeasurementType(
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1078In)
+    WeldGrooveChara_1079In)
 {
 }
 
@@ -114735,9 +114735,9 @@ void WeldUCharacteristicMeasurementType::printSelf(FILE * outFile)
       NonConformanceDesignator->printSelf(outFile);
       fprintf(outFile, "</NonConformanceDesignator>\n");
     }
-  if (WeldGrooveChara_1078)
+  if (WeldGrooveChara_1079)
     {
-      WeldGrooveChara_1078->printSelf(outFile);
+      WeldGrooveChara_1079->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -114799,7 +114799,7 @@ bool WeldUCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldUCharacteristicNominalType
 
@@ -114826,7 +114826,7 @@ WeldUCharacteristicNominalType::WeldUCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
   WeldGrooveCharacteristicNominalType(
     AttributesIn,
     DescriptionIn,
@@ -114843,7 +114843,7 @@ WeldUCharacteristicNominalType::WeldUCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveChara_1080In)
 {
 }
 
@@ -114864,7 +114864,7 @@ WeldUCharacteristicNominalType::WeldUCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
   WeldGrooveCharacteristicNominalType(
     idIn,
     AttributesIn,
@@ -114882,7 +114882,7 @@ WeldUCharacteristicNominalType::WeldUCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveChara_1080In)
 {
 }
 
@@ -115032,9 +115032,9 @@ void WeldUCharacteristicNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</NonDestructiveTesting>\n");
     }
-  if (WeldGrooveChara_1079)
+  if (WeldGrooveChara_1080)
     {
-      WeldGrooveChara_1079->printSelf(outFile);
+      WeldGrooveChara_1080->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -115096,7 +115096,7 @@ bool WeldUCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldVCharacteristicDefinitionType
 
@@ -115359,7 +115359,7 @@ bool WeldVCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldVCharacteristicItemType
 
@@ -115601,7 +115601,7 @@ bool WeldVCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldVCharacteristicMeasurementType
 
@@ -115625,7 +115625,7 @@ WeldVCharacteristicMeasurementType::WeldVCharacteristicMeasurementType(
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1078_Type * WeldGrooveChara_1078In) :
+ WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
   WeldGrooveCharacteristicMeasurementType(
     AttributesIn,
     DescriptionIn,
@@ -115639,7 +115639,7 @@ WeldVCharacteristicMeasurementType::WeldVCharacteristicMeasurementType(
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1078In)
+    WeldGrooveChara_1079In)
 {
 }
 
@@ -115657,7 +115657,7 @@ WeldVCharacteristicMeasurementType::WeldVCharacteristicMeasurementType(
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1078_Type * WeldGrooveChara_1078In) :
+ WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
   WeldGrooveCharacteristicMeasurementType(
     idIn,
     AttributesIn,
@@ -115672,7 +115672,7 @@ WeldVCharacteristicMeasurementType::WeldVCharacteristicMeasurementType(
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1078In)
+    WeldGrooveChara_1079In)
 {
 }
 
@@ -115795,9 +115795,9 @@ void WeldVCharacteristicMeasurementType::printSelf(FILE * outFile)
       NonConformanceDesignator->printSelf(outFile);
       fprintf(outFile, "</NonConformanceDesignator>\n");
     }
-  if (WeldGrooveChara_1078)
+  if (WeldGrooveChara_1079)
     {
-      WeldGrooveChara_1078->printSelf(outFile);
+      WeldGrooveChara_1079->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -115859,7 +115859,7 @@ bool WeldVCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldVCharacteristicNominalType
 
@@ -115886,7 +115886,7 @@ WeldVCharacteristicNominalType::WeldVCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
   WeldGrooveCharacteristicNominalType(
     AttributesIn,
     DescriptionIn,
@@ -115903,7 +115903,7 @@ WeldVCharacteristicNominalType::WeldVCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveChara_1080In)
 {
 }
 
@@ -115924,7 +115924,7 @@ WeldVCharacteristicNominalType::WeldVCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
   WeldGrooveCharacteristicNominalType(
     idIn,
     AttributesIn,
@@ -115942,7 +115942,7 @@ WeldVCharacteristicNominalType::WeldVCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveChara_1080In)
 {
 }
 
@@ -116092,9 +116092,9 @@ void WeldVCharacteristicNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</NonDestructiveTesting>\n");
     }
-  if (WeldGrooveChara_1079)
+  if (WeldGrooveChara_1080)
     {
-      WeldGrooveChara_1079->printSelf(outFile);
+      WeldGrooveChara_1080->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -116156,7 +116156,7 @@ bool WeldVCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldingProcessEnumType
 
@@ -116252,7 +116252,7 @@ void WeldingProcessEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldingProcessSuffixEnumType
 
@@ -116314,7 +116314,7 @@ void WeldingProcessSuffixEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldingProcessType
 
@@ -116372,7 +116372,7 @@ WeldingProcessSuffixEnumType * WeldingProcessType::getSuffix()
 void WeldingProcessType::setSuffix(WeldingProcessSuffixEnumType * SuffixIn)
 {Suffix = SuffixIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WidthCharacteristicDefinitionType
 
@@ -116399,7 +116399,7 @@ WidthCharacteristicDefinitionType::WidthCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -116416,7 +116416,7 @@ WidthCharacteristicDefinitionType::WidthCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -116437,7 +116437,7 @@ WidthCharacteristicDefinitionType::WidthCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1058_Type * LinearCharacter_1058In) :
+ LinearCharacter_1059_Type * LinearCharacter_1059In) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -116455,7 +116455,7 @@ WidthCharacteristicDefinitionType::WidthCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1058In)
+    LinearCharacter_1059In)
 {
 }
 
@@ -116602,7 +116602,7 @@ void WidthCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1058->printSelf(outFile);
+  LinearCharacter_1059->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -116663,7 +116663,7 @@ bool WidthCharacteristicDefinitionType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WidthCharacteristicItemType
 
@@ -116905,7 +116905,7 @@ bool WidthCharacteristicItemType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WidthCharacteristicMeasurementType
 
@@ -117188,7 +117188,7 @@ bool WidthCharacteristicMeasurementType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WidthCharacteristicNominalType
 
@@ -117442,320 +117442,247 @@ bool WidthCharacteristicNominalType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class AngularCharacte_1045_Type
-
-*/
-
-AngularCharacte_1045_Type::AngularCharacte_1045_Type()
-{
-  AngularCharacte_1045_TypePair = 0;
-}
-
-AngularCharacte_1045_Type::AngularCharacte_1045_Type(
- AngularCharacte_1045_TypeChoicePair * AngularCharacte_1045_TypePairIn)
-{
-  AngularCharacte_1045_TypePair = AngularCharacte_1045_TypePairIn;
-}
-
-AngularCharacte_1045_Type::~AngularCharacte_1045_Type()
-{
-  #ifndef NODESTRUCT
-  delete AngularCharacte_1045_TypePair;
-  #endif
-}
-
-void AngularCharacte_1045_Type::printSelf(FILE * outFile)
-{
-  AngularCharacte_1045_TypePair->printSelf(outFile);
-}
-
-AngularCharacte_1045_TypeChoicePair * AngularCharacte_1045_Type::getAngularCharacte_1045_TypePair()
-{return AngularCharacte_1045_TypePair;}
-
-void AngularCharacte_1045_Type::setAngularCharacte_1045_TypePair(AngularCharacte_1045_TypeChoicePair * AngularCharacte_1045_TypePairIn)
-{AngularCharacte_1045_TypePair = AngularCharacte_1045_TypePairIn;}
-
-/*********************************************************************/
-
-/* class AngularCharacte_1045_TypeChoicePair
+/* class AngularCharacte_1046_Type
 
 */
 
-AngularCharacte_1045_TypeChoicePair::AngularCharacte_1045_TypeChoicePair() {}
-
-AngularCharacte_1045_TypeChoicePair::AngularCharacte_1045_TypeChoicePair(
- whichOne AngularCharacte_1045_TypeTypeIn,
- AngularCharacte_1045_TypeVal AngularCharacte_1045_TypeValueIn)
+AngularCharacte_1046_Type::AngularCharacte_1046_Type()
 {
-  AngularCharacte_1045_TypeType = AngularCharacte_1045_TypeTypeIn;
-  AngularCharacte_1045_TypeValue = AngularCharacte_1045_TypeValueIn;
+  AngularCharacte_1046_TypePair = 0;
 }
 
-AngularCharacte_1045_TypeChoicePair::~AngularCharacte_1045_TypeChoicePair()
+AngularCharacte_1046_Type::AngularCharacte_1046_Type(
+ AngularCharacte_1046_TypeChoicePair * AngularCharacte_1046_TypePairIn)
+{
+  AngularCharacte_1046_TypePair = AngularCharacte_1046_TypePairIn;
+}
+
+AngularCharacte_1046_Type::~AngularCharacte_1046_Type()
 {
   #ifndef NODESTRUCT
-  if (AngularCharacte_1045_TypeType == ToleranceE)
-    delete AngularCharacte_1045_TypeValue.Tolerance;
-  else if (AngularCharacte_1045_TypeType == NonToleranceE)
-    delete AngularCharacte_1045_TypeValue.NonTolerance;
+  delete AngularCharacte_1046_TypePair;
   #endif
 }
 
-void AngularCharacte_1045_TypeChoicePair::printSelf(FILE * outFile)
+void AngularCharacte_1046_Type::printSelf(FILE * outFile)
 {
-  if (AngularCharacte_1045_TypeType == ToleranceE)
+  AngularCharacte_1046_TypePair->printSelf(outFile);
+}
+
+AngularCharacte_1046_TypeChoicePair * AngularCharacte_1046_Type::getAngularCharacte_1046_TypePair()
+{return AngularCharacte_1046_TypePair;}
+
+void AngularCharacte_1046_Type::setAngularCharacte_1046_TypePair(AngularCharacte_1046_TypeChoicePair * AngularCharacte_1046_TypePairIn)
+{AngularCharacte_1046_TypePair = AngularCharacte_1046_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class AngularCharacte_1046_TypeChoicePair
+
+*/
+
+AngularCharacte_1046_TypeChoicePair::AngularCharacte_1046_TypeChoicePair() {}
+
+AngularCharacte_1046_TypeChoicePair::AngularCharacte_1046_TypeChoicePair(
+ whichOne AngularCharacte_1046_TypeTypeIn,
+ AngularCharacte_1046_TypeVal AngularCharacte_1046_TypeValueIn)
+{
+  AngularCharacte_1046_TypeType = AngularCharacte_1046_TypeTypeIn;
+  AngularCharacte_1046_TypeValue = AngularCharacte_1046_TypeValueIn;
+}
+
+AngularCharacte_1046_TypeChoicePair::~AngularCharacte_1046_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (AngularCharacte_1046_TypeType == ToleranceE)
+    delete AngularCharacte_1046_TypeValue.Tolerance;
+  else if (AngularCharacte_1046_TypeType == NonToleranceE)
+    delete AngularCharacte_1046_TypeValue.NonTolerance;
+  #endif
+}
+
+void AngularCharacte_1046_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (AngularCharacte_1046_TypeType == ToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      AngularCharacte_1045_TypeValue.Tolerance->printSelf(outFile);
+      AngularCharacte_1046_TypeValue.Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
-  else if (AngularCharacte_1045_TypeType == NonToleranceE)
+  else if (AngularCharacte_1046_TypeType == NonToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      AngularCharacte_1045_TypeValue.NonTolerance->printSelf(outFile);
+      AngularCharacte_1046_TypeValue.NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class AngularCoordina_1046_Type
-
-*/
-
-AngularCoordina_1046_Type::AngularCoordina_1046_Type()
-{
-  AngularCoordina_1046_TypePair = 0;
-}
-
-AngularCoordina_1046_Type::AngularCoordina_1046_Type(
- AngularCoordina_1046_TypeChoicePair * AngularCoordina_1046_TypePairIn)
-{
-  AngularCoordina_1046_TypePair = AngularCoordina_1046_TypePairIn;
-}
-
-AngularCoordina_1046_Type::~AngularCoordina_1046_Type()
-{
-  #ifndef NODESTRUCT
-  delete AngularCoordina_1046_TypePair;
-  #endif
-}
-
-void AngularCoordina_1046_Type::printSelf(FILE * outFile)
-{
-  AngularCoordina_1046_TypePair->printSelf(outFile);
-}
-
-AngularCoordina_1046_TypeChoicePair * AngularCoordina_1046_Type::getAngularCoordina_1046_TypePair()
-{return AngularCoordina_1046_TypePair;}
-
-void AngularCoordina_1046_Type::setAngularCoordina_1046_TypePair(AngularCoordina_1046_TypeChoicePair * AngularCoordina_1046_TypePairIn)
-{AngularCoordina_1046_TypePair = AngularCoordina_1046_TypePairIn;}
-
-/*********************************************************************/
-
-/* class AngularCoordina_1046_TypeChoicePair
+/* class AngularCoordina_1047_Type
 
 */
 
-AngularCoordina_1046_TypeChoicePair::AngularCoordina_1046_TypeChoicePair() {}
-
-AngularCoordina_1046_TypeChoicePair::AngularCoordina_1046_TypeChoicePair(
- whichOne AngularCoordina_1046_TypeTypeIn,
- AngularCoordina_1046_TypeVal AngularCoordina_1046_TypeValueIn)
+AngularCoordina_1047_Type::AngularCoordina_1047_Type()
 {
-  AngularCoordina_1046_TypeType = AngularCoordina_1046_TypeTypeIn;
-  AngularCoordina_1046_TypeValue = AngularCoordina_1046_TypeValueIn;
+  AngularCoordina_1047_TypePair = 0;
 }
 
-AngularCoordina_1046_TypeChoicePair::~AngularCoordina_1046_TypeChoicePair()
+AngularCoordina_1047_Type::AngularCoordina_1047_Type(
+ AngularCoordina_1047_TypeChoicePair * AngularCoordina_1047_TypePairIn)
+{
+  AngularCoordina_1047_TypePair = AngularCoordina_1047_TypePairIn;
+}
+
+AngularCoordina_1047_Type::~AngularCoordina_1047_Type()
 {
   #ifndef NODESTRUCT
-  if (AngularCoordina_1046_TypeType == ToleranceE)
-    delete AngularCoordina_1046_TypeValue.Tolerance;
-  else if (AngularCoordina_1046_TypeType == NonToleranceE)
-    delete AngularCoordina_1046_TypeValue.NonTolerance;
+  delete AngularCoordina_1047_TypePair;
   #endif
 }
 
-void AngularCoordina_1046_TypeChoicePair::printSelf(FILE * outFile)
+void AngularCoordina_1047_Type::printSelf(FILE * outFile)
 {
-  if (AngularCoordina_1046_TypeType == ToleranceE)
+  AngularCoordina_1047_TypePair->printSelf(outFile);
+}
+
+AngularCoordina_1047_TypeChoicePair * AngularCoordina_1047_Type::getAngularCoordina_1047_TypePair()
+{return AngularCoordina_1047_TypePair;}
+
+void AngularCoordina_1047_Type::setAngularCoordina_1047_TypePair(AngularCoordina_1047_TypeChoicePair * AngularCoordina_1047_TypePairIn)
+{AngularCoordina_1047_TypePair = AngularCoordina_1047_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class AngularCoordina_1047_TypeChoicePair
+
+*/
+
+AngularCoordina_1047_TypeChoicePair::AngularCoordina_1047_TypeChoicePair() {}
+
+AngularCoordina_1047_TypeChoicePair::AngularCoordina_1047_TypeChoicePair(
+ whichOne AngularCoordina_1047_TypeTypeIn,
+ AngularCoordina_1047_TypeVal AngularCoordina_1047_TypeValueIn)
+{
+  AngularCoordina_1047_TypeType = AngularCoordina_1047_TypeTypeIn;
+  AngularCoordina_1047_TypeValue = AngularCoordina_1047_TypeValueIn;
+}
+
+AngularCoordina_1047_TypeChoicePair::~AngularCoordina_1047_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (AngularCoordina_1047_TypeType == ToleranceE)
+    delete AngularCoordina_1047_TypeValue.Tolerance;
+  else if (AngularCoordina_1047_TypeType == NonToleranceE)
+    delete AngularCoordina_1047_TypeValue.NonTolerance;
+  #endif
+}
+
+void AngularCoordina_1047_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (AngularCoordina_1047_TypeType == ToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      AngularCoordina_1046_TypeValue.Tolerance->printSelf(outFile);
+      AngularCoordina_1047_TypeValue.Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
-  else if (AngularCoordina_1046_TypeType == NonToleranceE)
+  else if (AngularCoordina_1047_TypeType == NonToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      AngularCoordina_1046_TypeValue.NonTolerance->printSelf(outFile);
+      AngularCoordina_1047_TypeValue.NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class AreaCharacteris_1047_Type
-
-*/
-
-AreaCharacteris_1047_Type::AreaCharacteris_1047_Type()
-{
-  AreaCharacteris_1047_TypePair = 0;
-}
-
-AreaCharacteris_1047_Type::AreaCharacteris_1047_Type(
- AreaCharacteris_1047_TypeChoicePair * AreaCharacteris_1047_TypePairIn)
-{
-  AreaCharacteris_1047_TypePair = AreaCharacteris_1047_TypePairIn;
-}
-
-AreaCharacteris_1047_Type::~AreaCharacteris_1047_Type()
-{
-  #ifndef NODESTRUCT
-  delete AreaCharacteris_1047_TypePair;
-  #endif
-}
-
-void AreaCharacteris_1047_Type::printSelf(FILE * outFile)
-{
-  AreaCharacteris_1047_TypePair->printSelf(outFile);
-}
-
-AreaCharacteris_1047_TypeChoicePair * AreaCharacteris_1047_Type::getAreaCharacteris_1047_TypePair()
-{return AreaCharacteris_1047_TypePair;}
-
-void AreaCharacteris_1047_Type::setAreaCharacteris_1047_TypePair(AreaCharacteris_1047_TypeChoicePair * AreaCharacteris_1047_TypePairIn)
-{AreaCharacteris_1047_TypePair = AreaCharacteris_1047_TypePairIn;}
-
-/*********************************************************************/
-
-/* class AreaCharacteris_1047_TypeChoicePair
+/* class AreaCharacteris_1048_Type
 
 */
 
-AreaCharacteris_1047_TypeChoicePair::AreaCharacteris_1047_TypeChoicePair() {}
-
-AreaCharacteris_1047_TypeChoicePair::AreaCharacteris_1047_TypeChoicePair(
- whichOne AreaCharacteris_1047_TypeTypeIn,
- AreaCharacteris_1047_TypeVal AreaCharacteris_1047_TypeValueIn)
+AreaCharacteris_1048_Type::AreaCharacteris_1048_Type()
 {
-  AreaCharacteris_1047_TypeType = AreaCharacteris_1047_TypeTypeIn;
-  AreaCharacteris_1047_TypeValue = AreaCharacteris_1047_TypeValueIn;
+  AreaCharacteris_1048_TypePair = 0;
 }
 
-AreaCharacteris_1047_TypeChoicePair::~AreaCharacteris_1047_TypeChoicePair()
+AreaCharacteris_1048_Type::AreaCharacteris_1048_Type(
+ AreaCharacteris_1048_TypeChoicePair * AreaCharacteris_1048_TypePairIn)
+{
+  AreaCharacteris_1048_TypePair = AreaCharacteris_1048_TypePairIn;
+}
+
+AreaCharacteris_1048_Type::~AreaCharacteris_1048_Type()
 {
   #ifndef NODESTRUCT
-  if (AreaCharacteris_1047_TypeType == ToleranceE)
-    delete AreaCharacteris_1047_TypeValue.Tolerance;
-  else if (AreaCharacteris_1047_TypeType == NonToleranceE)
-    delete AreaCharacteris_1047_TypeValue.NonTolerance;
+  delete AreaCharacteris_1048_TypePair;
   #endif
 }
 
-void AreaCharacteris_1047_TypeChoicePair::printSelf(FILE * outFile)
+void AreaCharacteris_1048_Type::printSelf(FILE * outFile)
 {
-  if (AreaCharacteris_1047_TypeType == ToleranceE)
+  AreaCharacteris_1048_TypePair->printSelf(outFile);
+}
+
+AreaCharacteris_1048_TypeChoicePair * AreaCharacteris_1048_Type::getAreaCharacteris_1048_TypePair()
+{return AreaCharacteris_1048_TypePair;}
+
+void AreaCharacteris_1048_Type::setAreaCharacteris_1048_TypePair(AreaCharacteris_1048_TypeChoicePair * AreaCharacteris_1048_TypePairIn)
+{AreaCharacteris_1048_TypePair = AreaCharacteris_1048_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class AreaCharacteris_1048_TypeChoicePair
+
+*/
+
+AreaCharacteris_1048_TypeChoicePair::AreaCharacteris_1048_TypeChoicePair() {}
+
+AreaCharacteris_1048_TypeChoicePair::AreaCharacteris_1048_TypeChoicePair(
+ whichOne AreaCharacteris_1048_TypeTypeIn,
+ AreaCharacteris_1048_TypeVal AreaCharacteris_1048_TypeValueIn)
+{
+  AreaCharacteris_1048_TypeType = AreaCharacteris_1048_TypeTypeIn;
+  AreaCharacteris_1048_TypeValue = AreaCharacteris_1048_TypeValueIn;
+}
+
+AreaCharacteris_1048_TypeChoicePair::~AreaCharacteris_1048_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (AreaCharacteris_1048_TypeType == ToleranceE)
+    delete AreaCharacteris_1048_TypeValue.Tolerance;
+  else if (AreaCharacteris_1048_TypeType == NonToleranceE)
+    delete AreaCharacteris_1048_TypeValue.NonTolerance;
+  #endif
+}
+
+void AreaCharacteris_1048_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (AreaCharacteris_1048_TypeType == ToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      AreaCharacteris_1047_TypeValue.Tolerance->printSelf(outFile);
+      AreaCharacteris_1048_TypeValue.Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
-  else if (AreaCharacteris_1047_TypeType == NonToleranceE)
+  else if (AreaCharacteris_1048_TypeType == NonToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      AreaCharacteris_1047_TypeValue.NonTolerance->printSelf(outFile);
+      AreaCharacteris_1048_TypeValue.NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
 
-/*********************************************************************/
-
-/* class CircularityChar_1048_Type
-
-*/
-
-CircularityChar_1048_Type::CircularityChar_1048_Type()
-{
-  CircularityChar_1048_TypePair = 0;
-}
-
-CircularityChar_1048_Type::CircularityChar_1048_Type(
- CircularityChar_1048_TypeChoicePair * CircularityChar_1048_TypePairIn)
-{
-  CircularityChar_1048_TypePair = CircularityChar_1048_TypePairIn;
-}
-
-CircularityChar_1048_Type::~CircularityChar_1048_Type()
-{
-  #ifndef NODESTRUCT
-  delete CircularityChar_1048_TypePair;
-  #endif
-}
-
-void CircularityChar_1048_Type::printSelf(FILE * outFile)
-{
-  CircularityChar_1048_TypePair->printSelf(outFile);
-}
-
-CircularityChar_1048_TypeChoicePair * CircularityChar_1048_Type::getCircularityChar_1048_TypePair()
-{return CircularityChar_1048_TypePair;}
-
-void CircularityChar_1048_Type::setCircularityChar_1048_TypePair(CircularityChar_1048_TypeChoicePair * CircularityChar_1048_TypePairIn)
-{CircularityChar_1048_TypePair = CircularityChar_1048_TypePairIn;}
-
-/*********************************************************************/
-
-/* class CircularityChar_1048_TypeChoicePair
-
-*/
-
-CircularityChar_1048_TypeChoicePair::CircularityChar_1048_TypeChoicePair() {}
-
-CircularityChar_1048_TypeChoicePair::CircularityChar_1048_TypeChoicePair(
- whichOne CircularityChar_1048_TypeTypeIn,
- CircularityChar_1048_TypeVal CircularityChar_1048_TypeValueIn)
-{
-  CircularityChar_1048_TypeType = CircularityChar_1048_TypeTypeIn;
-  CircularityChar_1048_TypeValue = CircularityChar_1048_TypeValueIn;
-}
-
-CircularityChar_1048_TypeChoicePair::~CircularityChar_1048_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (CircularityChar_1048_TypeType == CircularityChar_1081E)
-    delete CircularityChar_1048_TypeValue.CircularityChar_1081;
-  else if (CircularityChar_1048_TypeType == CircularityChar_1082E)
-    delete CircularityChar_1048_TypeValue.CircularityChar_1082;
-  #endif
-}
-
-void CircularityChar_1048_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (CircularityChar_1048_TypeType == CircularityChar_1081E)
-    {
-      CircularityChar_1048_TypeValue.CircularityChar_1081->printSelf(outFile);
-    }
-  else if (CircularityChar_1048_TypeType == CircularityChar_1082E)
-    {
-      CircularityChar_1048_TypeValue.CircularityChar_1082->printSelf(outFile);
-    }
-}
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularityChar_1049_Type
 
@@ -117763,11 +117690,84 @@ void CircularityChar_1048_TypeChoicePair::printSelf(FILE * outFile)
 
 CircularityChar_1049_Type::CircularityChar_1049_Type()
 {
+  CircularityChar_1049_TypePair = 0;
+}
+
+CircularityChar_1049_Type::CircularityChar_1049_Type(
+ CircularityChar_1049_TypeChoicePair * CircularityChar_1049_TypePairIn)
+{
+  CircularityChar_1049_TypePair = CircularityChar_1049_TypePairIn;
+}
+
+CircularityChar_1049_Type::~CircularityChar_1049_Type()
+{
+  #ifndef NODESTRUCT
+  delete CircularityChar_1049_TypePair;
+  #endif
+}
+
+void CircularityChar_1049_Type::printSelf(FILE * outFile)
+{
+  CircularityChar_1049_TypePair->printSelf(outFile);
+}
+
+CircularityChar_1049_TypeChoicePair * CircularityChar_1049_Type::getCircularityChar_1049_TypePair()
+{return CircularityChar_1049_TypePair;}
+
+void CircularityChar_1049_Type::setCircularityChar_1049_TypePair(CircularityChar_1049_TypeChoicePair * CircularityChar_1049_TypePairIn)
+{CircularityChar_1049_TypePair = CircularityChar_1049_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class CircularityChar_1049_TypeChoicePair
+
+*/
+
+CircularityChar_1049_TypeChoicePair::CircularityChar_1049_TypeChoicePair() {}
+
+CircularityChar_1049_TypeChoicePair::CircularityChar_1049_TypeChoicePair(
+ whichOne CircularityChar_1049_TypeTypeIn,
+ CircularityChar_1049_TypeVal CircularityChar_1049_TypeValueIn)
+{
+  CircularityChar_1049_TypeType = CircularityChar_1049_TypeTypeIn;
+  CircularityChar_1049_TypeValue = CircularityChar_1049_TypeValueIn;
+}
+
+CircularityChar_1049_TypeChoicePair::~CircularityChar_1049_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (CircularityChar_1049_TypeType == CircularityChar_1082E)
+    delete CircularityChar_1049_TypeValue.CircularityChar_1082;
+  else if (CircularityChar_1049_TypeType == CircularityChar_1083E)
+    delete CircularityChar_1049_TypeValue.CircularityChar_1083;
+  #endif
+}
+
+void CircularityChar_1049_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (CircularityChar_1049_TypeType == CircularityChar_1082E)
+    {
+      CircularityChar_1049_TypeValue.CircularityChar_1082->printSelf(outFile);
+    }
+  else if (CircularityChar_1049_TypeType == CircularityChar_1083E)
+    {
+      CircularityChar_1049_TypeValue.CircularityChar_1083->printSelf(outFile);
+    }
+}
+
+/* ***************************************************************** */
+
+/* class CircularityChar_1050_Type
+
+*/
+
+CircularityChar_1050_Type::CircularityChar_1050_Type()
+{
   ZoneRadii = 0;
   ZonePlane = 0;
 }
 
-CircularityChar_1049_Type::CircularityChar_1049_Type(
+CircularityChar_1050_Type::CircularityChar_1050_Type(
  MeasuredZoneRadiiType * ZoneRadiiIn,
  MeasuredPlaneType * ZonePlaneIn)
 {
@@ -117775,7 +117775,7 @@ CircularityChar_1049_Type::CircularityChar_1049_Type(
   ZonePlane = ZonePlaneIn;
 }
 
-CircularityChar_1049_Type::~CircularityChar_1049_Type()
+CircularityChar_1050_Type::~CircularityChar_1050_Type()
 {
   #ifndef NODESTRUCT
   delete ZoneRadii;
@@ -117783,7 +117783,7 @@ CircularityChar_1049_Type::~CircularityChar_1049_Type()
   #endif
 }
 
-void CircularityChar_1049_Type::printSelf(FILE * outFile)
+void CircularityChar_1050_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ZoneRadii");
@@ -117797,98 +117797,19 @@ void CircularityChar_1049_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</ZonePlane>\n");
 }
 
-MeasuredZoneRadiiType * CircularityChar_1049_Type::getZoneRadii()
+MeasuredZoneRadiiType * CircularityChar_1050_Type::getZoneRadii()
 {return ZoneRadii;}
 
-void CircularityChar_1049_Type::setZoneRadii(MeasuredZoneRadiiType * ZoneRadiiIn)
+void CircularityChar_1050_Type::setZoneRadii(MeasuredZoneRadiiType * ZoneRadiiIn)
 {ZoneRadii = ZoneRadiiIn;}
 
-MeasuredPlaneType * CircularityChar_1049_Type::getZonePlane()
+MeasuredPlaneType * CircularityChar_1050_Type::getZonePlane()
 {return ZonePlane;}
 
-void CircularityChar_1049_Type::setZonePlane(MeasuredPlaneType * ZonePlaneIn)
+void CircularityChar_1050_Type::setZonePlane(MeasuredPlaneType * ZonePlaneIn)
 {ZonePlane = ZonePlaneIn;}
 
-/*********************************************************************/
-
-/* class CriticalityType_1050_Type
-
-*/
-
-CriticalityType_1050_Type::CriticalityType_1050_Type()
-{
-  CriticalityType_1050_TypePair = 0;
-}
-
-CriticalityType_1050_Type::CriticalityType_1050_Type(
- CriticalityType_1050_TypeChoicePair * CriticalityType_1050_TypePairIn)
-{
-  CriticalityType_1050_TypePair = CriticalityType_1050_TypePairIn;
-}
-
-CriticalityType_1050_Type::~CriticalityType_1050_Type()
-{
-  #ifndef NODESTRUCT
-  delete CriticalityType_1050_TypePair;
-  #endif
-}
-
-void CriticalityType_1050_Type::printSelf(FILE * outFile)
-{
-  CriticalityType_1050_TypePair->printSelf(outFile);
-}
-
-CriticalityType_1050_TypeChoicePair * CriticalityType_1050_Type::getCriticalityType_1050_TypePair()
-{return CriticalityType_1050_TypePair;}
-
-void CriticalityType_1050_Type::setCriticalityType_1050_TypePair(CriticalityType_1050_TypeChoicePair * CriticalityType_1050_TypePairIn)
-{CriticalityType_1050_TypePair = CriticalityType_1050_TypePairIn;}
-
-/*********************************************************************/
-
-/* class CriticalityType_1050_TypeChoicePair
-
-*/
-
-CriticalityType_1050_TypeChoicePair::CriticalityType_1050_TypeChoicePair() {}
-
-CriticalityType_1050_TypeChoicePair::CriticalityType_1050_TypeChoicePair(
- whichOne CriticalityType_1050_TypeTypeIn,
- CriticalityType_1050_TypeVal CriticalityType_1050_TypeValueIn)
-{
-  CriticalityType_1050_TypeType = CriticalityType_1050_TypeTypeIn;
-  CriticalityType_1050_TypeValue = CriticalityType_1050_TypeValueIn;
-}
-
-CriticalityType_1050_TypeChoicePair::~CriticalityType_1050_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (CriticalityType_1050_TypeType == LevelEnumE)
-    delete CriticalityType_1050_TypeValue.LevelEnum;
-  else if (CriticalityType_1050_TypeType == OtherLevelE)
-    delete CriticalityType_1050_TypeValue.OtherLevel;
-  #endif
-}
-
-void CriticalityType_1050_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (CriticalityType_1050_TypeType == LevelEnumE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<LevelEnum");
-      CriticalityType_1050_TypeValue.LevelEnum->printSelf(outFile);
-      fprintf(outFile, "</LevelEnum>\n");
-    }
-  else if (CriticalityType_1050_TypeType == OtherLevelE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<OtherLevel");
-      CriticalityType_1050_TypeValue.OtherLevel->printSelf(outFile);
-      fprintf(outFile, "</OtherLevel>\n");
-    }
-}
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CriticalityType_1051_Type
 
@@ -117914,10 +117835,7 @@ CriticalityType_1051_Type::~CriticalityType_1051_Type()
 
 void CriticalityType_1051_Type::printSelf(FILE * outFile)
 {
-  if (CriticalityType_1051_TypePair)
-    {
-      CriticalityType_1051_TypePair->printSelf(outFile);
-    }
+  CriticalityType_1051_TypePair->printSelf(outFile);
 }
 
 CriticalityType_1051_TypeChoicePair * CriticalityType_1051_Type::getCriticalityType_1051_TypePair()
@@ -117926,7 +117844,7 @@ CriticalityType_1051_TypeChoicePair * CriticalityType_1051_Type::getCriticalityT
 void CriticalityType_1051_Type::setCriticalityType_1051_TypePair(CriticalityType_1051_TypeChoicePair * CriticalityType_1051_TypePairIn)
 {CriticalityType_1051_TypePair = CriticalityType_1051_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CriticalityType_1051_TypeChoicePair
 
@@ -117945,105 +117863,114 @@ CriticalityType_1051_TypeChoicePair::CriticalityType_1051_TypeChoicePair(
 CriticalityType_1051_TypeChoicePair::~CriticalityType_1051_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (CriticalityType_1051_TypeType == AreaEnumE)
-    delete CriticalityType_1051_TypeValue.AreaEnum;
-  else if (CriticalityType_1051_TypeType == OtherAreaE)
-    delete CriticalityType_1051_TypeValue.OtherArea;
+  if (CriticalityType_1051_TypeType == LevelEnumE)
+    delete CriticalityType_1051_TypeValue.LevelEnum;
+  else if (CriticalityType_1051_TypeType == OtherLevelE)
+    delete CriticalityType_1051_TypeValue.OtherLevel;
   #endif
 }
 
 void CriticalityType_1051_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (CriticalityType_1051_TypeType == AreaEnumE)
+  if (CriticalityType_1051_TypeType == LevelEnumE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<LevelEnum");
+      CriticalityType_1051_TypeValue.LevelEnum->printSelf(outFile);
+      fprintf(outFile, "</LevelEnum>\n");
+    }
+  else if (CriticalityType_1051_TypeType == OtherLevelE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<OtherLevel");
+      CriticalityType_1051_TypeValue.OtherLevel->printSelf(outFile);
+      fprintf(outFile, "</OtherLevel>\n");
+    }
+}
+
+/* ***************************************************************** */
+
+/* class CriticalityType_1052_Type
+
+*/
+
+CriticalityType_1052_Type::CriticalityType_1052_Type()
+{
+  CriticalityType_1052_TypePair = 0;
+}
+
+CriticalityType_1052_Type::CriticalityType_1052_Type(
+ CriticalityType_1052_TypeChoicePair * CriticalityType_1052_TypePairIn)
+{
+  CriticalityType_1052_TypePair = CriticalityType_1052_TypePairIn;
+}
+
+CriticalityType_1052_Type::~CriticalityType_1052_Type()
+{
+  #ifndef NODESTRUCT
+  delete CriticalityType_1052_TypePair;
+  #endif
+}
+
+void CriticalityType_1052_Type::printSelf(FILE * outFile)
+{
+  if (CriticalityType_1052_TypePair)
+    {
+      CriticalityType_1052_TypePair->printSelf(outFile);
+    }
+}
+
+CriticalityType_1052_TypeChoicePair * CriticalityType_1052_Type::getCriticalityType_1052_TypePair()
+{return CriticalityType_1052_TypePair;}
+
+void CriticalityType_1052_Type::setCriticalityType_1052_TypePair(CriticalityType_1052_TypeChoicePair * CriticalityType_1052_TypePairIn)
+{CriticalityType_1052_TypePair = CriticalityType_1052_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class CriticalityType_1052_TypeChoicePair
+
+*/
+
+CriticalityType_1052_TypeChoicePair::CriticalityType_1052_TypeChoicePair() {}
+
+CriticalityType_1052_TypeChoicePair::CriticalityType_1052_TypeChoicePair(
+ whichOne CriticalityType_1052_TypeTypeIn,
+ CriticalityType_1052_TypeVal CriticalityType_1052_TypeValueIn)
+{
+  CriticalityType_1052_TypeType = CriticalityType_1052_TypeTypeIn;
+  CriticalityType_1052_TypeValue = CriticalityType_1052_TypeValueIn;
+}
+
+CriticalityType_1052_TypeChoicePair::~CriticalityType_1052_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (CriticalityType_1052_TypeType == AreaEnumE)
+    delete CriticalityType_1052_TypeValue.AreaEnum;
+  else if (CriticalityType_1052_TypeType == OtherAreaE)
+    delete CriticalityType_1052_TypeValue.OtherArea;
+  #endif
+}
+
+void CriticalityType_1052_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (CriticalityType_1052_TypeType == AreaEnumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AreaEnum");
-      CriticalityType_1051_TypeValue.AreaEnum->printSelf(outFile);
+      CriticalityType_1052_TypeValue.AreaEnum->printSelf(outFile);
       fprintf(outFile, "</AreaEnum>\n");
     }
-  else if (CriticalityType_1051_TypeType == OtherAreaE)
+  else if (CriticalityType_1052_TypeType == OtherAreaE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherArea");
-      CriticalityType_1051_TypeValue.OtherArea->printSelf(outFile);
+      CriticalityType_1052_TypeValue.OtherArea->printSelf(outFile);
       fprintf(outFile, "</OtherArea>\n");
     }
 }
 
-/*********************************************************************/
-
-/* class CylindricityCha_1052_Type
-
-*/
-
-CylindricityCha_1052_Type::CylindricityCha_1052_Type()
-{
-  CylindricityCha_1052_TypePair = 0;
-}
-
-CylindricityCha_1052_Type::CylindricityCha_1052_Type(
- CylindricityCha_1052_TypeChoicePair * CylindricityCha_1052_TypePairIn)
-{
-  CylindricityCha_1052_TypePair = CylindricityCha_1052_TypePairIn;
-}
-
-CylindricityCha_1052_Type::~CylindricityCha_1052_Type()
-{
-  #ifndef NODESTRUCT
-  delete CylindricityCha_1052_TypePair;
-  #endif
-}
-
-void CylindricityCha_1052_Type::printSelf(FILE * outFile)
-{
-  CylindricityCha_1052_TypePair->printSelf(outFile);
-}
-
-CylindricityCha_1052_TypeChoicePair * CylindricityCha_1052_Type::getCylindricityCha_1052_TypePair()
-{return CylindricityCha_1052_TypePair;}
-
-void CylindricityCha_1052_Type::setCylindricityCha_1052_TypePair(CylindricityCha_1052_TypeChoicePair * CylindricityCha_1052_TypePairIn)
-{CylindricityCha_1052_TypePair = CylindricityCha_1052_TypePairIn;}
-
-/*********************************************************************/
-
-/* class CylindricityCha_1052_TypeChoicePair
-
-*/
-
-CylindricityCha_1052_TypeChoicePair::CylindricityCha_1052_TypeChoicePair() {}
-
-CylindricityCha_1052_TypeChoicePair::CylindricityCha_1052_TypeChoicePair(
- whichOne CylindricityCha_1052_TypeTypeIn,
- CylindricityCha_1052_TypeVal CylindricityCha_1052_TypeValueIn)
-{
-  CylindricityCha_1052_TypeType = CylindricityCha_1052_TypeTypeIn;
-  CylindricityCha_1052_TypeValue = CylindricityCha_1052_TypeValueIn;
-}
-
-CylindricityCha_1052_TypeChoicePair::~CylindricityCha_1052_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (CylindricityCha_1052_TypeType == CylindricityCha_1083E)
-    delete CylindricityCha_1052_TypeValue.CylindricityCha_1083;
-  else if (CylindricityCha_1052_TypeType == CylindricityCha_1084E)
-    delete CylindricityCha_1052_TypeValue.CylindricityCha_1084;
-  #endif
-}
-
-void CylindricityCha_1052_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (CylindricityCha_1052_TypeType == CylindricityCha_1083E)
-    {
-      CylindricityCha_1052_TypeValue.CylindricityCha_1083->printSelf(outFile);
-    }
-  else if (CylindricityCha_1052_TypeType == CylindricityCha_1084E)
-    {
-      CylindricityCha_1052_TypeValue.CylindricityCha_1084->printSelf(outFile);
-    }
-}
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricityCha_1053_Type
 
@@ -118051,11 +117978,84 @@ void CylindricityCha_1052_TypeChoicePair::printSelf(FILE * outFile)
 
 CylindricityCha_1053_Type::CylindricityCha_1053_Type()
 {
+  CylindricityCha_1053_TypePair = 0;
+}
+
+CylindricityCha_1053_Type::CylindricityCha_1053_Type(
+ CylindricityCha_1053_TypeChoicePair * CylindricityCha_1053_TypePairIn)
+{
+  CylindricityCha_1053_TypePair = CylindricityCha_1053_TypePairIn;
+}
+
+CylindricityCha_1053_Type::~CylindricityCha_1053_Type()
+{
+  #ifndef NODESTRUCT
+  delete CylindricityCha_1053_TypePair;
+  #endif
+}
+
+void CylindricityCha_1053_Type::printSelf(FILE * outFile)
+{
+  CylindricityCha_1053_TypePair->printSelf(outFile);
+}
+
+CylindricityCha_1053_TypeChoicePair * CylindricityCha_1053_Type::getCylindricityCha_1053_TypePair()
+{return CylindricityCha_1053_TypePair;}
+
+void CylindricityCha_1053_Type::setCylindricityCha_1053_TypePair(CylindricityCha_1053_TypeChoicePair * CylindricityCha_1053_TypePairIn)
+{CylindricityCha_1053_TypePair = CylindricityCha_1053_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class CylindricityCha_1053_TypeChoicePair
+
+*/
+
+CylindricityCha_1053_TypeChoicePair::CylindricityCha_1053_TypeChoicePair() {}
+
+CylindricityCha_1053_TypeChoicePair::CylindricityCha_1053_TypeChoicePair(
+ whichOne CylindricityCha_1053_TypeTypeIn,
+ CylindricityCha_1053_TypeVal CylindricityCha_1053_TypeValueIn)
+{
+  CylindricityCha_1053_TypeType = CylindricityCha_1053_TypeTypeIn;
+  CylindricityCha_1053_TypeValue = CylindricityCha_1053_TypeValueIn;
+}
+
+CylindricityCha_1053_TypeChoicePair::~CylindricityCha_1053_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (CylindricityCha_1053_TypeType == CylindricityCha_1084E)
+    delete CylindricityCha_1053_TypeValue.CylindricityCha_1084;
+  else if (CylindricityCha_1053_TypeType == CylindricityCha_1085E)
+    delete CylindricityCha_1053_TypeValue.CylindricityCha_1085;
+  #endif
+}
+
+void CylindricityCha_1053_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (CylindricityCha_1053_TypeType == CylindricityCha_1084E)
+    {
+      CylindricityCha_1053_TypeValue.CylindricityCha_1084->printSelf(outFile);
+    }
+  else if (CylindricityCha_1053_TypeType == CylindricityCha_1085E)
+    {
+      CylindricityCha_1053_TypeValue.CylindricityCha_1085->printSelf(outFile);
+    }
+}
+
+/* ***************************************************************** */
+
+/* class CylindricityCha_1054_Type
+
+*/
+
+CylindricityCha_1054_Type::CylindricityCha_1054_Type()
+{
   ZoneRadii = 0;
   ZoneAxis = 0;
 }
 
-CylindricityCha_1053_Type::CylindricityCha_1053_Type(
+CylindricityCha_1054_Type::CylindricityCha_1054_Type(
  MeasuredZoneRadiiType * ZoneRadiiIn,
  MeasuredZoneAxisType * ZoneAxisIn)
 {
@@ -118063,7 +118063,7 @@ CylindricityCha_1053_Type::CylindricityCha_1053_Type(
   ZoneAxis = ZoneAxisIn;
 }
 
-CylindricityCha_1053_Type::~CylindricityCha_1053_Type()
+CylindricityCha_1054_Type::~CylindricityCha_1054_Type()
 {
   #ifndef NODESTRUCT
   delete ZoneRadii;
@@ -118071,7 +118071,7 @@ CylindricityCha_1053_Type::~CylindricityCha_1053_Type()
   #endif
 }
 
-void CylindricityCha_1053_Type::printSelf(FILE * outFile)
+void CylindricityCha_1054_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ZoneRadii");
@@ -118085,518 +118085,518 @@ void CylindricityCha_1053_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</ZoneAxis>\n");
 }
 
-MeasuredZoneRadiiType * CylindricityCha_1053_Type::getZoneRadii()
+MeasuredZoneRadiiType * CylindricityCha_1054_Type::getZoneRadii()
 {return ZoneRadii;}
 
-void CylindricityCha_1053_Type::setZoneRadii(MeasuredZoneRadiiType * ZoneRadiiIn)
+void CylindricityCha_1054_Type::setZoneRadii(MeasuredZoneRadiiType * ZoneRadiiIn)
 {ZoneRadii = ZoneRadiiIn;}
 
-MeasuredZoneAxisType * CylindricityCha_1053_Type::getZoneAxis()
+MeasuredZoneAxisType * CylindricityCha_1054_Type::getZoneAxis()
 {return ZoneAxis;}
 
-void CylindricityCha_1053_Type::setZoneAxis(MeasuredZoneAxisType * ZoneAxisIn)
+void CylindricityCha_1054_Type::setZoneAxis(MeasuredZoneAxisType * ZoneAxisIn)
 {ZoneAxis = ZoneAxisIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class DiameterCharact_1054_Type
-
-*/
-
-DiameterCharact_1054_Type::DiameterCharact_1054_Type()
-{
-  DiameterCharact_1054_TypePair = 0;
-}
-
-DiameterCharact_1054_Type::DiameterCharact_1054_Type(
- DiameterCharact_1054_TypeChoicePair * DiameterCharact_1054_TypePairIn)
-{
-  DiameterCharact_1054_TypePair = DiameterCharact_1054_TypePairIn;
-}
-
-DiameterCharact_1054_Type::~DiameterCharact_1054_Type()
-{
-  #ifndef NODESTRUCT
-  delete DiameterCharact_1054_TypePair;
-  #endif
-}
-
-void DiameterCharact_1054_Type::printSelf(FILE * outFile)
-{
-  DiameterCharact_1054_TypePair->printSelf(outFile);
-}
-
-DiameterCharact_1054_TypeChoicePair * DiameterCharact_1054_Type::getDiameterCharact_1054_TypePair()
-{return DiameterCharact_1054_TypePair;}
-
-void DiameterCharact_1054_Type::setDiameterCharact_1054_TypePair(DiameterCharact_1054_TypeChoicePair * DiameterCharact_1054_TypePairIn)
-{DiameterCharact_1054_TypePair = DiameterCharact_1054_TypePairIn;}
-
-/*********************************************************************/
-
-/* class DiameterCharact_1054_TypeChoicePair
+/* class DiameterCharact_1055_Type
 
 */
 
-DiameterCharact_1054_TypeChoicePair::DiameterCharact_1054_TypeChoicePair() {}
-
-DiameterCharact_1054_TypeChoicePair::DiameterCharact_1054_TypeChoicePair(
- whichOne DiameterCharact_1054_TypeTypeIn,
- DiameterCharact_1054_TypeVal DiameterCharact_1054_TypeValueIn)
+DiameterCharact_1055_Type::DiameterCharact_1055_Type()
 {
-  DiameterCharact_1054_TypeType = DiameterCharact_1054_TypeTypeIn;
-  DiameterCharact_1054_TypeValue = DiameterCharact_1054_TypeValueIn;
+  DiameterCharact_1055_TypePair = 0;
 }
 
-DiameterCharact_1054_TypeChoicePair::~DiameterCharact_1054_TypeChoicePair()
+DiameterCharact_1055_Type::DiameterCharact_1055_Type(
+ DiameterCharact_1055_TypeChoicePair * DiameterCharact_1055_TypePairIn)
+{
+  DiameterCharact_1055_TypePair = DiameterCharact_1055_TypePairIn;
+}
+
+DiameterCharact_1055_Type::~DiameterCharact_1055_Type()
 {
   #ifndef NODESTRUCT
-  if (DiameterCharact_1054_TypeType == ToleranceE)
-    delete DiameterCharact_1054_TypeValue.Tolerance;
-  else if (DiameterCharact_1054_TypeType == LimitsAndFitsSpecificationE)
-    delete DiameterCharact_1054_TypeValue.LimitsAndFitsSpecification;
-  else if (DiameterCharact_1054_TypeType == NonToleranceE)
-    delete DiameterCharact_1054_TypeValue.NonTolerance;
+  delete DiameterCharact_1055_TypePair;
   #endif
 }
 
-void DiameterCharact_1054_TypeChoicePair::printSelf(FILE * outFile)
+void DiameterCharact_1055_Type::printSelf(FILE * outFile)
 {
-  if (DiameterCharact_1054_TypeType == ToleranceE)
+  DiameterCharact_1055_TypePair->printSelf(outFile);
+}
+
+DiameterCharact_1055_TypeChoicePair * DiameterCharact_1055_Type::getDiameterCharact_1055_TypePair()
+{return DiameterCharact_1055_TypePair;}
+
+void DiameterCharact_1055_Type::setDiameterCharact_1055_TypePair(DiameterCharact_1055_TypeChoicePair * DiameterCharact_1055_TypePairIn)
+{DiameterCharact_1055_TypePair = DiameterCharact_1055_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class DiameterCharact_1055_TypeChoicePair
+
+*/
+
+DiameterCharact_1055_TypeChoicePair::DiameterCharact_1055_TypeChoicePair() {}
+
+DiameterCharact_1055_TypeChoicePair::DiameterCharact_1055_TypeChoicePair(
+ whichOne DiameterCharact_1055_TypeTypeIn,
+ DiameterCharact_1055_TypeVal DiameterCharact_1055_TypeValueIn)
+{
+  DiameterCharact_1055_TypeType = DiameterCharact_1055_TypeTypeIn;
+  DiameterCharact_1055_TypeValue = DiameterCharact_1055_TypeValueIn;
+}
+
+DiameterCharact_1055_TypeChoicePair::~DiameterCharact_1055_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (DiameterCharact_1055_TypeType == ToleranceE)
+    delete DiameterCharact_1055_TypeValue.Tolerance;
+  else if (DiameterCharact_1055_TypeType == LimitsAndFitsSpecificationE)
+    delete DiameterCharact_1055_TypeValue.LimitsAndFitsSpecification;
+  else if (DiameterCharact_1055_TypeType == NonToleranceE)
+    delete DiameterCharact_1055_TypeValue.NonTolerance;
+  #endif
+}
+
+void DiameterCharact_1055_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (DiameterCharact_1055_TypeType == ToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      DiameterCharact_1054_TypeValue.Tolerance->printSelf(outFile);
+      DiameterCharact_1055_TypeValue.Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
-  else if (DiameterCharact_1054_TypeType == LimitsAndFitsSpecificationE)
+  else if (DiameterCharact_1055_TypeType == LimitsAndFitsSpecificationE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<LimitsAndFitsSpecification");
-      DiameterCharact_1054_TypeValue.LimitsAndFitsSpecification->printSelf(outFile);
+      DiameterCharact_1055_TypeValue.LimitsAndFitsSpecification->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</LimitsAndFitsSpecification>\n");
     }
-  else if (DiameterCharact_1054_TypeType == NonToleranceE)
+  else if (DiameterCharact_1055_TypeType == NonToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      DiameterCharact_1054_TypeValue.NonTolerance->printSelf(outFile);
+      DiameterCharact_1055_TypeValue.NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class FlatnessCharact_1055_Type
-
-*/
-
-FlatnessCharact_1055_Type::FlatnessCharact_1055_Type()
-{
-  FlatnessCharact_1055_TypePair = 0;
-}
-
-FlatnessCharact_1055_Type::FlatnessCharact_1055_Type(
- FlatnessCharact_1055_TypeChoicePair * FlatnessCharact_1055_TypePairIn)
-{
-  FlatnessCharact_1055_TypePair = FlatnessCharact_1055_TypePairIn;
-}
-
-FlatnessCharact_1055_Type::~FlatnessCharact_1055_Type()
-{
-  #ifndef NODESTRUCT
-  delete FlatnessCharact_1055_TypePair;
-  #endif
-}
-
-void FlatnessCharact_1055_Type::printSelf(FILE * outFile)
-{
-  FlatnessCharact_1055_TypePair->printSelf(outFile);
-}
-
-FlatnessCharact_1055_TypeChoicePair * FlatnessCharact_1055_Type::getFlatnessCharact_1055_TypePair()
-{return FlatnessCharact_1055_TypePair;}
-
-void FlatnessCharact_1055_Type::setFlatnessCharact_1055_TypePair(FlatnessCharact_1055_TypeChoicePair * FlatnessCharact_1055_TypePairIn)
-{FlatnessCharact_1055_TypePair = FlatnessCharact_1055_TypePairIn;}
-
-/*********************************************************************/
-
-/* class FlatnessCharact_1055_TypeChoicePair
+/* class FlatnessCharact_1056_Type
 
 */
 
-FlatnessCharact_1055_TypeChoicePair::FlatnessCharact_1055_TypeChoicePair() {}
-
-FlatnessCharact_1055_TypeChoicePair::FlatnessCharact_1055_TypeChoicePair(
- whichOne FlatnessCharact_1055_TypeTypeIn,
- FlatnessCharact_1055_TypeVal FlatnessCharact_1055_TypeValueIn)
+FlatnessCharact_1056_Type::FlatnessCharact_1056_Type()
 {
-  FlatnessCharact_1055_TypeType = FlatnessCharact_1055_TypeTypeIn;
-  FlatnessCharact_1055_TypeValue = FlatnessCharact_1055_TypeValueIn;
+  FlatnessCharact_1056_TypePair = 0;
 }
 
-FlatnessCharact_1055_TypeChoicePair::~FlatnessCharact_1055_TypeChoicePair()
+FlatnessCharact_1056_Type::FlatnessCharact_1056_Type(
+ FlatnessCharact_1056_TypeChoicePair * FlatnessCharact_1056_TypePairIn)
+{
+  FlatnessCharact_1056_TypePair = FlatnessCharact_1056_TypePairIn;
+}
+
+FlatnessCharact_1056_Type::~FlatnessCharact_1056_Type()
 {
   #ifndef NODESTRUCT
-  if (FlatnessCharact_1055_TypeType == FlatnessCharact_1085E)
-    delete FlatnessCharact_1055_TypeValue.FlatnessCharact_1085;
-  else if (FlatnessCharact_1055_TypeType == FlatnessCharact_1086E)
-    delete FlatnessCharact_1055_TypeValue.FlatnessCharact_1086;
+  delete FlatnessCharact_1056_TypePair;
   #endif
 }
 
-void FlatnessCharact_1055_TypeChoicePair::printSelf(FILE * outFile)
+void FlatnessCharact_1056_Type::printSelf(FILE * outFile)
 {
-  if (FlatnessCharact_1055_TypeType == FlatnessCharact_1085E)
+  FlatnessCharact_1056_TypePair->printSelf(outFile);
+}
+
+FlatnessCharact_1056_TypeChoicePair * FlatnessCharact_1056_Type::getFlatnessCharact_1056_TypePair()
+{return FlatnessCharact_1056_TypePair;}
+
+void FlatnessCharact_1056_Type::setFlatnessCharact_1056_TypePair(FlatnessCharact_1056_TypeChoicePair * FlatnessCharact_1056_TypePairIn)
+{FlatnessCharact_1056_TypePair = FlatnessCharact_1056_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class FlatnessCharact_1056_TypeChoicePair
+
+*/
+
+FlatnessCharact_1056_TypeChoicePair::FlatnessCharact_1056_TypeChoicePair() {}
+
+FlatnessCharact_1056_TypeChoicePair::FlatnessCharact_1056_TypeChoicePair(
+ whichOne FlatnessCharact_1056_TypeTypeIn,
+ FlatnessCharact_1056_TypeVal FlatnessCharact_1056_TypeValueIn)
+{
+  FlatnessCharact_1056_TypeType = FlatnessCharact_1056_TypeTypeIn;
+  FlatnessCharact_1056_TypeValue = FlatnessCharact_1056_TypeValueIn;
+}
+
+FlatnessCharact_1056_TypeChoicePair::~FlatnessCharact_1056_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (FlatnessCharact_1056_TypeType == FlatnessCharact_1086E)
+    delete FlatnessCharact_1056_TypeValue.FlatnessCharact_1086;
+  else if (FlatnessCharact_1056_TypeType == FlatnessCharact_1087E)
+    delete FlatnessCharact_1056_TypeValue.FlatnessCharact_1087;
+  #endif
+}
+
+void FlatnessCharact_1056_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (FlatnessCharact_1056_TypeType == FlatnessCharact_1086E)
     {
-      FlatnessCharact_1055_TypeValue.FlatnessCharact_1085->printSelf(outFile);
+      FlatnessCharact_1056_TypeValue.FlatnessCharact_1086->printSelf(outFile);
     }
-  else if (FlatnessCharact_1055_TypeType == FlatnessCharact_1086E)
+  else if (FlatnessCharact_1056_TypeType == FlatnessCharact_1087E)
     {
-      FlatnessCharact_1055_TypeValue.FlatnessCharact_1086->printSelf(outFile);
+      FlatnessCharact_1056_TypeValue.FlatnessCharact_1087->printSelf(outFile);
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class ForceCharacteri_1056_Type
-
-*/
-
-ForceCharacteri_1056_Type::ForceCharacteri_1056_Type()
-{
-  ForceCharacteri_1056_TypePair = 0;
-}
-
-ForceCharacteri_1056_Type::ForceCharacteri_1056_Type(
- ForceCharacteri_1056_TypeChoicePair * ForceCharacteri_1056_TypePairIn)
-{
-  ForceCharacteri_1056_TypePair = ForceCharacteri_1056_TypePairIn;
-}
-
-ForceCharacteri_1056_Type::~ForceCharacteri_1056_Type()
-{
-  #ifndef NODESTRUCT
-  delete ForceCharacteri_1056_TypePair;
-  #endif
-}
-
-void ForceCharacteri_1056_Type::printSelf(FILE * outFile)
-{
-  ForceCharacteri_1056_TypePair->printSelf(outFile);
-}
-
-ForceCharacteri_1056_TypeChoicePair * ForceCharacteri_1056_Type::getForceCharacteri_1056_TypePair()
-{return ForceCharacteri_1056_TypePair;}
-
-void ForceCharacteri_1056_Type::setForceCharacteri_1056_TypePair(ForceCharacteri_1056_TypeChoicePair * ForceCharacteri_1056_TypePairIn)
-{ForceCharacteri_1056_TypePair = ForceCharacteri_1056_TypePairIn;}
-
-/*********************************************************************/
-
-/* class ForceCharacteri_1056_TypeChoicePair
+/* class ForceCharacteri_1057_Type
 
 */
 
-ForceCharacteri_1056_TypeChoicePair::ForceCharacteri_1056_TypeChoicePair() {}
-
-ForceCharacteri_1056_TypeChoicePair::ForceCharacteri_1056_TypeChoicePair(
- whichOne ForceCharacteri_1056_TypeTypeIn,
- ForceCharacteri_1056_TypeVal ForceCharacteri_1056_TypeValueIn)
+ForceCharacteri_1057_Type::ForceCharacteri_1057_Type()
 {
-  ForceCharacteri_1056_TypeType = ForceCharacteri_1056_TypeTypeIn;
-  ForceCharacteri_1056_TypeValue = ForceCharacteri_1056_TypeValueIn;
+  ForceCharacteri_1057_TypePair = 0;
 }
 
-ForceCharacteri_1056_TypeChoicePair::~ForceCharacteri_1056_TypeChoicePair()
+ForceCharacteri_1057_Type::ForceCharacteri_1057_Type(
+ ForceCharacteri_1057_TypeChoicePair * ForceCharacteri_1057_TypePairIn)
+{
+  ForceCharacteri_1057_TypePair = ForceCharacteri_1057_TypePairIn;
+}
+
+ForceCharacteri_1057_Type::~ForceCharacteri_1057_Type()
 {
   #ifndef NODESTRUCT
-  if (ForceCharacteri_1056_TypeType == ToleranceE)
-    delete ForceCharacteri_1056_TypeValue.Tolerance;
-  else if (ForceCharacteri_1056_TypeType == NonToleranceE)
-    delete ForceCharacteri_1056_TypeValue.NonTolerance;
+  delete ForceCharacteri_1057_TypePair;
   #endif
 }
 
-void ForceCharacteri_1056_TypeChoicePair::printSelf(FILE * outFile)
+void ForceCharacteri_1057_Type::printSelf(FILE * outFile)
 {
-  if (ForceCharacteri_1056_TypeType == ToleranceE)
+  ForceCharacteri_1057_TypePair->printSelf(outFile);
+}
+
+ForceCharacteri_1057_TypeChoicePair * ForceCharacteri_1057_Type::getForceCharacteri_1057_TypePair()
+{return ForceCharacteri_1057_TypePair;}
+
+void ForceCharacteri_1057_Type::setForceCharacteri_1057_TypePair(ForceCharacteri_1057_TypeChoicePair * ForceCharacteri_1057_TypePairIn)
+{ForceCharacteri_1057_TypePair = ForceCharacteri_1057_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class ForceCharacteri_1057_TypeChoicePair
+
+*/
+
+ForceCharacteri_1057_TypeChoicePair::ForceCharacteri_1057_TypeChoicePair() {}
+
+ForceCharacteri_1057_TypeChoicePair::ForceCharacteri_1057_TypeChoicePair(
+ whichOne ForceCharacteri_1057_TypeTypeIn,
+ ForceCharacteri_1057_TypeVal ForceCharacteri_1057_TypeValueIn)
+{
+  ForceCharacteri_1057_TypeType = ForceCharacteri_1057_TypeTypeIn;
+  ForceCharacteri_1057_TypeValue = ForceCharacteri_1057_TypeValueIn;
+}
+
+ForceCharacteri_1057_TypeChoicePair::~ForceCharacteri_1057_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (ForceCharacteri_1057_TypeType == ToleranceE)
+    delete ForceCharacteri_1057_TypeValue.Tolerance;
+  else if (ForceCharacteri_1057_TypeType == NonToleranceE)
+    delete ForceCharacteri_1057_TypeValue.NonTolerance;
+  #endif
+}
+
+void ForceCharacteri_1057_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (ForceCharacteri_1057_TypeType == ToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      ForceCharacteri_1056_TypeValue.Tolerance->printSelf(outFile);
+      ForceCharacteri_1057_TypeValue.Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
-  else if (ForceCharacteri_1056_TypeType == NonToleranceE)
+  else if (ForceCharacteri_1057_TypeType == NonToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      ForceCharacteri_1056_TypeValue.NonTolerance->printSelf(outFile);
+      ForceCharacteri_1057_TypeValue.NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class GeometricCharac_1057_Type
+/* class GeometricCharac_1058_Type
 
 */
 
-GeometricCharac_1057_Type::GeometricCharac_1057_Type()
+GeometricCharac_1058_Type::GeometricCharac_1058_Type()
 {
-  GeometricCharac_1057_TypePair = 0;
+  GeometricCharac_1058_TypePair = 0;
 }
 
-GeometricCharac_1057_Type::GeometricCharac_1057_Type(
- GeometricCharac_1057_TypeChoicePair * GeometricCharac_1057_TypePairIn)
+GeometricCharac_1058_Type::GeometricCharac_1058_Type(
+ GeometricCharac_1058_TypeChoicePair * GeometricCharac_1058_TypePairIn)
 {
-  GeometricCharac_1057_TypePair = GeometricCharac_1057_TypePairIn;
+  GeometricCharac_1058_TypePair = GeometricCharac_1058_TypePairIn;
 }
 
-GeometricCharac_1057_Type::~GeometricCharac_1057_Type()
+GeometricCharac_1058_Type::~GeometricCharac_1058_Type()
 {
   #ifndef NODESTRUCT
-  delete GeometricCharac_1057_TypePair;
+  delete GeometricCharac_1058_TypePair;
   #endif
 }
 
-void GeometricCharac_1057_Type::printSelf(FILE * outFile)
+void GeometricCharac_1058_Type::printSelf(FILE * outFile)
 {
-  if (GeometricCharac_1057_TypePair)
+  if (GeometricCharac_1058_TypePair)
     {
-      GeometricCharac_1057_TypePair->printSelf(outFile);
+      GeometricCharac_1058_TypePair->printSelf(outFile);
     }
 }
 
-GeometricCharac_1057_TypeChoicePair * GeometricCharac_1057_Type::getGeometricCharac_1057_TypePair()
-{return GeometricCharac_1057_TypePair;}
+GeometricCharac_1058_TypeChoicePair * GeometricCharac_1058_Type::getGeometricCharac_1058_TypePair()
+{return GeometricCharac_1058_TypePair;}
 
-void GeometricCharac_1057_Type::setGeometricCharac_1057_TypePair(GeometricCharac_1057_TypeChoicePair * GeometricCharac_1057_TypePairIn)
-{GeometricCharac_1057_TypePair = GeometricCharac_1057_TypePairIn;}
+void GeometricCharac_1058_Type::setGeometricCharac_1058_TypePair(GeometricCharac_1058_TypeChoicePair * GeometricCharac_1058_TypePairIn)
+{GeometricCharac_1058_TypePair = GeometricCharac_1058_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class GeometricCharac_1057_TypeChoicePair
+/* class GeometricCharac_1058_TypeChoicePair
 
 */
 
-GeometricCharac_1057_TypeChoicePair::GeometricCharac_1057_TypeChoicePair() {}
+GeometricCharac_1058_TypeChoicePair::GeometricCharac_1058_TypeChoicePair() {}
 
-GeometricCharac_1057_TypeChoicePair::GeometricCharac_1057_TypeChoicePair(
- whichOne GeometricCharac_1057_TypeTypeIn,
- GeometricCharac_1057_TypeVal GeometricCharac_1057_TypeValueIn)
+GeometricCharac_1058_TypeChoicePair::GeometricCharac_1058_TypeChoicePair(
+ whichOne GeometricCharac_1058_TypeTypeIn,
+ GeometricCharac_1058_TypeVal GeometricCharac_1058_TypeValueIn)
 {
-  GeometricCharac_1057_TypeType = GeometricCharac_1057_TypeTypeIn;
-  GeometricCharac_1057_TypeValue = GeometricCharac_1057_TypeValueIn;
+  GeometricCharac_1058_TypeType = GeometricCharac_1058_TypeTypeIn;
+  GeometricCharac_1058_TypeValue = GeometricCharac_1058_TypeValueIn;
 }
 
-GeometricCharac_1057_TypeChoicePair::~GeometricCharac_1057_TypeChoicePair()
+GeometricCharac_1058_TypeChoicePair::~GeometricCharac_1058_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (GeometricCharac_1057_TypeType == AssociatedTolerancedFeatureSpecificationElementE)
-    delete GeometricCharac_1057_TypeValue.AssociatedTolerancedFeatureSpecificationElement;
-  else if (GeometricCharac_1057_TypeType == ReferenceFeatureAssociationSpecificationElementE)
-    delete GeometricCharac_1057_TypeValue.ReferenceFeatureAssociationSpecificationElement;
+  if (GeometricCharac_1058_TypeType == AssociatedTolerancedFeatureSpecificationElementE)
+    delete GeometricCharac_1058_TypeValue.AssociatedTolerancedFeatureSpecificationElement;
+  else if (GeometricCharac_1058_TypeType == ReferenceFeatureAssociationSpecificationElementE)
+    delete GeometricCharac_1058_TypeValue.ReferenceFeatureAssociationSpecificationElement;
   #endif
 }
 
-void GeometricCharac_1057_TypeChoicePair::printSelf(FILE * outFile)
+void GeometricCharac_1058_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (GeometricCharac_1057_TypeType == AssociatedTolerancedFeatureSpecificationElementE)
+  if (GeometricCharac_1058_TypeType == AssociatedTolerancedFeatureSpecificationElementE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AssociatedTolerancedFeatureSpecificationElement");
-      GeometricCharac_1057_TypeValue.AssociatedTolerancedFeatureSpecificationElement->printSelf(outFile);
+      GeometricCharac_1058_TypeValue.AssociatedTolerancedFeatureSpecificationElement->printSelf(outFile);
       fprintf(outFile, "</AssociatedTolerancedFeatureSpecificationElement>\n");
     }
-  else if (GeometricCharac_1057_TypeType == ReferenceFeatureAssociationSpecificationElementE)
+  else if (GeometricCharac_1058_TypeType == ReferenceFeatureAssociationSpecificationElementE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ReferenceFeatureAssociationSpecificationElement");
-      GeometricCharac_1057_TypeValue.ReferenceFeatureAssociationSpecificationElement->printSelf(outFile);
+      GeometricCharac_1058_TypeValue.ReferenceFeatureAssociationSpecificationElement->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ReferenceFeatureAssociationSpecificationElement>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class LinearCharacter_1058_Type
-
-*/
-
-LinearCharacter_1058_Type::LinearCharacter_1058_Type()
-{
-  LinearCharacter_1058_TypePair = 0;
-}
-
-LinearCharacter_1058_Type::LinearCharacter_1058_Type(
- LinearCharacter_1058_TypeChoicePair * LinearCharacter_1058_TypePairIn)
-{
-  LinearCharacter_1058_TypePair = LinearCharacter_1058_TypePairIn;
-}
-
-LinearCharacter_1058_Type::~LinearCharacter_1058_Type()
-{
-  #ifndef NODESTRUCT
-  delete LinearCharacter_1058_TypePair;
-  #endif
-}
-
-void LinearCharacter_1058_Type::printSelf(FILE * outFile)
-{
-  LinearCharacter_1058_TypePair->printSelf(outFile);
-}
-
-LinearCharacter_1058_TypeChoicePair * LinearCharacter_1058_Type::getLinearCharacter_1058_TypePair()
-{return LinearCharacter_1058_TypePair;}
-
-void LinearCharacter_1058_Type::setLinearCharacter_1058_TypePair(LinearCharacter_1058_TypeChoicePair * LinearCharacter_1058_TypePairIn)
-{LinearCharacter_1058_TypePair = LinearCharacter_1058_TypePairIn;}
-
-/*********************************************************************/
-
-/* class LinearCharacter_1058_TypeChoicePair
+/* class LinearCharacter_1059_Type
 
 */
 
-LinearCharacter_1058_TypeChoicePair::LinearCharacter_1058_TypeChoicePair() {}
-
-LinearCharacter_1058_TypeChoicePair::LinearCharacter_1058_TypeChoicePair(
- whichOne LinearCharacter_1058_TypeTypeIn,
- LinearCharacter_1058_TypeVal LinearCharacter_1058_TypeValueIn)
+LinearCharacter_1059_Type::LinearCharacter_1059_Type()
 {
-  LinearCharacter_1058_TypeType = LinearCharacter_1058_TypeTypeIn;
-  LinearCharacter_1058_TypeValue = LinearCharacter_1058_TypeValueIn;
+  LinearCharacter_1059_TypePair = 0;
 }
 
-LinearCharacter_1058_TypeChoicePair::~LinearCharacter_1058_TypeChoicePair()
+LinearCharacter_1059_Type::LinearCharacter_1059_Type(
+ LinearCharacter_1059_TypeChoicePair * LinearCharacter_1059_TypePairIn)
+{
+  LinearCharacter_1059_TypePair = LinearCharacter_1059_TypePairIn;
+}
+
+LinearCharacter_1059_Type::~LinearCharacter_1059_Type()
 {
   #ifndef NODESTRUCT
-  if (LinearCharacter_1058_TypeType == ToleranceE)
-    delete LinearCharacter_1058_TypeValue.Tolerance;
-  else if (LinearCharacter_1058_TypeType == NonToleranceE)
-    delete LinearCharacter_1058_TypeValue.NonTolerance;
+  delete LinearCharacter_1059_TypePair;
   #endif
 }
 
-void LinearCharacter_1058_TypeChoicePair::printSelf(FILE * outFile)
+void LinearCharacter_1059_Type::printSelf(FILE * outFile)
 {
-  if (LinearCharacter_1058_TypeType == ToleranceE)
+  LinearCharacter_1059_TypePair->printSelf(outFile);
+}
+
+LinearCharacter_1059_TypeChoicePair * LinearCharacter_1059_Type::getLinearCharacter_1059_TypePair()
+{return LinearCharacter_1059_TypePair;}
+
+void LinearCharacter_1059_Type::setLinearCharacter_1059_TypePair(LinearCharacter_1059_TypeChoicePair * LinearCharacter_1059_TypePairIn)
+{LinearCharacter_1059_TypePair = LinearCharacter_1059_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class LinearCharacter_1059_TypeChoicePair
+
+*/
+
+LinearCharacter_1059_TypeChoicePair::LinearCharacter_1059_TypeChoicePair() {}
+
+LinearCharacter_1059_TypeChoicePair::LinearCharacter_1059_TypeChoicePair(
+ whichOne LinearCharacter_1059_TypeTypeIn,
+ LinearCharacter_1059_TypeVal LinearCharacter_1059_TypeValueIn)
+{
+  LinearCharacter_1059_TypeType = LinearCharacter_1059_TypeTypeIn;
+  LinearCharacter_1059_TypeValue = LinearCharacter_1059_TypeValueIn;
+}
+
+LinearCharacter_1059_TypeChoicePair::~LinearCharacter_1059_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (LinearCharacter_1059_TypeType == ToleranceE)
+    delete LinearCharacter_1059_TypeValue.Tolerance;
+  else if (LinearCharacter_1059_TypeType == NonToleranceE)
+    delete LinearCharacter_1059_TypeValue.NonTolerance;
+  #endif
+}
+
+void LinearCharacter_1059_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (LinearCharacter_1059_TypeType == ToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      LinearCharacter_1058_TypeValue.Tolerance->printSelf(outFile);
+      LinearCharacter_1059_TypeValue.Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
-  else if (LinearCharacter_1058_TypeType == NonToleranceE)
+  else if (LinearCharacter_1059_TypeType == NonToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      LinearCharacter_1058_TypeValue.NonTolerance->printSelf(outFile);
+      LinearCharacter_1059_TypeValue.NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class LinearCoordinat_1059_Type
-
-*/
-
-LinearCoordinat_1059_Type::LinearCoordinat_1059_Type()
-{
-  LinearCoordinat_1059_TypePair = 0;
-}
-
-LinearCoordinat_1059_Type::LinearCoordinat_1059_Type(
- LinearCoordinat_1059_TypeChoicePair * LinearCoordinat_1059_TypePairIn)
-{
-  LinearCoordinat_1059_TypePair = LinearCoordinat_1059_TypePairIn;
-}
-
-LinearCoordinat_1059_Type::~LinearCoordinat_1059_Type()
-{
-  #ifndef NODESTRUCT
-  delete LinearCoordinat_1059_TypePair;
-  #endif
-}
-
-void LinearCoordinat_1059_Type::printSelf(FILE * outFile)
-{
-  LinearCoordinat_1059_TypePair->printSelf(outFile);
-}
-
-LinearCoordinat_1059_TypeChoicePair * LinearCoordinat_1059_Type::getLinearCoordinat_1059_TypePair()
-{return LinearCoordinat_1059_TypePair;}
-
-void LinearCoordinat_1059_Type::setLinearCoordinat_1059_TypePair(LinearCoordinat_1059_TypeChoicePair * LinearCoordinat_1059_TypePairIn)
-{LinearCoordinat_1059_TypePair = LinearCoordinat_1059_TypePairIn;}
-
-/*********************************************************************/
-
-/* class LinearCoordinat_1059_TypeChoicePair
+/* class LinearCoordinat_1060_Type
 
 */
 
-LinearCoordinat_1059_TypeChoicePair::LinearCoordinat_1059_TypeChoicePair() {}
-
-LinearCoordinat_1059_TypeChoicePair::LinearCoordinat_1059_TypeChoicePair(
- whichOne LinearCoordinat_1059_TypeTypeIn,
- LinearCoordinat_1059_TypeVal LinearCoordinat_1059_TypeValueIn)
+LinearCoordinat_1060_Type::LinearCoordinat_1060_Type()
 {
-  LinearCoordinat_1059_TypeType = LinearCoordinat_1059_TypeTypeIn;
-  LinearCoordinat_1059_TypeValue = LinearCoordinat_1059_TypeValueIn;
+  LinearCoordinat_1060_TypePair = 0;
 }
 
-LinearCoordinat_1059_TypeChoicePair::~LinearCoordinat_1059_TypeChoicePair()
+LinearCoordinat_1060_Type::LinearCoordinat_1060_Type(
+ LinearCoordinat_1060_TypeChoicePair * LinearCoordinat_1060_TypePairIn)
+{
+  LinearCoordinat_1060_TypePair = LinearCoordinat_1060_TypePairIn;
+}
+
+LinearCoordinat_1060_Type::~LinearCoordinat_1060_Type()
 {
   #ifndef NODESTRUCT
-  if (LinearCoordinat_1059_TypeType == ToleranceE)
-    delete LinearCoordinat_1059_TypeValue.Tolerance;
-  else if (LinearCoordinat_1059_TypeType == NonToleranceE)
-    delete LinearCoordinat_1059_TypeValue.NonTolerance;
+  delete LinearCoordinat_1060_TypePair;
   #endif
 }
 
-void LinearCoordinat_1059_TypeChoicePair::printSelf(FILE * outFile)
+void LinearCoordinat_1060_Type::printSelf(FILE * outFile)
 {
-  if (LinearCoordinat_1059_TypeType == ToleranceE)
+  LinearCoordinat_1060_TypePair->printSelf(outFile);
+}
+
+LinearCoordinat_1060_TypeChoicePair * LinearCoordinat_1060_Type::getLinearCoordinat_1060_TypePair()
+{return LinearCoordinat_1060_TypePair;}
+
+void LinearCoordinat_1060_Type::setLinearCoordinat_1060_TypePair(LinearCoordinat_1060_TypeChoicePair * LinearCoordinat_1060_TypePairIn)
+{LinearCoordinat_1060_TypePair = LinearCoordinat_1060_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class LinearCoordinat_1060_TypeChoicePair
+
+*/
+
+LinearCoordinat_1060_TypeChoicePair::LinearCoordinat_1060_TypeChoicePair() {}
+
+LinearCoordinat_1060_TypeChoicePair::LinearCoordinat_1060_TypeChoicePair(
+ whichOne LinearCoordinat_1060_TypeTypeIn,
+ LinearCoordinat_1060_TypeVal LinearCoordinat_1060_TypeValueIn)
+{
+  LinearCoordinat_1060_TypeType = LinearCoordinat_1060_TypeTypeIn;
+  LinearCoordinat_1060_TypeValue = LinearCoordinat_1060_TypeValueIn;
+}
+
+LinearCoordinat_1060_TypeChoicePair::~LinearCoordinat_1060_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (LinearCoordinat_1060_TypeType == ToleranceE)
+    delete LinearCoordinat_1060_TypeValue.Tolerance;
+  else if (LinearCoordinat_1060_TypeType == NonToleranceE)
+    delete LinearCoordinat_1060_TypeValue.NonTolerance;
+  #endif
+}
+
+void LinearCoordinat_1060_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (LinearCoordinat_1060_TypeType == ToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      LinearCoordinat_1059_TypeValue.Tolerance->printSelf(outFile);
+      LinearCoordinat_1060_TypeValue.Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
-  else if (LinearCoordinat_1059_TypeType == NonToleranceE)
+  else if (LinearCoordinat_1060_TypeType == NonToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      LinearCoordinat_1059_TypeValue.NonTolerance->printSelf(outFile);
+      LinearCoordinat_1060_TypeValue.NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class LocationOnDrawi_1060_Type
+/* class LocationOnDrawi_1061_Type
 
 */
 
-LocationOnDrawi_1060_Type::LocationOnDrawi_1060_Type()
+LocationOnDrawi_1061_Type::LocationOnDrawi_1061_Type()
 {
   DrawingId = 0;
   SheetNumber = 0;
   DrawingZone = 0;
 }
 
-LocationOnDrawi_1060_Type::LocationOnDrawi_1060_Type(
+LocationOnDrawi_1061_Type::LocationOnDrawi_1061_Type(
  QIFReferenceFullType * DrawingIdIn,
  XmlString * SheetNumberIn,
  XmlString * DrawingZoneIn)
@@ -118606,7 +118606,7 @@ LocationOnDrawi_1060_Type::LocationOnDrawi_1060_Type(
   DrawingZone = DrawingZoneIn;
 }
 
-LocationOnDrawi_1060_Type::~LocationOnDrawi_1060_Type()
+LocationOnDrawi_1061_Type::~LocationOnDrawi_1061_Type()
 {
   #ifndef NODESTRUCT
   delete DrawingId;
@@ -118615,7 +118615,7 @@ LocationOnDrawi_1060_Type::~LocationOnDrawi_1060_Type()
   #endif
 }
 
-void LocationOnDrawi_1060_Type::printSelf(FILE * outFile)
+void LocationOnDrawi_1061_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<DrawingId");
@@ -118637,37 +118637,37 @@ void LocationOnDrawi_1060_Type::printSelf(FILE * outFile)
     }
 }
 
-QIFReferenceFullType * LocationOnDrawi_1060_Type::getDrawingId()
+QIFReferenceFullType * LocationOnDrawi_1061_Type::getDrawingId()
 {return DrawingId;}
 
-void LocationOnDrawi_1060_Type::setDrawingId(QIFReferenceFullType * DrawingIdIn)
+void LocationOnDrawi_1061_Type::setDrawingId(QIFReferenceFullType * DrawingIdIn)
 {DrawingId = DrawingIdIn;}
 
-XmlString * LocationOnDrawi_1060_Type::getSheetNumber()
+XmlString * LocationOnDrawi_1061_Type::getSheetNumber()
 {return SheetNumber;}
 
-void LocationOnDrawi_1060_Type::setSheetNumber(XmlString * SheetNumberIn)
+void LocationOnDrawi_1061_Type::setSheetNumber(XmlString * SheetNumberIn)
 {SheetNumber = SheetNumberIn;}
 
-XmlString * LocationOnDrawi_1060_Type::getDrawingZone()
+XmlString * LocationOnDrawi_1061_Type::getDrawingZone()
 {return DrawingZone;}
 
-void LocationOnDrawi_1060_Type::setDrawingZone(XmlString * DrawingZoneIn)
+void LocationOnDrawi_1061_Type::setDrawingZone(XmlString * DrawingZoneIn)
 {DrawingZone = DrawingZoneIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class LocationOnDrawi_1061_Type
+/* class LocationOnDrawi_1062_Type
 
 */
 
-LocationOnDrawi_1061_Type::LocationOnDrawi_1061_Type()
+LocationOnDrawi_1062_Type::LocationOnDrawi_1062_Type()
 {
   ModelId = 0;
   View = 0;
 }
 
-LocationOnDrawi_1061_Type::LocationOnDrawi_1061_Type(
+LocationOnDrawi_1062_Type::LocationOnDrawi_1062_Type(
  QIFReferenceFullType * ModelIdIn,
  XmlString * ViewIn)
 {
@@ -118675,7 +118675,7 @@ LocationOnDrawi_1061_Type::LocationOnDrawi_1061_Type(
   View = ViewIn;
 }
 
-LocationOnDrawi_1061_Type::~LocationOnDrawi_1061_Type()
+LocationOnDrawi_1062_Type::~LocationOnDrawi_1062_Type()
 {
   #ifndef NODESTRUCT
   delete ModelId;
@@ -118683,7 +118683,7 @@ LocationOnDrawi_1061_Type::~LocationOnDrawi_1061_Type()
   #endif
 }
 
-void LocationOnDrawi_1061_Type::printSelf(FILE * outFile)
+void LocationOnDrawi_1062_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ModelId");
@@ -118695,43 +118695,43 @@ void LocationOnDrawi_1061_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</View>\n");
 }
 
-QIFReferenceFullType * LocationOnDrawi_1061_Type::getModelId()
+QIFReferenceFullType * LocationOnDrawi_1062_Type::getModelId()
 {return ModelId;}
 
-void LocationOnDrawi_1061_Type::setModelId(QIFReferenceFullType * ModelIdIn)
+void LocationOnDrawi_1062_Type::setModelId(QIFReferenceFullType * ModelIdIn)
 {ModelId = ModelIdIn;}
 
-XmlString * LocationOnDrawi_1061_Type::getView()
+XmlString * LocationOnDrawi_1062_Type::getView()
 {return View;}
 
-void LocationOnDrawi_1061_Type::setView(XmlString * ViewIn)
+void LocationOnDrawi_1062_Type::setView(XmlString * ViewIn)
 {View = ViewIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class LocationOnDrawi_1062_Type
+/* class LocationOnDrawi_1063_Type
 
 */
 
-LocationOnDrawi_1062_Type::LocationOnDrawi_1062_Type()
+LocationOnDrawi_1063_Type::LocationOnDrawi_1063_Type()
 {
   ViewId = 0;
 }
 
-LocationOnDrawi_1062_Type::LocationOnDrawi_1062_Type(
+LocationOnDrawi_1063_Type::LocationOnDrawi_1063_Type(
  QIFReferenceFullType * ViewIdIn)
 {
   ViewId = ViewIdIn;
 }
 
-LocationOnDrawi_1062_Type::~LocationOnDrawi_1062_Type()
+LocationOnDrawi_1063_Type::~LocationOnDrawi_1063_Type()
 {
   #ifndef NODESTRUCT
   delete ViewId;
   #endif
 }
 
-void LocationOnDrawi_1062_Type::printSelf(FILE * outFile)
+void LocationOnDrawi_1063_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ViewId");
@@ -118739,187 +118739,187 @@ void LocationOnDrawi_1062_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</ViewId>\n");
 }
 
-QIFReferenceFullType * LocationOnDrawi_1062_Type::getViewId()
+QIFReferenceFullType * LocationOnDrawi_1063_Type::getViewId()
 {return ViewId;}
 
-void LocationOnDrawi_1062_Type::setViewId(QIFReferenceFullType * ViewIdIn)
+void LocationOnDrawi_1063_Type::setViewId(QIFReferenceFullType * ViewIdIn)
 {ViewId = ViewIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class MassCharacteris_1063_Type
-
-*/
-
-MassCharacteris_1063_Type::MassCharacteris_1063_Type()
-{
-  MassCharacteris_1063_TypePair = 0;
-}
-
-MassCharacteris_1063_Type::MassCharacteris_1063_Type(
- MassCharacteris_1063_TypeChoicePair * MassCharacteris_1063_TypePairIn)
-{
-  MassCharacteris_1063_TypePair = MassCharacteris_1063_TypePairIn;
-}
-
-MassCharacteris_1063_Type::~MassCharacteris_1063_Type()
-{
-  #ifndef NODESTRUCT
-  delete MassCharacteris_1063_TypePair;
-  #endif
-}
-
-void MassCharacteris_1063_Type::printSelf(FILE * outFile)
-{
-  MassCharacteris_1063_TypePair->printSelf(outFile);
-}
-
-MassCharacteris_1063_TypeChoicePair * MassCharacteris_1063_Type::getMassCharacteris_1063_TypePair()
-{return MassCharacteris_1063_TypePair;}
-
-void MassCharacteris_1063_Type::setMassCharacteris_1063_TypePair(MassCharacteris_1063_TypeChoicePair * MassCharacteris_1063_TypePairIn)
-{MassCharacteris_1063_TypePair = MassCharacteris_1063_TypePairIn;}
-
-/*********************************************************************/
-
-/* class MassCharacteris_1063_TypeChoicePair
+/* class MassCharacteris_1064_Type
 
 */
 
-MassCharacteris_1063_TypeChoicePair::MassCharacteris_1063_TypeChoicePair() {}
-
-MassCharacteris_1063_TypeChoicePair::MassCharacteris_1063_TypeChoicePair(
- whichOne MassCharacteris_1063_TypeTypeIn,
- MassCharacteris_1063_TypeVal MassCharacteris_1063_TypeValueIn)
+MassCharacteris_1064_Type::MassCharacteris_1064_Type()
 {
-  MassCharacteris_1063_TypeType = MassCharacteris_1063_TypeTypeIn;
-  MassCharacteris_1063_TypeValue = MassCharacteris_1063_TypeValueIn;
+  MassCharacteris_1064_TypePair = 0;
 }
 
-MassCharacteris_1063_TypeChoicePair::~MassCharacteris_1063_TypeChoicePair()
+MassCharacteris_1064_Type::MassCharacteris_1064_Type(
+ MassCharacteris_1064_TypeChoicePair * MassCharacteris_1064_TypePairIn)
+{
+  MassCharacteris_1064_TypePair = MassCharacteris_1064_TypePairIn;
+}
+
+MassCharacteris_1064_Type::~MassCharacteris_1064_Type()
 {
   #ifndef NODESTRUCT
-  if (MassCharacteris_1063_TypeType == ToleranceE)
-    delete MassCharacteris_1063_TypeValue.Tolerance;
-  else if (MassCharacteris_1063_TypeType == NonToleranceE)
-    delete MassCharacteris_1063_TypeValue.NonTolerance;
+  delete MassCharacteris_1064_TypePair;
   #endif
 }
 
-void MassCharacteris_1063_TypeChoicePair::printSelf(FILE * outFile)
+void MassCharacteris_1064_Type::printSelf(FILE * outFile)
 {
-  if (MassCharacteris_1063_TypeType == ToleranceE)
+  MassCharacteris_1064_TypePair->printSelf(outFile);
+}
+
+MassCharacteris_1064_TypeChoicePair * MassCharacteris_1064_Type::getMassCharacteris_1064_TypePair()
+{return MassCharacteris_1064_TypePair;}
+
+void MassCharacteris_1064_Type::setMassCharacteris_1064_TypePair(MassCharacteris_1064_TypeChoicePair * MassCharacteris_1064_TypePairIn)
+{MassCharacteris_1064_TypePair = MassCharacteris_1064_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class MassCharacteris_1064_TypeChoicePair
+
+*/
+
+MassCharacteris_1064_TypeChoicePair::MassCharacteris_1064_TypeChoicePair() {}
+
+MassCharacteris_1064_TypeChoicePair::MassCharacteris_1064_TypeChoicePair(
+ whichOne MassCharacteris_1064_TypeTypeIn,
+ MassCharacteris_1064_TypeVal MassCharacteris_1064_TypeValueIn)
+{
+  MassCharacteris_1064_TypeType = MassCharacteris_1064_TypeTypeIn;
+  MassCharacteris_1064_TypeValue = MassCharacteris_1064_TypeValueIn;
+}
+
+MassCharacteris_1064_TypeChoicePair::~MassCharacteris_1064_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (MassCharacteris_1064_TypeType == ToleranceE)
+    delete MassCharacteris_1064_TypeValue.Tolerance;
+  else if (MassCharacteris_1064_TypeType == NonToleranceE)
+    delete MassCharacteris_1064_TypeValue.NonTolerance;
+  #endif
+}
+
+void MassCharacteris_1064_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (MassCharacteris_1064_TypeType == ToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      MassCharacteris_1063_TypeValue.Tolerance->printSelf(outFile);
+      MassCharacteris_1064_TypeValue.Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
-  else if (MassCharacteris_1063_TypeType == NonToleranceE)
+  else if (MassCharacteris_1064_TypeType == NonToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      MassCharacteris_1063_TypeValue.NonTolerance->printSelf(outFile);
+      MassCharacteris_1064_TypeValue.NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class OrientationChar_1064_Type
+/* class OrientationChar_1065_Type
 
 */
 
-OrientationChar_1064_Type::OrientationChar_1064_Type()
+OrientationChar_1065_Type::OrientationChar_1065_Type()
 {
-  OrientationChar_1064_TypePair = 0;
+  OrientationChar_1065_TypePair = 0;
 }
 
-OrientationChar_1064_Type::OrientationChar_1064_Type(
- OrientationChar_1064_TypeChoicePair * OrientationChar_1064_TypePairIn)
+OrientationChar_1065_Type::OrientationChar_1065_Type(
+ OrientationChar_1065_TypeChoicePair * OrientationChar_1065_TypePairIn)
 {
-  OrientationChar_1064_TypePair = OrientationChar_1064_TypePairIn;
+  OrientationChar_1065_TypePair = OrientationChar_1065_TypePairIn;
 }
 
-OrientationChar_1064_Type::~OrientationChar_1064_Type()
+OrientationChar_1065_Type::~OrientationChar_1065_Type()
 {
   #ifndef NODESTRUCT
-  delete OrientationChar_1064_TypePair;
+  delete OrientationChar_1065_TypePair;
   #endif
 }
 
-void OrientationChar_1064_Type::printSelf(FILE * outFile)
+void OrientationChar_1065_Type::printSelf(FILE * outFile)
 {
-  if (OrientationChar_1064_TypePair)
+  if (OrientationChar_1065_TypePair)
     {
-      OrientationChar_1064_TypePair->printSelf(outFile);
+      OrientationChar_1065_TypePair->printSelf(outFile);
     }
 }
 
-OrientationChar_1064_TypeChoicePair * OrientationChar_1064_Type::getOrientationChar_1064_TypePair()
-{return OrientationChar_1064_TypePair;}
+OrientationChar_1065_TypeChoicePair * OrientationChar_1065_Type::getOrientationChar_1065_TypePair()
+{return OrientationChar_1065_TypePair;}
 
-void OrientationChar_1064_Type::setOrientationChar_1064_TypePair(OrientationChar_1064_TypeChoicePair * OrientationChar_1064_TypePairIn)
-{OrientationChar_1064_TypePair = OrientationChar_1064_TypePairIn;}
+void OrientationChar_1065_Type::setOrientationChar_1065_TypePair(OrientationChar_1065_TypeChoicePair * OrientationChar_1065_TypePairIn)
+{OrientationChar_1065_TypePair = OrientationChar_1065_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class OrientationChar_1064_TypeChoicePair
+/* class OrientationChar_1065_TypeChoicePair
 
 */
 
-OrientationChar_1064_TypeChoicePair::OrientationChar_1064_TypeChoicePair() {}
+OrientationChar_1065_TypeChoicePair::OrientationChar_1065_TypeChoicePair() {}
 
-OrientationChar_1064_TypeChoicePair::OrientationChar_1064_TypeChoicePair(
- whichOne OrientationChar_1064_TypeTypeIn,
- OrientationChar_1064_TypeVal OrientationChar_1064_TypeValueIn)
+OrientationChar_1065_TypeChoicePair::OrientationChar_1065_TypeChoicePair(
+ whichOne OrientationChar_1065_TypeTypeIn,
+ OrientationChar_1065_TypeVal OrientationChar_1065_TypeValueIn)
 {
-  OrientationChar_1064_TypeType = OrientationChar_1064_TypeTypeIn;
-  OrientationChar_1064_TypeValue = OrientationChar_1064_TypeValueIn;
+  OrientationChar_1065_TypeType = OrientationChar_1065_TypeTypeIn;
+  OrientationChar_1065_TypeValue = OrientationChar_1065_TypeValueIn;
 }
 
-OrientationChar_1064_TypeChoicePair::~OrientationChar_1064_TypeChoicePair()
+OrientationChar_1065_TypeChoicePair::~OrientationChar_1065_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (OrientationChar_1064_TypeType == EachRadialElementE)
-    delete OrientationChar_1064_TypeValue.EachRadialElement;
-  else if (OrientationChar_1064_TypeType == EachElementE)
-    delete OrientationChar_1064_TypeValue.EachElement;
+  if (OrientationChar_1065_TypeType == EachRadialElementE)
+    delete OrientationChar_1065_TypeValue.EachRadialElement;
+  else if (OrientationChar_1065_TypeType == EachElementE)
+    delete OrientationChar_1065_TypeValue.EachElement;
   #endif
 }
 
-void OrientationChar_1064_TypeChoicePair::printSelf(FILE * outFile)
+void OrientationChar_1065_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (OrientationChar_1064_TypeType == EachRadialElementE)
+  if (OrientationChar_1065_TypeType == EachRadialElementE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<EachRadialElement");
-      OrientationChar_1064_TypeValue.EachRadialElement->printSelf(outFile);
+      OrientationChar_1065_TypeValue.EachRadialElement->printSelf(outFile);
       fprintf(outFile, "</EachRadialElement>\n");
     }
-  else if (OrientationChar_1064_TypeType == EachElementE)
+  else if (OrientationChar_1065_TypeType == EachElementE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<EachElement");
-      OrientationChar_1064_TypeValue.EachElement->printSelf(outFile);
+      OrientationChar_1065_TypeValue.EachElement->printSelf(outFile);
       fprintf(outFile, "</EachElement>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class OriginReference_1065_Type
+/* class OriginReference_1066_Type
 
 */
 
-OriginReference_1065_Type::OriginReference_1065_Type()
+OriginReference_1066_Type::OriginReference_1066_Type()
 {
   FeatureNominalId = 0;
   ReferencedComponent = 0;
 }
 
-OriginReference_1065_Type::OriginReference_1065_Type(
+OriginReference_1066_Type::OriginReference_1066_Type(
  QIFReferenceFullType * FeatureNominalIdIn,
  ReferencedComponentEnumType * ReferencedComponentIn)
 {
@@ -118927,7 +118927,7 @@ OriginReference_1065_Type::OriginReference_1065_Type(
   ReferencedComponent = ReferencedComponentIn;
 }
 
-OriginReference_1065_Type::~OriginReference_1065_Type()
+OriginReference_1066_Type::~OriginReference_1066_Type()
 {
   #ifndef NODESTRUCT
   delete FeatureNominalId;
@@ -118935,7 +118935,7 @@ OriginReference_1065_Type::~OriginReference_1065_Type()
   #endif
 }
 
-void OriginReference_1065_Type::printSelf(FILE * outFile)
+void OriginReference_1066_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<FeatureNominalId");
@@ -118947,273 +118947,273 @@ void OriginReference_1065_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</ReferencedComponent>\n");
 }
 
-QIFReferenceFullType * OriginReference_1065_Type::getFeatureNominalId()
+QIFReferenceFullType * OriginReference_1066_Type::getFeatureNominalId()
 {return FeatureNominalId;}
 
-void OriginReference_1065_Type::setFeatureNominalId(QIFReferenceFullType * FeatureNominalIdIn)
+void OriginReference_1066_Type::setFeatureNominalId(QIFReferenceFullType * FeatureNominalIdIn)
 {FeatureNominalId = FeatureNominalIdIn;}
 
-ReferencedComponentEnumType * OriginReference_1065_Type::getReferencedComponent()
+ReferencedComponentEnumType * OriginReference_1066_Type::getReferencedComponent()
 {return ReferencedComponent;}
 
-void OriginReference_1065_Type::setReferencedComponent(ReferencedComponentEnumType * ReferencedComponentIn)
+void OriginReference_1066_Type::setReferencedComponent(ReferencedComponentEnumType * ReferencedComponentIn)
 {ReferencedComponent = ReferencedComponentIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class PressureCharact_1066_Type
-
-*/
-
-PressureCharact_1066_Type::PressureCharact_1066_Type()
-{
-  PressureCharact_1066_TypePair = 0;
-}
-
-PressureCharact_1066_Type::PressureCharact_1066_Type(
- PressureCharact_1066_TypeChoicePair * PressureCharact_1066_TypePairIn)
-{
-  PressureCharact_1066_TypePair = PressureCharact_1066_TypePairIn;
-}
-
-PressureCharact_1066_Type::~PressureCharact_1066_Type()
-{
-  #ifndef NODESTRUCT
-  delete PressureCharact_1066_TypePair;
-  #endif
-}
-
-void PressureCharact_1066_Type::printSelf(FILE * outFile)
-{
-  PressureCharact_1066_TypePair->printSelf(outFile);
-}
-
-PressureCharact_1066_TypeChoicePair * PressureCharact_1066_Type::getPressureCharact_1066_TypePair()
-{return PressureCharact_1066_TypePair;}
-
-void PressureCharact_1066_Type::setPressureCharact_1066_TypePair(PressureCharact_1066_TypeChoicePair * PressureCharact_1066_TypePairIn)
-{PressureCharact_1066_TypePair = PressureCharact_1066_TypePairIn;}
-
-/*********************************************************************/
-
-/* class PressureCharact_1066_TypeChoicePair
+/* class PressureCharact_1067_Type
 
 */
 
-PressureCharact_1066_TypeChoicePair::PressureCharact_1066_TypeChoicePair() {}
-
-PressureCharact_1066_TypeChoicePair::PressureCharact_1066_TypeChoicePair(
- whichOne PressureCharact_1066_TypeTypeIn,
- PressureCharact_1066_TypeVal PressureCharact_1066_TypeValueIn)
+PressureCharact_1067_Type::PressureCharact_1067_Type()
 {
-  PressureCharact_1066_TypeType = PressureCharact_1066_TypeTypeIn;
-  PressureCharact_1066_TypeValue = PressureCharact_1066_TypeValueIn;
+  PressureCharact_1067_TypePair = 0;
 }
 
-PressureCharact_1066_TypeChoicePair::~PressureCharact_1066_TypeChoicePair()
+PressureCharact_1067_Type::PressureCharact_1067_Type(
+ PressureCharact_1067_TypeChoicePair * PressureCharact_1067_TypePairIn)
+{
+  PressureCharact_1067_TypePair = PressureCharact_1067_TypePairIn;
+}
+
+PressureCharact_1067_Type::~PressureCharact_1067_Type()
 {
   #ifndef NODESTRUCT
-  if (PressureCharact_1066_TypeType == ToleranceE)
-    delete PressureCharact_1066_TypeValue.Tolerance;
-  else if (PressureCharact_1066_TypeType == NonToleranceE)
-    delete PressureCharact_1066_TypeValue.NonTolerance;
+  delete PressureCharact_1067_TypePair;
   #endif
 }
 
-void PressureCharact_1066_TypeChoicePair::printSelf(FILE * outFile)
+void PressureCharact_1067_Type::printSelf(FILE * outFile)
 {
-  if (PressureCharact_1066_TypeType == ToleranceE)
+  PressureCharact_1067_TypePair->printSelf(outFile);
+}
+
+PressureCharact_1067_TypeChoicePair * PressureCharact_1067_Type::getPressureCharact_1067_TypePair()
+{return PressureCharact_1067_TypePair;}
+
+void PressureCharact_1067_Type::setPressureCharact_1067_TypePair(PressureCharact_1067_TypeChoicePair * PressureCharact_1067_TypePairIn)
+{PressureCharact_1067_TypePair = PressureCharact_1067_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class PressureCharact_1067_TypeChoicePair
+
+*/
+
+PressureCharact_1067_TypeChoicePair::PressureCharact_1067_TypeChoicePair() {}
+
+PressureCharact_1067_TypeChoicePair::PressureCharact_1067_TypeChoicePair(
+ whichOne PressureCharact_1067_TypeTypeIn,
+ PressureCharact_1067_TypeVal PressureCharact_1067_TypeValueIn)
+{
+  PressureCharact_1067_TypeType = PressureCharact_1067_TypeTypeIn;
+  PressureCharact_1067_TypeValue = PressureCharact_1067_TypeValueIn;
+}
+
+PressureCharact_1067_TypeChoicePair::~PressureCharact_1067_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (PressureCharact_1067_TypeType == ToleranceE)
+    delete PressureCharact_1067_TypeValue.Tolerance;
+  else if (PressureCharact_1067_TypeType == NonToleranceE)
+    delete PressureCharact_1067_TypeValue.NonTolerance;
+  #endif
+}
+
+void PressureCharact_1067_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (PressureCharact_1067_TypeType == ToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      PressureCharact_1066_TypeValue.Tolerance->printSelf(outFile);
+      PressureCharact_1067_TypeValue.Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
-  else if (PressureCharact_1066_TypeType == NonToleranceE)
+  else if (PressureCharact_1067_TypeType == NonToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      PressureCharact_1066_TypeValue.NonTolerance->printSelf(outFile);
+      PressureCharact_1067_TypeValue.NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class ProfileCharacte_1067_Type
+/* class ProfileCharacte_1068_Type
 
 */
 
-ProfileCharacte_1067_Type::ProfileCharacte_1067_Type()
+ProfileCharacte_1068_Type::ProfileCharacte_1068_Type()
 {
-  ProfileCharacte_1067_TypePair = 0;
+  ProfileCharacte_1068_TypePair = 0;
 }
 
-ProfileCharacte_1067_Type::ProfileCharacte_1067_Type(
- ProfileCharacte_1067_TypeChoicePair * ProfileCharacte_1067_TypePairIn)
+ProfileCharacte_1068_Type::ProfileCharacte_1068_Type(
+ ProfileCharacte_1068_TypeChoicePair * ProfileCharacte_1068_TypePairIn)
 {
-  ProfileCharacte_1067_TypePair = ProfileCharacte_1067_TypePairIn;
+  ProfileCharacte_1068_TypePair = ProfileCharacte_1068_TypePairIn;
 }
 
-ProfileCharacte_1067_Type::~ProfileCharacte_1067_Type()
+ProfileCharacte_1068_Type::~ProfileCharacte_1068_Type()
 {
   #ifndef NODESTRUCT
-  delete ProfileCharacte_1067_TypePair;
+  delete ProfileCharacte_1068_TypePair;
   #endif
 }
 
-void ProfileCharacte_1067_Type::printSelf(FILE * outFile)
+void ProfileCharacte_1068_Type::printSelf(FILE * outFile)
 {
-  if (ProfileCharacte_1067_TypePair)
+  if (ProfileCharacte_1068_TypePair)
     {
-      ProfileCharacte_1067_TypePair->printSelf(outFile);
+      ProfileCharacte_1068_TypePair->printSelf(outFile);
     }
 }
 
-ProfileCharacte_1067_TypeChoicePair * ProfileCharacte_1067_Type::getProfileCharacte_1067_TypePair()
-{return ProfileCharacte_1067_TypePair;}
+ProfileCharacte_1068_TypeChoicePair * ProfileCharacte_1068_Type::getProfileCharacte_1068_TypePair()
+{return ProfileCharacte_1068_TypePair;}
 
-void ProfileCharacte_1067_Type::setProfileCharacte_1067_TypePair(ProfileCharacte_1067_TypeChoicePair * ProfileCharacte_1067_TypePairIn)
-{ProfileCharacte_1067_TypePair = ProfileCharacte_1067_TypePairIn;}
+void ProfileCharacte_1068_Type::setProfileCharacte_1068_TypePair(ProfileCharacte_1068_TypeChoicePair * ProfileCharacte_1068_TypePairIn)
+{ProfileCharacte_1068_TypePair = ProfileCharacte_1068_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class ProfileCharacte_1067_TypeChoicePair
+/* class ProfileCharacte_1068_TypeChoicePair
 
 */
 
-ProfileCharacte_1067_TypeChoicePair::ProfileCharacte_1067_TypeChoicePair() {}
+ProfileCharacte_1068_TypeChoicePair::ProfileCharacte_1068_TypeChoicePair() {}
 
-ProfileCharacte_1067_TypeChoicePair::ProfileCharacte_1067_TypeChoicePair(
- whichOne ProfileCharacte_1067_TypeTypeIn,
- ProfileCharacte_1067_TypeVal ProfileCharacte_1067_TypeValueIn)
+ProfileCharacte_1068_TypeChoicePair::ProfileCharacte_1068_TypeChoicePair(
+ whichOne ProfileCharacte_1068_TypeTypeIn,
+ ProfileCharacte_1068_TypeVal ProfileCharacte_1068_TypeValueIn)
 {
-  ProfileCharacte_1067_TypeType = ProfileCharacte_1067_TypeTypeIn;
-  ProfileCharacte_1067_TypeValue = ProfileCharacte_1067_TypeValueIn;
+  ProfileCharacte_1068_TypeType = ProfileCharacte_1068_TypeTypeIn;
+  ProfileCharacte_1068_TypeValue = ProfileCharacte_1068_TypeValueIn;
 }
 
-ProfileCharacte_1067_TypeChoicePair::~ProfileCharacte_1067_TypeChoicePair()
+ProfileCharacte_1068_TypeChoicePair::~ProfileCharacte_1068_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (ProfileCharacte_1067_TypeType == OuterDispositionE)
-    delete ProfileCharacte_1067_TypeValue.OuterDisposition;
-  else if (ProfileCharacte_1067_TypeType == UnequallyDisposedZoneE)
-    delete ProfileCharacte_1067_TypeValue.UnequallyDisposedZone;
+  if (ProfileCharacte_1068_TypeType == OuterDispositionE)
+    delete ProfileCharacte_1068_TypeValue.OuterDisposition;
+  else if (ProfileCharacte_1068_TypeType == UnequallyDisposedZoneE)
+    delete ProfileCharacte_1068_TypeValue.UnequallyDisposedZone;
   #endif
 }
 
-void ProfileCharacte_1067_TypeChoicePair::printSelf(FILE * outFile)
+void ProfileCharacte_1068_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (ProfileCharacte_1067_TypeType == OuterDispositionE)
+  if (ProfileCharacte_1068_TypeType == OuterDispositionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OuterDisposition");
-      ProfileCharacte_1067_TypeValue.OuterDisposition->printSelf(outFile);
+      ProfileCharacte_1068_TypeValue.OuterDisposition->printSelf(outFile);
       fprintf(outFile, "</OuterDisposition>\n");
     }
-  else if (ProfileCharacte_1067_TypeType == UnequallyDisposedZoneE)
+  else if (ProfileCharacte_1068_TypeType == UnequallyDisposedZoneE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UnequallyDisposedZone");
-      ProfileCharacte_1067_TypeValue.UnequallyDisposedZone->printSelf(outFile);
+      ProfileCharacte_1068_TypeValue.UnequallyDisposedZone->printSelf(outFile);
       fprintf(outFile, "</UnequallyDisposedZone>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class SpeedCharacteri_1068_Type
-
-*/
-
-SpeedCharacteri_1068_Type::SpeedCharacteri_1068_Type()
-{
-  SpeedCharacteri_1068_TypePair = 0;
-}
-
-SpeedCharacteri_1068_Type::SpeedCharacteri_1068_Type(
- SpeedCharacteri_1068_TypeChoicePair * SpeedCharacteri_1068_TypePairIn)
-{
-  SpeedCharacteri_1068_TypePair = SpeedCharacteri_1068_TypePairIn;
-}
-
-SpeedCharacteri_1068_Type::~SpeedCharacteri_1068_Type()
-{
-  #ifndef NODESTRUCT
-  delete SpeedCharacteri_1068_TypePair;
-  #endif
-}
-
-void SpeedCharacteri_1068_Type::printSelf(FILE * outFile)
-{
-  SpeedCharacteri_1068_TypePair->printSelf(outFile);
-}
-
-SpeedCharacteri_1068_TypeChoicePair * SpeedCharacteri_1068_Type::getSpeedCharacteri_1068_TypePair()
-{return SpeedCharacteri_1068_TypePair;}
-
-void SpeedCharacteri_1068_Type::setSpeedCharacteri_1068_TypePair(SpeedCharacteri_1068_TypeChoicePair * SpeedCharacteri_1068_TypePairIn)
-{SpeedCharacteri_1068_TypePair = SpeedCharacteri_1068_TypePairIn;}
-
-/*********************************************************************/
-
-/* class SpeedCharacteri_1068_TypeChoicePair
+/* class SpeedCharacteri_1069_Type
 
 */
 
-SpeedCharacteri_1068_TypeChoicePair::SpeedCharacteri_1068_TypeChoicePair() {}
-
-SpeedCharacteri_1068_TypeChoicePair::SpeedCharacteri_1068_TypeChoicePair(
- whichOne SpeedCharacteri_1068_TypeTypeIn,
- SpeedCharacteri_1068_TypeVal SpeedCharacteri_1068_TypeValueIn)
+SpeedCharacteri_1069_Type::SpeedCharacteri_1069_Type()
 {
-  SpeedCharacteri_1068_TypeType = SpeedCharacteri_1068_TypeTypeIn;
-  SpeedCharacteri_1068_TypeValue = SpeedCharacteri_1068_TypeValueIn;
+  SpeedCharacteri_1069_TypePair = 0;
 }
 
-SpeedCharacteri_1068_TypeChoicePair::~SpeedCharacteri_1068_TypeChoicePair()
+SpeedCharacteri_1069_Type::SpeedCharacteri_1069_Type(
+ SpeedCharacteri_1069_TypeChoicePair * SpeedCharacteri_1069_TypePairIn)
+{
+  SpeedCharacteri_1069_TypePair = SpeedCharacteri_1069_TypePairIn;
+}
+
+SpeedCharacteri_1069_Type::~SpeedCharacteri_1069_Type()
 {
   #ifndef NODESTRUCT
-  if (SpeedCharacteri_1068_TypeType == ToleranceE)
-    delete SpeedCharacteri_1068_TypeValue.Tolerance;
-  else if (SpeedCharacteri_1068_TypeType == NonToleranceE)
-    delete SpeedCharacteri_1068_TypeValue.NonTolerance;
+  delete SpeedCharacteri_1069_TypePair;
   #endif
 }
 
-void SpeedCharacteri_1068_TypeChoicePair::printSelf(FILE * outFile)
+void SpeedCharacteri_1069_Type::printSelf(FILE * outFile)
 {
-  if (SpeedCharacteri_1068_TypeType == ToleranceE)
+  SpeedCharacteri_1069_TypePair->printSelf(outFile);
+}
+
+SpeedCharacteri_1069_TypeChoicePair * SpeedCharacteri_1069_Type::getSpeedCharacteri_1069_TypePair()
+{return SpeedCharacteri_1069_TypePair;}
+
+void SpeedCharacteri_1069_Type::setSpeedCharacteri_1069_TypePair(SpeedCharacteri_1069_TypeChoicePair * SpeedCharacteri_1069_TypePairIn)
+{SpeedCharacteri_1069_TypePair = SpeedCharacteri_1069_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class SpeedCharacteri_1069_TypeChoicePair
+
+*/
+
+SpeedCharacteri_1069_TypeChoicePair::SpeedCharacteri_1069_TypeChoicePair() {}
+
+SpeedCharacteri_1069_TypeChoicePair::SpeedCharacteri_1069_TypeChoicePair(
+ whichOne SpeedCharacteri_1069_TypeTypeIn,
+ SpeedCharacteri_1069_TypeVal SpeedCharacteri_1069_TypeValueIn)
+{
+  SpeedCharacteri_1069_TypeType = SpeedCharacteri_1069_TypeTypeIn;
+  SpeedCharacteri_1069_TypeValue = SpeedCharacteri_1069_TypeValueIn;
+}
+
+SpeedCharacteri_1069_TypeChoicePair::~SpeedCharacteri_1069_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (SpeedCharacteri_1069_TypeType == ToleranceE)
+    delete SpeedCharacteri_1069_TypeValue.Tolerance;
+  else if (SpeedCharacteri_1069_TypeType == NonToleranceE)
+    delete SpeedCharacteri_1069_TypeValue.NonTolerance;
+  #endif
+}
+
+void SpeedCharacteri_1069_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (SpeedCharacteri_1069_TypeType == ToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      SpeedCharacteri_1068_TypeValue.Tolerance->printSelf(outFile);
+      SpeedCharacteri_1069_TypeValue.Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
-  else if (SpeedCharacteri_1068_TypeType == NonToleranceE)
+  else if (SpeedCharacteri_1069_TypeType == NonToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      SpeedCharacteri_1068_TypeValue.NonTolerance->printSelf(outFile);
+      SpeedCharacteri_1069_TypeValue.NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class SphericityChara_1069_Type
+/* class SphericityChara_1070_Type
 
 */
 
-SphericityChara_1069_Type::SphericityChara_1069_Type()
+SphericityChara_1070_Type::SphericityChara_1070_Type()
 {
   ZoneRadii = 0;
   ZonePoint = 0;
 }
 
-SphericityChara_1069_Type::SphericityChara_1069_Type(
+SphericityChara_1070_Type::SphericityChara_1070_Type(
  MeasuredZoneRadiiType * ZoneRadiiIn,
  MeasuredPointType * ZonePointIn)
 {
@@ -119221,7 +119221,7 @@ SphericityChara_1069_Type::SphericityChara_1069_Type(
   ZonePoint = ZonePointIn;
 }
 
-SphericityChara_1069_Type::~SphericityChara_1069_Type()
+SphericityChara_1070_Type::~SphericityChara_1070_Type()
 {
   #ifndef NODESTRUCT
   delete ZoneRadii;
@@ -119229,7 +119229,7 @@ SphericityChara_1069_Type::~SphericityChara_1069_Type()
   #endif
 }
 
-void SphericityChara_1069_Type::printSelf(FILE * outFile)
+void SphericityChara_1070_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ZoneRadii");
@@ -119242,494 +119242,410 @@ void SphericityChara_1069_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</ZonePoint>\n");
 }
 
-MeasuredZoneRadiiType * SphericityChara_1069_Type::getZoneRadii()
+MeasuredZoneRadiiType * SphericityChara_1070_Type::getZoneRadii()
 {return ZoneRadii;}
 
-void SphericityChara_1069_Type::setZoneRadii(MeasuredZoneRadiiType * ZoneRadiiIn)
+void SphericityChara_1070_Type::setZoneRadii(MeasuredZoneRadiiType * ZoneRadiiIn)
 {ZoneRadii = ZoneRadiiIn;}
 
-MeasuredPointType * SphericityChara_1069_Type::getZonePoint()
+MeasuredPointType * SphericityChara_1070_Type::getZonePoint()
 {return ZonePoint;}
 
-void SphericityChara_1069_Type::setZonePoint(MeasuredPointType * ZonePointIn)
+void SphericityChara_1070_Type::setZonePoint(MeasuredPointType * ZonePointIn)
 {ZonePoint = ZonePointIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class StraightnessCha_1070_Type
-
-*/
-
-StraightnessCha_1070_Type::StraightnessCha_1070_Type()
-{
-  StraightnessCha_1070_TypePair = 0;
-}
-
-StraightnessCha_1070_Type::StraightnessCha_1070_Type(
- StraightnessCha_1070_TypeChoicePair * StraightnessCha_1070_TypePairIn)
-{
-  StraightnessCha_1070_TypePair = StraightnessCha_1070_TypePairIn;
-}
-
-StraightnessCha_1070_Type::~StraightnessCha_1070_Type()
-{
-  #ifndef NODESTRUCT
-  delete StraightnessCha_1070_TypePair;
-  #endif
-}
-
-void StraightnessCha_1070_Type::printSelf(FILE * outFile)
-{
-  StraightnessCha_1070_TypePair->printSelf(outFile);
-}
-
-StraightnessCha_1070_TypeChoicePair * StraightnessCha_1070_Type::getStraightnessCha_1070_TypePair()
-{return StraightnessCha_1070_TypePair;}
-
-void StraightnessCha_1070_Type::setStraightnessCha_1070_TypePair(StraightnessCha_1070_TypeChoicePair * StraightnessCha_1070_TypePairIn)
-{StraightnessCha_1070_TypePair = StraightnessCha_1070_TypePairIn;}
-
-/*********************************************************************/
-
-/* class StraightnessCha_1070_TypeChoicePair
+/* class StraightnessCha_1071_Type
 
 */
 
-StraightnessCha_1070_TypeChoicePair::StraightnessCha_1070_TypeChoicePair() {}
-
-StraightnessCha_1070_TypeChoicePair::StraightnessCha_1070_TypeChoicePair(
- whichOne StraightnessCha_1070_TypeTypeIn,
- StraightnessCha_1070_TypeVal StraightnessCha_1070_TypeValueIn)
+StraightnessCha_1071_Type::StraightnessCha_1071_Type()
 {
-  StraightnessCha_1070_TypeType = StraightnessCha_1070_TypeTypeIn;
-  StraightnessCha_1070_TypeValue = StraightnessCha_1070_TypeValueIn;
+  StraightnessCha_1071_TypePair = 0;
 }
 
-StraightnessCha_1070_TypeChoicePair::~StraightnessCha_1070_TypeChoicePair()
+StraightnessCha_1071_Type::StraightnessCha_1071_Type(
+ StraightnessCha_1071_TypeChoicePair * StraightnessCha_1071_TypePairIn)
+{
+  StraightnessCha_1071_TypePair = StraightnessCha_1071_TypePairIn;
+}
+
+StraightnessCha_1071_Type::~StraightnessCha_1071_Type()
 {
   #ifndef NODESTRUCT
-  if (StraightnessCha_1070_TypeType == StraightnessCha_1087E)
-    delete StraightnessCha_1070_TypeValue.StraightnessCha_1087;
-  else if (StraightnessCha_1070_TypeType == StraightnessCha_1088E)
-    delete StraightnessCha_1070_TypeValue.StraightnessCha_1088;
+  delete StraightnessCha_1071_TypePair;
   #endif
 }
 
-void StraightnessCha_1070_TypeChoicePair::printSelf(FILE * outFile)
+void StraightnessCha_1071_Type::printSelf(FILE * outFile)
 {
-  if (StraightnessCha_1070_TypeType == StraightnessCha_1087E)
+  StraightnessCha_1071_TypePair->printSelf(outFile);
+}
+
+StraightnessCha_1071_TypeChoicePair * StraightnessCha_1071_Type::getStraightnessCha_1071_TypePair()
+{return StraightnessCha_1071_TypePair;}
+
+void StraightnessCha_1071_Type::setStraightnessCha_1071_TypePair(StraightnessCha_1071_TypeChoicePair * StraightnessCha_1071_TypePairIn)
+{StraightnessCha_1071_TypePair = StraightnessCha_1071_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class StraightnessCha_1071_TypeChoicePair
+
+*/
+
+StraightnessCha_1071_TypeChoicePair::StraightnessCha_1071_TypeChoicePair() {}
+
+StraightnessCha_1071_TypeChoicePair::StraightnessCha_1071_TypeChoicePair(
+ whichOne StraightnessCha_1071_TypeTypeIn,
+ StraightnessCha_1071_TypeVal StraightnessCha_1071_TypeValueIn)
+{
+  StraightnessCha_1071_TypeType = StraightnessCha_1071_TypeTypeIn;
+  StraightnessCha_1071_TypeValue = StraightnessCha_1071_TypeValueIn;
+}
+
+StraightnessCha_1071_TypeChoicePair::~StraightnessCha_1071_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (StraightnessCha_1071_TypeType == StraightnessCha_1088E)
+    delete StraightnessCha_1071_TypeValue.StraightnessCha_1088;
+  else if (StraightnessCha_1071_TypeType == StraightnessCha_1089E)
+    delete StraightnessCha_1071_TypeValue.StraightnessCha_1089;
+  #endif
+}
+
+void StraightnessCha_1071_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (StraightnessCha_1071_TypeType == StraightnessCha_1088E)
     {
-      StraightnessCha_1070_TypeValue.StraightnessCha_1087->printSelf(outFile);
+      StraightnessCha_1071_TypeValue.StraightnessCha_1088->printSelf(outFile);
     }
-  else if (StraightnessCha_1070_TypeType == StraightnessCha_1088E)
+  else if (StraightnessCha_1071_TypeType == StraightnessCha_1089E)
     {
-      StraightnessCha_1070_TypeValue.StraightnessCha_1088->printSelf(outFile);
-    }
-}
-
-/*********************************************************************/
-
-/* class SurfaceProfileN_1071_Type
-
-*/
-
-SurfaceProfileN_1071_Type::SurfaceProfileN_1071_Type()
-{
-  SurfaceProfileN_1071_TypePair = 0;
-}
-
-SurfaceProfileN_1071_Type::SurfaceProfileN_1071_Type(
- SurfaceProfileN_1071_TypeChoicePair * SurfaceProfileN_1071_TypePairIn)
-{
-  SurfaceProfileN_1071_TypePair = SurfaceProfileN_1071_TypePairIn;
-}
-
-SurfaceProfileN_1071_Type::~SurfaceProfileN_1071_Type()
-{
-  #ifndef NODESTRUCT
-  delete SurfaceProfileN_1071_TypePair;
-  #endif
-}
-
-void SurfaceProfileN_1071_Type::printSelf(FILE * outFile)
-{
-  if (SurfaceProfileN_1071_TypePair)
-    {
-      SurfaceProfileN_1071_TypePair->printSelf(outFile);
+      StraightnessCha_1071_TypeValue.StraightnessCha_1089->printSelf(outFile);
     }
 }
 
-SurfaceProfileN_1071_TypeChoicePair * SurfaceProfileN_1071_Type::getSurfaceProfileN_1071_TypePair()
-{return SurfaceProfileN_1071_TypePair;}
+/* ***************************************************************** */
 
-void SurfaceProfileN_1071_Type::setSurfaceProfileN_1071_TypePair(SurfaceProfileN_1071_TypeChoicePair * SurfaceProfileN_1071_TypePairIn)
-{SurfaceProfileN_1071_TypePair = SurfaceProfileN_1071_TypePairIn;}
-
-/*********************************************************************/
-
-/* class SurfaceProfileN_1071_TypeChoicePair
+/* class SurfaceProfileN_1072_Type
 
 */
 
-SurfaceProfileN_1071_TypeChoicePair::SurfaceProfileN_1071_TypeChoicePair() {}
-
-SurfaceProfileN_1071_TypeChoicePair::SurfaceProfileN_1071_TypeChoicePair(
- whichOne SurfaceProfileN_1071_TypeTypeIn,
- SurfaceProfileN_1071_TypeVal SurfaceProfileN_1071_TypeValueIn)
+SurfaceProfileN_1072_Type::SurfaceProfileN_1072_Type()
 {
-  SurfaceProfileN_1071_TypeType = SurfaceProfileN_1071_TypeTypeIn;
-  SurfaceProfileN_1071_TypeValue = SurfaceProfileN_1071_TypeValueIn;
+  SurfaceProfileN_1072_TypePair = 0;
 }
 
-SurfaceProfileN_1071_TypeChoicePair::~SurfaceProfileN_1071_TypeChoicePair()
+SurfaceProfileN_1072_Type::SurfaceProfileN_1072_Type(
+ SurfaceProfileN_1072_TypeChoicePair * SurfaceProfileN_1072_TypePairIn)
+{
+  SurfaceProfileN_1072_TypePair = SurfaceProfileN_1072_TypePairIn;
+}
+
+SurfaceProfileN_1072_Type::~SurfaceProfileN_1072_Type()
 {
   #ifndef NODESTRUCT
-  if (SurfaceProfileN_1071_TypeType == ToPointOuterDispositionE)
-    delete SurfaceProfileN_1071_TypeValue.ToPointOuterDisposition;
-  else if (SurfaceProfileN_1071_TypeType == ToPointUnequallyDisposedZoneE)
-    delete SurfaceProfileN_1071_TypeValue.ToPointUnequallyDisposedZone;
+  delete SurfaceProfileN_1072_TypePair;
   #endif
 }
 
-void SurfaceProfileN_1071_TypeChoicePair::printSelf(FILE * outFile)
+void SurfaceProfileN_1072_Type::printSelf(FILE * outFile)
 {
-  if (SurfaceProfileN_1071_TypeType == ToPointOuterDispositionE)
+  if (SurfaceProfileN_1072_TypePair)
+    {
+      SurfaceProfileN_1072_TypePair->printSelf(outFile);
+    }
+}
+
+SurfaceProfileN_1072_TypeChoicePair * SurfaceProfileN_1072_Type::getSurfaceProfileN_1072_TypePair()
+{return SurfaceProfileN_1072_TypePair;}
+
+void SurfaceProfileN_1072_Type::setSurfaceProfileN_1072_TypePair(SurfaceProfileN_1072_TypeChoicePair * SurfaceProfileN_1072_TypePairIn)
+{SurfaceProfileN_1072_TypePair = SurfaceProfileN_1072_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class SurfaceProfileN_1072_TypeChoicePair
+
+*/
+
+SurfaceProfileN_1072_TypeChoicePair::SurfaceProfileN_1072_TypeChoicePair() {}
+
+SurfaceProfileN_1072_TypeChoicePair::SurfaceProfileN_1072_TypeChoicePair(
+ whichOne SurfaceProfileN_1072_TypeTypeIn,
+ SurfaceProfileN_1072_TypeVal SurfaceProfileN_1072_TypeValueIn)
+{
+  SurfaceProfileN_1072_TypeType = SurfaceProfileN_1072_TypeTypeIn;
+  SurfaceProfileN_1072_TypeValue = SurfaceProfileN_1072_TypeValueIn;
+}
+
+SurfaceProfileN_1072_TypeChoicePair::~SurfaceProfileN_1072_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (SurfaceProfileN_1072_TypeType == ToPointOuterDispositionE)
+    delete SurfaceProfileN_1072_TypeValue.ToPointOuterDisposition;
+  else if (SurfaceProfileN_1072_TypeType == ToPointUnequallyDisposedZoneE)
+    delete SurfaceProfileN_1072_TypeValue.ToPointUnequallyDisposedZone;
+  #endif
+}
+
+void SurfaceProfileN_1072_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (SurfaceProfileN_1072_TypeType == ToPointOuterDispositionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToPointOuterDisposition");
-      SurfaceProfileN_1071_TypeValue.ToPointOuterDisposition->printSelf(outFile);
+      SurfaceProfileN_1072_TypeValue.ToPointOuterDisposition->printSelf(outFile);
       fprintf(outFile, "</ToPointOuterDisposition>\n");
     }
-  else if (SurfaceProfileN_1071_TypeType == ToPointUnequallyDisposedZoneE)
+  else if (SurfaceProfileN_1072_TypeType == ToPointUnequallyDisposedZoneE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToPointUnequallyDisposedZone");
-      SurfaceProfileN_1071_TypeValue.ToPointUnequallyDisposedZone->printSelf(outFile);
+      SurfaceProfileN_1072_TypeValue.ToPointUnequallyDisposedZone->printSelf(outFile);
       fprintf(outFile, "</ToPointUnequallyDisposedZone>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class TemperatureChar_1072_Type
-
-*/
-
-TemperatureChar_1072_Type::TemperatureChar_1072_Type()
-{
-  TemperatureChar_1072_TypePair = 0;
-}
-
-TemperatureChar_1072_Type::TemperatureChar_1072_Type(
- TemperatureChar_1072_TypeChoicePair * TemperatureChar_1072_TypePairIn)
-{
-  TemperatureChar_1072_TypePair = TemperatureChar_1072_TypePairIn;
-}
-
-TemperatureChar_1072_Type::~TemperatureChar_1072_Type()
-{
-  #ifndef NODESTRUCT
-  delete TemperatureChar_1072_TypePair;
-  #endif
-}
-
-void TemperatureChar_1072_Type::printSelf(FILE * outFile)
-{
-  TemperatureChar_1072_TypePair->printSelf(outFile);
-}
-
-TemperatureChar_1072_TypeChoicePair * TemperatureChar_1072_Type::getTemperatureChar_1072_TypePair()
-{return TemperatureChar_1072_TypePair;}
-
-void TemperatureChar_1072_Type::setTemperatureChar_1072_TypePair(TemperatureChar_1072_TypeChoicePair * TemperatureChar_1072_TypePairIn)
-{TemperatureChar_1072_TypePair = TemperatureChar_1072_TypePairIn;}
-
-/*********************************************************************/
-
-/* class TemperatureChar_1072_TypeChoicePair
+/* class TemperatureChar_1073_Type
 
 */
 
-TemperatureChar_1072_TypeChoicePair::TemperatureChar_1072_TypeChoicePair() {}
-
-TemperatureChar_1072_TypeChoicePair::TemperatureChar_1072_TypeChoicePair(
- whichOne TemperatureChar_1072_TypeTypeIn,
- TemperatureChar_1072_TypeVal TemperatureChar_1072_TypeValueIn)
+TemperatureChar_1073_Type::TemperatureChar_1073_Type()
 {
-  TemperatureChar_1072_TypeType = TemperatureChar_1072_TypeTypeIn;
-  TemperatureChar_1072_TypeValue = TemperatureChar_1072_TypeValueIn;
+  TemperatureChar_1073_TypePair = 0;
 }
 
-TemperatureChar_1072_TypeChoicePair::~TemperatureChar_1072_TypeChoicePair()
+TemperatureChar_1073_Type::TemperatureChar_1073_Type(
+ TemperatureChar_1073_TypeChoicePair * TemperatureChar_1073_TypePairIn)
+{
+  TemperatureChar_1073_TypePair = TemperatureChar_1073_TypePairIn;
+}
+
+TemperatureChar_1073_Type::~TemperatureChar_1073_Type()
 {
   #ifndef NODESTRUCT
-  if (TemperatureChar_1072_TypeType == ToleranceE)
-    delete TemperatureChar_1072_TypeValue.Tolerance;
-  else if (TemperatureChar_1072_TypeType == NonToleranceE)
-    delete TemperatureChar_1072_TypeValue.NonTolerance;
+  delete TemperatureChar_1073_TypePair;
   #endif
 }
 
-void TemperatureChar_1072_TypeChoicePair::printSelf(FILE * outFile)
+void TemperatureChar_1073_Type::printSelf(FILE * outFile)
 {
-  if (TemperatureChar_1072_TypeType == ToleranceE)
+  TemperatureChar_1073_TypePair->printSelf(outFile);
+}
+
+TemperatureChar_1073_TypeChoicePair * TemperatureChar_1073_Type::getTemperatureChar_1073_TypePair()
+{return TemperatureChar_1073_TypePair;}
+
+void TemperatureChar_1073_Type::setTemperatureChar_1073_TypePair(TemperatureChar_1073_TypeChoicePair * TemperatureChar_1073_TypePairIn)
+{TemperatureChar_1073_TypePair = TemperatureChar_1073_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class TemperatureChar_1073_TypeChoicePair
+
+*/
+
+TemperatureChar_1073_TypeChoicePair::TemperatureChar_1073_TypeChoicePair() {}
+
+TemperatureChar_1073_TypeChoicePair::TemperatureChar_1073_TypeChoicePair(
+ whichOne TemperatureChar_1073_TypeTypeIn,
+ TemperatureChar_1073_TypeVal TemperatureChar_1073_TypeValueIn)
+{
+  TemperatureChar_1073_TypeType = TemperatureChar_1073_TypeTypeIn;
+  TemperatureChar_1073_TypeValue = TemperatureChar_1073_TypeValueIn;
+}
+
+TemperatureChar_1073_TypeChoicePair::~TemperatureChar_1073_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (TemperatureChar_1073_TypeType == ToleranceE)
+    delete TemperatureChar_1073_TypeValue.Tolerance;
+  else if (TemperatureChar_1073_TypeType == NonToleranceE)
+    delete TemperatureChar_1073_TypeValue.NonTolerance;
+  #endif
+}
+
+void TemperatureChar_1073_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (TemperatureChar_1073_TypeType == ToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      TemperatureChar_1072_TypeValue.Tolerance->printSelf(outFile);
+      TemperatureChar_1073_TypeValue.Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
-  else if (TemperatureChar_1072_TypeType == NonToleranceE)
+  else if (TemperatureChar_1073_TypeType == NonToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      TemperatureChar_1072_TypeValue.NonTolerance->printSelf(outFile);
+      TemperatureChar_1073_TypeValue.NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class TimeCharacteris_1073_Type
-
-*/
-
-TimeCharacteris_1073_Type::TimeCharacteris_1073_Type()
-{
-  TimeCharacteris_1073_TypePair = 0;
-}
-
-TimeCharacteris_1073_Type::TimeCharacteris_1073_Type(
- TimeCharacteris_1073_TypeChoicePair * TimeCharacteris_1073_TypePairIn)
-{
-  TimeCharacteris_1073_TypePair = TimeCharacteris_1073_TypePairIn;
-}
-
-TimeCharacteris_1073_Type::~TimeCharacteris_1073_Type()
-{
-  #ifndef NODESTRUCT
-  delete TimeCharacteris_1073_TypePair;
-  #endif
-}
-
-void TimeCharacteris_1073_Type::printSelf(FILE * outFile)
-{
-  TimeCharacteris_1073_TypePair->printSelf(outFile);
-}
-
-TimeCharacteris_1073_TypeChoicePair * TimeCharacteris_1073_Type::getTimeCharacteris_1073_TypePair()
-{return TimeCharacteris_1073_TypePair;}
-
-void TimeCharacteris_1073_Type::setTimeCharacteris_1073_TypePair(TimeCharacteris_1073_TypeChoicePair * TimeCharacteris_1073_TypePairIn)
-{TimeCharacteris_1073_TypePair = TimeCharacteris_1073_TypePairIn;}
-
-/*********************************************************************/
-
-/* class TimeCharacteris_1073_TypeChoicePair
+/* class TimeCharacteris_1074_Type
 
 */
 
-TimeCharacteris_1073_TypeChoicePair::TimeCharacteris_1073_TypeChoicePair() {}
-
-TimeCharacteris_1073_TypeChoicePair::TimeCharacteris_1073_TypeChoicePair(
- whichOne TimeCharacteris_1073_TypeTypeIn,
- TimeCharacteris_1073_TypeVal TimeCharacteris_1073_TypeValueIn)
+TimeCharacteris_1074_Type::TimeCharacteris_1074_Type()
 {
-  TimeCharacteris_1073_TypeType = TimeCharacteris_1073_TypeTypeIn;
-  TimeCharacteris_1073_TypeValue = TimeCharacteris_1073_TypeValueIn;
+  TimeCharacteris_1074_TypePair = 0;
 }
 
-TimeCharacteris_1073_TypeChoicePair::~TimeCharacteris_1073_TypeChoicePair()
+TimeCharacteris_1074_Type::TimeCharacteris_1074_Type(
+ TimeCharacteris_1074_TypeChoicePair * TimeCharacteris_1074_TypePairIn)
+{
+  TimeCharacteris_1074_TypePair = TimeCharacteris_1074_TypePairIn;
+}
+
+TimeCharacteris_1074_Type::~TimeCharacteris_1074_Type()
 {
   #ifndef NODESTRUCT
-  if (TimeCharacteris_1073_TypeType == ToleranceE)
-    delete TimeCharacteris_1073_TypeValue.Tolerance;
-  else if (TimeCharacteris_1073_TypeType == NonToleranceE)
-    delete TimeCharacteris_1073_TypeValue.NonTolerance;
+  delete TimeCharacteris_1074_TypePair;
   #endif
 }
 
-void TimeCharacteris_1073_TypeChoicePair::printSelf(FILE * outFile)
+void TimeCharacteris_1074_Type::printSelf(FILE * outFile)
 {
-  if (TimeCharacteris_1073_TypeType == ToleranceE)
+  TimeCharacteris_1074_TypePair->printSelf(outFile);
+}
+
+TimeCharacteris_1074_TypeChoicePair * TimeCharacteris_1074_Type::getTimeCharacteris_1074_TypePair()
+{return TimeCharacteris_1074_TypePair;}
+
+void TimeCharacteris_1074_Type::setTimeCharacteris_1074_TypePair(TimeCharacteris_1074_TypeChoicePair * TimeCharacteris_1074_TypePairIn)
+{TimeCharacteris_1074_TypePair = TimeCharacteris_1074_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class TimeCharacteris_1074_TypeChoicePair
+
+*/
+
+TimeCharacteris_1074_TypeChoicePair::TimeCharacteris_1074_TypeChoicePair() {}
+
+TimeCharacteris_1074_TypeChoicePair::TimeCharacteris_1074_TypeChoicePair(
+ whichOne TimeCharacteris_1074_TypeTypeIn,
+ TimeCharacteris_1074_TypeVal TimeCharacteris_1074_TypeValueIn)
+{
+  TimeCharacteris_1074_TypeType = TimeCharacteris_1074_TypeTypeIn;
+  TimeCharacteris_1074_TypeValue = TimeCharacteris_1074_TypeValueIn;
+}
+
+TimeCharacteris_1074_TypeChoicePair::~TimeCharacteris_1074_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (TimeCharacteris_1074_TypeType == ToleranceE)
+    delete TimeCharacteris_1074_TypeValue.Tolerance;
+  else if (TimeCharacteris_1074_TypeType == NonToleranceE)
+    delete TimeCharacteris_1074_TypeValue.NonTolerance;
+  #endif
+}
+
+void TimeCharacteris_1074_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (TimeCharacteris_1074_TypeType == ToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Tolerance");
-      TimeCharacteris_1073_TypeValue.Tolerance->printSelf(outFile);
+      TimeCharacteris_1074_TypeValue.Tolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Tolerance>\n");
     }
-  else if (TimeCharacteris_1073_TypeType == NonToleranceE)
+  else if (TimeCharacteris_1074_TypeType == NonToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NonTolerance");
-      TimeCharacteris_1073_TypeValue.NonTolerance->printSelf(outFile);
+      TimeCharacteris_1074_TypeValue.NonTolerance->printSelf(outFile);
       fprintf(outFile, "</NonTolerance>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedUnit_1074_Type
-
-*/
-
-UserDefinedUnit_1074_Type::UserDefinedUnit_1074_Type()
-{
-  UserDefinedUnit_1074_TypePair = 0;
-}
-
-UserDefinedUnit_1074_Type::UserDefinedUnit_1074_Type(
- UserDefinedUnit_1074_TypeChoicePair * UserDefinedUnit_1074_TypePairIn)
-{
-  UserDefinedUnit_1074_TypePair = UserDefinedUnit_1074_TypePairIn;
-}
-
-UserDefinedUnit_1074_Type::~UserDefinedUnit_1074_Type()
-{
-  #ifndef NODESTRUCT
-  delete UserDefinedUnit_1074_TypePair;
-  #endif
-}
-
-void UserDefinedUnit_1074_Type::printSelf(FILE * outFile)
-{
-  UserDefinedUnit_1074_TypePair->printSelf(outFile);
-}
-
-UserDefinedUnit_1074_TypeChoicePair * UserDefinedUnit_1074_Type::getUserDefinedUnit_1074_TypePair()
-{return UserDefinedUnit_1074_TypePair;}
-
-void UserDefinedUnit_1074_Type::setUserDefinedUnit_1074_TypePair(UserDefinedUnit_1074_TypeChoicePair * UserDefinedUnit_1074_TypePairIn)
-{UserDefinedUnit_1074_TypePair = UserDefinedUnit_1074_TypePairIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedUnit_1074_TypeChoicePair
+/* class UserDefinedUnit_1075_Type
 
 */
 
-UserDefinedUnit_1074_TypeChoicePair::UserDefinedUnit_1074_TypeChoicePair() {}
-
-UserDefinedUnit_1074_TypeChoicePair::UserDefinedUnit_1074_TypeChoicePair(
- whichOne UserDefinedUnit_1074_TypeTypeIn,
- UserDefinedUnit_1074_TypeVal UserDefinedUnit_1074_TypeValueIn)
+UserDefinedUnit_1075_Type::UserDefinedUnit_1075_Type()
 {
-  UserDefinedUnit_1074_TypeType = UserDefinedUnit_1074_TypeTypeIn;
-  UserDefinedUnit_1074_TypeValue = UserDefinedUnit_1074_TypeValueIn;
+  UserDefinedUnit_1075_TypePair = 0;
 }
 
-UserDefinedUnit_1074_TypeChoicePair::~UserDefinedUnit_1074_TypeChoicePair()
+UserDefinedUnit_1075_Type::UserDefinedUnit_1075_Type(
+ UserDefinedUnit_1075_TypeChoicePair * UserDefinedUnit_1075_TypePairIn)
+{
+  UserDefinedUnit_1075_TypePair = UserDefinedUnit_1075_TypePairIn;
+}
+
+UserDefinedUnit_1075_Type::~UserDefinedUnit_1075_Type()
 {
   #ifndef NODESTRUCT
-  if (UserDefinedUnit_1074_TypeType == UserDefinedUnit_1089E)
-    delete UserDefinedUnit_1074_TypeValue.UserDefinedUnit_1089;
-  else if (UserDefinedUnit_1074_TypeType == MinValueE)
-    delete UserDefinedUnit_1074_TypeValue.MinValue;
+  delete UserDefinedUnit_1075_TypePair;
   #endif
 }
 
-void UserDefinedUnit_1074_TypeChoicePair::printSelf(FILE * outFile)
+void UserDefinedUnit_1075_Type::printSelf(FILE * outFile)
 {
-  if (UserDefinedUnit_1074_TypeType == UserDefinedUnit_1089E)
+  UserDefinedUnit_1075_TypePair->printSelf(outFile);
+}
+
+UserDefinedUnit_1075_TypeChoicePair * UserDefinedUnit_1075_Type::getUserDefinedUnit_1075_TypePair()
+{return UserDefinedUnit_1075_TypePair;}
+
+void UserDefinedUnit_1075_Type::setUserDefinedUnit_1075_TypePair(UserDefinedUnit_1075_TypeChoicePair * UserDefinedUnit_1075_TypePairIn)
+{UserDefinedUnit_1075_TypePair = UserDefinedUnit_1075_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedUnit_1075_TypeChoicePair
+
+*/
+
+UserDefinedUnit_1075_TypeChoicePair::UserDefinedUnit_1075_TypeChoicePair() {}
+
+UserDefinedUnit_1075_TypeChoicePair::UserDefinedUnit_1075_TypeChoicePair(
+ whichOne UserDefinedUnit_1075_TypeTypeIn,
+ UserDefinedUnit_1075_TypeVal UserDefinedUnit_1075_TypeValueIn)
+{
+  UserDefinedUnit_1075_TypeType = UserDefinedUnit_1075_TypeTypeIn;
+  UserDefinedUnit_1075_TypeValue = UserDefinedUnit_1075_TypeValueIn;
+}
+
+UserDefinedUnit_1075_TypeChoicePair::~UserDefinedUnit_1075_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (UserDefinedUnit_1075_TypeType == UserDefinedUnit_1090E)
+    delete UserDefinedUnit_1075_TypeValue.UserDefinedUnit_1090;
+  else if (UserDefinedUnit_1075_TypeType == MinValueE)
+    delete UserDefinedUnit_1075_TypeValue.MinValue;
+  #endif
+}
+
+void UserDefinedUnit_1075_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (UserDefinedUnit_1075_TypeType == UserDefinedUnit_1090E)
     {
-      UserDefinedUnit_1074_TypeValue.UserDefinedUnit_1089->printSelf(outFile);
+      UserDefinedUnit_1075_TypeValue.UserDefinedUnit_1090->printSelf(outFile);
     }
-  else if (UserDefinedUnit_1074_TypeType == MinValueE)
+  else if (UserDefinedUnit_1075_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      UserDefinedUnit_1074_TypeValue.MinValue->printSelf(outFile);
+      UserDefinedUnit_1075_TypeValue.MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
 
-/*********************************************************************/
-
-/* class WeldFilletChara_1075_Type
-
-*/
-
-WeldFilletChara_1075_Type::WeldFilletChara_1075_Type()
-{
-  WeldFilletChara_1075_TypePair = 0;
-}
-
-WeldFilletChara_1075_Type::WeldFilletChara_1075_Type(
- WeldFilletChara_1075_TypeChoicePair * WeldFilletChara_1075_TypePairIn)
-{
-  WeldFilletChara_1075_TypePair = WeldFilletChara_1075_TypePairIn;
-}
-
-WeldFilletChara_1075_Type::~WeldFilletChara_1075_Type()
-{
-  #ifndef NODESTRUCT
-  delete WeldFilletChara_1075_TypePair;
-  #endif
-}
-
-void WeldFilletChara_1075_Type::printSelf(FILE * outFile)
-{
-  if (WeldFilletChara_1075_TypePair)
-    {
-      WeldFilletChara_1075_TypePair->printSelf(outFile);
-    }
-}
-
-WeldFilletChara_1075_TypeChoicePair * WeldFilletChara_1075_Type::getWeldFilletChara_1075_TypePair()
-{return WeldFilletChara_1075_TypePair;}
-
-void WeldFilletChara_1075_Type::setWeldFilletChara_1075_TypePair(WeldFilletChara_1075_TypeChoicePair * WeldFilletChara_1075_TypePairIn)
-{WeldFilletChara_1075_TypePair = WeldFilletChara_1075_TypePairIn;}
-
-/*********************************************************************/
-
-/* class WeldFilletChara_1075_TypeChoicePair
-
-*/
-
-WeldFilletChara_1075_TypeChoicePair::WeldFilletChara_1075_TypeChoicePair() {}
-
-WeldFilletChara_1075_TypeChoicePair::WeldFilletChara_1075_TypeChoicePair(
- whichOne WeldFilletChara_1075_TypeTypeIn,
- WeldFilletChara_1075_TypeVal WeldFilletChara_1075_TypeValueIn)
-{
-  WeldFilletChara_1075_TypeType = WeldFilletChara_1075_TypeTypeIn;
-  WeldFilletChara_1075_TypeValue = WeldFilletChara_1075_TypeValueIn;
-}
-
-WeldFilletChara_1075_TypeChoicePair::~WeldFilletChara_1075_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (WeldFilletChara_1075_TypeType == BothSidesE)
-    delete WeldFilletChara_1075_TypeValue.BothSides;
-  else if (WeldFilletChara_1075_TypeType == OneSideE)
-    delete WeldFilletChara_1075_TypeValue.OneSide;
-  #endif
-}
-
-void WeldFilletChara_1075_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (WeldFilletChara_1075_TypeType == BothSidesE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<BothSides");
-      WeldFilletChara_1075_TypeValue.BothSides->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</BothSides>\n");
-    }
-  else if (WeldFilletChara_1075_TypeType == OneSideE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<OneSide");
-      WeldFilletChara_1075_TypeValue.OneSide->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</OneSide>\n");
-    }
-}
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFilletChara_1076_Type
 
@@ -119767,7 +119683,7 @@ WeldFilletChara_1076_TypeChoicePair * WeldFilletChara_1076_Type::getWeldFilletCh
 void WeldFilletChara_1076_Type::setWeldFilletChara_1076_TypePair(WeldFilletChara_1076_TypeChoicePair * WeldFilletChara_1076_TypePairIn)
 {WeldFilletChara_1076_TypePair = WeldFilletChara_1076_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFilletChara_1076_TypeChoicePair
 
@@ -119813,175 +119729,175 @@ void WeldFilletChara_1076_TypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class WeldFilletOneSi_1077_Type
+/* class WeldFilletChara_1077_Type
 
 */
 
-WeldFilletOneSi_1077_Type::WeldFilletOneSi_1077_Type()
+WeldFilletChara_1077_Type::WeldFilletChara_1077_Type()
 {
-  WeldFilletOneSi_1077_TypePair = 0;
+  WeldFilletChara_1077_TypePair = 0;
 }
 
-WeldFilletOneSi_1077_Type::WeldFilletOneSi_1077_Type(
- WeldFilletOneSi_1077_TypeChoicePair * WeldFilletOneSi_1077_TypePairIn)
+WeldFilletChara_1077_Type::WeldFilletChara_1077_Type(
+ WeldFilletChara_1077_TypeChoicePair * WeldFilletChara_1077_TypePairIn)
 {
-  WeldFilletOneSi_1077_TypePair = WeldFilletOneSi_1077_TypePairIn;
+  WeldFilletChara_1077_TypePair = WeldFilletChara_1077_TypePairIn;
 }
 
-WeldFilletOneSi_1077_Type::~WeldFilletOneSi_1077_Type()
+WeldFilletChara_1077_Type::~WeldFilletChara_1077_Type()
 {
   #ifndef NODESTRUCT
-  delete WeldFilletOneSi_1077_TypePair;
+  delete WeldFilletChara_1077_TypePair;
   #endif
 }
 
-void WeldFilletOneSi_1077_Type::printSelf(FILE * outFile)
+void WeldFilletChara_1077_Type::printSelf(FILE * outFile)
 {
-  if (WeldFilletOneSi_1077_TypePair)
+  if (WeldFilletChara_1077_TypePair)
     {
-      WeldFilletOneSi_1077_TypePair->printSelf(outFile);
+      WeldFilletChara_1077_TypePair->printSelf(outFile);
     }
 }
 
-WeldFilletOneSi_1077_TypeChoicePair * WeldFilletOneSi_1077_Type::getWeldFilletOneSi_1077_TypePair()
-{return WeldFilletOneSi_1077_TypePair;}
+WeldFilletChara_1077_TypeChoicePair * WeldFilletChara_1077_Type::getWeldFilletChara_1077_TypePair()
+{return WeldFilletChara_1077_TypePair;}
 
-void WeldFilletOneSi_1077_Type::setWeldFilletOneSi_1077_TypePair(WeldFilletOneSi_1077_TypeChoicePair * WeldFilletOneSi_1077_TypePairIn)
-{WeldFilletOneSi_1077_TypePair = WeldFilletOneSi_1077_TypePairIn;}
+void WeldFilletChara_1077_Type::setWeldFilletChara_1077_TypePair(WeldFilletChara_1077_TypeChoicePair * WeldFilletChara_1077_TypePairIn)
+{WeldFilletChara_1077_TypePair = WeldFilletChara_1077_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class WeldFilletOneSi_1077_TypeChoicePair
+/* class WeldFilletChara_1077_TypeChoicePair
 
 */
 
-WeldFilletOneSi_1077_TypeChoicePair::WeldFilletOneSi_1077_TypeChoicePair() {}
+WeldFilletChara_1077_TypeChoicePair::WeldFilletChara_1077_TypeChoicePair() {}
 
-WeldFilletOneSi_1077_TypeChoicePair::WeldFilletOneSi_1077_TypeChoicePair(
- whichOne WeldFilletOneSi_1077_TypeTypeIn,
- WeldFilletOneSi_1077_TypeVal WeldFilletOneSi_1077_TypeValueIn)
+WeldFilletChara_1077_TypeChoicePair::WeldFilletChara_1077_TypeChoicePair(
+ whichOne WeldFilletChara_1077_TypeTypeIn,
+ WeldFilletChara_1077_TypeVal WeldFilletChara_1077_TypeValueIn)
 {
-  WeldFilletOneSi_1077_TypeType = WeldFilletOneSi_1077_TypeTypeIn;
-  WeldFilletOneSi_1077_TypeValue = WeldFilletOneSi_1077_TypeValueIn;
+  WeldFilletChara_1077_TypeType = WeldFilletChara_1077_TypeTypeIn;
+  WeldFilletChara_1077_TypeValue = WeldFilletChara_1077_TypeValueIn;
 }
 
-WeldFilletOneSi_1077_TypeChoicePair::~WeldFilletOneSi_1077_TypeChoicePair()
+WeldFilletChara_1077_TypeChoicePair::~WeldFilletChara_1077_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (WeldFilletOneSi_1077_TypeType == EqualLegLengthE)
-    delete WeldFilletOneSi_1077_TypeValue.EqualLegLength;
-  else if (WeldFilletOneSi_1077_TypeType == UnEqualLegLengthE)
-    delete WeldFilletOneSi_1077_TypeValue.UnEqualLegLength;
+  if (WeldFilletChara_1077_TypeType == BothSidesE)
+    delete WeldFilletChara_1077_TypeValue.BothSides;
+  else if (WeldFilletChara_1077_TypeType == OneSideE)
+    delete WeldFilletChara_1077_TypeValue.OneSide;
   #endif
 }
 
-void WeldFilletOneSi_1077_TypeChoicePair::printSelf(FILE * outFile)
+void WeldFilletChara_1077_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (WeldFilletOneSi_1077_TypeType == EqualLegLengthE)
+  if (WeldFilletChara_1077_TypeType == BothSidesE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<BothSides");
+      WeldFilletChara_1077_TypeValue.BothSides->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</BothSides>\n");
+    }
+  else if (WeldFilletChara_1077_TypeType == OneSideE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<OneSide");
+      WeldFilletChara_1077_TypeValue.OneSide->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</OneSide>\n");
+    }
+}
+
+/* ***************************************************************** */
+
+/* class WeldFilletOneSi_1078_Type
+
+*/
+
+WeldFilletOneSi_1078_Type::WeldFilletOneSi_1078_Type()
+{
+  WeldFilletOneSi_1078_TypePair = 0;
+}
+
+WeldFilletOneSi_1078_Type::WeldFilletOneSi_1078_Type(
+ WeldFilletOneSi_1078_TypeChoicePair * WeldFilletOneSi_1078_TypePairIn)
+{
+  WeldFilletOneSi_1078_TypePair = WeldFilletOneSi_1078_TypePairIn;
+}
+
+WeldFilletOneSi_1078_Type::~WeldFilletOneSi_1078_Type()
+{
+  #ifndef NODESTRUCT
+  delete WeldFilletOneSi_1078_TypePair;
+  #endif
+}
+
+void WeldFilletOneSi_1078_Type::printSelf(FILE * outFile)
+{
+  if (WeldFilletOneSi_1078_TypePair)
+    {
+      WeldFilletOneSi_1078_TypePair->printSelf(outFile);
+    }
+}
+
+WeldFilletOneSi_1078_TypeChoicePair * WeldFilletOneSi_1078_Type::getWeldFilletOneSi_1078_TypePair()
+{return WeldFilletOneSi_1078_TypePair;}
+
+void WeldFilletOneSi_1078_Type::setWeldFilletOneSi_1078_TypePair(WeldFilletOneSi_1078_TypeChoicePair * WeldFilletOneSi_1078_TypePairIn)
+{WeldFilletOneSi_1078_TypePair = WeldFilletOneSi_1078_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class WeldFilletOneSi_1078_TypeChoicePair
+
+*/
+
+WeldFilletOneSi_1078_TypeChoicePair::WeldFilletOneSi_1078_TypeChoicePair() {}
+
+WeldFilletOneSi_1078_TypeChoicePair::WeldFilletOneSi_1078_TypeChoicePair(
+ whichOne WeldFilletOneSi_1078_TypeTypeIn,
+ WeldFilletOneSi_1078_TypeVal WeldFilletOneSi_1078_TypeValueIn)
+{
+  WeldFilletOneSi_1078_TypeType = WeldFilletOneSi_1078_TypeTypeIn;
+  WeldFilletOneSi_1078_TypeValue = WeldFilletOneSi_1078_TypeValueIn;
+}
+
+WeldFilletOneSi_1078_TypeChoicePair::~WeldFilletOneSi_1078_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (WeldFilletOneSi_1078_TypeType == EqualLegLengthE)
+    delete WeldFilletOneSi_1078_TypeValue.EqualLegLength;
+  else if (WeldFilletOneSi_1078_TypeType == UnEqualLegLengthE)
+    delete WeldFilletOneSi_1078_TypeValue.UnEqualLegLength;
+  #endif
+}
+
+void WeldFilletOneSi_1078_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (WeldFilletOneSi_1078_TypeType == EqualLegLengthE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<EqualLegLength");
-      WeldFilletOneSi_1077_TypeValue.EqualLegLength->printSelf(outFile);
+      WeldFilletOneSi_1078_TypeValue.EqualLegLength->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</EqualLegLength>\n");
     }
-  else if (WeldFilletOneSi_1077_TypeType == UnEqualLegLengthE)
+  else if (WeldFilletOneSi_1078_TypeType == UnEqualLegLengthE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UnEqualLegLength");
-      WeldFilletOneSi_1077_TypeValue.UnEqualLegLength->printSelf(outFile);
+      WeldFilletOneSi_1078_TypeValue.UnEqualLegLength->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</UnEqualLegLength>\n");
     }
 }
 
-/*********************************************************************/
-
-/* class WeldGrooveChara_1078_Type
-
-*/
-
-WeldGrooveChara_1078_Type::WeldGrooveChara_1078_Type()
-{
-  WeldGrooveChara_1078_TypePair = 0;
-}
-
-WeldGrooveChara_1078_Type::WeldGrooveChara_1078_Type(
- WeldGrooveChara_1078_TypeChoicePair * WeldGrooveChara_1078_TypePairIn)
-{
-  WeldGrooveChara_1078_TypePair = WeldGrooveChara_1078_TypePairIn;
-}
-
-WeldGrooveChara_1078_Type::~WeldGrooveChara_1078_Type()
-{
-  #ifndef NODESTRUCT
-  delete WeldGrooveChara_1078_TypePair;
-  #endif
-}
-
-void WeldGrooveChara_1078_Type::printSelf(FILE * outFile)
-{
-  if (WeldGrooveChara_1078_TypePair)
-    {
-      WeldGrooveChara_1078_TypePair->printSelf(outFile);
-    }
-}
-
-WeldGrooveChara_1078_TypeChoicePair * WeldGrooveChara_1078_Type::getWeldGrooveChara_1078_TypePair()
-{return WeldGrooveChara_1078_TypePair;}
-
-void WeldGrooveChara_1078_Type::setWeldGrooveChara_1078_TypePair(WeldGrooveChara_1078_TypeChoicePair * WeldGrooveChara_1078_TypePairIn)
-{WeldGrooveChara_1078_TypePair = WeldGrooveChara_1078_TypePairIn;}
-
-/*********************************************************************/
-
-/* class WeldGrooveChara_1078_TypeChoicePair
-
-*/
-
-WeldGrooveChara_1078_TypeChoicePair::WeldGrooveChara_1078_TypeChoicePair() {}
-
-WeldGrooveChara_1078_TypeChoicePair::WeldGrooveChara_1078_TypeChoicePair(
- whichOne WeldGrooveChara_1078_TypeTypeIn,
- WeldGrooveChara_1078_TypeVal WeldGrooveChara_1078_TypeValueIn)
-{
-  WeldGrooveChara_1078_TypeType = WeldGrooveChara_1078_TypeTypeIn;
-  WeldGrooveChara_1078_TypeValue = WeldGrooveChara_1078_TypeValueIn;
-}
-
-WeldGrooveChara_1078_TypeChoicePair::~WeldGrooveChara_1078_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (WeldGrooveChara_1078_TypeType == OneSideE)
-    delete WeldGrooveChara_1078_TypeValue.OneSide;
-  else if (WeldGrooveChara_1078_TypeType == BothSidesE)
-    delete WeldGrooveChara_1078_TypeValue.BothSides;
-  #endif
-}
-
-void WeldGrooveChara_1078_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (WeldGrooveChara_1078_TypeType == OneSideE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<OneSide");
-      WeldGrooveChara_1078_TypeValue.OneSide->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</OneSide>\n");
-    }
-  else if (WeldGrooveChara_1078_TypeType == BothSidesE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<BothSides");
-      WeldGrooveChara_1078_TypeValue.BothSides->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</BothSides>\n");
-    }
-}
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldGrooveChara_1079_Type
 
@@ -120019,7 +119935,7 @@ WeldGrooveChara_1079_TypeChoicePair * WeldGrooveChara_1079_Type::getWeldGrooveCh
 void WeldGrooveChara_1079_Type::setWeldGrooveChara_1079_TypePair(WeldGrooveChara_1079_TypeChoicePair * WeldGrooveChara_1079_TypePairIn)
 {WeldGrooveChara_1079_TypePair = WeldGrooveChara_1079_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldGrooveChara_1079_TypeChoicePair
 
@@ -120065,19 +119981,103 @@ void WeldGrooveChara_1079_TypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class WeldGrooveOneSi_1080_Type
+/* class WeldGrooveChara_1080_Type
 
 */
 
-WeldGrooveOneSi_1080_Type::WeldGrooveOneSi_1080_Type()
+WeldGrooveChara_1080_Type::WeldGrooveChara_1080_Type()
+{
+  WeldGrooveChara_1080_TypePair = 0;
+}
+
+WeldGrooveChara_1080_Type::WeldGrooveChara_1080_Type(
+ WeldGrooveChara_1080_TypeChoicePair * WeldGrooveChara_1080_TypePairIn)
+{
+  WeldGrooveChara_1080_TypePair = WeldGrooveChara_1080_TypePairIn;
+}
+
+WeldGrooveChara_1080_Type::~WeldGrooveChara_1080_Type()
+{
+  #ifndef NODESTRUCT
+  delete WeldGrooveChara_1080_TypePair;
+  #endif
+}
+
+void WeldGrooveChara_1080_Type::printSelf(FILE * outFile)
+{
+  if (WeldGrooveChara_1080_TypePair)
+    {
+      WeldGrooveChara_1080_TypePair->printSelf(outFile);
+    }
+}
+
+WeldGrooveChara_1080_TypeChoicePair * WeldGrooveChara_1080_Type::getWeldGrooveChara_1080_TypePair()
+{return WeldGrooveChara_1080_TypePair;}
+
+void WeldGrooveChara_1080_Type::setWeldGrooveChara_1080_TypePair(WeldGrooveChara_1080_TypeChoicePair * WeldGrooveChara_1080_TypePairIn)
+{WeldGrooveChara_1080_TypePair = WeldGrooveChara_1080_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class WeldGrooveChara_1080_TypeChoicePair
+
+*/
+
+WeldGrooveChara_1080_TypeChoicePair::WeldGrooveChara_1080_TypeChoicePair() {}
+
+WeldGrooveChara_1080_TypeChoicePair::WeldGrooveChara_1080_TypeChoicePair(
+ whichOne WeldGrooveChara_1080_TypeTypeIn,
+ WeldGrooveChara_1080_TypeVal WeldGrooveChara_1080_TypeValueIn)
+{
+  WeldGrooveChara_1080_TypeType = WeldGrooveChara_1080_TypeTypeIn;
+  WeldGrooveChara_1080_TypeValue = WeldGrooveChara_1080_TypeValueIn;
+}
+
+WeldGrooveChara_1080_TypeChoicePair::~WeldGrooveChara_1080_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (WeldGrooveChara_1080_TypeType == OneSideE)
+    delete WeldGrooveChara_1080_TypeValue.OneSide;
+  else if (WeldGrooveChara_1080_TypeType == BothSidesE)
+    delete WeldGrooveChara_1080_TypeValue.BothSides;
+  #endif
+}
+
+void WeldGrooveChara_1080_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (WeldGrooveChara_1080_TypeType == OneSideE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<OneSide");
+      WeldGrooveChara_1080_TypeValue.OneSide->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</OneSide>\n");
+    }
+  else if (WeldGrooveChara_1080_TypeType == BothSidesE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<BothSides");
+      WeldGrooveChara_1080_TypeValue.BothSides->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</BothSides>\n");
+    }
+}
+
+/* ***************************************************************** */
+
+/* class WeldGrooveOneSi_1081_Type
+
+*/
+
+WeldGrooveOneSi_1081_Type::WeldGrooveOneSi_1081_Type()
 {
   SideParameters = 0;
   SupplementarySymbol = 0;
 }
 
-WeldGrooveOneSi_1080_Type::WeldGrooveOneSi_1080_Type(
+WeldGrooveOneSi_1081_Type::WeldGrooveOneSi_1081_Type(
  WeldGrooveOneSideParametersType * SideParametersIn,
  WeldSupplementarySymbolEnumType * SupplementarySymbolIn)
 {
@@ -120085,7 +120085,7 @@ WeldGrooveOneSi_1080_Type::WeldGrooveOneSi_1080_Type(
   SupplementarySymbol = SupplementarySymbolIn;
 }
 
-WeldGrooveOneSi_1080_Type::~WeldGrooveOneSi_1080_Type()
+WeldGrooveOneSi_1081_Type::~WeldGrooveOneSi_1081_Type()
 {
   #ifndef NODESTRUCT
   delete SideParameters;
@@ -120093,7 +120093,7 @@ WeldGrooveOneSi_1080_Type::~WeldGrooveOneSi_1080_Type()
   #endif
 }
 
-void WeldGrooveOneSi_1080_Type::printSelf(FILE * outFile)
+void WeldGrooveOneSi_1081_Type::printSelf(FILE * outFile)
 {
   if (SideParameters)
     {
@@ -120112,88 +120112,19 @@ void WeldGrooveOneSi_1080_Type::printSelf(FILE * outFile)
     }
 }
 
-WeldGrooveOneSideParametersType * WeldGrooveOneSi_1080_Type::getSideParameters()
+WeldGrooveOneSideParametersType * WeldGrooveOneSi_1081_Type::getSideParameters()
 {return SideParameters;}
 
-void WeldGrooveOneSi_1080_Type::setSideParameters(WeldGrooveOneSideParametersType * SideParametersIn)
+void WeldGrooveOneSi_1081_Type::setSideParameters(WeldGrooveOneSideParametersType * SideParametersIn)
 {SideParameters = SideParametersIn;}
 
-WeldSupplementarySymbolEnumType * WeldGrooveOneSi_1080_Type::getSupplementarySymbol()
+WeldSupplementarySymbolEnumType * WeldGrooveOneSi_1081_Type::getSupplementarySymbol()
 {return SupplementarySymbol;}
 
-void WeldGrooveOneSi_1080_Type::setSupplementarySymbol(WeldSupplementarySymbolEnumType * SupplementarySymbolIn)
+void WeldGrooveOneSi_1081_Type::setSupplementarySymbol(WeldSupplementarySymbolEnumType * SupplementarySymbolIn)
 {SupplementarySymbol = SupplementarySymbolIn;}
 
-/*********************************************************************/
-
-/* class CircularityChar_1081_Type
-
-*/
-
-CircularityChar_1081_Type::CircularityChar_1081_Type()
-{
-  ToleranceValue = 0;
-  ToleranceDualValue = 0;
-  CircularityChar_1090 = 0;
-}
-
-CircularityChar_1081_Type::CircularityChar_1081_Type(
- LinearValueType * ToleranceValueIn,
- LinearDualValueType * ToleranceDualValueIn,
- CircularityChar_1090_Type * CircularityChar_1090In)
-{
-  ToleranceValue = ToleranceValueIn;
-  ToleranceDualValue = ToleranceDualValueIn;
-  CircularityChar_1090 = CircularityChar_1090In;
-}
-
-CircularityChar_1081_Type::~CircularityChar_1081_Type()
-{
-  #ifndef NODESTRUCT
-  delete ToleranceValue;
-  delete ToleranceDualValue;
-  delete CircularityChar_1090;
-  #endif
-}
-
-void CircularityChar_1081_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<ToleranceValue");
-  ToleranceValue->printSelf(outFile);
-  fprintf(outFile, "</ToleranceValue>\n");
-  if (ToleranceDualValue)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<ToleranceDualValue");
-      ToleranceDualValue->printSelf(outFile);
-      fprintf(outFile, "</ToleranceDualValue>\n");
-    }
-  if (CircularityChar_1090)
-    {
-      CircularityChar_1090->printSelf(outFile);
-    }
-}
-
-LinearValueType * CircularityChar_1081_Type::getToleranceValue()
-{return ToleranceValue;}
-
-void CircularityChar_1081_Type::setToleranceValue(LinearValueType * ToleranceValueIn)
-{ToleranceValue = ToleranceValueIn;}
-
-LinearDualValueType * CircularityChar_1081_Type::getToleranceDualValue()
-{return ToleranceDualValue;}
-
-void CircularityChar_1081_Type::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
-{ToleranceDualValue = ToleranceDualValueIn;}
-
-CircularityChar_1090_Type * CircularityChar_1081_Type::getCircularityChar_1090()
-{return CircularityChar_1090;}
-
-void CircularityChar_1081_Type::setCircularityChar_1090(CircularityChar_1090_Type * CircularityChar_1090In)
-{CircularityChar_1090 = CircularityChar_1090In;}
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularityChar_1082_Type
 
@@ -120201,112 +120132,31 @@ void CircularityChar_1081_Type::setCircularityChar_1090(CircularityChar_1090_Typ
 
 CircularityChar_1082_Type::CircularityChar_1082_Type()
 {
-  CircularityChar_1082_TypePair = 0;
+  ToleranceValue = 0;
+  ToleranceDualValue = 0;
+  CircularityChar_1091 = 0;
 }
 
 CircularityChar_1082_Type::CircularityChar_1082_Type(
- CircularityChar_1082_TypeChoicePair * CircularityChar_1082_TypePairIn)
+ LinearValueType * ToleranceValueIn,
+ LinearDualValueType * ToleranceDualValueIn,
+ CircularityChar_1091_Type * CircularityChar_1091In)
 {
-  CircularityChar_1082_TypePair = CircularityChar_1082_TypePairIn;
+  ToleranceValue = ToleranceValueIn;
+  ToleranceDualValue = ToleranceDualValueIn;
+  CircularityChar_1091 = CircularityChar_1091In;
 }
 
 CircularityChar_1082_Type::~CircularityChar_1082_Type()
 {
   #ifndef NODESTRUCT
-  delete CircularityChar_1082_TypePair;
+  delete ToleranceValue;
+  delete ToleranceDualValue;
+  delete CircularityChar_1091;
   #endif
 }
 
 void CircularityChar_1082_Type::printSelf(FILE * outFile)
-{
-  CircularityChar_1082_TypePair->printSelf(outFile);
-}
-
-CircularityChar_1082_TypeChoicePair * CircularityChar_1082_Type::getCircularityChar_1082_TypePair()
-{return CircularityChar_1082_TypePair;}
-
-void CircularityChar_1082_Type::setCircularityChar_1082_TypePair(CircularityChar_1082_TypeChoicePair * CircularityChar_1082_TypePairIn)
-{CircularityChar_1082_TypePair = CircularityChar_1082_TypePairIn;}
-
-/*********************************************************************/
-
-/* class CircularityChar_1082_TypeChoicePair
-
-*/
-
-CircularityChar_1082_TypeChoicePair::CircularityChar_1082_TypeChoicePair() {}
-
-CircularityChar_1082_TypeChoicePair::CircularityChar_1082_TypeChoicePair(
- whichOne CircularityChar_1082_TypeTypeIn,
- CircularityChar_1082_TypeVal CircularityChar_1082_TypeValueIn)
-{
-  CircularityChar_1082_TypeType = CircularityChar_1082_TypeTypeIn;
-  CircularityChar_1082_TypeValue = CircularityChar_1082_TypeValueIn;
-}
-
-CircularityChar_1082_TypeChoicePair::~CircularityChar_1082_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (CircularityChar_1082_TypeType == ToleranceZonePerUnitAngleE)
-    delete CircularityChar_1082_TypeValue.ToleranceZonePerUnitAngle;
-  else if (CircularityChar_1082_TypeType == ToleranceZonePerUnitArcLengthE)
-    delete CircularityChar_1082_TypeValue.ToleranceZonePerUnitArcLength;
-  #endif
-}
-
-void CircularityChar_1082_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (CircularityChar_1082_TypeType == ToleranceZonePerUnitAngleE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<ToleranceZonePerUnitAngle");
-      CircularityChar_1082_TypeValue.ToleranceZonePerUnitAngle->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</ToleranceZonePerUnitAngle>\n");
-    }
-  else if (CircularityChar_1082_TypeType == ToleranceZonePerUnitArcLengthE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<ToleranceZonePerUnitArcLength");
-      CircularityChar_1082_TypeValue.ToleranceZonePerUnitArcLength->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</ToleranceZonePerUnitArcLength>\n");
-    }
-}
-
-/*********************************************************************/
-
-/* class CylindricityCha_1083_Type
-
-*/
-
-CylindricityCha_1083_Type::CylindricityCha_1083_Type()
-{
-  ToleranceValue = 0;
-  ToleranceDualValue = 0;
-  CylindricityCha_1091 = 0;
-}
-
-CylindricityCha_1083_Type::CylindricityCha_1083_Type(
- LinearValueType * ToleranceValueIn,
- LinearDualValueType * ToleranceDualValueIn,
- CylindricityCha_1091_Type * CylindricityCha_1091In)
-{
-  ToleranceValue = ToleranceValueIn;
-  ToleranceDualValue = ToleranceDualValueIn;
-  CylindricityCha_1091 = CylindricityCha_1091In;
-}
-
-CylindricityCha_1083_Type::~CylindricityCha_1083_Type()
-{
-  #ifndef NODESTRUCT
-  delete ToleranceValue;
-  delete ToleranceDualValue;
-  delete CylindricityCha_1091;
-  #endif
-}
-
-void CylindricityCha_1083_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ToleranceValue");
@@ -120319,31 +120169,112 @@ void CylindricityCha_1083_Type::printSelf(FILE * outFile)
       ToleranceDualValue->printSelf(outFile);
       fprintf(outFile, "</ToleranceDualValue>\n");
     }
-  if (CylindricityCha_1091)
+  if (CircularityChar_1091)
     {
-      CylindricityCha_1091->printSelf(outFile);
+      CircularityChar_1091->printSelf(outFile);
     }
 }
 
-LinearValueType * CylindricityCha_1083_Type::getToleranceValue()
+LinearValueType * CircularityChar_1082_Type::getToleranceValue()
 {return ToleranceValue;}
 
-void CylindricityCha_1083_Type::setToleranceValue(LinearValueType * ToleranceValueIn)
+void CircularityChar_1082_Type::setToleranceValue(LinearValueType * ToleranceValueIn)
 {ToleranceValue = ToleranceValueIn;}
 
-LinearDualValueType * CylindricityCha_1083_Type::getToleranceDualValue()
+LinearDualValueType * CircularityChar_1082_Type::getToleranceDualValue()
 {return ToleranceDualValue;}
 
-void CylindricityCha_1083_Type::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
+void CircularityChar_1082_Type::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
 {ToleranceDualValue = ToleranceDualValueIn;}
 
-CylindricityCha_1091_Type * CylindricityCha_1083_Type::getCylindricityCha_1091()
-{return CylindricityCha_1091;}
+CircularityChar_1091_Type * CircularityChar_1082_Type::getCircularityChar_1091()
+{return CircularityChar_1091;}
 
-void CylindricityCha_1083_Type::setCylindricityCha_1091(CylindricityCha_1091_Type * CylindricityCha_1091In)
-{CylindricityCha_1091 = CylindricityCha_1091In;}
+void CircularityChar_1082_Type::setCircularityChar_1091(CircularityChar_1091_Type * CircularityChar_1091In)
+{CircularityChar_1091 = CircularityChar_1091In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
+
+/* class CircularityChar_1083_Type
+
+*/
+
+CircularityChar_1083_Type::CircularityChar_1083_Type()
+{
+  CircularityChar_1083_TypePair = 0;
+}
+
+CircularityChar_1083_Type::CircularityChar_1083_Type(
+ CircularityChar_1083_TypeChoicePair * CircularityChar_1083_TypePairIn)
+{
+  CircularityChar_1083_TypePair = CircularityChar_1083_TypePairIn;
+}
+
+CircularityChar_1083_Type::~CircularityChar_1083_Type()
+{
+  #ifndef NODESTRUCT
+  delete CircularityChar_1083_TypePair;
+  #endif
+}
+
+void CircularityChar_1083_Type::printSelf(FILE * outFile)
+{
+  CircularityChar_1083_TypePair->printSelf(outFile);
+}
+
+CircularityChar_1083_TypeChoicePair * CircularityChar_1083_Type::getCircularityChar_1083_TypePair()
+{return CircularityChar_1083_TypePair;}
+
+void CircularityChar_1083_Type::setCircularityChar_1083_TypePair(CircularityChar_1083_TypeChoicePair * CircularityChar_1083_TypePairIn)
+{CircularityChar_1083_TypePair = CircularityChar_1083_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class CircularityChar_1083_TypeChoicePair
+
+*/
+
+CircularityChar_1083_TypeChoicePair::CircularityChar_1083_TypeChoicePair() {}
+
+CircularityChar_1083_TypeChoicePair::CircularityChar_1083_TypeChoicePair(
+ whichOne CircularityChar_1083_TypeTypeIn,
+ CircularityChar_1083_TypeVal CircularityChar_1083_TypeValueIn)
+{
+  CircularityChar_1083_TypeType = CircularityChar_1083_TypeTypeIn;
+  CircularityChar_1083_TypeValue = CircularityChar_1083_TypeValueIn;
+}
+
+CircularityChar_1083_TypeChoicePair::~CircularityChar_1083_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (CircularityChar_1083_TypeType == ToleranceZonePerUnitAngleE)
+    delete CircularityChar_1083_TypeValue.ToleranceZonePerUnitAngle;
+  else if (CircularityChar_1083_TypeType == ToleranceZonePerUnitArcLengthE)
+    delete CircularityChar_1083_TypeValue.ToleranceZonePerUnitArcLength;
+  #endif
+}
+
+void CircularityChar_1083_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (CircularityChar_1083_TypeType == ToleranceZonePerUnitAngleE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<ToleranceZonePerUnitAngle");
+      CircularityChar_1083_TypeValue.ToleranceZonePerUnitAngle->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</ToleranceZonePerUnitAngle>\n");
+    }
+  else if (CircularityChar_1083_TypeType == ToleranceZonePerUnitArcLengthE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<ToleranceZonePerUnitArcLength");
+      CircularityChar_1083_TypeValue.ToleranceZonePerUnitArcLength->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</ToleranceZonePerUnitArcLength>\n");
+    }
+}
+
+/* ***************************************************************** */
 
 /* class CylindricityCha_1084_Type
 
@@ -120351,123 +120282,192 @@ void CylindricityCha_1083_Type::setCylindricityCha_1091(CylindricityCha_1091_Typ
 
 CylindricityCha_1084_Type::CylindricityCha_1084_Type()
 {
-  CylindricityCha_1084_TypePair = 0;
+  ToleranceValue = 0;
+  ToleranceDualValue = 0;
+  CylindricityCha_1092 = 0;
 }
 
 CylindricityCha_1084_Type::CylindricityCha_1084_Type(
- CylindricityCha_1084_TypeChoicePair * CylindricityCha_1084_TypePairIn)
+ LinearValueType * ToleranceValueIn,
+ LinearDualValueType * ToleranceDualValueIn,
+ CylindricityCha_1092_Type * CylindricityCha_1092In)
 {
-  CylindricityCha_1084_TypePair = CylindricityCha_1084_TypePairIn;
+  ToleranceValue = ToleranceValueIn;
+  ToleranceDualValue = ToleranceDualValueIn;
+  CylindricityCha_1092 = CylindricityCha_1092In;
 }
 
 CylindricityCha_1084_Type::~CylindricityCha_1084_Type()
 {
   #ifndef NODESTRUCT
-  delete CylindricityCha_1084_TypePair;
+  delete ToleranceValue;
+  delete ToleranceDualValue;
+  delete CylindricityCha_1092;
   #endif
 }
 
 void CylindricityCha_1084_Type::printSelf(FILE * outFile)
 {
-  CylindricityCha_1084_TypePair->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "<ToleranceValue");
+  ToleranceValue->printSelf(outFile);
+  fprintf(outFile, "</ToleranceValue>\n");
+  if (ToleranceDualValue)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<ToleranceDualValue");
+      ToleranceDualValue->printSelf(outFile);
+      fprintf(outFile, "</ToleranceDualValue>\n");
+    }
+  if (CylindricityCha_1092)
+    {
+      CylindricityCha_1092->printSelf(outFile);
+    }
 }
 
-CylindricityCha_1084_TypeChoicePair * CylindricityCha_1084_Type::getCylindricityCha_1084_TypePair()
-{return CylindricityCha_1084_TypePair;}
+LinearValueType * CylindricityCha_1084_Type::getToleranceValue()
+{return ToleranceValue;}
 
-void CylindricityCha_1084_Type::setCylindricityCha_1084_TypePair(CylindricityCha_1084_TypeChoicePair * CylindricityCha_1084_TypePairIn)
-{CylindricityCha_1084_TypePair = CylindricityCha_1084_TypePairIn;}
+void CylindricityCha_1084_Type::setToleranceValue(LinearValueType * ToleranceValueIn)
+{ToleranceValue = ToleranceValueIn;}
 
-/*********************************************************************/
+LinearDualValueType * CylindricityCha_1084_Type::getToleranceDualValue()
+{return ToleranceDualValue;}
 
-/* class CylindricityCha_1084_TypeChoicePair
+void CylindricityCha_1084_Type::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
+{ToleranceDualValue = ToleranceDualValueIn;}
+
+CylindricityCha_1092_Type * CylindricityCha_1084_Type::getCylindricityCha_1092()
+{return CylindricityCha_1092;}
+
+void CylindricityCha_1084_Type::setCylindricityCha_1092(CylindricityCha_1092_Type * CylindricityCha_1092In)
+{CylindricityCha_1092 = CylindricityCha_1092In;}
+
+/* ***************************************************************** */
+
+/* class CylindricityCha_1085_Type
 
 */
 
-CylindricityCha_1084_TypeChoicePair::CylindricityCha_1084_TypeChoicePair() {}
-
-CylindricityCha_1084_TypeChoicePair::CylindricityCha_1084_TypeChoicePair(
- whichOne CylindricityCha_1084_TypeTypeIn,
- CylindricityCha_1084_TypeVal CylindricityCha_1084_TypeValueIn)
+CylindricityCha_1085_Type::CylindricityCha_1085_Type()
 {
-  CylindricityCha_1084_TypeType = CylindricityCha_1084_TypeTypeIn;
-  CylindricityCha_1084_TypeValue = CylindricityCha_1084_TypeValueIn;
+  CylindricityCha_1085_TypePair = 0;
 }
 
-CylindricityCha_1084_TypeChoicePair::~CylindricityCha_1084_TypeChoicePair()
+CylindricityCha_1085_Type::CylindricityCha_1085_Type(
+ CylindricityCha_1085_TypeChoicePair * CylindricityCha_1085_TypePairIn)
+{
+  CylindricityCha_1085_TypePair = CylindricityCha_1085_TypePairIn;
+}
+
+CylindricityCha_1085_Type::~CylindricityCha_1085_Type()
 {
   #ifndef NODESTRUCT
-  if (CylindricityCha_1084_TypeType == ToleranceZonePerUnitAngleE)
-    delete CylindricityCha_1084_TypeValue.ToleranceZonePerUnitAngle;
-  else if (CylindricityCha_1084_TypeType == ToleranceZonePerUnitArcLengthE)
-    delete CylindricityCha_1084_TypeValue.ToleranceZonePerUnitArcLength;
-  else if (CylindricityCha_1084_TypeType == ToleranceZonePerUnitPolarAreaE)
-    delete CylindricityCha_1084_TypeValue.ToleranceZonePerUnitPolarArea;
-  else if (CylindricityCha_1084_TypeType == ToleranceZonePerUnitAreaE)
-    delete CylindricityCha_1084_TypeValue.ToleranceZonePerUnitArea;
-  else if (CylindricityCha_1084_TypeType == ToleranceZonePerUnitLengthE)
-    delete CylindricityCha_1084_TypeValue.ToleranceZonePerUnitLength;
+  delete CylindricityCha_1085_TypePair;
   #endif
 }
 
-void CylindricityCha_1084_TypeChoicePair::printSelf(FILE * outFile)
+void CylindricityCha_1085_Type::printSelf(FILE * outFile)
 {
-  if (CylindricityCha_1084_TypeType == ToleranceZonePerUnitAngleE)
+  CylindricityCha_1085_TypePair->printSelf(outFile);
+}
+
+CylindricityCha_1085_TypeChoicePair * CylindricityCha_1085_Type::getCylindricityCha_1085_TypePair()
+{return CylindricityCha_1085_TypePair;}
+
+void CylindricityCha_1085_Type::setCylindricityCha_1085_TypePair(CylindricityCha_1085_TypeChoicePair * CylindricityCha_1085_TypePairIn)
+{CylindricityCha_1085_TypePair = CylindricityCha_1085_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class CylindricityCha_1085_TypeChoicePair
+
+*/
+
+CylindricityCha_1085_TypeChoicePair::CylindricityCha_1085_TypeChoicePair() {}
+
+CylindricityCha_1085_TypeChoicePair::CylindricityCha_1085_TypeChoicePair(
+ whichOne CylindricityCha_1085_TypeTypeIn,
+ CylindricityCha_1085_TypeVal CylindricityCha_1085_TypeValueIn)
+{
+  CylindricityCha_1085_TypeType = CylindricityCha_1085_TypeTypeIn;
+  CylindricityCha_1085_TypeValue = CylindricityCha_1085_TypeValueIn;
+}
+
+CylindricityCha_1085_TypeChoicePair::~CylindricityCha_1085_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (CylindricityCha_1085_TypeType == ToleranceZonePerUnitAngleE)
+    delete CylindricityCha_1085_TypeValue.ToleranceZonePerUnitAngle;
+  else if (CylindricityCha_1085_TypeType == ToleranceZonePerUnitArcLengthE)
+    delete CylindricityCha_1085_TypeValue.ToleranceZonePerUnitArcLength;
+  else if (CylindricityCha_1085_TypeType == ToleranceZonePerUnitPolarAreaE)
+    delete CylindricityCha_1085_TypeValue.ToleranceZonePerUnitPolarArea;
+  else if (CylindricityCha_1085_TypeType == ToleranceZonePerUnitAreaE)
+    delete CylindricityCha_1085_TypeValue.ToleranceZonePerUnitArea;
+  else if (CylindricityCha_1085_TypeType == ToleranceZonePerUnitLengthE)
+    delete CylindricityCha_1085_TypeValue.ToleranceZonePerUnitLength;
+  #endif
+}
+
+void CylindricityCha_1085_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (CylindricityCha_1085_TypeType == ToleranceZonePerUnitAngleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitAngle");
-      CylindricityCha_1084_TypeValue.ToleranceZonePerUnitAngle->printSelf(outFile);
+      CylindricityCha_1085_TypeValue.ToleranceZonePerUnitAngle->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitAngle>\n");
     }
-  else if (CylindricityCha_1084_TypeType == ToleranceZonePerUnitArcLengthE)
+  else if (CylindricityCha_1085_TypeType == ToleranceZonePerUnitArcLengthE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitArcLength");
-      CylindricityCha_1084_TypeValue.ToleranceZonePerUnitArcLength->printSelf(outFile);
+      CylindricityCha_1085_TypeValue.ToleranceZonePerUnitArcLength->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitArcLength>\n");
     }
-  else if (CylindricityCha_1084_TypeType == ToleranceZonePerUnitPolarAreaE)
+  else if (CylindricityCha_1085_TypeType == ToleranceZonePerUnitPolarAreaE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitPolarArea");
-      CylindricityCha_1084_TypeValue.ToleranceZonePerUnitPolarArea->printSelf(outFile);
+      CylindricityCha_1085_TypeValue.ToleranceZonePerUnitPolarArea->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitPolarArea>\n");
     }
-  else if (CylindricityCha_1084_TypeType == ToleranceZonePerUnitAreaE)
+  else if (CylindricityCha_1085_TypeType == ToleranceZonePerUnitAreaE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitArea");
-      CylindricityCha_1084_TypeValue.ToleranceZonePerUnitArea->printSelf(outFile);
+      CylindricityCha_1085_TypeValue.ToleranceZonePerUnitArea->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitArea>\n");
     }
-  else if (CylindricityCha_1084_TypeType == ToleranceZonePerUnitLengthE)
+  else if (CylindricityCha_1085_TypeType == ToleranceZonePerUnitLengthE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitLength");
-      CylindricityCha_1084_TypeValue.ToleranceZonePerUnitLength->printSelf(outFile);
+      CylindricityCha_1085_TypeValue.ToleranceZonePerUnitLength->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitLength>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class FlatnessCharact_1085_Type
+/* class FlatnessCharact_1086_Type
 
 */
 
-FlatnessCharact_1085_Type::FlatnessCharact_1085_Type()
+FlatnessCharact_1086_Type::FlatnessCharact_1086_Type()
 {
   ToleranceValue = 0;
   ToleranceDualValue = 0;
   ToleranceZonePerUnitArea = 0;
 }
 
-FlatnessCharact_1085_Type::FlatnessCharact_1085_Type(
+FlatnessCharact_1086_Type::FlatnessCharact_1086_Type(
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
  ToleranceZonePerUnitAreaType * ToleranceZonePerUnitAreaIn)
@@ -120477,7 +120477,7 @@ FlatnessCharact_1085_Type::FlatnessCharact_1085_Type(
   ToleranceZonePerUnitArea = ToleranceZonePerUnitAreaIn;
 }
 
-FlatnessCharact_1085_Type::~FlatnessCharact_1085_Type()
+FlatnessCharact_1086_Type::~FlatnessCharact_1086_Type()
 {
   #ifndef NODESTRUCT
   delete ToleranceValue;
@@ -120486,7 +120486,7 @@ FlatnessCharact_1085_Type::~FlatnessCharact_1085_Type()
   #endif
 }
 
-void FlatnessCharact_1085_Type::printSelf(FILE * outFile)
+void FlatnessCharact_1086_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ToleranceValue");
@@ -120509,49 +120509,49 @@ void FlatnessCharact_1085_Type::printSelf(FILE * outFile)
     }
 }
 
-LinearValueType * FlatnessCharact_1085_Type::getToleranceValue()
+LinearValueType * FlatnessCharact_1086_Type::getToleranceValue()
 {return ToleranceValue;}
 
-void FlatnessCharact_1085_Type::setToleranceValue(LinearValueType * ToleranceValueIn)
+void FlatnessCharact_1086_Type::setToleranceValue(LinearValueType * ToleranceValueIn)
 {ToleranceValue = ToleranceValueIn;}
 
-LinearDualValueType * FlatnessCharact_1085_Type::getToleranceDualValue()
+LinearDualValueType * FlatnessCharact_1086_Type::getToleranceDualValue()
 {return ToleranceDualValue;}
 
-void FlatnessCharact_1085_Type::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
+void FlatnessCharact_1086_Type::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
 {ToleranceDualValue = ToleranceDualValueIn;}
 
-ToleranceZonePerUnitAreaType * FlatnessCharact_1085_Type::getToleranceZonePerUnitArea()
+ToleranceZonePerUnitAreaType * FlatnessCharact_1086_Type::getToleranceZonePerUnitArea()
 {return ToleranceZonePerUnitArea;}
 
-void FlatnessCharact_1085_Type::setToleranceZonePerUnitArea(ToleranceZonePerUnitAreaType * ToleranceZonePerUnitAreaIn)
+void FlatnessCharact_1086_Type::setToleranceZonePerUnitArea(ToleranceZonePerUnitAreaType * ToleranceZonePerUnitAreaIn)
 {ToleranceZonePerUnitArea = ToleranceZonePerUnitAreaIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class FlatnessCharact_1086_Type
+/* class FlatnessCharact_1087_Type
 
 */
 
-FlatnessCharact_1086_Type::FlatnessCharact_1086_Type()
+FlatnessCharact_1087_Type::FlatnessCharact_1087_Type()
 {
   ToleranceZonePerUnitArea = 0;
 }
 
-FlatnessCharact_1086_Type::FlatnessCharact_1086_Type(
+FlatnessCharact_1087_Type::FlatnessCharact_1087_Type(
  ToleranceZonePerUnitAreaType * ToleranceZonePerUnitAreaIn)
 {
   ToleranceZonePerUnitArea = ToleranceZonePerUnitAreaIn;
 }
 
-FlatnessCharact_1086_Type::~FlatnessCharact_1086_Type()
+FlatnessCharact_1087_Type::~FlatnessCharact_1087_Type()
 {
   #ifndef NODESTRUCT
   delete ToleranceZonePerUnitArea;
   #endif
 }
 
-void FlatnessCharact_1086_Type::printSelf(FILE * outFile)
+void FlatnessCharact_1087_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ToleranceZonePerUnitArea");
@@ -120560,26 +120560,26 @@ void FlatnessCharact_1086_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</ToleranceZonePerUnitArea>\n");
 }
 
-ToleranceZonePerUnitAreaType * FlatnessCharact_1086_Type::getToleranceZonePerUnitArea()
+ToleranceZonePerUnitAreaType * FlatnessCharact_1087_Type::getToleranceZonePerUnitArea()
 {return ToleranceZonePerUnitArea;}
 
-void FlatnessCharact_1086_Type::setToleranceZonePerUnitArea(ToleranceZonePerUnitAreaType * ToleranceZonePerUnitAreaIn)
+void FlatnessCharact_1087_Type::setToleranceZonePerUnitArea(ToleranceZonePerUnitAreaType * ToleranceZonePerUnitAreaIn)
 {ToleranceZonePerUnitArea = ToleranceZonePerUnitAreaIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class StraightnessCha_1087_Type
+/* class StraightnessCha_1088_Type
 
 */
 
-StraightnessCha_1087_Type::StraightnessCha_1087_Type()
+StraightnessCha_1088_Type::StraightnessCha_1088_Type()
 {
   ToleranceValue = 0;
   ToleranceDualValue = 0;
   ToleranceZonePerUnitLength = 0;
 }
 
-StraightnessCha_1087_Type::StraightnessCha_1087_Type(
+StraightnessCha_1088_Type::StraightnessCha_1088_Type(
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
  ToleranceZonePerUnitLengthType * ToleranceZonePerUnitLengthIn)
@@ -120589,7 +120589,7 @@ StraightnessCha_1087_Type::StraightnessCha_1087_Type(
   ToleranceZonePerUnitLength = ToleranceZonePerUnitLengthIn;
 }
 
-StraightnessCha_1087_Type::~StraightnessCha_1087_Type()
+StraightnessCha_1088_Type::~StraightnessCha_1088_Type()
 {
   #ifndef NODESTRUCT
   delete ToleranceValue;
@@ -120598,7 +120598,7 @@ StraightnessCha_1087_Type::~StraightnessCha_1087_Type()
   #endif
 }
 
-void StraightnessCha_1087_Type::printSelf(FILE * outFile)
+void StraightnessCha_1088_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ToleranceValue");
@@ -120621,49 +120621,49 @@ void StraightnessCha_1087_Type::printSelf(FILE * outFile)
     }
 }
 
-LinearValueType * StraightnessCha_1087_Type::getToleranceValue()
+LinearValueType * StraightnessCha_1088_Type::getToleranceValue()
 {return ToleranceValue;}
 
-void StraightnessCha_1087_Type::setToleranceValue(LinearValueType * ToleranceValueIn)
+void StraightnessCha_1088_Type::setToleranceValue(LinearValueType * ToleranceValueIn)
 {ToleranceValue = ToleranceValueIn;}
 
-LinearDualValueType * StraightnessCha_1087_Type::getToleranceDualValue()
+LinearDualValueType * StraightnessCha_1088_Type::getToleranceDualValue()
 {return ToleranceDualValue;}
 
-void StraightnessCha_1087_Type::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
+void StraightnessCha_1088_Type::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
 {ToleranceDualValue = ToleranceDualValueIn;}
 
-ToleranceZonePerUnitLengthType * StraightnessCha_1087_Type::getToleranceZonePerUnitLength()
+ToleranceZonePerUnitLengthType * StraightnessCha_1088_Type::getToleranceZonePerUnitLength()
 {return ToleranceZonePerUnitLength;}
 
-void StraightnessCha_1087_Type::setToleranceZonePerUnitLength(ToleranceZonePerUnitLengthType * ToleranceZonePerUnitLengthIn)
+void StraightnessCha_1088_Type::setToleranceZonePerUnitLength(ToleranceZonePerUnitLengthType * ToleranceZonePerUnitLengthIn)
 {ToleranceZonePerUnitLength = ToleranceZonePerUnitLengthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class StraightnessCha_1088_Type
+/* class StraightnessCha_1089_Type
 
 */
 
-StraightnessCha_1088_Type::StraightnessCha_1088_Type()
+StraightnessCha_1089_Type::StraightnessCha_1089_Type()
 {
   ToleranceZonePerUnitLength = 0;
 }
 
-StraightnessCha_1088_Type::StraightnessCha_1088_Type(
+StraightnessCha_1089_Type::StraightnessCha_1089_Type(
  ToleranceZonePerUnitLengthType * ToleranceZonePerUnitLengthIn)
 {
   ToleranceZonePerUnitLength = ToleranceZonePerUnitLengthIn;
 }
 
-StraightnessCha_1088_Type::~StraightnessCha_1088_Type()
+StraightnessCha_1089_Type::~StraightnessCha_1089_Type()
 {
   #ifndef NODESTRUCT
   delete ToleranceZonePerUnitLength;
   #endif
 }
 
-void StraightnessCha_1088_Type::printSelf(FILE * outFile)
+void StraightnessCha_1089_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ToleranceZonePerUnitLength");
@@ -120672,25 +120672,25 @@ void StraightnessCha_1088_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</ToleranceZonePerUnitLength>\n");
 }
 
-ToleranceZonePerUnitLengthType * StraightnessCha_1088_Type::getToleranceZonePerUnitLength()
+ToleranceZonePerUnitLengthType * StraightnessCha_1089_Type::getToleranceZonePerUnitLength()
 {return ToleranceZonePerUnitLength;}
 
-void StraightnessCha_1088_Type::setToleranceZonePerUnitLength(ToleranceZonePerUnitLengthType * ToleranceZonePerUnitLengthIn)
+void StraightnessCha_1089_Type::setToleranceZonePerUnitLength(ToleranceZonePerUnitLengthType * ToleranceZonePerUnitLengthIn)
 {ToleranceZonePerUnitLength = ToleranceZonePerUnitLengthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedUnit_1089_Type
+/* class UserDefinedUnit_1090_Type
 
 */
 
-UserDefinedUnit_1089_Type::UserDefinedUnit_1089_Type()
+UserDefinedUnit_1090_Type::UserDefinedUnit_1090_Type()
 {
   MaxValue = 0;
   MinValue = 0;
 }
 
-UserDefinedUnit_1089_Type::UserDefinedUnit_1089_Type(
+UserDefinedUnit_1090_Type::UserDefinedUnit_1090_Type(
  UserDefinedUnitValueType * MaxValueIn,
  UserDefinedUnitValueType * MinValueIn)
 {
@@ -120698,7 +120698,7 @@ UserDefinedUnit_1089_Type::UserDefinedUnit_1089_Type(
   MinValue = MinValueIn;
 }
 
-UserDefinedUnit_1089_Type::~UserDefinedUnit_1089_Type()
+UserDefinedUnit_1090_Type::~UserDefinedUnit_1090_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
@@ -120706,7 +120706,7 @@ UserDefinedUnit_1089_Type::~UserDefinedUnit_1089_Type()
   #endif
 }
 
-void UserDefinedUnit_1089_Type::printSelf(FILE * outFile)
+void UserDefinedUnit_1090_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -120721,215 +120721,215 @@ void UserDefinedUnit_1089_Type::printSelf(FILE * outFile)
     }
 }
 
-UserDefinedUnitValueType * UserDefinedUnit_1089_Type::getMaxValue()
+UserDefinedUnitValueType * UserDefinedUnit_1090_Type::getMaxValue()
 {return MaxValue;}
 
-void UserDefinedUnit_1089_Type::setMaxValue(UserDefinedUnitValueType * MaxValueIn)
+void UserDefinedUnit_1090_Type::setMaxValue(UserDefinedUnitValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-UserDefinedUnitValueType * UserDefinedUnit_1089_Type::getMinValue()
+UserDefinedUnitValueType * UserDefinedUnit_1090_Type::getMinValue()
 {return MinValue;}
 
-void UserDefinedUnit_1089_Type::setMinValue(UserDefinedUnitValueType * MinValueIn)
+void UserDefinedUnit_1090_Type::setMinValue(UserDefinedUnitValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class CircularityChar_1090_Type
+/* class CircularityChar_1091_Type
 
 */
 
-CircularityChar_1090_Type::CircularityChar_1090_Type()
+CircularityChar_1091_Type::CircularityChar_1091_Type()
 {
-  CircularityChar_1090_TypePair = 0;
+  CircularityChar_1091_TypePair = 0;
 }
 
-CircularityChar_1090_Type::CircularityChar_1090_Type(
- CircularityChar_1090_TypeChoicePair * CircularityChar_1090_TypePairIn)
+CircularityChar_1091_Type::CircularityChar_1091_Type(
+ CircularityChar_1091_TypeChoicePair * CircularityChar_1091_TypePairIn)
 {
-  CircularityChar_1090_TypePair = CircularityChar_1090_TypePairIn;
+  CircularityChar_1091_TypePair = CircularityChar_1091_TypePairIn;
 }
 
-CircularityChar_1090_Type::~CircularityChar_1090_Type()
+CircularityChar_1091_Type::~CircularityChar_1091_Type()
 {
   #ifndef NODESTRUCT
-  delete CircularityChar_1090_TypePair;
+  delete CircularityChar_1091_TypePair;
   #endif
 }
 
-void CircularityChar_1090_Type::printSelf(FILE * outFile)
+void CircularityChar_1091_Type::printSelf(FILE * outFile)
 {
-  if (CircularityChar_1090_TypePair)
+  if (CircularityChar_1091_TypePair)
     {
-      CircularityChar_1090_TypePair->printSelf(outFile);
+      CircularityChar_1091_TypePair->printSelf(outFile);
     }
 }
 
-CircularityChar_1090_TypeChoicePair * CircularityChar_1090_Type::getCircularityChar_1090_TypePair()
-{return CircularityChar_1090_TypePair;}
+CircularityChar_1091_TypeChoicePair * CircularityChar_1091_Type::getCircularityChar_1091_TypePair()
+{return CircularityChar_1091_TypePair;}
 
-void CircularityChar_1090_Type::setCircularityChar_1090_TypePair(CircularityChar_1090_TypeChoicePair * CircularityChar_1090_TypePairIn)
-{CircularityChar_1090_TypePair = CircularityChar_1090_TypePairIn;}
+void CircularityChar_1091_Type::setCircularityChar_1091_TypePair(CircularityChar_1091_TypeChoicePair * CircularityChar_1091_TypePairIn)
+{CircularityChar_1091_TypePair = CircularityChar_1091_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class CircularityChar_1090_TypeChoicePair
+/* class CircularityChar_1091_TypeChoicePair
 
 */
 
-CircularityChar_1090_TypeChoicePair::CircularityChar_1090_TypeChoicePair() {}
+CircularityChar_1091_TypeChoicePair::CircularityChar_1091_TypeChoicePair() {}
 
-CircularityChar_1090_TypeChoicePair::CircularityChar_1090_TypeChoicePair(
- whichOne CircularityChar_1090_TypeTypeIn,
- CircularityChar_1090_TypeVal CircularityChar_1090_TypeValueIn)
+CircularityChar_1091_TypeChoicePair::CircularityChar_1091_TypeChoicePair(
+ whichOne CircularityChar_1091_TypeTypeIn,
+ CircularityChar_1091_TypeVal CircularityChar_1091_TypeValueIn)
 {
-  CircularityChar_1090_TypeType = CircularityChar_1090_TypeTypeIn;
-  CircularityChar_1090_TypeValue = CircularityChar_1090_TypeValueIn;
+  CircularityChar_1091_TypeType = CircularityChar_1091_TypeTypeIn;
+  CircularityChar_1091_TypeValue = CircularityChar_1091_TypeValueIn;
 }
 
-CircularityChar_1090_TypeChoicePair::~CircularityChar_1090_TypeChoicePair()
+CircularityChar_1091_TypeChoicePair::~CircularityChar_1091_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (CircularityChar_1090_TypeType == ToleranceZonePerUnitAngleE)
-    delete CircularityChar_1090_TypeValue.ToleranceZonePerUnitAngle;
-  else if (CircularityChar_1090_TypeType == ToleranceZonePerUnitArcLengthE)
-    delete CircularityChar_1090_TypeValue.ToleranceZonePerUnitArcLength;
+  if (CircularityChar_1091_TypeType == ToleranceZonePerUnitAngleE)
+    delete CircularityChar_1091_TypeValue.ToleranceZonePerUnitAngle;
+  else if (CircularityChar_1091_TypeType == ToleranceZonePerUnitArcLengthE)
+    delete CircularityChar_1091_TypeValue.ToleranceZonePerUnitArcLength;
   #endif
 }
 
-void CircularityChar_1090_TypeChoicePair::printSelf(FILE * outFile)
+void CircularityChar_1091_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (CircularityChar_1090_TypeType == ToleranceZonePerUnitAngleE)
+  if (CircularityChar_1091_TypeType == ToleranceZonePerUnitAngleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitAngle");
-      CircularityChar_1090_TypeValue.ToleranceZonePerUnitAngle->printSelf(outFile);
+      CircularityChar_1091_TypeValue.ToleranceZonePerUnitAngle->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitAngle>\n");
     }
-  else if (CircularityChar_1090_TypeType == ToleranceZonePerUnitArcLengthE)
+  else if (CircularityChar_1091_TypeType == ToleranceZonePerUnitArcLengthE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitArcLength");
-      CircularityChar_1090_TypeValue.ToleranceZonePerUnitArcLength->printSelf(outFile);
+      CircularityChar_1091_TypeValue.ToleranceZonePerUnitArcLength->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitArcLength>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class CylindricityCha_1091_Type
+/* class CylindricityCha_1092_Type
 
 */
 
-CylindricityCha_1091_Type::CylindricityCha_1091_Type()
+CylindricityCha_1092_Type::CylindricityCha_1092_Type()
 {
-  CylindricityCha_1091_TypePair = 0;
+  CylindricityCha_1092_TypePair = 0;
 }
 
-CylindricityCha_1091_Type::CylindricityCha_1091_Type(
- CylindricityCha_1091_TypeChoicePair * CylindricityCha_1091_TypePairIn)
+CylindricityCha_1092_Type::CylindricityCha_1092_Type(
+ CylindricityCha_1092_TypeChoicePair * CylindricityCha_1092_TypePairIn)
 {
-  CylindricityCha_1091_TypePair = CylindricityCha_1091_TypePairIn;
+  CylindricityCha_1092_TypePair = CylindricityCha_1092_TypePairIn;
 }
 
-CylindricityCha_1091_Type::~CylindricityCha_1091_Type()
+CylindricityCha_1092_Type::~CylindricityCha_1092_Type()
 {
   #ifndef NODESTRUCT
-  delete CylindricityCha_1091_TypePair;
+  delete CylindricityCha_1092_TypePair;
   #endif
 }
 
-void CylindricityCha_1091_Type::printSelf(FILE * outFile)
+void CylindricityCha_1092_Type::printSelf(FILE * outFile)
 {
-  if (CylindricityCha_1091_TypePair)
+  if (CylindricityCha_1092_TypePair)
     {
-      CylindricityCha_1091_TypePair->printSelf(outFile);
+      CylindricityCha_1092_TypePair->printSelf(outFile);
     }
 }
 
-CylindricityCha_1091_TypeChoicePair * CylindricityCha_1091_Type::getCylindricityCha_1091_TypePair()
-{return CylindricityCha_1091_TypePair;}
+CylindricityCha_1092_TypeChoicePair * CylindricityCha_1092_Type::getCylindricityCha_1092_TypePair()
+{return CylindricityCha_1092_TypePair;}
 
-void CylindricityCha_1091_Type::setCylindricityCha_1091_TypePair(CylindricityCha_1091_TypeChoicePair * CylindricityCha_1091_TypePairIn)
-{CylindricityCha_1091_TypePair = CylindricityCha_1091_TypePairIn;}
+void CylindricityCha_1092_Type::setCylindricityCha_1092_TypePair(CylindricityCha_1092_TypeChoicePair * CylindricityCha_1092_TypePairIn)
+{CylindricityCha_1092_TypePair = CylindricityCha_1092_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class CylindricityCha_1091_TypeChoicePair
+/* class CylindricityCha_1092_TypeChoicePair
 
 */
 
-CylindricityCha_1091_TypeChoicePair::CylindricityCha_1091_TypeChoicePair() {}
+CylindricityCha_1092_TypeChoicePair::CylindricityCha_1092_TypeChoicePair() {}
 
-CylindricityCha_1091_TypeChoicePair::CylindricityCha_1091_TypeChoicePair(
- whichOne CylindricityCha_1091_TypeTypeIn,
- CylindricityCha_1091_TypeVal CylindricityCha_1091_TypeValueIn)
+CylindricityCha_1092_TypeChoicePair::CylindricityCha_1092_TypeChoicePair(
+ whichOne CylindricityCha_1092_TypeTypeIn,
+ CylindricityCha_1092_TypeVal CylindricityCha_1092_TypeValueIn)
 {
-  CylindricityCha_1091_TypeType = CylindricityCha_1091_TypeTypeIn;
-  CylindricityCha_1091_TypeValue = CylindricityCha_1091_TypeValueIn;
+  CylindricityCha_1092_TypeType = CylindricityCha_1092_TypeTypeIn;
+  CylindricityCha_1092_TypeValue = CylindricityCha_1092_TypeValueIn;
 }
 
-CylindricityCha_1091_TypeChoicePair::~CylindricityCha_1091_TypeChoicePair()
+CylindricityCha_1092_TypeChoicePair::~CylindricityCha_1092_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (CylindricityCha_1091_TypeType == ToleranceZonePerUnitAngleE)
-    delete CylindricityCha_1091_TypeValue.ToleranceZonePerUnitAngle;
-  else if (CylindricityCha_1091_TypeType == ToleranceZonePerUnitArcLengthE)
-    delete CylindricityCha_1091_TypeValue.ToleranceZonePerUnitArcLength;
-  else if (CylindricityCha_1091_TypeType == ToleranceZonePerUnitPolarAreaE)
-    delete CylindricityCha_1091_TypeValue.ToleranceZonePerUnitPolarArea;
-  else if (CylindricityCha_1091_TypeType == ToleranceZonePerUnitAreaE)
-    delete CylindricityCha_1091_TypeValue.ToleranceZonePerUnitArea;
-  else if (CylindricityCha_1091_TypeType == ToleranceZonePerUnitLengthE)
-    delete CylindricityCha_1091_TypeValue.ToleranceZonePerUnitLength;
+  if (CylindricityCha_1092_TypeType == ToleranceZonePerUnitAngleE)
+    delete CylindricityCha_1092_TypeValue.ToleranceZonePerUnitAngle;
+  else if (CylindricityCha_1092_TypeType == ToleranceZonePerUnitArcLengthE)
+    delete CylindricityCha_1092_TypeValue.ToleranceZonePerUnitArcLength;
+  else if (CylindricityCha_1092_TypeType == ToleranceZonePerUnitPolarAreaE)
+    delete CylindricityCha_1092_TypeValue.ToleranceZonePerUnitPolarArea;
+  else if (CylindricityCha_1092_TypeType == ToleranceZonePerUnitAreaE)
+    delete CylindricityCha_1092_TypeValue.ToleranceZonePerUnitArea;
+  else if (CylindricityCha_1092_TypeType == ToleranceZonePerUnitLengthE)
+    delete CylindricityCha_1092_TypeValue.ToleranceZonePerUnitLength;
   #endif
 }
 
-void CylindricityCha_1091_TypeChoicePair::printSelf(FILE * outFile)
+void CylindricityCha_1092_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (CylindricityCha_1091_TypeType == ToleranceZonePerUnitAngleE)
+  if (CylindricityCha_1092_TypeType == ToleranceZonePerUnitAngleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitAngle");
-      CylindricityCha_1091_TypeValue.ToleranceZonePerUnitAngle->printSelf(outFile);
+      CylindricityCha_1092_TypeValue.ToleranceZonePerUnitAngle->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitAngle>\n");
     }
-  else if (CylindricityCha_1091_TypeType == ToleranceZonePerUnitArcLengthE)
+  else if (CylindricityCha_1092_TypeType == ToleranceZonePerUnitArcLengthE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitArcLength");
-      CylindricityCha_1091_TypeValue.ToleranceZonePerUnitArcLength->printSelf(outFile);
+      CylindricityCha_1092_TypeValue.ToleranceZonePerUnitArcLength->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitArcLength>\n");
     }
-  else if (CylindricityCha_1091_TypeType == ToleranceZonePerUnitPolarAreaE)
+  else if (CylindricityCha_1092_TypeType == ToleranceZonePerUnitPolarAreaE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitPolarArea");
-      CylindricityCha_1091_TypeValue.ToleranceZonePerUnitPolarArea->printSelf(outFile);
+      CylindricityCha_1092_TypeValue.ToleranceZonePerUnitPolarArea->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitPolarArea>\n");
     }
-  else if (CylindricityCha_1091_TypeType == ToleranceZonePerUnitAreaE)
+  else if (CylindricityCha_1092_TypeType == ToleranceZonePerUnitAreaE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitArea");
-      CylindricityCha_1091_TypeValue.ToleranceZonePerUnitArea->printSelf(outFile);
+      CylindricityCha_1092_TypeValue.ToleranceZonePerUnitArea->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitArea>\n");
     }
-  else if (CylindricityCha_1091_TypeType == ToleranceZonePerUnitLengthE)
+  else if (CylindricityCha_1092_TypeType == ToleranceZonePerUnitLengthE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitLength");
-      CylindricityCha_1091_TypeValue.ToleranceZonePerUnitLength->printSelf(outFile);
+      CylindricityCha_1092_TypeValue.ToleranceZonePerUnitLength->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitLength>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 

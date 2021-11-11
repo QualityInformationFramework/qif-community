@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #include <stdio.h>             // for printf, etc.
 #include <string.h>            // for strdup
@@ -10,8 +10,8 @@
 
 #define INDENT 2
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 /* class ApplicationType
 
@@ -103,7 +103,7 @@ XmlString * ApplicationType::getAddonOrganization()
 void ApplicationType::setAddonOrganization(XmlString * AddonOrganizationIn)
 {AddonOrganization = AddonOrganizationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AuthorType
 
@@ -164,7 +164,7 @@ XmlString * AuthorType::getOrganization()
 void AuthorType::setOrganization(XmlString * OrganizationIn)
 {Organization = OrganizationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ColorType
 
@@ -228,7 +228,7 @@ bool ColorType::ColorTypeCheck()
   return bad;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DrawableBaseType
 
@@ -604,7 +604,7 @@ TransparencyType * DrawableBaseType::gettransparency()
 void DrawableBaseType::settransparency(TransparencyType * transparencyIn)
 {transparency = transparencyIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EdgeOrientedType
 
@@ -729,7 +729,7 @@ XmlBoolean * EdgeOrientedType::getturned()
 void EdgeOrientedType::setturned(XmlBoolean * turnedIn)
 {turned = turnedIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EdgeOrientedTypeLisd
 
@@ -756,7 +756,7 @@ EdgeOrientedTypeLisd::~EdgeOrientedTypeLisd()
 
 void EdgeOrientedTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineStyleEnumType
 
@@ -852,7 +852,7 @@ void LineStyleEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineStyleType
 
@@ -987,7 +987,7 @@ XmlPositiveInteger * LineStyleType::getthickness()
 void LineStyleType::setthickness(XmlPositiveInteger * thicknessIn)
 {thickness = thicknessIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NodeBaseType
 
@@ -1092,7 +1092,7 @@ XmlString * NodeBaseType::getlabel()
 void NodeBaseType::setlabel(XmlString * labelIn)
 {label = labelIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NodeWithIdBaseType
 
@@ -1281,7 +1281,7 @@ AttributesType * NodeWithIdBaseType::getAttributes()
 void NodeWithIdBaseType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QuaternionType
 
@@ -1322,7 +1322,7 @@ D4Type * QuaternionType::getValue()
 void QuaternionType::setValue(D4Type * ValueIn)
 {Value = ValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TransparencyType
 
@@ -1382,5 +1382,5 @@ void TransparencyType::oPrintSelf(FILE * outFile)
   XmlDouble::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 

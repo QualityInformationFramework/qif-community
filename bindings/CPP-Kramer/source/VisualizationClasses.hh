@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #ifndef VISUALIZATION_HH
 #define VISUALIZATION_HH
@@ -8,7 +8,7 @@
 #include "PrimitivesPDClasses.hh"
 #include "CharacteristicsClasses.hh"
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AlignmentEnumType;
 class AnnotationViewSetType;
@@ -131,23 +131,23 @@ class ZoneSectionPlanesType;
 class ZoneSectionSetType;
 class ZoneSectionType;
 class ZoneSectionTypeLisd;
-class ExplodedViewMov_1230_Type;
-class ExplodedViewMov_1230_TypeChoicePair;
-class LogicalOperatio_1231_Type;
-class LogicalOperatio_1231_TypeLisd;
-class LogicalOperatio_1231_TypeChoicePair;
-class LogicalOperatio_1231_TypeChoicePairLisd;
-class Polyline2dType_1232_Type;
-class Polyline2dType_1232_TypeChoicePair;
-class Triangulation2d_1233_Type;
-class Triangulation2d_1233_TypeChoicePair;
+class ExplodedViewMov_1231_Type;
+class ExplodedViewMov_1231_TypeChoicePair;
+class LogicalOperatio_1232_Type;
+class LogicalOperatio_1232_TypeLisd;
+class LogicalOperatio_1232_TypeChoicePair;
+class LogicalOperatio_1232_TypeChoicePairLisd;
+class Polyline2dType_1233_Type;
+class Polyline2dType_1233_TypeChoicePair;
 class Triangulation2d_1234_Type;
 class Triangulation2d_1234_TypeChoicePair;
-class WitnessLinesTyp_1235_Type;
+class Triangulation2d_1235_Type;
+class Triangulation2d_1235_TypeChoicePair;
 class WitnessLinesTyp_1236_Type;
+class WitnessLinesTyp_1237_Type;
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 class AlignmentEnumType :
   public XmlString
@@ -163,7 +163,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AnnotationViewSetType :
   public XmlTypeBase
@@ -190,7 +190,7 @@ protected:
   AnnotationViewTypeLisd * AnnotationView;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AnnotationViewType :
   public NodeWithIdBaseType
@@ -221,7 +221,7 @@ protected:
   UnitVectorType * Direction;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AnnotationViewTypeLisd :
   public std::list<AnnotationViewType *>,
@@ -235,7 +235,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Area2dType :
   public XmlTypeBase
@@ -254,7 +254,7 @@ protected:
   Area2dTypeChoicePair * Area2dTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union Area2dTypeVal
 {
@@ -262,7 +262,7 @@ union Area2dTypeVal
   Triangulation2dType * Triangulation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Area2dTypeChoicePair :
   public XmlTypeBase
@@ -282,7 +282,7 @@ public:
   Area2dTypeVal Area2dTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Area2dTypeLisd :
   public std::list<Area2dType *>,
@@ -296,7 +296,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Areas2dType :
   public XmlTypeBase
@@ -323,7 +323,7 @@ protected:
   Area2dTypeLisd * Area;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CameraFormEnumType :
   public XmlString
@@ -339,7 +339,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CameraSetType :
   public XmlTypeBase
@@ -366,7 +366,7 @@ protected:
   CameraTypeLisd * Camera;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CameraType :
   public NodeWithIdBaseType
@@ -422,7 +422,7 @@ protected:
   XmlDouble * Height;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CameraTypeLisd :
   public std::list<CameraType *>,
@@ -436,7 +436,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DisplayStyleFormEnumType :
   public XmlString
@@ -452,7 +452,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DisplayStyleGroupType :
   public XmlTypeBase
@@ -479,7 +479,7 @@ protected:
   ArrayReferenceFullType * BodyIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DisplayStyleGroupTypeLisd :
   public std::list<DisplayStyleGroupType *>,
@@ -493,7 +493,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DisplayStyleGroupsType :
   public XmlTypeBase
@@ -520,7 +520,7 @@ protected:
   DisplayStyleGroupTypeLisd * DisplayStyleGroup;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DisplayStyleModeType :
   public XmlTypeBase
@@ -547,7 +547,7 @@ protected:
   TransparencyType * Transparency;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DisplayStyleSetType :
   public XmlTypeBase
@@ -574,7 +574,7 @@ protected:
   DisplayStyleTypeLisd * DisplayStyle;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DisplayStyleType :
   public NodeWithIdBaseType
@@ -605,7 +605,7 @@ protected:
   DisplayStyleGroupsType * DisplayStyleGroups;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DisplayStyleTypeLisd :
   public std::list<DisplayStyleType *>,
@@ -619,7 +619,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExplodedViewMoveGroupType :
   public XmlTypeBase
@@ -627,26 +627,26 @@ class ExplodedViewMoveGroupType :
 public:
   ExplodedViewMoveGroupType();
   ExplodedViewMoveGroupType(
-    ExplodedViewMov_1230_Type * ExplodedViewMov_1230In,
+    ExplodedViewMov_1231_Type * ExplodedViewMov_1231In,
     ArrayReferenceFullType * ComponentIdsIn,
     ArrayReferenceFullType * BodyIdsIn);
   ~ExplodedViewMoveGroupType();
   void printSelf(FILE * outFile);
 
-  ExplodedViewMov_1230_Type * getExplodedViewMov_1230();
-  void setExplodedViewMov_1230(ExplodedViewMov_1230_Type * ExplodedViewMov_1230In);
+  ExplodedViewMov_1231_Type * getExplodedViewMov_1231();
+  void setExplodedViewMov_1231(ExplodedViewMov_1231_Type * ExplodedViewMov_1231In);
   ArrayReferenceFullType * getComponentIds();
   void setComponentIds(ArrayReferenceFullType * ComponentIdsIn);
   ArrayReferenceFullType * getBodyIds();
   void setBodyIds(ArrayReferenceFullType * BodyIdsIn);
 
 protected:
-  ExplodedViewMov_1230_Type * ExplodedViewMov_1230;
+  ExplodedViewMov_1231_Type * ExplodedViewMov_1231;
   ArrayReferenceFullType * ComponentIds;
   ArrayReferenceFullType * BodyIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExplodedViewMoveGroupTypeLisd :
   public std::list<ExplodedViewMoveGroupType *>,
@@ -660,7 +660,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExplodedViewMoveGroupsType :
   public XmlTypeBase
@@ -687,7 +687,7 @@ protected:
   ExplodedViewMoveGroupTypeLisd * MoveGroup;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExplodedViewRotateType :
   public XmlTypeBase
@@ -710,7 +710,7 @@ protected:
   AngularValueType * Angle;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExplodedViewSetType :
   public XmlTypeBase
@@ -737,7 +737,7 @@ protected:
   ExplodedViewTypeLisd * ExplodedView;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExplodedViewTranslateType :
   public XmlTypeBase
@@ -760,7 +760,7 @@ protected:
   LinearValueType * Value;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExplodedViewType :
   public NodeWithIdBaseType
@@ -786,7 +786,7 @@ protected:
   ExplodedViewMoveGroupsType * MoveGroups;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExplodedViewTypeLisd :
   public std::list<ExplodedViewType *>,
@@ -800,7 +800,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FontType :
   public XmlTypeBase
@@ -854,7 +854,7 @@ protected:
   AlignmentEnumType * Alignment;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FontTypeLisd :
   public std::list<FontType *>,
@@ -868,7 +868,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FontsType :
   public XmlTypeBase
@@ -895,7 +895,7 @@ protected:
   FontTypeLisd * Font;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FrameBaseType :
   public XmlTypeBase
@@ -906,7 +906,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FrameBaseTypeLisd :
   public std::list<FrameBaseType *>,
@@ -920,7 +920,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FrameCircularType :
   public FrameBaseType
@@ -952,7 +952,7 @@ protected:
   XmlDouble * Radius;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FrameHexagonalType :
   public FrameBaseType
@@ -971,7 +971,7 @@ protected:
   Point2dSimpleTypeLisd * Point;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FrameIrregularFormType :
   public FrameBaseType
@@ -990,7 +990,7 @@ protected:
   ArrayPoint2dType * Points;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FrameOctagonalType :
   public FrameBaseType
@@ -1009,7 +1009,7 @@ protected:
   Point2dSimpleTypeLisd * Point;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FramePentagonalType :
   public FrameBaseType
@@ -1028,7 +1028,7 @@ protected:
   Point2dSimpleTypeLisd * Point;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FrameRectangularType :
   public FrameBaseType
@@ -1055,7 +1055,7 @@ protected:
   XmlDouble * Height;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FrameTriangleType :
   public FrameBaseType
@@ -1074,7 +1074,7 @@ protected:
   Point2dSimpleTypeLisd * Point;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FrameWeldSymbolTailType :
   public XmlTypeBase
@@ -1097,7 +1097,7 @@ protected:
   Point2dSimpleType * LowerPoint;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FrameWeldSymbolType :
   public FrameBaseType
@@ -1140,7 +1140,7 @@ protected:
   WeldContourSymbolType * OtherSideContourSymbol;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FramesType :
   public XmlTypeBase
@@ -1167,7 +1167,7 @@ protected:
   FrameBaseTypeLisd * Frame;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class GraphicsType :
   public XmlTypeBase
@@ -1190,7 +1190,7 @@ protected:
   Areas2dType * Areas;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class HatchPatternType :
   public XmlTypeBase
@@ -1225,7 +1225,7 @@ protected:
   ColorType * Color;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class HatchPatternTypeLisd :
   public std::list<HatchPatternType *>,
@@ -1239,7 +1239,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class HatchPatternsType :
   public XmlTypeBase
@@ -1266,7 +1266,7 @@ protected:
   HatchPatternTypeLisd * Pattern;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class HatchStyleFormEnumType :
   public XmlString
@@ -1282,7 +1282,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class HatchStyleSetType :
   public XmlTypeBase
@@ -1309,7 +1309,7 @@ protected:
   HatchStyleTypeLisd * HatchStyle;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class HatchStyleType :
   public NodeWithIdBaseType
@@ -1345,7 +1345,7 @@ protected:
   HatchPatternsType * Patterns;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class HatchStyleTypeLisd :
   public std::list<HatchStyleType *>,
@@ -1359,7 +1359,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LeaderHeadFormEnumType :
   public XmlString
@@ -1375,7 +1375,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LeaderHeadFormType :
   public LeaderHeadFormEnumType
@@ -1400,7 +1400,7 @@ protected:
   D3Type * normal;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LeaderModifierEnumType :
   public XmlString
@@ -1416,7 +1416,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LeaderType :
   public LineSegment2dType
@@ -1441,7 +1441,7 @@ protected:
   XmlDouble * HeadHeight;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LeaderTypeLisd :
   public std::list<LeaderType *>,
@@ -1455,7 +1455,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LogicalOperationEnumType :
   public XmlString
@@ -1471,7 +1471,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LogicalOperationType :
   public XmlTypeBase
@@ -1480,11 +1480,11 @@ public:
   LogicalOperationType();
   LogicalOperationType(
     LogicalOperationEnumType * ActionIn,
-    LogicalOperatio_1231_Type * LogicalOperatio_1231In);
+    LogicalOperatio_1232_Type * LogicalOperatio_1232In);
   LogicalOperationType(
     XmlUnsignedInt * indexIn,
     LogicalOperationEnumType * ActionIn,
-    LogicalOperatio_1231_Type * LogicalOperatio_1231In);
+    LogicalOperatio_1232_Type * LogicalOperatio_1232In);
   ~LogicalOperationType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -1494,16 +1494,16 @@ public:
 
   LogicalOperationEnumType * getAction();
   void setAction(LogicalOperationEnumType * ActionIn);
-  LogicalOperatio_1231_Type * getLogicalOperatio_1231();
-  void setLogicalOperatio_1231(LogicalOperatio_1231_Type * LogicalOperatio_1231In);
+  LogicalOperatio_1232_Type * getLogicalOperatio_1232();
+  void setLogicalOperatio_1232(LogicalOperatio_1232_Type * LogicalOperatio_1232In);
 
 protected:
   XmlUnsignedInt * index;
   LogicalOperationEnumType * Action;
-  LogicalOperatio_1231_Type * LogicalOperatio_1231;
+  LogicalOperatio_1232_Type * LogicalOperatio_1232;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LogicalOperationTypeLisd :
   public std::list<LogicalOperationType *>,
@@ -1517,7 +1517,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LogicalOperationsType :
   public XmlTypeBase
@@ -1544,7 +1544,7 @@ protected:
   LogicalOperationTypeLisd * LogicalOperation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Loops2dType :
   public XmlTypeBase
@@ -1571,7 +1571,7 @@ protected:
   Polyline2dTypeLisd * Loop;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OriginType :
   public XmlTypeBase
@@ -1590,7 +1590,7 @@ protected:
   Point2dSimpleType * Origin;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PMIDisplaySetType :
   public XmlTypeBase
@@ -1617,7 +1617,7 @@ protected:
   PMIDisplayTypeLisd * PMIDisplay;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PMIDisplayType :
   public XmlTypeBase
@@ -1672,7 +1672,7 @@ protected:
   I2Type * GroupID;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PMIDisplayTypeLisd :
   public std::list<PMIDisplayType *>,
@@ -1686,7 +1686,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlanePMIDisplayType :
   public XmlTypeBase
@@ -1713,7 +1713,7 @@ protected:
   UnitVectorType * Direction;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Polyline2dType :
   public XmlTypeBase
@@ -1721,10 +1721,10 @@ class Polyline2dType :
 public:
   Polyline2dType();
   Polyline2dType(
-    Polyline2dType_1232_Type * Polyline2dType_1232In);
+    Polyline2dType_1233_Type * Polyline2dType_1233In);
   Polyline2dType(
     ColorType * colorIn,
-    Polyline2dType_1232_Type * Polyline2dType_1232In);
+    Polyline2dType_1233_Type * Polyline2dType_1233In);
   ~Polyline2dType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -1732,15 +1732,15 @@ public:
   ColorType * getcolor();
   void setcolor(ColorType * colorIn);
 
-  Polyline2dType_1232_Type * getPolyline2dType_1232();
-  void setPolyline2dType_1232(Polyline2dType_1232_Type * Polyline2dType_1232In);
+  Polyline2dType_1233_Type * getPolyline2dType_1233();
+  void setPolyline2dType_1233(Polyline2dType_1233_Type * Polyline2dType_1233In);
 
 protected:
   ColorType * color;
-  Polyline2dType_1232_Type * Polyline2dType_1232;
+  Polyline2dType_1233_Type * Polyline2dType_1233;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Polyline2dTypeLisd :
   public std::list<Polyline2dType *>,
@@ -1754,7 +1754,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Polylines2dType :
   public XmlTypeBase
@@ -1781,7 +1781,7 @@ protected:
   Polyline2dTypeLisd * Polyline;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SavedViewSetType :
   public XmlTypeBase
@@ -1808,7 +1808,7 @@ protected:
   SavedViewTypeLisd * SavedView;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SavedViewType :
   public NodeWithIdBaseType
@@ -1879,7 +1879,7 @@ protected:
   ArrayReferenceActiveType * CameraIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SavedViewTypeLisd :
   public std::list<SavedViewType *>,
@@ -1893,7 +1893,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SectionAreaType :
   public XmlTypeBase
@@ -1916,7 +1916,7 @@ protected:
   SectionLoopsType * Loops;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SectionAreaTypeLisd :
   public std::list<SectionAreaType *>,
@@ -1930,7 +1930,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SectionAreasType :
   public XmlTypeBase
@@ -1957,7 +1957,7 @@ protected:
   SectionAreaTypeLisd * Area;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SectionEdgesType :
   public XmlTypeBase
@@ -1984,7 +1984,7 @@ protected:
   EdgeOrientedTypeLisd * Edge;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SectionGroupType :
   public XmlTypeBase
@@ -2015,7 +2015,7 @@ protected:
   ArrayReferenceType * Vertices;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SectionGroupTypeLisd :
   public std::list<SectionGroupType *>,
@@ -2029,7 +2029,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SectionGroupsType :
   public XmlTypeBase
@@ -2056,7 +2056,7 @@ protected:
   SectionGroupTypeLisd * SectionGroup;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SectionLoopsType :
   public XmlTypeBase
@@ -2083,7 +2083,7 @@ protected:
   SectionPathTypeLisd * Loop;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SectionPathType :
   public XmlTypeBase
@@ -2102,7 +2102,7 @@ protected:
   SectionEdgesType * Edges;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SectionPathTypeLisd :
   public std::list<SectionPathType *>,
@@ -2116,7 +2116,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SectionPathsType :
   public XmlTypeBase
@@ -2143,7 +2143,7 @@ protected:
   SectionPathTypeLisd * Path;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SimplifiedRepresentationFormEnumType :
   public XmlString
@@ -2159,7 +2159,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SimplifiedRepresentationGroupType :
   public XmlTypeBase
@@ -2186,7 +2186,7 @@ protected:
   ArrayReferenceFullType * BodyIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SimplifiedRepresentationGroupTypeLisd :
   public std::list<SimplifiedRepresentationGroupType *>,
@@ -2200,7 +2200,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SimplifiedRepresentationGroupsType :
   public XmlTypeBase
@@ -2227,7 +2227,7 @@ protected:
   SimplifiedRepresentationGroupTypeLisd * SimplifiedRepresentationGroup;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SimplifiedRepresentationSetType :
   public XmlTypeBase
@@ -2254,7 +2254,7 @@ protected:
   SimplifiedRepresentationTypeLisd * SimplifiedRepresentation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SimplifiedRepresentationType :
   public NodeWithIdBaseType
@@ -2285,7 +2285,7 @@ protected:
   SimplifiedRepresentationGroupsType * SimplifiedRepresentationGroups;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SimplifiedRepresentationTypeLisd :
   public std::list<SimplifiedRepresentationType *>,
@@ -2299,7 +2299,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TextType :
   public XmlTypeBase
@@ -2322,7 +2322,7 @@ protected:
   Point2dSimpleType * XY;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TextTypeLisd :
   public std::list<TextType *>,
@@ -2336,7 +2336,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TextsType :
   public XmlTypeBase
@@ -2371,7 +2371,7 @@ protected:
   TextTypeLisd * Text;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TrailingZeroDimensionalCharacteristicDisplayGroupType :
   public XmlTypeBase
@@ -2398,7 +2398,7 @@ protected:
   ArrayReferenceFullType * DimensionalCharacteristicIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TrailingZeroDimensionalCharacteristicDisplayGroupTypeLisd :
   public std::list<TrailingZeroDimensionalCharacteristicDisplayGroupType *>,
@@ -2412,7 +2412,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TrailingZeroDimensionalCharacteristicDisplayGroupsType :
   public XmlTypeBase
@@ -2439,7 +2439,7 @@ protected:
   TrailingZeroDimensionalCharacteristicDisplayGroupTypeLisd * TrailingZeroDimensionalCharacteristicDisplayGroup;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TrailingZeroDisplayType :
   public XmlTypeBase
@@ -2474,7 +2474,7 @@ protected:
   TrailingZeroGeometricCharacteristicDisplayGroupsType * TrailingZeroGeometricCharacteristicDisplayGroups;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TrailingZeroGeometricCharacteristicDisplayGroupType :
   public XmlTypeBase
@@ -2497,7 +2497,7 @@ protected:
   ArrayReferenceFullType * GeometricCharacteristicIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TrailingZeroGeometricCharacteristicDisplayGroupTypeLisd :
   public std::list<TrailingZeroGeometricCharacteristicDisplayGroupType *>,
@@ -2511,7 +2511,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TrailingZeroGeometricCharacteristicDisplayGroupsType :
   public XmlTypeBase
@@ -2538,7 +2538,7 @@ protected:
   TrailingZeroGeometricCharacteristicDisplayGroupTypeLisd * TrailingZeroGeometricCharacteristicDisplayGroup;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Triangulation2dType :
   public XmlTypeBase
@@ -2546,22 +2546,22 @@ class Triangulation2dType :
 public:
   Triangulation2dType();
   Triangulation2dType(
-    Triangulation2d_1233_Type * Triangulation2d_1233In,
-    Triangulation2d_1234_Type * Triangulation2d_1234In);
+    Triangulation2d_1234_Type * Triangulation2d_1234In,
+    Triangulation2d_1235_Type * Triangulation2d_1235In);
   ~Triangulation2dType();
   void printSelf(FILE * outFile);
 
-  Triangulation2d_1233_Type * getTriangulation2d_1233();
-  void setTriangulation2d_1233(Triangulation2d_1233_Type * Triangulation2d_1233In);
   Triangulation2d_1234_Type * getTriangulation2d_1234();
   void setTriangulation2d_1234(Triangulation2d_1234_Type * Triangulation2d_1234In);
+  Triangulation2d_1235_Type * getTriangulation2d_1235();
+  void setTriangulation2d_1235(Triangulation2d_1235_Type * Triangulation2d_1235In);
 
 protected:
-  Triangulation2d_1233_Type * Triangulation2d_1233;
   Triangulation2d_1234_Type * Triangulation2d_1234;
+  Triangulation2d_1235_Type * Triangulation2d_1235;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ViewSetType :
   public XmlTypeBase
@@ -2608,7 +2608,7 @@ protected:
   HatchStyleSetType * HatchStyleSet;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class VisualizationSetType :
   public XmlTypeBase
@@ -2635,7 +2635,7 @@ protected:
   PMIDisplaySetType * PMIDisplaySet;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class WeldContourSymbolType :
   public OriginType
@@ -2655,7 +2655,7 @@ protected:
   WeldContourSymbolEnumType * Symbol;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class WeldMainSymbolEnumType :
   public XmlString
@@ -2671,7 +2671,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class WeldMainSymbolType :
   public OriginType
@@ -2691,7 +2691,7 @@ protected:
   WeldMainSymbolEnumType * Symbol;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class WeldSupplementarySymbolType :
   public OriginType
@@ -2711,7 +2711,7 @@ protected:
   WeldSupplementarySymbolEnumType * Symbol;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class WitnessLinesType :
   public XmlTypeBase
@@ -2738,23 +2738,23 @@ protected:
   WitnessLinesTypeChoicePair * WitnessLinesTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union WitnessLinesTypeVal
 {
-  WitnessLinesTyp_1235_Type * WitnessLinesTyp_1235;
   WitnessLinesTyp_1236_Type * WitnessLinesTyp_1236;
+  WitnessLinesTyp_1237_Type * WitnessLinesTyp_1237;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class WitnessLinesTypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    WitnessLinesTyp_1235E,
-    WitnessLinesTyp_1236E };
+    WitnessLinesTyp_1236E,
+    WitnessLinesTyp_1237E };
   WitnessLinesTypeChoicePair();
   WitnessLinesTypeChoicePair(
     whichOne WitnessLinesTypeTypeIn,
@@ -2766,7 +2766,7 @@ public:
   WitnessLinesTypeVal WitnessLinesTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ZoneSectionPlaneType :
   public XmlTypeBase
@@ -2798,7 +2798,7 @@ protected:
   SectionGroupsType * SectionGroups;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ZoneSectionPlaneTypeLisd :
   public std::list<ZoneSectionPlaneType *>,
@@ -2812,7 +2812,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ZoneSectionPlanesType :
   public XmlTypeBase
@@ -2839,7 +2839,7 @@ protected:
   ZoneSectionPlaneTypeLisd * SectionPlane;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ZoneSectionSetType :
   public XmlTypeBase
@@ -2866,7 +2866,7 @@ protected:
   ZoneSectionTypeLisd * ZoneSection;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ZoneSectionType :
   public NodeWithIdBaseType
@@ -2902,7 +2902,7 @@ protected:
   LogicalOperationsType * LogicalOperations;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ZoneSectionTypeLisd :
   public std::list<ZoneSectionType *>,
@@ -2916,223 +2916,176 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ExplodedViewMov_1230_Type :
+class ExplodedViewMov_1231_Type :
   public XmlTypeBase
 {
 public:
-  ExplodedViewMov_1230_Type();
-  ExplodedViewMov_1230_Type(
-    ExplodedViewMov_1230_TypeChoicePair * ExplodedViewMov_1230_TypePairIn);
-  ~ExplodedViewMov_1230_Type();
+  ExplodedViewMov_1231_Type();
+  ExplodedViewMov_1231_Type(
+    ExplodedViewMov_1231_TypeChoicePair * ExplodedViewMov_1231_TypePairIn);
+  ~ExplodedViewMov_1231_Type();
   void printSelf(FILE * outFile);
 
-  ExplodedViewMov_1230_TypeChoicePair * getExplodedViewMov_1230_TypePair();
-  void setExplodedViewMov_1230_TypePair(ExplodedViewMov_1230_TypeChoicePair * ExplodedViewMov_1230_TypePairIn);
+  ExplodedViewMov_1231_TypeChoicePair * getExplodedViewMov_1231_TypePair();
+  void setExplodedViewMov_1231_TypePair(ExplodedViewMov_1231_TypeChoicePair * ExplodedViewMov_1231_TypePairIn);
 
 protected:
-  ExplodedViewMov_1230_TypeChoicePair * ExplodedViewMov_1230_TypePair;
+  ExplodedViewMov_1231_TypeChoicePair * ExplodedViewMov_1231_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union ExplodedViewMov_1230_TypeVal
+union ExplodedViewMov_1231_TypeVal
 {
   ExplodedViewTranslateType * Translate;
   ExplodedViewRotateType * Rotate;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ExplodedViewMov_1230_TypeChoicePair :
+class ExplodedViewMov_1231_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     TranslateE,
     RotateE };
-  ExplodedViewMov_1230_TypeChoicePair();
-  ExplodedViewMov_1230_TypeChoicePair(
-    whichOne ExplodedViewMov_1230_TypeTypeIn,
-    ExplodedViewMov_1230_TypeVal ExplodedViewMov_1230_TypeValueIn);
-  ~ExplodedViewMov_1230_TypeChoicePair();
+  ExplodedViewMov_1231_TypeChoicePair();
+  ExplodedViewMov_1231_TypeChoicePair(
+    whichOne ExplodedViewMov_1231_TypeTypeIn,
+    ExplodedViewMov_1231_TypeVal ExplodedViewMov_1231_TypeValueIn);
+  ~ExplodedViewMov_1231_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ExplodedViewMov_1230_TypeType;
-  ExplodedViewMov_1230_TypeVal ExplodedViewMov_1230_TypeValue;
+  whichOne ExplodedViewMov_1231_TypeType;
+  ExplodedViewMov_1231_TypeVal ExplodedViewMov_1231_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class LogicalOperatio_1231_Type :
+class LogicalOperatio_1232_Type :
   public XmlTypeBase
 {
 public:
-  LogicalOperatio_1231_Type();
-  LogicalOperatio_1231_Type(
-    LogicalOperatio_1231_TypeChoicePairLisd * LogicalOperatio_1231_TypePairsIn);
-  ~LogicalOperatio_1231_Type();
+  LogicalOperatio_1232_Type();
+  LogicalOperatio_1232_Type(
+    LogicalOperatio_1232_TypeChoicePairLisd * LogicalOperatio_1232_TypePairsIn);
+  ~LogicalOperatio_1232_Type();
   void printSelf(FILE * outFile);
 
-  LogicalOperatio_1231_TypeChoicePairLisd * getLogicalOperatio_1231_TypePairs();
-  void setLogicalOperatio_1231_TypePairs(LogicalOperatio_1231_TypeChoicePairLisd * LogicalOperatio_1231_TypePairsIn);
+  LogicalOperatio_1232_TypeChoicePairLisd * getLogicalOperatio_1232_TypePairs();
+  void setLogicalOperatio_1232_TypePairs(LogicalOperatio_1232_TypeChoicePairLisd * LogicalOperatio_1232_TypePairsIn);
 
 protected:
-  LogicalOperatio_1231_TypeChoicePairLisd * LogicalOperatio_1231_TypePairs;
+  LogicalOperatio_1232_TypeChoicePairLisd * LogicalOperatio_1232_TypePairs;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union LogicalOperatio_1231_TypeVal
+union LogicalOperatio_1232_TypeVal
 {
   XmlUnsignedInt * SectionPlane;
   XmlUnsignedInt * LogicalOperationResult;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class LogicalOperatio_1231_TypeChoicePair :
+class LogicalOperatio_1232_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     SectionPlaneE,
     LogicalOperationResultE };
-  LogicalOperatio_1231_TypeChoicePair();
-  LogicalOperatio_1231_TypeChoicePair(
-    whichOne LogicalOperatio_1231_TypeTypeIn,
-    LogicalOperatio_1231_TypeVal LogicalOperatio_1231_TypeValueIn);
-  ~LogicalOperatio_1231_TypeChoicePair();
+  LogicalOperatio_1232_TypeChoicePair();
+  LogicalOperatio_1232_TypeChoicePair(
+    whichOne LogicalOperatio_1232_TypeTypeIn,
+    LogicalOperatio_1232_TypeVal LogicalOperatio_1232_TypeValueIn);
+  ~LogicalOperatio_1232_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne LogicalOperatio_1231_TypeType;
-  LogicalOperatio_1231_TypeVal LogicalOperatio_1231_TypeValue;
+  whichOne LogicalOperatio_1232_TypeType;
+  LogicalOperatio_1232_TypeVal LogicalOperatio_1232_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class LogicalOperatio_1231_TypeChoicePairLisd :
-  public std::list<LogicalOperatio_1231_TypeChoicePair *>,
+class LogicalOperatio_1232_TypeChoicePairLisd :
+  public std::list<LogicalOperatio_1232_TypeChoicePair *>,
   public XmlSchemaInstanceBase
 {
 public:
-  LogicalOperatio_1231_TypeChoicePairLisd();
-  LogicalOperatio_1231_TypeChoicePairLisd
-    (LogicalOperatio_1231_TypeChoicePair * aLogicalOperatio_1231_TypeChoicePair);
-  ~LogicalOperatio_1231_TypeChoicePairLisd();
+  LogicalOperatio_1232_TypeChoicePairLisd();
+  LogicalOperatio_1232_TypeChoicePairLisd
+    (LogicalOperatio_1232_TypeChoicePair * aLogicalOperatio_1232_TypeChoicePair);
+  ~LogicalOperatio_1232_TypeChoicePairLisd();
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class LogicalOperatio_1231_TypeLisd :
-  public std::list<LogicalOperatio_1231_Type *>,
+class LogicalOperatio_1232_TypeLisd :
+  public std::list<LogicalOperatio_1232_Type *>,
   public XmlSchemaInstanceBase
 {
 public:
-  LogicalOperatio_1231_TypeLisd();
-  LogicalOperatio_1231_TypeLisd(
-    LogicalOperatio_1231_Type * aLogicalOperatio_1231_Type);
-  ~LogicalOperatio_1231_TypeLisd();
+  LogicalOperatio_1232_TypeLisd();
+  LogicalOperatio_1232_TypeLisd(
+    LogicalOperatio_1232_Type * aLogicalOperatio_1232_Type);
+  ~LogicalOperatio_1232_TypeLisd();
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class Polyline2dType_1232_Type :
+class Polyline2dType_1233_Type :
   public XmlTypeBase
 {
 public:
-  Polyline2dType_1232_Type();
-  Polyline2dType_1232_Type(
-    Polyline2dType_1232_TypeChoicePair * Polyline2dType_1232_TypePairIn);
-  ~Polyline2dType_1232_Type();
+  Polyline2dType_1233_Type();
+  Polyline2dType_1233_Type(
+    Polyline2dType_1233_TypeChoicePair * Polyline2dType_1233_TypePairIn);
+  ~Polyline2dType_1233_Type();
   void printSelf(FILE * outFile);
 
-  Polyline2dType_1232_TypeChoicePair * getPolyline2dType_1232_TypePair();
-  void setPolyline2dType_1232_TypePair(Polyline2dType_1232_TypeChoicePair * Polyline2dType_1232_TypePairIn);
+  Polyline2dType_1233_TypeChoicePair * getPolyline2dType_1233_TypePair();
+  void setPolyline2dType_1233_TypePair(Polyline2dType_1233_TypeChoicePair * Polyline2dType_1233_TypePairIn);
 
 protected:
-  Polyline2dType_1232_TypeChoicePair * Polyline2dType_1232_TypePair;
+  Polyline2dType_1233_TypeChoicePair * Polyline2dType_1233_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union Polyline2dType_1232_TypeVal
+union Polyline2dType_1233_TypeVal
 {
   ArrayPoint2dType * Points;
   ArrayBinaryType * PointsBinary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class Polyline2dType_1232_TypeChoicePair :
+class Polyline2dType_1233_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     PointsE,
     PointsBinaryE };
-  Polyline2dType_1232_TypeChoicePair();
-  Polyline2dType_1232_TypeChoicePair(
-    whichOne Polyline2dType_1232_TypeTypeIn,
-    Polyline2dType_1232_TypeVal Polyline2dType_1232_TypeValueIn);
-  ~Polyline2dType_1232_TypeChoicePair();
+  Polyline2dType_1233_TypeChoicePair();
+  Polyline2dType_1233_TypeChoicePair(
+    whichOne Polyline2dType_1233_TypeTypeIn,
+    Polyline2dType_1233_TypeVal Polyline2dType_1233_TypeValueIn);
+  ~Polyline2dType_1233_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne Polyline2dType_1232_TypeType;
-  Polyline2dType_1232_TypeVal Polyline2dType_1232_TypeValue;
+  whichOne Polyline2dType_1233_TypeType;
+  Polyline2dType_1233_TypeVal Polyline2dType_1233_TypeValue;
 };
 
-/*********************************************************************/
-
-class Triangulation2d_1233_Type :
-  public XmlTypeBase
-{
-public:
-  Triangulation2d_1233_Type();
-  Triangulation2d_1233_Type(
-    Triangulation2d_1233_TypeChoicePair * Triangulation2d_1233_TypePairIn);
-  ~Triangulation2d_1233_Type();
-  void printSelf(FILE * outFile);
-
-  Triangulation2d_1233_TypeChoicePair * getTriangulation2d_1233_TypePair();
-  void setTriangulation2d_1233_TypePair(Triangulation2d_1233_TypeChoicePair * Triangulation2d_1233_TypePairIn);
-
-protected:
-  Triangulation2d_1233_TypeChoicePair * Triangulation2d_1233_TypePair;
-};
-
-/*********************************************************************/
-
-union Triangulation2d_1233_TypeVal
-{
-  ArrayPoint2dType * Vertices;
-  ArrayBinaryType * VerticesBinary;
-};
-
-/*********************************************************************/
-
-class Triangulation2d_1233_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    VerticesE,
-    VerticesBinaryE };
-  Triangulation2d_1233_TypeChoicePair();
-  Triangulation2d_1233_TypeChoicePair(
-    whichOne Triangulation2d_1233_TypeTypeIn,
-    Triangulation2d_1233_TypeVal Triangulation2d_1233_TypeValueIn);
-  ~Triangulation2d_1233_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne Triangulation2d_1233_TypeType;
-  Triangulation2d_1233_TypeVal Triangulation2d_1233_TypeValue;
-};
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Triangulation2d_1234_Type :
   public XmlTypeBase
@@ -3151,27 +3104,23 @@ protected:
   Triangulation2d_1234_TypeChoicePair * Triangulation2d_1234_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union Triangulation2d_1234_TypeVal
 {
-  ArrayI3Type * Triangles;
-  ArrayBinaryType * TrianglesBinary;
-  ArrayUnsignedByteType * TrianglesColor;
-  ArrayBinaryType * TrianglesColorBinary;
+  ArrayPoint2dType * Vertices;
+  ArrayBinaryType * VerticesBinary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Triangulation2d_1234_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    TrianglesE,
-    TrianglesBinaryE,
-    TrianglesColorE,
-    TrianglesColorBinaryE };
+    VerticesE,
+    VerticesBinaryE };
   Triangulation2d_1234_TypeChoicePair();
   Triangulation2d_1234_TypeChoicePair(
     whichOne Triangulation2d_1234_TypeTypeIn,
@@ -3183,19 +3132,70 @@ public:
   Triangulation2d_1234_TypeVal Triangulation2d_1234_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class WitnessLinesTyp_1235_Type :
+class Triangulation2d_1235_Type :
   public XmlTypeBase
 {
 public:
-  WitnessLinesTyp_1235_Type();
-  WitnessLinesTyp_1235_Type(
+  Triangulation2d_1235_Type();
+  Triangulation2d_1235_Type(
+    Triangulation2d_1235_TypeChoicePair * Triangulation2d_1235_TypePairIn);
+  ~Triangulation2d_1235_Type();
+  void printSelf(FILE * outFile);
+
+  Triangulation2d_1235_TypeChoicePair * getTriangulation2d_1235_TypePair();
+  void setTriangulation2d_1235_TypePair(Triangulation2d_1235_TypeChoicePair * Triangulation2d_1235_TypePairIn);
+
+protected:
+  Triangulation2d_1235_TypeChoicePair * Triangulation2d_1235_TypePair;
+};
+
+/* ***************************************************************** */
+
+union Triangulation2d_1235_TypeVal
+{
+  ArrayI3Type * Triangles;
+  ArrayBinaryType * TrianglesBinary;
+  ArrayUnsignedByteType * TrianglesColor;
+  ArrayBinaryType * TrianglesColorBinary;
+};
+
+/* ***************************************************************** */
+
+class Triangulation2d_1235_TypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    TrianglesE,
+    TrianglesBinaryE,
+    TrianglesColorE,
+    TrianglesColorBinaryE };
+  Triangulation2d_1235_TypeChoicePair();
+  Triangulation2d_1235_TypeChoicePair(
+    whichOne Triangulation2d_1235_TypeTypeIn,
+    Triangulation2d_1235_TypeVal Triangulation2d_1235_TypeValueIn);
+  ~Triangulation2d_1235_TypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne Triangulation2d_1235_TypeType;
+  Triangulation2d_1235_TypeVal Triangulation2d_1235_TypeValue;
+};
+
+/* ***************************************************************** */
+
+class WitnessLinesTyp_1236_Type :
+  public XmlTypeBase
+{
+public:
+  WitnessLinesTyp_1236_Type();
+  WitnessLinesTyp_1236_Type(
     LineSegment2dType * Segment1In,
     PointSimpleType * ZextensionPoint1In,
     LineSegment2dType * Segment2In,
     PointSimpleType * ZextensionPoint2In);
-  ~WitnessLinesTyp_1235_Type();
+  ~WitnessLinesTyp_1236_Type();
   void printSelf(FILE * outFile);
 
   LineSegment2dType * getSegment1();
@@ -3214,19 +3214,19 @@ protected:
   PointSimpleType * ZextensionPoint2;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class WitnessLinesTyp_1236_Type :
+class WitnessLinesTyp_1237_Type :
   public XmlTypeBase
 {
 public:
-  WitnessLinesTyp_1236_Type();
-  WitnessLinesTyp_1236_Type(
+  WitnessLinesTyp_1237_Type();
+  WitnessLinesTyp_1237_Type(
     Point2dSimpleType * BeginPointIn,
     Point2dSimpleType * EndPointIn,
     Point2dSimpleType * CircleCenterIn,
     DoublePositiveType * CircleRadiusIn);
-  ~WitnessLinesTyp_1236_Type();
+  ~WitnessLinesTyp_1237_Type();
   void printSelf(FILE * outFile);
 
   Point2dSimpleType * getBeginPoint();
@@ -3245,7 +3245,7 @@ protected:
   DoublePositiveType * CircleRadius;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FrameFlagType :
   public FrameRectangularType
@@ -3272,7 +3272,7 @@ protected:
   XmlBoolean * right;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LeaderCircularType :
   public LeaderType
@@ -3295,7 +3295,7 @@ protected:
   Point2dSimpleType * Center;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LeaderDoubleHeadType :
   public LeaderType
@@ -3322,7 +3322,7 @@ protected:
   Point2dSimpleType * PointConnection;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LeaderExtendType :
   public LeaderType
@@ -3349,7 +3349,7 @@ protected:
   LeaderModifierEnumType * Modifier;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LeaderDoubleHeadCircularType :
   public LeaderDoubleHeadType
@@ -3374,7 +3374,7 @@ protected:
   Point2dSimpleType * Center;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LeaderDoubleHeadExtendType :
   public LeaderDoubleHeadType
@@ -3399,6 +3399,6 @@ protected:
   Point2dSimpleType * PointExtension;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 #endif // VISUALIZATION_HH

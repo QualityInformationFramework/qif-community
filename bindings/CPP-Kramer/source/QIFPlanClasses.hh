@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #ifndef QIFPLAN_HH
 #define QIFPLAN_HH
@@ -8,7 +8,7 @@
 #include "IntermediatesPMIClasses.hh"
 #include "ExpressionsClasses.hh"
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ActionBaseType;
 class ActionGroupBaseType;
@@ -77,8 +77,8 @@ class WorkInstructionBaseType;
 class WorkInstructionBaseTypeLisd;
 class WorkInstructionsType;
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 class ActionMethodBaseType :
   public XmlTypeBase
@@ -115,7 +115,7 @@ protected:
   AttributesType * Attributes;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ActionMethodBaseTypeLisd :
   public std::list<ActionMethodBaseType *>,
@@ -129,7 +129,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ActionMethodsType :
   public XmlTypeBase
@@ -156,7 +156,7 @@ protected:
   ActionMethodBaseTypeLisd * ActionMethod;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElseDoType :
   public XmlTypeBase
@@ -175,7 +175,7 @@ protected:
   PlanElementBaseType * PlanElement;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LocalVariablesType :
   public XmlTypeBase
@@ -202,7 +202,7 @@ protected:
   VariableDeclarationTypeLisd * Variable;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasurandBaseType :
   public XmlTypeBase
@@ -229,7 +229,7 @@ protected:
   AttributesType * Attributes;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasurandBaseTypeLisd :
   public std::list<MeasurandBaseType *>,
@@ -243,7 +243,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasurandsType :
   public XmlTypeBase
@@ -270,7 +270,7 @@ protected:
   MeasurandBaseTypeLisd * Measurand;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasureActionGroupFunctionEnumType :
   public XmlNMTOKEN
@@ -286,7 +286,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasureActionGroupFunctionType :
   public XmlTypeBase
@@ -305,7 +305,7 @@ protected:
   MeasureActionGroupFunctionTypeChoicePair * MeasureActionGroupFunctionTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union MeasureActionGroupFunctionTypeVal
 {
@@ -313,7 +313,7 @@ union MeasureActionGroupFunctionTypeVal
   XmlString * OtherMeasureActionGroupFunction;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasureActionGroupFunctionTypeChoicePair :
   public XmlTypeBase
@@ -333,7 +333,7 @@ public:
   MeasureActionGroupFunctionTypeVal MeasureActionGroupFunctionTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasureFeatureMethodBaseType :
   public ActionMethodBaseType
@@ -354,7 +354,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MicroscopeMeasureFeatureMethodType :
   public MeasureFeatureMethodBaseType
@@ -375,7 +375,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class NumberedPlanElementType :
   public XmlTypeBase
@@ -398,7 +398,7 @@ protected:
   PlanElementBaseType * PlanElement;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class NumberedPlanElementTypeLisd :
   public std::list<NumberedPlanElementType *>,
@@ -412,7 +412,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class NumberedPlanElementsType :
   public XmlTypeBase
@@ -439,7 +439,7 @@ protected:
   NumberedPlanElementTypeLisd * NumberedPlanElement;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherMeasureFeatureMethodType :
   public MeasureFeatureMethodBaseType
@@ -460,7 +460,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlanElementBaseType :
   public XmlTypeBase
@@ -483,7 +483,7 @@ protected:
   AttributesType * Attributes;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlanElementBaseTypeLisd :
   public std::list<PlanElementBaseType *>,
@@ -497,7 +497,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlanType :
   public XmlTypeBase
@@ -544,7 +544,7 @@ protected:
   ActionGroupBaseType * PlanRoot;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PredecessorsType :
   public XmlTypeBase
@@ -571,7 +571,7 @@ protected:
   XmlPositiveIntegerLisd * Predecessor;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ProfileProjectorMeasureFeatureMethodType :
   public MeasureFeatureMethodBaseType
@@ -592,7 +592,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StepWithPredecessorsType :
   public XmlTypeBase
@@ -615,7 +615,7 @@ protected:
   NumberedPlanElementType * Step;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StepWithPredecessorsTypeLisd :
   public std::list<StepWithPredecessorsType *>,
@@ -629,7 +629,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StepsWithPredecessorsType :
   public XmlTypeBase
@@ -656,7 +656,7 @@ protected:
   StepWithPredecessorsTypeLisd * StepWithPredecessors;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TestAndPlanElementType :
   public XmlTypeBase
@@ -679,7 +679,7 @@ protected:
   PlanElementBaseType * PlanElement;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TestAndPlanElementTypeLisd :
   public std::list<TestAndPlanElementType *>,
@@ -693,7 +693,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TheodoliteMeasureFeatureMethodType :
   public MeasureFeatureMethodBaseType
@@ -714,7 +714,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class UniversalLengthMeasureFeatureMethodType :
   public MeasureFeatureMethodBaseType
@@ -735,7 +735,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class UnnumberedPlanElementsType :
   public XmlTypeBase
@@ -762,7 +762,7 @@ protected:
   PlanElementBaseTypeLisd * PlanElement;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class VariableDeclarationType :
   public XmlTypeBase
@@ -785,7 +785,7 @@ protected:
   XmlDecimal * Val;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class VariableDeclarationTypeLisd :
   public std::list<VariableDeclarationType *>,
@@ -799,7 +799,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class VariableSetType :
   public PlanElementBaseType
@@ -824,7 +824,7 @@ protected:
   ArithmeticExpressionBaseType * ArithmeticExpression;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class WorkInstructionBaseType :
   public XmlTypeBase
@@ -851,7 +851,7 @@ protected:
   AttributesType * Attributes;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class WorkInstructionBaseTypeLisd :
   public std::list<WorkInstructionBaseType *>,
@@ -865,7 +865,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class WorkInstructionsType :
   public XmlTypeBase
@@ -892,7 +892,7 @@ protected:
   WorkInstructionBaseTypeLisd * WorkInstruction;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ActionBaseType :
   public PlanElementBaseType
@@ -921,7 +921,7 @@ protected:
   ArrayReferenceType * PreferredResourceIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ActionGroupBaseType :
   public PlanElementBaseType
@@ -942,7 +942,7 @@ protected:
   MeasureActionGroupFunctionType * MeasureActionGroupFunction;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AutocollimatorMeasureFeatureMethodType :
   public MeasureFeatureMethodBaseType
@@ -963,7 +963,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CalibratedComparatorMeasureFeatureMethodType :
   public MeasureFeatureMethodBaseType
@@ -984,7 +984,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ComputedTomographyMeasureFeatureMethodType :
   public MeasureFeatureMethodBaseType
@@ -1005,7 +1005,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CoordinateMeasureFeatureMethodType :
   public MeasureFeatureMethodBaseType
@@ -1034,7 +1034,7 @@ protected:
   XmlPositiveInteger * NumberOfMeasurementPoints;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DocumentFileInstructionType :
   public WorkInstructionBaseType
@@ -1059,7 +1059,7 @@ protected:
   ExternalFileReferenceType * ExternalFile;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EstablishDatumMeasurandType :
   public MeasurandBaseType
@@ -1089,7 +1089,7 @@ protected:
   QIFReferenceFullType * DatumReferenceFrameId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EvaluateCharacteristicMeasurandType :
   public MeasurandBaseType
@@ -1114,7 +1114,7 @@ protected:
   QIFReferenceType * CharacteristicItemId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EvaluateSpecifiedCharacteristicsActionType :
   public ActionBaseType
@@ -1138,7 +1138,7 @@ protected:
   ArrayReferenceType * CharacteristicItemIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExternalReferenceMeasureFeatureMethodType :
   public MeasureFeatureMethodBaseType
@@ -1167,7 +1167,7 @@ protected:
   ExternalFileReferencesType * ExternalFileReferences;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class GageMeasureFeatureMethodType :
   public MeasureFeatureMethodBaseType
@@ -1188,7 +1188,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class HaltActionType :
   public ActionBaseType
@@ -1205,7 +1205,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class IfActionGroupType :
   public ActionGroupBaseType
@@ -1235,7 +1235,7 @@ protected:
   ElseDoType * ElseDo;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ImageInstructionType :
   public WorkInstructionBaseType
@@ -1260,7 +1260,7 @@ protected:
   ExternalFileReferenceType * ExternalFile;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LaserRadarMeasureFeatureMethodType :
   public MeasureFeatureMethodBaseType
@@ -1281,7 +1281,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LaserTrackerMeasureFeatureMethodType :
   public MeasureFeatureMethodBaseType
@@ -1302,7 +1302,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ManualMeasureFeatureMethodType :
   public MeasureFeatureMethodBaseType
@@ -1323,7 +1323,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasureEvaluateAllActionType :
   public ActionBaseType
@@ -1340,7 +1340,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasureEvaluateSpecifiedActionType :
   public ActionBaseType
@@ -1364,7 +1364,7 @@ protected:
   ArrayReferenceType * CharacteristicItemIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasureSpecifiedFeaturesActionType :
   public ActionBaseType
@@ -1388,7 +1388,7 @@ protected:
   ArrayReferenceType * FeatureItemIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasureSpecifiedMeasurandsActionType :
   public ActionBaseType
@@ -1412,7 +1412,7 @@ protected:
   ArrayReferenceType * MeasurandIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OneOfActionGroupType :
   public ActionGroupBaseType
@@ -1434,7 +1434,7 @@ protected:
   NumberedPlanElementsType * Steps;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OrderedActionGroupType :
   public ActionGroupBaseType
@@ -1456,7 +1456,7 @@ protected:
   NumberedPlanElementsType * Steps;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PartiallyOrderedActionGroupType :
   public ActionGroupBaseType
@@ -1478,7 +1478,7 @@ protected:
   StepsWithPredecessorsType * StepsWithPredecessors;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PickSomeActionGroupType :
   public ActionGroupBaseType
@@ -1504,7 +1504,7 @@ protected:
   XmlPositiveInteger * NumberOfSteps;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TextInstructionType :
   public WorkInstructionBaseType
@@ -1529,7 +1529,7 @@ protected:
   XmlString * TextInstruction;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class UnorderedActionGroupType :
   public ActionGroupBaseType
@@ -1551,7 +1551,7 @@ protected:
   UnnumberedPlanElementsType * Steps;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class VideoInstructionType :
   public WorkInstructionBaseType
@@ -1576,7 +1576,7 @@ protected:
   ExternalFileReferenceType * ExternalFile;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class WhileActionGroupType :
   public ActionGroupBaseType
@@ -1602,6 +1602,6 @@ protected:
   PlanElementBaseType * PlanElement;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 #endif // QIFPLAN_HH

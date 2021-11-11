@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #include <stdio.h>             // for printf, etc.
 #include <string.h>            // for strdup
@@ -10,8 +10,8 @@
 
 #define INDENT 2
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 /* class AsmPathType
 
@@ -155,7 +155,7 @@ ArrayReferenceType * AsmPathType::getComponentIds()
 void AsmPathType::setComponentIds(ArrayReferenceType * ComponentIdsIn)
 {ComponentIds = ComponentIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AsmPathTypeLisd
 
@@ -182,7 +182,7 @@ AsmPathTypeLisd::~AsmPathTypeLisd()
 
 void AsmPathTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AsmPathsType
 
@@ -340,7 +340,7 @@ AsmPathTypeLisd * AsmPathsType::getAsmPath()
 void AsmPathsType::setAsmPath(AsmPathTypeLisd * AsmPathIn)
 {AsmPath = AsmPathIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AssemblySetType
 
@@ -498,7 +498,7 @@ AssemblyTypeLisd * AssemblySetType::getAssembly()
 void AssemblySetType::setAssembly(AssemblyTypeLisd * AssemblyIn)
 {Assembly = AssemblyIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AssemblyType
 
@@ -1215,7 +1215,7 @@ FoldersAssemblyType * AssemblyType::getFoldersAssembly()
 void AssemblyType::setFoldersAssembly(FoldersAssemblyType * FoldersAssemblyIn)
 {FoldersAssembly = FoldersAssemblyIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AssemblyTypeLisd
 
@@ -1242,7 +1242,7 @@ AssemblyTypeLisd::~AssemblyTypeLisd()
 
 void AssemblyTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ComponentSetType
 
@@ -1400,7 +1400,7 @@ ComponentTypeLisd * ComponentSetType::getComponent()
 void ComponentSetType::setComponent(ComponentTypeLisd * ComponentIn)
 {Component = ComponentIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ComponentType
 
@@ -1412,7 +1412,7 @@ ComponentType::ComponentType() :
   Transform = 0;
   UUID = 0;
   Traceability = 0;
-  ComponentType_1237 = 0;
+  ComponentType_1238 = 0;
 }
 
 ComponentType::ComponentType(
@@ -1420,14 +1420,14 @@ ComponentType::ComponentType(
  ElementReferenceType * TransformIn,
  QPIdType * UUIDIn,
  ProductTraceabilityType * TraceabilityIn,
- ComponentType_1237_Type * ComponentType_1237In) :
+ ComponentType_1238_Type * ComponentType_1238In) :
   DrawableBaseType(
     AttributesIn)
 {
   Transform = TransformIn;
   UUID = UUIDIn;
   Traceability = TraceabilityIn;
-  ComponentType_1237 = ComponentType_1237In;
+  ComponentType_1238 = ComponentType_1238In;
 }
 
 ComponentType::ComponentType(
@@ -1441,7 +1441,7 @@ ComponentType::ComponentType(
  ElementReferenceType * TransformIn,
  QPIdType * UUIDIn,
  ProductTraceabilityType * TraceabilityIn,
- ComponentType_1237_Type * ComponentType_1237In) :
+ ComponentType_1238_Type * ComponentType_1238In) :
   DrawableBaseType(
     labelIn,
     idIn,
@@ -1454,7 +1454,7 @@ ComponentType::ComponentType(
   Transform = TransformIn;
   UUID = UUIDIn;
   Traceability = TraceabilityIn;
-  ComponentType_1237 = ComponentType_1237In;
+  ComponentType_1238 = ComponentType_1238In;
 }
 
 ComponentType::~ComponentType()
@@ -1463,7 +1463,7 @@ ComponentType::~ComponentType()
   delete Transform;
   delete UUID;
   delete Traceability;
-  delete ComponentType_1237;
+  delete ComponentType_1238;
   #endif
 }
 
@@ -1612,7 +1612,7 @@ void ComponentType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Traceability>\n");
     }
-  ComponentType_1237->printSelf(outFile);
+  ComponentType_1238->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -1806,13 +1806,13 @@ ProductTraceabilityType * ComponentType::getTraceability()
 void ComponentType::setTraceability(ProductTraceabilityType * TraceabilityIn)
 {Traceability = TraceabilityIn;}
 
-ComponentType_1237_Type * ComponentType::getComponentType_1237()
-{return ComponentType_1237;}
+ComponentType_1238_Type * ComponentType::getComponentType_1238()
+{return ComponentType_1238;}
 
-void ComponentType::setComponentType_1237(ComponentType_1237_Type * ComponentType_1237In)
-{ComponentType_1237 = ComponentType_1237In;}
+void ComponentType::setComponentType_1238(ComponentType_1238_Type * ComponentType_1238In)
+{ComponentType_1238 = ComponentType_1238In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ComponentTypeLisd
 
@@ -1839,7 +1839,7 @@ ComponentTypeLisd::~ComponentTypeLisd()
 
 void ComponentTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DefinitionExternalType
 
@@ -1945,7 +1945,7 @@ DefinitionExternalTypeChoicePairLisd * DefinitionExternalType::getDefinitionExte
 void DefinitionExternalType::setDefinitionExternalTypePairs(DefinitionExternalTypeChoicePairLisd * DefinitionExternalTypePairsIn)
 {DefinitionExternalTypePairs = DefinitionExternalTypePairsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DefinitionExternalTypeChoicePair
 
@@ -2011,7 +2011,7 @@ void DefinitionExternalTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DefinitionExternalTypeChoicePairLisd
 
@@ -2146,7 +2146,7 @@ NaturalType * DefinitionExternalType::getn()
 void DefinitionExternalType::setn(NaturalType * nIn)
 {n = nIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DigitalDrawingType
 
@@ -2402,7 +2402,7 @@ EntitiesExternalType * DigitalDrawingType::getEntities()
 void DigitalDrawingType::setEntities(EntitiesExternalType * EntitiesIn)
 {Entities = EntitiesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DigitalModelType
 
@@ -2716,7 +2716,7 @@ EntitiesExternalType * DigitalModelType::getEntities()
 void DigitalModelType::setEntities(EntitiesExternalType * EntitiesIn)
 {Entities = EntitiesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FileInternalType
 
@@ -2775,7 +2775,7 @@ VersionType * FileInternalType::getVersion()
 void FileInternalType::setVersion(VersionType * VersionIn)
 {Version = VersionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FolderAssemblyType
 
@@ -3300,7 +3300,7 @@ ArrayReferenceType * FolderAssemblyType::getComponentIds()
 void FolderAssemblyType::setComponentIds(ArrayReferenceType * ComponentIdsIn)
 {ComponentIds = ComponentIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FolderAssemblyTypeLisd
 
@@ -3327,7 +3327,7 @@ FolderAssemblyTypeLisd::~FolderAssemblyTypeLisd()
 
 void FolderAssemblyTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FolderPartAssemblyBaseType
 
@@ -3947,7 +3947,7 @@ ArrayReferenceType * FolderPartAssemblyBaseType::getPointCloudIds()
 void FolderPartAssemblyBaseType::setPointCloudIds(ArrayReferenceType * PointCloudIdsIn)
 {PointCloudIds = PointCloudIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FolderPartType
 
@@ -4455,7 +4455,7 @@ bool FolderPartType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FolderPartTypeLisd
 
@@ -4482,7 +4482,7 @@ FolderPartTypeLisd::~FolderPartTypeLisd()
 
 void FolderPartTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FoldersAssemblyType
 
@@ -4640,7 +4640,7 @@ FolderAssemblyTypeLisd * FoldersAssemblyType::getFolderAssembly()
 void FoldersAssemblyType::setFolderAssembly(FolderAssemblyTypeLisd * FolderAssemblyIn)
 {FolderAssembly = FolderAssemblyIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FoldersPartType
 
@@ -4798,7 +4798,7 @@ FolderPartTypeLisd * FoldersPartType::getFolderPart()
 void FoldersPartType::setFolderPart(FolderPartTypeLisd * FolderPartIn)
 {FolderPart = FolderPartIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class GDTEnumType
 
@@ -4860,7 +4860,7 @@ void GDTEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LayerSetType
 
@@ -5018,7 +5018,7 @@ LayerTypeLisd * LayerSetType::getLayer()
 void LayerSetType::setLayer(LayerTypeLisd * LayerIn)
 {Layer = LayerIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LayerType
 
@@ -5490,7 +5490,7 @@ ArrayReferenceFullType * LayerType::getElementIds()
 void LayerType::setElementIds(ArrayReferenceFullType * ElementIdsIn)
 {ElementIds = ElementIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LayerTypeLisd
 
@@ -5517,7 +5517,7 @@ LayerTypeLisd::~LayerTypeLisd()
 
 void LayerTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NoteFlagSetType
 
@@ -5675,7 +5675,7 @@ NoteFlagTypeLisd * NoteFlagSetType::getNoteFlag()
 void NoteFlagSetType::setNoteFlag(NoteFlagTypeLisd * NoteFlagIn)
 {NoteFlag = NoteFlagIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NoteFlagType
 
@@ -6127,7 +6127,7 @@ XmlAnyURI * NoteFlagType::getURI()
 void NoteFlagType::setURI(XmlAnyURI * URIIn)
 {URI = URIIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NoteFlagTypeLisd
 
@@ -6154,7 +6154,7 @@ NoteFlagTypeLisd::~NoteFlagTypeLisd()
 
 void NoteFlagTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NoteFormEnumType
 
@@ -6212,7 +6212,7 @@ void NoteFormEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NoteSetType
 
@@ -6370,7 +6370,7 @@ NoteTypeLisd * NoteSetType::getNote()
 void NoteSetType::setNote(NoteTypeLisd * NoteIn)
 {Note = NoteIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NoteType
 
@@ -6817,7 +6817,7 @@ XmlString * NoteType::getText()
 void NoteType::setText(XmlString * TextIn)
 {Text = TextIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NoteTypeLisd
 
@@ -6844,7 +6844,7 @@ NoteTypeLisd::~NoteTypeLisd()
 
 void NoteTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PartAssemblyBaseType
 
@@ -7682,7 +7682,7 @@ ArrayReferenceType * PartAssemblyBaseType::getPointCloudIds()
 void PartAssemblyBaseType::setPointCloudIds(ArrayReferenceType * PointCloudIdsIn)
 {PointCloudIds = PointCloudIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PartAssemblyHeaderType
 
@@ -7815,7 +7815,7 @@ XmlString * PartAssemblyHeaderType::getDescription()
 void PartAssemblyHeaderType::setDescription(XmlString * DescriptionIn)
 {Description = DescriptionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PartFamilyType
 
@@ -7913,7 +7913,7 @@ ManufacturingMethodType * PartFamilyType::getPrimaryManufacturingMethod()
 void PartFamilyType::setPrimaryManufacturingMethod(ManufacturingMethodType * PrimaryManufacturingMethodIn)
 {PrimaryManufacturingMethod = PrimaryManufacturingMethodIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PartNoteSetType
 
@@ -8071,7 +8071,7 @@ PartNoteTypeLisd * PartNoteSetType::getPartNote()
 void PartNoteSetType::setPartNote(PartNoteTypeLisd * PartNoteIn)
 {PartNote = PartNoteIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PartNoteType
 
@@ -8450,7 +8450,7 @@ ArrayReferenceType * PartNoteType::getPartNoteIds()
 void PartNoteType::setPartNoteIds(ArrayReferenceType * PartNoteIdsIn)
 {PartNoteIds = PartNoteIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PartNoteTypeLisd
 
@@ -8477,7 +8477,7 @@ PartNoteTypeLisd::~PartNoteTypeLisd()
 
 void PartNoteTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PartSetType
 
@@ -8635,7 +8635,7 @@ PartTypeLisd * PartSetType::getPart()
 void PartSetType::setPart(PartTypeLisd * PartIn)
 {Part = PartIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PartType
 
@@ -9355,7 +9355,7 @@ FoldersPartType * PartType::getFoldersPart()
 void PartType::setFoldersPart(FoldersPartType * FoldersPartIn)
 {FoldersPart = FoldersPartIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PartTypeLisd
 
@@ -9382,7 +9382,7 @@ PartTypeLisd::~PartTypeLisd()
 
 void PartTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PhysicalModelType
 
@@ -9618,7 +9618,7 @@ XmlString * PhysicalModelType::getModelNumber()
 void PhysicalModelType::setModelNumber(XmlString * ModelNumberIn)
 {ModelNumber = ModelNumberIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PrintedDrawingType
 
@@ -9873,7 +9873,7 @@ XmlString * PrintedDrawingType::getLocation()
 void PrintedDrawingType::setLocation(XmlString * LocationIn)
 {Location = LocationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ProductHeaderType
 
@@ -10011,7 +10011,7 @@ XmlDouble * ProductHeaderType::getMassPropertyTolerance()
 void ProductHeaderType::setMassPropertyTolerance(XmlDouble * MassPropertyToleranceIn)
 {MassPropertyTolerance = MassPropertyToleranceIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ProductType
 
@@ -10033,7 +10033,7 @@ ProductType::ProductType()
   PartSet = 0;
   AssemblySet = 0;
   ComponentSet = 0;
-  ProductType_1238 = 0;
+  ProductType_1239 = 0;
   AsmPaths = 0;
   MaterialLibrary = 0;
 }
@@ -10053,7 +10053,7 @@ ProductType::ProductType(
  PartSetType * PartSetIn,
  AssemblySetType * AssemblySetIn,
  ComponentSetType * ComponentSetIn,
- ProductType_1238_Type * ProductType_1238In,
+ ProductType_1239_Type * ProductType_1239In,
  AsmPathsType * AsmPathsIn,
  MaterialsType * MaterialLibraryIn)
 {
@@ -10071,7 +10071,7 @@ ProductType::ProductType(
   PartSet = PartSetIn;
   AssemblySet = AssemblySetIn;
   ComponentSet = ComponentSetIn;
-  ProductType_1238 = ProductType_1238In;
+  ProductType_1239 = ProductType_1239In;
   AsmPaths = AsmPathsIn;
   MaterialLibrary = MaterialLibraryIn;
 }
@@ -10093,7 +10093,7 @@ ProductType::~ProductType()
   delete PartSet;
   delete AssemblySet;
   delete ComponentSet;
-  delete ProductType_1238;
+  delete ProductType_1239;
   delete AsmPaths;
   delete MaterialLibrary;
   #endif
@@ -10215,9 +10215,9 @@ void ProductType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</ComponentSet>\n");
     }
-  if (ProductType_1238)
+  if (ProductType_1239)
     {
-      ProductType_1238->printSelf(outFile);
+      ProductType_1239->printSelf(outFile);
     }
   if (AsmPaths)
     {
@@ -10322,11 +10322,11 @@ ComponentSetType * ProductType::getComponentSet()
 void ProductType::setComponentSet(ComponentSetType * ComponentSetIn)
 {ComponentSet = ComponentSetIn;}
 
-ProductType_1238_Type * ProductType::getProductType_1238()
-{return ProductType_1238;}
+ProductType_1239_Type * ProductType::getProductType_1239()
+{return ProductType_1239;}
 
-void ProductType::setProductType_1238(ProductType_1238_Type * ProductType_1238In)
-{ProductType_1238 = ProductType_1238In;}
+void ProductType::setProductType_1239(ProductType_1239_Type * ProductType_1239In)
+{ProductType_1239 = ProductType_1239In;}
 
 AsmPathsType * ProductType::getAsmPaths()
 {return AsmPaths;}
@@ -10340,7 +10340,7 @@ MaterialsType * ProductType::getMaterialLibrary()
 void ProductType::setMaterialLibrary(MaterialsType * MaterialLibraryIn)
 {MaterialLibrary = MaterialLibraryIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TopologyEnumType
 
@@ -10400,7 +10400,7 @@ void TopologyEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ValidationPartAssemblyInstanceType
 
@@ -10476,7 +10476,7 @@ BoundingBoxAxisAlignedType * ValidationPartAssemblyInstanceType::getBox()
 void ValidationPartAssemblyInstanceType::setBox(BoundingBoxAxisAlignedType * BoxIn)
 {Box = BoxIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ValidationPartAssemblyInstanceTypeLisd
 
@@ -10503,7 +10503,7 @@ ValidationPartAssemblyInstanceTypeLisd::~ValidationPartAssemblyInstanceTypeLisd(
 
 void ValidationPartAssemblyInstanceTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ValidationPartAssemblyInstancesType
 
@@ -10661,7 +10661,7 @@ ValidationPartAssemblyInstanceTypeLisd * ValidationPartAssemblyInstancesType::ge
 void ValidationPartAssemblyInstancesType::setInstance(ValidationPartAssemblyInstanceTypeLisd * InstanceIn)
 {Instance = InstanceIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ValidationPartAssemblyType
 
@@ -10811,180 +10811,180 @@ ValidationPartAssemblyInstancesType * ValidationPartAssemblyType::getInstances()
 void ValidationPartAssemblyType::setInstances(ValidationPartAssemblyInstancesType * InstancesIn)
 {Instances = InstancesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class ComponentType_1237_Type
-
-*/
-
-ComponentType_1237_Type::ComponentType_1237_Type()
-{
-  ComponentType_1237_TypePair = 0;
-}
-
-ComponentType_1237_Type::ComponentType_1237_Type(
- ComponentType_1237_TypeChoicePair * ComponentType_1237_TypePairIn)
-{
-  ComponentType_1237_TypePair = ComponentType_1237_TypePairIn;
-}
-
-ComponentType_1237_Type::~ComponentType_1237_Type()
-{
-  #ifndef NODESTRUCT
-  delete ComponentType_1237_TypePair;
-  #endif
-}
-
-void ComponentType_1237_Type::printSelf(FILE * outFile)
-{
-  ComponentType_1237_TypePair->printSelf(outFile);
-}
-
-ComponentType_1237_TypeChoicePair * ComponentType_1237_Type::getComponentType_1237_TypePair()
-{return ComponentType_1237_TypePair;}
-
-void ComponentType_1237_Type::setComponentType_1237_TypePair(ComponentType_1237_TypeChoicePair * ComponentType_1237_TypePairIn)
-{ComponentType_1237_TypePair = ComponentType_1237_TypePairIn;}
-
-/*********************************************************************/
-
-/* class ComponentType_1237_TypeChoicePair
+/* class ComponentType_1238_Type
 
 */
 
-ComponentType_1237_TypeChoicePair::ComponentType_1237_TypeChoicePair() {}
-
-ComponentType_1237_TypeChoicePair::ComponentType_1237_TypeChoicePair(
- whichOne ComponentType_1237_TypeTypeIn,
- ComponentType_1237_TypeVal ComponentType_1237_TypeValueIn)
+ComponentType_1238_Type::ComponentType_1238_Type()
 {
-  ComponentType_1237_TypeType = ComponentType_1237_TypeTypeIn;
-  ComponentType_1237_TypeValue = ComponentType_1237_TypeValueIn;
+  ComponentType_1238_TypePair = 0;
 }
 
-ComponentType_1237_TypeChoicePair::~ComponentType_1237_TypeChoicePair()
+ComponentType_1238_Type::ComponentType_1238_Type(
+ ComponentType_1238_TypeChoicePair * ComponentType_1238_TypePairIn)
+{
+  ComponentType_1238_TypePair = ComponentType_1238_TypePairIn;
+}
+
+ComponentType_1238_Type::~ComponentType_1238_Type()
 {
   #ifndef NODESTRUCT
-  if (ComponentType_1237_TypeType == PartE)
-    delete ComponentType_1237_TypeValue.Part;
-  else if (ComponentType_1237_TypeType == AssemblyE)
-    delete ComponentType_1237_TypeValue.Assembly;
+  delete ComponentType_1238_TypePair;
   #endif
 }
 
-void ComponentType_1237_TypeChoicePair::printSelf(FILE * outFile)
+void ComponentType_1238_Type::printSelf(FILE * outFile)
 {
-  if (ComponentType_1237_TypeType == PartE)
+  ComponentType_1238_TypePair->printSelf(outFile);
+}
+
+ComponentType_1238_TypeChoicePair * ComponentType_1238_Type::getComponentType_1238_TypePair()
+{return ComponentType_1238_TypePair;}
+
+void ComponentType_1238_Type::setComponentType_1238_TypePair(ComponentType_1238_TypeChoicePair * ComponentType_1238_TypePairIn)
+{ComponentType_1238_TypePair = ComponentType_1238_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class ComponentType_1238_TypeChoicePair
+
+*/
+
+ComponentType_1238_TypeChoicePair::ComponentType_1238_TypeChoicePair() {}
+
+ComponentType_1238_TypeChoicePair::ComponentType_1238_TypeChoicePair(
+ whichOne ComponentType_1238_TypeTypeIn,
+ ComponentType_1238_TypeVal ComponentType_1238_TypeValueIn)
+{
+  ComponentType_1238_TypeType = ComponentType_1238_TypeTypeIn;
+  ComponentType_1238_TypeValue = ComponentType_1238_TypeValueIn;
+}
+
+ComponentType_1238_TypeChoicePair::~ComponentType_1238_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (ComponentType_1238_TypeType == PartE)
+    delete ComponentType_1238_TypeValue.Part;
+  else if (ComponentType_1238_TypeType == AssemblyE)
+    delete ComponentType_1238_TypeValue.Assembly;
+  #endif
+}
+
+void ComponentType_1238_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (ComponentType_1238_TypeType == PartE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Part");
-      ComponentType_1237_TypeValue.Part->printSelf(outFile);
+      ComponentType_1238_TypeValue.Part->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Part>\n");
     }
-  else if (ComponentType_1237_TypeType == AssemblyE)
+  else if (ComponentType_1238_TypeType == AssemblyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Assembly");
-      ComponentType_1237_TypeValue.Assembly->printSelf(outFile);
+      ComponentType_1238_TypeValue.Assembly->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Assembly>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class ProductType_1238_Type
+/* class ProductType_1239_Type
 
 */
 
-ProductType_1238_Type::ProductType_1238_Type()
+ProductType_1239_Type::ProductType_1239_Type()
 {
-  ProductType_1238_TypePair = 0;
+  ProductType_1239_TypePair = 0;
 }
 
-ProductType_1238_Type::ProductType_1238_Type(
- ProductType_1238_TypeChoicePair * ProductType_1238_TypePairIn)
+ProductType_1239_Type::ProductType_1239_Type(
+ ProductType_1239_TypeChoicePair * ProductType_1239_TypePairIn)
 {
-  ProductType_1238_TypePair = ProductType_1238_TypePairIn;
+  ProductType_1239_TypePair = ProductType_1239_TypePairIn;
 }
 
-ProductType_1238_Type::~ProductType_1238_Type()
+ProductType_1239_Type::~ProductType_1239_Type()
 {
   #ifndef NODESTRUCT
-  delete ProductType_1238_TypePair;
+  delete ProductType_1239_TypePair;
   #endif
 }
 
-void ProductType_1238_Type::printSelf(FILE * outFile)
+void ProductType_1239_Type::printSelf(FILE * outFile)
 {
-  if (ProductType_1238_TypePair)
+  if (ProductType_1239_TypePair)
     {
-      ProductType_1238_TypePair->printSelf(outFile);
+      ProductType_1239_TypePair->printSelf(outFile);
     }
 }
 
-ProductType_1238_TypeChoicePair * ProductType_1238_Type::getProductType_1238_TypePair()
-{return ProductType_1238_TypePair;}
+ProductType_1239_TypeChoicePair * ProductType_1239_Type::getProductType_1239_TypePair()
+{return ProductType_1239_TypePair;}
 
-void ProductType_1238_Type::setProductType_1238_TypePair(ProductType_1238_TypeChoicePair * ProductType_1238_TypePairIn)
-{ProductType_1238_TypePair = ProductType_1238_TypePairIn;}
+void ProductType_1239_Type::setProductType_1239_TypePair(ProductType_1239_TypeChoicePair * ProductType_1239_TypePairIn)
+{ProductType_1239_TypePair = ProductType_1239_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class ProductType_1238_TypeChoicePair
+/* class ProductType_1239_TypeChoicePair
 
 */
 
-ProductType_1238_TypeChoicePair::ProductType_1238_TypeChoicePair() {}
+ProductType_1239_TypeChoicePair::ProductType_1239_TypeChoicePair() {}
 
-ProductType_1238_TypeChoicePair::ProductType_1238_TypeChoicePair(
- whichOne ProductType_1238_TypeTypeIn,
- ProductType_1238_TypeVal ProductType_1238_TypeValueIn)
+ProductType_1239_TypeChoicePair::ProductType_1239_TypeChoicePair(
+ whichOne ProductType_1239_TypeTypeIn,
+ ProductType_1239_TypeVal ProductType_1239_TypeValueIn)
 {
-  ProductType_1238_TypeType = ProductType_1238_TypeTypeIn;
-  ProductType_1238_TypeValue = ProductType_1238_TypeValueIn;
+  ProductType_1239_TypeType = ProductType_1239_TypeTypeIn;
+  ProductType_1239_TypeValue = ProductType_1239_TypeValueIn;
 }
 
-ProductType_1238_TypeChoicePair::~ProductType_1238_TypeChoicePair()
+ProductType_1239_TypeChoicePair::~ProductType_1239_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (ProductType_1238_TypeType == RootPartE)
-    delete ProductType_1238_TypeValue.RootPart;
-  else if (ProductType_1238_TypeType == RootAssemblyE)
-    delete ProductType_1238_TypeValue.RootAssembly;
-  else if (ProductType_1238_TypeType == RootComponentE)
-    delete ProductType_1238_TypeValue.RootComponent;
+  if (ProductType_1239_TypeType == RootPartE)
+    delete ProductType_1239_TypeValue.RootPart;
+  else if (ProductType_1239_TypeType == RootAssemblyE)
+    delete ProductType_1239_TypeValue.RootAssembly;
+  else if (ProductType_1239_TypeType == RootComponentE)
+    delete ProductType_1239_TypeValue.RootComponent;
   #endif
 }
 
-void ProductType_1238_TypeChoicePair::printSelf(FILE * outFile)
+void ProductType_1239_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (ProductType_1238_TypeType == RootPartE)
+  if (ProductType_1239_TypeType == RootPartE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RootPart");
-      ProductType_1238_TypeValue.RootPart->printSelf(outFile);
+      ProductType_1239_TypeValue.RootPart->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</RootPart>\n");
     }
-  else if (ProductType_1238_TypeType == RootAssemblyE)
+  else if (ProductType_1239_TypeType == RootAssemblyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RootAssembly");
-      ProductType_1238_TypeValue.RootAssembly->printSelf(outFile);
+      ProductType_1239_TypeValue.RootAssembly->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</RootAssembly>\n");
     }
-  else if (ProductType_1238_TypeType == RootComponentE)
+  else if (ProductType_1239_TypeType == RootComponentE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RootComponent");
-      ProductType_1238_TypeValue.RootComponent->printSelf(outFile);
+      ProductType_1239_TypeValue.RootComponent->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</RootComponent>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 

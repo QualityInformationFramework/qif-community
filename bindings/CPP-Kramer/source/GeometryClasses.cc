@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #include <stdio.h>             // for printf, etc.
 #include <string.h>            // for strdup
@@ -10,8 +10,8 @@
 
 #define INDENT 2
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 /* class Aggregate12CoreType
 
@@ -146,7 +146,7 @@ ArraySubCurve12Type * Aggregate12CoreType::getSubCurves()
 void Aggregate12CoreType::setSubCurves(ArraySubCurve12Type * SubCurvesIn)
 {SubCurves = SubCurvesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Aggregate12Type
 
@@ -335,7 +335,7 @@ Aggregate12CoreType * Aggregate12Type::getAggregate12Core()
 void Aggregate12Type::setAggregate12Core(Aggregate12CoreType * Aggregate12CoreIn)
 {Aggregate12Core = Aggregate12CoreIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Aggregate13CoreType
 
@@ -470,7 +470,7 @@ ArraySubCurve13Type * Aggregate13CoreType::getSubCurves()
 void Aggregate13CoreType::setSubCurves(ArraySubCurve13Type * SubCurvesIn)
 {SubCurves = SubCurvesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Aggregate13Type
 
@@ -679,7 +679,7 @@ ElementReferenceType * Aggregate13Type::getTransform()
 void Aggregate13Type::setTransform(ElementReferenceType * TransformIn)
 {Transform = TransformIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArcCircular12CoreType
 
@@ -896,7 +896,7 @@ UnitVector2dSimpleType * ArcCircular12CoreType::getDirBeg()
 void ArcCircular12CoreType::setDirBeg(UnitVector2dSimpleType * DirBegIn)
 {DirBeg = DirBegIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArcCircular12Type
 
@@ -1085,7 +1085,7 @@ ArcCircular12CoreType * ArcCircular12Type::getArcCircular12Core()
 void ArcCircular12Type::setArcCircular12Core(ArcCircular12CoreType * ArcCircular12CoreIn)
 {ArcCircular12Core = ArcCircular12CoreIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArcCircular13CoreType
 
@@ -1267,7 +1267,7 @@ UnitVectorSimpleType * ArcCircular13CoreType::getNormal()
 void ArcCircular13CoreType::setNormal(UnitVectorSimpleType * NormalIn)
 {Normal = NormalIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArcCircular13Type
 
@@ -1476,7 +1476,7 @@ ElementReferenceType * ArcCircular13Type::getTransform()
 void ArcCircular13Type::setTransform(ElementReferenceType * TransformIn)
 {Transform = TransformIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArcConic12CoreType
 
@@ -1770,7 +1770,7 @@ UnitVector2dSimpleType * ArcConic12CoreType::getDirBeg()
 void ArcConic12CoreType::setDirBeg(UnitVector2dSimpleType * DirBegIn)
 {DirBeg = DirBegIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArcConic12Type
 
@@ -1959,7 +1959,7 @@ ArcConic12CoreType * ArcConic12Type::getArcConic12Core()
 void ArcConic12Type::setArcConic12Core(ArcConic12CoreType * ArcConic12CoreIn)
 {ArcConic12Core = ArcConic12CoreIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArcConic13CoreType
 
@@ -2218,7 +2218,7 @@ UnitVectorSimpleType * ArcConic13CoreType::getNormal()
 void ArcConic13CoreType::setNormal(UnitVectorSimpleType * NormalIn)
 {Normal = NormalIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArcConic13Type
 
@@ -2427,7 +2427,7 @@ ElementReferenceType * ArcConic13Type::getTransform()
 void ArcConic13Type::setTransform(ElementReferenceType * TransformIn)
 {Transform = TransformIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArcConicFormEnumType
 
@@ -2487,7 +2487,7 @@ void ArcConicFormEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArraySubCurve12Type
 
@@ -2645,7 +2645,7 @@ Curve12OrientedTypeLisd * ArraySubCurve12Type::getSubCurve()
 void ArraySubCurve12Type::setSubCurve(Curve12OrientedTypeLisd * SubCurveIn)
 {SubCurve = SubCurveIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArraySubCurve13Type
 
@@ -2803,7 +2803,7 @@ Curve13OrientedTypeLisd * ArraySubCurve13Type::getSubCurve()
 void ArraySubCurve13Type::setSubCurve(Curve13OrientedTypeLisd * SubCurveIn)
 {SubCurve = SubCurveIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ArrayTriangleVertexNormalType
 
@@ -2960,7 +2960,7 @@ TriangleVertexNormalTypeLisd * ArrayTriangleVertexNormalType::getNormalSpecial()
 void ArrayTriangleVertexNormalType::setNormalSpecial(TriangleVertexNormalTypeLisd * NormalSpecialIn)
 {NormalSpecial = NormalSpecialIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Attr23CoreEnumType
 
@@ -3026,7 +3026,7 @@ void Attr23CoreEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Cone23CoreType
 
@@ -3369,7 +3369,7 @@ SweepType * Cone23CoreType::getSweep()
 void Cone23CoreType::setSweep(SweepType * SweepIn)
 {Sweep = SweepIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Cone23Type
 
@@ -3578,7 +3578,7 @@ ElementReferenceType * Cone23Type::getTransform()
 void Cone23Type::setTransform(ElementReferenceType * TransformIn)
 {Transform = TransformIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Curve12BaseType
 
@@ -3750,7 +3750,7 @@ bool Curve12BaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Curve12BaseTypeLisd
 
@@ -3777,7 +3777,7 @@ Curve12BaseTypeLisd::~Curve12BaseTypeLisd()
 
 void Curve12BaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Curve12OrientedType
 
@@ -4029,7 +4029,7 @@ CurveCoreBaseType * Curve12OrientedType::getCurve12Core()
 void Curve12OrientedType::setCurve12Core(CurveCoreBaseType * Curve12CoreIn)
 {Curve12Core = Curve12CoreIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Curve12OrientedTypeLisd
 
@@ -4056,7 +4056,7 @@ Curve12OrientedTypeLisd::~Curve12OrientedTypeLisd()
 
 void Curve12OrientedTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Curve12SetType
 
@@ -4335,7 +4335,7 @@ Curve12BaseTypeLisd * Curve12SetType::getCurve12()
 void Curve12SetType::setCurve12(Curve12BaseTypeLisd * Curve12In)
 {Curve12 = Curve12In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Curve13BaseType
 
@@ -4507,7 +4507,7 @@ bool Curve13BaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Curve13BaseTypeLisd
 
@@ -4534,7 +4534,7 @@ Curve13BaseTypeLisd::~Curve13BaseTypeLisd()
 
 void Curve13BaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Curve13CoreType
 
@@ -4697,7 +4697,7 @@ CurveCoreBaseType * Curve13CoreType::getCurve13Core()
 void Curve13CoreType::setCurve13Core(CurveCoreBaseType * Curve13CoreIn)
 {Curve13Core = Curve13CoreIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Curve13CoreTypeLisd
 
@@ -4724,7 +4724,7 @@ Curve13CoreTypeLisd::~Curve13CoreTypeLisd()
 
 void Curve13CoreTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Curve13OrientedType
 
@@ -4976,7 +4976,7 @@ CurveCoreBaseType * Curve13OrientedType::getCurve13Core()
 void Curve13OrientedType::setCurve13Core(CurveCoreBaseType * Curve13CoreIn)
 {Curve13Core = Curve13CoreIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Curve13OrientedTypeLisd
 
@@ -5003,7 +5003,7 @@ Curve13OrientedTypeLisd::~Curve13OrientedTypeLisd()
 
 void Curve13OrientedTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Curve13SetType
 
@@ -5282,7 +5282,7 @@ Curve13BaseTypeLisd * Curve13SetType::getCurve13()
 void Curve13SetType::setCurve13(Curve13BaseTypeLisd * Curve13In)
 {Curve13 = Curve13In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CurveCoreBaseType
 
@@ -5397,7 +5397,7 @@ ParameterRangeType * CurveCoreBaseType::getdomain()
 void CurveCoreBaseType::setdomain(ParameterRangeType * domainIn)
 {domain = domainIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CurveMeshSetType
 
@@ -5555,7 +5555,7 @@ PathTriangulationTypeLisd * CurveMeshSetType::getPathTriangulation()
 void CurveMeshSetType::setPathTriangulation(PathTriangulationTypeLisd * PathTriangulationIn)
 {PathTriangulation = PathTriangulationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Cylinder23CoreType
 
@@ -5882,7 +5882,7 @@ SweepType * Cylinder23CoreType::getSweep()
 void Cylinder23CoreType::setSweep(SweepType * SweepIn)
 {Sweep = SweepIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Cylinder23Type
 
@@ -6091,7 +6091,7 @@ ElementReferenceType * Cylinder23Type::getTransform()
 void Cylinder23Type::setTransform(ElementReferenceType * TransformIn)
 {Transform = TransformIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Extrude23CoreType
 
@@ -6232,7 +6232,7 @@ Curve13CoreType * Extrude23CoreType::getCurve()
 void Extrude23CoreType::setCurve(Curve13CoreType * CurveIn)
 {Curve = CurveIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Extrude23Type
 
@@ -6441,7 +6441,7 @@ ElementReferenceType * Extrude23Type::getTransform()
 void Extrude23Type::setTransform(ElementReferenceType * TransformIn)
 {Transform = TransformIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class GeometryBaseType
 
@@ -6613,7 +6613,7 @@ bool GeometryBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class GeometrySetType
 
@@ -6748,7 +6748,7 @@ SurfaceMeshSetType * GeometrySetType::getSurfaceMeshSet()
 void GeometrySetType::setSurfaceMeshSet(SurfaceMeshSetType * SurfaceMeshSetIn)
 {SurfaceMeshSet = SurfaceMeshSetIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeshTriangleCoreType
 
@@ -6756,31 +6756,31 @@ void GeometrySetType::setSurfaceMeshSet(SurfaceMeshSetType * SurfaceMeshSetIn)
 
 MeshTriangleCoreType::MeshTriangleCoreType()
 {
-  MeshTriangleCor_1213 = 0;
   MeshTriangleCor_1214 = 0;
   MeshTriangleCor_1215 = 0;
   MeshTriangleCor_1216 = 0;
+  MeshTriangleCor_1217 = 0;
 }
 
 MeshTriangleCoreType::MeshTriangleCoreType(
- MeshTriangleCor_1213_Type * MeshTriangleCor_1213In,
  MeshTriangleCor_1214_Type * MeshTriangleCor_1214In,
  MeshTriangleCor_1215_Type * MeshTriangleCor_1215In,
- MeshTriangleCor_1216_Type * MeshTriangleCor_1216In)
+ MeshTriangleCor_1216_Type * MeshTriangleCor_1216In,
+ MeshTriangleCor_1217_Type * MeshTriangleCor_1217In)
 {
-  MeshTriangleCor_1213 = MeshTriangleCor_1213In;
   MeshTriangleCor_1214 = MeshTriangleCor_1214In;
   MeshTriangleCor_1215 = MeshTriangleCor_1215In;
   MeshTriangleCor_1216 = MeshTriangleCor_1216In;
+  MeshTriangleCor_1217 = MeshTriangleCor_1217In;
 }
 
 MeshTriangleCoreType::~MeshTriangleCoreType()
 {
   #ifndef NODESTRUCT
-  delete MeshTriangleCor_1213;
   delete MeshTriangleCor_1214;
   delete MeshTriangleCor_1215;
   delete MeshTriangleCor_1216;
+  delete MeshTriangleCor_1217;
   #endif
 }
 
@@ -6788,24 +6788,18 @@ void MeshTriangleCoreType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  MeshTriangleCor_1213->printSelf(outFile);
-  if (MeshTriangleCor_1214)
+  MeshTriangleCor_1214->printSelf(outFile);
+  if (MeshTriangleCor_1215)
     {
-      MeshTriangleCor_1214->printSelf(outFile);
+      MeshTriangleCor_1215->printSelf(outFile);
     }
-  MeshTriangleCor_1215->printSelf(outFile);
-  if (MeshTriangleCor_1216)
+  MeshTriangleCor_1216->printSelf(outFile);
+  if (MeshTriangleCor_1217)
     {
-      MeshTriangleCor_1216->printSelf(outFile);
+      MeshTriangleCor_1217->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
-
-MeshTriangleCor_1213_Type * MeshTriangleCoreType::getMeshTriangleCor_1213()
-{return MeshTriangleCor_1213;}
-
-void MeshTriangleCoreType::setMeshTriangleCor_1213(MeshTriangleCor_1213_Type * MeshTriangleCor_1213In)
-{MeshTriangleCor_1213 = MeshTriangleCor_1213In;}
 
 MeshTriangleCor_1214_Type * MeshTriangleCoreType::getMeshTriangleCor_1214()
 {return MeshTriangleCor_1214;}
@@ -6825,7 +6819,13 @@ MeshTriangleCor_1216_Type * MeshTriangleCoreType::getMeshTriangleCor_1216()
 void MeshTriangleCoreType::setMeshTriangleCor_1216(MeshTriangleCor_1216_Type * MeshTriangleCor_1216In)
 {MeshTriangleCor_1216 = MeshTriangleCor_1216In;}
 
-/*********************************************************************/
+MeshTriangleCor_1217_Type * MeshTriangleCoreType::getMeshTriangleCor_1217()
+{return MeshTriangleCor_1217;}
+
+void MeshTriangleCoreType::setMeshTriangleCor_1217(MeshTriangleCor_1217_Type * MeshTriangleCor_1217In)
+{MeshTriangleCor_1217 = MeshTriangleCor_1217In;}
+
+/* ***************************************************************** */
 
 /* class MeshTriangleType
 
@@ -6835,18 +6835,18 @@ MeshTriangleType::MeshTriangleType() :
   GeometryBaseType()
 {
   MeshTriangleCore = 0;
-  MeshTriangleTyp_1217 = 0;
+  MeshTriangleTyp_1218 = 0;
 }
 
 MeshTriangleType::MeshTriangleType(
  AttributesType * AttributesIn,
  MeshTriangleCoreType * MeshTriangleCoreIn,
- MeshTriangleTyp_1217_Type * MeshTriangleTyp_1217In) :
+ MeshTriangleTyp_1218_Type * MeshTriangleTyp_1218In) :
   GeometryBaseType(
     AttributesIn)
 {
   MeshTriangleCore = MeshTriangleCoreIn;
-  MeshTriangleTyp_1217 = MeshTriangleTyp_1217In;
+  MeshTriangleTyp_1218 = MeshTriangleTyp_1218In;
 }
 
 MeshTriangleType::MeshTriangleType(
@@ -6854,21 +6854,21 @@ MeshTriangleType::MeshTriangleType(
  QIFIdType * idIn,
  AttributesType * AttributesIn,
  MeshTriangleCoreType * MeshTriangleCoreIn,
- MeshTriangleTyp_1217_Type * MeshTriangleTyp_1217In) :
+ MeshTriangleTyp_1218_Type * MeshTriangleTyp_1218In) :
   GeometryBaseType(
     labelIn,
     idIn,
     AttributesIn)
 {
   MeshTriangleCore = MeshTriangleCoreIn;
-  MeshTriangleTyp_1217 = MeshTriangleTyp_1217In;
+  MeshTriangleTyp_1218 = MeshTriangleTyp_1218In;
 }
 
 MeshTriangleType::~MeshTriangleType()
 {
   #ifndef NODESTRUCT
   delete MeshTriangleCore;
-  delete MeshTriangleTyp_1217;
+  delete MeshTriangleTyp_1218;
   #endif
 }
 
@@ -6931,9 +6931,9 @@ void MeshTriangleType::printSelf(FILE * outFile)
   MeshTriangleCore->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "</MeshTriangleCore>\n");
-  if (MeshTriangleTyp_1217)
+  if (MeshTriangleTyp_1218)
     {
-      MeshTriangleTyp_1217->printSelf(outFile);
+      MeshTriangleTyp_1218->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -7024,13 +7024,13 @@ MeshTriangleCoreType * MeshTriangleType::getMeshTriangleCore()
 void MeshTriangleType::setMeshTriangleCore(MeshTriangleCoreType * MeshTriangleCoreIn)
 {MeshTriangleCore = MeshTriangleCoreIn;}
 
-MeshTriangleTyp_1217_Type * MeshTriangleType::getMeshTriangleTyp_1217()
-{return MeshTriangleTyp_1217;}
+MeshTriangleTyp_1218_Type * MeshTriangleType::getMeshTriangleTyp_1218()
+{return MeshTriangleTyp_1218;}
 
-void MeshTriangleType::setMeshTriangleTyp_1217(MeshTriangleTyp_1217_Type * MeshTriangleTyp_1217In)
-{MeshTriangleTyp_1217 = MeshTriangleTyp_1217In;}
+void MeshTriangleType::setMeshTriangleTyp_1218(MeshTriangleTyp_1218_Type * MeshTriangleTyp_1218In)
+{MeshTriangleTyp_1218 = MeshTriangleTyp_1218In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeshTriangleTypeLisd
 
@@ -7057,7 +7057,7 @@ MeshTriangleTypeLisd::~MeshTriangleTypeLisd()
 
 void MeshTriangleTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Nurbs12CoreType
 
@@ -7068,20 +7068,20 @@ Nurbs12CoreType::Nurbs12CoreType() :
 {
   Order = 0;
   Knots = 0;
-  Nurbs12CoreType_1218 = 0;
+  Nurbs12CoreType_1219 = 0;
   Weights = 0;
 }
 
 Nurbs12CoreType::Nurbs12CoreType(
  NaturalType * OrderIn,
  ArrayDoubleType * KnotsIn,
- Nurbs12CoreType_1218_Type * Nurbs12CoreType_1218In,
+ Nurbs12CoreType_1219_Type * Nurbs12CoreType_1219In,
  ArrayDoubleType * WeightsIn) :
   CurveCoreBaseType()
 {
   Order = OrderIn;
   Knots = KnotsIn;
-  Nurbs12CoreType_1218 = Nurbs12CoreType_1218In;
+  Nurbs12CoreType_1219 = Nurbs12CoreType_1219In;
   Weights = WeightsIn;
 }
 
@@ -7089,14 +7089,14 @@ Nurbs12CoreType::Nurbs12CoreType(
  ParameterRangeType * domainIn,
  NaturalType * OrderIn,
  ArrayDoubleType * KnotsIn,
- Nurbs12CoreType_1218_Type * Nurbs12CoreType_1218In,
+ Nurbs12CoreType_1219_Type * Nurbs12CoreType_1219In,
  ArrayDoubleType * WeightsIn) :
   CurveCoreBaseType(
     domainIn)
 {
   Order = OrderIn;
   Knots = KnotsIn;
-  Nurbs12CoreType_1218 = Nurbs12CoreType_1218In;
+  Nurbs12CoreType_1219 = Nurbs12CoreType_1219In;
   Weights = WeightsIn;
 }
 
@@ -7105,7 +7105,7 @@ Nurbs12CoreType::~Nurbs12CoreType()
   #ifndef NODESTRUCT
   delete Order;
   delete Knots;
-  delete Nurbs12CoreType_1218;
+  delete Nurbs12CoreType_1219;
   delete Weights;
   #endif
 }
@@ -7147,7 +7147,7 @@ void Nurbs12CoreType::printSelf(FILE * outFile)
   fprintf(outFile, "<Knots");
   Knots->printSelf(outFile);
   fprintf(outFile, "</Knots>\n");
-  Nurbs12CoreType_1218->printSelf(outFile);
+  Nurbs12CoreType_1219->printSelf(outFile);
   if (Weights)
     {
       doSpaces(0, outFile);
@@ -7227,11 +7227,11 @@ ArrayDoubleType * Nurbs12CoreType::getKnots()
 void Nurbs12CoreType::setKnots(ArrayDoubleType * KnotsIn)
 {Knots = KnotsIn;}
 
-Nurbs12CoreType_1218_Type * Nurbs12CoreType::getNurbs12CoreType_1218()
-{return Nurbs12CoreType_1218;}
+Nurbs12CoreType_1219_Type * Nurbs12CoreType::getNurbs12CoreType_1219()
+{return Nurbs12CoreType_1219;}
 
-void Nurbs12CoreType::setNurbs12CoreType_1218(Nurbs12CoreType_1218_Type * Nurbs12CoreType_1218In)
-{Nurbs12CoreType_1218 = Nurbs12CoreType_1218In;}
+void Nurbs12CoreType::setNurbs12CoreType_1219(Nurbs12CoreType_1219_Type * Nurbs12CoreType_1219In)
+{Nurbs12CoreType_1219 = Nurbs12CoreType_1219In;}
 
 ArrayDoubleType * Nurbs12CoreType::getWeights()
 {return Weights;}
@@ -7239,7 +7239,7 @@ ArrayDoubleType * Nurbs12CoreType::getWeights()
 void Nurbs12CoreType::setWeights(ArrayDoubleType * WeightsIn)
 {Weights = WeightsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Nurbs12Type
 
@@ -7428,7 +7428,7 @@ Nurbs12CoreType * Nurbs12Type::getNurbs12Core()
 void Nurbs12Type::setNurbs12Core(Nurbs12CoreType * Nurbs12CoreIn)
 {Nurbs12Core = Nurbs12CoreIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Nurbs13CoreType
 
@@ -7439,20 +7439,20 @@ Nurbs13CoreType::Nurbs13CoreType() :
 {
   Order = 0;
   Knots = 0;
-  Nurbs13CoreType_1219 = 0;
+  Nurbs13CoreType_1220 = 0;
   Weights = 0;
 }
 
 Nurbs13CoreType::Nurbs13CoreType(
  NaturalType * OrderIn,
  ArrayDoubleType * KnotsIn,
- Nurbs13CoreType_1219_Type * Nurbs13CoreType_1219In,
+ Nurbs13CoreType_1220_Type * Nurbs13CoreType_1220In,
  ArrayDoubleType * WeightsIn) :
   CurveCoreBaseType()
 {
   Order = OrderIn;
   Knots = KnotsIn;
-  Nurbs13CoreType_1219 = Nurbs13CoreType_1219In;
+  Nurbs13CoreType_1220 = Nurbs13CoreType_1220In;
   Weights = WeightsIn;
 }
 
@@ -7460,14 +7460,14 @@ Nurbs13CoreType::Nurbs13CoreType(
  ParameterRangeType * domainIn,
  NaturalType * OrderIn,
  ArrayDoubleType * KnotsIn,
- Nurbs13CoreType_1219_Type * Nurbs13CoreType_1219In,
+ Nurbs13CoreType_1220_Type * Nurbs13CoreType_1220In,
  ArrayDoubleType * WeightsIn) :
   CurveCoreBaseType(
     domainIn)
 {
   Order = OrderIn;
   Knots = KnotsIn;
-  Nurbs13CoreType_1219 = Nurbs13CoreType_1219In;
+  Nurbs13CoreType_1220 = Nurbs13CoreType_1220In;
   Weights = WeightsIn;
 }
 
@@ -7476,7 +7476,7 @@ Nurbs13CoreType::~Nurbs13CoreType()
   #ifndef NODESTRUCT
   delete Order;
   delete Knots;
-  delete Nurbs13CoreType_1219;
+  delete Nurbs13CoreType_1220;
   delete Weights;
   #endif
 }
@@ -7518,7 +7518,7 @@ void Nurbs13CoreType::printSelf(FILE * outFile)
   fprintf(outFile, "<Knots");
   Knots->printSelf(outFile);
   fprintf(outFile, "</Knots>\n");
-  Nurbs13CoreType_1219->printSelf(outFile);
+  Nurbs13CoreType_1220->printSelf(outFile);
   if (Weights)
     {
       doSpaces(0, outFile);
@@ -7598,11 +7598,11 @@ ArrayDoubleType * Nurbs13CoreType::getKnots()
 void Nurbs13CoreType::setKnots(ArrayDoubleType * KnotsIn)
 {Knots = KnotsIn;}
 
-Nurbs13CoreType_1219_Type * Nurbs13CoreType::getNurbs13CoreType_1219()
-{return Nurbs13CoreType_1219;}
+Nurbs13CoreType_1220_Type * Nurbs13CoreType::getNurbs13CoreType_1220()
+{return Nurbs13CoreType_1220;}
 
-void Nurbs13CoreType::setNurbs13CoreType_1219(Nurbs13CoreType_1219_Type * Nurbs13CoreType_1219In)
-{Nurbs13CoreType_1219 = Nurbs13CoreType_1219In;}
+void Nurbs13CoreType::setNurbs13CoreType_1220(Nurbs13CoreType_1220_Type * Nurbs13CoreType_1220In)
+{Nurbs13CoreType_1220 = Nurbs13CoreType_1220In;}
 
 ArrayDoubleType * Nurbs13CoreType::getWeights()
 {return Weights;}
@@ -7610,7 +7610,7 @@ ArrayDoubleType * Nurbs13CoreType::getWeights()
 void Nurbs13CoreType::setWeights(ArrayDoubleType * WeightsIn)
 {Weights = WeightsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Nurbs13Type
 
@@ -7819,7 +7819,7 @@ ElementReferenceType * Nurbs13Type::getTransform()
 void Nurbs13Type::setTransform(ElementReferenceType * TransformIn)
 {Transform = TransformIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Nurbs23CoreType
 
@@ -7832,7 +7832,7 @@ Nurbs23CoreType::Nurbs23CoreType() :
   OrderV = 0;
   KnotsU = 0;
   KnotsV = 0;
-  Nurbs23CoreType_1220 = 0;
+  Nurbs23CoreType_1221 = 0;
   Weights = 0;
 }
 
@@ -7841,7 +7841,7 @@ Nurbs23CoreType::Nurbs23CoreType(
  NaturalType * OrderVIn,
  ArrayDoubleType * KnotsUIn,
  ArrayDoubleType * KnotsVIn,
- Nurbs23CoreType_1220_Type * Nurbs23CoreType_1220In,
+ Nurbs23CoreType_1221_Type * Nurbs23CoreType_1221In,
  ArrayDoubleType * WeightsIn) :
   SurfaceCoreBaseType()
 {
@@ -7849,7 +7849,7 @@ Nurbs23CoreType::Nurbs23CoreType(
   OrderV = OrderVIn;
   KnotsU = KnotsUIn;
   KnotsV = KnotsVIn;
-  Nurbs23CoreType_1220 = Nurbs23CoreType_1220In;
+  Nurbs23CoreType_1221 = Nurbs23CoreType_1221In;
   Weights = WeightsIn;
 }
 
@@ -7859,7 +7859,7 @@ Nurbs23CoreType::Nurbs23CoreType(
  NaturalType * OrderVIn,
  ArrayDoubleType * KnotsUIn,
  ArrayDoubleType * KnotsVIn,
- Nurbs23CoreType_1220_Type * Nurbs23CoreType_1220In,
+ Nurbs23CoreType_1221_Type * Nurbs23CoreType_1221In,
  ArrayDoubleType * WeightsIn) :
   SurfaceCoreBaseType(
     formIn)
@@ -7868,7 +7868,7 @@ Nurbs23CoreType::Nurbs23CoreType(
   OrderV = OrderVIn;
   KnotsU = KnotsUIn;
   KnotsV = KnotsVIn;
-  Nurbs23CoreType_1220 = Nurbs23CoreType_1220In;
+  Nurbs23CoreType_1221 = Nurbs23CoreType_1221In;
   Weights = WeightsIn;
 }
 
@@ -7879,7 +7879,7 @@ Nurbs23CoreType::~Nurbs23CoreType()
   delete OrderV;
   delete KnotsU;
   delete KnotsV;
-  delete Nurbs23CoreType_1220;
+  delete Nurbs23CoreType_1221;
   delete Weights;
   #endif
 }
@@ -7924,7 +7924,7 @@ void Nurbs23CoreType::printSelf(FILE * outFile)
   fprintf(outFile, "<KnotsV");
   KnotsV->printSelf(outFile);
   fprintf(outFile, "</KnotsV>\n");
-  Nurbs23CoreType_1220->printSelf(outFile);
+  Nurbs23CoreType_1221->printSelf(outFile);
   if (Weights)
     {
       doSpaces(0, outFile);
@@ -8011,11 +8011,11 @@ ArrayDoubleType * Nurbs23CoreType::getKnotsV()
 void Nurbs23CoreType::setKnotsV(ArrayDoubleType * KnotsVIn)
 {KnotsV = KnotsVIn;}
 
-Nurbs23CoreType_1220_Type * Nurbs23CoreType::getNurbs23CoreType_1220()
-{return Nurbs23CoreType_1220;}
+Nurbs23CoreType_1221_Type * Nurbs23CoreType::getNurbs23CoreType_1221()
+{return Nurbs23CoreType_1221;}
 
-void Nurbs23CoreType::setNurbs23CoreType_1220(Nurbs23CoreType_1220_Type * Nurbs23CoreType_1220In)
-{Nurbs23CoreType_1220 = Nurbs23CoreType_1220In;}
+void Nurbs23CoreType::setNurbs23CoreType_1221(Nurbs23CoreType_1221_Type * Nurbs23CoreType_1221In)
+{Nurbs23CoreType_1221 = Nurbs23CoreType_1221In;}
 
 ArrayDoubleType * Nurbs23CoreType::getWeights()
 {return Weights;}
@@ -8023,7 +8023,7 @@ ArrayDoubleType * Nurbs23CoreType::getWeights()
 void Nurbs23CoreType::setWeights(ArrayDoubleType * WeightsIn)
 {Weights = WeightsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Nurbs23Type
 
@@ -8232,7 +8232,7 @@ ElementReferenceType * Nurbs23Type::getTransform()
 void Nurbs23Type::setTransform(ElementReferenceType * TransformIn)
 {Transform = TransformIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Offset23CoreType
 
@@ -8373,7 +8373,7 @@ SurfaceCoreType * Offset23CoreType::getSurface()
 void Offset23CoreType::setSurface(SurfaceCoreType * SurfaceIn)
 {Surface = SurfaceIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Offset23Type
 
@@ -8582,7 +8582,7 @@ ElementReferenceType * Offset23Type::getTransform()
 void Offset23Type::setTransform(ElementReferenceType * TransformIn)
 {Transform = TransformIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PathTriangulationCoreType
 
@@ -8620,7 +8620,7 @@ PathTriangulationCoreTypeChoicePair * PathTriangulationCoreType::getPathTriangul
 void PathTriangulationCoreType::setPathTriangulationCoreTypePair(PathTriangulationCoreTypeChoicePair * PathTriangulationCoreTypePairIn)
 {PathTriangulationCoreTypePair = PathTriangulationCoreTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PathTriangulationCoreTypeChoicePair
 
@@ -8664,7 +8664,7 @@ void PathTriangulationCoreTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PathTriangulationType
 
@@ -8870,7 +8870,7 @@ ElementReferenceType * PathTriangulationType::getMeshTriangle()
 void PathTriangulationType::setMeshTriangle(ElementReferenceType * MeshTriangleIn)
 {MeshTriangle = MeshTriangleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PathTriangulationTypeLisd
 
@@ -8897,7 +8897,7 @@ PathTriangulationTypeLisd::~PathTriangulationTypeLisd()
 
 void PathTriangulationTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Plane23CoreType
 
@@ -9175,7 +9175,7 @@ VectorSimpleType * Plane23CoreType::getDirV()
 void Plane23CoreType::setDirV(VectorSimpleType * DirVIn)
 {DirV = DirVIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Plane23Type
 
@@ -9384,7 +9384,7 @@ ElementReferenceType * Plane23Type::getTransform()
 void Plane23Type::setTransform(ElementReferenceType * TransformIn)
 {Transform = TransformIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointEntityType
 
@@ -9572,7 +9572,7 @@ PointSimpleType * PointEntityType::getXYZ()
 void PointEntityType::setXYZ(PointSimpleType * XYZIn)
 {XYZ = XYZIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointEntityTypeLisd
 
@@ -9599,7 +9599,7 @@ PointEntityTypeLisd::~PointEntityTypeLisd()
 
 void PointEntityTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointSetType
 
@@ -9757,7 +9757,7 @@ PointEntityTypeLisd * PointSetType::getPoint()
 void PointSetType::setPoint(PointEntityTypeLisd * PointIn)
 {Point = PointIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Polyline12CoreType
 
@@ -9766,29 +9766,29 @@ void PointSetType::setPoint(PointEntityTypeLisd * PointIn)
 Polyline12CoreType::Polyline12CoreType() :
   CurveCoreBaseType()
 {
-  Polyline12CoreT_1221 = 0;
+  Polyline12CoreT_1222 = 0;
 }
 
 Polyline12CoreType::Polyline12CoreType(
- Polyline12CoreT_1221_Type * Polyline12CoreT_1221In) :
+ Polyline12CoreT_1222_Type * Polyline12CoreT_1222In) :
   CurveCoreBaseType()
 {
-  Polyline12CoreT_1221 = Polyline12CoreT_1221In;
+  Polyline12CoreT_1222 = Polyline12CoreT_1222In;
 }
 
 Polyline12CoreType::Polyline12CoreType(
  ParameterRangeType * domainIn,
- Polyline12CoreT_1221_Type * Polyline12CoreT_1221In) :
+ Polyline12CoreT_1222_Type * Polyline12CoreT_1222In) :
   CurveCoreBaseType(
     domainIn)
 {
-  Polyline12CoreT_1221 = Polyline12CoreT_1221In;
+  Polyline12CoreT_1222 = Polyline12CoreT_1222In;
 }
 
 Polyline12CoreType::~Polyline12CoreType()
 {
   #ifndef NODESTRUCT
-  delete Polyline12CoreT_1221;
+  delete Polyline12CoreT_1222;
   #endif
 }
 
@@ -9821,7 +9821,7 @@ void Polyline12CoreType::printSelf(FILE * outFile)
     }
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  Polyline12CoreT_1221->printSelf(outFile);
+  Polyline12CoreT_1222->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -9882,13 +9882,13 @@ bool Polyline12CoreType::badAttributes(
   return returnValue;
 }
 
-Polyline12CoreT_1221_Type * Polyline12CoreType::getPolyline12CoreT_1221()
-{return Polyline12CoreT_1221;}
+Polyline12CoreT_1222_Type * Polyline12CoreType::getPolyline12CoreT_1222()
+{return Polyline12CoreT_1222;}
 
-void Polyline12CoreType::setPolyline12CoreT_1221(Polyline12CoreT_1221_Type * Polyline12CoreT_1221In)
-{Polyline12CoreT_1221 = Polyline12CoreT_1221In;}
+void Polyline12CoreType::setPolyline12CoreT_1222(Polyline12CoreT_1222_Type * Polyline12CoreT_1222In)
+{Polyline12CoreT_1222 = Polyline12CoreT_1222In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Polyline12Type
 
@@ -10077,7 +10077,7 @@ Polyline12CoreType * Polyline12Type::getPolyline12Core()
 void Polyline12Type::setPolyline12Core(Polyline12CoreType * Polyline12CoreIn)
 {Polyline12Core = Polyline12CoreIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Polyline13CoreType
 
@@ -10086,29 +10086,29 @@ void Polyline12Type::setPolyline12Core(Polyline12CoreType * Polyline12CoreIn)
 Polyline13CoreType::Polyline13CoreType() :
   CurveCoreBaseType()
 {
-  Polyline13CoreT_1222 = 0;
+  Polyline13CoreT_1223 = 0;
 }
 
 Polyline13CoreType::Polyline13CoreType(
- Polyline13CoreT_1222_Type * Polyline13CoreT_1222In) :
+ Polyline13CoreT_1223_Type * Polyline13CoreT_1223In) :
   CurveCoreBaseType()
 {
-  Polyline13CoreT_1222 = Polyline13CoreT_1222In;
+  Polyline13CoreT_1223 = Polyline13CoreT_1223In;
 }
 
 Polyline13CoreType::Polyline13CoreType(
  ParameterRangeType * domainIn,
- Polyline13CoreT_1222_Type * Polyline13CoreT_1222In) :
+ Polyline13CoreT_1223_Type * Polyline13CoreT_1223In) :
   CurveCoreBaseType(
     domainIn)
 {
-  Polyline13CoreT_1222 = Polyline13CoreT_1222In;
+  Polyline13CoreT_1223 = Polyline13CoreT_1223In;
 }
 
 Polyline13CoreType::~Polyline13CoreType()
 {
   #ifndef NODESTRUCT
-  delete Polyline13CoreT_1222;
+  delete Polyline13CoreT_1223;
   #endif
 }
 
@@ -10141,7 +10141,7 @@ void Polyline13CoreType::printSelf(FILE * outFile)
     }
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  Polyline13CoreT_1222->printSelf(outFile);
+  Polyline13CoreT_1223->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -10202,13 +10202,13 @@ bool Polyline13CoreType::badAttributes(
   return returnValue;
 }
 
-Polyline13CoreT_1222_Type * Polyline13CoreType::getPolyline13CoreT_1222()
-{return Polyline13CoreT_1222;}
+Polyline13CoreT_1223_Type * Polyline13CoreType::getPolyline13CoreT_1223()
+{return Polyline13CoreT_1223;}
 
-void Polyline13CoreType::setPolyline13CoreT_1222(Polyline13CoreT_1222_Type * Polyline13CoreT_1222In)
-{Polyline13CoreT_1222 = Polyline13CoreT_1222In;}
+void Polyline13CoreType::setPolyline13CoreT_1223(Polyline13CoreT_1223_Type * Polyline13CoreT_1223In)
+{Polyline13CoreT_1223 = Polyline13CoreT_1223In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Polyline13Type
 
@@ -10417,7 +10417,7 @@ ElementReferenceType * Polyline13Type::getTransform()
 void Polyline13Type::setTransform(ElementReferenceType * TransformIn)
 {Transform = TransformIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Revolution23CoreType
 
@@ -10620,7 +10620,7 @@ Curve13CoreType * Revolution23CoreType::getGeneratrix()
 void Revolution23CoreType::setGeneratrix(Curve13CoreType * GeneratrixIn)
 {Generatrix = GeneratrixIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Revolution23Type
 
@@ -10829,7 +10829,7 @@ ElementReferenceType * Revolution23Type::getTransform()
 void Revolution23Type::setTransform(ElementReferenceType * TransformIn)
 {Transform = TransformIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Ruled23CoreType
 
@@ -11022,7 +11022,7 @@ Curve13CoreTypeLisd * Ruled23CoreType::getCurve()
 void Ruled23CoreType::setCurve(Curve13CoreTypeLisd * CurveIn)
 {Curve = CurveIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Ruled23Type
 
@@ -11231,7 +11231,7 @@ ElementReferenceType * Ruled23Type::getTransform()
 void Ruled23Type::setTransform(ElementReferenceType * TransformIn)
 {Transform = TransformIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Segment12CoreType
 
@@ -11381,7 +11381,7 @@ Point2dSimpleType * Segment12CoreType::getEndPoint()
 void Segment12CoreType::setEndPoint(Point2dSimpleType * EndPointIn)
 {EndPoint = EndPointIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Segment12Type
 
@@ -11570,7 +11570,7 @@ Segment12CoreType * Segment12Type::getSegment12Core()
 void Segment12Type::setSegment12Core(Segment12CoreType * Segment12CoreIn)
 {Segment12Core = Segment12CoreIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Segment13CoreType
 
@@ -11720,7 +11720,7 @@ PointSimpleType * Segment13CoreType::getEndPoint()
 void Segment13CoreType::setEndPoint(PointSimpleType * EndPointIn)
 {EndPoint = EndPointIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Segment13Type
 
@@ -11929,7 +11929,7 @@ ElementReferenceType * Segment13Type::getTransform()
 void Segment13Type::setTransform(ElementReferenceType * TransformIn)
 {Transform = TransformIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Sphere23CoreType
 
@@ -12239,7 +12239,7 @@ OrientedLatitudeLongitudeSweepType * Sphere23CoreType::getLatitudeLongitudeSweep
 void Sphere23CoreType::setLatitudeLongitudeSweep(OrientedLatitudeLongitudeSweepType * LatitudeLongitudeSweepIn)
 {LatitudeLongitudeSweep = LatitudeLongitudeSweepIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Sphere23Type
 
@@ -12448,7 +12448,7 @@ ElementReferenceType * Sphere23Type::getTransform()
 void Sphere23Type::setTransform(ElementReferenceType * TransformIn)
 {Transform = TransformIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Spline12CoreType
 
@@ -12665,7 +12665,7 @@ ArrayPoint2dType * Spline12CoreType::getCoefficients()
 void Spline12CoreType::setCoefficients(ArrayPoint2dType * CoefficientsIn)
 {Coefficients = CoefficientsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Spline12Type
 
@@ -12854,7 +12854,7 @@ Spline12CoreType * Spline12Type::getSpline12Core()
 void Spline12Type::setSpline12Core(Spline12CoreType * Spline12CoreIn)
 {Spline12Core = Spline12CoreIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Spline13CoreType
 
@@ -13071,7 +13071,7 @@ ArrayPointType * Spline13CoreType::getCoefficients()
 void Spline13CoreType::setCoefficients(ArrayPointType * CoefficientsIn)
 {Coefficients = CoefficientsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Spline13Type
 
@@ -13280,7 +13280,7 @@ ElementReferenceType * Spline13Type::getTransform()
 void Spline13Type::setTransform(ElementReferenceType * TransformIn)
 {Transform = TransformIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Spline23CoreType
 
@@ -13519,7 +13519,7 @@ ArrayPointType * Spline23CoreType::getCoefficients()
 void Spline23CoreType::setCoefficients(ArrayPointType * CoefficientsIn)
 {Coefficients = CoefficientsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Spline23Type
 
@@ -13728,7 +13728,7 @@ ElementReferenceType * Spline23Type::getTransform()
 void Spline23Type::setTransform(ElementReferenceType * TransformIn)
 {Transform = TransformIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceBaseType
 
@@ -13900,7 +13900,7 @@ bool SurfaceBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceBaseTypeLisd
 
@@ -13927,7 +13927,7 @@ SurfaceBaseTypeLisd::~SurfaceBaseTypeLisd()
 
 void SurfaceBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceCoreBaseType
 
@@ -14032,7 +14032,7 @@ Attr23CoreEnumType * SurfaceCoreBaseType::getform()
 void SurfaceCoreBaseType::setform(Attr23CoreEnumType * formIn)
 {form = formIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceCoreType
 
@@ -14259,7 +14259,7 @@ SurfaceCoreBaseType * SurfaceCoreType::getSurfaceCore()
 void SurfaceCoreType::setSurfaceCore(SurfaceCoreBaseType * SurfaceCoreIn)
 {SurfaceCore = SurfaceCoreIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceMeshSetType
 
@@ -14417,7 +14417,7 @@ MeshTriangleTypeLisd * SurfaceMeshSetType::getMeshTriangle()
 void SurfaceMeshSetType::setMeshTriangle(MeshTriangleTypeLisd * MeshTriangleIn)
 {MeshTriangle = MeshTriangleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceSetType
 
@@ -14760,7 +14760,7 @@ SurfaceBaseTypeLisd * SurfaceSetType::getSurface()
 void SurfaceSetType::setSurface(SurfaceBaseTypeLisd * SurfaceIn)
 {Surface = SurfaceIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Torus23CoreType
 
@@ -15138,7 +15138,7 @@ LatitudeLongitudeSweepType * Torus23CoreType::getLatitudeLongitudeSweep()
 void Torus23CoreType::setLatitudeLongitudeSweep(LatitudeLongitudeSweepType * LatitudeLongitudeSweepIn)
 {LatitudeLongitudeSweep = LatitudeLongitudeSweepIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Torus23Type
 
@@ -15347,7 +15347,7 @@ ElementReferenceType * Torus23Type::getTransform()
 void Torus23Type::setTransform(ElementReferenceType * TransformIn)
 {Transform = TransformIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TriangleVertexNormalType
 
@@ -16037,7 +16037,7 @@ I2Type * TriangleVertexNormalType::getvertex()
 void TriangleVertexNormalType::setvertex(I2Type * vertexIn)
 {vertex = vertexIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TriangleVertexNormalTypeLisd
 
@@ -16064,86 +16064,7 @@ TriangleVertexNormalTypeLisd::~TriangleVertexNormalTypeLisd()
 
 void TriangleVertexNormalTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
-
-/* class MeshTriangleCor_1213_Type
-
-*/
-
-MeshTriangleCor_1213_Type::MeshTriangleCor_1213_Type()
-{
-  MeshTriangleCor_1213_TypePair = 0;
-}
-
-MeshTriangleCor_1213_Type::MeshTriangleCor_1213_Type(
- MeshTriangleCor_1213_TypeChoicePair * MeshTriangleCor_1213_TypePairIn)
-{
-  MeshTriangleCor_1213_TypePair = MeshTriangleCor_1213_TypePairIn;
-}
-
-MeshTriangleCor_1213_Type::~MeshTriangleCor_1213_Type()
-{
-  #ifndef NODESTRUCT
-  delete MeshTriangleCor_1213_TypePair;
-  #endif
-}
-
-void MeshTriangleCor_1213_Type::printSelf(FILE * outFile)
-{
-  MeshTriangleCor_1213_TypePair->printSelf(outFile);
-}
-
-MeshTriangleCor_1213_TypeChoicePair * MeshTriangleCor_1213_Type::getMeshTriangleCor_1213_TypePair()
-{return MeshTriangleCor_1213_TypePair;}
-
-void MeshTriangleCor_1213_Type::setMeshTriangleCor_1213_TypePair(MeshTriangleCor_1213_TypeChoicePair * MeshTriangleCor_1213_TypePairIn)
-{MeshTriangleCor_1213_TypePair = MeshTriangleCor_1213_TypePairIn;}
-
-/*********************************************************************/
-
-/* class MeshTriangleCor_1213_TypeChoicePair
-
-*/
-
-MeshTriangleCor_1213_TypeChoicePair::MeshTriangleCor_1213_TypeChoicePair() {}
-
-MeshTriangleCor_1213_TypeChoicePair::MeshTriangleCor_1213_TypeChoicePair(
- whichOne MeshTriangleCor_1213_TypeTypeIn,
- MeshTriangleCor_1213_TypeVal MeshTriangleCor_1213_TypeValueIn)
-{
-  MeshTriangleCor_1213_TypeType = MeshTriangleCor_1213_TypeTypeIn;
-  MeshTriangleCor_1213_TypeValue = MeshTriangleCor_1213_TypeValueIn;
-}
-
-MeshTriangleCor_1213_TypeChoicePair::~MeshTriangleCor_1213_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (MeshTriangleCor_1213_TypeType == TrianglesE)
-    delete MeshTriangleCor_1213_TypeValue.Triangles;
-  else if (MeshTriangleCor_1213_TypeType == TrianglesBinaryE)
-    delete MeshTriangleCor_1213_TypeValue.TrianglesBinary;
-  #endif
-}
-
-void MeshTriangleCor_1213_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (MeshTriangleCor_1213_TypeType == TrianglesE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<Triangles");
-      MeshTriangleCor_1213_TypeValue.Triangles->printSelf(outFile);
-      fprintf(outFile, "</Triangles>\n");
-    }
-  else if (MeshTriangleCor_1213_TypeType == TrianglesBinaryE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<TrianglesBinary");
-      MeshTriangleCor_1213_TypeValue.TrianglesBinary->printSelf(outFile);
-      fprintf(outFile, "</TrianglesBinary>\n");
-    }
-}
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeshTriangleCor_1214_Type
 
@@ -16169,10 +16090,7 @@ MeshTriangleCor_1214_Type::~MeshTriangleCor_1214_Type()
 
 void MeshTriangleCor_1214_Type::printSelf(FILE * outFile)
 {
-  if (MeshTriangleCor_1214_TypePair)
-    {
-      MeshTriangleCor_1214_TypePair->printSelf(outFile);
-    }
+  MeshTriangleCor_1214_TypePair->printSelf(outFile);
 }
 
 MeshTriangleCor_1214_TypeChoicePair * MeshTriangleCor_1214_Type::getMeshTriangleCor_1214_TypePair()
@@ -16181,7 +16099,7 @@ MeshTriangleCor_1214_TypeChoicePair * MeshTriangleCor_1214_Type::getMeshTriangle
 void MeshTriangleCor_1214_Type::setMeshTriangleCor_1214_TypePair(MeshTriangleCor_1214_TypeChoicePair * MeshTriangleCor_1214_TypePairIn)
 {MeshTriangleCor_1214_TypePair = MeshTriangleCor_1214_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeshTriangleCor_1214_TypeChoicePair
 
@@ -16200,32 +16118,32 @@ MeshTriangleCor_1214_TypeChoicePair::MeshTriangleCor_1214_TypeChoicePair(
 MeshTriangleCor_1214_TypeChoicePair::~MeshTriangleCor_1214_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (MeshTriangleCor_1214_TypeType == NeighboursE)
-    delete MeshTriangleCor_1214_TypeValue.Neighbours;
-  else if (MeshTriangleCor_1214_TypeType == NeighboursBinaryE)
-    delete MeshTriangleCor_1214_TypeValue.NeighboursBinary;
+  if (MeshTriangleCor_1214_TypeType == TrianglesE)
+    delete MeshTriangleCor_1214_TypeValue.Triangles;
+  else if (MeshTriangleCor_1214_TypeType == TrianglesBinaryE)
+    delete MeshTriangleCor_1214_TypeValue.TrianglesBinary;
   #endif
 }
 
 void MeshTriangleCor_1214_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (MeshTriangleCor_1214_TypeType == NeighboursE)
+  if (MeshTriangleCor_1214_TypeType == TrianglesE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<Neighbours");
-      MeshTriangleCor_1214_TypeValue.Neighbours->printSelf(outFile);
-      fprintf(outFile, "</Neighbours>\n");
+      fprintf(outFile, "<Triangles");
+      MeshTriangleCor_1214_TypeValue.Triangles->printSelf(outFile);
+      fprintf(outFile, "</Triangles>\n");
     }
-  else if (MeshTriangleCor_1214_TypeType == NeighboursBinaryE)
+  else if (MeshTriangleCor_1214_TypeType == TrianglesBinaryE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<NeighboursBinary");
-      MeshTriangleCor_1214_TypeValue.NeighboursBinary->printSelf(outFile);
-      fprintf(outFile, "</NeighboursBinary>\n");
+      fprintf(outFile, "<TrianglesBinary");
+      MeshTriangleCor_1214_TypeValue.TrianglesBinary->printSelf(outFile);
+      fprintf(outFile, "</TrianglesBinary>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeshTriangleCor_1215_Type
 
@@ -16251,7 +16169,10 @@ MeshTriangleCor_1215_Type::~MeshTriangleCor_1215_Type()
 
 void MeshTriangleCor_1215_Type::printSelf(FILE * outFile)
 {
-  MeshTriangleCor_1215_TypePair->printSelf(outFile);
+  if (MeshTriangleCor_1215_TypePair)
+    {
+      MeshTriangleCor_1215_TypePair->printSelf(outFile);
+    }
 }
 
 MeshTriangleCor_1215_TypeChoicePair * MeshTriangleCor_1215_Type::getMeshTriangleCor_1215_TypePair()
@@ -16260,7 +16181,7 @@ MeshTriangleCor_1215_TypeChoicePair * MeshTriangleCor_1215_Type::getMeshTriangle
 void MeshTriangleCor_1215_Type::setMeshTriangleCor_1215_TypePair(MeshTriangleCor_1215_TypeChoicePair * MeshTriangleCor_1215_TypePairIn)
 {MeshTriangleCor_1215_TypePair = MeshTriangleCor_1215_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeshTriangleCor_1215_TypeChoicePair
 
@@ -16279,32 +16200,32 @@ MeshTriangleCor_1215_TypeChoicePair::MeshTriangleCor_1215_TypeChoicePair(
 MeshTriangleCor_1215_TypeChoicePair::~MeshTriangleCor_1215_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (MeshTriangleCor_1215_TypeType == VerticesE)
-    delete MeshTriangleCor_1215_TypeValue.Vertices;
-  else if (MeshTriangleCor_1215_TypeType == VerticesBinaryE)
-    delete MeshTriangleCor_1215_TypeValue.VerticesBinary;
+  if (MeshTriangleCor_1215_TypeType == NeighboursE)
+    delete MeshTriangleCor_1215_TypeValue.Neighbours;
+  else if (MeshTriangleCor_1215_TypeType == NeighboursBinaryE)
+    delete MeshTriangleCor_1215_TypeValue.NeighboursBinary;
   #endif
 }
 
 void MeshTriangleCor_1215_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (MeshTriangleCor_1215_TypeType == VerticesE)
+  if (MeshTriangleCor_1215_TypeType == NeighboursE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<Vertices");
-      MeshTriangleCor_1215_TypeValue.Vertices->printSelf(outFile);
-      fprintf(outFile, "</Vertices>\n");
+      fprintf(outFile, "<Neighbours");
+      MeshTriangleCor_1215_TypeValue.Neighbours->printSelf(outFile);
+      fprintf(outFile, "</Neighbours>\n");
     }
-  else if (MeshTriangleCor_1215_TypeType == VerticesBinaryE)
+  else if (MeshTriangleCor_1215_TypeType == NeighboursBinaryE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<VerticesBinary");
-      MeshTriangleCor_1215_TypeValue.VerticesBinary->printSelf(outFile);
-      fprintf(outFile, "</VerticesBinary>\n");
+      fprintf(outFile, "<NeighboursBinary");
+      MeshTriangleCor_1215_TypeValue.NeighboursBinary->printSelf(outFile);
+      fprintf(outFile, "</NeighboursBinary>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeshTriangleCor_1216_Type
 
@@ -16330,10 +16251,7 @@ MeshTriangleCor_1216_Type::~MeshTriangleCor_1216_Type()
 
 void MeshTriangleCor_1216_Type::printSelf(FILE * outFile)
 {
-  if (MeshTriangleCor_1216_TypePair)
-    {
-      MeshTriangleCor_1216_TypePair->printSelf(outFile);
-    }
+  MeshTriangleCor_1216_TypePair->printSelf(outFile);
 }
 
 MeshTriangleCor_1216_TypeChoicePair * MeshTriangleCor_1216_Type::getMeshTriangleCor_1216_TypePair()
@@ -16342,7 +16260,7 @@ MeshTriangleCor_1216_TypeChoicePair * MeshTriangleCor_1216_Type::getMeshTriangle
 void MeshTriangleCor_1216_Type::setMeshTriangleCor_1216_TypePair(MeshTriangleCor_1216_TypeChoicePair * MeshTriangleCor_1216_TypePairIn)
 {MeshTriangleCor_1216_TypePair = MeshTriangleCor_1216_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeshTriangleCor_1216_TypeChoicePair
 
@@ -16361,508 +16279,590 @@ MeshTriangleCor_1216_TypeChoicePair::MeshTriangleCor_1216_TypeChoicePair(
 MeshTriangleCor_1216_TypeChoicePair::~MeshTriangleCor_1216_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (MeshTriangleCor_1216_TypeType == NormalsE)
-    delete MeshTriangleCor_1216_TypeValue.Normals;
-  else if (MeshTriangleCor_1216_TypeType == NormalsBinaryE)
-    delete MeshTriangleCor_1216_TypeValue.NormalsBinary;
+  if (MeshTriangleCor_1216_TypeType == VerticesE)
+    delete MeshTriangleCor_1216_TypeValue.Vertices;
+  else if (MeshTriangleCor_1216_TypeType == VerticesBinaryE)
+    delete MeshTriangleCor_1216_TypeValue.VerticesBinary;
   #endif
 }
 
 void MeshTriangleCor_1216_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (MeshTriangleCor_1216_TypeType == NormalsE)
+  if (MeshTriangleCor_1216_TypeType == VerticesE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Vertices");
+      MeshTriangleCor_1216_TypeValue.Vertices->printSelf(outFile);
+      fprintf(outFile, "</Vertices>\n");
+    }
+  else if (MeshTriangleCor_1216_TypeType == VerticesBinaryE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<VerticesBinary");
+      MeshTriangleCor_1216_TypeValue.VerticesBinary->printSelf(outFile);
+      fprintf(outFile, "</VerticesBinary>\n");
+    }
+}
+
+/* ***************************************************************** */
+
+/* class MeshTriangleCor_1217_Type
+
+*/
+
+MeshTriangleCor_1217_Type::MeshTriangleCor_1217_Type()
+{
+  MeshTriangleCor_1217_TypePair = 0;
+}
+
+MeshTriangleCor_1217_Type::MeshTriangleCor_1217_Type(
+ MeshTriangleCor_1217_TypeChoicePair * MeshTriangleCor_1217_TypePairIn)
+{
+  MeshTriangleCor_1217_TypePair = MeshTriangleCor_1217_TypePairIn;
+}
+
+MeshTriangleCor_1217_Type::~MeshTriangleCor_1217_Type()
+{
+  #ifndef NODESTRUCT
+  delete MeshTriangleCor_1217_TypePair;
+  #endif
+}
+
+void MeshTriangleCor_1217_Type::printSelf(FILE * outFile)
+{
+  if (MeshTriangleCor_1217_TypePair)
+    {
+      MeshTriangleCor_1217_TypePair->printSelf(outFile);
+    }
+}
+
+MeshTriangleCor_1217_TypeChoicePair * MeshTriangleCor_1217_Type::getMeshTriangleCor_1217_TypePair()
+{return MeshTriangleCor_1217_TypePair;}
+
+void MeshTriangleCor_1217_Type::setMeshTriangleCor_1217_TypePair(MeshTriangleCor_1217_TypeChoicePair * MeshTriangleCor_1217_TypePairIn)
+{MeshTriangleCor_1217_TypePair = MeshTriangleCor_1217_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class MeshTriangleCor_1217_TypeChoicePair
+
+*/
+
+MeshTriangleCor_1217_TypeChoicePair::MeshTriangleCor_1217_TypeChoicePair() {}
+
+MeshTriangleCor_1217_TypeChoicePair::MeshTriangleCor_1217_TypeChoicePair(
+ whichOne MeshTriangleCor_1217_TypeTypeIn,
+ MeshTriangleCor_1217_TypeVal MeshTriangleCor_1217_TypeValueIn)
+{
+  MeshTriangleCor_1217_TypeType = MeshTriangleCor_1217_TypeTypeIn;
+  MeshTriangleCor_1217_TypeValue = MeshTriangleCor_1217_TypeValueIn;
+}
+
+MeshTriangleCor_1217_TypeChoicePair::~MeshTriangleCor_1217_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (MeshTriangleCor_1217_TypeType == NormalsE)
+    delete MeshTriangleCor_1217_TypeValue.Normals;
+  else if (MeshTriangleCor_1217_TypeType == NormalsBinaryE)
+    delete MeshTriangleCor_1217_TypeValue.NormalsBinary;
+  #endif
+}
+
+void MeshTriangleCor_1217_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (MeshTriangleCor_1217_TypeType == NormalsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Normals");
-      MeshTriangleCor_1216_TypeValue.Normals->printSelf(outFile);
+      MeshTriangleCor_1217_TypeValue.Normals->printSelf(outFile);
       fprintf(outFile, "</Normals>\n");
     }
-  else if (MeshTriangleCor_1216_TypeType == NormalsBinaryE)
+  else if (MeshTriangleCor_1217_TypeType == NormalsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NormalsBinary");
-      MeshTriangleCor_1216_TypeValue.NormalsBinary->printSelf(outFile);
+      MeshTriangleCor_1217_TypeValue.NormalsBinary->printSelf(outFile);
       fprintf(outFile, "</NormalsBinary>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class MeshTriangleTyp_1217_Type
+/* class MeshTriangleTyp_1218_Type
 
 */
 
-MeshTriangleTyp_1217_Type::MeshTriangleTyp_1217_Type()
+MeshTriangleTyp_1218_Type::MeshTriangleTyp_1218_Type()
 {
-  MeshTriangleTyp_1217_TypePair = 0;
+  MeshTriangleTyp_1218_TypePair = 0;
 }
 
-MeshTriangleTyp_1217_Type::MeshTriangleTyp_1217_Type(
- MeshTriangleTyp_1217_TypeChoicePair * MeshTriangleTyp_1217_TypePairIn)
+MeshTriangleTyp_1218_Type::MeshTriangleTyp_1218_Type(
+ MeshTriangleTyp_1218_TypeChoicePair * MeshTriangleTyp_1218_TypePairIn)
 {
-  MeshTriangleTyp_1217_TypePair = MeshTriangleTyp_1217_TypePairIn;
+  MeshTriangleTyp_1218_TypePair = MeshTriangleTyp_1218_TypePairIn;
 }
 
-MeshTriangleTyp_1217_Type::~MeshTriangleTyp_1217_Type()
+MeshTriangleTyp_1218_Type::~MeshTriangleTyp_1218_Type()
 {
   #ifndef NODESTRUCT
-  delete MeshTriangleTyp_1217_TypePair;
+  delete MeshTriangleTyp_1218_TypePair;
   #endif
 }
 
-void MeshTriangleTyp_1217_Type::printSelf(FILE * outFile)
+void MeshTriangleTyp_1218_Type::printSelf(FILE * outFile)
 {
-  if (MeshTriangleTyp_1217_TypePair)
+  if (MeshTriangleTyp_1218_TypePair)
     {
-      MeshTriangleTyp_1217_TypePair->printSelf(outFile);
+      MeshTriangleTyp_1218_TypePair->printSelf(outFile);
     }
 }
 
-MeshTriangleTyp_1217_TypeChoicePair * MeshTriangleTyp_1217_Type::getMeshTriangleTyp_1217_TypePair()
-{return MeshTriangleTyp_1217_TypePair;}
+MeshTriangleTyp_1218_TypeChoicePair * MeshTriangleTyp_1218_Type::getMeshTriangleTyp_1218_TypePair()
+{return MeshTriangleTyp_1218_TypePair;}
 
-void MeshTriangleTyp_1217_Type::setMeshTriangleTyp_1217_TypePair(MeshTriangleTyp_1217_TypeChoicePair * MeshTriangleTyp_1217_TypePairIn)
-{MeshTriangleTyp_1217_TypePair = MeshTriangleTyp_1217_TypePairIn;}
+void MeshTriangleTyp_1218_Type::setMeshTriangleTyp_1218_TypePair(MeshTriangleTyp_1218_TypeChoicePair * MeshTriangleTyp_1218_TypePairIn)
+{MeshTriangleTyp_1218_TypePair = MeshTriangleTyp_1218_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class MeshTriangleTyp_1217_TypeChoicePair
+/* class MeshTriangleTyp_1218_TypeChoicePair
 
 */
 
-MeshTriangleTyp_1217_TypeChoicePair::MeshTriangleTyp_1217_TypeChoicePair() {}
+MeshTriangleTyp_1218_TypeChoicePair::MeshTriangleTyp_1218_TypeChoicePair() {}
 
-MeshTriangleTyp_1217_TypeChoicePair::MeshTriangleTyp_1217_TypeChoicePair(
- whichOne MeshTriangleTyp_1217_TypeTypeIn,
- MeshTriangleTyp_1217_TypeVal MeshTriangleTyp_1217_TypeValueIn)
+MeshTriangleTyp_1218_TypeChoicePair::MeshTriangleTyp_1218_TypeChoicePair(
+ whichOne MeshTriangleTyp_1218_TypeTypeIn,
+ MeshTriangleTyp_1218_TypeVal MeshTriangleTyp_1218_TypeValueIn)
 {
-  MeshTriangleTyp_1217_TypeType = MeshTriangleTyp_1217_TypeTypeIn;
-  MeshTriangleTyp_1217_TypeValue = MeshTriangleTyp_1217_TypeValueIn;
+  MeshTriangleTyp_1218_TypeType = MeshTriangleTyp_1218_TypeTypeIn;
+  MeshTriangleTyp_1218_TypeValue = MeshTriangleTyp_1218_TypeValueIn;
 }
 
-MeshTriangleTyp_1217_TypeChoicePair::~MeshTriangleTyp_1217_TypeChoicePair()
+MeshTriangleTyp_1218_TypeChoicePair::~MeshTriangleTyp_1218_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (MeshTriangleTyp_1217_TypeType == NormalsSpecialE)
-    delete MeshTriangleTyp_1217_TypeValue.NormalsSpecial;
-  else if (MeshTriangleTyp_1217_TypeType == NormalsSpecialBinaryE)
-    delete MeshTriangleTyp_1217_TypeValue.NormalsSpecialBinary;
+  if (MeshTriangleTyp_1218_TypeType == NormalsSpecialE)
+    delete MeshTriangleTyp_1218_TypeValue.NormalsSpecial;
+  else if (MeshTriangleTyp_1218_TypeType == NormalsSpecialBinaryE)
+    delete MeshTriangleTyp_1218_TypeValue.NormalsSpecialBinary;
   #endif
 }
 
-void MeshTriangleTyp_1217_TypeChoicePair::printSelf(FILE * outFile)
+void MeshTriangleTyp_1218_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (MeshTriangleTyp_1217_TypeType == NormalsSpecialE)
+  if (MeshTriangleTyp_1218_TypeType == NormalsSpecialE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NormalsSpecial");
-      MeshTriangleTyp_1217_TypeValue.NormalsSpecial->printSelf(outFile);
+      MeshTriangleTyp_1218_TypeValue.NormalsSpecial->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</NormalsSpecial>\n");
     }
-  else if (MeshTriangleTyp_1217_TypeType == NormalsSpecialBinaryE)
+  else if (MeshTriangleTyp_1218_TypeType == NormalsSpecialBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NormalsSpecialBinary");
-      MeshTriangleTyp_1217_TypeValue.NormalsSpecialBinary->printSelf(outFile);
+      MeshTriangleTyp_1218_TypeValue.NormalsSpecialBinary->printSelf(outFile);
       fprintf(outFile, "</NormalsSpecialBinary>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class Nurbs12CoreType_1218_Type
-
-*/
-
-Nurbs12CoreType_1218_Type::Nurbs12CoreType_1218_Type()
-{
-  Nurbs12CoreType_1218_TypePair = 0;
-}
-
-Nurbs12CoreType_1218_Type::Nurbs12CoreType_1218_Type(
- Nurbs12CoreType_1218_TypeChoicePair * Nurbs12CoreType_1218_TypePairIn)
-{
-  Nurbs12CoreType_1218_TypePair = Nurbs12CoreType_1218_TypePairIn;
-}
-
-Nurbs12CoreType_1218_Type::~Nurbs12CoreType_1218_Type()
-{
-  #ifndef NODESTRUCT
-  delete Nurbs12CoreType_1218_TypePair;
-  #endif
-}
-
-void Nurbs12CoreType_1218_Type::printSelf(FILE * outFile)
-{
-  Nurbs12CoreType_1218_TypePair->printSelf(outFile);
-}
-
-Nurbs12CoreType_1218_TypeChoicePair * Nurbs12CoreType_1218_Type::getNurbs12CoreType_1218_TypePair()
-{return Nurbs12CoreType_1218_TypePair;}
-
-void Nurbs12CoreType_1218_Type::setNurbs12CoreType_1218_TypePair(Nurbs12CoreType_1218_TypeChoicePair * Nurbs12CoreType_1218_TypePairIn)
-{Nurbs12CoreType_1218_TypePair = Nurbs12CoreType_1218_TypePairIn;}
-
-/*********************************************************************/
-
-/* class Nurbs12CoreType_1218_TypeChoicePair
+/* class Nurbs12CoreType_1219_Type
 
 */
 
-Nurbs12CoreType_1218_TypeChoicePair::Nurbs12CoreType_1218_TypeChoicePair() {}
-
-Nurbs12CoreType_1218_TypeChoicePair::Nurbs12CoreType_1218_TypeChoicePair(
- whichOne Nurbs12CoreType_1218_TypeTypeIn,
- Nurbs12CoreType_1218_TypeVal Nurbs12CoreType_1218_TypeValueIn)
+Nurbs12CoreType_1219_Type::Nurbs12CoreType_1219_Type()
 {
-  Nurbs12CoreType_1218_TypeType = Nurbs12CoreType_1218_TypeTypeIn;
-  Nurbs12CoreType_1218_TypeValue = Nurbs12CoreType_1218_TypeValueIn;
+  Nurbs12CoreType_1219_TypePair = 0;
 }
 
-Nurbs12CoreType_1218_TypeChoicePair::~Nurbs12CoreType_1218_TypeChoicePair()
+Nurbs12CoreType_1219_Type::Nurbs12CoreType_1219_Type(
+ Nurbs12CoreType_1219_TypeChoicePair * Nurbs12CoreType_1219_TypePairIn)
+{
+  Nurbs12CoreType_1219_TypePair = Nurbs12CoreType_1219_TypePairIn;
+}
+
+Nurbs12CoreType_1219_Type::~Nurbs12CoreType_1219_Type()
 {
   #ifndef NODESTRUCT
-  if (Nurbs12CoreType_1218_TypeType == CPsE)
-    delete Nurbs12CoreType_1218_TypeValue.CPs;
-  else if (Nurbs12CoreType_1218_TypeType == CPsBinaryE)
-    delete Nurbs12CoreType_1218_TypeValue.CPsBinary;
+  delete Nurbs12CoreType_1219_TypePair;
   #endif
 }
 
-void Nurbs12CoreType_1218_TypeChoicePair::printSelf(FILE * outFile)
+void Nurbs12CoreType_1219_Type::printSelf(FILE * outFile)
 {
-  if (Nurbs12CoreType_1218_TypeType == CPsE)
+  Nurbs12CoreType_1219_TypePair->printSelf(outFile);
+}
+
+Nurbs12CoreType_1219_TypeChoicePair * Nurbs12CoreType_1219_Type::getNurbs12CoreType_1219_TypePair()
+{return Nurbs12CoreType_1219_TypePair;}
+
+void Nurbs12CoreType_1219_Type::setNurbs12CoreType_1219_TypePair(Nurbs12CoreType_1219_TypeChoicePair * Nurbs12CoreType_1219_TypePairIn)
+{Nurbs12CoreType_1219_TypePair = Nurbs12CoreType_1219_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class Nurbs12CoreType_1219_TypeChoicePair
+
+*/
+
+Nurbs12CoreType_1219_TypeChoicePair::Nurbs12CoreType_1219_TypeChoicePair() {}
+
+Nurbs12CoreType_1219_TypeChoicePair::Nurbs12CoreType_1219_TypeChoicePair(
+ whichOne Nurbs12CoreType_1219_TypeTypeIn,
+ Nurbs12CoreType_1219_TypeVal Nurbs12CoreType_1219_TypeValueIn)
+{
+  Nurbs12CoreType_1219_TypeType = Nurbs12CoreType_1219_TypeTypeIn;
+  Nurbs12CoreType_1219_TypeValue = Nurbs12CoreType_1219_TypeValueIn;
+}
+
+Nurbs12CoreType_1219_TypeChoicePair::~Nurbs12CoreType_1219_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (Nurbs12CoreType_1219_TypeType == CPsE)
+    delete Nurbs12CoreType_1219_TypeValue.CPs;
+  else if (Nurbs12CoreType_1219_TypeType == CPsBinaryE)
+    delete Nurbs12CoreType_1219_TypeValue.CPsBinary;
+  #endif
+}
+
+void Nurbs12CoreType_1219_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (Nurbs12CoreType_1219_TypeType == CPsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CPs");
-      Nurbs12CoreType_1218_TypeValue.CPs->printSelf(outFile);
+      Nurbs12CoreType_1219_TypeValue.CPs->printSelf(outFile);
       fprintf(outFile, "</CPs>\n");
     }
-  else if (Nurbs12CoreType_1218_TypeType == CPsBinaryE)
+  else if (Nurbs12CoreType_1219_TypeType == CPsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CPsBinary");
-      Nurbs12CoreType_1218_TypeValue.CPsBinary->printSelf(outFile);
+      Nurbs12CoreType_1219_TypeValue.CPsBinary->printSelf(outFile);
       fprintf(outFile, "</CPsBinary>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class Nurbs13CoreType_1219_Type
-
-*/
-
-Nurbs13CoreType_1219_Type::Nurbs13CoreType_1219_Type()
-{
-  Nurbs13CoreType_1219_TypePair = 0;
-}
-
-Nurbs13CoreType_1219_Type::Nurbs13CoreType_1219_Type(
- Nurbs13CoreType_1219_TypeChoicePair * Nurbs13CoreType_1219_TypePairIn)
-{
-  Nurbs13CoreType_1219_TypePair = Nurbs13CoreType_1219_TypePairIn;
-}
-
-Nurbs13CoreType_1219_Type::~Nurbs13CoreType_1219_Type()
-{
-  #ifndef NODESTRUCT
-  delete Nurbs13CoreType_1219_TypePair;
-  #endif
-}
-
-void Nurbs13CoreType_1219_Type::printSelf(FILE * outFile)
-{
-  Nurbs13CoreType_1219_TypePair->printSelf(outFile);
-}
-
-Nurbs13CoreType_1219_TypeChoicePair * Nurbs13CoreType_1219_Type::getNurbs13CoreType_1219_TypePair()
-{return Nurbs13CoreType_1219_TypePair;}
-
-void Nurbs13CoreType_1219_Type::setNurbs13CoreType_1219_TypePair(Nurbs13CoreType_1219_TypeChoicePair * Nurbs13CoreType_1219_TypePairIn)
-{Nurbs13CoreType_1219_TypePair = Nurbs13CoreType_1219_TypePairIn;}
-
-/*********************************************************************/
-
-/* class Nurbs13CoreType_1219_TypeChoicePair
+/* class Nurbs13CoreType_1220_Type
 
 */
 
-Nurbs13CoreType_1219_TypeChoicePair::Nurbs13CoreType_1219_TypeChoicePair() {}
-
-Nurbs13CoreType_1219_TypeChoicePair::Nurbs13CoreType_1219_TypeChoicePair(
- whichOne Nurbs13CoreType_1219_TypeTypeIn,
- Nurbs13CoreType_1219_TypeVal Nurbs13CoreType_1219_TypeValueIn)
+Nurbs13CoreType_1220_Type::Nurbs13CoreType_1220_Type()
 {
-  Nurbs13CoreType_1219_TypeType = Nurbs13CoreType_1219_TypeTypeIn;
-  Nurbs13CoreType_1219_TypeValue = Nurbs13CoreType_1219_TypeValueIn;
+  Nurbs13CoreType_1220_TypePair = 0;
 }
 
-Nurbs13CoreType_1219_TypeChoicePair::~Nurbs13CoreType_1219_TypeChoicePair()
+Nurbs13CoreType_1220_Type::Nurbs13CoreType_1220_Type(
+ Nurbs13CoreType_1220_TypeChoicePair * Nurbs13CoreType_1220_TypePairIn)
+{
+  Nurbs13CoreType_1220_TypePair = Nurbs13CoreType_1220_TypePairIn;
+}
+
+Nurbs13CoreType_1220_Type::~Nurbs13CoreType_1220_Type()
 {
   #ifndef NODESTRUCT
-  if (Nurbs13CoreType_1219_TypeType == CPsE)
-    delete Nurbs13CoreType_1219_TypeValue.CPs;
-  else if (Nurbs13CoreType_1219_TypeType == CPsBinaryE)
-    delete Nurbs13CoreType_1219_TypeValue.CPsBinary;
+  delete Nurbs13CoreType_1220_TypePair;
   #endif
 }
 
-void Nurbs13CoreType_1219_TypeChoicePair::printSelf(FILE * outFile)
+void Nurbs13CoreType_1220_Type::printSelf(FILE * outFile)
 {
-  if (Nurbs13CoreType_1219_TypeType == CPsE)
+  Nurbs13CoreType_1220_TypePair->printSelf(outFile);
+}
+
+Nurbs13CoreType_1220_TypeChoicePair * Nurbs13CoreType_1220_Type::getNurbs13CoreType_1220_TypePair()
+{return Nurbs13CoreType_1220_TypePair;}
+
+void Nurbs13CoreType_1220_Type::setNurbs13CoreType_1220_TypePair(Nurbs13CoreType_1220_TypeChoicePair * Nurbs13CoreType_1220_TypePairIn)
+{Nurbs13CoreType_1220_TypePair = Nurbs13CoreType_1220_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class Nurbs13CoreType_1220_TypeChoicePair
+
+*/
+
+Nurbs13CoreType_1220_TypeChoicePair::Nurbs13CoreType_1220_TypeChoicePair() {}
+
+Nurbs13CoreType_1220_TypeChoicePair::Nurbs13CoreType_1220_TypeChoicePair(
+ whichOne Nurbs13CoreType_1220_TypeTypeIn,
+ Nurbs13CoreType_1220_TypeVal Nurbs13CoreType_1220_TypeValueIn)
+{
+  Nurbs13CoreType_1220_TypeType = Nurbs13CoreType_1220_TypeTypeIn;
+  Nurbs13CoreType_1220_TypeValue = Nurbs13CoreType_1220_TypeValueIn;
+}
+
+Nurbs13CoreType_1220_TypeChoicePair::~Nurbs13CoreType_1220_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (Nurbs13CoreType_1220_TypeType == CPsE)
+    delete Nurbs13CoreType_1220_TypeValue.CPs;
+  else if (Nurbs13CoreType_1220_TypeType == CPsBinaryE)
+    delete Nurbs13CoreType_1220_TypeValue.CPsBinary;
+  #endif
+}
+
+void Nurbs13CoreType_1220_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (Nurbs13CoreType_1220_TypeType == CPsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CPs");
-      Nurbs13CoreType_1219_TypeValue.CPs->printSelf(outFile);
+      Nurbs13CoreType_1220_TypeValue.CPs->printSelf(outFile);
       fprintf(outFile, "</CPs>\n");
     }
-  else if (Nurbs13CoreType_1219_TypeType == CPsBinaryE)
+  else if (Nurbs13CoreType_1220_TypeType == CPsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CPsBinary");
-      Nurbs13CoreType_1219_TypeValue.CPsBinary->printSelf(outFile);
+      Nurbs13CoreType_1220_TypeValue.CPsBinary->printSelf(outFile);
       fprintf(outFile, "</CPsBinary>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class Nurbs23CoreType_1220_Type
-
-*/
-
-Nurbs23CoreType_1220_Type::Nurbs23CoreType_1220_Type()
-{
-  Nurbs23CoreType_1220_TypePair = 0;
-}
-
-Nurbs23CoreType_1220_Type::Nurbs23CoreType_1220_Type(
- Nurbs23CoreType_1220_TypeChoicePair * Nurbs23CoreType_1220_TypePairIn)
-{
-  Nurbs23CoreType_1220_TypePair = Nurbs23CoreType_1220_TypePairIn;
-}
-
-Nurbs23CoreType_1220_Type::~Nurbs23CoreType_1220_Type()
-{
-  #ifndef NODESTRUCT
-  delete Nurbs23CoreType_1220_TypePair;
-  #endif
-}
-
-void Nurbs23CoreType_1220_Type::printSelf(FILE * outFile)
-{
-  Nurbs23CoreType_1220_TypePair->printSelf(outFile);
-}
-
-Nurbs23CoreType_1220_TypeChoicePair * Nurbs23CoreType_1220_Type::getNurbs23CoreType_1220_TypePair()
-{return Nurbs23CoreType_1220_TypePair;}
-
-void Nurbs23CoreType_1220_Type::setNurbs23CoreType_1220_TypePair(Nurbs23CoreType_1220_TypeChoicePair * Nurbs23CoreType_1220_TypePairIn)
-{Nurbs23CoreType_1220_TypePair = Nurbs23CoreType_1220_TypePairIn;}
-
-/*********************************************************************/
-
-/* class Nurbs23CoreType_1220_TypeChoicePair
+/* class Nurbs23CoreType_1221_Type
 
 */
 
-Nurbs23CoreType_1220_TypeChoicePair::Nurbs23CoreType_1220_TypeChoicePair() {}
-
-Nurbs23CoreType_1220_TypeChoicePair::Nurbs23CoreType_1220_TypeChoicePair(
- whichOne Nurbs23CoreType_1220_TypeTypeIn,
- Nurbs23CoreType_1220_TypeVal Nurbs23CoreType_1220_TypeValueIn)
+Nurbs23CoreType_1221_Type::Nurbs23CoreType_1221_Type()
 {
-  Nurbs23CoreType_1220_TypeType = Nurbs23CoreType_1220_TypeTypeIn;
-  Nurbs23CoreType_1220_TypeValue = Nurbs23CoreType_1220_TypeValueIn;
+  Nurbs23CoreType_1221_TypePair = 0;
 }
 
-Nurbs23CoreType_1220_TypeChoicePair::~Nurbs23CoreType_1220_TypeChoicePair()
+Nurbs23CoreType_1221_Type::Nurbs23CoreType_1221_Type(
+ Nurbs23CoreType_1221_TypeChoicePair * Nurbs23CoreType_1221_TypePairIn)
+{
+  Nurbs23CoreType_1221_TypePair = Nurbs23CoreType_1221_TypePairIn;
+}
+
+Nurbs23CoreType_1221_Type::~Nurbs23CoreType_1221_Type()
 {
   #ifndef NODESTRUCT
-  if (Nurbs23CoreType_1220_TypeType == CPsE)
-    delete Nurbs23CoreType_1220_TypeValue.CPs;
-  else if (Nurbs23CoreType_1220_TypeType == CPsBinaryE)
-    delete Nurbs23CoreType_1220_TypeValue.CPsBinary;
+  delete Nurbs23CoreType_1221_TypePair;
   #endif
 }
 
-void Nurbs23CoreType_1220_TypeChoicePair::printSelf(FILE * outFile)
+void Nurbs23CoreType_1221_Type::printSelf(FILE * outFile)
 {
-  if (Nurbs23CoreType_1220_TypeType == CPsE)
+  Nurbs23CoreType_1221_TypePair->printSelf(outFile);
+}
+
+Nurbs23CoreType_1221_TypeChoicePair * Nurbs23CoreType_1221_Type::getNurbs23CoreType_1221_TypePair()
+{return Nurbs23CoreType_1221_TypePair;}
+
+void Nurbs23CoreType_1221_Type::setNurbs23CoreType_1221_TypePair(Nurbs23CoreType_1221_TypeChoicePair * Nurbs23CoreType_1221_TypePairIn)
+{Nurbs23CoreType_1221_TypePair = Nurbs23CoreType_1221_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class Nurbs23CoreType_1221_TypeChoicePair
+
+*/
+
+Nurbs23CoreType_1221_TypeChoicePair::Nurbs23CoreType_1221_TypeChoicePair() {}
+
+Nurbs23CoreType_1221_TypeChoicePair::Nurbs23CoreType_1221_TypeChoicePair(
+ whichOne Nurbs23CoreType_1221_TypeTypeIn,
+ Nurbs23CoreType_1221_TypeVal Nurbs23CoreType_1221_TypeValueIn)
+{
+  Nurbs23CoreType_1221_TypeType = Nurbs23CoreType_1221_TypeTypeIn;
+  Nurbs23CoreType_1221_TypeValue = Nurbs23CoreType_1221_TypeValueIn;
+}
+
+Nurbs23CoreType_1221_TypeChoicePair::~Nurbs23CoreType_1221_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (Nurbs23CoreType_1221_TypeType == CPsE)
+    delete Nurbs23CoreType_1221_TypeValue.CPs;
+  else if (Nurbs23CoreType_1221_TypeType == CPsBinaryE)
+    delete Nurbs23CoreType_1221_TypeValue.CPsBinary;
+  #endif
+}
+
+void Nurbs23CoreType_1221_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (Nurbs23CoreType_1221_TypeType == CPsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CPs");
-      Nurbs23CoreType_1220_TypeValue.CPs->printSelf(outFile);
+      Nurbs23CoreType_1221_TypeValue.CPs->printSelf(outFile);
       fprintf(outFile, "</CPs>\n");
     }
-  else if (Nurbs23CoreType_1220_TypeType == CPsBinaryE)
+  else if (Nurbs23CoreType_1221_TypeType == CPsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CPsBinary");
-      Nurbs23CoreType_1220_TypeValue.CPsBinary->printSelf(outFile);
+      Nurbs23CoreType_1221_TypeValue.CPsBinary->printSelf(outFile);
       fprintf(outFile, "</CPsBinary>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class Polyline12CoreT_1221_Type
-
-*/
-
-Polyline12CoreT_1221_Type::Polyline12CoreT_1221_Type()
-{
-  Polyline12CoreT_1221_TypePair = 0;
-}
-
-Polyline12CoreT_1221_Type::Polyline12CoreT_1221_Type(
- Polyline12CoreT_1221_TypeChoicePair * Polyline12CoreT_1221_TypePairIn)
-{
-  Polyline12CoreT_1221_TypePair = Polyline12CoreT_1221_TypePairIn;
-}
-
-Polyline12CoreT_1221_Type::~Polyline12CoreT_1221_Type()
-{
-  #ifndef NODESTRUCT
-  delete Polyline12CoreT_1221_TypePair;
-  #endif
-}
-
-void Polyline12CoreT_1221_Type::printSelf(FILE * outFile)
-{
-  Polyline12CoreT_1221_TypePair->printSelf(outFile);
-}
-
-Polyline12CoreT_1221_TypeChoicePair * Polyline12CoreT_1221_Type::getPolyline12CoreT_1221_TypePair()
-{return Polyline12CoreT_1221_TypePair;}
-
-void Polyline12CoreT_1221_Type::setPolyline12CoreT_1221_TypePair(Polyline12CoreT_1221_TypeChoicePair * Polyline12CoreT_1221_TypePairIn)
-{Polyline12CoreT_1221_TypePair = Polyline12CoreT_1221_TypePairIn;}
-
-/*********************************************************************/
-
-/* class Polyline12CoreT_1221_TypeChoicePair
+/* class Polyline12CoreT_1222_Type
 
 */
 
-Polyline12CoreT_1221_TypeChoicePair::Polyline12CoreT_1221_TypeChoicePair() {}
-
-Polyline12CoreT_1221_TypeChoicePair::Polyline12CoreT_1221_TypeChoicePair(
- whichOne Polyline12CoreT_1221_TypeTypeIn,
- Polyline12CoreT_1221_TypeVal Polyline12CoreT_1221_TypeValueIn)
+Polyline12CoreT_1222_Type::Polyline12CoreT_1222_Type()
 {
-  Polyline12CoreT_1221_TypeType = Polyline12CoreT_1221_TypeTypeIn;
-  Polyline12CoreT_1221_TypeValue = Polyline12CoreT_1221_TypeValueIn;
+  Polyline12CoreT_1222_TypePair = 0;
 }
 
-Polyline12CoreT_1221_TypeChoicePair::~Polyline12CoreT_1221_TypeChoicePair()
+Polyline12CoreT_1222_Type::Polyline12CoreT_1222_Type(
+ Polyline12CoreT_1222_TypeChoicePair * Polyline12CoreT_1222_TypePairIn)
+{
+  Polyline12CoreT_1222_TypePair = Polyline12CoreT_1222_TypePairIn;
+}
+
+Polyline12CoreT_1222_Type::~Polyline12CoreT_1222_Type()
 {
   #ifndef NODESTRUCT
-  if (Polyline12CoreT_1221_TypeType == PointsE)
-    delete Polyline12CoreT_1221_TypeValue.Points;
-  else if (Polyline12CoreT_1221_TypeType == PointsBinaryE)
-    delete Polyline12CoreT_1221_TypeValue.PointsBinary;
+  delete Polyline12CoreT_1222_TypePair;
   #endif
 }
 
-void Polyline12CoreT_1221_TypeChoicePair::printSelf(FILE * outFile)
+void Polyline12CoreT_1222_Type::printSelf(FILE * outFile)
 {
-  if (Polyline12CoreT_1221_TypeType == PointsE)
+  Polyline12CoreT_1222_TypePair->printSelf(outFile);
+}
+
+Polyline12CoreT_1222_TypeChoicePair * Polyline12CoreT_1222_Type::getPolyline12CoreT_1222_TypePair()
+{return Polyline12CoreT_1222_TypePair;}
+
+void Polyline12CoreT_1222_Type::setPolyline12CoreT_1222_TypePair(Polyline12CoreT_1222_TypeChoicePair * Polyline12CoreT_1222_TypePairIn)
+{Polyline12CoreT_1222_TypePair = Polyline12CoreT_1222_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class Polyline12CoreT_1222_TypeChoicePair
+
+*/
+
+Polyline12CoreT_1222_TypeChoicePair::Polyline12CoreT_1222_TypeChoicePair() {}
+
+Polyline12CoreT_1222_TypeChoicePair::Polyline12CoreT_1222_TypeChoicePair(
+ whichOne Polyline12CoreT_1222_TypeTypeIn,
+ Polyline12CoreT_1222_TypeVal Polyline12CoreT_1222_TypeValueIn)
+{
+  Polyline12CoreT_1222_TypeType = Polyline12CoreT_1222_TypeTypeIn;
+  Polyline12CoreT_1222_TypeValue = Polyline12CoreT_1222_TypeValueIn;
+}
+
+Polyline12CoreT_1222_TypeChoicePair::~Polyline12CoreT_1222_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (Polyline12CoreT_1222_TypeType == PointsE)
+    delete Polyline12CoreT_1222_TypeValue.Points;
+  else if (Polyline12CoreT_1222_TypeType == PointsBinaryE)
+    delete Polyline12CoreT_1222_TypeValue.PointsBinary;
+  #endif
+}
+
+void Polyline12CoreT_1222_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (Polyline12CoreT_1222_TypeType == PointsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Points");
-      Polyline12CoreT_1221_TypeValue.Points->printSelf(outFile);
+      Polyline12CoreT_1222_TypeValue.Points->printSelf(outFile);
       fprintf(outFile, "</Points>\n");
     }
-  else if (Polyline12CoreT_1221_TypeType == PointsBinaryE)
+  else if (Polyline12CoreT_1222_TypeType == PointsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsBinary");
-      Polyline12CoreT_1221_TypeValue.PointsBinary->printSelf(outFile);
+      Polyline12CoreT_1222_TypeValue.PointsBinary->printSelf(outFile);
       fprintf(outFile, "</PointsBinary>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class Polyline13CoreT_1222_Type
-
-*/
-
-Polyline13CoreT_1222_Type::Polyline13CoreT_1222_Type()
-{
-  Polyline13CoreT_1222_TypePair = 0;
-}
-
-Polyline13CoreT_1222_Type::Polyline13CoreT_1222_Type(
- Polyline13CoreT_1222_TypeChoicePair * Polyline13CoreT_1222_TypePairIn)
-{
-  Polyline13CoreT_1222_TypePair = Polyline13CoreT_1222_TypePairIn;
-}
-
-Polyline13CoreT_1222_Type::~Polyline13CoreT_1222_Type()
-{
-  #ifndef NODESTRUCT
-  delete Polyline13CoreT_1222_TypePair;
-  #endif
-}
-
-void Polyline13CoreT_1222_Type::printSelf(FILE * outFile)
-{
-  Polyline13CoreT_1222_TypePair->printSelf(outFile);
-}
-
-Polyline13CoreT_1222_TypeChoicePair * Polyline13CoreT_1222_Type::getPolyline13CoreT_1222_TypePair()
-{return Polyline13CoreT_1222_TypePair;}
-
-void Polyline13CoreT_1222_Type::setPolyline13CoreT_1222_TypePair(Polyline13CoreT_1222_TypeChoicePair * Polyline13CoreT_1222_TypePairIn)
-{Polyline13CoreT_1222_TypePair = Polyline13CoreT_1222_TypePairIn;}
-
-/*********************************************************************/
-
-/* class Polyline13CoreT_1222_TypeChoicePair
+/* class Polyline13CoreT_1223_Type
 
 */
 
-Polyline13CoreT_1222_TypeChoicePair::Polyline13CoreT_1222_TypeChoicePair() {}
-
-Polyline13CoreT_1222_TypeChoicePair::Polyline13CoreT_1222_TypeChoicePair(
- whichOne Polyline13CoreT_1222_TypeTypeIn,
- Polyline13CoreT_1222_TypeVal Polyline13CoreT_1222_TypeValueIn)
+Polyline13CoreT_1223_Type::Polyline13CoreT_1223_Type()
 {
-  Polyline13CoreT_1222_TypeType = Polyline13CoreT_1222_TypeTypeIn;
-  Polyline13CoreT_1222_TypeValue = Polyline13CoreT_1222_TypeValueIn;
+  Polyline13CoreT_1223_TypePair = 0;
 }
 
-Polyline13CoreT_1222_TypeChoicePair::~Polyline13CoreT_1222_TypeChoicePair()
+Polyline13CoreT_1223_Type::Polyline13CoreT_1223_Type(
+ Polyline13CoreT_1223_TypeChoicePair * Polyline13CoreT_1223_TypePairIn)
+{
+  Polyline13CoreT_1223_TypePair = Polyline13CoreT_1223_TypePairIn;
+}
+
+Polyline13CoreT_1223_Type::~Polyline13CoreT_1223_Type()
 {
   #ifndef NODESTRUCT
-  if (Polyline13CoreT_1222_TypeType == PointsE)
-    delete Polyline13CoreT_1222_TypeValue.Points;
-  else if (Polyline13CoreT_1222_TypeType == PointsBinaryE)
-    delete Polyline13CoreT_1222_TypeValue.PointsBinary;
+  delete Polyline13CoreT_1223_TypePair;
   #endif
 }
 
-void Polyline13CoreT_1222_TypeChoicePair::printSelf(FILE * outFile)
+void Polyline13CoreT_1223_Type::printSelf(FILE * outFile)
 {
-  if (Polyline13CoreT_1222_TypeType == PointsE)
+  Polyline13CoreT_1223_TypePair->printSelf(outFile);
+}
+
+Polyline13CoreT_1223_TypeChoicePair * Polyline13CoreT_1223_Type::getPolyline13CoreT_1223_TypePair()
+{return Polyline13CoreT_1223_TypePair;}
+
+void Polyline13CoreT_1223_Type::setPolyline13CoreT_1223_TypePair(Polyline13CoreT_1223_TypeChoicePair * Polyline13CoreT_1223_TypePairIn)
+{Polyline13CoreT_1223_TypePair = Polyline13CoreT_1223_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class Polyline13CoreT_1223_TypeChoicePair
+
+*/
+
+Polyline13CoreT_1223_TypeChoicePair::Polyline13CoreT_1223_TypeChoicePair() {}
+
+Polyline13CoreT_1223_TypeChoicePair::Polyline13CoreT_1223_TypeChoicePair(
+ whichOne Polyline13CoreT_1223_TypeTypeIn,
+ Polyline13CoreT_1223_TypeVal Polyline13CoreT_1223_TypeValueIn)
+{
+  Polyline13CoreT_1223_TypeType = Polyline13CoreT_1223_TypeTypeIn;
+  Polyline13CoreT_1223_TypeValue = Polyline13CoreT_1223_TypeValueIn;
+}
+
+Polyline13CoreT_1223_TypeChoicePair::~Polyline13CoreT_1223_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (Polyline13CoreT_1223_TypeType == PointsE)
+    delete Polyline13CoreT_1223_TypeValue.Points;
+  else if (Polyline13CoreT_1223_TypeType == PointsBinaryE)
+    delete Polyline13CoreT_1223_TypeValue.PointsBinary;
+  #endif
+}
+
+void Polyline13CoreT_1223_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (Polyline13CoreT_1223_TypeType == PointsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Points");
-      Polyline13CoreT_1222_TypeValue.Points->printSelf(outFile);
+      Polyline13CoreT_1223_TypeValue.Points->printSelf(outFile);
       fprintf(outFile, "</Points>\n");
     }
-  else if (Polyline13CoreT_1222_TypeType == PointsBinaryE)
+  else if (Polyline13CoreT_1223_TypeType == PointsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsBinary");
-      Polyline13CoreT_1222_TypeValue.PointsBinary->printSelf(outFile);
+      Polyline13CoreT_1223_TypeValue.PointsBinary->printSelf(outFile);
       fprintf(outFile, "</PointsBinary>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 

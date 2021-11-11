@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #ifndef TOPOLOGY_HH
 #define TOPOLOGY_HH
@@ -7,7 +7,7 @@
 #include <xmlSchemaInstance.hh>
 #include "PrimitivesPDClasses.hh"
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class BodyFormEnumType;
 class BodySetType;
@@ -48,23 +48,23 @@ class ValidationFaceType;
 class VertexSetType;
 class VertexType;
 class VertexTypeLisd;
-class FaceMeshType_1223_Type;
-class FaceMeshType_1223_TypeChoicePair;
 class FaceMeshType_1224_Type;
 class FaceMeshType_1224_TypeChoicePair;
 class FaceMeshType_1225_Type;
 class FaceMeshType_1225_TypeChoicePair;
-class PointCloudType_1226_Type;
-class PointCloudType_1226_TypeChoicePair;
+class FaceMeshType_1226_Type;
+class FaceMeshType_1226_TypeChoicePair;
 class PointCloudType_1227_Type;
 class PointCloudType_1227_TypeChoicePair;
 class PointCloudType_1228_Type;
 class PointCloudType_1228_TypeChoicePair;
 class PointCloudType_1229_Type;
 class PointCloudType_1229_TypeChoicePair;
+class PointCloudType_1230_Type;
+class PointCloudType_1230_TypeChoicePair;
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 class BodyFormEnumType :
   public XmlNMTOKEN
@@ -80,7 +80,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class BodySetType :
   public XmlTypeBase
@@ -107,7 +107,7 @@ protected:
   BodyTypeLisd * Body;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CoEdgeMeshType :
   public XmlTypeBase
@@ -130,7 +130,7 @@ protected:
   ElementReferenceType * CurveMesh;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CoEdgeMeshTypeLisd :
   public std::list<CoEdgeMeshType *>,
@@ -144,7 +144,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CoEdgeType :
   public XmlTypeBase
@@ -167,7 +167,7 @@ protected:
   ElementReferenceType * Curve12;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CoEdgeTypeLisd :
   public std::list<CoEdgeType *>,
@@ -181,7 +181,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CoEdgesMeshType :
   public XmlTypeBase
@@ -208,7 +208,7 @@ protected:
   CoEdgeMeshTypeLisd * CoEdgeMesh;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CoEdgesType :
   public XmlTypeBase
@@ -235,7 +235,7 @@ protected:
   CoEdgeTypeLisd * CoEdge;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EdgeSetType :
   public XmlTypeBase
@@ -262,7 +262,7 @@ protected:
   EdgeTypeLisd * Edge;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FaceSetType :
   public XmlTypeBase
@@ -289,7 +289,7 @@ protected:
   FaceBaseTypeLisd * FaceBase;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LoopFormEnumType :
   public XmlString
@@ -305,7 +305,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LoopSetType :
   public XmlTypeBase
@@ -332,7 +332,7 @@ protected:
   LoopBaseTypeLisd * LoopBase;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointCloudSetType :
   public XmlTypeBase
@@ -359,7 +359,7 @@ protected:
   PointCloudTypeLisd * PointCloud;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ShellFormEnumType :
   public XmlString
@@ -375,7 +375,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ShellSetType :
   public XmlTypeBase
@@ -402,7 +402,7 @@ protected:
   ShellTypeLisd * Shell;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TopologyBaseType :
   public DrawableBaseType
@@ -424,7 +424,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TopologySetType :
   public XmlTypeBase
@@ -467,7 +467,7 @@ protected:
   PointCloudSetType * PointCloudSet;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ValidationBodyType :
   public XmlTypeBase
@@ -506,7 +506,7 @@ protected:
   ValidationPointsType * EdgePoints;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ValidationEdgeType :
   public XmlTypeBase
@@ -537,7 +537,7 @@ protected:
   ValidationPointsType * Points;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ValidationFaceType :
   public XmlTypeBase
@@ -568,7 +568,7 @@ protected:
   ValidationPointsType * Points;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class VertexSetType :
   public XmlTypeBase
@@ -595,7 +595,7 @@ protected:
   VertexTypeLisd * Vertex;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class VertexType :
   public TopologyBaseType
@@ -630,7 +630,7 @@ protected:
   ElementReferenceType * Point;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class VertexTypeLisd :
   public std::list<VertexType *>,
@@ -644,54 +644,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
-
-class FaceMeshType_1223_Type :
-  public XmlTypeBase
-{
-public:
-  FaceMeshType_1223_Type();
-  FaceMeshType_1223_Type(
-    FaceMeshType_1223_TypeChoicePair * FaceMeshType_1223_TypePairIn);
-  ~FaceMeshType_1223_Type();
-  void printSelf(FILE * outFile);
-
-  FaceMeshType_1223_TypeChoicePair * getFaceMeshType_1223_TypePair();
-  void setFaceMeshType_1223_TypePair(FaceMeshType_1223_TypeChoicePair * FaceMeshType_1223_TypePairIn);
-
-protected:
-  FaceMeshType_1223_TypeChoicePair * FaceMeshType_1223_TypePair;
-};
-
-/*********************************************************************/
-
-union FaceMeshType_1223_TypeVal
-{
-  ArrayIntType * Triangles;
-  ArrayBinaryType * TrianglesBinary;
-};
-
-/*********************************************************************/
-
-class FaceMeshType_1223_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    TrianglesE,
-    TrianglesBinaryE };
-  FaceMeshType_1223_TypeChoicePair();
-  FaceMeshType_1223_TypeChoicePair(
-    whichOne FaceMeshType_1223_TypeTypeIn,
-    FaceMeshType_1223_TypeVal FaceMeshType_1223_TypeValueIn);
-  ~FaceMeshType_1223_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne FaceMeshType_1223_TypeType;
-  FaceMeshType_1223_TypeVal FaceMeshType_1223_TypeValue;
-};
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FaceMeshType_1224_Type :
   public XmlTypeBase
@@ -710,27 +663,23 @@ protected:
   FaceMeshType_1224_TypeChoicePair * FaceMeshType_1224_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union FaceMeshType_1224_TypeVal
 {
-  ArrayIntType * TrianglesVisible;
-  ArrayBinaryType * TrianglesVisibleBinary;
-  ArrayIntType * TrianglesHidden;
-  ArrayBinaryType * TrianglesHiddenBinary;
+  ArrayIntType * Triangles;
+  ArrayBinaryType * TrianglesBinary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FaceMeshType_1224_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    TrianglesVisibleE,
-    TrianglesVisibleBinaryE,
-    TrianglesHiddenE,
-    TrianglesHiddenBinaryE };
+    TrianglesE,
+    TrianglesBinaryE };
   FaceMeshType_1224_TypeChoicePair();
   FaceMeshType_1224_TypeChoicePair(
     whichOne FaceMeshType_1224_TypeTypeIn,
@@ -742,7 +691,7 @@ public:
   FaceMeshType_1224_TypeVal FaceMeshType_1224_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FaceMeshType_1225_Type :
   public XmlTypeBase
@@ -761,23 +710,27 @@ protected:
   FaceMeshType_1225_TypeChoicePair * FaceMeshType_1225_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union FaceMeshType_1225_TypeVal
 {
-  ArrayUnsignedByteType * TrianglesColor;
-  ArrayBinaryType * TrianglesColorBinary;
+  ArrayIntType * TrianglesVisible;
+  ArrayBinaryType * TrianglesVisibleBinary;
+  ArrayIntType * TrianglesHidden;
+  ArrayBinaryType * TrianglesHiddenBinary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FaceMeshType_1225_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    TrianglesColorE,
-    TrianglesColorBinaryE };
+    TrianglesVisibleE,
+    TrianglesVisibleBinaryE,
+    TrianglesHiddenE,
+    TrianglesHiddenBinaryE };
   FaceMeshType_1225_TypeChoicePair();
   FaceMeshType_1225_TypeChoicePair(
     whichOne FaceMeshType_1225_TypeTypeIn,
@@ -789,54 +742,54 @@ public:
   FaceMeshType_1225_TypeVal FaceMeshType_1225_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class PointCloudType_1226_Type :
+class FaceMeshType_1226_Type :
   public XmlTypeBase
 {
 public:
-  PointCloudType_1226_Type();
-  PointCloudType_1226_Type(
-    PointCloudType_1226_TypeChoicePair * PointCloudType_1226_TypePairIn);
-  ~PointCloudType_1226_Type();
+  FaceMeshType_1226_Type();
+  FaceMeshType_1226_Type(
+    FaceMeshType_1226_TypeChoicePair * FaceMeshType_1226_TypePairIn);
+  ~FaceMeshType_1226_Type();
   void printSelf(FILE * outFile);
 
-  PointCloudType_1226_TypeChoicePair * getPointCloudType_1226_TypePair();
-  void setPointCloudType_1226_TypePair(PointCloudType_1226_TypeChoicePair * PointCloudType_1226_TypePairIn);
+  FaceMeshType_1226_TypeChoicePair * getFaceMeshType_1226_TypePair();
+  void setFaceMeshType_1226_TypePair(FaceMeshType_1226_TypeChoicePair * FaceMeshType_1226_TypePairIn);
 
 protected:
-  PointCloudType_1226_TypeChoicePair * PointCloudType_1226_TypePair;
+  FaceMeshType_1226_TypeChoicePair * FaceMeshType_1226_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union PointCloudType_1226_TypeVal
+union FaceMeshType_1226_TypeVal
 {
-  ArrayPointType * Points;
-  ArrayBinaryType * PointsBinary;
+  ArrayUnsignedByteType * TrianglesColor;
+  ArrayBinaryType * TrianglesColorBinary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class PointCloudType_1226_TypeChoicePair :
+class FaceMeshType_1226_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    PointsE,
-    PointsBinaryE };
-  PointCloudType_1226_TypeChoicePair();
-  PointCloudType_1226_TypeChoicePair(
-    whichOne PointCloudType_1226_TypeTypeIn,
-    PointCloudType_1226_TypeVal PointCloudType_1226_TypeValueIn);
-  ~PointCloudType_1226_TypeChoicePair();
+    TrianglesColorE,
+    TrianglesColorBinaryE };
+  FaceMeshType_1226_TypeChoicePair();
+  FaceMeshType_1226_TypeChoicePair(
+    whichOne FaceMeshType_1226_TypeTypeIn,
+    FaceMeshType_1226_TypeVal FaceMeshType_1226_TypeValueIn);
+  ~FaceMeshType_1226_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne PointCloudType_1226_TypeType;
-  PointCloudType_1226_TypeVal PointCloudType_1226_TypeValue;
+  whichOne FaceMeshType_1226_TypeType;
+  FaceMeshType_1226_TypeVal FaceMeshType_1226_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointCloudType_1227_Type :
   public XmlTypeBase
@@ -855,23 +808,23 @@ protected:
   PointCloudType_1227_TypeChoicePair * PointCloudType_1227_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PointCloudType_1227_TypeVal
 {
-  ArrayUnitVectorType * Normals;
-  ArrayBinaryType * NormalsBinary;
+  ArrayPointType * Points;
+  ArrayBinaryType * PointsBinary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointCloudType_1227_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    NormalsE,
-    NormalsBinaryE };
+    PointsE,
+    PointsBinaryE };
   PointCloudType_1227_TypeChoicePair();
   PointCloudType_1227_TypeChoicePair(
     whichOne PointCloudType_1227_TypeTypeIn,
@@ -883,7 +836,7 @@ public:
   PointCloudType_1227_TypeVal PointCloudType_1227_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointCloudType_1228_Type :
   public XmlTypeBase
@@ -902,27 +855,23 @@ protected:
   PointCloudType_1228_TypeChoicePair * PointCloudType_1228_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PointCloudType_1228_TypeVal
 {
-  ArrayIntType * PointsVisible;
-  ArrayBinaryType * PointsVisibleBinary;
-  ArrayIntType * PointsHidden;
-  ArrayBinaryType * PointsHiddenBinary;
+  ArrayUnitVectorType * Normals;
+  ArrayBinaryType * NormalsBinary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointCloudType_1228_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    PointsVisibleE,
-    PointsVisibleBinaryE,
-    PointsHiddenE,
-    PointsHiddenBinaryE };
+    NormalsE,
+    NormalsBinaryE };
   PointCloudType_1228_TypeChoicePair();
   PointCloudType_1228_TypeChoicePair(
     whichOne PointCloudType_1228_TypeTypeIn,
@@ -934,7 +883,7 @@ public:
   PointCloudType_1228_TypeVal PointCloudType_1228_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointCloudType_1229_Type :
   public XmlTypeBase
@@ -953,23 +902,27 @@ protected:
   PointCloudType_1229_TypeChoicePair * PointCloudType_1229_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PointCloudType_1229_TypeVal
 {
-  ArrayUnsignedByteType * PointsColor;
-  ArrayBinaryType * PointsColorBinary;
+  ArrayIntType * PointsVisible;
+  ArrayBinaryType * PointsVisibleBinary;
+  ArrayIntType * PointsHidden;
+  ArrayBinaryType * PointsHiddenBinary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointCloudType_1229_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    PointsColorE,
-    PointsColorBinaryE };
+    PointsVisibleE,
+    PointsVisibleBinaryE,
+    PointsHiddenE,
+    PointsHiddenBinaryE };
   PointCloudType_1229_TypeChoicePair();
   PointCloudType_1229_TypeChoicePair(
     whichOne PointCloudType_1229_TypeTypeIn,
@@ -981,7 +934,54 @@ public:
   PointCloudType_1229_TypeVal PointCloudType_1229_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
+
+class PointCloudType_1230_Type :
+  public XmlTypeBase
+{
+public:
+  PointCloudType_1230_Type();
+  PointCloudType_1230_Type(
+    PointCloudType_1230_TypeChoicePair * PointCloudType_1230_TypePairIn);
+  ~PointCloudType_1230_Type();
+  void printSelf(FILE * outFile);
+
+  PointCloudType_1230_TypeChoicePair * getPointCloudType_1230_TypePair();
+  void setPointCloudType_1230_TypePair(PointCloudType_1230_TypeChoicePair * PointCloudType_1230_TypePairIn);
+
+protected:
+  PointCloudType_1230_TypeChoicePair * PointCloudType_1230_TypePair;
+};
+
+/* ***************************************************************** */
+
+union PointCloudType_1230_TypeVal
+{
+  ArrayUnsignedByteType * PointsColor;
+  ArrayBinaryType * PointsColorBinary;
+};
+
+/* ***************************************************************** */
+
+class PointCloudType_1230_TypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    PointsColorE,
+    PointsColorBinaryE };
+  PointCloudType_1230_TypeChoicePair();
+  PointCloudType_1230_TypeChoicePair(
+    whichOne PointCloudType_1230_TypeTypeIn,
+    PointCloudType_1230_TypeVal PointCloudType_1230_TypeValueIn);
+  ~PointCloudType_1230_TypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne PointCloudType_1230_TypeType;
+  PointCloudType_1230_TypeVal PointCloudType_1230_TypeValue;
+};
+
+/* ***************************************************************** */
 
 class BodyType :
   public TopologyBaseType
@@ -1050,7 +1050,7 @@ protected:
   ArrayReferenceType * VertexIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class BodyTypeLisd :
   public std::list<BodyType *>,
@@ -1064,7 +1064,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EdgeType :
   public TopologyBaseType
@@ -1114,7 +1114,7 @@ protected:
   ElementReferenceType * VertexEnd;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EdgeTypeLisd :
   public std::list<EdgeType *>,
@@ -1128,7 +1128,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FaceBaseType :
   public TopologyBaseType
@@ -1163,7 +1163,7 @@ protected:
   ValidationFaceType * Validation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FaceBaseTypeLisd :
   public std::list<FaceBaseType *>,
@@ -1177,7 +1177,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FaceMeshType :
   public FaceBaseType
@@ -1189,9 +1189,9 @@ public:
     ValidationFaceType * ValidationIn,
     ElementReferenceType * MeshIn,
     ArrayReferenceType * LoopIdsIn,
-    FaceMeshType_1223_Type * FaceMeshType_1223In,
     FaceMeshType_1224_Type * FaceMeshType_1224In,
-    FaceMeshType_1225_Type * FaceMeshType_1225In);
+    FaceMeshType_1225_Type * FaceMeshType_1225In,
+    FaceMeshType_1226_Type * FaceMeshType_1226In);
   FaceMeshType(
     XmlString * labelIn,
     QIFIdType * idIn,
@@ -1204,9 +1204,9 @@ public:
     ValidationFaceType * ValidationIn,
     ElementReferenceType * MeshIn,
     ArrayReferenceType * LoopIdsIn,
-    FaceMeshType_1223_Type * FaceMeshType_1223In,
     FaceMeshType_1224_Type * FaceMeshType_1224In,
-    FaceMeshType_1225_Type * FaceMeshType_1225In);
+    FaceMeshType_1225_Type * FaceMeshType_1225In,
+    FaceMeshType_1226_Type * FaceMeshType_1226In);
   ~FaceMeshType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -1215,22 +1215,22 @@ public:
   void setMesh(ElementReferenceType * MeshIn);
   ArrayReferenceType * getLoopIds();
   void setLoopIds(ArrayReferenceType * LoopIdsIn);
-  FaceMeshType_1223_Type * getFaceMeshType_1223();
-  void setFaceMeshType_1223(FaceMeshType_1223_Type * FaceMeshType_1223In);
   FaceMeshType_1224_Type * getFaceMeshType_1224();
   void setFaceMeshType_1224(FaceMeshType_1224_Type * FaceMeshType_1224In);
   FaceMeshType_1225_Type * getFaceMeshType_1225();
   void setFaceMeshType_1225(FaceMeshType_1225_Type * FaceMeshType_1225In);
+  FaceMeshType_1226_Type * getFaceMeshType_1226();
+  void setFaceMeshType_1226(FaceMeshType_1226_Type * FaceMeshType_1226In);
 
 protected:
   ElementReferenceType * Mesh;
   ArrayReferenceType * LoopIds;
-  FaceMeshType_1223_Type * FaceMeshType_1223;
   FaceMeshType_1224_Type * FaceMeshType_1224;
   FaceMeshType_1225_Type * FaceMeshType_1225;
+  FaceMeshType_1226_Type * FaceMeshType_1226;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FaceType :
   public FaceBaseType
@@ -1273,7 +1273,7 @@ protected:
   ArrayReferenceType * LoopIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LoopBaseType :
   public TopologyBaseType
@@ -1295,7 +1295,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LoopBaseTypeLisd :
   public std::list<LoopBaseType *>,
@@ -1309,7 +1309,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LoopMeshType :
   public LoopBaseType
@@ -1339,7 +1339,7 @@ protected:
   CoEdgesMeshType * CoEdgesMesh;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LoopType :
   public LoopBaseType
@@ -1374,7 +1374,7 @@ protected:
   CoEdgesType * CoEdges;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointCloudType :
   public TopologyBaseType
@@ -1383,10 +1383,10 @@ public:
   PointCloudType();
   PointCloudType(
     AttributesType * AttributesIn,
-    PointCloudType_1226_Type * PointCloudType_1226In,
     PointCloudType_1227_Type * PointCloudType_1227In,
     PointCloudType_1228_Type * PointCloudType_1228In,
-    PointCloudType_1229_Type * PointCloudType_1229In);
+    PointCloudType_1229_Type * PointCloudType_1229In,
+    PointCloudType_1230_Type * PointCloudType_1230In);
   PointCloudType(
     XmlString * labelIn,
     QIFIdType * idIn,
@@ -1395,31 +1395,31 @@ public:
     XmlBoolean * hiddenIn,
     DoublePositiveType * sizeIn,
     TransparencyType * transparencyIn,
-    PointCloudType_1226_Type * PointCloudType_1226In,
     PointCloudType_1227_Type * PointCloudType_1227In,
     PointCloudType_1228_Type * PointCloudType_1228In,
-    PointCloudType_1229_Type * PointCloudType_1229In);
+    PointCloudType_1229_Type * PointCloudType_1229In,
+    PointCloudType_1230_Type * PointCloudType_1230In);
   ~PointCloudType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
-  PointCloudType_1226_Type * getPointCloudType_1226();
-  void setPointCloudType_1226(PointCloudType_1226_Type * PointCloudType_1226In);
   PointCloudType_1227_Type * getPointCloudType_1227();
   void setPointCloudType_1227(PointCloudType_1227_Type * PointCloudType_1227In);
   PointCloudType_1228_Type * getPointCloudType_1228();
   void setPointCloudType_1228(PointCloudType_1228_Type * PointCloudType_1228In);
   PointCloudType_1229_Type * getPointCloudType_1229();
   void setPointCloudType_1229(PointCloudType_1229_Type * PointCloudType_1229In);
+  PointCloudType_1230_Type * getPointCloudType_1230();
+  void setPointCloudType_1230(PointCloudType_1230_Type * PointCloudType_1230In);
 
 protected:
-  PointCloudType_1226_Type * PointCloudType_1226;
   PointCloudType_1227_Type * PointCloudType_1227;
   PointCloudType_1228_Type * PointCloudType_1228;
   PointCloudType_1229_Type * PointCloudType_1229;
+  PointCloudType_1230_Type * PointCloudType_1230;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointCloudTypeLisd :
   public std::list<PointCloudType *>,
@@ -1433,7 +1433,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ShellType :
   public TopologyBaseType
@@ -1476,7 +1476,7 @@ protected:
   ArrayReferenceType * FaceIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ShellTypeLisd :
   public std::list<ShellType *>,
@@ -1490,6 +1490,6 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 #endif // TOPOLOGY_HH

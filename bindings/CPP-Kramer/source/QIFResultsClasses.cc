@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #include <stdio.h>             // for printf, etc.
 #include <string.h>            // for strdup
@@ -10,8 +10,8 @@
 
 #define INDENT 2
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 /* class ActualComponentSetType
 
@@ -169,7 +169,7 @@ ActualComponentTypeLisd * ActualComponentSetType::getActualComponent()
 void ActualComponentSetType::setActualComponent(ActualComponentTypeLisd * ActualComponentIn)
 {ActualComponent = ActualComponentIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ActualComponentSetTypeLisd
 
@@ -196,7 +196,7 @@ ActualComponentSetTypeLisd::~ActualComponentSetTypeLisd()
 
 void ActualComponentSetTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ActualComponentSetsType
 
@@ -354,7 +354,7 @@ ActualComponentSetTypeLisd * ActualComponentSetsType::getActualComponentSet()
 void ActualComponentSetsType::setActualComponentSet(ActualComponentSetTypeLisd * ActualComponentSetIn)
 {ActualComponentSet = ActualComponentSetIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ActualComponentType
 
@@ -592,7 +592,7 @@ QIFReferenceType * ActualComponentType::getAsmPathId()
 void ActualComponentType::setAsmPathId(QIFReferenceType * AsmPathIdIn)
 {AsmPathId = AsmPathIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ActualComponentTypeLisd
 
@@ -619,7 +619,7 @@ ActualComponentTypeLisd::~ActualComponentTypeLisd()
 
 void ActualComponentTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurementResultsSetType
 
@@ -777,7 +777,7 @@ MeasurementResultsTypeLisd * MeasurementResultsSetType::getMeasurementResults()
 void MeasurementResultsSetType::setMeasurementResults(MeasurementResultsTypeLisd * MeasurementResultsIn)
 {MeasurementResults = MeasurementResultsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurementResultsType
 
@@ -1117,7 +1117,7 @@ ArrayReferenceType * MeasurementResultsType::getActualComponentIds()
 void MeasurementResultsType::setActualComponentIds(ArrayReferenceType * ActualComponentIdsIn)
 {ActualComponentIds = ActualComponentIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasurementResultsTypeLisd
 
@@ -1144,7 +1144,7 @@ MeasurementResultsTypeLisd::~MeasurementResultsTypeLisd()
 
 void MeasurementResultsTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ResultsType
 
@@ -1240,5 +1240,5 @@ InspectionTraceabilityType * ResultsType::getInspectionTraceability()
 void ResultsType::setInspectionTraceability(InspectionTraceabilityType * InspectionTraceabilityIn)
 {InspectionTraceability = InspectionTraceabilityIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 

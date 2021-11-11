@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #ifndef GENERICEXPRESSIONS_HH
 #define GENERICEXPRESSIONS_HH
@@ -7,7 +7,7 @@
 #include <xmlSchemaInstance.hh>
 #include "PrimitivesClasses.hh"
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AndType;
 class ArithmeticComparisonBaseType;
@@ -42,8 +42,8 @@ class TokenExpressionBaseType;
 class TokenExpressionBaseTypeLisd;
 class TokenParameterValueType;
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 class ArithmeticExpressionBaseType :
   public XmlTypeBase
@@ -54,7 +54,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArithmeticExpressionBaseTypeLisd :
   public std::list<ArithmeticExpressionBaseType *>,
@@ -68,7 +68,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class BinaryArithmeticExpressionBaseType :
   public ArithmeticExpressionBaseType
@@ -87,7 +87,7 @@ protected:
   ArithmeticExpressionBaseTypeLisd * ArithmeticExpression;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class BooleanConstantEnumType :
   public XmlNMTOKEN
@@ -103,7 +103,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class BooleanExpressionBaseType :
   public XmlTypeBase
@@ -114,7 +114,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class BooleanExpressionBaseTypeLisd :
   public std::list<BooleanExpressionBaseType *>,
@@ -128,7 +128,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConstantIsType :
   public BooleanExpressionBaseType
@@ -148,7 +148,7 @@ protected:
   BooleanConstantEnumType * val;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DividedByType :
   public BinaryArithmeticExpressionBaseType
@@ -161,7 +161,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MinusType :
   public BinaryArithmeticExpressionBaseType
@@ -174,7 +174,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class NegateType :
   public ArithmeticExpressionBaseType
@@ -193,7 +193,7 @@ protected:
   ArithmeticExpressionBaseType * ArithmeticExpression;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class NotType :
   public BooleanExpressionBaseType
@@ -212,7 +212,7 @@ protected:
   BooleanExpressionBaseType * BooleanExpression;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OrType :
   public BooleanExpressionBaseType
@@ -239,7 +239,7 @@ protected:
   BooleanExpressionBaseTypeLisd * BooleanExpression;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PolyadicArithmeticExpressionBaseType :
   public ArithmeticExpressionBaseType
@@ -258,7 +258,7 @@ protected:
   ArithmeticExpressionBaseTypeLisd * ArithmeticExpression;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TimesType :
   public PolyadicArithmeticExpressionBaseType
@@ -271,7 +271,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TokenEqualType :
   public BooleanExpressionBaseType
@@ -290,7 +290,7 @@ protected:
   TokenExpressionBaseTypeLisd * TokenExpression;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TokenExpressionBaseType :
   public XmlTypeBase
@@ -301,7 +301,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TokenExpressionBaseTypeLisd :
   public std::list<TokenExpressionBaseType *>,
@@ -315,7 +315,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TokenParameterValueType :
   public TokenExpressionBaseType
@@ -338,7 +338,7 @@ protected:
   QIFReferenceFullType * ObjectId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AndType :
   public BooleanExpressionBaseType
@@ -365,7 +365,7 @@ protected:
   BooleanExpressionBaseTypeLisd * BooleanExpression;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArithmeticComparisonBaseType :
   public BooleanExpressionBaseType
@@ -384,7 +384,7 @@ protected:
   ArithmeticExpressionBaseTypeLisd * ArithmeticExpression;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArithmeticConstantType :
   public ArithmeticExpressionBaseType
@@ -404,7 +404,7 @@ protected:
   XmlDecimal * val;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArithmeticEqualType :
   public ArithmeticComparisonBaseType
@@ -417,7 +417,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class BinaryBooleanExpressionBaseType :
   public BooleanExpressionBaseType
@@ -436,7 +436,7 @@ protected:
   BooleanExpressionBaseTypeLisd * BooleanExpression;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class BooleanEqualType :
   public BinaryBooleanExpressionBaseType
@@ -449,7 +449,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class GreaterOrEqualType :
   public ArithmeticComparisonBaseType
@@ -462,7 +462,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class GreaterThanType :
   public ArithmeticComparisonBaseType
@@ -475,7 +475,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LessOrEqualType :
   public ArithmeticComparisonBaseType
@@ -488,7 +488,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LessThanType :
   public ArithmeticComparisonBaseType
@@ -501,7 +501,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MaxType :
   public PolyadicArithmeticExpressionBaseType
@@ -514,7 +514,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MinType :
   public PolyadicArithmeticExpressionBaseType
@@ -527,7 +527,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlusType :
   public PolyadicArithmeticExpressionBaseType
@@ -540,7 +540,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TokenConstantType :
   public TokenExpressionBaseType
@@ -560,6 +560,6 @@ protected:
   XmlToken * val;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 #endif // GENERICEXPRESSIONS_HH

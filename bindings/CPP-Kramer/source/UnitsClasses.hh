@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #ifndef UNITS_HH
 #define UNITS_HH
@@ -7,7 +7,7 @@
 #include <xmlSchemaInstance.hh>
 #include "PrimitivesClasses.hh"
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AngularUnitType;
 class AngularUnitTypeLisd;
@@ -63,8 +63,8 @@ class UserDefinedUnitValueType;
 class UserDefinedUnitValueTypeLisd;
 class UserDefinedUnitsType;
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 class AngularUnitType :
   public XmlTypeBase
@@ -91,7 +91,7 @@ protected:
   UnitConversionType * UnitConversion;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AngularUnitTypeLisd :
   public std::list<AngularUnitType *>,
@@ -105,7 +105,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AreaUnitType :
   public XmlTypeBase
@@ -132,7 +132,7 @@ protected:
   UnitConversionType * UnitConversion;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AreaUnitTypeLisd :
   public std::list<AreaUnitType *>,
@@ -146,7 +146,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FileUnitsType :
   public XmlTypeBase
@@ -173,7 +173,7 @@ protected:
   UserDefinedUnitsType * UserDefinedUnits;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ForceUnitType :
   public XmlTypeBase
@@ -200,7 +200,7 @@ protected:
   UnitConversionType * UnitConversion;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ForceUnitTypeLisd :
   public std::list<ForceUnitType *>,
@@ -214,7 +214,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LinearUnitType :
   public XmlTypeBase
@@ -241,7 +241,7 @@ protected:
   UnitConversionType * UnitConversion;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LinearUnitTypeLisd :
   public std::list<LinearUnitType *>,
@@ -255,7 +255,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MassUnitType :
   public XmlTypeBase
@@ -282,7 +282,7 @@ protected:
   UnitConversionType * UnitConversion;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MassUnitTypeLisd :
   public std::list<MassUnitType *>,
@@ -296,7 +296,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class NonNegativeDecimalType :
   public XmlDecimal
@@ -312,7 +312,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OtherUnitsType :
   public XmlTypeBase
@@ -379,7 +379,7 @@ protected:
   TimeUnitTypeLisd * TimeUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PositiveDecimalType :
   public XmlDecimal
@@ -395,7 +395,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PressureUnitType :
   public XmlTypeBase
@@ -422,7 +422,7 @@ protected:
   UnitConversionType * UnitConversion;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PressureUnitTypeLisd :
   public std::list<PressureUnitType *>,
@@ -436,7 +436,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PrimaryUnitsType :
   public XmlTypeBase
@@ -499,7 +499,7 @@ protected:
   TimeUnitType * TimeUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SpecifiedDecimalType :
   public XmlDecimal
@@ -527,7 +527,7 @@ protected:
   XmlNonNegativeInteger * significantFigures;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SpeedUnitType :
   public XmlTypeBase
@@ -554,7 +554,7 @@ protected:
   UnitConversionType * UnitConversion;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SpeedUnitTypeLisd :
   public std::list<SpeedUnitType *>,
@@ -568,7 +568,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SpeedValueType :
   public SpecifiedDecimalType
@@ -594,7 +594,7 @@ protected:
   XmlToken * speedUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TemperatureUnitType :
   public XmlTypeBase
@@ -621,7 +621,7 @@ protected:
   UnitConversionType * UnitConversion;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TemperatureUnitTypeLisd :
   public std::list<TemperatureUnitType *>,
@@ -635,7 +635,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TemperatureValueType :
   public SpecifiedDecimalType
@@ -661,7 +661,7 @@ protected:
   XmlToken * temperatureUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TimeUnitType :
   public XmlTypeBase
@@ -688,7 +688,7 @@ protected:
   UnitConversionType * UnitConversion;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TimeUnitTypeLisd :
   public std::list<TimeUnitType *>,
@@ -702,7 +702,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TimeValueType :
   public SpecifiedDecimalType
@@ -728,7 +728,7 @@ protected:
   XmlToken * timeUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class UnitConversionType :
   public XmlTypeBase
@@ -751,7 +751,7 @@ protected:
   XmlDecimal * Offset;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class UserDefinedUnitType :
   public XmlTypeBase
@@ -778,7 +778,7 @@ protected:
   XmlString * StandardName;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class UserDefinedUnitTypeLisd :
   public std::list<UserDefinedUnitType *>,
@@ -792,7 +792,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class UserDefinedUnitValueType :
   public SpecifiedDecimalType
@@ -818,7 +818,7 @@ protected:
   XmlToken * unitName;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class UserDefinedUnitValueTypeLisd :
   public std::list<UserDefinedUnitValueType *>,
@@ -832,7 +832,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class UserDefinedUnitsType :
   public XmlTypeBase
@@ -859,7 +859,7 @@ protected:
   UserDefinedUnitTypeLisd * UserDefinedUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AngularValueType :
   public SpecifiedDecimalType
@@ -885,7 +885,7 @@ protected:
   XmlToken * angularUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AreaValueType :
   public SpecifiedDecimalType
@@ -911,7 +911,7 @@ protected:
   XmlToken * areaUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ForceValueType :
   public SpecifiedDecimalType
@@ -937,7 +937,7 @@ protected:
   XmlToken * forceUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LinearDualValueType :
   public SpecifiedDecimalType
@@ -963,7 +963,7 @@ protected:
   XmlToken * linearUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LinearValueType :
   public SpecifiedDecimalType
@@ -989,7 +989,7 @@ protected:
   XmlToken * linearUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LinearValueTypeLisd :
   public std::list<LinearValueType *>,
@@ -1003,7 +1003,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MassValueType :
   public SpecifiedDecimalType
@@ -1029,7 +1029,7 @@ protected:
   XmlToken * massUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredDecimalType :
   public SpecifiedDecimalType
@@ -1059,7 +1059,7 @@ protected:
   NonNegativeDecimalType * meanError;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredForceValueType :
   public MeasuredDecimalType
@@ -1087,7 +1087,7 @@ protected:
   XmlToken * forceUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredLinearValueType :
   public MeasuredDecimalType
@@ -1115,7 +1115,7 @@ protected:
   XmlToken * linearUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredMassValueType :
   public MeasuredDecimalType
@@ -1143,7 +1143,7 @@ protected:
   XmlToken * massUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPressureValueType :
   public MeasuredDecimalType
@@ -1171,7 +1171,7 @@ protected:
   XmlToken * pressureUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredSpeedValueType :
   public MeasuredDecimalType
@@ -1199,7 +1199,7 @@ protected:
   XmlToken * speedUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredTemperatureValueType :
   public MeasuredDecimalType
@@ -1227,7 +1227,7 @@ protected:
   XmlToken * temperatureUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredTimeValueType :
   public MeasuredDecimalType
@@ -1255,7 +1255,7 @@ protected:
   XmlToken * timeUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredUserDefinedUnitValueType :
   public MeasuredDecimalType
@@ -1283,7 +1283,7 @@ protected:
   XmlToken * unitName;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredUserDefinedUnitValueTypeLisd :
   public std::list<MeasuredUserDefinedUnitValueType *>,
@@ -1297,7 +1297,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PressureValueType :
   public SpecifiedDecimalType
@@ -1323,7 +1323,7 @@ protected:
   XmlToken * pressureUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredAngularValueType :
   public MeasuredDecimalType
@@ -1351,7 +1351,7 @@ protected:
   XmlToken * angularUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredAreaValueType :
   public MeasuredDecimalType
@@ -1379,6 +1379,6 @@ protected:
   XmlToken * areaUnit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 #endif // UNITS_HH

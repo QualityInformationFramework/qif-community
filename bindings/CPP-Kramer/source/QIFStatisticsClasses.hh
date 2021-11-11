@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #ifndef QIFSTATISTICS_HH
 #define QIFSTATISTICS_HH
@@ -7,7 +7,7 @@
 #include <xmlSchemaInstance.hh>
 #include "StatisticsClasses.hh"
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AbsoluteLimitsByUnitType;
 class AbsoluteMeasurementsByUnitType;
@@ -46,35 +46,35 @@ class StatisticalStudyPlansType;
 class StatisticalStudyResultsBaseType;
 class StatisticalStudyResultsBaseTypeLisd;
 class StatisticsType;
-class CapabilityStudy_1198_Type;
-class CapabilityStudy_1198_TypeChoicePair;
-class ControlMethodTy_1199_Type;
-class ControlMethodTy_1199_TypeChoicePair;
-class FirstArticleStu_1200_Type;
-class FirstArticleStu_1200_TypeChoicePair;
-class GageRandRStudyP_1201_Type;
-class GageRandRStudyP_1201_TypeChoicePair;
+class CapabilityStudy_1199_Type;
+class CapabilityStudy_1199_TypeChoicePair;
+class ControlMethodTy_1200_Type;
+class ControlMethodTy_1200_TypeChoicePair;
+class FirstArticleStu_1201_Type;
+class FirstArticleStu_1201_TypeChoicePair;
 class GageRandRStudyP_1202_Type;
 class GageRandRStudyP_1202_TypeChoicePair;
 class GageRandRStudyP_1203_Type;
 class GageRandRStudyP_1203_TypeChoicePair;
-class LinearityStudyP_1204_Type;
-class LinearityStudyP_1204_TypeChoicePair;
-class LinearityStudyR_1205_Type;
-class LinearityStudyR_1205_TypeChoicePair;
-class ProcessDifferen_1206_Type;
-class ProcessDifferen_1206_TypeChoicePair;
-class StatisticalStud_1207_Type;
+class GageRandRStudyP_1204_Type;
+class GageRandRStudyP_1204_TypeChoicePair;
+class LinearityStudyP_1205_Type;
+class LinearityStudyP_1205_TypeChoicePair;
+class LinearityStudyR_1206_Type;
+class LinearityStudyR_1206_TypeChoicePair;
+class ProcessDifferen_1207_Type;
+class ProcessDifferen_1207_TypeChoicePair;
 class StatisticalStud_1208_Type;
 class StatisticalStud_1209_Type;
-class StatisticalStud_1209_TypeChoicePair;
 class StatisticalStud_1210_Type;
 class StatisticalStud_1210_TypeChoicePair;
 class StatisticalStud_1211_Type;
 class StatisticalStud_1211_TypeChoicePair;
+class StatisticalStud_1212_Type;
+class StatisticalStud_1212_TypeChoicePair;
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 class AbsoluteLimitsByUnitType :
   public XmlTypeBase
@@ -146,7 +146,7 @@ protected:
   UserDefinedUnitValueTypeLisd * UserDefinedUnitLimit;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AbsoluteMeasurementsByUnitType :
   public XmlTypeBase
@@ -218,7 +218,7 @@ protected:
   MeasuredUserDefinedUnitValueTypeLisd * UserDefinedUnitMeasurement;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ControlMethodType :
   public XmlTypeBase
@@ -228,12 +228,12 @@ public:
   ControlMethodType(
     ArrayReferenceType * AssignableCauseIdsIn,
     AttributesType * AttributesIn,
-    ControlMethodTy_1199_Type * ControlMethodTy_1199In);
+    ControlMethodTy_1200_Type * ControlMethodTy_1200In);
   ControlMethodType(
     QIFIdType * idIn,
     ArrayReferenceType * AssignableCauseIdsIn,
     AttributesType * AttributesIn,
-    ControlMethodTy_1199_Type * ControlMethodTy_1199In);
+    ControlMethodTy_1200_Type * ControlMethodTy_1200In);
   ~ControlMethodType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -245,17 +245,17 @@ public:
   void setAssignableCauseIds(ArrayReferenceType * AssignableCauseIdsIn);
   AttributesType * getAttributes();
   void setAttributes(AttributesType * AttributesIn);
-  ControlMethodTy_1199_Type * getControlMethodTy_1199();
-  void setControlMethodTy_1199(ControlMethodTy_1199_Type * ControlMethodTy_1199In);
+  ControlMethodTy_1200_Type * getControlMethodTy_1200();
+  void setControlMethodTy_1200(ControlMethodTy_1200_Type * ControlMethodTy_1200In);
 
 protected:
   QIFIdType * id;
   ArrayReferenceType * AssignableCauseIds;
   AttributesType * Attributes;
-  ControlMethodTy_1199_Type * ControlMethodTy_1199;
+  ControlMethodTy_1200_Type * ControlMethodTy_1200;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ControlMethodTypeLisd :
   public std::list<ControlMethodType *>,
@@ -269,7 +269,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ControlMethodsType :
   public XmlTypeBase
@@ -296,7 +296,7 @@ protected:
   ControlMethodTypeLisd * ControlMethod;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CorrectiveActionPlanType :
   public XmlTypeBase
@@ -338,7 +338,7 @@ protected:
   CorrectiveActionsType * CorrectiveActions;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CorrectiveActionPlanTypeLisd :
   public std::list<CorrectiveActionPlanType *>,
@@ -352,7 +352,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CorrectiveActionPlansType :
   public XmlTypeBase
@@ -379,7 +379,7 @@ protected:
   CorrectiveActionPlanTypeLisd * CorrectiveActionPlan;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CriteriaByUnitType :
   public XmlTypeBase
@@ -451,7 +451,7 @@ protected:
   CriterionUserDefinedUnitTypeLisd * UserDefinedUnitCriterion;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class GageRandRStudyEnumType :
   public XmlNMTOKEN
@@ -467,7 +467,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StatisticalStudiesResultsType :
   public XmlTypeBase
@@ -494,7 +494,7 @@ protected:
   StatisticalStudyResultsBaseTypeLisd * StatisticalStudyResults;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StatisticalStudyPlanBaseType :
   public XmlTypeBase
@@ -504,27 +504,27 @@ public:
   StatisticalStudyPlanBaseType(
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn);
   StatisticalStudyPlanBaseType(
     QIFIdType * idIn,
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn);
   ~StatisticalStudyPlanBaseType();
   void printSelf(FILE * outFile);
@@ -537,10 +537,10 @@ public:
   void setVersion(VersionType * VersionIn);
   AttributesType * getAttributes();
   void setAttributes(AttributesType * AttributesIn);
-  StatisticalStud_1207_Type * getStatisticalStud_1207();
-  void setStatisticalStud_1207(StatisticalStud_1207_Type * StatisticalStud_1207In);
   StatisticalStud_1208_Type * getStatisticalStud_1208();
   void setStatisticalStud_1208(StatisticalStud_1208_Type * StatisticalStud_1208In);
+  StatisticalStud_1209_Type * getStatisticalStud_1209();
+  void setStatisticalStud_1209(StatisticalStud_1209_Type * StatisticalStud_1209In);
   SummaryStatsValuesListTypeLisd * getStatsValuesSummarys();
   void setStatsValuesSummarys(SummaryStatsValuesListTypeLisd *);
   PreInspectionTraceabilityType * getPreInspectionTraceability();
@@ -551,8 +551,8 @@ public:
   void setDescription(XmlString * DescriptionIn);
   QIFReferenceType * getPlanId();
   void setPlanId(QIFReferenceType * PlanIdIn);
-  StatisticalStud_1209_Type * getStatisticalStud_1209();
-  void setStatisticalStud_1209(StatisticalStud_1209_Type * StatisticalStud_1209In);
+  StatisticalStud_1210_Type * getStatisticalStud_1210();
+  void setStatisticalStud_1210(StatisticalStud_1210_Type * StatisticalStud_1210In);
   QIFReferenceType * getCorrectiveActionPlanId();
   void setCorrectiveActionPlanId(QIFReferenceType * CorrectiveActionPlanIdIn);
 
@@ -560,18 +560,18 @@ protected:
   QIFIdType * id;
   VersionType * Version;
   AttributesType * Attributes;
-  StatisticalStud_1207_Type * StatisticalStud_1207;
   StatisticalStud_1208_Type * StatisticalStud_1208;
+  StatisticalStud_1209_Type * StatisticalStud_1209;
   SummaryStatsValuesListTypeLisd * StatsValuesSummarys;
   PreInspectionTraceabilityType * PreInspectionTraceability;
   XmlToken * Name;
   XmlString * Description;
   QIFReferenceType * PlanId;
-  StatisticalStud_1209_Type * StatisticalStud_1209;
+  StatisticalStud_1210_Type * StatisticalStud_1210;
   QIFReferenceType * CorrectiveActionPlanId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StatisticalStudyPlanBaseTypeLisd :
   public std::list<StatisticalStudyPlanBaseType *>,
@@ -585,7 +585,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StatisticalStudyPlansType :
   public XmlTypeBase
@@ -612,7 +612,7 @@ protected:
   StatisticalStudyPlanBaseTypeLisd * StatisticalStudyPlan;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StatisticalStudyResultsBaseType :
   public XmlTypeBase
@@ -623,13 +623,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -648,13 +648,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -681,8 +681,8 @@ public:
   void setAttributes(AttributesType * AttributesIn);
   StatsEvalStatusType * getStatus();
   void setStatus(StatsEvalStatusType * StatusIn);
-  StatisticalStud_1210_Type * getStatisticalStud_1210();
-  void setStatisticalStud_1210(StatisticalStud_1210_Type * StatisticalStud_1210In);
+  StatisticalStud_1211_Type * getStatisticalStud_1211();
+  void setStatisticalStud_1211(StatisticalStud_1211_Type * StatisticalStud_1211In);
   StudyIssuesType * getStudyIssues();
   void setStudyIssues(StudyIssuesType * StudyIssuesIn);
   InspectionTraceabilityType * getInspectionTraceability();
@@ -693,8 +693,8 @@ public:
   void setDescription(XmlString * DescriptionIn);
   QIFReferenceType * getStudyId();
   void setStudyId(QIFReferenceType * StudyIdIn);
-  StatisticalStud_1211_Type * getStatisticalStud_1211();
-  void setStatisticalStud_1211(StatisticalStud_1211_Type * StatisticalStud_1211In);
+  StatisticalStud_1212_Type * getStatisticalStud_1212();
+  void setStatisticalStud_1212(StatisticalStud_1212_Type * StatisticalStud_1212In);
   AverageFeaturesType * getAverageFeatures();
   void setAverageFeatures(AverageFeaturesType * AverageFeaturesIn);
   CharacteristicsStatsType * getCharacteristicsStats();
@@ -727,13 +727,13 @@ protected:
   QPIdType * ThisStatisticalStudyResultsInstanceQPId;
   AttributesType * Attributes;
   StatsEvalStatusType * Status;
-  StatisticalStud_1210_Type * StatisticalStud_1210;
+  StatisticalStud_1211_Type * StatisticalStud_1211;
   StudyIssuesType * StudyIssues;
   InspectionTraceabilityType * InspectionTraceability;
   XmlToken * Name;
   XmlString * Description;
   QIFReferenceType * StudyId;
-  StatisticalStud_1211_Type * StatisticalStud_1211;
+  StatisticalStud_1212_Type * StatisticalStud_1212;
   AverageFeaturesType * AverageFeatures;
   CharacteristicsStatsType * CharacteristicsStats;
   SummariesStatisticsLinearType * LinearStatsSummaries;
@@ -749,7 +749,7 @@ protected:
   SummariesStatisticsType * StatsSummaries;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StatisticalStudyResultsBaseTypeLisd :
   public std::list<StatisticalStudyResultsBaseType *>,
@@ -763,7 +763,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StatisticsType :
   public XmlTypeBase
@@ -790,75 +790,75 @@ protected:
   CorrectiveActionPlansType * CorrectiveActionPlans;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class CapabilityStudy_1198_Type :
+class CapabilityStudy_1199_Type :
   public XmlTypeBase
 {
 public:
-  CapabilityStudy_1198_Type();
-  CapabilityStudy_1198_Type(
-    CapabilityStudy_1198_TypeChoicePair * CapabilityStudy_1198_TypePairIn);
-  ~CapabilityStudy_1198_Type();
+  CapabilityStudy_1199_Type();
+  CapabilityStudy_1199_Type(
+    CapabilityStudy_1199_TypeChoicePair * CapabilityStudy_1199_TypePairIn);
+  ~CapabilityStudy_1199_Type();
   void printSelf(FILE * outFile);
 
-  CapabilityStudy_1198_TypeChoicePair * getCapabilityStudy_1198_TypePair();
-  void setCapabilityStudy_1198_TypePair(CapabilityStudy_1198_TypeChoicePair * CapabilityStudy_1198_TypePairIn);
+  CapabilityStudy_1199_TypeChoicePair * getCapabilityStudy_1199_TypePair();
+  void setCapabilityStudy_1199_TypePair(CapabilityStudy_1199_TypeChoicePair * CapabilityStudy_1199_TypePairIn);
 
 protected:
-  CapabilityStudy_1198_TypeChoicePair * CapabilityStudy_1198_TypePair;
+  CapabilityStudy_1199_TypeChoicePair * CapabilityStudy_1199_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union CapabilityStudy_1198_TypeVal
+union CapabilityStudy_1199_TypeVal
 {
   CriterionDecimalType * CpkThreshold;
   CriterionDecimalType * PpkThreshold;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class CapabilityStudy_1198_TypeChoicePair :
+class CapabilityStudy_1199_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     CpkThresholdE,
     PpkThresholdE };
-  CapabilityStudy_1198_TypeChoicePair();
-  CapabilityStudy_1198_TypeChoicePair(
-    whichOne CapabilityStudy_1198_TypeTypeIn,
-    CapabilityStudy_1198_TypeVal CapabilityStudy_1198_TypeValueIn);
-  ~CapabilityStudy_1198_TypeChoicePair();
+  CapabilityStudy_1199_TypeChoicePair();
+  CapabilityStudy_1199_TypeChoicePair(
+    whichOne CapabilityStudy_1199_TypeTypeIn,
+    CapabilityStudy_1199_TypeVal CapabilityStudy_1199_TypeValueIn);
+  ~CapabilityStudy_1199_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne CapabilityStudy_1198_TypeType;
-  CapabilityStudy_1198_TypeVal CapabilityStudy_1198_TypeValue;
+  whichOne CapabilityStudy_1199_TypeType;
+  CapabilityStudy_1199_TypeVal CapabilityStudy_1199_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ControlMethodTy_1199_Type :
+class ControlMethodTy_1200_Type :
   public XmlTypeBase
 {
 public:
-  ControlMethodTy_1199_Type();
-  ControlMethodTy_1199_Type(
-    ControlMethodTy_1199_TypeChoicePair * ControlMethodTy_1199_TypePairIn);
-  ~ControlMethodTy_1199_Type();
+  ControlMethodTy_1200_Type();
+  ControlMethodTy_1200_Type(
+    ControlMethodTy_1200_TypeChoicePair * ControlMethodTy_1200_TypePairIn);
+  ~ControlMethodTy_1200_Type();
   void printSelf(FILE * outFile);
 
-  ControlMethodTy_1199_TypeChoicePair * getControlMethodTy_1199_TypePair();
-  void setControlMethodTy_1199_TypePair(ControlMethodTy_1199_TypeChoicePair * ControlMethodTy_1199_TypePairIn);
+  ControlMethodTy_1200_TypeChoicePair * getControlMethodTy_1200_TypePair();
+  void setControlMethodTy_1200_TypePair(ControlMethodTy_1200_TypeChoicePair * ControlMethodTy_1200_TypePairIn);
 
 protected:
-  ControlMethodTy_1199_TypeChoicePair * ControlMethodTy_1199_TypePair;
+  ControlMethodTy_1200_TypeChoicePair * ControlMethodTy_1200_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union ControlMethodTy_1199_TypeVal
+union ControlMethodTy_1200_TypeVal
 {
   CriterionIntegerType * NumOutOfTolerance;
   CriterionDecimalType * CpThreshold;
@@ -875,9 +875,9 @@ union ControlMethodTy_1199_TypeVal
   CriterionIntegerType * NumOutOfControlRng;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ControlMethodTy_1199_TypeChoicePair :
+class ControlMethodTy_1200_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -895,112 +895,65 @@ public:
     OscillationE,
     StratificationE,
     NumOutOfControlRngE };
-  ControlMethodTy_1199_TypeChoicePair();
-  ControlMethodTy_1199_TypeChoicePair(
-    whichOne ControlMethodTy_1199_TypeTypeIn,
-    ControlMethodTy_1199_TypeVal ControlMethodTy_1199_TypeValueIn);
-  ~ControlMethodTy_1199_TypeChoicePair();
+  ControlMethodTy_1200_TypeChoicePair();
+  ControlMethodTy_1200_TypeChoicePair(
+    whichOne ControlMethodTy_1200_TypeTypeIn,
+    ControlMethodTy_1200_TypeVal ControlMethodTy_1200_TypeValueIn);
+  ~ControlMethodTy_1200_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ControlMethodTy_1199_TypeType;
-  ControlMethodTy_1199_TypeVal ControlMethodTy_1199_TypeValue;
+  whichOne ControlMethodTy_1200_TypeType;
+  ControlMethodTy_1200_TypeVal ControlMethodTy_1200_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class FirstArticleStu_1200_Type :
+class FirstArticleStu_1201_Type :
   public XmlTypeBase
 {
 public:
-  FirstArticleStu_1200_Type();
-  FirstArticleStu_1200_Type(
-    FirstArticleStu_1200_TypeChoicePair * FirstArticleStu_1200_TypePairIn);
-  ~FirstArticleStu_1200_Type();
+  FirstArticleStu_1201_Type();
+  FirstArticleStu_1201_Type(
+    FirstArticleStu_1201_TypeChoicePair * FirstArticleStu_1201_TypePairIn);
+  ~FirstArticleStu_1201_Type();
   void printSelf(FILE * outFile);
 
-  FirstArticleStu_1200_TypeChoicePair * getFirstArticleStu_1200_TypePair();
-  void setFirstArticleStu_1200_TypePair(FirstArticleStu_1200_TypeChoicePair * FirstArticleStu_1200_TypePairIn);
+  FirstArticleStu_1201_TypeChoicePair * getFirstArticleStu_1201_TypePair();
+  void setFirstArticleStu_1201_TypePair(FirstArticleStu_1201_TypeChoicePair * FirstArticleStu_1201_TypePairIn);
 
 protected:
-  FirstArticleStu_1200_TypeChoicePair * FirstArticleStu_1200_TypePair;
+  FirstArticleStu_1201_TypeChoicePair * FirstArticleStu_1201_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union FirstArticleStu_1200_TypeVal
+union FirstArticleStu_1201_TypeVal
 {
   AbsoluteLimitsByUnitType * AbsoluteMaximums;
   XmlDecimal * RelativeMaximum;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class FirstArticleStu_1200_TypeChoicePair :
+class FirstArticleStu_1201_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     AbsoluteMaximumsE,
     RelativeMaximumE };
-  FirstArticleStu_1200_TypeChoicePair();
-  FirstArticleStu_1200_TypeChoicePair(
-    whichOne FirstArticleStu_1200_TypeTypeIn,
-    FirstArticleStu_1200_TypeVal FirstArticleStu_1200_TypeValueIn);
-  ~FirstArticleStu_1200_TypeChoicePair();
+  FirstArticleStu_1201_TypeChoicePair();
+  FirstArticleStu_1201_TypeChoicePair(
+    whichOne FirstArticleStu_1201_TypeTypeIn,
+    FirstArticleStu_1201_TypeVal FirstArticleStu_1201_TypeValueIn);
+  ~FirstArticleStu_1201_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne FirstArticleStu_1200_TypeType;
-  FirstArticleStu_1200_TypeVal FirstArticleStu_1200_TypeValue;
+  whichOne FirstArticleStu_1201_TypeType;
+  FirstArticleStu_1201_TypeVal FirstArticleStu_1201_TypeValue;
 };
 
-/*********************************************************************/
-
-class GageRandRStudyP_1201_Type :
-  public XmlTypeBase
-{
-public:
-  GageRandRStudyP_1201_Type();
-  GageRandRStudyP_1201_Type(
-    GageRandRStudyP_1201_TypeChoicePair * GageRandRStudyP_1201_TypePairIn);
-  ~GageRandRStudyP_1201_Type();
-  void printSelf(FILE * outFile);
-
-  GageRandRStudyP_1201_TypeChoicePair * getGageRandRStudyP_1201_TypePair();
-  void setGageRandRStudyP_1201_TypePair(GageRandRStudyP_1201_TypeChoicePair * GageRandRStudyP_1201_TypePairIn);
-
-protected:
-  GageRandRStudyP_1201_TypeChoicePair * GageRandRStudyP_1201_TypePair;
-};
-
-/*********************************************************************/
-
-union GageRandRStudyP_1201_TypeVal
-{
-  CriterionDecimalType * MaximumRelativeAppraiserVariation;
-  CriteriaByUnitType * MaximumAbsoluteAppraiserVariation;
-};
-
-/*********************************************************************/
-
-class GageRandRStudyP_1201_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    MaximumRelativeAppraiserVariationE,
-    MaximumAbsoluteAppraiserVariationE };
-  GageRandRStudyP_1201_TypeChoicePair();
-  GageRandRStudyP_1201_TypeChoicePair(
-    whichOne GageRandRStudyP_1201_TypeTypeIn,
-    GageRandRStudyP_1201_TypeVal GageRandRStudyP_1201_TypeValueIn);
-  ~GageRandRStudyP_1201_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne GageRandRStudyP_1201_TypeType;
-  GageRandRStudyP_1201_TypeVal GageRandRStudyP_1201_TypeValue;
-};
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 class GageRandRStudyP_1202_Type :
   public XmlTypeBase
@@ -1019,23 +972,23 @@ protected:
   GageRandRStudyP_1202_TypeChoicePair * GageRandRStudyP_1202_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union GageRandRStudyP_1202_TypeVal
 {
-  CriterionDecimalType * MaximumRelativeEquipmentVariation;
-  CriteriaByUnitType * MaximumAbsoluteEquipmentVariation;
+  CriterionDecimalType * MaximumRelativeAppraiserVariation;
+  CriteriaByUnitType * MaximumAbsoluteAppraiserVariation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class GageRandRStudyP_1202_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    MaximumRelativeEquipmentVariationE,
-    MaximumAbsoluteEquipmentVariationE };
+    MaximumRelativeAppraiserVariationE,
+    MaximumAbsoluteAppraiserVariationE };
   GageRandRStudyP_1202_TypeChoicePair();
   GageRandRStudyP_1202_TypeChoicePair(
     whichOne GageRandRStudyP_1202_TypeTypeIn,
@@ -1047,7 +1000,7 @@ public:
   GageRandRStudyP_1202_TypeVal GageRandRStudyP_1202_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class GageRandRStudyP_1203_Type :
   public XmlTypeBase
@@ -1066,23 +1019,23 @@ protected:
   GageRandRStudyP_1203_TypeChoicePair * GageRandRStudyP_1203_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union GageRandRStudyP_1203_TypeVal
 {
-  CriterionDecimalType * MaximumRelativeTotalRandR;
-  CriteriaByUnitType * MaximumAbsoluteTotalRandR;
+  CriterionDecimalType * MaximumRelativeEquipmentVariation;
+  CriteriaByUnitType * MaximumAbsoluteEquipmentVariation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class GageRandRStudyP_1203_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    MaximumRelativeTotalRandRE,
-    MaximumAbsoluteTotalRandRE };
+    MaximumRelativeEquipmentVariationE,
+    MaximumAbsoluteEquipmentVariationE };
   GageRandRStudyP_1203_TypeChoicePair();
   GageRandRStudyP_1203_TypeChoicePair(
     whichOne GageRandRStudyP_1203_TypeTypeIn,
@@ -1094,75 +1047,122 @@ public:
   GageRandRStudyP_1203_TypeVal GageRandRStudyP_1203_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class LinearityStudyP_1204_Type :
+class GageRandRStudyP_1204_Type :
   public XmlTypeBase
 {
 public:
-  LinearityStudyP_1204_Type();
-  LinearityStudyP_1204_Type(
-    LinearityStudyP_1204_TypeChoicePair * LinearityStudyP_1204_TypePairIn);
-  ~LinearityStudyP_1204_Type();
+  GageRandRStudyP_1204_Type();
+  GageRandRStudyP_1204_Type(
+    GageRandRStudyP_1204_TypeChoicePair * GageRandRStudyP_1204_TypePairIn);
+  ~GageRandRStudyP_1204_Type();
   void printSelf(FILE * outFile);
 
-  LinearityStudyP_1204_TypeChoicePair * getLinearityStudyP_1204_TypePair();
-  void setLinearityStudyP_1204_TypePair(LinearityStudyP_1204_TypeChoicePair * LinearityStudyP_1204_TypePairIn);
+  GageRandRStudyP_1204_TypeChoicePair * getGageRandRStudyP_1204_TypePair();
+  void setGageRandRStudyP_1204_TypePair(GageRandRStudyP_1204_TypeChoicePair * GageRandRStudyP_1204_TypePairIn);
 
 protected:
-  LinearityStudyP_1204_TypeChoicePair * LinearityStudyP_1204_TypePair;
+  GageRandRStudyP_1204_TypeChoicePair * GageRandRStudyP_1204_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union LinearityStudyP_1204_TypeVal
+union GageRandRStudyP_1204_TypeVal
+{
+  CriterionDecimalType * MaximumRelativeTotalRandR;
+  CriteriaByUnitType * MaximumAbsoluteTotalRandR;
+};
+
+/* ***************************************************************** */
+
+class GageRandRStudyP_1204_TypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    MaximumRelativeTotalRandRE,
+    MaximumAbsoluteTotalRandRE };
+  GageRandRStudyP_1204_TypeChoicePair();
+  GageRandRStudyP_1204_TypeChoicePair(
+    whichOne GageRandRStudyP_1204_TypeTypeIn,
+    GageRandRStudyP_1204_TypeVal GageRandRStudyP_1204_TypeValueIn);
+  ~GageRandRStudyP_1204_TypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne GageRandRStudyP_1204_TypeType;
+  GageRandRStudyP_1204_TypeVal GageRandRStudyP_1204_TypeValue;
+};
+
+/* ***************************************************************** */
+
+class LinearityStudyP_1205_Type :
+  public XmlTypeBase
+{
+public:
+  LinearityStudyP_1205_Type();
+  LinearityStudyP_1205_Type(
+    LinearityStudyP_1205_TypeChoicePair * LinearityStudyP_1205_TypePairIn);
+  ~LinearityStudyP_1205_Type();
+  void printSelf(FILE * outFile);
+
+  LinearityStudyP_1205_TypeChoicePair * getLinearityStudyP_1205_TypePair();
+  void setLinearityStudyP_1205_TypePair(LinearityStudyP_1205_TypeChoicePair * LinearityStudyP_1205_TypePairIn);
+
+protected:
+  LinearityStudyP_1205_TypeChoicePair * LinearityStudyP_1205_TypePair;
+};
+
+/* ***************************************************************** */
+
+union LinearityStudyP_1205_TypeVal
 {
   AbsoluteLimitsByUnitType * AbsoluteMinimums;
   XmlDecimal * RelativeLinearityMinimum;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class LinearityStudyP_1204_TypeChoicePair :
+class LinearityStudyP_1205_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     AbsoluteMinimumsE,
     RelativeLinearityMinimumE };
-  LinearityStudyP_1204_TypeChoicePair();
-  LinearityStudyP_1204_TypeChoicePair(
-    whichOne LinearityStudyP_1204_TypeTypeIn,
-    LinearityStudyP_1204_TypeVal LinearityStudyP_1204_TypeValueIn);
-  ~LinearityStudyP_1204_TypeChoicePair();
+  LinearityStudyP_1205_TypeChoicePair();
+  LinearityStudyP_1205_TypeChoicePair(
+    whichOne LinearityStudyP_1205_TypeTypeIn,
+    LinearityStudyP_1205_TypeVal LinearityStudyP_1205_TypeValueIn);
+  ~LinearityStudyP_1205_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne LinearityStudyP_1204_TypeType;
-  LinearityStudyP_1204_TypeVal LinearityStudyP_1204_TypeValue;
+  whichOne LinearityStudyP_1205_TypeType;
+  LinearityStudyP_1205_TypeVal LinearityStudyP_1205_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class LinearityStudyR_1205_Type :
+class LinearityStudyR_1206_Type :
   public XmlTypeBase
 {
 public:
-  LinearityStudyR_1205_Type();
-  LinearityStudyR_1205_Type(
-    LinearityStudyR_1205_TypeChoicePair * LinearityStudyR_1205_TypePairIn);
-  ~LinearityStudyR_1205_Type();
+  LinearityStudyR_1206_Type();
+  LinearityStudyR_1206_Type(
+    LinearityStudyR_1206_TypeChoicePair * LinearityStudyR_1206_TypePairIn);
+  ~LinearityStudyR_1206_Type();
   void printSelf(FILE * outFile);
 
-  LinearityStudyR_1205_TypeChoicePair * getLinearityStudyR_1205_TypePair();
-  void setLinearityStudyR_1205_TypePair(LinearityStudyR_1205_TypeChoicePair * LinearityStudyR_1205_TypePairIn);
+  LinearityStudyR_1206_TypeChoicePair * getLinearityStudyR_1206_TypePair();
+  void setLinearityStudyR_1206_TypePair(LinearityStudyR_1206_TypeChoicePair * LinearityStudyR_1206_TypePairIn);
 
 protected:
-  LinearityStudyR_1205_TypeChoicePair * LinearityStudyR_1205_TypePair;
+  LinearityStudyR_1206_TypeChoicePair * LinearityStudyR_1206_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union LinearityStudyR_1205_TypeVal
+union LinearityStudyR_1206_TypeVal
 {
   MeasuredLinearValueType * LinearAbsoluteLinearity;
   MeasuredAngularValueType * AngularAbsoluteLinearity;
@@ -1176,9 +1176,9 @@ union LinearityStudyR_1205_TypeVal
   MeasuredUserDefinedUnitValueType * UserDefinedUnitAbsoluteLinearity;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class LinearityStudyR_1205_TypeChoicePair :
+class LinearityStudyR_1206_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -1193,75 +1193,75 @@ public:
     TemperatureAbsoluteLinearityE,
     TimeAbsoluteLinearityE,
     UserDefinedUnitAbsoluteLinearityE };
-  LinearityStudyR_1205_TypeChoicePair();
-  LinearityStudyR_1205_TypeChoicePair(
-    whichOne LinearityStudyR_1205_TypeTypeIn,
-    LinearityStudyR_1205_TypeVal LinearityStudyR_1205_TypeValueIn);
-  ~LinearityStudyR_1205_TypeChoicePair();
+  LinearityStudyR_1206_TypeChoicePair();
+  LinearityStudyR_1206_TypeChoicePair(
+    whichOne LinearityStudyR_1206_TypeTypeIn,
+    LinearityStudyR_1206_TypeVal LinearityStudyR_1206_TypeValueIn);
+  ~LinearityStudyR_1206_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne LinearityStudyR_1205_TypeType;
-  LinearityStudyR_1205_TypeVal LinearityStudyR_1205_TypeValue;
+  whichOne LinearityStudyR_1206_TypeType;
+  LinearityStudyR_1206_TypeVal LinearityStudyR_1206_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ProcessDifferen_1206_Type :
+class ProcessDifferen_1207_Type :
   public XmlTypeBase
 {
 public:
-  ProcessDifferen_1206_Type();
-  ProcessDifferen_1206_Type(
-    ProcessDifferen_1206_TypeChoicePair * ProcessDifferen_1206_TypePairIn);
-  ~ProcessDifferen_1206_Type();
+  ProcessDifferen_1207_Type();
+  ProcessDifferen_1207_Type(
+    ProcessDifferen_1207_TypeChoicePair * ProcessDifferen_1207_TypePairIn);
+  ~ProcessDifferen_1207_Type();
   void printSelf(FILE * outFile);
 
-  ProcessDifferen_1206_TypeChoicePair * getProcessDifferen_1206_TypePair();
-  void setProcessDifferen_1206_TypePair(ProcessDifferen_1206_TypeChoicePair * ProcessDifferen_1206_TypePairIn);
+  ProcessDifferen_1207_TypeChoicePair * getProcessDifferen_1207_TypePair();
+  void setProcessDifferen_1207_TypePair(ProcessDifferen_1207_TypeChoicePair * ProcessDifferen_1207_TypePairIn);
 
 protected:
-  ProcessDifferen_1206_TypeChoicePair * ProcessDifferen_1206_TypePair;
+  ProcessDifferen_1207_TypeChoicePair * ProcessDifferen_1207_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union ProcessDifferen_1206_TypeVal
+union ProcessDifferen_1207_TypeVal
 {
   AbsoluteLimitsByUnitType * AbsoluteDifferences;
   XmlDecimal * RelativeDifference;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ProcessDifferen_1206_TypeChoicePair :
+class ProcessDifferen_1207_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     AbsoluteDifferencesE,
     RelativeDifferenceE };
-  ProcessDifferen_1206_TypeChoicePair();
-  ProcessDifferen_1206_TypeChoicePair(
-    whichOne ProcessDifferen_1206_TypeTypeIn,
-    ProcessDifferen_1206_TypeVal ProcessDifferen_1206_TypeValueIn);
-  ~ProcessDifferen_1206_TypeChoicePair();
+  ProcessDifferen_1207_TypeChoicePair();
+  ProcessDifferen_1207_TypeChoicePair(
+    whichOne ProcessDifferen_1207_TypeTypeIn,
+    ProcessDifferen_1207_TypeVal ProcessDifferen_1207_TypeValueIn);
+  ~ProcessDifferen_1207_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ProcessDifferen_1206_TypeType;
-  ProcessDifferen_1206_TypeVal ProcessDifferen_1206_TypeValue;
+  whichOne ProcessDifferen_1207_TypeType;
+  ProcessDifferen_1207_TypeVal ProcessDifferen_1207_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class StatisticalStud_1207_Type :
+class StatisticalStud_1208_Type :
   public XmlTypeBase
 {
 public:
-  StatisticalStud_1207_Type();
-  StatisticalStud_1207_Type(
+  StatisticalStud_1208_Type();
+  StatisticalStud_1208_Type(
     ArrayReferenceType * FeatureItemIdsIn,
     XmlBoolean * CalculateAverageFeaturesIn);
-  ~StatisticalStud_1207_Type();
+  ~StatisticalStud_1208_Type();
   void printSelf(FILE * outFile);
 
   ArrayReferenceType * getFeatureItemIds();
@@ -1274,18 +1274,18 @@ protected:
   XmlBoolean * CalculateAverageFeatures;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class StatisticalStud_1208_Type :
+class StatisticalStud_1209_Type :
   public XmlTypeBase
 {
 public:
-  StatisticalStud_1208_Type();
-  StatisticalStud_1208_Type(
+  StatisticalStud_1209_Type();
+  StatisticalStud_1209_Type(
     ArrayReferenceType * CharacteristicItemIdsIn,
     ListAccumulatedStatsValuesTypeLisd * StatsValuesPerCharIn,
     ListSubgroupStatsValuesTypeLisd * StatsValuesPerSubgroupIn);
-  ~StatisticalStud_1208_Type();
+  ~StatisticalStud_1209_Type();
   void printSelf(FILE * outFile);
 
   ArrayReferenceType * getCharacteristicItemIds();
@@ -1301,54 +1301,7 @@ protected:
   ListSubgroupStatsValuesTypeLisd * StatsValuesPerSubgroup;
 };
 
-/*********************************************************************/
-
-class StatisticalStud_1209_Type :
-  public XmlTypeBase
-{
-public:
-  StatisticalStud_1209_Type();
-  StatisticalStud_1209_Type(
-    StatisticalStud_1209_TypeChoicePair * StatisticalStud_1209_TypePairIn);
-  ~StatisticalStud_1209_Type();
-  void printSelf(FILE * outFile);
-
-  StatisticalStud_1209_TypeChoicePair * getStatisticalStud_1209_TypePair();
-  void setStatisticalStud_1209_TypePair(StatisticalStud_1209_TypeChoicePair * StatisticalStud_1209_TypePairIn);
-
-protected:
-  StatisticalStud_1209_TypeChoicePair * StatisticalStud_1209_TypePair;
-};
-
-/*********************************************************************/
-
-union StatisticalStud_1209_TypeVal
-{
-  QIFReferenceType * SoftwareId;
-  QIFReferenceType * StandardId;
-};
-
-/*********************************************************************/
-
-class StatisticalStud_1209_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    SoftwareIdE,
-    StandardIdE };
-  StatisticalStud_1209_TypeChoicePair();
-  StatisticalStud_1209_TypeChoicePair(
-    whichOne StatisticalStud_1209_TypeTypeIn,
-    StatisticalStud_1209_TypeVal StatisticalStud_1209_TypeValueIn);
-  ~StatisticalStud_1209_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne StatisticalStud_1209_TypeType;
-  StatisticalStud_1209_TypeVal StatisticalStud_1209_TypeValue;
-};
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StatisticalStud_1210_Type :
   public XmlTypeBase
@@ -1367,7 +1320,7 @@ protected:
   StatisticalStud_1210_TypeChoicePair * StatisticalStud_1210_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union StatisticalStud_1210_TypeVal
 {
@@ -1375,7 +1328,7 @@ union StatisticalStud_1210_TypeVal
   QIFReferenceType * StandardId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StatisticalStud_1210_TypeChoicePair :
   public XmlTypeBase
@@ -1395,7 +1348,7 @@ public:
   StatisticalStud_1210_TypeVal StatisticalStud_1210_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StatisticalStud_1211_Type :
   public XmlTypeBase
@@ -1414,25 +1367,23 @@ protected:
   StatisticalStud_1211_TypeChoicePair * StatisticalStud_1211_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union StatisticalStud_1211_TypeVal
 {
-  ArrayReferenceType * ResultsIds;
-  ArrayQPIdFullReferenceTypeLisd * ResultsQPIds;
-  ExternalFileReferencesType * ResultsFiles;
+  QIFReferenceType * SoftwareId;
+  QIFReferenceType * StandardId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StatisticalStud_1211_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    ResultsIdsE,
-    ResultsQPIdsE,
-    ResultsFilesE };
+    SoftwareIdE,
+    StandardIdE };
   StatisticalStud_1211_TypeChoicePair();
   StatisticalStud_1211_TypeChoicePair(
     whichOne StatisticalStud_1211_TypeTypeIn,
@@ -1444,7 +1395,56 @@ public:
   StatisticalStud_1211_TypeVal StatisticalStud_1211_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
+
+class StatisticalStud_1212_Type :
+  public XmlTypeBase
+{
+public:
+  StatisticalStud_1212_Type();
+  StatisticalStud_1212_Type(
+    StatisticalStud_1212_TypeChoicePair * StatisticalStud_1212_TypePairIn);
+  ~StatisticalStud_1212_Type();
+  void printSelf(FILE * outFile);
+
+  StatisticalStud_1212_TypeChoicePair * getStatisticalStud_1212_TypePair();
+  void setStatisticalStud_1212_TypePair(StatisticalStud_1212_TypeChoicePair * StatisticalStud_1212_TypePairIn);
+
+protected:
+  StatisticalStud_1212_TypeChoicePair * StatisticalStud_1212_TypePair;
+};
+
+/* ***************************************************************** */
+
+union StatisticalStud_1212_TypeVal
+{
+  ArrayReferenceType * ResultsIds;
+  ArrayQPIdFullReferenceTypeLisd * ResultsQPIds;
+  ExternalFileReferencesType * ResultsFiles;
+};
+
+/* ***************************************************************** */
+
+class StatisticalStud_1212_TypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    ResultsIdsE,
+    ResultsQPIdsE,
+    ResultsFilesE };
+  StatisticalStud_1212_TypeChoicePair();
+  StatisticalStud_1212_TypeChoicePair(
+    whichOne StatisticalStud_1212_TypeTypeIn,
+    StatisticalStud_1212_TypeVal StatisticalStud_1212_TypeValueIn);
+  ~StatisticalStud_1212_TypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne StatisticalStud_1212_TypeType;
+  StatisticalStud_1212_TypeVal StatisticalStud_1212_TypeValue;
+};
+
+/* ***************************************************************** */
 
 class BiasStudyResultsType :
   public StatisticalStudyResultsBaseType
@@ -1455,13 +1455,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -1482,13 +1482,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -1518,7 +1518,7 @@ protected:
   ArrayReferenceType * MeasurementDeviceIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FirstArticleStudyPlanType :
   public StatisticalStudyPlanBaseType
@@ -1528,47 +1528,47 @@ public:
   FirstArticleStudyPlanType(
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn,
     XmlDecimal * InSpecRatioIn,
-    FirstArticleStu_1200_Type * FirstArticleStu_1200In);
+    FirstArticleStu_1201_Type * FirstArticleStu_1201In);
   FirstArticleStudyPlanType(
     QIFIdType * idIn,
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn,
     XmlDecimal * InSpecRatioIn,
-    FirstArticleStu_1200_Type * FirstArticleStu_1200In);
+    FirstArticleStu_1201_Type * FirstArticleStu_1201In);
   ~FirstArticleStudyPlanType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
   XmlDecimal * getInSpecRatio();
   void setInSpecRatio(XmlDecimal * InSpecRatioIn);
-  FirstArticleStu_1200_Type * getFirstArticleStu_1200();
-  void setFirstArticleStu_1200(FirstArticleStu_1200_Type * FirstArticleStu_1200In);
+  FirstArticleStu_1201_Type * getFirstArticleStu_1201();
+  void setFirstArticleStu_1201(FirstArticleStu_1201_Type * FirstArticleStu_1201In);
 
 protected:
   XmlDecimal * InSpecRatio;
-  FirstArticleStu_1200_Type * FirstArticleStu_1200;
+  FirstArticleStu_1201_Type * FirstArticleStu_1201;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FirstArticleStudyResultsType :
   public StatisticalStudyResultsBaseType
@@ -1579,13 +1579,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -1607,13 +1607,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -1647,7 +1647,7 @@ protected:
   MeasuredDecimalType * RelativeMaximum;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class GageRandRStudyPlanType :
   public StatisticalStudyPlanBaseType
@@ -1657,44 +1657,44 @@ public:
   GageRandRStudyPlanType(
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn,
     ArrayReferenceType * MeasurementDeviceIdsIn,
     GageRandRStudyEnumType * RandRStudyTypeIn,
     XmlPositiveInteger * NumberOfAppraisersIn,
     XmlPositiveInteger * NumberOfPartsIn,
     XmlPositiveInteger * NumberOfTrialsIn,
-    GageRandRStudyP_1201_Type * GageRandRStudyP_1201In,
     GageRandRStudyP_1202_Type * GageRandRStudyP_1202In,
-    GageRandRStudyP_1203_Type * GageRandRStudyP_1203In);
+    GageRandRStudyP_1203_Type * GageRandRStudyP_1203In,
+    GageRandRStudyP_1204_Type * GageRandRStudyP_1204In);
   GageRandRStudyPlanType(
     QIFIdType * idIn,
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn,
     ArrayReferenceType * MeasurementDeviceIdsIn,
     GageRandRStudyEnumType * RandRStudyTypeIn,
     XmlPositiveInteger * NumberOfAppraisersIn,
     XmlPositiveInteger * NumberOfPartsIn,
     XmlPositiveInteger * NumberOfTrialsIn,
-    GageRandRStudyP_1201_Type * GageRandRStudyP_1201In,
     GageRandRStudyP_1202_Type * GageRandRStudyP_1202In,
-    GageRandRStudyP_1203_Type * GageRandRStudyP_1203In);
+    GageRandRStudyP_1203_Type * GageRandRStudyP_1203In,
+    GageRandRStudyP_1204_Type * GageRandRStudyP_1204In);
   ~GageRandRStudyPlanType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -1709,12 +1709,12 @@ public:
   void setNumberOfParts(XmlPositiveInteger * NumberOfPartsIn);
   XmlPositiveInteger * getNumberOfTrials();
   void setNumberOfTrials(XmlPositiveInteger * NumberOfTrialsIn);
-  GageRandRStudyP_1201_Type * getGageRandRStudyP_1201();
-  void setGageRandRStudyP_1201(GageRandRStudyP_1201_Type * GageRandRStudyP_1201In);
   GageRandRStudyP_1202_Type * getGageRandRStudyP_1202();
   void setGageRandRStudyP_1202(GageRandRStudyP_1202_Type * GageRandRStudyP_1202In);
   GageRandRStudyP_1203_Type * getGageRandRStudyP_1203();
   void setGageRandRStudyP_1203(GageRandRStudyP_1203_Type * GageRandRStudyP_1203In);
+  GageRandRStudyP_1204_Type * getGageRandRStudyP_1204();
+  void setGageRandRStudyP_1204(GageRandRStudyP_1204_Type * GageRandRStudyP_1204In);
 
 protected:
   ArrayReferenceType * MeasurementDeviceIds;
@@ -1722,12 +1722,12 @@ protected:
   XmlPositiveInteger * NumberOfAppraisers;
   XmlPositiveInteger * NumberOfParts;
   XmlPositiveInteger * NumberOfTrials;
-  GageRandRStudyP_1201_Type * GageRandRStudyP_1201;
   GageRandRStudyP_1202_Type * GageRandRStudyP_1202;
   GageRandRStudyP_1203_Type * GageRandRStudyP_1203;
+  GageRandRStudyP_1204_Type * GageRandRStudyP_1204;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class GageRandRStudyResultsType :
   public StatisticalStudyResultsBaseType
@@ -1738,13 +1738,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -1767,13 +1767,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -1811,7 +1811,7 @@ protected:
   XmlPositiveInteger * NumberOfTrials;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LinearityStudyPlanType :
   public StatisticalStudyPlanBaseType
@@ -1821,34 +1821,34 @@ public:
   LinearityStudyPlanType(
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn,
     ArrayReferenceType * MeasurementDeviceIdsIn,
     XmlDecimal * GoodnessOfFitThresholdIn,
-    LinearityStudyP_1204_Type * LinearityStudyP_1204In);
+    LinearityStudyP_1205_Type * LinearityStudyP_1205In);
   LinearityStudyPlanType(
     QIFIdType * idIn,
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn,
     ArrayReferenceType * MeasurementDeviceIdsIn,
     XmlDecimal * GoodnessOfFitThresholdIn,
-    LinearityStudyP_1204_Type * LinearityStudyP_1204In);
+    LinearityStudyP_1205_Type * LinearityStudyP_1205In);
   ~LinearityStudyPlanType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -1857,16 +1857,16 @@ public:
   void setMeasurementDeviceIds(ArrayReferenceType * MeasurementDeviceIdsIn);
   XmlDecimal * getGoodnessOfFitThreshold();
   void setGoodnessOfFitThreshold(XmlDecimal * GoodnessOfFitThresholdIn);
-  LinearityStudyP_1204_Type * getLinearityStudyP_1204();
-  void setLinearityStudyP_1204(LinearityStudyP_1204_Type * LinearityStudyP_1204In);
+  LinearityStudyP_1205_Type * getLinearityStudyP_1205();
+  void setLinearityStudyP_1205(LinearityStudyP_1205_Type * LinearityStudyP_1205In);
 
 protected:
   ArrayReferenceType * MeasurementDeviceIds;
   XmlDecimal * GoodnessOfFitThreshold;
-  LinearityStudyP_1204_Type * LinearityStudyP_1204;
+  LinearityStudyP_1205_Type * LinearityStudyP_1205;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LinearityStudyResultsType :
   public StatisticalStudyResultsBaseType
@@ -1877,13 +1877,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -1900,20 +1900,20 @@ public:
     XmlPositiveInteger * SampleSizeIn,
     ArrayReferenceType * MeasurementDeviceIdsIn,
     MeasuredDecimalType * GoodnessOfFitIn,
-    LinearityStudyR_1205_Type * LinearityStudyR_1205In,
+    LinearityStudyR_1206_Type * LinearityStudyR_1206In,
     MeasuredDecimalType * RelativeLinearityIn);
   LinearityStudyResultsType(
     QIFIdType * idIn,
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -1930,7 +1930,7 @@ public:
     XmlPositiveInteger * SampleSizeIn,
     ArrayReferenceType * MeasurementDeviceIdsIn,
     MeasuredDecimalType * GoodnessOfFitIn,
-    LinearityStudyR_1205_Type * LinearityStudyR_1205In,
+    LinearityStudyR_1206_Type * LinearityStudyR_1206In,
     MeasuredDecimalType * RelativeLinearityIn);
   ~LinearityStudyResultsType();
   void printSelf(FILE * outFile);
@@ -1942,8 +1942,8 @@ public:
   void setMeasurementDeviceIds(ArrayReferenceType * MeasurementDeviceIdsIn);
   MeasuredDecimalType * getGoodnessOfFit();
   void setGoodnessOfFit(MeasuredDecimalType * GoodnessOfFitIn);
-  LinearityStudyR_1205_Type * getLinearityStudyR_1205();
-  void setLinearityStudyR_1205(LinearityStudyR_1205_Type * LinearityStudyR_1205In);
+  LinearityStudyR_1206_Type * getLinearityStudyR_1206();
+  void setLinearityStudyR_1206(LinearityStudyR_1206_Type * LinearityStudyR_1206In);
   MeasuredDecimalType * getRelativeLinearity();
   void setRelativeLinearity(MeasuredDecimalType * RelativeLinearityIn);
 
@@ -1951,11 +1951,11 @@ protected:
   XmlPositiveInteger * SampleSize;
   ArrayReferenceType * MeasurementDeviceIds;
   MeasuredDecimalType * GoodnessOfFit;
-  LinearityStudyR_1205_Type * LinearityStudyR_1205;
+  LinearityStudyR_1206_Type * LinearityStudyR_1206;
   MeasuredDecimalType * RelativeLinearity;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MultipleProductInstanceStudyPlanBaseType :
   public StatisticalStudyPlanBaseType
@@ -1965,14 +1965,14 @@ public:
   MultipleProductInstanceStudyPlanBaseType(
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn,
     XmlPositiveInteger * NumberOfSamplesIn,
     XmlPositiveInteger * SubgroupSizeIn);
@@ -1980,14 +1980,14 @@ public:
     QIFIdType * idIn,
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn,
     XmlPositiveInteger * NumberOfSamplesIn,
     XmlPositiveInteger * SubgroupSizeIn);
@@ -2005,7 +2005,7 @@ protected:
   XmlPositiveInteger * SubgroupSize;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MultipleProductInstanceStudyResultsBaseType :
   public StatisticalStudyResultsBaseType
@@ -2016,13 +2016,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -2043,13 +2043,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -2079,7 +2079,7 @@ protected:
   XmlPositiveInteger * SubgroupSize;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ProcessDifferenceStudyPlanType :
   public StatisticalStudyPlanBaseType
@@ -2089,36 +2089,36 @@ public:
   ProcessDifferenceStudyPlanType(
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn,
     XmlPositiveInteger * NumberOfSamplesIn,
     XmlPositiveInteger * SubgroupSizeIn,
     QIFReferenceType * ManufacturingProcessIdIn,
-    ProcessDifferen_1206_Type * ProcessDifferen_1206In);
+    ProcessDifferen_1207_Type * ProcessDifferen_1207In);
   ProcessDifferenceStudyPlanType(
     QIFIdType * idIn,
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn,
     XmlPositiveInteger * NumberOfSamplesIn,
     XmlPositiveInteger * SubgroupSizeIn,
     QIFReferenceType * ManufacturingProcessIdIn,
-    ProcessDifferen_1206_Type * ProcessDifferen_1206In);
+    ProcessDifferen_1207_Type * ProcessDifferen_1207In);
   ~ProcessDifferenceStudyPlanType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -2129,17 +2129,17 @@ public:
   void setSubgroupSize(XmlPositiveInteger * SubgroupSizeIn);
   QIFReferenceType * getManufacturingProcessId();
   void setManufacturingProcessId(QIFReferenceType * ManufacturingProcessIdIn);
-  ProcessDifferen_1206_Type * getProcessDifferen_1206();
-  void setProcessDifferen_1206(ProcessDifferen_1206_Type * ProcessDifferen_1206In);
+  ProcessDifferen_1207_Type * getProcessDifferen_1207();
+  void setProcessDifferen_1207(ProcessDifferen_1207_Type * ProcessDifferen_1207In);
 
 protected:
   XmlPositiveInteger * NumberOfSamples;
   XmlPositiveInteger * SubgroupSize;
   QIFReferenceType * ManufacturingProcessId;
-  ProcessDifferen_1206_Type * ProcessDifferen_1206;
+  ProcessDifferen_1207_Type * ProcessDifferen_1207;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ProcessDifferenceStudyResultsType :
   public StatisticalStudyResultsBaseType
@@ -2150,13 +2150,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -2180,13 +2180,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -2228,7 +2228,7 @@ protected:
   MeasuredDecimalType * RelativeDifference;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ProductionStudyPlanType :
   public MultipleProductInstanceStudyPlanBaseType
@@ -2238,14 +2238,14 @@ public:
   ProductionStudyPlanType(
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn,
     XmlPositiveInteger * NumberOfSamplesIn,
     XmlPositiveInteger * SubgroupSizeIn,
@@ -2255,14 +2255,14 @@ public:
     QIFIdType * idIn,
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn,
     XmlPositiveInteger * NumberOfSamplesIn,
     XmlPositiveInteger * SubgroupSizeIn,
@@ -2282,7 +2282,7 @@ protected:
   ControlMethodsType * ControlMethods;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ProductionStudyResultsType :
   public MultipleProductInstanceStudyResultsBaseType
@@ -2293,13 +2293,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -2321,13 +2321,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -2355,7 +2355,7 @@ protected:
   ControlIssueDetailsListTypeLisd * ControlIssueDetailsList;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SimpleStudyPlanType :
   public MultipleProductInstanceStudyPlanBaseType
@@ -2365,14 +2365,14 @@ public:
   SimpleStudyPlanType(
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn,
     XmlPositiveInteger * NumberOfSamplesIn,
     XmlPositiveInteger * SubgroupSizeIn);
@@ -2380,14 +2380,14 @@ public:
     QIFIdType * idIn,
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn,
     XmlPositiveInteger * NumberOfSamplesIn,
     XmlPositiveInteger * SubgroupSizeIn);
@@ -2396,7 +2396,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SimpleStudyResultsType :
   public MultipleProductInstanceStudyResultsBaseType
@@ -2407,13 +2407,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -2434,13 +2434,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -2461,7 +2461,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StabilityStudyPlanType :
   public StatisticalStudyPlanBaseType
@@ -2471,14 +2471,14 @@ public:
   StabilityStudyPlanType(
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn,
     ArrayReferenceType * MeasurementDeviceIdsIn,
     XmlPositiveInteger * SampleSizeIn,
@@ -2488,14 +2488,14 @@ public:
     QIFIdType * idIn,
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn,
     ArrayReferenceType * MeasurementDeviceIdsIn,
     XmlPositiveInteger * SampleSizeIn,
@@ -2521,7 +2521,7 @@ protected:
   SamplingIntervalType * SamplingInterval;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StabilityStudyResultsType :
   public StatisticalStudyResultsBaseType
@@ -2532,13 +2532,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -2559,13 +2559,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -2595,7 +2595,7 @@ protected:
   ArrayReferenceType * MeasurementDeviceIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class BiasStudyPlanType :
   public MultipleProductInstanceStudyPlanBaseType
@@ -2605,14 +2605,14 @@ public:
   BiasStudyPlanType(
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn,
     XmlPositiveInteger * NumberOfSamplesIn,
     XmlPositiveInteger * SubgroupSizeIn,
@@ -2621,14 +2621,14 @@ public:
     QIFIdType * idIn,
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn,
     XmlPositiveInteger * NumberOfSamplesIn,
     XmlPositiveInteger * SubgroupSizeIn,
@@ -2644,7 +2644,7 @@ protected:
   ArrayReferenceType * MeasurementDeviceIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CapabilityStudyPlanType :
   public MultipleProductInstanceStudyPlanBaseType
@@ -2654,46 +2654,46 @@ public:
   CapabilityStudyPlanType(
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn,
     XmlPositiveInteger * NumberOfSamplesIn,
     XmlPositiveInteger * SubgroupSizeIn,
-    CapabilityStudy_1198_Type * CapabilityStudy_1198In);
+    CapabilityStudy_1199_Type * CapabilityStudy_1199In);
   CapabilityStudyPlanType(
     QIFIdType * idIn,
     VersionType * VersionIn,
     AttributesType * AttributesIn,
-    StatisticalStud_1207_Type * StatisticalStud_1207In,
     StatisticalStud_1208_Type * StatisticalStud_1208In,
+    StatisticalStud_1209_Type * StatisticalStud_1209In,
     SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
     PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * PlanIdIn,
-    StatisticalStud_1209_Type * StatisticalStud_1209In,
+    StatisticalStud_1210_Type * StatisticalStud_1210In,
     QIFReferenceType * CorrectiveActionPlanIdIn,
     XmlPositiveInteger * NumberOfSamplesIn,
     XmlPositiveInteger * SubgroupSizeIn,
-    CapabilityStudy_1198_Type * CapabilityStudy_1198In);
+    CapabilityStudy_1199_Type * CapabilityStudy_1199In);
   ~CapabilityStudyPlanType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
-  CapabilityStudy_1198_Type * getCapabilityStudy_1198();
-  void setCapabilityStudy_1198(CapabilityStudy_1198_Type * CapabilityStudy_1198In);
+  CapabilityStudy_1199_Type * getCapabilityStudy_1199();
+  void setCapabilityStudy_1199(CapabilityStudy_1199_Type * CapabilityStudy_1199In);
 
 protected:
-  CapabilityStudy_1198_Type * CapabilityStudy_1198;
+  CapabilityStudy_1199_Type * CapabilityStudy_1199;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CapabilityStudyResultsType :
   public MultipleProductInstanceStudyResultsBaseType
@@ -2704,13 +2704,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -2731,13 +2731,13 @@ public:
     QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesType * AttributesIn,
     StatsEvalStatusType * StatusIn,
-    StatisticalStud_1210_Type * StatisticalStud_1210In,
+    StatisticalStud_1211_Type * StatisticalStud_1211In,
     StudyIssuesType * StudyIssuesIn,
     InspectionTraceabilityType * InspectionTraceabilityIn,
     XmlToken * NameIn,
     XmlString * DescriptionIn,
     QIFReferenceType * StudyIdIn,
-    StatisticalStud_1211_Type * StatisticalStud_1211In,
+    StatisticalStud_1212_Type * StatisticalStud_1212In,
     AverageFeaturesType * AverageFeaturesIn,
     CharacteristicsStatsType * CharacteristicsStatsIn,
     SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -2758,6 +2758,6 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 #endif // QIFSTATISTICS_HH

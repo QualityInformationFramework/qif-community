@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #include <stdio.h>             // for printf, etc.
 #include <string.h>            // for strdup
@@ -10,8 +10,8 @@
 
 #define INDENT 2
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 /* class AngularUnitType
 
@@ -87,7 +87,7 @@ UnitConversionType * AngularUnitType::getUnitConversion()
 void AngularUnitType::setUnitConversion(UnitConversionType * UnitConversionIn)
 {UnitConversion = UnitConversionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularUnitTypeLisd
 
@@ -114,7 +114,7 @@ AngularUnitTypeLisd::~AngularUnitTypeLisd()
 
 void AngularUnitTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularValueType
 
@@ -321,7 +321,7 @@ XmlToken * AngularValueType::getangularUnit()
 void AngularValueType::setangularUnit(XmlToken * angularUnitIn)
 {angularUnit = angularUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AreaUnitType
 
@@ -397,7 +397,7 @@ UnitConversionType * AreaUnitType::getUnitConversion()
 void AreaUnitType::setUnitConversion(UnitConversionType * UnitConversionIn)
 {UnitConversion = UnitConversionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AreaUnitTypeLisd
 
@@ -424,7 +424,7 @@ AreaUnitTypeLisd::~AreaUnitTypeLisd()
 
 void AreaUnitTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AreaValueType
 
@@ -631,7 +631,7 @@ XmlToken * AreaValueType::getareaUnit()
 void AreaValueType::setareaUnit(XmlToken * areaUnitIn)
 {areaUnit = areaUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FileUnitsType
 
@@ -709,7 +709,7 @@ UserDefinedUnitsType * FileUnitsType::getUserDefinedUnits()
 void FileUnitsType::setUserDefinedUnits(UserDefinedUnitsType * UserDefinedUnitsIn)
 {UserDefinedUnits = UserDefinedUnitsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ForceUnitType
 
@@ -785,7 +785,7 @@ UnitConversionType * ForceUnitType::getUnitConversion()
 void ForceUnitType::setUnitConversion(UnitConversionType * UnitConversionIn)
 {UnitConversion = UnitConversionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ForceUnitTypeLisd
 
@@ -812,7 +812,7 @@ ForceUnitTypeLisd::~ForceUnitTypeLisd()
 
 void ForceUnitTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ForceValueType
 
@@ -1019,7 +1019,7 @@ XmlToken * ForceValueType::getforceUnit()
 void ForceValueType::setforceUnit(XmlToken * forceUnitIn)
 {forceUnit = forceUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearDualValueType
 
@@ -1236,7 +1236,7 @@ XmlToken * LinearDualValueType::getlinearUnit()
 void LinearDualValueType::setlinearUnit(XmlToken * linearUnitIn)
 {linearUnit = linearUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearUnitType
 
@@ -1312,7 +1312,7 @@ UnitConversionType * LinearUnitType::getUnitConversion()
 void LinearUnitType::setUnitConversion(UnitConversionType * UnitConversionIn)
 {UnitConversion = UnitConversionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearUnitTypeLisd
 
@@ -1339,7 +1339,7 @@ LinearUnitTypeLisd::~LinearUnitTypeLisd()
 
 void LinearUnitTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearValueType
 
@@ -1546,7 +1546,7 @@ XmlToken * LinearValueType::getlinearUnit()
 void LinearValueType::setlinearUnit(XmlToken * linearUnitIn)
 {linearUnit = linearUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearValueTypeLisd
 
@@ -1573,7 +1573,7 @@ LinearValueTypeLisd::~LinearValueTypeLisd()
 
 void LinearValueTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MassUnitType
 
@@ -1649,7 +1649,7 @@ UnitConversionType * MassUnitType::getUnitConversion()
 void MassUnitType::setUnitConversion(UnitConversionType * UnitConversionIn)
 {UnitConversion = UnitConversionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MassUnitTypeLisd
 
@@ -1676,7 +1676,7 @@ MassUnitTypeLisd::~MassUnitTypeLisd()
 
 void MassUnitTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MassValueType
 
@@ -1883,7 +1883,7 @@ XmlToken * MassValueType::getmassUnit()
 void MassValueType::setmassUnit(XmlToken * massUnitIn)
 {massUnit = massUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredAngularValueType
 
@@ -2174,7 +2174,7 @@ XmlToken * MeasuredAngularValueType::getangularUnit()
 void MeasuredAngularValueType::setangularUnit(XmlToken * angularUnitIn)
 {angularUnit = angularUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredAreaValueType
 
@@ -2465,7 +2465,7 @@ XmlToken * MeasuredAreaValueType::getareaUnit()
 void MeasuredAreaValueType::setareaUnit(XmlToken * areaUnitIn)
 {areaUnit = areaUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredDecimalType
 
@@ -2723,7 +2723,7 @@ NonNegativeDecimalType * MeasuredDecimalType::getmeanError()
 void MeasuredDecimalType::setmeanError(NonNegativeDecimalType * meanErrorIn)
 {meanError = meanErrorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredForceValueType
 
@@ -3014,7 +3014,7 @@ XmlToken * MeasuredForceValueType::getforceUnit()
 void MeasuredForceValueType::setforceUnit(XmlToken * forceUnitIn)
 {forceUnit = forceUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredLinearValueType
 
@@ -3305,7 +3305,7 @@ XmlToken * MeasuredLinearValueType::getlinearUnit()
 void MeasuredLinearValueType::setlinearUnit(XmlToken * linearUnitIn)
 {linearUnit = linearUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredMassValueType
 
@@ -3596,7 +3596,7 @@ XmlToken * MeasuredMassValueType::getmassUnit()
 void MeasuredMassValueType::setmassUnit(XmlToken * massUnitIn)
 {massUnit = massUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredPressureValueType
 
@@ -3887,7 +3887,7 @@ XmlToken * MeasuredPressureValueType::getpressureUnit()
 void MeasuredPressureValueType::setpressureUnit(XmlToken * pressureUnitIn)
 {pressureUnit = pressureUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredSpeedValueType
 
@@ -4178,7 +4178,7 @@ XmlToken * MeasuredSpeedValueType::getspeedUnit()
 void MeasuredSpeedValueType::setspeedUnit(XmlToken * speedUnitIn)
 {speedUnit = speedUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredTemperatureValueType
 
@@ -4469,7 +4469,7 @@ XmlToken * MeasuredTemperatureValueType::gettemperatureUnit()
 void MeasuredTemperatureValueType::settemperatureUnit(XmlToken * temperatureUnitIn)
 {temperatureUnit = temperatureUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredTimeValueType
 
@@ -4760,7 +4760,7 @@ XmlToken * MeasuredTimeValueType::gettimeUnit()
 void MeasuredTimeValueType::settimeUnit(XmlToken * timeUnitIn)
 {timeUnit = timeUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredUserDefinedUnitValueType
 
@@ -5061,7 +5061,7 @@ XmlToken * MeasuredUserDefinedUnitValueType::getunitName()
 void MeasuredUserDefinedUnitValueType::setunitName(XmlToken * unitNameIn)
 {unitName = unitNameIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MeasuredUserDefinedUnitValueTypeLisd
 
@@ -5088,7 +5088,7 @@ MeasuredUserDefinedUnitValueTypeLisd::~MeasuredUserDefinedUnitValueTypeLisd()
 
 void MeasuredUserDefinedUnitValueTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class NonNegativeDecimalType
 
@@ -5146,7 +5146,7 @@ void NonNegativeDecimalType::oPrintSelf(FILE * outFile)
   XmlDecimal::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherUnitsType
 
@@ -5522,7 +5522,7 @@ TimeUnitTypeLisd * OtherUnitsType::getTimeUnit()
 void OtherUnitsType::setTimeUnit(TimeUnitTypeLisd * TimeUnitIn)
 {TimeUnit = TimeUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PositiveDecimalType
 
@@ -5580,7 +5580,7 @@ void PositiveDecimalType::oPrintSelf(FILE * outFile)
   XmlDecimal::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PressureUnitType
 
@@ -5656,7 +5656,7 @@ UnitConversionType * PressureUnitType::getUnitConversion()
 void PressureUnitType::setUnitConversion(UnitConversionType * UnitConversionIn)
 {UnitConversion = UnitConversionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PressureUnitTypeLisd
 
@@ -5683,7 +5683,7 @@ PressureUnitTypeLisd::~PressureUnitTypeLisd()
 
 void PressureUnitTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PressureValueType
 
@@ -5890,7 +5890,7 @@ XmlToken * PressureValueType::getpressureUnit()
 void PressureValueType::setpressureUnit(XmlToken * pressureUnitIn)
 {pressureUnit = pressureUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PrimaryUnitsType
 
@@ -6133,7 +6133,7 @@ TimeUnitType * PrimaryUnitsType::getTimeUnit()
 void PrimaryUnitsType::setTimeUnit(TimeUnitType * TimeUnitIn)
 {TimeUnit = TimeUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SpecifiedDecimalType
 
@@ -6306,7 +6306,7 @@ XmlNonNegativeInteger * SpecifiedDecimalType::getsignificantFigures()
 void SpecifiedDecimalType::setsignificantFigures(XmlNonNegativeInteger * significantFiguresIn)
 {significantFigures = significantFiguresIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SpeedUnitType
 
@@ -6382,7 +6382,7 @@ UnitConversionType * SpeedUnitType::getUnitConversion()
 void SpeedUnitType::setUnitConversion(UnitConversionType * UnitConversionIn)
 {UnitConversion = UnitConversionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SpeedUnitTypeLisd
 
@@ -6409,7 +6409,7 @@ SpeedUnitTypeLisd::~SpeedUnitTypeLisd()
 
 void SpeedUnitTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SpeedValueType
 
@@ -6616,7 +6616,7 @@ XmlToken * SpeedValueType::getspeedUnit()
 void SpeedValueType::setspeedUnit(XmlToken * speedUnitIn)
 {speedUnit = speedUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TemperatureUnitType
 
@@ -6692,7 +6692,7 @@ UnitConversionType * TemperatureUnitType::getUnitConversion()
 void TemperatureUnitType::setUnitConversion(UnitConversionType * UnitConversionIn)
 {UnitConversion = UnitConversionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TemperatureUnitTypeLisd
 
@@ -6719,7 +6719,7 @@ TemperatureUnitTypeLisd::~TemperatureUnitTypeLisd()
 
 void TemperatureUnitTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TemperatureValueType
 
@@ -6926,7 +6926,7 @@ XmlToken * TemperatureValueType::gettemperatureUnit()
 void TemperatureValueType::settemperatureUnit(XmlToken * temperatureUnitIn)
 {temperatureUnit = temperatureUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TimeUnitType
 
@@ -7002,7 +7002,7 @@ UnitConversionType * TimeUnitType::getUnitConversion()
 void TimeUnitType::setUnitConversion(UnitConversionType * UnitConversionIn)
 {UnitConversion = UnitConversionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TimeUnitTypeLisd
 
@@ -7029,7 +7029,7 @@ TimeUnitTypeLisd::~TimeUnitTypeLisd()
 
 void TimeUnitTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TimeValueType
 
@@ -7236,7 +7236,7 @@ XmlToken * TimeValueType::gettimeUnit()
 void TimeValueType::settimeUnit(XmlToken * timeUnitIn)
 {timeUnit = timeUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UnitConversionType
 
@@ -7294,7 +7294,7 @@ XmlDecimal * UnitConversionType::getOffset()
 void UnitConversionType::setOffset(XmlDecimal * OffsetIn)
 {Offset = OffsetIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedUnitType
 
@@ -7366,7 +7366,7 @@ XmlString * UserDefinedUnitType::getStandardName()
 void UserDefinedUnitType::setStandardName(XmlString * StandardNameIn)
 {StandardName = StandardNameIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedUnitTypeLisd
 
@@ -7393,7 +7393,7 @@ UserDefinedUnitTypeLisd::~UserDefinedUnitTypeLisd()
 
 void UserDefinedUnitTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedUnitValueType
 
@@ -7610,7 +7610,7 @@ XmlToken * UserDefinedUnitValueType::getunitName()
 void UserDefinedUnitValueType::setunitName(XmlToken * unitNameIn)
 {unitName = unitNameIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedUnitValueTypeLisd
 
@@ -7637,7 +7637,7 @@ UserDefinedUnitValueTypeLisd::~UserDefinedUnitValueTypeLisd()
 
 void UserDefinedUnitValueTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedUnitsType
 
@@ -7795,5 +7795,5 @@ UserDefinedUnitTypeLisd * UserDefinedUnitsType::getUserDefinedUnit()
 void UserDefinedUnitsType::setUserDefinedUnit(UserDefinedUnitTypeLisd * UserDefinedUnitIn)
 {UserDefinedUnit = UserDefinedUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 

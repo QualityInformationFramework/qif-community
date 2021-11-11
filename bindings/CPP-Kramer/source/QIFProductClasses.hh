@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #ifndef QIFPRODUCT_HH
 #define QIFPRODUCT_HH
@@ -11,7 +11,7 @@
 #include "VisualizationClasses.hh"
 #include "TraceabilityClasses.hh"
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AsmPathType;
 class AsmPathTypeLisd;
@@ -64,13 +64,13 @@ class ValidationPartAssemblyInstanceType;
 class ValidationPartAssemblyInstanceTypeLisd;
 class ValidationPartAssemblyInstancesType;
 class ValidationPartAssemblyType;
-class ComponentType_1237_Type;
-class ComponentType_1237_TypeChoicePair;
-class ProductType_1238_Type;
-class ProductType_1238_TypeChoicePair;
+class ComponentType_1238_Type;
+class ComponentType_1238_TypeChoicePair;
+class ProductType_1239_Type;
+class ProductType_1239_TypeChoicePair;
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 class AsmPathType :
   public XmlTypeBase
@@ -97,7 +97,7 @@ protected:
   ArrayReferenceType * ComponentIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AsmPathTypeLisd :
   public std::list<AsmPathType *>,
@@ -111,7 +111,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AsmPathsType :
   public XmlTypeBase
@@ -138,7 +138,7 @@ protected:
   AsmPathTypeLisd * AsmPath;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AssemblySetType :
   public XmlTypeBase
@@ -165,7 +165,7 @@ protected:
   AssemblyTypeLisd * Assembly;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ComponentSetType :
   public XmlTypeBase
@@ -192,7 +192,7 @@ protected:
   ComponentTypeLisd * Component;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ComponentType :
   public DrawableBaseType
@@ -204,7 +204,7 @@ public:
     ElementReferenceType * TransformIn,
     QPIdType * UUIDIn,
     ProductTraceabilityType * TraceabilityIn,
-    ComponentType_1237_Type * ComponentType_1237In);
+    ComponentType_1238_Type * ComponentType_1238In);
   ComponentType(
     XmlString * labelIn,
     QIFIdType * idIn,
@@ -216,7 +216,7 @@ public:
     ElementReferenceType * TransformIn,
     QPIdType * UUIDIn,
     ProductTraceabilityType * TraceabilityIn,
-    ComponentType_1237_Type * ComponentType_1237In);
+    ComponentType_1238_Type * ComponentType_1238In);
   ~ComponentType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -227,17 +227,17 @@ public:
   void setUUID(QPIdType * UUIDIn);
   ProductTraceabilityType * getTraceability();
   void setTraceability(ProductTraceabilityType * TraceabilityIn);
-  ComponentType_1237_Type * getComponentType_1237();
-  void setComponentType_1237(ComponentType_1237_Type * ComponentType_1237In);
+  ComponentType_1238_Type * getComponentType_1238();
+  void setComponentType_1238(ComponentType_1238_Type * ComponentType_1238In);
 
 protected:
   ElementReferenceType * Transform;
   QPIdType * UUID;
   ProductTraceabilityType * Traceability;
-  ComponentType_1237_Type * ComponentType_1237;
+  ComponentType_1238_Type * ComponentType_1238;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ComponentTypeLisd :
   public std::list<ComponentType *>,
@@ -251,7 +251,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DefinitionExternalType :
   public XmlTypeBase
@@ -282,7 +282,7 @@ protected:
   DefinitionExternalTypeChoicePairLisd * DefinitionExternalTypePairs;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union DefinitionExternalTypeVal
 {
@@ -292,7 +292,7 @@ union DefinitionExternalTypeVal
   PhysicalModelType * PhysicalModel;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DefinitionExternalTypeChoicePair :
   public XmlTypeBase
@@ -314,7 +314,7 @@ public:
   DefinitionExternalTypeVal DefinitionExternalTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DefinitionExternalTypeChoicePairLisd :
   public std::list<DefinitionExternalTypeChoicePair *>,
@@ -328,7 +328,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DigitalDrawingType :
   public XmlTypeBase
@@ -385,7 +385,7 @@ protected:
   EntitiesExternalType * Entities;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DigitalModelType :
   public XmlTypeBase
@@ -457,7 +457,7 @@ protected:
   EntitiesExternalType * Entities;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FileInternalType :
   public XmlTypeBase
@@ -480,7 +480,7 @@ protected:
   VersionType * Version;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FolderPartAssemblyBaseType :
   public DrawableBaseType
@@ -575,7 +575,7 @@ protected:
   ArrayReferenceType * PointCloudIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FolderPartType :
   public FolderPartAssemblyBaseType
@@ -625,7 +625,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FolderPartTypeLisd :
   public std::list<FolderPartType *>,
@@ -639,7 +639,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FoldersAssemblyType :
   public XmlTypeBase
@@ -666,7 +666,7 @@ protected:
   FolderAssemblyTypeLisd * FolderAssembly;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FoldersPartType :
   public XmlTypeBase
@@ -693,7 +693,7 @@ protected:
   FolderPartTypeLisd * FolderPart;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class GDTEnumType :
   public XmlString
@@ -709,7 +709,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LayerSetType :
   public XmlTypeBase
@@ -736,7 +736,7 @@ protected:
   LayerTypeLisd * Layer;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LayerType :
   public DrawableBaseType
@@ -775,7 +775,7 @@ protected:
   ArrayReferenceFullType * ElementIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class LayerTypeLisd :
   public std::list<LayerType *>,
@@ -789,7 +789,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class NoteFlagSetType :
   public XmlTypeBase
@@ -816,7 +816,7 @@ protected:
   NoteFlagTypeLisd * NoteFlag;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class NoteFormEnumType :
   public XmlString
@@ -832,7 +832,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class NoteSetType :
   public XmlTypeBase
@@ -859,7 +859,7 @@ protected:
   NoteTypeLisd * Note;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class NoteType :
   public DrawableBaseType
@@ -904,7 +904,7 @@ protected:
   XmlString * Text;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class NoteTypeLisd :
   public std::list<NoteType *>,
@@ -918,7 +918,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PartAssemblyBaseType :
   public DrawableBaseType
@@ -1052,7 +1052,7 @@ protected:
   ArrayReferenceType * PointCloudIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PartAssemblyHeaderType :
   public XmlTypeBase
@@ -1091,7 +1091,7 @@ protected:
   XmlString * Description;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PartFamilyType :
   public XmlTypeBase
@@ -1122,7 +1122,7 @@ protected:
   ManufacturingMethodType * PrimaryManufacturingMethod;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PartNoteSetType :
   public XmlTypeBase
@@ -1149,7 +1149,7 @@ protected:
   PartNoteTypeLisd * PartNote;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PartNoteType :
   public DrawableBaseType
@@ -1184,7 +1184,7 @@ protected:
   ArrayReferenceType * PartNoteIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PartNoteTypeLisd :
   public std::list<PartNoteType *>,
@@ -1198,7 +1198,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PartSetType :
   public XmlTypeBase
@@ -1225,7 +1225,7 @@ protected:
   PartTypeLisd * Part;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PartType :
   public PartAssemblyBaseType
@@ -1307,7 +1307,7 @@ protected:
   FoldersPartType * FoldersPart;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PartTypeLisd :
   public std::list<PartType *>,
@@ -1321,7 +1321,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PhysicalModelType :
   public XmlTypeBase
@@ -1373,7 +1373,7 @@ protected:
   XmlString * ModelNumber;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PrintedDrawingType :
   public XmlTypeBase
@@ -1430,7 +1430,7 @@ protected:
   XmlString * Location;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ProductHeaderType :
   public PartAssemblyHeaderType
@@ -1463,7 +1463,7 @@ protected:
   XmlDouble * MassPropertyTolerance;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ProductType :
   public XmlTypeBase
@@ -1485,7 +1485,7 @@ public:
     PartSetType * PartSetIn,
     AssemblySetType * AssemblySetIn,
     ComponentSetType * ComponentSetIn,
-    ProductType_1238_Type * ProductType_1238In,
+    ProductType_1239_Type * ProductType_1239In,
     AsmPathsType * AsmPathsIn,
     MaterialsType * MaterialLibraryIn);
   ~ProductType();
@@ -1519,8 +1519,8 @@ public:
   void setAssemblySet(AssemblySetType * AssemblySetIn);
   ComponentSetType * getComponentSet();
   void setComponentSet(ComponentSetType * ComponentSetIn);
-  ProductType_1238_Type * getProductType_1238();
-  void setProductType_1238(ProductType_1238_Type * ProductType_1238In);
+  ProductType_1239_Type * getProductType_1239();
+  void setProductType_1239(ProductType_1239_Type * ProductType_1239In);
   AsmPathsType * getAsmPaths();
   void setAsmPaths(AsmPathsType * AsmPathsIn);
   MaterialsType * getMaterialLibrary();
@@ -1541,12 +1541,12 @@ protected:
   PartSetType * PartSet;
   AssemblySetType * AssemblySet;
   ComponentSetType * ComponentSet;
-  ProductType_1238_Type * ProductType_1238;
+  ProductType_1239_Type * ProductType_1239;
   AsmPathsType * AsmPaths;
   MaterialsType * MaterialLibrary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TopologyEnumType :
   public XmlString
@@ -1562,7 +1562,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ValidationPartAssemblyInstanceType :
   public XmlTypeBase
@@ -1589,7 +1589,7 @@ protected:
   BoundingBoxAxisAlignedType * Box;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ValidationPartAssemblyInstanceTypeLisd :
   public std::list<ValidationPartAssemblyInstanceType *>,
@@ -1603,7 +1603,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ValidationPartAssemblyInstancesType :
   public XmlTypeBase
@@ -1630,7 +1630,7 @@ protected:
   ValidationPartAssemblyInstanceTypeLisd * Instance;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ValidationPartAssemblyType :
   public XmlTypeBase
@@ -1673,84 +1673,84 @@ protected:
   ValidationPartAssemblyInstancesType * Instances;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ComponentType_1237_Type :
+class ComponentType_1238_Type :
   public XmlTypeBase
 {
 public:
-  ComponentType_1237_Type();
-  ComponentType_1237_Type(
-    ComponentType_1237_TypeChoicePair * ComponentType_1237_TypePairIn);
-  ~ComponentType_1237_Type();
+  ComponentType_1238_Type();
+  ComponentType_1238_Type(
+    ComponentType_1238_TypeChoicePair * ComponentType_1238_TypePairIn);
+  ~ComponentType_1238_Type();
   void printSelf(FILE * outFile);
 
-  ComponentType_1237_TypeChoicePair * getComponentType_1237_TypePair();
-  void setComponentType_1237_TypePair(ComponentType_1237_TypeChoicePair * ComponentType_1237_TypePairIn);
+  ComponentType_1238_TypeChoicePair * getComponentType_1238_TypePair();
+  void setComponentType_1238_TypePair(ComponentType_1238_TypeChoicePair * ComponentType_1238_TypePairIn);
 
 protected:
-  ComponentType_1237_TypeChoicePair * ComponentType_1237_TypePair;
+  ComponentType_1238_TypeChoicePair * ComponentType_1238_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union ComponentType_1237_TypeVal
+union ComponentType_1238_TypeVal
 {
   ElementReferenceType * Part;
   ElementReferenceType * Assembly;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ComponentType_1237_TypeChoicePair :
+class ComponentType_1238_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     PartE,
     AssemblyE };
-  ComponentType_1237_TypeChoicePair();
-  ComponentType_1237_TypeChoicePair(
-    whichOne ComponentType_1237_TypeTypeIn,
-    ComponentType_1237_TypeVal ComponentType_1237_TypeValueIn);
-  ~ComponentType_1237_TypeChoicePair();
+  ComponentType_1238_TypeChoicePair();
+  ComponentType_1238_TypeChoicePair(
+    whichOne ComponentType_1238_TypeTypeIn,
+    ComponentType_1238_TypeVal ComponentType_1238_TypeValueIn);
+  ~ComponentType_1238_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ComponentType_1237_TypeType;
-  ComponentType_1237_TypeVal ComponentType_1237_TypeValue;
+  whichOne ComponentType_1238_TypeType;
+  ComponentType_1238_TypeVal ComponentType_1238_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ProductType_1238_Type :
+class ProductType_1239_Type :
   public XmlTypeBase
 {
 public:
-  ProductType_1238_Type();
-  ProductType_1238_Type(
-    ProductType_1238_TypeChoicePair * ProductType_1238_TypePairIn);
-  ~ProductType_1238_Type();
+  ProductType_1239_Type();
+  ProductType_1239_Type(
+    ProductType_1239_TypeChoicePair * ProductType_1239_TypePairIn);
+  ~ProductType_1239_Type();
   void printSelf(FILE * outFile);
 
-  ProductType_1238_TypeChoicePair * getProductType_1238_TypePair();
-  void setProductType_1238_TypePair(ProductType_1238_TypeChoicePair * ProductType_1238_TypePairIn);
+  ProductType_1239_TypeChoicePair * getProductType_1239_TypePair();
+  void setProductType_1239_TypePair(ProductType_1239_TypeChoicePair * ProductType_1239_TypePairIn);
 
 protected:
-  ProductType_1238_TypeChoicePair * ProductType_1238_TypePair;
+  ProductType_1239_TypeChoicePair * ProductType_1239_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union ProductType_1238_TypeVal
+union ProductType_1239_TypeVal
 {
   ElementReferenceType * RootPart;
   ElementReferenceType * RootAssembly;
   ElementReferenceType * RootComponent;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ProductType_1238_TypeChoicePair :
+class ProductType_1239_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -1758,18 +1758,18 @@ public:
     RootPartE,
     RootAssemblyE,
     RootComponentE };
-  ProductType_1238_TypeChoicePair();
-  ProductType_1238_TypeChoicePair(
-    whichOne ProductType_1238_TypeTypeIn,
-    ProductType_1238_TypeVal ProductType_1238_TypeValueIn);
-  ~ProductType_1238_TypeChoicePair();
+  ProductType_1239_TypeChoicePair();
+  ProductType_1239_TypeChoicePair(
+    whichOne ProductType_1239_TypeTypeIn,
+    ProductType_1239_TypeVal ProductType_1239_TypeValueIn);
+  ~ProductType_1239_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ProductType_1238_TypeType;
-  ProductType_1238_TypeVal ProductType_1238_TypeValue;
+  whichOne ProductType_1239_TypeType;
+  ProductType_1239_TypeVal ProductType_1239_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AssemblyType :
   public PartAssemblyBaseType
@@ -1851,7 +1851,7 @@ protected:
   FoldersAssemblyType * FoldersAssembly;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AssemblyTypeLisd :
   public std::list<AssemblyType *>,
@@ -1865,7 +1865,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FolderAssemblyType :
   public FolderPartAssemblyBaseType
@@ -1923,7 +1923,7 @@ protected:
   ArrayReferenceType * ComponentIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FolderAssemblyTypeLisd :
   public std::list<FolderAssemblyType *>,
@@ -1937,7 +1937,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class NoteFlagType :
   public NoteType
@@ -1979,7 +1979,7 @@ protected:
   XmlAnyURI * URI;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class NoteFlagTypeLisd :
   public std::list<NoteFlagType *>,
@@ -1993,6 +1993,6 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 #endif // QIFPRODUCT_HH

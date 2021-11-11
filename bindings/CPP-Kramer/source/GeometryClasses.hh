@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #ifndef GEOMETRY_HH
 #define GEOMETRY_HH
@@ -7,7 +7,7 @@
 #include <xmlSchemaInstance.hh>
 #include "PrimitivesPDClasses.hh"
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Aggregate12CoreType;
 class Aggregate12Type;
@@ -98,29 +98,29 @@ class Torus23CoreType;
 class Torus23Type;
 class TriangleVertexNormalType;
 class TriangleVertexNormalTypeLisd;
-class MeshTriangleCor_1213_Type;
-class MeshTriangleCor_1213_TypeChoicePair;
 class MeshTriangleCor_1214_Type;
 class MeshTriangleCor_1214_TypeChoicePair;
 class MeshTriangleCor_1215_Type;
 class MeshTriangleCor_1215_TypeChoicePair;
 class MeshTriangleCor_1216_Type;
 class MeshTriangleCor_1216_TypeChoicePair;
-class MeshTriangleTyp_1217_Type;
-class MeshTriangleTyp_1217_TypeChoicePair;
-class Nurbs12CoreType_1218_Type;
-class Nurbs12CoreType_1218_TypeChoicePair;
-class Nurbs13CoreType_1219_Type;
-class Nurbs13CoreType_1219_TypeChoicePair;
-class Nurbs23CoreType_1220_Type;
-class Nurbs23CoreType_1220_TypeChoicePair;
-class Polyline12CoreT_1221_Type;
-class Polyline12CoreT_1221_TypeChoicePair;
-class Polyline13CoreT_1222_Type;
-class Polyline13CoreT_1222_TypeChoicePair;
+class MeshTriangleCor_1217_Type;
+class MeshTriangleCor_1217_TypeChoicePair;
+class MeshTriangleTyp_1218_Type;
+class MeshTriangleTyp_1218_TypeChoicePair;
+class Nurbs12CoreType_1219_Type;
+class Nurbs12CoreType_1219_TypeChoicePair;
+class Nurbs13CoreType_1220_Type;
+class Nurbs13CoreType_1220_TypeChoicePair;
+class Nurbs23CoreType_1221_Type;
+class Nurbs23CoreType_1221_TypeChoicePair;
+class Polyline12CoreT_1222_Type;
+class Polyline12CoreT_1222_TypeChoicePair;
+class Polyline13CoreT_1223_Type;
+class Polyline13CoreT_1223_TypeChoicePair;
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 class ArcConicFormEnumType :
   public XmlString
@@ -136,7 +136,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArraySubCurve12Type :
   public XmlTypeBase
@@ -163,7 +163,7 @@ protected:
   Curve12OrientedTypeLisd * SubCurve;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArraySubCurve13Type :
   public XmlTypeBase
@@ -190,7 +190,7 @@ protected:
   Curve13OrientedTypeLisd * SubCurve;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArrayTriangleVertexNormalType :
   public XmlTypeBase
@@ -217,7 +217,7 @@ protected:
   TriangleVertexNormalTypeLisd * NormalSpecial;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Attr23CoreEnumType :
   public XmlString
@@ -233,7 +233,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Curve12OrientedType :
   public XmlTypeBase
@@ -260,7 +260,7 @@ protected:
   CurveCoreBaseType * Curve12Core;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Curve12OrientedTypeLisd :
   public std::list<Curve12OrientedType *>,
@@ -274,7 +274,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Curve12SetType :
   public XmlTypeBase
@@ -301,7 +301,7 @@ protected:
   Curve12BaseTypeLisd * Curve12;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Curve13CoreType :
   public XmlTypeBase
@@ -320,7 +320,7 @@ protected:
   CurveCoreBaseType * Curve13Core;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Curve13CoreTypeLisd :
   public std::list<Curve13CoreType *>,
@@ -334,7 +334,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Curve13OrientedType :
   public XmlTypeBase
@@ -361,7 +361,7 @@ protected:
   CurveCoreBaseType * Curve13Core;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Curve13OrientedTypeLisd :
   public std::list<Curve13OrientedType *>,
@@ -375,7 +375,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Curve13SetType :
   public XmlTypeBase
@@ -402,7 +402,7 @@ protected:
   Curve13BaseTypeLisd * Curve13;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CurveCoreBaseType :
   public XmlTypeBase
@@ -422,7 +422,7 @@ protected:
   ParameterRangeType * domain;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CurveMeshSetType :
   public XmlTypeBase
@@ -449,7 +449,7 @@ protected:
   PathTriangulationTypeLisd * PathTriangulation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class GeometryBaseType :
   public NodeWithIdBaseType
@@ -467,7 +467,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class GeometrySetType :
   public XmlTypeBase
@@ -506,7 +506,7 @@ protected:
   SurfaceMeshSetType * SurfaceMeshSet;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeshTriangleCoreType :
   public XmlTypeBase
@@ -514,30 +514,30 @@ class MeshTriangleCoreType :
 public:
   MeshTriangleCoreType();
   MeshTriangleCoreType(
-    MeshTriangleCor_1213_Type * MeshTriangleCor_1213In,
     MeshTriangleCor_1214_Type * MeshTriangleCor_1214In,
     MeshTriangleCor_1215_Type * MeshTriangleCor_1215In,
-    MeshTriangleCor_1216_Type * MeshTriangleCor_1216In);
+    MeshTriangleCor_1216_Type * MeshTriangleCor_1216In,
+    MeshTriangleCor_1217_Type * MeshTriangleCor_1217In);
   ~MeshTriangleCoreType();
   void printSelf(FILE * outFile);
 
-  MeshTriangleCor_1213_Type * getMeshTriangleCor_1213();
-  void setMeshTriangleCor_1213(MeshTriangleCor_1213_Type * MeshTriangleCor_1213In);
   MeshTriangleCor_1214_Type * getMeshTriangleCor_1214();
   void setMeshTriangleCor_1214(MeshTriangleCor_1214_Type * MeshTriangleCor_1214In);
   MeshTriangleCor_1215_Type * getMeshTriangleCor_1215();
   void setMeshTriangleCor_1215(MeshTriangleCor_1215_Type * MeshTriangleCor_1215In);
   MeshTriangleCor_1216_Type * getMeshTriangleCor_1216();
   void setMeshTriangleCor_1216(MeshTriangleCor_1216_Type * MeshTriangleCor_1216In);
+  MeshTriangleCor_1217_Type * getMeshTriangleCor_1217();
+  void setMeshTriangleCor_1217(MeshTriangleCor_1217_Type * MeshTriangleCor_1217In);
 
 protected:
-  MeshTriangleCor_1213_Type * MeshTriangleCor_1213;
   MeshTriangleCor_1214_Type * MeshTriangleCor_1214;
   MeshTriangleCor_1215_Type * MeshTriangleCor_1215;
   MeshTriangleCor_1216_Type * MeshTriangleCor_1216;
+  MeshTriangleCor_1217_Type * MeshTriangleCor_1217;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeshTriangleType :
   public GeometryBaseType
@@ -547,28 +547,28 @@ public:
   MeshTriangleType(
     AttributesType * AttributesIn,
     MeshTriangleCoreType * MeshTriangleCoreIn,
-    MeshTriangleTyp_1217_Type * MeshTriangleTyp_1217In);
+    MeshTriangleTyp_1218_Type * MeshTriangleTyp_1218In);
   MeshTriangleType(
     XmlString * labelIn,
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     MeshTriangleCoreType * MeshTriangleCoreIn,
-    MeshTriangleTyp_1217_Type * MeshTriangleTyp_1217In);
+    MeshTriangleTyp_1218_Type * MeshTriangleTyp_1218In);
   ~MeshTriangleType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
   MeshTriangleCoreType * getMeshTriangleCore();
   void setMeshTriangleCore(MeshTriangleCoreType * MeshTriangleCoreIn);
-  MeshTriangleTyp_1217_Type * getMeshTriangleTyp_1217();
-  void setMeshTriangleTyp_1217(MeshTriangleTyp_1217_Type * MeshTriangleTyp_1217In);
+  MeshTriangleTyp_1218_Type * getMeshTriangleTyp_1218();
+  void setMeshTriangleTyp_1218(MeshTriangleTyp_1218_Type * MeshTriangleTyp_1218In);
 
 protected:
   MeshTriangleCoreType * MeshTriangleCore;
-  MeshTriangleTyp_1217_Type * MeshTriangleTyp_1217;
+  MeshTriangleTyp_1218_Type * MeshTriangleTyp_1218;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeshTriangleTypeLisd :
   public std::list<MeshTriangleType *>,
@@ -582,7 +582,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Nurbs12CoreType :
   public CurveCoreBaseType
@@ -592,13 +592,13 @@ public:
   Nurbs12CoreType(
     NaturalType * OrderIn,
     ArrayDoubleType * KnotsIn,
-    Nurbs12CoreType_1218_Type * Nurbs12CoreType_1218In,
+    Nurbs12CoreType_1219_Type * Nurbs12CoreType_1219In,
     ArrayDoubleType * WeightsIn);
   Nurbs12CoreType(
     ParameterRangeType * domainIn,
     NaturalType * OrderIn,
     ArrayDoubleType * KnotsIn,
-    Nurbs12CoreType_1218_Type * Nurbs12CoreType_1218In,
+    Nurbs12CoreType_1219_Type * Nurbs12CoreType_1219In,
     ArrayDoubleType * WeightsIn);
   ~Nurbs12CoreType();
   void printSelf(FILE * outFile);
@@ -608,19 +608,19 @@ public:
   void setOrder(NaturalType * OrderIn);
   ArrayDoubleType * getKnots();
   void setKnots(ArrayDoubleType * KnotsIn);
-  Nurbs12CoreType_1218_Type * getNurbs12CoreType_1218();
-  void setNurbs12CoreType_1218(Nurbs12CoreType_1218_Type * Nurbs12CoreType_1218In);
+  Nurbs12CoreType_1219_Type * getNurbs12CoreType_1219();
+  void setNurbs12CoreType_1219(Nurbs12CoreType_1219_Type * Nurbs12CoreType_1219In);
   ArrayDoubleType * getWeights();
   void setWeights(ArrayDoubleType * WeightsIn);
 
 protected:
   NaturalType * Order;
   ArrayDoubleType * Knots;
-  Nurbs12CoreType_1218_Type * Nurbs12CoreType_1218;
+  Nurbs12CoreType_1219_Type * Nurbs12CoreType_1219;
   ArrayDoubleType * Weights;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Nurbs13CoreType :
   public CurveCoreBaseType
@@ -630,13 +630,13 @@ public:
   Nurbs13CoreType(
     NaturalType * OrderIn,
     ArrayDoubleType * KnotsIn,
-    Nurbs13CoreType_1219_Type * Nurbs13CoreType_1219In,
+    Nurbs13CoreType_1220_Type * Nurbs13CoreType_1220In,
     ArrayDoubleType * WeightsIn);
   Nurbs13CoreType(
     ParameterRangeType * domainIn,
     NaturalType * OrderIn,
     ArrayDoubleType * KnotsIn,
-    Nurbs13CoreType_1219_Type * Nurbs13CoreType_1219In,
+    Nurbs13CoreType_1220_Type * Nurbs13CoreType_1220In,
     ArrayDoubleType * WeightsIn);
   ~Nurbs13CoreType();
   void printSelf(FILE * outFile);
@@ -646,19 +646,19 @@ public:
   void setOrder(NaturalType * OrderIn);
   ArrayDoubleType * getKnots();
   void setKnots(ArrayDoubleType * KnotsIn);
-  Nurbs13CoreType_1219_Type * getNurbs13CoreType_1219();
-  void setNurbs13CoreType_1219(Nurbs13CoreType_1219_Type * Nurbs13CoreType_1219In);
+  Nurbs13CoreType_1220_Type * getNurbs13CoreType_1220();
+  void setNurbs13CoreType_1220(Nurbs13CoreType_1220_Type * Nurbs13CoreType_1220In);
   ArrayDoubleType * getWeights();
   void setWeights(ArrayDoubleType * WeightsIn);
 
 protected:
   NaturalType * Order;
   ArrayDoubleType * Knots;
-  Nurbs13CoreType_1219_Type * Nurbs13CoreType_1219;
+  Nurbs13CoreType_1220_Type * Nurbs13CoreType_1220;
   ArrayDoubleType * Weights;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PathTriangulationCoreType :
   public XmlTypeBase
@@ -677,7 +677,7 @@ protected:
   PathTriangulationCoreTypeChoicePair * PathTriangulationCoreTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union PathTriangulationCoreTypeVal
 {
@@ -685,7 +685,7 @@ union PathTriangulationCoreTypeVal
   ArrayBinaryType * EdgesBinary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PathTriangulationCoreTypeChoicePair :
   public XmlTypeBase
@@ -705,7 +705,7 @@ public:
   PathTriangulationCoreTypeVal PathTriangulationCoreTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PathTriangulationType :
   public GeometryBaseType
@@ -736,7 +736,7 @@ protected:
   ElementReferenceType * MeshTriangle;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PathTriangulationTypeLisd :
   public std::list<PathTriangulationType *>,
@@ -750,7 +750,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointEntityType :
   public GeometryBaseType
@@ -776,7 +776,7 @@ protected:
   PointSimpleType * XYZ;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointEntityTypeLisd :
   public std::list<PointEntityType *>,
@@ -790,7 +790,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointSetType :
   public XmlTypeBase
@@ -817,7 +817,7 @@ protected:
   PointEntityTypeLisd * Point;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Polyline12CoreType :
   public CurveCoreBaseType
@@ -825,22 +825,22 @@ class Polyline12CoreType :
 public:
   Polyline12CoreType();
   Polyline12CoreType(
-    Polyline12CoreT_1221_Type * Polyline12CoreT_1221In);
+    Polyline12CoreT_1222_Type * Polyline12CoreT_1222In);
   Polyline12CoreType(
     ParameterRangeType * domainIn,
-    Polyline12CoreT_1221_Type * Polyline12CoreT_1221In);
+    Polyline12CoreT_1222_Type * Polyline12CoreT_1222In);
   ~Polyline12CoreType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
-  Polyline12CoreT_1221_Type * getPolyline12CoreT_1221();
-  void setPolyline12CoreT_1221(Polyline12CoreT_1221_Type * Polyline12CoreT_1221In);
+  Polyline12CoreT_1222_Type * getPolyline12CoreT_1222();
+  void setPolyline12CoreT_1222(Polyline12CoreT_1222_Type * Polyline12CoreT_1222In);
 
 protected:
-  Polyline12CoreT_1221_Type * Polyline12CoreT_1221;
+  Polyline12CoreT_1222_Type * Polyline12CoreT_1222;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Polyline13CoreType :
   public CurveCoreBaseType
@@ -848,22 +848,22 @@ class Polyline13CoreType :
 public:
   Polyline13CoreType();
   Polyline13CoreType(
-    Polyline13CoreT_1222_Type * Polyline13CoreT_1222In);
+    Polyline13CoreT_1223_Type * Polyline13CoreT_1223In);
   Polyline13CoreType(
     ParameterRangeType * domainIn,
-    Polyline13CoreT_1222_Type * Polyline13CoreT_1222In);
+    Polyline13CoreT_1223_Type * Polyline13CoreT_1223In);
   ~Polyline13CoreType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
-  Polyline13CoreT_1222_Type * getPolyline13CoreT_1222();
-  void setPolyline13CoreT_1222(Polyline13CoreT_1222_Type * Polyline13CoreT_1222In);
+  Polyline13CoreT_1223_Type * getPolyline13CoreT_1223();
+  void setPolyline13CoreT_1223(Polyline13CoreT_1223_Type * Polyline13CoreT_1223In);
 
 protected:
-  Polyline13CoreT_1222_Type * Polyline13CoreT_1222;
+  Polyline13CoreT_1223_Type * Polyline13CoreT_1223;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Segment12CoreType :
   public CurveCoreBaseType
@@ -891,7 +891,7 @@ protected:
   Point2dSimpleType * EndPoint;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Segment13CoreType :
   public CurveCoreBaseType
@@ -919,7 +919,7 @@ protected:
   PointSimpleType * EndPoint;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Spline12CoreType :
   public CurveCoreBaseType
@@ -957,7 +957,7 @@ protected:
   ArrayPoint2dType * Coefficients;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Spline13CoreType :
   public CurveCoreBaseType
@@ -995,7 +995,7 @@ protected:
   ArrayPointType * Coefficients;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceBaseType :
   public GeometryBaseType
@@ -1013,7 +1013,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceBaseTypeLisd :
   public std::list<SurfaceBaseType *>,
@@ -1027,7 +1027,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceCoreBaseType :
   public XmlTypeBase
@@ -1047,7 +1047,7 @@ protected:
   Attr23CoreEnumType * form;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceCoreType :
   public XmlTypeBase
@@ -1066,7 +1066,7 @@ protected:
   SurfaceCoreBaseType * SurfaceCore;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceMeshSetType :
   public XmlTypeBase
@@ -1093,7 +1093,7 @@ protected:
   MeshTriangleTypeLisd * MeshTriangle;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceSetType :
   public XmlTypeBase
@@ -1120,7 +1120,7 @@ protected:
   SurfaceBaseTypeLisd * Surface;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Torus23CoreType :
   public SurfaceCoreBaseType
@@ -1175,7 +1175,7 @@ protected:
   LatitudeLongitudeSweepType * LatitudeLongitudeSweep;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Torus23Type :
   public SurfaceBaseType
@@ -1206,7 +1206,7 @@ protected:
   ElementReferenceType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TriangleVertexNormalType :
   public UnitVectorType
@@ -1244,7 +1244,7 @@ protected:
   I2Type * vertex;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TriangleVertexNormalTypeLisd :
   public std::list<TriangleVertexNormalType *>,
@@ -1258,54 +1258,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
-
-class MeshTriangleCor_1213_Type :
-  public XmlTypeBase
-{
-public:
-  MeshTriangleCor_1213_Type();
-  MeshTriangleCor_1213_Type(
-    MeshTriangleCor_1213_TypeChoicePair * MeshTriangleCor_1213_TypePairIn);
-  ~MeshTriangleCor_1213_Type();
-  void printSelf(FILE * outFile);
-
-  MeshTriangleCor_1213_TypeChoicePair * getMeshTriangleCor_1213_TypePair();
-  void setMeshTriangleCor_1213_TypePair(MeshTriangleCor_1213_TypeChoicePair * MeshTriangleCor_1213_TypePairIn);
-
-protected:
-  MeshTriangleCor_1213_TypeChoicePair * MeshTriangleCor_1213_TypePair;
-};
-
-/*********************************************************************/
-
-union MeshTriangleCor_1213_TypeVal
-{
-  ArrayI3Type * Triangles;
-  ArrayBinaryType * TrianglesBinary;
-};
-
-/*********************************************************************/
-
-class MeshTriangleCor_1213_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    TrianglesE,
-    TrianglesBinaryE };
-  MeshTriangleCor_1213_TypeChoicePair();
-  MeshTriangleCor_1213_TypeChoicePair(
-    whichOne MeshTriangleCor_1213_TypeTypeIn,
-    MeshTriangleCor_1213_TypeVal MeshTriangleCor_1213_TypeValueIn);
-  ~MeshTriangleCor_1213_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne MeshTriangleCor_1213_TypeType;
-  MeshTriangleCor_1213_TypeVal MeshTriangleCor_1213_TypeValue;
-};
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeshTriangleCor_1214_Type :
   public XmlTypeBase
@@ -1324,23 +1277,23 @@ protected:
   MeshTriangleCor_1214_TypeChoicePair * MeshTriangleCor_1214_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union MeshTriangleCor_1214_TypeVal
 {
-  ArrayI3Type * Neighbours;
-  ArrayBinaryType * NeighboursBinary;
+  ArrayI3Type * Triangles;
+  ArrayBinaryType * TrianglesBinary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeshTriangleCor_1214_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    NeighboursE,
-    NeighboursBinaryE };
+    TrianglesE,
+    TrianglesBinaryE };
   MeshTriangleCor_1214_TypeChoicePair();
   MeshTriangleCor_1214_TypeChoicePair(
     whichOne MeshTriangleCor_1214_TypeTypeIn,
@@ -1352,7 +1305,7 @@ public:
   MeshTriangleCor_1214_TypeVal MeshTriangleCor_1214_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeshTriangleCor_1215_Type :
   public XmlTypeBase
@@ -1371,23 +1324,23 @@ protected:
   MeshTriangleCor_1215_TypeChoicePair * MeshTriangleCor_1215_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union MeshTriangleCor_1215_TypeVal
 {
-  ArrayPointType * Vertices;
-  ArrayBinaryType * VerticesBinary;
+  ArrayI3Type * Neighbours;
+  ArrayBinaryType * NeighboursBinary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeshTriangleCor_1215_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    VerticesE,
-    VerticesBinaryE };
+    NeighboursE,
+    NeighboursBinaryE };
   MeshTriangleCor_1215_TypeChoicePair();
   MeshTriangleCor_1215_TypeChoicePair(
     whichOne MeshTriangleCor_1215_TypeTypeIn,
@@ -1399,7 +1352,7 @@ public:
   MeshTriangleCor_1215_TypeVal MeshTriangleCor_1215_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeshTriangleCor_1216_Type :
   public XmlTypeBase
@@ -1418,23 +1371,23 @@ protected:
   MeshTriangleCor_1216_TypeChoicePair * MeshTriangleCor_1216_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union MeshTriangleCor_1216_TypeVal
 {
-  ArrayUnitVectorType * Normals;
-  ArrayBinaryType * NormalsBinary;
+  ArrayPointType * Vertices;
+  ArrayBinaryType * VerticesBinary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeshTriangleCor_1216_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    NormalsE,
-    NormalsBinaryE };
+    VerticesE,
+    VerticesBinaryE };
   MeshTriangleCor_1216_TypeChoicePair();
   MeshTriangleCor_1216_TypeChoicePair(
     whichOne MeshTriangleCor_1216_TypeTypeIn,
@@ -1446,289 +1399,336 @@ public:
   MeshTriangleCor_1216_TypeVal MeshTriangleCor_1216_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class MeshTriangleTyp_1217_Type :
+class MeshTriangleCor_1217_Type :
   public XmlTypeBase
 {
 public:
-  MeshTriangleTyp_1217_Type();
-  MeshTriangleTyp_1217_Type(
-    MeshTriangleTyp_1217_TypeChoicePair * MeshTriangleTyp_1217_TypePairIn);
-  ~MeshTriangleTyp_1217_Type();
+  MeshTriangleCor_1217_Type();
+  MeshTriangleCor_1217_Type(
+    MeshTriangleCor_1217_TypeChoicePair * MeshTriangleCor_1217_TypePairIn);
+  ~MeshTriangleCor_1217_Type();
   void printSelf(FILE * outFile);
 
-  MeshTriangleTyp_1217_TypeChoicePair * getMeshTriangleTyp_1217_TypePair();
-  void setMeshTriangleTyp_1217_TypePair(MeshTriangleTyp_1217_TypeChoicePair * MeshTriangleTyp_1217_TypePairIn);
+  MeshTriangleCor_1217_TypeChoicePair * getMeshTriangleCor_1217_TypePair();
+  void setMeshTriangleCor_1217_TypePair(MeshTriangleCor_1217_TypeChoicePair * MeshTriangleCor_1217_TypePairIn);
 
 protected:
-  MeshTriangleTyp_1217_TypeChoicePair * MeshTriangleTyp_1217_TypePair;
+  MeshTriangleCor_1217_TypeChoicePair * MeshTriangleCor_1217_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union MeshTriangleTyp_1217_TypeVal
+union MeshTriangleCor_1217_TypeVal
+{
+  ArrayUnitVectorType * Normals;
+  ArrayBinaryType * NormalsBinary;
+};
+
+/* ***************************************************************** */
+
+class MeshTriangleCor_1217_TypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    NormalsE,
+    NormalsBinaryE };
+  MeshTriangleCor_1217_TypeChoicePair();
+  MeshTriangleCor_1217_TypeChoicePair(
+    whichOne MeshTriangleCor_1217_TypeTypeIn,
+    MeshTriangleCor_1217_TypeVal MeshTriangleCor_1217_TypeValueIn);
+  ~MeshTriangleCor_1217_TypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne MeshTriangleCor_1217_TypeType;
+  MeshTriangleCor_1217_TypeVal MeshTriangleCor_1217_TypeValue;
+};
+
+/* ***************************************************************** */
+
+class MeshTriangleTyp_1218_Type :
+  public XmlTypeBase
+{
+public:
+  MeshTriangleTyp_1218_Type();
+  MeshTriangleTyp_1218_Type(
+    MeshTriangleTyp_1218_TypeChoicePair * MeshTriangleTyp_1218_TypePairIn);
+  ~MeshTriangleTyp_1218_Type();
+  void printSelf(FILE * outFile);
+
+  MeshTriangleTyp_1218_TypeChoicePair * getMeshTriangleTyp_1218_TypePair();
+  void setMeshTriangleTyp_1218_TypePair(MeshTriangleTyp_1218_TypeChoicePair * MeshTriangleTyp_1218_TypePairIn);
+
+protected:
+  MeshTriangleTyp_1218_TypeChoicePair * MeshTriangleTyp_1218_TypePair;
+};
+
+/* ***************************************************************** */
+
+union MeshTriangleTyp_1218_TypeVal
 {
   ArrayTriangleVertexNormalType * NormalsSpecial;
   ArrayBinaryType * NormalsSpecialBinary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class MeshTriangleTyp_1217_TypeChoicePair :
+class MeshTriangleTyp_1218_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     NormalsSpecialE,
     NormalsSpecialBinaryE };
-  MeshTriangleTyp_1217_TypeChoicePair();
-  MeshTriangleTyp_1217_TypeChoicePair(
-    whichOne MeshTriangleTyp_1217_TypeTypeIn,
-    MeshTriangleTyp_1217_TypeVal MeshTriangleTyp_1217_TypeValueIn);
-  ~MeshTriangleTyp_1217_TypeChoicePair();
+  MeshTriangleTyp_1218_TypeChoicePair();
+  MeshTriangleTyp_1218_TypeChoicePair(
+    whichOne MeshTriangleTyp_1218_TypeTypeIn,
+    MeshTriangleTyp_1218_TypeVal MeshTriangleTyp_1218_TypeValueIn);
+  ~MeshTriangleTyp_1218_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne MeshTriangleTyp_1217_TypeType;
-  MeshTriangleTyp_1217_TypeVal MeshTriangleTyp_1217_TypeValue;
+  whichOne MeshTriangleTyp_1218_TypeType;
+  MeshTriangleTyp_1218_TypeVal MeshTriangleTyp_1218_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class Nurbs12CoreType_1218_Type :
+class Nurbs12CoreType_1219_Type :
   public XmlTypeBase
 {
 public:
-  Nurbs12CoreType_1218_Type();
-  Nurbs12CoreType_1218_Type(
-    Nurbs12CoreType_1218_TypeChoicePair * Nurbs12CoreType_1218_TypePairIn);
-  ~Nurbs12CoreType_1218_Type();
+  Nurbs12CoreType_1219_Type();
+  Nurbs12CoreType_1219_Type(
+    Nurbs12CoreType_1219_TypeChoicePair * Nurbs12CoreType_1219_TypePairIn);
+  ~Nurbs12CoreType_1219_Type();
   void printSelf(FILE * outFile);
 
-  Nurbs12CoreType_1218_TypeChoicePair * getNurbs12CoreType_1218_TypePair();
-  void setNurbs12CoreType_1218_TypePair(Nurbs12CoreType_1218_TypeChoicePair * Nurbs12CoreType_1218_TypePairIn);
+  Nurbs12CoreType_1219_TypeChoicePair * getNurbs12CoreType_1219_TypePair();
+  void setNurbs12CoreType_1219_TypePair(Nurbs12CoreType_1219_TypeChoicePair * Nurbs12CoreType_1219_TypePairIn);
 
 protected:
-  Nurbs12CoreType_1218_TypeChoicePair * Nurbs12CoreType_1218_TypePair;
+  Nurbs12CoreType_1219_TypeChoicePair * Nurbs12CoreType_1219_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union Nurbs12CoreType_1218_TypeVal
+union Nurbs12CoreType_1219_TypeVal
 {
   ArrayPoint2dType * CPs;
   ArrayBinaryType * CPsBinary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class Nurbs12CoreType_1218_TypeChoicePair :
+class Nurbs12CoreType_1219_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     CPsE,
     CPsBinaryE };
-  Nurbs12CoreType_1218_TypeChoicePair();
-  Nurbs12CoreType_1218_TypeChoicePair(
-    whichOne Nurbs12CoreType_1218_TypeTypeIn,
-    Nurbs12CoreType_1218_TypeVal Nurbs12CoreType_1218_TypeValueIn);
-  ~Nurbs12CoreType_1218_TypeChoicePair();
+  Nurbs12CoreType_1219_TypeChoicePair();
+  Nurbs12CoreType_1219_TypeChoicePair(
+    whichOne Nurbs12CoreType_1219_TypeTypeIn,
+    Nurbs12CoreType_1219_TypeVal Nurbs12CoreType_1219_TypeValueIn);
+  ~Nurbs12CoreType_1219_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne Nurbs12CoreType_1218_TypeType;
-  Nurbs12CoreType_1218_TypeVal Nurbs12CoreType_1218_TypeValue;
+  whichOne Nurbs12CoreType_1219_TypeType;
+  Nurbs12CoreType_1219_TypeVal Nurbs12CoreType_1219_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class Nurbs13CoreType_1219_Type :
+class Nurbs13CoreType_1220_Type :
   public XmlTypeBase
 {
 public:
-  Nurbs13CoreType_1219_Type();
-  Nurbs13CoreType_1219_Type(
-    Nurbs13CoreType_1219_TypeChoicePair * Nurbs13CoreType_1219_TypePairIn);
-  ~Nurbs13CoreType_1219_Type();
+  Nurbs13CoreType_1220_Type();
+  Nurbs13CoreType_1220_Type(
+    Nurbs13CoreType_1220_TypeChoicePair * Nurbs13CoreType_1220_TypePairIn);
+  ~Nurbs13CoreType_1220_Type();
   void printSelf(FILE * outFile);
 
-  Nurbs13CoreType_1219_TypeChoicePair * getNurbs13CoreType_1219_TypePair();
-  void setNurbs13CoreType_1219_TypePair(Nurbs13CoreType_1219_TypeChoicePair * Nurbs13CoreType_1219_TypePairIn);
+  Nurbs13CoreType_1220_TypeChoicePair * getNurbs13CoreType_1220_TypePair();
+  void setNurbs13CoreType_1220_TypePair(Nurbs13CoreType_1220_TypeChoicePair * Nurbs13CoreType_1220_TypePairIn);
 
 protected:
-  Nurbs13CoreType_1219_TypeChoicePair * Nurbs13CoreType_1219_TypePair;
+  Nurbs13CoreType_1220_TypeChoicePair * Nurbs13CoreType_1220_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union Nurbs13CoreType_1219_TypeVal
+union Nurbs13CoreType_1220_TypeVal
 {
   ArrayPointType * CPs;
   ArrayBinaryType * CPsBinary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class Nurbs13CoreType_1219_TypeChoicePair :
+class Nurbs13CoreType_1220_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     CPsE,
     CPsBinaryE };
-  Nurbs13CoreType_1219_TypeChoicePair();
-  Nurbs13CoreType_1219_TypeChoicePair(
-    whichOne Nurbs13CoreType_1219_TypeTypeIn,
-    Nurbs13CoreType_1219_TypeVal Nurbs13CoreType_1219_TypeValueIn);
-  ~Nurbs13CoreType_1219_TypeChoicePair();
+  Nurbs13CoreType_1220_TypeChoicePair();
+  Nurbs13CoreType_1220_TypeChoicePair(
+    whichOne Nurbs13CoreType_1220_TypeTypeIn,
+    Nurbs13CoreType_1220_TypeVal Nurbs13CoreType_1220_TypeValueIn);
+  ~Nurbs13CoreType_1220_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne Nurbs13CoreType_1219_TypeType;
-  Nurbs13CoreType_1219_TypeVal Nurbs13CoreType_1219_TypeValue;
+  whichOne Nurbs13CoreType_1220_TypeType;
+  Nurbs13CoreType_1220_TypeVal Nurbs13CoreType_1220_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class Nurbs23CoreType_1220_Type :
+class Nurbs23CoreType_1221_Type :
   public XmlTypeBase
 {
 public:
-  Nurbs23CoreType_1220_Type();
-  Nurbs23CoreType_1220_Type(
-    Nurbs23CoreType_1220_TypeChoicePair * Nurbs23CoreType_1220_TypePairIn);
-  ~Nurbs23CoreType_1220_Type();
+  Nurbs23CoreType_1221_Type();
+  Nurbs23CoreType_1221_Type(
+    Nurbs23CoreType_1221_TypeChoicePair * Nurbs23CoreType_1221_TypePairIn);
+  ~Nurbs23CoreType_1221_Type();
   void printSelf(FILE * outFile);
 
-  Nurbs23CoreType_1220_TypeChoicePair * getNurbs23CoreType_1220_TypePair();
-  void setNurbs23CoreType_1220_TypePair(Nurbs23CoreType_1220_TypeChoicePair * Nurbs23CoreType_1220_TypePairIn);
+  Nurbs23CoreType_1221_TypeChoicePair * getNurbs23CoreType_1221_TypePair();
+  void setNurbs23CoreType_1221_TypePair(Nurbs23CoreType_1221_TypeChoicePair * Nurbs23CoreType_1221_TypePairIn);
 
 protected:
-  Nurbs23CoreType_1220_TypeChoicePair * Nurbs23CoreType_1220_TypePair;
+  Nurbs23CoreType_1221_TypeChoicePair * Nurbs23CoreType_1221_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union Nurbs23CoreType_1220_TypeVal
+union Nurbs23CoreType_1221_TypeVal
 {
   ArrayPointType * CPs;
   ArrayBinaryType * CPsBinary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class Nurbs23CoreType_1220_TypeChoicePair :
+class Nurbs23CoreType_1221_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     CPsE,
     CPsBinaryE };
-  Nurbs23CoreType_1220_TypeChoicePair();
-  Nurbs23CoreType_1220_TypeChoicePair(
-    whichOne Nurbs23CoreType_1220_TypeTypeIn,
-    Nurbs23CoreType_1220_TypeVal Nurbs23CoreType_1220_TypeValueIn);
-  ~Nurbs23CoreType_1220_TypeChoicePair();
+  Nurbs23CoreType_1221_TypeChoicePair();
+  Nurbs23CoreType_1221_TypeChoicePair(
+    whichOne Nurbs23CoreType_1221_TypeTypeIn,
+    Nurbs23CoreType_1221_TypeVal Nurbs23CoreType_1221_TypeValueIn);
+  ~Nurbs23CoreType_1221_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne Nurbs23CoreType_1220_TypeType;
-  Nurbs23CoreType_1220_TypeVal Nurbs23CoreType_1220_TypeValue;
+  whichOne Nurbs23CoreType_1221_TypeType;
+  Nurbs23CoreType_1221_TypeVal Nurbs23CoreType_1221_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class Polyline12CoreT_1221_Type :
+class Polyline12CoreT_1222_Type :
   public XmlTypeBase
 {
 public:
-  Polyline12CoreT_1221_Type();
-  Polyline12CoreT_1221_Type(
-    Polyline12CoreT_1221_TypeChoicePair * Polyline12CoreT_1221_TypePairIn);
-  ~Polyline12CoreT_1221_Type();
+  Polyline12CoreT_1222_Type();
+  Polyline12CoreT_1222_Type(
+    Polyline12CoreT_1222_TypeChoicePair * Polyline12CoreT_1222_TypePairIn);
+  ~Polyline12CoreT_1222_Type();
   void printSelf(FILE * outFile);
 
-  Polyline12CoreT_1221_TypeChoicePair * getPolyline12CoreT_1221_TypePair();
-  void setPolyline12CoreT_1221_TypePair(Polyline12CoreT_1221_TypeChoicePair * Polyline12CoreT_1221_TypePairIn);
+  Polyline12CoreT_1222_TypeChoicePair * getPolyline12CoreT_1222_TypePair();
+  void setPolyline12CoreT_1222_TypePair(Polyline12CoreT_1222_TypeChoicePair * Polyline12CoreT_1222_TypePairIn);
 
 protected:
-  Polyline12CoreT_1221_TypeChoicePair * Polyline12CoreT_1221_TypePair;
+  Polyline12CoreT_1222_TypeChoicePair * Polyline12CoreT_1222_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union Polyline12CoreT_1221_TypeVal
+union Polyline12CoreT_1222_TypeVal
 {
   ArrayPoint2dType * Points;
   ArrayBinaryType * PointsBinary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class Polyline12CoreT_1221_TypeChoicePair :
+class Polyline12CoreT_1222_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     PointsE,
     PointsBinaryE };
-  Polyline12CoreT_1221_TypeChoicePair();
-  Polyline12CoreT_1221_TypeChoicePair(
-    whichOne Polyline12CoreT_1221_TypeTypeIn,
-    Polyline12CoreT_1221_TypeVal Polyline12CoreT_1221_TypeValueIn);
-  ~Polyline12CoreT_1221_TypeChoicePair();
+  Polyline12CoreT_1222_TypeChoicePair();
+  Polyline12CoreT_1222_TypeChoicePair(
+    whichOne Polyline12CoreT_1222_TypeTypeIn,
+    Polyline12CoreT_1222_TypeVal Polyline12CoreT_1222_TypeValueIn);
+  ~Polyline12CoreT_1222_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne Polyline12CoreT_1221_TypeType;
-  Polyline12CoreT_1221_TypeVal Polyline12CoreT_1221_TypeValue;
+  whichOne Polyline12CoreT_1222_TypeType;
+  Polyline12CoreT_1222_TypeVal Polyline12CoreT_1222_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class Polyline13CoreT_1222_Type :
+class Polyline13CoreT_1223_Type :
   public XmlTypeBase
 {
 public:
-  Polyline13CoreT_1222_Type();
-  Polyline13CoreT_1222_Type(
-    Polyline13CoreT_1222_TypeChoicePair * Polyline13CoreT_1222_TypePairIn);
-  ~Polyline13CoreT_1222_Type();
+  Polyline13CoreT_1223_Type();
+  Polyline13CoreT_1223_Type(
+    Polyline13CoreT_1223_TypeChoicePair * Polyline13CoreT_1223_TypePairIn);
+  ~Polyline13CoreT_1223_Type();
   void printSelf(FILE * outFile);
 
-  Polyline13CoreT_1222_TypeChoicePair * getPolyline13CoreT_1222_TypePair();
-  void setPolyline13CoreT_1222_TypePair(Polyline13CoreT_1222_TypeChoicePair * Polyline13CoreT_1222_TypePairIn);
+  Polyline13CoreT_1223_TypeChoicePair * getPolyline13CoreT_1223_TypePair();
+  void setPolyline13CoreT_1223_TypePair(Polyline13CoreT_1223_TypeChoicePair * Polyline13CoreT_1223_TypePairIn);
 
 protected:
-  Polyline13CoreT_1222_TypeChoicePair * Polyline13CoreT_1222_TypePair;
+  Polyline13CoreT_1223_TypeChoicePair * Polyline13CoreT_1223_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union Polyline13CoreT_1222_TypeVal
+union Polyline13CoreT_1223_TypeVal
 {
   ArrayPointType * Points;
   ArrayBinaryType * PointsBinary;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class Polyline13CoreT_1222_TypeChoicePair :
+class Polyline13CoreT_1223_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     PointsE,
     PointsBinaryE };
-  Polyline13CoreT_1222_TypeChoicePair();
-  Polyline13CoreT_1222_TypeChoicePair(
-    whichOne Polyline13CoreT_1222_TypeTypeIn,
-    Polyline13CoreT_1222_TypeVal Polyline13CoreT_1222_TypeValueIn);
-  ~Polyline13CoreT_1222_TypeChoicePair();
+  Polyline13CoreT_1223_TypeChoicePair();
+  Polyline13CoreT_1223_TypeChoicePair(
+    whichOne Polyline13CoreT_1223_TypeTypeIn,
+    Polyline13CoreT_1223_TypeVal Polyline13CoreT_1223_TypeValueIn);
+  ~Polyline13CoreT_1223_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne Polyline13CoreT_1222_TypeType;
-  Polyline13CoreT_1222_TypeVal Polyline13CoreT_1222_TypeValue;
+  whichOne Polyline13CoreT_1223_TypeType;
+  Polyline13CoreT_1223_TypeVal Polyline13CoreT_1223_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Aggregate12CoreType :
   public CurveCoreBaseType
@@ -1751,7 +1751,7 @@ protected:
   ArraySubCurve12Type * SubCurves;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Aggregate13CoreType :
   public CurveCoreBaseType
@@ -1774,7 +1774,7 @@ protected:
   ArraySubCurve13Type * SubCurves;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArcCircular12CoreType :
   public CurveCoreBaseType
@@ -1812,7 +1812,7 @@ protected:
   UnitVector2dSimpleType * DirBeg;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArcCircular13CoreType :
   public CurveCoreBaseType
@@ -1850,7 +1850,7 @@ protected:
   UnitVectorSimpleType * Normal;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArcConic12CoreType :
   public CurveCoreBaseType
@@ -1897,7 +1897,7 @@ protected:
   UnitVector2dSimpleType * DirBeg;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArcConic13CoreType :
   public CurveCoreBaseType
@@ -1945,7 +1945,7 @@ protected:
   UnitVectorSimpleType * Normal;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Cone23CoreType :
   public SurfaceCoreBaseType
@@ -2001,7 +2001,7 @@ protected:
   SweepType * Sweep;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Cone23Type :
   public SurfaceBaseType
@@ -2032,7 +2032,7 @@ protected:
   ElementReferenceType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Curve12BaseType :
   public GeometryBaseType
@@ -2050,7 +2050,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Curve12BaseTypeLisd :
   public std::list<Curve12BaseType *>,
@@ -2064,7 +2064,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Curve13BaseType :
   public GeometryBaseType
@@ -2082,7 +2082,7 @@ public:
   bool badAttributes(AttributePairLisd * attributes);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Curve13BaseTypeLisd :
   public std::list<Curve13BaseType *>,
@@ -2096,7 +2096,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Cylinder23CoreType :
   public SurfaceCoreBaseType
@@ -2147,7 +2147,7 @@ protected:
   SweepType * Sweep;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Cylinder23Type :
   public SurfaceBaseType
@@ -2178,7 +2178,7 @@ protected:
   ElementReferenceType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Extrude23CoreType :
   public SurfaceCoreBaseType
@@ -2206,7 +2206,7 @@ protected:
   Curve13CoreType * Curve;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Extrude23Type :
   public SurfaceBaseType
@@ -2237,7 +2237,7 @@ protected:
   ElementReferenceType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Nurbs12Type :
   public Curve12BaseType
@@ -2263,7 +2263,7 @@ protected:
   Nurbs12CoreType * Nurbs12Core;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Nurbs13Type :
   public Curve13BaseType
@@ -2294,7 +2294,7 @@ protected:
   ElementReferenceType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Nurbs23CoreType :
   public SurfaceCoreBaseType
@@ -2306,7 +2306,7 @@ public:
     NaturalType * OrderVIn,
     ArrayDoubleType * KnotsUIn,
     ArrayDoubleType * KnotsVIn,
-    Nurbs23CoreType_1220_Type * Nurbs23CoreType_1220In,
+    Nurbs23CoreType_1221_Type * Nurbs23CoreType_1221In,
     ArrayDoubleType * WeightsIn);
   Nurbs23CoreType(
     Attr23CoreEnumType * formIn,
@@ -2314,7 +2314,7 @@ public:
     NaturalType * OrderVIn,
     ArrayDoubleType * KnotsUIn,
     ArrayDoubleType * KnotsVIn,
-    Nurbs23CoreType_1220_Type * Nurbs23CoreType_1220In,
+    Nurbs23CoreType_1221_Type * Nurbs23CoreType_1221In,
     ArrayDoubleType * WeightsIn);
   ~Nurbs23CoreType();
   void printSelf(FILE * outFile);
@@ -2328,8 +2328,8 @@ public:
   void setKnotsU(ArrayDoubleType * KnotsUIn);
   ArrayDoubleType * getKnotsV();
   void setKnotsV(ArrayDoubleType * KnotsVIn);
-  Nurbs23CoreType_1220_Type * getNurbs23CoreType_1220();
-  void setNurbs23CoreType_1220(Nurbs23CoreType_1220_Type * Nurbs23CoreType_1220In);
+  Nurbs23CoreType_1221_Type * getNurbs23CoreType_1221();
+  void setNurbs23CoreType_1221(Nurbs23CoreType_1221_Type * Nurbs23CoreType_1221In);
   ArrayDoubleType * getWeights();
   void setWeights(ArrayDoubleType * WeightsIn);
 
@@ -2338,11 +2338,11 @@ protected:
   NaturalType * OrderV;
   ArrayDoubleType * KnotsU;
   ArrayDoubleType * KnotsV;
-  Nurbs23CoreType_1220_Type * Nurbs23CoreType_1220;
+  Nurbs23CoreType_1221_Type * Nurbs23CoreType_1221;
   ArrayDoubleType * Weights;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Nurbs23Type :
   public SurfaceBaseType
@@ -2373,7 +2373,7 @@ protected:
   ElementReferenceType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Offset23CoreType :
   public SurfaceCoreBaseType
@@ -2401,7 +2401,7 @@ protected:
   SurfaceCoreType * Surface;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Offset23Type :
   public SurfaceBaseType
@@ -2432,7 +2432,7 @@ protected:
   ElementReferenceType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Plane23CoreType :
   public SurfaceCoreBaseType
@@ -2474,7 +2474,7 @@ protected:
   VectorSimpleType * DirV;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Plane23Type :
   public SurfaceBaseType
@@ -2505,7 +2505,7 @@ protected:
   ElementReferenceType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Polyline12Type :
   public Curve12BaseType
@@ -2531,7 +2531,7 @@ protected:
   Polyline12CoreType * Polyline12Core;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Polyline13Type :
   public Curve13BaseType
@@ -2562,7 +2562,7 @@ protected:
   ElementReferenceType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Revolution23CoreType :
   public SurfaceCoreBaseType
@@ -2595,7 +2595,7 @@ protected:
   Curve13CoreType * Generatrix;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Revolution23Type :
   public SurfaceBaseType
@@ -2626,7 +2626,7 @@ protected:
   ElementReferenceType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Ruled23CoreType :
   public SurfaceCoreBaseType
@@ -2654,7 +2654,7 @@ protected:
   Curve13CoreTypeLisd * Curve;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Ruled23Type :
   public SurfaceBaseType
@@ -2685,7 +2685,7 @@ protected:
   ElementReferenceType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Segment12Type :
   public Curve12BaseType
@@ -2711,7 +2711,7 @@ protected:
   Segment12CoreType * Segment12Core;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Segment13Type :
   public Curve13BaseType
@@ -2742,7 +2742,7 @@ protected:
   ElementReferenceType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Sphere23CoreType :
   public SurfaceCoreBaseType
@@ -2788,7 +2788,7 @@ protected:
   OrientedLatitudeLongitudeSweepType * LatitudeLongitudeSweep;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Sphere23Type :
   public SurfaceBaseType
@@ -2819,7 +2819,7 @@ protected:
   ElementReferenceType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Spline12Type :
   public Curve12BaseType
@@ -2845,7 +2845,7 @@ protected:
   Spline12CoreType * Spline12Core;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Spline13Type :
   public Curve13BaseType
@@ -2876,7 +2876,7 @@ protected:
   ElementReferenceType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Spline23CoreType :
   public SurfaceCoreBaseType
@@ -2924,7 +2924,7 @@ protected:
   ArrayPointType * Coefficients;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Spline23Type :
   public SurfaceBaseType
@@ -2955,7 +2955,7 @@ protected:
   ElementReferenceType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Aggregate12Type :
   public Curve12BaseType
@@ -2981,7 +2981,7 @@ protected:
   Aggregate12CoreType * Aggregate12Core;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class Aggregate13Type :
   public Curve13BaseType
@@ -3012,7 +3012,7 @@ protected:
   ElementReferenceType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArcCircular12Type :
   public Curve12BaseType
@@ -3038,7 +3038,7 @@ protected:
   ArcCircular12CoreType * ArcCircular12Core;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArcCircular13Type :
   public Curve13BaseType
@@ -3069,7 +3069,7 @@ protected:
   ElementReferenceType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArcConic12Type :
   public Curve12BaseType
@@ -3095,7 +3095,7 @@ protected:
   ArcConic12CoreType * ArcConic12Core;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArcConic13Type :
   public Curve13BaseType
@@ -3126,6 +3126,6 @@ protected:
   ElementReferenceType * Transform;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 #endif // GEOMETRY_HH

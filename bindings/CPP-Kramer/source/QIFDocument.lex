@@ -14,11 +14,7 @@ This ignores white space outside of meaningful strings of characters.
 #define YY_NO_UNISTD_H
 #endif
 #include <string.h>          // for strdup
-#ifdef OWL
-#include "owlQIFDocumentClasses.hh"
-#else
 #include "QIFDocumentClasses.hh"
-#endif
 #include <QIFDocumentYACC.hh>    // for tokens, yylval, etc.
 
 #ifndef NO_ECHO
@@ -31,6 +27,9 @@ This ignores white space outside of meaningful strings of characters.
 extern int yyReadData;
 extern int yyReadDataList;
 extern int yyStartAnew;
+extern int yyReadXML;
+extern char yyXMLbuffer[5000];
+extern int yyBufferIndex;
 
 #ifdef STRINGIN
 char * yyStringInputPointer;
@@ -59,6 +58,7 @@ W [ \t\n\r]*
 %x COMMENT
 %x DATA
 %x DATALIST
+%x XMLTEXT
 %x XMLVER
 
 %%
@@ -79,11 +79,24 @@ W [ \t\n\r]*
       BEGIN(DATA);
       yyReadData = 0;
     }
+  else if (yyReadXML)
+    {
+      BEGIN(XMLTEXT);
+      yyReadXML = 0;
+      yyBufferIndex = 0;
+    }
 
 {W}"<!--"               {ECH; BEGIN(COMMENT); /* delete comment start */}
 <COMMENT>.              {ECH;  /* delete comment middle */ }
 <COMMENT>\n             {ECH;  /* delete comment middle */ }
 <COMMENT>"-->"          {ECH; BEGIN(INITIAL); /* delete comment end */ }
+
+<XMLTEXT>"</"{W}"UserDataXML"{W}">" {ECH;
+                                     BEGIN(INITIAL);
+                                     return UserDataXMLEND;
+                                    }
+<XMLTEXT>\n              {ECH; yyXMLbuffer[yyBufferIndex++] = '\n';}
+<XMLTEXT>.               {ECH; yyXMLbuffer[yyBufferIndex++] = yytext[0];}
 
 <XMLVER>"xml"[ \t]+"version"{W}"="    {ECH; return XMLVERSION;}
 <XMLVER>"encoding"{W}"="              {ECH; return ENCODING;}

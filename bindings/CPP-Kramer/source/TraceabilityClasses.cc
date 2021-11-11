@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #include <stdio.h>             // for printf, etc.
 #include <string.h>            // for strdup
@@ -10,8 +10,8 @@
 
 #define INDENT 2
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 /* class ActualProductTraceabilityType
 
@@ -319,7 +319,7 @@ AttributesType * ActualProductTraceabilityType::getAttributes()
 void ActualProductTraceabilityType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CheckStatusEnumType
 
@@ -379,7 +379,7 @@ void CheckStatusEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EnvironmentType
 
@@ -507,7 +507,7 @@ TimeDescriptionType * EnvironmentType::getTimeDescription()
 void EnvironmentType::setTimeDescription(TimeDescriptionType * TimeDescriptionIn)
 {TimeDescription = TimeDescriptionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EnvironmentTypeLisd
 
@@ -534,7 +534,7 @@ EnvironmentTypeLisd::~EnvironmentTypeLisd()
 
 void EnvironmentTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EnvironmentsType
 
@@ -692,7 +692,7 @@ EnvironmentTypeLisd * EnvironmentsType::getEnvironment()
 void EnvironmentsType::setEnvironment(EnvironmentTypeLisd * EnvironmentIn)
 {Environment = EnvironmentIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ErrorsType
 
@@ -849,7 +849,7 @@ XmlStringLisd * ErrorsType::getError()
 void ErrorsType::setError(XmlStringLisd * ErrorIn)
 {Error = ErrorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class InspectionModeEnumType
 
@@ -915,7 +915,7 @@ void InspectionModeEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class InspectionProgramType
 
@@ -1003,7 +1003,7 @@ EmployeeType * InspectionProgramType::getAuthor()
 void InspectionProgramType::setAuthor(EmployeeType * AuthorIn)
 {Author = AuthorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class InspectionScopeEnumType
 
@@ -1061,7 +1061,7 @@ void InspectionScopeEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class InspectionSoftwareItemsType
 
@@ -1178,7 +1178,7 @@ ArrayReferenceType * InspectionSoftwareItemsType::getDMESoftware()
 void InspectionSoftwareItemsType::setDMESoftware(ArrayReferenceType * DMESoftwareIn)
 {DMESoftware = DMESoftwareIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class InspectionTraceabilityType
 
@@ -1207,7 +1207,7 @@ InspectionTraceabilityType::InspectionTraceabilityType()
   ReportType = 0;
   SecurityClassification = 0;
   PlantLocation = 0;
-  InspectionTrace_1042 = 0;
+  InspectionTrace_1043 = 0;
   Errors = 0;
   Attributes = 0;
 }
@@ -1234,7 +1234,7 @@ InspectionTraceabilityType::InspectionTraceabilityType(
  XmlToken * ReportTypeIn,
  SecurityClassificationType * SecurityClassificationIn,
  LocationType * PlantLocationIn,
- InspectionTrace_1042_Type * InspectionTrace_1042In,
+ InspectionTrace_1043_Type * InspectionTrace_1043In,
  ErrorsType * ErrorsIn,
  AttributesType * AttributesIn)
 {
@@ -1259,7 +1259,7 @@ InspectionTraceabilityType::InspectionTraceabilityType(
   ReportType = ReportTypeIn;
   SecurityClassification = SecurityClassificationIn;
   PlantLocation = PlantLocationIn;
-  InspectionTrace_1042 = InspectionTrace_1042In;
+  InspectionTrace_1043 = InspectionTrace_1043In;
   Errors = ErrorsIn;
   Attributes = AttributesIn;
 }
@@ -1288,7 +1288,7 @@ InspectionTraceabilityType::~InspectionTraceabilityType()
   delete ReportType;
   delete SecurityClassification;
   delete PlantLocation;
-  delete InspectionTrace_1042;
+  delete InspectionTrace_1043;
   delete Errors;
   delete Attributes;
   #endif
@@ -1456,9 +1456,9 @@ void InspectionTraceabilityType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</PlantLocation>\n");
     }
-  if (InspectionTrace_1042)
+  if (InspectionTrace_1043)
     {
-      InspectionTrace_1042->printSelf(outFile);
+      InspectionTrace_1043->printSelf(outFile);
     }
   if (Errors)
     {
@@ -1605,11 +1605,11 @@ LocationType * InspectionTraceabilityType::getPlantLocation()
 void InspectionTraceabilityType::setPlantLocation(LocationType * PlantLocationIn)
 {PlantLocation = PlantLocationIn;}
 
-InspectionTrace_1042_Type * InspectionTraceabilityType::getInspectionTrace_1042()
-{return InspectionTrace_1042;}
+InspectionTrace_1043_Type * InspectionTraceabilityType::getInspectionTrace_1043()
+{return InspectionTrace_1043;}
 
-void InspectionTraceabilityType::setInspectionTrace_1042(InspectionTrace_1042_Type * InspectionTrace_1042In)
-{InspectionTrace_1042 = InspectionTrace_1042In;}
+void InspectionTraceabilityType::setInspectionTrace_1043(InspectionTrace_1043_Type * InspectionTrace_1043In)
+{InspectionTrace_1043 = InspectionTrace_1043In;}
 
 ErrorsType * InspectionTraceabilityType::getErrors()
 {return Errors;}
@@ -1623,7 +1623,7 @@ AttributesType * InspectionTraceabilityType::getAttributes()
 void InspectionTraceabilityType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ManufacturingProcessTraceabilitiesType
 
@@ -1781,7 +1781,7 @@ ManufacturingProcessTraceabilityTypeLisd * ManufacturingProcessTraceabilitiesTyp
 void ManufacturingProcessTraceabilitiesType::setManufacturingProcessTraceability(ManufacturingProcessTraceabilityTypeLisd * ManufacturingProcessTraceabilityIn)
 {ManufacturingProcessTraceability = ManufacturingProcessTraceabilityIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ManufacturingProcessTraceabilityType
 
@@ -2192,7 +2192,7 @@ QIFReferenceType * ManufacturingProcessTraceabilityType::getAssociatedTraceabili
 void ManufacturingProcessTraceabilityType::setAssociatedTraceabilityId(QIFReferenceType * AssociatedTraceabilityIdIn)
 {AssociatedTraceabilityId = AssociatedTraceabilityIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ManufacturingProcessTraceabilityTypeLisd
 
@@ -2219,7 +2219,7 @@ ManufacturingProcessTraceabilityTypeLisd::~ManufacturingProcessTraceabilityTypeL
 
 void ManufacturingProcessTraceabilityTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PartialInspectionType
 
@@ -2291,7 +2291,7 @@ XmlString * PartialInspectionType::getReasonForPartialInspection()
 void PartialInspectionType::setReasonForPartialInspection(XmlString * ReasonForPartialInspectionIn)
 {ReasonForPartialInspection = ReasonForPartialInspectionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PreInspectionTraceabilityType
 
@@ -2314,7 +2314,7 @@ PreInspectionTraceabilityType::PreInspectionTraceabilityType()
   InspectionProgram = 0;
   SecurityClassification = 0;
   PlantLocation = 0;
-  PreInspectionTr_1043 = 0;
+  PreInspectionTr_1044 = 0;
   FormalStandardId = 0;
   Attributes = 0;
 }
@@ -2335,7 +2335,7 @@ PreInspectionTraceabilityType::PreInspectionTraceabilityType(
  InspectionProgramType * InspectionProgramIn,
  SecurityClassificationType * SecurityClassificationIn,
  LocationType * PlantLocationIn,
- PreInspectionTr_1043_Type * PreInspectionTr_1043In,
+ PreInspectionTr_1044_Type * PreInspectionTr_1044In,
  QIFReferenceType * FormalStandardIdIn,
  AttributesType * AttributesIn)
 {
@@ -2354,7 +2354,7 @@ PreInspectionTraceabilityType::PreInspectionTraceabilityType(
   InspectionProgram = InspectionProgramIn;
   SecurityClassification = SecurityClassificationIn;
   PlantLocation = PlantLocationIn;
-  PreInspectionTr_1043 = PreInspectionTr_1043In;
+  PreInspectionTr_1044 = PreInspectionTr_1044In;
   FormalStandardId = FormalStandardIdIn;
   Attributes = AttributesIn;
 }
@@ -2377,7 +2377,7 @@ PreInspectionTraceabilityType::~PreInspectionTraceabilityType()
   delete InspectionProgram;
   delete SecurityClassification;
   delete PlantLocation;
-  delete PreInspectionTr_1043;
+  delete PreInspectionTr_1044;
   delete FormalStandardId;
   delete Attributes;
   #endif
@@ -2501,9 +2501,9 @@ void PreInspectionTraceabilityType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</PlantLocation>\n");
     }
-  if (PreInspectionTr_1043)
+  if (PreInspectionTr_1044)
     {
-      PreInspectionTr_1043->printSelf(outFile);
+      PreInspectionTr_1044->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<FormalStandardId");
@@ -2610,11 +2610,11 @@ LocationType * PreInspectionTraceabilityType::getPlantLocation()
 void PreInspectionTraceabilityType::setPlantLocation(LocationType * PlantLocationIn)
 {PlantLocation = PlantLocationIn;}
 
-PreInspectionTr_1043_Type * PreInspectionTraceabilityType::getPreInspectionTr_1043()
-{return PreInspectionTr_1043;}
+PreInspectionTr_1044_Type * PreInspectionTraceabilityType::getPreInspectionTr_1044()
+{return PreInspectionTr_1044;}
 
-void PreInspectionTraceabilityType::setPreInspectionTr_1043(PreInspectionTr_1043_Type * PreInspectionTr_1043In)
-{PreInspectionTr_1043 = PreInspectionTr_1043In;}
+void PreInspectionTraceabilityType::setPreInspectionTr_1044(PreInspectionTr_1044_Type * PreInspectionTr_1044In)
+{PreInspectionTr_1044 = PreInspectionTr_1044In;}
 
 QIFReferenceType * PreInspectionTraceabilityType::getFormalStandardId()
 {return FormalStandardId;}
@@ -2628,7 +2628,7 @@ AttributesType * PreInspectionTraceabilityType::getAttributes()
 void PreInspectionTraceabilityType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ProcessParameterType
 
@@ -2683,7 +2683,7 @@ XmlString * ProcessParameterType::getParameterValue()
 void ProcessParameterType::setParameterValue(XmlString * ParameterValueIn)
 {ParameterValue = ParameterValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ProcessParameterTypeLisd
 
@@ -2710,7 +2710,7 @@ ProcessParameterTypeLisd::~ProcessParameterTypeLisd()
 
 void ProcessParameterTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ProcessParametersType
 
@@ -2868,7 +2868,7 @@ ProcessParameterTypeLisd * ProcessParametersType::getParameter()
 void ProcessParametersType::setParameter(ProcessParameterTypeLisd * ParameterIn)
 {Parameter = ParameterIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ProductDataQualityAreaEnumType
 
@@ -2936,7 +2936,7 @@ void ProductDataQualityAreaEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ProductDataQualityAreaType
 
@@ -2944,19 +2944,19 @@ void ProductDataQualityAreaEnumType::oPrintSelf(FILE * outFile)
 
 ProductDataQualityAreaType::ProductDataQualityAreaType()
 {
-  ProductDataQual_1044 = 0;
+  ProductDataQual_1045 = 0;
 }
 
 ProductDataQualityAreaType::ProductDataQualityAreaType(
- ProductDataQual_1044_Type * ProductDataQual_1044In)
+ ProductDataQual_1045_Type * ProductDataQual_1045In)
 {
-  ProductDataQual_1044 = ProductDataQual_1044In;
+  ProductDataQual_1045 = ProductDataQual_1045In;
 }
 
 ProductDataQualityAreaType::~ProductDataQualityAreaType()
 {
   #ifndef NODESTRUCT
-  delete ProductDataQual_1044;
+  delete ProductDataQual_1045;
   #endif
 }
 
@@ -2964,17 +2964,17 @@ void ProductDataQualityAreaType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  ProductDataQual_1044->printSelf(outFile);
+  ProductDataQual_1045->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-ProductDataQual_1044_Type * ProductDataQualityAreaType::getProductDataQual_1044()
-{return ProductDataQual_1044;}
+ProductDataQual_1045_Type * ProductDataQualityAreaType::getProductDataQual_1045()
+{return ProductDataQual_1045;}
 
-void ProductDataQualityAreaType::setProductDataQual_1044(ProductDataQual_1044_Type * ProductDataQual_1044In)
-{ProductDataQual_1044 = ProductDataQual_1044In;}
+void ProductDataQualityAreaType::setProductDataQual_1045(ProductDataQual_1045_Type * ProductDataQual_1045In)
+{ProductDataQual_1045 = ProductDataQual_1045In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ProductDataQualityCheckType
 
@@ -3124,7 +3124,7 @@ CheckStatusEnumType * ProductDataQualityCheckType::getResultStatus()
 void ProductDataQualityCheckType::setResultStatus(CheckStatusEnumType * ResultStatusIn)
 {ResultStatus = ResultStatusIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ProductDataQualityCheckTypeLisd
 
@@ -3151,7 +3151,7 @@ ProductDataQualityCheckTypeLisd::~ProductDataQualityCheckTypeLisd()
 
 void ProductDataQualityCheckTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ProductDataQualityChecksType
 
@@ -3309,7 +3309,7 @@ ProductDataQualityCheckTypeLisd * ProductDataQualityChecksType::getProductDataQu
 void ProductDataQualityChecksType::setProductDataQualityCheck(ProductDataQualityCheckTypeLisd * ProductDataQualityCheckIn)
 {ProductDataQualityCheck = ProductDataQualityCheckIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ProductDataQualityType
 
@@ -3396,7 +3396,7 @@ ProductDataQualityChecksType * ProductDataQualityType::getProductDataQualityChec
 void ProductDataQualityType::setProductDataQualityChecks(ProductDataQualityChecksType * ProductDataQualityChecksIn)
 {ProductDataQualityChecks = ProductDataQualityChecksIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ProductTraceabilityType
 
@@ -3564,7 +3564,7 @@ AttributesType * ProductTraceabilityType::getAttributes()
 void ProductTraceabilityType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TimeDescriptionEnumType
 
@@ -3624,7 +3624,7 @@ void TimeDescriptionEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TimeDescriptionType
 
@@ -3662,7 +3662,7 @@ TimeDescriptionTypeChoicePair * TimeDescriptionType::getTimeDescriptionTypePair(
 void TimeDescriptionType::setTimeDescriptionTypePair(TimeDescriptionTypeChoicePair * TimeDescriptionTypePairIn)
 {TimeDescriptionTypePair = TimeDescriptionTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TimeDescriptionTypeChoicePair
 
@@ -3706,7 +3706,7 @@ void TimeDescriptionTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ValidationCountsType
 
@@ -4430,250 +4430,250 @@ XmlBoolean * ValidationCountsType::getSignaturePresent()
 void ValidationCountsType::setSignaturePresent(XmlBoolean * SignaturePresentIn)
 {SignaturePresent = SignaturePresentIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class InspectionTrace_1042_Type
+/* class InspectionTrace_1043_Type
 
 */
 
-InspectionTrace_1042_Type::InspectionTrace_1042_Type()
+InspectionTrace_1043_Type::InspectionTrace_1043_Type()
 {
-  InspectionTrace_1042_TypePair = 0;
+  InspectionTrace_1043_TypePair = 0;
 }
 
-InspectionTrace_1042_Type::InspectionTrace_1042_Type(
- InspectionTrace_1042_TypeChoicePair * InspectionTrace_1042_TypePairIn)
+InspectionTrace_1043_Type::InspectionTrace_1043_Type(
+ InspectionTrace_1043_TypeChoicePair * InspectionTrace_1043_TypePairIn)
 {
-  InspectionTrace_1042_TypePair = InspectionTrace_1042_TypePairIn;
+  InspectionTrace_1043_TypePair = InspectionTrace_1043_TypePairIn;
 }
 
-InspectionTrace_1042_Type::~InspectionTrace_1042_Type()
+InspectionTrace_1043_Type::~InspectionTrace_1043_Type()
 {
   #ifndef NODESTRUCT
-  delete InspectionTrace_1042_TypePair;
+  delete InspectionTrace_1043_TypePair;
   #endif
 }
 
-void InspectionTrace_1042_Type::printSelf(FILE * outFile)
+void InspectionTrace_1043_Type::printSelf(FILE * outFile)
 {
-  if (InspectionTrace_1042_TypePair)
+  if (InspectionTrace_1043_TypePair)
     {
-      InspectionTrace_1042_TypePair->printSelf(outFile);
+      InspectionTrace_1043_TypePair->printSelf(outFile);
     }
 }
 
-InspectionTrace_1042_TypeChoicePair * InspectionTrace_1042_Type::getInspectionTrace_1042_TypePair()
-{return InspectionTrace_1042_TypePair;}
+InspectionTrace_1043_TypeChoicePair * InspectionTrace_1043_Type::getInspectionTrace_1043_TypePair()
+{return InspectionTrace_1043_TypePair;}
 
-void InspectionTrace_1042_Type::setInspectionTrace_1042_TypePair(InspectionTrace_1042_TypeChoicePair * InspectionTrace_1042_TypePairIn)
-{InspectionTrace_1042_TypePair = InspectionTrace_1042_TypePairIn;}
+void InspectionTrace_1043_Type::setInspectionTrace_1043_TypePair(InspectionTrace_1043_TypeChoicePair * InspectionTrace_1043_TypePairIn)
+{InspectionTrace_1043_TypePair = InspectionTrace_1043_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class InspectionTrace_1042_TypeChoicePair
+/* class InspectionTrace_1043_TypeChoicePair
 
 */
 
-InspectionTrace_1042_TypeChoicePair::InspectionTrace_1042_TypeChoicePair() {}
+InspectionTrace_1043_TypeChoicePair::InspectionTrace_1043_TypeChoicePair() {}
 
-InspectionTrace_1042_TypeChoicePair::InspectionTrace_1042_TypeChoicePair(
- whichOne InspectionTrace_1042_TypeTypeIn,
- InspectionTrace_1042_TypeVal InspectionTrace_1042_TypeValueIn)
+InspectionTrace_1043_TypeChoicePair::InspectionTrace_1043_TypeChoicePair(
+ whichOne InspectionTrace_1043_TypeTypeIn,
+ InspectionTrace_1043_TypeVal InspectionTrace_1043_TypeValueIn)
 {
-  InspectionTrace_1042_TypeType = InspectionTrace_1042_TypeTypeIn;
-  InspectionTrace_1042_TypeValue = InspectionTrace_1042_TypeValueIn;
+  InspectionTrace_1043_TypeType = InspectionTrace_1043_TypeTypeIn;
+  InspectionTrace_1043_TypeValue = InspectionTrace_1043_TypeValueIn;
 }
 
-InspectionTrace_1042_TypeChoicePair::~InspectionTrace_1042_TypeChoicePair()
+InspectionTrace_1043_TypeChoicePair::~InspectionTrace_1043_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (InspectionTrace_1042_TypeType == ReferencedQIFPlanInstanceE)
-    delete InspectionTrace_1042_TypeValue.ReferencedQIFPlanInstance;
-  else if (InspectionTrace_1042_TypeType == ReferencedQIFPlanE)
-    delete InspectionTrace_1042_TypeValue.ReferencedQIFPlan;
+  if (InspectionTrace_1043_TypeType == ReferencedQIFPlanInstanceE)
+    delete InspectionTrace_1043_TypeValue.ReferencedQIFPlanInstance;
+  else if (InspectionTrace_1043_TypeType == ReferencedQIFPlanE)
+    delete InspectionTrace_1043_TypeValue.ReferencedQIFPlan;
   #endif
 }
 
-void InspectionTrace_1042_TypeChoicePair::printSelf(FILE * outFile)
+void InspectionTrace_1043_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (InspectionTrace_1042_TypeType == ReferencedQIFPlanInstanceE)
+  if (InspectionTrace_1043_TypeType == ReferencedQIFPlanInstanceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ReferencedQIFPlanInstance");
-      InspectionTrace_1042_TypeValue.ReferencedQIFPlanInstance->printSelf(outFile);
+      InspectionTrace_1043_TypeValue.ReferencedQIFPlanInstance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ReferencedQIFPlanInstance>\n");
     }
-  else if (InspectionTrace_1042_TypeType == ReferencedQIFPlanE)
+  else if (InspectionTrace_1043_TypeType == ReferencedQIFPlanE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ReferencedQIFPlan");
-      InspectionTrace_1042_TypeValue.ReferencedQIFPlan->printSelf(outFile);
+      InspectionTrace_1043_TypeValue.ReferencedQIFPlan->printSelf(outFile);
       fprintf(outFile, "</ReferencedQIFPlan>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class PreInspectionTr_1043_Type
+/* class PreInspectionTr_1044_Type
 
 */
 
-PreInspectionTr_1043_Type::PreInspectionTr_1043_Type()
+PreInspectionTr_1044_Type::PreInspectionTr_1044_Type()
 {
-  PreInspectionTr_1043_TypePair = 0;
+  PreInspectionTr_1044_TypePair = 0;
 }
 
-PreInspectionTr_1043_Type::PreInspectionTr_1043_Type(
- PreInspectionTr_1043_TypeChoicePair * PreInspectionTr_1043_TypePairIn)
+PreInspectionTr_1044_Type::PreInspectionTr_1044_Type(
+ PreInspectionTr_1044_TypeChoicePair * PreInspectionTr_1044_TypePairIn)
 {
-  PreInspectionTr_1043_TypePair = PreInspectionTr_1043_TypePairIn;
+  PreInspectionTr_1044_TypePair = PreInspectionTr_1044_TypePairIn;
 }
 
-PreInspectionTr_1043_Type::~PreInspectionTr_1043_Type()
+PreInspectionTr_1044_Type::~PreInspectionTr_1044_Type()
 {
   #ifndef NODESTRUCT
-  delete PreInspectionTr_1043_TypePair;
+  delete PreInspectionTr_1044_TypePair;
   #endif
 }
 
-void PreInspectionTr_1043_Type::printSelf(FILE * outFile)
+void PreInspectionTr_1044_Type::printSelf(FILE * outFile)
 {
-  if (PreInspectionTr_1043_TypePair)
+  if (PreInspectionTr_1044_TypePair)
     {
-      PreInspectionTr_1043_TypePair->printSelf(outFile);
+      PreInspectionTr_1044_TypePair->printSelf(outFile);
     }
 }
 
-PreInspectionTr_1043_TypeChoicePair * PreInspectionTr_1043_Type::getPreInspectionTr_1043_TypePair()
-{return PreInspectionTr_1043_TypePair;}
+PreInspectionTr_1044_TypeChoicePair * PreInspectionTr_1044_Type::getPreInspectionTr_1044_TypePair()
+{return PreInspectionTr_1044_TypePair;}
 
-void PreInspectionTr_1043_Type::setPreInspectionTr_1043_TypePair(PreInspectionTr_1043_TypeChoicePair * PreInspectionTr_1043_TypePairIn)
-{PreInspectionTr_1043_TypePair = PreInspectionTr_1043_TypePairIn;}
+void PreInspectionTr_1044_Type::setPreInspectionTr_1044_TypePair(PreInspectionTr_1044_TypeChoicePair * PreInspectionTr_1044_TypePairIn)
+{PreInspectionTr_1044_TypePair = PreInspectionTr_1044_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class PreInspectionTr_1043_TypeChoicePair
+/* class PreInspectionTr_1044_TypeChoicePair
 
 */
 
-PreInspectionTr_1043_TypeChoicePair::PreInspectionTr_1043_TypeChoicePair() {}
+PreInspectionTr_1044_TypeChoicePair::PreInspectionTr_1044_TypeChoicePair() {}
 
-PreInspectionTr_1043_TypeChoicePair::PreInspectionTr_1043_TypeChoicePair(
- whichOne PreInspectionTr_1043_TypeTypeIn,
- PreInspectionTr_1043_TypeVal PreInspectionTr_1043_TypeValueIn)
+PreInspectionTr_1044_TypeChoicePair::PreInspectionTr_1044_TypeChoicePair(
+ whichOne PreInspectionTr_1044_TypeTypeIn,
+ PreInspectionTr_1044_TypeVal PreInspectionTr_1044_TypeValueIn)
 {
-  PreInspectionTr_1043_TypeType = PreInspectionTr_1043_TypeTypeIn;
-  PreInspectionTr_1043_TypeValue = PreInspectionTr_1043_TypeValueIn;
+  PreInspectionTr_1044_TypeType = PreInspectionTr_1044_TypeTypeIn;
+  PreInspectionTr_1044_TypeValue = PreInspectionTr_1044_TypeValueIn;
 }
 
-PreInspectionTr_1043_TypeChoicePair::~PreInspectionTr_1043_TypeChoicePair()
+PreInspectionTr_1044_TypeChoicePair::~PreInspectionTr_1044_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (PreInspectionTr_1043_TypeType == ReferencedQIFPlanInstanceE)
-    delete PreInspectionTr_1043_TypeValue.ReferencedQIFPlanInstance;
-  else if (PreInspectionTr_1043_TypeType == ReferencedQIFPlanE)
-    delete PreInspectionTr_1043_TypeValue.ReferencedQIFPlan;
+  if (PreInspectionTr_1044_TypeType == ReferencedQIFPlanInstanceE)
+    delete PreInspectionTr_1044_TypeValue.ReferencedQIFPlanInstance;
+  else if (PreInspectionTr_1044_TypeType == ReferencedQIFPlanE)
+    delete PreInspectionTr_1044_TypeValue.ReferencedQIFPlan;
   #endif
 }
 
-void PreInspectionTr_1043_TypeChoicePair::printSelf(FILE * outFile)
+void PreInspectionTr_1044_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (PreInspectionTr_1043_TypeType == ReferencedQIFPlanInstanceE)
+  if (PreInspectionTr_1044_TypeType == ReferencedQIFPlanInstanceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ReferencedQIFPlanInstance");
-      PreInspectionTr_1043_TypeValue.ReferencedQIFPlanInstance->printSelf(outFile);
+      PreInspectionTr_1044_TypeValue.ReferencedQIFPlanInstance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ReferencedQIFPlanInstance>\n");
     }
-  else if (PreInspectionTr_1043_TypeType == ReferencedQIFPlanE)
+  else if (PreInspectionTr_1044_TypeType == ReferencedQIFPlanE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ReferencedQIFPlan");
-      PreInspectionTr_1043_TypeValue.ReferencedQIFPlan->printSelf(outFile);
+      PreInspectionTr_1044_TypeValue.ReferencedQIFPlan->printSelf(outFile);
       fprintf(outFile, "</ReferencedQIFPlan>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class ProductDataQual_1044_Type
-
-*/
-
-ProductDataQual_1044_Type::ProductDataQual_1044_Type()
-{
-  ProductDataQual_1044_TypePair = 0;
-}
-
-ProductDataQual_1044_Type::ProductDataQual_1044_Type(
- ProductDataQual_1044_TypeChoicePair * ProductDataQual_1044_TypePairIn)
-{
-  ProductDataQual_1044_TypePair = ProductDataQual_1044_TypePairIn;
-}
-
-ProductDataQual_1044_Type::~ProductDataQual_1044_Type()
-{
-  #ifndef NODESTRUCT
-  delete ProductDataQual_1044_TypePair;
-  #endif
-}
-
-void ProductDataQual_1044_Type::printSelf(FILE * outFile)
-{
-  ProductDataQual_1044_TypePair->printSelf(outFile);
-}
-
-ProductDataQual_1044_TypeChoicePair * ProductDataQual_1044_Type::getProductDataQual_1044_TypePair()
-{return ProductDataQual_1044_TypePair;}
-
-void ProductDataQual_1044_Type::setProductDataQual_1044_TypePair(ProductDataQual_1044_TypeChoicePair * ProductDataQual_1044_TypePairIn)
-{ProductDataQual_1044_TypePair = ProductDataQual_1044_TypePairIn;}
-
-/*********************************************************************/
-
-/* class ProductDataQual_1044_TypeChoicePair
+/* class ProductDataQual_1045_Type
 
 */
 
-ProductDataQual_1044_TypeChoicePair::ProductDataQual_1044_TypeChoicePair() {}
-
-ProductDataQual_1044_TypeChoicePair::ProductDataQual_1044_TypeChoicePair(
- whichOne ProductDataQual_1044_TypeTypeIn,
- ProductDataQual_1044_TypeVal ProductDataQual_1044_TypeValueIn)
+ProductDataQual_1045_Type::ProductDataQual_1045_Type()
 {
-  ProductDataQual_1044_TypeType = ProductDataQual_1044_TypeTypeIn;
-  ProductDataQual_1044_TypeValue = ProductDataQual_1044_TypeValueIn;
+  ProductDataQual_1045_TypePair = 0;
 }
 
-ProductDataQual_1044_TypeChoicePair::~ProductDataQual_1044_TypeChoicePair()
+ProductDataQual_1045_Type::ProductDataQual_1045_Type(
+ ProductDataQual_1045_TypeChoicePair * ProductDataQual_1045_TypePairIn)
+{
+  ProductDataQual_1045_TypePair = ProductDataQual_1045_TypePairIn;
+}
+
+ProductDataQual_1045_Type::~ProductDataQual_1045_Type()
 {
   #ifndef NODESTRUCT
-  if (ProductDataQual_1044_TypeType == AreaEnumE)
-    delete ProductDataQual_1044_TypeValue.AreaEnum;
-  else if (ProductDataQual_1044_TypeType == OtherAreaE)
-    delete ProductDataQual_1044_TypeValue.OtherArea;
+  delete ProductDataQual_1045_TypePair;
   #endif
 }
 
-void ProductDataQual_1044_TypeChoicePair::printSelf(FILE * outFile)
+void ProductDataQual_1045_Type::printSelf(FILE * outFile)
 {
-  if (ProductDataQual_1044_TypeType == AreaEnumE)
+  ProductDataQual_1045_TypePair->printSelf(outFile);
+}
+
+ProductDataQual_1045_TypeChoicePair * ProductDataQual_1045_Type::getProductDataQual_1045_TypePair()
+{return ProductDataQual_1045_TypePair;}
+
+void ProductDataQual_1045_Type::setProductDataQual_1045_TypePair(ProductDataQual_1045_TypeChoicePair * ProductDataQual_1045_TypePairIn)
+{ProductDataQual_1045_TypePair = ProductDataQual_1045_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class ProductDataQual_1045_TypeChoicePair
+
+*/
+
+ProductDataQual_1045_TypeChoicePair::ProductDataQual_1045_TypeChoicePair() {}
+
+ProductDataQual_1045_TypeChoicePair::ProductDataQual_1045_TypeChoicePair(
+ whichOne ProductDataQual_1045_TypeTypeIn,
+ ProductDataQual_1045_TypeVal ProductDataQual_1045_TypeValueIn)
+{
+  ProductDataQual_1045_TypeType = ProductDataQual_1045_TypeTypeIn;
+  ProductDataQual_1045_TypeValue = ProductDataQual_1045_TypeValueIn;
+}
+
+ProductDataQual_1045_TypeChoicePair::~ProductDataQual_1045_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (ProductDataQual_1045_TypeType == AreaEnumE)
+    delete ProductDataQual_1045_TypeValue.AreaEnum;
+  else if (ProductDataQual_1045_TypeType == OtherAreaE)
+    delete ProductDataQual_1045_TypeValue.OtherArea;
+  #endif
+}
+
+void ProductDataQual_1045_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (ProductDataQual_1045_TypeType == AreaEnumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AreaEnum");
-      ProductDataQual_1044_TypeValue.AreaEnum->printSelf(outFile);
+      ProductDataQual_1045_TypeValue.AreaEnum->printSelf(outFile);
       fprintf(outFile, "</AreaEnum>\n");
     }
-  else if (ProductDataQual_1044_TypeType == OtherAreaE)
+  else if (ProductDataQual_1045_TypeType == OtherAreaE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherArea");
-      ProductDataQual_1044_TypeValue.OtherArea->printSelf(outFile);
+      ProductDataQual_1045_TypeValue.OtherArea->printSelf(outFile);
       fprintf(outFile, "</OtherArea>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 

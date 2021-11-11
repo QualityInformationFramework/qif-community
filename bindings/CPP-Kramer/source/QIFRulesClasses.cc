@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #include <stdio.h>             // for printf, etc.
 #include <string.h>            // for strdup
@@ -10,8 +10,8 @@
 
 #define INDENT 2
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 /* class ApplicabilityBaseType
 
@@ -27,7 +27,7 @@ void ApplicabilityBaseType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CirclePointSamplingStrategyType
 
@@ -65,7 +65,7 @@ CirclePointSamplingStrategyTypeChoicePair * CirclePointSamplingStrategyType::get
 void CirclePointSamplingStrategyType::setCirclePointSamplingStrategyTypePair(CirclePointSamplingStrategyTypeChoicePair * CirclePointSamplingStrategyTypePairIn)
 {CirclePointSamplingStrategyTypePair = CirclePointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CirclePointSamplingStrategyTypeChoicePair
 
@@ -109,7 +109,7 @@ void CirclePointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcPointSamplingStrategyType
 
@@ -147,7 +147,7 @@ CircularArcPointSamplingStrategyTypeChoicePair * CircularArcPointSamplingStrateg
 void CircularArcPointSamplingStrategyType::setCircularArcPointSamplingStrategyTypePair(CircularArcPointSamplingStrategyTypeChoicePair * CircularArcPointSamplingStrategyTypePairIn)
 {CircularArcPointSamplingStrategyTypePair = CircularArcPointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularArcPointSamplingStrategyTypeChoicePair
 
@@ -191,7 +191,7 @@ void CircularArcPointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConePointSamplingStrategyType
 
@@ -229,7 +229,7 @@ ConePointSamplingStrategyTypeChoicePair * ConePointSamplingStrategyType::getCone
 void ConePointSamplingStrategyType::setConePointSamplingStrategyTypePair(ConePointSamplingStrategyTypeChoicePair * ConePointSamplingStrategyTypePairIn)
 {ConePointSamplingStrategyTypePair = ConePointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConePointSamplingStrategyTypeChoicePair
 
@@ -273,7 +273,7 @@ void ConePointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalSegmentPointSamplingStrategyType
 
@@ -311,7 +311,7 @@ ConicalSegmentPointSamplingStrategyTypeChoicePair * ConicalSegmentPointSamplingS
 void ConicalSegmentPointSamplingStrategyType::setConicalSegmentPointSamplingStrategyTypePair(ConicalSegmentPointSamplingStrategyTypeChoicePair * ConicalSegmentPointSamplingStrategyTypePairIn)
 {ConicalSegmentPointSamplingStrategyTypePair = ConicalSegmentPointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalSegmentPointSamplingStrategyTypeChoicePair
 
@@ -355,7 +355,7 @@ void ConicalSegmentPointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylinderPointSamplingStrategyType
 
@@ -393,7 +393,7 @@ CylinderPointSamplingStrategyTypeChoicePair * CylinderPointSamplingStrategyType:
 void CylinderPointSamplingStrategyType::setCylinderPointSamplingStrategyTypePair(CylinderPointSamplingStrategyTypeChoicePair * CylinderPointSamplingStrategyTypePairIn)
 {CylinderPointSamplingStrategyTypePair = CylinderPointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylinderPointSamplingStrategyTypeChoicePair
 
@@ -437,7 +437,7 @@ void CylinderPointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricalSegmentPointSamplingStrategyType
 
@@ -475,7 +475,7 @@ CylindricalSegmentPointSamplingStrategyTypeChoicePair * CylindricalSegmentPointS
 void CylindricalSegmentPointSamplingStrategyType::setCylindricalSegmentPointSamplingStrategyTypePair(CylindricalSegmentPointSamplingStrategyTypeChoicePair * CylindricalSegmentPointSamplingStrategyTypePairIn)
 {CylindricalSegmentPointSamplingStrategyTypePair = CylindricalSegmentPointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricalSegmentPointSamplingStrategyTypeChoicePair
 
@@ -519,7 +519,7 @@ void CylindricalSegmentPointSamplingStrategyTypeChoicePair::printSelf(FILE * out
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DMEDecisionBaseType
 
@@ -612,7 +612,7 @@ ApplicabilityBaseType * DMEDecisionBaseType::getApplicability()
 void DMEDecisionBaseType::setApplicability(ApplicabilityBaseType * ApplicabilityIn)
 {Applicability = ApplicabilityIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DMEDecisionBaseTypeLisd
 
@@ -639,7 +639,7 @@ DMEDecisionBaseTypeLisd::~DMEDecisionBaseTypeLisd()
 
 void DMEDecisionBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DMEDecisionClassType
 
@@ -758,7 +758,7 @@ DMEParameterConstraintSetType * DMEDecisionClassType::getParameterConstraints()
 void DMEDecisionClassType::setParameterConstraints(DMEParameterConstraintSetType * ParameterConstraintsIn)
 {ParameterConstraints = ParameterConstraintsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DMEDecisionIdType
 
@@ -859,7 +859,7 @@ QIFReferenceType * DMEDecisionIdType::getDMEId()
 void DMEDecisionIdType::setDMEId(QIFReferenceType * DMEIdIn)
 {DMEId = DMEIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DMEDecisionMakeModelType
 
@@ -991,7 +991,7 @@ XmlString * DMEDecisionMakeModelType::getSerialNumber()
 void DMEDecisionMakeModelType::setSerialNumber(XmlString * SerialNumberIn)
 {SerialNumber = SerialNumberIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DMEParameterConstraintSetType
 
@@ -1149,7 +1149,7 @@ DMEParameterConstraintTypeLisd * DMEParameterConstraintSetType::getDMEParameterC
 void DMEParameterConstraintSetType::setDMEParameterConstraint(DMEParameterConstraintTypeLisd * DMEParameterConstraintIn)
 {DMEParameterConstraint = DMEParameterConstraintIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DMEParameterConstraintType
 
@@ -1506,7 +1506,7 @@ ArithmeticExpressionBaseType * DMEParameterConstraintType::getArithmeticExpressi
 void DMEParameterConstraintType::setArithmeticExpression(ArithmeticExpressionBaseType * ArithmeticExpressionIn)
 {ArithmeticExpression = ArithmeticExpressionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DMEParameterConstraintTypeLisd
 
@@ -1533,7 +1533,7 @@ DMEParameterConstraintTypeLisd::~DMEParameterConstraintTypeLisd()
 
 void DMEParameterConstraintTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DMESelectionRulesType
 
@@ -1742,7 +1742,7 @@ IfThenDMERuleTypeLisd * DMESelectionRulesType::getDMEDecisionRule()
 void DMESelectionRulesType::setDMEDecisionRule(IfThenDMERuleTypeLisd * DMEDecisionRuleIn)
 {DMEDecisionRule = DMEDecisionRuleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DMEThenType
 
@@ -1957,7 +1957,7 @@ DMEDecisionBaseTypeLisd * DMEThenType::getDMEDecision()
 void DMEThenType::setDMEDecision(DMEDecisionBaseTypeLisd * DMEDecisionIn)
 {DMEDecision = DMEDecisionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipsePointSamplingStrategyType
 
@@ -1995,7 +1995,7 @@ EllipsePointSamplingStrategyTypeChoicePair * EllipsePointSamplingStrategyType::g
 void EllipsePointSamplingStrategyType::setEllipsePointSamplingStrategyTypePair(EllipsePointSamplingStrategyTypeChoicePair * EllipsePointSamplingStrategyTypePairIn)
 {EllipsePointSamplingStrategyTypePair = EllipsePointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipsePointSamplingStrategyTypeChoicePair
 
@@ -2039,7 +2039,7 @@ void EllipsePointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcPointSamplingStrategyType
 
@@ -2077,7 +2077,7 @@ EllipticalArcPointSamplingStrategyTypeChoicePair * EllipticalArcPointSamplingStr
 void EllipticalArcPointSamplingStrategyType::setEllipticalArcPointSamplingStrategyTypePair(EllipticalArcPointSamplingStrategyTypeChoicePair * EllipticalArcPointSamplingStrategyTypePairIn)
 {EllipticalArcPointSamplingStrategyTypePair = EllipticalArcPointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticalArcPointSamplingStrategyTypeChoicePair
 
@@ -2121,7 +2121,7 @@ void EllipticalArcPointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCirclePointSamplingStrategyType
 
@@ -2159,7 +2159,7 @@ ElongatedCirclePointSamplingStrategyTypeChoicePair * ElongatedCirclePointSamplin
 void ElongatedCirclePointSamplingStrategyType::setElongatedCirclePointSamplingStrategyTypePair(ElongatedCirclePointSamplingStrategyTypeChoicePair * ElongatedCirclePointSamplingStrategyTypePairIn)
 {ElongatedCirclePointSamplingStrategyTypePair = ElongatedCirclePointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCirclePointSamplingStrategyTypeChoicePair
 
@@ -2203,7 +2203,7 @@ void ElongatedCirclePointSamplingStrategyTypeChoicePair::printSelf(FILE * outFil
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCylinderPointSamplingStrategyType
 
@@ -2241,7 +2241,7 @@ ElongatedCylinderPointSamplingStrategyTypeChoicePair * ElongatedCylinderPointSam
 void ElongatedCylinderPointSamplingStrategyType::setElongatedCylinderPointSamplingStrategyTypePair(ElongatedCylinderPointSamplingStrategyTypeChoicePair * ElongatedCylinderPointSamplingStrategyTypePairIn)
 {ElongatedCylinderPointSamplingStrategyTypePair = ElongatedCylinderPointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElongatedCylinderPointSamplingStrategyTypeChoicePair
 
@@ -2285,7 +2285,7 @@ void ElongatedCylinderPointSamplingStrategyTypeChoicePair::printSelf(FILE * outF
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ElseRuleType
 
@@ -2421,7 +2421,7 @@ ThenPointsType * ElseRuleType::getThenPoints()
 void ElseRuleType::setThenPoints(ThenPointsType * ThenPointsIn)
 {ThenPoints = ThenPointsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtrudedCrossSectionPointSamplingStrategyType
 
@@ -2459,7 +2459,7 @@ ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair * ExtrudedCrossSectionPo
 void ExtrudedCrossSectionPointSamplingStrategyType::setExtrudedCrossSectionPointSamplingStrategyTypePair(ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair * ExtrudedCrossSectionPointSamplingStrategyTypePairIn)
 {ExtrudedCrossSectionPointSamplingStrategyTypePair = ExtrudedCrossSectionPointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair
 
@@ -2503,7 +2503,7 @@ void ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair::printSelf(FILE * o
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FeatureRulesType
 
@@ -2566,7 +2566,7 @@ MaxFeatureRulesType * FeatureRulesType::getMaxFeatureRules()
 void FeatureRulesType::setMaxFeatureRules(MaxFeatureRulesType * MaxFeatureRulesIn)
 {MaxFeatureRules = MaxFeatureRulesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenCircleRuleType
 
@@ -3016,7 +3016,7 @@ SubstituteFeatureAlgorithmType * IfThenCircleRuleType::getThenFittingAlgorithm()
 void IfThenCircleRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenCircularArcRuleType
 
@@ -3466,7 +3466,7 @@ SubstituteFeatureAlgorithmType * IfThenCircularArcRuleType::getThenFittingAlgori
 void IfThenCircularArcRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenConeRuleType
 
@@ -3916,7 +3916,7 @@ SubstituteFeatureAlgorithmType * IfThenConeRuleType::getThenFittingAlgorithm()
 void IfThenConeRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenConicalSegmentRuleType
 
@@ -4366,7 +4366,7 @@ SubstituteFeatureAlgorithmType * IfThenConicalSegmentRuleType::getThenFittingAlg
 void IfThenConicalSegmentRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenCurveRuleType
 
@@ -4776,7 +4776,7 @@ bool IfThenCurveRuleType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenCylinderRuleType
 
@@ -5226,7 +5226,7 @@ SubstituteFeatureAlgorithmType * IfThenCylinderRuleType::getThenFittingAlgorithm
 void IfThenCylinderRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenCylindricalSegmentRuleType
 
@@ -5676,7 +5676,7 @@ SubstituteFeatureAlgorithmType * IfThenCylindricalSegmentRuleType::getThenFittin
 void IfThenCylindricalSegmentRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenDMERuleType
 
@@ -6099,7 +6099,7 @@ DMEThenType * IfThenDMERuleType::getDMEThen()
 void IfThenDMERuleType::setDMEThen(DMEThenType * DMEThenIn)
 {DMEThen = DMEThenIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenDMERuleTypeLisd
 
@@ -6126,7 +6126,7 @@ IfThenDMERuleTypeLisd::~IfThenDMERuleTypeLisd()
 
 void IfThenDMERuleTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenEllipseRuleType
 
@@ -6576,7 +6576,7 @@ SubstituteFeatureAlgorithmType * IfThenEllipseRuleType::getThenFittingAlgorithm(
 void IfThenEllipseRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenEllipticalArcRuleType
 
@@ -7026,7 +7026,7 @@ SubstituteFeatureAlgorithmType * IfThenEllipticalArcRuleType::getThenFittingAlgo
 void IfThenEllipticalArcRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenElongatedCircleRuleType
 
@@ -7476,7 +7476,7 @@ SubstituteFeatureAlgorithmType * IfThenElongatedCircleRuleType::getThenFittingAl
 void IfThenElongatedCircleRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenElongatedCylinderRuleType
 
@@ -7926,7 +7926,7 @@ SubstituteFeatureAlgorithmType * IfThenElongatedCylinderRuleType::getThenFitting
 void IfThenElongatedCylinderRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenElseFeatureRulesType
 
@@ -8561,7 +8561,7 @@ ElseRuleType * IfThenElseFeatureRulesType::getElse()
 void IfThenElseFeatureRulesType::setElse(ElseRuleType * ElseIn)
 {Else = ElseIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenExtrudedCrossSectionRuleType
 
@@ -9011,7 +9011,7 @@ SubstituteFeatureAlgorithmType * IfThenExtrudedCrossSectionRuleType::getThenFitt
 void IfThenExtrudedCrossSectionRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenFeatureRuleType
 
@@ -9437,7 +9437,7 @@ ThenPointsType * IfThenFeatureRuleType::getThenPoints()
 void IfThenFeatureRuleType::setThenPoints(ThenPointsType * ThenPointsIn)
 {ThenPoints = ThenPointsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenFeatureRuleTypeLisd
 
@@ -9464,7 +9464,7 @@ IfThenFeatureRuleTypeLisd::~IfThenFeatureRuleTypeLisd()
 
 void IfThenFeatureRuleTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenLineRuleType
 
@@ -9914,7 +9914,7 @@ SubstituteFeatureAlgorithmType * IfThenLineRuleType::getThenFittingAlgorithm()
 void IfThenLineRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenOppositeAngledLinesRuleType
 
@@ -10364,7 +10364,7 @@ SubstituteFeatureAlgorithmType * IfThenOppositeAngledLinesRuleType::getThenFitti
 void IfThenOppositeAngledLinesRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenOppositeAngledPlanesRuleType
 
@@ -10814,7 +10814,7 @@ SubstituteFeatureAlgorithmType * IfThenOppositeAngledPlanesRuleType::getThenFitt
 void IfThenOppositeAngledPlanesRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenOppositeParallelLinesRuleType
 
@@ -11264,7 +11264,7 @@ SubstituteFeatureAlgorithmType * IfThenOppositeParallelLinesRuleType::getThenFit
 void IfThenOppositeParallelLinesRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenOppositeParallelPlanesRuleType
 
@@ -11714,7 +11714,7 @@ SubstituteFeatureAlgorithmType * IfThenOppositeParallelPlanesRuleType::getThenFi
 void IfThenOppositeParallelPlanesRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenPlaneRuleType
 
@@ -12164,7 +12164,7 @@ SubstituteFeatureAlgorithmType * IfThenPlaneRuleType::getThenFittingAlgorithm()
 void IfThenPlaneRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenPointDefinedCurveRuleType
 
@@ -12614,7 +12614,7 @@ SubstituteFeatureAlgorithmType * IfThenPointDefinedCurveRuleType::getThenFitting
 void IfThenPointDefinedCurveRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenPointDefinedSurfaceRuleType
 
@@ -13064,7 +13064,7 @@ SubstituteFeatureAlgorithmType * IfThenPointDefinedSurfaceRuleType::getThenFitti
 void IfThenPointDefinedSurfaceRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenPointRuleType
 
@@ -13494,7 +13494,7 @@ PointPointSamplingStrategyType * IfThenPointRuleType::getThenPointStrategy()
 void IfThenPointRuleType::setThenPointStrategy(PointPointSamplingStrategyType * ThenPointStrategyIn)
 {ThenPointStrategy = ThenPointStrategyIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenSphereRuleType
 
@@ -13944,7 +13944,7 @@ SubstituteFeatureAlgorithmType * IfThenSphereRuleType::getThenFittingAlgorithm()
 void IfThenSphereRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenSphericalSegmentRuleType
 
@@ -14394,7 +14394,7 @@ SubstituteFeatureAlgorithmType * IfThenSphericalSegmentRuleType::getThenFittingA
 void IfThenSphericalSegmentRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenSurfaceOfRevolutionRuleType
 
@@ -14844,7 +14844,7 @@ SubstituteFeatureAlgorithmType * IfThenSurfaceOfRevolutionRuleType::getThenFitti
 void IfThenSurfaceOfRevolutionRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenSurfaceRuleType
 
@@ -15254,7 +15254,7 @@ bool IfThenSurfaceRuleType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenToroidalSegmentRuleType
 
@@ -15704,7 +15704,7 @@ SubstituteFeatureAlgorithmType * IfThenToroidalSegmentRuleType::getThenFittingAl
 void IfThenToroidalSegmentRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class IfThenTorusRuleType
 
@@ -16154,7 +16154,7 @@ SubstituteFeatureAlgorithmType * IfThenTorusRuleType::getThenFittingAlgorithm()
 void IfThenTorusRuleType::setThenFittingAlgorithm(SubstituteFeatureAlgorithmType * ThenFittingAlgorithmIn)
 {ThenFittingAlgorithm = ThenFittingAlgorithmIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinePointSamplingStrategyType
 
@@ -16192,7 +16192,7 @@ LinePointSamplingStrategyTypeChoicePair * LinePointSamplingStrategyType::getLine
 void LinePointSamplingStrategyType::setLinePointSamplingStrategyTypePair(LinePointSamplingStrategyTypeChoicePair * LinePointSamplingStrategyTypePairIn)
 {LinePointSamplingStrategyTypePair = LinePointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinePointSamplingStrategyTypeChoicePair
 
@@ -16236,7 +16236,7 @@ void LinePointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class MaxFeatureRulesType
 
@@ -16871,7 +16871,7 @@ ElseRuleType * MaxFeatureRulesType::getElse()
 void MaxFeatureRulesType::setElse(ElseRuleType * ElseIn)
 {Else = ElseIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesPointSamplingStrategyType
 
@@ -16909,7 +16909,7 @@ OppositeAngledLinesPointSamplingStrategyTypeChoicePair * OppositeAngledLinesPoin
 void OppositeAngledLinesPointSamplingStrategyType::setOppositeAngledLinesPointSamplingStrategyTypePair(OppositeAngledLinesPointSamplingStrategyTypeChoicePair * OppositeAngledLinesPointSamplingStrategyTypePairIn)
 {OppositeAngledLinesPointSamplingStrategyTypePair = OppositeAngledLinesPointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledLinesPointSamplingStrategyTypeChoicePair
 
@@ -16953,7 +16953,7 @@ void OppositeAngledLinesPointSamplingStrategyTypeChoicePair::printSelf(FILE * ou
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledPlanesPointSamplingStrategyType
 
@@ -16991,7 +16991,7 @@ OppositeAngledPlanesPointSamplingStrategyTypeChoicePair * OppositeAngledPlanesPo
 void OppositeAngledPlanesPointSamplingStrategyType::setOppositeAngledPlanesPointSamplingStrategyTypePair(OppositeAngledPlanesPointSamplingStrategyTypeChoicePair * OppositeAngledPlanesPointSamplingStrategyTypePairIn)
 {OppositeAngledPlanesPointSamplingStrategyTypePair = OppositeAngledPlanesPointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeAngledPlanesPointSamplingStrategyTypeChoicePair
 
@@ -17035,7 +17035,7 @@ void OppositeAngledPlanesPointSamplingStrategyTypeChoicePair::printSelf(FILE * o
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesPointSamplingStrategyType
 
@@ -17073,7 +17073,7 @@ OppositeParallelLinesPointSamplingStrategyTypeChoicePair * OppositeParallelLines
 void OppositeParallelLinesPointSamplingStrategyType::setOppositeParallelLinesPointSamplingStrategyTypePair(OppositeParallelLinesPointSamplingStrategyTypeChoicePair * OppositeParallelLinesPointSamplingStrategyTypePairIn)
 {OppositeParallelLinesPointSamplingStrategyTypePair = OppositeParallelLinesPointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelLinesPointSamplingStrategyTypeChoicePair
 
@@ -17117,7 +17117,7 @@ void OppositeParallelLinesPointSamplingStrategyTypeChoicePair::printSelf(FILE * 
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelPlanesPointSamplingStrategyType
 
@@ -17155,7 +17155,7 @@ OppositeParallelPlanesPointSamplingStrategyTypeChoicePair * OppositeParallelPlan
 void OppositeParallelPlanesPointSamplingStrategyType::setOppositeParallelPlanesPointSamplingStrategyTypePair(OppositeParallelPlanesPointSamplingStrategyTypeChoicePair * OppositeParallelPlanesPointSamplingStrategyTypePairIn)
 {OppositeParallelPlanesPointSamplingStrategyTypePair = OppositeParallelPlanesPointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OppositeParallelPlanesPointSamplingStrategyTypeChoicePair
 
@@ -17199,7 +17199,7 @@ void OppositeParallelPlanesPointSamplingStrategyTypeChoicePair::printSelf(FILE *
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlanePointSamplingStrategyType
 
@@ -17237,7 +17237,7 @@ PlanePointSamplingStrategyTypeChoicePair * PlanePointSamplingStrategyType::getPl
 void PlanePointSamplingStrategyType::setPlanePointSamplingStrategyTypePair(PlanePointSamplingStrategyTypeChoicePair * PlanePointSamplingStrategyTypePairIn)
 {PlanePointSamplingStrategyTypePair = PlanePointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlanePointSamplingStrategyTypeChoicePair
 
@@ -17281,7 +17281,7 @@ void PlanePointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedCurvePointSamplingStrategyType
 
@@ -17319,7 +17319,7 @@ PointDefinedCurvePointSamplingStrategyTypeChoicePair * PointDefinedCurvePointSam
 void PointDefinedCurvePointSamplingStrategyType::setPointDefinedCurvePointSamplingStrategyTypePair(PointDefinedCurvePointSamplingStrategyTypeChoicePair * PointDefinedCurvePointSamplingStrategyTypePairIn)
 {PointDefinedCurvePointSamplingStrategyTypePair = PointDefinedCurvePointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedCurvePointSamplingStrategyTypeChoicePair
 
@@ -17363,7 +17363,7 @@ void PointDefinedCurvePointSamplingStrategyTypeChoicePair::printSelf(FILE * outF
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedSurfacePointSamplingStrategyType
 
@@ -17401,7 +17401,7 @@ PointDefinedSurfacePointSamplingStrategyTypeChoicePair * PointDefinedSurfacePoin
 void PointDefinedSurfacePointSamplingStrategyType::setPointDefinedSurfacePointSamplingStrategyTypePair(PointDefinedSurfacePointSamplingStrategyTypeChoicePair * PointDefinedSurfacePointSamplingStrategyTypePairIn)
 {PointDefinedSurfacePointSamplingStrategyTypePair = PointDefinedSurfacePointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDefinedSurfacePointSamplingStrategyTypeChoicePair
 
@@ -17445,7 +17445,7 @@ void PointDefinedSurfacePointSamplingStrategyTypeChoicePair::printSelf(FILE * ou
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointPointSamplingStrategyType
 
@@ -17483,7 +17483,7 @@ PointPointSamplingStrategyTypeChoicePair * PointPointSamplingStrategyType::getPo
 void PointPointSamplingStrategyType::setPointPointSamplingStrategyTypePair(PointPointSamplingStrategyTypeChoicePair * PointPointSamplingStrategyTypePairIn)
 {PointPointSamplingStrategyTypePair = PointPointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointPointSamplingStrategyTypeChoicePair
 
@@ -17527,7 +17527,7 @@ void PointPointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointRuleBaseType
 
@@ -17646,7 +17646,7 @@ bool PointRuleBaseType::badAttributes(
   return returnValue;
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QIFMayType
 
@@ -17755,7 +17755,7 @@ ZeroToOneType * QIFMayType::getdesirability()
 void QIFMayType::setdesirability(ZeroToOneType * desirabilityIn)
 {desirability = desirabilityIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QIFMustNotType
 
@@ -17771,7 +17771,7 @@ void QIFMustNotType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QIFMustType
 
@@ -17787,7 +17787,7 @@ void QIFMustType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QIFRuleBaseType
 
@@ -17920,7 +17920,7 @@ QPIdType * QIFRuleBaseType::getUUID()
 void QIFRuleBaseType::setUUID(QPIdType * UUIDIn)
 {UUID = UUIDIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QIFRulesType
 
@@ -18019,7 +18019,7 @@ DMESelectionRulesType * QIFRulesType::getDMESelectionRules()
 void QIFRulesType::setDMESelectionRules(DMESelectionRulesType * DMESelectionRulesIn)
 {DMESelectionRules = DMESelectionRulesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RulesUnitsType
 
@@ -18323,7 +18323,7 @@ TimeUnitType * RulesUnitsType::getTimeUnit()
 void RulesUnitsType::setTimeUnit(TimeUnitType * TimeUnitIn)
 {TimeUnit = TimeUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SpherePointSamplingStrategyType
 
@@ -18361,7 +18361,7 @@ SpherePointSamplingStrategyTypeChoicePair * SpherePointSamplingStrategyType::get
 void SpherePointSamplingStrategyType::setSpherePointSamplingStrategyTypePair(SpherePointSamplingStrategyTypeChoicePair * SpherePointSamplingStrategyTypePairIn)
 {SpherePointSamplingStrategyTypePair = SpherePointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SpherePointSamplingStrategyTypeChoicePair
 
@@ -18405,7 +18405,7 @@ void SpherePointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalSegmentPointSamplingStrategyType
 
@@ -18443,7 +18443,7 @@ SphericalSegmentPointSamplingStrategyTypeChoicePair * SphericalSegmentPointSampl
 void SphericalSegmentPointSamplingStrategyType::setSphericalSegmentPointSamplingStrategyTypePair(SphericalSegmentPointSamplingStrategyTypeChoicePair * SphericalSegmentPointSamplingStrategyTypePairIn)
 {SphericalSegmentPointSamplingStrategyTypePair = SphericalSegmentPointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalSegmentPointSamplingStrategyTypeChoicePair
 
@@ -18487,7 +18487,7 @@ void SphericalSegmentPointSamplingStrategyTypeChoicePair::printSelf(FILE * outFi
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceOfRevolutionPointSamplingStrategyType
 
@@ -18525,7 +18525,7 @@ SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair * SurfaceOfRevolutionPoin
 void SurfaceOfRevolutionPointSamplingStrategyType::setSurfaceOfRevolutionPointSamplingStrategyTypePair(SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair * SurfaceOfRevolutionPointSamplingStrategyTypePairIn)
 {SurfaceOfRevolutionPointSamplingStrategyTypePair = SurfaceOfRevolutionPointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair
 
@@ -18569,7 +18569,7 @@ void SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair::printSelf(FILE * ou
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThenPointsType
 
@@ -18577,19 +18577,19 @@ void SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair::printSelf(FILE * ou
 
 ThenPointsType::ThenPointsType()
 {
-  ThenPointsType_1212 = 0;
+  ThenPointsType_1213 = 0;
 }
 
 ThenPointsType::ThenPointsType(
- ThenPointsType_1212_Type * ThenPointsType_1212In)
+ ThenPointsType_1213_Type * ThenPointsType_1213In)
 {
-  ThenPointsType_1212 = ThenPointsType_1212In;
+  ThenPointsType_1213 = ThenPointsType_1213In;
 }
 
 ThenPointsType::~ThenPointsType()
 {
   #ifndef NODESTRUCT
-  delete ThenPointsType_1212;
+  delete ThenPointsType_1213;
   #endif
 }
 
@@ -18597,20 +18597,20 @@ void ThenPointsType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (ThenPointsType_1212)
+  if (ThenPointsType_1213)
     {
-      ThenPointsType_1212->printSelf(outFile);
+      ThenPointsType_1213->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
 
-ThenPointsType_1212_Type * ThenPointsType::getThenPointsType_1212()
-{return ThenPointsType_1212;}
+ThenPointsType_1213_Type * ThenPointsType::getThenPointsType_1213()
+{return ThenPointsType_1213;}
 
-void ThenPointsType::setThenPointsType_1212(ThenPointsType_1212_Type * ThenPointsType_1212In)
-{ThenPointsType_1212 = ThenPointsType_1212In;}
+void ThenPointsType::setThenPointsType_1213(ThenPointsType_1213_Type * ThenPointsType_1213In)
+{ThenPointsType_1213 = ThenPointsType_1213In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidalSegmentPointSamplingStrategyType
 
@@ -18648,7 +18648,7 @@ ToroidalSegmentPointSamplingStrategyTypeChoicePair * ToroidalSegmentPointSamplin
 void ToroidalSegmentPointSamplingStrategyType::setToroidalSegmentPointSamplingStrategyTypePair(ToroidalSegmentPointSamplingStrategyTypeChoicePair * ToroidalSegmentPointSamplingStrategyTypePairIn)
 {ToroidalSegmentPointSamplingStrategyTypePair = ToroidalSegmentPointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidalSegmentPointSamplingStrategyTypeChoicePair
 
@@ -18692,7 +18692,7 @@ void ToroidalSegmentPointSamplingStrategyTypeChoicePair::printSelf(FILE * outFil
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TorusPointSamplingStrategyType
 
@@ -18730,7 +18730,7 @@ TorusPointSamplingStrategyTypeChoicePair * TorusPointSamplingStrategyType::getTo
 void TorusPointSamplingStrategyType::setTorusPointSamplingStrategyTypePair(TorusPointSamplingStrategyTypeChoicePair * TorusPointSamplingStrategyTypePairIn)
 {TorusPointSamplingStrategyTypePair = TorusPointSamplingStrategyTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TorusPointSamplingStrategyTypeChoicePair
 
@@ -18774,7 +18774,7 @@ void TorusPointSamplingStrategyTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ZeroToOneType
 
@@ -18834,105 +18834,105 @@ void ZeroToOneType::oPrintSelf(FILE * outFile)
   XmlDouble::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class ThenPointsType_1212_Type
+/* class ThenPointsType_1213_Type
 
 */
 
-ThenPointsType_1212_Type::ThenPointsType_1212_Type()
+ThenPointsType_1213_Type::ThenPointsType_1213_Type()
 {
-  ThenPointsType_1212_TypePair = 0;
+  ThenPointsType_1213_TypePair = 0;
 }
 
-ThenPointsType_1212_Type::ThenPointsType_1212_Type(
- ThenPointsType_1212_TypeChoicePair * ThenPointsType_1212_TypePairIn)
+ThenPointsType_1213_Type::ThenPointsType_1213_Type(
+ ThenPointsType_1213_TypeChoicePair * ThenPointsType_1213_TypePairIn)
 {
-  ThenPointsType_1212_TypePair = ThenPointsType_1212_TypePairIn;
+  ThenPointsType_1213_TypePair = ThenPointsType_1213_TypePairIn;
 }
 
-ThenPointsType_1212_Type::~ThenPointsType_1212_Type()
+ThenPointsType_1213_Type::~ThenPointsType_1213_Type()
 {
   #ifndef NODESTRUCT
-  delete ThenPointsType_1212_TypePair;
+  delete ThenPointsType_1213_TypePair;
   #endif
 }
 
-void ThenPointsType_1212_Type::printSelf(FILE * outFile)
+void ThenPointsType_1213_Type::printSelf(FILE * outFile)
 {
-  if (ThenPointsType_1212_TypePair)
+  if (ThenPointsType_1213_TypePair)
     {
-      ThenPointsType_1212_TypePair->printSelf(outFile);
+      ThenPointsType_1213_TypePair->printSelf(outFile);
     }
 }
 
-ThenPointsType_1212_TypeChoicePair * ThenPointsType_1212_Type::getThenPointsType_1212_TypePair()
-{return ThenPointsType_1212_TypePair;}
+ThenPointsType_1213_TypeChoicePair * ThenPointsType_1213_Type::getThenPointsType_1213_TypePair()
+{return ThenPointsType_1213_TypePair;}
 
-void ThenPointsType_1212_Type::setThenPointsType_1212_TypePair(ThenPointsType_1212_TypeChoicePair * ThenPointsType_1212_TypePairIn)
-{ThenPointsType_1212_TypePair = ThenPointsType_1212_TypePairIn;}
+void ThenPointsType_1213_Type::setThenPointsType_1213_TypePair(ThenPointsType_1213_TypeChoicePair * ThenPointsType_1213_TypePairIn)
+{ThenPointsType_1213_TypePair = ThenPointsType_1213_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class ThenPointsType_1212_TypeChoicePair
+/* class ThenPointsType_1213_TypeChoicePair
 
 */
 
-ThenPointsType_1212_TypeChoicePair::ThenPointsType_1212_TypeChoicePair() {}
+ThenPointsType_1213_TypeChoicePair::ThenPointsType_1213_TypeChoicePair() {}
 
-ThenPointsType_1212_TypeChoicePair::ThenPointsType_1212_TypeChoicePair(
- whichOne ThenPointsType_1212_TypeTypeIn,
- ThenPointsType_1212_TypeVal ThenPointsType_1212_TypeValueIn)
+ThenPointsType_1213_TypeChoicePair::ThenPointsType_1213_TypeChoicePair(
+ whichOne ThenPointsType_1213_TypeTypeIn,
+ ThenPointsType_1213_TypeVal ThenPointsType_1213_TypeValueIn)
 {
-  ThenPointsType_1212_TypeType = ThenPointsType_1212_TypeTypeIn;
-  ThenPointsType_1212_TypeValue = ThenPointsType_1212_TypeValueIn;
+  ThenPointsType_1213_TypeType = ThenPointsType_1213_TypeTypeIn;
+  ThenPointsType_1213_TypeValue = ThenPointsType_1213_TypeValueIn;
 }
 
-ThenPointsType_1212_TypeChoicePair::~ThenPointsType_1212_TypeChoicePair()
+ThenPointsType_1213_TypeChoicePair::~ThenPointsType_1213_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (ThenPointsType_1212_TypeType == NumberOfPointsE)
-    delete ThenPointsType_1212_TypeValue.NumberOfPoints;
-  else if (ThenPointsType_1212_TypeType == MinPointsE)
-    delete ThenPointsType_1212_TypeValue.MinPoints;
-  else if (ThenPointsType_1212_TypeType == PointDensityE)
-    delete ThenPointsType_1212_TypeValue.PointDensity;
-  else if (ThenPointsType_1212_TypeType == MinPointDensityE)
-    delete ThenPointsType_1212_TypeValue.MinPointDensity;
+  if (ThenPointsType_1213_TypeType == NumberOfPointsE)
+    delete ThenPointsType_1213_TypeValue.NumberOfPoints;
+  else if (ThenPointsType_1213_TypeType == MinPointsE)
+    delete ThenPointsType_1213_TypeValue.MinPoints;
+  else if (ThenPointsType_1213_TypeType == PointDensityE)
+    delete ThenPointsType_1213_TypeValue.PointDensity;
+  else if (ThenPointsType_1213_TypeType == MinPointDensityE)
+    delete ThenPointsType_1213_TypeValue.MinPointDensity;
   #endif
 }
 
-void ThenPointsType_1212_TypeChoicePair::printSelf(FILE * outFile)
+void ThenPointsType_1213_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (ThenPointsType_1212_TypeType == NumberOfPointsE)
+  if (ThenPointsType_1213_TypeType == NumberOfPointsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NumberOfPoints");
-      ThenPointsType_1212_TypeValue.NumberOfPoints->printSelf(outFile);
+      ThenPointsType_1213_TypeValue.NumberOfPoints->printSelf(outFile);
       fprintf(outFile, "</NumberOfPoints>\n");
     }
-  else if (ThenPointsType_1212_TypeType == MinPointsE)
+  else if (ThenPointsType_1213_TypeType == MinPointsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinPoints");
-      ThenPointsType_1212_TypeValue.MinPoints->printSelf(outFile);
+      ThenPointsType_1213_TypeValue.MinPoints->printSelf(outFile);
       fprintf(outFile, "</MinPoints>\n");
     }
-  else if (ThenPointsType_1212_TypeType == PointDensityE)
+  else if (ThenPointsType_1213_TypeType == PointDensityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointDensity");
-      ThenPointsType_1212_TypeValue.PointDensity->printSelf(outFile);
+      ThenPointsType_1213_TypeValue.PointDensity->printSelf(outFile);
       fprintf(outFile, "</PointDensity>\n");
     }
-  else if (ThenPointsType_1212_TypeType == MinPointDensityE)
+  else if (ThenPointsType_1213_TypeType == MinPointDensityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinPointDensity");
-      ThenPointsType_1212_TypeValue.MinPointDensity->printSelf(outFile);
+      ThenPointsType_1213_TypeValue.MinPointDensity->printSelf(outFile);
       fprintf(outFile, "</MinPointDensity>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 

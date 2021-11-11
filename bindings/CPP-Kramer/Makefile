@@ -2,6 +2,10 @@ LINCOMPILE = g++ -c -v -g -Wall
 LINLINK = g++ -v
 INCLUD = -Isource
 
+all: bin/QIFDocumentParser     \
+     bin/QIF_CPlusPlusDlg      \
+     bin/QIF_CPlusPlusDlgNoDup \
+     bin/QIF_CPlusPlusDlgAuto
 
 libqif.a : ofiles/QIFDocumentClasses.o             \
            ofiles/QIFMeasurementResourcesClasses.o \

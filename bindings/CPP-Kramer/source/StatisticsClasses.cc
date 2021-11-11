@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #include <stdio.h>             // for printf, etc.
 #include <string.h>            // for strdup
@@ -10,8 +10,8 @@
 
 #define INDENT 2
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 /* class ActionToTakeEnumType
 
@@ -81,7 +81,7 @@ void ActionToTakeEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngleBetweenCharacteristicStatsEvalType
 
@@ -92,20 +92,20 @@ AngleBetweenCharacteristicStatsEvalType::AngleBetweenCharacteristicStatsEvalType
 
 AngleBetweenCharacteristicStatsEvalType::AngleBetweenCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- AngularCharacte_1126_Type * AngularCharacte_1126In) :
+ AngularCharacte_1127_Type * AngularCharacte_1127In) :
   AngularCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    AngularCharacte_1126In)
+    AngularCharacte_1127In)
 {
 }
 
@@ -123,13 +123,13 @@ void AngleBetweenCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -152,11 +152,11 @@ void AngleBetweenCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  AngularCharacte_1126->printSelf(outFile);
+  AngularCharacte_1127->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngleCharacteristicStatsEvalType
 
@@ -167,20 +167,20 @@ AngleCharacteristicStatsEvalType::AngleCharacteristicStatsEvalType() :
 
 AngleCharacteristicStatsEvalType::AngleCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- AngularCharacte_1126_Type * AngularCharacte_1126In) :
+ AngularCharacte_1127_Type * AngularCharacte_1127In) :
   AngularCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    AngularCharacte_1126In)
+    AngularCharacte_1127In)
 {
 }
 
@@ -198,13 +198,13 @@ void AngleCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -227,11 +227,11 @@ void AngleCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  AngularCharacte_1126->printSelf(outFile);
+  AngularCharacte_1127->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngleFromCharacteristicStatsEvalType
 
@@ -242,20 +242,20 @@ AngleFromCharacteristicStatsEvalType::AngleFromCharacteristicStatsEvalType() :
 
 AngleFromCharacteristicStatsEvalType::AngleFromCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- AngularCharacte_1126_Type * AngularCharacte_1126In) :
+ AngularCharacte_1127_Type * AngularCharacte_1127In) :
   AngularCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    AngularCharacte_1126In)
+    AngularCharacte_1127In)
 {
 }
 
@@ -273,13 +273,13 @@ void AngleFromCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -302,11 +302,11 @@ void AngleFromCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  AngularCharacte_1126->printSelf(outFile);
+  AngularCharacte_1127->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularCharacteristicStatsEvalType
 
@@ -315,32 +315,32 @@ void AngleFromCharacteristicStatsEvalType::printSelf(FILE * outFile)
 AngularCharacteristicStatsEvalType::AngularCharacteristicStatsEvalType() :
   CharacteristicStatsEvalBaseType()
 {
-  AngularCharacte_1126 = 0;
+  AngularCharacte_1127 = 0;
 }
 
 AngularCharacteristicStatsEvalType::AngularCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- AngularCharacte_1126_Type * AngularCharacte_1126In) :
+ AngularCharacte_1127_Type * AngularCharacte_1127In) :
   CharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn)
 {
-  AngularCharacte_1126 = AngularCharacte_1126In;
+  AngularCharacte_1127 = AngularCharacte_1127In;
 }
 
 AngularCharacteristicStatsEvalType::~AngularCharacteristicStatsEvalType()
 {
   #ifndef NODESTRUCT
-  delete AngularCharacte_1126;
+  delete AngularCharacte_1127;
   #endif
 }
 
@@ -356,13 +356,13 @@ void AngularCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -385,17 +385,17 @@ void AngularCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  AngularCharacte_1126->printSelf(outFile);
+  AngularCharacte_1127->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-AngularCharacte_1126_Type * AngularCharacteristicStatsEvalType::getAngularCharacte_1126()
-{return AngularCharacte_1126;}
+AngularCharacte_1127_Type * AngularCharacteristicStatsEvalType::getAngularCharacte_1127()
+{return AngularCharacte_1127;}
 
-void AngularCharacteristicStatsEvalType::setAngularCharacte_1126(AngularCharacte_1126_Type * AngularCharacte_1126In)
-{AngularCharacte_1126 = AngularCharacte_1126In;}
+void AngularCharacteristicStatsEvalType::setAngularCharacte_1127(AngularCharacte_1127_Type * AngularCharacte_1127In)
+{AngularCharacte_1127 = AngularCharacte_1127In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularCoordinateCharacteristicStatsEvalType
 
@@ -406,20 +406,20 @@ AngularCoordinateCharacteristicStatsEvalType::AngularCoordinateCharacteristicSta
 
 AngularCoordinateCharacteristicStatsEvalType::AngularCoordinateCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- AngularCharacte_1126_Type * AngularCharacte_1126In) :
+ AngularCharacte_1127_Type * AngularCharacte_1127In) :
   AngularCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    AngularCharacte_1126In)
+    AngularCharacte_1127In)
 {
 }
 
@@ -437,13 +437,13 @@ void AngularCoordinateCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -466,11 +466,11 @@ void AngularCoordinateCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  AngularCharacte_1126->printSelf(outFile);
+  AngularCharacte_1127->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AngularityCharacteristicStatsEvalType
 
@@ -481,8 +481,8 @@ AngularityCharacteristicStatsEvalType::AngularityCharacteristicStatsEvalType() :
 
 AngularityCharacteristicStatsEvalType::AngularityCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -495,8 +495,8 @@ AngularityCharacteristicStatsEvalType::AngularityCharacteristicStatsEvalType(
  StatsLinearType * ReferenceLengthStatsIn) :
   OrientationCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -524,13 +524,13 @@ void AngularityCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -611,7 +611,7 @@ void AngularityCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AssignableCauseEnumType
 
@@ -675,7 +675,7 @@ void AssignableCauseEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AssignableCauseType
 
@@ -685,30 +685,30 @@ AssignableCauseType::AssignableCauseType()
 {
   id = 0;
   Attributes = 0;
-  AssignableCause_1127 = 0;
+  AssignableCause_1128 = 0;
   CorrectiveActionIds = 0;
 }
 
 AssignableCauseType::AssignableCauseType(
  AttributesType * AttributesIn,
- AssignableCause_1127_Type * AssignableCause_1127In,
+ AssignableCause_1128_Type * AssignableCause_1128In,
  ArrayReferenceType * CorrectiveActionIdsIn)
 {
   id = 0;
   Attributes = AttributesIn;
-  AssignableCause_1127 = AssignableCause_1127In;
+  AssignableCause_1128 = AssignableCause_1128In;
   CorrectiveActionIds = CorrectiveActionIdsIn;
 }
 
 AssignableCauseType::AssignableCauseType(
  QIFIdType * idIn,
  AttributesType * AttributesIn,
- AssignableCause_1127_Type * AssignableCause_1127In,
+ AssignableCause_1128_Type * AssignableCause_1128In,
  ArrayReferenceType * CorrectiveActionIdsIn)
 {
   id = idIn;
   Attributes = AttributesIn;
-  AssignableCause_1127 = AssignableCause_1127In;
+  AssignableCause_1128 = AssignableCause_1128In;
   CorrectiveActionIds = CorrectiveActionIdsIn;
 }
 
@@ -717,7 +717,7 @@ AssignableCauseType::~AssignableCauseType()
   #ifndef NODESTRUCT
   delete id;
   delete Attributes;
-  delete AssignableCause_1127;
+  delete AssignableCause_1128;
   delete CorrectiveActionIds;
   #endif
 }
@@ -759,7 +759,7 @@ void AssignableCauseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  AssignableCause_1127->printSelf(outFile);
+  AssignableCause_1128->printSelf(outFile);
   if (CorrectiveActionIds)
     {
       doSpaces(0, outFile);
@@ -840,11 +840,11 @@ AttributesType * AssignableCauseType::getAttributes()
 void AssignableCauseType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-AssignableCause_1127_Type * AssignableCauseType::getAssignableCause_1127()
-{return AssignableCause_1127;}
+AssignableCause_1128_Type * AssignableCauseType::getAssignableCause_1128()
+{return AssignableCause_1128;}
 
-void AssignableCauseType::setAssignableCause_1127(AssignableCause_1127_Type * AssignableCause_1127In)
-{AssignableCause_1127 = AssignableCause_1127In;}
+void AssignableCauseType::setAssignableCause_1128(AssignableCause_1128_Type * AssignableCause_1128In)
+{AssignableCause_1128 = AssignableCause_1128In;}
 
 ArrayReferenceType * AssignableCauseType::getCorrectiveActionIds()
 {return CorrectiveActionIds;}
@@ -852,7 +852,7 @@ ArrayReferenceType * AssignableCauseType::getCorrectiveActionIds()
 void AssignableCauseType::setCorrectiveActionIds(ArrayReferenceType * CorrectiveActionIdsIn)
 {CorrectiveActionIds = CorrectiveActionIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AssignableCauseTypeLisd
 
@@ -879,7 +879,7 @@ AssignableCauseTypeLisd::~AssignableCauseTypeLisd()
 
 void AssignableCauseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AssignableCausesType
 
@@ -1037,7 +1037,7 @@ AssignableCauseTypeLisd * AssignableCausesType::getAssignableCause()
 void AssignableCausesType::setAssignableCause(AssignableCauseTypeLisd * AssignableCauseIn)
 {AssignableCause = AssignableCauseIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AverageFeatureType
 
@@ -1631,7 +1631,7 @@ StatsArrayIdType * AverageFeatureType::getMeasuredIds()
 void AverageFeatureType::setMeasuredIds(StatsArrayIdType * MeasuredIdsIn)
 {MeasuredIds = MeasuredIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AverageFeatureTypeLisd
 
@@ -1658,7 +1658,7 @@ AverageFeatureTypeLisd::~AverageFeatureTypeLisd()
 
 void AverageFeatureTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AverageFeaturesType
 
@@ -1816,7 +1816,7 @@ AverageFeatureTypeLisd * AverageFeaturesType::getAverageFeature()
 void AverageFeaturesType::setAverageFeature(AverageFeatureTypeLisd * AverageFeatureIn)
 {AverageFeature = AverageFeatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicStatsEvalBaseType
 
@@ -1825,8 +1825,8 @@ void AverageFeaturesType::setAverageFeature(AverageFeatureTypeLisd * AverageFeat
 CharacteristicStatsEvalBaseType::CharacteristicStatsEvalBaseType()
 {
   Attributes = 0;
-  CharacteristicS_1128 = 0;
   CharacteristicS_1129 = 0;
+  CharacteristicS_1130 = 0;
   Status = 0;
   StudyIssues = 0;
   DistributionTransformation = 0;
@@ -1834,15 +1834,15 @@ CharacteristicStatsEvalBaseType::CharacteristicStatsEvalBaseType()
 
 CharacteristicStatsEvalBaseType::CharacteristicStatsEvalBaseType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn)
 {
   Attributes = AttributesIn;
-  CharacteristicS_1128 = CharacteristicS_1128In;
   CharacteristicS_1129 = CharacteristicS_1129In;
+  CharacteristicS_1130 = CharacteristicS_1130In;
   Status = StatusIn;
   StudyIssues = StudyIssuesIn;
   DistributionTransformation = DistributionTransformationIn;
@@ -1852,8 +1852,8 @@ CharacteristicStatsEvalBaseType::~CharacteristicStatsEvalBaseType()
 {
   #ifndef NODESTRUCT
   delete Attributes;
-  delete CharacteristicS_1128;
   delete CharacteristicS_1129;
+  delete CharacteristicS_1130;
   delete Status;
   delete StudyIssues;
   delete DistributionTransformation;
@@ -1872,13 +1872,13 @@ void CharacteristicStatsEvalBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -1910,17 +1910,17 @@ AttributesType * CharacteristicStatsEvalBaseType::getAttributes()
 void CharacteristicStatsEvalBaseType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-CharacteristicS_1128_Type * CharacteristicStatsEvalBaseType::getCharacteristicS_1128()
-{return CharacteristicS_1128;}
-
-void CharacteristicStatsEvalBaseType::setCharacteristicS_1128(CharacteristicS_1128_Type * CharacteristicS_1128In)
-{CharacteristicS_1128 = CharacteristicS_1128In;}
-
 CharacteristicS_1129_Type * CharacteristicStatsEvalBaseType::getCharacteristicS_1129()
 {return CharacteristicS_1129;}
 
 void CharacteristicStatsEvalBaseType::setCharacteristicS_1129(CharacteristicS_1129_Type * CharacteristicS_1129In)
 {CharacteristicS_1129 = CharacteristicS_1129In;}
+
+CharacteristicS_1130_Type * CharacteristicStatsEvalBaseType::getCharacteristicS_1130()
+{return CharacteristicS_1130;}
+
+void CharacteristicStatsEvalBaseType::setCharacteristicS_1130(CharacteristicS_1130_Type * CharacteristicS_1130In)
+{CharacteristicS_1130 = CharacteristicS_1130In;}
 
 StatsEvalStatusType * CharacteristicStatsEvalBaseType::getStatus()
 {return Status;}
@@ -1940,7 +1940,7 @@ DistributionTransformationType * CharacteristicStatsEvalBaseType::getDistributio
 void CharacteristicStatsEvalBaseType::setDistributionTransformation(DistributionTransformationType * DistributionTransformationIn)
 {DistributionTransformation = DistributionTransformationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicStatsEvalBaseTypeLisd
 
@@ -1967,7 +1967,7 @@ CharacteristicStatsEvalBaseTypeLisd::~CharacteristicStatsEvalBaseTypeLisd()
 
 void CharacteristicStatsEvalBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicsStatsType
 
@@ -3382,7 +3382,7 @@ CharacteristicStatsEvalBaseTypeLisd * CharacteristicsStatsType::getCharacteristi
 void CharacteristicsStatsType::setCharacteristicStats(CharacteristicStatsEvalBaseTypeLisd * CharacteristicStatsIn)
 {CharacteristicStats = CharacteristicStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ChordCharacteristicStatsEvalType
 
@@ -3393,20 +3393,20 @@ ChordCharacteristicStatsEvalType::ChordCharacteristicStatsEvalType() :
 
 ChordCharacteristicStatsEvalType::ChordCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- LinearCharacter_1134_Type * LinearCharacter_1134In) :
+ LinearCharacter_1135_Type * LinearCharacter_1135In) :
   LinearCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    LinearCharacter_1134In)
+    LinearCharacter_1135In)
 {
 }
 
@@ -3424,13 +3424,13 @@ void ChordCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -3453,11 +3453,11 @@ void ChordCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  LinearCharacter_1134->printSelf(outFile);
+  LinearCharacter_1135->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularRunoutCharacteristicStatsEvalType
 
@@ -3468,8 +3468,8 @@ CircularRunoutCharacteristicStatsEvalType::CircularRunoutCharacteristicStatsEval
 
 CircularRunoutCharacteristicStatsEvalType::CircularRunoutCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -3480,8 +3480,8 @@ CircularRunoutCharacteristicStatsEvalType::CircularRunoutCharacteristicStatsEval
  StatsPassFailType * DatumsOkStatsIn) :
   RunoutCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -3507,13 +3507,13 @@ void CircularRunoutCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -3578,7 +3578,7 @@ void CircularRunoutCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CircularityCharacteristicStatsEvalType
 
@@ -3592,8 +3592,8 @@ CircularityCharacteristicStatsEvalType::CircularityCharacteristicStatsEvalType()
 
 CircularityCharacteristicStatsEvalType::CircularityCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -3604,8 +3604,8 @@ CircularityCharacteristicStatsEvalType::CircularityCharacteristicStatsEvalType(
  StatsLinearType * MaxCircularityStatsIn) :
   FormCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -3636,13 +3636,13 @@ void CircularityCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -3713,7 +3713,7 @@ StatsLinearType * CircularityCharacteristicStatsEvalType::getMaxCircularityStats
 void CircularityCharacteristicStatsEvalType::setMaxCircularityStats(StatsLinearType * MaxCircularityStatsIn)
 {MaxCircularityStats = MaxCircularityStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CoaxialityCharacteristicStatsEvalType
 
@@ -3727,8 +3727,8 @@ CoaxialityCharacteristicStatsEvalType::CoaxialityCharacteristicStatsEvalType() :
 
 CoaxialityCharacteristicStatsEvalType::CoaxialityCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -3739,8 +3739,8 @@ CoaxialityCharacteristicStatsEvalType::CoaxialityCharacteristicStatsEvalType(
  OneSidedCapabilityCalculationEnumType * CapabilityCalculationMethodIn) :
   LocationCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -3771,13 +3771,13 @@ void CoaxialityCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -3848,7 +3848,7 @@ OneSidedCapabilityCalculationEnumType * CoaxialityCharacteristicStatsEvalType::g
 void CoaxialityCharacteristicStatsEvalType::setCapabilityCalculationMethod(OneSidedCapabilityCalculationEnumType * CapabilityCalculationMethodIn)
 {CapabilityCalculationMethod = CapabilityCalculationMethodIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CompositeSegmentPositionStatsEvalType
 
@@ -3901,7 +3901,7 @@ void CompositeSegmentPositionStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CompositeSegmentProfileStatsEvalType
 
@@ -3954,7 +3954,7 @@ void CompositeSegmentProfileStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CompositeSegmentStatsEvalBaseType
 
@@ -4035,7 +4035,7 @@ StatsLinearType * CompositeSegmentStatsEvalBaseType::getMinValueStats()
 void CompositeSegmentStatsEvalBaseType::setMinValueStats(StatsLinearType * MinValueStatsIn)
 {MinValueStats = MinValueStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CompositeSegmentSymmetryStatsEvalType
 
@@ -4088,7 +4088,7 @@ void CompositeSegmentSymmetryStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CompositeSegmentsPositionStatsEvalType
 
@@ -4166,7 +4166,7 @@ CompositeSegmentPositionStatsEvalType * CompositeSegmentsPositionStatsEvalType::
 void CompositeSegmentsPositionStatsEvalType::setFourthCompositeSegmentPositionStats(CompositeSegmentPositionStatsEvalType * FourthCompositeSegmentPositionStatsIn)
 {FourthCompositeSegmentPositionStats = FourthCompositeSegmentPositionStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CompositeSegmentsProfileStatsEvalType
 
@@ -4244,7 +4244,7 @@ CompositeSegmentProfileStatsEvalType * CompositeSegmentsProfileStatsEvalType::ge
 void CompositeSegmentsProfileStatsEvalType::setFourthCompositeSegmentProfileStats(CompositeSegmentProfileStatsEvalType * FourthCompositeSegmentProfileStatsIn)
 {FourthCompositeSegmentProfileStats = FourthCompositeSegmentProfileStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CompositeSegmentsSymmetryStatsEvalType
 
@@ -4304,7 +4304,7 @@ CompositeSegmentSymmetryStatsEvalType * CompositeSegmentsSymmetryStatsEvalType::
 void CompositeSegmentsSymmetryStatsEvalType::setThirdCompositeSegmentSymmetryStats(CompositeSegmentSymmetryStatsEvalType * ThirdCompositeSegmentSymmetryStatsIn)
 {ThirdCompositeSegmentSymmetryStats = ThirdCompositeSegmentSymmetryStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConcentricityCharacteristicStatsEvalType
 
@@ -4318,8 +4318,8 @@ ConcentricityCharacteristicStatsEvalType::ConcentricityCharacteristicStatsEvalTy
 
 ConcentricityCharacteristicStatsEvalType::ConcentricityCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -4330,8 +4330,8 @@ ConcentricityCharacteristicStatsEvalType::ConcentricityCharacteristicStatsEvalTy
  OneSidedCapabilityCalculationEnumType * CapabilityCalculationMethodIn) :
   LocationCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -4362,13 +4362,13 @@ void ConcentricityCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -4439,7 +4439,7 @@ OneSidedCapabilityCalculationEnumType * ConcentricityCharacteristicStatsEvalType
 void ConcentricityCharacteristicStatsEvalType::setCapabilityCalculationMethod(OneSidedCapabilityCalculationEnumType * CapabilityCalculationMethodIn)
 {CapabilityCalculationMethod = CapabilityCalculationMethodIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicalTaperCharacteristicStatsEvalType
 
@@ -4450,20 +4450,20 @@ ConicalTaperCharacteristicStatsEvalType::ConicalTaperCharacteristicStatsEvalType
 
 ConicalTaperCharacteristicStatsEvalType::ConicalTaperCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- LinearCharacter_1134_Type * LinearCharacter_1134In) :
+ LinearCharacter_1135_Type * LinearCharacter_1135In) :
   LinearCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    LinearCharacter_1134In)
+    LinearCharacter_1135In)
 {
 }
 
@@ -4481,13 +4481,13 @@ void ConicalTaperCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -4510,11 +4510,11 @@ void ConicalTaperCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  LinearCharacter_1134->printSelf(outFile);
+  LinearCharacter_1135->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ConicityCharacteristicStatsEvalType
 
@@ -4525,8 +4525,8 @@ ConicityCharacteristicStatsEvalType::ConicityCharacteristicStatsEvalType() :
 
 ConicityCharacteristicStatsEvalType::ConicityCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -4536,8 +4536,8 @@ ConicityCharacteristicStatsEvalType::ConicityCharacteristicStatsEvalType(
  OneSidedCapabilityCalculationEnumType * CapabilityCalculationMethodIn) :
   FormCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -4562,13 +4562,13 @@ void ConicityCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -4625,7 +4625,7 @@ void ConicityCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ControlIssueDetailsListType
 
@@ -4783,7 +4783,7 @@ ControlIssueDetailsTypeLisd * ControlIssueDetailsListType::getControlIssueDetail
 void ControlIssueDetailsListType::setControlIssueDetails(ControlIssueDetailsTypeLisd * ControlIssueDetailsIn)
 {ControlIssueDetails = ControlIssueDetailsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ControlIssueDetailsListTypeLisd
 
@@ -4810,7 +4810,7 @@ ControlIssueDetailsListTypeLisd::~ControlIssueDetailsListTypeLisd()
 
 void ControlIssueDetailsListTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ControlIssueDetailsType
 
@@ -4886,7 +4886,7 @@ QIFReferenceType * ControlIssueDetailsType::getStudyIssueId()
 void ControlIssueDetailsType::setStudyIssueId(QIFReferenceType * StudyIssueIdIn)
 {StudyIssueId = StudyIssueIdIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ControlIssueDetailsTypeLisd
 
@@ -4913,7 +4913,7 @@ ControlIssueDetailsTypeLisd::~ControlIssueDetailsTypeLisd()
 
 void ControlIssueDetailsTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ControlIssueEnumType
 
@@ -4995,7 +4995,7 @@ void ControlIssueEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ControlIssueType
 
@@ -5033,7 +5033,7 @@ ControlIssueTypeChoicePair * ControlIssueType::getControlIssueTypePair()
 void ControlIssueType::setControlIssueTypePair(ControlIssueTypeChoicePair * ControlIssueTypePairIn)
 {ControlIssueTypePair = ControlIssueTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ControlIssueTypeChoicePair
 
@@ -5077,7 +5077,7 @@ void ControlIssueTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CorrectiveActionType
 
@@ -5087,26 +5087,26 @@ CorrectiveActionType::CorrectiveActionType()
 {
   id = 0;
   Attributes = 0;
-  CorrectiveActio_1130 = 0;
+  CorrectiveActio_1131 = 0;
 }
 
 CorrectiveActionType::CorrectiveActionType(
  AttributesType * AttributesIn,
- CorrectiveActio_1130_Type * CorrectiveActio_1130In)
+ CorrectiveActio_1131_Type * CorrectiveActio_1131In)
 {
   id = 0;
   Attributes = AttributesIn;
-  CorrectiveActio_1130 = CorrectiveActio_1130In;
+  CorrectiveActio_1131 = CorrectiveActio_1131In;
 }
 
 CorrectiveActionType::CorrectiveActionType(
  QIFIdType * idIn,
  AttributesType * AttributesIn,
- CorrectiveActio_1130_Type * CorrectiveActio_1130In)
+ CorrectiveActio_1131_Type * CorrectiveActio_1131In)
 {
   id = idIn;
   Attributes = AttributesIn;
-  CorrectiveActio_1130 = CorrectiveActio_1130In;
+  CorrectiveActio_1131 = CorrectiveActio_1131In;
 }
 
 CorrectiveActionType::~CorrectiveActionType()
@@ -5114,7 +5114,7 @@ CorrectiveActionType::~CorrectiveActionType()
   #ifndef NODESTRUCT
   delete id;
   delete Attributes;
-  delete CorrectiveActio_1130;
+  delete CorrectiveActio_1131;
   #endif
 }
 
@@ -5155,7 +5155,7 @@ void CorrectiveActionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  CorrectiveActio_1130->printSelf(outFile);
+  CorrectiveActio_1131->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -5228,13 +5228,13 @@ AttributesType * CorrectiveActionType::getAttributes()
 void CorrectiveActionType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-CorrectiveActio_1130_Type * CorrectiveActionType::getCorrectiveActio_1130()
-{return CorrectiveActio_1130;}
+CorrectiveActio_1131_Type * CorrectiveActionType::getCorrectiveActio_1131()
+{return CorrectiveActio_1131;}
 
-void CorrectiveActionType::setCorrectiveActio_1130(CorrectiveActio_1130_Type * CorrectiveActio_1130In)
-{CorrectiveActio_1130 = CorrectiveActio_1130In;}
+void CorrectiveActionType::setCorrectiveActio_1131(CorrectiveActio_1131_Type * CorrectiveActio_1131In)
+{CorrectiveActio_1131 = CorrectiveActio_1131In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CorrectiveActionTypeLisd
 
@@ -5261,7 +5261,7 @@ CorrectiveActionTypeLisd::~CorrectiveActionTypeLisd()
 
 void CorrectiveActionTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CorrectiveActionsType
 
@@ -5419,7 +5419,7 @@ CorrectiveActionTypeLisd * CorrectiveActionsType::getCorrectiveAction()
 void CorrectiveActionsType::setCorrectiveAction(CorrectiveActionTypeLisd * CorrectiveActionIn)
 {CorrectiveAction = CorrectiveActionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CriterionAngularType
 
@@ -5433,21 +5433,21 @@ CriterionAngularType::CriterionAngularType() :
 
 CriterionAngularType::CriterionAngularType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In) :
+ CriterionDecima_1132_Type * CriterionDecima_1132In) :
   CriterionDecimalType(
     LimitIn,
-    CriterionDecima_1131In)
+    CriterionDecima_1132In)
 {
   angularUnit = 0;
 }
 
 CriterionAngularType::CriterionAngularType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In,
+ CriterionDecima_1132_Type * CriterionDecima_1132In,
  XmlToken * angularUnitIn) :
   CriterionDecimalType(
     LimitIn,
-    CriterionDecima_1131In)
+    CriterionDecima_1132In)
 {
   angularUnit = angularUnitIn;
 }
@@ -5487,9 +5487,9 @@ void CriterionAngularType::printSelf(FILE * outFile)
   fprintf(outFile, "<Limit");
   Limit->printSelf(outFile);
   fprintf(outFile, "</Limit>\n");
-  if (CriterionDecima_1131)
+  if (CriterionDecima_1132)
     {
-      CriterionDecima_1131->printSelf(outFile);
+      CriterionDecima_1132->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -5552,7 +5552,7 @@ XmlToken * CriterionAngularType::getangularUnit()
 void CriterionAngularType::setangularUnit(XmlToken * angularUnitIn)
 {angularUnit = angularUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CriterionAreaType
 
@@ -5566,21 +5566,21 @@ CriterionAreaType::CriterionAreaType() :
 
 CriterionAreaType::CriterionAreaType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In) :
+ CriterionDecima_1132_Type * CriterionDecima_1132In) :
   CriterionDecimalType(
     LimitIn,
-    CriterionDecima_1131In)
+    CriterionDecima_1132In)
 {
   areaUnit = 0;
 }
 
 CriterionAreaType::CriterionAreaType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In,
+ CriterionDecima_1132_Type * CriterionDecima_1132In,
  XmlToken * areaUnitIn) :
   CriterionDecimalType(
     LimitIn,
-    CriterionDecima_1131In)
+    CriterionDecima_1132In)
 {
   areaUnit = areaUnitIn;
 }
@@ -5620,9 +5620,9 @@ void CriterionAreaType::printSelf(FILE * outFile)
   fprintf(outFile, "<Limit");
   Limit->printSelf(outFile);
   fprintf(outFile, "</Limit>\n");
-  if (CriterionDecima_1131)
+  if (CriterionDecima_1132)
     {
-      CriterionDecima_1131->printSelf(outFile);
+      CriterionDecima_1132->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -5685,7 +5685,7 @@ XmlToken * CriterionAreaType::getareaUnit()
 void CriterionAreaType::setareaUnit(XmlToken * areaUnitIn)
 {areaUnit = areaUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CriterionDecimalType
 
@@ -5694,22 +5694,22 @@ void CriterionAreaType::setareaUnit(XmlToken * areaUnitIn)
 CriterionDecimalType::CriterionDecimalType()
 {
   Limit = 0;
-  CriterionDecima_1131 = 0;
+  CriterionDecima_1132 = 0;
 }
 
 CriterionDecimalType::CriterionDecimalType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In)
+ CriterionDecima_1132_Type * CriterionDecima_1132In)
 {
   Limit = LimitIn;
-  CriterionDecima_1131 = CriterionDecima_1131In;
+  CriterionDecima_1132 = CriterionDecima_1132In;
 }
 
 CriterionDecimalType::~CriterionDecimalType()
 {
   #ifndef NODESTRUCT
   delete Limit;
-  delete CriterionDecima_1131;
+  delete CriterionDecima_1132;
   #endif
 }
 
@@ -5721,9 +5721,9 @@ void CriterionDecimalType::printSelf(FILE * outFile)
   fprintf(outFile, "<Limit");
   Limit->printSelf(outFile);
   fprintf(outFile, "</Limit>\n");
-  if (CriterionDecima_1131)
+  if (CriterionDecima_1132)
     {
-      CriterionDecima_1131->printSelf(outFile);
+      CriterionDecima_1132->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -5734,13 +5734,13 @@ XmlDecimal * CriterionDecimalType::getLimit()
 void CriterionDecimalType::setLimit(XmlDecimal * LimitIn)
 {Limit = LimitIn;}
 
-CriterionDecima_1131_Type * CriterionDecimalType::getCriterionDecima_1131()
-{return CriterionDecima_1131;}
+CriterionDecima_1132_Type * CriterionDecimalType::getCriterionDecima_1132()
+{return CriterionDecima_1132;}
 
-void CriterionDecimalType::setCriterionDecima_1131(CriterionDecima_1131_Type * CriterionDecima_1131In)
-{CriterionDecima_1131 = CriterionDecima_1131In;}
+void CriterionDecimalType::setCriterionDecima_1132(CriterionDecima_1132_Type * CriterionDecima_1132In)
+{CriterionDecima_1132 = CriterionDecima_1132In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CriterionForceType
 
@@ -5754,21 +5754,21 @@ CriterionForceType::CriterionForceType() :
 
 CriterionForceType::CriterionForceType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In) :
+ CriterionDecima_1132_Type * CriterionDecima_1132In) :
   CriterionDecimalType(
     LimitIn,
-    CriterionDecima_1131In)
+    CriterionDecima_1132In)
 {
   forceUnit = 0;
 }
 
 CriterionForceType::CriterionForceType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In,
+ CriterionDecima_1132_Type * CriterionDecima_1132In,
  XmlToken * forceUnitIn) :
   CriterionDecimalType(
     LimitIn,
-    CriterionDecima_1131In)
+    CriterionDecima_1132In)
 {
   forceUnit = forceUnitIn;
 }
@@ -5808,9 +5808,9 @@ void CriterionForceType::printSelf(FILE * outFile)
   fprintf(outFile, "<Limit");
   Limit->printSelf(outFile);
   fprintf(outFile, "</Limit>\n");
-  if (CriterionDecima_1131)
+  if (CriterionDecima_1132)
     {
-      CriterionDecima_1131->printSelf(outFile);
+      CriterionDecima_1132->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -5873,7 +5873,7 @@ XmlToken * CriterionForceType::getforceUnit()
 void CriterionForceType::setforceUnit(XmlToken * forceUnitIn)
 {forceUnit = forceUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CriterionIntegerType
 
@@ -5882,22 +5882,22 @@ void CriterionForceType::setforceUnit(XmlToken * forceUnitIn)
 CriterionIntegerType::CriterionIntegerType()
 {
   Limit = 0;
-  CriterionIntege_1132 = 0;
+  CriterionIntege_1133 = 0;
 }
 
 CriterionIntegerType::CriterionIntegerType(
  XmlPositiveInteger * LimitIn,
- CriterionIntege_1132_Type * CriterionIntege_1132In)
+ CriterionIntege_1133_Type * CriterionIntege_1133In)
 {
   Limit = LimitIn;
-  CriterionIntege_1132 = CriterionIntege_1132In;
+  CriterionIntege_1133 = CriterionIntege_1133In;
 }
 
 CriterionIntegerType::~CriterionIntegerType()
 {
   #ifndef NODESTRUCT
   delete Limit;
-  delete CriterionIntege_1132;
+  delete CriterionIntege_1133;
   #endif
 }
 
@@ -5909,9 +5909,9 @@ void CriterionIntegerType::printSelf(FILE * outFile)
   fprintf(outFile, "<Limit");
   Limit->printSelf(outFile);
   fprintf(outFile, "</Limit>\n");
-  if (CriterionIntege_1132)
+  if (CriterionIntege_1133)
     {
-      CriterionIntege_1132->printSelf(outFile);
+      CriterionIntege_1133->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -5922,13 +5922,13 @@ XmlPositiveInteger * CriterionIntegerType::getLimit()
 void CriterionIntegerType::setLimit(XmlPositiveInteger * LimitIn)
 {Limit = LimitIn;}
 
-CriterionIntege_1132_Type * CriterionIntegerType::getCriterionIntege_1132()
-{return CriterionIntege_1132;}
+CriterionIntege_1133_Type * CriterionIntegerType::getCriterionIntege_1133()
+{return CriterionIntege_1133;}
 
-void CriterionIntegerType::setCriterionIntege_1132(CriterionIntege_1132_Type * CriterionIntege_1132In)
-{CriterionIntege_1132 = CriterionIntege_1132In;}
+void CriterionIntegerType::setCriterionIntege_1133(CriterionIntege_1133_Type * CriterionIntege_1133In)
+{CriterionIntege_1133 = CriterionIntege_1133In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CriterionLinearType
 
@@ -5942,21 +5942,21 @@ CriterionLinearType::CriterionLinearType() :
 
 CriterionLinearType::CriterionLinearType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In) :
+ CriterionDecima_1132_Type * CriterionDecima_1132In) :
   CriterionDecimalType(
     LimitIn,
-    CriterionDecima_1131In)
+    CriterionDecima_1132In)
 {
   linearUnit = 0;
 }
 
 CriterionLinearType::CriterionLinearType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In,
+ CriterionDecima_1132_Type * CriterionDecima_1132In,
  XmlToken * linearUnitIn) :
   CriterionDecimalType(
     LimitIn,
-    CriterionDecima_1131In)
+    CriterionDecima_1132In)
 {
   linearUnit = linearUnitIn;
 }
@@ -5996,9 +5996,9 @@ void CriterionLinearType::printSelf(FILE * outFile)
   fprintf(outFile, "<Limit");
   Limit->printSelf(outFile);
   fprintf(outFile, "</Limit>\n");
-  if (CriterionDecima_1131)
+  if (CriterionDecima_1132)
     {
-      CriterionDecima_1131->printSelf(outFile);
+      CriterionDecima_1132->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -6061,7 +6061,7 @@ XmlToken * CriterionLinearType::getlinearUnit()
 void CriterionLinearType::setlinearUnit(XmlToken * linearUnitIn)
 {linearUnit = linearUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CriterionMassType
 
@@ -6075,21 +6075,21 @@ CriterionMassType::CriterionMassType() :
 
 CriterionMassType::CriterionMassType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In) :
+ CriterionDecima_1132_Type * CriterionDecima_1132In) :
   CriterionDecimalType(
     LimitIn,
-    CriterionDecima_1131In)
+    CriterionDecima_1132In)
 {
   massUnit = 0;
 }
 
 CriterionMassType::CriterionMassType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In,
+ CriterionDecima_1132_Type * CriterionDecima_1132In,
  XmlToken * massUnitIn) :
   CriterionDecimalType(
     LimitIn,
-    CriterionDecima_1131In)
+    CriterionDecima_1132In)
 {
   massUnit = massUnitIn;
 }
@@ -6129,9 +6129,9 @@ void CriterionMassType::printSelf(FILE * outFile)
   fprintf(outFile, "<Limit");
   Limit->printSelf(outFile);
   fprintf(outFile, "</Limit>\n");
-  if (CriterionDecima_1131)
+  if (CriterionDecima_1132)
     {
-      CriterionDecima_1131->printSelf(outFile);
+      CriterionDecima_1132->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -6194,7 +6194,7 @@ XmlToken * CriterionMassType::getmassUnit()
 void CriterionMassType::setmassUnit(XmlToken * massUnitIn)
 {massUnit = massUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CriterionOutOfType
 
@@ -6267,7 +6267,7 @@ LimitingNumberType * CriterionOutOfType::getNumberAllowedExceptions()
 void CriterionOutOfType::setNumberAllowedExceptions(LimitingNumberType * NumberAllowedExceptionsIn)
 {NumberAllowedExceptions = NumberAllowedExceptionsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CriterionPressureType
 
@@ -6281,21 +6281,21 @@ CriterionPressureType::CriterionPressureType() :
 
 CriterionPressureType::CriterionPressureType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In) :
+ CriterionDecima_1132_Type * CriterionDecima_1132In) :
   CriterionDecimalType(
     LimitIn,
-    CriterionDecima_1131In)
+    CriterionDecima_1132In)
 {
   pressureUnit = 0;
 }
 
 CriterionPressureType::CriterionPressureType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In,
+ CriterionDecima_1132_Type * CriterionDecima_1132In,
  XmlToken * pressureUnitIn) :
   CriterionDecimalType(
     LimitIn,
-    CriterionDecima_1131In)
+    CriterionDecima_1132In)
 {
   pressureUnit = pressureUnitIn;
 }
@@ -6335,9 +6335,9 @@ void CriterionPressureType::printSelf(FILE * outFile)
   fprintf(outFile, "<Limit");
   Limit->printSelf(outFile);
   fprintf(outFile, "</Limit>\n");
-  if (CriterionDecima_1131)
+  if (CriterionDecima_1132)
     {
-      CriterionDecima_1131->printSelf(outFile);
+      CriterionDecima_1132->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -6400,7 +6400,7 @@ XmlToken * CriterionPressureType::getpressureUnit()
 void CriterionPressureType::setpressureUnit(XmlToken * pressureUnitIn)
 {pressureUnit = pressureUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CriterionSpeedType
 
@@ -6414,21 +6414,21 @@ CriterionSpeedType::CriterionSpeedType() :
 
 CriterionSpeedType::CriterionSpeedType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In) :
+ CriterionDecima_1132_Type * CriterionDecima_1132In) :
   CriterionDecimalType(
     LimitIn,
-    CriterionDecima_1131In)
+    CriterionDecima_1132In)
 {
   speedUnit = 0;
 }
 
 CriterionSpeedType::CriterionSpeedType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In,
+ CriterionDecima_1132_Type * CriterionDecima_1132In,
  XmlToken * speedUnitIn) :
   CriterionDecimalType(
     LimitIn,
-    CriterionDecima_1131In)
+    CriterionDecima_1132In)
 {
   speedUnit = speedUnitIn;
 }
@@ -6468,9 +6468,9 @@ void CriterionSpeedType::printSelf(FILE * outFile)
   fprintf(outFile, "<Limit");
   Limit->printSelf(outFile);
   fprintf(outFile, "</Limit>\n");
-  if (CriterionDecima_1131)
+  if (CriterionDecima_1132)
     {
-      CriterionDecima_1131->printSelf(outFile);
+      CriterionDecima_1132->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -6533,7 +6533,7 @@ XmlToken * CriterionSpeedType::getspeedUnit()
 void CriterionSpeedType::setspeedUnit(XmlToken * speedUnitIn)
 {speedUnit = speedUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CriterionTemperatureType
 
@@ -6547,21 +6547,21 @@ CriterionTemperatureType::CriterionTemperatureType() :
 
 CriterionTemperatureType::CriterionTemperatureType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In) :
+ CriterionDecima_1132_Type * CriterionDecima_1132In) :
   CriterionDecimalType(
     LimitIn,
-    CriterionDecima_1131In)
+    CriterionDecima_1132In)
 {
   temperatureUnit = 0;
 }
 
 CriterionTemperatureType::CriterionTemperatureType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In,
+ CriterionDecima_1132_Type * CriterionDecima_1132In,
  XmlToken * temperatureUnitIn) :
   CriterionDecimalType(
     LimitIn,
-    CriterionDecima_1131In)
+    CriterionDecima_1132In)
 {
   temperatureUnit = temperatureUnitIn;
 }
@@ -6601,9 +6601,9 @@ void CriterionTemperatureType::printSelf(FILE * outFile)
   fprintf(outFile, "<Limit");
   Limit->printSelf(outFile);
   fprintf(outFile, "</Limit>\n");
-  if (CriterionDecima_1131)
+  if (CriterionDecima_1132)
     {
-      CriterionDecima_1131->printSelf(outFile);
+      CriterionDecima_1132->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -6666,7 +6666,7 @@ XmlToken * CriterionTemperatureType::gettemperatureUnit()
 void CriterionTemperatureType::settemperatureUnit(XmlToken * temperatureUnitIn)
 {temperatureUnit = temperatureUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CriterionTimeType
 
@@ -6680,21 +6680,21 @@ CriterionTimeType::CriterionTimeType() :
 
 CriterionTimeType::CriterionTimeType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In) :
+ CriterionDecima_1132_Type * CriterionDecima_1132In) :
   CriterionDecimalType(
     LimitIn,
-    CriterionDecima_1131In)
+    CriterionDecima_1132In)
 {
   timeUnit = 0;
 }
 
 CriterionTimeType::CriterionTimeType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In,
+ CriterionDecima_1132_Type * CriterionDecima_1132In,
  XmlToken * timeUnitIn) :
   CriterionDecimalType(
     LimitIn,
-    CriterionDecima_1131In)
+    CriterionDecima_1132In)
 {
   timeUnit = timeUnitIn;
 }
@@ -6734,9 +6734,9 @@ void CriterionTimeType::printSelf(FILE * outFile)
   fprintf(outFile, "<Limit");
   Limit->printSelf(outFile);
   fprintf(outFile, "</Limit>\n");
-  if (CriterionDecima_1131)
+  if (CriterionDecima_1132)
     {
-      CriterionDecima_1131->printSelf(outFile);
+      CriterionDecima_1132->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -6799,7 +6799,7 @@ XmlToken * CriterionTimeType::gettimeUnit()
 void CriterionTimeType::settimeUnit(XmlToken * timeUnitIn)
 {timeUnit = timeUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CriterionUserDefinedUnitType
 
@@ -6813,21 +6813,21 @@ CriterionUserDefinedUnitType::CriterionUserDefinedUnitType() :
 
 CriterionUserDefinedUnitType::CriterionUserDefinedUnitType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In) :
+ CriterionDecima_1132_Type * CriterionDecima_1132In) :
   CriterionDecimalType(
     LimitIn,
-    CriterionDecima_1131In)
+    CriterionDecima_1132In)
 {
   unitName = 0;
 }
 
 CriterionUserDefinedUnitType::CriterionUserDefinedUnitType(
  XmlDecimal * LimitIn,
- CriterionDecima_1131_Type * CriterionDecima_1131In,
+ CriterionDecima_1132_Type * CriterionDecima_1132In,
  XmlToken * unitNameIn) :
   CriterionDecimalType(
     LimitIn,
-    CriterionDecima_1131In)
+    CriterionDecima_1132In)
 {
   unitName = unitNameIn;
 }
@@ -6872,9 +6872,9 @@ void CriterionUserDefinedUnitType::printSelf(FILE * outFile)
   fprintf(outFile, "<Limit");
   Limit->printSelf(outFile);
   fprintf(outFile, "</Limit>\n");
-  if (CriterionDecima_1131)
+  if (CriterionDecima_1132)
     {
-      CriterionDecima_1131->printSelf(outFile);
+      CriterionDecima_1132->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -6942,7 +6942,7 @@ XmlToken * CriterionUserDefinedUnitType::getunitName()
 void CriterionUserDefinedUnitType::setunitName(XmlToken * unitNameIn)
 {unitName = unitNameIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CriterionUserDefinedUnitTypeLisd
 
@@ -6969,7 +6969,7 @@ CriterionUserDefinedUnitTypeLisd::~CriterionUserDefinedUnitTypeLisd()
 
 void CriterionUserDefinedUnitTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CurveLengthCharacteristicStatsEvalType
 
@@ -6980,20 +6980,20 @@ CurveLengthCharacteristicStatsEvalType::CurveLengthCharacteristicStatsEvalType()
 
 CurveLengthCharacteristicStatsEvalType::CurveLengthCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- LinearCharacter_1134_Type * LinearCharacter_1134In) :
+ LinearCharacter_1135_Type * LinearCharacter_1135In) :
   LinearCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    LinearCharacter_1134In)
+    LinearCharacter_1135In)
 {
 }
 
@@ -7011,13 +7011,13 @@ void CurveLengthCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -7040,11 +7040,11 @@ void CurveLengthCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  LinearCharacter_1134->printSelf(outFile);
+  LinearCharacter_1135->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CylindricityCharacteristicStatsEvalType
 
@@ -7058,8 +7058,8 @@ CylindricityCharacteristicStatsEvalType::CylindricityCharacteristicStatsEvalType
 
 CylindricityCharacteristicStatsEvalType::CylindricityCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -7070,8 +7070,8 @@ CylindricityCharacteristicStatsEvalType::CylindricityCharacteristicStatsEvalType
  StatsLinearType * MaxCylindricityStatsIn) :
   FormCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -7102,13 +7102,13 @@ void CylindricityCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -7179,7 +7179,7 @@ StatsLinearType * CylindricityCharacteristicStatsEvalType::getMaxCylindricitySta
 void CylindricityCharacteristicStatsEvalType::setMaxCylindricityStats(StatsLinearType * MaxCylindricityStatsIn)
 {MaxCylindricityStats = MaxCylindricityStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DepthCharacteristicStatsEvalType
 
@@ -7190,20 +7190,20 @@ DepthCharacteristicStatsEvalType::DepthCharacteristicStatsEvalType() :
 
 DepthCharacteristicStatsEvalType::DepthCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- LinearCharacter_1134_Type * LinearCharacter_1134In) :
+ LinearCharacter_1135_Type * LinearCharacter_1135In) :
   LinearCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    LinearCharacter_1134In)
+    LinearCharacter_1135In)
 {
 }
 
@@ -7221,13 +7221,13 @@ void DepthCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -7250,11 +7250,11 @@ void DepthCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  LinearCharacter_1134->printSelf(outFile);
+  LinearCharacter_1135->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DiameterCharacteristicStatsEvalType
 
@@ -7265,20 +7265,20 @@ DiameterCharacteristicStatsEvalType::DiameterCharacteristicStatsEvalType() :
 
 DiameterCharacteristicStatsEvalType::DiameterCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- LinearCharacter_1134_Type * LinearCharacter_1134In) :
+ LinearCharacter_1135_Type * LinearCharacter_1135In) :
   LinearCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    LinearCharacter_1134In)
+    LinearCharacter_1135In)
 {
 }
 
@@ -7296,13 +7296,13 @@ void DiameterCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -7325,11 +7325,11 @@ void DiameterCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  LinearCharacter_1134->printSelf(outFile);
+  LinearCharacter_1135->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DistanceBetweenCharacteristicStatsEvalType
 
@@ -7340,20 +7340,20 @@ DistanceBetweenCharacteristicStatsEvalType::DistanceBetweenCharacteristicStatsEv
 
 DistanceBetweenCharacteristicStatsEvalType::DistanceBetweenCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- LinearCharacter_1134_Type * LinearCharacter_1134In) :
+ LinearCharacter_1135_Type * LinearCharacter_1135In) :
   LinearCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    LinearCharacter_1134In)
+    LinearCharacter_1135In)
 {
 }
 
@@ -7371,13 +7371,13 @@ void DistanceBetweenCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -7400,11 +7400,11 @@ void DistanceBetweenCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  LinearCharacter_1134->printSelf(outFile);
+  LinearCharacter_1135->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DistanceFromCharacteristicStatsEvalType
 
@@ -7415,20 +7415,20 @@ DistanceFromCharacteristicStatsEvalType::DistanceFromCharacteristicStatsEvalType
 
 DistanceFromCharacteristicStatsEvalType::DistanceFromCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- LinearCharacter_1134_Type * LinearCharacter_1134In) :
+ LinearCharacter_1135_Type * LinearCharacter_1135In) :
   LinearCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    LinearCharacter_1134In)
+    LinearCharacter_1135In)
 {
 }
 
@@ -7446,13 +7446,13 @@ void DistanceFromCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -7475,11 +7475,11 @@ void DistanceFromCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  LinearCharacter_1134->printSelf(outFile);
+  LinearCharacter_1135->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DistributionTransformationEnumType
 
@@ -7539,7 +7539,7 @@ void DistributionTransformationEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DistributionTransformationType
 
@@ -7577,7 +7577,7 @@ DistributionTransformationTypeChoicePair * DistributionTransformationType::getDi
 void DistributionTransformationType::setDistributionTransformationTypePair(DistributionTransformationTypeChoicePair * DistributionTransformationTypePairIn)
 {DistributionTransformationTypePair = DistributionTransformationTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DistributionTransformationTypeChoicePair
 
@@ -7630,7 +7630,7 @@ void DistributionTransformationTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class EllipticityCharacteristicStatsEvalType
 
@@ -7641,8 +7641,8 @@ EllipticityCharacteristicStatsEvalType::EllipticityCharacteristicStatsEvalType()
 
 EllipticityCharacteristicStatsEvalType::EllipticityCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -7652,8 +7652,8 @@ EllipticityCharacteristicStatsEvalType::EllipticityCharacteristicStatsEvalType(
  OneSidedCapabilityCalculationEnumType * CapabilityCalculationMethodIn) :
   FormCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -7678,13 +7678,13 @@ void EllipticityCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -7741,7 +7741,7 @@ void EllipticityCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExclusionEnumType
 
@@ -7803,7 +7803,7 @@ void ExclusionEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExclusionIdType
 
@@ -7859,7 +7859,7 @@ ExclusionReasonType * ExclusionIdType::getReason()
 void ExclusionIdType::setReason(ExclusionReasonType * ReasonIn)
 {Reason = ReasonIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExclusionIdTypeLisd
 
@@ -7886,7 +7886,7 @@ ExclusionIdTypeLisd::~ExclusionIdTypeLisd()
 
 void ExclusionIdTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExclusionIndexType
 
@@ -7942,7 +7942,7 @@ ExclusionReasonType * ExclusionIndexType::getReason()
 void ExclusionIndexType::setReason(ExclusionReasonType * ReasonIn)
 {Reason = ReasonIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExclusionIndexTypeLisd
 
@@ -7969,7 +7969,7 @@ ExclusionIndexTypeLisd::~ExclusionIndexTypeLisd()
 
 void ExclusionIndexTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExclusionReasonType
 
@@ -8007,7 +8007,7 @@ ExclusionReasonTypeChoicePair * ExclusionReasonType::getExclusionReasonTypePair(
 void ExclusionReasonType::setExclusionReasonTypePair(ExclusionReasonTypeChoicePair * ExclusionReasonTypePairIn)
 {ExclusionReasonTypePair = ExclusionReasonTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExclusionReasonTypeChoicePair
 
@@ -8051,7 +8051,7 @@ void ExclusionReasonTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExclusionsIdType
 
@@ -8209,7 +8209,7 @@ ExclusionIdTypeLisd * ExclusionsIdType::getExclusion()
 void ExclusionsIdType::setExclusion(ExclusionIdTypeLisd * ExclusionIn)
 {Exclusion = ExclusionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExclusionsIndexType
 
@@ -8367,7 +8367,7 @@ ExclusionIndexTypeLisd * ExclusionsIndexType::getExclusion()
 void ExclusionsIndexType::setExclusion(ExclusionIndexTypeLisd * ExclusionIn)
 {Exclusion = ExclusionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FlatTaperCharacteristicStatsEvalType
 
@@ -8378,20 +8378,20 @@ FlatTaperCharacteristicStatsEvalType::FlatTaperCharacteristicStatsEvalType() :
 
 FlatTaperCharacteristicStatsEvalType::FlatTaperCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- LinearCharacter_1134_Type * LinearCharacter_1134In) :
+ LinearCharacter_1135_Type * LinearCharacter_1135In) :
   LinearCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    LinearCharacter_1134In)
+    LinearCharacter_1135In)
 {
 }
 
@@ -8409,13 +8409,13 @@ void FlatTaperCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -8438,11 +8438,11 @@ void FlatTaperCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  LinearCharacter_1134->printSelf(outFile);
+  LinearCharacter_1135->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FlatnessCharacteristicStatsEvalType
 
@@ -8457,8 +8457,8 @@ FlatnessCharacteristicStatsEvalType::FlatnessCharacteristicStatsEvalType() :
 
 FlatnessCharacteristicStatsEvalType::FlatnessCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -8470,8 +8470,8 @@ FlatnessCharacteristicStatsEvalType::FlatnessCharacteristicStatsEvalType(
  StatsLinearType * MaxFlatnessStatsIn) :
   FormCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -8504,13 +8504,13 @@ void FlatnessCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -8595,7 +8595,7 @@ StatsLinearType * FlatnessCharacteristicStatsEvalType::getMaxFlatnessStats()
 void FlatnessCharacteristicStatsEvalType::setMaxFlatnessStats(StatsLinearType * MaxFlatnessStatsIn)
 {MaxFlatnessStats = MaxFlatnessStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FormCharacteristicStatsEvalBaseType
 
@@ -8609,8 +8609,8 @@ FormCharacteristicStatsEvalBaseType::FormCharacteristicStatsEvalBaseType() :
 
 FormCharacteristicStatsEvalBaseType::FormCharacteristicStatsEvalBaseType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -8620,8 +8620,8 @@ FormCharacteristicStatsEvalBaseType::FormCharacteristicStatsEvalBaseType(
  OneSidedCapabilityCalculationEnumType * CapabilityCalculationMethodIn) :
   GeometricCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -8651,13 +8651,13 @@ void FormCharacteristicStatsEvalBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -8720,7 +8720,7 @@ OneSidedCapabilityCalculationEnumType * FormCharacteristicStatsEvalBaseType::get
 void FormCharacteristicStatsEvalBaseType::setCapabilityCalculationMethod(OneSidedCapabilityCalculationEnumType * CapabilityCalculationMethodIn)
 {CapabilityCalculationMethod = CapabilityCalculationMethodIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class GeometricCharacteristicStatsEvalType
 
@@ -8736,8 +8736,8 @@ GeometricCharacteristicStatsEvalType::GeometricCharacteristicStatsEvalType() :
 
 GeometricCharacteristicStatsEvalType::GeometricCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -8746,8 +8746,8 @@ GeometricCharacteristicStatsEvalType::GeometricCharacteristicStatsEvalType(
  StatsLinearType * MinValueStatsIn) :
   CharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn)
@@ -8778,13 +8778,13 @@ void GeometricCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -8852,7 +8852,7 @@ StatsLinearType * GeometricCharacteristicStatsEvalType::getMinValueStats()
 void GeometricCharacteristicStatsEvalType::setMinValueStats(StatsLinearType * MinValueStatsIn)
 {MinValueStats = MinValueStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class HeightCharacteristicStatsEvalType
 
@@ -8863,20 +8863,20 @@ HeightCharacteristicStatsEvalType::HeightCharacteristicStatsEvalType() :
 
 HeightCharacteristicStatsEvalType::HeightCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- LinearCharacter_1134_Type * LinearCharacter_1134In) :
+ LinearCharacter_1135_Type * LinearCharacter_1135In) :
   LinearCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    LinearCharacter_1134In)
+    LinearCharacter_1135In)
 {
 }
 
@@ -8894,13 +8894,13 @@ void HeightCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -8923,11 +8923,11 @@ void HeightCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  LinearCharacter_1134->printSelf(outFile);
+  LinearCharacter_1135->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LengthCharacteristicStatsEvalType
 
@@ -8938,20 +8938,20 @@ LengthCharacteristicStatsEvalType::LengthCharacteristicStatsEvalType() :
 
 LengthCharacteristicStatsEvalType::LengthCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- LinearCharacter_1134_Type * LinearCharacter_1134In) :
+ LinearCharacter_1135_Type * LinearCharacter_1135In) :
   LinearCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    LinearCharacter_1134In)
+    LinearCharacter_1135In)
 {
 }
 
@@ -8969,13 +8969,13 @@ void LengthCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -8998,11 +8998,11 @@ void LengthCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  LinearCharacter_1134->printSelf(outFile);
+  LinearCharacter_1135->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LimitingNumberType
 
@@ -9010,19 +9010,19 @@ void LengthCharacteristicStatsEvalType::printSelf(FILE * outFile)
 
 LimitingNumberType::LimitingNumberType()
 {
-  LimitingNumberT_1133 = 0;
+  LimitingNumberT_1134 = 0;
 }
 
 LimitingNumberType::LimitingNumberType(
- LimitingNumberT_1133_Type * LimitingNumberT_1133In)
+ LimitingNumberT_1134_Type * LimitingNumberT_1134In)
 {
-  LimitingNumberT_1133 = LimitingNumberT_1133In;
+  LimitingNumberT_1134 = LimitingNumberT_1134In;
 }
 
 LimitingNumberType::~LimitingNumberType()
 {
   #ifndef NODESTRUCT
-  delete LimitingNumberT_1133;
+  delete LimitingNumberT_1134;
   #endif
 }
 
@@ -9030,17 +9030,17 @@ void LimitingNumberType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  LimitingNumberT_1133->printSelf(outFile);
+  LimitingNumberT_1134->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-LimitingNumberT_1133_Type * LimitingNumberType::getLimitingNumberT_1133()
-{return LimitingNumberT_1133;}
+LimitingNumberT_1134_Type * LimitingNumberType::getLimitingNumberT_1134()
+{return LimitingNumberT_1134;}
 
-void LimitingNumberType::setLimitingNumberT_1133(LimitingNumberT_1133_Type * LimitingNumberT_1133In)
-{LimitingNumberT_1133 = LimitingNumberT_1133In;}
+void LimitingNumberType::setLimitingNumberT_1134(LimitingNumberT_1134_Type * LimitingNumberT_1134In)
+{LimitingNumberT_1134 = LimitingNumberT_1134In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LineProfileCharacteristicStatsEvalType
 
@@ -9051,8 +9051,8 @@ LineProfileCharacteristicStatsEvalType::LineProfileCharacteristicStatsEvalType()
 
 LineProfileCharacteristicStatsEvalType::LineProfileCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -9067,8 +9067,8 @@ LineProfileCharacteristicStatsEvalType::LineProfileCharacteristicStatsEvalType(
  CompositeSegmentsProfileStatsEvalType * CompositeSegmentsStatsIn) :
   ProfileCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -9098,13 +9098,13 @@ void LineProfileCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -9201,7 +9201,7 @@ void LineProfileCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearCharacteristicStatsEvalType
 
@@ -9210,32 +9210,32 @@ void LineProfileCharacteristicStatsEvalType::printSelf(FILE * outFile)
 LinearCharacteristicStatsEvalType::LinearCharacteristicStatsEvalType() :
   CharacteristicStatsEvalBaseType()
 {
-  LinearCharacter_1134 = 0;
+  LinearCharacter_1135 = 0;
 }
 
 LinearCharacteristicStatsEvalType::LinearCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- LinearCharacter_1134_Type * LinearCharacter_1134In) :
+ LinearCharacter_1135_Type * LinearCharacter_1135In) :
   CharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn)
 {
-  LinearCharacter_1134 = LinearCharacter_1134In;
+  LinearCharacter_1135 = LinearCharacter_1135In;
 }
 
 LinearCharacteristicStatsEvalType::~LinearCharacteristicStatsEvalType()
 {
   #ifndef NODESTRUCT
-  delete LinearCharacter_1134;
+  delete LinearCharacter_1135;
   #endif
 }
 
@@ -9251,13 +9251,13 @@ void LinearCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -9280,17 +9280,17 @@ void LinearCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  LinearCharacter_1134->printSelf(outFile);
+  LinearCharacter_1135->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-LinearCharacter_1134_Type * LinearCharacteristicStatsEvalType::getLinearCharacter_1134()
-{return LinearCharacter_1134;}
+LinearCharacter_1135_Type * LinearCharacteristicStatsEvalType::getLinearCharacter_1135()
+{return LinearCharacter_1135;}
 
-void LinearCharacteristicStatsEvalType::setLinearCharacter_1134(LinearCharacter_1134_Type * LinearCharacter_1134In)
-{LinearCharacter_1134 = LinearCharacter_1134In;}
+void LinearCharacteristicStatsEvalType::setLinearCharacter_1135(LinearCharacter_1135_Type * LinearCharacter_1135In)
+{LinearCharacter_1135 = LinearCharacter_1135In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearCoordinateCharacteristicStatsEvalType
 
@@ -9301,20 +9301,20 @@ LinearCoordinateCharacteristicStatsEvalType::LinearCoordinateCharacteristicStats
 
 LinearCoordinateCharacteristicStatsEvalType::LinearCoordinateCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- LinearCharacter_1134_Type * LinearCharacter_1134In) :
+ LinearCharacter_1135_Type * LinearCharacter_1135In) :
   LinearCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    LinearCharacter_1134In)
+    LinearCharacter_1135In)
 {
 }
 
@@ -9332,13 +9332,13 @@ void LinearCoordinateCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -9361,11 +9361,11 @@ void LinearCoordinateCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  LinearCharacter_1134->printSelf(outFile);
+  LinearCharacter_1135->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LocationCharacteristicStatsEvalType
 
@@ -9379,8 +9379,8 @@ LocationCharacteristicStatsEvalType::LocationCharacteristicStatsEvalType() :
 
 LocationCharacteristicStatsEvalType::LocationCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -9390,8 +9390,8 @@ LocationCharacteristicStatsEvalType::LocationCharacteristicStatsEvalType(
  StatsPassFailType * DatumsOkStatsIn) :
   GeometricCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -9421,13 +9421,13 @@ void LocationCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -9491,7 +9491,7 @@ StatsPassFailType * LocationCharacteristicStatsEvalType::getDatumsOkStats()
 void LocationCharacteristicStatsEvalType::setDatumsOkStats(StatsPassFailType * DatumsOkStatsIn)
 {DatumsOkStats = DatumsOkStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OneSidedCapabilityCalculationEnumType
 
@@ -9549,7 +9549,7 @@ void OneSidedCapabilityCalculationEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OrientationCharacteristicStatsEvalType
 
@@ -9566,8 +9566,8 @@ OrientationCharacteristicStatsEvalType::OrientationCharacteristicStatsEvalType()
 
 OrientationCharacteristicStatsEvalType::OrientationCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -9580,8 +9580,8 @@ OrientationCharacteristicStatsEvalType::OrientationCharacteristicStatsEvalType(
  StatsLinearType * ReferenceLengthStatsIn) :
   GeometricCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -9617,13 +9617,13 @@ void OrientationCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -9728,7 +9728,7 @@ StatsLinearType * OrientationCharacteristicStatsEvalType::getReferenceLengthStat
 void OrientationCharacteristicStatsEvalType::setReferenceLengthStats(StatsLinearType * ReferenceLengthStatsIn)
 {ReferenceLengthStats = ReferenceLengthStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OtherFormCharacteristicStatsEvalType
 
@@ -9739,8 +9739,8 @@ OtherFormCharacteristicStatsEvalType::OtherFormCharacteristicStatsEvalType() :
 
 OtherFormCharacteristicStatsEvalType::OtherFormCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -9750,8 +9750,8 @@ OtherFormCharacteristicStatsEvalType::OtherFormCharacteristicStatsEvalType(
  OneSidedCapabilityCalculationEnumType * CapabilityCalculationMethodIn) :
   FormCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -9776,13 +9776,13 @@ void OtherFormCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -9839,7 +9839,7 @@ void OtherFormCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ParallelismCharacteristicStatsEvalType
 
@@ -9850,8 +9850,8 @@ ParallelismCharacteristicStatsEvalType::ParallelismCharacteristicStatsEvalType()
 
 ParallelismCharacteristicStatsEvalType::ParallelismCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -9864,8 +9864,8 @@ ParallelismCharacteristicStatsEvalType::ParallelismCharacteristicStatsEvalType(
  StatsLinearType * ReferenceLengthStatsIn) :
   OrientationCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -9893,13 +9893,13 @@ void ParallelismCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -9980,7 +9980,7 @@ void ParallelismCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PerpendicularityCharacteristicStatsEvalType
 
@@ -9991,8 +9991,8 @@ PerpendicularityCharacteristicStatsEvalType::PerpendicularityCharacteristicStats
 
 PerpendicularityCharacteristicStatsEvalType::PerpendicularityCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -10005,8 +10005,8 @@ PerpendicularityCharacteristicStatsEvalType::PerpendicularityCharacteristicStats
  StatsLinearType * ReferenceLengthStatsIn) :
   OrientationCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -10034,13 +10034,13 @@ void PerpendicularityCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -10121,7 +10121,7 @@ void PerpendicularityCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDeviationStatsEvalType
 
@@ -10178,7 +10178,7 @@ StatsLinearType * PointDeviationStatsEvalType::getDeviationStats()
 void PointDeviationStatsEvalType::setDeviationStats(StatsLinearType * DeviationStatsIn)
 {DeviationStats = DeviationStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDeviationStatsEvalTypeLisd
 
@@ -10205,7 +10205,7 @@ PointDeviationStatsEvalTypeLisd::~PointDeviationStatsEvalTypeLisd()
 
 void PointDeviationStatsEvalTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointDeviationsStatsEvalType
 
@@ -10363,7 +10363,7 @@ PointDeviationStatsEvalTypeLisd * PointDeviationsStatsEvalType::getPointDeviatio
 void PointDeviationsStatsEvalType::setPointDeviationStats(PointDeviationStatsEvalTypeLisd * PointDeviationStatsIn)
 {PointDeviationStats = PointDeviationStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PointProfileCharacteristicStatsEvalType
 
@@ -10374,8 +10374,8 @@ PointProfileCharacteristicStatsEvalType::PointProfileCharacteristicStatsEvalType
 
 PointProfileCharacteristicStatsEvalType::PointProfileCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -10390,8 +10390,8 @@ PointProfileCharacteristicStatsEvalType::PointProfileCharacteristicStatsEvalType
  CompositeSegmentsProfileStatsEvalType * CompositeSegmentsStatsIn) :
   ProfileCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -10421,13 +10421,13 @@ void PointProfileCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -10524,7 +10524,7 @@ void PointProfileCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PositionCapabilityCalculationEnumType
 
@@ -10586,7 +10586,7 @@ void PositionCapabilityCalculationEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PositionCharacteristicStatsEvalType
 
@@ -10602,8 +10602,8 @@ PositionCharacteristicStatsEvalType::PositionCharacteristicStatsEvalType() :
 
 PositionCharacteristicStatsEvalType::PositionCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -10616,8 +10616,8 @@ PositionCharacteristicStatsEvalType::PositionCharacteristicStatsEvalType(
  CompositeSegmentsPositionStatsEvalType * CompositeSegmentsStatsIn) :
   LocationCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -10652,13 +10652,13 @@ void PositionCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -10757,7 +10757,7 @@ CompositeSegmentsPositionStatsEvalType * PositionCharacteristicStatsEvalType::ge
 void PositionCharacteristicStatsEvalType::setCompositeSegmentsStats(CompositeSegmentsPositionStatsEvalType * CompositeSegmentsStatsIn)
 {CompositeSegmentsStats = CompositeSegmentsStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ProfileCharacteristicStatsEvalBaseType
 
@@ -10776,8 +10776,8 @@ ProfileCharacteristicStatsEvalBaseType::ProfileCharacteristicStatsEvalBaseType()
 
 ProfileCharacteristicStatsEvalBaseType::ProfileCharacteristicStatsEvalBaseType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -10792,8 +10792,8 @@ ProfileCharacteristicStatsEvalBaseType::ProfileCharacteristicStatsEvalBaseType(
  CompositeSegmentsProfileStatsEvalType * CompositeSegmentsStatsIn) :
   GeometricCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -10833,13 +10833,13 @@ void ProfileCharacteristicStatsEvalBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -10972,7 +10972,7 @@ CompositeSegmentsProfileStatsEvalType * ProfileCharacteristicStatsEvalBaseType::
 void ProfileCharacteristicStatsEvalBaseType::setCompositeSegmentsStats(CompositeSegmentsProfileStatsEvalType * CompositeSegmentsStatsIn)
 {CompositeSegmentsStats = CompositeSegmentsStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RadiusCharacteristicStatsEvalType
 
@@ -10983,20 +10983,20 @@ RadiusCharacteristicStatsEvalType::RadiusCharacteristicStatsEvalType() :
 
 RadiusCharacteristicStatsEvalType::RadiusCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- LinearCharacter_1134_Type * LinearCharacter_1134In) :
+ LinearCharacter_1135_Type * LinearCharacter_1135In) :
   LinearCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    LinearCharacter_1134In)
+    LinearCharacter_1135In)
 {
 }
 
@@ -11014,13 +11014,13 @@ void RadiusCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -11043,11 +11043,11 @@ void RadiusCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  LinearCharacter_1134->printSelf(outFile);
+  LinearCharacter_1135->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class RunoutCharacteristicStatsEvalBaseType
 
@@ -11062,8 +11062,8 @@ RunoutCharacteristicStatsEvalBaseType::RunoutCharacteristicStatsEvalBaseType() :
 
 RunoutCharacteristicStatsEvalBaseType::RunoutCharacteristicStatsEvalBaseType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -11074,8 +11074,8 @@ RunoutCharacteristicStatsEvalBaseType::RunoutCharacteristicStatsEvalBaseType(
  StatsPassFailType * DatumsOkStatsIn) :
   GeometricCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -11107,13 +11107,13 @@ void RunoutCharacteristicStatsEvalBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -11190,7 +11190,7 @@ StatsPassFailType * RunoutCharacteristicStatsEvalBaseType::getDatumsOkStats()
 void RunoutCharacteristicStatsEvalBaseType::setDatumsOkStats(StatsPassFailType * DatumsOkStatsIn)
 {DatumsOkStats = DatumsOkStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SamplingIntervalEnumType
 
@@ -11258,7 +11258,7 @@ void SamplingIntervalEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SamplingIntervalType
 
@@ -11296,7 +11296,7 @@ SamplingIntervalTypeChoicePair * SamplingIntervalType::getSamplingIntervalTypePa
 void SamplingIntervalType::setSamplingIntervalTypePair(SamplingIntervalTypeChoicePair * SamplingIntervalTypePairIn)
 {SamplingIntervalTypePair = SamplingIntervalTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SamplingIntervalTypeChoicePair
 
@@ -11340,7 +11340,7 @@ void SamplingIntervalTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SamplingMethodType
 
@@ -11349,22 +11349,22 @@ void SamplingIntervalTypeChoicePair::printSelf(FILE * outFile)
 SamplingMethodType::SamplingMethodType()
 {
   SampleSize = 0;
-  SamplingMethodT_1135 = 0;
+  SamplingMethodT_1136 = 0;
 }
 
 SamplingMethodType::SamplingMethodType(
  XmlPositiveInteger * SampleSizeIn,
- SamplingMethodT_1135_Type * SamplingMethodT_1135In)
+ SamplingMethodT_1136_Type * SamplingMethodT_1136In)
 {
   SampleSize = SampleSizeIn;
-  SamplingMethodT_1135 = SamplingMethodT_1135In;
+  SamplingMethodT_1136 = SamplingMethodT_1136In;
 }
 
 SamplingMethodType::~SamplingMethodType()
 {
   #ifndef NODESTRUCT
   delete SampleSize;
-  delete SamplingMethodT_1135;
+  delete SamplingMethodT_1136;
   #endif
 }
 
@@ -11376,7 +11376,7 @@ void SamplingMethodType::printSelf(FILE * outFile)
   fprintf(outFile, "<SampleSize");
   SampleSize->printSelf(outFile);
   fprintf(outFile, "</SampleSize>\n");
-  SamplingMethodT_1135->printSelf(outFile);
+  SamplingMethodT_1136->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -11386,13 +11386,13 @@ XmlPositiveInteger * SamplingMethodType::getSampleSize()
 void SamplingMethodType::setSampleSize(XmlPositiveInteger * SampleSizeIn)
 {SampleSize = SampleSizeIn;}
 
-SamplingMethodT_1135_Type * SamplingMethodType::getSamplingMethodT_1135()
-{return SamplingMethodT_1135;}
+SamplingMethodT_1136_Type * SamplingMethodType::getSamplingMethodT_1136()
+{return SamplingMethodT_1136;}
 
-void SamplingMethodType::setSamplingMethodT_1135(SamplingMethodT_1135_Type * SamplingMethodT_1135In)
-{SamplingMethodT_1135 = SamplingMethodT_1135In;}
+void SamplingMethodType::setSamplingMethodT_1136(SamplingMethodT_1136_Type * SamplingMethodT_1136In)
+{SamplingMethodT_1136 = SamplingMethodT_1136In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalDiameterCharacteristicStatsEvalType
 
@@ -11403,20 +11403,20 @@ SphericalDiameterCharacteristicStatsEvalType::SphericalDiameterCharacteristicSta
 
 SphericalDiameterCharacteristicStatsEvalType::SphericalDiameterCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- LinearCharacter_1134_Type * LinearCharacter_1134In) :
+ LinearCharacter_1135_Type * LinearCharacter_1135In) :
   LinearCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    LinearCharacter_1134In)
+    LinearCharacter_1135In)
 {
 }
 
@@ -11434,13 +11434,13 @@ void SphericalDiameterCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -11463,11 +11463,11 @@ void SphericalDiameterCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  LinearCharacter_1134->printSelf(outFile);
+  LinearCharacter_1135->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericalRadiusCharacteristicStatsEvalType
 
@@ -11478,20 +11478,20 @@ SphericalRadiusCharacteristicStatsEvalType::SphericalRadiusCharacteristicStatsEv
 
 SphericalRadiusCharacteristicStatsEvalType::SphericalRadiusCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- LinearCharacter_1134_Type * LinearCharacter_1134In) :
+ LinearCharacter_1135_Type * LinearCharacter_1135In) :
   LinearCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    LinearCharacter_1134In)
+    LinearCharacter_1135In)
 {
 }
 
@@ -11509,13 +11509,13 @@ void SphericalRadiusCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -11538,11 +11538,11 @@ void SphericalRadiusCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  LinearCharacter_1134->printSelf(outFile);
+  LinearCharacter_1135->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SphericityCharacteristicStatsEvalType
 
@@ -11553,8 +11553,8 @@ SphericityCharacteristicStatsEvalType::SphericityCharacteristicStatsEvalType() :
 
 SphericityCharacteristicStatsEvalType::SphericityCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -11564,8 +11564,8 @@ SphericityCharacteristicStatsEvalType::SphericityCharacteristicStatsEvalType(
  OneSidedCapabilityCalculationEnumType * CapabilityCalculationMethodIn) :
   FormCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -11590,13 +11590,13 @@ void SphericityCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -11653,7 +11653,7 @@ void SphericityCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SquareCharacteristicStatsEvalType
 
@@ -11664,20 +11664,20 @@ SquareCharacteristicStatsEvalType::SquareCharacteristicStatsEvalType() :
 
 SquareCharacteristicStatsEvalType::SquareCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- LinearCharacter_1134_Type * LinearCharacter_1134In) :
+ LinearCharacter_1135_Type * LinearCharacter_1135In) :
   LinearCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    LinearCharacter_1134In)
+    LinearCharacter_1135In)
 {
 }
 
@@ -11695,13 +11695,13 @@ void SquareCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -11724,11 +11724,11 @@ void SquareCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  LinearCharacter_1134->printSelf(outFile);
+  LinearCharacter_1135->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsAngularType
 
@@ -12612,7 +12612,7 @@ XmlToken * StatsAngularType::getangularUnit()
 void StatsAngularType::setangularUnit(XmlToken * angularUnitIn)
 {angularUnit = angularUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsAreaType
 
@@ -13496,7 +13496,7 @@ XmlToken * StatsAreaType::getareaUnit()
 void StatsAreaType::setareaUnit(XmlToken * areaUnitIn)
 {areaUnit = areaUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsArrayIdType
 
@@ -13556,7 +13556,7 @@ ExclusionsIdType * StatsArrayIdType::getExclusions()
 void StatsArrayIdType::setExclusions(ExclusionsIdType * ExclusionsIn)
 {Exclusions = ExclusionsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsBaseType
 
@@ -13722,7 +13722,7 @@ StatsWithReferenceBaseTypeLisd * StatsBaseType::getCommonStatsValue()
 void StatsBaseType::setCommonStatsValue(StatsWithReferenceBaseTypeLisd * CommonStatsValueIn)
 {CommonStatsValue = CommonStatsValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsEvalStatusEnumType
 
@@ -13784,7 +13784,7 @@ void StatsEvalStatusEnumType::oPrintSelf(FILE * outFile)
   XmlNMTOKEN::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsEvalStatusType
 
@@ -13822,7 +13822,7 @@ StatsEvalStatusTypeChoicePair * StatsEvalStatusType::getStatsEvalStatusTypePair(
 void StatsEvalStatusType::setStatsEvalStatusTypePair(StatsEvalStatusTypeChoicePair * StatsEvalStatusTypePairIn)
 {StatsEvalStatusTypePair = StatsEvalStatusTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsEvalStatusTypeChoicePair
 
@@ -13866,7 +13866,7 @@ void StatsEvalStatusTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsForceType
 
@@ -14750,7 +14750,7 @@ XmlToken * StatsForceType::getforceUnit()
 void StatsForceType::setforceUnit(XmlToken * forceUnitIn)
 {forceUnit = forceUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsLinearType
 
@@ -15634,7 +15634,7 @@ XmlToken * StatsLinearType::getlinearUnit()
 void StatsLinearType::setlinearUnit(XmlToken * linearUnitIn)
 {linearUnit = linearUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsMassType
 
@@ -16518,7 +16518,7 @@ XmlToken * StatsMassType::getmassUnit()
 void StatsMassType::setmassUnit(XmlToken * massUnitIn)
 {massUnit = massUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsNumericalBaseType
 
@@ -17324,7 +17324,7 @@ StatsWithReferenceBaseTypeLisd * StatsNumericalBaseType::getNumericCharacteristi
 void StatsNumericalBaseType::setNumericCharacteristicStatsValue(StatsWithReferenceBaseTypeLisd * NumericCharacteristicStatsValueIn)
 {NumericCharacteristicStatsValue = NumericCharacteristicStatsValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsPassFailType
 
@@ -17549,7 +17549,7 @@ StatsWithReferenceBaseTypeLisd * StatsPassFailType::getPassFailStatsValue()
 void StatsPassFailType::setPassFailStatsValue(StatsWithReferenceBaseTypeLisd * PassFailStatsValueIn)
 {PassFailStatsValue = PassFailStatsValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsPressureType
 
@@ -18433,7 +18433,7 @@ XmlToken * StatsPressureType::getpressureUnit()
 void StatsPressureType::setpressureUnit(XmlToken * pressureUnitIn)
 {pressureUnit = pressureUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsSpeedType
 
@@ -19317,7 +19317,7 @@ XmlToken * StatsSpeedType::getspeedUnit()
 void StatsSpeedType::setspeedUnit(XmlToken * speedUnitIn)
 {speedUnit = speedUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsTemperatureType
 
@@ -20201,7 +20201,7 @@ XmlToken * StatsTemperatureType::gettemperatureUnit()
 void StatsTemperatureType::settemperatureUnit(XmlToken * temperatureUnitIn)
 {temperatureUnit = temperatureUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsTimeType
 
@@ -21085,7 +21085,7 @@ XmlToken * StatsTimeType::gettimeUnit()
 void StatsTimeType::settimeUnit(XmlToken * timeUnitIn)
 {timeUnit = timeUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsUserDefinedUnitType
 
@@ -21979,7 +21979,7 @@ XmlToken * StatsUserDefinedUnitType::getunitName()
 void StatsUserDefinedUnitType::setunitName(XmlToken * unitNameIn)
 {unitName = unitNameIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsValuesType
 
@@ -22038,7 +22038,7 @@ ExclusionsIndexType * StatsValuesType::getExclusions()
 void StatsValuesType::setExclusions(ExclusionsIndexType * ExclusionsIn)
 {Exclusions = ExclusionsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsValuesTypeLisd
 
@@ -22065,7 +22065,7 @@ StatsValuesTypeLisd::~StatsValuesTypeLisd()
 
 void StatsValuesTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsWithTolAngularType
 
@@ -23349,7 +23349,7 @@ XmlToken * StatsWithTolAngularType::getangularUnit()
 void StatsWithTolAngularType::setangularUnit(XmlToken * angularUnitIn)
 {angularUnit = angularUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsWithTolAreaType
 
@@ -24633,7 +24633,7 @@ XmlToken * StatsWithTolAreaType::getareaUnit()
 void StatsWithTolAreaType::setareaUnit(XmlToken * areaUnitIn)
 {areaUnit = areaUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsWithTolForceType
 
@@ -25917,7 +25917,7 @@ XmlToken * StatsWithTolForceType::getforceUnit()
 void StatsWithTolForceType::setforceUnit(XmlToken * forceUnitIn)
 {forceUnit = forceUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsWithTolLinearType
 
@@ -27201,7 +27201,7 @@ XmlToken * StatsWithTolLinearType::getlinearUnit()
 void StatsWithTolLinearType::setlinearUnit(XmlToken * linearUnitIn)
 {linearUnit = linearUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsWithTolMassType
 
@@ -28485,7 +28485,7 @@ XmlToken * StatsWithTolMassType::getmassUnit()
 void StatsWithTolMassType::setmassUnit(XmlToken * massUnitIn)
 {massUnit = massUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsWithTolNumericalBaseType
 
@@ -29691,7 +29691,7 @@ StatsWithReferenceBaseTypeLisd * StatsWithTolNumericalBaseType::getNumericCharac
 void StatsWithTolNumericalBaseType::setNumericCharacteristicWithTolStatsValue(StatsWithReferenceBaseTypeLisd * NumericCharacteristicWithTolStatsValueIn)
 {NumericCharacteristicWithTolStatsValue = NumericCharacteristicWithTolStatsValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsWithTolPressureType
 
@@ -30975,7 +30975,7 @@ XmlToken * StatsWithTolPressureType::getpressureUnit()
 void StatsWithTolPressureType::setpressureUnit(XmlToken * pressureUnitIn)
 {pressureUnit = pressureUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsWithTolSpeedType
 
@@ -32259,7 +32259,7 @@ XmlToken * StatsWithTolSpeedType::getspeedUnit()
 void StatsWithTolSpeedType::setspeedUnit(XmlToken * speedUnitIn)
 {speedUnit = speedUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsWithTolTemperatureType
 
@@ -33543,7 +33543,7 @@ XmlToken * StatsWithTolTemperatureType::gettemperatureUnit()
 void StatsWithTolTemperatureType::settemperatureUnit(XmlToken * temperatureUnitIn)
 {temperatureUnit = temperatureUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsWithTolTimeType
 
@@ -34827,7 +34827,7 @@ XmlToken * StatsWithTolTimeType::gettimeUnit()
 void StatsWithTolTimeType::settimeUnit(XmlToken * timeUnitIn)
 {timeUnit = timeUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StatsWithTolUserDefinedUnitType
 
@@ -36121,7 +36121,7 @@ XmlToken * StatsWithTolUserDefinedUnitType::getunitName()
 void StatsWithTolUserDefinedUnitType::setunitName(XmlToken * unitNameIn)
 {unitName = unitNameIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StraightnessCharacteristicStatsEvalType
 
@@ -36136,8 +36136,8 @@ StraightnessCharacteristicStatsEvalType::StraightnessCharacteristicStatsEvalType
 
 StraightnessCharacteristicStatsEvalType::StraightnessCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -36149,8 +36149,8 @@ StraightnessCharacteristicStatsEvalType::StraightnessCharacteristicStatsEvalType
  StatsLinearType * MaxStraightnessStatsIn) :
   FormCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -36183,13 +36183,13 @@ void StraightnessCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -36274,7 +36274,7 @@ StatsLinearType * StraightnessCharacteristicStatsEvalType::getMaxStraightnessSta
 void StraightnessCharacteristicStatsEvalType::setMaxStraightnessStats(StatsLinearType * MaxStraightnessStatsIn)
 {MaxStraightnessStats = MaxStraightnessStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StudyIssueType
 
@@ -36287,7 +36287,7 @@ StudyIssueType::StudyIssueType()
   AssignableCauseIds = 0;
   CorrectiveActionIds = 0;
   Resolution = 0;
-  StudyIssueType_1136 = 0;
+  StudyIssueType_1137 = 0;
 }
 
 StudyIssueType::StudyIssueType(
@@ -36295,14 +36295,14 @@ StudyIssueType::StudyIssueType(
  ArrayReferenceType * AssignableCauseIdsIn,
  ArrayReferenceType * CorrectiveActionIdsIn,
  XmlString * ResolutionIn,
- StudyIssueType_1136_Type * StudyIssueType_1136In)
+ StudyIssueType_1137_Type * StudyIssueType_1137In)
 {
   id = 0;
   Traceability = TraceabilityIn;
   AssignableCauseIds = AssignableCauseIdsIn;
   CorrectiveActionIds = CorrectiveActionIdsIn;
   Resolution = ResolutionIn;
-  StudyIssueType_1136 = StudyIssueType_1136In;
+  StudyIssueType_1137 = StudyIssueType_1137In;
 }
 
 StudyIssueType::StudyIssueType(
@@ -36311,14 +36311,14 @@ StudyIssueType::StudyIssueType(
  ArrayReferenceType * AssignableCauseIdsIn,
  ArrayReferenceType * CorrectiveActionIdsIn,
  XmlString * ResolutionIn,
- StudyIssueType_1136_Type * StudyIssueType_1136In)
+ StudyIssueType_1137_Type * StudyIssueType_1137In)
 {
   id = idIn;
   Traceability = TraceabilityIn;
   AssignableCauseIds = AssignableCauseIdsIn;
   CorrectiveActionIds = CorrectiveActionIdsIn;
   Resolution = ResolutionIn;
-  StudyIssueType_1136 = StudyIssueType_1136In;
+  StudyIssueType_1137 = StudyIssueType_1137In;
 }
 
 StudyIssueType::~StudyIssueType()
@@ -36329,7 +36329,7 @@ StudyIssueType::~StudyIssueType()
   delete AssignableCauseIds;
   delete CorrectiveActionIds;
   delete Resolution;
-  delete StudyIssueType_1136;
+  delete StudyIssueType_1137;
   #endif
 }
 
@@ -36393,9 +36393,9 @@ void StudyIssueType::printSelf(FILE * outFile)
       Resolution->printSelf(outFile);
       fprintf(outFile, "</Resolution>\n");
     }
-  if (StudyIssueType_1136)
+  if (StudyIssueType_1137)
     {
-      StudyIssueType_1136->printSelf(outFile);
+      StudyIssueType_1137->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -36487,13 +36487,13 @@ XmlString * StudyIssueType::getResolution()
 void StudyIssueType::setResolution(XmlString * ResolutionIn)
 {Resolution = ResolutionIn;}
 
-StudyIssueType_1136_Type * StudyIssueType::getStudyIssueType_1136()
-{return StudyIssueType_1136;}
+StudyIssueType_1137_Type * StudyIssueType::getStudyIssueType_1137()
+{return StudyIssueType_1137;}
 
-void StudyIssueType::setStudyIssueType_1136(StudyIssueType_1136_Type * StudyIssueType_1136In)
-{StudyIssueType_1136 = StudyIssueType_1136In;}
+void StudyIssueType::setStudyIssueType_1137(StudyIssueType_1137_Type * StudyIssueType_1137In)
+{StudyIssueType_1137 = StudyIssueType_1137In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StudyIssueTypeLisd
 
@@ -36520,7 +36520,7 @@ StudyIssueTypeLisd::~StudyIssueTypeLisd()
 
 void StudyIssueTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class StudyIssuesType
 
@@ -36678,7 +36678,7 @@ StudyIssueTypeLisd * StudyIssuesType::getStudyIssue()
 void StudyIssuesType::setStudyIssue(StudyIssueTypeLisd * StudyIssueIn)
 {StudyIssue = StudyIssueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SubgroupType
 
@@ -36819,7 +36819,7 @@ StatsArrayIdType * SubgroupType::getMeasuredIds()
 void SubgroupType::setMeasuredIds(StatsArrayIdType * MeasuredIdsIn)
 {MeasuredIds = MeasuredIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SubgroupTypeLisd
 
@@ -36846,7 +36846,7 @@ SubgroupTypeLisd::~SubgroupTypeLisd()
 
 void SubgroupTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SubgroupValuesType
 
@@ -37004,7 +37004,7 @@ StatsValuesTypeLisd * SubgroupValuesType::getSubgroup()
 void SubgroupValuesType::setSubgroup(StatsValuesTypeLisd * SubgroupIn)
 {Subgroup = SubgroupIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SubgroupsType
 
@@ -37162,7 +37162,7 @@ SubgroupTypeLisd * SubgroupsType::getSubgroup()
 void SubgroupsType::setSubgroup(SubgroupTypeLisd * SubgroupIn)
 {Subgroup = SubgroupIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummariesStatisticsAngularType
 
@@ -37320,7 +37320,7 @@ SummaryStatisticsAngularTypeLisd * SummariesStatisticsAngularType::getAngularSta
 void SummariesStatisticsAngularType::setAngularStatsSummary(SummaryStatisticsAngularTypeLisd * AngularStatsSummaryIn)
 {AngularStatsSummary = AngularStatsSummaryIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummariesStatisticsAreaType
 
@@ -37478,7 +37478,7 @@ SummaryStatisticsAreaTypeLisd * SummariesStatisticsAreaType::getAreaStatsSummary
 void SummariesStatisticsAreaType::setAreaStatsSummary(SummaryStatisticsAreaTypeLisd * AreaStatsSummaryIn)
 {AreaStatsSummary = AreaStatsSummaryIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummariesStatisticsForceType
 
@@ -37636,7 +37636,7 @@ SummaryStatisticsForceTypeLisd * SummariesStatisticsForceType::getForceStatsSumm
 void SummariesStatisticsForceType::setForceStatsSummary(SummaryStatisticsForceTypeLisd * ForceStatsSummaryIn)
 {ForceStatsSummary = ForceStatsSummaryIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummariesStatisticsLinearType
 
@@ -37794,7 +37794,7 @@ SummaryStatisticsLinearTypeLisd * SummariesStatisticsLinearType::getLinearStatsS
 void SummariesStatisticsLinearType::setLinearStatsSummary(SummaryStatisticsLinearTypeLisd * LinearStatsSummaryIn)
 {LinearStatsSummary = LinearStatsSummaryIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummariesStatisticsMassType
 
@@ -37952,7 +37952,7 @@ SummaryStatisticsMassTypeLisd * SummariesStatisticsMassType::getMassStatsSummary
 void SummariesStatisticsMassType::setMassStatsSummary(SummaryStatisticsMassTypeLisd * MassStatsSummaryIn)
 {MassStatsSummary = MassStatsSummaryIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummariesStatisticsPressureType
 
@@ -38110,7 +38110,7 @@ SummaryStatisticsPressureTypeLisd * SummariesStatisticsPressureType::getPressure
 void SummariesStatisticsPressureType::setPressureStatsSummary(SummaryStatisticsPressureTypeLisd * PressureStatsSummaryIn)
 {PressureStatsSummary = PressureStatsSummaryIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummariesStatisticsSpeedType
 
@@ -38268,7 +38268,7 @@ SummaryStatisticsSpeedTypeLisd * SummariesStatisticsSpeedType::getSpeedStatsSumm
 void SummariesStatisticsSpeedType::setSpeedStatsSummary(SummaryStatisticsSpeedTypeLisd * SpeedStatsSummaryIn)
 {SpeedStatsSummary = SpeedStatsSummaryIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummariesStatisticsTemperatureType
 
@@ -38426,7 +38426,7 @@ SummaryStatisticsTemperatureTypeLisd * SummariesStatisticsTemperatureType::getTe
 void SummariesStatisticsTemperatureType::setTemperatureStatsSummary(SummaryStatisticsTemperatureTypeLisd * TemperatureStatsSummaryIn)
 {TemperatureStatsSummary = TemperatureStatsSummaryIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummariesStatisticsTimeType
 
@@ -38584,7 +38584,7 @@ SummaryStatisticsTimeTypeLisd * SummariesStatisticsTimeType::getTimeStatsSummary
 void SummariesStatisticsTimeType::setTimeStatsSummary(SummaryStatisticsTimeTypeLisd * TimeStatsSummaryIn)
 {TimeStatsSummary = TimeStatsSummaryIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummariesStatisticsType
 
@@ -38742,7 +38742,7 @@ SummaryStatisticsTypeLisd * SummariesStatisticsType::getStatsSummary()
 void SummariesStatisticsType::setStatsSummary(SummaryStatisticsTypeLisd * StatsSummaryIn)
 {StatsSummary = StatsSummaryIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummariesStatisticsUserDefinedUnitType
 
@@ -38900,7 +38900,7 @@ SummaryStatisticsUserDefinedUnitTypeLisd * SummariesStatisticsUserDefinedUnitTyp
 void SummariesStatisticsUserDefinedUnitType::setUserDefinedUnitStatsSummary(SummaryStatisticsUserDefinedUnitTypeLisd * UserDefinedUnitStatsSummaryIn)
 {UserDefinedUnitStatsSummary = UserDefinedUnitStatsSummaryIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsAngularType
 
@@ -39152,7 +39152,7 @@ XmlToken * SummaryStatisticsAngularType::getangularUnit()
 void SummaryStatisticsAngularType::setangularUnit(XmlToken * angularUnitIn)
 {angularUnit = angularUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsAngularTypeLisd
 
@@ -39179,7 +39179,7 @@ SummaryStatisticsAngularTypeLisd::~SummaryStatisticsAngularTypeLisd()
 
 void SummaryStatisticsAngularTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsAreaType
 
@@ -39431,7 +39431,7 @@ XmlToken * SummaryStatisticsAreaType::getareaUnit()
 void SummaryStatisticsAreaType::setareaUnit(XmlToken * areaUnitIn)
 {areaUnit = areaUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsAreaTypeLisd
 
@@ -39458,7 +39458,7 @@ SummaryStatisticsAreaTypeLisd::~SummaryStatisticsAreaTypeLisd()
 
 void SummaryStatisticsAreaTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsForceType
 
@@ -39710,7 +39710,7 @@ XmlToken * SummaryStatisticsForceType::getforceUnit()
 void SummaryStatisticsForceType::setforceUnit(XmlToken * forceUnitIn)
 {forceUnit = forceUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsForceTypeLisd
 
@@ -39737,7 +39737,7 @@ SummaryStatisticsForceTypeLisd::~SummaryStatisticsForceTypeLisd()
 
 void SummaryStatisticsForceTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsLinearType
 
@@ -39989,7 +39989,7 @@ XmlToken * SummaryStatisticsLinearType::getlinearUnit()
 void SummaryStatisticsLinearType::setlinearUnit(XmlToken * linearUnitIn)
 {linearUnit = linearUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsLinearTypeLisd
 
@@ -40016,7 +40016,7 @@ SummaryStatisticsLinearTypeLisd::~SummaryStatisticsLinearTypeLisd()
 
 void SummaryStatisticsLinearTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsMassType
 
@@ -40268,7 +40268,7 @@ XmlToken * SummaryStatisticsMassType::getmassUnit()
 void SummaryStatisticsMassType::setmassUnit(XmlToken * massUnitIn)
 {massUnit = massUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsMassTypeLisd
 
@@ -40295,7 +40295,7 @@ SummaryStatisticsMassTypeLisd::~SummaryStatisticsMassTypeLisd()
 
 void SummaryStatisticsMassTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsPressureType
 
@@ -40547,7 +40547,7 @@ XmlToken * SummaryStatisticsPressureType::getpressureUnit()
 void SummaryStatisticsPressureType::setpressureUnit(XmlToken * pressureUnitIn)
 {pressureUnit = pressureUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsPressureTypeLisd
 
@@ -40574,7 +40574,7 @@ SummaryStatisticsPressureTypeLisd::~SummaryStatisticsPressureTypeLisd()
 
 void SummaryStatisticsPressureTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsSpeedType
 
@@ -40826,7 +40826,7 @@ XmlToken * SummaryStatisticsSpeedType::getspeedUnit()
 void SummaryStatisticsSpeedType::setspeedUnit(XmlToken * speedUnitIn)
 {speedUnit = speedUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsSpeedTypeLisd
 
@@ -40853,7 +40853,7 @@ SummaryStatisticsSpeedTypeLisd::~SummaryStatisticsSpeedTypeLisd()
 
 void SummaryStatisticsSpeedTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsTemperatureType
 
@@ -41105,7 +41105,7 @@ XmlToken * SummaryStatisticsTemperatureType::gettemperatureUnit()
 void SummaryStatisticsTemperatureType::settemperatureUnit(XmlToken * temperatureUnitIn)
 {temperatureUnit = temperatureUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsTemperatureTypeLisd
 
@@ -41132,7 +41132,7 @@ SummaryStatisticsTemperatureTypeLisd::~SummaryStatisticsTemperatureTypeLisd()
 
 void SummaryStatisticsTemperatureTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsTimeType
 
@@ -41384,7 +41384,7 @@ XmlToken * SummaryStatisticsTimeType::gettimeUnit()
 void SummaryStatisticsTimeType::settimeUnit(XmlToken * timeUnitIn)
 {timeUnit = timeUnitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsTimeTypeLisd
 
@@ -41411,7 +41411,7 @@ SummaryStatisticsTimeTypeLisd::~SummaryStatisticsTimeTypeLisd()
 
 void SummaryStatisticsTimeTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsType
 
@@ -41591,7 +41591,7 @@ StatsWithReferenceBaseTypeLisd * SummaryStatisticsType::getSummaryStatsValue()
 void SummaryStatisticsType::setSummaryStatsValue(StatsWithReferenceBaseTypeLisd * SummaryStatsValueIn)
 {SummaryStatsValue = SummaryStatsValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsTypeLisd
 
@@ -41618,7 +41618,7 @@ SummaryStatisticsTypeLisd::~SummaryStatisticsTypeLisd()
 
 void SummaryStatisticsTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsUserDefinedUnitType
 
@@ -41880,7 +41880,7 @@ XmlToken * SummaryStatisticsUserDefinedUnitType::getunitName()
 void SummaryStatisticsUserDefinedUnitType::setunitName(XmlToken * unitNameIn)
 {unitName = unitNameIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SummaryStatisticsUserDefinedUnitTypeLisd
 
@@ -41907,7 +41907,7 @@ SummaryStatisticsUserDefinedUnitTypeLisd::~SummaryStatisticsUserDefinedUnitTypeL
 
 void SummaryStatisticsUserDefinedUnitTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceProfileCharacteristicStatsEvalType
 
@@ -41918,8 +41918,8 @@ SurfaceProfileCharacteristicStatsEvalType::SurfaceProfileCharacteristicStatsEval
 
 SurfaceProfileCharacteristicStatsEvalType::SurfaceProfileCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -41934,8 +41934,8 @@ SurfaceProfileCharacteristicStatsEvalType::SurfaceProfileCharacteristicStatsEval
  CompositeSegmentsProfileStatsEvalType * CompositeSegmentsStatsIn) :
   ProfileCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -41965,13 +41965,13 @@ void SurfaceProfileCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -42068,7 +42068,7 @@ void SurfaceProfileCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceProfileNonUniformCharacteristicStatsEvalType
 
@@ -42079,8 +42079,8 @@ SurfaceProfileNonUniformCharacteristicStatsEvalType::SurfaceProfileNonUniformCha
 
 SurfaceProfileNonUniformCharacteristicStatsEvalType::SurfaceProfileNonUniformCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -42095,8 +42095,8 @@ SurfaceProfileNonUniformCharacteristicStatsEvalType::SurfaceProfileNonUniformCha
  CompositeSegmentsProfileStatsEvalType * CompositeSegmentsStatsIn) :
   ProfileCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -42126,13 +42126,13 @@ void SurfaceProfileNonUniformCharacteristicStatsEvalType::printSelf(FILE * outFi
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -42229,7 +42229,7 @@ void SurfaceProfileNonUniformCharacteristicStatsEvalType::printSelf(FILE * outFi
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SurfaceTextureCharacteristicStatsEvalType
 
@@ -42243,16 +42243,16 @@ SurfaceTextureCharacteristicStatsEvalType::SurfaceTextureCharacteristicStatsEval
 
 SurfaceTextureCharacteristicStatsEvalType::SurfaceTextureCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
  StatsWithTolLinearType * RoughnessAverageValueStatsIn) :
   CharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn)
@@ -42279,13 +42279,13 @@ void SurfaceTextureCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -42325,7 +42325,7 @@ StatsWithTolLinearType * SurfaceTextureCharacteristicStatsEvalType::getRoughness
 void SurfaceTextureCharacteristicStatsEvalType::setRoughnessAverageValueStats(StatsWithTolLinearType * RoughnessAverageValueStatsIn)
 {RoughnessAverageValueStats = RoughnessAverageValueStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SymmetryCharacteristicStatsEvalType
 
@@ -42340,8 +42340,8 @@ SymmetryCharacteristicStatsEvalType::SymmetryCharacteristicStatsEvalType() :
 
 SymmetryCharacteristicStatsEvalType::SymmetryCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -42353,8 +42353,8 @@ SymmetryCharacteristicStatsEvalType::SymmetryCharacteristicStatsEvalType(
  CompositeSegmentsSymmetryStatsEvalType * CompositeSegmentsStatsIn) :
   LocationCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -42387,13 +42387,13 @@ void SymmetryCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -42478,7 +42478,7 @@ CompositeSegmentsSymmetryStatsEvalType * SymmetryCharacteristicStatsEvalType::ge
 void SymmetryCharacteristicStatsEvalType::setCompositeSegmentsStats(CompositeSegmentsSymmetryStatsEvalType * CompositeSegmentsStatsIn)
 {CompositeSegmentsStats = CompositeSegmentsStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThicknessCharacteristicStatsEvalType
 
@@ -42489,20 +42489,20 @@ ThicknessCharacteristicStatsEvalType::ThicknessCharacteristicStatsEvalType() :
 
 ThicknessCharacteristicStatsEvalType::ThicknessCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- LinearCharacter_1134_Type * LinearCharacter_1134In) :
+ LinearCharacter_1135_Type * LinearCharacter_1135In) :
   LinearCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    LinearCharacter_1134In)
+    LinearCharacter_1135In)
 {
 }
 
@@ -42520,13 +42520,13 @@ void ThicknessCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -42549,11 +42549,11 @@ void ThicknessCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  LinearCharacter_1134->printSelf(outFile);
+  LinearCharacter_1135->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ThreadCharacteristicStatsEvalType
 
@@ -42569,8 +42569,8 @@ ThreadCharacteristicStatsEvalType::ThreadCharacteristicStatsEvalType() :
 
 ThreadCharacteristicStatsEvalType::ThreadCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -42579,8 +42579,8 @@ ThreadCharacteristicStatsEvalType::ThreadCharacteristicStatsEvalType(
  StatsLinearType * FunctionalSizeStatsIn) :
   CharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn)
@@ -42611,13 +42611,13 @@ void ThreadCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -42685,7 +42685,7 @@ StatsLinearType * ThreadCharacteristicStatsEvalType::getFunctionalSizeStats()
 void ThreadCharacteristicStatsEvalType::setFunctionalSizeStats(StatsLinearType * FunctionalSizeStatsIn)
 {FunctionalSizeStats = FunctionalSizeStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ToroidicityCharacteristicStatsEvalType
 
@@ -42696,8 +42696,8 @@ ToroidicityCharacteristicStatsEvalType::ToroidicityCharacteristicStatsEvalType()
 
 ToroidicityCharacteristicStatsEvalType::ToroidicityCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -42707,8 +42707,8 @@ ToroidicityCharacteristicStatsEvalType::ToroidicityCharacteristicStatsEvalType(
  OneSidedCapabilityCalculationEnumType * CapabilityCalculationMethodIn) :
   FormCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -42733,13 +42733,13 @@ void ToroidicityCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -42796,7 +42796,7 @@ void ToroidicityCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TotalRunoutCharacteristicStatsEvalType
 
@@ -42807,8 +42807,8 @@ TotalRunoutCharacteristicStatsEvalType::TotalRunoutCharacteristicStatsEvalType()
 
 TotalRunoutCharacteristicStatsEvalType::TotalRunoutCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
@@ -42819,8 +42819,8 @@ TotalRunoutCharacteristicStatsEvalType::TotalRunoutCharacteristicStatsEvalType(
  StatsPassFailType * DatumsOkStatsIn) :
   RunoutCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -42846,13 +42846,13 @@ void TotalRunoutCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -42917,7 +42917,7 @@ void TotalRunoutCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedAngularCharacteristicStatsEvalType
 
@@ -42926,32 +42926,32 @@ void TotalRunoutCharacteristicStatsEvalType::printSelf(FILE * outFile)
 UserDefinedAngularCharacteristicStatsEvalType::UserDefinedAngularCharacteristicStatsEvalType() :
   CharacteristicStatsEvalBaseType()
 {
-  UserDefinedAngu_1137 = 0;
+  UserDefinedAngu_1138 = 0;
 }
 
 UserDefinedAngularCharacteristicStatsEvalType::UserDefinedAngularCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- UserDefinedAngu_1137_Type * UserDefinedAngu_1137In) :
+ UserDefinedAngu_1138_Type * UserDefinedAngu_1138In) :
   CharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn)
 {
-  UserDefinedAngu_1137 = UserDefinedAngu_1137In;
+  UserDefinedAngu_1138 = UserDefinedAngu_1138In;
 }
 
 UserDefinedAngularCharacteristicStatsEvalType::~UserDefinedAngularCharacteristicStatsEvalType()
 {
   #ifndef NODESTRUCT
-  delete UserDefinedAngu_1137;
+  delete UserDefinedAngu_1138;
   #endif
 }
 
@@ -42967,13 +42967,13 @@ void UserDefinedAngularCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -42996,17 +42996,17 @@ void UserDefinedAngularCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  UserDefinedAngu_1137->printSelf(outFile);
+  UserDefinedAngu_1138->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-UserDefinedAngu_1137_Type * UserDefinedAngularCharacteristicStatsEvalType::getUserDefinedAngu_1137()
-{return UserDefinedAngu_1137;}
+UserDefinedAngu_1138_Type * UserDefinedAngularCharacteristicStatsEvalType::getUserDefinedAngu_1138()
+{return UserDefinedAngu_1138;}
 
-void UserDefinedAngularCharacteristicStatsEvalType::setUserDefinedAngu_1137(UserDefinedAngu_1137_Type * UserDefinedAngu_1137In)
-{UserDefinedAngu_1137 = UserDefinedAngu_1137In;}
+void UserDefinedAngularCharacteristicStatsEvalType::setUserDefinedAngu_1138(UserDefinedAngu_1138_Type * UserDefinedAngu_1138In)
+{UserDefinedAngu_1138 = UserDefinedAngu_1138In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedAreaCharacteristicStatsEvalType
 
@@ -43015,32 +43015,32 @@ void UserDefinedAngularCharacteristicStatsEvalType::setUserDefinedAngu_1137(User
 UserDefinedAreaCharacteristicStatsEvalType::UserDefinedAreaCharacteristicStatsEvalType() :
   CharacteristicStatsEvalBaseType()
 {
-  UserDefinedArea_1138 = 0;
+  UserDefinedArea_1139 = 0;
 }
 
 UserDefinedAreaCharacteristicStatsEvalType::UserDefinedAreaCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- UserDefinedArea_1138_Type * UserDefinedArea_1138In) :
+ UserDefinedArea_1139_Type * UserDefinedArea_1139In) :
   CharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn)
 {
-  UserDefinedArea_1138 = UserDefinedArea_1138In;
+  UserDefinedArea_1139 = UserDefinedArea_1139In;
 }
 
 UserDefinedAreaCharacteristicStatsEvalType::~UserDefinedAreaCharacteristicStatsEvalType()
 {
   #ifndef NODESTRUCT
-  delete UserDefinedArea_1138;
+  delete UserDefinedArea_1139;
   #endif
 }
 
@@ -43056,13 +43056,13 @@ void UserDefinedAreaCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -43085,17 +43085,17 @@ void UserDefinedAreaCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  UserDefinedArea_1138->printSelf(outFile);
+  UserDefinedArea_1139->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-UserDefinedArea_1138_Type * UserDefinedAreaCharacteristicStatsEvalType::getUserDefinedArea_1138()
-{return UserDefinedArea_1138;}
+UserDefinedArea_1139_Type * UserDefinedAreaCharacteristicStatsEvalType::getUserDefinedArea_1139()
+{return UserDefinedArea_1139;}
 
-void UserDefinedAreaCharacteristicStatsEvalType::setUserDefinedArea_1138(UserDefinedArea_1138_Type * UserDefinedArea_1138In)
-{UserDefinedArea_1138 = UserDefinedArea_1138In;}
+void UserDefinedAreaCharacteristicStatsEvalType::setUserDefinedArea_1139(UserDefinedArea_1139_Type * UserDefinedArea_1139In)
+{UserDefinedArea_1139 = UserDefinedArea_1139In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedAttributeCharacteristicStatsEvalType
 
@@ -43109,16 +43109,16 @@ UserDefinedAttributeCharacteristicStatsEvalType::UserDefinedAttributeCharacteris
 
 UserDefinedAttributeCharacteristicStatsEvalType::UserDefinedAttributeCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
  StatsPassFailType * AttributeStatsIn) :
   CharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn)
@@ -43145,13 +43145,13 @@ void UserDefinedAttributeCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -43191,7 +43191,7 @@ StatsPassFailType * UserDefinedAttributeCharacteristicStatsEvalType::getAttribut
 void UserDefinedAttributeCharacteristicStatsEvalType::setAttributeStats(StatsPassFailType * AttributeStatsIn)
 {AttributeStats = AttributeStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedForceCharacteristicStatsEvalType
 
@@ -43200,32 +43200,32 @@ void UserDefinedAttributeCharacteristicStatsEvalType::setAttributeStats(StatsPas
 UserDefinedForceCharacteristicStatsEvalType::UserDefinedForceCharacteristicStatsEvalType() :
   CharacteristicStatsEvalBaseType()
 {
-  UserDefinedForc_1139 = 0;
+  UserDefinedForc_1140 = 0;
 }
 
 UserDefinedForceCharacteristicStatsEvalType::UserDefinedForceCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- UserDefinedForc_1139_Type * UserDefinedForc_1139In) :
+ UserDefinedForc_1140_Type * UserDefinedForc_1140In) :
   CharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn)
 {
-  UserDefinedForc_1139 = UserDefinedForc_1139In;
+  UserDefinedForc_1140 = UserDefinedForc_1140In;
 }
 
 UserDefinedForceCharacteristicStatsEvalType::~UserDefinedForceCharacteristicStatsEvalType()
 {
   #ifndef NODESTRUCT
-  delete UserDefinedForc_1139;
+  delete UserDefinedForc_1140;
   #endif
 }
 
@@ -43241,13 +43241,13 @@ void UserDefinedForceCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -43270,17 +43270,17 @@ void UserDefinedForceCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  UserDefinedForc_1139->printSelf(outFile);
+  UserDefinedForc_1140->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-UserDefinedForc_1139_Type * UserDefinedForceCharacteristicStatsEvalType::getUserDefinedForc_1139()
-{return UserDefinedForc_1139;}
+UserDefinedForc_1140_Type * UserDefinedForceCharacteristicStatsEvalType::getUserDefinedForc_1140()
+{return UserDefinedForc_1140;}
 
-void UserDefinedForceCharacteristicStatsEvalType::setUserDefinedForc_1139(UserDefinedForc_1139_Type * UserDefinedForc_1139In)
-{UserDefinedForc_1139 = UserDefinedForc_1139In;}
+void UserDefinedForceCharacteristicStatsEvalType::setUserDefinedForc_1140(UserDefinedForc_1140_Type * UserDefinedForc_1140In)
+{UserDefinedForc_1140 = UserDefinedForc_1140In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedLinearCharacteristicStatsEvalType
 
@@ -43289,32 +43289,32 @@ void UserDefinedForceCharacteristicStatsEvalType::setUserDefinedForc_1139(UserDe
 UserDefinedLinearCharacteristicStatsEvalType::UserDefinedLinearCharacteristicStatsEvalType() :
   CharacteristicStatsEvalBaseType()
 {
-  UserDefinedLine_1140 = 0;
+  UserDefinedLine_1141 = 0;
 }
 
 UserDefinedLinearCharacteristicStatsEvalType::UserDefinedLinearCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- UserDefinedLine_1140_Type * UserDefinedLine_1140In) :
+ UserDefinedLine_1141_Type * UserDefinedLine_1141In) :
   CharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn)
 {
-  UserDefinedLine_1140 = UserDefinedLine_1140In;
+  UserDefinedLine_1141 = UserDefinedLine_1141In;
 }
 
 UserDefinedLinearCharacteristicStatsEvalType::~UserDefinedLinearCharacteristicStatsEvalType()
 {
   #ifndef NODESTRUCT
-  delete UserDefinedLine_1140;
+  delete UserDefinedLine_1141;
   #endif
 }
 
@@ -43330,13 +43330,13 @@ void UserDefinedLinearCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -43359,17 +43359,17 @@ void UserDefinedLinearCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  UserDefinedLine_1140->printSelf(outFile);
+  UserDefinedLine_1141->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-UserDefinedLine_1140_Type * UserDefinedLinearCharacteristicStatsEvalType::getUserDefinedLine_1140()
-{return UserDefinedLine_1140;}
+UserDefinedLine_1141_Type * UserDefinedLinearCharacteristicStatsEvalType::getUserDefinedLine_1141()
+{return UserDefinedLine_1141;}
 
-void UserDefinedLinearCharacteristicStatsEvalType::setUserDefinedLine_1140(UserDefinedLine_1140_Type * UserDefinedLine_1140In)
-{UserDefinedLine_1140 = UserDefinedLine_1140In;}
+void UserDefinedLinearCharacteristicStatsEvalType::setUserDefinedLine_1141(UserDefinedLine_1141_Type * UserDefinedLine_1141In)
+{UserDefinedLine_1141 = UserDefinedLine_1141In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedMassCharacteristicStatsEvalType
 
@@ -43378,32 +43378,32 @@ void UserDefinedLinearCharacteristicStatsEvalType::setUserDefinedLine_1140(UserD
 UserDefinedMassCharacteristicStatsEvalType::UserDefinedMassCharacteristicStatsEvalType() :
   CharacteristicStatsEvalBaseType()
 {
-  UserDefinedMass_1141 = 0;
+  UserDefinedMass_1142 = 0;
 }
 
 UserDefinedMassCharacteristicStatsEvalType::UserDefinedMassCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- UserDefinedMass_1141_Type * UserDefinedMass_1141In) :
+ UserDefinedMass_1142_Type * UserDefinedMass_1142In) :
   CharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn)
 {
-  UserDefinedMass_1141 = UserDefinedMass_1141In;
+  UserDefinedMass_1142 = UserDefinedMass_1142In;
 }
 
 UserDefinedMassCharacteristicStatsEvalType::~UserDefinedMassCharacteristicStatsEvalType()
 {
   #ifndef NODESTRUCT
-  delete UserDefinedMass_1141;
+  delete UserDefinedMass_1142;
   #endif
 }
 
@@ -43419,13 +43419,13 @@ void UserDefinedMassCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -43448,17 +43448,17 @@ void UserDefinedMassCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  UserDefinedMass_1141->printSelf(outFile);
+  UserDefinedMass_1142->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-UserDefinedMass_1141_Type * UserDefinedMassCharacteristicStatsEvalType::getUserDefinedMass_1141()
-{return UserDefinedMass_1141;}
+UserDefinedMass_1142_Type * UserDefinedMassCharacteristicStatsEvalType::getUserDefinedMass_1142()
+{return UserDefinedMass_1142;}
 
-void UserDefinedMassCharacteristicStatsEvalType::setUserDefinedMass_1141(UserDefinedMass_1141_Type * UserDefinedMass_1141In)
-{UserDefinedMass_1141 = UserDefinedMass_1141In;}
+void UserDefinedMassCharacteristicStatsEvalType::setUserDefinedMass_1142(UserDefinedMass_1142_Type * UserDefinedMass_1142In)
+{UserDefinedMass_1142 = UserDefinedMass_1142In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedPressureCharacteristicStatsEvalType
 
@@ -43467,32 +43467,32 @@ void UserDefinedMassCharacteristicStatsEvalType::setUserDefinedMass_1141(UserDef
 UserDefinedPressureCharacteristicStatsEvalType::UserDefinedPressureCharacteristicStatsEvalType() :
   CharacteristicStatsEvalBaseType()
 {
-  UserDefinedPres_1142 = 0;
+  UserDefinedPres_1143 = 0;
 }
 
 UserDefinedPressureCharacteristicStatsEvalType::UserDefinedPressureCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- UserDefinedPres_1142_Type * UserDefinedPres_1142In) :
+ UserDefinedPres_1143_Type * UserDefinedPres_1143In) :
   CharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn)
 {
-  UserDefinedPres_1142 = UserDefinedPres_1142In;
+  UserDefinedPres_1143 = UserDefinedPres_1143In;
 }
 
 UserDefinedPressureCharacteristicStatsEvalType::~UserDefinedPressureCharacteristicStatsEvalType()
 {
   #ifndef NODESTRUCT
-  delete UserDefinedPres_1142;
+  delete UserDefinedPres_1143;
   #endif
 }
 
@@ -43508,13 +43508,13 @@ void UserDefinedPressureCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -43537,17 +43537,17 @@ void UserDefinedPressureCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  UserDefinedPres_1142->printSelf(outFile);
+  UserDefinedPres_1143->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-UserDefinedPres_1142_Type * UserDefinedPressureCharacteristicStatsEvalType::getUserDefinedPres_1142()
-{return UserDefinedPres_1142;}
+UserDefinedPres_1143_Type * UserDefinedPressureCharacteristicStatsEvalType::getUserDefinedPres_1143()
+{return UserDefinedPres_1143;}
 
-void UserDefinedPressureCharacteristicStatsEvalType::setUserDefinedPres_1142(UserDefinedPres_1142_Type * UserDefinedPres_1142In)
-{UserDefinedPres_1142 = UserDefinedPres_1142In;}
+void UserDefinedPressureCharacteristicStatsEvalType::setUserDefinedPres_1143(UserDefinedPres_1143_Type * UserDefinedPres_1143In)
+{UserDefinedPres_1143 = UserDefinedPres_1143In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedSpeedCharacteristicStatsEvalType
 
@@ -43556,32 +43556,32 @@ void UserDefinedPressureCharacteristicStatsEvalType::setUserDefinedPres_1142(Use
 UserDefinedSpeedCharacteristicStatsEvalType::UserDefinedSpeedCharacteristicStatsEvalType() :
   CharacteristicStatsEvalBaseType()
 {
-  UserDefinedSpee_1143 = 0;
+  UserDefinedSpee_1144 = 0;
 }
 
 UserDefinedSpeedCharacteristicStatsEvalType::UserDefinedSpeedCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- UserDefinedSpee_1143_Type * UserDefinedSpee_1143In) :
+ UserDefinedSpee_1144_Type * UserDefinedSpee_1144In) :
   CharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn)
 {
-  UserDefinedSpee_1143 = UserDefinedSpee_1143In;
+  UserDefinedSpee_1144 = UserDefinedSpee_1144In;
 }
 
 UserDefinedSpeedCharacteristicStatsEvalType::~UserDefinedSpeedCharacteristicStatsEvalType()
 {
   #ifndef NODESTRUCT
-  delete UserDefinedSpee_1143;
+  delete UserDefinedSpee_1144;
   #endif
 }
 
@@ -43597,13 +43597,13 @@ void UserDefinedSpeedCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -43626,17 +43626,17 @@ void UserDefinedSpeedCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  UserDefinedSpee_1143->printSelf(outFile);
+  UserDefinedSpee_1144->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-UserDefinedSpee_1143_Type * UserDefinedSpeedCharacteristicStatsEvalType::getUserDefinedSpee_1143()
-{return UserDefinedSpee_1143;}
+UserDefinedSpee_1144_Type * UserDefinedSpeedCharacteristicStatsEvalType::getUserDefinedSpee_1144()
+{return UserDefinedSpee_1144;}
 
-void UserDefinedSpeedCharacteristicStatsEvalType::setUserDefinedSpee_1143(UserDefinedSpee_1143_Type * UserDefinedSpee_1143In)
-{UserDefinedSpee_1143 = UserDefinedSpee_1143In;}
+void UserDefinedSpeedCharacteristicStatsEvalType::setUserDefinedSpee_1144(UserDefinedSpee_1144_Type * UserDefinedSpee_1144In)
+{UserDefinedSpee_1144 = UserDefinedSpee_1144In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedTemperatureCharacteristicStatsEvalType
 
@@ -43645,32 +43645,32 @@ void UserDefinedSpeedCharacteristicStatsEvalType::setUserDefinedSpee_1143(UserDe
 UserDefinedTemperatureCharacteristicStatsEvalType::UserDefinedTemperatureCharacteristicStatsEvalType() :
   CharacteristicStatsEvalBaseType()
 {
-  UserDefinedTemp_1144 = 0;
+  UserDefinedTemp_1145 = 0;
 }
 
 UserDefinedTemperatureCharacteristicStatsEvalType::UserDefinedTemperatureCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- UserDefinedTemp_1144_Type * UserDefinedTemp_1144In) :
+ UserDefinedTemp_1145_Type * UserDefinedTemp_1145In) :
   CharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn)
 {
-  UserDefinedTemp_1144 = UserDefinedTemp_1144In;
+  UserDefinedTemp_1145 = UserDefinedTemp_1145In;
 }
 
 UserDefinedTemperatureCharacteristicStatsEvalType::~UserDefinedTemperatureCharacteristicStatsEvalType()
 {
   #ifndef NODESTRUCT
-  delete UserDefinedTemp_1144;
+  delete UserDefinedTemp_1145;
   #endif
 }
 
@@ -43686,13 +43686,13 @@ void UserDefinedTemperatureCharacteristicStatsEvalType::printSelf(FILE * outFile
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -43715,17 +43715,17 @@ void UserDefinedTemperatureCharacteristicStatsEvalType::printSelf(FILE * outFile
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  UserDefinedTemp_1144->printSelf(outFile);
+  UserDefinedTemp_1145->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-UserDefinedTemp_1144_Type * UserDefinedTemperatureCharacteristicStatsEvalType::getUserDefinedTemp_1144()
-{return UserDefinedTemp_1144;}
+UserDefinedTemp_1145_Type * UserDefinedTemperatureCharacteristicStatsEvalType::getUserDefinedTemp_1145()
+{return UserDefinedTemp_1145;}
 
-void UserDefinedTemperatureCharacteristicStatsEvalType::setUserDefinedTemp_1144(UserDefinedTemp_1144_Type * UserDefinedTemp_1144In)
-{UserDefinedTemp_1144 = UserDefinedTemp_1144In;}
+void UserDefinedTemperatureCharacteristicStatsEvalType::setUserDefinedTemp_1145(UserDefinedTemp_1145_Type * UserDefinedTemp_1145In)
+{UserDefinedTemp_1145 = UserDefinedTemp_1145In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedTimeCharacteristicStatsEvalType
 
@@ -43734,32 +43734,32 @@ void UserDefinedTemperatureCharacteristicStatsEvalType::setUserDefinedTemp_1144(
 UserDefinedTimeCharacteristicStatsEvalType::UserDefinedTimeCharacteristicStatsEvalType() :
   CharacteristicStatsEvalBaseType()
 {
-  UserDefinedTime_1145 = 0;
+  UserDefinedTime_1146 = 0;
 }
 
 UserDefinedTimeCharacteristicStatsEvalType::UserDefinedTimeCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- UserDefinedTime_1145_Type * UserDefinedTime_1145In) :
+ UserDefinedTime_1146_Type * UserDefinedTime_1146In) :
   CharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn)
 {
-  UserDefinedTime_1145 = UserDefinedTime_1145In;
+  UserDefinedTime_1146 = UserDefinedTime_1146In;
 }
 
 UserDefinedTimeCharacteristicStatsEvalType::~UserDefinedTimeCharacteristicStatsEvalType()
 {
   #ifndef NODESTRUCT
-  delete UserDefinedTime_1145;
+  delete UserDefinedTime_1146;
   #endif
 }
 
@@ -43775,13 +43775,13 @@ void UserDefinedTimeCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -43804,17 +43804,17 @@ void UserDefinedTimeCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  UserDefinedTime_1145->printSelf(outFile);
+  UserDefinedTime_1146->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-UserDefinedTime_1145_Type * UserDefinedTimeCharacteristicStatsEvalType::getUserDefinedTime_1145()
-{return UserDefinedTime_1145;}
+UserDefinedTime_1146_Type * UserDefinedTimeCharacteristicStatsEvalType::getUserDefinedTime_1146()
+{return UserDefinedTime_1146;}
 
-void UserDefinedTimeCharacteristicStatsEvalType::setUserDefinedTime_1145(UserDefinedTime_1145_Type * UserDefinedTime_1145In)
-{UserDefinedTime_1145 = UserDefinedTime_1145In;}
+void UserDefinedTimeCharacteristicStatsEvalType::setUserDefinedTime_1146(UserDefinedTime_1146_Type * UserDefinedTime_1146In)
+{UserDefinedTime_1146 = UserDefinedTime_1146In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedUnitCharacteristicStatsEvalType
 
@@ -43823,32 +43823,32 @@ void UserDefinedTimeCharacteristicStatsEvalType::setUserDefinedTime_1145(UserDef
 UserDefinedUnitCharacteristicStatsEvalType::UserDefinedUnitCharacteristicStatsEvalType() :
   CharacteristicStatsEvalBaseType()
 {
-  UserDefinedUnit_1146 = 0;
+  UserDefinedUnit_1147 = 0;
 }
 
 UserDefinedUnitCharacteristicStatsEvalType::UserDefinedUnitCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- UserDefinedUnit_1146_Type * UserDefinedUnit_1146In) :
+ UserDefinedUnit_1147_Type * UserDefinedUnit_1147In) :
   CharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn)
 {
-  UserDefinedUnit_1146 = UserDefinedUnit_1146In;
+  UserDefinedUnit_1147 = UserDefinedUnit_1147In;
 }
 
 UserDefinedUnitCharacteristicStatsEvalType::~UserDefinedUnitCharacteristicStatsEvalType()
 {
   #ifndef NODESTRUCT
-  delete UserDefinedUnit_1146;
+  delete UserDefinedUnit_1147;
   #endif
 }
 
@@ -43864,13 +43864,13 @@ void UserDefinedUnitCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -43893,17 +43893,17 @@ void UserDefinedUnitCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  UserDefinedUnit_1146->printSelf(outFile);
+  UserDefinedUnit_1147->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-UserDefinedUnit_1146_Type * UserDefinedUnitCharacteristicStatsEvalType::getUserDefinedUnit_1146()
-{return UserDefinedUnit_1146;}
+UserDefinedUnit_1147_Type * UserDefinedUnitCharacteristicStatsEvalType::getUserDefinedUnit_1147()
+{return UserDefinedUnit_1147;}
 
-void UserDefinedUnitCharacteristicStatsEvalType::setUserDefinedUnit_1146(UserDefinedUnit_1146_Type * UserDefinedUnit_1146In)
-{UserDefinedUnit_1146 = UserDefinedUnit_1146In;}
+void UserDefinedUnitCharacteristicStatsEvalType::setUserDefinedUnit_1147(UserDefinedUnit_1147_Type * UserDefinedUnit_1147In)
+{UserDefinedUnit_1147 = UserDefinedUnit_1147In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldBevelCharacteristicStatsEvalType
 
@@ -43914,16 +43914,16 @@ WeldBevelCharacteristicStatsEvalType::WeldBevelCharacteristicStatsEvalType() :
 
 WeldBevelCharacteristicStatsEvalType::WeldBevelCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
  StatsPassFailType * WeldStatsIn) :
   WeldCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -43945,13 +43945,13 @@ void WeldBevelCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -43985,7 +43985,7 @@ void WeldBevelCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldCharacteristicStatsEvalBaseType
 
@@ -43999,16 +43999,16 @@ WeldCharacteristicStatsEvalBaseType::WeldCharacteristicStatsEvalBaseType() :
 
 WeldCharacteristicStatsEvalBaseType::WeldCharacteristicStatsEvalBaseType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
  StatsPassFailType * WeldStatsIn) :
   CharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn)
@@ -44035,13 +44035,13 @@ void WeldCharacteristicStatsEvalBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -44081,7 +44081,7 @@ StatsPassFailType * WeldCharacteristicStatsEvalBaseType::getWeldStats()
 void WeldCharacteristicStatsEvalBaseType::setWeldStats(StatsPassFailType * WeldStatsIn)
 {WeldStats = WeldStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldCompoundCharacteristicStatsEvalType
 
@@ -44092,16 +44092,16 @@ WeldCompoundCharacteristicStatsEvalType::WeldCompoundCharacteristicStatsEvalType
 
 WeldCompoundCharacteristicStatsEvalType::WeldCompoundCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
  StatsPassFailType * WeldStatsIn) :
   WeldCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -44123,13 +44123,13 @@ void WeldCompoundCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -44163,7 +44163,7 @@ void WeldCompoundCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldEdgeCharacteristicStatsEvalType
 
@@ -44174,16 +44174,16 @@ WeldEdgeCharacteristicStatsEvalType::WeldEdgeCharacteristicStatsEvalType() :
 
 WeldEdgeCharacteristicStatsEvalType::WeldEdgeCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
  StatsPassFailType * WeldStatsIn) :
   WeldCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -44205,13 +44205,13 @@ void WeldEdgeCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -44245,7 +44245,7 @@ void WeldEdgeCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFilletCharacteristicStatsEvalType
 
@@ -44256,16 +44256,16 @@ WeldFilletCharacteristicStatsEvalType::WeldFilletCharacteristicStatsEvalType() :
 
 WeldFilletCharacteristicStatsEvalType::WeldFilletCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
  StatsPassFailType * WeldStatsIn) :
   WeldCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -44287,13 +44287,13 @@ void WeldFilletCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -44327,7 +44327,7 @@ void WeldFilletCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFlareBevelCharacteristicStatsEvalType
 
@@ -44338,16 +44338,16 @@ WeldFlareBevelCharacteristicStatsEvalType::WeldFlareBevelCharacteristicStatsEval
 
 WeldFlareBevelCharacteristicStatsEvalType::WeldFlareBevelCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
  StatsPassFailType * WeldStatsIn) :
   WeldCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -44369,13 +44369,13 @@ void WeldFlareBevelCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -44409,7 +44409,7 @@ void WeldFlareBevelCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldFlareVCharacteristicStatsEvalType
 
@@ -44420,16 +44420,16 @@ WeldFlareVCharacteristicStatsEvalType::WeldFlareVCharacteristicStatsEvalType() :
 
 WeldFlareVCharacteristicStatsEvalType::WeldFlareVCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
  StatsPassFailType * WeldStatsIn) :
   WeldCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -44451,13 +44451,13 @@ void WeldFlareVCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -44491,7 +44491,7 @@ void WeldFlareVCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldJCharacteristicStatsEvalType
 
@@ -44502,16 +44502,16 @@ WeldJCharacteristicStatsEvalType::WeldJCharacteristicStatsEvalType() :
 
 WeldJCharacteristicStatsEvalType::WeldJCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
  StatsPassFailType * WeldStatsIn) :
   WeldCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -44533,13 +44533,13 @@ void WeldJCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -44573,7 +44573,7 @@ void WeldJCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldPlugCharacteristicStatsEvalType
 
@@ -44584,16 +44584,16 @@ WeldPlugCharacteristicStatsEvalType::WeldPlugCharacteristicStatsEvalType() :
 
 WeldPlugCharacteristicStatsEvalType::WeldPlugCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
  StatsPassFailType * WeldStatsIn) :
   WeldCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -44615,13 +44615,13 @@ void WeldPlugCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -44655,7 +44655,7 @@ void WeldPlugCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldScarfCharacteristicStatsEvalType
 
@@ -44666,16 +44666,16 @@ WeldScarfCharacteristicStatsEvalType::WeldScarfCharacteristicStatsEvalType() :
 
 WeldScarfCharacteristicStatsEvalType::WeldScarfCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
  StatsPassFailType * WeldStatsIn) :
   WeldCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -44697,13 +44697,13 @@ void WeldScarfCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -44737,7 +44737,7 @@ void WeldScarfCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSeamCharacteristicStatsEvalType
 
@@ -44748,16 +44748,16 @@ WeldSeamCharacteristicStatsEvalType::WeldSeamCharacteristicStatsEvalType() :
 
 WeldSeamCharacteristicStatsEvalType::WeldSeamCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
  StatsPassFailType * WeldStatsIn) :
   WeldCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -44779,13 +44779,13 @@ void WeldSeamCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -44819,7 +44819,7 @@ void WeldSeamCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSlotCharacteristicStatsEvalType
 
@@ -44830,16 +44830,16 @@ WeldSlotCharacteristicStatsEvalType::WeldSlotCharacteristicStatsEvalType() :
 
 WeldSlotCharacteristicStatsEvalType::WeldSlotCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
  StatsPassFailType * WeldStatsIn) :
   WeldCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -44861,13 +44861,13 @@ void WeldSlotCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -44901,7 +44901,7 @@ void WeldSlotCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSpotCharacteristicStatsEvalType
 
@@ -44912,16 +44912,16 @@ WeldSpotCharacteristicStatsEvalType::WeldSpotCharacteristicStatsEvalType() :
 
 WeldSpotCharacteristicStatsEvalType::WeldSpotCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
  StatsPassFailType * WeldStatsIn) :
   WeldCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -44943,13 +44943,13 @@ void WeldSpotCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -44983,7 +44983,7 @@ void WeldSpotCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSquareCharacteristicStatsEvalType
 
@@ -44994,16 +44994,16 @@ WeldSquareCharacteristicStatsEvalType::WeldSquareCharacteristicStatsEvalType() :
 
 WeldSquareCharacteristicStatsEvalType::WeldSquareCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
  StatsPassFailType * WeldStatsIn) :
   WeldCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -45025,13 +45025,13 @@ void WeldSquareCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -45065,7 +45065,7 @@ void WeldSquareCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldStudCharacteristicStatsEvalType
 
@@ -45076,16 +45076,16 @@ WeldStudCharacteristicStatsEvalType::WeldStudCharacteristicStatsEvalType() :
 
 WeldStudCharacteristicStatsEvalType::WeldStudCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
  StatsPassFailType * WeldStatsIn) :
   WeldCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -45107,13 +45107,13 @@ void WeldStudCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -45147,7 +45147,7 @@ void WeldStudCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSurfacingCharacteristicStatsEvalType
 
@@ -45158,16 +45158,16 @@ WeldSurfacingCharacteristicStatsEvalType::WeldSurfacingCharacteristicStatsEvalTy
 
 WeldSurfacingCharacteristicStatsEvalType::WeldSurfacingCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
  StatsPassFailType * WeldStatsIn) :
   WeldCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -45189,13 +45189,13 @@ void WeldSurfacingCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -45229,7 +45229,7 @@ void WeldSurfacingCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldUCharacteristicStatsEvalType
 
@@ -45240,16 +45240,16 @@ WeldUCharacteristicStatsEvalType::WeldUCharacteristicStatsEvalType() :
 
 WeldUCharacteristicStatsEvalType::WeldUCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
  StatsPassFailType * WeldStatsIn) :
   WeldCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -45271,13 +45271,13 @@ void WeldUCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -45311,7 +45311,7 @@ void WeldUCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldVCharacteristicStatsEvalType
 
@@ -45322,16 +45322,16 @@ WeldVCharacteristicStatsEvalType::WeldVCharacteristicStatsEvalType() :
 
 WeldVCharacteristicStatsEvalType::WeldVCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
  StatsPassFailType * WeldStatsIn) :
   WeldCharacteristicStatsEvalBaseType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
@@ -45353,13 +45353,13 @@ void WeldVCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -45393,7 +45393,7 @@ void WeldVCharacteristicStatsEvalType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WidthCharacteristicStatsEvalType
 
@@ -45404,20 +45404,20 @@ WidthCharacteristicStatsEvalType::WidthCharacteristicStatsEvalType() :
 
 WidthCharacteristicStatsEvalType::WidthCharacteristicStatsEvalType(
  AttributesType * AttributesIn,
- CharacteristicS_1128_Type * CharacteristicS_1128In,
  CharacteristicS_1129_Type * CharacteristicS_1129In,
+ CharacteristicS_1130_Type * CharacteristicS_1130In,
  StatsEvalStatusType * StatusIn,
  StudyIssuesType * StudyIssuesIn,
  DistributionTransformationType * DistributionTransformationIn,
- LinearCharacter_1134_Type * LinearCharacter_1134In) :
+ LinearCharacter_1135_Type * LinearCharacter_1135In) :
   LinearCharacteristicStatsEvalType(
     AttributesIn,
-    CharacteristicS_1128In,
     CharacteristicS_1129In,
+    CharacteristicS_1130In,
     StatusIn,
     StudyIssuesIn,
     DistributionTransformationIn,
-    LinearCharacter_1134In)
+    LinearCharacter_1135In)
 {
 }
 
@@ -45435,13 +45435,13 @@ void WidthCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (CharacteristicS_1128)
-    {
-      CharacteristicS_1128->printSelf(outFile);
-    }
   if (CharacteristicS_1129)
     {
       CharacteristicS_1129->printSelf(outFile);
+    }
+  if (CharacteristicS_1130)
+    {
+      CharacteristicS_1130->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Status");
@@ -45464,286 +45464,195 @@ void WidthCharacteristicStatsEvalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DistributionTransformation>\n");
     }
-  LinearCharacter_1134->printSelf(outFile);
+  LinearCharacter_1135->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class AngularCharacte_1126_Type
-
-*/
-
-AngularCharacte_1126_Type::AngularCharacte_1126_Type()
-{
-  AngularCharacte_1126_TypePair = 0;
-}
-
-AngularCharacte_1126_Type::AngularCharacte_1126_Type(
- AngularCharacte_1126_TypeChoicePair * AngularCharacte_1126_TypePairIn)
-{
-  AngularCharacte_1126_TypePair = AngularCharacte_1126_TypePairIn;
-}
-
-AngularCharacte_1126_Type::~AngularCharacte_1126_Type()
-{
-  #ifndef NODESTRUCT
-  delete AngularCharacte_1126_TypePair;
-  #endif
-}
-
-void AngularCharacte_1126_Type::printSelf(FILE * outFile)
-{
-  AngularCharacte_1126_TypePair->printSelf(outFile);
-}
-
-AngularCharacte_1126_TypeChoicePair * AngularCharacte_1126_Type::getAngularCharacte_1126_TypePair()
-{return AngularCharacte_1126_TypePair;}
-
-void AngularCharacte_1126_Type::setAngularCharacte_1126_TypePair(AngularCharacte_1126_TypeChoicePair * AngularCharacte_1126_TypePairIn)
-{AngularCharacte_1126_TypePair = AngularCharacte_1126_TypePairIn;}
-
-/*********************************************************************/
-
-/* class AngularCharacte_1126_TypeChoicePair
+/* class AngularCharacte_1127_Type
 
 */
 
-AngularCharacte_1126_TypeChoicePair::AngularCharacte_1126_TypeChoicePair() {}
-
-AngularCharacte_1126_TypeChoicePair::AngularCharacte_1126_TypeChoicePair(
- whichOne AngularCharacte_1126_TypeTypeIn,
- AngularCharacte_1126_TypeVal AngularCharacte_1126_TypeValueIn)
+AngularCharacte_1127_Type::AngularCharacte_1127_Type()
 {
-  AngularCharacte_1126_TypeType = AngularCharacte_1126_TypeTypeIn;
-  AngularCharacte_1126_TypeValue = AngularCharacte_1126_TypeValueIn;
+  AngularCharacte_1127_TypePair = 0;
 }
 
-AngularCharacte_1126_TypeChoicePair::~AngularCharacte_1126_TypeChoicePair()
+AngularCharacte_1127_Type::AngularCharacte_1127_Type(
+ AngularCharacte_1127_TypeChoicePair * AngularCharacte_1127_TypePairIn)
+{
+  AngularCharacte_1127_TypePair = AngularCharacte_1127_TypePairIn;
+}
+
+AngularCharacte_1127_Type::~AngularCharacte_1127_Type()
 {
   #ifndef NODESTRUCT
-  if (AngularCharacte_1126_TypeType == AngularCharacte_1147E)
-    delete AngularCharacte_1126_TypeValue.AngularCharacte_1147;
-  else if (AngularCharacte_1126_TypeType == AngularCharacte_1148E)
-    delete AngularCharacte_1126_TypeValue.AngularCharacte_1148;
-  else if (AngularCharacte_1126_TypeType == MinValueStatsE)
-    delete AngularCharacte_1126_TypeValue.MinValueStats;
-  else if (AngularCharacte_1126_TypeType == AngularCharacte_1149E)
-    delete AngularCharacte_1126_TypeValue.AngularCharacte_1149;
-  else if (AngularCharacte_1126_TypeType == AngularCharacte_1150E)
-    delete AngularCharacte_1126_TypeValue.AngularCharacte_1150;
-  else if (AngularCharacte_1126_TypeType == MinDeviationStatsE)
-    delete AngularCharacte_1126_TypeValue.MinDeviationStats;
+  delete AngularCharacte_1127_TypePair;
   #endif
 }
 
-void AngularCharacte_1126_TypeChoicePair::printSelf(FILE * outFile)
+void AngularCharacte_1127_Type::printSelf(FILE * outFile)
 {
-  if (AngularCharacte_1126_TypeType == AngularCharacte_1147E)
+  AngularCharacte_1127_TypePair->printSelf(outFile);
+}
+
+AngularCharacte_1127_TypeChoicePair * AngularCharacte_1127_Type::getAngularCharacte_1127_TypePair()
+{return AngularCharacte_1127_TypePair;}
+
+void AngularCharacte_1127_Type::setAngularCharacte_1127_TypePair(AngularCharacte_1127_TypeChoicePair * AngularCharacte_1127_TypePairIn)
+{AngularCharacte_1127_TypePair = AngularCharacte_1127_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class AngularCharacte_1127_TypeChoicePair
+
+*/
+
+AngularCharacte_1127_TypeChoicePair::AngularCharacte_1127_TypeChoicePair() {}
+
+AngularCharacte_1127_TypeChoicePair::AngularCharacte_1127_TypeChoicePair(
+ whichOne AngularCharacte_1127_TypeTypeIn,
+ AngularCharacte_1127_TypeVal AngularCharacte_1127_TypeValueIn)
+{
+  AngularCharacte_1127_TypeType = AngularCharacte_1127_TypeTypeIn;
+  AngularCharacte_1127_TypeValue = AngularCharacte_1127_TypeValueIn;
+}
+
+AngularCharacte_1127_TypeChoicePair::~AngularCharacte_1127_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (AngularCharacte_1127_TypeType == AngularCharacte_1148E)
+    delete AngularCharacte_1127_TypeValue.AngularCharacte_1148;
+  else if (AngularCharacte_1127_TypeType == AngularCharacte_1149E)
+    delete AngularCharacte_1127_TypeValue.AngularCharacte_1149;
+  else if (AngularCharacte_1127_TypeType == MinValueStatsE)
+    delete AngularCharacte_1127_TypeValue.MinValueStats;
+  else if (AngularCharacte_1127_TypeType == AngularCharacte_1150E)
+    delete AngularCharacte_1127_TypeValue.AngularCharacte_1150;
+  else if (AngularCharacte_1127_TypeType == AngularCharacte_1151E)
+    delete AngularCharacte_1127_TypeValue.AngularCharacte_1151;
+  else if (AngularCharacte_1127_TypeType == MinDeviationStatsE)
+    delete AngularCharacte_1127_TypeValue.MinDeviationStats;
+  #endif
+}
+
+void AngularCharacte_1127_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (AngularCharacte_1127_TypeType == AngularCharacte_1148E)
     {
-      AngularCharacte_1126_TypeValue.AngularCharacte_1147->printSelf(outFile);
+      AngularCharacte_1127_TypeValue.AngularCharacte_1148->printSelf(outFile);
     }
-  else if (AngularCharacte_1126_TypeType == AngularCharacte_1148E)
+  else if (AngularCharacte_1127_TypeType == AngularCharacte_1149E)
     {
-      AngularCharacte_1126_TypeValue.AngularCharacte_1148->printSelf(outFile);
+      AngularCharacte_1127_TypeValue.AngularCharacte_1149->printSelf(outFile);
     }
-  else if (AngularCharacte_1126_TypeType == MinValueStatsE)
+  else if (AngularCharacte_1127_TypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      AngularCharacte_1126_TypeValue.MinValueStats->printSelf(outFile);
+      AngularCharacte_1127_TypeValue.MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
-  else if (AngularCharacte_1126_TypeType == AngularCharacte_1149E)
+  else if (AngularCharacte_1127_TypeType == AngularCharacte_1150E)
     {
-      AngularCharacte_1126_TypeValue.AngularCharacte_1149->printSelf(outFile);
+      AngularCharacte_1127_TypeValue.AngularCharacte_1150->printSelf(outFile);
     }
-  else if (AngularCharacte_1126_TypeType == AngularCharacte_1150E)
+  else if (AngularCharacte_1127_TypeType == AngularCharacte_1151E)
     {
-      AngularCharacte_1126_TypeValue.AngularCharacte_1150->printSelf(outFile);
+      AngularCharacte_1127_TypeValue.AngularCharacte_1151->printSelf(outFile);
     }
-  else if (AngularCharacte_1126_TypeType == MinDeviationStatsE)
+  else if (AngularCharacte_1127_TypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      AngularCharacte_1126_TypeValue.MinDeviationStats->printSelf(outFile);
+      AngularCharacte_1127_TypeValue.MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class AssignableCause_1127_Type
-
-*/
-
-AssignableCause_1127_Type::AssignableCause_1127_Type()
-{
-  AssignableCause_1127_TypePair = 0;
-}
-
-AssignableCause_1127_Type::AssignableCause_1127_Type(
- AssignableCause_1127_TypeChoicePair * AssignableCause_1127_TypePairIn)
-{
-  AssignableCause_1127_TypePair = AssignableCause_1127_TypePairIn;
-}
-
-AssignableCause_1127_Type::~AssignableCause_1127_Type()
-{
-  #ifndef NODESTRUCT
-  delete AssignableCause_1127_TypePair;
-  #endif
-}
-
-void AssignableCause_1127_Type::printSelf(FILE * outFile)
-{
-  AssignableCause_1127_TypePair->printSelf(outFile);
-}
-
-AssignableCause_1127_TypeChoicePair * AssignableCause_1127_Type::getAssignableCause_1127_TypePair()
-{return AssignableCause_1127_TypePair;}
-
-void AssignableCause_1127_Type::setAssignableCause_1127_TypePair(AssignableCause_1127_TypeChoicePair * AssignableCause_1127_TypePairIn)
-{AssignableCause_1127_TypePair = AssignableCause_1127_TypePairIn;}
-
-/*********************************************************************/
-
-/* class AssignableCause_1127_TypeChoicePair
+/* class AssignableCause_1128_Type
 
 */
 
-AssignableCause_1127_TypeChoicePair::AssignableCause_1127_TypeChoicePair() {}
-
-AssignableCause_1127_TypeChoicePair::AssignableCause_1127_TypeChoicePair(
- whichOne AssignableCause_1127_TypeTypeIn,
- AssignableCause_1127_TypeVal AssignableCause_1127_TypeValueIn)
+AssignableCause_1128_Type::AssignableCause_1128_Type()
 {
-  AssignableCause_1127_TypeType = AssignableCause_1127_TypeTypeIn;
-  AssignableCause_1127_TypeValue = AssignableCause_1127_TypeValueIn;
+  AssignableCause_1128_TypePair = 0;
 }
 
-AssignableCause_1127_TypeChoicePair::~AssignableCause_1127_TypeChoicePair()
+AssignableCause_1128_Type::AssignableCause_1128_Type(
+ AssignableCause_1128_TypeChoicePair * AssignableCause_1128_TypePairIn)
+{
+  AssignableCause_1128_TypePair = AssignableCause_1128_TypePairIn;
+}
+
+AssignableCause_1128_Type::~AssignableCause_1128_Type()
 {
   #ifndef NODESTRUCT
-  if (AssignableCause_1127_TypeType == DescriptionE)
-    delete AssignableCause_1127_TypeValue.Description;
-  else if (AssignableCause_1127_TypeType == AssignableCauseEnumE)
-    delete AssignableCause_1127_TypeValue.AssignableCauseEnum;
+  delete AssignableCause_1128_TypePair;
   #endif
 }
 
-void AssignableCause_1127_TypeChoicePair::printSelf(FILE * outFile)
+void AssignableCause_1128_Type::printSelf(FILE * outFile)
 {
-  if (AssignableCause_1127_TypeType == DescriptionE)
+  AssignableCause_1128_TypePair->printSelf(outFile);
+}
+
+AssignableCause_1128_TypeChoicePair * AssignableCause_1128_Type::getAssignableCause_1128_TypePair()
+{return AssignableCause_1128_TypePair;}
+
+void AssignableCause_1128_Type::setAssignableCause_1128_TypePair(AssignableCause_1128_TypeChoicePair * AssignableCause_1128_TypePairIn)
+{AssignableCause_1128_TypePair = AssignableCause_1128_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class AssignableCause_1128_TypeChoicePair
+
+*/
+
+AssignableCause_1128_TypeChoicePair::AssignableCause_1128_TypeChoicePair() {}
+
+AssignableCause_1128_TypeChoicePair::AssignableCause_1128_TypeChoicePair(
+ whichOne AssignableCause_1128_TypeTypeIn,
+ AssignableCause_1128_TypeVal AssignableCause_1128_TypeValueIn)
+{
+  AssignableCause_1128_TypeType = AssignableCause_1128_TypeTypeIn;
+  AssignableCause_1128_TypeValue = AssignableCause_1128_TypeValueIn;
+}
+
+AssignableCause_1128_TypeChoicePair::~AssignableCause_1128_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (AssignableCause_1128_TypeType == DescriptionE)
+    delete AssignableCause_1128_TypeValue.Description;
+  else if (AssignableCause_1128_TypeType == AssignableCauseEnumE)
+    delete AssignableCause_1128_TypeValue.AssignableCauseEnum;
+  #endif
+}
+
+void AssignableCause_1128_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (AssignableCause_1128_TypeType == DescriptionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Description");
-      AssignableCause_1127_TypeValue.Description->printSelf(outFile);
+      AssignableCause_1128_TypeValue.Description->printSelf(outFile);
       fprintf(outFile, "</Description>\n");
     }
-  else if (AssignableCause_1127_TypeType == AssignableCauseEnumE)
+  else if (AssignableCause_1128_TypeType == AssignableCauseEnumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AssignableCauseEnum");
-      AssignableCause_1127_TypeValue.AssignableCauseEnum->printSelf(outFile);
+      AssignableCause_1128_TypeValue.AssignableCauseEnum->printSelf(outFile);
       fprintf(outFile, "</AssignableCauseEnum>\n");
     }
 }
 
-/*********************************************************************/
-
-/* class CharacteristicS_1128_Type
-
-*/
-
-CharacteristicS_1128_Type::CharacteristicS_1128_Type()
-{
-  CharacteristicS_1128_TypePair = 0;
-}
-
-CharacteristicS_1128_Type::CharacteristicS_1128_Type(
- CharacteristicS_1128_TypeChoicePair * CharacteristicS_1128_TypePairIn)
-{
-  CharacteristicS_1128_TypePair = CharacteristicS_1128_TypePairIn;
-}
-
-CharacteristicS_1128_Type::~CharacteristicS_1128_Type()
-{
-  #ifndef NODESTRUCT
-  delete CharacteristicS_1128_TypePair;
-  #endif
-}
-
-void CharacteristicS_1128_Type::printSelf(FILE * outFile)
-{
-  if (CharacteristicS_1128_TypePair)
-    {
-      CharacteristicS_1128_TypePair->printSelf(outFile);
-    }
-}
-
-CharacteristicS_1128_TypeChoicePair * CharacteristicS_1128_Type::getCharacteristicS_1128_TypePair()
-{return CharacteristicS_1128_TypePair;}
-
-void CharacteristicS_1128_Type::setCharacteristicS_1128_TypePair(CharacteristicS_1128_TypeChoicePair * CharacteristicS_1128_TypePairIn)
-{CharacteristicS_1128_TypePair = CharacteristicS_1128_TypePairIn;}
-
-/*********************************************************************/
-
-/* class CharacteristicS_1128_TypeChoicePair
-
-*/
-
-CharacteristicS_1128_TypeChoicePair::CharacteristicS_1128_TypeChoicePair() {}
-
-CharacteristicS_1128_TypeChoicePair::CharacteristicS_1128_TypeChoicePair(
- whichOne CharacteristicS_1128_TypeTypeIn,
- CharacteristicS_1128_TypeVal CharacteristicS_1128_TypeValueIn)
-{
-  CharacteristicS_1128_TypeType = CharacteristicS_1128_TypeTypeIn;
-  CharacteristicS_1128_TypeValue = CharacteristicS_1128_TypeValueIn;
-}
-
-CharacteristicS_1128_TypeChoicePair::~CharacteristicS_1128_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (CharacteristicS_1128_TypeType == SoftwareIdE)
-    delete CharacteristicS_1128_TypeValue.SoftwareId;
-  else if (CharacteristicS_1128_TypeType == StandardIdE)
-    delete CharacteristicS_1128_TypeValue.StandardId;
-  else if (CharacteristicS_1128_TypeType == AlgorithmIdE)
-    delete CharacteristicS_1128_TypeValue.AlgorithmId;
-  #endif
-}
-
-void CharacteristicS_1128_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (CharacteristicS_1128_TypeType == SoftwareIdE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<SoftwareId");
-      CharacteristicS_1128_TypeValue.SoftwareId->printSelf(outFile);
-      fprintf(outFile, "</SoftwareId>\n");
-    }
-  else if (CharacteristicS_1128_TypeType == StandardIdE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<StandardId");
-      CharacteristicS_1128_TypeValue.StandardId->printSelf(outFile);
-      fprintf(outFile, "</StandardId>\n");
-    }
-  else if (CharacteristicS_1128_TypeType == AlgorithmIdE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<AlgorithmId");
-      CharacteristicS_1128_TypeValue.AlgorithmId->printSelf(outFile);
-      fprintf(outFile, "</AlgorithmId>\n");
-    }
-}
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicS_1129_Type
 
@@ -45781,7 +45690,7 @@ CharacteristicS_1129_TypeChoicePair * CharacteristicS_1129_Type::getCharacterist
 void CharacteristicS_1129_Type::setCharacteristicS_1129_TypePair(CharacteristicS_1129_TypeChoicePair * CharacteristicS_1129_TypePairIn)
 {CharacteristicS_1129_TypePair = CharacteristicS_1129_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicS_1129_TypeChoicePair
 
@@ -45800,117 +45709,208 @@ CharacteristicS_1129_TypeChoicePair::CharacteristicS_1129_TypeChoicePair(
 CharacteristicS_1129_TypeChoicePair::~CharacteristicS_1129_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (CharacteristicS_1129_TypeType == CharacteristicS_1151E)
-    delete CharacteristicS_1129_TypeValue.CharacteristicS_1151;
-  else if (CharacteristicS_1129_TypeType == CharacteristicS_1152E)
-    delete CharacteristicS_1129_TypeValue.CharacteristicS_1152;
+  if (CharacteristicS_1129_TypeType == SoftwareIdE)
+    delete CharacteristicS_1129_TypeValue.SoftwareId;
+  else if (CharacteristicS_1129_TypeType == StandardIdE)
+    delete CharacteristicS_1129_TypeValue.StandardId;
+  else if (CharacteristicS_1129_TypeType == AlgorithmIdE)
+    delete CharacteristicS_1129_TypeValue.AlgorithmId;
   #endif
 }
 
 void CharacteristicS_1129_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (CharacteristicS_1129_TypeType == CharacteristicS_1151E)
+  if (CharacteristicS_1129_TypeType == SoftwareIdE)
     {
-      CharacteristicS_1129_TypeValue.CharacteristicS_1151->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "<SoftwareId");
+      CharacteristicS_1129_TypeValue.SoftwareId->printSelf(outFile);
+      fprintf(outFile, "</SoftwareId>\n");
     }
-  else if (CharacteristicS_1129_TypeType == CharacteristicS_1152E)
+  else if (CharacteristicS_1129_TypeType == StandardIdE)
     {
-      CharacteristicS_1129_TypeValue.CharacteristicS_1152->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "<StandardId");
+      CharacteristicS_1129_TypeValue.StandardId->printSelf(outFile);
+      fprintf(outFile, "</StandardId>\n");
+    }
+  else if (CharacteristicS_1129_TypeType == AlgorithmIdE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<AlgorithmId");
+      CharacteristicS_1129_TypeValue.AlgorithmId->printSelf(outFile);
+      fprintf(outFile, "</AlgorithmId>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class CorrectiveActio_1130_Type
+/* class CharacteristicS_1130_Type
 
 */
 
-CorrectiveActio_1130_Type::CorrectiveActio_1130_Type()
+CharacteristicS_1130_Type::CharacteristicS_1130_Type()
 {
-  CorrectiveActio_1130_TypePair = 0;
+  CharacteristicS_1130_TypePair = 0;
 }
 
-CorrectiveActio_1130_Type::CorrectiveActio_1130_Type(
- CorrectiveActio_1130_TypeChoicePair * CorrectiveActio_1130_TypePairIn)
+CharacteristicS_1130_Type::CharacteristicS_1130_Type(
+ CharacteristicS_1130_TypeChoicePair * CharacteristicS_1130_TypePairIn)
 {
-  CorrectiveActio_1130_TypePair = CorrectiveActio_1130_TypePairIn;
+  CharacteristicS_1130_TypePair = CharacteristicS_1130_TypePairIn;
 }
 
-CorrectiveActio_1130_Type::~CorrectiveActio_1130_Type()
+CharacteristicS_1130_Type::~CharacteristicS_1130_Type()
 {
   #ifndef NODESTRUCT
-  delete CorrectiveActio_1130_TypePair;
+  delete CharacteristicS_1130_TypePair;
   #endif
 }
 
-void CorrectiveActio_1130_Type::printSelf(FILE * outFile)
+void CharacteristicS_1130_Type::printSelf(FILE * outFile)
 {
-  CorrectiveActio_1130_TypePair->printSelf(outFile);
+  if (CharacteristicS_1130_TypePair)
+    {
+      CharacteristicS_1130_TypePair->printSelf(outFile);
+    }
 }
 
-CorrectiveActio_1130_TypeChoicePair * CorrectiveActio_1130_Type::getCorrectiveActio_1130_TypePair()
-{return CorrectiveActio_1130_TypePair;}
+CharacteristicS_1130_TypeChoicePair * CharacteristicS_1130_Type::getCharacteristicS_1130_TypePair()
+{return CharacteristicS_1130_TypePair;}
 
-void CorrectiveActio_1130_Type::setCorrectiveActio_1130_TypePair(CorrectiveActio_1130_TypeChoicePair * CorrectiveActio_1130_TypePairIn)
-{CorrectiveActio_1130_TypePair = CorrectiveActio_1130_TypePairIn;}
+void CharacteristicS_1130_Type::setCharacteristicS_1130_TypePair(CharacteristicS_1130_TypeChoicePair * CharacteristicS_1130_TypePairIn)
+{CharacteristicS_1130_TypePair = CharacteristicS_1130_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class CorrectiveActio_1130_TypeChoicePair
+/* class CharacteristicS_1130_TypeChoicePair
 
 */
 
-CorrectiveActio_1130_TypeChoicePair::CorrectiveActio_1130_TypeChoicePair() {}
+CharacteristicS_1130_TypeChoicePair::CharacteristicS_1130_TypeChoicePair() {}
 
-CorrectiveActio_1130_TypeChoicePair::CorrectiveActio_1130_TypeChoicePair(
- whichOne CorrectiveActio_1130_TypeTypeIn,
- CorrectiveActio_1130_TypeVal CorrectiveActio_1130_TypeValueIn)
+CharacteristicS_1130_TypeChoicePair::CharacteristicS_1130_TypeChoicePair(
+ whichOne CharacteristicS_1130_TypeTypeIn,
+ CharacteristicS_1130_TypeVal CharacteristicS_1130_TypeValueIn)
 {
-  CorrectiveActio_1130_TypeType = CorrectiveActio_1130_TypeTypeIn;
-  CorrectiveActio_1130_TypeValue = CorrectiveActio_1130_TypeValueIn;
+  CharacteristicS_1130_TypeType = CharacteristicS_1130_TypeTypeIn;
+  CharacteristicS_1130_TypeValue = CharacteristicS_1130_TypeValueIn;
 }
 
-CorrectiveActio_1130_TypeChoicePair::~CorrectiveActio_1130_TypeChoicePair()
+CharacteristicS_1130_TypeChoicePair::~CharacteristicS_1130_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (CorrectiveActio_1130_TypeType == ActionToTakeE)
-    delete CorrectiveActio_1130_TypeValue.ActionToTake;
-  else if (CorrectiveActio_1130_TypeType == ActionToTakeEnumE)
-    delete CorrectiveActio_1130_TypeValue.ActionToTakeEnum;
+  if (CharacteristicS_1130_TypeType == CharacteristicS_1152E)
+    delete CharacteristicS_1130_TypeValue.CharacteristicS_1152;
+  else if (CharacteristicS_1130_TypeType == CharacteristicS_1153E)
+    delete CharacteristicS_1130_TypeValue.CharacteristicS_1153;
   #endif
 }
 
-void CorrectiveActio_1130_TypeChoicePair::printSelf(FILE * outFile)
+void CharacteristicS_1130_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (CorrectiveActio_1130_TypeType == ActionToTakeE)
+  if (CharacteristicS_1130_TypeType == CharacteristicS_1152E)
+    {
+      CharacteristicS_1130_TypeValue.CharacteristicS_1152->printSelf(outFile);
+    }
+  else if (CharacteristicS_1130_TypeType == CharacteristicS_1153E)
+    {
+      CharacteristicS_1130_TypeValue.CharacteristicS_1153->printSelf(outFile);
+    }
+}
+
+/* ***************************************************************** */
+
+/* class CorrectiveActio_1131_Type
+
+*/
+
+CorrectiveActio_1131_Type::CorrectiveActio_1131_Type()
+{
+  CorrectiveActio_1131_TypePair = 0;
+}
+
+CorrectiveActio_1131_Type::CorrectiveActio_1131_Type(
+ CorrectiveActio_1131_TypeChoicePair * CorrectiveActio_1131_TypePairIn)
+{
+  CorrectiveActio_1131_TypePair = CorrectiveActio_1131_TypePairIn;
+}
+
+CorrectiveActio_1131_Type::~CorrectiveActio_1131_Type()
+{
+  #ifndef NODESTRUCT
+  delete CorrectiveActio_1131_TypePair;
+  #endif
+}
+
+void CorrectiveActio_1131_Type::printSelf(FILE * outFile)
+{
+  CorrectiveActio_1131_TypePair->printSelf(outFile);
+}
+
+CorrectiveActio_1131_TypeChoicePair * CorrectiveActio_1131_Type::getCorrectiveActio_1131_TypePair()
+{return CorrectiveActio_1131_TypePair;}
+
+void CorrectiveActio_1131_Type::setCorrectiveActio_1131_TypePair(CorrectiveActio_1131_TypeChoicePair * CorrectiveActio_1131_TypePairIn)
+{CorrectiveActio_1131_TypePair = CorrectiveActio_1131_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class CorrectiveActio_1131_TypeChoicePair
+
+*/
+
+CorrectiveActio_1131_TypeChoicePair::CorrectiveActio_1131_TypeChoicePair() {}
+
+CorrectiveActio_1131_TypeChoicePair::CorrectiveActio_1131_TypeChoicePair(
+ whichOne CorrectiveActio_1131_TypeTypeIn,
+ CorrectiveActio_1131_TypeVal CorrectiveActio_1131_TypeValueIn)
+{
+  CorrectiveActio_1131_TypeType = CorrectiveActio_1131_TypeTypeIn;
+  CorrectiveActio_1131_TypeValue = CorrectiveActio_1131_TypeValueIn;
+}
+
+CorrectiveActio_1131_TypeChoicePair::~CorrectiveActio_1131_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (CorrectiveActio_1131_TypeType == ActionToTakeE)
+    delete CorrectiveActio_1131_TypeValue.ActionToTake;
+  else if (CorrectiveActio_1131_TypeType == ActionToTakeEnumE)
+    delete CorrectiveActio_1131_TypeValue.ActionToTakeEnum;
+  #endif
+}
+
+void CorrectiveActio_1131_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (CorrectiveActio_1131_TypeType == ActionToTakeE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ActionToTake");
-      CorrectiveActio_1130_TypeValue.ActionToTake->printSelf(outFile);
+      CorrectiveActio_1131_TypeValue.ActionToTake->printSelf(outFile);
       fprintf(outFile, "</ActionToTake>\n");
     }
-  else if (CorrectiveActio_1130_TypeType == ActionToTakeEnumE)
+  else if (CorrectiveActio_1131_TypeType == ActionToTakeEnumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ActionToTakeEnum");
-      CorrectiveActio_1130_TypeValue.ActionToTakeEnum->printSelf(outFile);
+      CorrectiveActio_1131_TypeValue.ActionToTakeEnum->printSelf(outFile);
       fprintf(outFile, "</ActionToTakeEnum>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class CriterionDecima_1131_Type
+/* class CriterionDecima_1132_Type
 
 */
 
-CriterionDecima_1131_Type::CriterionDecima_1131_Type()
+CriterionDecima_1132_Type::CriterionDecima_1132_Type()
 {
   NumberAllowedExceptions = 0;
   ExtremeLimit = 0;
 }
 
-CriterionDecima_1131_Type::CriterionDecima_1131_Type(
+CriterionDecima_1132_Type::CriterionDecima_1132_Type(
  LimitingNumberType * NumberAllowedExceptionsIn,
  XmlDecimal * ExtremeLimitIn)
 {
@@ -45918,7 +45918,7 @@ CriterionDecima_1131_Type::CriterionDecima_1131_Type(
   ExtremeLimit = ExtremeLimitIn;
 }
 
-CriterionDecima_1131_Type::~CriterionDecima_1131_Type()
+CriterionDecima_1132_Type::~CriterionDecima_1132_Type()
 {
   #ifndef NODESTRUCT
   delete NumberAllowedExceptions;
@@ -45926,7 +45926,7 @@ CriterionDecima_1131_Type::~CriterionDecima_1131_Type()
   #endif
 }
 
-void CriterionDecima_1131_Type::printSelf(FILE * outFile)
+void CriterionDecima_1132_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<NumberAllowedExceptions");
@@ -45942,31 +45942,31 @@ void CriterionDecima_1131_Type::printSelf(FILE * outFile)
     }
 }
 
-LimitingNumberType * CriterionDecima_1131_Type::getNumberAllowedExceptions()
+LimitingNumberType * CriterionDecima_1132_Type::getNumberAllowedExceptions()
 {return NumberAllowedExceptions;}
 
-void CriterionDecima_1131_Type::setNumberAllowedExceptions(LimitingNumberType * NumberAllowedExceptionsIn)
+void CriterionDecima_1132_Type::setNumberAllowedExceptions(LimitingNumberType * NumberAllowedExceptionsIn)
 {NumberAllowedExceptions = NumberAllowedExceptionsIn;}
 
-XmlDecimal * CriterionDecima_1131_Type::getExtremeLimit()
+XmlDecimal * CriterionDecima_1132_Type::getExtremeLimit()
 {return ExtremeLimit;}
 
-void CriterionDecima_1131_Type::setExtremeLimit(XmlDecimal * ExtremeLimitIn)
+void CriterionDecima_1132_Type::setExtremeLimit(XmlDecimal * ExtremeLimitIn)
 {ExtremeLimit = ExtremeLimitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class CriterionIntege_1132_Type
+/* class CriterionIntege_1133_Type
 
 */
 
-CriterionIntege_1132_Type::CriterionIntege_1132_Type()
+CriterionIntege_1133_Type::CriterionIntege_1133_Type()
 {
   NumberAllowedExceptions = 0;
   ExtremeLimit = 0;
 }
 
-CriterionIntege_1132_Type::CriterionIntege_1132_Type(
+CriterionIntege_1133_Type::CriterionIntege_1133_Type(
  LimitingNumberType * NumberAllowedExceptionsIn,
  XmlPositiveInteger * ExtremeLimitIn)
 {
@@ -45974,7 +45974,7 @@ CriterionIntege_1132_Type::CriterionIntege_1132_Type(
   ExtremeLimit = ExtremeLimitIn;
 }
 
-CriterionIntege_1132_Type::~CriterionIntege_1132_Type()
+CriterionIntege_1133_Type::~CriterionIntege_1133_Type()
 {
   #ifndef NODESTRUCT
   delete NumberAllowedExceptions;
@@ -45982,7 +45982,7 @@ CriterionIntege_1132_Type::~CriterionIntege_1132_Type()
   #endif
 }
 
-void CriterionIntege_1132_Type::printSelf(FILE * outFile)
+void CriterionIntege_1133_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<NumberAllowedExceptions");
@@ -45998,1426 +45998,1426 @@ void CriterionIntege_1132_Type::printSelf(FILE * outFile)
     }
 }
 
-LimitingNumberType * CriterionIntege_1132_Type::getNumberAllowedExceptions()
+LimitingNumberType * CriterionIntege_1133_Type::getNumberAllowedExceptions()
 {return NumberAllowedExceptions;}
 
-void CriterionIntege_1132_Type::setNumberAllowedExceptions(LimitingNumberType * NumberAllowedExceptionsIn)
+void CriterionIntege_1133_Type::setNumberAllowedExceptions(LimitingNumberType * NumberAllowedExceptionsIn)
 {NumberAllowedExceptions = NumberAllowedExceptionsIn;}
 
-XmlPositiveInteger * CriterionIntege_1132_Type::getExtremeLimit()
+XmlPositiveInteger * CriterionIntege_1133_Type::getExtremeLimit()
 {return ExtremeLimit;}
 
-void CriterionIntege_1132_Type::setExtremeLimit(XmlPositiveInteger * ExtremeLimitIn)
+void CriterionIntege_1133_Type::setExtremeLimit(XmlPositiveInteger * ExtremeLimitIn)
 {ExtremeLimit = ExtremeLimitIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class LimitingNumberT_1133_Type
-
-*/
-
-LimitingNumberT_1133_Type::LimitingNumberT_1133_Type()
-{
-  LimitingNumberT_1133_TypePair = 0;
-}
-
-LimitingNumberT_1133_Type::LimitingNumberT_1133_Type(
- LimitingNumberT_1133_TypeChoicePair * LimitingNumberT_1133_TypePairIn)
-{
-  LimitingNumberT_1133_TypePair = LimitingNumberT_1133_TypePairIn;
-}
-
-LimitingNumberT_1133_Type::~LimitingNumberT_1133_Type()
-{
-  #ifndef NODESTRUCT
-  delete LimitingNumberT_1133_TypePair;
-  #endif
-}
-
-void LimitingNumberT_1133_Type::printSelf(FILE * outFile)
-{
-  LimitingNumberT_1133_TypePair->printSelf(outFile);
-}
-
-LimitingNumberT_1133_TypeChoicePair * LimitingNumberT_1133_Type::getLimitingNumberT_1133_TypePair()
-{return LimitingNumberT_1133_TypePair;}
-
-void LimitingNumberT_1133_Type::setLimitingNumberT_1133_TypePair(LimitingNumberT_1133_TypeChoicePair * LimitingNumberT_1133_TypePairIn)
-{LimitingNumberT_1133_TypePair = LimitingNumberT_1133_TypePairIn;}
-
-/*********************************************************************/
-
-/* class LimitingNumberT_1133_TypeChoicePair
+/* class LimitingNumberT_1134_Type
 
 */
 
-LimitingNumberT_1133_TypeChoicePair::LimitingNumberT_1133_TypeChoicePair() {}
-
-LimitingNumberT_1133_TypeChoicePair::LimitingNumberT_1133_TypeChoicePair(
- whichOne LimitingNumberT_1133_TypeTypeIn,
- LimitingNumberT_1133_TypeVal LimitingNumberT_1133_TypeValueIn)
+LimitingNumberT_1134_Type::LimitingNumberT_1134_Type()
 {
-  LimitingNumberT_1133_TypeType = LimitingNumberT_1133_TypeTypeIn;
-  LimitingNumberT_1133_TypeValue = LimitingNumberT_1133_TypeValueIn;
+  LimitingNumberT_1134_TypePair = 0;
 }
 
-LimitingNumberT_1133_TypeChoicePair::~LimitingNumberT_1133_TypeChoicePair()
+LimitingNumberT_1134_Type::LimitingNumberT_1134_Type(
+ LimitingNumberT_1134_TypeChoicePair * LimitingNumberT_1134_TypePairIn)
+{
+  LimitingNumberT_1134_TypePair = LimitingNumberT_1134_TypePairIn;
+}
+
+LimitingNumberT_1134_Type::~LimitingNumberT_1134_Type()
 {
   #ifndef NODESTRUCT
-  if (LimitingNumberT_1133_TypeType == CountE)
-    delete LimitingNumberT_1133_TypeValue.Count;
-  else if (LimitingNumberT_1133_TypeType == FractionE)
-    delete LimitingNumberT_1133_TypeValue.Fraction;
+  delete LimitingNumberT_1134_TypePair;
   #endif
 }
 
-void LimitingNumberT_1133_TypeChoicePair::printSelf(FILE * outFile)
+void LimitingNumberT_1134_Type::printSelf(FILE * outFile)
 {
-  if (LimitingNumberT_1133_TypeType == CountE)
+  LimitingNumberT_1134_TypePair->printSelf(outFile);
+}
+
+LimitingNumberT_1134_TypeChoicePair * LimitingNumberT_1134_Type::getLimitingNumberT_1134_TypePair()
+{return LimitingNumberT_1134_TypePair;}
+
+void LimitingNumberT_1134_Type::setLimitingNumberT_1134_TypePair(LimitingNumberT_1134_TypeChoicePair * LimitingNumberT_1134_TypePairIn)
+{LimitingNumberT_1134_TypePair = LimitingNumberT_1134_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class LimitingNumberT_1134_TypeChoicePair
+
+*/
+
+LimitingNumberT_1134_TypeChoicePair::LimitingNumberT_1134_TypeChoicePair() {}
+
+LimitingNumberT_1134_TypeChoicePair::LimitingNumberT_1134_TypeChoicePair(
+ whichOne LimitingNumberT_1134_TypeTypeIn,
+ LimitingNumberT_1134_TypeVal LimitingNumberT_1134_TypeValueIn)
+{
+  LimitingNumberT_1134_TypeType = LimitingNumberT_1134_TypeTypeIn;
+  LimitingNumberT_1134_TypeValue = LimitingNumberT_1134_TypeValueIn;
+}
+
+LimitingNumberT_1134_TypeChoicePair::~LimitingNumberT_1134_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (LimitingNumberT_1134_TypeType == CountE)
+    delete LimitingNumberT_1134_TypeValue.Count;
+  else if (LimitingNumberT_1134_TypeType == FractionE)
+    delete LimitingNumberT_1134_TypeValue.Fraction;
+  #endif
+}
+
+void LimitingNumberT_1134_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (LimitingNumberT_1134_TypeType == CountE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Count");
-      LimitingNumberT_1133_TypeValue.Count->printSelf(outFile);
+      LimitingNumberT_1134_TypeValue.Count->printSelf(outFile);
       fprintf(outFile, "</Count>\n");
     }
-  else if (LimitingNumberT_1133_TypeType == FractionE)
+  else if (LimitingNumberT_1134_TypeType == FractionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Fraction");
-      LimitingNumberT_1133_TypeValue.Fraction->printSelf(outFile);
+      LimitingNumberT_1134_TypeValue.Fraction->printSelf(outFile);
       fprintf(outFile, "</Fraction>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class LinearCharacter_1134_Type
-
-*/
-
-LinearCharacter_1134_Type::LinearCharacter_1134_Type()
-{
-  LinearCharacter_1134_TypePair = 0;
-}
-
-LinearCharacter_1134_Type::LinearCharacter_1134_Type(
- LinearCharacter_1134_TypeChoicePair * LinearCharacter_1134_TypePairIn)
-{
-  LinearCharacter_1134_TypePair = LinearCharacter_1134_TypePairIn;
-}
-
-LinearCharacter_1134_Type::~LinearCharacter_1134_Type()
-{
-  #ifndef NODESTRUCT
-  delete LinearCharacter_1134_TypePair;
-  #endif
-}
-
-void LinearCharacter_1134_Type::printSelf(FILE * outFile)
-{
-  LinearCharacter_1134_TypePair->printSelf(outFile);
-}
-
-LinearCharacter_1134_TypeChoicePair * LinearCharacter_1134_Type::getLinearCharacter_1134_TypePair()
-{return LinearCharacter_1134_TypePair;}
-
-void LinearCharacter_1134_Type::setLinearCharacter_1134_TypePair(LinearCharacter_1134_TypeChoicePair * LinearCharacter_1134_TypePairIn)
-{LinearCharacter_1134_TypePair = LinearCharacter_1134_TypePairIn;}
-
-/*********************************************************************/
-
-/* class LinearCharacter_1134_TypeChoicePair
+/* class LinearCharacter_1135_Type
 
 */
 
-LinearCharacter_1134_TypeChoicePair::LinearCharacter_1134_TypeChoicePair() {}
-
-LinearCharacter_1134_TypeChoicePair::LinearCharacter_1134_TypeChoicePair(
- whichOne LinearCharacter_1134_TypeTypeIn,
- LinearCharacter_1134_TypeVal LinearCharacter_1134_TypeValueIn)
+LinearCharacter_1135_Type::LinearCharacter_1135_Type()
 {
-  LinearCharacter_1134_TypeType = LinearCharacter_1134_TypeTypeIn;
-  LinearCharacter_1134_TypeValue = LinearCharacter_1134_TypeValueIn;
+  LinearCharacter_1135_TypePair = 0;
 }
 
-LinearCharacter_1134_TypeChoicePair::~LinearCharacter_1134_TypeChoicePair()
+LinearCharacter_1135_Type::LinearCharacter_1135_Type(
+ LinearCharacter_1135_TypeChoicePair * LinearCharacter_1135_TypePairIn)
+{
+  LinearCharacter_1135_TypePair = LinearCharacter_1135_TypePairIn;
+}
+
+LinearCharacter_1135_Type::~LinearCharacter_1135_Type()
 {
   #ifndef NODESTRUCT
-  if (LinearCharacter_1134_TypeType == LinearCharacter_1153E)
-    delete LinearCharacter_1134_TypeValue.LinearCharacter_1153;
-  else if (LinearCharacter_1134_TypeType == LinearCharacter_1154E)
-    delete LinearCharacter_1134_TypeValue.LinearCharacter_1154;
-  else if (LinearCharacter_1134_TypeType == MinValueStatsE)
-    delete LinearCharacter_1134_TypeValue.MinValueStats;
-  else if (LinearCharacter_1134_TypeType == LinearCharacter_1155E)
-    delete LinearCharacter_1134_TypeValue.LinearCharacter_1155;
-  else if (LinearCharacter_1134_TypeType == LinearCharacter_1156E)
-    delete LinearCharacter_1134_TypeValue.LinearCharacter_1156;
-  else if (LinearCharacter_1134_TypeType == MinDeviationStatsE)
-    delete LinearCharacter_1134_TypeValue.MinDeviationStats;
+  delete LinearCharacter_1135_TypePair;
   #endif
 }
 
-void LinearCharacter_1134_TypeChoicePair::printSelf(FILE * outFile)
+void LinearCharacter_1135_Type::printSelf(FILE * outFile)
 {
-  if (LinearCharacter_1134_TypeType == LinearCharacter_1153E)
+  LinearCharacter_1135_TypePair->printSelf(outFile);
+}
+
+LinearCharacter_1135_TypeChoicePair * LinearCharacter_1135_Type::getLinearCharacter_1135_TypePair()
+{return LinearCharacter_1135_TypePair;}
+
+void LinearCharacter_1135_Type::setLinearCharacter_1135_TypePair(LinearCharacter_1135_TypeChoicePair * LinearCharacter_1135_TypePairIn)
+{LinearCharacter_1135_TypePair = LinearCharacter_1135_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class LinearCharacter_1135_TypeChoicePair
+
+*/
+
+LinearCharacter_1135_TypeChoicePair::LinearCharacter_1135_TypeChoicePair() {}
+
+LinearCharacter_1135_TypeChoicePair::LinearCharacter_1135_TypeChoicePair(
+ whichOne LinearCharacter_1135_TypeTypeIn,
+ LinearCharacter_1135_TypeVal LinearCharacter_1135_TypeValueIn)
+{
+  LinearCharacter_1135_TypeType = LinearCharacter_1135_TypeTypeIn;
+  LinearCharacter_1135_TypeValue = LinearCharacter_1135_TypeValueIn;
+}
+
+LinearCharacter_1135_TypeChoicePair::~LinearCharacter_1135_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (LinearCharacter_1135_TypeType == LinearCharacter_1154E)
+    delete LinearCharacter_1135_TypeValue.LinearCharacter_1154;
+  else if (LinearCharacter_1135_TypeType == LinearCharacter_1155E)
+    delete LinearCharacter_1135_TypeValue.LinearCharacter_1155;
+  else if (LinearCharacter_1135_TypeType == MinValueStatsE)
+    delete LinearCharacter_1135_TypeValue.MinValueStats;
+  else if (LinearCharacter_1135_TypeType == LinearCharacter_1156E)
+    delete LinearCharacter_1135_TypeValue.LinearCharacter_1156;
+  else if (LinearCharacter_1135_TypeType == LinearCharacter_1157E)
+    delete LinearCharacter_1135_TypeValue.LinearCharacter_1157;
+  else if (LinearCharacter_1135_TypeType == MinDeviationStatsE)
+    delete LinearCharacter_1135_TypeValue.MinDeviationStats;
+  #endif
+}
+
+void LinearCharacter_1135_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (LinearCharacter_1135_TypeType == LinearCharacter_1154E)
     {
-      LinearCharacter_1134_TypeValue.LinearCharacter_1153->printSelf(outFile);
+      LinearCharacter_1135_TypeValue.LinearCharacter_1154->printSelf(outFile);
     }
-  else if (LinearCharacter_1134_TypeType == LinearCharacter_1154E)
+  else if (LinearCharacter_1135_TypeType == LinearCharacter_1155E)
     {
-      LinearCharacter_1134_TypeValue.LinearCharacter_1154->printSelf(outFile);
+      LinearCharacter_1135_TypeValue.LinearCharacter_1155->printSelf(outFile);
     }
-  else if (LinearCharacter_1134_TypeType == MinValueStatsE)
+  else if (LinearCharacter_1135_TypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      LinearCharacter_1134_TypeValue.MinValueStats->printSelf(outFile);
+      LinearCharacter_1135_TypeValue.MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
-  else if (LinearCharacter_1134_TypeType == LinearCharacter_1155E)
+  else if (LinearCharacter_1135_TypeType == LinearCharacter_1156E)
     {
-      LinearCharacter_1134_TypeValue.LinearCharacter_1155->printSelf(outFile);
+      LinearCharacter_1135_TypeValue.LinearCharacter_1156->printSelf(outFile);
     }
-  else if (LinearCharacter_1134_TypeType == LinearCharacter_1156E)
+  else if (LinearCharacter_1135_TypeType == LinearCharacter_1157E)
     {
-      LinearCharacter_1134_TypeValue.LinearCharacter_1156->printSelf(outFile);
+      LinearCharacter_1135_TypeValue.LinearCharacter_1157->printSelf(outFile);
     }
-  else if (LinearCharacter_1134_TypeType == MinDeviationStatsE)
+  else if (LinearCharacter_1135_TypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      LinearCharacter_1134_TypeValue.MinDeviationStats->printSelf(outFile);
+      LinearCharacter_1135_TypeValue.MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class SamplingMethodT_1135_Type
-
-*/
-
-SamplingMethodT_1135_Type::SamplingMethodT_1135_Type()
-{
-  SamplingMethodT_1135_TypePair = 0;
-}
-
-SamplingMethodT_1135_Type::SamplingMethodT_1135_Type(
- SamplingMethodT_1135_TypeChoicePair * SamplingMethodT_1135_TypePairIn)
-{
-  SamplingMethodT_1135_TypePair = SamplingMethodT_1135_TypePairIn;
-}
-
-SamplingMethodT_1135_Type::~SamplingMethodT_1135_Type()
-{
-  #ifndef NODESTRUCT
-  delete SamplingMethodT_1135_TypePair;
-  #endif
-}
-
-void SamplingMethodT_1135_Type::printSelf(FILE * outFile)
-{
-  SamplingMethodT_1135_TypePair->printSelf(outFile);
-}
-
-SamplingMethodT_1135_TypeChoicePair * SamplingMethodT_1135_Type::getSamplingMethodT_1135_TypePair()
-{return SamplingMethodT_1135_TypePair;}
-
-void SamplingMethodT_1135_Type::setSamplingMethodT_1135_TypePair(SamplingMethodT_1135_TypeChoicePair * SamplingMethodT_1135_TypePairIn)
-{SamplingMethodT_1135_TypePair = SamplingMethodT_1135_TypePairIn;}
-
-/*********************************************************************/
-
-/* class SamplingMethodT_1135_TypeChoicePair
+/* class SamplingMethodT_1136_Type
 
 */
 
-SamplingMethodT_1135_TypeChoicePair::SamplingMethodT_1135_TypeChoicePair() {}
-
-SamplingMethodT_1135_TypeChoicePair::SamplingMethodT_1135_TypeChoicePair(
- whichOne SamplingMethodT_1135_TypeTypeIn,
- SamplingMethodT_1135_TypeVal SamplingMethodT_1135_TypeValueIn)
+SamplingMethodT_1136_Type::SamplingMethodT_1136_Type()
 {
-  SamplingMethodT_1135_TypeType = SamplingMethodT_1135_TypeTypeIn;
-  SamplingMethodT_1135_TypeValue = SamplingMethodT_1135_TypeValueIn;
+  SamplingMethodT_1136_TypePair = 0;
 }
 
-SamplingMethodT_1135_TypeChoicePair::~SamplingMethodT_1135_TypeChoicePair()
+SamplingMethodT_1136_Type::SamplingMethodT_1136_Type(
+ SamplingMethodT_1136_TypeChoicePair * SamplingMethodT_1136_TypePairIn)
+{
+  SamplingMethodT_1136_TypePair = SamplingMethodT_1136_TypePairIn;
+}
+
+SamplingMethodT_1136_Type::~SamplingMethodT_1136_Type()
 {
   #ifndef NODESTRUCT
-  if (SamplingMethodT_1135_TypeType == SamplingPeriodE)
-    delete SamplingMethodT_1135_TypeValue.SamplingPeriod;
-  else if (SamplingMethodT_1135_TypeType == SamplingMethodT_1157E)
-    delete SamplingMethodT_1135_TypeValue.SamplingMethodT_1157;
+  delete SamplingMethodT_1136_TypePair;
   #endif
 }
 
-void SamplingMethodT_1135_TypeChoicePair::printSelf(FILE * outFile)
+void SamplingMethodT_1136_Type::printSelf(FILE * outFile)
 {
-  if (SamplingMethodT_1135_TypeType == SamplingPeriodE)
+  SamplingMethodT_1136_TypePair->printSelf(outFile);
+}
+
+SamplingMethodT_1136_TypeChoicePair * SamplingMethodT_1136_Type::getSamplingMethodT_1136_TypePair()
+{return SamplingMethodT_1136_TypePair;}
+
+void SamplingMethodT_1136_Type::setSamplingMethodT_1136_TypePair(SamplingMethodT_1136_TypeChoicePair * SamplingMethodT_1136_TypePairIn)
+{SamplingMethodT_1136_TypePair = SamplingMethodT_1136_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class SamplingMethodT_1136_TypeChoicePair
+
+*/
+
+SamplingMethodT_1136_TypeChoicePair::SamplingMethodT_1136_TypeChoicePair() {}
+
+SamplingMethodT_1136_TypeChoicePair::SamplingMethodT_1136_TypeChoicePair(
+ whichOne SamplingMethodT_1136_TypeTypeIn,
+ SamplingMethodT_1136_TypeVal SamplingMethodT_1136_TypeValueIn)
+{
+  SamplingMethodT_1136_TypeType = SamplingMethodT_1136_TypeTypeIn;
+  SamplingMethodT_1136_TypeValue = SamplingMethodT_1136_TypeValueIn;
+}
+
+SamplingMethodT_1136_TypeChoicePair::~SamplingMethodT_1136_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (SamplingMethodT_1136_TypeType == SamplingPeriodE)
+    delete SamplingMethodT_1136_TypeValue.SamplingPeriod;
+  else if (SamplingMethodT_1136_TypeType == SamplingMethodT_1158E)
+    delete SamplingMethodT_1136_TypeValue.SamplingMethodT_1158;
+  #endif
+}
+
+void SamplingMethodT_1136_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (SamplingMethodT_1136_TypeType == SamplingPeriodE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SamplingPeriod");
-      SamplingMethodT_1135_TypeValue.SamplingPeriod->printSelf(outFile);
+      SamplingMethodT_1136_TypeValue.SamplingPeriod->printSelf(outFile);
       fprintf(outFile, "</SamplingPeriod>\n");
     }
-  else if (SamplingMethodT_1135_TypeType == SamplingMethodT_1157E)
+  else if (SamplingMethodT_1136_TypeType == SamplingMethodT_1158E)
     {
-      SamplingMethodT_1135_TypeValue.SamplingMethodT_1157->printSelf(outFile);
+      SamplingMethodT_1136_TypeValue.SamplingMethodT_1158->printSelf(outFile);
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class StudyIssueType_1136_Type
+/* class StudyIssueType_1137_Type
 
 */
 
-StudyIssueType_1136_Type::StudyIssueType_1136_Type()
+StudyIssueType_1137_Type::StudyIssueType_1137_Type()
 {
-  StudyIssueType_1136_TypePair = 0;
+  StudyIssueType_1137_TypePair = 0;
 }
 
-StudyIssueType_1136_Type::StudyIssueType_1136_Type(
- StudyIssueType_1136_TypeChoicePair * StudyIssueType_1136_TypePairIn)
+StudyIssueType_1137_Type::StudyIssueType_1137_Type(
+ StudyIssueType_1137_TypeChoicePair * StudyIssueType_1137_TypePairIn)
 {
-  StudyIssueType_1136_TypePair = StudyIssueType_1136_TypePairIn;
+  StudyIssueType_1137_TypePair = StudyIssueType_1137_TypePairIn;
 }
 
-StudyIssueType_1136_Type::~StudyIssueType_1136_Type()
+StudyIssueType_1137_Type::~StudyIssueType_1137_Type()
 {
   #ifndef NODESTRUCT
-  delete StudyIssueType_1136_TypePair;
+  delete StudyIssueType_1137_TypePair;
   #endif
 }
 
-void StudyIssueType_1136_Type::printSelf(FILE * outFile)
+void StudyIssueType_1137_Type::printSelf(FILE * outFile)
 {
-  if (StudyIssueType_1136_TypePair)
+  if (StudyIssueType_1137_TypePair)
     {
-      StudyIssueType_1136_TypePair->printSelf(outFile);
+      StudyIssueType_1137_TypePair->printSelf(outFile);
     }
 }
 
-StudyIssueType_1136_TypeChoicePair * StudyIssueType_1136_Type::getStudyIssueType_1136_TypePair()
-{return StudyIssueType_1136_TypePair;}
+StudyIssueType_1137_TypeChoicePair * StudyIssueType_1137_Type::getStudyIssueType_1137_TypePair()
+{return StudyIssueType_1137_TypePair;}
 
-void StudyIssueType_1136_Type::setStudyIssueType_1136_TypePair(StudyIssueType_1136_TypeChoicePair * StudyIssueType_1136_TypePairIn)
-{StudyIssueType_1136_TypePair = StudyIssueType_1136_TypePairIn;}
+void StudyIssueType_1137_Type::setStudyIssueType_1137_TypePair(StudyIssueType_1137_TypeChoicePair * StudyIssueType_1137_TypePairIn)
+{StudyIssueType_1137_TypePair = StudyIssueType_1137_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class StudyIssueType_1136_TypeChoicePair
+/* class StudyIssueType_1137_TypeChoicePair
 
 */
 
-StudyIssueType_1136_TypeChoicePair::StudyIssueType_1136_TypeChoicePair() {}
+StudyIssueType_1137_TypeChoicePair::StudyIssueType_1137_TypeChoicePair() {}
 
-StudyIssueType_1136_TypeChoicePair::StudyIssueType_1136_TypeChoicePair(
- whichOne StudyIssueType_1136_TypeTypeIn,
- StudyIssueType_1136_TypeVal StudyIssueType_1136_TypeValueIn)
+StudyIssueType_1137_TypeChoicePair::StudyIssueType_1137_TypeChoicePair(
+ whichOne StudyIssueType_1137_TypeTypeIn,
+ StudyIssueType_1137_TypeVal StudyIssueType_1137_TypeValueIn)
 {
-  StudyIssueType_1136_TypeType = StudyIssueType_1136_TypeTypeIn;
-  StudyIssueType_1136_TypeValue = StudyIssueType_1136_TypeValueIn;
+  StudyIssueType_1137_TypeType = StudyIssueType_1137_TypeTypeIn;
+  StudyIssueType_1137_TypeValue = StudyIssueType_1137_TypeValueIn;
 }
 
-StudyIssueType_1136_TypeChoicePair::~StudyIssueType_1136_TypeChoicePair()
+StudyIssueType_1137_TypeChoicePair::~StudyIssueType_1137_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (StudyIssueType_1136_TypeType == CharacteristicMeasurementIdsE)
-    delete StudyIssueType_1136_TypeValue.CharacteristicMeasurementIds;
-  else if (StudyIssueType_1136_TypeType == SubgroupIdsE)
-    delete StudyIssueType_1136_TypeValue.SubgroupIds;
+  if (StudyIssueType_1137_TypeType == CharacteristicMeasurementIdsE)
+    delete StudyIssueType_1137_TypeValue.CharacteristicMeasurementIds;
+  else if (StudyIssueType_1137_TypeType == SubgroupIdsE)
+    delete StudyIssueType_1137_TypeValue.SubgroupIds;
   #endif
 }
 
-void StudyIssueType_1136_TypeChoicePair::printSelf(FILE * outFile)
+void StudyIssueType_1137_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (StudyIssueType_1136_TypeType == CharacteristicMeasurementIdsE)
+  if (StudyIssueType_1137_TypeType == CharacteristicMeasurementIdsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CharacteristicMeasurementIds");
-      StudyIssueType_1136_TypeValue.CharacteristicMeasurementIds->printSelf(outFile);
+      StudyIssueType_1137_TypeValue.CharacteristicMeasurementIds->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</CharacteristicMeasurementIds>\n");
     }
-  else if (StudyIssueType_1136_TypeType == SubgroupIdsE)
+  else if (StudyIssueType_1137_TypeType == SubgroupIdsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SubgroupIds");
-      StudyIssueType_1136_TypeValue.SubgroupIds->printSelf(outFile);
+      StudyIssueType_1137_TypeValue.SubgroupIds->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</SubgroupIds>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedAngu_1137_Type
-
-*/
-
-UserDefinedAngu_1137_Type::UserDefinedAngu_1137_Type()
-{
-  UserDefinedAngu_1137_TypePair = 0;
-}
-
-UserDefinedAngu_1137_Type::UserDefinedAngu_1137_Type(
- UserDefinedAngu_1137_TypeChoicePair * UserDefinedAngu_1137_TypePairIn)
-{
-  UserDefinedAngu_1137_TypePair = UserDefinedAngu_1137_TypePairIn;
-}
-
-UserDefinedAngu_1137_Type::~UserDefinedAngu_1137_Type()
-{
-  #ifndef NODESTRUCT
-  delete UserDefinedAngu_1137_TypePair;
-  #endif
-}
-
-void UserDefinedAngu_1137_Type::printSelf(FILE * outFile)
-{
-  UserDefinedAngu_1137_TypePair->printSelf(outFile);
-}
-
-UserDefinedAngu_1137_TypeChoicePair * UserDefinedAngu_1137_Type::getUserDefinedAngu_1137_TypePair()
-{return UserDefinedAngu_1137_TypePair;}
-
-void UserDefinedAngu_1137_Type::setUserDefinedAngu_1137_TypePair(UserDefinedAngu_1137_TypeChoicePair * UserDefinedAngu_1137_TypePairIn)
-{UserDefinedAngu_1137_TypePair = UserDefinedAngu_1137_TypePairIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedAngu_1137_TypeChoicePair
+/* class UserDefinedAngu_1138_Type
 
 */
 
-UserDefinedAngu_1137_TypeChoicePair::UserDefinedAngu_1137_TypeChoicePair() {}
-
-UserDefinedAngu_1137_TypeChoicePair::UserDefinedAngu_1137_TypeChoicePair(
- whichOne UserDefinedAngu_1137_TypeTypeIn,
- UserDefinedAngu_1137_TypeVal UserDefinedAngu_1137_TypeValueIn)
+UserDefinedAngu_1138_Type::UserDefinedAngu_1138_Type()
 {
-  UserDefinedAngu_1137_TypeType = UserDefinedAngu_1137_TypeTypeIn;
-  UserDefinedAngu_1137_TypeValue = UserDefinedAngu_1137_TypeValueIn;
+  UserDefinedAngu_1138_TypePair = 0;
 }
 
-UserDefinedAngu_1137_TypeChoicePair::~UserDefinedAngu_1137_TypeChoicePair()
+UserDefinedAngu_1138_Type::UserDefinedAngu_1138_Type(
+ UserDefinedAngu_1138_TypeChoicePair * UserDefinedAngu_1138_TypePairIn)
+{
+  UserDefinedAngu_1138_TypePair = UserDefinedAngu_1138_TypePairIn;
+}
+
+UserDefinedAngu_1138_Type::~UserDefinedAngu_1138_Type()
 {
   #ifndef NODESTRUCT
-  if (UserDefinedAngu_1137_TypeType == UserDefinedAngu_1158E)
-    delete UserDefinedAngu_1137_TypeValue.UserDefinedAngu_1158;
-  else if (UserDefinedAngu_1137_TypeType == UserDefinedAngu_1159E)
-    delete UserDefinedAngu_1137_TypeValue.UserDefinedAngu_1159;
-  else if (UserDefinedAngu_1137_TypeType == MinValueStatsE)
-    delete UserDefinedAngu_1137_TypeValue.MinValueStats;
-  else if (UserDefinedAngu_1137_TypeType == UserDefinedAngu_1160E)
-    delete UserDefinedAngu_1137_TypeValue.UserDefinedAngu_1160;
-  else if (UserDefinedAngu_1137_TypeType == UserDefinedAngu_1161E)
-    delete UserDefinedAngu_1137_TypeValue.UserDefinedAngu_1161;
-  else if (UserDefinedAngu_1137_TypeType == MinDeviationStatsE)
-    delete UserDefinedAngu_1137_TypeValue.MinDeviationStats;
+  delete UserDefinedAngu_1138_TypePair;
   #endif
 }
 
-void UserDefinedAngu_1137_TypeChoicePair::printSelf(FILE * outFile)
+void UserDefinedAngu_1138_Type::printSelf(FILE * outFile)
 {
-  if (UserDefinedAngu_1137_TypeType == UserDefinedAngu_1158E)
+  UserDefinedAngu_1138_TypePair->printSelf(outFile);
+}
+
+UserDefinedAngu_1138_TypeChoicePair * UserDefinedAngu_1138_Type::getUserDefinedAngu_1138_TypePair()
+{return UserDefinedAngu_1138_TypePair;}
+
+void UserDefinedAngu_1138_Type::setUserDefinedAngu_1138_TypePair(UserDefinedAngu_1138_TypeChoicePair * UserDefinedAngu_1138_TypePairIn)
+{UserDefinedAngu_1138_TypePair = UserDefinedAngu_1138_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedAngu_1138_TypeChoicePair
+
+*/
+
+UserDefinedAngu_1138_TypeChoicePair::UserDefinedAngu_1138_TypeChoicePair() {}
+
+UserDefinedAngu_1138_TypeChoicePair::UserDefinedAngu_1138_TypeChoicePair(
+ whichOne UserDefinedAngu_1138_TypeTypeIn,
+ UserDefinedAngu_1138_TypeVal UserDefinedAngu_1138_TypeValueIn)
+{
+  UserDefinedAngu_1138_TypeType = UserDefinedAngu_1138_TypeTypeIn;
+  UserDefinedAngu_1138_TypeValue = UserDefinedAngu_1138_TypeValueIn;
+}
+
+UserDefinedAngu_1138_TypeChoicePair::~UserDefinedAngu_1138_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (UserDefinedAngu_1138_TypeType == UserDefinedAngu_1159E)
+    delete UserDefinedAngu_1138_TypeValue.UserDefinedAngu_1159;
+  else if (UserDefinedAngu_1138_TypeType == UserDefinedAngu_1160E)
+    delete UserDefinedAngu_1138_TypeValue.UserDefinedAngu_1160;
+  else if (UserDefinedAngu_1138_TypeType == MinValueStatsE)
+    delete UserDefinedAngu_1138_TypeValue.MinValueStats;
+  else if (UserDefinedAngu_1138_TypeType == UserDefinedAngu_1161E)
+    delete UserDefinedAngu_1138_TypeValue.UserDefinedAngu_1161;
+  else if (UserDefinedAngu_1138_TypeType == UserDefinedAngu_1162E)
+    delete UserDefinedAngu_1138_TypeValue.UserDefinedAngu_1162;
+  else if (UserDefinedAngu_1138_TypeType == MinDeviationStatsE)
+    delete UserDefinedAngu_1138_TypeValue.MinDeviationStats;
+  #endif
+}
+
+void UserDefinedAngu_1138_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (UserDefinedAngu_1138_TypeType == UserDefinedAngu_1159E)
     {
-      UserDefinedAngu_1137_TypeValue.UserDefinedAngu_1158->printSelf(outFile);
+      UserDefinedAngu_1138_TypeValue.UserDefinedAngu_1159->printSelf(outFile);
     }
-  else if (UserDefinedAngu_1137_TypeType == UserDefinedAngu_1159E)
+  else if (UserDefinedAngu_1138_TypeType == UserDefinedAngu_1160E)
     {
-      UserDefinedAngu_1137_TypeValue.UserDefinedAngu_1159->printSelf(outFile);
+      UserDefinedAngu_1138_TypeValue.UserDefinedAngu_1160->printSelf(outFile);
     }
-  else if (UserDefinedAngu_1137_TypeType == MinValueStatsE)
+  else if (UserDefinedAngu_1138_TypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      UserDefinedAngu_1137_TypeValue.MinValueStats->printSelf(outFile);
+      UserDefinedAngu_1138_TypeValue.MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
-  else if (UserDefinedAngu_1137_TypeType == UserDefinedAngu_1160E)
+  else if (UserDefinedAngu_1138_TypeType == UserDefinedAngu_1161E)
     {
-      UserDefinedAngu_1137_TypeValue.UserDefinedAngu_1160->printSelf(outFile);
+      UserDefinedAngu_1138_TypeValue.UserDefinedAngu_1161->printSelf(outFile);
     }
-  else if (UserDefinedAngu_1137_TypeType == UserDefinedAngu_1161E)
+  else if (UserDefinedAngu_1138_TypeType == UserDefinedAngu_1162E)
     {
-      UserDefinedAngu_1137_TypeValue.UserDefinedAngu_1161->printSelf(outFile);
+      UserDefinedAngu_1138_TypeValue.UserDefinedAngu_1162->printSelf(outFile);
     }
-  else if (UserDefinedAngu_1137_TypeType == MinDeviationStatsE)
+  else if (UserDefinedAngu_1138_TypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      UserDefinedAngu_1137_TypeValue.MinDeviationStats->printSelf(outFile);
+      UserDefinedAngu_1138_TypeValue.MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedArea_1138_Type
-
-*/
-
-UserDefinedArea_1138_Type::UserDefinedArea_1138_Type()
-{
-  UserDefinedArea_1138_TypePair = 0;
-}
-
-UserDefinedArea_1138_Type::UserDefinedArea_1138_Type(
- UserDefinedArea_1138_TypeChoicePair * UserDefinedArea_1138_TypePairIn)
-{
-  UserDefinedArea_1138_TypePair = UserDefinedArea_1138_TypePairIn;
-}
-
-UserDefinedArea_1138_Type::~UserDefinedArea_1138_Type()
-{
-  #ifndef NODESTRUCT
-  delete UserDefinedArea_1138_TypePair;
-  #endif
-}
-
-void UserDefinedArea_1138_Type::printSelf(FILE * outFile)
-{
-  UserDefinedArea_1138_TypePair->printSelf(outFile);
-}
-
-UserDefinedArea_1138_TypeChoicePair * UserDefinedArea_1138_Type::getUserDefinedArea_1138_TypePair()
-{return UserDefinedArea_1138_TypePair;}
-
-void UserDefinedArea_1138_Type::setUserDefinedArea_1138_TypePair(UserDefinedArea_1138_TypeChoicePair * UserDefinedArea_1138_TypePairIn)
-{UserDefinedArea_1138_TypePair = UserDefinedArea_1138_TypePairIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedArea_1138_TypeChoicePair
+/* class UserDefinedArea_1139_Type
 
 */
 
-UserDefinedArea_1138_TypeChoicePair::UserDefinedArea_1138_TypeChoicePair() {}
-
-UserDefinedArea_1138_TypeChoicePair::UserDefinedArea_1138_TypeChoicePair(
- whichOne UserDefinedArea_1138_TypeTypeIn,
- UserDefinedArea_1138_TypeVal UserDefinedArea_1138_TypeValueIn)
+UserDefinedArea_1139_Type::UserDefinedArea_1139_Type()
 {
-  UserDefinedArea_1138_TypeType = UserDefinedArea_1138_TypeTypeIn;
-  UserDefinedArea_1138_TypeValue = UserDefinedArea_1138_TypeValueIn;
+  UserDefinedArea_1139_TypePair = 0;
 }
 
-UserDefinedArea_1138_TypeChoicePair::~UserDefinedArea_1138_TypeChoicePair()
+UserDefinedArea_1139_Type::UserDefinedArea_1139_Type(
+ UserDefinedArea_1139_TypeChoicePair * UserDefinedArea_1139_TypePairIn)
+{
+  UserDefinedArea_1139_TypePair = UserDefinedArea_1139_TypePairIn;
+}
+
+UserDefinedArea_1139_Type::~UserDefinedArea_1139_Type()
 {
   #ifndef NODESTRUCT
-  if (UserDefinedArea_1138_TypeType == UserDefinedArea_1162E)
-    delete UserDefinedArea_1138_TypeValue.UserDefinedArea_1162;
-  else if (UserDefinedArea_1138_TypeType == UserDefinedArea_1163E)
-    delete UserDefinedArea_1138_TypeValue.UserDefinedArea_1163;
-  else if (UserDefinedArea_1138_TypeType == MinValueStatsE)
-    delete UserDefinedArea_1138_TypeValue.MinValueStats;
-  else if (UserDefinedArea_1138_TypeType == UserDefinedArea_1164E)
-    delete UserDefinedArea_1138_TypeValue.UserDefinedArea_1164;
-  else if (UserDefinedArea_1138_TypeType == UserDefinedArea_1165E)
-    delete UserDefinedArea_1138_TypeValue.UserDefinedArea_1165;
-  else if (UserDefinedArea_1138_TypeType == MinDeviationStatsE)
-    delete UserDefinedArea_1138_TypeValue.MinDeviationStats;
+  delete UserDefinedArea_1139_TypePair;
   #endif
 }
 
-void UserDefinedArea_1138_TypeChoicePair::printSelf(FILE * outFile)
+void UserDefinedArea_1139_Type::printSelf(FILE * outFile)
 {
-  if (UserDefinedArea_1138_TypeType == UserDefinedArea_1162E)
+  UserDefinedArea_1139_TypePair->printSelf(outFile);
+}
+
+UserDefinedArea_1139_TypeChoicePair * UserDefinedArea_1139_Type::getUserDefinedArea_1139_TypePair()
+{return UserDefinedArea_1139_TypePair;}
+
+void UserDefinedArea_1139_Type::setUserDefinedArea_1139_TypePair(UserDefinedArea_1139_TypeChoicePair * UserDefinedArea_1139_TypePairIn)
+{UserDefinedArea_1139_TypePair = UserDefinedArea_1139_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedArea_1139_TypeChoicePair
+
+*/
+
+UserDefinedArea_1139_TypeChoicePair::UserDefinedArea_1139_TypeChoicePair() {}
+
+UserDefinedArea_1139_TypeChoicePair::UserDefinedArea_1139_TypeChoicePair(
+ whichOne UserDefinedArea_1139_TypeTypeIn,
+ UserDefinedArea_1139_TypeVal UserDefinedArea_1139_TypeValueIn)
+{
+  UserDefinedArea_1139_TypeType = UserDefinedArea_1139_TypeTypeIn;
+  UserDefinedArea_1139_TypeValue = UserDefinedArea_1139_TypeValueIn;
+}
+
+UserDefinedArea_1139_TypeChoicePair::~UserDefinedArea_1139_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (UserDefinedArea_1139_TypeType == UserDefinedArea_1163E)
+    delete UserDefinedArea_1139_TypeValue.UserDefinedArea_1163;
+  else if (UserDefinedArea_1139_TypeType == UserDefinedArea_1164E)
+    delete UserDefinedArea_1139_TypeValue.UserDefinedArea_1164;
+  else if (UserDefinedArea_1139_TypeType == MinValueStatsE)
+    delete UserDefinedArea_1139_TypeValue.MinValueStats;
+  else if (UserDefinedArea_1139_TypeType == UserDefinedArea_1165E)
+    delete UserDefinedArea_1139_TypeValue.UserDefinedArea_1165;
+  else if (UserDefinedArea_1139_TypeType == UserDefinedArea_1166E)
+    delete UserDefinedArea_1139_TypeValue.UserDefinedArea_1166;
+  else if (UserDefinedArea_1139_TypeType == MinDeviationStatsE)
+    delete UserDefinedArea_1139_TypeValue.MinDeviationStats;
+  #endif
+}
+
+void UserDefinedArea_1139_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (UserDefinedArea_1139_TypeType == UserDefinedArea_1163E)
     {
-      UserDefinedArea_1138_TypeValue.UserDefinedArea_1162->printSelf(outFile);
+      UserDefinedArea_1139_TypeValue.UserDefinedArea_1163->printSelf(outFile);
     }
-  else if (UserDefinedArea_1138_TypeType == UserDefinedArea_1163E)
+  else if (UserDefinedArea_1139_TypeType == UserDefinedArea_1164E)
     {
-      UserDefinedArea_1138_TypeValue.UserDefinedArea_1163->printSelf(outFile);
+      UserDefinedArea_1139_TypeValue.UserDefinedArea_1164->printSelf(outFile);
     }
-  else if (UserDefinedArea_1138_TypeType == MinValueStatsE)
+  else if (UserDefinedArea_1139_TypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      UserDefinedArea_1138_TypeValue.MinValueStats->printSelf(outFile);
+      UserDefinedArea_1139_TypeValue.MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
-  else if (UserDefinedArea_1138_TypeType == UserDefinedArea_1164E)
+  else if (UserDefinedArea_1139_TypeType == UserDefinedArea_1165E)
     {
-      UserDefinedArea_1138_TypeValue.UserDefinedArea_1164->printSelf(outFile);
+      UserDefinedArea_1139_TypeValue.UserDefinedArea_1165->printSelf(outFile);
     }
-  else if (UserDefinedArea_1138_TypeType == UserDefinedArea_1165E)
+  else if (UserDefinedArea_1139_TypeType == UserDefinedArea_1166E)
     {
-      UserDefinedArea_1138_TypeValue.UserDefinedArea_1165->printSelf(outFile);
+      UserDefinedArea_1139_TypeValue.UserDefinedArea_1166->printSelf(outFile);
     }
-  else if (UserDefinedArea_1138_TypeType == MinDeviationStatsE)
+  else if (UserDefinedArea_1139_TypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      UserDefinedArea_1138_TypeValue.MinDeviationStats->printSelf(outFile);
+      UserDefinedArea_1139_TypeValue.MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedForc_1139_Type
-
-*/
-
-UserDefinedForc_1139_Type::UserDefinedForc_1139_Type()
-{
-  UserDefinedForc_1139_TypePair = 0;
-}
-
-UserDefinedForc_1139_Type::UserDefinedForc_1139_Type(
- UserDefinedForc_1139_TypeChoicePair * UserDefinedForc_1139_TypePairIn)
-{
-  UserDefinedForc_1139_TypePair = UserDefinedForc_1139_TypePairIn;
-}
-
-UserDefinedForc_1139_Type::~UserDefinedForc_1139_Type()
-{
-  #ifndef NODESTRUCT
-  delete UserDefinedForc_1139_TypePair;
-  #endif
-}
-
-void UserDefinedForc_1139_Type::printSelf(FILE * outFile)
-{
-  UserDefinedForc_1139_TypePair->printSelf(outFile);
-}
-
-UserDefinedForc_1139_TypeChoicePair * UserDefinedForc_1139_Type::getUserDefinedForc_1139_TypePair()
-{return UserDefinedForc_1139_TypePair;}
-
-void UserDefinedForc_1139_Type::setUserDefinedForc_1139_TypePair(UserDefinedForc_1139_TypeChoicePair * UserDefinedForc_1139_TypePairIn)
-{UserDefinedForc_1139_TypePair = UserDefinedForc_1139_TypePairIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedForc_1139_TypeChoicePair
+/* class UserDefinedForc_1140_Type
 
 */
 
-UserDefinedForc_1139_TypeChoicePair::UserDefinedForc_1139_TypeChoicePair() {}
-
-UserDefinedForc_1139_TypeChoicePair::UserDefinedForc_1139_TypeChoicePair(
- whichOne UserDefinedForc_1139_TypeTypeIn,
- UserDefinedForc_1139_TypeVal UserDefinedForc_1139_TypeValueIn)
+UserDefinedForc_1140_Type::UserDefinedForc_1140_Type()
 {
-  UserDefinedForc_1139_TypeType = UserDefinedForc_1139_TypeTypeIn;
-  UserDefinedForc_1139_TypeValue = UserDefinedForc_1139_TypeValueIn;
+  UserDefinedForc_1140_TypePair = 0;
 }
 
-UserDefinedForc_1139_TypeChoicePair::~UserDefinedForc_1139_TypeChoicePair()
+UserDefinedForc_1140_Type::UserDefinedForc_1140_Type(
+ UserDefinedForc_1140_TypeChoicePair * UserDefinedForc_1140_TypePairIn)
+{
+  UserDefinedForc_1140_TypePair = UserDefinedForc_1140_TypePairIn;
+}
+
+UserDefinedForc_1140_Type::~UserDefinedForc_1140_Type()
 {
   #ifndef NODESTRUCT
-  if (UserDefinedForc_1139_TypeType == UserDefinedForc_1166E)
-    delete UserDefinedForc_1139_TypeValue.UserDefinedForc_1166;
-  else if (UserDefinedForc_1139_TypeType == UserDefinedForc_1167E)
-    delete UserDefinedForc_1139_TypeValue.UserDefinedForc_1167;
-  else if (UserDefinedForc_1139_TypeType == MinValueStatsE)
-    delete UserDefinedForc_1139_TypeValue.MinValueStats;
-  else if (UserDefinedForc_1139_TypeType == UserDefinedForc_1168E)
-    delete UserDefinedForc_1139_TypeValue.UserDefinedForc_1168;
-  else if (UserDefinedForc_1139_TypeType == UserDefinedForc_1169E)
-    delete UserDefinedForc_1139_TypeValue.UserDefinedForc_1169;
-  else if (UserDefinedForc_1139_TypeType == MinDeviationStatsE)
-    delete UserDefinedForc_1139_TypeValue.MinDeviationStats;
+  delete UserDefinedForc_1140_TypePair;
   #endif
 }
 
-void UserDefinedForc_1139_TypeChoicePair::printSelf(FILE * outFile)
+void UserDefinedForc_1140_Type::printSelf(FILE * outFile)
 {
-  if (UserDefinedForc_1139_TypeType == UserDefinedForc_1166E)
+  UserDefinedForc_1140_TypePair->printSelf(outFile);
+}
+
+UserDefinedForc_1140_TypeChoicePair * UserDefinedForc_1140_Type::getUserDefinedForc_1140_TypePair()
+{return UserDefinedForc_1140_TypePair;}
+
+void UserDefinedForc_1140_Type::setUserDefinedForc_1140_TypePair(UserDefinedForc_1140_TypeChoicePair * UserDefinedForc_1140_TypePairIn)
+{UserDefinedForc_1140_TypePair = UserDefinedForc_1140_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedForc_1140_TypeChoicePair
+
+*/
+
+UserDefinedForc_1140_TypeChoicePair::UserDefinedForc_1140_TypeChoicePair() {}
+
+UserDefinedForc_1140_TypeChoicePair::UserDefinedForc_1140_TypeChoicePair(
+ whichOne UserDefinedForc_1140_TypeTypeIn,
+ UserDefinedForc_1140_TypeVal UserDefinedForc_1140_TypeValueIn)
+{
+  UserDefinedForc_1140_TypeType = UserDefinedForc_1140_TypeTypeIn;
+  UserDefinedForc_1140_TypeValue = UserDefinedForc_1140_TypeValueIn;
+}
+
+UserDefinedForc_1140_TypeChoicePair::~UserDefinedForc_1140_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (UserDefinedForc_1140_TypeType == UserDefinedForc_1167E)
+    delete UserDefinedForc_1140_TypeValue.UserDefinedForc_1167;
+  else if (UserDefinedForc_1140_TypeType == UserDefinedForc_1168E)
+    delete UserDefinedForc_1140_TypeValue.UserDefinedForc_1168;
+  else if (UserDefinedForc_1140_TypeType == MinValueStatsE)
+    delete UserDefinedForc_1140_TypeValue.MinValueStats;
+  else if (UserDefinedForc_1140_TypeType == UserDefinedForc_1169E)
+    delete UserDefinedForc_1140_TypeValue.UserDefinedForc_1169;
+  else if (UserDefinedForc_1140_TypeType == UserDefinedForc_1170E)
+    delete UserDefinedForc_1140_TypeValue.UserDefinedForc_1170;
+  else if (UserDefinedForc_1140_TypeType == MinDeviationStatsE)
+    delete UserDefinedForc_1140_TypeValue.MinDeviationStats;
+  #endif
+}
+
+void UserDefinedForc_1140_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (UserDefinedForc_1140_TypeType == UserDefinedForc_1167E)
     {
-      UserDefinedForc_1139_TypeValue.UserDefinedForc_1166->printSelf(outFile);
+      UserDefinedForc_1140_TypeValue.UserDefinedForc_1167->printSelf(outFile);
     }
-  else if (UserDefinedForc_1139_TypeType == UserDefinedForc_1167E)
+  else if (UserDefinedForc_1140_TypeType == UserDefinedForc_1168E)
     {
-      UserDefinedForc_1139_TypeValue.UserDefinedForc_1167->printSelf(outFile);
+      UserDefinedForc_1140_TypeValue.UserDefinedForc_1168->printSelf(outFile);
     }
-  else if (UserDefinedForc_1139_TypeType == MinValueStatsE)
+  else if (UserDefinedForc_1140_TypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      UserDefinedForc_1139_TypeValue.MinValueStats->printSelf(outFile);
+      UserDefinedForc_1140_TypeValue.MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
-  else if (UserDefinedForc_1139_TypeType == UserDefinedForc_1168E)
+  else if (UserDefinedForc_1140_TypeType == UserDefinedForc_1169E)
     {
-      UserDefinedForc_1139_TypeValue.UserDefinedForc_1168->printSelf(outFile);
+      UserDefinedForc_1140_TypeValue.UserDefinedForc_1169->printSelf(outFile);
     }
-  else if (UserDefinedForc_1139_TypeType == UserDefinedForc_1169E)
+  else if (UserDefinedForc_1140_TypeType == UserDefinedForc_1170E)
     {
-      UserDefinedForc_1139_TypeValue.UserDefinedForc_1169->printSelf(outFile);
+      UserDefinedForc_1140_TypeValue.UserDefinedForc_1170->printSelf(outFile);
     }
-  else if (UserDefinedForc_1139_TypeType == MinDeviationStatsE)
+  else if (UserDefinedForc_1140_TypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      UserDefinedForc_1139_TypeValue.MinDeviationStats->printSelf(outFile);
+      UserDefinedForc_1140_TypeValue.MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedLine_1140_Type
-
-*/
-
-UserDefinedLine_1140_Type::UserDefinedLine_1140_Type()
-{
-  UserDefinedLine_1140_TypePair = 0;
-}
-
-UserDefinedLine_1140_Type::UserDefinedLine_1140_Type(
- UserDefinedLine_1140_TypeChoicePair * UserDefinedLine_1140_TypePairIn)
-{
-  UserDefinedLine_1140_TypePair = UserDefinedLine_1140_TypePairIn;
-}
-
-UserDefinedLine_1140_Type::~UserDefinedLine_1140_Type()
-{
-  #ifndef NODESTRUCT
-  delete UserDefinedLine_1140_TypePair;
-  #endif
-}
-
-void UserDefinedLine_1140_Type::printSelf(FILE * outFile)
-{
-  UserDefinedLine_1140_TypePair->printSelf(outFile);
-}
-
-UserDefinedLine_1140_TypeChoicePair * UserDefinedLine_1140_Type::getUserDefinedLine_1140_TypePair()
-{return UserDefinedLine_1140_TypePair;}
-
-void UserDefinedLine_1140_Type::setUserDefinedLine_1140_TypePair(UserDefinedLine_1140_TypeChoicePair * UserDefinedLine_1140_TypePairIn)
-{UserDefinedLine_1140_TypePair = UserDefinedLine_1140_TypePairIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedLine_1140_TypeChoicePair
+/* class UserDefinedLine_1141_Type
 
 */
 
-UserDefinedLine_1140_TypeChoicePair::UserDefinedLine_1140_TypeChoicePair() {}
-
-UserDefinedLine_1140_TypeChoicePair::UserDefinedLine_1140_TypeChoicePair(
- whichOne UserDefinedLine_1140_TypeTypeIn,
- UserDefinedLine_1140_TypeVal UserDefinedLine_1140_TypeValueIn)
+UserDefinedLine_1141_Type::UserDefinedLine_1141_Type()
 {
-  UserDefinedLine_1140_TypeType = UserDefinedLine_1140_TypeTypeIn;
-  UserDefinedLine_1140_TypeValue = UserDefinedLine_1140_TypeValueIn;
+  UserDefinedLine_1141_TypePair = 0;
 }
 
-UserDefinedLine_1140_TypeChoicePair::~UserDefinedLine_1140_TypeChoicePair()
+UserDefinedLine_1141_Type::UserDefinedLine_1141_Type(
+ UserDefinedLine_1141_TypeChoicePair * UserDefinedLine_1141_TypePairIn)
+{
+  UserDefinedLine_1141_TypePair = UserDefinedLine_1141_TypePairIn;
+}
+
+UserDefinedLine_1141_Type::~UserDefinedLine_1141_Type()
 {
   #ifndef NODESTRUCT
-  if (UserDefinedLine_1140_TypeType == UserDefinedLine_1170E)
-    delete UserDefinedLine_1140_TypeValue.UserDefinedLine_1170;
-  else if (UserDefinedLine_1140_TypeType == UserDefinedLine_1171E)
-    delete UserDefinedLine_1140_TypeValue.UserDefinedLine_1171;
-  else if (UserDefinedLine_1140_TypeType == MinValueStatsE)
-    delete UserDefinedLine_1140_TypeValue.MinValueStats;
-  else if (UserDefinedLine_1140_TypeType == UserDefinedLine_1172E)
-    delete UserDefinedLine_1140_TypeValue.UserDefinedLine_1172;
-  else if (UserDefinedLine_1140_TypeType == UserDefinedLine_1173E)
-    delete UserDefinedLine_1140_TypeValue.UserDefinedLine_1173;
-  else if (UserDefinedLine_1140_TypeType == MinDeviationStatsE)
-    delete UserDefinedLine_1140_TypeValue.MinDeviationStats;
+  delete UserDefinedLine_1141_TypePair;
   #endif
 }
 
-void UserDefinedLine_1140_TypeChoicePair::printSelf(FILE * outFile)
+void UserDefinedLine_1141_Type::printSelf(FILE * outFile)
 {
-  if (UserDefinedLine_1140_TypeType == UserDefinedLine_1170E)
+  UserDefinedLine_1141_TypePair->printSelf(outFile);
+}
+
+UserDefinedLine_1141_TypeChoicePair * UserDefinedLine_1141_Type::getUserDefinedLine_1141_TypePair()
+{return UserDefinedLine_1141_TypePair;}
+
+void UserDefinedLine_1141_Type::setUserDefinedLine_1141_TypePair(UserDefinedLine_1141_TypeChoicePair * UserDefinedLine_1141_TypePairIn)
+{UserDefinedLine_1141_TypePair = UserDefinedLine_1141_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedLine_1141_TypeChoicePair
+
+*/
+
+UserDefinedLine_1141_TypeChoicePair::UserDefinedLine_1141_TypeChoicePair() {}
+
+UserDefinedLine_1141_TypeChoicePair::UserDefinedLine_1141_TypeChoicePair(
+ whichOne UserDefinedLine_1141_TypeTypeIn,
+ UserDefinedLine_1141_TypeVal UserDefinedLine_1141_TypeValueIn)
+{
+  UserDefinedLine_1141_TypeType = UserDefinedLine_1141_TypeTypeIn;
+  UserDefinedLine_1141_TypeValue = UserDefinedLine_1141_TypeValueIn;
+}
+
+UserDefinedLine_1141_TypeChoicePair::~UserDefinedLine_1141_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (UserDefinedLine_1141_TypeType == UserDefinedLine_1171E)
+    delete UserDefinedLine_1141_TypeValue.UserDefinedLine_1171;
+  else if (UserDefinedLine_1141_TypeType == UserDefinedLine_1172E)
+    delete UserDefinedLine_1141_TypeValue.UserDefinedLine_1172;
+  else if (UserDefinedLine_1141_TypeType == MinValueStatsE)
+    delete UserDefinedLine_1141_TypeValue.MinValueStats;
+  else if (UserDefinedLine_1141_TypeType == UserDefinedLine_1173E)
+    delete UserDefinedLine_1141_TypeValue.UserDefinedLine_1173;
+  else if (UserDefinedLine_1141_TypeType == UserDefinedLine_1174E)
+    delete UserDefinedLine_1141_TypeValue.UserDefinedLine_1174;
+  else if (UserDefinedLine_1141_TypeType == MinDeviationStatsE)
+    delete UserDefinedLine_1141_TypeValue.MinDeviationStats;
+  #endif
+}
+
+void UserDefinedLine_1141_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (UserDefinedLine_1141_TypeType == UserDefinedLine_1171E)
     {
-      UserDefinedLine_1140_TypeValue.UserDefinedLine_1170->printSelf(outFile);
+      UserDefinedLine_1141_TypeValue.UserDefinedLine_1171->printSelf(outFile);
     }
-  else if (UserDefinedLine_1140_TypeType == UserDefinedLine_1171E)
+  else if (UserDefinedLine_1141_TypeType == UserDefinedLine_1172E)
     {
-      UserDefinedLine_1140_TypeValue.UserDefinedLine_1171->printSelf(outFile);
+      UserDefinedLine_1141_TypeValue.UserDefinedLine_1172->printSelf(outFile);
     }
-  else if (UserDefinedLine_1140_TypeType == MinValueStatsE)
+  else if (UserDefinedLine_1141_TypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      UserDefinedLine_1140_TypeValue.MinValueStats->printSelf(outFile);
+      UserDefinedLine_1141_TypeValue.MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
-  else if (UserDefinedLine_1140_TypeType == UserDefinedLine_1172E)
+  else if (UserDefinedLine_1141_TypeType == UserDefinedLine_1173E)
     {
-      UserDefinedLine_1140_TypeValue.UserDefinedLine_1172->printSelf(outFile);
+      UserDefinedLine_1141_TypeValue.UserDefinedLine_1173->printSelf(outFile);
     }
-  else if (UserDefinedLine_1140_TypeType == UserDefinedLine_1173E)
+  else if (UserDefinedLine_1141_TypeType == UserDefinedLine_1174E)
     {
-      UserDefinedLine_1140_TypeValue.UserDefinedLine_1173->printSelf(outFile);
+      UserDefinedLine_1141_TypeValue.UserDefinedLine_1174->printSelf(outFile);
     }
-  else if (UserDefinedLine_1140_TypeType == MinDeviationStatsE)
+  else if (UserDefinedLine_1141_TypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      UserDefinedLine_1140_TypeValue.MinDeviationStats->printSelf(outFile);
+      UserDefinedLine_1141_TypeValue.MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedMass_1141_Type
-
-*/
-
-UserDefinedMass_1141_Type::UserDefinedMass_1141_Type()
-{
-  UserDefinedMass_1141_TypePair = 0;
-}
-
-UserDefinedMass_1141_Type::UserDefinedMass_1141_Type(
- UserDefinedMass_1141_TypeChoicePair * UserDefinedMass_1141_TypePairIn)
-{
-  UserDefinedMass_1141_TypePair = UserDefinedMass_1141_TypePairIn;
-}
-
-UserDefinedMass_1141_Type::~UserDefinedMass_1141_Type()
-{
-  #ifndef NODESTRUCT
-  delete UserDefinedMass_1141_TypePair;
-  #endif
-}
-
-void UserDefinedMass_1141_Type::printSelf(FILE * outFile)
-{
-  UserDefinedMass_1141_TypePair->printSelf(outFile);
-}
-
-UserDefinedMass_1141_TypeChoicePair * UserDefinedMass_1141_Type::getUserDefinedMass_1141_TypePair()
-{return UserDefinedMass_1141_TypePair;}
-
-void UserDefinedMass_1141_Type::setUserDefinedMass_1141_TypePair(UserDefinedMass_1141_TypeChoicePair * UserDefinedMass_1141_TypePairIn)
-{UserDefinedMass_1141_TypePair = UserDefinedMass_1141_TypePairIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedMass_1141_TypeChoicePair
+/* class UserDefinedMass_1142_Type
 
 */
 
-UserDefinedMass_1141_TypeChoicePair::UserDefinedMass_1141_TypeChoicePair() {}
-
-UserDefinedMass_1141_TypeChoicePair::UserDefinedMass_1141_TypeChoicePair(
- whichOne UserDefinedMass_1141_TypeTypeIn,
- UserDefinedMass_1141_TypeVal UserDefinedMass_1141_TypeValueIn)
+UserDefinedMass_1142_Type::UserDefinedMass_1142_Type()
 {
-  UserDefinedMass_1141_TypeType = UserDefinedMass_1141_TypeTypeIn;
-  UserDefinedMass_1141_TypeValue = UserDefinedMass_1141_TypeValueIn;
+  UserDefinedMass_1142_TypePair = 0;
 }
 
-UserDefinedMass_1141_TypeChoicePair::~UserDefinedMass_1141_TypeChoicePair()
+UserDefinedMass_1142_Type::UserDefinedMass_1142_Type(
+ UserDefinedMass_1142_TypeChoicePair * UserDefinedMass_1142_TypePairIn)
+{
+  UserDefinedMass_1142_TypePair = UserDefinedMass_1142_TypePairIn;
+}
+
+UserDefinedMass_1142_Type::~UserDefinedMass_1142_Type()
 {
   #ifndef NODESTRUCT
-  if (UserDefinedMass_1141_TypeType == UserDefinedMass_1174E)
-    delete UserDefinedMass_1141_TypeValue.UserDefinedMass_1174;
-  else if (UserDefinedMass_1141_TypeType == UserDefinedMass_1175E)
-    delete UserDefinedMass_1141_TypeValue.UserDefinedMass_1175;
-  else if (UserDefinedMass_1141_TypeType == MinValueStatsE)
-    delete UserDefinedMass_1141_TypeValue.MinValueStats;
-  else if (UserDefinedMass_1141_TypeType == UserDefinedMass_1176E)
-    delete UserDefinedMass_1141_TypeValue.UserDefinedMass_1176;
-  else if (UserDefinedMass_1141_TypeType == UserDefinedMass_1177E)
-    delete UserDefinedMass_1141_TypeValue.UserDefinedMass_1177;
-  else if (UserDefinedMass_1141_TypeType == MinDeviationStatsE)
-    delete UserDefinedMass_1141_TypeValue.MinDeviationStats;
+  delete UserDefinedMass_1142_TypePair;
   #endif
 }
 
-void UserDefinedMass_1141_TypeChoicePair::printSelf(FILE * outFile)
+void UserDefinedMass_1142_Type::printSelf(FILE * outFile)
 {
-  if (UserDefinedMass_1141_TypeType == UserDefinedMass_1174E)
+  UserDefinedMass_1142_TypePair->printSelf(outFile);
+}
+
+UserDefinedMass_1142_TypeChoicePair * UserDefinedMass_1142_Type::getUserDefinedMass_1142_TypePair()
+{return UserDefinedMass_1142_TypePair;}
+
+void UserDefinedMass_1142_Type::setUserDefinedMass_1142_TypePair(UserDefinedMass_1142_TypeChoicePair * UserDefinedMass_1142_TypePairIn)
+{UserDefinedMass_1142_TypePair = UserDefinedMass_1142_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedMass_1142_TypeChoicePair
+
+*/
+
+UserDefinedMass_1142_TypeChoicePair::UserDefinedMass_1142_TypeChoicePair() {}
+
+UserDefinedMass_1142_TypeChoicePair::UserDefinedMass_1142_TypeChoicePair(
+ whichOne UserDefinedMass_1142_TypeTypeIn,
+ UserDefinedMass_1142_TypeVal UserDefinedMass_1142_TypeValueIn)
+{
+  UserDefinedMass_1142_TypeType = UserDefinedMass_1142_TypeTypeIn;
+  UserDefinedMass_1142_TypeValue = UserDefinedMass_1142_TypeValueIn;
+}
+
+UserDefinedMass_1142_TypeChoicePair::~UserDefinedMass_1142_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (UserDefinedMass_1142_TypeType == UserDefinedMass_1175E)
+    delete UserDefinedMass_1142_TypeValue.UserDefinedMass_1175;
+  else if (UserDefinedMass_1142_TypeType == UserDefinedMass_1176E)
+    delete UserDefinedMass_1142_TypeValue.UserDefinedMass_1176;
+  else if (UserDefinedMass_1142_TypeType == MinValueStatsE)
+    delete UserDefinedMass_1142_TypeValue.MinValueStats;
+  else if (UserDefinedMass_1142_TypeType == UserDefinedMass_1177E)
+    delete UserDefinedMass_1142_TypeValue.UserDefinedMass_1177;
+  else if (UserDefinedMass_1142_TypeType == UserDefinedMass_1178E)
+    delete UserDefinedMass_1142_TypeValue.UserDefinedMass_1178;
+  else if (UserDefinedMass_1142_TypeType == MinDeviationStatsE)
+    delete UserDefinedMass_1142_TypeValue.MinDeviationStats;
+  #endif
+}
+
+void UserDefinedMass_1142_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (UserDefinedMass_1142_TypeType == UserDefinedMass_1175E)
     {
-      UserDefinedMass_1141_TypeValue.UserDefinedMass_1174->printSelf(outFile);
+      UserDefinedMass_1142_TypeValue.UserDefinedMass_1175->printSelf(outFile);
     }
-  else if (UserDefinedMass_1141_TypeType == UserDefinedMass_1175E)
+  else if (UserDefinedMass_1142_TypeType == UserDefinedMass_1176E)
     {
-      UserDefinedMass_1141_TypeValue.UserDefinedMass_1175->printSelf(outFile);
+      UserDefinedMass_1142_TypeValue.UserDefinedMass_1176->printSelf(outFile);
     }
-  else if (UserDefinedMass_1141_TypeType == MinValueStatsE)
+  else if (UserDefinedMass_1142_TypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      UserDefinedMass_1141_TypeValue.MinValueStats->printSelf(outFile);
+      UserDefinedMass_1142_TypeValue.MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
-  else if (UserDefinedMass_1141_TypeType == UserDefinedMass_1176E)
+  else if (UserDefinedMass_1142_TypeType == UserDefinedMass_1177E)
     {
-      UserDefinedMass_1141_TypeValue.UserDefinedMass_1176->printSelf(outFile);
+      UserDefinedMass_1142_TypeValue.UserDefinedMass_1177->printSelf(outFile);
     }
-  else if (UserDefinedMass_1141_TypeType == UserDefinedMass_1177E)
+  else if (UserDefinedMass_1142_TypeType == UserDefinedMass_1178E)
     {
-      UserDefinedMass_1141_TypeValue.UserDefinedMass_1177->printSelf(outFile);
+      UserDefinedMass_1142_TypeValue.UserDefinedMass_1178->printSelf(outFile);
     }
-  else if (UserDefinedMass_1141_TypeType == MinDeviationStatsE)
+  else if (UserDefinedMass_1142_TypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      UserDefinedMass_1141_TypeValue.MinDeviationStats->printSelf(outFile);
+      UserDefinedMass_1142_TypeValue.MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedPres_1142_Type
-
-*/
-
-UserDefinedPres_1142_Type::UserDefinedPres_1142_Type()
-{
-  UserDefinedPres_1142_TypePair = 0;
-}
-
-UserDefinedPres_1142_Type::UserDefinedPres_1142_Type(
- UserDefinedPres_1142_TypeChoicePair * UserDefinedPres_1142_TypePairIn)
-{
-  UserDefinedPres_1142_TypePair = UserDefinedPres_1142_TypePairIn;
-}
-
-UserDefinedPres_1142_Type::~UserDefinedPres_1142_Type()
-{
-  #ifndef NODESTRUCT
-  delete UserDefinedPres_1142_TypePair;
-  #endif
-}
-
-void UserDefinedPres_1142_Type::printSelf(FILE * outFile)
-{
-  UserDefinedPres_1142_TypePair->printSelf(outFile);
-}
-
-UserDefinedPres_1142_TypeChoicePair * UserDefinedPres_1142_Type::getUserDefinedPres_1142_TypePair()
-{return UserDefinedPres_1142_TypePair;}
-
-void UserDefinedPres_1142_Type::setUserDefinedPres_1142_TypePair(UserDefinedPres_1142_TypeChoicePair * UserDefinedPres_1142_TypePairIn)
-{UserDefinedPres_1142_TypePair = UserDefinedPres_1142_TypePairIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedPres_1142_TypeChoicePair
+/* class UserDefinedPres_1143_Type
 
 */
 
-UserDefinedPres_1142_TypeChoicePair::UserDefinedPres_1142_TypeChoicePair() {}
-
-UserDefinedPres_1142_TypeChoicePair::UserDefinedPres_1142_TypeChoicePair(
- whichOne UserDefinedPres_1142_TypeTypeIn,
- UserDefinedPres_1142_TypeVal UserDefinedPres_1142_TypeValueIn)
+UserDefinedPres_1143_Type::UserDefinedPres_1143_Type()
 {
-  UserDefinedPres_1142_TypeType = UserDefinedPres_1142_TypeTypeIn;
-  UserDefinedPres_1142_TypeValue = UserDefinedPres_1142_TypeValueIn;
+  UserDefinedPres_1143_TypePair = 0;
 }
 
-UserDefinedPres_1142_TypeChoicePair::~UserDefinedPres_1142_TypeChoicePair()
+UserDefinedPres_1143_Type::UserDefinedPres_1143_Type(
+ UserDefinedPres_1143_TypeChoicePair * UserDefinedPres_1143_TypePairIn)
+{
+  UserDefinedPres_1143_TypePair = UserDefinedPres_1143_TypePairIn;
+}
+
+UserDefinedPres_1143_Type::~UserDefinedPres_1143_Type()
 {
   #ifndef NODESTRUCT
-  if (UserDefinedPres_1142_TypeType == UserDefinedPres_1178E)
-    delete UserDefinedPres_1142_TypeValue.UserDefinedPres_1178;
-  else if (UserDefinedPres_1142_TypeType == UserDefinedPres_1179E)
-    delete UserDefinedPres_1142_TypeValue.UserDefinedPres_1179;
-  else if (UserDefinedPres_1142_TypeType == MinValueStatsE)
-    delete UserDefinedPres_1142_TypeValue.MinValueStats;
-  else if (UserDefinedPres_1142_TypeType == UserDefinedPres_1180E)
-    delete UserDefinedPres_1142_TypeValue.UserDefinedPres_1180;
-  else if (UserDefinedPres_1142_TypeType == UserDefinedPres_1181E)
-    delete UserDefinedPres_1142_TypeValue.UserDefinedPres_1181;
-  else if (UserDefinedPres_1142_TypeType == MinDeviationStatsE)
-    delete UserDefinedPres_1142_TypeValue.MinDeviationStats;
+  delete UserDefinedPres_1143_TypePair;
   #endif
 }
 
-void UserDefinedPres_1142_TypeChoicePair::printSelf(FILE * outFile)
+void UserDefinedPres_1143_Type::printSelf(FILE * outFile)
 {
-  if (UserDefinedPres_1142_TypeType == UserDefinedPres_1178E)
+  UserDefinedPres_1143_TypePair->printSelf(outFile);
+}
+
+UserDefinedPres_1143_TypeChoicePair * UserDefinedPres_1143_Type::getUserDefinedPres_1143_TypePair()
+{return UserDefinedPres_1143_TypePair;}
+
+void UserDefinedPres_1143_Type::setUserDefinedPres_1143_TypePair(UserDefinedPres_1143_TypeChoicePair * UserDefinedPres_1143_TypePairIn)
+{UserDefinedPres_1143_TypePair = UserDefinedPres_1143_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedPres_1143_TypeChoicePair
+
+*/
+
+UserDefinedPres_1143_TypeChoicePair::UserDefinedPres_1143_TypeChoicePair() {}
+
+UserDefinedPres_1143_TypeChoicePair::UserDefinedPres_1143_TypeChoicePair(
+ whichOne UserDefinedPres_1143_TypeTypeIn,
+ UserDefinedPres_1143_TypeVal UserDefinedPres_1143_TypeValueIn)
+{
+  UserDefinedPres_1143_TypeType = UserDefinedPres_1143_TypeTypeIn;
+  UserDefinedPres_1143_TypeValue = UserDefinedPres_1143_TypeValueIn;
+}
+
+UserDefinedPres_1143_TypeChoicePair::~UserDefinedPres_1143_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (UserDefinedPres_1143_TypeType == UserDefinedPres_1179E)
+    delete UserDefinedPres_1143_TypeValue.UserDefinedPres_1179;
+  else if (UserDefinedPres_1143_TypeType == UserDefinedPres_1180E)
+    delete UserDefinedPres_1143_TypeValue.UserDefinedPres_1180;
+  else if (UserDefinedPres_1143_TypeType == MinValueStatsE)
+    delete UserDefinedPres_1143_TypeValue.MinValueStats;
+  else if (UserDefinedPres_1143_TypeType == UserDefinedPres_1181E)
+    delete UserDefinedPres_1143_TypeValue.UserDefinedPres_1181;
+  else if (UserDefinedPres_1143_TypeType == UserDefinedPres_1182E)
+    delete UserDefinedPres_1143_TypeValue.UserDefinedPres_1182;
+  else if (UserDefinedPres_1143_TypeType == MinDeviationStatsE)
+    delete UserDefinedPres_1143_TypeValue.MinDeviationStats;
+  #endif
+}
+
+void UserDefinedPres_1143_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (UserDefinedPres_1143_TypeType == UserDefinedPres_1179E)
     {
-      UserDefinedPres_1142_TypeValue.UserDefinedPres_1178->printSelf(outFile);
+      UserDefinedPres_1143_TypeValue.UserDefinedPres_1179->printSelf(outFile);
     }
-  else if (UserDefinedPres_1142_TypeType == UserDefinedPres_1179E)
+  else if (UserDefinedPres_1143_TypeType == UserDefinedPres_1180E)
     {
-      UserDefinedPres_1142_TypeValue.UserDefinedPres_1179->printSelf(outFile);
+      UserDefinedPres_1143_TypeValue.UserDefinedPres_1180->printSelf(outFile);
     }
-  else if (UserDefinedPres_1142_TypeType == MinValueStatsE)
+  else if (UserDefinedPres_1143_TypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      UserDefinedPres_1142_TypeValue.MinValueStats->printSelf(outFile);
+      UserDefinedPres_1143_TypeValue.MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
-  else if (UserDefinedPres_1142_TypeType == UserDefinedPres_1180E)
+  else if (UserDefinedPres_1143_TypeType == UserDefinedPres_1181E)
     {
-      UserDefinedPres_1142_TypeValue.UserDefinedPres_1180->printSelf(outFile);
+      UserDefinedPres_1143_TypeValue.UserDefinedPres_1181->printSelf(outFile);
     }
-  else if (UserDefinedPres_1142_TypeType == UserDefinedPres_1181E)
+  else if (UserDefinedPres_1143_TypeType == UserDefinedPres_1182E)
     {
-      UserDefinedPres_1142_TypeValue.UserDefinedPres_1181->printSelf(outFile);
+      UserDefinedPres_1143_TypeValue.UserDefinedPres_1182->printSelf(outFile);
     }
-  else if (UserDefinedPres_1142_TypeType == MinDeviationStatsE)
+  else if (UserDefinedPres_1143_TypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      UserDefinedPres_1142_TypeValue.MinDeviationStats->printSelf(outFile);
+      UserDefinedPres_1143_TypeValue.MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedSpee_1143_Type
-
-*/
-
-UserDefinedSpee_1143_Type::UserDefinedSpee_1143_Type()
-{
-  UserDefinedSpee_1143_TypePair = 0;
-}
-
-UserDefinedSpee_1143_Type::UserDefinedSpee_1143_Type(
- UserDefinedSpee_1143_TypeChoicePair * UserDefinedSpee_1143_TypePairIn)
-{
-  UserDefinedSpee_1143_TypePair = UserDefinedSpee_1143_TypePairIn;
-}
-
-UserDefinedSpee_1143_Type::~UserDefinedSpee_1143_Type()
-{
-  #ifndef NODESTRUCT
-  delete UserDefinedSpee_1143_TypePair;
-  #endif
-}
-
-void UserDefinedSpee_1143_Type::printSelf(FILE * outFile)
-{
-  UserDefinedSpee_1143_TypePair->printSelf(outFile);
-}
-
-UserDefinedSpee_1143_TypeChoicePair * UserDefinedSpee_1143_Type::getUserDefinedSpee_1143_TypePair()
-{return UserDefinedSpee_1143_TypePair;}
-
-void UserDefinedSpee_1143_Type::setUserDefinedSpee_1143_TypePair(UserDefinedSpee_1143_TypeChoicePair * UserDefinedSpee_1143_TypePairIn)
-{UserDefinedSpee_1143_TypePair = UserDefinedSpee_1143_TypePairIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedSpee_1143_TypeChoicePair
+/* class UserDefinedSpee_1144_Type
 
 */
 
-UserDefinedSpee_1143_TypeChoicePair::UserDefinedSpee_1143_TypeChoicePair() {}
-
-UserDefinedSpee_1143_TypeChoicePair::UserDefinedSpee_1143_TypeChoicePair(
- whichOne UserDefinedSpee_1143_TypeTypeIn,
- UserDefinedSpee_1143_TypeVal UserDefinedSpee_1143_TypeValueIn)
+UserDefinedSpee_1144_Type::UserDefinedSpee_1144_Type()
 {
-  UserDefinedSpee_1143_TypeType = UserDefinedSpee_1143_TypeTypeIn;
-  UserDefinedSpee_1143_TypeValue = UserDefinedSpee_1143_TypeValueIn;
+  UserDefinedSpee_1144_TypePair = 0;
 }
 
-UserDefinedSpee_1143_TypeChoicePair::~UserDefinedSpee_1143_TypeChoicePair()
+UserDefinedSpee_1144_Type::UserDefinedSpee_1144_Type(
+ UserDefinedSpee_1144_TypeChoicePair * UserDefinedSpee_1144_TypePairIn)
+{
+  UserDefinedSpee_1144_TypePair = UserDefinedSpee_1144_TypePairIn;
+}
+
+UserDefinedSpee_1144_Type::~UserDefinedSpee_1144_Type()
 {
   #ifndef NODESTRUCT
-  if (UserDefinedSpee_1143_TypeType == UserDefinedSpee_1182E)
-    delete UserDefinedSpee_1143_TypeValue.UserDefinedSpee_1182;
-  else if (UserDefinedSpee_1143_TypeType == UserDefinedSpee_1183E)
-    delete UserDefinedSpee_1143_TypeValue.UserDefinedSpee_1183;
-  else if (UserDefinedSpee_1143_TypeType == MinValueStatsE)
-    delete UserDefinedSpee_1143_TypeValue.MinValueStats;
-  else if (UserDefinedSpee_1143_TypeType == UserDefinedSpee_1184E)
-    delete UserDefinedSpee_1143_TypeValue.UserDefinedSpee_1184;
-  else if (UserDefinedSpee_1143_TypeType == UserDefinedSpee_1185E)
-    delete UserDefinedSpee_1143_TypeValue.UserDefinedSpee_1185;
-  else if (UserDefinedSpee_1143_TypeType == MinDeviationStatsE)
-    delete UserDefinedSpee_1143_TypeValue.MinDeviationStats;
+  delete UserDefinedSpee_1144_TypePair;
   #endif
 }
 
-void UserDefinedSpee_1143_TypeChoicePair::printSelf(FILE * outFile)
+void UserDefinedSpee_1144_Type::printSelf(FILE * outFile)
 {
-  if (UserDefinedSpee_1143_TypeType == UserDefinedSpee_1182E)
+  UserDefinedSpee_1144_TypePair->printSelf(outFile);
+}
+
+UserDefinedSpee_1144_TypeChoicePair * UserDefinedSpee_1144_Type::getUserDefinedSpee_1144_TypePair()
+{return UserDefinedSpee_1144_TypePair;}
+
+void UserDefinedSpee_1144_Type::setUserDefinedSpee_1144_TypePair(UserDefinedSpee_1144_TypeChoicePair * UserDefinedSpee_1144_TypePairIn)
+{UserDefinedSpee_1144_TypePair = UserDefinedSpee_1144_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedSpee_1144_TypeChoicePair
+
+*/
+
+UserDefinedSpee_1144_TypeChoicePair::UserDefinedSpee_1144_TypeChoicePair() {}
+
+UserDefinedSpee_1144_TypeChoicePair::UserDefinedSpee_1144_TypeChoicePair(
+ whichOne UserDefinedSpee_1144_TypeTypeIn,
+ UserDefinedSpee_1144_TypeVal UserDefinedSpee_1144_TypeValueIn)
+{
+  UserDefinedSpee_1144_TypeType = UserDefinedSpee_1144_TypeTypeIn;
+  UserDefinedSpee_1144_TypeValue = UserDefinedSpee_1144_TypeValueIn;
+}
+
+UserDefinedSpee_1144_TypeChoicePair::~UserDefinedSpee_1144_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (UserDefinedSpee_1144_TypeType == UserDefinedSpee_1183E)
+    delete UserDefinedSpee_1144_TypeValue.UserDefinedSpee_1183;
+  else if (UserDefinedSpee_1144_TypeType == UserDefinedSpee_1184E)
+    delete UserDefinedSpee_1144_TypeValue.UserDefinedSpee_1184;
+  else if (UserDefinedSpee_1144_TypeType == MinValueStatsE)
+    delete UserDefinedSpee_1144_TypeValue.MinValueStats;
+  else if (UserDefinedSpee_1144_TypeType == UserDefinedSpee_1185E)
+    delete UserDefinedSpee_1144_TypeValue.UserDefinedSpee_1185;
+  else if (UserDefinedSpee_1144_TypeType == UserDefinedSpee_1186E)
+    delete UserDefinedSpee_1144_TypeValue.UserDefinedSpee_1186;
+  else if (UserDefinedSpee_1144_TypeType == MinDeviationStatsE)
+    delete UserDefinedSpee_1144_TypeValue.MinDeviationStats;
+  #endif
+}
+
+void UserDefinedSpee_1144_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (UserDefinedSpee_1144_TypeType == UserDefinedSpee_1183E)
     {
-      UserDefinedSpee_1143_TypeValue.UserDefinedSpee_1182->printSelf(outFile);
+      UserDefinedSpee_1144_TypeValue.UserDefinedSpee_1183->printSelf(outFile);
     }
-  else if (UserDefinedSpee_1143_TypeType == UserDefinedSpee_1183E)
+  else if (UserDefinedSpee_1144_TypeType == UserDefinedSpee_1184E)
     {
-      UserDefinedSpee_1143_TypeValue.UserDefinedSpee_1183->printSelf(outFile);
+      UserDefinedSpee_1144_TypeValue.UserDefinedSpee_1184->printSelf(outFile);
     }
-  else if (UserDefinedSpee_1143_TypeType == MinValueStatsE)
+  else if (UserDefinedSpee_1144_TypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      UserDefinedSpee_1143_TypeValue.MinValueStats->printSelf(outFile);
+      UserDefinedSpee_1144_TypeValue.MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
-  else if (UserDefinedSpee_1143_TypeType == UserDefinedSpee_1184E)
+  else if (UserDefinedSpee_1144_TypeType == UserDefinedSpee_1185E)
     {
-      UserDefinedSpee_1143_TypeValue.UserDefinedSpee_1184->printSelf(outFile);
+      UserDefinedSpee_1144_TypeValue.UserDefinedSpee_1185->printSelf(outFile);
     }
-  else if (UserDefinedSpee_1143_TypeType == UserDefinedSpee_1185E)
+  else if (UserDefinedSpee_1144_TypeType == UserDefinedSpee_1186E)
     {
-      UserDefinedSpee_1143_TypeValue.UserDefinedSpee_1185->printSelf(outFile);
+      UserDefinedSpee_1144_TypeValue.UserDefinedSpee_1186->printSelf(outFile);
     }
-  else if (UserDefinedSpee_1143_TypeType == MinDeviationStatsE)
+  else if (UserDefinedSpee_1144_TypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      UserDefinedSpee_1143_TypeValue.MinDeviationStats->printSelf(outFile);
+      UserDefinedSpee_1144_TypeValue.MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedTemp_1144_Type
-
-*/
-
-UserDefinedTemp_1144_Type::UserDefinedTemp_1144_Type()
-{
-  UserDefinedTemp_1144_TypePair = 0;
-}
-
-UserDefinedTemp_1144_Type::UserDefinedTemp_1144_Type(
- UserDefinedTemp_1144_TypeChoicePair * UserDefinedTemp_1144_TypePairIn)
-{
-  UserDefinedTemp_1144_TypePair = UserDefinedTemp_1144_TypePairIn;
-}
-
-UserDefinedTemp_1144_Type::~UserDefinedTemp_1144_Type()
-{
-  #ifndef NODESTRUCT
-  delete UserDefinedTemp_1144_TypePair;
-  #endif
-}
-
-void UserDefinedTemp_1144_Type::printSelf(FILE * outFile)
-{
-  UserDefinedTemp_1144_TypePair->printSelf(outFile);
-}
-
-UserDefinedTemp_1144_TypeChoicePair * UserDefinedTemp_1144_Type::getUserDefinedTemp_1144_TypePair()
-{return UserDefinedTemp_1144_TypePair;}
-
-void UserDefinedTemp_1144_Type::setUserDefinedTemp_1144_TypePair(UserDefinedTemp_1144_TypeChoicePair * UserDefinedTemp_1144_TypePairIn)
-{UserDefinedTemp_1144_TypePair = UserDefinedTemp_1144_TypePairIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedTemp_1144_TypeChoicePair
+/* class UserDefinedTemp_1145_Type
 
 */
 
-UserDefinedTemp_1144_TypeChoicePair::UserDefinedTemp_1144_TypeChoicePair() {}
-
-UserDefinedTemp_1144_TypeChoicePair::UserDefinedTemp_1144_TypeChoicePair(
- whichOne UserDefinedTemp_1144_TypeTypeIn,
- UserDefinedTemp_1144_TypeVal UserDefinedTemp_1144_TypeValueIn)
+UserDefinedTemp_1145_Type::UserDefinedTemp_1145_Type()
 {
-  UserDefinedTemp_1144_TypeType = UserDefinedTemp_1144_TypeTypeIn;
-  UserDefinedTemp_1144_TypeValue = UserDefinedTemp_1144_TypeValueIn;
+  UserDefinedTemp_1145_TypePair = 0;
 }
 
-UserDefinedTemp_1144_TypeChoicePair::~UserDefinedTemp_1144_TypeChoicePair()
+UserDefinedTemp_1145_Type::UserDefinedTemp_1145_Type(
+ UserDefinedTemp_1145_TypeChoicePair * UserDefinedTemp_1145_TypePairIn)
+{
+  UserDefinedTemp_1145_TypePair = UserDefinedTemp_1145_TypePairIn;
+}
+
+UserDefinedTemp_1145_Type::~UserDefinedTemp_1145_Type()
 {
   #ifndef NODESTRUCT
-  if (UserDefinedTemp_1144_TypeType == UserDefinedTemp_1186E)
-    delete UserDefinedTemp_1144_TypeValue.UserDefinedTemp_1186;
-  else if (UserDefinedTemp_1144_TypeType == UserDefinedTemp_1187E)
-    delete UserDefinedTemp_1144_TypeValue.UserDefinedTemp_1187;
-  else if (UserDefinedTemp_1144_TypeType == MinValueStatsE)
-    delete UserDefinedTemp_1144_TypeValue.MinValueStats;
-  else if (UserDefinedTemp_1144_TypeType == UserDefinedTemp_1188E)
-    delete UserDefinedTemp_1144_TypeValue.UserDefinedTemp_1188;
-  else if (UserDefinedTemp_1144_TypeType == UserDefinedTemp_1189E)
-    delete UserDefinedTemp_1144_TypeValue.UserDefinedTemp_1189;
-  else if (UserDefinedTemp_1144_TypeType == MinDeviationStatsE)
-    delete UserDefinedTemp_1144_TypeValue.MinDeviationStats;
+  delete UserDefinedTemp_1145_TypePair;
   #endif
 }
 
-void UserDefinedTemp_1144_TypeChoicePair::printSelf(FILE * outFile)
+void UserDefinedTemp_1145_Type::printSelf(FILE * outFile)
 {
-  if (UserDefinedTemp_1144_TypeType == UserDefinedTemp_1186E)
+  UserDefinedTemp_1145_TypePair->printSelf(outFile);
+}
+
+UserDefinedTemp_1145_TypeChoicePair * UserDefinedTemp_1145_Type::getUserDefinedTemp_1145_TypePair()
+{return UserDefinedTemp_1145_TypePair;}
+
+void UserDefinedTemp_1145_Type::setUserDefinedTemp_1145_TypePair(UserDefinedTemp_1145_TypeChoicePair * UserDefinedTemp_1145_TypePairIn)
+{UserDefinedTemp_1145_TypePair = UserDefinedTemp_1145_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedTemp_1145_TypeChoicePair
+
+*/
+
+UserDefinedTemp_1145_TypeChoicePair::UserDefinedTemp_1145_TypeChoicePair() {}
+
+UserDefinedTemp_1145_TypeChoicePair::UserDefinedTemp_1145_TypeChoicePair(
+ whichOne UserDefinedTemp_1145_TypeTypeIn,
+ UserDefinedTemp_1145_TypeVal UserDefinedTemp_1145_TypeValueIn)
+{
+  UserDefinedTemp_1145_TypeType = UserDefinedTemp_1145_TypeTypeIn;
+  UserDefinedTemp_1145_TypeValue = UserDefinedTemp_1145_TypeValueIn;
+}
+
+UserDefinedTemp_1145_TypeChoicePair::~UserDefinedTemp_1145_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (UserDefinedTemp_1145_TypeType == UserDefinedTemp_1187E)
+    delete UserDefinedTemp_1145_TypeValue.UserDefinedTemp_1187;
+  else if (UserDefinedTemp_1145_TypeType == UserDefinedTemp_1188E)
+    delete UserDefinedTemp_1145_TypeValue.UserDefinedTemp_1188;
+  else if (UserDefinedTemp_1145_TypeType == MinValueStatsE)
+    delete UserDefinedTemp_1145_TypeValue.MinValueStats;
+  else if (UserDefinedTemp_1145_TypeType == UserDefinedTemp_1189E)
+    delete UserDefinedTemp_1145_TypeValue.UserDefinedTemp_1189;
+  else if (UserDefinedTemp_1145_TypeType == UserDefinedTemp_1190E)
+    delete UserDefinedTemp_1145_TypeValue.UserDefinedTemp_1190;
+  else if (UserDefinedTemp_1145_TypeType == MinDeviationStatsE)
+    delete UserDefinedTemp_1145_TypeValue.MinDeviationStats;
+  #endif
+}
+
+void UserDefinedTemp_1145_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (UserDefinedTemp_1145_TypeType == UserDefinedTemp_1187E)
     {
-      UserDefinedTemp_1144_TypeValue.UserDefinedTemp_1186->printSelf(outFile);
+      UserDefinedTemp_1145_TypeValue.UserDefinedTemp_1187->printSelf(outFile);
     }
-  else if (UserDefinedTemp_1144_TypeType == UserDefinedTemp_1187E)
+  else if (UserDefinedTemp_1145_TypeType == UserDefinedTemp_1188E)
     {
-      UserDefinedTemp_1144_TypeValue.UserDefinedTemp_1187->printSelf(outFile);
+      UserDefinedTemp_1145_TypeValue.UserDefinedTemp_1188->printSelf(outFile);
     }
-  else if (UserDefinedTemp_1144_TypeType == MinValueStatsE)
+  else if (UserDefinedTemp_1145_TypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      UserDefinedTemp_1144_TypeValue.MinValueStats->printSelf(outFile);
+      UserDefinedTemp_1145_TypeValue.MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
-  else if (UserDefinedTemp_1144_TypeType == UserDefinedTemp_1188E)
+  else if (UserDefinedTemp_1145_TypeType == UserDefinedTemp_1189E)
     {
-      UserDefinedTemp_1144_TypeValue.UserDefinedTemp_1188->printSelf(outFile);
+      UserDefinedTemp_1145_TypeValue.UserDefinedTemp_1189->printSelf(outFile);
     }
-  else if (UserDefinedTemp_1144_TypeType == UserDefinedTemp_1189E)
+  else if (UserDefinedTemp_1145_TypeType == UserDefinedTemp_1190E)
     {
-      UserDefinedTemp_1144_TypeValue.UserDefinedTemp_1189->printSelf(outFile);
+      UserDefinedTemp_1145_TypeValue.UserDefinedTemp_1190->printSelf(outFile);
     }
-  else if (UserDefinedTemp_1144_TypeType == MinDeviationStatsE)
+  else if (UserDefinedTemp_1145_TypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      UserDefinedTemp_1144_TypeValue.MinDeviationStats->printSelf(outFile);
+      UserDefinedTemp_1145_TypeValue.MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedTime_1145_Type
-
-*/
-
-UserDefinedTime_1145_Type::UserDefinedTime_1145_Type()
-{
-  UserDefinedTime_1145_TypePair = 0;
-}
-
-UserDefinedTime_1145_Type::UserDefinedTime_1145_Type(
- UserDefinedTime_1145_TypeChoicePair * UserDefinedTime_1145_TypePairIn)
-{
-  UserDefinedTime_1145_TypePair = UserDefinedTime_1145_TypePairIn;
-}
-
-UserDefinedTime_1145_Type::~UserDefinedTime_1145_Type()
-{
-  #ifndef NODESTRUCT
-  delete UserDefinedTime_1145_TypePair;
-  #endif
-}
-
-void UserDefinedTime_1145_Type::printSelf(FILE * outFile)
-{
-  UserDefinedTime_1145_TypePair->printSelf(outFile);
-}
-
-UserDefinedTime_1145_TypeChoicePair * UserDefinedTime_1145_Type::getUserDefinedTime_1145_TypePair()
-{return UserDefinedTime_1145_TypePair;}
-
-void UserDefinedTime_1145_Type::setUserDefinedTime_1145_TypePair(UserDefinedTime_1145_TypeChoicePair * UserDefinedTime_1145_TypePairIn)
-{UserDefinedTime_1145_TypePair = UserDefinedTime_1145_TypePairIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedTime_1145_TypeChoicePair
+/* class UserDefinedTime_1146_Type
 
 */
 
-UserDefinedTime_1145_TypeChoicePair::UserDefinedTime_1145_TypeChoicePair() {}
-
-UserDefinedTime_1145_TypeChoicePair::UserDefinedTime_1145_TypeChoicePair(
- whichOne UserDefinedTime_1145_TypeTypeIn,
- UserDefinedTime_1145_TypeVal UserDefinedTime_1145_TypeValueIn)
+UserDefinedTime_1146_Type::UserDefinedTime_1146_Type()
 {
-  UserDefinedTime_1145_TypeType = UserDefinedTime_1145_TypeTypeIn;
-  UserDefinedTime_1145_TypeValue = UserDefinedTime_1145_TypeValueIn;
+  UserDefinedTime_1146_TypePair = 0;
 }
 
-UserDefinedTime_1145_TypeChoicePair::~UserDefinedTime_1145_TypeChoicePair()
+UserDefinedTime_1146_Type::UserDefinedTime_1146_Type(
+ UserDefinedTime_1146_TypeChoicePair * UserDefinedTime_1146_TypePairIn)
+{
+  UserDefinedTime_1146_TypePair = UserDefinedTime_1146_TypePairIn;
+}
+
+UserDefinedTime_1146_Type::~UserDefinedTime_1146_Type()
 {
   #ifndef NODESTRUCT
-  if (UserDefinedTime_1145_TypeType == UserDefinedTime_1190E)
-    delete UserDefinedTime_1145_TypeValue.UserDefinedTime_1190;
-  else if (UserDefinedTime_1145_TypeType == UserDefinedTime_1191E)
-    delete UserDefinedTime_1145_TypeValue.UserDefinedTime_1191;
-  else if (UserDefinedTime_1145_TypeType == MinValueStatsE)
-    delete UserDefinedTime_1145_TypeValue.MinValueStats;
-  else if (UserDefinedTime_1145_TypeType == UserDefinedTime_1192E)
-    delete UserDefinedTime_1145_TypeValue.UserDefinedTime_1192;
-  else if (UserDefinedTime_1145_TypeType == UserDefinedTime_1193E)
-    delete UserDefinedTime_1145_TypeValue.UserDefinedTime_1193;
-  else if (UserDefinedTime_1145_TypeType == MinDeviationStatsE)
-    delete UserDefinedTime_1145_TypeValue.MinDeviationStats;
+  delete UserDefinedTime_1146_TypePair;
   #endif
 }
 
-void UserDefinedTime_1145_TypeChoicePair::printSelf(FILE * outFile)
+void UserDefinedTime_1146_Type::printSelf(FILE * outFile)
 {
-  if (UserDefinedTime_1145_TypeType == UserDefinedTime_1190E)
+  UserDefinedTime_1146_TypePair->printSelf(outFile);
+}
+
+UserDefinedTime_1146_TypeChoicePair * UserDefinedTime_1146_Type::getUserDefinedTime_1146_TypePair()
+{return UserDefinedTime_1146_TypePair;}
+
+void UserDefinedTime_1146_Type::setUserDefinedTime_1146_TypePair(UserDefinedTime_1146_TypeChoicePair * UserDefinedTime_1146_TypePairIn)
+{UserDefinedTime_1146_TypePair = UserDefinedTime_1146_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedTime_1146_TypeChoicePair
+
+*/
+
+UserDefinedTime_1146_TypeChoicePair::UserDefinedTime_1146_TypeChoicePair() {}
+
+UserDefinedTime_1146_TypeChoicePair::UserDefinedTime_1146_TypeChoicePair(
+ whichOne UserDefinedTime_1146_TypeTypeIn,
+ UserDefinedTime_1146_TypeVal UserDefinedTime_1146_TypeValueIn)
+{
+  UserDefinedTime_1146_TypeType = UserDefinedTime_1146_TypeTypeIn;
+  UserDefinedTime_1146_TypeValue = UserDefinedTime_1146_TypeValueIn;
+}
+
+UserDefinedTime_1146_TypeChoicePair::~UserDefinedTime_1146_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (UserDefinedTime_1146_TypeType == UserDefinedTime_1191E)
+    delete UserDefinedTime_1146_TypeValue.UserDefinedTime_1191;
+  else if (UserDefinedTime_1146_TypeType == UserDefinedTime_1192E)
+    delete UserDefinedTime_1146_TypeValue.UserDefinedTime_1192;
+  else if (UserDefinedTime_1146_TypeType == MinValueStatsE)
+    delete UserDefinedTime_1146_TypeValue.MinValueStats;
+  else if (UserDefinedTime_1146_TypeType == UserDefinedTime_1193E)
+    delete UserDefinedTime_1146_TypeValue.UserDefinedTime_1193;
+  else if (UserDefinedTime_1146_TypeType == UserDefinedTime_1194E)
+    delete UserDefinedTime_1146_TypeValue.UserDefinedTime_1194;
+  else if (UserDefinedTime_1146_TypeType == MinDeviationStatsE)
+    delete UserDefinedTime_1146_TypeValue.MinDeviationStats;
+  #endif
+}
+
+void UserDefinedTime_1146_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (UserDefinedTime_1146_TypeType == UserDefinedTime_1191E)
     {
-      UserDefinedTime_1145_TypeValue.UserDefinedTime_1190->printSelf(outFile);
+      UserDefinedTime_1146_TypeValue.UserDefinedTime_1191->printSelf(outFile);
     }
-  else if (UserDefinedTime_1145_TypeType == UserDefinedTime_1191E)
+  else if (UserDefinedTime_1146_TypeType == UserDefinedTime_1192E)
     {
-      UserDefinedTime_1145_TypeValue.UserDefinedTime_1191->printSelf(outFile);
+      UserDefinedTime_1146_TypeValue.UserDefinedTime_1192->printSelf(outFile);
     }
-  else if (UserDefinedTime_1145_TypeType == MinValueStatsE)
+  else if (UserDefinedTime_1146_TypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      UserDefinedTime_1145_TypeValue.MinValueStats->printSelf(outFile);
+      UserDefinedTime_1146_TypeValue.MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
-  else if (UserDefinedTime_1145_TypeType == UserDefinedTime_1192E)
+  else if (UserDefinedTime_1146_TypeType == UserDefinedTime_1193E)
     {
-      UserDefinedTime_1145_TypeValue.UserDefinedTime_1192->printSelf(outFile);
+      UserDefinedTime_1146_TypeValue.UserDefinedTime_1193->printSelf(outFile);
     }
-  else if (UserDefinedTime_1145_TypeType == UserDefinedTime_1193E)
+  else if (UserDefinedTime_1146_TypeType == UserDefinedTime_1194E)
     {
-      UserDefinedTime_1145_TypeValue.UserDefinedTime_1193->printSelf(outFile);
+      UserDefinedTime_1146_TypeValue.UserDefinedTime_1194->printSelf(outFile);
     }
-  else if (UserDefinedTime_1145_TypeType == MinDeviationStatsE)
+  else if (UserDefinedTime_1146_TypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      UserDefinedTime_1145_TypeValue.MinDeviationStats->printSelf(outFile);
+      UserDefinedTime_1146_TypeValue.MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedUnit_1146_Type
-
-*/
-
-UserDefinedUnit_1146_Type::UserDefinedUnit_1146_Type()
-{
-  UserDefinedUnit_1146_TypePair = 0;
-}
-
-UserDefinedUnit_1146_Type::UserDefinedUnit_1146_Type(
- UserDefinedUnit_1146_TypeChoicePair * UserDefinedUnit_1146_TypePairIn)
-{
-  UserDefinedUnit_1146_TypePair = UserDefinedUnit_1146_TypePairIn;
-}
-
-UserDefinedUnit_1146_Type::~UserDefinedUnit_1146_Type()
-{
-  #ifndef NODESTRUCT
-  delete UserDefinedUnit_1146_TypePair;
-  #endif
-}
-
-void UserDefinedUnit_1146_Type::printSelf(FILE * outFile)
-{
-  UserDefinedUnit_1146_TypePair->printSelf(outFile);
-}
-
-UserDefinedUnit_1146_TypeChoicePair * UserDefinedUnit_1146_Type::getUserDefinedUnit_1146_TypePair()
-{return UserDefinedUnit_1146_TypePair;}
-
-void UserDefinedUnit_1146_Type::setUserDefinedUnit_1146_TypePair(UserDefinedUnit_1146_TypeChoicePair * UserDefinedUnit_1146_TypePairIn)
-{UserDefinedUnit_1146_TypePair = UserDefinedUnit_1146_TypePairIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedUnit_1146_TypeChoicePair
+/* class UserDefinedUnit_1147_Type
 
 */
 
-UserDefinedUnit_1146_TypeChoicePair::UserDefinedUnit_1146_TypeChoicePair() {}
-
-UserDefinedUnit_1146_TypeChoicePair::UserDefinedUnit_1146_TypeChoicePair(
- whichOne UserDefinedUnit_1146_TypeTypeIn,
- UserDefinedUnit_1146_TypeVal UserDefinedUnit_1146_TypeValueIn)
+UserDefinedUnit_1147_Type::UserDefinedUnit_1147_Type()
 {
-  UserDefinedUnit_1146_TypeType = UserDefinedUnit_1146_TypeTypeIn;
-  UserDefinedUnit_1146_TypeValue = UserDefinedUnit_1146_TypeValueIn;
+  UserDefinedUnit_1147_TypePair = 0;
 }
 
-UserDefinedUnit_1146_TypeChoicePair::~UserDefinedUnit_1146_TypeChoicePair()
+UserDefinedUnit_1147_Type::UserDefinedUnit_1147_Type(
+ UserDefinedUnit_1147_TypeChoicePair * UserDefinedUnit_1147_TypePairIn)
+{
+  UserDefinedUnit_1147_TypePair = UserDefinedUnit_1147_TypePairIn;
+}
+
+UserDefinedUnit_1147_Type::~UserDefinedUnit_1147_Type()
 {
   #ifndef NODESTRUCT
-  if (UserDefinedUnit_1146_TypeType == UserDefinedUnit_1194E)
-    delete UserDefinedUnit_1146_TypeValue.UserDefinedUnit_1194;
-  else if (UserDefinedUnit_1146_TypeType == UserDefinedUnit_1195E)
-    delete UserDefinedUnit_1146_TypeValue.UserDefinedUnit_1195;
-  else if (UserDefinedUnit_1146_TypeType == MinValueStatsE)
-    delete UserDefinedUnit_1146_TypeValue.MinValueStats;
-  else if (UserDefinedUnit_1146_TypeType == UserDefinedUnit_1196E)
-    delete UserDefinedUnit_1146_TypeValue.UserDefinedUnit_1196;
-  else if (UserDefinedUnit_1146_TypeType == UserDefinedUnit_1197E)
-    delete UserDefinedUnit_1146_TypeValue.UserDefinedUnit_1197;
-  else if (UserDefinedUnit_1146_TypeType == MinDeviationStatsE)
-    delete UserDefinedUnit_1146_TypeValue.MinDeviationStats;
+  delete UserDefinedUnit_1147_TypePair;
   #endif
 }
 
-void UserDefinedUnit_1146_TypeChoicePair::printSelf(FILE * outFile)
+void UserDefinedUnit_1147_Type::printSelf(FILE * outFile)
 {
-  if (UserDefinedUnit_1146_TypeType == UserDefinedUnit_1194E)
+  UserDefinedUnit_1147_TypePair->printSelf(outFile);
+}
+
+UserDefinedUnit_1147_TypeChoicePair * UserDefinedUnit_1147_Type::getUserDefinedUnit_1147_TypePair()
+{return UserDefinedUnit_1147_TypePair;}
+
+void UserDefinedUnit_1147_Type::setUserDefinedUnit_1147_TypePair(UserDefinedUnit_1147_TypeChoicePair * UserDefinedUnit_1147_TypePairIn)
+{UserDefinedUnit_1147_TypePair = UserDefinedUnit_1147_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedUnit_1147_TypeChoicePair
+
+*/
+
+UserDefinedUnit_1147_TypeChoicePair::UserDefinedUnit_1147_TypeChoicePair() {}
+
+UserDefinedUnit_1147_TypeChoicePair::UserDefinedUnit_1147_TypeChoicePair(
+ whichOne UserDefinedUnit_1147_TypeTypeIn,
+ UserDefinedUnit_1147_TypeVal UserDefinedUnit_1147_TypeValueIn)
+{
+  UserDefinedUnit_1147_TypeType = UserDefinedUnit_1147_TypeTypeIn;
+  UserDefinedUnit_1147_TypeValue = UserDefinedUnit_1147_TypeValueIn;
+}
+
+UserDefinedUnit_1147_TypeChoicePair::~UserDefinedUnit_1147_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (UserDefinedUnit_1147_TypeType == UserDefinedUnit_1195E)
+    delete UserDefinedUnit_1147_TypeValue.UserDefinedUnit_1195;
+  else if (UserDefinedUnit_1147_TypeType == UserDefinedUnit_1196E)
+    delete UserDefinedUnit_1147_TypeValue.UserDefinedUnit_1196;
+  else if (UserDefinedUnit_1147_TypeType == MinValueStatsE)
+    delete UserDefinedUnit_1147_TypeValue.MinValueStats;
+  else if (UserDefinedUnit_1147_TypeType == UserDefinedUnit_1197E)
+    delete UserDefinedUnit_1147_TypeValue.UserDefinedUnit_1197;
+  else if (UserDefinedUnit_1147_TypeType == UserDefinedUnit_1198E)
+    delete UserDefinedUnit_1147_TypeValue.UserDefinedUnit_1198;
+  else if (UserDefinedUnit_1147_TypeType == MinDeviationStatsE)
+    delete UserDefinedUnit_1147_TypeValue.MinDeviationStats;
+  #endif
+}
+
+void UserDefinedUnit_1147_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (UserDefinedUnit_1147_TypeType == UserDefinedUnit_1195E)
     {
-      UserDefinedUnit_1146_TypeValue.UserDefinedUnit_1194->printSelf(outFile);
+      UserDefinedUnit_1147_TypeValue.UserDefinedUnit_1195->printSelf(outFile);
     }
-  else if (UserDefinedUnit_1146_TypeType == UserDefinedUnit_1195E)
+  else if (UserDefinedUnit_1147_TypeType == UserDefinedUnit_1196E)
     {
-      UserDefinedUnit_1146_TypeValue.UserDefinedUnit_1195->printSelf(outFile);
+      UserDefinedUnit_1147_TypeValue.UserDefinedUnit_1196->printSelf(outFile);
     }
-  else if (UserDefinedUnit_1146_TypeType == MinValueStatsE)
+  else if (UserDefinedUnit_1147_TypeType == MinValueStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValueStats");
-      UserDefinedUnit_1146_TypeValue.MinValueStats->printSelf(outFile);
+      UserDefinedUnit_1147_TypeValue.MinValueStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinValueStats>\n");
     }
-  else if (UserDefinedUnit_1146_TypeType == UserDefinedUnit_1196E)
+  else if (UserDefinedUnit_1147_TypeType == UserDefinedUnit_1197E)
     {
-      UserDefinedUnit_1146_TypeValue.UserDefinedUnit_1196->printSelf(outFile);
+      UserDefinedUnit_1147_TypeValue.UserDefinedUnit_1197->printSelf(outFile);
     }
-  else if (UserDefinedUnit_1146_TypeType == UserDefinedUnit_1197E)
+  else if (UserDefinedUnit_1147_TypeType == UserDefinedUnit_1198E)
     {
-      UserDefinedUnit_1146_TypeValue.UserDefinedUnit_1197->printSelf(outFile);
+      UserDefinedUnit_1147_TypeValue.UserDefinedUnit_1198->printSelf(outFile);
     }
-  else if (UserDefinedUnit_1146_TypeType == MinDeviationStatsE)
+  else if (UserDefinedUnit_1147_TypeType == MinDeviationStatsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinDeviationStats");
-      UserDefinedUnit_1146_TypeValue.MinDeviationStats->printSelf(outFile);
+      UserDefinedUnit_1147_TypeValue.MinDeviationStats->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MinDeviationStats>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class AngularCharacte_1147_Type
+/* class AngularCharacte_1148_Type
 
 */
 
-AngularCharacte_1147_Type::AngularCharacte_1147_Type()
+AngularCharacte_1148_Type::AngularCharacte_1148_Type()
 {
   ValueStats = 0;
   MaxValueStats = 0;
   MinValueStats = 0;
 }
 
-AngularCharacte_1147_Type::AngularCharacte_1147_Type(
+AngularCharacte_1148_Type::AngularCharacte_1148_Type(
  StatsWithTolAngularType * ValueStatsIn,
  StatsAngularType * MaxValueStatsIn,
  StatsAngularType * MinValueStatsIn)
@@ -47427,7 +47427,7 @@ AngularCharacte_1147_Type::AngularCharacte_1147_Type(
   MinValueStats = MinValueStatsIn;
 }
 
-AngularCharacte_1147_Type::~AngularCharacte_1147_Type()
+AngularCharacte_1148_Type::~AngularCharacte_1148_Type()
 {
   #ifndef NODESTRUCT
   delete ValueStats;
@@ -47436,7 +47436,7 @@ AngularCharacte_1147_Type::~AngularCharacte_1147_Type()
   #endif
 }
 
-void AngularCharacte_1147_Type::printSelf(FILE * outFile)
+void AngularCharacte_1148_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ValueStats");
@@ -47461,37 +47461,37 @@ void AngularCharacte_1147_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolAngularType * AngularCharacte_1147_Type::getValueStats()
+StatsWithTolAngularType * AngularCharacte_1148_Type::getValueStats()
 {return ValueStats;}
 
-void AngularCharacte_1147_Type::setValueStats(StatsWithTolAngularType * ValueStatsIn)
+void AngularCharacte_1148_Type::setValueStats(StatsWithTolAngularType * ValueStatsIn)
 {ValueStats = ValueStatsIn;}
 
-StatsAngularType * AngularCharacte_1147_Type::getMaxValueStats()
+StatsAngularType * AngularCharacte_1148_Type::getMaxValueStats()
 {return MaxValueStats;}
 
-void AngularCharacte_1147_Type::setMaxValueStats(StatsAngularType * MaxValueStatsIn)
+void AngularCharacte_1148_Type::setMaxValueStats(StatsAngularType * MaxValueStatsIn)
 {MaxValueStats = MaxValueStatsIn;}
 
-StatsAngularType * AngularCharacte_1147_Type::getMinValueStats()
+StatsAngularType * AngularCharacte_1148_Type::getMinValueStats()
 {return MinValueStats;}
 
-void AngularCharacte_1147_Type::setMinValueStats(StatsAngularType * MinValueStatsIn)
+void AngularCharacte_1148_Type::setMinValueStats(StatsAngularType * MinValueStatsIn)
 {MinValueStats = MinValueStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class AngularCharacte_1148_Type
+/* class AngularCharacte_1149_Type
 
 */
 
-AngularCharacte_1148_Type::AngularCharacte_1148_Type()
+AngularCharacte_1149_Type::AngularCharacte_1149_Type()
 {
   MaxValueStats = 0;
   MinValueStats = 0;
 }
 
-AngularCharacte_1148_Type::AngularCharacte_1148_Type(
+AngularCharacte_1149_Type::AngularCharacte_1149_Type(
  StatsAngularType * MaxValueStatsIn,
  StatsAngularType * MinValueStatsIn)
 {
@@ -47499,7 +47499,7 @@ AngularCharacte_1148_Type::AngularCharacte_1148_Type(
   MinValueStats = MinValueStatsIn;
 }
 
-AngularCharacte_1148_Type::~AngularCharacte_1148_Type()
+AngularCharacte_1149_Type::~AngularCharacte_1149_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValueStats;
@@ -47507,7 +47507,7 @@ AngularCharacte_1148_Type::~AngularCharacte_1148_Type()
   #endif
 }
 
-void AngularCharacte_1148_Type::printSelf(FILE * outFile)
+void AngularCharacte_1149_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValueStats");
@@ -47524,32 +47524,32 @@ void AngularCharacte_1148_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsAngularType * AngularCharacte_1148_Type::getMaxValueStats()
+StatsAngularType * AngularCharacte_1149_Type::getMaxValueStats()
 {return MaxValueStats;}
 
-void AngularCharacte_1148_Type::setMaxValueStats(StatsAngularType * MaxValueStatsIn)
+void AngularCharacte_1149_Type::setMaxValueStats(StatsAngularType * MaxValueStatsIn)
 {MaxValueStats = MaxValueStatsIn;}
 
-StatsAngularType * AngularCharacte_1148_Type::getMinValueStats()
+StatsAngularType * AngularCharacte_1149_Type::getMinValueStats()
 {return MinValueStats;}
 
-void AngularCharacte_1148_Type::setMinValueStats(StatsAngularType * MinValueStatsIn)
+void AngularCharacte_1149_Type::setMinValueStats(StatsAngularType * MinValueStatsIn)
 {MinValueStats = MinValueStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class AngularCharacte_1149_Type
+/* class AngularCharacte_1150_Type
 
 */
 
-AngularCharacte_1149_Type::AngularCharacte_1149_Type()
+AngularCharacte_1150_Type::AngularCharacte_1150_Type()
 {
   DeviationStats = 0;
   MaxDeviationStats = 0;
   MinDeviationStats = 0;
 }
 
-AngularCharacte_1149_Type::AngularCharacte_1149_Type(
+AngularCharacte_1150_Type::AngularCharacte_1150_Type(
  StatsWithTolAngularType * DeviationStatsIn,
  StatsAngularType * MaxDeviationStatsIn,
  StatsAngularType * MinDeviationStatsIn)
@@ -47559,7 +47559,7 @@ AngularCharacte_1149_Type::AngularCharacte_1149_Type(
   MinDeviationStats = MinDeviationStatsIn;
 }
 
-AngularCharacte_1149_Type::~AngularCharacte_1149_Type()
+AngularCharacte_1150_Type::~AngularCharacte_1150_Type()
 {
   #ifndef NODESTRUCT
   delete DeviationStats;
@@ -47568,7 +47568,7 @@ AngularCharacte_1149_Type::~AngularCharacte_1149_Type()
   #endif
 }
 
-void AngularCharacte_1149_Type::printSelf(FILE * outFile)
+void AngularCharacte_1150_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<DeviationStats");
@@ -47593,37 +47593,37 @@ void AngularCharacte_1149_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolAngularType * AngularCharacte_1149_Type::getDeviationStats()
+StatsWithTolAngularType * AngularCharacte_1150_Type::getDeviationStats()
 {return DeviationStats;}
 
-void AngularCharacte_1149_Type::setDeviationStats(StatsWithTolAngularType * DeviationStatsIn)
+void AngularCharacte_1150_Type::setDeviationStats(StatsWithTolAngularType * DeviationStatsIn)
 {DeviationStats = DeviationStatsIn;}
 
-StatsAngularType * AngularCharacte_1149_Type::getMaxDeviationStats()
+StatsAngularType * AngularCharacte_1150_Type::getMaxDeviationStats()
 {return MaxDeviationStats;}
 
-void AngularCharacte_1149_Type::setMaxDeviationStats(StatsAngularType * MaxDeviationStatsIn)
+void AngularCharacte_1150_Type::setMaxDeviationStats(StatsAngularType * MaxDeviationStatsIn)
 {MaxDeviationStats = MaxDeviationStatsIn;}
 
-StatsAngularType * AngularCharacte_1149_Type::getMinDeviationStats()
+StatsAngularType * AngularCharacte_1150_Type::getMinDeviationStats()
 {return MinDeviationStats;}
 
-void AngularCharacte_1149_Type::setMinDeviationStats(StatsAngularType * MinDeviationStatsIn)
+void AngularCharacte_1150_Type::setMinDeviationStats(StatsAngularType * MinDeviationStatsIn)
 {MinDeviationStats = MinDeviationStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class AngularCharacte_1150_Type
+/* class AngularCharacte_1151_Type
 
 */
 
-AngularCharacte_1150_Type::AngularCharacte_1150_Type()
+AngularCharacte_1151_Type::AngularCharacte_1151_Type()
 {
   MaxDeviationStats = 0;
   MinDeviationStats = 0;
 }
 
-AngularCharacte_1150_Type::AngularCharacte_1150_Type(
+AngularCharacte_1151_Type::AngularCharacte_1151_Type(
  StatsAngularType * MaxDeviationStatsIn,
  StatsAngularType * MinDeviationStatsIn)
 {
@@ -47631,7 +47631,7 @@ AngularCharacte_1150_Type::AngularCharacte_1150_Type(
   MinDeviationStats = MinDeviationStatsIn;
 }
 
-AngularCharacte_1150_Type::~AngularCharacte_1150_Type()
+AngularCharacte_1151_Type::~AngularCharacte_1151_Type()
 {
   #ifndef NODESTRUCT
   delete MaxDeviationStats;
@@ -47639,7 +47639,7 @@ AngularCharacte_1150_Type::~AngularCharacte_1150_Type()
   #endif
 }
 
-void AngularCharacte_1150_Type::printSelf(FILE * outFile)
+void AngularCharacte_1151_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxDeviationStats");
@@ -47656,100 +47656,19 @@ void AngularCharacte_1150_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsAngularType * AngularCharacte_1150_Type::getMaxDeviationStats()
+StatsAngularType * AngularCharacte_1151_Type::getMaxDeviationStats()
 {return MaxDeviationStats;}
 
-void AngularCharacte_1150_Type::setMaxDeviationStats(StatsAngularType * MaxDeviationStatsIn)
+void AngularCharacte_1151_Type::setMaxDeviationStats(StatsAngularType * MaxDeviationStatsIn)
 {MaxDeviationStats = MaxDeviationStatsIn;}
 
-StatsAngularType * AngularCharacte_1150_Type::getMinDeviationStats()
+StatsAngularType * AngularCharacte_1151_Type::getMinDeviationStats()
 {return MinDeviationStats;}
 
-void AngularCharacte_1150_Type::setMinDeviationStats(StatsAngularType * MinDeviationStatsIn)
+void AngularCharacte_1151_Type::setMinDeviationStats(StatsAngularType * MinDeviationStatsIn)
 {MinDeviationStats = MinDeviationStatsIn;}
 
-/*********************************************************************/
-
-/* class CharacteristicS_1151_Type
-
-*/
-
-CharacteristicS_1151_Type::CharacteristicS_1151_Type()
-{
-  CharacteristicS_1151_TypePair = 0;
-}
-
-CharacteristicS_1151_Type::CharacteristicS_1151_Type(
- CharacteristicS_1151_TypeChoicePair * CharacteristicS_1151_TypePairIn)
-{
-  CharacteristicS_1151_TypePair = CharacteristicS_1151_TypePairIn;
-}
-
-CharacteristicS_1151_Type::~CharacteristicS_1151_Type()
-{
-  #ifndef NODESTRUCT
-  delete CharacteristicS_1151_TypePair;
-  #endif
-}
-
-void CharacteristicS_1151_Type::printSelf(FILE * outFile)
-{
-  CharacteristicS_1151_TypePair->printSelf(outFile);
-}
-
-CharacteristicS_1151_TypeChoicePair * CharacteristicS_1151_Type::getCharacteristicS_1151_TypePair()
-{return CharacteristicS_1151_TypePair;}
-
-void CharacteristicS_1151_Type::setCharacteristicS_1151_TypePair(CharacteristicS_1151_TypeChoicePair * CharacteristicS_1151_TypePairIn)
-{CharacteristicS_1151_TypePair = CharacteristicS_1151_TypePairIn;}
-
-/*********************************************************************/
-
-/* class CharacteristicS_1151_TypeChoicePair
-
-*/
-
-CharacteristicS_1151_TypeChoicePair::CharacteristicS_1151_TypeChoicePair() {}
-
-CharacteristicS_1151_TypeChoicePair::CharacteristicS_1151_TypeChoicePair(
- whichOne CharacteristicS_1151_TypeTypeIn,
- CharacteristicS_1151_TypeVal CharacteristicS_1151_TypeValueIn)
-{
-  CharacteristicS_1151_TypeType = CharacteristicS_1151_TypeTypeIn;
-  CharacteristicS_1151_TypeValue = CharacteristicS_1151_TypeValueIn;
-}
-
-CharacteristicS_1151_TypeChoicePair::~CharacteristicS_1151_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (CharacteristicS_1151_TypeType == MeasuredIdsE)
-    delete CharacteristicS_1151_TypeValue.MeasuredIds;
-  else if (CharacteristicS_1151_TypeType == SubgroupsE)
-    delete CharacteristicS_1151_TypeValue.Subgroups;
-  #endif
-}
-
-void CharacteristicS_1151_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (CharacteristicS_1151_TypeType == MeasuredIdsE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MeasuredIds");
-      CharacteristicS_1151_TypeValue.MeasuredIds->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MeasuredIds>\n");
-    }
-  else if (CharacteristicS_1151_TypeType == SubgroupsE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<Subgroups");
-      CharacteristicS_1151_TypeValue.Subgroups->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</Subgroups>\n");
-    }
-}
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicS_1152_Type
 
@@ -47784,7 +47703,7 @@ CharacteristicS_1152_TypeChoicePair * CharacteristicS_1152_Type::getCharacterist
 void CharacteristicS_1152_Type::setCharacteristicS_1152_TypePair(CharacteristicS_1152_TypeChoicePair * CharacteristicS_1152_TypePairIn)
 {CharacteristicS_1152_TypePair = CharacteristicS_1152_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CharacteristicS_1152_TypeChoicePair
 
@@ -47803,47 +47722,128 @@ CharacteristicS_1152_TypeChoicePair::CharacteristicS_1152_TypeChoicePair(
 CharacteristicS_1152_TypeChoicePair::~CharacteristicS_1152_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (CharacteristicS_1152_TypeType == MeasuredValuesE)
-    delete CharacteristicS_1152_TypeValue.MeasuredValues;
-  else if (CharacteristicS_1152_TypeType == SubgroupValuesE)
-    delete CharacteristicS_1152_TypeValue.SubgroupValues;
+  if (CharacteristicS_1152_TypeType == MeasuredIdsE)
+    delete CharacteristicS_1152_TypeValue.MeasuredIds;
+  else if (CharacteristicS_1152_TypeType == SubgroupsE)
+    delete CharacteristicS_1152_TypeValue.Subgroups;
   #endif
 }
 
 void CharacteristicS_1152_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (CharacteristicS_1152_TypeType == MeasuredValuesE)
+  if (CharacteristicS_1152_TypeType == MeasuredIdsE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MeasuredIds");
+      CharacteristicS_1152_TypeValue.MeasuredIds->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MeasuredIds>\n");
+    }
+  else if (CharacteristicS_1152_TypeType == SubgroupsE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Subgroups");
+      CharacteristicS_1152_TypeValue.Subgroups->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</Subgroups>\n");
+    }
+}
+
+/* ***************************************************************** */
+
+/* class CharacteristicS_1153_Type
+
+*/
+
+CharacteristicS_1153_Type::CharacteristicS_1153_Type()
+{
+  CharacteristicS_1153_TypePair = 0;
+}
+
+CharacteristicS_1153_Type::CharacteristicS_1153_Type(
+ CharacteristicS_1153_TypeChoicePair * CharacteristicS_1153_TypePairIn)
+{
+  CharacteristicS_1153_TypePair = CharacteristicS_1153_TypePairIn;
+}
+
+CharacteristicS_1153_Type::~CharacteristicS_1153_Type()
+{
+  #ifndef NODESTRUCT
+  delete CharacteristicS_1153_TypePair;
+  #endif
+}
+
+void CharacteristicS_1153_Type::printSelf(FILE * outFile)
+{
+  CharacteristicS_1153_TypePair->printSelf(outFile);
+}
+
+CharacteristicS_1153_TypeChoicePair * CharacteristicS_1153_Type::getCharacteristicS_1153_TypePair()
+{return CharacteristicS_1153_TypePair;}
+
+void CharacteristicS_1153_Type::setCharacteristicS_1153_TypePair(CharacteristicS_1153_TypeChoicePair * CharacteristicS_1153_TypePairIn)
+{CharacteristicS_1153_TypePair = CharacteristicS_1153_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class CharacteristicS_1153_TypeChoicePair
+
+*/
+
+CharacteristicS_1153_TypeChoicePair::CharacteristicS_1153_TypeChoicePair() {}
+
+CharacteristicS_1153_TypeChoicePair::CharacteristicS_1153_TypeChoicePair(
+ whichOne CharacteristicS_1153_TypeTypeIn,
+ CharacteristicS_1153_TypeVal CharacteristicS_1153_TypeValueIn)
+{
+  CharacteristicS_1153_TypeType = CharacteristicS_1153_TypeTypeIn;
+  CharacteristicS_1153_TypeValue = CharacteristicS_1153_TypeValueIn;
+}
+
+CharacteristicS_1153_TypeChoicePair::~CharacteristicS_1153_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (CharacteristicS_1153_TypeType == MeasuredValuesE)
+    delete CharacteristicS_1153_TypeValue.MeasuredValues;
+  else if (CharacteristicS_1153_TypeType == SubgroupValuesE)
+    delete CharacteristicS_1153_TypeValue.SubgroupValues;
+  #endif
+}
+
+void CharacteristicS_1153_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (CharacteristicS_1153_TypeType == MeasuredValuesE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MeasuredValues");
-      CharacteristicS_1152_TypeValue.MeasuredValues->printSelf(outFile);
+      CharacteristicS_1153_TypeValue.MeasuredValues->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MeasuredValues>\n");
     }
-  else if (CharacteristicS_1152_TypeType == SubgroupValuesE)
+  else if (CharacteristicS_1153_TypeType == SubgroupValuesE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SubgroupValues");
-      CharacteristicS_1152_TypeValue.SubgroupValues->printSelf(outFile);
+      CharacteristicS_1153_TypeValue.SubgroupValues->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</SubgroupValues>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class LinearCharacter_1153_Type
+/* class LinearCharacter_1154_Type
 
 */
 
-LinearCharacter_1153_Type::LinearCharacter_1153_Type()
+LinearCharacter_1154_Type::LinearCharacter_1154_Type()
 {
   ValueStats = 0;
   MaxValueStats = 0;
   MinValueStats = 0;
 }
 
-LinearCharacter_1153_Type::LinearCharacter_1153_Type(
+LinearCharacter_1154_Type::LinearCharacter_1154_Type(
  StatsWithTolLinearType * ValueStatsIn,
  StatsLinearType * MaxValueStatsIn,
  StatsLinearType * MinValueStatsIn)
@@ -47853,7 +47853,7 @@ LinearCharacter_1153_Type::LinearCharacter_1153_Type(
   MinValueStats = MinValueStatsIn;
 }
 
-LinearCharacter_1153_Type::~LinearCharacter_1153_Type()
+LinearCharacter_1154_Type::~LinearCharacter_1154_Type()
 {
   #ifndef NODESTRUCT
   delete ValueStats;
@@ -47862,7 +47862,7 @@ LinearCharacter_1153_Type::~LinearCharacter_1153_Type()
   #endif
 }
 
-void LinearCharacter_1153_Type::printSelf(FILE * outFile)
+void LinearCharacter_1154_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ValueStats");
@@ -47887,68 +47887,11 @@ void LinearCharacter_1153_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolLinearType * LinearCharacter_1153_Type::getValueStats()
+StatsWithTolLinearType * LinearCharacter_1154_Type::getValueStats()
 {return ValueStats;}
 
-void LinearCharacter_1153_Type::setValueStats(StatsWithTolLinearType * ValueStatsIn)
+void LinearCharacter_1154_Type::setValueStats(StatsWithTolLinearType * ValueStatsIn)
 {ValueStats = ValueStatsIn;}
-
-StatsLinearType * LinearCharacter_1153_Type::getMaxValueStats()
-{return MaxValueStats;}
-
-void LinearCharacter_1153_Type::setMaxValueStats(StatsLinearType * MaxValueStatsIn)
-{MaxValueStats = MaxValueStatsIn;}
-
-StatsLinearType * LinearCharacter_1153_Type::getMinValueStats()
-{return MinValueStats;}
-
-void LinearCharacter_1153_Type::setMinValueStats(StatsLinearType * MinValueStatsIn)
-{MinValueStats = MinValueStatsIn;}
-
-/*********************************************************************/
-
-/* class LinearCharacter_1154_Type
-
-*/
-
-LinearCharacter_1154_Type::LinearCharacter_1154_Type()
-{
-  MaxValueStats = 0;
-  MinValueStats = 0;
-}
-
-LinearCharacter_1154_Type::LinearCharacter_1154_Type(
- StatsLinearType * MaxValueStatsIn,
- StatsLinearType * MinValueStatsIn)
-{
-  MaxValueStats = MaxValueStatsIn;
-  MinValueStats = MinValueStatsIn;
-}
-
-LinearCharacter_1154_Type::~LinearCharacter_1154_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxValueStats;
-  delete MinValueStats;
-  #endif
-}
-
-void LinearCharacter_1154_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxValueStats");
-  MaxValueStats->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</MaxValueStats>\n");
-  if (MinValueStats)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinValueStats");
-      MinValueStats->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MinValueStats>\n");
-    }
-}
 
 StatsLinearType * LinearCharacter_1154_Type::getMaxValueStats()
 {return MaxValueStats;}
@@ -47962,7 +47905,7 @@ StatsLinearType * LinearCharacter_1154_Type::getMinValueStats()
 void LinearCharacter_1154_Type::setMinValueStats(StatsLinearType * MinValueStatsIn)
 {MinValueStats = MinValueStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LinearCharacter_1155_Type
 
@@ -47970,12 +47913,69 @@ void LinearCharacter_1154_Type::setMinValueStats(StatsLinearType * MinValueStats
 
 LinearCharacter_1155_Type::LinearCharacter_1155_Type()
 {
+  MaxValueStats = 0;
+  MinValueStats = 0;
+}
+
+LinearCharacter_1155_Type::LinearCharacter_1155_Type(
+ StatsLinearType * MaxValueStatsIn,
+ StatsLinearType * MinValueStatsIn)
+{
+  MaxValueStats = MaxValueStatsIn;
+  MinValueStats = MinValueStatsIn;
+}
+
+LinearCharacter_1155_Type::~LinearCharacter_1155_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxValueStats;
+  delete MinValueStats;
+  #endif
+}
+
+void LinearCharacter_1155_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxValueStats");
+  MaxValueStats->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "</MaxValueStats>\n");
+  if (MinValueStats)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinValueStats");
+      MinValueStats->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MinValueStats>\n");
+    }
+}
+
+StatsLinearType * LinearCharacter_1155_Type::getMaxValueStats()
+{return MaxValueStats;}
+
+void LinearCharacter_1155_Type::setMaxValueStats(StatsLinearType * MaxValueStatsIn)
+{MaxValueStats = MaxValueStatsIn;}
+
+StatsLinearType * LinearCharacter_1155_Type::getMinValueStats()
+{return MinValueStats;}
+
+void LinearCharacter_1155_Type::setMinValueStats(StatsLinearType * MinValueStatsIn)
+{MinValueStats = MinValueStatsIn;}
+
+/* ***************************************************************** */
+
+/* class LinearCharacter_1156_Type
+
+*/
+
+LinearCharacter_1156_Type::LinearCharacter_1156_Type()
+{
   DeviationStats = 0;
   MaxDeviationStats = 0;
   MinDeviationStats = 0;
 }
 
-LinearCharacter_1155_Type::LinearCharacter_1155_Type(
+LinearCharacter_1156_Type::LinearCharacter_1156_Type(
  StatsWithTolLinearType * DeviationStatsIn,
  StatsLinearType * MaxDeviationStatsIn,
  StatsLinearType * MinDeviationStatsIn)
@@ -47985,7 +47985,7 @@ LinearCharacter_1155_Type::LinearCharacter_1155_Type(
   MinDeviationStats = MinDeviationStatsIn;
 }
 
-LinearCharacter_1155_Type::~LinearCharacter_1155_Type()
+LinearCharacter_1156_Type::~LinearCharacter_1156_Type()
 {
   #ifndef NODESTRUCT
   delete DeviationStats;
@@ -47994,7 +47994,7 @@ LinearCharacter_1155_Type::~LinearCharacter_1155_Type()
   #endif
 }
 
-void LinearCharacter_1155_Type::printSelf(FILE * outFile)
+void LinearCharacter_1156_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<DeviationStats");
@@ -48019,68 +48019,11 @@ void LinearCharacter_1155_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolLinearType * LinearCharacter_1155_Type::getDeviationStats()
+StatsWithTolLinearType * LinearCharacter_1156_Type::getDeviationStats()
 {return DeviationStats;}
 
-void LinearCharacter_1155_Type::setDeviationStats(StatsWithTolLinearType * DeviationStatsIn)
+void LinearCharacter_1156_Type::setDeviationStats(StatsWithTolLinearType * DeviationStatsIn)
 {DeviationStats = DeviationStatsIn;}
-
-StatsLinearType * LinearCharacter_1155_Type::getMaxDeviationStats()
-{return MaxDeviationStats;}
-
-void LinearCharacter_1155_Type::setMaxDeviationStats(StatsLinearType * MaxDeviationStatsIn)
-{MaxDeviationStats = MaxDeviationStatsIn;}
-
-StatsLinearType * LinearCharacter_1155_Type::getMinDeviationStats()
-{return MinDeviationStats;}
-
-void LinearCharacter_1155_Type::setMinDeviationStats(StatsLinearType * MinDeviationStatsIn)
-{MinDeviationStats = MinDeviationStatsIn;}
-
-/*********************************************************************/
-
-/* class LinearCharacter_1156_Type
-
-*/
-
-LinearCharacter_1156_Type::LinearCharacter_1156_Type()
-{
-  MaxDeviationStats = 0;
-  MinDeviationStats = 0;
-}
-
-LinearCharacter_1156_Type::LinearCharacter_1156_Type(
- StatsLinearType * MaxDeviationStatsIn,
- StatsLinearType * MinDeviationStatsIn)
-{
-  MaxDeviationStats = MaxDeviationStatsIn;
-  MinDeviationStats = MinDeviationStatsIn;
-}
-
-LinearCharacter_1156_Type::~LinearCharacter_1156_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxDeviationStats;
-  delete MinDeviationStats;
-  #endif
-}
-
-void LinearCharacter_1156_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxDeviationStats");
-  MaxDeviationStats->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</MaxDeviationStats>\n");
-  if (MinDeviationStats)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinDeviationStats");
-      MinDeviationStats->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MinDeviationStats>\n");
-    }
-}
 
 StatsLinearType * LinearCharacter_1156_Type::getMaxDeviationStats()
 {return MaxDeviationStats;}
@@ -48094,19 +48037,76 @@ StatsLinearType * LinearCharacter_1156_Type::getMinDeviationStats()
 void LinearCharacter_1156_Type::setMinDeviationStats(StatsLinearType * MinDeviationStatsIn)
 {MinDeviationStats = MinDeviationStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class SamplingMethodT_1157_Type
+/* class LinearCharacter_1157_Type
 
 */
 
-SamplingMethodT_1157_Type::SamplingMethodT_1157_Type()
+LinearCharacter_1157_Type::LinearCharacter_1157_Type()
+{
+  MaxDeviationStats = 0;
+  MinDeviationStats = 0;
+}
+
+LinearCharacter_1157_Type::LinearCharacter_1157_Type(
+ StatsLinearType * MaxDeviationStatsIn,
+ StatsLinearType * MinDeviationStatsIn)
+{
+  MaxDeviationStats = MaxDeviationStatsIn;
+  MinDeviationStats = MinDeviationStatsIn;
+}
+
+LinearCharacter_1157_Type::~LinearCharacter_1157_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxDeviationStats;
+  delete MinDeviationStats;
+  #endif
+}
+
+void LinearCharacter_1157_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxDeviationStats");
+  MaxDeviationStats->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "</MaxDeviationStats>\n");
+  if (MinDeviationStats)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinDeviationStats");
+      MinDeviationStats->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MinDeviationStats>\n");
+    }
+}
+
+StatsLinearType * LinearCharacter_1157_Type::getMaxDeviationStats()
+{return MaxDeviationStats;}
+
+void LinearCharacter_1157_Type::setMaxDeviationStats(StatsLinearType * MaxDeviationStatsIn)
+{MaxDeviationStats = MaxDeviationStatsIn;}
+
+StatsLinearType * LinearCharacter_1157_Type::getMinDeviationStats()
+{return MinDeviationStats;}
+
+void LinearCharacter_1157_Type::setMinDeviationStats(StatsLinearType * MinDeviationStatsIn)
+{MinDeviationStats = MinDeviationStatsIn;}
+
+/* ***************************************************************** */
+
+/* class SamplingMethodT_1158_Type
+
+*/
+
+SamplingMethodT_1158_Type::SamplingMethodT_1158_Type()
 {
   SamplingFrequency = 0;
   SamplingInterval = 0;
 }
 
-SamplingMethodT_1157_Type::SamplingMethodT_1157_Type(
+SamplingMethodT_1158_Type::SamplingMethodT_1158_Type(
  XmlPositiveInteger * SamplingFrequencyIn,
  SamplingIntervalType * SamplingIntervalIn)
 {
@@ -48114,7 +48114,7 @@ SamplingMethodT_1157_Type::SamplingMethodT_1157_Type(
   SamplingInterval = SamplingIntervalIn;
 }
 
-SamplingMethodT_1157_Type::~SamplingMethodT_1157_Type()
+SamplingMethodT_1158_Type::~SamplingMethodT_1158_Type()
 {
   #ifndef NODESTRUCT
   delete SamplingFrequency;
@@ -48122,7 +48122,7 @@ SamplingMethodT_1157_Type::~SamplingMethodT_1157_Type()
   #endif
 }
 
-void SamplingMethodT_1157_Type::printSelf(FILE * outFile)
+void SamplingMethodT_1158_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<SamplingFrequency");
@@ -48135,32 +48135,32 @@ void SamplingMethodT_1157_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</SamplingInterval>\n");
 }
 
-XmlPositiveInteger * SamplingMethodT_1157_Type::getSamplingFrequency()
+XmlPositiveInteger * SamplingMethodT_1158_Type::getSamplingFrequency()
 {return SamplingFrequency;}
 
-void SamplingMethodT_1157_Type::setSamplingFrequency(XmlPositiveInteger * SamplingFrequencyIn)
+void SamplingMethodT_1158_Type::setSamplingFrequency(XmlPositiveInteger * SamplingFrequencyIn)
 {SamplingFrequency = SamplingFrequencyIn;}
 
-SamplingIntervalType * SamplingMethodT_1157_Type::getSamplingInterval()
+SamplingIntervalType * SamplingMethodT_1158_Type::getSamplingInterval()
 {return SamplingInterval;}
 
-void SamplingMethodT_1157_Type::setSamplingInterval(SamplingIntervalType * SamplingIntervalIn)
+void SamplingMethodT_1158_Type::setSamplingInterval(SamplingIntervalType * SamplingIntervalIn)
 {SamplingInterval = SamplingIntervalIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedAngu_1158_Type
+/* class UserDefinedAngu_1159_Type
 
 */
 
-UserDefinedAngu_1158_Type::UserDefinedAngu_1158_Type()
+UserDefinedAngu_1159_Type::UserDefinedAngu_1159_Type()
 {
   ValueStats = 0;
   MaxValueStats = 0;
   MinValueStats = 0;
 }
 
-UserDefinedAngu_1158_Type::UserDefinedAngu_1158_Type(
+UserDefinedAngu_1159_Type::UserDefinedAngu_1159_Type(
  StatsWithTolAngularType * ValueStatsIn,
  StatsAngularType * MaxValueStatsIn,
  StatsAngularType * MinValueStatsIn)
@@ -48170,7 +48170,7 @@ UserDefinedAngu_1158_Type::UserDefinedAngu_1158_Type(
   MinValueStats = MinValueStatsIn;
 }
 
-UserDefinedAngu_1158_Type::~UserDefinedAngu_1158_Type()
+UserDefinedAngu_1159_Type::~UserDefinedAngu_1159_Type()
 {
   #ifndef NODESTRUCT
   delete ValueStats;
@@ -48179,7 +48179,7 @@ UserDefinedAngu_1158_Type::~UserDefinedAngu_1158_Type()
   #endif
 }
 
-void UserDefinedAngu_1158_Type::printSelf(FILE * outFile)
+void UserDefinedAngu_1159_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ValueStats");
@@ -48204,68 +48204,11 @@ void UserDefinedAngu_1158_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolAngularType * UserDefinedAngu_1158_Type::getValueStats()
+StatsWithTolAngularType * UserDefinedAngu_1159_Type::getValueStats()
 {return ValueStats;}
 
-void UserDefinedAngu_1158_Type::setValueStats(StatsWithTolAngularType * ValueStatsIn)
+void UserDefinedAngu_1159_Type::setValueStats(StatsWithTolAngularType * ValueStatsIn)
 {ValueStats = ValueStatsIn;}
-
-StatsAngularType * UserDefinedAngu_1158_Type::getMaxValueStats()
-{return MaxValueStats;}
-
-void UserDefinedAngu_1158_Type::setMaxValueStats(StatsAngularType * MaxValueStatsIn)
-{MaxValueStats = MaxValueStatsIn;}
-
-StatsAngularType * UserDefinedAngu_1158_Type::getMinValueStats()
-{return MinValueStats;}
-
-void UserDefinedAngu_1158_Type::setMinValueStats(StatsAngularType * MinValueStatsIn)
-{MinValueStats = MinValueStatsIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedAngu_1159_Type
-
-*/
-
-UserDefinedAngu_1159_Type::UserDefinedAngu_1159_Type()
-{
-  MaxValueStats = 0;
-  MinValueStats = 0;
-}
-
-UserDefinedAngu_1159_Type::UserDefinedAngu_1159_Type(
- StatsAngularType * MaxValueStatsIn,
- StatsAngularType * MinValueStatsIn)
-{
-  MaxValueStats = MaxValueStatsIn;
-  MinValueStats = MinValueStatsIn;
-}
-
-UserDefinedAngu_1159_Type::~UserDefinedAngu_1159_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxValueStats;
-  delete MinValueStats;
-  #endif
-}
-
-void UserDefinedAngu_1159_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxValueStats");
-  MaxValueStats->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</MaxValueStats>\n");
-  if (MinValueStats)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinValueStats");
-      MinValueStats->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MinValueStats>\n");
-    }
-}
 
 StatsAngularType * UserDefinedAngu_1159_Type::getMaxValueStats()
 {return MaxValueStats;}
@@ -48279,7 +48222,7 @@ StatsAngularType * UserDefinedAngu_1159_Type::getMinValueStats()
 void UserDefinedAngu_1159_Type::setMinValueStats(StatsAngularType * MinValueStatsIn)
 {MinValueStats = MinValueStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedAngu_1160_Type
 
@@ -48287,12 +48230,69 @@ void UserDefinedAngu_1159_Type::setMinValueStats(StatsAngularType * MinValueStat
 
 UserDefinedAngu_1160_Type::UserDefinedAngu_1160_Type()
 {
+  MaxValueStats = 0;
+  MinValueStats = 0;
+}
+
+UserDefinedAngu_1160_Type::UserDefinedAngu_1160_Type(
+ StatsAngularType * MaxValueStatsIn,
+ StatsAngularType * MinValueStatsIn)
+{
+  MaxValueStats = MaxValueStatsIn;
+  MinValueStats = MinValueStatsIn;
+}
+
+UserDefinedAngu_1160_Type::~UserDefinedAngu_1160_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxValueStats;
+  delete MinValueStats;
+  #endif
+}
+
+void UserDefinedAngu_1160_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxValueStats");
+  MaxValueStats->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "</MaxValueStats>\n");
+  if (MinValueStats)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinValueStats");
+      MinValueStats->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MinValueStats>\n");
+    }
+}
+
+StatsAngularType * UserDefinedAngu_1160_Type::getMaxValueStats()
+{return MaxValueStats;}
+
+void UserDefinedAngu_1160_Type::setMaxValueStats(StatsAngularType * MaxValueStatsIn)
+{MaxValueStats = MaxValueStatsIn;}
+
+StatsAngularType * UserDefinedAngu_1160_Type::getMinValueStats()
+{return MinValueStats;}
+
+void UserDefinedAngu_1160_Type::setMinValueStats(StatsAngularType * MinValueStatsIn)
+{MinValueStats = MinValueStatsIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedAngu_1161_Type
+
+*/
+
+UserDefinedAngu_1161_Type::UserDefinedAngu_1161_Type()
+{
   DeviationStats = 0;
   MaxDeviationStats = 0;
   MinDeviationStats = 0;
 }
 
-UserDefinedAngu_1160_Type::UserDefinedAngu_1160_Type(
+UserDefinedAngu_1161_Type::UserDefinedAngu_1161_Type(
  StatsWithTolAngularType * DeviationStatsIn,
  StatsAngularType * MaxDeviationStatsIn,
  StatsAngularType * MinDeviationStatsIn)
@@ -48302,7 +48302,7 @@ UserDefinedAngu_1160_Type::UserDefinedAngu_1160_Type(
   MinDeviationStats = MinDeviationStatsIn;
 }
 
-UserDefinedAngu_1160_Type::~UserDefinedAngu_1160_Type()
+UserDefinedAngu_1161_Type::~UserDefinedAngu_1161_Type()
 {
   #ifndef NODESTRUCT
   delete DeviationStats;
@@ -48311,7 +48311,7 @@ UserDefinedAngu_1160_Type::~UserDefinedAngu_1160_Type()
   #endif
 }
 
-void UserDefinedAngu_1160_Type::printSelf(FILE * outFile)
+void UserDefinedAngu_1161_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<DeviationStats");
@@ -48336,68 +48336,11 @@ void UserDefinedAngu_1160_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolAngularType * UserDefinedAngu_1160_Type::getDeviationStats()
+StatsWithTolAngularType * UserDefinedAngu_1161_Type::getDeviationStats()
 {return DeviationStats;}
 
-void UserDefinedAngu_1160_Type::setDeviationStats(StatsWithTolAngularType * DeviationStatsIn)
+void UserDefinedAngu_1161_Type::setDeviationStats(StatsWithTolAngularType * DeviationStatsIn)
 {DeviationStats = DeviationStatsIn;}
-
-StatsAngularType * UserDefinedAngu_1160_Type::getMaxDeviationStats()
-{return MaxDeviationStats;}
-
-void UserDefinedAngu_1160_Type::setMaxDeviationStats(StatsAngularType * MaxDeviationStatsIn)
-{MaxDeviationStats = MaxDeviationStatsIn;}
-
-StatsAngularType * UserDefinedAngu_1160_Type::getMinDeviationStats()
-{return MinDeviationStats;}
-
-void UserDefinedAngu_1160_Type::setMinDeviationStats(StatsAngularType * MinDeviationStatsIn)
-{MinDeviationStats = MinDeviationStatsIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedAngu_1161_Type
-
-*/
-
-UserDefinedAngu_1161_Type::UserDefinedAngu_1161_Type()
-{
-  MaxDeviationStats = 0;
-  MinDeviationStats = 0;
-}
-
-UserDefinedAngu_1161_Type::UserDefinedAngu_1161_Type(
- StatsAngularType * MaxDeviationStatsIn,
- StatsAngularType * MinDeviationStatsIn)
-{
-  MaxDeviationStats = MaxDeviationStatsIn;
-  MinDeviationStats = MinDeviationStatsIn;
-}
-
-UserDefinedAngu_1161_Type::~UserDefinedAngu_1161_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxDeviationStats;
-  delete MinDeviationStats;
-  #endif
-}
-
-void UserDefinedAngu_1161_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxDeviationStats");
-  MaxDeviationStats->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</MaxDeviationStats>\n");
-  if (MinDeviationStats)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinDeviationStats");
-      MinDeviationStats->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MinDeviationStats>\n");
-    }
-}
 
 StatsAngularType * UserDefinedAngu_1161_Type::getMaxDeviationStats()
 {return MaxDeviationStats;}
@@ -48411,20 +48354,77 @@ StatsAngularType * UserDefinedAngu_1161_Type::getMinDeviationStats()
 void UserDefinedAngu_1161_Type::setMinDeviationStats(StatsAngularType * MinDeviationStatsIn)
 {MinDeviationStats = MinDeviationStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedArea_1162_Type
+/* class UserDefinedAngu_1162_Type
 
 */
 
-UserDefinedArea_1162_Type::UserDefinedArea_1162_Type()
+UserDefinedAngu_1162_Type::UserDefinedAngu_1162_Type()
+{
+  MaxDeviationStats = 0;
+  MinDeviationStats = 0;
+}
+
+UserDefinedAngu_1162_Type::UserDefinedAngu_1162_Type(
+ StatsAngularType * MaxDeviationStatsIn,
+ StatsAngularType * MinDeviationStatsIn)
+{
+  MaxDeviationStats = MaxDeviationStatsIn;
+  MinDeviationStats = MinDeviationStatsIn;
+}
+
+UserDefinedAngu_1162_Type::~UserDefinedAngu_1162_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxDeviationStats;
+  delete MinDeviationStats;
+  #endif
+}
+
+void UserDefinedAngu_1162_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxDeviationStats");
+  MaxDeviationStats->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "</MaxDeviationStats>\n");
+  if (MinDeviationStats)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinDeviationStats");
+      MinDeviationStats->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MinDeviationStats>\n");
+    }
+}
+
+StatsAngularType * UserDefinedAngu_1162_Type::getMaxDeviationStats()
+{return MaxDeviationStats;}
+
+void UserDefinedAngu_1162_Type::setMaxDeviationStats(StatsAngularType * MaxDeviationStatsIn)
+{MaxDeviationStats = MaxDeviationStatsIn;}
+
+StatsAngularType * UserDefinedAngu_1162_Type::getMinDeviationStats()
+{return MinDeviationStats;}
+
+void UserDefinedAngu_1162_Type::setMinDeviationStats(StatsAngularType * MinDeviationStatsIn)
+{MinDeviationStats = MinDeviationStatsIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedArea_1163_Type
+
+*/
+
+UserDefinedArea_1163_Type::UserDefinedArea_1163_Type()
 {
   ValueStats = 0;
   MaxValueStats = 0;
   MinValueStats = 0;
 }
 
-UserDefinedArea_1162_Type::UserDefinedArea_1162_Type(
+UserDefinedArea_1163_Type::UserDefinedArea_1163_Type(
  StatsWithTolAreaType * ValueStatsIn,
  StatsAreaType * MaxValueStatsIn,
  StatsAreaType * MinValueStatsIn)
@@ -48434,7 +48434,7 @@ UserDefinedArea_1162_Type::UserDefinedArea_1162_Type(
   MinValueStats = MinValueStatsIn;
 }
 
-UserDefinedArea_1162_Type::~UserDefinedArea_1162_Type()
+UserDefinedArea_1163_Type::~UserDefinedArea_1163_Type()
 {
   #ifndef NODESTRUCT
   delete ValueStats;
@@ -48443,7 +48443,7 @@ UserDefinedArea_1162_Type::~UserDefinedArea_1162_Type()
   #endif
 }
 
-void UserDefinedArea_1162_Type::printSelf(FILE * outFile)
+void UserDefinedArea_1163_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ValueStats");
@@ -48468,68 +48468,11 @@ void UserDefinedArea_1162_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolAreaType * UserDefinedArea_1162_Type::getValueStats()
+StatsWithTolAreaType * UserDefinedArea_1163_Type::getValueStats()
 {return ValueStats;}
 
-void UserDefinedArea_1162_Type::setValueStats(StatsWithTolAreaType * ValueStatsIn)
+void UserDefinedArea_1163_Type::setValueStats(StatsWithTolAreaType * ValueStatsIn)
 {ValueStats = ValueStatsIn;}
-
-StatsAreaType * UserDefinedArea_1162_Type::getMaxValueStats()
-{return MaxValueStats;}
-
-void UserDefinedArea_1162_Type::setMaxValueStats(StatsAreaType * MaxValueStatsIn)
-{MaxValueStats = MaxValueStatsIn;}
-
-StatsAreaType * UserDefinedArea_1162_Type::getMinValueStats()
-{return MinValueStats;}
-
-void UserDefinedArea_1162_Type::setMinValueStats(StatsAreaType * MinValueStatsIn)
-{MinValueStats = MinValueStatsIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedArea_1163_Type
-
-*/
-
-UserDefinedArea_1163_Type::UserDefinedArea_1163_Type()
-{
-  MaxValueStats = 0;
-  MinValueStats = 0;
-}
-
-UserDefinedArea_1163_Type::UserDefinedArea_1163_Type(
- StatsAreaType * MaxValueStatsIn,
- StatsAreaType * MinValueStatsIn)
-{
-  MaxValueStats = MaxValueStatsIn;
-  MinValueStats = MinValueStatsIn;
-}
-
-UserDefinedArea_1163_Type::~UserDefinedArea_1163_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxValueStats;
-  delete MinValueStats;
-  #endif
-}
-
-void UserDefinedArea_1163_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxValueStats");
-  MaxValueStats->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</MaxValueStats>\n");
-  if (MinValueStats)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinValueStats");
-      MinValueStats->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MinValueStats>\n");
-    }
-}
 
 StatsAreaType * UserDefinedArea_1163_Type::getMaxValueStats()
 {return MaxValueStats;}
@@ -48543,7 +48486,7 @@ StatsAreaType * UserDefinedArea_1163_Type::getMinValueStats()
 void UserDefinedArea_1163_Type::setMinValueStats(StatsAreaType * MinValueStatsIn)
 {MinValueStats = MinValueStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedArea_1164_Type
 
@@ -48551,12 +48494,69 @@ void UserDefinedArea_1163_Type::setMinValueStats(StatsAreaType * MinValueStatsIn
 
 UserDefinedArea_1164_Type::UserDefinedArea_1164_Type()
 {
+  MaxValueStats = 0;
+  MinValueStats = 0;
+}
+
+UserDefinedArea_1164_Type::UserDefinedArea_1164_Type(
+ StatsAreaType * MaxValueStatsIn,
+ StatsAreaType * MinValueStatsIn)
+{
+  MaxValueStats = MaxValueStatsIn;
+  MinValueStats = MinValueStatsIn;
+}
+
+UserDefinedArea_1164_Type::~UserDefinedArea_1164_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxValueStats;
+  delete MinValueStats;
+  #endif
+}
+
+void UserDefinedArea_1164_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxValueStats");
+  MaxValueStats->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "</MaxValueStats>\n");
+  if (MinValueStats)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinValueStats");
+      MinValueStats->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MinValueStats>\n");
+    }
+}
+
+StatsAreaType * UserDefinedArea_1164_Type::getMaxValueStats()
+{return MaxValueStats;}
+
+void UserDefinedArea_1164_Type::setMaxValueStats(StatsAreaType * MaxValueStatsIn)
+{MaxValueStats = MaxValueStatsIn;}
+
+StatsAreaType * UserDefinedArea_1164_Type::getMinValueStats()
+{return MinValueStats;}
+
+void UserDefinedArea_1164_Type::setMinValueStats(StatsAreaType * MinValueStatsIn)
+{MinValueStats = MinValueStatsIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedArea_1165_Type
+
+*/
+
+UserDefinedArea_1165_Type::UserDefinedArea_1165_Type()
+{
   DeviationStats = 0;
   MaxDeviationStats = 0;
   MinDeviationStats = 0;
 }
 
-UserDefinedArea_1164_Type::UserDefinedArea_1164_Type(
+UserDefinedArea_1165_Type::UserDefinedArea_1165_Type(
  StatsWithTolAreaType * DeviationStatsIn,
  StatsAreaType * MaxDeviationStatsIn,
  StatsAreaType * MinDeviationStatsIn)
@@ -48566,7 +48566,7 @@ UserDefinedArea_1164_Type::UserDefinedArea_1164_Type(
   MinDeviationStats = MinDeviationStatsIn;
 }
 
-UserDefinedArea_1164_Type::~UserDefinedArea_1164_Type()
+UserDefinedArea_1165_Type::~UserDefinedArea_1165_Type()
 {
   #ifndef NODESTRUCT
   delete DeviationStats;
@@ -48575,7 +48575,7 @@ UserDefinedArea_1164_Type::~UserDefinedArea_1164_Type()
   #endif
 }
 
-void UserDefinedArea_1164_Type::printSelf(FILE * outFile)
+void UserDefinedArea_1165_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<DeviationStats");
@@ -48600,68 +48600,11 @@ void UserDefinedArea_1164_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolAreaType * UserDefinedArea_1164_Type::getDeviationStats()
+StatsWithTolAreaType * UserDefinedArea_1165_Type::getDeviationStats()
 {return DeviationStats;}
 
-void UserDefinedArea_1164_Type::setDeviationStats(StatsWithTolAreaType * DeviationStatsIn)
+void UserDefinedArea_1165_Type::setDeviationStats(StatsWithTolAreaType * DeviationStatsIn)
 {DeviationStats = DeviationStatsIn;}
-
-StatsAreaType * UserDefinedArea_1164_Type::getMaxDeviationStats()
-{return MaxDeviationStats;}
-
-void UserDefinedArea_1164_Type::setMaxDeviationStats(StatsAreaType * MaxDeviationStatsIn)
-{MaxDeviationStats = MaxDeviationStatsIn;}
-
-StatsAreaType * UserDefinedArea_1164_Type::getMinDeviationStats()
-{return MinDeviationStats;}
-
-void UserDefinedArea_1164_Type::setMinDeviationStats(StatsAreaType * MinDeviationStatsIn)
-{MinDeviationStats = MinDeviationStatsIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedArea_1165_Type
-
-*/
-
-UserDefinedArea_1165_Type::UserDefinedArea_1165_Type()
-{
-  MaxDeviationStats = 0;
-  MinDeviationStats = 0;
-}
-
-UserDefinedArea_1165_Type::UserDefinedArea_1165_Type(
- StatsAreaType * MaxDeviationStatsIn,
- StatsAreaType * MinDeviationStatsIn)
-{
-  MaxDeviationStats = MaxDeviationStatsIn;
-  MinDeviationStats = MinDeviationStatsIn;
-}
-
-UserDefinedArea_1165_Type::~UserDefinedArea_1165_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxDeviationStats;
-  delete MinDeviationStats;
-  #endif
-}
-
-void UserDefinedArea_1165_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxDeviationStats");
-  MaxDeviationStats->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</MaxDeviationStats>\n");
-  if (MinDeviationStats)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinDeviationStats");
-      MinDeviationStats->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MinDeviationStats>\n");
-    }
-}
 
 StatsAreaType * UserDefinedArea_1165_Type::getMaxDeviationStats()
 {return MaxDeviationStats;}
@@ -48675,20 +48618,77 @@ StatsAreaType * UserDefinedArea_1165_Type::getMinDeviationStats()
 void UserDefinedArea_1165_Type::setMinDeviationStats(StatsAreaType * MinDeviationStatsIn)
 {MinDeviationStats = MinDeviationStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedForc_1166_Type
+/* class UserDefinedArea_1166_Type
 
 */
 
-UserDefinedForc_1166_Type::UserDefinedForc_1166_Type()
+UserDefinedArea_1166_Type::UserDefinedArea_1166_Type()
+{
+  MaxDeviationStats = 0;
+  MinDeviationStats = 0;
+}
+
+UserDefinedArea_1166_Type::UserDefinedArea_1166_Type(
+ StatsAreaType * MaxDeviationStatsIn,
+ StatsAreaType * MinDeviationStatsIn)
+{
+  MaxDeviationStats = MaxDeviationStatsIn;
+  MinDeviationStats = MinDeviationStatsIn;
+}
+
+UserDefinedArea_1166_Type::~UserDefinedArea_1166_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxDeviationStats;
+  delete MinDeviationStats;
+  #endif
+}
+
+void UserDefinedArea_1166_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxDeviationStats");
+  MaxDeviationStats->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "</MaxDeviationStats>\n");
+  if (MinDeviationStats)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinDeviationStats");
+      MinDeviationStats->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MinDeviationStats>\n");
+    }
+}
+
+StatsAreaType * UserDefinedArea_1166_Type::getMaxDeviationStats()
+{return MaxDeviationStats;}
+
+void UserDefinedArea_1166_Type::setMaxDeviationStats(StatsAreaType * MaxDeviationStatsIn)
+{MaxDeviationStats = MaxDeviationStatsIn;}
+
+StatsAreaType * UserDefinedArea_1166_Type::getMinDeviationStats()
+{return MinDeviationStats;}
+
+void UserDefinedArea_1166_Type::setMinDeviationStats(StatsAreaType * MinDeviationStatsIn)
+{MinDeviationStats = MinDeviationStatsIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedForc_1167_Type
+
+*/
+
+UserDefinedForc_1167_Type::UserDefinedForc_1167_Type()
 {
   ValueStats = 0;
   MaxValueStats = 0;
   MinValueStats = 0;
 }
 
-UserDefinedForc_1166_Type::UserDefinedForc_1166_Type(
+UserDefinedForc_1167_Type::UserDefinedForc_1167_Type(
  StatsWithTolForceType * ValueStatsIn,
  StatsForceType * MaxValueStatsIn,
  StatsForceType * MinValueStatsIn)
@@ -48698,7 +48698,7 @@ UserDefinedForc_1166_Type::UserDefinedForc_1166_Type(
   MinValueStats = MinValueStatsIn;
 }
 
-UserDefinedForc_1166_Type::~UserDefinedForc_1166_Type()
+UserDefinedForc_1167_Type::~UserDefinedForc_1167_Type()
 {
   #ifndef NODESTRUCT
   delete ValueStats;
@@ -48707,7 +48707,7 @@ UserDefinedForc_1166_Type::~UserDefinedForc_1166_Type()
   #endif
 }
 
-void UserDefinedForc_1166_Type::printSelf(FILE * outFile)
+void UserDefinedForc_1167_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ValueStats");
@@ -48732,68 +48732,11 @@ void UserDefinedForc_1166_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolForceType * UserDefinedForc_1166_Type::getValueStats()
+StatsWithTolForceType * UserDefinedForc_1167_Type::getValueStats()
 {return ValueStats;}
 
-void UserDefinedForc_1166_Type::setValueStats(StatsWithTolForceType * ValueStatsIn)
+void UserDefinedForc_1167_Type::setValueStats(StatsWithTolForceType * ValueStatsIn)
 {ValueStats = ValueStatsIn;}
-
-StatsForceType * UserDefinedForc_1166_Type::getMaxValueStats()
-{return MaxValueStats;}
-
-void UserDefinedForc_1166_Type::setMaxValueStats(StatsForceType * MaxValueStatsIn)
-{MaxValueStats = MaxValueStatsIn;}
-
-StatsForceType * UserDefinedForc_1166_Type::getMinValueStats()
-{return MinValueStats;}
-
-void UserDefinedForc_1166_Type::setMinValueStats(StatsForceType * MinValueStatsIn)
-{MinValueStats = MinValueStatsIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedForc_1167_Type
-
-*/
-
-UserDefinedForc_1167_Type::UserDefinedForc_1167_Type()
-{
-  MaxValueStats = 0;
-  MinValueStats = 0;
-}
-
-UserDefinedForc_1167_Type::UserDefinedForc_1167_Type(
- StatsForceType * MaxValueStatsIn,
- StatsForceType * MinValueStatsIn)
-{
-  MaxValueStats = MaxValueStatsIn;
-  MinValueStats = MinValueStatsIn;
-}
-
-UserDefinedForc_1167_Type::~UserDefinedForc_1167_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxValueStats;
-  delete MinValueStats;
-  #endif
-}
-
-void UserDefinedForc_1167_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxValueStats");
-  MaxValueStats->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</MaxValueStats>\n");
-  if (MinValueStats)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinValueStats");
-      MinValueStats->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MinValueStats>\n");
-    }
-}
 
 StatsForceType * UserDefinedForc_1167_Type::getMaxValueStats()
 {return MaxValueStats;}
@@ -48807,7 +48750,7 @@ StatsForceType * UserDefinedForc_1167_Type::getMinValueStats()
 void UserDefinedForc_1167_Type::setMinValueStats(StatsForceType * MinValueStatsIn)
 {MinValueStats = MinValueStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedForc_1168_Type
 
@@ -48815,12 +48758,69 @@ void UserDefinedForc_1167_Type::setMinValueStats(StatsForceType * MinValueStatsI
 
 UserDefinedForc_1168_Type::UserDefinedForc_1168_Type()
 {
+  MaxValueStats = 0;
+  MinValueStats = 0;
+}
+
+UserDefinedForc_1168_Type::UserDefinedForc_1168_Type(
+ StatsForceType * MaxValueStatsIn,
+ StatsForceType * MinValueStatsIn)
+{
+  MaxValueStats = MaxValueStatsIn;
+  MinValueStats = MinValueStatsIn;
+}
+
+UserDefinedForc_1168_Type::~UserDefinedForc_1168_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxValueStats;
+  delete MinValueStats;
+  #endif
+}
+
+void UserDefinedForc_1168_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxValueStats");
+  MaxValueStats->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "</MaxValueStats>\n");
+  if (MinValueStats)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinValueStats");
+      MinValueStats->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MinValueStats>\n");
+    }
+}
+
+StatsForceType * UserDefinedForc_1168_Type::getMaxValueStats()
+{return MaxValueStats;}
+
+void UserDefinedForc_1168_Type::setMaxValueStats(StatsForceType * MaxValueStatsIn)
+{MaxValueStats = MaxValueStatsIn;}
+
+StatsForceType * UserDefinedForc_1168_Type::getMinValueStats()
+{return MinValueStats;}
+
+void UserDefinedForc_1168_Type::setMinValueStats(StatsForceType * MinValueStatsIn)
+{MinValueStats = MinValueStatsIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedForc_1169_Type
+
+*/
+
+UserDefinedForc_1169_Type::UserDefinedForc_1169_Type()
+{
   DeviationStats = 0;
   MaxDeviationStats = 0;
   MinDeviationStats = 0;
 }
 
-UserDefinedForc_1168_Type::UserDefinedForc_1168_Type(
+UserDefinedForc_1169_Type::UserDefinedForc_1169_Type(
  StatsWithTolForceType * DeviationStatsIn,
  StatsForceType * MaxDeviationStatsIn,
  StatsForceType * MinDeviationStatsIn)
@@ -48830,7 +48830,7 @@ UserDefinedForc_1168_Type::UserDefinedForc_1168_Type(
   MinDeviationStats = MinDeviationStatsIn;
 }
 
-UserDefinedForc_1168_Type::~UserDefinedForc_1168_Type()
+UserDefinedForc_1169_Type::~UserDefinedForc_1169_Type()
 {
   #ifndef NODESTRUCT
   delete DeviationStats;
@@ -48839,7 +48839,7 @@ UserDefinedForc_1168_Type::~UserDefinedForc_1168_Type()
   #endif
 }
 
-void UserDefinedForc_1168_Type::printSelf(FILE * outFile)
+void UserDefinedForc_1169_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<DeviationStats");
@@ -48864,68 +48864,11 @@ void UserDefinedForc_1168_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolForceType * UserDefinedForc_1168_Type::getDeviationStats()
+StatsWithTolForceType * UserDefinedForc_1169_Type::getDeviationStats()
 {return DeviationStats;}
 
-void UserDefinedForc_1168_Type::setDeviationStats(StatsWithTolForceType * DeviationStatsIn)
+void UserDefinedForc_1169_Type::setDeviationStats(StatsWithTolForceType * DeviationStatsIn)
 {DeviationStats = DeviationStatsIn;}
-
-StatsForceType * UserDefinedForc_1168_Type::getMaxDeviationStats()
-{return MaxDeviationStats;}
-
-void UserDefinedForc_1168_Type::setMaxDeviationStats(StatsForceType * MaxDeviationStatsIn)
-{MaxDeviationStats = MaxDeviationStatsIn;}
-
-StatsForceType * UserDefinedForc_1168_Type::getMinDeviationStats()
-{return MinDeviationStats;}
-
-void UserDefinedForc_1168_Type::setMinDeviationStats(StatsForceType * MinDeviationStatsIn)
-{MinDeviationStats = MinDeviationStatsIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedForc_1169_Type
-
-*/
-
-UserDefinedForc_1169_Type::UserDefinedForc_1169_Type()
-{
-  MaxDeviationStats = 0;
-  MinDeviationStats = 0;
-}
-
-UserDefinedForc_1169_Type::UserDefinedForc_1169_Type(
- StatsForceType * MaxDeviationStatsIn,
- StatsForceType * MinDeviationStatsIn)
-{
-  MaxDeviationStats = MaxDeviationStatsIn;
-  MinDeviationStats = MinDeviationStatsIn;
-}
-
-UserDefinedForc_1169_Type::~UserDefinedForc_1169_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxDeviationStats;
-  delete MinDeviationStats;
-  #endif
-}
-
-void UserDefinedForc_1169_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxDeviationStats");
-  MaxDeviationStats->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</MaxDeviationStats>\n");
-  if (MinDeviationStats)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinDeviationStats");
-      MinDeviationStats->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MinDeviationStats>\n");
-    }
-}
 
 StatsForceType * UserDefinedForc_1169_Type::getMaxDeviationStats()
 {return MaxDeviationStats;}
@@ -48939,20 +48882,77 @@ StatsForceType * UserDefinedForc_1169_Type::getMinDeviationStats()
 void UserDefinedForc_1169_Type::setMinDeviationStats(StatsForceType * MinDeviationStatsIn)
 {MinDeviationStats = MinDeviationStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedLine_1170_Type
+/* class UserDefinedForc_1170_Type
 
 */
 
-UserDefinedLine_1170_Type::UserDefinedLine_1170_Type()
+UserDefinedForc_1170_Type::UserDefinedForc_1170_Type()
+{
+  MaxDeviationStats = 0;
+  MinDeviationStats = 0;
+}
+
+UserDefinedForc_1170_Type::UserDefinedForc_1170_Type(
+ StatsForceType * MaxDeviationStatsIn,
+ StatsForceType * MinDeviationStatsIn)
+{
+  MaxDeviationStats = MaxDeviationStatsIn;
+  MinDeviationStats = MinDeviationStatsIn;
+}
+
+UserDefinedForc_1170_Type::~UserDefinedForc_1170_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxDeviationStats;
+  delete MinDeviationStats;
+  #endif
+}
+
+void UserDefinedForc_1170_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxDeviationStats");
+  MaxDeviationStats->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "</MaxDeviationStats>\n");
+  if (MinDeviationStats)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinDeviationStats");
+      MinDeviationStats->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MinDeviationStats>\n");
+    }
+}
+
+StatsForceType * UserDefinedForc_1170_Type::getMaxDeviationStats()
+{return MaxDeviationStats;}
+
+void UserDefinedForc_1170_Type::setMaxDeviationStats(StatsForceType * MaxDeviationStatsIn)
+{MaxDeviationStats = MaxDeviationStatsIn;}
+
+StatsForceType * UserDefinedForc_1170_Type::getMinDeviationStats()
+{return MinDeviationStats;}
+
+void UserDefinedForc_1170_Type::setMinDeviationStats(StatsForceType * MinDeviationStatsIn)
+{MinDeviationStats = MinDeviationStatsIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedLine_1171_Type
+
+*/
+
+UserDefinedLine_1171_Type::UserDefinedLine_1171_Type()
 {
   ValueStats = 0;
   MaxValueStats = 0;
   MinValueStats = 0;
 }
 
-UserDefinedLine_1170_Type::UserDefinedLine_1170_Type(
+UserDefinedLine_1171_Type::UserDefinedLine_1171_Type(
  StatsWithTolLinearType * ValueStatsIn,
  StatsLinearType * MaxValueStatsIn,
  StatsLinearType * MinValueStatsIn)
@@ -48962,7 +48962,7 @@ UserDefinedLine_1170_Type::UserDefinedLine_1170_Type(
   MinValueStats = MinValueStatsIn;
 }
 
-UserDefinedLine_1170_Type::~UserDefinedLine_1170_Type()
+UserDefinedLine_1171_Type::~UserDefinedLine_1171_Type()
 {
   #ifndef NODESTRUCT
   delete ValueStats;
@@ -48971,7 +48971,7 @@ UserDefinedLine_1170_Type::~UserDefinedLine_1170_Type()
   #endif
 }
 
-void UserDefinedLine_1170_Type::printSelf(FILE * outFile)
+void UserDefinedLine_1171_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ValueStats");
@@ -48996,68 +48996,11 @@ void UserDefinedLine_1170_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolLinearType * UserDefinedLine_1170_Type::getValueStats()
+StatsWithTolLinearType * UserDefinedLine_1171_Type::getValueStats()
 {return ValueStats;}
 
-void UserDefinedLine_1170_Type::setValueStats(StatsWithTolLinearType * ValueStatsIn)
+void UserDefinedLine_1171_Type::setValueStats(StatsWithTolLinearType * ValueStatsIn)
 {ValueStats = ValueStatsIn;}
-
-StatsLinearType * UserDefinedLine_1170_Type::getMaxValueStats()
-{return MaxValueStats;}
-
-void UserDefinedLine_1170_Type::setMaxValueStats(StatsLinearType * MaxValueStatsIn)
-{MaxValueStats = MaxValueStatsIn;}
-
-StatsLinearType * UserDefinedLine_1170_Type::getMinValueStats()
-{return MinValueStats;}
-
-void UserDefinedLine_1170_Type::setMinValueStats(StatsLinearType * MinValueStatsIn)
-{MinValueStats = MinValueStatsIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedLine_1171_Type
-
-*/
-
-UserDefinedLine_1171_Type::UserDefinedLine_1171_Type()
-{
-  MaxValueStats = 0;
-  MinValueStats = 0;
-}
-
-UserDefinedLine_1171_Type::UserDefinedLine_1171_Type(
- StatsLinearType * MaxValueStatsIn,
- StatsLinearType * MinValueStatsIn)
-{
-  MaxValueStats = MaxValueStatsIn;
-  MinValueStats = MinValueStatsIn;
-}
-
-UserDefinedLine_1171_Type::~UserDefinedLine_1171_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxValueStats;
-  delete MinValueStats;
-  #endif
-}
-
-void UserDefinedLine_1171_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxValueStats");
-  MaxValueStats->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</MaxValueStats>\n");
-  if (MinValueStats)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinValueStats");
-      MinValueStats->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MinValueStats>\n");
-    }
-}
 
 StatsLinearType * UserDefinedLine_1171_Type::getMaxValueStats()
 {return MaxValueStats;}
@@ -49071,7 +49014,7 @@ StatsLinearType * UserDefinedLine_1171_Type::getMinValueStats()
 void UserDefinedLine_1171_Type::setMinValueStats(StatsLinearType * MinValueStatsIn)
 {MinValueStats = MinValueStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedLine_1172_Type
 
@@ -49079,12 +49022,69 @@ void UserDefinedLine_1171_Type::setMinValueStats(StatsLinearType * MinValueStats
 
 UserDefinedLine_1172_Type::UserDefinedLine_1172_Type()
 {
+  MaxValueStats = 0;
+  MinValueStats = 0;
+}
+
+UserDefinedLine_1172_Type::UserDefinedLine_1172_Type(
+ StatsLinearType * MaxValueStatsIn,
+ StatsLinearType * MinValueStatsIn)
+{
+  MaxValueStats = MaxValueStatsIn;
+  MinValueStats = MinValueStatsIn;
+}
+
+UserDefinedLine_1172_Type::~UserDefinedLine_1172_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxValueStats;
+  delete MinValueStats;
+  #endif
+}
+
+void UserDefinedLine_1172_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxValueStats");
+  MaxValueStats->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "</MaxValueStats>\n");
+  if (MinValueStats)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinValueStats");
+      MinValueStats->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MinValueStats>\n");
+    }
+}
+
+StatsLinearType * UserDefinedLine_1172_Type::getMaxValueStats()
+{return MaxValueStats;}
+
+void UserDefinedLine_1172_Type::setMaxValueStats(StatsLinearType * MaxValueStatsIn)
+{MaxValueStats = MaxValueStatsIn;}
+
+StatsLinearType * UserDefinedLine_1172_Type::getMinValueStats()
+{return MinValueStats;}
+
+void UserDefinedLine_1172_Type::setMinValueStats(StatsLinearType * MinValueStatsIn)
+{MinValueStats = MinValueStatsIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedLine_1173_Type
+
+*/
+
+UserDefinedLine_1173_Type::UserDefinedLine_1173_Type()
+{
   DeviationStats = 0;
   MaxDeviationStats = 0;
   MinDeviationStats = 0;
 }
 
-UserDefinedLine_1172_Type::UserDefinedLine_1172_Type(
+UserDefinedLine_1173_Type::UserDefinedLine_1173_Type(
  StatsWithTolLinearType * DeviationStatsIn,
  StatsLinearType * MaxDeviationStatsIn,
  StatsLinearType * MinDeviationStatsIn)
@@ -49094,7 +49094,7 @@ UserDefinedLine_1172_Type::UserDefinedLine_1172_Type(
   MinDeviationStats = MinDeviationStatsIn;
 }
 
-UserDefinedLine_1172_Type::~UserDefinedLine_1172_Type()
+UserDefinedLine_1173_Type::~UserDefinedLine_1173_Type()
 {
   #ifndef NODESTRUCT
   delete DeviationStats;
@@ -49103,7 +49103,7 @@ UserDefinedLine_1172_Type::~UserDefinedLine_1172_Type()
   #endif
 }
 
-void UserDefinedLine_1172_Type::printSelf(FILE * outFile)
+void UserDefinedLine_1173_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<DeviationStats");
@@ -49128,68 +49128,11 @@ void UserDefinedLine_1172_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolLinearType * UserDefinedLine_1172_Type::getDeviationStats()
+StatsWithTolLinearType * UserDefinedLine_1173_Type::getDeviationStats()
 {return DeviationStats;}
 
-void UserDefinedLine_1172_Type::setDeviationStats(StatsWithTolLinearType * DeviationStatsIn)
+void UserDefinedLine_1173_Type::setDeviationStats(StatsWithTolLinearType * DeviationStatsIn)
 {DeviationStats = DeviationStatsIn;}
-
-StatsLinearType * UserDefinedLine_1172_Type::getMaxDeviationStats()
-{return MaxDeviationStats;}
-
-void UserDefinedLine_1172_Type::setMaxDeviationStats(StatsLinearType * MaxDeviationStatsIn)
-{MaxDeviationStats = MaxDeviationStatsIn;}
-
-StatsLinearType * UserDefinedLine_1172_Type::getMinDeviationStats()
-{return MinDeviationStats;}
-
-void UserDefinedLine_1172_Type::setMinDeviationStats(StatsLinearType * MinDeviationStatsIn)
-{MinDeviationStats = MinDeviationStatsIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedLine_1173_Type
-
-*/
-
-UserDefinedLine_1173_Type::UserDefinedLine_1173_Type()
-{
-  MaxDeviationStats = 0;
-  MinDeviationStats = 0;
-}
-
-UserDefinedLine_1173_Type::UserDefinedLine_1173_Type(
- StatsLinearType * MaxDeviationStatsIn,
- StatsLinearType * MinDeviationStatsIn)
-{
-  MaxDeviationStats = MaxDeviationStatsIn;
-  MinDeviationStats = MinDeviationStatsIn;
-}
-
-UserDefinedLine_1173_Type::~UserDefinedLine_1173_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxDeviationStats;
-  delete MinDeviationStats;
-  #endif
-}
-
-void UserDefinedLine_1173_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxDeviationStats");
-  MaxDeviationStats->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</MaxDeviationStats>\n");
-  if (MinDeviationStats)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinDeviationStats");
-      MinDeviationStats->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MinDeviationStats>\n");
-    }
-}
 
 StatsLinearType * UserDefinedLine_1173_Type::getMaxDeviationStats()
 {return MaxDeviationStats;}
@@ -49203,20 +49146,77 @@ StatsLinearType * UserDefinedLine_1173_Type::getMinDeviationStats()
 void UserDefinedLine_1173_Type::setMinDeviationStats(StatsLinearType * MinDeviationStatsIn)
 {MinDeviationStats = MinDeviationStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedMass_1174_Type
+/* class UserDefinedLine_1174_Type
 
 */
 
-UserDefinedMass_1174_Type::UserDefinedMass_1174_Type()
+UserDefinedLine_1174_Type::UserDefinedLine_1174_Type()
+{
+  MaxDeviationStats = 0;
+  MinDeviationStats = 0;
+}
+
+UserDefinedLine_1174_Type::UserDefinedLine_1174_Type(
+ StatsLinearType * MaxDeviationStatsIn,
+ StatsLinearType * MinDeviationStatsIn)
+{
+  MaxDeviationStats = MaxDeviationStatsIn;
+  MinDeviationStats = MinDeviationStatsIn;
+}
+
+UserDefinedLine_1174_Type::~UserDefinedLine_1174_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxDeviationStats;
+  delete MinDeviationStats;
+  #endif
+}
+
+void UserDefinedLine_1174_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxDeviationStats");
+  MaxDeviationStats->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "</MaxDeviationStats>\n");
+  if (MinDeviationStats)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinDeviationStats");
+      MinDeviationStats->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MinDeviationStats>\n");
+    }
+}
+
+StatsLinearType * UserDefinedLine_1174_Type::getMaxDeviationStats()
+{return MaxDeviationStats;}
+
+void UserDefinedLine_1174_Type::setMaxDeviationStats(StatsLinearType * MaxDeviationStatsIn)
+{MaxDeviationStats = MaxDeviationStatsIn;}
+
+StatsLinearType * UserDefinedLine_1174_Type::getMinDeviationStats()
+{return MinDeviationStats;}
+
+void UserDefinedLine_1174_Type::setMinDeviationStats(StatsLinearType * MinDeviationStatsIn)
+{MinDeviationStats = MinDeviationStatsIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedMass_1175_Type
+
+*/
+
+UserDefinedMass_1175_Type::UserDefinedMass_1175_Type()
 {
   ValueStats = 0;
   MaxValueStats = 0;
   MinValueStats = 0;
 }
 
-UserDefinedMass_1174_Type::UserDefinedMass_1174_Type(
+UserDefinedMass_1175_Type::UserDefinedMass_1175_Type(
  StatsWithTolMassType * ValueStatsIn,
  StatsMassType * MaxValueStatsIn,
  StatsMassType * MinValueStatsIn)
@@ -49226,7 +49226,7 @@ UserDefinedMass_1174_Type::UserDefinedMass_1174_Type(
   MinValueStats = MinValueStatsIn;
 }
 
-UserDefinedMass_1174_Type::~UserDefinedMass_1174_Type()
+UserDefinedMass_1175_Type::~UserDefinedMass_1175_Type()
 {
   #ifndef NODESTRUCT
   delete ValueStats;
@@ -49235,7 +49235,7 @@ UserDefinedMass_1174_Type::~UserDefinedMass_1174_Type()
   #endif
 }
 
-void UserDefinedMass_1174_Type::printSelf(FILE * outFile)
+void UserDefinedMass_1175_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ValueStats");
@@ -49260,68 +49260,11 @@ void UserDefinedMass_1174_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolMassType * UserDefinedMass_1174_Type::getValueStats()
+StatsWithTolMassType * UserDefinedMass_1175_Type::getValueStats()
 {return ValueStats;}
 
-void UserDefinedMass_1174_Type::setValueStats(StatsWithTolMassType * ValueStatsIn)
+void UserDefinedMass_1175_Type::setValueStats(StatsWithTolMassType * ValueStatsIn)
 {ValueStats = ValueStatsIn;}
-
-StatsMassType * UserDefinedMass_1174_Type::getMaxValueStats()
-{return MaxValueStats;}
-
-void UserDefinedMass_1174_Type::setMaxValueStats(StatsMassType * MaxValueStatsIn)
-{MaxValueStats = MaxValueStatsIn;}
-
-StatsMassType * UserDefinedMass_1174_Type::getMinValueStats()
-{return MinValueStats;}
-
-void UserDefinedMass_1174_Type::setMinValueStats(StatsMassType * MinValueStatsIn)
-{MinValueStats = MinValueStatsIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedMass_1175_Type
-
-*/
-
-UserDefinedMass_1175_Type::UserDefinedMass_1175_Type()
-{
-  MaxValueStats = 0;
-  MinValueStats = 0;
-}
-
-UserDefinedMass_1175_Type::UserDefinedMass_1175_Type(
- StatsMassType * MaxValueStatsIn,
- StatsMassType * MinValueStatsIn)
-{
-  MaxValueStats = MaxValueStatsIn;
-  MinValueStats = MinValueStatsIn;
-}
-
-UserDefinedMass_1175_Type::~UserDefinedMass_1175_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxValueStats;
-  delete MinValueStats;
-  #endif
-}
-
-void UserDefinedMass_1175_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxValueStats");
-  MaxValueStats->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</MaxValueStats>\n");
-  if (MinValueStats)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinValueStats");
-      MinValueStats->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MinValueStats>\n");
-    }
-}
 
 StatsMassType * UserDefinedMass_1175_Type::getMaxValueStats()
 {return MaxValueStats;}
@@ -49335,7 +49278,7 @@ StatsMassType * UserDefinedMass_1175_Type::getMinValueStats()
 void UserDefinedMass_1175_Type::setMinValueStats(StatsMassType * MinValueStatsIn)
 {MinValueStats = MinValueStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedMass_1176_Type
 
@@ -49343,12 +49286,69 @@ void UserDefinedMass_1175_Type::setMinValueStats(StatsMassType * MinValueStatsIn
 
 UserDefinedMass_1176_Type::UserDefinedMass_1176_Type()
 {
+  MaxValueStats = 0;
+  MinValueStats = 0;
+}
+
+UserDefinedMass_1176_Type::UserDefinedMass_1176_Type(
+ StatsMassType * MaxValueStatsIn,
+ StatsMassType * MinValueStatsIn)
+{
+  MaxValueStats = MaxValueStatsIn;
+  MinValueStats = MinValueStatsIn;
+}
+
+UserDefinedMass_1176_Type::~UserDefinedMass_1176_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxValueStats;
+  delete MinValueStats;
+  #endif
+}
+
+void UserDefinedMass_1176_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxValueStats");
+  MaxValueStats->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "</MaxValueStats>\n");
+  if (MinValueStats)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinValueStats");
+      MinValueStats->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MinValueStats>\n");
+    }
+}
+
+StatsMassType * UserDefinedMass_1176_Type::getMaxValueStats()
+{return MaxValueStats;}
+
+void UserDefinedMass_1176_Type::setMaxValueStats(StatsMassType * MaxValueStatsIn)
+{MaxValueStats = MaxValueStatsIn;}
+
+StatsMassType * UserDefinedMass_1176_Type::getMinValueStats()
+{return MinValueStats;}
+
+void UserDefinedMass_1176_Type::setMinValueStats(StatsMassType * MinValueStatsIn)
+{MinValueStats = MinValueStatsIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedMass_1177_Type
+
+*/
+
+UserDefinedMass_1177_Type::UserDefinedMass_1177_Type()
+{
   DeviationStats = 0;
   MaxDeviationStats = 0;
   MinDeviationStats = 0;
 }
 
-UserDefinedMass_1176_Type::UserDefinedMass_1176_Type(
+UserDefinedMass_1177_Type::UserDefinedMass_1177_Type(
  StatsWithTolMassType * DeviationStatsIn,
  StatsMassType * MaxDeviationStatsIn,
  StatsMassType * MinDeviationStatsIn)
@@ -49358,7 +49358,7 @@ UserDefinedMass_1176_Type::UserDefinedMass_1176_Type(
   MinDeviationStats = MinDeviationStatsIn;
 }
 
-UserDefinedMass_1176_Type::~UserDefinedMass_1176_Type()
+UserDefinedMass_1177_Type::~UserDefinedMass_1177_Type()
 {
   #ifndef NODESTRUCT
   delete DeviationStats;
@@ -49367,7 +49367,7 @@ UserDefinedMass_1176_Type::~UserDefinedMass_1176_Type()
   #endif
 }
 
-void UserDefinedMass_1176_Type::printSelf(FILE * outFile)
+void UserDefinedMass_1177_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<DeviationStats");
@@ -49392,68 +49392,11 @@ void UserDefinedMass_1176_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolMassType * UserDefinedMass_1176_Type::getDeviationStats()
+StatsWithTolMassType * UserDefinedMass_1177_Type::getDeviationStats()
 {return DeviationStats;}
 
-void UserDefinedMass_1176_Type::setDeviationStats(StatsWithTolMassType * DeviationStatsIn)
+void UserDefinedMass_1177_Type::setDeviationStats(StatsWithTolMassType * DeviationStatsIn)
 {DeviationStats = DeviationStatsIn;}
-
-StatsMassType * UserDefinedMass_1176_Type::getMaxDeviationStats()
-{return MaxDeviationStats;}
-
-void UserDefinedMass_1176_Type::setMaxDeviationStats(StatsMassType * MaxDeviationStatsIn)
-{MaxDeviationStats = MaxDeviationStatsIn;}
-
-StatsMassType * UserDefinedMass_1176_Type::getMinDeviationStats()
-{return MinDeviationStats;}
-
-void UserDefinedMass_1176_Type::setMinDeviationStats(StatsMassType * MinDeviationStatsIn)
-{MinDeviationStats = MinDeviationStatsIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedMass_1177_Type
-
-*/
-
-UserDefinedMass_1177_Type::UserDefinedMass_1177_Type()
-{
-  MaxDeviationStats = 0;
-  MinDeviationStats = 0;
-}
-
-UserDefinedMass_1177_Type::UserDefinedMass_1177_Type(
- StatsMassType * MaxDeviationStatsIn,
- StatsMassType * MinDeviationStatsIn)
-{
-  MaxDeviationStats = MaxDeviationStatsIn;
-  MinDeviationStats = MinDeviationStatsIn;
-}
-
-UserDefinedMass_1177_Type::~UserDefinedMass_1177_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxDeviationStats;
-  delete MinDeviationStats;
-  #endif
-}
-
-void UserDefinedMass_1177_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxDeviationStats");
-  MaxDeviationStats->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</MaxDeviationStats>\n");
-  if (MinDeviationStats)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinDeviationStats");
-      MinDeviationStats->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MinDeviationStats>\n");
-    }
-}
 
 StatsMassType * UserDefinedMass_1177_Type::getMaxDeviationStats()
 {return MaxDeviationStats;}
@@ -49467,20 +49410,77 @@ StatsMassType * UserDefinedMass_1177_Type::getMinDeviationStats()
 void UserDefinedMass_1177_Type::setMinDeviationStats(StatsMassType * MinDeviationStatsIn)
 {MinDeviationStats = MinDeviationStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedPres_1178_Type
+/* class UserDefinedMass_1178_Type
 
 */
 
-UserDefinedPres_1178_Type::UserDefinedPres_1178_Type()
+UserDefinedMass_1178_Type::UserDefinedMass_1178_Type()
+{
+  MaxDeviationStats = 0;
+  MinDeviationStats = 0;
+}
+
+UserDefinedMass_1178_Type::UserDefinedMass_1178_Type(
+ StatsMassType * MaxDeviationStatsIn,
+ StatsMassType * MinDeviationStatsIn)
+{
+  MaxDeviationStats = MaxDeviationStatsIn;
+  MinDeviationStats = MinDeviationStatsIn;
+}
+
+UserDefinedMass_1178_Type::~UserDefinedMass_1178_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxDeviationStats;
+  delete MinDeviationStats;
+  #endif
+}
+
+void UserDefinedMass_1178_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxDeviationStats");
+  MaxDeviationStats->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "</MaxDeviationStats>\n");
+  if (MinDeviationStats)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinDeviationStats");
+      MinDeviationStats->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MinDeviationStats>\n");
+    }
+}
+
+StatsMassType * UserDefinedMass_1178_Type::getMaxDeviationStats()
+{return MaxDeviationStats;}
+
+void UserDefinedMass_1178_Type::setMaxDeviationStats(StatsMassType * MaxDeviationStatsIn)
+{MaxDeviationStats = MaxDeviationStatsIn;}
+
+StatsMassType * UserDefinedMass_1178_Type::getMinDeviationStats()
+{return MinDeviationStats;}
+
+void UserDefinedMass_1178_Type::setMinDeviationStats(StatsMassType * MinDeviationStatsIn)
+{MinDeviationStats = MinDeviationStatsIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedPres_1179_Type
+
+*/
+
+UserDefinedPres_1179_Type::UserDefinedPres_1179_Type()
 {
   ValueStats = 0;
   MaxValueStats = 0;
   MinValueStats = 0;
 }
 
-UserDefinedPres_1178_Type::UserDefinedPres_1178_Type(
+UserDefinedPres_1179_Type::UserDefinedPres_1179_Type(
  StatsWithTolPressureType * ValueStatsIn,
  StatsPressureType * MaxValueStatsIn,
  StatsPressureType * MinValueStatsIn)
@@ -49490,7 +49490,7 @@ UserDefinedPres_1178_Type::UserDefinedPres_1178_Type(
   MinValueStats = MinValueStatsIn;
 }
 
-UserDefinedPres_1178_Type::~UserDefinedPres_1178_Type()
+UserDefinedPres_1179_Type::~UserDefinedPres_1179_Type()
 {
   #ifndef NODESTRUCT
   delete ValueStats;
@@ -49499,7 +49499,7 @@ UserDefinedPres_1178_Type::~UserDefinedPres_1178_Type()
   #endif
 }
 
-void UserDefinedPres_1178_Type::printSelf(FILE * outFile)
+void UserDefinedPres_1179_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ValueStats");
@@ -49524,68 +49524,11 @@ void UserDefinedPres_1178_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolPressureType * UserDefinedPres_1178_Type::getValueStats()
+StatsWithTolPressureType * UserDefinedPres_1179_Type::getValueStats()
 {return ValueStats;}
 
-void UserDefinedPres_1178_Type::setValueStats(StatsWithTolPressureType * ValueStatsIn)
+void UserDefinedPres_1179_Type::setValueStats(StatsWithTolPressureType * ValueStatsIn)
 {ValueStats = ValueStatsIn;}
-
-StatsPressureType * UserDefinedPres_1178_Type::getMaxValueStats()
-{return MaxValueStats;}
-
-void UserDefinedPres_1178_Type::setMaxValueStats(StatsPressureType * MaxValueStatsIn)
-{MaxValueStats = MaxValueStatsIn;}
-
-StatsPressureType * UserDefinedPres_1178_Type::getMinValueStats()
-{return MinValueStats;}
-
-void UserDefinedPres_1178_Type::setMinValueStats(StatsPressureType * MinValueStatsIn)
-{MinValueStats = MinValueStatsIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedPres_1179_Type
-
-*/
-
-UserDefinedPres_1179_Type::UserDefinedPres_1179_Type()
-{
-  MaxValueStats = 0;
-  MinValueStats = 0;
-}
-
-UserDefinedPres_1179_Type::UserDefinedPres_1179_Type(
- StatsPressureType * MaxValueStatsIn,
- StatsPressureType * MinValueStatsIn)
-{
-  MaxValueStats = MaxValueStatsIn;
-  MinValueStats = MinValueStatsIn;
-}
-
-UserDefinedPres_1179_Type::~UserDefinedPres_1179_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxValueStats;
-  delete MinValueStats;
-  #endif
-}
-
-void UserDefinedPres_1179_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxValueStats");
-  MaxValueStats->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</MaxValueStats>\n");
-  if (MinValueStats)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinValueStats");
-      MinValueStats->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MinValueStats>\n");
-    }
-}
 
 StatsPressureType * UserDefinedPres_1179_Type::getMaxValueStats()
 {return MaxValueStats;}
@@ -49599,7 +49542,7 @@ StatsPressureType * UserDefinedPres_1179_Type::getMinValueStats()
 void UserDefinedPres_1179_Type::setMinValueStats(StatsPressureType * MinValueStatsIn)
 {MinValueStats = MinValueStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedPres_1180_Type
 
@@ -49607,12 +49550,69 @@ void UserDefinedPres_1179_Type::setMinValueStats(StatsPressureType * MinValueSta
 
 UserDefinedPres_1180_Type::UserDefinedPres_1180_Type()
 {
+  MaxValueStats = 0;
+  MinValueStats = 0;
+}
+
+UserDefinedPres_1180_Type::UserDefinedPres_1180_Type(
+ StatsPressureType * MaxValueStatsIn,
+ StatsPressureType * MinValueStatsIn)
+{
+  MaxValueStats = MaxValueStatsIn;
+  MinValueStats = MinValueStatsIn;
+}
+
+UserDefinedPres_1180_Type::~UserDefinedPres_1180_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxValueStats;
+  delete MinValueStats;
+  #endif
+}
+
+void UserDefinedPres_1180_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxValueStats");
+  MaxValueStats->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "</MaxValueStats>\n");
+  if (MinValueStats)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinValueStats");
+      MinValueStats->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MinValueStats>\n");
+    }
+}
+
+StatsPressureType * UserDefinedPres_1180_Type::getMaxValueStats()
+{return MaxValueStats;}
+
+void UserDefinedPres_1180_Type::setMaxValueStats(StatsPressureType * MaxValueStatsIn)
+{MaxValueStats = MaxValueStatsIn;}
+
+StatsPressureType * UserDefinedPres_1180_Type::getMinValueStats()
+{return MinValueStats;}
+
+void UserDefinedPres_1180_Type::setMinValueStats(StatsPressureType * MinValueStatsIn)
+{MinValueStats = MinValueStatsIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedPres_1181_Type
+
+*/
+
+UserDefinedPres_1181_Type::UserDefinedPres_1181_Type()
+{
   DeviationStats = 0;
   MaxDeviationStats = 0;
   MinDeviationStats = 0;
 }
 
-UserDefinedPres_1180_Type::UserDefinedPres_1180_Type(
+UserDefinedPres_1181_Type::UserDefinedPres_1181_Type(
  StatsWithTolPressureType * DeviationStatsIn,
  StatsPressureType * MaxDeviationStatsIn,
  StatsPressureType * MinDeviationStatsIn)
@@ -49622,7 +49622,7 @@ UserDefinedPres_1180_Type::UserDefinedPres_1180_Type(
   MinDeviationStats = MinDeviationStatsIn;
 }
 
-UserDefinedPres_1180_Type::~UserDefinedPres_1180_Type()
+UserDefinedPres_1181_Type::~UserDefinedPres_1181_Type()
 {
   #ifndef NODESTRUCT
   delete DeviationStats;
@@ -49631,7 +49631,7 @@ UserDefinedPres_1180_Type::~UserDefinedPres_1180_Type()
   #endif
 }
 
-void UserDefinedPres_1180_Type::printSelf(FILE * outFile)
+void UserDefinedPres_1181_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<DeviationStats");
@@ -49656,68 +49656,11 @@ void UserDefinedPres_1180_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolPressureType * UserDefinedPres_1180_Type::getDeviationStats()
+StatsWithTolPressureType * UserDefinedPres_1181_Type::getDeviationStats()
 {return DeviationStats;}
 
-void UserDefinedPres_1180_Type::setDeviationStats(StatsWithTolPressureType * DeviationStatsIn)
+void UserDefinedPres_1181_Type::setDeviationStats(StatsWithTolPressureType * DeviationStatsIn)
 {DeviationStats = DeviationStatsIn;}
-
-StatsPressureType * UserDefinedPres_1180_Type::getMaxDeviationStats()
-{return MaxDeviationStats;}
-
-void UserDefinedPres_1180_Type::setMaxDeviationStats(StatsPressureType * MaxDeviationStatsIn)
-{MaxDeviationStats = MaxDeviationStatsIn;}
-
-StatsPressureType * UserDefinedPres_1180_Type::getMinDeviationStats()
-{return MinDeviationStats;}
-
-void UserDefinedPres_1180_Type::setMinDeviationStats(StatsPressureType * MinDeviationStatsIn)
-{MinDeviationStats = MinDeviationStatsIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedPres_1181_Type
-
-*/
-
-UserDefinedPres_1181_Type::UserDefinedPres_1181_Type()
-{
-  MaxDeviationStats = 0;
-  MinDeviationStats = 0;
-}
-
-UserDefinedPres_1181_Type::UserDefinedPres_1181_Type(
- StatsPressureType * MaxDeviationStatsIn,
- StatsPressureType * MinDeviationStatsIn)
-{
-  MaxDeviationStats = MaxDeviationStatsIn;
-  MinDeviationStats = MinDeviationStatsIn;
-}
-
-UserDefinedPres_1181_Type::~UserDefinedPres_1181_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxDeviationStats;
-  delete MinDeviationStats;
-  #endif
-}
-
-void UserDefinedPres_1181_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxDeviationStats");
-  MaxDeviationStats->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</MaxDeviationStats>\n");
-  if (MinDeviationStats)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinDeviationStats");
-      MinDeviationStats->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MinDeviationStats>\n");
-    }
-}
 
 StatsPressureType * UserDefinedPres_1181_Type::getMaxDeviationStats()
 {return MaxDeviationStats;}
@@ -49731,20 +49674,77 @@ StatsPressureType * UserDefinedPres_1181_Type::getMinDeviationStats()
 void UserDefinedPres_1181_Type::setMinDeviationStats(StatsPressureType * MinDeviationStatsIn)
 {MinDeviationStats = MinDeviationStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedSpee_1182_Type
+/* class UserDefinedPres_1182_Type
 
 */
 
-UserDefinedSpee_1182_Type::UserDefinedSpee_1182_Type()
+UserDefinedPres_1182_Type::UserDefinedPres_1182_Type()
+{
+  MaxDeviationStats = 0;
+  MinDeviationStats = 0;
+}
+
+UserDefinedPres_1182_Type::UserDefinedPres_1182_Type(
+ StatsPressureType * MaxDeviationStatsIn,
+ StatsPressureType * MinDeviationStatsIn)
+{
+  MaxDeviationStats = MaxDeviationStatsIn;
+  MinDeviationStats = MinDeviationStatsIn;
+}
+
+UserDefinedPres_1182_Type::~UserDefinedPres_1182_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxDeviationStats;
+  delete MinDeviationStats;
+  #endif
+}
+
+void UserDefinedPres_1182_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxDeviationStats");
+  MaxDeviationStats->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "</MaxDeviationStats>\n");
+  if (MinDeviationStats)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinDeviationStats");
+      MinDeviationStats->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MinDeviationStats>\n");
+    }
+}
+
+StatsPressureType * UserDefinedPres_1182_Type::getMaxDeviationStats()
+{return MaxDeviationStats;}
+
+void UserDefinedPres_1182_Type::setMaxDeviationStats(StatsPressureType * MaxDeviationStatsIn)
+{MaxDeviationStats = MaxDeviationStatsIn;}
+
+StatsPressureType * UserDefinedPres_1182_Type::getMinDeviationStats()
+{return MinDeviationStats;}
+
+void UserDefinedPres_1182_Type::setMinDeviationStats(StatsPressureType * MinDeviationStatsIn)
+{MinDeviationStats = MinDeviationStatsIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedSpee_1183_Type
+
+*/
+
+UserDefinedSpee_1183_Type::UserDefinedSpee_1183_Type()
 {
   ValueStats = 0;
   MaxValueStats = 0;
   MinValueStats = 0;
 }
 
-UserDefinedSpee_1182_Type::UserDefinedSpee_1182_Type(
+UserDefinedSpee_1183_Type::UserDefinedSpee_1183_Type(
  StatsWithTolSpeedType * ValueStatsIn,
  StatsSpeedType * MaxValueStatsIn,
  StatsSpeedType * MinValueStatsIn)
@@ -49754,7 +49754,7 @@ UserDefinedSpee_1182_Type::UserDefinedSpee_1182_Type(
   MinValueStats = MinValueStatsIn;
 }
 
-UserDefinedSpee_1182_Type::~UserDefinedSpee_1182_Type()
+UserDefinedSpee_1183_Type::~UserDefinedSpee_1183_Type()
 {
   #ifndef NODESTRUCT
   delete ValueStats;
@@ -49763,7 +49763,7 @@ UserDefinedSpee_1182_Type::~UserDefinedSpee_1182_Type()
   #endif
 }
 
-void UserDefinedSpee_1182_Type::printSelf(FILE * outFile)
+void UserDefinedSpee_1183_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ValueStats");
@@ -49788,68 +49788,11 @@ void UserDefinedSpee_1182_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolSpeedType * UserDefinedSpee_1182_Type::getValueStats()
+StatsWithTolSpeedType * UserDefinedSpee_1183_Type::getValueStats()
 {return ValueStats;}
 
-void UserDefinedSpee_1182_Type::setValueStats(StatsWithTolSpeedType * ValueStatsIn)
+void UserDefinedSpee_1183_Type::setValueStats(StatsWithTolSpeedType * ValueStatsIn)
 {ValueStats = ValueStatsIn;}
-
-StatsSpeedType * UserDefinedSpee_1182_Type::getMaxValueStats()
-{return MaxValueStats;}
-
-void UserDefinedSpee_1182_Type::setMaxValueStats(StatsSpeedType * MaxValueStatsIn)
-{MaxValueStats = MaxValueStatsIn;}
-
-StatsSpeedType * UserDefinedSpee_1182_Type::getMinValueStats()
-{return MinValueStats;}
-
-void UserDefinedSpee_1182_Type::setMinValueStats(StatsSpeedType * MinValueStatsIn)
-{MinValueStats = MinValueStatsIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedSpee_1183_Type
-
-*/
-
-UserDefinedSpee_1183_Type::UserDefinedSpee_1183_Type()
-{
-  MaxValueStats = 0;
-  MinValueStats = 0;
-}
-
-UserDefinedSpee_1183_Type::UserDefinedSpee_1183_Type(
- StatsSpeedType * MaxValueStatsIn,
- StatsSpeedType * MinValueStatsIn)
-{
-  MaxValueStats = MaxValueStatsIn;
-  MinValueStats = MinValueStatsIn;
-}
-
-UserDefinedSpee_1183_Type::~UserDefinedSpee_1183_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxValueStats;
-  delete MinValueStats;
-  #endif
-}
-
-void UserDefinedSpee_1183_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxValueStats");
-  MaxValueStats->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</MaxValueStats>\n");
-  if (MinValueStats)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinValueStats");
-      MinValueStats->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MinValueStats>\n");
-    }
-}
 
 StatsSpeedType * UserDefinedSpee_1183_Type::getMaxValueStats()
 {return MaxValueStats;}
@@ -49863,7 +49806,7 @@ StatsSpeedType * UserDefinedSpee_1183_Type::getMinValueStats()
 void UserDefinedSpee_1183_Type::setMinValueStats(StatsSpeedType * MinValueStatsIn)
 {MinValueStats = MinValueStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedSpee_1184_Type
 
@@ -49871,12 +49814,69 @@ void UserDefinedSpee_1183_Type::setMinValueStats(StatsSpeedType * MinValueStatsI
 
 UserDefinedSpee_1184_Type::UserDefinedSpee_1184_Type()
 {
+  MaxValueStats = 0;
+  MinValueStats = 0;
+}
+
+UserDefinedSpee_1184_Type::UserDefinedSpee_1184_Type(
+ StatsSpeedType * MaxValueStatsIn,
+ StatsSpeedType * MinValueStatsIn)
+{
+  MaxValueStats = MaxValueStatsIn;
+  MinValueStats = MinValueStatsIn;
+}
+
+UserDefinedSpee_1184_Type::~UserDefinedSpee_1184_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxValueStats;
+  delete MinValueStats;
+  #endif
+}
+
+void UserDefinedSpee_1184_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxValueStats");
+  MaxValueStats->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "</MaxValueStats>\n");
+  if (MinValueStats)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinValueStats");
+      MinValueStats->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MinValueStats>\n");
+    }
+}
+
+StatsSpeedType * UserDefinedSpee_1184_Type::getMaxValueStats()
+{return MaxValueStats;}
+
+void UserDefinedSpee_1184_Type::setMaxValueStats(StatsSpeedType * MaxValueStatsIn)
+{MaxValueStats = MaxValueStatsIn;}
+
+StatsSpeedType * UserDefinedSpee_1184_Type::getMinValueStats()
+{return MinValueStats;}
+
+void UserDefinedSpee_1184_Type::setMinValueStats(StatsSpeedType * MinValueStatsIn)
+{MinValueStats = MinValueStatsIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedSpee_1185_Type
+
+*/
+
+UserDefinedSpee_1185_Type::UserDefinedSpee_1185_Type()
+{
   DeviationStats = 0;
   MaxDeviationStats = 0;
   MinDeviationStats = 0;
 }
 
-UserDefinedSpee_1184_Type::UserDefinedSpee_1184_Type(
+UserDefinedSpee_1185_Type::UserDefinedSpee_1185_Type(
  StatsWithTolSpeedType * DeviationStatsIn,
  StatsSpeedType * MaxDeviationStatsIn,
  StatsSpeedType * MinDeviationStatsIn)
@@ -49886,7 +49886,7 @@ UserDefinedSpee_1184_Type::UserDefinedSpee_1184_Type(
   MinDeviationStats = MinDeviationStatsIn;
 }
 
-UserDefinedSpee_1184_Type::~UserDefinedSpee_1184_Type()
+UserDefinedSpee_1185_Type::~UserDefinedSpee_1185_Type()
 {
   #ifndef NODESTRUCT
   delete DeviationStats;
@@ -49895,7 +49895,7 @@ UserDefinedSpee_1184_Type::~UserDefinedSpee_1184_Type()
   #endif
 }
 
-void UserDefinedSpee_1184_Type::printSelf(FILE * outFile)
+void UserDefinedSpee_1185_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<DeviationStats");
@@ -49920,68 +49920,11 @@ void UserDefinedSpee_1184_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolSpeedType * UserDefinedSpee_1184_Type::getDeviationStats()
+StatsWithTolSpeedType * UserDefinedSpee_1185_Type::getDeviationStats()
 {return DeviationStats;}
 
-void UserDefinedSpee_1184_Type::setDeviationStats(StatsWithTolSpeedType * DeviationStatsIn)
+void UserDefinedSpee_1185_Type::setDeviationStats(StatsWithTolSpeedType * DeviationStatsIn)
 {DeviationStats = DeviationStatsIn;}
-
-StatsSpeedType * UserDefinedSpee_1184_Type::getMaxDeviationStats()
-{return MaxDeviationStats;}
-
-void UserDefinedSpee_1184_Type::setMaxDeviationStats(StatsSpeedType * MaxDeviationStatsIn)
-{MaxDeviationStats = MaxDeviationStatsIn;}
-
-StatsSpeedType * UserDefinedSpee_1184_Type::getMinDeviationStats()
-{return MinDeviationStats;}
-
-void UserDefinedSpee_1184_Type::setMinDeviationStats(StatsSpeedType * MinDeviationStatsIn)
-{MinDeviationStats = MinDeviationStatsIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedSpee_1185_Type
-
-*/
-
-UserDefinedSpee_1185_Type::UserDefinedSpee_1185_Type()
-{
-  MaxDeviationStats = 0;
-  MinDeviationStats = 0;
-}
-
-UserDefinedSpee_1185_Type::UserDefinedSpee_1185_Type(
- StatsSpeedType * MaxDeviationStatsIn,
- StatsSpeedType * MinDeviationStatsIn)
-{
-  MaxDeviationStats = MaxDeviationStatsIn;
-  MinDeviationStats = MinDeviationStatsIn;
-}
-
-UserDefinedSpee_1185_Type::~UserDefinedSpee_1185_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxDeviationStats;
-  delete MinDeviationStats;
-  #endif
-}
-
-void UserDefinedSpee_1185_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxDeviationStats");
-  MaxDeviationStats->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</MaxDeviationStats>\n");
-  if (MinDeviationStats)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinDeviationStats");
-      MinDeviationStats->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MinDeviationStats>\n");
-    }
-}
 
 StatsSpeedType * UserDefinedSpee_1185_Type::getMaxDeviationStats()
 {return MaxDeviationStats;}
@@ -49995,20 +49938,77 @@ StatsSpeedType * UserDefinedSpee_1185_Type::getMinDeviationStats()
 void UserDefinedSpee_1185_Type::setMinDeviationStats(StatsSpeedType * MinDeviationStatsIn)
 {MinDeviationStats = MinDeviationStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedTemp_1186_Type
+/* class UserDefinedSpee_1186_Type
 
 */
 
-UserDefinedTemp_1186_Type::UserDefinedTemp_1186_Type()
+UserDefinedSpee_1186_Type::UserDefinedSpee_1186_Type()
+{
+  MaxDeviationStats = 0;
+  MinDeviationStats = 0;
+}
+
+UserDefinedSpee_1186_Type::UserDefinedSpee_1186_Type(
+ StatsSpeedType * MaxDeviationStatsIn,
+ StatsSpeedType * MinDeviationStatsIn)
+{
+  MaxDeviationStats = MaxDeviationStatsIn;
+  MinDeviationStats = MinDeviationStatsIn;
+}
+
+UserDefinedSpee_1186_Type::~UserDefinedSpee_1186_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxDeviationStats;
+  delete MinDeviationStats;
+  #endif
+}
+
+void UserDefinedSpee_1186_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxDeviationStats");
+  MaxDeviationStats->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "</MaxDeviationStats>\n");
+  if (MinDeviationStats)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinDeviationStats");
+      MinDeviationStats->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MinDeviationStats>\n");
+    }
+}
+
+StatsSpeedType * UserDefinedSpee_1186_Type::getMaxDeviationStats()
+{return MaxDeviationStats;}
+
+void UserDefinedSpee_1186_Type::setMaxDeviationStats(StatsSpeedType * MaxDeviationStatsIn)
+{MaxDeviationStats = MaxDeviationStatsIn;}
+
+StatsSpeedType * UserDefinedSpee_1186_Type::getMinDeviationStats()
+{return MinDeviationStats;}
+
+void UserDefinedSpee_1186_Type::setMinDeviationStats(StatsSpeedType * MinDeviationStatsIn)
+{MinDeviationStats = MinDeviationStatsIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedTemp_1187_Type
+
+*/
+
+UserDefinedTemp_1187_Type::UserDefinedTemp_1187_Type()
 {
   ValueStats = 0;
   MaxValueStats = 0;
   MinValueStats = 0;
 }
 
-UserDefinedTemp_1186_Type::UserDefinedTemp_1186_Type(
+UserDefinedTemp_1187_Type::UserDefinedTemp_1187_Type(
  StatsWithTolTemperatureType * ValueStatsIn,
  StatsTemperatureType * MaxValueStatsIn,
  StatsTemperatureType * MinValueStatsIn)
@@ -50018,7 +50018,7 @@ UserDefinedTemp_1186_Type::UserDefinedTemp_1186_Type(
   MinValueStats = MinValueStatsIn;
 }
 
-UserDefinedTemp_1186_Type::~UserDefinedTemp_1186_Type()
+UserDefinedTemp_1187_Type::~UserDefinedTemp_1187_Type()
 {
   #ifndef NODESTRUCT
   delete ValueStats;
@@ -50027,7 +50027,7 @@ UserDefinedTemp_1186_Type::~UserDefinedTemp_1186_Type()
   #endif
 }
 
-void UserDefinedTemp_1186_Type::printSelf(FILE * outFile)
+void UserDefinedTemp_1187_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ValueStats");
@@ -50052,68 +50052,11 @@ void UserDefinedTemp_1186_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolTemperatureType * UserDefinedTemp_1186_Type::getValueStats()
+StatsWithTolTemperatureType * UserDefinedTemp_1187_Type::getValueStats()
 {return ValueStats;}
 
-void UserDefinedTemp_1186_Type::setValueStats(StatsWithTolTemperatureType * ValueStatsIn)
+void UserDefinedTemp_1187_Type::setValueStats(StatsWithTolTemperatureType * ValueStatsIn)
 {ValueStats = ValueStatsIn;}
-
-StatsTemperatureType * UserDefinedTemp_1186_Type::getMaxValueStats()
-{return MaxValueStats;}
-
-void UserDefinedTemp_1186_Type::setMaxValueStats(StatsTemperatureType * MaxValueStatsIn)
-{MaxValueStats = MaxValueStatsIn;}
-
-StatsTemperatureType * UserDefinedTemp_1186_Type::getMinValueStats()
-{return MinValueStats;}
-
-void UserDefinedTemp_1186_Type::setMinValueStats(StatsTemperatureType * MinValueStatsIn)
-{MinValueStats = MinValueStatsIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedTemp_1187_Type
-
-*/
-
-UserDefinedTemp_1187_Type::UserDefinedTemp_1187_Type()
-{
-  MaxValueStats = 0;
-  MinValueStats = 0;
-}
-
-UserDefinedTemp_1187_Type::UserDefinedTemp_1187_Type(
- StatsTemperatureType * MaxValueStatsIn,
- StatsTemperatureType * MinValueStatsIn)
-{
-  MaxValueStats = MaxValueStatsIn;
-  MinValueStats = MinValueStatsIn;
-}
-
-UserDefinedTemp_1187_Type::~UserDefinedTemp_1187_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxValueStats;
-  delete MinValueStats;
-  #endif
-}
-
-void UserDefinedTemp_1187_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxValueStats");
-  MaxValueStats->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</MaxValueStats>\n");
-  if (MinValueStats)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinValueStats");
-      MinValueStats->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MinValueStats>\n");
-    }
-}
 
 StatsTemperatureType * UserDefinedTemp_1187_Type::getMaxValueStats()
 {return MaxValueStats;}
@@ -50127,7 +50070,7 @@ StatsTemperatureType * UserDefinedTemp_1187_Type::getMinValueStats()
 void UserDefinedTemp_1187_Type::setMinValueStats(StatsTemperatureType * MinValueStatsIn)
 {MinValueStats = MinValueStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedTemp_1188_Type
 
@@ -50135,12 +50078,69 @@ void UserDefinedTemp_1187_Type::setMinValueStats(StatsTemperatureType * MinValue
 
 UserDefinedTemp_1188_Type::UserDefinedTemp_1188_Type()
 {
+  MaxValueStats = 0;
+  MinValueStats = 0;
+}
+
+UserDefinedTemp_1188_Type::UserDefinedTemp_1188_Type(
+ StatsTemperatureType * MaxValueStatsIn,
+ StatsTemperatureType * MinValueStatsIn)
+{
+  MaxValueStats = MaxValueStatsIn;
+  MinValueStats = MinValueStatsIn;
+}
+
+UserDefinedTemp_1188_Type::~UserDefinedTemp_1188_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxValueStats;
+  delete MinValueStats;
+  #endif
+}
+
+void UserDefinedTemp_1188_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxValueStats");
+  MaxValueStats->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "</MaxValueStats>\n");
+  if (MinValueStats)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinValueStats");
+      MinValueStats->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MinValueStats>\n");
+    }
+}
+
+StatsTemperatureType * UserDefinedTemp_1188_Type::getMaxValueStats()
+{return MaxValueStats;}
+
+void UserDefinedTemp_1188_Type::setMaxValueStats(StatsTemperatureType * MaxValueStatsIn)
+{MaxValueStats = MaxValueStatsIn;}
+
+StatsTemperatureType * UserDefinedTemp_1188_Type::getMinValueStats()
+{return MinValueStats;}
+
+void UserDefinedTemp_1188_Type::setMinValueStats(StatsTemperatureType * MinValueStatsIn)
+{MinValueStats = MinValueStatsIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedTemp_1189_Type
+
+*/
+
+UserDefinedTemp_1189_Type::UserDefinedTemp_1189_Type()
+{
   DeviationStats = 0;
   MaxDeviationStats = 0;
   MinDeviationStats = 0;
 }
 
-UserDefinedTemp_1188_Type::UserDefinedTemp_1188_Type(
+UserDefinedTemp_1189_Type::UserDefinedTemp_1189_Type(
  StatsWithTolTemperatureType * DeviationStatsIn,
  StatsTemperatureType * MaxDeviationStatsIn,
  StatsTemperatureType * MinDeviationStatsIn)
@@ -50150,7 +50150,7 @@ UserDefinedTemp_1188_Type::UserDefinedTemp_1188_Type(
   MinDeviationStats = MinDeviationStatsIn;
 }
 
-UserDefinedTemp_1188_Type::~UserDefinedTemp_1188_Type()
+UserDefinedTemp_1189_Type::~UserDefinedTemp_1189_Type()
 {
   #ifndef NODESTRUCT
   delete DeviationStats;
@@ -50159,7 +50159,7 @@ UserDefinedTemp_1188_Type::~UserDefinedTemp_1188_Type()
   #endif
 }
 
-void UserDefinedTemp_1188_Type::printSelf(FILE * outFile)
+void UserDefinedTemp_1189_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<DeviationStats");
@@ -50184,68 +50184,11 @@ void UserDefinedTemp_1188_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolTemperatureType * UserDefinedTemp_1188_Type::getDeviationStats()
+StatsWithTolTemperatureType * UserDefinedTemp_1189_Type::getDeviationStats()
 {return DeviationStats;}
 
-void UserDefinedTemp_1188_Type::setDeviationStats(StatsWithTolTemperatureType * DeviationStatsIn)
+void UserDefinedTemp_1189_Type::setDeviationStats(StatsWithTolTemperatureType * DeviationStatsIn)
 {DeviationStats = DeviationStatsIn;}
-
-StatsTemperatureType * UserDefinedTemp_1188_Type::getMaxDeviationStats()
-{return MaxDeviationStats;}
-
-void UserDefinedTemp_1188_Type::setMaxDeviationStats(StatsTemperatureType * MaxDeviationStatsIn)
-{MaxDeviationStats = MaxDeviationStatsIn;}
-
-StatsTemperatureType * UserDefinedTemp_1188_Type::getMinDeviationStats()
-{return MinDeviationStats;}
-
-void UserDefinedTemp_1188_Type::setMinDeviationStats(StatsTemperatureType * MinDeviationStatsIn)
-{MinDeviationStats = MinDeviationStatsIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedTemp_1189_Type
-
-*/
-
-UserDefinedTemp_1189_Type::UserDefinedTemp_1189_Type()
-{
-  MaxDeviationStats = 0;
-  MinDeviationStats = 0;
-}
-
-UserDefinedTemp_1189_Type::UserDefinedTemp_1189_Type(
- StatsTemperatureType * MaxDeviationStatsIn,
- StatsTemperatureType * MinDeviationStatsIn)
-{
-  MaxDeviationStats = MaxDeviationStatsIn;
-  MinDeviationStats = MinDeviationStatsIn;
-}
-
-UserDefinedTemp_1189_Type::~UserDefinedTemp_1189_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxDeviationStats;
-  delete MinDeviationStats;
-  #endif
-}
-
-void UserDefinedTemp_1189_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxDeviationStats");
-  MaxDeviationStats->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</MaxDeviationStats>\n");
-  if (MinDeviationStats)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinDeviationStats");
-      MinDeviationStats->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MinDeviationStats>\n");
-    }
-}
 
 StatsTemperatureType * UserDefinedTemp_1189_Type::getMaxDeviationStats()
 {return MaxDeviationStats;}
@@ -50259,20 +50202,77 @@ StatsTemperatureType * UserDefinedTemp_1189_Type::getMinDeviationStats()
 void UserDefinedTemp_1189_Type::setMinDeviationStats(StatsTemperatureType * MinDeviationStatsIn)
 {MinDeviationStats = MinDeviationStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedTime_1190_Type
+/* class UserDefinedTemp_1190_Type
 
 */
 
-UserDefinedTime_1190_Type::UserDefinedTime_1190_Type()
+UserDefinedTemp_1190_Type::UserDefinedTemp_1190_Type()
+{
+  MaxDeviationStats = 0;
+  MinDeviationStats = 0;
+}
+
+UserDefinedTemp_1190_Type::UserDefinedTemp_1190_Type(
+ StatsTemperatureType * MaxDeviationStatsIn,
+ StatsTemperatureType * MinDeviationStatsIn)
+{
+  MaxDeviationStats = MaxDeviationStatsIn;
+  MinDeviationStats = MinDeviationStatsIn;
+}
+
+UserDefinedTemp_1190_Type::~UserDefinedTemp_1190_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxDeviationStats;
+  delete MinDeviationStats;
+  #endif
+}
+
+void UserDefinedTemp_1190_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxDeviationStats");
+  MaxDeviationStats->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "</MaxDeviationStats>\n");
+  if (MinDeviationStats)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinDeviationStats");
+      MinDeviationStats->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MinDeviationStats>\n");
+    }
+}
+
+StatsTemperatureType * UserDefinedTemp_1190_Type::getMaxDeviationStats()
+{return MaxDeviationStats;}
+
+void UserDefinedTemp_1190_Type::setMaxDeviationStats(StatsTemperatureType * MaxDeviationStatsIn)
+{MaxDeviationStats = MaxDeviationStatsIn;}
+
+StatsTemperatureType * UserDefinedTemp_1190_Type::getMinDeviationStats()
+{return MinDeviationStats;}
+
+void UserDefinedTemp_1190_Type::setMinDeviationStats(StatsTemperatureType * MinDeviationStatsIn)
+{MinDeviationStats = MinDeviationStatsIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedTime_1191_Type
+
+*/
+
+UserDefinedTime_1191_Type::UserDefinedTime_1191_Type()
 {
   ValueStats = 0;
   MaxValueStats = 0;
   MinValueStats = 0;
 }
 
-UserDefinedTime_1190_Type::UserDefinedTime_1190_Type(
+UserDefinedTime_1191_Type::UserDefinedTime_1191_Type(
  StatsWithTolTimeType * ValueStatsIn,
  StatsTimeType * MaxValueStatsIn,
  StatsTimeType * MinValueStatsIn)
@@ -50282,7 +50282,7 @@ UserDefinedTime_1190_Type::UserDefinedTime_1190_Type(
   MinValueStats = MinValueStatsIn;
 }
 
-UserDefinedTime_1190_Type::~UserDefinedTime_1190_Type()
+UserDefinedTime_1191_Type::~UserDefinedTime_1191_Type()
 {
   #ifndef NODESTRUCT
   delete ValueStats;
@@ -50291,7 +50291,7 @@ UserDefinedTime_1190_Type::~UserDefinedTime_1190_Type()
   #endif
 }
 
-void UserDefinedTime_1190_Type::printSelf(FILE * outFile)
+void UserDefinedTime_1191_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ValueStats");
@@ -50316,68 +50316,11 @@ void UserDefinedTime_1190_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolTimeType * UserDefinedTime_1190_Type::getValueStats()
+StatsWithTolTimeType * UserDefinedTime_1191_Type::getValueStats()
 {return ValueStats;}
 
-void UserDefinedTime_1190_Type::setValueStats(StatsWithTolTimeType * ValueStatsIn)
+void UserDefinedTime_1191_Type::setValueStats(StatsWithTolTimeType * ValueStatsIn)
 {ValueStats = ValueStatsIn;}
-
-StatsTimeType * UserDefinedTime_1190_Type::getMaxValueStats()
-{return MaxValueStats;}
-
-void UserDefinedTime_1190_Type::setMaxValueStats(StatsTimeType * MaxValueStatsIn)
-{MaxValueStats = MaxValueStatsIn;}
-
-StatsTimeType * UserDefinedTime_1190_Type::getMinValueStats()
-{return MinValueStats;}
-
-void UserDefinedTime_1190_Type::setMinValueStats(StatsTimeType * MinValueStatsIn)
-{MinValueStats = MinValueStatsIn;}
-
-/*********************************************************************/
-
-/* class UserDefinedTime_1191_Type
-
-*/
-
-UserDefinedTime_1191_Type::UserDefinedTime_1191_Type()
-{
-  MaxValueStats = 0;
-  MinValueStats = 0;
-}
-
-UserDefinedTime_1191_Type::UserDefinedTime_1191_Type(
- StatsTimeType * MaxValueStatsIn,
- StatsTimeType * MinValueStatsIn)
-{
-  MaxValueStats = MaxValueStatsIn;
-  MinValueStats = MinValueStatsIn;
-}
-
-UserDefinedTime_1191_Type::~UserDefinedTime_1191_Type()
-{
-  #ifndef NODESTRUCT
-  delete MaxValueStats;
-  delete MinValueStats;
-  #endif
-}
-
-void UserDefinedTime_1191_Type::printSelf(FILE * outFile)
-{
-  doSpaces(0, outFile);
-  fprintf(outFile, "<MaxValueStats");
-  MaxValueStats->printSelf(outFile);
-  doSpaces(0, outFile);
-  fprintf(outFile, "</MaxValueStats>\n");
-  if (MinValueStats)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinValueStats");
-      MinValueStats->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</MinValueStats>\n");
-    }
-}
 
 StatsTimeType * UserDefinedTime_1191_Type::getMaxValueStats()
 {return MaxValueStats;}
@@ -50391,7 +50334,7 @@ StatsTimeType * UserDefinedTime_1191_Type::getMinValueStats()
 void UserDefinedTime_1191_Type::setMinValueStats(StatsTimeType * MinValueStatsIn)
 {MinValueStats = MinValueStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class UserDefinedTime_1192_Type
 
@@ -50399,12 +50342,69 @@ void UserDefinedTime_1191_Type::setMinValueStats(StatsTimeType * MinValueStatsIn
 
 UserDefinedTime_1192_Type::UserDefinedTime_1192_Type()
 {
+  MaxValueStats = 0;
+  MinValueStats = 0;
+}
+
+UserDefinedTime_1192_Type::UserDefinedTime_1192_Type(
+ StatsTimeType * MaxValueStatsIn,
+ StatsTimeType * MinValueStatsIn)
+{
+  MaxValueStats = MaxValueStatsIn;
+  MinValueStats = MinValueStatsIn;
+}
+
+UserDefinedTime_1192_Type::~UserDefinedTime_1192_Type()
+{
+  #ifndef NODESTRUCT
+  delete MaxValueStats;
+  delete MinValueStats;
+  #endif
+}
+
+void UserDefinedTime_1192_Type::printSelf(FILE * outFile)
+{
+  doSpaces(0, outFile);
+  fprintf(outFile, "<MaxValueStats");
+  MaxValueStats->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "</MaxValueStats>\n");
+  if (MinValueStats)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinValueStats");
+      MinValueStats->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</MinValueStats>\n");
+    }
+}
+
+StatsTimeType * UserDefinedTime_1192_Type::getMaxValueStats()
+{return MaxValueStats;}
+
+void UserDefinedTime_1192_Type::setMaxValueStats(StatsTimeType * MaxValueStatsIn)
+{MaxValueStats = MaxValueStatsIn;}
+
+StatsTimeType * UserDefinedTime_1192_Type::getMinValueStats()
+{return MinValueStats;}
+
+void UserDefinedTime_1192_Type::setMinValueStats(StatsTimeType * MinValueStatsIn)
+{MinValueStats = MinValueStatsIn;}
+
+/* ***************************************************************** */
+
+/* class UserDefinedTime_1193_Type
+
+*/
+
+UserDefinedTime_1193_Type::UserDefinedTime_1193_Type()
+{
   DeviationStats = 0;
   MaxDeviationStats = 0;
   MinDeviationStats = 0;
 }
 
-UserDefinedTime_1192_Type::UserDefinedTime_1192_Type(
+UserDefinedTime_1193_Type::UserDefinedTime_1193_Type(
  StatsWithTolTimeType * DeviationStatsIn,
  StatsTimeType * MaxDeviationStatsIn,
  StatsTimeType * MinDeviationStatsIn)
@@ -50414,7 +50414,7 @@ UserDefinedTime_1192_Type::UserDefinedTime_1192_Type(
   MinDeviationStats = MinDeviationStatsIn;
 }
 
-UserDefinedTime_1192_Type::~UserDefinedTime_1192_Type()
+UserDefinedTime_1193_Type::~UserDefinedTime_1193_Type()
 {
   #ifndef NODESTRUCT
   delete DeviationStats;
@@ -50423,7 +50423,7 @@ UserDefinedTime_1192_Type::~UserDefinedTime_1192_Type()
   #endif
 }
 
-void UserDefinedTime_1192_Type::printSelf(FILE * outFile)
+void UserDefinedTime_1193_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<DeviationStats");
@@ -50448,37 +50448,37 @@ void UserDefinedTime_1192_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolTimeType * UserDefinedTime_1192_Type::getDeviationStats()
+StatsWithTolTimeType * UserDefinedTime_1193_Type::getDeviationStats()
 {return DeviationStats;}
 
-void UserDefinedTime_1192_Type::setDeviationStats(StatsWithTolTimeType * DeviationStatsIn)
+void UserDefinedTime_1193_Type::setDeviationStats(StatsWithTolTimeType * DeviationStatsIn)
 {DeviationStats = DeviationStatsIn;}
 
-StatsTimeType * UserDefinedTime_1192_Type::getMaxDeviationStats()
+StatsTimeType * UserDefinedTime_1193_Type::getMaxDeviationStats()
 {return MaxDeviationStats;}
 
-void UserDefinedTime_1192_Type::setMaxDeviationStats(StatsTimeType * MaxDeviationStatsIn)
+void UserDefinedTime_1193_Type::setMaxDeviationStats(StatsTimeType * MaxDeviationStatsIn)
 {MaxDeviationStats = MaxDeviationStatsIn;}
 
-StatsTimeType * UserDefinedTime_1192_Type::getMinDeviationStats()
+StatsTimeType * UserDefinedTime_1193_Type::getMinDeviationStats()
 {return MinDeviationStats;}
 
-void UserDefinedTime_1192_Type::setMinDeviationStats(StatsTimeType * MinDeviationStatsIn)
+void UserDefinedTime_1193_Type::setMinDeviationStats(StatsTimeType * MinDeviationStatsIn)
 {MinDeviationStats = MinDeviationStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedTime_1193_Type
+/* class UserDefinedTime_1194_Type
 
 */
 
-UserDefinedTime_1193_Type::UserDefinedTime_1193_Type()
+UserDefinedTime_1194_Type::UserDefinedTime_1194_Type()
 {
   MaxDeviationStats = 0;
   MinDeviationStats = 0;
 }
 
-UserDefinedTime_1193_Type::UserDefinedTime_1193_Type(
+UserDefinedTime_1194_Type::UserDefinedTime_1194_Type(
  StatsTimeType * MaxDeviationStatsIn,
  StatsTimeType * MinDeviationStatsIn)
 {
@@ -50486,7 +50486,7 @@ UserDefinedTime_1193_Type::UserDefinedTime_1193_Type(
   MinDeviationStats = MinDeviationStatsIn;
 }
 
-UserDefinedTime_1193_Type::~UserDefinedTime_1193_Type()
+UserDefinedTime_1194_Type::~UserDefinedTime_1194_Type()
 {
   #ifndef NODESTRUCT
   delete MaxDeviationStats;
@@ -50494,7 +50494,7 @@ UserDefinedTime_1193_Type::~UserDefinedTime_1193_Type()
   #endif
 }
 
-void UserDefinedTime_1193_Type::printSelf(FILE * outFile)
+void UserDefinedTime_1194_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxDeviationStats");
@@ -50511,32 +50511,32 @@ void UserDefinedTime_1193_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsTimeType * UserDefinedTime_1193_Type::getMaxDeviationStats()
+StatsTimeType * UserDefinedTime_1194_Type::getMaxDeviationStats()
 {return MaxDeviationStats;}
 
-void UserDefinedTime_1193_Type::setMaxDeviationStats(StatsTimeType * MaxDeviationStatsIn)
+void UserDefinedTime_1194_Type::setMaxDeviationStats(StatsTimeType * MaxDeviationStatsIn)
 {MaxDeviationStats = MaxDeviationStatsIn;}
 
-StatsTimeType * UserDefinedTime_1193_Type::getMinDeviationStats()
+StatsTimeType * UserDefinedTime_1194_Type::getMinDeviationStats()
 {return MinDeviationStats;}
 
-void UserDefinedTime_1193_Type::setMinDeviationStats(StatsTimeType * MinDeviationStatsIn)
+void UserDefinedTime_1194_Type::setMinDeviationStats(StatsTimeType * MinDeviationStatsIn)
 {MinDeviationStats = MinDeviationStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedUnit_1194_Type
+/* class UserDefinedUnit_1195_Type
 
 */
 
-UserDefinedUnit_1194_Type::UserDefinedUnit_1194_Type()
+UserDefinedUnit_1195_Type::UserDefinedUnit_1195_Type()
 {
   ValueStats = 0;
   MaxValueStats = 0;
   MinValueStats = 0;
 }
 
-UserDefinedUnit_1194_Type::UserDefinedUnit_1194_Type(
+UserDefinedUnit_1195_Type::UserDefinedUnit_1195_Type(
  StatsWithTolUserDefinedUnitType * ValueStatsIn,
  StatsUserDefinedUnitType * MaxValueStatsIn,
  StatsUserDefinedUnitType * MinValueStatsIn)
@@ -50546,7 +50546,7 @@ UserDefinedUnit_1194_Type::UserDefinedUnit_1194_Type(
   MinValueStats = MinValueStatsIn;
 }
 
-UserDefinedUnit_1194_Type::~UserDefinedUnit_1194_Type()
+UserDefinedUnit_1195_Type::~UserDefinedUnit_1195_Type()
 {
   #ifndef NODESTRUCT
   delete ValueStats;
@@ -50555,7 +50555,7 @@ UserDefinedUnit_1194_Type::~UserDefinedUnit_1194_Type()
   #endif
 }
 
-void UserDefinedUnit_1194_Type::printSelf(FILE * outFile)
+void UserDefinedUnit_1195_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ValueStats");
@@ -50580,37 +50580,37 @@ void UserDefinedUnit_1194_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolUserDefinedUnitType * UserDefinedUnit_1194_Type::getValueStats()
+StatsWithTolUserDefinedUnitType * UserDefinedUnit_1195_Type::getValueStats()
 {return ValueStats;}
 
-void UserDefinedUnit_1194_Type::setValueStats(StatsWithTolUserDefinedUnitType * ValueStatsIn)
+void UserDefinedUnit_1195_Type::setValueStats(StatsWithTolUserDefinedUnitType * ValueStatsIn)
 {ValueStats = ValueStatsIn;}
 
-StatsUserDefinedUnitType * UserDefinedUnit_1194_Type::getMaxValueStats()
+StatsUserDefinedUnitType * UserDefinedUnit_1195_Type::getMaxValueStats()
 {return MaxValueStats;}
 
-void UserDefinedUnit_1194_Type::setMaxValueStats(StatsUserDefinedUnitType * MaxValueStatsIn)
+void UserDefinedUnit_1195_Type::setMaxValueStats(StatsUserDefinedUnitType * MaxValueStatsIn)
 {MaxValueStats = MaxValueStatsIn;}
 
-StatsUserDefinedUnitType * UserDefinedUnit_1194_Type::getMinValueStats()
+StatsUserDefinedUnitType * UserDefinedUnit_1195_Type::getMinValueStats()
 {return MinValueStats;}
 
-void UserDefinedUnit_1194_Type::setMinValueStats(StatsUserDefinedUnitType * MinValueStatsIn)
+void UserDefinedUnit_1195_Type::setMinValueStats(StatsUserDefinedUnitType * MinValueStatsIn)
 {MinValueStats = MinValueStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedUnit_1195_Type
+/* class UserDefinedUnit_1196_Type
 
 */
 
-UserDefinedUnit_1195_Type::UserDefinedUnit_1195_Type()
+UserDefinedUnit_1196_Type::UserDefinedUnit_1196_Type()
 {
   MaxValueStats = 0;
   MinValueStats = 0;
 }
 
-UserDefinedUnit_1195_Type::UserDefinedUnit_1195_Type(
+UserDefinedUnit_1196_Type::UserDefinedUnit_1196_Type(
  StatsUserDefinedUnitType * MaxValueStatsIn,
  StatsUserDefinedUnitType * MinValueStatsIn)
 {
@@ -50618,7 +50618,7 @@ UserDefinedUnit_1195_Type::UserDefinedUnit_1195_Type(
   MinValueStats = MinValueStatsIn;
 }
 
-UserDefinedUnit_1195_Type::~UserDefinedUnit_1195_Type()
+UserDefinedUnit_1196_Type::~UserDefinedUnit_1196_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValueStats;
@@ -50626,7 +50626,7 @@ UserDefinedUnit_1195_Type::~UserDefinedUnit_1195_Type()
   #endif
 }
 
-void UserDefinedUnit_1195_Type::printSelf(FILE * outFile)
+void UserDefinedUnit_1196_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValueStats");
@@ -50643,32 +50643,32 @@ void UserDefinedUnit_1195_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsUserDefinedUnitType * UserDefinedUnit_1195_Type::getMaxValueStats()
+StatsUserDefinedUnitType * UserDefinedUnit_1196_Type::getMaxValueStats()
 {return MaxValueStats;}
 
-void UserDefinedUnit_1195_Type::setMaxValueStats(StatsUserDefinedUnitType * MaxValueStatsIn)
+void UserDefinedUnit_1196_Type::setMaxValueStats(StatsUserDefinedUnitType * MaxValueStatsIn)
 {MaxValueStats = MaxValueStatsIn;}
 
-StatsUserDefinedUnitType * UserDefinedUnit_1195_Type::getMinValueStats()
+StatsUserDefinedUnitType * UserDefinedUnit_1196_Type::getMinValueStats()
 {return MinValueStats;}
 
-void UserDefinedUnit_1195_Type::setMinValueStats(StatsUserDefinedUnitType * MinValueStatsIn)
+void UserDefinedUnit_1196_Type::setMinValueStats(StatsUserDefinedUnitType * MinValueStatsIn)
 {MinValueStats = MinValueStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedUnit_1196_Type
+/* class UserDefinedUnit_1197_Type
 
 */
 
-UserDefinedUnit_1196_Type::UserDefinedUnit_1196_Type()
+UserDefinedUnit_1197_Type::UserDefinedUnit_1197_Type()
 {
   DeviationStats = 0;
   MaxDeviationStats = 0;
   MinDeviationStats = 0;
 }
 
-UserDefinedUnit_1196_Type::UserDefinedUnit_1196_Type(
+UserDefinedUnit_1197_Type::UserDefinedUnit_1197_Type(
  StatsWithTolUserDefinedUnitType * DeviationStatsIn,
  StatsUserDefinedUnitType * MaxDeviationStatsIn,
  StatsUserDefinedUnitType * MinDeviationStatsIn)
@@ -50678,7 +50678,7 @@ UserDefinedUnit_1196_Type::UserDefinedUnit_1196_Type(
   MinDeviationStats = MinDeviationStatsIn;
 }
 
-UserDefinedUnit_1196_Type::~UserDefinedUnit_1196_Type()
+UserDefinedUnit_1197_Type::~UserDefinedUnit_1197_Type()
 {
   #ifndef NODESTRUCT
   delete DeviationStats;
@@ -50687,7 +50687,7 @@ UserDefinedUnit_1196_Type::~UserDefinedUnit_1196_Type()
   #endif
 }
 
-void UserDefinedUnit_1196_Type::printSelf(FILE * outFile)
+void UserDefinedUnit_1197_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<DeviationStats");
@@ -50712,37 +50712,37 @@ void UserDefinedUnit_1196_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsWithTolUserDefinedUnitType * UserDefinedUnit_1196_Type::getDeviationStats()
+StatsWithTolUserDefinedUnitType * UserDefinedUnit_1197_Type::getDeviationStats()
 {return DeviationStats;}
 
-void UserDefinedUnit_1196_Type::setDeviationStats(StatsWithTolUserDefinedUnitType * DeviationStatsIn)
+void UserDefinedUnit_1197_Type::setDeviationStats(StatsWithTolUserDefinedUnitType * DeviationStatsIn)
 {DeviationStats = DeviationStatsIn;}
 
-StatsUserDefinedUnitType * UserDefinedUnit_1196_Type::getMaxDeviationStats()
+StatsUserDefinedUnitType * UserDefinedUnit_1197_Type::getMaxDeviationStats()
 {return MaxDeviationStats;}
 
-void UserDefinedUnit_1196_Type::setMaxDeviationStats(StatsUserDefinedUnitType * MaxDeviationStatsIn)
+void UserDefinedUnit_1197_Type::setMaxDeviationStats(StatsUserDefinedUnitType * MaxDeviationStatsIn)
 {MaxDeviationStats = MaxDeviationStatsIn;}
 
-StatsUserDefinedUnitType * UserDefinedUnit_1196_Type::getMinDeviationStats()
+StatsUserDefinedUnitType * UserDefinedUnit_1197_Type::getMinDeviationStats()
 {return MinDeviationStats;}
 
-void UserDefinedUnit_1196_Type::setMinDeviationStats(StatsUserDefinedUnitType * MinDeviationStatsIn)
+void UserDefinedUnit_1197_Type::setMinDeviationStats(StatsUserDefinedUnitType * MinDeviationStatsIn)
 {MinDeviationStats = MinDeviationStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class UserDefinedUnit_1197_Type
+/* class UserDefinedUnit_1198_Type
 
 */
 
-UserDefinedUnit_1197_Type::UserDefinedUnit_1197_Type()
+UserDefinedUnit_1198_Type::UserDefinedUnit_1198_Type()
 {
   MaxDeviationStats = 0;
   MinDeviationStats = 0;
 }
 
-UserDefinedUnit_1197_Type::UserDefinedUnit_1197_Type(
+UserDefinedUnit_1198_Type::UserDefinedUnit_1198_Type(
  StatsUserDefinedUnitType * MaxDeviationStatsIn,
  StatsUserDefinedUnitType * MinDeviationStatsIn)
 {
@@ -50750,7 +50750,7 @@ UserDefinedUnit_1197_Type::UserDefinedUnit_1197_Type(
   MinDeviationStats = MinDeviationStatsIn;
 }
 
-UserDefinedUnit_1197_Type::~UserDefinedUnit_1197_Type()
+UserDefinedUnit_1198_Type::~UserDefinedUnit_1198_Type()
 {
   #ifndef NODESTRUCT
   delete MaxDeviationStats;
@@ -50758,7 +50758,7 @@ UserDefinedUnit_1197_Type::~UserDefinedUnit_1197_Type()
   #endif
 }
 
-void UserDefinedUnit_1197_Type::printSelf(FILE * outFile)
+void UserDefinedUnit_1198_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxDeviationStats");
@@ -50775,17 +50775,17 @@ void UserDefinedUnit_1197_Type::printSelf(FILE * outFile)
     }
 }
 
-StatsUserDefinedUnitType * UserDefinedUnit_1197_Type::getMaxDeviationStats()
+StatsUserDefinedUnitType * UserDefinedUnit_1198_Type::getMaxDeviationStats()
 {return MaxDeviationStats;}
 
-void UserDefinedUnit_1197_Type::setMaxDeviationStats(StatsUserDefinedUnitType * MaxDeviationStatsIn)
+void UserDefinedUnit_1198_Type::setMaxDeviationStats(StatsUserDefinedUnitType * MaxDeviationStatsIn)
 {MaxDeviationStats = MaxDeviationStatsIn;}
 
-StatsUserDefinedUnitType * UserDefinedUnit_1197_Type::getMinDeviationStats()
+StatsUserDefinedUnitType * UserDefinedUnit_1198_Type::getMinDeviationStats()
 {return MinDeviationStats;}
 
-void UserDefinedUnit_1197_Type::setMinDeviationStats(StatsUserDefinedUnitType * MinDeviationStatsIn)
+void UserDefinedUnit_1198_Type::setMinDeviationStats(StatsUserDefinedUnitType * MinDeviationStatsIn)
 {MinDeviationStats = MinDeviationStatsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 

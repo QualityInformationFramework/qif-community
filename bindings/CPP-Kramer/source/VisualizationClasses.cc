@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #include <stdio.h>             // for printf, etc.
 #include <string.h>            // for strdup
@@ -10,8 +10,8 @@
 
 #define INDENT 2
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 /* class AlignmentEnumType
 
@@ -71,7 +71,7 @@ void AlignmentEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AnnotationViewSetType
 
@@ -229,7 +229,7 @@ AnnotationViewTypeLisd * AnnotationViewSetType::getAnnotationView()
 void AnnotationViewSetType::setAnnotationView(AnnotationViewTypeLisd * AnnotationViewIn)
 {AnnotationView = AnnotationViewIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AnnotationViewType
 
@@ -433,7 +433,7 @@ UnitVectorType * AnnotationViewType::getDirection()
 void AnnotationViewType::setDirection(UnitVectorType * DirectionIn)
 {Direction = DirectionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class AnnotationViewTypeLisd
 
@@ -460,7 +460,7 @@ AnnotationViewTypeLisd::~AnnotationViewTypeLisd()
 
 void AnnotationViewTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Area2dType
 
@@ -498,7 +498,7 @@ Area2dTypeChoicePair * Area2dType::getArea2dTypePair()
 void Area2dType::setArea2dTypePair(Area2dTypeChoicePair * Area2dTypePairIn)
 {Area2dTypePair = Area2dTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Area2dTypeChoicePair
 
@@ -544,7 +544,7 @@ void Area2dTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Area2dTypeLisd
 
@@ -571,7 +571,7 @@ Area2dTypeLisd::~Area2dTypeLisd()
 
 void Area2dTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Areas2dType
 
@@ -729,7 +729,7 @@ Area2dTypeLisd * Areas2dType::getArea()
 void Areas2dType::setArea(Area2dTypeLisd * AreaIn)
 {Area = AreaIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CameraFormEnumType
 
@@ -787,7 +787,7 @@ void CameraFormEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CameraSetType
 
@@ -945,7 +945,7 @@ CameraTypeLisd * CameraSetType::getCamera()
 void CameraSetType::setCamera(CameraTypeLisd * CameraIn)
 {Camera = CameraIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CameraType
 
@@ -1265,7 +1265,7 @@ XmlDouble * CameraType::getHeight()
 void CameraType::setHeight(XmlDouble * HeightIn)
 {Height = HeightIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class CameraTypeLisd
 
@@ -1292,7 +1292,7 @@ CameraTypeLisd::~CameraTypeLisd()
 
 void CameraTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DisplayStyleFormEnumType
 
@@ -1356,7 +1356,7 @@ void DisplayStyleFormEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DisplayStyleGroupType
 
@@ -1434,7 +1434,7 @@ ArrayReferenceFullType * DisplayStyleGroupType::getBodyIds()
 void DisplayStyleGroupType::setBodyIds(ArrayReferenceFullType * BodyIdsIn)
 {BodyIds = BodyIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DisplayStyleGroupTypeLisd
 
@@ -1461,7 +1461,7 @@ DisplayStyleGroupTypeLisd::~DisplayStyleGroupTypeLisd()
 
 void DisplayStyleGroupTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DisplayStyleGroupsType
 
@@ -1619,7 +1619,7 @@ DisplayStyleGroupTypeLisd * DisplayStyleGroupsType::getDisplayStyleGroup()
 void DisplayStyleGroupsType::setDisplayStyleGroup(DisplayStyleGroupTypeLisd * DisplayStyleGroupIn)
 {DisplayStyleGroup = DisplayStyleGroupIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DisplayStyleModeType
 
@@ -1694,7 +1694,7 @@ TransparencyType * DisplayStyleModeType::getTransparency()
 void DisplayStyleModeType::setTransparency(TransparencyType * TransparencyIn)
 {Transparency = TransparencyIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DisplayStyleSetType
 
@@ -1852,7 +1852,7 @@ DisplayStyleTypeLisd * DisplayStyleSetType::getDisplayStyle()
 void DisplayStyleSetType::setDisplayStyle(DisplayStyleTypeLisd * DisplayStyleIn)
 {DisplayStyle = DisplayStyleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DisplayStyleType
 
@@ -2061,7 +2061,7 @@ DisplayStyleGroupsType * DisplayStyleType::getDisplayStyleGroups()
 void DisplayStyleType::setDisplayStyleGroups(DisplayStyleGroupsType * DisplayStyleGroupsIn)
 {DisplayStyleGroups = DisplayStyleGroupsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class DisplayStyleTypeLisd
 
@@ -2088,7 +2088,7 @@ DisplayStyleTypeLisd::~DisplayStyleTypeLisd()
 
 void DisplayStyleTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExplodedViewMoveGroupType
 
@@ -2096,17 +2096,17 @@ void DisplayStyleTypeLisd::printSelf(FILE * outFile){}
 
 ExplodedViewMoveGroupType::ExplodedViewMoveGroupType()
 {
-  ExplodedViewMov_1230 = 0;
+  ExplodedViewMov_1231 = 0;
   ComponentIds = 0;
   BodyIds = 0;
 }
 
 ExplodedViewMoveGroupType::ExplodedViewMoveGroupType(
- ExplodedViewMov_1230_Type * ExplodedViewMov_1230In,
+ ExplodedViewMov_1231_Type * ExplodedViewMov_1231In,
  ArrayReferenceFullType * ComponentIdsIn,
  ArrayReferenceFullType * BodyIdsIn)
 {
-  ExplodedViewMov_1230 = ExplodedViewMov_1230In;
+  ExplodedViewMov_1231 = ExplodedViewMov_1231In;
   ComponentIds = ComponentIdsIn;
   BodyIds = BodyIdsIn;
 }
@@ -2114,7 +2114,7 @@ ExplodedViewMoveGroupType::ExplodedViewMoveGroupType(
 ExplodedViewMoveGroupType::~ExplodedViewMoveGroupType()
 {
   #ifndef NODESTRUCT
-  delete ExplodedViewMov_1230;
+  delete ExplodedViewMov_1231;
   delete ComponentIds;
   delete BodyIds;
   #endif
@@ -2124,7 +2124,7 @@ void ExplodedViewMoveGroupType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  ExplodedViewMov_1230->printSelf(outFile);
+  ExplodedViewMov_1231->printSelf(outFile);
   if (ComponentIds)
     {
       doSpaces(0, outFile);
@@ -2144,11 +2144,11 @@ void ExplodedViewMoveGroupType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-ExplodedViewMov_1230_Type * ExplodedViewMoveGroupType::getExplodedViewMov_1230()
-{return ExplodedViewMov_1230;}
+ExplodedViewMov_1231_Type * ExplodedViewMoveGroupType::getExplodedViewMov_1231()
+{return ExplodedViewMov_1231;}
 
-void ExplodedViewMoveGroupType::setExplodedViewMov_1230(ExplodedViewMov_1230_Type * ExplodedViewMov_1230In)
-{ExplodedViewMov_1230 = ExplodedViewMov_1230In;}
+void ExplodedViewMoveGroupType::setExplodedViewMov_1231(ExplodedViewMov_1231_Type * ExplodedViewMov_1231In)
+{ExplodedViewMov_1231 = ExplodedViewMov_1231In;}
 
 ArrayReferenceFullType * ExplodedViewMoveGroupType::getComponentIds()
 {return ComponentIds;}
@@ -2162,7 +2162,7 @@ ArrayReferenceFullType * ExplodedViewMoveGroupType::getBodyIds()
 void ExplodedViewMoveGroupType::setBodyIds(ArrayReferenceFullType * BodyIdsIn)
 {BodyIds = BodyIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExplodedViewMoveGroupTypeLisd
 
@@ -2189,7 +2189,7 @@ ExplodedViewMoveGroupTypeLisd::~ExplodedViewMoveGroupTypeLisd()
 
 void ExplodedViewMoveGroupTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExplodedViewMoveGroupsType
 
@@ -2347,7 +2347,7 @@ ExplodedViewMoveGroupTypeLisd * ExplodedViewMoveGroupsType::getMoveGroup()
 void ExplodedViewMoveGroupsType::setMoveGroup(ExplodedViewMoveGroupTypeLisd * MoveGroupIn)
 {MoveGroup = MoveGroupIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExplodedViewRotateType
 
@@ -2403,7 +2403,7 @@ AngularValueType * ExplodedViewRotateType::getAngle()
 void ExplodedViewRotateType::setAngle(AngularValueType * AngleIn)
 {Angle = AngleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExplodedViewSetType
 
@@ -2561,7 +2561,7 @@ ExplodedViewTypeLisd * ExplodedViewSetType::getExplodedView()
 void ExplodedViewSetType::setExplodedView(ExplodedViewTypeLisd * ExplodedViewIn)
 {ExplodedView = ExplodedViewIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExplodedViewTranslateType
 
@@ -2616,7 +2616,7 @@ LinearValueType * ExplodedViewTranslateType::getValue()
 void ExplodedViewTranslateType::setValue(LinearValueType * ValueIn)
 {Value = ValueIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExplodedViewType
 
@@ -2805,7 +2805,7 @@ ExplodedViewMoveGroupsType * ExplodedViewType::getMoveGroups()
 void ExplodedViewType::setMoveGroups(ExplodedViewMoveGroupsType * MoveGroupsIn)
 {MoveGroups = MoveGroupsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExplodedViewTypeLisd
 
@@ -2832,7 +2832,7 @@ ExplodedViewTypeLisd::~ExplodedViewTypeLisd()
 
 void ExplodedViewTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FontType
 
@@ -3180,7 +3180,7 @@ AlignmentEnumType * FontType::getAlignment()
 void FontType::setAlignment(AlignmentEnumType * AlignmentIn)
 {Alignment = AlignmentIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FontTypeLisd
 
@@ -3207,7 +3207,7 @@ FontTypeLisd::~FontTypeLisd()
 
 void FontTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FontsType
 
@@ -3365,7 +3365,7 @@ FontTypeLisd * FontsType::getFont()
 void FontsType::setFont(FontTypeLisd * FontIn)
 {Font = FontIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FrameBaseType
 
@@ -3381,7 +3381,7 @@ void FrameBaseType::printSelf(FILE * outFile)
   fprintf(outFile, "/>\n");
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FrameBaseTypeLisd
 
@@ -3408,7 +3408,7 @@ FrameBaseTypeLisd::~FrameBaseTypeLisd()
 
 void FrameBaseTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FrameCircularType
 
@@ -3557,7 +3557,7 @@ XmlDouble * FrameCircularType::getRadius()
 void FrameCircularType::setRadius(XmlDouble * RadiusIn)
 {Radius = RadiusIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FrameFlagType
 
@@ -3698,7 +3698,7 @@ XmlBoolean * FrameFlagType::getright()
 void FrameFlagType::setright(XmlBoolean * rightIn)
 {right = rightIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FrameHexagonalType
 
@@ -3758,7 +3758,7 @@ Point2dSimpleTypeLisd * FrameHexagonalType::getPoint()
 void FrameHexagonalType::setPoint(Point2dSimpleTypeLisd * PointIn)
 {Point = PointIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FrameIrregularFormType
 
@@ -3801,7 +3801,7 @@ ArrayPoint2dType * FrameIrregularFormType::getPoints()
 void FrameIrregularFormType::setPoints(ArrayPoint2dType * PointsIn)
 {Points = PointsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FrameOctagonalType
 
@@ -3861,7 +3861,7 @@ Point2dSimpleTypeLisd * FrameOctagonalType::getPoint()
 void FrameOctagonalType::setPoint(Point2dSimpleTypeLisd * PointIn)
 {Point = PointIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FramePentagonalType
 
@@ -3921,7 +3921,7 @@ Point2dSimpleTypeLisd * FramePentagonalType::getPoint()
 void FramePentagonalType::setPoint(Point2dSimpleTypeLisd * PointIn)
 {Point = PointIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FrameRectangularType
 
@@ -3992,7 +3992,7 @@ XmlDouble * FrameRectangularType::getHeight()
 void FrameRectangularType::setHeight(XmlDouble * HeightIn)
 {Height = HeightIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FrameTriangleType
 
@@ -4052,7 +4052,7 @@ Point2dSimpleTypeLisd * FrameTriangleType::getPoint()
 void FrameTriangleType::setPoint(Point2dSimpleTypeLisd * PointIn)
 {Point = PointIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FrameWeldSymbolTailType
 
@@ -4107,7 +4107,7 @@ Point2dSimpleType * FrameWeldSymbolTailType::getLowerPoint()
 void FrameWeldSymbolTailType::setLowerPoint(Point2dSimpleType * LowerPointIn)
 {LowerPoint = LowerPointIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FrameWeldSymbolType
 
@@ -4254,7 +4254,7 @@ WeldContourSymbolType * FrameWeldSymbolType::getOtherSideContourSymbol()
 void FrameWeldSymbolType::setOtherSideContourSymbol(WeldContourSymbolType * OtherSideContourSymbolIn)
 {OtherSideContourSymbol = OtherSideContourSymbolIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class FramesType
 
@@ -4565,7 +4565,7 @@ FrameBaseTypeLisd * FramesType::getFrame()
 void FramesType::setFrame(FrameBaseTypeLisd * FrameIn)
 {Frame = FrameIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class GraphicsType
 
@@ -4628,7 +4628,7 @@ Areas2dType * GraphicsType::getAreas()
 void GraphicsType::setAreas(Areas2dType * AreasIn)
 {Areas = AreasIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class HatchPatternType
 
@@ -4731,7 +4731,7 @@ ColorType * HatchPatternType::getColor()
 void HatchPatternType::setColor(ColorType * ColorIn)
 {Color = ColorIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class HatchPatternTypeLisd
 
@@ -4758,7 +4758,7 @@ HatchPatternTypeLisd::~HatchPatternTypeLisd()
 
 void HatchPatternTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class HatchPatternsType
 
@@ -4916,7 +4916,7 @@ HatchPatternTypeLisd * HatchPatternsType::getPattern()
 void HatchPatternsType::setPattern(HatchPatternTypeLisd * PatternIn)
 {Pattern = PatternIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class HatchStyleFormEnumType
 
@@ -4978,7 +4978,7 @@ void HatchStyleFormEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class HatchStyleSetType
 
@@ -5136,7 +5136,7 @@ HatchStyleTypeLisd * HatchStyleSetType::getHatchStyle()
 void HatchStyleSetType::setHatchStyle(HatchStyleTypeLisd * HatchStyleIn)
 {HatchStyle = HatchStyleIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class HatchStyleType
 
@@ -5363,7 +5363,7 @@ HatchPatternsType * HatchStyleType::getPatterns()
 void HatchStyleType::setPatterns(HatchPatternsType * PatternsIn)
 {Patterns = PatternsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class HatchStyleTypeLisd
 
@@ -5390,7 +5390,7 @@ HatchStyleTypeLisd::~HatchStyleTypeLisd()
 
 void HatchStyleTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LeaderCircularType
 
@@ -5457,7 +5457,7 @@ Point2dSimpleType * LeaderCircularType::getCenter()
 void LeaderCircularType::setCenter(Point2dSimpleType * CenterIn)
 {Center = CenterIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LeaderDoubleHeadCircularType
 
@@ -5536,7 +5536,7 @@ Point2dSimpleType * LeaderDoubleHeadCircularType::getCenter()
 void LeaderDoubleHeadCircularType::setCenter(Point2dSimpleType * CenterIn)
 {Center = CenterIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LeaderDoubleHeadExtendType
 
@@ -5615,7 +5615,7 @@ Point2dSimpleType * LeaderDoubleHeadExtendType::getPointExtension()
 void LeaderDoubleHeadExtendType::setPointExtension(Point2dSimpleType * PointExtensionIn)
 {PointExtension = PointExtensionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LeaderDoubleHeadType
 
@@ -5696,7 +5696,7 @@ Point2dSimpleType * LeaderDoubleHeadType::getPointConnection()
 void LeaderDoubleHeadType::setPointConnection(Point2dSimpleType * PointConnectionIn)
 {PointConnection = PointConnectionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LeaderExtendType
 
@@ -5780,7 +5780,7 @@ LeaderModifierEnumType * LeaderExtendType::getModifier()
 void LeaderExtendType::setModifier(LeaderModifierEnumType * ModifierIn)
 {Modifier = ModifierIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LeaderHeadFormEnumType
 
@@ -5864,7 +5864,7 @@ void LeaderHeadFormEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LeaderHeadFormType
 
@@ -5999,7 +5999,7 @@ D3Type * LeaderHeadFormType::getnormal()
 void LeaderHeadFormType::setnormal(D3Type * normalIn)
 {normal = normalIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LeaderModifierEnumType
 
@@ -6061,7 +6061,7 @@ void LeaderModifierEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LeaderType
 
@@ -6130,7 +6130,7 @@ XmlDouble * LeaderType::getHeadHeight()
 void LeaderType::setHeadHeight(XmlDouble * HeadHeightIn)
 {HeadHeight = HeadHeightIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LeaderTypeLisd
 
@@ -6157,7 +6157,7 @@ LeaderTypeLisd::~LeaderTypeLisd()
 
 void LeaderTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LogicalOperationEnumType
 
@@ -6215,7 +6215,7 @@ void LogicalOperationEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LogicalOperationType
 
@@ -6225,26 +6225,26 @@ LogicalOperationType::LogicalOperationType()
 {
   index = 0;
   Action = 0;
-  LogicalOperatio_1231 = 0;
+  LogicalOperatio_1232 = 0;
 }
 
 LogicalOperationType::LogicalOperationType(
  LogicalOperationEnumType * ActionIn,
- LogicalOperatio_1231_Type * LogicalOperatio_1231In)
+ LogicalOperatio_1232_Type * LogicalOperatio_1232In)
 {
   index = 0;
   Action = ActionIn;
-  LogicalOperatio_1231 = LogicalOperatio_1231In;
+  LogicalOperatio_1232 = LogicalOperatio_1232In;
 }
 
 LogicalOperationType::LogicalOperationType(
  XmlUnsignedInt * indexIn,
  LogicalOperationEnumType * ActionIn,
- LogicalOperatio_1231_Type * LogicalOperatio_1231In)
+ LogicalOperatio_1232_Type * LogicalOperatio_1232In)
 {
   index = indexIn;
   Action = ActionIn;
-  LogicalOperatio_1231 = LogicalOperatio_1231In;
+  LogicalOperatio_1232 = LogicalOperatio_1232In;
 }
 
 LogicalOperationType::~LogicalOperationType()
@@ -6252,7 +6252,7 @@ LogicalOperationType::~LogicalOperationType()
   #ifndef NODESTRUCT
   delete index;
   delete Action;
-  delete LogicalOperatio_1231;
+  delete LogicalOperatio_1232;
   #endif
 }
 
@@ -6289,7 +6289,7 @@ void LogicalOperationType::printSelf(FILE * outFile)
   fprintf(outFile, "<Action");
   Action->printSelf(outFile);
   fprintf(outFile, "</Action>\n");
-  LogicalOperatio_1231->printSelf(outFile);
+  LogicalOperatio_1232->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -6362,13 +6362,13 @@ LogicalOperationEnumType * LogicalOperationType::getAction()
 void LogicalOperationType::setAction(LogicalOperationEnumType * ActionIn)
 {Action = ActionIn;}
 
-LogicalOperatio_1231_Type * LogicalOperationType::getLogicalOperatio_1231()
-{return LogicalOperatio_1231;}
+LogicalOperatio_1232_Type * LogicalOperationType::getLogicalOperatio_1232()
+{return LogicalOperatio_1232;}
 
-void LogicalOperationType::setLogicalOperatio_1231(LogicalOperatio_1231_Type * LogicalOperatio_1231In)
-{LogicalOperatio_1231 = LogicalOperatio_1231In;}
+void LogicalOperationType::setLogicalOperatio_1232(LogicalOperatio_1232_Type * LogicalOperatio_1232In)
+{LogicalOperatio_1232 = LogicalOperatio_1232In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LogicalOperationTypeLisd
 
@@ -6395,7 +6395,7 @@ LogicalOperationTypeLisd::~LogicalOperationTypeLisd()
 
 void LogicalOperationTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class LogicalOperationsType
 
@@ -6553,7 +6553,7 @@ LogicalOperationTypeLisd * LogicalOperationsType::getLogicalOperation()
 void LogicalOperationsType::setLogicalOperation(LogicalOperationTypeLisd * LogicalOperationIn)
 {LogicalOperation = LogicalOperationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Loops2dType
 
@@ -6711,7 +6711,7 @@ Polyline2dTypeLisd * Loops2dType::getLoop()
 void Loops2dType::setLoop(Polyline2dTypeLisd * LoopIn)
 {Loop = LoopIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class OriginType
 
@@ -6752,7 +6752,7 @@ Point2dSimpleType * OriginType::getOrigin()
 void OriginType::setOrigin(Point2dSimpleType * OriginIn)
 {Origin = OriginIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PMIDisplaySetType
 
@@ -6910,7 +6910,7 @@ PMIDisplayTypeLisd * PMIDisplaySetType::getPMIDisplay()
 void PMIDisplaySetType::setPMIDisplay(PMIDisplayTypeLisd * PMIDisplayIn)
 {PMIDisplay = PMIDisplayIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PMIDisplayType
 
@@ -7225,7 +7225,7 @@ I2Type * PMIDisplayType::getGroupID()
 void PMIDisplayType::setGroupID(I2Type * GroupIDIn)
 {GroupID = GroupIDIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PMIDisplayTypeLisd
 
@@ -7252,7 +7252,7 @@ PMIDisplayTypeLisd::~PMIDisplayTypeLisd()
 
 void PMIDisplayTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class PlanePMIDisplayType
 
@@ -7328,7 +7328,7 @@ UnitVectorType * PlanePMIDisplayType::getDirection()
 void PlanePMIDisplayType::setDirection(UnitVectorType * DirectionIn)
 {Direction = DirectionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Polyline2dType
 
@@ -7337,29 +7337,29 @@ void PlanePMIDisplayType::setDirection(UnitVectorType * DirectionIn)
 Polyline2dType::Polyline2dType()
 {
   color = 0;
-  Polyline2dType_1232 = 0;
+  Polyline2dType_1233 = 0;
 }
 
 Polyline2dType::Polyline2dType(
- Polyline2dType_1232_Type * Polyline2dType_1232In)
+ Polyline2dType_1233_Type * Polyline2dType_1233In)
 {
   color = 0;
-  Polyline2dType_1232 = Polyline2dType_1232In;
+  Polyline2dType_1233 = Polyline2dType_1233In;
 }
 
 Polyline2dType::Polyline2dType(
  ColorType * colorIn,
- Polyline2dType_1232_Type * Polyline2dType_1232In)
+ Polyline2dType_1233_Type * Polyline2dType_1233In)
 {
   color = colorIn;
-  Polyline2dType_1232 = Polyline2dType_1232In;
+  Polyline2dType_1233 = Polyline2dType_1233In;
 }
 
 Polyline2dType::~Polyline2dType()
 {
   #ifndef NODESTRUCT
   delete color;
-  delete Polyline2dType_1232;
+  delete Polyline2dType_1233;
   #endif
 }
 
@@ -7387,7 +7387,7 @@ void Polyline2dType::printSelf(FILE * outFile)
     }
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  Polyline2dType_1232->printSelf(outFile);
+  Polyline2dType_1233->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -7449,13 +7449,13 @@ ColorType * Polyline2dType::getcolor()
 void Polyline2dType::setcolor(ColorType * colorIn)
 {color = colorIn;}
 
-Polyline2dType_1232_Type * Polyline2dType::getPolyline2dType_1232()
-{return Polyline2dType_1232;}
+Polyline2dType_1233_Type * Polyline2dType::getPolyline2dType_1233()
+{return Polyline2dType_1233;}
 
-void Polyline2dType::setPolyline2dType_1232(Polyline2dType_1232_Type * Polyline2dType_1232In)
-{Polyline2dType_1232 = Polyline2dType_1232In;}
+void Polyline2dType::setPolyline2dType_1233(Polyline2dType_1233_Type * Polyline2dType_1233In)
+{Polyline2dType_1233 = Polyline2dType_1233In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Polyline2dTypeLisd
 
@@ -7482,7 +7482,7 @@ Polyline2dTypeLisd::~Polyline2dTypeLisd()
 
 void Polyline2dTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Polylines2dType
 
@@ -7640,7 +7640,7 @@ Polyline2dTypeLisd * Polylines2dType::getPolyline()
 void Polylines2dType::setPolyline(Polyline2dTypeLisd * PolylineIn)
 {Polyline = PolylineIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SavedViewSetType
 
@@ -7798,7 +7798,7 @@ SavedViewTypeLisd * SavedViewSetType::getSavedView()
 void SavedViewSetType::setSavedView(SavedViewTypeLisd * SavedViewIn)
 {SavedView = SavedViewIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SavedViewType
 
@@ -8165,7 +8165,7 @@ ArrayReferenceActiveType * SavedViewType::getCameraIds()
 void SavedViewType::setCameraIds(ArrayReferenceActiveType * CameraIdsIn)
 {CameraIds = CameraIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SavedViewTypeLisd
 
@@ -8192,7 +8192,7 @@ SavedViewTypeLisd::~SavedViewTypeLisd()
 
 void SavedViewTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SectionAreaType
 
@@ -8251,7 +8251,7 @@ SectionLoopsType * SectionAreaType::getLoops()
 void SectionAreaType::setLoops(SectionLoopsType * LoopsIn)
 {Loops = LoopsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SectionAreaTypeLisd
 
@@ -8278,7 +8278,7 @@ SectionAreaTypeLisd::~SectionAreaTypeLisd()
 
 void SectionAreaTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SectionAreasType
 
@@ -8436,7 +8436,7 @@ SectionAreaTypeLisd * SectionAreasType::getArea()
 void SectionAreasType::setArea(SectionAreaTypeLisd * AreaIn)
 {Area = AreaIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SectionEdgesType
 
@@ -8594,7 +8594,7 @@ EdgeOrientedTypeLisd * SectionEdgesType::getEdge()
 void SectionEdgesType::setEdge(EdgeOrientedTypeLisd * EdgeIn)
 {Edge = EdgeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SectionGroupType
 
@@ -8692,7 +8692,7 @@ ArrayReferenceType * SectionGroupType::getVertices()
 void SectionGroupType::setVertices(ArrayReferenceType * VerticesIn)
 {Vertices = VerticesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SectionGroupTypeLisd
 
@@ -8719,7 +8719,7 @@ SectionGroupTypeLisd::~SectionGroupTypeLisd()
 
 void SectionGroupTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SectionGroupsType
 
@@ -8877,7 +8877,7 @@ SectionGroupTypeLisd * SectionGroupsType::getSectionGroup()
 void SectionGroupsType::setSectionGroup(SectionGroupTypeLisd * SectionGroupIn)
 {SectionGroup = SectionGroupIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SectionLoopsType
 
@@ -9035,7 +9035,7 @@ SectionPathTypeLisd * SectionLoopsType::getLoop()
 void SectionLoopsType::setLoop(SectionPathTypeLisd * LoopIn)
 {Loop = LoopIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SectionPathType
 
@@ -9077,7 +9077,7 @@ SectionEdgesType * SectionPathType::getEdges()
 void SectionPathType::setEdges(SectionEdgesType * EdgesIn)
 {Edges = EdgesIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SectionPathTypeLisd
 
@@ -9104,7 +9104,7 @@ SectionPathTypeLisd::~SectionPathTypeLisd()
 
 void SectionPathTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SectionPathsType
 
@@ -9262,7 +9262,7 @@ SectionPathTypeLisd * SectionPathsType::getPath()
 void SectionPathsType::setPath(SectionPathTypeLisd * PathIn)
 {Path = PathIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SimplifiedRepresentationFormEnumType
 
@@ -9322,7 +9322,7 @@ void SimplifiedRepresentationFormEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SimplifiedRepresentationGroupType
 
@@ -9399,7 +9399,7 @@ ArrayReferenceFullType * SimplifiedRepresentationGroupType::getBodyIds()
 void SimplifiedRepresentationGroupType::setBodyIds(ArrayReferenceFullType * BodyIdsIn)
 {BodyIds = BodyIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SimplifiedRepresentationGroupTypeLisd
 
@@ -9426,7 +9426,7 @@ SimplifiedRepresentationGroupTypeLisd::~SimplifiedRepresentationGroupTypeLisd()
 
 void SimplifiedRepresentationGroupTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SimplifiedRepresentationGroupsType
 
@@ -9584,7 +9584,7 @@ SimplifiedRepresentationGroupTypeLisd * SimplifiedRepresentationGroupsType::getS
 void SimplifiedRepresentationGroupsType::setSimplifiedRepresentationGroup(SimplifiedRepresentationGroupTypeLisd * SimplifiedRepresentationGroupIn)
 {SimplifiedRepresentationGroup = SimplifiedRepresentationGroupIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SimplifiedRepresentationSetType
 
@@ -9742,7 +9742,7 @@ SimplifiedRepresentationTypeLisd * SimplifiedRepresentationSetType::getSimplifie
 void SimplifiedRepresentationSetType::setSimplifiedRepresentation(SimplifiedRepresentationTypeLisd * SimplifiedRepresentationIn)
 {SimplifiedRepresentation = SimplifiedRepresentationIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SimplifiedRepresentationType
 
@@ -9950,7 +9950,7 @@ SimplifiedRepresentationGroupsType * SimplifiedRepresentationType::getSimplified
 void SimplifiedRepresentationType::setSimplifiedRepresentationGroups(SimplifiedRepresentationGroupsType * SimplifiedRepresentationGroupsIn)
 {SimplifiedRepresentationGroups = SimplifiedRepresentationGroupsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class SimplifiedRepresentationTypeLisd
 
@@ -9977,7 +9977,7 @@ SimplifiedRepresentationTypeLisd::~SimplifiedRepresentationTypeLisd()
 
 void SimplifiedRepresentationTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TextType
 
@@ -10032,7 +10032,7 @@ Point2dSimpleType * TextType::getXY()
 void TextType::setXY(Point2dSimpleType * XYIn)
 {XY = XYIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TextTypeLisd
 
@@ -10059,7 +10059,7 @@ TextTypeLisd::~TextTypeLisd()
 
 void TextTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TextsType
 
@@ -10329,7 +10329,7 @@ TextTypeLisd * TextsType::getText()
 void TextsType::setText(TextTypeLisd * TextIn)
 {Text = TextIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TrailingZeroDimensionalCharacteristicDisplayGroupType
 
@@ -10405,7 +10405,7 @@ ArrayReferenceFullType * TrailingZeroDimensionalCharacteristicDisplayGroupType::
 void TrailingZeroDimensionalCharacteristicDisplayGroupType::setDimensionalCharacteristicIds(ArrayReferenceFullType * DimensionalCharacteristicIdsIn)
 {DimensionalCharacteristicIds = DimensionalCharacteristicIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TrailingZeroDimensionalCharacteristicDisplayGroupTypeLisd
 
@@ -10432,7 +10432,7 @@ TrailingZeroDimensionalCharacteristicDisplayGroupTypeLisd::~TrailingZeroDimensio
 
 void TrailingZeroDimensionalCharacteristicDisplayGroupTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TrailingZeroDimensionalCharacteristicDisplayGroupsType
 
@@ -10590,7 +10590,7 @@ TrailingZeroDimensionalCharacteristicDisplayGroupTypeLisd * TrailingZeroDimensio
 void TrailingZeroDimensionalCharacteristicDisplayGroupsType::setTrailingZeroDimensionalCharacteristicDisplayGroup(TrailingZeroDimensionalCharacteristicDisplayGroupTypeLisd * TrailingZeroDimensionalCharacteristicDisplayGroupIn)
 {TrailingZeroDimensionalCharacteristicDisplayGroup = TrailingZeroDimensionalCharacteristicDisplayGroupIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TrailingZeroDisplayType
 
@@ -10704,7 +10704,7 @@ TrailingZeroGeometricCharacteristicDisplayGroupsType * TrailingZeroDisplayType::
 void TrailingZeroDisplayType::setTrailingZeroGeometricCharacteristicDisplayGroups(TrailingZeroGeometricCharacteristicDisplayGroupsType * TrailingZeroGeometricCharacteristicDisplayGroupsIn)
 {TrailingZeroGeometricCharacteristicDisplayGroups = TrailingZeroGeometricCharacteristicDisplayGroupsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TrailingZeroGeometricCharacteristicDisplayGroupType
 
@@ -10760,7 +10760,7 @@ ArrayReferenceFullType * TrailingZeroGeometricCharacteristicDisplayGroupType::ge
 void TrailingZeroGeometricCharacteristicDisplayGroupType::setGeometricCharacteristicIds(ArrayReferenceFullType * GeometricCharacteristicIdsIn)
 {GeometricCharacteristicIds = GeometricCharacteristicIdsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TrailingZeroGeometricCharacteristicDisplayGroupTypeLisd
 
@@ -10787,7 +10787,7 @@ TrailingZeroGeometricCharacteristicDisplayGroupTypeLisd::~TrailingZeroGeometricC
 
 void TrailingZeroGeometricCharacteristicDisplayGroupTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class TrailingZeroGeometricCharacteristicDisplayGroupsType
 
@@ -10945,7 +10945,7 @@ TrailingZeroGeometricCharacteristicDisplayGroupTypeLisd * TrailingZeroGeometricC
 void TrailingZeroGeometricCharacteristicDisplayGroupsType::setTrailingZeroGeometricCharacteristicDisplayGroup(TrailingZeroGeometricCharacteristicDisplayGroupTypeLisd * TrailingZeroGeometricCharacteristicDisplayGroupIn)
 {TrailingZeroGeometricCharacteristicDisplayGroup = TrailingZeroGeometricCharacteristicDisplayGroupIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Triangulation2dType
 
@@ -10953,23 +10953,23 @@ void TrailingZeroGeometricCharacteristicDisplayGroupsType::setTrailingZeroGeomet
 
 Triangulation2dType::Triangulation2dType()
 {
-  Triangulation2d_1233 = 0;
   Triangulation2d_1234 = 0;
+  Triangulation2d_1235 = 0;
 }
 
 Triangulation2dType::Triangulation2dType(
- Triangulation2d_1233_Type * Triangulation2d_1233In,
- Triangulation2d_1234_Type * Triangulation2d_1234In)
+ Triangulation2d_1234_Type * Triangulation2d_1234In,
+ Triangulation2d_1235_Type * Triangulation2d_1235In)
 {
-  Triangulation2d_1233 = Triangulation2d_1233In;
   Triangulation2d_1234 = Triangulation2d_1234In;
+  Triangulation2d_1235 = Triangulation2d_1235In;
 }
 
 Triangulation2dType::~Triangulation2dType()
 {
   #ifndef NODESTRUCT
-  delete Triangulation2d_1233;
   delete Triangulation2d_1234;
+  delete Triangulation2d_1235;
   #endif
 }
 
@@ -10977,16 +10977,10 @@ void Triangulation2dType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  Triangulation2d_1233->printSelf(outFile);
   Triangulation2d_1234->printSelf(outFile);
+  Triangulation2d_1235->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
-
-Triangulation2d_1233_Type * Triangulation2dType::getTriangulation2d_1233()
-{return Triangulation2d_1233;}
-
-void Triangulation2dType::setTriangulation2d_1233(Triangulation2d_1233_Type * Triangulation2d_1233In)
-{Triangulation2d_1233 = Triangulation2d_1233In;}
 
 Triangulation2d_1234_Type * Triangulation2dType::getTriangulation2d_1234()
 {return Triangulation2d_1234;}
@@ -10994,7 +10988,13 @@ Triangulation2d_1234_Type * Triangulation2dType::getTriangulation2d_1234()
 void Triangulation2dType::setTriangulation2d_1234(Triangulation2d_1234_Type * Triangulation2d_1234In)
 {Triangulation2d_1234 = Triangulation2d_1234In;}
 
-/*********************************************************************/
+Triangulation2d_1235_Type * Triangulation2dType::getTriangulation2d_1235()
+{return Triangulation2d_1235;}
+
+void Triangulation2dType::setTriangulation2d_1235(Triangulation2d_1235_Type * Triangulation2d_1235In)
+{Triangulation2d_1235 = Triangulation2d_1235In;}
+
+/* ***************************************************************** */
 
 /* class ViewSetType
 
@@ -11165,7 +11165,7 @@ HatchStyleSetType * ViewSetType::getHatchStyleSet()
 void ViewSetType::setHatchStyleSet(HatchStyleSetType * HatchStyleSetIn)
 {HatchStyleSet = HatchStyleSetIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class VisualizationSetType
 
@@ -11240,7 +11240,7 @@ PMIDisplaySetType * VisualizationSetType::getPMIDisplaySet()
 void VisualizationSetType::setPMIDisplaySet(PMIDisplaySetType * PMIDisplaySetIn)
 {PMIDisplaySet = PMIDisplaySetIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldContourSymbolType
 
@@ -11289,7 +11289,7 @@ WeldContourSymbolEnumType * WeldContourSymbolType::getSymbol()
 void WeldContourSymbolType::setSymbol(WeldContourSymbolEnumType * SymbolIn)
 {Symbol = SymbolIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldMainSymbolEnumType
 
@@ -11437,7 +11437,7 @@ void WeldMainSymbolEnumType::oPrintSelf(FILE * outFile)
   XmlString::oPrintSelf(outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldMainSymbolType
 
@@ -11486,7 +11486,7 @@ WeldMainSymbolEnumType * WeldMainSymbolType::getSymbol()
 void WeldMainSymbolType::setSymbol(WeldMainSymbolEnumType * SymbolIn)
 {Symbol = SymbolIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WeldSupplementarySymbolType
 
@@ -11535,7 +11535,7 @@ WeldSupplementarySymbolEnumType * WeldSupplementarySymbolType::getSymbol()
 void WeldSupplementarySymbolType::setSymbol(WeldSupplementarySymbolEnumType * SymbolIn)
 {Symbol = SymbolIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WitnessLinesType
 
@@ -11609,7 +11609,7 @@ WitnessLinesTypeChoicePair * WitnessLinesType::getWitnessLinesTypePair()
 void WitnessLinesType::setWitnessLinesTypePair(WitnessLinesTypeChoicePair * WitnessLinesTypePairIn)
 {WitnessLinesTypePair = WitnessLinesTypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class WitnessLinesTypeChoicePair
 
@@ -11628,22 +11628,22 @@ WitnessLinesTypeChoicePair::WitnessLinesTypeChoicePair(
 WitnessLinesTypeChoicePair::~WitnessLinesTypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (WitnessLinesTypeType == WitnessLinesTyp_1235E)
-    delete WitnessLinesTypeValue.WitnessLinesTyp_1235;
-  else if (WitnessLinesTypeType == WitnessLinesTyp_1236E)
+  if (WitnessLinesTypeType == WitnessLinesTyp_1236E)
     delete WitnessLinesTypeValue.WitnessLinesTyp_1236;
+  else if (WitnessLinesTypeType == WitnessLinesTyp_1237E)
+    delete WitnessLinesTypeValue.WitnessLinesTyp_1237;
   #endif
 }
 
 void WitnessLinesTypeChoicePair::printSelf(FILE * outFile)
 {
-  if (WitnessLinesTypeType == WitnessLinesTyp_1235E)
-    {
-      WitnessLinesTypeValue.WitnessLinesTyp_1235->printSelf(outFile);
-    }
-  else if (WitnessLinesTypeType == WitnessLinesTyp_1236E)
+  if (WitnessLinesTypeType == WitnessLinesTyp_1236E)
     {
       WitnessLinesTypeValue.WitnessLinesTyp_1236->printSelf(outFile);
+    }
+  else if (WitnessLinesTypeType == WitnessLinesTyp_1237E)
+    {
+      WitnessLinesTypeValue.WitnessLinesTyp_1237->printSelf(outFile);
     }
 }
 
@@ -11710,7 +11710,7 @@ XmlDouble * WitnessLinesType::getwidth()
 void WitnessLinesType::setwidth(XmlDouble * widthIn)
 {width = widthIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ZoneSectionPlaneType
 
@@ -11871,7 +11871,7 @@ SectionGroupsType * ZoneSectionPlaneType::getSectionGroups()
 void ZoneSectionPlaneType::setSectionGroups(SectionGroupsType * SectionGroupsIn)
 {SectionGroups = SectionGroupsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ZoneSectionPlaneTypeLisd
 
@@ -11898,7 +11898,7 @@ ZoneSectionPlaneTypeLisd::~ZoneSectionPlaneTypeLisd()
 
 void ZoneSectionPlaneTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ZoneSectionPlanesType
 
@@ -12056,7 +12056,7 @@ ZoneSectionPlaneTypeLisd * ZoneSectionPlanesType::getSectionPlane()
 void ZoneSectionPlanesType::setSectionPlane(ZoneSectionPlaneTypeLisd * SectionPlaneIn)
 {SectionPlane = SectionPlaneIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ZoneSectionSetType
 
@@ -12214,7 +12214,7 @@ ZoneSectionTypeLisd * ZoneSectionSetType::getZoneSection()
 void ZoneSectionSetType::setZoneSection(ZoneSectionTypeLisd * ZoneSectionIn)
 {ZoneSection = ZoneSectionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ZoneSectionType
 
@@ -12474,7 +12474,7 @@ LogicalOperationsType * ZoneSectionType::getLogicalOperations()
 void ZoneSectionType::setLogicalOperations(LogicalOperationsType * LogicalOperationsIn)
 {LogicalOperations = LogicalOperationsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ZoneSectionTypeLisd
 
@@ -12501,189 +12501,189 @@ ZoneSectionTypeLisd::~ZoneSectionTypeLisd()
 
 void ZoneSectionTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class ExplodedViewMov_1230_Type
-
-*/
-
-ExplodedViewMov_1230_Type::ExplodedViewMov_1230_Type()
-{
-  ExplodedViewMov_1230_TypePair = 0;
-}
-
-ExplodedViewMov_1230_Type::ExplodedViewMov_1230_Type(
- ExplodedViewMov_1230_TypeChoicePair * ExplodedViewMov_1230_TypePairIn)
-{
-  ExplodedViewMov_1230_TypePair = ExplodedViewMov_1230_TypePairIn;
-}
-
-ExplodedViewMov_1230_Type::~ExplodedViewMov_1230_Type()
-{
-  #ifndef NODESTRUCT
-  delete ExplodedViewMov_1230_TypePair;
-  #endif
-}
-
-void ExplodedViewMov_1230_Type::printSelf(FILE * outFile)
-{
-  ExplodedViewMov_1230_TypePair->printSelf(outFile);
-}
-
-ExplodedViewMov_1230_TypeChoicePair * ExplodedViewMov_1230_Type::getExplodedViewMov_1230_TypePair()
-{return ExplodedViewMov_1230_TypePair;}
-
-void ExplodedViewMov_1230_Type::setExplodedViewMov_1230_TypePair(ExplodedViewMov_1230_TypeChoicePair * ExplodedViewMov_1230_TypePairIn)
-{ExplodedViewMov_1230_TypePair = ExplodedViewMov_1230_TypePairIn;}
-
-/*********************************************************************/
-
-/* class ExplodedViewMov_1230_TypeChoicePair
+/* class ExplodedViewMov_1231_Type
 
 */
 
-ExplodedViewMov_1230_TypeChoicePair::ExplodedViewMov_1230_TypeChoicePair() {}
-
-ExplodedViewMov_1230_TypeChoicePair::ExplodedViewMov_1230_TypeChoicePair(
- whichOne ExplodedViewMov_1230_TypeTypeIn,
- ExplodedViewMov_1230_TypeVal ExplodedViewMov_1230_TypeValueIn)
+ExplodedViewMov_1231_Type::ExplodedViewMov_1231_Type()
 {
-  ExplodedViewMov_1230_TypeType = ExplodedViewMov_1230_TypeTypeIn;
-  ExplodedViewMov_1230_TypeValue = ExplodedViewMov_1230_TypeValueIn;
+  ExplodedViewMov_1231_TypePair = 0;
 }
 
-ExplodedViewMov_1230_TypeChoicePair::~ExplodedViewMov_1230_TypeChoicePair()
+ExplodedViewMov_1231_Type::ExplodedViewMov_1231_Type(
+ ExplodedViewMov_1231_TypeChoicePair * ExplodedViewMov_1231_TypePairIn)
+{
+  ExplodedViewMov_1231_TypePair = ExplodedViewMov_1231_TypePairIn;
+}
+
+ExplodedViewMov_1231_Type::~ExplodedViewMov_1231_Type()
 {
   #ifndef NODESTRUCT
-  if (ExplodedViewMov_1230_TypeType == TranslateE)
-    delete ExplodedViewMov_1230_TypeValue.Translate;
-  else if (ExplodedViewMov_1230_TypeType == RotateE)
-    delete ExplodedViewMov_1230_TypeValue.Rotate;
+  delete ExplodedViewMov_1231_TypePair;
   #endif
 }
 
-void ExplodedViewMov_1230_TypeChoicePair::printSelf(FILE * outFile)
+void ExplodedViewMov_1231_Type::printSelf(FILE * outFile)
 {
-  if (ExplodedViewMov_1230_TypeType == TranslateE)
+  ExplodedViewMov_1231_TypePair->printSelf(outFile);
+}
+
+ExplodedViewMov_1231_TypeChoicePair * ExplodedViewMov_1231_Type::getExplodedViewMov_1231_TypePair()
+{return ExplodedViewMov_1231_TypePair;}
+
+void ExplodedViewMov_1231_Type::setExplodedViewMov_1231_TypePair(ExplodedViewMov_1231_TypeChoicePair * ExplodedViewMov_1231_TypePairIn)
+{ExplodedViewMov_1231_TypePair = ExplodedViewMov_1231_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class ExplodedViewMov_1231_TypeChoicePair
+
+*/
+
+ExplodedViewMov_1231_TypeChoicePair::ExplodedViewMov_1231_TypeChoicePair() {}
+
+ExplodedViewMov_1231_TypeChoicePair::ExplodedViewMov_1231_TypeChoicePair(
+ whichOne ExplodedViewMov_1231_TypeTypeIn,
+ ExplodedViewMov_1231_TypeVal ExplodedViewMov_1231_TypeValueIn)
+{
+  ExplodedViewMov_1231_TypeType = ExplodedViewMov_1231_TypeTypeIn;
+  ExplodedViewMov_1231_TypeValue = ExplodedViewMov_1231_TypeValueIn;
+}
+
+ExplodedViewMov_1231_TypeChoicePair::~ExplodedViewMov_1231_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (ExplodedViewMov_1231_TypeType == TranslateE)
+    delete ExplodedViewMov_1231_TypeValue.Translate;
+  else if (ExplodedViewMov_1231_TypeType == RotateE)
+    delete ExplodedViewMov_1231_TypeValue.Rotate;
+  #endif
+}
+
+void ExplodedViewMov_1231_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (ExplodedViewMov_1231_TypeType == TranslateE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Translate");
-      ExplodedViewMov_1230_TypeValue.Translate->printSelf(outFile);
+      ExplodedViewMov_1231_TypeValue.Translate->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Translate>\n");
     }
-  else if (ExplodedViewMov_1230_TypeType == RotateE)
+  else if (ExplodedViewMov_1231_TypeType == RotateE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Rotate");
-      ExplodedViewMov_1230_TypeValue.Rotate->printSelf(outFile);
+      ExplodedViewMov_1231_TypeValue.Rotate->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Rotate>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class LogicalOperatio_1231_Type
+/* class LogicalOperatio_1232_Type
 
 */
 
-LogicalOperatio_1231_Type::LogicalOperatio_1231_Type()
+LogicalOperatio_1232_Type::LogicalOperatio_1232_Type()
 {
-  LogicalOperatio_1231_TypePairs = 0;
+  LogicalOperatio_1232_TypePairs = 0;
 }
 
-LogicalOperatio_1231_Type::LogicalOperatio_1231_Type(
- LogicalOperatio_1231_TypeChoicePairLisd * LogicalOperatio_1231_TypePairsIn)
+LogicalOperatio_1232_Type::LogicalOperatio_1232_Type(
+ LogicalOperatio_1232_TypeChoicePairLisd * LogicalOperatio_1232_TypePairsIn)
 {
-  LogicalOperatio_1231_TypePairs = LogicalOperatio_1231_TypePairsIn;
+  LogicalOperatio_1232_TypePairs = LogicalOperatio_1232_TypePairsIn;
 }
 
-LogicalOperatio_1231_Type::~LogicalOperatio_1231_Type()
+LogicalOperatio_1232_Type::~LogicalOperatio_1232_Type()
 {
   #ifndef NODESTRUCT
-  delete LogicalOperatio_1231_TypePairs;
+  delete LogicalOperatio_1232_TypePairs;
   #endif
 }
 
-void LogicalOperatio_1231_Type::printSelf(FILE * outFile)
+void LogicalOperatio_1232_Type::printSelf(FILE * outFile)
 {
-  std::list<LogicalOperatio_1231_TypeChoicePair *>::iterator iter;
+  std::list<LogicalOperatio_1232_TypeChoicePair *>::iterator iter;
 
-  for (iter = LogicalOperatio_1231_TypePairs->begin();
-       iter != LogicalOperatio_1231_TypePairs->end(); iter++)
+  for (iter = LogicalOperatio_1232_TypePairs->begin();
+       iter != LogicalOperatio_1232_TypePairs->end(); iter++)
     {
       (*iter)->printSelf(outFile);
     }
 }
 
-LogicalOperatio_1231_TypeChoicePairLisd * LogicalOperatio_1231_Type::getLogicalOperatio_1231_TypePairs()
-{return LogicalOperatio_1231_TypePairs;}
+LogicalOperatio_1232_TypeChoicePairLisd * LogicalOperatio_1232_Type::getLogicalOperatio_1232_TypePairs()
+{return LogicalOperatio_1232_TypePairs;}
 
-void LogicalOperatio_1231_Type::setLogicalOperatio_1231_TypePairs(LogicalOperatio_1231_TypeChoicePairLisd * LogicalOperatio_1231_TypePairsIn)
-{LogicalOperatio_1231_TypePairs = LogicalOperatio_1231_TypePairsIn;}
+void LogicalOperatio_1232_Type::setLogicalOperatio_1232_TypePairs(LogicalOperatio_1232_TypeChoicePairLisd * LogicalOperatio_1232_TypePairsIn)
+{LogicalOperatio_1232_TypePairs = LogicalOperatio_1232_TypePairsIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class LogicalOperatio_1231_TypeChoicePair
+/* class LogicalOperatio_1232_TypeChoicePair
 
 */
 
-LogicalOperatio_1231_TypeChoicePair::LogicalOperatio_1231_TypeChoicePair() {}
+LogicalOperatio_1232_TypeChoicePair::LogicalOperatio_1232_TypeChoicePair() {}
 
-LogicalOperatio_1231_TypeChoicePair::LogicalOperatio_1231_TypeChoicePair(
- whichOne LogicalOperatio_1231_TypeTypeIn,
- LogicalOperatio_1231_TypeVal LogicalOperatio_1231_TypeValueIn)
+LogicalOperatio_1232_TypeChoicePair::LogicalOperatio_1232_TypeChoicePair(
+ whichOne LogicalOperatio_1232_TypeTypeIn,
+ LogicalOperatio_1232_TypeVal LogicalOperatio_1232_TypeValueIn)
 {
-  LogicalOperatio_1231_TypeType = LogicalOperatio_1231_TypeTypeIn;
-  LogicalOperatio_1231_TypeValue = LogicalOperatio_1231_TypeValueIn;
+  LogicalOperatio_1232_TypeType = LogicalOperatio_1232_TypeTypeIn;
+  LogicalOperatio_1232_TypeValue = LogicalOperatio_1232_TypeValueIn;
 }
 
-LogicalOperatio_1231_TypeChoicePair::~LogicalOperatio_1231_TypeChoicePair()
+LogicalOperatio_1232_TypeChoicePair::~LogicalOperatio_1232_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (LogicalOperatio_1231_TypeType == SectionPlaneE)
-    delete LogicalOperatio_1231_TypeValue.SectionPlane;
-  else if (LogicalOperatio_1231_TypeType == LogicalOperationResultE)
-    delete LogicalOperatio_1231_TypeValue.LogicalOperationResult;
+  if (LogicalOperatio_1232_TypeType == SectionPlaneE)
+    delete LogicalOperatio_1232_TypeValue.SectionPlane;
+  else if (LogicalOperatio_1232_TypeType == LogicalOperationResultE)
+    delete LogicalOperatio_1232_TypeValue.LogicalOperationResult;
   #endif
 }
 
-void LogicalOperatio_1231_TypeChoicePair::printSelf(FILE * outFile)
+void LogicalOperatio_1232_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (LogicalOperatio_1231_TypeType == SectionPlaneE)
+  if (LogicalOperatio_1232_TypeType == SectionPlaneE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SectionPlane");
-      LogicalOperatio_1231_TypeValue.SectionPlane->printSelf(outFile);
+      LogicalOperatio_1232_TypeValue.SectionPlane->printSelf(outFile);
       fprintf(outFile, "</SectionPlane>\n");
     }
-  else if (LogicalOperatio_1231_TypeType == LogicalOperationResultE)
+  else if (LogicalOperatio_1232_TypeType == LogicalOperationResultE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<LogicalOperationResult");
-      LogicalOperatio_1231_TypeValue.LogicalOperationResult->printSelf(outFile);
+      LogicalOperatio_1232_TypeValue.LogicalOperationResult->printSelf(outFile);
       fprintf(outFile, "</LogicalOperationResult>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class LogicalOperatio_1231_TypeChoicePairLisd
+/* class LogicalOperatio_1232_TypeChoicePairLisd
 
 */
 
-LogicalOperatio_1231_TypeChoicePairLisd::LogicalOperatio_1231_TypeChoicePairLisd() {}
+LogicalOperatio_1232_TypeChoicePairLisd::LogicalOperatio_1232_TypeChoicePairLisd() {}
 
-LogicalOperatio_1231_TypeChoicePairLisd::LogicalOperatio_1231_TypeChoicePairLisd(LogicalOperatio_1231_TypeChoicePair * aLogicalOperatio_1231_TypeChoicePair)
+LogicalOperatio_1232_TypeChoicePairLisd::LogicalOperatio_1232_TypeChoicePairLisd(LogicalOperatio_1232_TypeChoicePair * aLogicalOperatio_1232_TypeChoicePair)
 {
-  push_back(aLogicalOperatio_1231_TypeChoicePair);
+  push_back(aLogicalOperatio_1232_TypeChoicePair);
 }
 
-LogicalOperatio_1231_TypeChoicePairLisd::~LogicalOperatio_1231_TypeChoicePairLisd()
+LogicalOperatio_1232_TypeChoicePairLisd::~LogicalOperatio_1232_TypeChoicePairLisd()
 {
   #ifndef NODESTRUCT
-  std::list<LogicalOperatio_1231_TypeChoicePair *>::iterator iter;
+  std::list<LogicalOperatio_1232_TypeChoicePair *>::iterator iter;
 
   for (iter = begin(); iter != end(); iter++)
     {
@@ -12692,9 +12692,9 @@ LogicalOperatio_1231_TypeChoicePairLisd::~LogicalOperatio_1231_TypeChoicePairLis
   #endif
 }
 
-void LogicalOperatio_1231_TypeChoicePairLisd::printSelf(FILE * outFile)
+void LogicalOperatio_1232_TypeChoicePairLisd::printSelf(FILE * outFile)
 {
-  std::list<LogicalOperatio_1231_TypeChoicePair *>::iterator iter;
+  std::list<LogicalOperatio_1232_TypeChoicePair *>::iterator iter;
 
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
@@ -12705,23 +12705,23 @@ void LogicalOperatio_1231_TypeChoicePairLisd::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class LogicalOperatio_1231_TypeLisd
+/* class LogicalOperatio_1232_TypeLisd
 
 */
 
-LogicalOperatio_1231_TypeLisd::LogicalOperatio_1231_TypeLisd() {}
+LogicalOperatio_1232_TypeLisd::LogicalOperatio_1232_TypeLisd() {}
 
-LogicalOperatio_1231_TypeLisd::LogicalOperatio_1231_TypeLisd(LogicalOperatio_1231_Type * aLogicalOperatio_1231_Type)
+LogicalOperatio_1232_TypeLisd::LogicalOperatio_1232_TypeLisd(LogicalOperatio_1232_Type * aLogicalOperatio_1232_Type)
 {
-  push_back(aLogicalOperatio_1231_Type);
+  push_back(aLogicalOperatio_1232_Type);
 }
 
-LogicalOperatio_1231_TypeLisd::~LogicalOperatio_1231_TypeLisd()
+LogicalOperatio_1232_TypeLisd::~LogicalOperatio_1232_TypeLisd()
 {
   #ifndef NODESTRUCT
-  std::list<LogicalOperatio_1231_Type *>::iterator iter;
+  std::list<LogicalOperatio_1232_Type *>::iterator iter;
 
   for (iter = begin(); iter != end(); iter++)
     {
@@ -12730,167 +12730,88 @@ LogicalOperatio_1231_TypeLisd::~LogicalOperatio_1231_TypeLisd()
   #endif
 }
 
-void LogicalOperatio_1231_TypeLisd::printSelf(FILE * outFile){}
+void LogicalOperatio_1232_TypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class Polyline2dType_1232_Type
-
-*/
-
-Polyline2dType_1232_Type::Polyline2dType_1232_Type()
-{
-  Polyline2dType_1232_TypePair = 0;
-}
-
-Polyline2dType_1232_Type::Polyline2dType_1232_Type(
- Polyline2dType_1232_TypeChoicePair * Polyline2dType_1232_TypePairIn)
-{
-  Polyline2dType_1232_TypePair = Polyline2dType_1232_TypePairIn;
-}
-
-Polyline2dType_1232_Type::~Polyline2dType_1232_Type()
-{
-  #ifndef NODESTRUCT
-  delete Polyline2dType_1232_TypePair;
-  #endif
-}
-
-void Polyline2dType_1232_Type::printSelf(FILE * outFile)
-{
-  Polyline2dType_1232_TypePair->printSelf(outFile);
-}
-
-Polyline2dType_1232_TypeChoicePair * Polyline2dType_1232_Type::getPolyline2dType_1232_TypePair()
-{return Polyline2dType_1232_TypePair;}
-
-void Polyline2dType_1232_Type::setPolyline2dType_1232_TypePair(Polyline2dType_1232_TypeChoicePair * Polyline2dType_1232_TypePairIn)
-{Polyline2dType_1232_TypePair = Polyline2dType_1232_TypePairIn;}
-
-/*********************************************************************/
-
-/* class Polyline2dType_1232_TypeChoicePair
+/* class Polyline2dType_1233_Type
 
 */
 
-Polyline2dType_1232_TypeChoicePair::Polyline2dType_1232_TypeChoicePair() {}
-
-Polyline2dType_1232_TypeChoicePair::Polyline2dType_1232_TypeChoicePair(
- whichOne Polyline2dType_1232_TypeTypeIn,
- Polyline2dType_1232_TypeVal Polyline2dType_1232_TypeValueIn)
+Polyline2dType_1233_Type::Polyline2dType_1233_Type()
 {
-  Polyline2dType_1232_TypeType = Polyline2dType_1232_TypeTypeIn;
-  Polyline2dType_1232_TypeValue = Polyline2dType_1232_TypeValueIn;
+  Polyline2dType_1233_TypePair = 0;
 }
 
-Polyline2dType_1232_TypeChoicePair::~Polyline2dType_1232_TypeChoicePair()
+Polyline2dType_1233_Type::Polyline2dType_1233_Type(
+ Polyline2dType_1233_TypeChoicePair * Polyline2dType_1233_TypePairIn)
+{
+  Polyline2dType_1233_TypePair = Polyline2dType_1233_TypePairIn;
+}
+
+Polyline2dType_1233_Type::~Polyline2dType_1233_Type()
 {
   #ifndef NODESTRUCT
-  if (Polyline2dType_1232_TypeType == PointsE)
-    delete Polyline2dType_1232_TypeValue.Points;
-  else if (Polyline2dType_1232_TypeType == PointsBinaryE)
-    delete Polyline2dType_1232_TypeValue.PointsBinary;
+  delete Polyline2dType_1233_TypePair;
   #endif
 }
 
-void Polyline2dType_1232_TypeChoicePair::printSelf(FILE * outFile)
+void Polyline2dType_1233_Type::printSelf(FILE * outFile)
 {
-  if (Polyline2dType_1232_TypeType == PointsE)
+  Polyline2dType_1233_TypePair->printSelf(outFile);
+}
+
+Polyline2dType_1233_TypeChoicePair * Polyline2dType_1233_Type::getPolyline2dType_1233_TypePair()
+{return Polyline2dType_1233_TypePair;}
+
+void Polyline2dType_1233_Type::setPolyline2dType_1233_TypePair(Polyline2dType_1233_TypeChoicePair * Polyline2dType_1233_TypePairIn)
+{Polyline2dType_1233_TypePair = Polyline2dType_1233_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class Polyline2dType_1233_TypeChoicePair
+
+*/
+
+Polyline2dType_1233_TypeChoicePair::Polyline2dType_1233_TypeChoicePair() {}
+
+Polyline2dType_1233_TypeChoicePair::Polyline2dType_1233_TypeChoicePair(
+ whichOne Polyline2dType_1233_TypeTypeIn,
+ Polyline2dType_1233_TypeVal Polyline2dType_1233_TypeValueIn)
+{
+  Polyline2dType_1233_TypeType = Polyline2dType_1233_TypeTypeIn;
+  Polyline2dType_1233_TypeValue = Polyline2dType_1233_TypeValueIn;
+}
+
+Polyline2dType_1233_TypeChoicePair::~Polyline2dType_1233_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (Polyline2dType_1233_TypeType == PointsE)
+    delete Polyline2dType_1233_TypeValue.Points;
+  else if (Polyline2dType_1233_TypeType == PointsBinaryE)
+    delete Polyline2dType_1233_TypeValue.PointsBinary;
+  #endif
+}
+
+void Polyline2dType_1233_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (Polyline2dType_1233_TypeType == PointsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Points");
-      Polyline2dType_1232_TypeValue.Points->printSelf(outFile);
+      Polyline2dType_1233_TypeValue.Points->printSelf(outFile);
       fprintf(outFile, "</Points>\n");
     }
-  else if (Polyline2dType_1232_TypeType == PointsBinaryE)
+  else if (Polyline2dType_1233_TypeType == PointsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsBinary");
-      Polyline2dType_1232_TypeValue.PointsBinary->printSelf(outFile);
+      Polyline2dType_1233_TypeValue.PointsBinary->printSelf(outFile);
       fprintf(outFile, "</PointsBinary>\n");
     }
 }
 
-/*********************************************************************/
-
-/* class Triangulation2d_1233_Type
-
-*/
-
-Triangulation2d_1233_Type::Triangulation2d_1233_Type()
-{
-  Triangulation2d_1233_TypePair = 0;
-}
-
-Triangulation2d_1233_Type::Triangulation2d_1233_Type(
- Triangulation2d_1233_TypeChoicePair * Triangulation2d_1233_TypePairIn)
-{
-  Triangulation2d_1233_TypePair = Triangulation2d_1233_TypePairIn;
-}
-
-Triangulation2d_1233_Type::~Triangulation2d_1233_Type()
-{
-  #ifndef NODESTRUCT
-  delete Triangulation2d_1233_TypePair;
-  #endif
-}
-
-void Triangulation2d_1233_Type::printSelf(FILE * outFile)
-{
-  Triangulation2d_1233_TypePair->printSelf(outFile);
-}
-
-Triangulation2d_1233_TypeChoicePair * Triangulation2d_1233_Type::getTriangulation2d_1233_TypePair()
-{return Triangulation2d_1233_TypePair;}
-
-void Triangulation2d_1233_Type::setTriangulation2d_1233_TypePair(Triangulation2d_1233_TypeChoicePair * Triangulation2d_1233_TypePairIn)
-{Triangulation2d_1233_TypePair = Triangulation2d_1233_TypePairIn;}
-
-/*********************************************************************/
-
-/* class Triangulation2d_1233_TypeChoicePair
-
-*/
-
-Triangulation2d_1233_TypeChoicePair::Triangulation2d_1233_TypeChoicePair() {}
-
-Triangulation2d_1233_TypeChoicePair::Triangulation2d_1233_TypeChoicePair(
- whichOne Triangulation2d_1233_TypeTypeIn,
- Triangulation2d_1233_TypeVal Triangulation2d_1233_TypeValueIn)
-{
-  Triangulation2d_1233_TypeType = Triangulation2d_1233_TypeTypeIn;
-  Triangulation2d_1233_TypeValue = Triangulation2d_1233_TypeValueIn;
-}
-
-Triangulation2d_1233_TypeChoicePair::~Triangulation2d_1233_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (Triangulation2d_1233_TypeType == VerticesE)
-    delete Triangulation2d_1233_TypeValue.Vertices;
-  else if (Triangulation2d_1233_TypeType == VerticesBinaryE)
-    delete Triangulation2d_1233_TypeValue.VerticesBinary;
-  #endif
-}
-
-void Triangulation2d_1233_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (Triangulation2d_1233_TypeType == VerticesE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<Vertices");
-      Triangulation2d_1233_TypeValue.Vertices->printSelf(outFile);
-      fprintf(outFile, "</Vertices>\n");
-    }
-  else if (Triangulation2d_1233_TypeType == VerticesBinaryE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<VerticesBinary");
-      Triangulation2d_1233_TypeValue.VerticesBinary->printSelf(outFile);
-      fprintf(outFile, "</VerticesBinary>\n");
-    }
-}
-
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Triangulation2d_1234_Type
 
@@ -12925,7 +12846,7 @@ Triangulation2d_1234_TypeChoicePair * Triangulation2d_1234_Type::getTriangulatio
 void Triangulation2d_1234_Type::setTriangulation2d_1234_TypePair(Triangulation2d_1234_TypeChoicePair * Triangulation2d_1234_TypePairIn)
 {Triangulation2d_1234_TypePair = Triangulation2d_1234_TypePairIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class Triangulation2d_1234_TypeChoicePair
 
@@ -12944,56 +12865,135 @@ Triangulation2d_1234_TypeChoicePair::Triangulation2d_1234_TypeChoicePair(
 Triangulation2d_1234_TypeChoicePair::~Triangulation2d_1234_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (Triangulation2d_1234_TypeType == TrianglesE)
-    delete Triangulation2d_1234_TypeValue.Triangles;
-  else if (Triangulation2d_1234_TypeType == TrianglesBinaryE)
-    delete Triangulation2d_1234_TypeValue.TrianglesBinary;
-  else if (Triangulation2d_1234_TypeType == TrianglesColorE)
-    delete Triangulation2d_1234_TypeValue.TrianglesColor;
-  else if (Triangulation2d_1234_TypeType == TrianglesColorBinaryE)
-    delete Triangulation2d_1234_TypeValue.TrianglesColorBinary;
+  if (Triangulation2d_1234_TypeType == VerticesE)
+    delete Triangulation2d_1234_TypeValue.Vertices;
+  else if (Triangulation2d_1234_TypeType == VerticesBinaryE)
+    delete Triangulation2d_1234_TypeValue.VerticesBinary;
   #endif
 }
 
 void Triangulation2d_1234_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (Triangulation2d_1234_TypeType == TrianglesE)
+  if (Triangulation2d_1234_TypeType == VerticesE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Vertices");
+      Triangulation2d_1234_TypeValue.Vertices->printSelf(outFile);
+      fprintf(outFile, "</Vertices>\n");
+    }
+  else if (Triangulation2d_1234_TypeType == VerticesBinaryE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<VerticesBinary");
+      Triangulation2d_1234_TypeValue.VerticesBinary->printSelf(outFile);
+      fprintf(outFile, "</VerticesBinary>\n");
+    }
+}
+
+/* ***************************************************************** */
+
+/* class Triangulation2d_1235_Type
+
+*/
+
+Triangulation2d_1235_Type::Triangulation2d_1235_Type()
+{
+  Triangulation2d_1235_TypePair = 0;
+}
+
+Triangulation2d_1235_Type::Triangulation2d_1235_Type(
+ Triangulation2d_1235_TypeChoicePair * Triangulation2d_1235_TypePairIn)
+{
+  Triangulation2d_1235_TypePair = Triangulation2d_1235_TypePairIn;
+}
+
+Triangulation2d_1235_Type::~Triangulation2d_1235_Type()
+{
+  #ifndef NODESTRUCT
+  delete Triangulation2d_1235_TypePair;
+  #endif
+}
+
+void Triangulation2d_1235_Type::printSelf(FILE * outFile)
+{
+  Triangulation2d_1235_TypePair->printSelf(outFile);
+}
+
+Triangulation2d_1235_TypeChoicePair * Triangulation2d_1235_Type::getTriangulation2d_1235_TypePair()
+{return Triangulation2d_1235_TypePair;}
+
+void Triangulation2d_1235_Type::setTriangulation2d_1235_TypePair(Triangulation2d_1235_TypeChoicePair * Triangulation2d_1235_TypePairIn)
+{Triangulation2d_1235_TypePair = Triangulation2d_1235_TypePairIn;}
+
+/* ***************************************************************** */
+
+/* class Triangulation2d_1235_TypeChoicePair
+
+*/
+
+Triangulation2d_1235_TypeChoicePair::Triangulation2d_1235_TypeChoicePair() {}
+
+Triangulation2d_1235_TypeChoicePair::Triangulation2d_1235_TypeChoicePair(
+ whichOne Triangulation2d_1235_TypeTypeIn,
+ Triangulation2d_1235_TypeVal Triangulation2d_1235_TypeValueIn)
+{
+  Triangulation2d_1235_TypeType = Triangulation2d_1235_TypeTypeIn;
+  Triangulation2d_1235_TypeValue = Triangulation2d_1235_TypeValueIn;
+}
+
+Triangulation2d_1235_TypeChoicePair::~Triangulation2d_1235_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (Triangulation2d_1235_TypeType == TrianglesE)
+    delete Triangulation2d_1235_TypeValue.Triangles;
+  else if (Triangulation2d_1235_TypeType == TrianglesBinaryE)
+    delete Triangulation2d_1235_TypeValue.TrianglesBinary;
+  else if (Triangulation2d_1235_TypeType == TrianglesColorE)
+    delete Triangulation2d_1235_TypeValue.TrianglesColor;
+  else if (Triangulation2d_1235_TypeType == TrianglesColorBinaryE)
+    delete Triangulation2d_1235_TypeValue.TrianglesColorBinary;
+  #endif
+}
+
+void Triangulation2d_1235_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (Triangulation2d_1235_TypeType == TrianglesE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Triangles");
-      Triangulation2d_1234_TypeValue.Triangles->printSelf(outFile);
+      Triangulation2d_1235_TypeValue.Triangles->printSelf(outFile);
       fprintf(outFile, "</Triangles>\n");
     }
-  else if (Triangulation2d_1234_TypeType == TrianglesBinaryE)
+  else if (Triangulation2d_1235_TypeType == TrianglesBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesBinary");
-      Triangulation2d_1234_TypeValue.TrianglesBinary->printSelf(outFile);
+      Triangulation2d_1235_TypeValue.TrianglesBinary->printSelf(outFile);
       fprintf(outFile, "</TrianglesBinary>\n");
     }
-  else if (Triangulation2d_1234_TypeType == TrianglesColorE)
+  else if (Triangulation2d_1235_TypeType == TrianglesColorE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesColor");
-      Triangulation2d_1234_TypeValue.TrianglesColor->printSelf(outFile);
+      Triangulation2d_1235_TypeValue.TrianglesColor->printSelf(outFile);
       fprintf(outFile, "</TrianglesColor>\n");
     }
-  else if (Triangulation2d_1234_TypeType == TrianglesColorBinaryE)
+  else if (Triangulation2d_1235_TypeType == TrianglesColorBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesColorBinary");
-      Triangulation2d_1234_TypeValue.TrianglesColorBinary->printSelf(outFile);
+      Triangulation2d_1235_TypeValue.TrianglesColorBinary->printSelf(outFile);
       fprintf(outFile, "</TrianglesColorBinary>\n");
     }
 }
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class WitnessLinesTyp_1235_Type
+/* class WitnessLinesTyp_1236_Type
 
 */
 
-WitnessLinesTyp_1235_Type::WitnessLinesTyp_1235_Type()
+WitnessLinesTyp_1236_Type::WitnessLinesTyp_1236_Type()
 {
   Segment1 = 0;
   ZextensionPoint1 = 0;
@@ -13001,7 +13001,7 @@ WitnessLinesTyp_1235_Type::WitnessLinesTyp_1235_Type()
   ZextensionPoint2 = 0;
 }
 
-WitnessLinesTyp_1235_Type::WitnessLinesTyp_1235_Type(
+WitnessLinesTyp_1236_Type::WitnessLinesTyp_1236_Type(
  LineSegment2dType * Segment1In,
  PointSimpleType * ZextensionPoint1In,
  LineSegment2dType * Segment2In,
@@ -13013,7 +13013,7 @@ WitnessLinesTyp_1235_Type::WitnessLinesTyp_1235_Type(
   ZextensionPoint2 = ZextensionPoint2In;
 }
 
-WitnessLinesTyp_1235_Type::~WitnessLinesTyp_1235_Type()
+WitnessLinesTyp_1236_Type::~WitnessLinesTyp_1236_Type()
 {
   #ifndef NODESTRUCT
   delete Segment1;
@@ -13023,7 +13023,7 @@ WitnessLinesTyp_1235_Type::~WitnessLinesTyp_1235_Type()
   #endif
 }
 
-void WitnessLinesTyp_1235_Type::printSelf(FILE * outFile)
+void WitnessLinesTyp_1236_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<Segment1");
@@ -13051,37 +13051,37 @@ void WitnessLinesTyp_1235_Type::printSelf(FILE * outFile)
     }
 }
 
-LineSegment2dType * WitnessLinesTyp_1235_Type::getSegment1()
+LineSegment2dType * WitnessLinesTyp_1236_Type::getSegment1()
 {return Segment1;}
 
-void WitnessLinesTyp_1235_Type::setSegment1(LineSegment2dType * Segment1In)
+void WitnessLinesTyp_1236_Type::setSegment1(LineSegment2dType * Segment1In)
 {Segment1 = Segment1In;}
 
-PointSimpleType * WitnessLinesTyp_1235_Type::getZextensionPoint1()
+PointSimpleType * WitnessLinesTyp_1236_Type::getZextensionPoint1()
 {return ZextensionPoint1;}
 
-void WitnessLinesTyp_1235_Type::setZextensionPoint1(PointSimpleType * ZextensionPoint1In)
+void WitnessLinesTyp_1236_Type::setZextensionPoint1(PointSimpleType * ZextensionPoint1In)
 {ZextensionPoint1 = ZextensionPoint1In;}
 
-LineSegment2dType * WitnessLinesTyp_1235_Type::getSegment2()
+LineSegment2dType * WitnessLinesTyp_1236_Type::getSegment2()
 {return Segment2;}
 
-void WitnessLinesTyp_1235_Type::setSegment2(LineSegment2dType * Segment2In)
+void WitnessLinesTyp_1236_Type::setSegment2(LineSegment2dType * Segment2In)
 {Segment2 = Segment2In;}
 
-PointSimpleType * WitnessLinesTyp_1235_Type::getZextensionPoint2()
+PointSimpleType * WitnessLinesTyp_1236_Type::getZextensionPoint2()
 {return ZextensionPoint2;}
 
-void WitnessLinesTyp_1235_Type::setZextensionPoint2(PointSimpleType * ZextensionPoint2In)
+void WitnessLinesTyp_1236_Type::setZextensionPoint2(PointSimpleType * ZextensionPoint2In)
 {ZextensionPoint2 = ZextensionPoint2In;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-/* class WitnessLinesTyp_1236_Type
+/* class WitnessLinesTyp_1237_Type
 
 */
 
-WitnessLinesTyp_1236_Type::WitnessLinesTyp_1236_Type()
+WitnessLinesTyp_1237_Type::WitnessLinesTyp_1237_Type()
 {
   BeginPoint = 0;
   EndPoint = 0;
@@ -13089,7 +13089,7 @@ WitnessLinesTyp_1236_Type::WitnessLinesTyp_1236_Type()
   CircleRadius = 0;
 }
 
-WitnessLinesTyp_1236_Type::WitnessLinesTyp_1236_Type(
+WitnessLinesTyp_1237_Type::WitnessLinesTyp_1237_Type(
  Point2dSimpleType * BeginPointIn,
  Point2dSimpleType * EndPointIn,
  Point2dSimpleType * CircleCenterIn,
@@ -13101,7 +13101,7 @@ WitnessLinesTyp_1236_Type::WitnessLinesTyp_1236_Type(
   CircleRadius = CircleRadiusIn;
 }
 
-WitnessLinesTyp_1236_Type::~WitnessLinesTyp_1236_Type()
+WitnessLinesTyp_1237_Type::~WitnessLinesTyp_1237_Type()
 {
   #ifndef NODESTRUCT
   delete BeginPoint;
@@ -13111,7 +13111,7 @@ WitnessLinesTyp_1236_Type::~WitnessLinesTyp_1236_Type()
   #endif
 }
 
-void WitnessLinesTyp_1236_Type::printSelf(FILE * outFile)
+void WitnessLinesTyp_1237_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<BeginPoint");
@@ -13131,29 +13131,29 @@ void WitnessLinesTyp_1236_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</CircleRadius>\n");
 }
 
-Point2dSimpleType * WitnessLinesTyp_1236_Type::getBeginPoint()
+Point2dSimpleType * WitnessLinesTyp_1237_Type::getBeginPoint()
 {return BeginPoint;}
 
-void WitnessLinesTyp_1236_Type::setBeginPoint(Point2dSimpleType * BeginPointIn)
+void WitnessLinesTyp_1237_Type::setBeginPoint(Point2dSimpleType * BeginPointIn)
 {BeginPoint = BeginPointIn;}
 
-Point2dSimpleType * WitnessLinesTyp_1236_Type::getEndPoint()
+Point2dSimpleType * WitnessLinesTyp_1237_Type::getEndPoint()
 {return EndPoint;}
 
-void WitnessLinesTyp_1236_Type::setEndPoint(Point2dSimpleType * EndPointIn)
+void WitnessLinesTyp_1237_Type::setEndPoint(Point2dSimpleType * EndPointIn)
 {EndPoint = EndPointIn;}
 
-Point2dSimpleType * WitnessLinesTyp_1236_Type::getCircleCenter()
+Point2dSimpleType * WitnessLinesTyp_1237_Type::getCircleCenter()
 {return CircleCenter;}
 
-void WitnessLinesTyp_1236_Type::setCircleCenter(Point2dSimpleType * CircleCenterIn)
+void WitnessLinesTyp_1237_Type::setCircleCenter(Point2dSimpleType * CircleCenterIn)
 {CircleCenter = CircleCenterIn;}
 
-DoublePositiveType * WitnessLinesTyp_1236_Type::getCircleRadius()
+DoublePositiveType * WitnessLinesTyp_1237_Type::getCircleRadius()
 {return CircleRadius;}
 
-void WitnessLinesTyp_1236_Type::setCircleRadius(DoublePositiveType * CircleRadiusIn)
+void WitnessLinesTyp_1237_Type::setCircleRadius(DoublePositiveType * CircleRadiusIn)
 {CircleRadius = CircleRadiusIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 

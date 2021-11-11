@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #ifndef QIFRESULTS_HH
 #define QIFRESULTS_HH
@@ -9,7 +9,7 @@
 #include "CharacteristicsClasses.hh"
 #include "FeaturesClasses.hh"
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ActualComponentSetType;
 class ActualComponentSetTypeLisd;
@@ -21,8 +21,8 @@ class MeasurementResultsType;
 class MeasurementResultsTypeLisd;
 class ResultsType;
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 class ActualComponentSetType :
   public XmlTypeBase
@@ -49,7 +49,7 @@ protected:
   ActualComponentTypeLisd * ActualComponent;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ActualComponentSetTypeLisd :
   public std::list<ActualComponentSetType *>,
@@ -63,7 +63,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ActualComponentSetsType :
   public XmlTypeBase
@@ -90,7 +90,7 @@ protected:
   ActualComponentSetTypeLisd * ActualComponentSet;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ActualComponentType :
   public XmlTypeBase
@@ -142,7 +142,7 @@ protected:
   QIFReferenceType * AsmPathId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ActualComponentTypeLisd :
   public std::list<ActualComponentType *>,
@@ -156,7 +156,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasurementResultsSetType :
   public XmlTypeBase
@@ -183,7 +183,7 @@ protected:
   MeasurementResultsTypeLisd * MeasurementResults;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasurementResultsType :
   public XmlTypeBase
@@ -260,7 +260,7 @@ protected:
   ArrayReferenceType * ActualComponentIds;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasurementResultsTypeLisd :
   public std::list<MeasurementResultsType *>,
@@ -274,7 +274,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ResultsType :
   public XmlTypeBase
@@ -305,6 +305,6 @@ protected:
   InspectionTraceabilityType * InspectionTraceability;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 #endif // QIFRESULTS_HH

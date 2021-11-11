@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #ifndef EXPRESSIONS_HH
 #define EXPRESSIONS_HH
@@ -8,7 +8,7 @@
 #include "GenericExpressionsClasses.hh"
 #include "PrimitivesPMIClasses.hh"
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArithmeticCharacteristicParameterType;
 class ArithmeticComparisonEnumType;
@@ -43,8 +43,8 @@ class SpherePointSamplingStrategyEnumType;
 class SurfaceOfRevolutionPointSamplingStrategyEnumType;
 class VariableValueType;
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 class ArithmeticComparisonEnumType :
   public XmlNMTOKEN
@@ -60,7 +60,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArithmeticParameterBaseType :
   public ArithmeticExpressionBaseType
@@ -79,7 +79,7 @@ protected:
   XmlToken * Parameter;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArithmeticParameterValueType :
   public ArithmeticExpressionBaseType
@@ -102,7 +102,7 @@ protected:
   QIFReferenceFullType * ObjectId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArithmeticPartParameterType :
   public ArithmeticParameterBaseType
@@ -115,7 +115,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CharacteristicIsType :
   public BooleanExpressionBaseType
@@ -135,7 +135,7 @@ protected:
   CharacteristicTypeEnumType * val;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CharacteristicToleranceType :
   public ArithmeticExpressionBaseType
@@ -146,7 +146,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CharacteristicTypeEnumType :
   public XmlNMTOKEN
@@ -162,7 +162,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ClosedCurvePointSamplingStrategyEnumType :
   public XmlNMTOKEN
@@ -178,7 +178,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DMEClassNameEnumType :
   public XmlNMTOKEN
@@ -194,7 +194,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureAreaType :
   public ArithmeticExpressionBaseType
@@ -205,7 +205,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureIsDatumType :
   public BooleanExpressionBaseType
@@ -216,7 +216,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureIsInternalType :
   public BooleanExpressionBaseType
@@ -227,7 +227,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureLengthType :
   public ArithmeticExpressionBaseType
@@ -238,7 +238,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureSizeType :
   public ArithmeticExpressionBaseType
@@ -249,7 +249,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureTypeEnumType :
   public XmlNMTOKEN
@@ -265,7 +265,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class FeatureTypeIsType :
   public BooleanExpressionBaseType
@@ -285,7 +285,7 @@ protected:
   FeatureTypeEnumType * val;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointDefinedPointSamplingStrategyEnumType :
   public XmlNMTOKEN
@@ -301,7 +301,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointSamplingStrategyEnumBaseType :
   public XmlNMTOKEN
@@ -317,7 +317,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SamplingCategoryIsType :
   public BooleanExpressionBaseType
@@ -337,7 +337,7 @@ protected:
   XmlUnsignedInt * val;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ShapeClassIsType :
   public BooleanExpressionBaseType
@@ -357,7 +357,7 @@ protected:
   ShapeClassEnumType * val;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SpherePointSamplingStrategyEnumType :
   public PointSamplingStrategyEnumBaseType
@@ -373,7 +373,7 @@ public:
   void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SurfaceOfRevolutionPointSamplingStrategyEnumType :
   public PointSamplingStrategyEnumBaseType
@@ -389,7 +389,7 @@ public:
   void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class VariableValueType :
   public ArithmeticExpressionBaseType
@@ -408,7 +408,7 @@ protected:
   XmlIDREF * VariableName;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArithmeticCharacteristicParameterType :
   public ArithmeticParameterBaseType
@@ -428,7 +428,7 @@ protected:
   CharacteristicTypeEnumType * CharacteristicTypeEnum;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArithmeticDMEParameterType :
   public ArithmeticParameterBaseType
@@ -448,7 +448,7 @@ protected:
   DMEClassNameEnumType * DMEClassNameEnum;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ArithmeticFeatureParameterType :
   public ArithmeticParameterBaseType
@@ -468,7 +468,7 @@ protected:
   FeatureTypeEnumType * FeatureTypeEnum;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ConePointSamplingStrategyEnumType :
   public PointSamplingStrategyEnumBaseType
@@ -484,7 +484,7 @@ public:
   void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ElongatedCylinderPointSamplingStrategyEnumType :
   public PointSamplingStrategyEnumBaseType
@@ -500,7 +500,7 @@ public:
   void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ExtrudedCrossSectionPointSamplingStrategyEnumType :
   public PointSamplingStrategyEnumBaseType
@@ -516,7 +516,7 @@ public:
   void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class OpenCurvePointSamplingStrategyEnumType :
   public PointSamplingStrategyEnumBaseType
@@ -532,7 +532,7 @@ public:
   void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PlanePointSamplingStrategyEnumType :
   public PointSamplingStrategyEnumBaseType
@@ -548,7 +548,7 @@ public:
   void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointPointSamplingStrategyEnumType :
   public PointSamplingStrategyEnumBaseType
@@ -564,6 +564,6 @@ public:
   void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 #endif // EXPRESSIONS_HH

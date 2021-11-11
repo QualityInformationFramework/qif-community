@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #include <stdio.h>             // for printf, etc.
 #include <string.h>            // for strdup
@@ -10,8 +10,8 @@
 
 #define INDENT 2
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 /* class QIFDocumentFile
 
@@ -70,7 +70,7 @@ QIFDocumentType * QIFDocumentFile::getQIFDocument()
 void QIFDocumentFile::setQIFDocument(QIFDocumentType * QIFDocumentIn )
 {QIFDocument = QIFDocumentIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExternalQIFDocumentReferenceType
 
@@ -248,7 +248,7 @@ XmlString * ExternalQIFDocumentReferenceType::getDescription()
 void ExternalQIFDocumentReferenceType::setDescription(XmlString * DescriptionIn)
 {Description = DescriptionIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExternalQIFDocumentReferenceTypeLisd
 
@@ -275,7 +275,7 @@ ExternalQIFDocumentReferenceTypeLisd::~ExternalQIFDocumentReferenceTypeLisd()
 
 void ExternalQIFDocumentReferenceTypeLisd::printSelf(FILE * outFile){}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class ExternalQIFReferencesType
 
@@ -433,7 +433,7 @@ ExternalQIFDocumentReferenceTypeLisd * ExternalQIFReferencesType::getExternalQIF
 void ExternalQIFReferencesType::setExternalQIFDocument(ExternalQIFDocumentReferenceTypeLisd * ExternalQIFDocumentIn)
 {ExternalQIFDocument = ExternalQIFDocumentIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QIFDocumentHeaderType
 
@@ -548,7 +548,7 @@ XmlString * QIFDocumentHeaderType::getScope()
 void QIFDocumentHeaderType::setScope(XmlString * ScopeIn)
 {Scope = ScopeIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 /* class QIFDocumentType
 
@@ -1324,7 +1324,7 @@ XmlString * QIFDocumentType::getSignature()
 void QIFDocumentType::setSignature(XmlString * SignatureIn)
 {Signature = SignatureIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 XmlHeaderForQIFDocument::XmlHeaderForQIFDocument()
 {
@@ -1350,17 +1350,7 @@ XmlHeaderForQIFDocument::XmlHeaderForQIFDocument(
 XmlHeaderForQIFDocument::~XmlHeaderForQIFDocument()
 {
   #ifndef NODESTRUCT
-  std::list<XmlString *>::iterator iter;
-
-  if (XmlnsiWithPrefix)
-    {
-      for (iter = XmlnsiWithPrefix->begin();
-           iter != XmlnsiWithPrefix->end(); iter++)
-        {
-          delete *iter;
-        }
-      delete XmlnsiWithPrefix;
-    }
+  delete XmlnsiWithPrefix;
   delete XmlnsNoPrefix;
   delete location;
   delete idMax;
@@ -1603,5 +1593,5 @@ XmlNMTOKEN * XmlHeaderForQIFDocument::getversionQIF()
 void XmlHeaderForQIFDocument::setversionQIF(XmlNMTOKEN * versionQIFIn)
 {versionQIF = versionQIFIn;}
 
-/*********************************************************************/
+/* ***************************************************************** */
 

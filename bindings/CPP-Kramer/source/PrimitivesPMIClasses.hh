@@ -1,4 +1,4 @@
-/*********************************************************************/
+/* ***************************************************************** */
 
 #ifndef PRIMITIVESPMI_HH
 #define PRIMITIVESPMI_HH
@@ -7,7 +7,7 @@
 #include <xmlSchemaInstance.hh>
 #include "UnitsClasses.hh"
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class AxialDifferentialScaleType;
 class BottomEnumType;
@@ -88,13 +88,13 @@ class TypeOfCoordinatesType;
 class TypeOfCoordinatesTypeChoicePair;
 class UniformScaleType;
 class ZoneOrientationEnumType;
-class ScaleType_1005_Type;
-class ScaleType_1005_TypeChoicePair;
-class StatsWithRefere_1006_Type;
-class StatsWithRefere_1006_TypeChoicePair;
+class ScaleType_1006_Type;
+class ScaleType_1006_TypeChoicePair;
+class StatsWithRefere_1007_Type;
+class StatsWithRefere_1007_TypeChoicePair;
 
-/*********************************************************************/
-/*********************************************************************/
+/* ***************************************************************** */
+/* ***************************************************************** */
 
 class AxialDifferentialScaleType :
   public XmlTypeBase
@@ -133,7 +133,7 @@ protected:
   UnitVectorType * ZaxisDirection;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class BottomEnumType :
   public XmlNMTOKEN
@@ -149,7 +149,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class BottomType :
   public XmlTypeBase
@@ -168,7 +168,7 @@ protected:
   BottomTypeChoicePair * BottomTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union BottomTypeVal
 {
@@ -176,7 +176,7 @@ union BottomTypeVal
   XmlString * OtherBottom;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class BottomTypeChoicePair :
   public XmlTypeBase
@@ -196,7 +196,7 @@ public:
   BottomTypeVal BottomTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class BoundingBoxType :
   public XmlTypeBase
@@ -223,7 +223,7 @@ protected:
   LinearValueType * Height;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircleType :
   public XmlTypeBase
@@ -250,7 +250,7 @@ protected:
   UnitVectorType * Normal;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CircularUnitAreaType :
   public XmlTypeBase
@@ -269,7 +269,7 @@ protected:
   LinearValueType * CircularUnitAreaDiameter;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CoordinateEnumType :
   public XmlNMTOKEN
@@ -285,7 +285,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class CylinderType :
   public XmlTypeBase
@@ -316,7 +316,7 @@ protected:
   LinearValueType * Length;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DigitalModelFormatEnumType :
   public XmlNMTOKEN
@@ -332,7 +332,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DigitalModelFormatType :
   public XmlTypeBase
@@ -351,7 +351,7 @@ protected:
   DigitalModelFormatTypeChoicePair * DigitalModelFormatTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union DigitalModelFormatTypeVal
 {
@@ -359,7 +359,7 @@ union DigitalModelFormatTypeVal
   XmlString * OtherDigitalModelFormat;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DigitalModelFormatTypeChoicePair :
   public XmlTypeBase
@@ -379,7 +379,7 @@ public:
   DigitalModelFormatTypeVal DigitalModelFormatTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class DimensionCountEnumType :
   public XmlNMTOKEN
@@ -395,7 +395,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class EndRadiusType :
   public XmlTypeBase
@@ -418,7 +418,7 @@ protected:
   XmlBoolean * Expanded;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class InternalExternalEnumType :
   public XmlNMTOKEN
@@ -434,7 +434,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ListAccumulatedStatsValuesListType :
   public std::list<StatsValuesEnumType *>,
@@ -454,7 +454,7 @@ public:
   bool bad;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ListSubgroupStatsValuesListType :
   public std::list<SubgroupStatsValuesEnumType *>,
@@ -474,7 +474,7 @@ public:
   bool bad;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ListSummaryStatsValuesListType :
   public std::list<StatsValuesEnumType *>,
@@ -494,7 +494,7 @@ public:
   bool bad;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ManufacturingMethodEnumType :
   public XmlNMTOKEN
@@ -510,7 +510,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ManufacturingMethodType :
   public XmlTypeBase
@@ -529,7 +529,7 @@ protected:
   ManufacturingMethodTypeChoicePair * ManufacturingMethodTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ManufacturingMethodTypeVal
 {
@@ -537,7 +537,7 @@ union ManufacturingMethodTypeVal
   XmlString * OtherManufacturingMethod;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ManufacturingMethodTypeChoicePair :
   public XmlTypeBase
@@ -557,7 +557,7 @@ public:
   ManufacturingMethodTypeVal ManufacturingMethodTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredAxisType :
   public XmlTypeBase
@@ -580,7 +580,7 @@ protected:
   MeasuredUnitVectorType * Direction;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredEndRadiusType :
   public XmlTypeBase
@@ -603,7 +603,7 @@ protected:
   XmlBoolean * Expanded;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPlaneType :
   public XmlTypeBase
@@ -626,7 +626,7 @@ protected:
   MeasuredUnitVectorType * Normal;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointAndVectorType :
   public XmlTypeBase
@@ -649,7 +649,7 @@ protected:
   MeasuredUnitVectorType * Vector;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredPointType :
   public PointType
@@ -715,7 +715,7 @@ protected:
   XmlDecimal * zMeanError;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredUnitVectorType :
   public UnitVectorType
@@ -781,7 +781,7 @@ protected:
   XmlDecimal * zMeanError;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class MeasuredZoneAxisType :
   public MeasuredAxisType
@@ -802,7 +802,7 @@ protected:
   MeasuredLinearValueType * Length;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class PointAndVectorType :
   public XmlTypeBase
@@ -825,7 +825,7 @@ protected:
   UnitVectorType * Vector;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class RadialDifferentialScaleType :
   public XmlTypeBase
@@ -852,7 +852,7 @@ protected:
   UnitVectorType * Direction;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class RectangleType :
   public XmlTypeBase
@@ -887,7 +887,7 @@ protected:
   UnitVectorType * LengthDirection;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class RectangularUnitAreaType :
   public XmlTypeBase
@@ -914,7 +914,7 @@ protected:
   UnitVectorType * RectangularUnitAreaOrientation;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ScaleType :
   public XmlTypeBase
@@ -923,21 +923,21 @@ public:
   ScaleType();
   ScaleType(
     PointType * OriginIn,
-    ScaleType_1005_Type * ScaleType_1005In);
+    ScaleType_1006_Type * ScaleType_1006In);
   ~ScaleType();
   void printSelf(FILE * outFile);
 
   PointType * getOrigin();
   void setOrigin(PointType * OriginIn);
-  ScaleType_1005_Type * getScaleType_1005();
-  void setScaleType_1005(ScaleType_1005_Type * ScaleType_1005In);
+  ScaleType_1006_Type * getScaleType_1006();
+  void setScaleType_1006(ScaleType_1006_Type * ScaleType_1006In);
 
 protected:
   PointType * Origin;
-  ScaleType_1005_Type * ScaleType_1005;
+  ScaleType_1006_Type * ScaleType_1006;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SecurityClassificationEnumType :
   public XmlNMTOKEN
@@ -953,7 +953,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SecurityClassificationType :
   public XmlTypeBase
@@ -972,7 +972,7 @@ protected:
   SecurityClassificationTypeChoicePair * SecurityClassificationTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union SecurityClassificationTypeVal
 {
@@ -980,7 +980,7 @@ union SecurityClassificationTypeVal
   XmlString * OtherSecurityClassification;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SecurityClassificationTypeChoicePair :
   public XmlTypeBase
@@ -1000,7 +1000,7 @@ public:
   SecurityClassificationTypeVal SecurityClassificationTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ShapeClassEnumType :
   public XmlNMTOKEN
@@ -1016,7 +1016,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ShapeClassType :
   public XmlTypeBase
@@ -1035,7 +1035,7 @@ protected:
   ShapeClassTypeChoicePair * ShapeClassTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ShapeClassTypeVal
 {
@@ -1043,7 +1043,7 @@ union ShapeClassTypeVal
   XmlString * OtherShapeClass;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ShapeClassTypeChoicePair :
   public XmlTypeBase
@@ -1063,7 +1063,7 @@ public:
   ShapeClassTypeVal ShapeClassTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SlotEndEnumType :
   public XmlNMTOKEN
@@ -1079,7 +1079,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SlotEndType :
   public XmlTypeBase
@@ -1098,7 +1098,7 @@ protected:
   SlotEndTypeChoicePair * SlotEndTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union SlotEndTypeVal
 {
@@ -1106,7 +1106,7 @@ union SlotEndTypeVal
   XmlString * OtherSlotEnd;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SlotEndTypeChoicePair :
   public XmlTypeBase
@@ -1126,7 +1126,7 @@ public:
   SlotEndTypeVal SlotEndTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SphereType :
   public XmlTypeBase
@@ -1149,7 +1149,7 @@ protected:
   LinearValueType * Diameter;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StatsValuesEnumType :
   public XmlNMTOKEN
@@ -1165,7 +1165,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StatsWithReferenceBaseType :
   public XmlTypeBase
@@ -1173,18 +1173,18 @@ class StatsWithReferenceBaseType :
 public:
   StatsWithReferenceBaseType();
   StatsWithReferenceBaseType(
-    StatsWithRefere_1006_Type * StatsWithRefere_1006In);
+    StatsWithRefere_1007_Type * StatsWithRefere_1007In);
   ~StatsWithReferenceBaseType();
   void printSelf(FILE * outFile);
 
-  StatsWithRefere_1006_Type * getStatsWithRefere_1006();
-  void setStatsWithRefere_1006(StatsWithRefere_1006_Type * StatsWithRefere_1006In);
+  StatsWithRefere_1007_Type * getStatsWithRefere_1007();
+  void setStatsWithRefere_1007(StatsWithRefere_1007_Type * StatsWithRefere_1007In);
 
 protected:
-  StatsWithRefere_1006_Type * StatsWithRefere_1006;
+  StatsWithRefere_1007_Type * StatsWithRefere_1007;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StatsWithReferenceBaseTypeLisd :
   public std::list<StatsWithReferenceBaseType *>,
@@ -1198,7 +1198,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SubgroupDecimalArrayType :
   public XmlTypeBase
@@ -1225,7 +1225,7 @@ protected:
   SubgroupDecimalTypeLisd * SubgroupDecimal;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SubgroupDecimalType :
   public MeasuredDecimalType
@@ -1253,7 +1253,7 @@ protected:
   QIFIdType * subgroupId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SubgroupDecimalTypeLisd :
   public std::list<SubgroupDecimalType *>,
@@ -1267,7 +1267,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SubgroupDecimalsType :
   public StatsWithReferenceBaseType
@@ -1275,7 +1275,7 @@ class SubgroupDecimalsType :
 public:
   SubgroupDecimalsType();
   SubgroupDecimalsType(
-    StatsWithRefere_1006_Type * StatsWithRefere_1006In,
+    StatsWithRefere_1007_Type * StatsWithRefere_1007In,
     SubgroupDecimalArrayType * ValuesIn);
   ~SubgroupDecimalsType();
   void printSelf(FILE * outFile);
@@ -1287,7 +1287,7 @@ protected:
   SubgroupDecimalArrayType * Values;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SubgroupIntegerArrayType :
   public XmlTypeBase
@@ -1314,7 +1314,7 @@ protected:
   SubgroupIntegerTypeLisd * SubgroupInteger;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SubgroupIntegerType :
   public XmlNonNegativeInteger
@@ -1338,7 +1338,7 @@ protected:
   QIFIdType * subgroupId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SubgroupIntegerTypeLisd :
   public std::list<SubgroupIntegerType *>,
@@ -1352,7 +1352,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SubgroupIntegersType :
   public StatsWithReferenceBaseType
@@ -1360,7 +1360,7 @@ class SubgroupIntegersType :
 public:
   SubgroupIntegersType();
   SubgroupIntegersType(
-    StatsWithRefere_1006_Type * StatsWithRefere_1006In,
+    StatsWithRefere_1007_Type * StatsWithRefere_1007In,
     SubgroupIntegerArrayType * ValuesIn);
   ~SubgroupIntegersType();
   void printSelf(FILE * outFile);
@@ -1372,7 +1372,7 @@ protected:
   SubgroupIntegerArrayType * Values;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SubgroupStatsValuesEnumType :
   public XmlNMTOKEN
@@ -1388,7 +1388,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SummaryStatsValuesEnumType :
   public XmlNMTOKEN
@@ -1404,7 +1404,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SummaryStatsValuesListType :
   public XmlTypeBase
@@ -1431,7 +1431,7 @@ protected:
   SummaryStatsValuesTypeLisd * SummaryStatsValues;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SummaryStatsValuesListTypeLisd :
   public std::list<SummaryStatsValuesListType *>,
@@ -1445,7 +1445,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SummaryStatsValuesType :
   public XmlTypeBase
@@ -1468,7 +1468,7 @@ protected:
   ListSummaryStatsValuesType * SummaryStats;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class SummaryStatsValuesTypeLisd :
   public std::list<SummaryStatsValuesType *>,
@@ -1482,7 +1482,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadClassEnumType :
   public XmlNMTOKEN
@@ -1498,7 +1498,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadClassType :
   public XmlTypeBase
@@ -1517,7 +1517,7 @@ protected:
   ThreadClassTypeChoicePair * ThreadClassTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ThreadClassTypeVal
 {
@@ -1525,7 +1525,7 @@ union ThreadClassTypeVal
   XmlString * OtherThreadClass;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadClassTypeChoicePair :
   public XmlTypeBase
@@ -1545,7 +1545,7 @@ public:
   ThreadClassTypeVal ThreadClassTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadSeriesEnumType :
   public XmlNMTOKEN
@@ -1561,7 +1561,7 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadSeriesType :
   public XmlTypeBase
@@ -1580,7 +1580,7 @@ protected:
   ThreadSeriesTypeChoicePair * ThreadSeriesTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union ThreadSeriesTypeVal
 {
@@ -1588,7 +1588,7 @@ union ThreadSeriesTypeVal
   XmlString * OtherThreadSeries;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ThreadSeriesTypeChoicePair :
   public XmlTypeBase
@@ -1608,7 +1608,7 @@ public:
   ThreadSeriesTypeVal ThreadSeriesTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TypeOfCoordinatesType :
   public XmlTypeBase
@@ -1627,7 +1627,7 @@ protected:
   TypeOfCoordinatesTypeChoicePair * TypeOfCoordinatesTypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 union TypeOfCoordinatesTypeVal
 {
@@ -1635,7 +1635,7 @@ union TypeOfCoordinatesTypeVal
   XmlString * OtherCoordinate;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class TypeOfCoordinatesTypeChoicePair :
   public XmlTypeBase
@@ -1655,7 +1655,7 @@ public:
   TypeOfCoordinatesTypeVal TypeOfCoordinatesTypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class UniformScaleType :
   public XmlTypeBase
@@ -1674,7 +1674,7 @@ protected:
   XmlDecimal * ScaleFactor;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ZoneOrientationEnumType :
   public XmlNMTOKEN
@@ -1690,37 +1690,37 @@ public:
   virtual void printName(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ScaleType_1005_Type :
+class ScaleType_1006_Type :
   public XmlTypeBase
 {
 public:
-  ScaleType_1005_Type();
-  ScaleType_1005_Type(
-    ScaleType_1005_TypeChoicePair * ScaleType_1005_TypePairIn);
-  ~ScaleType_1005_Type();
+  ScaleType_1006_Type();
+  ScaleType_1006_Type(
+    ScaleType_1006_TypeChoicePair * ScaleType_1006_TypePairIn);
+  ~ScaleType_1006_Type();
   void printSelf(FILE * outFile);
 
-  ScaleType_1005_TypeChoicePair * getScaleType_1005_TypePair();
-  void setScaleType_1005_TypePair(ScaleType_1005_TypeChoicePair * ScaleType_1005_TypePairIn);
+  ScaleType_1006_TypeChoicePair * getScaleType_1006_TypePair();
+  void setScaleType_1006_TypePair(ScaleType_1006_TypeChoicePair * ScaleType_1006_TypePairIn);
 
 protected:
-  ScaleType_1005_TypeChoicePair * ScaleType_1005_TypePair;
+  ScaleType_1006_TypeChoicePair * ScaleType_1006_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union ScaleType_1005_TypeVal
+union ScaleType_1006_TypeVal
 {
   UniformScaleType * UniformScale;
   RadialDifferentialScaleType * RadialDifferentialScale;
   AxialDifferentialScaleType * AxialDifferentialScale;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class ScaleType_1005_TypeChoicePair :
+class ScaleType_1006_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -1728,48 +1728,48 @@ public:
     UniformScaleE,
     RadialDifferentialScaleE,
     AxialDifferentialScaleE };
-  ScaleType_1005_TypeChoicePair();
-  ScaleType_1005_TypeChoicePair(
-    whichOne ScaleType_1005_TypeTypeIn,
-    ScaleType_1005_TypeVal ScaleType_1005_TypeValueIn);
-  ~ScaleType_1005_TypeChoicePair();
+  ScaleType_1006_TypeChoicePair();
+  ScaleType_1006_TypeChoicePair(
+    whichOne ScaleType_1006_TypeTypeIn,
+    ScaleType_1006_TypeVal ScaleType_1006_TypeValueIn);
+  ~ScaleType_1006_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ScaleType_1005_TypeType;
-  ScaleType_1005_TypeVal ScaleType_1005_TypeValue;
+  whichOne ScaleType_1006_TypeType;
+  ScaleType_1006_TypeVal ScaleType_1006_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class StatsWithRefere_1006_Type :
+class StatsWithRefere_1007_Type :
   public XmlTypeBase
 {
 public:
-  StatsWithRefere_1006_Type();
-  StatsWithRefere_1006_Type(
-    StatsWithRefere_1006_TypeChoicePair * StatsWithRefere_1006_TypePairIn);
-  ~StatsWithRefere_1006_Type();
+  StatsWithRefere_1007_Type();
+  StatsWithRefere_1007_Type(
+    StatsWithRefere_1007_TypeChoicePair * StatsWithRefere_1007_TypePairIn);
+  ~StatsWithRefere_1007_Type();
   void printSelf(FILE * outFile);
 
-  StatsWithRefere_1006_TypeChoicePair * getStatsWithRefere_1006_TypePair();
-  void setStatsWithRefere_1006_TypePair(StatsWithRefere_1006_TypeChoicePair * StatsWithRefere_1006_TypePairIn);
+  StatsWithRefere_1007_TypeChoicePair * getStatsWithRefere_1007_TypePair();
+  void setStatsWithRefere_1007_TypePair(StatsWithRefere_1007_TypeChoicePair * StatsWithRefere_1007_TypePairIn);
 
 protected:
-  StatsWithRefere_1006_TypeChoicePair * StatsWithRefere_1006_TypePair;
+  StatsWithRefere_1007_TypeChoicePair * StatsWithRefere_1007_TypePair;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-union StatsWithRefere_1006_TypeVal
+union StatsWithRefere_1007_TypeVal
 {
   QIFReferenceType * SoftwareId;
   QIFReferenceType * StandardId;
   QIFReferenceType * AlgorithmId;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
-class StatsWithRefere_1006_TypeChoicePair :
+class StatsWithRefere_1007_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -1777,18 +1777,18 @@ public:
     SoftwareIdE,
     StandardIdE,
     AlgorithmIdE };
-  StatsWithRefere_1006_TypeChoicePair();
-  StatsWithRefere_1006_TypeChoicePair(
-    whichOne StatsWithRefere_1006_TypeTypeIn,
-    StatsWithRefere_1006_TypeVal StatsWithRefere_1006_TypeValueIn);
-  ~StatsWithRefere_1006_TypeChoicePair();
+  StatsWithRefere_1007_TypeChoicePair();
+  StatsWithRefere_1007_TypeChoicePair(
+    whichOne StatsWithRefere_1007_TypeTypeIn,
+    StatsWithRefere_1007_TypeVal StatsWithRefere_1007_TypeValueIn);
+  ~StatsWithRefere_1007_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne StatsWithRefere_1006_TypeType;
-  StatsWithRefere_1006_TypeVal StatsWithRefere_1006_TypeValue;
+  whichOne StatsWithRefere_1007_TypeType;
+  StatsWithRefere_1007_TypeVal StatsWithRefere_1007_TypeValue;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ListAccumulatedStatsValuesType :
   public StatsWithReferenceBaseType
@@ -1796,7 +1796,7 @@ class ListAccumulatedStatsValuesType :
 public:
   ListAccumulatedStatsValuesType();
   ListAccumulatedStatsValuesType(
-    StatsWithRefere_1006_Type * StatsWithRefere_1006In,
+    StatsWithRefere_1007_Type * StatsWithRefere_1007In,
     ListAccumulatedStatsValuesListType * StatsIn);
   ~ListAccumulatedStatsValuesType();
   void printSelf(FILE * outFile);
@@ -1808,7 +1808,7 @@ protected:
   ListAccumulatedStatsValuesListType * Stats;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ListAccumulatedStatsValuesTypeLisd :
   public std::list<ListAccumulatedStatsValuesType *>,
@@ -1822,7 +1822,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ListSubgroupStatsValuesType :
   public StatsWithReferenceBaseType
@@ -1830,7 +1830,7 @@ class ListSubgroupStatsValuesType :
 public:
   ListSubgroupStatsValuesType();
   ListSubgroupStatsValuesType(
-    StatsWithRefere_1006_Type * StatsWithRefere_1006In,
+    StatsWithRefere_1007_Type * StatsWithRefere_1007In,
     ListSubgroupStatsValuesListType * StatsIn);
   ~ListSubgroupStatsValuesType();
   void printSelf(FILE * outFile);
@@ -1842,7 +1842,7 @@ protected:
   ListSubgroupStatsValuesListType * Stats;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ListSubgroupStatsValuesTypeLisd :
   public std::list<ListSubgroupStatsValuesType *>,
@@ -1856,7 +1856,7 @@ public:
   void printSelf(FILE * outFile);
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class ListSummaryStatsValuesType :
   public StatsWithReferenceBaseType
@@ -1864,7 +1864,7 @@ class ListSummaryStatsValuesType :
 public:
   ListSummaryStatsValuesType();
   ListSummaryStatsValuesType(
-    StatsWithRefere_1006_Type * StatsWithRefere_1006In,
+    StatsWithRefere_1007_Type * StatsWithRefere_1007In,
     ListSummaryStatsValuesListType * StatsIn);
   ~ListSummaryStatsValuesType();
   void printSelf(FILE * outFile);
@@ -1876,7 +1876,7 @@ protected:
   ListSummaryStatsValuesListType * Stats;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StatsMeasuredDecimalType :
   public StatsWithReferenceBaseType
@@ -1884,7 +1884,7 @@ class StatsMeasuredDecimalType :
 public:
   StatsMeasuredDecimalType();
   StatsMeasuredDecimalType(
-    StatsWithRefere_1006_Type * StatsWithRefere_1006In,
+    StatsWithRefere_1007_Type * StatsWithRefere_1007In,
     MeasuredDecimalType * ValueIn);
   ~StatsMeasuredDecimalType();
   void printSelf(FILE * outFile);
@@ -1896,7 +1896,7 @@ protected:
   MeasuredDecimalType * Value;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StatsMeasuredDecimalWithReferenceType :
   public StatsMeasuredDecimalType
@@ -1904,7 +1904,7 @@ class StatsMeasuredDecimalWithReferenceType :
 public:
   StatsMeasuredDecimalWithReferenceType();
   StatsMeasuredDecimalWithReferenceType(
-    StatsWithRefere_1006_Type * StatsWithRefere_1006In,
+    StatsWithRefere_1007_Type * StatsWithRefere_1007In,
     MeasuredDecimalType * ValueIn,
     QIFReferenceType * IdIn);
   ~StatsMeasuredDecimalWithReferenceType();
@@ -1917,7 +1917,7 @@ protected:
   QIFReferenceType * Id;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StatsNonNegativeIntegerType :
   public StatsWithReferenceBaseType
@@ -1925,7 +1925,7 @@ class StatsNonNegativeIntegerType :
 public:
   StatsNonNegativeIntegerType();
   StatsNonNegativeIntegerType(
-    StatsWithRefere_1006_Type * StatsWithRefere_1006In,
+    StatsWithRefere_1007_Type * StatsWithRefere_1007In,
     XmlNonNegativeInteger * ValueIn);
   ~StatsNonNegativeIntegerType();
   void printSelf(FILE * outFile);
@@ -1937,7 +1937,7 @@ protected:
   XmlNonNegativeInteger * Value;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 class StatsNonNegativeIntegerWithReferencesType :
   public StatsNonNegativeIntegerType
@@ -1945,7 +1945,7 @@ class StatsNonNegativeIntegerWithReferencesType :
 public:
   StatsNonNegativeIntegerWithReferencesType();
   StatsNonNegativeIntegerWithReferencesType(
-    StatsWithRefere_1006_Type * StatsWithRefere_1006In,
+    StatsWithRefere_1007_Type * StatsWithRefere_1007In,
     XmlNonNegativeInteger * ValueIn,
     ArrayReferenceType * IdsIn);
   ~StatsNonNegativeIntegerWithReferencesType();
@@ -1958,6 +1958,6 @@ protected:
   ArrayReferenceType * Ids;
 };
 
-/*********************************************************************/
+/* ***************************************************************** */
 
 #endif // PRIMITIVESPMI_HH
