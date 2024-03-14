@@ -5,10 +5,6 @@
 <!-- proprietary rights to such information, such as rights to a       -->
 <!-- patent, trademark, or copyright.                                  -->
 
-<!-- This file has been changed from Visualization.xsdOrig by removing -->
-<!-- minOccurs="0" from the two elements in the choice in Area2dType.  -->
-<!-- This change has no effect on the validity of any instance files.  -->
-
 <xs:schema
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns="http://qifstandards.org/xsd/qif3"
@@ -18,8 +14,8 @@
   attributeFormDefault="unqualified"
   version="3.0.0">
 
-  <xs:include schemaLocation="PrimitivesPD.xsd"/>
-  <xs:include schemaLocation="Characteristics.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/PrimitivesPD.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/Characteristics.xsd"/>
 
   <xs:annotation>
     <xs:documentation>
@@ -45,7 +41,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="TrailingZeroDisplay"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The TrailingZeroDisplay element is a container for storing
@@ -73,8 +69,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Font"
-        type="FontType"
-        maxOccurs="unbounded">
+                  type="FontType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Font element is a font which is used for visualization
@@ -84,8 +80,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of fonts in this set.
@@ -115,7 +111,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="Attributes"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Attributes element contains user defined
@@ -124,7 +120,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Name"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The Name element is the font name.
@@ -132,7 +128,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Size"
-        type="NaturalType">
+                  type="NaturalType">
         <xs:annotation>
           <xs:documentation>
             The Size element is the font size defined in points
@@ -141,19 +137,19 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Alignment"
-        type="AlignmentEnumType"
-        minOccurs="0">
+                  type="AlignmentEnumType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
-            The optional alignment element defines the note alignment,
+            The optional Alignment element defines the note alignment,
             ALIGNMENT_LEFT is the default.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
     <xs:attribute name="index"
-      type="xs:unsignedInt"
-      use="required">
+                  type="xs:unsignedInt"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required index attribute is an index identifying a font
@@ -162,8 +158,8 @@
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="bold"
-      type="xs:boolean"
-      default="false">
+                  type="xs:boolean"
+                  default="false">
       <xs:annotation>
         <xs:documentation>
           The optional bold attribute shows if the written text
@@ -172,8 +168,8 @@
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="italic"
-      type="xs:boolean"
-      default="false">
+                  type="xs:boolean"
+                  default="false">
       <xs:annotation>
         <xs:documentation>
           The optional italic attribute shows if the written text
@@ -182,8 +178,8 @@
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="underline"
-      type="xs:boolean"
-      default="false">
+                  type="xs:boolean"
+                  default="false">
       <xs:annotation>
         <xs:documentation>
           The optional underline attribute shows if the written text
@@ -202,8 +198,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="PMIDisplay"
-        type="PMIDisplayType"
-        maxOccurs="unbounded">
+                  type="PMIDisplayType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each PMIDisplay element contains a block of display information
@@ -213,8 +209,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of elements in this set.
@@ -232,7 +228,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="Attributes"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Attributes element contains user defined
@@ -241,19 +237,19 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Color"
-        type="ColorType"
-        minOccurs="0">
+                  type="ColorType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
-            The optional ColorType is the RGB color type - a triplet of
+            The optional Color element is the RGB color type - a triplet of
             integer numbers: the red-component, the green-component and the
             blue-component.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Plane"
-        type="PlanePMIDisplayType"
-        minOccurs="0">
+                  type="PlanePMIDisplayType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Plane element is an annotation plane.
@@ -261,7 +257,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="Texts"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Texts element specifies a set of text lines.
@@ -269,8 +265,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="Leader"
-        minOccurs="0"
-        maxOccurs="unbounded">
+                  minOccurs="0"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             The optional Leader element defines leaders.
@@ -278,7 +274,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="WitnessLines"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional WitnessLines element defines witness lines.
@@ -286,7 +282,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="Frames"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Frames element defines the visualization frames.
@@ -294,8 +290,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Graphics"
-        type="GraphicsType"
-        minOccurs="0">
+                  type="GraphicsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Graphics element defines additional visualization
@@ -305,7 +301,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Reference"
-        type="ElementReferenceFullType">
+                  type="ElementReferenceFullType">
         <xs:annotation>
           <xs:documentation>
             The Reference element is the id of an annotation entity which
@@ -315,8 +311,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="GroupID"
-        type="I2Type"
-        minOccurs="0">
+                  type="I2Type"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional GroupID element is the group id:
@@ -336,7 +332,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="AnnotationViewId"
-        type="ElementReferenceType">
+                  type="ElementReferenceType">
         <xs:annotation>
           <xs:documentation>
             The AnnotationViewId element is the id of an annotation view
@@ -345,8 +341,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Origin"
-        type="PointType"
-        minOccurs="0">
+                  type="PointType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Origin element is the origin of the annotation
@@ -355,8 +351,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Direction"
-        type="UnitVectorType"
-        minOccurs="0">
+                  type="UnitVectorType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Direction element is a text direction. This
@@ -376,8 +372,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Polyline"
-        type="Polyline2dType"
-        maxOccurs="unbounded">
+                  type="Polyline2dType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Polyline element is a polyline curve.
@@ -386,8 +382,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of polyline curves in this
@@ -403,35 +399,33 @@
         The Polyline2dType defines a polyline curve.
       </xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:choice>
+    <xs:choice>
+      <xs:annotation>
+        <xs:documentation>
+          This compositor provides a choice of the representation method
+          for the polyline points.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:element name="Points"
+                  type="ArrayPoint2dType">
         <xs:annotation>
           <xs:documentation>
-            This compositor provides a choice of the representation method
-            for the polyline points.
+            The Points element is an array of 2D polyline points.
           </xs:documentation>
         </xs:annotation>
-        <xs:element name="Points"
-          type="ArrayPoint2dType">
-          <xs:annotation>
-            <xs:documentation>
-              The Points element is an array of 2D polyline points.
-            </xs:documentation>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="PointsBinary"
-          type="ArrayBinaryType">
-          <xs:annotation>
-            <xs:documentation>
-              The PointsBinary element is a binary array of 2D polyline
-              points.
-            </xs:documentation>
-          </xs:annotation>
-        </xs:element>
-      </xs:choice>
-    </xs:sequence>
+      </xs:element>
+      <xs:element name="PointsBinary"
+                  type="ArrayBinaryType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointsBinary element is a binary array of 2D polyline
+            points.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
     <xs:attribute name="color"
-      type="ColorType">
+                  type="ColorType">
       <xs:annotation>
         <xs:documentation>
           The optional color attribute is the color for the polyline.
@@ -448,8 +442,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Area"
-        type="Area2dType"
-        maxOccurs="unbounded">
+                  type="Area2dType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Area element is a 2D area.
@@ -458,8 +452,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of areas in this set.
@@ -482,7 +476,7 @@
         </xs:documentation>
       </xs:annotation>
       <xs:element name="Loops"
-        type="Loops2dType">
+                  type="Loops2dType">
         <xs:annotation>
           <xs:documentation>
             The Loops element alternative is a set of loops defining the
@@ -491,7 +485,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Triangulation"
-        type="Triangulation2dType">
+                  type="Triangulation2dType">
         <xs:annotation>
           <xs:documentation>
             The Triangulation element alternative is an area defined in
@@ -511,9 +505,9 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Loop"
-        type="Polyline2dType"
-        minOccurs="1"
-        maxOccurs="unbounded">
+                  type="Polyline2dType"
+                  minOccurs="1"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Loop element is a 2D loop defined as a polyline.
@@ -522,8 +516,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of loops in this set.
@@ -547,7 +541,7 @@
           </xs:documentation>
         </xs:annotation>
         <xs:element name="Vertices"
-          type="ArrayPoint2dType">
+                    type="ArrayPoint2dType">
           <xs:annotation>
             <xs:documentation>
               The Vertices element alternative is an array of 2D vertices
@@ -556,7 +550,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="VerticesBinary"
-          type="ArrayBinaryType">
+                    type="ArrayBinaryType">
           <xs:annotation>
             <xs:documentation>
               The VerticesBinary element alternative is a binary array of
@@ -573,7 +567,7 @@
           </xs:documentation>
         </xs:annotation>
         <xs:element name="Triangles"
-          type="ArrayI3Type">
+                    type="ArrayI3Type">
           <xs:annotation>
             <xs:documentation>
               The Triangles element alternative is an array of indices of
@@ -588,7 +582,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="TrianglesBinary"
-          type="ArrayBinaryType">
+                    type="ArrayBinaryType">
           <xs:annotation>
             <xs:documentation>
               The TrianglesBinary element alternative is a binary array of
@@ -603,7 +597,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="TrianglesColor"
-          type="ArrayUnsignedByteType">
+                    type="ArrayUnsignedByteType">
           <xs:annotation>
             <xs:documentation>
               The TrianglesColor element is an array of unsigned byte
@@ -616,7 +610,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="TrianglesColorBinary"
-          type="ArrayBinaryType">
+                    type="ArrayBinaryType">
           <xs:annotation>
             <xs:documentation>
               The TrianglesColorBinary element is a binary array of
@@ -642,8 +636,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Polylines"
-        type="Polylines2dType"
-        minOccurs="0">
+                  type="Polylines2dType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Polylines element is a set of 2D polylines.
@@ -651,8 +645,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Areas"
-        type="Areas2dType"
-        minOccurs="0">
+                  type="Areas2dType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Areas element is a set of 2D areas.
@@ -672,7 +666,7 @@
       <xs:extension base="LineSegment2dType">
         <xs:sequence>
           <xs:element name="HeadForm"
-            type="LeaderHeadFormType">
+                      type="LeaderHeadFormType">
             <xs:annotation>
               <xs:documentation>
                 The HeadForm element gives the form of the leader head.
@@ -680,7 +674,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="HeadHeight"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
                 The HeadHeight element is the size of the leader head.
@@ -703,7 +697,7 @@
       <xs:extension base="LeaderType">
         <xs:sequence>
           <xs:element name="PointExtension"
-            type="Point2dSimpleType">
+                      type="Point2dSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The PointExtension element specifies the 2D coordinates of
@@ -713,8 +707,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Modifier"
-            type="LeaderModifierEnumType"
-            minOccurs="0">
+                      type="LeaderModifierEnumType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Modifier element specifies a leader modifier.
@@ -736,7 +730,7 @@
       <xs:extension base="LeaderType">
         <xs:sequence>
           <xs:element name="HeadForm2"
-            type="LeaderHeadFormEnumType">
+                      type="LeaderHeadFormEnumType">
             <xs:annotation>
               <xs:documentation>
                 The HeadForm2 element defines the second head form.
@@ -744,7 +738,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="PointConnection"
-            type="Point2dSimpleType">
+                      type="Point2dSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The PointConnection specifies 2D coordinates of the
@@ -769,7 +763,7 @@
       <xs:extension base="LeaderDoubleHeadType">
         <xs:sequence>
           <xs:element name="PointExtension"
-            type="Point2dSimpleType">
+                      type="Point2dSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The PointExtension element specifies 2D coordinates of the
@@ -794,7 +788,7 @@
       <xs:extension base="LeaderType">
         <xs:sequence>
           <xs:element name="Center"
-            type="Point2dSimpleType">
+                      type="Point2dSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The Center element specifies the 2D coordinates of the
@@ -819,7 +813,7 @@
       <xs:extension base="LeaderDoubleHeadType">
         <xs:sequence>
           <xs:element name="Center"
-            type="Point2dSimpleType">
+                      type="Point2dSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The Center element specifies the 2D coordinates of the
@@ -841,7 +835,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="Text"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Text element is a string.
@@ -850,8 +844,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="fontIndex"
-      type="xs:unsignedInt"
-      use="required">
+                  type="xs:unsignedInt"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required fontIndex attribute is the index of a font
@@ -860,7 +854,7 @@
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="lineHeight"
-      type="xs:double">
+                  type="xs:double">
       <xs:annotation>
         <xs:documentation>
           The optional lineHeight attribute is the height of the text line
@@ -869,8 +863,8 @@
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of text strings in this
@@ -888,7 +882,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="Frame"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Frame element is a visualization frame.
@@ -897,8 +891,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of visualization frames in
@@ -916,7 +910,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Data"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The Data element is a string.
@@ -924,7 +918,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="XY"
-        type="Point2dSimpleType">
+                  type="Point2dSimpleType">
         <xs:annotation>
           <xs:documentation>
             The XY element specifies the 2D coordinates of the text anchor
@@ -947,7 +941,7 @@
     <xs:choice>
       <xs:sequence>
         <xs:element name="Segment1"
-          type="LineSegment2dType">
+                    type="LineSegment2dType">
           <xs:annotation>
             <xs:documentation>
               The Segment1 element is the first witness line.
@@ -955,8 +949,8 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="ZextensionPoint1"
-          type="PointSimpleType"
-          minOccurs="0">
+                    type="PointSimpleType"
+                    minOccurs="0">
           <xs:annotation>
             <xs:documentation>
               The optional ZextensionPoint1 element is an extension point
@@ -966,7 +960,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="Segment2"
-          type="LineSegment2dType">
+                    type="LineSegment2dType">
           <xs:annotation>
             <xs:documentation>
               The Segment2 element is the second witness line.
@@ -974,8 +968,8 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="ZextensionPoint2"
-          type="PointSimpleType"
-          minOccurs="0">
+                    type="PointSimpleType"
+                    minOccurs="0">
           <xs:annotation>
             <xs:documentation>
               The optional ZextensionPoint2 element is an extension point
@@ -987,7 +981,7 @@
       </xs:sequence>
       <xs:sequence>
         <xs:element name="BeginPoint"
-          type="Point2dSimpleType">
+                    type="Point2dSimpleType">
           <xs:annotation>
             <xs:documentation>
               The BeginPoint element is the begin point of the circular
@@ -996,7 +990,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="EndPoint"
-          type="Point2dSimpleType">
+                    type="Point2dSimpleType">
           <xs:annotation>
             <xs:documentation>
               The EndPoint element is the end point of the circular witness
@@ -1005,7 +999,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="CircleCenter"
-          type="Point2dSimpleType">
+                    type="Point2dSimpleType">
           <xs:annotation>
             <xs:documentation>
               The CircleCenter element is the center of the circular
@@ -1014,7 +1008,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="CircleRadius"
-          type="DoublePositiveType">
+                    type="DoublePositiveType">
           <xs:annotation>
             <xs:documentation>
               The CircleRadius element is the radius of the circular
@@ -1025,8 +1019,8 @@
       </xs:sequence>
     </xs:choice>
     <xs:attribute name="width"
-      type="xs:double"
-      use="required">
+                  type="xs:double"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required width attribute is the width of the witness lines in
@@ -1037,7 +1031,7 @@
   </xs:complexType>
 
   <xs:complexType name="FrameBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The FrameBaseType is the abstract base type for all frame types.
@@ -1055,7 +1049,7 @@
       <xs:extension base="FrameBaseType">
         <xs:sequence>
           <xs:element name="XY"
-            type="Point2dSimpleType">
+                      type="Point2dSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The XY element specifies the 2D coordinates of the anchor
@@ -1065,7 +1059,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Width"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
                 The Width element is the frame width.
@@ -1073,7 +1067,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Height"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
                 The Height element is the frame height.
@@ -1096,7 +1090,7 @@
       <xs:extension base="FrameBaseType">
         <xs:sequence>
           <xs:element name="XY"
-            type="Point2dSimpleType">
+                      type="Point2dSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The XY element specifies the 2D coordinates of the anchor
@@ -1106,7 +1100,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Radius"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
                 The Radius element is the frame radius.
@@ -1115,9 +1109,9 @@
           </xs:element>
         </xs:sequence>
         <xs:attribute name="crossed"
-          type="xs:boolean"
-          default="true"
-          use="optional">
+                      type="xs:boolean"
+                      default="true"
+                      use="optional">
           <xs:annotation>
             <xs:documentation>
               The optional crossed attribute shows if the frame must be
@@ -1140,9 +1134,9 @@
     <xs:complexContent>
       <xs:extension base="FrameRectangularType">
         <xs:attribute name="right"
-          type="xs:boolean"
-          default="true"
-          use="optional">
+                      type="xs:boolean"
+                      default="true"
+                      use="optional">
           <xs:annotation>
             <xs:documentation>
               The optional right attribute shows if the flag frame
@@ -1164,7 +1158,7 @@
       <xs:extension base="FrameBaseType">
         <xs:sequence>
           <xs:element name="Points"
-            type="ArrayPoint2dType">
+                      type="ArrayPoint2dType">
             <xs:annotation>
               <xs:documentation>
                 The Points element is a 2D polyline which describes the
@@ -1186,7 +1180,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="UpperPoint"
-        type="Point2dSimpleType">
+                  type="Point2dSimpleType">
         <xs:annotation>
           <xs:documentation>
             The UpperPoint element defines the upper point of the tail.
@@ -1194,7 +1188,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="LowerPoint"
-        type="Point2dSimpleType">
+                  type="Point2dSimpleType">
         <xs:annotation>
           <xs:documentation>
             The LowerPoint element defines the lower point of the tail.
@@ -1263,7 +1257,7 @@
   </xs:simpleType>
 
   <xs:complexType name="OriginType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The OriginType defines the origin of a 2D element.
@@ -1271,7 +1265,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Origin"
-        type="Point2dSimpleType">
+                  type="Point2dSimpleType">
         <xs:annotation>
           <xs:documentation>
             The Origin element is the 2D position.
@@ -1292,7 +1286,7 @@
       <xs:extension base="OriginType">
         <xs:sequence>
           <xs:element name="Symbol"
-            type="WeldMainSymbolEnumType">
+                      type="WeldMainSymbolEnumType">
             <xs:annotation>
               <xs:documentation>
                 The Symbol element gives the symbol to be placed on the
@@ -1316,7 +1310,7 @@
       <xs:extension base="OriginType">
         <xs:sequence>
           <xs:element name="Symbol"
-            type="WeldSupplementarySymbolEnumType">
+                      type="WeldSupplementarySymbolEnumType">
             <xs:annotation>
               <xs:documentation>
                 The Symbol element defines a supplementary symbol.
@@ -1339,7 +1333,7 @@
       <xs:extension base="OriginType">
         <xs:sequence>
           <xs:element name="Symbol"
-            type="WeldContourSymbolEnumType">
+                      type="WeldContourSymbolEnumType">
             <xs:annotation>
               <xs:documentation>
                 The Symbol element gives a contour symbol.
@@ -1361,7 +1355,7 @@
       <xs:extension base="FrameBaseType">
         <xs:sequence>
           <xs:element name="ReferenceLineBeginPoint"
-            type="Point2dSimpleType">
+                      type="Point2dSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The ReferenceLineBeginPoint element is the begin point of
@@ -1370,7 +1364,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ReferenceLineEndPoint"
-            type="Point2dSimpleType">
+                      type="Point2dSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The ReferenceLineEndPoint element is the end point of the
@@ -1379,8 +1373,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Tail"
-            type="FrameWeldSymbolTailType"
-            minOccurs="0">
+                      type="FrameWeldSymbolTailType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Tail element gives the tail of the weld symbol
@@ -1389,8 +1383,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="MainSymbol"
-            type="WeldMainSymbolType"
-            minOccurs="0">
+                      type="WeldMainSymbolType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional MainSymbol element gives a main symbol. It can
@@ -1399,8 +1393,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="SupplementarySymbol"
-            type="WeldSupplementarySymbolType"
-            minOccurs="0">
+                      type="WeldSupplementarySymbolType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional SupplementarySymbol element gives a
@@ -1409,8 +1403,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ArrowSideContourSymbol"
-            type="WeldContourSymbolType"
-            minOccurs="0">
+                      type="WeldContourSymbolType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ArrowSideContourSymbol element gives a contour
@@ -1419,8 +1413,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="OtherSideContourSymbol"
-            type="WeldContourSymbolType"
-            minOccurs="0">
+                      type="WeldContourSymbolType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional OtherSideContourSymbol element gives a contour
@@ -1443,9 +1437,9 @@
       <xs:extension base="FrameBaseType">
         <xs:sequence>
           <xs:element name="Point"
-            type="Point2dSimpleType"
-            minOccurs="3"
-            maxOccurs="3">
+                      type="Point2dSimpleType"
+                      minOccurs="3"
+                      maxOccurs="3">
             <xs:annotation>
               <xs:documentation>
                 Each Point element is a point of a triangular 2D polyline
@@ -1470,9 +1464,9 @@
       <xs:extension base="FrameBaseType">
         <xs:sequence>
           <xs:element name="Point"
-            type="Point2dSimpleType"
-            minOccurs="5"
-            maxOccurs="5">
+                      type="Point2dSimpleType"
+                      minOccurs="5"
+                      maxOccurs="5">
             <xs:annotation>
               <xs:documentation>
                 Each Point element is a point of a pentagonal 2D polyline
@@ -1497,9 +1491,9 @@
       <xs:extension base="FrameBaseType">
         <xs:sequence>
           <xs:element name="Point"
-            type="Point2dSimpleType"
-            minOccurs="8"
-            maxOccurs="8">
+                      type="Point2dSimpleType"
+                      minOccurs="8"
+                      maxOccurs="8">
             <xs:annotation>
               <xs:documentation>
                 Each Point element is a point of an octagonal 2D polyline
@@ -1524,9 +1518,9 @@
       <xs:extension base="FrameBaseType">
         <xs:sequence>
           <xs:element name="Point"
-            type="Point2dSimpleType"
-            minOccurs="6"
-            maxOccurs="6">
+                      type="Point2dSimpleType"
+                      minOccurs="6"
+                      maxOccurs="6">
             <xs:annotation>
               <xs:documentation>
                 Each Point element is a point of a hexagonal 2D polyline
@@ -1576,7 +1570,7 @@
     <xs:simpleContent>
       <xs:extension base="LeaderHeadFormEnumType">
         <xs:attribute name="normal"
-          type="D3Type">
+                      type="D3Type">
           <xs:annotation>
             <xs:documentation>
               The optional normal attribute defines the normal of the plane
@@ -1612,7 +1606,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="CameraSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional CameraSet element is a set of Camera objects.
@@ -1620,7 +1614,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="SavedViewSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SavedViewSet element is a set of saved view
@@ -1629,7 +1623,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="AnnotationViewSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AnnotationViewSet element is a set of annotation
@@ -1638,7 +1632,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="SimplifiedRepresentationSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SimplifiedRepresentationSet element is a set of
@@ -1647,7 +1641,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="ExplodedViewSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ExplodedViewSet element is a set of exploded view
@@ -1656,7 +1650,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="DisplayStyleSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional DisplayStyleSet element is a set of display style
@@ -1665,7 +1659,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="ZoneSectionSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ZoneSectionSet element is a set of zone section
@@ -1674,7 +1668,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="HatchStyleSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional HatchStyleSet element is a set of hatch style
@@ -1696,7 +1690,7 @@
       <xs:extension base="NodeWithIdBaseType">
         <xs:sequence>
           <xs:element name="ViewPlaneOrigin"
-            type="PointSimpleType">
+                      type="PointSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The ViewPlaneOrigin element is the view plane origin.
@@ -1704,7 +1698,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Orientation"
-            type="QuaternionType">
+                      type="QuaternionType">
             <xs:annotation>
               <xs:documentation>
                 The Orientation element is the rotation of the view plane
@@ -1713,7 +1707,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Ratio"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
                 The Ratio element is the aspect ratio of the view plane
@@ -1722,7 +1716,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Near"
-            type="LinearValueType">
+                      type="LinearValueType">
             <xs:annotation>
               <xs:documentation>
                 The Near element is the distance from the view plane to the
@@ -1731,7 +1725,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Far"
-            type="LinearValueType">
+                      type="LinearValueType">
             <xs:annotation>
               <xs:documentation>
                 The Far element is the distance from the view plane to the
@@ -1740,7 +1734,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Height"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
                 The Height element is half of the top to bottom extent of
@@ -1750,8 +1744,8 @@
           </xs:element>
         </xs:sequence>
         <xs:attribute name="form"
-          type="CameraFormEnumType"
-          default="ORTHOGRAPHIC">
+                      type="CameraFormEnumType"
+                      default="ORTHOGRAPHIC">
           <xs:annotation>
             <xs:documentation>
               The optional form attribute specifies the camera type which
@@ -1790,9 +1784,9 @@
       <xs:extension base="NodeWithIdBaseType">
         <xs:sequence>
           <xs:element name="ActiveView"
-            type="xs:boolean"
-            default="false"
-            minOccurs="0">
+                      type="xs:boolean"
+                      default="false"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ActiveView element shows whether this view
@@ -1801,8 +1795,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="AnnotationVisibleIds"
-            type="ArrayReferenceFullType"
-            minOccurs="0">
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional AnnotationVisibleIds element is an array
@@ -1812,8 +1806,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="AnnotationHiddenIds"
-            type="ArrayReferenceFullType"
-            minOccurs="0">
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional AnnotationHiddenIds element is an array of
@@ -1823,8 +1817,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="BodyIds"
-            type="ArrayReferenceFullType"
-            minOccurs="0">
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional BodyIds element is an array of identifiers of
@@ -1835,8 +1829,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ComponentIds"
-            type="ArrayReferenceFullType"
-            minOccurs="0">
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ComponentIds element is an array of
@@ -1847,8 +1841,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="SimplifiedRepresentationId"
-            type="QIFReferenceActiveType"
-            minOccurs="0">
+                      type="QIFReferenceActiveType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional SimplifiedRepresentationId element is the
@@ -1858,8 +1852,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ExplodedViewId"
-            type="QIFReferenceActiveType"
-            minOccurs="0">
+                      type="QIFReferenceActiveType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ExplodedViewId element is the identifier of
@@ -1869,8 +1863,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="DisplayStyleId"
-            type="QIFReferenceActiveType"
-            minOccurs="0">
+                      type="QIFReferenceActiveType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional DisplayStyleId element is the identifier of a
@@ -1880,8 +1874,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ZoneSectionId"
-            type="QIFReferenceActiveType"
-            minOccurs="0">
+                      type="QIFReferenceActiveType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ZoneSectionId element is the identifier of a
@@ -1892,8 +1886,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="CameraIds"
-            type="ArrayReferenceActiveType"
-            minOccurs="0">
+                      type="ArrayReferenceActiveType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional CameraIds element is an array of camera
@@ -1917,16 +1911,16 @@
       <xs:extension base="NodeWithIdBaseType">
         <xs:sequence>
           <xs:element name="SectionPlanes"
-            type="ZoneSectionPlanesType">
+                      type="ZoneSectionPlanesType">
             <xs:annotation>
               <xs:documentation>
-                The Planes element is a set of zone section planes.
+                The SectionPlanes element is a set of zone section planes.
               </xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="LogicalOperations"
-            type="LogicalOperationsType"
-            minOccurs="0">
+                      type="LogicalOperationsType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional LogicalOperations element defines logical
@@ -1936,8 +1930,8 @@
           </xs:element>
         </xs:sequence>
         <xs:attribute name="hatching"
-          type="xs:boolean"
-          default="true">
+                      type="xs:boolean"
+                      default="true">
           <xs:annotation>
             <xs:documentation>
               The optional hatching attribute indicates if hatching is
@@ -1957,7 +1951,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Action"
-        type="LogicalOperationEnumType">
+                  type="LogicalOperationEnumType">
         <xs:annotation>
           <xs:documentation>
             The Action element specifies the logical operation type:
@@ -1965,9 +1959,8 @@
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:choice
-        minOccurs="2"
-        maxOccurs="2">
+      <xs:choice minOccurs="2"
+                 maxOccurs="2">
         <xs:annotation>
           <xs:documentation>
             This compositor provides a choice of two arguments of the
@@ -1976,7 +1969,7 @@
           </xs:documentation>
         </xs:annotation>
         <xs:element name="SectionPlane"
-          type="xs:unsignedInt">
+                    type="xs:unsignedInt">
           <xs:annotation>
             <xs:documentation>
               The SectionPlane element is the section plane index.
@@ -1984,7 +1977,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="LogicalOperationResult"
-          type="xs:unsignedInt">
+                    type="xs:unsignedInt">
           <xs:annotation>
             <xs:documentation>
               The LogicalOperationResult element is the logical
@@ -1995,8 +1988,8 @@
       </xs:choice>
     </xs:sequence>
     <xs:attribute name="index"
-      type="xs:unsignedInt"
-      use="required">
+                  type="xs:unsignedInt"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required index attribute is an index identifying a
@@ -2014,8 +2007,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="LogicalOperation"
-        type="LogicalOperationType"
-        maxOccurs="unbounded">
+                  type="LogicalOperationType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each LogicalOperation element is a logical operation.
@@ -2024,8 +2017,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of LogicalOperation
@@ -2056,8 +2049,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="SectionPlane"
-        type="ZoneSectionPlaneType"
-        maxOccurs="unbounded">
+                  type="ZoneSectionPlaneType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each SectionPlane element is a section plane.
@@ -2066,8 +2059,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of SectionPlane
@@ -2085,7 +2078,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Plane"
-        type="PlaneXType">
+                  type="PlaneXType">
         <xs:annotation>
           <xs:documentation>
             The Plane element is a section plane.
@@ -2093,8 +2086,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="SectionGroups"
-        type="SectionGroupsType"
-        minOccurs="0">
+                  type="SectionGroupsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SectionGroups element is a group of
@@ -2104,8 +2097,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="index"
-      type="xs:unsignedInt"
-      use="required">
+                  type="xs:unsignedInt"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required index attribute is an index identifying a zone
@@ -2123,8 +2116,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="SectionGroup"
-        type="SectionGroupType"
-        maxOccurs="unbounded">
+                  type="SectionGroupType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each SectionGroup element is a section group of the zone
@@ -2134,8 +2127,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of SectionGroup elements
@@ -2154,8 +2147,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="BodyId"
-        type="QIFReferenceFullType"
-        minOccurs="0">
+                  type="QIFReferenceFullType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional BodyId element is an identifier of the body.
@@ -2163,8 +2156,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Areas"
-        type="SectionAreasType"
-        minOccurs="0">
+                  type="SectionAreasType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Areas element is a set of section areas.
@@ -2172,8 +2165,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Paths"
-        type="SectionPathsType"
-        minOccurs="0">
+                  type="SectionPathsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Paths element is a set of section paths.
@@ -2181,8 +2174,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Vertices"
-        type="ArrayReferenceType"
-        minOccurs="0">
+                  type="ArrayReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Vertices element is a set of section vertices.
@@ -2200,8 +2193,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Path"
-        type="SectionPathType"
-        maxOccurs="unbounded">
+                  type="SectionPathType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Path element is a section path.
@@ -2210,8 +2203,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of Path elements in this
@@ -2229,8 +2222,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Loop"
-        type="SectionPathType"
-        maxOccurs="unbounded">
+                  type="SectionPathType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Loop element is a closed section loop.
@@ -2239,8 +2232,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of Loop elements in this
@@ -2258,8 +2251,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Area"
-        type="SectionAreaType"
-        maxOccurs="unbounded">
+                  type="SectionAreaType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Area element is a section area.
@@ -2268,8 +2261,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of areas in this set.
@@ -2286,8 +2279,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="HatchStyleId"
-        type="QIFReferenceType"
-        minOccurs="0">
+                  type="QIFReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional HatchStyleId element is an identifier of the hatch
@@ -2296,7 +2289,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Loops"
-        type="SectionLoopsType">
+                  type="SectionLoopsType">
         <xs:annotation>
           <xs:documentation>
             The Loops element is a set of section closed loops - boundary
@@ -2315,8 +2308,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Edge"
-        type="EdgeOrientedType"
-        maxOccurs="unbounded">
+                  type="EdgeOrientedType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Edge element is an edge of the section path.
@@ -2325,8 +2318,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of edges in this set.
@@ -2343,7 +2336,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Edges"
-        type="SectionEdgesType">
+                  type="SectionEdgesType">
         <xs:annotation>
           <xs:documentation>
             The Edges element is a set of section edges.
@@ -2361,8 +2354,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Pattern"
-        type="HatchPatternType"
-        maxOccurs="unbounded">
+                  type="HatchPatternType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             The Pattern element is a hatch pattern.
@@ -2371,8 +2364,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of patterns in this set.
@@ -2391,7 +2384,7 @@
       <xs:extension base="NodeWithIdBaseType">
         <xs:sequence>
           <xs:element name="Form"
-            type="HatchStyleFormEnumType">
+                      type="HatchStyleFormEnumType">
             <xs:annotation>
               <xs:documentation>
                 The Form element is a hatch form.
@@ -2399,8 +2392,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Color"
-            type="ColorType"
-            minOccurs="0">
+                      type="ColorType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Color element is a  color.
@@ -2408,8 +2401,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Patterns"
-            type="HatchPatternsType"
-            minOccurs="0">
+                      type="HatchPatternsType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The Patterns element is a hatch patterns.
@@ -2444,9 +2437,9 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="LineStyle"
-        type="LineStyleType"
-        default="SOLID"
-        minOccurs="0">
+                  type="LineStyleType"
+                  default="SOLID"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional LineStyle element is the line style of the
@@ -2455,7 +2448,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="FirstLineOrigin"
-        type="Point2dSimpleType">
+                  type="Point2dSimpleType">
         <xs:annotation>
           <xs:documentation>
             The FirstLineOrigin element is the origin of the first hatching
@@ -2464,7 +2457,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="SecondLineOrigin"
-        type="Point2dSimpleType">
+                  type="Point2dSimpleType">
         <xs:annotation>
           <xs:documentation>
             The SecondLineOrigin element is the origin of the second
@@ -2473,7 +2466,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Angle"
-        type="AngularValueType">
+                  type="AngularValueType">
         <xs:annotation>
           <xs:documentation>
             The Angle element is the angle of the hatching lines.
@@ -2481,8 +2474,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Color"
-        type="ColorType"
-        minOccurs="0">
+                  type="ColorType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Color element is the color of the hatching lines.
@@ -2503,7 +2496,7 @@
       <xs:extension base="NodeWithIdBaseType">
         <xs:sequence>
           <xs:element name="Mode"
-            type="DisplayStyleModeType">
+                      type="DisplayStyleModeType">
             <xs:annotation>
               <xs:documentation>
                 The Mode element is the default displaying style.
@@ -2511,8 +2504,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="DisplayStyleGroups"
-            type="DisplayStyleGroupsType"
-            minOccurs="0">
+                      type="DisplayStyleGroupsType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional DisplayStyleGroups element is groups of
@@ -2534,8 +2527,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="DisplayStyleGroup"
-        type="DisplayStyleGroupType"
-        maxOccurs="unbounded">
+                  type="DisplayStyleGroupType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each DisplayStyleGroup element is a group of elements with
@@ -2545,8 +2538,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of elements in this set.
@@ -2563,7 +2556,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Form"
-        type="DisplayStyleFormEnumType">
+                  type="DisplayStyleFormEnumType">
         <xs:annotation>
           <xs:documentation>
             The Form element is the displaying form for this style.
@@ -2571,8 +2564,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Color"
-        type="ColorType"
-        minOccurs="0">
+                  type="ColorType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Color element is the color for this style.
@@ -2580,9 +2573,9 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Transparency"
-        type="TransparencyType"
-        default="0"
-        minOccurs="0">
+                  type="TransparencyType"
+                  default="0"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Transparency element is the value of the
@@ -2602,7 +2595,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Mode"
-        type="DisplayStyleModeType">
+                  type="DisplayStyleModeType">
         <xs:annotation>
           <xs:documentation>
             The Mode element is the display style of the group.
@@ -2610,8 +2603,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ComponentIds"
-        type="ArrayReferenceFullType"
-        minOccurs="0">
+                  type="ArrayReferenceFullType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ComponentIds element is an array of identifiers
@@ -2620,8 +2613,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="BodyIds"
-        type="ArrayReferenceFullType"
-        minOccurs="0">
+                  type="ArrayReferenceFullType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional BodyIds element is an array of identifiers
@@ -2660,7 +2653,7 @@
       <xs:extension base="NodeWithIdBaseType">
         <xs:sequence>
           <xs:element name="MoveGroups"
-            type="ExplodedViewMoveGroupsType">
+                      type="ExplodedViewMoveGroupsType">
             <xs:annotation>
               <xs:documentation>
                 The MoveGroups element is a sequence of translate and
@@ -2684,8 +2677,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="MoveGroup"
-        type="ExplodedViewMoveGroupType"
-        maxOccurs="unbounded">
+                  type="ExplodedViewMoveGroupType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each MoveGroup element is a group of components and bodies with
@@ -2695,8 +2688,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of elements in this set.
@@ -2715,7 +2708,7 @@
     <xs:sequence>
       <xs:choice>
         <xs:element name="Translate"
-          type="ExplodedViewTranslateType">
+                    type="ExplodedViewTranslateType">
           <xs:annotation>
             <xs:documentation>
               The Translate element alternative is the translation operator
@@ -2724,7 +2717,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="Rotate"
-          type="ExplodedViewRotateType">
+                    type="ExplodedViewRotateType">
           <xs:annotation>
             <xs:documentation>
               The Rotate element alternative is the rotation operator of
@@ -2734,8 +2727,8 @@
         </xs:element>
       </xs:choice>
       <xs:element name="ComponentIds"
-        type="ArrayReferenceFullType"
-        minOccurs="0">
+                  type="ArrayReferenceFullType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ComponentIds element is an array of component
@@ -2744,8 +2737,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="BodyIds"
-        type="ArrayReferenceFullType"
-        minOccurs="0">
+                  type="ArrayReferenceFullType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional BodyIds element is an array of body identifiers.
@@ -2764,7 +2757,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Direction"
-        type="UnitVectorType">
+                  type="UnitVectorType">
         <xs:annotation>
           <xs:documentation>
             The Direction element is the translation direction.
@@ -2772,7 +2765,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Value"
-        type="LinearValueType">
+                  type="LinearValueType">
         <xs:annotation>
           <xs:documentation>
             The Value element is the translation distance.
@@ -2791,7 +2784,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Axis"
-        type="AxisType">
+                  type="AxisType">
         <xs:annotation>
           <xs:documentation>
             The Axis element is the rotation axis.
@@ -2799,7 +2792,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Angle"
-        type="AngularValueType">
+                  type="AngularValueType">
         <xs:annotation>
           <xs:documentation>
             The Angle element is the rotation angle.
@@ -2834,17 +2827,17 @@
       <xs:extension base="NodeWithIdBaseType">
         <xs:sequence>
           <xs:element name="Form"
-            type="SimplifiedRepresentationFormEnumType">
+                      type="SimplifiedRepresentationFormEnumType">
             <xs:annotation>
               <xs:documentation>
-                The SimplifiedRepresentationFormEnumType element is the
-                default simplified representation form.
+                The Form element is the default simplified
+                representation form.
               </xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="SimplifiedRepresentationGroups"
-            type="SimplifiedRepresentationGroupsType"
-            minOccurs="0">
+                      type="SimplifiedRepresentationGroupsType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional SimplifiedRepresentationGroups element is
@@ -2867,8 +2860,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="SimplifiedRepresentationGroup"
-        type="SimplifiedRepresentationGroupType"
-        maxOccurs="unbounded">
+                  type="SimplifiedRepresentationGroupType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each SimplifiedRepresentationGroup element is a group of
@@ -2879,8 +2872,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of elements in this set.
@@ -2898,7 +2891,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Form"
-        type="SimplifiedRepresentationFormEnumType">
+                  type="SimplifiedRepresentationFormEnumType">
         <xs:annotation>
           <xs:documentation>
             The Form element is a simplified representation form.
@@ -2906,8 +2899,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ComponentIds"
-        type="ArrayReferenceFullType"
-        minOccurs="0">
+                  type="ArrayReferenceFullType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ComponentIds element is an array of component
@@ -2916,8 +2909,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="BodyIds"
-        type="ArrayReferenceFullType"
-        minOccurs="0">
+                  type="ArrayReferenceFullType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional BodyIds element is an array of body identifiers.
@@ -2938,7 +2931,7 @@
       <xs:extension base="NodeWithIdBaseType">
         <xs:sequence>
           <xs:element name="Normal"
-            type="UnitVectorType">
+                      type="UnitVectorType">
             <xs:annotation>
               <xs:documentation>
                 The Normal element is the normal vector of the
@@ -2947,7 +2940,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Direction"
-            type="UnitVectorType">
+                      type="UnitVectorType">
             <xs:annotation>
               <xs:documentation>
                 The Direction element is the default text direction.
@@ -2960,7 +2953,7 @@
   </xs:complexType>
 
   <xs:element name="Frames"
-    type="FramesType">
+              type="FramesType">
     <xs:annotation>
       <xs:documentation>
         The global Frames element is a set of frames.
@@ -2969,8 +2962,8 @@
   </xs:element>
 
   <xs:element name="Frame"
-    type="FrameBaseType"
-    abstract="true">
+              type="FrameBaseType"
+              abstract="true">
     <xs:annotation>
       <xs:documentation>
         The global Frame element is the head of a substitution group.  Any
@@ -2982,8 +2975,8 @@
   </xs:element>
 
   <xs:element name="FrameRectangular"
-    type="FrameRectangularType"
-    substitutionGroup="Frame">
+              type="FrameRectangularType"
+              substitutionGroup="Frame">
     <xs:annotation>
       <xs:documentation>
         The global FrameRectangular element defines a rectangular frame.
@@ -2992,8 +2985,8 @@
   </xs:element>
 
   <xs:element name="FrameCircular"
-    type="FrameCircularType"
-    substitutionGroup="Frame">
+              type="FrameCircularType"
+              substitutionGroup="Frame">
     <xs:annotation>
       <xs:documentation>
         The global FrameCircular element defines a circular frame.
@@ -3002,8 +2995,8 @@
   </xs:element>
 
   <xs:element name="FrameFlag"
-    type="FrameFlagType"
-    substitutionGroup="Frame">
+              type="FrameFlagType"
+              substitutionGroup="Frame">
     <xs:annotation>
       <xs:documentation>
         The global FrameFlag element defines a flag form frame.
@@ -3012,8 +3005,8 @@
   </xs:element>
 
   <xs:element name="FrameIrregularForm"
-    type="FrameIrregularFormType"
-    substitutionGroup="Frame">
+              type="FrameIrregularFormType"
+              substitutionGroup="Frame">
     <xs:annotation>
       <xs:documentation>
         The global FrameIrregularForm element defines an irregular form
@@ -3023,8 +3016,8 @@
   </xs:element>
 
   <xs:element name="FrameTriangle"
-    type="FrameTriangleType"
-    substitutionGroup="Frame">
+              type="FrameTriangleType"
+              substitutionGroup="Frame">
     <xs:annotation>
       <xs:documentation>
         The global FrameTriangle element defines a triangle frame.
@@ -3033,8 +3026,8 @@
   </xs:element>
 
   <xs:element name="FrameHexagonal"
-    type="FrameHexagonalType"
-    substitutionGroup="Frame">
+              type="FrameHexagonalType"
+              substitutionGroup="Frame">
     <xs:annotation>
       <xs:documentation>
         The global FrameHexagonal element defines a hexagonal frame.
@@ -3043,8 +3036,8 @@
   </xs:element>
 
   <xs:element name="FramePentagonal"
-    type="FramePentagonalType"
-    substitutionGroup="Frame">
+              type="FramePentagonalType"
+              substitutionGroup="Frame">
     <xs:annotation>
       <xs:documentation>
         The global FramePentagonal element defines a pentagonal frame.
@@ -3053,8 +3046,8 @@
   </xs:element>
 
   <xs:element name="FrameOctagonal"
-    type="FrameOctagonalType"
-    substitutionGroup="Frame">
+              type="FrameOctagonalType"
+              substitutionGroup="Frame">
     <xs:annotation>
       <xs:documentation>
         The global FrameOctagonal element defines an octagonal frame.
@@ -3063,8 +3056,8 @@
   </xs:element>
 
   <xs:element name="FrameWeldSymbol"
-    type="FrameWeldSymbolType"
-    substitutionGroup="Frame">
+              type="FrameWeldSymbolType"
+              substitutionGroup="Frame">
     <xs:annotation>
       <xs:documentation>
         The global FrameWeldSymbol element defines a weld symbol frame.
@@ -3073,7 +3066,7 @@
   </xs:element>
 
   <xs:element name="Leader"
-    type="LeaderType">
+              type="LeaderType">
     <xs:annotation>
       <xs:documentation>
         The global Leader element is the head of a substitution group.  Any
@@ -3085,8 +3078,8 @@
   </xs:element>
 
   <xs:element name="LeaderExtend"
-    type="LeaderExtendType"
-    substitutionGroup="Leader">
+              type="LeaderExtendType"
+              substitutionGroup="Leader">
     <xs:annotation>
       <xs:documentation>
         The global LeaderExtend element defines an extended leader which
@@ -3096,8 +3089,8 @@
   </xs:element>
 
   <xs:element name="LeaderCircular"
-    type="LeaderCircularType"
-    substitutionGroup="Leader">
+              type="LeaderCircularType"
+              substitutionGroup="Leader">
     <xs:annotation>
       <xs:documentation>
         The global LeaderCircular element defines a leader that is a
@@ -3107,8 +3100,8 @@
   </xs:element>
 
   <xs:element name="LeaderDoubleHead"
-    type="LeaderDoubleHeadType"
-    substitutionGroup="Leader">
+              type="LeaderDoubleHeadType"
+              substitutionGroup="Leader">
     <xs:annotation>
       <xs:documentation>
         The global LeaderDoubleHead element defines a double head leader.
@@ -3117,8 +3110,8 @@
   </xs:element>
 
   <xs:element name="LeaderDoubleHeadCircular"
-    type="LeaderDoubleHeadCircularType"
-    substitutionGroup="Leader">
+              type="LeaderDoubleHeadCircularType"
+              substitutionGroup="Leader">
     <xs:annotation>
       <xs:documentation>
         The global LeaderDoubleHeadCircular element defines a double
@@ -3128,8 +3121,8 @@
   </xs:element>
 
   <xs:element name="LeaderDoubleHeadExtend"
-    type="LeaderDoubleHeadExtendType"
-    substitutionGroup="Leader">
+              type="LeaderDoubleHeadExtendType"
+              substitutionGroup="Leader">
     <xs:annotation>
       <xs:documentation>
         The global LeaderDoubleHeadExtend element defines a double head
@@ -3140,7 +3133,7 @@
   </xs:element>
 
   <xs:element name="WitnessLines"
-    type="WitnessLinesType">
+              type="WitnessLinesType">
     <xs:annotation>
       <xs:documentation>
         The global WitnessLines element is a pair of witness lines.
@@ -3149,7 +3142,7 @@
   </xs:element>
 
   <xs:element name="Texts"
-    type="TextsType">
+              type="TextsType">
     <xs:annotation>
       <xs:documentation>
         The global Texts element is a set of strings.
@@ -3158,7 +3151,7 @@
   </xs:element>
 
   <xs:element name="Text"
-    type="TextType">
+              type="TextType">
     <xs:annotation>
       <xs:documentation>
         The global Text element is a string.
@@ -3167,7 +3160,7 @@
   </xs:element>
 
   <xs:element name="VisualizationSet"
-    type="VisualizationSetType">
+              type="VisualizationSetType">
     <xs:annotation>
       <xs:documentation>
         The global VisualizationSet element is a collection of display info
@@ -3200,7 +3193,7 @@
   </xs:element>
 
   <xs:element name="PMIDisplaySet"
-    type="PMIDisplaySetType">
+              type="PMIDisplaySetType">
     <xs:annotation>
       <xs:documentation>
         The global PMIDisplaySet element is a collection of display info
@@ -3210,7 +3203,7 @@
   </xs:element>
 
   <xs:element name="Fonts"
-    type="FontsType">
+              type="FontsType">
     <xs:annotation>
       <xs:documentation>
         The global Fonts element is a collection of fonts used for
@@ -3220,7 +3213,7 @@
   </xs:element>
 
   <xs:element name="ViewSet"
-    type="ViewSetType">
+              type="ViewSetType">
     <xs:annotation>
       <xs:documentation>
         The global ViewSet element is a collection of all views present in
@@ -3362,8 +3355,8 @@
       </xs:annotation>
       <xs:selector
         xpath="t:ZoneSectionSet/t:ZoneSection/t:SectionPlanes
-              /t:SectionPlane/t:SectionGroups/t:SectionGroup/t:Areas
-              /t:Area/t:HatchStyleId"/>
+              /t:SectionPlane/t:SectionGroups/t:SectionGroup/t:Areas/t:Area
+              /t:HatchStyleId"/>
       <xs:field xpath="."/>
     </xs:keyref>
   </xs:element>
@@ -3376,8 +3369,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Camera"
-        type="CameraType"
-        maxOccurs="unbounded">
+                  type="CameraType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Camera element defines a camera.
@@ -3386,8 +3379,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of cameras in this set.
@@ -3397,7 +3390,7 @@
   </xs:complexType>
 
   <xs:element name="CameraSet"
-    type="CameraSetType">
+              type="CameraSetType">
     <xs:annotation>
       <xs:documentation>
         The global CameraSet element is a collection of cameras.
@@ -3413,8 +3406,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="SavedView"
-        type="SavedViewType"
-        maxOccurs="unbounded">
+                  type="SavedViewType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each SavedView element defines a saved View.
@@ -3423,8 +3416,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of saved views in this
@@ -3435,7 +3428,7 @@
   </xs:complexType>
 
   <xs:element name="SavedViewSet"
-    type="SavedViewSetType">
+              type="SavedViewSetType">
     <xs:annotation>
       <xs:documentation>
         The global SavedViewSet element is a collection of saved views.
@@ -3451,8 +3444,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="AnnotationView"
-        type="AnnotationViewType"
-        maxOccurs="unbounded">
+                  type="AnnotationViewType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each AnnotationView element defines an annotation view.
@@ -3461,8 +3454,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of annotation views in
@@ -3480,8 +3473,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="DisplayStyle"
-        type="DisplayStyleType"
-        maxOccurs="unbounded">
+                  type="DisplayStyleType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each DisplayStyle element defines a display style.
@@ -3490,8 +3483,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of display styles in this
@@ -3509,8 +3502,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="ExplodedView"
-        type="ExplodedViewType"
-        maxOccurs="unbounded">
+                  type="ExplodedViewType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each ExplodedView element defines an exploded view.
@@ -3519,8 +3512,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of exploded views in this
@@ -3539,8 +3532,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="SimplifiedRepresentation"
-        type="SimplifiedRepresentationType"
-        maxOccurs="unbounded">
+                  type="SimplifiedRepresentationType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each SimplifiedRepresentation element defines a simplified
@@ -3550,8 +3543,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of simplified
@@ -3569,7 +3562,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="ZoneSection"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each ZoneSection element defines a zone section.
@@ -3578,8 +3571,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of zone sections in this
@@ -3597,8 +3590,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="HatchStyle"
-        type="HatchStyleType"
-        maxOccurs="unbounded">
+                  type="HatchStyleType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each HatchStyle element defines a hatching style.
@@ -3607,8 +3600,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of hatching styles in this
@@ -3619,7 +3612,7 @@
   </xs:complexType>
 
   <xs:element name="ZoneSection"
-    type="ZoneSectionType">
+              type="ZoneSectionType">
     <xs:annotation>
       <xs:documentation>
         The global ZoneSection element is a zone section.
@@ -3686,8 +3679,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="DimensionalCharacteristicValueTarget"
-        type="xs:boolean"
-        minOccurs="0">
+                  type="xs:boolean"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional DimensionalCharacteristicValueTarget element shows
@@ -3699,8 +3692,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="DimensionalCharacteristicValueLimits"
-        type="xs:boolean"
-        minOccurs="0">
+                  type="xs:boolean"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional DimensionalCharacteristicValueLimits element shows
@@ -3712,8 +3705,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="GeometricCharacteristicValue"
-        type="xs:boolean"
-        minOccurs="0">
+                  type="xs:boolean"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional GeometricCharacteristicValue element shows whether
@@ -3725,8 +3718,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="TrailingZeroDimensionalCharacteristicDisplayGroups"
-        type="TrailingZeroDimensionalCharacteristicDisplayGroupsType"
-        minOccurs="0">
+                  type="TrailingZeroDimensionalCharacteristicDisplayGroupsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional TrailingZeroDimensionalCharacteristicDisplayGroups
@@ -3736,8 +3729,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="TrailingZeroGeometricCharacteristicDisplayGroups"
-        type="TrailingZeroGeometricCharacteristicDisplayGroupsType"
-        minOccurs="0">
+                  type="TrailingZeroGeometricCharacteristicDisplayGroupsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional TrailingZeroGeometricCharacteristicDisplayGroups
@@ -3759,20 +3752,20 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="TrailingZeroDimensionalCharacteristicDisplayGroup"
-        type="TrailingZeroDimensionalCharacteristicDisplayGroupType"
-        maxOccurs="unbounded">
+                  type="TrailingZeroDimensionalCharacteristicDisplayGroupType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
-            Each TrailingZeroDimensionalCharacteristicGroup element is a
-            group of dimensional characteristics with defined trailing zero
-            display options.
+            Each TrailingZeroDimensionalCharacteristicDisplayGroup
+            element is a group of dimensional characteristics with
+            defined trailing zero display options.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of elements in this set.
@@ -3791,8 +3784,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="DimensionalCharacteristicValueTarget"
-        type="xs:boolean"
-        minOccurs="0">
+                  type="xs:boolean"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional DimensionalCharacteristicValueTarget element shows
@@ -3802,8 +3795,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="DimensionalCharacteristicValueLimits"
-        type="xs:boolean"
-        minOccurs="0">
+                  type="xs:boolean"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional DimensionalCharacteristicValueLimits element shows
@@ -3813,7 +3806,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="DimensionalCharacteristicIds"
-        type="ArrayReferenceFullType">
+                  type="ArrayReferenceFullType">
         <xs:annotation>
           <xs:documentation>
             The DimensionalCharacteristicIds element is an array of
@@ -3834,20 +3827,20 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="TrailingZeroGeometricCharacteristicDisplayGroup"
-        type="TrailingZeroGeometricCharacteristicDisplayGroupType"
-        maxOccurs="unbounded">
+                  type="TrailingZeroGeometricCharacteristicDisplayGroupType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
-            Each TrailingZeroGeometricCharacteristicGroup element is a
-            group of geometric characteristics with defined trailing zero
-            display options.
+            Each TrailingZeroGeometricCharacteristicDisplayGroup
+            element is a group of geometric characteristics with
+            defined trailing zero display options.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of elements in this set.
@@ -3866,7 +3859,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="GeometricCharacteristicValue"
-        type="xs:boolean">
+                  type="xs:boolean">
         <xs:annotation>
           <xs:documentation>
             The optional GeometricCharacteristicValue element shows whether
@@ -3876,7 +3869,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="GeometricCharacteristicIds"
-        type="ArrayReferenceFullType">
+                  type="ArrayReferenceFullType">
         <xs:annotation>
           <xs:documentation>
             The GeometricCharacteristicIds element is an array of
@@ -3888,7 +3881,7 @@
   </xs:complexType>
 
   <xs:element name="AnnotationViewSet"
-    type="AnnotationViewSetType">
+              type="AnnotationViewSetType">
     <xs:annotation>
       <xs:documentation>
         The global AnnotationViewSet element is a collection
@@ -3898,7 +3891,7 @@
   </xs:element>
 
   <xs:element name="ExplodedViewSet"
-    type="ExplodedViewSetType">
+              type="ExplodedViewSetType">
     <xs:annotation>
       <xs:documentation>
         The global ExplodedViewSet element is a collection
@@ -3908,7 +3901,7 @@
   </xs:element>
 
   <xs:element name="SimplifiedRepresentationSet"
-    type="SimplifiedRepresentationSetType">
+              type="SimplifiedRepresentationSetType">
     <xs:annotation>
       <xs:documentation>
         The global SimplifiedRepresentationSet element is a collection
@@ -3918,7 +3911,7 @@
   </xs:element>
 
   <xs:element name="DisplayStyleSet"
-    type="DisplayStyleSetType">
+              type="DisplayStyleSetType">
     <xs:annotation>
       <xs:documentation>
         The global DisplayStyleSet element is a collection
@@ -3928,7 +3921,7 @@
   </xs:element>
 
   <xs:element name="ZoneSectionSet"
-    type="ZoneSectionSetType">
+              type="ZoneSectionSetType">
     <xs:annotation>
       <xs:documentation>
         The global ZoneSectionSet element is a collection
@@ -3938,7 +3931,7 @@
   </xs:element>
 
   <xs:element name="HatchStyleSet"
-    type="HatchStyleSetType">
+              type="HatchStyleSetType">
     <xs:annotation>
       <xs:documentation>
         The global HatchStyleSet element is a collection
@@ -3948,7 +3941,7 @@
   </xs:element>
 
   <xs:element name="TrailingZeroDisplay"
-    type="TrailingZeroDisplayType">
+              type="TrailingZeroDisplayType">
     <xs:annotation>
       <xs:documentation>
         The global TrailingZeroDisplay element is a trailing zero display

@@ -14,7 +14,7 @@
   attributeFormDefault="unqualified"
   version="3.0.0">
 
-  <xs:include schemaLocation="Primitives.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/Primitives.xsd"/>
 
   <xs:annotation>
     <xs:documentation>
@@ -126,7 +126,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Factor"
-        type="PositiveDecimalType">
+                  type="PositiveDecimalType">
         <xs:annotation>
           <xs:documentation>
             The Factor element is the multiplicative factor for a
@@ -135,9 +135,9 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Offset"
-        type="xs:decimal"
-        default="0"
-        minOccurs="0">
+                  type="xs:decimal"
+                  default="0"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Offset element is the offset value for a
@@ -199,18 +199,24 @@
     <xs:simpleContent>
       <xs:extension base="xs:decimal">
         <xs:attribute name="decimalPlaces"
-          type="xs:nonNegativeInteger">
+                      type="xs:nonNegativeInteger">
           <xs:annotation>
             <xs:documentation>
-              See documentation of SpecifiedDecimalType.
+              The optional decimalPlaces attribute represents the
+              number of places to the right of the decimal point to
+              which the xs:decimal is specified. See documentation of
+              SpecifiedDecimalType for more detail.
             </xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="significantFigures"
-          type="xs:nonNegativeInteger">
+                      type="xs:nonNegativeInteger">
           <xs:annotation>
             <xs:documentation>
-              See documentation of SpecifiedDecimalType.
+              The optional significantFigures attribute represents the
+              number of significant figures with which the xs:decimal
+              is specified. See documentation of SpecifiedDecimalType
+              for more detail.
             </xs:documentation>
           </xs:annotation>
         </xs:attribute>
@@ -229,7 +235,7 @@
     <xs:simpleContent>
       <xs:extension base="SpecifiedDecimalType">
         <xs:attribute name="combinedUncertainty"
-          type="NonNegativeDecimalType">
+                      type="NonNegativeDecimalType">
           <xs:annotation>
             <xs:documentation>
               The optional combinedUncertainty attribute is a value
@@ -239,7 +245,7 @@
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="meanError"
-          type="NonNegativeDecimalType">
+                      type="NonNegativeDecimalType">
           <xs:annotation>
             <xs:documentation>
               The optional meanError attribute is a value expressing the
@@ -262,9 +268,9 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="SIUnitName"
-        type="xs:token"
-        fixed="radian"
-        minOccurs="0">
+                  type="xs:token"
+                  fixed="radian"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SIUnitName element is the name of the SI unit of
@@ -273,7 +279,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UnitName"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UnitName element is the name for the AngularUnitType.
@@ -281,8 +287,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UnitConversion"
-        type="UnitConversionType"
-        minOccurs="0">
+                  type="UnitConversionType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional UnitConversion element specifies how an angle
@@ -308,7 +314,7 @@
     <xs:simpleContent>
       <xs:extension base="SpecifiedDecimalType">
         <xs:attribute name="angularUnit"
-          type="xs:token">
+                      type="xs:token">
           <xs:annotation>
             <xs:documentation>
               The optional angularUnit attribute defines the UnitName
@@ -334,7 +340,7 @@
     <xs:simpleContent>
       <xs:extension base="MeasuredDecimalType">
         <xs:attribute name="angularUnit"
-          type="xs:token">
+                      type="xs:token">
           <xs:annotation>
             <xs:documentation>
               The optional angularUnit attribute defines the unit used by
@@ -357,9 +363,9 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="SIUnitName"
-        type="xs:token"
-        fixed="square meter"
-        minOccurs="0">
+                  type="xs:token"
+                  fixed="square meter"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SIUnitName element is the name of the SI unit of
@@ -368,7 +374,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UnitName"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UnitName element is the name for AreaUnitType.
@@ -376,8 +382,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UnitConversion"
-        type="UnitConversionType"
-        minOccurs="0">
+                  type="UnitConversionType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional UnitConversion element specifies how an area
@@ -403,7 +409,7 @@
     <xs:simpleContent>
       <xs:extension base="SpecifiedDecimalType">
         <xs:attribute name="areaUnit"
-          type="xs:token">
+                      type="xs:token">
           <xs:annotation>
             <xs:documentation>
               The optional areaUnit attribute defines the UnitName for
@@ -429,7 +435,7 @@
     <xs:simpleContent>
       <xs:extension base="MeasuredDecimalType">
         <xs:attribute name="areaUnit"
-          type="xs:token">
+                      type="xs:token">
           <xs:annotation>
             <xs:documentation>
               The optional areaUnit attribute defines the unit used by
@@ -452,9 +458,9 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="SIUnitName"
-        type="xs:token"
-        fixed="newton"
-        minOccurs="0">
+                  type="xs:token"
+                  fixed="newton"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SIUnitName element is the name of the SI unit of
@@ -463,7 +469,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UnitName"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UnitName element is the name for ForceUnitType.
@@ -471,8 +477,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UnitConversion"
-        type="UnitConversionType"
-        minOccurs="0">
+                  type="UnitConversionType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional UnitConversion element specifies how a force
@@ -498,7 +504,7 @@
     <xs:simpleContent>
       <xs:extension base="SpecifiedDecimalType">
         <xs:attribute name="forceUnit"
-          type="xs:token">
+                      type="xs:token">
           <xs:annotation>
             <xs:documentation>
               The optional forceUnit attribute defines the UnitName for
@@ -524,7 +530,7 @@
     <xs:simpleContent>
       <xs:extension base="MeasuredDecimalType">
         <xs:attribute name="forceUnit"
-          type="xs:token">
+                      type="xs:token">
           <xs:annotation>
             <xs:documentation>
               The optional forceUnit attribute defines the unit used by
@@ -547,9 +553,9 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="SIUnitName"
-        type="xs:token"
-        fixed="meter"
-        minOccurs="0">
+                  type="xs:token"
+                  fixed="meter"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SIUnitName element is the name of the SI unit of
@@ -558,7 +564,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UnitName"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UnitName element is the name for LinearUnitType.
@@ -566,8 +572,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UnitConversion"
-        type="UnitConversionType"
-        minOccurs="0">
+                  type="UnitConversionType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional UnitConversion element specifies how a length
@@ -593,7 +599,7 @@
     <xs:simpleContent>
       <xs:extension base="SpecifiedDecimalType">
         <xs:attribute name="linearUnit"
-          type="xs:token">
+                      type="xs:token">
           <xs:annotation>
             <xs:documentation>
               The optional linearUnit attribute defines the UnitName for
@@ -616,8 +622,8 @@
     <xs:simpleContent>
       <xs:extension base="SpecifiedDecimalType">
         <xs:attribute name="linearUnit"
-          type="xs:token"
-          use="required">
+                      type="xs:token"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The linearUnit attribute defines the UnitName for
@@ -643,7 +649,7 @@
     <xs:simpleContent>
       <xs:extension base="MeasuredDecimalType">
         <xs:attribute name="linearUnit"
-          type="xs:token">
+                      type="xs:token">
           <xs:annotation>
             <xs:documentation>
               The optional linearUnit attribute defines the unit used by
@@ -666,9 +672,9 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="SIUnitName"
-        type="xs:token"
-        fixed="kilogram"
-        minOccurs="0">
+                  type="xs:token"
+                  fixed="kilogram"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SIUnitName element is the name of the SI unit of
@@ -677,7 +683,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UnitName"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UnitName element is the name for MassUnitType.
@@ -685,8 +691,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UnitConversion"
-        type="UnitConversionType"
-        minOccurs="0">
+                  type="UnitConversionType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional UnitConversion element specifies how a mass
@@ -712,7 +718,7 @@
     <xs:simpleContent>
       <xs:extension base="SpecifiedDecimalType">
         <xs:attribute name="massUnit"
-          type="xs:token">
+                      type="xs:token">
           <xs:annotation>
             <xs:documentation>
               The optional massUnit attribute defines the UnitName for
@@ -738,7 +744,7 @@
     <xs:simpleContent>
       <xs:extension base="MeasuredDecimalType">
         <xs:attribute name="massUnit"
-          type="xs:token">
+                      type="xs:token">
           <xs:annotation>
             <xs:documentation>
               The optional massUnit attribute defines the unit used by
@@ -761,9 +767,9 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="SIUnitName"
-        type="xs:token"
-        fixed="pascal"
-        minOccurs="0">
+                  type="xs:token"
+                  fixed="pascal"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SIUnitName element is the name of the SI unit of
@@ -772,7 +778,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UnitName"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UnitName element is the name for PressureUnitType.
@@ -780,8 +786,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UnitConversion"
-        type="UnitConversionType"
-        minOccurs="0">
+                  type="UnitConversionType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional UnitConversion element specifies how a pressure
@@ -807,7 +813,7 @@
     <xs:simpleContent>
       <xs:extension base="SpecifiedDecimalType">
         <xs:attribute name="pressureUnit"
-          type="xs:token">
+                      type="xs:token">
           <xs:annotation>
             <xs:documentation>
               The optional pressureUnit attribute defines the UnitName
@@ -833,7 +839,7 @@
     <xs:simpleContent>
       <xs:extension base="MeasuredDecimalType">
         <xs:attribute name="pressureUnit"
-          type="xs:token">
+                      type="xs:token">
           <xs:annotation>
             <xs:documentation>
               The optional pressureUnit attribute defines the UnitName
@@ -856,9 +862,9 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="SIUnitName"
-        type="xs:token"
-        fixed="meter per second"
-        minOccurs="0">
+                  type="xs:token"
+                  fixed="meter per second"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SIUnitName element is the name of the SI unit of
@@ -868,7 +874,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UnitName"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UnitName element is the name for SpeedUnitType.
@@ -876,8 +882,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UnitConversion"
-        type="UnitConversionType"
-        minOccurs="0">
+                  type="UnitConversionType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional UnitConversion element  specifies how a speed
@@ -903,7 +909,7 @@
     <xs:simpleContent>
       <xs:extension base="SpecifiedDecimalType">
         <xs:attribute name="speedUnit"
-          type="xs:token">
+                      type="xs:token">
           <xs:annotation>
             <xs:documentation>
               The optional speedUnit attribute defines the UnitName for
@@ -929,7 +935,7 @@
     <xs:simpleContent>
       <xs:extension base="MeasuredDecimalType">
         <xs:attribute name="speedUnit"
-          type="xs:token">
+                      type="xs:token">
           <xs:annotation>
             <xs:documentation>
               The optional speedUnit attribute defines the UnitName for
@@ -952,9 +958,9 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="SIUnitName"
-        type="xs:token"
-        fixed="kelvin"
-        minOccurs="0">
+                  type="xs:token"
+                  fixed="kelvin"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SIUnitName element is the name of the SI unit of
@@ -963,7 +969,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UnitName"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UnitName element is the name for TemperatureUnitType.
@@ -971,8 +977,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UnitConversion"
-        type="UnitConversionType"
-        minOccurs="0">
+                  type="UnitConversionType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional UnitConversion element specifies how a temperature
@@ -998,7 +1004,7 @@
     <xs:simpleContent>
       <xs:extension base="SpecifiedDecimalType">
         <xs:attribute name="temperatureUnit"
-          type="xs:token">
+                      type="xs:token">
           <xs:annotation>
             <xs:documentation>
               The optional temperatureUnit attribute defines the UnitName
@@ -1024,7 +1030,7 @@
     <xs:simpleContent>
       <xs:extension base="MeasuredDecimalType">
         <xs:attribute name="temperatureUnit"
-          type="xs:token">
+                      type="xs:token">
           <xs:annotation>
             <xs:documentation>
               The optional temperatureUnit attribute defines the UnitName
@@ -1047,9 +1053,9 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="SIUnitName"
-        type="xs:token"
-        fixed="second"
-        minOccurs="0">
+                  type="xs:token"
+                  fixed="second"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SIUnitName element is the name of the SI unit of
@@ -1058,7 +1064,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UnitName"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UnitName element is the name for TimeUnitType.
@@ -1066,8 +1072,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UnitConversion"
-        type="UnitConversionType"
-        minOccurs="0">
+                  type="UnitConversionType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional UnitConversion element specifies how a time
@@ -1093,7 +1099,7 @@
     <xs:simpleContent>
       <xs:extension base="SpecifiedDecimalType">
         <xs:attribute name="timeUnit"
-          type="xs:token">
+                      type="xs:token">
           <xs:annotation>
             <xs:documentation>
               The optional timeUnit attribute defines the UnitName for
@@ -1119,7 +1125,7 @@
     <xs:simpleContent>
       <xs:extension base="MeasuredDecimalType">
         <xs:attribute name="timeUnit"
-          type="xs:token">
+                      type="xs:token">
           <xs:annotation>
             <xs:documentation>
               The optional timeUnit attribute defines the UnitName for
@@ -1159,8 +1165,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="AreaUnit"
-        type="AreaUnitType"
-        minOccurs="0">
+                  type="AreaUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AreaUnit element is the primary units for area
@@ -1169,8 +1175,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PMIAreaUnit"
-        type="AreaUnitType"
-        minOccurs="0">
+                  type="AreaUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PMIAreaUnit element is the primary units for PMI
@@ -1179,8 +1185,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="AngularUnit"
-        type="AngularUnitType"
-        minOccurs="0">
+                  type="AngularUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AngularUnit element is the primary units for angle
@@ -1189,8 +1195,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PMIAngularUnit"
-        type="AngularUnitType"
-        minOccurs="0">
+                  type="AngularUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PMIAngularUnit element is the primary units for
@@ -1199,8 +1205,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ForceUnit"
-        type="ForceUnitType"
-        minOccurs="0">
+                  type="ForceUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ForceUnit element is the primary units for force
@@ -1209,8 +1215,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="LinearUnit"
-        type="LinearUnitType"
-        minOccurs="0">
+                  type="LinearUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional LinearUnit element is the primary units for length
@@ -1219,8 +1225,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PMILinearUnit"
-        type="LinearUnitType"
-        minOccurs="0">
+                  type="LinearUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PMILinearUnit element is the primary units for PMI
@@ -1229,8 +1235,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="MassUnit"
-        type="MassUnitType"
-        minOccurs="0">
+                  type="MassUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional MassUnit element is the primary units for mass
@@ -1239,8 +1245,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PressureUnit"
-        type="PressureUnitType"
-        minOccurs="0">
+                  type="PressureUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PressureUnit element is the primary units for
@@ -1249,8 +1255,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="SpeedUnit"
-        type="SpeedUnitType"
-        minOccurs="0">
+                  type="SpeedUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SpeedUnit element is the primary units for speed
@@ -1259,8 +1265,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="TemperatureUnit"
-        type="TemperatureUnitType"
-        minOccurs="0">
+                  type="TemperatureUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional TemperatureUnit element is the primary units for
@@ -1269,8 +1275,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="TimeUnit"
-        type="TimeUnitType"
-        minOccurs="0">
+                  type="TimeUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional TimeUnit element is the primary units for time
@@ -1292,9 +1298,9 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="AreaUnit"
-        type="AreaUnitType"
-        minOccurs="0"
-        maxOccurs="unbounded">
+                  type="AreaUnitType"
+                  minOccurs="0"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each optional AreaUnit element defines alternative units for
@@ -1303,9 +1309,9 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="AngularUnit"
-        type="AngularUnitType"
-        minOccurs="0"
-        maxOccurs="unbounded">
+                  type="AngularUnitType"
+                  minOccurs="0"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each optional AngularUnit element defines alternative units for
@@ -1314,9 +1320,9 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ForceUnit"
-        type="ForceUnitType"
-        minOccurs="0"
-        maxOccurs="unbounded">
+                  type="ForceUnitType"
+                  minOccurs="0"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each optional ForceUnit element defines alternative units for
@@ -1325,9 +1331,9 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="LinearUnit"
-        type="LinearUnitType"
-        minOccurs="0"
-        maxOccurs="unbounded">
+                  type="LinearUnitType"
+                  minOccurs="0"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each optional LinearUnit element defines alternative units for
@@ -1336,9 +1342,9 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="MassUnit"
-        type="MassUnitType"
-        minOccurs="0"
-        maxOccurs="unbounded">
+                  type="MassUnitType"
+                  minOccurs="0"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each optional MassUnit element defines alternative units for
@@ -1347,9 +1353,9 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PressureUnit"
-        type="PressureUnitType"
-        minOccurs="0"
-        maxOccurs="unbounded">
+                  type="PressureUnitType"
+                  minOccurs="0"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each optional PressureUnit element defines alternative units for
@@ -1358,9 +1364,9 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="SpeedUnit"
-        type="SpeedUnitType"
-        minOccurs="0"
-        maxOccurs="unbounded">
+                  type="SpeedUnitType"
+                  minOccurs="0"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each optional SpeedUnit element defines alternative units for
@@ -1369,9 +1375,9 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="TemperatureUnit"
-        type="TemperatureUnitType"
-        minOccurs="0"
-        maxOccurs="unbounded">
+                  type="TemperatureUnitType"
+                  minOccurs="0"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each optional TemperatureUnit element defines alternative units
@@ -1380,9 +1386,9 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="TimeUnit"
-        type="TimeUnitType"
-        minOccurs="0"
-        maxOccurs="unbounded">
+                  type="TimeUnitType"
+                  minOccurs="0"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each optional TimeUnit element defines alternative units for
@@ -1392,8 +1398,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of unit definitions in the
@@ -1412,7 +1418,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="WhatIsMeasured"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The WhatIsMeasured element describes the sort of quantity that
@@ -1423,7 +1429,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UnitName"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UnitName element is the name for the UserDefinedUnitType.
@@ -1433,8 +1439,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="StandardName"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional StandardName element provides the name of a
@@ -1459,11 +1465,11 @@
     <xs:simpleContent>
       <xs:extension base="SpecifiedDecimalType">
         <xs:attribute name="unitName"
-          type="xs:token"
-          use="required">
+                      type="xs:token"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
-              The (required) UnitName attribute is the unit name for the
+              The (required) unitName attribute is the unit name for the
               UserDefinedUnitValueType.
             </xs:documentation>
           </xs:annotation>
@@ -1484,11 +1490,11 @@
     <xs:simpleContent>
       <xs:extension base="MeasuredDecimalType">
         <xs:attribute name="unitName"
-          type="xs:token"
-          use="required">
+                      type="xs:token"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
-              The (required) UnitName attribute is the unit name for the
+              The (required) unitName attribute is the unit name for the
               UserDefinedUnitValueType.
             </xs:documentation>
           </xs:annotation>
@@ -1505,8 +1511,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="UserDefinedUnit"
-        type="UserDefinedUnitType"
-        maxOccurs="unbounded">
+                  type="UserDefinedUnitType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each UserDefinedUnit element describes a single user-defined
@@ -1516,8 +1522,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of user-defined units in
@@ -1540,7 +1546,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="PrimaryUnits"
-        type="PrimaryUnitsType">
+                  type="PrimaryUnitsType">
         <xs:annotation>
           <xs:documentation>
             The PrimaryUnits element describes the primary set of units.
@@ -1548,8 +1554,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="OtherUnits"
-        type="OtherUnitsType"
-        minOccurs="0">
+                  type="OtherUnitsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional OtherUnits element describes a set of other units
@@ -1558,8 +1564,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedUnits"
-        type="UserDefinedUnitsType"
-        minOccurs="0">
+                  type="UserDefinedUnitsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional UserDefinedUnits element describes a set of
@@ -1571,7 +1577,7 @@
   </xs:complexType>
 
   <xs:element name="FileUnits"
-    type="FileUnitsType">
+              type="FileUnitsType">
     <xs:annotation>
       <xs:documentation>
         The global FileUnits element is the units to use in an instance

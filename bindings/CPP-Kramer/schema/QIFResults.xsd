@@ -13,10 +13,10 @@
   elementFormDefault="qualified"
   attributeFormDefault="unqualified"
   version="3.0.0">
-  
-  <xs:include schemaLocation="Traceability.xsd"/>
-  <xs:include schemaLocation="Characteristics.xsd"/>
-  <xs:include schemaLocation="Features.xsd"/>
+
+  <xs:include schemaLocation="../QIFLibrary/Traceability.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/Characteristics.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/Features.xsd"/>
 
   <xs:annotation>
     <xs:documentation>
@@ -38,7 +38,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="Attributes"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Attributes element contains user defined
@@ -47,8 +47,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionTraceability"
-        type="InspectionTraceabilityType"
-        minOccurs="0">
+                  type="InspectionTraceabilityType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional InspectionTraceability element gives traceability
@@ -57,8 +57,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ThisResultsInstanceQPId"
-        type="QPIdType"
-        minOccurs="0">
+                  type="QPIdType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ThisResultsInstanceQPId element uniquely
@@ -69,8 +69,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ExternalFileReferences"
-        type="ExternalFileReferencesType"
-        minOccurs="0">
+                  type="ExternalFileReferencesType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ExternalFileReferences element is a list of
@@ -80,8 +80,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="MeasuredFeatures"
-        type="FeatureMeasurementsType"
-        minOccurs="0">
+                  type="FeatureMeasurementsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional MeasuredFeatures element gives information about
@@ -90,8 +90,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="MeasuredPointSets"
-        type="MeasuredPointSetsType"
-        minOccurs="0">
+                  type="MeasuredPointSetsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The MeasuredPointSets element is a list of measured
@@ -100,7 +100,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="MeasuredCharacteristics"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional MeasuredCharacteristics element gives information
@@ -109,8 +109,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ActualTransforms"
-        type="TransformListType"
-        minOccurs="0">
+                  type="TransformListType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ActualTransforms element gives information about
@@ -121,7 +121,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="CoordinateSystemActualTransformAssociations"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional CoordinateSystemActualTransformAssociations
@@ -131,7 +131,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionStatus"
-        type="InspectionStatusType">
+                  type="InspectionStatusType">
         <xs:annotation>
           <xs:documentation>
             The InspectionStatus element reports the status of the
@@ -140,8 +140,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ActualComponentIds"
-        type="ArrayReferenceType"
-        minOccurs="0">
+                  type="ArrayReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The ActualComponentIds element is the list of actual component
@@ -151,8 +151,15 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="id"
-      type="QIFIdType"
-      use="required"/>
+                  type="QIFIdType"
+                  use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The id attribute is the QIF id of the measurement results, used
+          for referencing.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
 
   <xs:complexType name="MeasurementResultsSetType">
@@ -164,8 +171,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="MeasurementResults"
-        type="MeasurementResultsType"
-        maxOccurs="unbounded">
+                  type="MeasurementResultsType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each MeasurementResults element is a measurement results in the
@@ -175,8 +182,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of measurement results in
@@ -194,8 +201,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Version"
-        type="VersionType"
-        minOccurs="0">
+                  type="VersionType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Version element gives version information about
@@ -204,7 +211,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="MeasurementResultsSet"
-        type="MeasurementResultsSetType">
+                  type="MeasurementResultsSetType">
         <xs:annotation>
           <xs:documentation>
             The MeasurementResultsSet element is a set of collections
@@ -213,7 +220,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="ActualComponentSets"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ActualComponentSets element is a collection
@@ -223,8 +230,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionTraceability"
-        type="InspectionTraceabilityType"
-        minOccurs="0">
+                  type="InspectionTraceabilityType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional InspectionTraceability element gives traceability
@@ -246,7 +253,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="ActualComponentSet"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each ActualComponentSet element is an actual component set.
@@ -255,8 +262,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of actual component sets
@@ -275,7 +282,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="ActualComponent"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each ActualComponent element is an actual component.
@@ -284,8 +291,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of actual components in
@@ -303,7 +310,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="Attributes"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Attributes element contains user defined
@@ -312,8 +319,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="SerialNumber"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SerialNumber element is a label of a specific
@@ -326,8 +333,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="AdditionalChanges"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AdditionalChanges element is a record of any
@@ -338,7 +345,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Status"
-        type="InspectionStatusType">
+                  type="InspectionStatusType">
         <xs:annotation>
           <xs:documentation>
             The Status element gives the inspection status of the actual
@@ -347,8 +354,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Traceability"
-        type="ActualProductTraceabilityType"
-        minOccurs="0">
+                  type="ActualProductTraceabilityType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Traceability element gives traceability
@@ -357,8 +364,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="AsmPathId"
-        type="QIFReferenceType"
-        minOccurs="0">
+                  type="QIFReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AsmPathId element is the id of the assembly path
@@ -368,8 +375,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="id"
-      type="QIFIdType"
-      use="required">
+                  type="QIFIdType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The id attribute is the QIF id of the actual component data, used
@@ -380,7 +387,7 @@
   </xs:complexType>
 
   <xs:element name="Results"
-    type="ResultsType">
+              type="ResultsType">
     <xs:annotation>
       <xs:documentation>
         The global Results element is a the top-level QIF element for
@@ -421,7 +428,7 @@
   </xs:element>
 
   <xs:element name="ActualComponentSets"
-    type="ActualComponentSetsType">
+              type="ActualComponentSetsType">
     <xs:annotation>
       <xs:documentation>
         The global ActualComponentSets element is a collection of data
@@ -432,7 +439,7 @@
   </xs:element>
 
   <xs:element name="ActualComponentSet"
-    type="ActualComponentSetType">
+              type="ActualComponentSetType">
     <xs:annotation>
       <xs:documentation>
         The global ActualComponentSet element is a collection of data
@@ -443,7 +450,7 @@
   </xs:element>
 
   <xs:element name="ActualComponent"
-    type="ActualComponentType">
+              type="ActualComponentType">
     <xs:annotation>
       <xs:documentation>
         The global ActualComponent element is the data of an actual

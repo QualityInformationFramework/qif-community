@@ -14,7 +14,7 @@
   attributeFormDefault="unqualified"
   version="3.0.0">
 
-  <xs:include schemaLocation="Primitives.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/Primitives.xsd"/>
 
   <xs:annotation>
     <xs:documentation>
@@ -38,17 +38,18 @@
   <xs:complexType name="QuaternionType">
     <xs:annotation>
       <xs:documentation>
-        The Quaternion is the quaternion type.
+        The QuaternionType defines a quaternion.
       </xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Value"
-        type="D4Type">
+                  type="D4Type">
         <xs:annotation>
           <xs:documentation>
-            The Quaternion is defined in the following way: the first
-            element is the scalar part (cos(theta/2)), the second, third,
-            and fourth elements are the imaginary/"vector" part,
+            The Value element is a list of four doubles that define
+            the quaternion in the following way: the first double is
+            the scalar part (cos(theta/2)), the second, third, and
+            fourth doubles are the imaginary/"vector" part,
             (sin(theta/2) * axis).
           </xs:documentation>
         </xs:annotation>
@@ -57,14 +58,14 @@
   </xs:complexType>
 
   <xs:complexType name="NodeBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The NodeBaseType is the abstract base type for model elements.
       </xs:documentation>
     </xs:annotation>
     <xs:attribute name="label"
-      type="xs:string">
+                  type="xs:string">
       <xs:annotation>
         <xs:documentation>
           The optional label attribute is the model entity "nameplate".
@@ -75,7 +76,7 @@
   </xs:complexType>
 
   <xs:complexType name="NodeWithIdBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The NodeWithIdBaseType is the abstract base type for model elements
@@ -86,7 +87,7 @@
       <xs:extension base="NodeBaseType">
         <xs:sequence>
           <xs:element ref="Attributes"
-            minOccurs="0">
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Attributes element contains user defined
@@ -96,8 +97,8 @@
           </xs:element>
         </xs:sequence>
         <xs:attribute name="id"
-          type="QIFIdType"
-          use="required">
+                      type="QIFIdType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required id attribute is the unique model entity
@@ -123,8 +124,14 @@
   </xs:simpleType>
 
   <xs:attributeGroup name="AttrDrawable">
+    <xs:annotation>
+      <xs:documentation>
+          The AttrDrawable attributeGroup is a collection of attributes
+          representing properties of drawable objects.
+        </xs:documentation>
+    </xs:annotation>
     <xs:attribute name="color"
-      type="ColorType">
+                  type="ColorType">
       <xs:annotation>
         <xs:documentation>
           The optional color attribute defines the RGB color property
@@ -133,8 +140,8 @@
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="transparency"
-      type="TransparencyType"
-      default="0.0">
+                  type="TransparencyType"
+                  default="0.0">
       <xs:annotation>
         <xs:documentation>
           The optional transparency attribute defines the transparency
@@ -143,8 +150,8 @@
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="hidden"
-      type="xs:boolean"
-      default="0">
+                  type="xs:boolean"
+                  default="0">
       <xs:annotation>
         <xs:documentation>
           The optional hidden attribute defines the visibility property
@@ -153,7 +160,7 @@
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="size"
-      type="DoublePositiveType">
+                  type="DoublePositiveType">
       <xs:annotation>
         <xs:documentation>
           The optional size attribute defines a recommended size for
@@ -166,7 +173,7 @@
   </xs:attributeGroup>
 
   <xs:complexType name="DrawableBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The DrawableBaseType is the abstract base type for drawable
@@ -189,17 +196,17 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Name"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
-            The optional Author element is the name of the person.
+            The optional Name element is the name of the person.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Organization"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Organization element is the name of author's
@@ -218,7 +225,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Name"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The Name element is the name of the software application.
@@ -226,8 +233,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Organization"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Organization element is the name of the
@@ -236,8 +243,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="AddonName"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AddonName element is the name of the software
@@ -246,8 +253,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="AddonOrganization"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AddonOrganization element is the name of the
@@ -268,8 +275,8 @@
     <xs:complexContent>
       <xs:extension base="ElementReferenceType">
         <xs:attribute name="turned"
-          type="xs:boolean"
-          default="0">
+                      type="xs:boolean"
+                      default="0">
           <xs:annotation>
             <xs:documentation>
               The optional turned attribute shows if the referenced
@@ -321,8 +328,8 @@
     <xs:simpleContent>
       <xs:extension base="LineStyleEnumType">
         <xs:attribute name="thickness"
-          type="xs:positiveInteger"
-          default="1">
+                      type="xs:positiveInteger"
+                      default="1">
           <xs:annotation>
             <xs:documentation>
               The optional thickness attribute is the line thickness in

@@ -13,11 +13,12 @@
   elementFormDefault="qualified"
   attributeFormDefault="unqualified"
   version="3.0.0">
-  <xs:include schemaLocation="Geometry.xsd"/>
-  <xs:include schemaLocation="Topology.xsd"/>
-  <xs:include schemaLocation="Auxiliary.xsd"/>
-  <xs:include schemaLocation="Visualization.xsd"/>
-  <xs:include schemaLocation="Traceability.xsd"/>
+
+  <xs:include schemaLocation="../QIFLibrary/Geometry.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/Topology.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/Auxiliary.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/Visualization.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/Traceability.xsd"/>
 
   <xs:annotation>
     <xs:documentation>
@@ -28,7 +29,7 @@
   </xs:annotation>
 
   <xs:element name="Product"
-    type="ProductType">
+              type="ProductType">
     <xs:annotation>
       <xs:documentation>
         The global Product element describes parts and assemblies.
@@ -123,6 +124,8 @@
     <xs:key name="ProductEdgeIdKey">
       <xs:annotation>
         <xs:documentation>
+          The ProductEdgeIdKey collects all ids of edges in the EdgeSet
+          of a Product.
         </xs:documentation>
       </xs:annotation>
       <xs:selector xpath="t:TopologySet/t:EdgeSet/t:Edge"/>
@@ -133,15 +136,17 @@
       refer="ProductEdgeIdKey">
       <xs:annotation>
         <xs:documentation>
+          The ProductZoneSectionEdgeKeyref requires that certain Ids of
+          Edges be the ids of edges in the EdgeSet of a Product.
         </xs:documentation>
       </xs:annotation>
       <xs:selector
         xpath="t:ViewSet/t:ZoneSectionSet/t:ZoneSection/t:SectionPlanes
-              /t:SectionPlane/t:SectionGroups/t:SectionGroup/t:Areas
-              /t:Area/t:Loops/t:Loop/t:Edges/t:Edge/t:Id
+              /t:SectionPlane/t:SectionGroups/t:SectionGroup/t:Areas/t:Area
+              /t:Loops/t:Loop/t:Edges/t:Edge/t:Id
              | t:ViewSet/t:ZoneSectionSet/t:ZoneSection/t:SectionPlanes
-              /t:SectionPlane/t:SectionGroups/t:SectionGroup/t:Paths
-              /t:Path/t:Edges/t:Edge/t:Id"/>
+              /t:SectionPlane/t:SectionGroups/t:SectionGroup/t:Paths/t:Path
+              /t:Edges/t:Edge/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -454,8 +459,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Header"
-        type="ProductHeaderType"
-        minOccurs="0">
+                  type="ProductHeaderType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The Header element gives information about the provenance of
@@ -464,7 +469,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="GeometrySet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional GeometrySet element is a collection of all
@@ -474,7 +479,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="TopologySet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional TopologySet element is a collection of all
@@ -484,7 +489,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="NoteSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional NoteSet element is a collection of all
@@ -493,7 +498,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="NoteFlagSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional NoteFlagSet element is a collection of all
@@ -502,7 +507,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="PartNoteSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PartNoteSet element is a collection of all
@@ -511,7 +516,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="ViewSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ViewSet element is a collection of all views
@@ -520,7 +525,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="LayerSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional LayerSet element is a collection of all model
@@ -529,7 +534,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="CoordinateSystemSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional CoordinateSystemSet element is a collection of all
@@ -538,7 +543,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="VisualizationSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional VisualizationSet element is a collection of
@@ -547,7 +552,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="AuxiliarySet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AuxiliarySet element is a collection of all
@@ -556,7 +561,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="PartSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PartSet element is a collection of all
@@ -565,7 +570,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="AssemblySet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AssemblySet element is a collection of all
@@ -574,7 +579,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="ComponentSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ComponentSet element is a collection of all
@@ -582,8 +587,7 @@
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:choice
-        minOccurs="0">
+      <xs:choice minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             This optional compositor provides a choice of the root of the
@@ -591,7 +595,7 @@
           </xs:documentation>
         </xs:annotation>
         <xs:element name="RootPart"
-          type="ElementReferenceType">
+                    type="ElementReferenceType">
           <xs:annotation>
             <xs:documentation>
               The RootPart element is a root of CAD scene.
@@ -599,7 +603,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="RootAssembly"
-          type="ElementReferenceType">
+                    type="ElementReferenceType">
           <xs:annotation>
             <xs:documentation>
               The RootAssembly element is a root of CAD scene.
@@ -607,7 +611,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="RootComponent"
-          type="ElementReferenceType">
+                    type="ElementReferenceType">
           <xs:annotation>
             <xs:documentation>
               The RootComponent element is a root of CAD scene.
@@ -616,7 +620,7 @@
         </xs:element>
       </xs:choice>
       <xs:element ref="AsmPaths"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AsmPaths element is a collection of all parts
@@ -625,7 +629,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="MaterialLibrary"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional MaterialLibrary element is a list of the materials
@@ -645,8 +649,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="ComponentIds"
-        type="ArrayReferenceType"
-        minOccurs="0">
+                  type="ArrayReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The ComponentIds element is an array of identifiers of the
@@ -658,8 +662,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="id"
-      type="QIFIdType"
-      use="required">
+                  type="QIFIdType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required id attribute is the QIF id of the assembly path,
@@ -677,8 +681,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="AsmPath"
-        type="AsmPathType"
-        maxOccurs="unbounded">
+                  type="AsmPathType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each AsmPath element is an assembly path in the list.
@@ -687,8 +691,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of assembly paths in this
@@ -699,7 +703,7 @@
   </xs:complexType>
 
   <xs:element name="AsmPaths"
-    type="AsmPathsType">
+              type="AsmPathsType">
     <xs:annotation>
       <xs:documentation>
         The global AsmPaths element is a list of assembly paths.
@@ -716,8 +720,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Area"
-        type="xs:double"
-        minOccurs="0">
+                  type="xs:double"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Area element is the part/assembly area.
@@ -725,8 +729,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Centroid"
-        type="PointSimpleType"
-        minOccurs="0">
+                  type="PointSimpleType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Centroid element is the part/assembly center of
@@ -735,8 +739,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Volume"
-        type="xs:double"
-        minOccurs="0">
+                  type="xs:double"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Volume element is the part/assembly volume.
@@ -744,8 +748,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Box"
-        type="BoundingBoxAxisAlignedType"
-        minOccurs="0">
+                  type="BoundingBoxAxisAlignedType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Box element is the part/assembly bounding box.
@@ -753,8 +757,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="FacePoints"
-        type="ValidationPointsType"
-        minOccurs="0">
+                  type="ValidationPointsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional FacePoints element is a set of points that lie on
@@ -763,8 +767,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="EdgePoints"
-        type="ValidationPointsType"
-        minOccurs="0">
+                  type="ValidationPointsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional EdgePoints element is a set of points that lie on
@@ -773,8 +777,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Instances"
-        type="ValidationPartAssemblyInstancesType"
-        minOccurs="0">
+                  type="ValidationPartAssemblyInstancesType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Instances element is an array of instance
@@ -794,8 +798,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Instance"
-        type="ValidationPartAssemblyInstanceType"
-        maxOccurs="unbounded">
+                  type="ValidationPartAssemblyInstanceType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             The Instance is a set of instance validation properties.
@@ -804,8 +808,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of Instance in this set.
@@ -823,7 +827,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="AsmPathId"
-        type="QIFReferenceType">
+                  type="QIFReferenceType">
         <xs:annotation>
           <xs:documentation>
             The AsmPathId element is the identifier of the assembly path
@@ -832,8 +836,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Centroid"
-        type="PointSimpleType"
-        minOccurs="0">
+                  type="PointSimpleType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Centroid element is the instance center of mass.
@@ -841,8 +845,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Box"
-        type="BoundingBoxAxisAlignedType"
-        minOccurs="0">
+                  type="BoundingBoxAxisAlignedType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Box element is the instance bounding box.
@@ -853,7 +857,7 @@
   </xs:complexType>
 
   <xs:complexType name="PartAssemblyBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The PartAssemblyBaseType is the abstract base type that defines
@@ -865,8 +869,8 @@
       <xs:extension base="DrawableBaseType">
         <xs:sequence>
           <xs:element name="Validation"
-            type="ValidationPartAssemblyType"
-            minOccurs="0">
+                      type="ValidationPartAssemblyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Validation element is a set of part/assembly
@@ -875,8 +879,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Header"
-            type="PartAssemblyHeaderType"
-            minOccurs="0">
+                      type="PartAssemblyHeaderType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Header element is a description of the
@@ -885,8 +889,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="UUID"
-            type="QPIdType"
-            minOccurs="0">
+                      type="QPIdType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional UUID element is a persistent identifier for
@@ -896,8 +900,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ModelNumber"
-            type="xs:string"
-            minOccurs="0">
+                      type="xs:string"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ModelNumber element is the identifier of a
@@ -908,8 +912,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Version"
-            type="xs:string"
-            minOccurs="0">
+                      type="xs:string"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Version element is the version of the product
@@ -918,8 +922,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="SecurityClassification"
-            type="SecurityClassificationType"
-            minOccurs="0">
+                      type="SecurityClassificationType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional SecurityClassification element describes the
@@ -928,8 +932,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ExportControlClassification"
-            type="xs:string"
-            minOccurs="0">
+                      type="xs:string"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ExportControlClassification element describes
@@ -939,8 +943,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="FeatureNominalIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional FeatureNominalIds element contains any feature
@@ -949,8 +953,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="FeatureZoneIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional FeatureZoneIds element contains feature zones
@@ -959,8 +963,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="CharacteristicNominalIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional CharacteristicNominalIds element contains any
@@ -969,8 +973,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="NoteIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional NoteIds element contains any notes for
@@ -979,8 +983,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="PartNoteIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional PartNoteIds element contains any part notes
@@ -989,8 +993,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="DatumDefinitionIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional DatumDefinitionIds element contains any datum
@@ -999,8 +1003,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="DatumTargetDefinitionIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional DatumTargetDefinitionIds element contains any
@@ -1009,8 +1013,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="DatumReferenceFrameIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional DatumReferenceFrameIds element contains any
@@ -1019,8 +1023,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="BodyIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional BodyIds element is an array of body
@@ -1029,8 +1033,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="CoordinateSystemIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional CoordinateSystemIds element is an array of
@@ -1039,8 +1043,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="AuxiliaryIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional AuxiliaryIds element is an array of auxiliary
@@ -1049,8 +1053,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ViewIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ViewIds element is an array of view object
@@ -1059,8 +1063,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="PointCloudIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional PointCloudIds element is an array of point
@@ -1070,7 +1074,7 @@
           </xs:element>
         </xs:sequence>
         <xs:attribute name="originMassProperty"
-          type="PointSimpleType">
+                      type="PointSimpleType">
           <xs:annotation>
             <xs:documentation>
               The optional originMassProperty attribute is the origin point
@@ -1080,7 +1084,7 @@
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="materialIndex"
-          type="NaturalType">
+                      type="NaturalType">
           <xs:annotation>
             <xs:documentation>
               The optional materialIndex attribute specifies a material
@@ -1105,8 +1109,8 @@
       <xs:extension base="PartAssemblyBaseType">
         <xs:sequence>
           <xs:element name="DefinitionExternal"
-            type="DefinitionExternalType"
-            minOccurs="0">
+                      type="DefinitionExternalType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional DefinitionExternal element is a part
@@ -1115,8 +1119,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="PartFamily"
-            type="PartFamilyType"
-            minOccurs="0">
+                      type="PartFamilyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional PartFamily element gives information about
@@ -1125,10 +1129,11 @@
             </xs:annotation>
           </xs:element>
           <xs:element ref="FoldersPart"
-            minOccurs="0">
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
-                FoldersPart is folders tree in the part.
+                The optional FoldersPart element is a folders tree in
+                the part.
               </xs:documentation>
             </xs:annotation>
           </xs:element>
@@ -1145,8 +1150,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="FolderPart"
-        type="FolderPartType"
-        maxOccurs="unbounded">
+                  type="FolderPartType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each FolderPart element is a folder of a part.
@@ -1155,8 +1160,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of the FolderPart
@@ -1174,8 +1179,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="FolderAssembly"
-        type="FolderAssemblyType"
-        maxOccurs="unbounded">
+                  type="FolderAssemblyType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each FolderAssembly element is a folder of an assembly.
@@ -1184,8 +1189,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of FolderAssembly
@@ -1196,7 +1201,7 @@
   </xs:complexType>
 
   <xs:complexType name="FolderPartAssemblyBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The FolderPartAssemblyBaseType is the abstract base type that
@@ -1207,8 +1212,8 @@
       <xs:extension base="DrawableBaseType">
         <xs:sequence>
           <xs:element name="FolderIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional FolderIds element contains indices of
@@ -1217,8 +1222,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="FeatureNominalIds"
-            type="ArrayReferenceFullType"
-            minOccurs="0">
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional FeatureNominalIds element contains feature
@@ -1227,8 +1232,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="FeatureZoneIds"
-            type="ArrayReferenceFullType"
-            minOccurs="0">
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional FeatureZoneIds element contains feature zones
@@ -1237,8 +1242,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="CharacteristicNominalIds"
-            type="ArrayReferenceFullType"
-            minOccurs="0">
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional CharacteristicNominalIds element contains
@@ -1247,8 +1252,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="NoteIds"
-            type="ArrayReferenceFullType"
-            minOccurs="0">
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional NoteIds element contains notes for
@@ -1257,8 +1262,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="PartNoteIds"
-            type="ArrayReferenceFullType"
-            minOccurs="0">
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional PartNoteIds element contains part notes
@@ -1267,8 +1272,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="DatumDefinitionIds"
-            type="ArrayReferenceFullType"
-            minOccurs="0">
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional DatumDefinitionIds element contains datum
@@ -1277,8 +1282,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="DatumTargetDefinitionIds"
-            type="ArrayReferenceFullType"
-            minOccurs="0">
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional DatumTargetDefinitionIds element contains
@@ -1287,8 +1292,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="DatumReferenceFrameIds"
-            type="ArrayReferenceFullType"
-            minOccurs="0">
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional DatumReferenceFrameIds element contains
@@ -1297,8 +1302,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="BodyIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional BodyIds element is an array of body
@@ -1307,8 +1312,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="CoordinateSystemIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional CoordinateSystemIds element is an array of
@@ -1317,8 +1322,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="AuxiliaryIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional AuxiliaryIds element is an array of auxiliary
@@ -1327,8 +1332,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ViewIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ViewIds element is an array of view object
@@ -1337,8 +1342,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="PointCloudIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional PointCloudIds element is an array of point
@@ -1374,7 +1379,7 @@
       <xs:extension base="FolderPartAssemblyBaseType">
         <xs:sequence>
           <xs:element name="ComponentIds"
-            type="ArrayReferenceType">
+                      type="ArrayReferenceType">
             <xs:annotation>
               <xs:documentation>
                 The ComponentIds element is an array of component
@@ -1401,7 +1406,7 @@
       <xs:extension base="PartAssemblyBaseType">
         <xs:sequence>
           <xs:element name="ComponentIds"
-            type="ArrayReferenceType">
+                      type="ArrayReferenceType">
             <xs:annotation>
               <xs:documentation>
                 The ComponentIds element is an array of component
@@ -1410,8 +1415,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="DefinitionExternal"
-            type="DefinitionExternalType"
-            minOccurs="0">
+                      type="DefinitionExternalType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional DefinitionExternal element is an assembly
@@ -1420,10 +1425,11 @@
             </xs:annotation>
           </xs:element>
           <xs:element ref="FoldersAssembly"
-            minOccurs="0">
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
-                FoldersAssembly is folders tree in an assembly.
+                The optional FoldersAssembly element is a folders tree
+                in an assembly.
               </xs:documentation>
             </xs:annotation>
           </xs:element>
@@ -1444,8 +1450,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="PrimaryShapeClass"
-        type="ShapeClassType"
-        minOccurs="0">
+                  type="ShapeClassType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PrimaryShapeClass element provides the
@@ -1454,8 +1460,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="MinimumTolerance"
-        type="LinearValueType"
-        minOccurs="0">
+                  type="LinearValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional MinimumTolerance element identifies the
@@ -1465,8 +1471,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="MinimumBoundingBox"
-        type="BoundingBoxType"
-        minOccurs="0">
+                  type="BoundingBoxType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional MinimumBoundingBox element provides the smallest
@@ -1475,8 +1481,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PrimaryManufacturingMethod"
-        type="ManufacturingMethodType"
-        minOccurs="0">
+                  type="ManufacturingMethodType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PrimaryManufacturingMethod element identifies
@@ -1489,7 +1495,7 @@
   </xs:complexType>
 
   <xs:element name="Part"
-    type="PartType">
+              type="PartType">
     <xs:annotation>
       <xs:documentation>
         The global Part element defines a feature (body)
@@ -1499,7 +1505,7 @@
   </xs:element>
 
   <xs:element name="Assembly"
-    type="AssemblyType">
+              type="AssemblyType">
     <xs:annotation>
       <xs:documentation>
         The global Assembly element defines a feature (body or
@@ -1518,7 +1524,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="Part"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Part element is a part which can be used
@@ -1528,8 +1534,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of parts in this set.
@@ -1547,7 +1553,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="Assembly"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Assembly element is an assembly which can be used
@@ -1557,8 +1563,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of assemblies in this set.
@@ -1568,7 +1574,7 @@
   </xs:complexType>
 
   <xs:element name="PartSet"
-    type="PartSetType">
+              type="PartSetType">
     <xs:annotation>
       <xs:documentation>
         The global PartSet element is a collection of all parts
@@ -1578,7 +1584,7 @@
   </xs:element>
 
   <xs:element name="AssemblySet"
-    type="AssemblySetType">
+              type="AssemblySetType">
     <xs:annotation>
       <xs:documentation>
         The global AssemblySet element is a collection of all assemblies
@@ -1598,8 +1604,8 @@
       <xs:extension base="DrawableBaseType">
         <xs:sequence>
           <xs:element name="Transform"
-            type="ElementReferenceType"
-            minOccurs="0">
+                      type="ElementReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Transform element is an identifier of the
@@ -1609,8 +1615,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="UUID"
-            type="QPIdType"
-            minOccurs="0">
+                      type="QPIdType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional UUID element is a persistent identifier for
@@ -1620,8 +1626,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Traceability"
-            type="ProductTraceabilityType"
-            minOccurs="0">
+                      type="ProductTraceabilityType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Traceability element gives traceability
@@ -1631,7 +1637,7 @@
           </xs:element>
           <xs:choice>
             <xs:element name="Part"
-              type="ElementReferenceType">
+                        type="ElementReferenceType">
               <xs:annotation>
                 <xs:documentation>
                   The Part element is an identifier of a part
@@ -1640,7 +1646,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="Assembly"
-              type="ElementReferenceType">
+                        type="ElementReferenceType">
               <xs:annotation>
                 <xs:documentation>
                   The Assembly element is an identifier of an assembly
@@ -1655,7 +1661,7 @@
   </xs:complexType>
 
   <xs:element name="Component"
-    type="ComponentType">
+              type="ComponentType">
     <xs:annotation>
       <xs:documentation>
         The global Component element is an instance of a part template.
@@ -1672,7 +1678,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="Component"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Component element is an instance of a part template.
@@ -1681,8 +1687,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of components in this set.
@@ -1692,7 +1698,7 @@
   </xs:complexType>
 
   <xs:element name="ComponentSet"
-    type="ComponentSetType">
+              type="ComponentSetType">
     <xs:annotation>
       <xs:documentation>
         The global ComponentSet element is a collection of all components
@@ -1711,7 +1717,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Name"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The Name element is the name of the model.
@@ -1719,20 +1725,20 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Version"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Version element is the version of the
             model associated with product being inspected. The
             information recorded here may be used for the
-            DrawingRevisionLevel field of an AS9102A form.
+            DrawingRevisionLevel field of an AS9102A or AS9102B form.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Description"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Description element is a description of the model.
@@ -1740,8 +1746,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Author"
-        type="AuthorType"
-        minOccurs="0">
+                  type="AuthorType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Author element is the author who
@@ -1750,19 +1756,20 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="DrawingNumber"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional DrawingNumber element is the drawing number of the
             printed drawing associated with product being inspected. This
-            may be used for the Drawing Number field of an AS9102A form.
+            may be used for the Drawing Number field of an AS9102A or
+            AS9102B form.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="AdditionalChanges"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AdditionalChanges element is a description or
@@ -1770,13 +1777,13 @@
             drawing beyond what is included at the Version. If there
             are no additional changes to the drawing, this element should
             be omitted. The information recorded here may be used for the
-            Additional Changes field of an AS9102A form.
+            Additional Changes field of an AS9102A or AS9102B form.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Location"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Location element is a description of the physical
@@ -1786,8 +1793,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="id"
-      type="QIFIdType"
-      use="required">
+                  type="QIFIdType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required id attribute is the QIF id of the printed drawing.
@@ -1834,7 +1841,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Name"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The Name element is the name of the model.
@@ -1842,7 +1849,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="File"
-        type="FileType">
+                  type="FileType">
         <xs:annotation>
           <xs:documentation>
             The File element specifies the file used in the model.
@@ -1850,8 +1857,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Application"
-        type="ApplicationType"
-        minOccurs="0">
+                  type="ApplicationType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Application element is information about the
@@ -1861,8 +1868,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Author"
-        type="AuthorType"
-        minOccurs="0">
+                  type="AuthorType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Author element is the author who
@@ -1871,8 +1878,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ApplicationSource"
-        type="ApplicationType"
-        minOccurs="0">
+                  type="ApplicationType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ApplicationSource element is the name of the
@@ -1881,8 +1888,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Description"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Description element is a description of the model.
@@ -1890,8 +1897,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Units"
-        type="OtherUnitsType"
-        minOccurs="0">
+                  type="OtherUnitsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Units element specifies the units used in the
@@ -1900,9 +1907,9 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="GDT"
-        type="GDTEnumType"
-        default="UNKNOWN"
-        minOccurs="0">
+                  type="GDTEnumType"
+                  default="UNKNOWN"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional GDT element specifies the presence of
@@ -1911,9 +1918,9 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Topology"
-        type="TopologyEnumType"
-        default="UNKNOWN"
-        minOccurs="0">
+                  type="TopologyEnumType"
+                  default="UNKNOWN"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Topology element specifies the presence of
@@ -1922,8 +1929,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Entities"
-        type="EntitiesExternalType"
-        minOccurs="0">
+                  type="EntitiesExternalType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Entities element is a list of instances of the
@@ -1935,8 +1942,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="id"
-      type="QIFIdType"
-      use="required">
+                  type="QIFIdType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required id attribute is the QIF id of the digital design
@@ -1953,8 +1960,7 @@
         (a part or an assembly) in various degrees of detail.
       </xs:documentation>
     </xs:annotation>
-    <xs:choice
-      maxOccurs="unbounded">
+    <xs:choice maxOccurs="unbounded">
       <xs:annotation>
         <xs:documentation>
           This compositor provides a choice among types of drawing and
@@ -1962,7 +1968,7 @@
         </xs:documentation>
       </xs:annotation>
       <xs:element name="PrintedDrawing"
-        type="PrintedDrawingType">
+                  type="PrintedDrawingType">
         <xs:annotation>
           <xs:documentation>
             The PrintedDrawing element gives information about a printed
@@ -1971,7 +1977,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="DigitalDrawing"
-        type="DigitalDrawingType">
+                  type="DigitalDrawingType">
         <xs:annotation>
           <xs:documentation>
             The DigitalDrawing element gives information about a digital
@@ -1980,7 +1986,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="DigitalModel"
-        type="DigitalModelType">
+                  type="DigitalModelType">
         <xs:annotation>
           <xs:documentation>
             The DigitalModel element gives information about a digital part
@@ -1989,7 +1995,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PhysicalModel"
-        type="PhysicalModelType">
+                  type="PhysicalModelType">
         <xs:annotation>
           <xs:documentation>
             The PhysicalModel element is an actual, hands-on, physical,
@@ -2004,8 +2010,8 @@
       </xs:element>
     </xs:choice>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of external product
@@ -2014,8 +2020,8 @@
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="id"
-      type="QIFIdType"
-      use="required">
+                  type="QIFIdType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required id attribute is the QIF id of the product geometry
@@ -2035,7 +2041,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Name"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The Name element is the name of the model.
@@ -2043,7 +2049,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="File"
-        type="FileType">
+                  type="FileType">
         <xs:annotation>
           <xs:documentation>
             The File element specifies the file used in the model.
@@ -2051,8 +2057,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Application"
-        type="ApplicationType"
-        minOccurs="0">
+                  type="ApplicationType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Application element is information about the
@@ -2062,8 +2068,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Author"
-        type="AuthorType"
-        minOccurs="0">
+                  type="AuthorType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Author element is the author who created this
@@ -2072,8 +2078,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ApplicationSource"
-        type="ApplicationType"
-        minOccurs="0">
+                  type="ApplicationType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ApplicationSource element is the name of the
@@ -2082,8 +2088,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Description"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Description element is a description of the model.
@@ -2091,8 +2097,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Entities"
-        type="EntitiesExternalType"
-        minOccurs="0">
+                  type="EntitiesExternalType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Entities element is a list of instances of the
@@ -2104,8 +2110,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="id"
-      type="QIFIdType"
-      use="required">
+                  type="QIFIdType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required id attribute is the QIF id of the digital drawing.
@@ -2128,7 +2134,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Name"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The Name element is the name of the model.
@@ -2136,8 +2142,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Version"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Version element is the version of the
@@ -2146,8 +2152,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Description"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Description element is a description of the model.
@@ -2155,8 +2161,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Author"
-        type="AuthorType"
-        minOccurs="0">
+                  type="AuthorType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Author element is the author who
@@ -2165,30 +2171,31 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Location"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Location element is a description of the physical
-            location of the printed drawing.
+            location of the physical model.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="ModelNumber"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
-            The optional ModelNumber element is the drawing number of the
-            printed drawing associated with product being inspected. This
-            may be used for the Drawing Number field of an AS9102A form.
+            The optional ModelNumber element is the model number of the
+            physical model associated with product being inspected. This
+            may be used for the Drawing Number field of an AS9102A or
+            AS9102B form.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
     <xs:attribute name="id"
-      type="QIFIdType"
-      use="required">
+                  type="QIFIdType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required id attribute is the QIF id of the physical model.
@@ -2207,8 +2214,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Name"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Name element is the name of the model.
@@ -2216,8 +2223,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="File"
-        type="FileInternalType"
-        minOccurs="0">
+                  type="FileInternalType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional File element specifies the QIF file used in the
@@ -2226,8 +2233,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Application"
-        type="ApplicationType"
-        minOccurs="0">
+                  type="ApplicationType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Application element is information about the
@@ -2237,8 +2244,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Author"
-        type="AuthorType"
-        minOccurs="0">
+                  type="AuthorType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Author element is the author who
@@ -2247,8 +2254,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ApplicationSource"
-        type="ApplicationType"
-        minOccurs="0">
+                  type="ApplicationType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ApplicationSource element is the name of the
@@ -2257,8 +2264,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Description"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Description element is a description of the model.
@@ -2271,7 +2278,7 @@
   <xs:complexType name="ProductHeaderType">
     <xs:annotation>
       <xs:documentation>
-        The InternalHeaderType defines information about the creation of
+        The ProductHeaderType defines information about the creation of
         the file containing the CAD model and global parameters of the
         model.
       </xs:documentation>
@@ -2280,9 +2287,9 @@
       <xs:extension base="PartAssemblyHeaderType">
         <xs:sequence>
           <xs:element name="ScaleCoefficient"
-            type="xs:double"
-            default="1.0"
-            minOccurs="0">
+                      type="xs:double"
+                      default="1.0"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ScaleCoefficient element is an amount by which
@@ -2298,8 +2305,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ModelTolerance"
-            type="xs:double"
-            minOccurs="0">
+                      type="xs:double"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ModelTolerance element is the model tolerance.
@@ -2310,13 +2317,13 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="MassPropertyTolerance"
-            type="xs:double"
-            minOccurs="0">
+                      type="xs:double"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
-                The optional EpsMassProperty element specifies a tolerance
-                used for calculation of the mass properties of model
-                entities.
+                The optional MassPropertyTolerance element specifies a
+                tolerance used for calculation of the mass properties
+                of model entities.
               </xs:documentation>
             </xs:annotation>
           </xs:element>
@@ -2340,8 +2347,8 @@
       <xs:extension base="DrawableBaseType">
         <xs:sequence>
           <xs:element name="ElementIds"
-            type="ArrayReferenceFullType"
-            minOccurs="0">
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ElementIds element is an array of entity
@@ -2351,8 +2358,8 @@
           </xs:element>
         </xs:sequence>
         <xs:attribute name="applyColor"
-          type="xs:boolean"
-          default="0">
+                      type="xs:boolean"
+                      default="0">
           <xs:annotation>
             <xs:documentation>
               The optional applyColor attribute shows if the layer color
@@ -2362,8 +2369,8 @@
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="index"
-          type="xs:unsignedInt"
-          use="required">
+                      type="xs:unsignedInt"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required index attribute defines the layer index.
@@ -2375,9 +2382,15 @@
   </xs:complexType>
 
   <xs:complexType name="LayerSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The LayerSetType represents a container for storing all
+        layers present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element ref="Layer"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             The Layer element defines the model layer with associated model
@@ -2387,8 +2400,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of layers in this set.
@@ -2398,7 +2411,7 @@
   </xs:complexType>
 
   <xs:element name="Layer"
-    type="LayerType">
+              type="LayerType">
     <xs:annotation>
       <xs:documentation>
         The global Layer element defines the model layer with associated
@@ -2408,7 +2421,7 @@
   </xs:element>
 
   <xs:element name="LayerSet"
-    type="LayerSetType">
+              type="LayerSetType">
     <xs:annotation>
       <xs:documentation>
         The global LayerSet element is a collection of all model layers.
@@ -2417,9 +2430,15 @@
   </xs:element>
 
   <xs:complexType name="PartNoteSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The PartNoteSetType represents a container for storing all
+        part notes present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element ref="PartNote"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each PartNote element is a part note.
@@ -2428,8 +2447,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of part notes in this set.
@@ -2439,12 +2458,17 @@
   </xs:complexType>
 
   <xs:complexType name="PartNoteType">
+    <xs:annotation>
+      <xs:documentation>
+        The PartNoteType represents a note about a part.
+      </xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="DrawableBaseType">
         <xs:sequence>
           <xs:element name="Text"
-            type="xs:string"
-            minOccurs="0">
+                      type="xs:string"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Text element is the text of the PartNote.
@@ -2452,8 +2476,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="PartNoteIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional PartNoteIds element is an array of identifiers
@@ -2467,12 +2491,17 @@
   </xs:complexType>
 
   <xs:complexType name="NoteType">
+    <xs:annotation>
+      <xs:documentation>
+        The NoteType represents a note.
+      </xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="DrawableBaseType">
         <xs:sequence>
           <xs:element name="EntityInternalIds"
-            type="ArrayReferenceFullType"
-            minOccurs="0">
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The EntityInternalIds element is a list of the QIF
@@ -2481,8 +2510,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="EntityExternalIds"
-            type="ArrayReferenceFullType"
-            minOccurs="0">
+                      type="ArrayReferenceFullType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The EntityExternalIds element is a list of the QIF ids of
@@ -2491,7 +2520,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Text"
-            type="xs:string">
+                      type="xs:string">
             <xs:annotation>
               <xs:documentation>
                 The Text element is the text of the Note.
@@ -2500,8 +2529,8 @@
           </xs:element>
         </xs:sequence>
         <xs:attribute name="form"
-          type="NoteFormEnumType"
-          default="3D">
+                      type="NoteFormEnumType"
+                      default="3D">
           <xs:annotation>
             <xs:documentation>
               The form attribute specifies how the Note is represented.
@@ -2515,7 +2544,7 @@
   <xs:simpleType name="NoteFormEnumType">
     <xs:annotation>
       <xs:documentation>
-        The NoteFormType enumerates values that describe the form
+        The NoteFormEnumType enumerates values that describe the form
         of the Note and can be the following values:
           `3D` - Note defined on the 3D annotation plane;
           `SCREEN` - Note defined as flat to screen;
@@ -2528,9 +2557,14 @@
   </xs:simpleType>
 
   <xs:complexType name="NoteSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The NoteSetType represents a set of notes.
+      </xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element ref="Note"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Note element is a note.
@@ -2539,8 +2573,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of notes in this set.
@@ -2550,12 +2584,17 @@
   </xs:complexType>
 
   <xs:complexType name="NoteFlagType">
+    <xs:annotation>
+      <xs:documentation>
+        The NoteFlagType represents a flag note.
+      </xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="NoteType">
         <xs:sequence>
           <xs:element name="TextHidden"
-            type="xs:string"
-            minOccurs="0">
+                      type="xs:string"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional TextHidden element is the hidden text of the
@@ -2564,8 +2603,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="URI"
-            type="xs:anyURI"
-            minOccurs="0">
+                      type="xs:anyURI"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional URI element is a Uniform Resource Identifier
@@ -2580,9 +2619,14 @@
   </xs:complexType>
 
   <xs:complexType name="NoteFlagSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The NoteFlagSetType represents a set of flag notes.
+      </xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element ref="NoteFlag"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each NoteFlag element is a flag note.
@@ -2591,8 +2635,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of flag notes in this set.
@@ -2610,7 +2654,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Name"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The Name element is the name of the file.
@@ -2618,8 +2662,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Version"
-        type="VersionType"
-        minOccurs="0">
+                  type="VersionType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Version element gives version information about
@@ -2631,7 +2675,7 @@
   </xs:complexType>
 
   <xs:element name="PartNoteSet"
-    type="PartNoteSetType">
+              type="PartNoteSetType">
     <xs:annotation>
       <xs:documentation>
         The global PartNoteSet element is a collection of all part notes
@@ -2641,26 +2685,26 @@
   </xs:element>
 
   <xs:element name="PartNote"
-    type="PartNoteType">
+              type="PartNoteType">
     <xs:annotation>
       <xs:documentation>
-        The global Part Note element is a part note or standard note.
+        The global PartNote element is a part note or standard note.
       </xs:documentation>
     </xs:annotation>
   </xs:element>
 
   <xs:element name="NoteSet"
-    type="NoteSetType">
+              type="NoteSetType">
     <xs:annotation>
       <xs:documentation>
-        The global NoteSetType element is a collection of all notes
+        The global NoteSet element is a collection of all notes
         presented in the CAD scene.
       </xs:documentation>
     </xs:annotation>
   </xs:element>
 
   <xs:element name="Note"
-    type="NoteType">
+              type="NoteType">
     <xs:annotation>
       <xs:documentation>
         The global Note element is a note.
@@ -2669,7 +2713,7 @@
   </xs:element>
 
   <xs:element name="NoteFlagSet"
-    type="NoteFlagSetType">
+              type="NoteFlagSetType">
     <xs:annotation>
       <xs:documentation>
         The global NoteFlagSet element is a collection of all flag
@@ -2679,7 +2723,7 @@
   </xs:element>
 
   <xs:element name="NoteFlag"
-    type="NoteFlagType">
+              type="NoteFlagType">
     <xs:annotation>
       <xs:documentation>
         The global NoteFlag element is a flag note.
@@ -2688,7 +2732,7 @@
   </xs:element>
 
   <xs:element name="FoldersPart"
-    type="FoldersPartType">
+              type="FoldersPartType">
     <xs:annotation>
       <xs:documentation>
         The global FoldersPart element is a folder tree of the part.
@@ -2720,7 +2764,7 @@
   </xs:element>
 
   <xs:element name="FoldersAssembly"
-    type="FoldersAssemblyType">
+              type="FoldersAssemblyType">
     <xs:annotation>
       <xs:documentation>
         The global FoldersAssembly element is a folder tree of the assembly.

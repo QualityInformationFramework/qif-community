@@ -14,7 +14,7 @@
   attributeFormDefault="unqualified"
   version="3.0.0">
 
-  <xs:include schemaLocation="Statistics.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/Statistics.xsd"/>
 
   <xs:annotation>
     <xs:documentation>
@@ -26,7 +26,7 @@
 <!--  BEGIN STATISTICAL STUDY PLAN TYPES -->
 
   <xs:complexType name="StatisticalStudyPlanBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The StatisticalStudyPlanBaseType is the abstract base type that
@@ -35,8 +35,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Version"
-        type="VersionType"
-        minOccurs="0">
+                  type="VersionType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Version element gives version information about
@@ -45,7 +45,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="Attributes"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Attributes element contains user defined
@@ -53,8 +53,7 @@
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:sequence
-        minOccurs="0">
+      <xs:sequence minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional compositor defines the feature items
@@ -63,7 +62,7 @@
           </xs:documentation>
         </xs:annotation>
         <xs:element name="FeatureItemIds"
-          type="ArrayReferenceType">
+                    type="ArrayReferenceType">
           <xs:annotation>
             <xs:documentation>
               The FeatureItemIds element is the list of feature items to be
@@ -72,8 +71,8 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="CalculateAverageFeatures"
-          type="xs:boolean"
-          minOccurs="0">
+                    type="xs:boolean"
+                    minOccurs="0">
           <xs:annotation>
             <xs:documentation>
               The optional CalculateAverageFeatures element when
@@ -83,8 +82,7 @@
           </xs:annotation>
         </xs:element>
       </xs:sequence>
-      <xs:sequence
-        minOccurs="0">
+      <xs:sequence minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional compositor defines the characteristic items
@@ -93,7 +91,7 @@
           </xs:documentation>
         </xs:annotation>
         <xs:element name="CharacteristicItemIds"
-          type="ArrayReferenceType">
+                    type="ArrayReferenceType">
           <xs:annotation>
             <xs:documentation>
               The CharacteristicItemIds element is the list of
@@ -103,9 +101,9 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="StatsValuesPerChar"
-          type="ListAccumulatedStatsValuesType"
-          minOccurs="0"
-          maxOccurs="unbounded">
+                    type="ListAccumulatedStatsValuesType"
+                    minOccurs="0"
+                    maxOccurs="unbounded">
           <xs:annotation>
             <xs:documentation>
               Each optional StatsValuesPerChar element identifies the
@@ -118,9 +116,9 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="StatsValuesPerSubgroup"
-          type="ListSubgroupStatsValuesType"
-          minOccurs="0"
-          maxOccurs="unbounded">
+                    type="ListSubgroupStatsValuesType"
+                    minOccurs="0"
+                    maxOccurs="unbounded">
           <xs:annotation>
             <xs:documentation>
               Each optional StatsValuesPerSubgroup element identifies
@@ -135,9 +133,9 @@
         </xs:element>
       </xs:sequence>
       <xs:element name="StatsValuesSummarys"
-        type="SummaryStatsValuesListType"
-        minOccurs="0"
-        maxOccurs="unbounded">
+                  type="SummaryStatsValuesListType"
+                  minOccurs="0"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each optional StatsValuesSummarys element identifies a list of
@@ -150,8 +148,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PreInspectionTraceability"
-        type="PreInspectionTraceabilityType"
-        minOccurs="0">
+                  type="PreInspectionTraceabilityType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PreInspectionTraceability element gives
@@ -160,8 +158,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Name"
-        type="xs:token"
-        minOccurs="0">
+                  type="xs:token"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Name element is the name identifying the
@@ -170,8 +168,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Description"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Description element is a description of the
@@ -180,8 +178,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PlanId"
-        type="QIFReferenceType"
-        minOccurs="0">
+                  type="QIFReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PlanId element is the QIF id of the associated
@@ -189,8 +187,7 @@
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:choice
-        minOccurs="0">
+      <xs:choice minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             This optional compositor provides a choice between software, or
@@ -198,7 +195,7 @@
           </xs:documentation>
         </xs:annotation>
         <xs:element name="SoftwareId"
-          type="QIFReferenceType">
+                    type="QIFReferenceType">
           <xs:annotation>
             <xs:documentation>
               The optional SoftwareId element is the QIF id of the analysis
@@ -210,7 +207,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="StandardId"
-          type="QIFReferenceType">
+                    type="QIFReferenceType">
           <xs:annotation>
             <xs:documentation>
               The optional StandardId element is the QIF id of the standard
@@ -223,8 +220,8 @@
         </xs:element>
       </xs:choice>
       <xs:element name="CorrectiveActionPlanId"
-        type="QIFReferenceType"
-        minOccurs="0">
+                  type="QIFReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional CorrectiveActionPlanId element is the QIF id of a
@@ -234,8 +231,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="id"
-      type="QIFIdType"
-      use="required">
+                  type="QIFIdType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required id attribute is the QIF id of the statistical study,
@@ -255,8 +252,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="LinearLimit"
-        type="LinearValueType"
-        minOccurs="0">
+                  type="LinearValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional LinearLimit element defines the limit that a linear
@@ -265,8 +262,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="AngularLimit"
-        type="AngularValueType"
-        minOccurs="0">
+                  type="AngularValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AngularLimit element defines the limit that an
@@ -275,8 +272,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="AreaLimit"
-        type="AreaValueType"
-        minOccurs="0">
+                  type="AreaValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AreaLimit element defines the limit that an area
@@ -285,8 +282,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ForceLimit"
-        type="ForceValueType"
-        minOccurs="0">
+                  type="ForceValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ForceLimit element defines the limit that a force
@@ -295,8 +292,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="MassLimit"
-        type="MassValueType"
-        minOccurs="0">
+                  type="MassValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional MassLimit element defines the limit that a mass
@@ -305,8 +302,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PressureLimit"
-        type="PressureValueType"
-        minOccurs="0">
+                  type="PressureValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PressureLimit element defines the limit that a
@@ -315,8 +312,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="SpeedLimit"
-        type="SpeedValueType"
-        minOccurs="0">
+                  type="SpeedValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SpeedLimit element defines the limit that a speed
@@ -325,8 +322,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="TemperatureLimit"
-        type="TemperatureValueType"
-        minOccurs="0">
+                  type="TemperatureValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional TemperatureLimit element defines the limit that a
@@ -335,8 +332,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="TimeLimit"
-        type="TimeValueType"
-        minOccurs="0">
+                  type="TimeValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional TimeLimit element defines the limit that a time
@@ -345,9 +342,9 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedUnitLimit"
-        type="UserDefinedUnitValueType"
-        minOccurs="0"
-        maxOccurs="unbounded">
+                  type="UserDefinedUnitValueType"
+                  minOccurs="0"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each optional UserDefinedUnitLimit element defines the limit a
@@ -362,8 +359,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of absolute limits defined
@@ -385,8 +382,8 @@
       <xs:extension base="StatisticalStudyPlanBaseType">
         <xs:sequence>
           <xs:element name="MeasurementDeviceIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional MeasurementDeviceIds element is a list of
@@ -396,8 +393,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="GoodnessOfFitThreshold"
-            type="xs:decimal"
-            minOccurs="0">
+                      type="xs:decimal"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional GoodnessOfFitThreshold element is the minimum
@@ -415,7 +412,7 @@
               </xs:documentation>
             </xs:annotation>
             <xs:element name="AbsoluteMinimums"
-              type="AbsoluteLimitsByUnitType">
+                        type="AbsoluteLimitsByUnitType">
               <xs:annotation>
                 <xs:documentation>
                   The AbsoluteMinimums element defines the list of minimum
@@ -424,7 +421,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="RelativeLinearityMinimum"
-              type="xs:decimal">
+                        type="xs:decimal">
               <xs:annotation>
                 <xs:documentation>
                   The RelativeLinearityMinimum element defines the minimum
@@ -451,8 +448,8 @@
       <xs:extension base="StatisticalStudyPlanBaseType">
         <xs:sequence>
           <xs:element name="MeasurementDeviceIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional MeasurementDeviceIds element is a list of
@@ -462,7 +459,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="SampleSize"
-            type="xs:positiveInteger">
+                      type="xs:positiveInteger">
             <xs:annotation>
               <xs:documentation>
                 The SampleSize element specifies the number of samples
@@ -471,7 +468,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="SampleFrequency"
-            type="xs:positiveInteger">
+                      type="xs:positiveInteger">
             <xs:annotation>
               <xs:documentation>
                 The SampleFrequency element specifies the sampling
@@ -481,7 +478,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="SamplingInterval"
-            type="SamplingIntervalType">
+                      type="SamplingIntervalType">
             <xs:annotation>
               <xs:documentation>
                 The SamplingInterval element specifies the sampling
@@ -506,8 +503,8 @@
       <xs:extension base="MultipleProductInstanceStudyPlanBaseType">
         <xs:sequence>
           <xs:element name="MeasurementDeviceIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional MeasurementDeviceIds element is a list of
@@ -534,7 +531,7 @@
       <xs:extension base="StatisticalStudyPlanBaseType">
         <xs:sequence>
           <xs:element name="InSpecRatio"
-            type="xs:decimal">
+                      type="xs:decimal">
             <xs:annotation>
               <xs:documentation>
                 The InSpecRatio element specifies the fraction of inspected
@@ -553,7 +550,7 @@
               </xs:documentation>
             </xs:annotation>
             <xs:element name="AbsoluteMaximums"
-              type="AbsoluteLimitsByUnitType">
+                        type="AbsoluteLimitsByUnitType">
               <xs:annotation>
                 <xs:documentation>
                   The AbsoluteMaximums element defines a list of maximum
@@ -563,7 +560,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="RelativeMaximum"
-              type="xs:decimal">
+                        type="xs:decimal">
               <xs:annotation>
                 <xs:documentation>
                   The RelativeMaximum element defines the maximum allowable
@@ -591,7 +588,7 @@
       <xs:extension base="StatisticalStudyPlanBaseType">
         <xs:sequence>
           <xs:element name="NumberOfSamples"
-            type="xs:positiveInteger">
+                      type="xs:positiveInteger">
             <xs:annotation>
               <xs:documentation>
                 The NumberOfSamples element specifies the number of samples
@@ -600,8 +597,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="SubgroupSize"
-            type="xs:positiveInteger"
-            fixed="2">
+                      type="xs:positiveInteger"
+                      fixed="2">
             <xs:annotation>
               <xs:documentation>
                 The SubgroupSize element fixes the size of each subgroup to
@@ -612,8 +609,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ManufacturingProcessId"
-            type="QIFReferenceType"
-            minOccurs="0">
+                      type="QIFReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ManufacturingProcessId element is a reference
@@ -631,7 +628,7 @@
               </xs:documentation>
             </xs:annotation>
             <xs:element name="AbsoluteDifferences"
-              type="AbsoluteLimitsByUnitType">
+                        type="AbsoluteLimitsByUnitType">
               <xs:annotation>
                 <xs:documentation>
                   The AbsoluteDifferences element defines a list of the
@@ -641,7 +638,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="RelativeDifference"
-              type="xs:decimal">
+                        type="xs:decimal">
               <xs:annotation>
                 <xs:documentation>
                   The RelativeDifference element defines the maximum
@@ -657,7 +654,7 @@
   </xs:complexType>
 
   <xs:complexType name="MultipleProductInstanceStudyPlanBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The MultipleProductInstanceStudyPlanBaseType is the abstract
@@ -669,7 +666,7 @@
       <xs:extension base="StatisticalStudyPlanBaseType">
         <xs:sequence>
           <xs:element name="NumberOfSamples"
-            type="xs:positiveInteger">
+                      type="xs:positiveInteger">
             <xs:annotation>
               <xs:documentation>
                 The NumberOfSamples element specifies the number of samples
@@ -678,8 +675,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="SubgroupSize"
-            type="xs:positiveInteger"
-            minOccurs="0">
+                      type="xs:positiveInteger"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional SubgroupSize element defines the size of each
@@ -719,36 +716,34 @@
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="MultipleProductInstanceStudyPlanBaseType">
-        <xs:sequence>
-          <xs:choice>
+        <xs:choice>
+          <xs:annotation>
+            <xs:documentation>
+              This compositor provides a choice between the two values
+              used to determine process capability: Cpk or Ppk.
+            </xs:documentation>
+          </xs:annotation>
+          <xs:element name="CpkThreshold"
+                      type="CriterionDecimalType">
             <xs:annotation>
               <xs:documentation>
-                This compositor provides a choice between the two values
-                used to determine process capability: Cpk or Ppk.
+                The CpkThreshold element defines the minimum Cpk value
+                that must be achieved for a process to be considered
+                capable.
               </xs:documentation>
             </xs:annotation>
-            <xs:element name="CpkThreshold"
-              type="CriterionDecimalType">
-              <xs:annotation>
-                <xs:documentation>
-                  The CpkThreshold element defines the minimum Cpk value
-                  that must be achieved for a process to be considered
-                  capable.
-                </xs:documentation>
-              </xs:annotation>
-            </xs:element>
-            <xs:element name="PpkThreshold"
-              type="CriterionDecimalType">
-              <xs:annotation>
-                <xs:documentation>
-                  The PpkThreshold element defines the minimum Ppk value
-                  that must be achieved for a process to be considered
-                  capable.
-                </xs:documentation>
-              </xs:annotation>
-            </xs:element>
-          </xs:choice>
-        </xs:sequence>
+          </xs:element>
+          <xs:element name="PpkThreshold"
+                      type="CriterionDecimalType">
+            <xs:annotation>
+              <xs:documentation>
+                The PpkThreshold element defines the minimum Ppk value
+                that must be achieved for a process to be considered
+                capable.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
@@ -776,8 +771,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="LinearCriterion"
-        type="CriterionLinearType"
-        minOccurs="0">
+                  type="CriterionLinearType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional LinearCriterion element defines a criterion for a
@@ -786,8 +781,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="AngularCriterion"
-        type="CriterionAngularType"
-        minOccurs="0">
+                  type="CriterionAngularType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AngularCriterion element defines a criterion for an
@@ -796,8 +791,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="AreaCriterion"
-        type="CriterionAreaType"
-        minOccurs="0">
+                  type="CriterionAreaType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AreaCriterion element defines a criterion for an
@@ -806,8 +801,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ForceCriterion"
-        type="CriterionForceType"
-        minOccurs="0">
+                  type="CriterionForceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ForceCriterion element defines a criterion for a
@@ -816,8 +811,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="MassCriterion"
-        type="CriterionMassType"
-        minOccurs="0">
+                  type="CriterionMassType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional MassCriterion element defines a criterion for a
@@ -826,8 +821,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PressureCriterion"
-        type="CriterionPressureType"
-        minOccurs="0">
+                  type="CriterionPressureType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PressureCriterion element defines a criterion for
@@ -836,8 +831,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="SpeedCriterion"
-        type="CriterionSpeedType"
-        minOccurs="0">
+                  type="CriterionSpeedType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SpeedCriterion element defines a criterion for a
@@ -846,8 +841,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="TemperatureCriterion"
-        type="CriterionTemperatureType"
-        minOccurs="0">
+                  type="CriterionTemperatureType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional TemperatureCriterion element defines a criterion
@@ -856,8 +851,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="TimeCriterion"
-        type="CriterionTimeType"
-        minOccurs="0">
+                  type="CriterionTimeType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional TimeCriterion element defines a criterion for a
@@ -866,9 +861,9 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedUnitCriterion"
-        type="CriterionUserDefinedUnitType"
-        minOccurs="0"
-        maxOccurs="unbounded">
+                  type="CriterionUserDefinedUnitType"
+                  minOccurs="0"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each optional UserDefinedUnitCriterion element defines a
@@ -883,8 +878,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of criteria in the list.
@@ -907,8 +902,8 @@
       <xs:extension base="StatisticalStudyPlanBaseType">
         <xs:sequence>
           <xs:element name="MeasurementDeviceIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional MeasurementDeviceIds element is a list of the
@@ -918,7 +913,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="RandRStudyType"
-            type="GageRandRStudyEnumType">
+                      type="GageRandRStudyEnumType">
             <xs:annotation>
               <xs:documentation>
                 The RandRStudyType element defines the type of the gage
@@ -927,7 +922,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="NumberOfAppraisers"
-            type="xs:positiveInteger">
+                      type="xs:positiveInteger">
             <xs:annotation>
               <xs:documentation>
                 The NumberOfAppraisers element defines the number of
@@ -936,7 +931,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="NumberOfParts"
-            type="xs:positiveInteger">
+                      type="xs:positiveInteger">
             <xs:annotation>
               <xs:documentation>
                 The NumberOfParts element defines the number of parts to be
@@ -945,7 +940,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="NumberOfTrials"
-            type="xs:positiveInteger">
+                      type="xs:positiveInteger">
             <xs:annotation>
               <xs:documentation>
                 The NumberOfTrials element defines the number of times each
@@ -953,8 +948,7 @@
               </xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:choice
-            minOccurs="0">
+          <xs:choice minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 This optional compositor provides a choice between
@@ -963,7 +957,7 @@
               </xs:documentation>
             </xs:annotation>
             <xs:element name="MaximumRelativeAppraiserVariation"
-              type="CriterionDecimalType">
+                        type="CriterionDecimalType">
               <xs:annotation>
                 <xs:documentation>
                   The MaximumRelativeAppraiserVariation element defines the
@@ -973,7 +967,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="MaximumAbsoluteAppraiserVariation"
-              type="CriteriaByUnitType">
+                        type="CriteriaByUnitType">
               <xs:annotation>
                 <xs:documentation>
                   The MaximumAbsoluteAppraiserVariation element defines a
@@ -983,8 +977,7 @@
               </xs:annotation>
             </xs:element>
           </xs:choice>
-          <xs:choice
-            minOccurs="0">
+          <xs:choice minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 This optional compositor provides a choice between relative
@@ -992,7 +985,7 @@
               </xs:documentation>
             </xs:annotation>
             <xs:element name="MaximumRelativeEquipmentVariation"
-              type="CriterionDecimalType">
+                        type="CriterionDecimalType">
               <xs:annotation>
                 <xs:documentation>
                   The MaximumRelativeEquipmentVariation element defines the
@@ -1002,7 +995,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="MaximumAbsoluteEquipmentVariation"
-              type="CriteriaByUnitType">
+                        type="CriteriaByUnitType">
               <xs:annotation>
                 <xs:documentation>
                   The MaximumAbsoluteEquipmentVariation element defines a
@@ -1012,8 +1005,7 @@
               </xs:annotation>
             </xs:element>
           </xs:choice>
-          <xs:choice
-            minOccurs="0">
+          <xs:choice minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 This optional compositor provides a choice between relative
@@ -1021,7 +1013,7 @@
               </xs:documentation>
             </xs:annotation>
             <xs:element name="MaximumRelativeTotalRandR"
-              type="CriterionDecimalType">
+                        type="CriterionDecimalType">
               <xs:annotation>
                 <xs:documentation>
                   The MaximumRelativeTotalRandR element defines the maximum
@@ -1030,7 +1022,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="MaximumAbsoluteTotalRandR"
-              type="CriteriaByUnitType">
+                        type="CriteriaByUnitType">
               <xs:annotation>
                 <xs:documentation>
                   The MaximumAbsoluteTotalRandR element defines a list
@@ -1054,8 +1046,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="AssignableCauseIds"
-        type="ArrayReferenceType"
-        minOccurs="0">
+                  type="ArrayReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AssignableCauseIds element is a list of the QIF
@@ -1064,7 +1056,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="Attributes"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Attributes element contains user defined
@@ -1074,7 +1066,7 @@
       </xs:element>
       <xs:choice>
         <xs:element name="NumOutOfTolerance"
-          type="CriterionIntegerType">
+                    type="CriterionIntegerType">
           <xs:annotation>
             <xs:documentation>
               The NumOutOfTolerance element defines the number of
@@ -1084,7 +1076,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="CpThreshold"
-          type="CriterionDecimalType">
+                    type="CriterionDecimalType">
           <xs:annotation>
             <xs:documentation>
               The CpThreshold element defines the Cp threshold below which
@@ -1093,7 +1085,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="CpkThreshold"
-          type="CriterionDecimalType">
+                    type="CriterionDecimalType">
           <xs:annotation>
             <xs:documentation>
               The CpkThreshold element defines the Cpk threshold below
@@ -1102,7 +1094,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="PpThreshold"
-          type="CriterionDecimalType">
+                    type="CriterionDecimalType">
           <xs:annotation>
             <xs:documentation>
               The PpThreshold element defines the Pp threshold below which
@@ -1111,7 +1103,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="PpkThreshold"
-          type="CriterionDecimalType">
+                    type="CriterionDecimalType">
           <xs:annotation>
             <xs:documentation>
               The PpkThreshold element defines the Ppk threshold below
@@ -1120,7 +1112,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="NumOutOfControl"
-          type="CriterionIntegerType">
+                    type="CriterionIntegerType">
           <xs:annotation>
             <xs:documentation>
               The NumOutOfControl element defines the number of
@@ -1130,7 +1122,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="TrendGrouping"
-          type="CriterionIntegerType">
+                    type="CriterionIntegerType">
           <xs:annotation>
             <xs:documentation>
               The TrendGrouping element defines the number of adjacent
@@ -1142,7 +1134,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="SkewGrouping"
-          type="CriterionIntegerType">
+                    type="CriterionIntegerType">
           <xs:annotation>
             <xs:documentation>
               The SkewGrouping element defines the number of adjacent
@@ -1154,7 +1146,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="OneThirdGrouping"
-          type="CriterionOutOfType">
+                    type="CriterionOutOfType">
           <xs:annotation>
             <xs:documentation>
               The OneThirdGrouping element defines the fraction of adjacent
@@ -1169,7 +1161,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="TwoThirdsGrouping"
-          type="CriterionOutOfType">
+                    type="CriterionOutOfType">
           <xs:annotation>
             <xs:documentation>
               The TwoThirdsGrouping element defines the fraction of
@@ -1184,7 +1176,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="Oscillation"
-          type="CriterionOutOfType">
+                    type="CriterionOutOfType">
           <xs:annotation>
             <xs:documentation>
               The Oscillation element defines the fraction of adjacent
@@ -1195,7 +1187,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="Stratification"
-          type="CriterionOutOfType">
+                    type="CriterionOutOfType">
           <xs:annotation>
             <xs:documentation>
               The Stratification element defines the fraction of adjacent
@@ -1207,7 +1199,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="NumOutOfControlRng"
-          type="CriterionIntegerType">
+                    type="CriterionIntegerType">
           <xs:annotation>
             <xs:documentation>
               The NumOutOfControlRng element defines the number of
@@ -1219,8 +1211,8 @@
       </xs:choice>
     </xs:sequence>
     <xs:attribute name="id"
-      type="QIFIdType"
-      use="required">
+                  type="QIFIdType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required id attribute is the QIF id of the control method,
@@ -1238,8 +1230,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="ControlMethod"
-        type="ControlMethodType"
-        maxOccurs="unbounded">
+                  type="ControlMethodType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each ControlMethod element defines a control method.
@@ -1248,8 +1240,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of control methods in the
@@ -1272,7 +1264,7 @@
       <xs:extension base="MultipleProductInstanceStudyPlanBaseType">
         <xs:sequence>
           <xs:element name="SamplingMethod"
-            type="SamplingMethodType">
+                      type="SamplingMethodType">
             <xs:annotation>
               <xs:documentation>
                 The SamplingMethod element defines a method of sample
@@ -1281,7 +1273,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ControlMethods"
-            type="ControlMethodsType">
+                      type="ControlMethodsType">
             <xs:annotation>
               <xs:documentation>
                 The ControlMethods element defines a list of control
@@ -1298,8 +1290,8 @@
 <!-- BEGIN SUBSTITUTION GROUP FOR STATISTICAL STUDY PLANS -->
 
   <xs:element name="StatisticalStudyPlan"
-    type="StatisticalStudyPlanBaseType"
-    abstract="true">
+              type="StatisticalStudyPlanBaseType"
+              abstract="true">
     <xs:annotation>
       <xs:documentation>
         The global StatisticalStudyPlan element is the head of a
@@ -1321,8 +1313,8 @@
   </xs:element>
 
   <xs:element name="FirstArticleStudyPlan"
-    type="FirstArticleStudyPlanType"
-    substitutionGroup="StatisticalStudyPlan">
+              type="FirstArticleStudyPlanType"
+              substitutionGroup="StatisticalStudyPlan">
     <xs:annotation>
       <xs:documentation>
         The global FirstArticleStudyPlan element gives information about a
@@ -1332,8 +1324,8 @@
   </xs:element>
 
   <xs:element name="LinearityStudyPlan"
-    type="LinearityStudyPlanType"
-    substitutionGroup="StatisticalStudyPlan">
+              type="LinearityStudyPlanType"
+              substitutionGroup="StatisticalStudyPlan">
     <xs:annotation>
       <xs:documentation>
         The global LinearityStudyPlan element gives information about a
@@ -1343,8 +1335,8 @@
   </xs:element>
 
   <xs:element name="SimpleStudyPlan"
-    type="SimpleStudyPlanType"
-    substitutionGroup="StatisticalStudyPlan">
+              type="SimpleStudyPlanType"
+              substitutionGroup="StatisticalStudyPlan">
     <xs:annotation>
       <xs:documentation>
         The global SimpleStudyPlan element gives information about a simple
@@ -1354,8 +1346,8 @@
   </xs:element>
 
   <xs:element name="BiasStudyPlan"
-    type="BiasStudyPlanType"
-    substitutionGroup="StatisticalStudyPlan">
+              type="BiasStudyPlanType"
+              substitutionGroup="StatisticalStudyPlan">
     <xs:annotation>
       <xs:documentation>
         The global BiasStudyPlan element gives information about a bias
@@ -1365,8 +1357,8 @@
   </xs:element>
 
   <xs:element name="StabilityStudyPlan"
-    type="StabilityStudyPlanType"
-    substitutionGroup="StatisticalStudyPlan">
+              type="StabilityStudyPlanType"
+              substitutionGroup="StatisticalStudyPlan">
     <xs:annotation>
       <xs:documentation>
         The global StabilityStudyPlan element gives information about a
@@ -1376,8 +1368,8 @@
   </xs:element>
 
   <xs:element name="ProcessDifferenceStudyPlan"
-    type="ProcessDifferenceStudyPlanType"
-    substitutionGroup="StatisticalStudyPlan">
+              type="ProcessDifferenceStudyPlanType"
+              substitutionGroup="StatisticalStudyPlan">
     <xs:annotation>
       <xs:documentation>
         The global ProcessDifferenceStudyPlan element gives information
@@ -1387,8 +1379,8 @@
   </xs:element>
 
   <xs:element name="CapabilityStudyPlan"
-    type="CapabilityStudyPlanType"
-    substitutionGroup="StatisticalStudyPlan">
+              type="CapabilityStudyPlanType"
+              substitutionGroup="StatisticalStudyPlan">
     <xs:annotation>
       <xs:documentation>
         The global CapabilityStudyPlan element gives information about a
@@ -1398,8 +1390,8 @@
   </xs:element>
 
   <xs:element name="GageRandRStudyPlan"
-    type="GageRandRStudyPlanType"
-    substitutionGroup="StatisticalStudyPlan">
+              type="GageRandRStudyPlanType"
+              substitutionGroup="StatisticalStudyPlan">
     <xs:annotation>
       <xs:documentation>
         The global GageRandRStudyPlan element gives information about a
@@ -1409,8 +1401,8 @@
   </xs:element>
 
   <xs:element name="ProductionStudyPlan"
-    type="ProductionStudyPlanType"
-    substitutionGroup="StatisticalStudyPlan">
+              type="ProductionStudyPlanType"
+              substitutionGroup="StatisticalStudyPlan">
     <xs:annotation>
       <xs:documentation>
         The global ProductionStudyPlan element gives information about a
@@ -1424,7 +1416,7 @@
 <!--  BEGIN STATISTICAL STUDY RESULTS TYPES -->
 
   <xs:complexType name="StatisticalStudyResultsBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The StatisticalStudyResultsBaseType is the abstract base type that
@@ -1433,8 +1425,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="ThisStatisticalStudyResultsInstanceQPId"
-        type="QPIdType"
-        minOccurs="0">
+                  type="QPIdType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ThisStatisticalStudyResultsInstanceQPId element
@@ -1445,7 +1437,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="Attributes"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Attributes element contains user defined
@@ -1454,7 +1446,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Status"
-        type="StatsEvalStatusType">
+                  type="StatsEvalStatusType">
         <xs:annotation>
           <xs:documentation>
             The Status element is the overall status of the statistical
@@ -1462,10 +1454,9 @@
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:choice
-        minOccurs="0">
+      <xs:choice minOccurs="0">
         <xs:element name="SoftwareId"
-          type="QIFReferenceType">
+                    type="QIFReferenceType">
           <xs:annotation>
             <xs:documentation>
               The SoftwareId element is the id of the software used to
@@ -1476,7 +1467,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="StandardId"
-          type="QIFReferenceType">
+                    type="QIFReferenceType">
           <xs:annotation>
             <xs:documentation>
               The StandardId element is the id of the standard or
@@ -1489,8 +1480,8 @@
         </xs:element>
       </xs:choice>
       <xs:element name="StudyIssues"
-        type="StudyIssuesType"
-        minOccurs="0">
+                  type="StudyIssuesType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional StudyIssues element defines a list that provides
@@ -1499,8 +1490,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionTraceability"
-        type="InspectionTraceabilityType"
-        minOccurs="0">
+                  type="InspectionTraceabilityType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional InspectionTraceability element gives traceability
@@ -1509,8 +1500,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Name"
-        type="xs:token"
-        minOccurs="0">
+                  type="xs:token"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Name element is the name identifying the
@@ -1519,8 +1510,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Description"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Description element is a description of the
@@ -1529,8 +1520,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="StudyId"
-        type="QIFReferenceType"
-        minOccurs="0">
+                  type="QIFReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional StudyId element is the QIF id of the associated
@@ -1538,8 +1529,7 @@
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:choice
-        minOccurs="0">
+      <xs:choice minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             This optional compositor provides a choice between QIF sources
@@ -1548,7 +1538,7 @@
           </xs:documentation>
         </xs:annotation>
         <xs:element name="ResultsIds"
-          type="ArrayReferenceType">
+                    type="ArrayReferenceType">
           <xs:annotation>
             <xs:documentation>
               The ResultsIds element is a list of QIF ids of a measurement
@@ -1557,8 +1547,8 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="ResultsQPIds"
-          type="ArrayQPIdFullReferenceType"
-          maxOccurs="unbounded">
+                    type="ArrayQPIdFullReferenceType"
+                    maxOccurs="unbounded">
           <xs:annotation>
             <xs:documentation>
               The ResultsQPIds element identifies a list of measurement
@@ -1568,7 +1558,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="ResultsFiles"
-          type="ExternalFileReferencesType">
+                    type="ExternalFileReferencesType">
           <xs:annotation>
             <xs:documentation>
               The ResultsFiles element contains a list of information about
@@ -1578,7 +1568,7 @@
         </xs:element>
       </xs:choice>
       <xs:element ref="AverageFeatures"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AverageFeatures element is a list of the results of
@@ -1587,7 +1577,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="CharacteristicsStats"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional CharacteristicsStats element contains a list of
@@ -1596,19 +1586,19 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="LinearStatsSummaries"
-        type="SummariesStatisticsLinearType"
-        minOccurs="0">
+                  type="SummariesStatisticsLinearType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
-            The optional LinearStatsSummary element contains a list of the
+            The optional LinearStatsSummaries element contains a list of the
             results of statistical summaries for characteristic statistics
             with linear units.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="AngularStatsSummaries"
-        type="SummariesStatisticsAngularType"
-        minOccurs="0">
+                  type="SummariesStatisticsAngularType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AngularStatsSummaries element contains a list of
@@ -1618,8 +1608,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="AreaStatsSummaries"
-        type="SummariesStatisticsAreaType"
-        minOccurs="0">
+                  type="SummariesStatisticsAreaType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AreaStatsSummaries element contains a list of the
@@ -1629,8 +1619,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ForceStatsSummaries"
-        type="SummariesStatisticsForceType"
-        minOccurs="0">
+                  type="SummariesStatisticsForceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ForceStatsSummaries element contains a list of the
@@ -1640,8 +1630,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="MassStatsSummaries"
-        type="SummariesStatisticsMassType"
-        minOccurs="0">
+                  type="SummariesStatisticsMassType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional MassStatsSummaries element contains a list of the
@@ -1651,8 +1641,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PressureStatsSummaries"
-        type="SummariesStatisticsPressureType"
-        minOccurs="0">
+                  type="SummariesStatisticsPressureType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PressureStatsSummaries element contains a list of
@@ -1662,8 +1652,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="SpeedStatsSummaries"
-        type="SummariesStatisticsSpeedType"
-        minOccurs="0">
+                  type="SummariesStatisticsSpeedType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SpeedStatsSummaries element contains a list of the
@@ -1673,8 +1663,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="TemperatureStatsSummaries"
-        type="SummariesStatisticsTemperatureType"
-        minOccurs="0">
+                  type="SummariesStatisticsTemperatureType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional TemperatureStatsSummaries element contains a list
@@ -1684,8 +1674,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="TimeStatsSummaries"
-        type="SummariesStatisticsTimeType"
-        minOccurs="0">
+                  type="SummariesStatisticsTimeType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional TimeStatsSummaries element contains a list of the
@@ -1695,8 +1685,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedUnitStatsSummaries"
-        type="SummariesStatisticsUserDefinedUnitType"
-        minOccurs="0">
+                  type="SummariesStatisticsUserDefinedUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional UserDefinedUnitStatsSummaries element contains a
@@ -1710,8 +1700,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="StatsSummaries"
-        type="SummariesStatisticsType"
-        minOccurs="0">
+                  type="SummariesStatisticsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional StatsSummaries element contains a list of the
@@ -1722,8 +1712,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="id"
-      type="QIFIdType"
-      use="required">
+                  type="QIFIdType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required id attribute is the QIF id of the statistical study
@@ -1745,7 +1735,7 @@
       <xs:extension base="StatisticalStudyResultsBaseType">
         <xs:sequence>
           <xs:element name="SampleSize"
-            type="xs:positiveInteger">
+                      type="xs:positiveInteger">
             <xs:annotation>
               <xs:documentation>
                 The SampleSize element specifies the number of samples
@@ -1754,8 +1744,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="MeasurementDeviceIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional MeasurementDeviceIds element is a list of the
@@ -1765,8 +1755,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="GoodnessOfFit"
-            type="MeasuredDecimalType"
-            minOccurs="0">
+                      type="MeasuredDecimalType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional GoodnessOfFit element is the goodness of fit
@@ -1774,8 +1764,7 @@
               </xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:choice
-            minOccurs="0">
+          <xs:choice minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 This optional compositor provides a choice of the absolute
@@ -1783,7 +1772,7 @@
               </xs:documentation>
             </xs:annotation>
             <xs:element name="LinearAbsoluteLinearity"
-              type="MeasuredLinearValueType">
+                        type="MeasuredLinearValueType">
               <xs:annotation>
                 <xs:documentation>
                   The optional LinearAbsoluteLinearity element is the
@@ -1793,7 +1782,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="AngularAbsoluteLinearity"
-              type="MeasuredAngularValueType">
+                        type="MeasuredAngularValueType">
               <xs:annotation>
                 <xs:documentation>
                   The optional AngularAbsoluteLinearity element is the
@@ -1803,7 +1792,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="AreaAbsoluteLinearity"
-              type="MeasuredAreaValueType">
+                        type="MeasuredAreaValueType">
               <xs:annotation>
                 <xs:documentation>
                   The optional AreaAbsoluteLinearity element is the
@@ -1813,7 +1802,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="ForceAbsoluteLinearity"
-              type="MeasuredForceValueType">
+                        type="MeasuredForceValueType">
               <xs:annotation>
                 <xs:documentation>
                   The optional ForceAbsoluteLinearity element is the
@@ -1823,7 +1812,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="MassAbsoluteLinearity"
-              type="MeasuredMassValueType">
+                        type="MeasuredMassValueType">
               <xs:annotation>
                 <xs:documentation>
                   The optional MassAbsoluteLinearity element is the
@@ -1833,7 +1822,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="PressureAbsoluteLinearity"
-              type="MeasuredPressureValueType">
+                        type="MeasuredPressureValueType">
               <xs:annotation>
                 <xs:documentation>
                   The optional PressureAbsoluteLinearity element is the
@@ -1843,7 +1832,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="SpeedAbsoluteLinearity"
-              type="MeasuredSpeedValueType">
+                        type="MeasuredSpeedValueType">
               <xs:annotation>
                 <xs:documentation>
                   The optional SpeedAbsoluteLinearity element is the
@@ -1853,7 +1842,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="TemperatureAbsoluteLinearity"
-              type="MeasuredTemperatureValueType">
+                        type="MeasuredTemperatureValueType">
               <xs:annotation>
                 <xs:documentation>
                   The optional TemperatureAbsoluteLinearity element is the
@@ -1863,7 +1852,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="TimeAbsoluteLinearity"
-              type="MeasuredTimeValueType">
+                        type="MeasuredTimeValueType">
               <xs:annotation>
                 <xs:documentation>
                   The optional TimeAbsoluteLinearity element is the
@@ -1873,7 +1862,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="UserDefinedUnitAbsoluteLinearity"
-              type="MeasuredUserDefinedUnitValueType">
+                        type="MeasuredUserDefinedUnitValueType">
               <xs:annotation>
                 <xs:documentation>
                   The optional UserDefinedUnitAbsoluteLinearity element is
@@ -1889,8 +1878,8 @@
             </xs:element>
           </xs:choice>
           <xs:element name="RelativeLinearity"
-            type="MeasuredDecimalType"
-            minOccurs="0">
+                      type="MeasuredDecimalType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional RelativeLinearity element is relative
@@ -1915,7 +1904,7 @@
       <xs:extension base="StatisticalStudyResultsBaseType">
         <xs:sequence>
           <xs:element name="SampleSize"
-            type="xs:positiveInteger">
+                      type="xs:positiveInteger">
             <xs:annotation>
               <xs:documentation>
                 The SampleSize element specifies the number of samples n
@@ -1924,8 +1913,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="MeasurementDeviceIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional MeasurementDeviceIds element is a list of the
@@ -1951,7 +1940,7 @@
       <xs:extension base="StatisticalStudyResultsBaseType">
         <xs:sequence>
           <xs:element name="SampleSize"
-            type="xs:positiveInteger">
+                      type="xs:positiveInteger">
             <xs:annotation>
               <xs:documentation>
                 The SampleSize element specifies the number of samples used
@@ -1960,8 +1949,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="MeasurementDeviceIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional MeasurementDeviceIds element is a list of the
@@ -1986,8 +1975,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="LinearMeasurement"
-        type="MeasuredLinearValueType"
-        minOccurs="0">
+                  type="MeasuredLinearValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional LinearMeasurement element defines a measurement
@@ -1996,8 +1985,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="AngularMeasurement"
-        type="MeasuredAngularValueType"
-        minOccurs="0">
+                  type="MeasuredAngularValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AngularMeasurement element defines a measurement
@@ -2006,8 +1995,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="AreaMeasurement"
-        type="MeasuredAreaValueType"
-        minOccurs="0">
+                  type="MeasuredAreaValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AreaMeasurement element defines a measurement
@@ -2016,8 +2005,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ForceMeasurement"
-        type="MeasuredForceValueType"
-        minOccurs="0">
+                  type="MeasuredForceValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ForceMeasurement element defines a measurement
@@ -2026,8 +2015,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="MassMeasurement"
-        type="MeasuredMassValueType"
-        minOccurs="0">
+                  type="MeasuredMassValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional MassMeasurement element defines a measurement
@@ -2036,8 +2025,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PressureMeasurement"
-        type="MeasuredPressureValueType"
-        minOccurs="0">
+                  type="MeasuredPressureValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PressureMeasurement element defines a measurement
@@ -2046,8 +2035,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="SpeedMeasurement"
-        type="MeasuredSpeedValueType"
-        minOccurs="0">
+                  type="MeasuredSpeedValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SpeedMeasurement element defines a measurement
@@ -2056,8 +2045,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="TemperatureMeasurement"
-        type="MeasuredTemperatureValueType"
-        minOccurs="0">
+                  type="MeasuredTemperatureValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional TemperatureMeasurement element defines a
@@ -2066,8 +2055,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="TimeMeasurement"
-        type="MeasuredTimeValueType"
-        minOccurs="0">
+                  type="MeasuredTimeValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional TimeMeasurement element defines a measurement
@@ -2076,9 +2065,9 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedUnitMeasurement"
-        type="MeasuredUserDefinedUnitValueType"
-        minOccurs="0"
-        maxOccurs="unbounded">
+                  type="MeasuredUserDefinedUnitValueType"
+                  minOccurs="0"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each optional UserDefinedUnitMeasurement defines a measurement
@@ -2092,8 +2081,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of absolute measurement
@@ -2116,8 +2105,8 @@
       <xs:extension base="StatisticalStudyResultsBaseType">
         <xs:sequence>
           <xs:element name="InSpecRatio"
-            type="xs:decimal"
-            minOccurs="0">
+                      type="xs:decimal"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional InSpecRatio element is the fraction of
@@ -2127,8 +2116,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="AbsoluteMaximums"
-            type="AbsoluteMeasurementsByUnitType"
-            minOccurs="0">
+                      type="AbsoluteMeasurementsByUnitType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional AbsoluteMaximums element defines the
@@ -2138,8 +2127,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="RelativeMaximum"
-            type="MeasuredDecimalType"
-            minOccurs="0">
+                      type="MeasuredDecimalType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional RelativeMaximum element is the worst relative
@@ -2165,7 +2154,7 @@
       <xs:extension base="StatisticalStudyResultsBaseType">
         <xs:sequence>
           <xs:element name="NumberOfSamples"
-            type="xs:positiveInteger">
+                      type="xs:positiveInteger">
             <xs:annotation>
               <xs:documentation>
                 The NumberOfSamples element specifies the number of samples
@@ -2174,8 +2163,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="SubgroupSize"
-            type="xs:positiveInteger"
-            fixed="2">
+                      type="xs:positiveInteger"
+                      fixed="2">
             <xs:annotation>
               <xs:documentation>
                 The SubgroupSize element fixed the size of each subgroup
@@ -2184,8 +2173,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ManufacturingProcessId"
-            type="QIFReferenceType"
-            minOccurs="0">
+                      type="QIFReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ManufacturingProcessId element is a reference
@@ -2195,8 +2184,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="AbsoluteDifferences"
-            type="AbsoluteMeasurementsByUnitType"
-            minOccurs="0">
+                      type="AbsoluteMeasurementsByUnitType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional AbsoluteDifferences element defines the
@@ -2206,8 +2195,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="RelativeDifference"
-            type="MeasuredDecimalType"
-            minOccurs="0">
+                      type="MeasuredDecimalType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional RelativeDifference element is the worst
@@ -2222,7 +2211,7 @@
   </xs:complexType>
 
   <xs:complexType name="MultipleProductInstanceStudyResultsBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The MultipleProductInstanceStudyResultsBaseType is the abstract
@@ -2234,7 +2223,7 @@
       <xs:extension base="StatisticalStudyResultsBaseType">
         <xs:sequence>
           <xs:element name="NumberOfSamples"
-            type="xs:positiveInteger">
+                      type="xs:positiveInteger">
             <xs:annotation>
               <xs:documentation>
                 The NumberOfSamples element specifies the number of samples
@@ -2243,8 +2232,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="SubgroupSize"
-            type="xs:positiveInteger"
-            minOccurs="0">
+                      type="xs:positiveInteger"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional SubgroupSize element is the size of each
@@ -2299,8 +2288,8 @@
       <xs:extension base="StatisticalStudyResultsBaseType">
         <xs:sequence>
           <xs:element name="MeasurementDeviceIds"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional MeasurementDeviceIds element is a list of the
@@ -2310,7 +2299,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="NumberOfAppraisers"
-            type="xs:positiveInteger">
+                      type="xs:positiveInteger">
             <xs:annotation>
               <xs:documentation>
                 The NumberOfAppraisers element defines the number of
@@ -2319,7 +2308,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="NumberOfParts"
-            type="xs:positiveInteger">
+                      type="xs:positiveInteger">
             <xs:annotation>
               <xs:documentation>
                 The NumberOfParts element defines the number of parts used
@@ -2328,7 +2317,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="NumberOfTrials"
-            type="xs:positiveInteger">
+                      type="xs:positiveInteger">
             <xs:annotation>
               <xs:documentation>
                 The NumberOfTrials element defines the number of times each
@@ -2354,8 +2343,8 @@
       <xs:extension base="MultipleProductInstanceStudyResultsBaseType">
         <xs:sequence>
           <xs:element name="ControlIssueDetailsList"
-            type="ControlIssueDetailsListType"
-            maxOccurs="unbounded">
+                      type="ControlIssueDetailsListType"
+                      maxOccurs="unbounded">
             <xs:annotation>
               <xs:documentation>
                 The optional ControlIssueDetailsList element is a list
@@ -2371,8 +2360,8 @@
 <!-- BEGIN SUBSTITUTION GROUP FOR STATISTICAL STUDY RESULTS -->
 
   <xs:element name="StatisticalStudyResults"
-    type="StatisticalStudyResultsBaseType"
-    abstract="true">
+              type="StatisticalStudyResultsBaseType"
+              abstract="true">
     <xs:annotation>
       <xs:documentation>
         The global StatisticalStudyResults element is the head of a
@@ -2394,8 +2383,8 @@
   </xs:element>
 
   <xs:element name="FirstArticleStudyResults"
-    type="FirstArticleStudyResultsType"
-    substitutionGroup="StatisticalStudyResults">
+              type="FirstArticleStudyResultsType"
+              substitutionGroup="StatisticalStudyResults">
     <xs:annotation>
       <xs:documentation>
         The global FirstArticleStudyResults element gives information about
@@ -2431,8 +2420,8 @@
   </xs:element>
 
   <xs:element name="LinearityStudyResults"
-    type="LinearityStudyResultsType"
-    substitutionGroup="StatisticalStudyResults">
+              type="LinearityStudyResultsType"
+              substitutionGroup="StatisticalStudyResults">
     <xs:annotation>
       <xs:documentation>
         The global LinearityStudyResults element gives information about
@@ -2468,8 +2457,8 @@
   </xs:element>
 
   <xs:element name="SimpleStudyResults"
-    type="SimpleStudyResultsType"
-    substitutionGroup="StatisticalStudyResults">
+              type="SimpleStudyResultsType"
+              substitutionGroup="StatisticalStudyResults">
     <xs:annotation>
       <xs:documentation>
         The global SimpleStudyResults element gives information about the
@@ -2505,8 +2494,8 @@
   </xs:element>
 
   <xs:element name="BiasStudyResults"
-    type="BiasStudyResultsType"
-    substitutionGroup="StatisticalStudyResults">
+              type="BiasStudyResultsType"
+              substitutionGroup="StatisticalStudyResults">
     <xs:annotation>
       <xs:documentation>
         The global BiasStudyResults element gives information about the
@@ -2542,8 +2531,8 @@
   </xs:element>
 
   <xs:element name="StabilityStudyResults"
-    type="StabilityStudyResultsType"
-    substitutionGroup="StatisticalStudyResults">
+              type="StabilityStudyResultsType"
+              substitutionGroup="StatisticalStudyResults">
     <xs:annotation>
       <xs:documentation>
         The global StabilityStudyResults element gives information about
@@ -2579,8 +2568,8 @@
   </xs:element>
 
   <xs:element name="CapabilityStudyResults"
-    type="CapabilityStudyResultsType"
-    substitutionGroup="StatisticalStudyResults">
+              type="CapabilityStudyResultsType"
+              substitutionGroup="StatisticalStudyResults">
     <xs:annotation>
       <xs:documentation>
         The global CapabilityStudyResults element gives information about
@@ -2616,8 +2605,8 @@
   </xs:element>
 
   <xs:element name="ProcessDifferenceStudyResults"
-    type="ProcessDifferenceStudyResultsType"
-    substitutionGroup="StatisticalStudyResults">
+              type="ProcessDifferenceStudyResultsType"
+              substitutionGroup="StatisticalStudyResults">
     <xs:annotation>
       <xs:documentation>
         The global ProcessDifferenceStudyResults element gives information
@@ -2653,8 +2642,8 @@
   </xs:element>
 
   <xs:element name="GageRandRStudyResults"
-    type="GageRandRStudyResultsType"
-    substitutionGroup="StatisticalStudyResults">
+              type="GageRandRStudyResultsType"
+              substitutionGroup="StatisticalStudyResults">
     <xs:annotation>
       <xs:documentation>
         The global GageRandRStudyResults element gives information about
@@ -2691,8 +2680,8 @@
   </xs:element>
 
   <xs:element name="ProductionStudyResults"
-    type="ProductionStudyResultsType"
-    substitutionGroup="StatisticalStudyResults">
+              type="ProductionStudyResultsType"
+              substitutionGroup="StatisticalStudyResults">
     <xs:annotation>
       <xs:documentation>
         The global ProductionStudyResults element gives information about
@@ -2740,7 +2729,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="StatisticalStudyPlan"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each StatisticalStudyPlan element gives information about a
@@ -2750,8 +2739,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of statistical study plans
@@ -2770,7 +2759,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="StatisticalStudyResults"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each StatisticalStudyResults element gives information about
@@ -2780,8 +2769,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of statistical study
@@ -2800,8 +2789,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Version"
-        type="VersionType"
-        minOccurs="0">
+                  type="VersionType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Version element gives version information about
@@ -2810,7 +2799,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="Attributes"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Attributes element contains user defined
@@ -2819,7 +2808,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="AssignableCauses"
-        type="AssignableCausesType">
+                  type="AssignableCausesType">
         <xs:annotation>
           <xs:documentation>
             The AssignableCauses element defines one or more
@@ -2828,7 +2817,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="CorrectiveActions"
-        type="CorrectiveActionsType">
+                  type="CorrectiveActionsType">
         <xs:annotation>
           <xs:documentation>
             The CorrectiveActions element defines one or more corrective
@@ -2838,8 +2827,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="id"
-      type="QIFIdType"
-      use="required">
+                  type="QIFIdType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required id attribute is the QIF id of the corrective action
@@ -2858,8 +2847,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="CorrectiveActionPlan"
-        type="CorrectiveActionPlanType"
-        maxOccurs="unbounded">
+                  type="CorrectiveActionPlanType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each CorrectiveActionPlan element defines a corrective action
@@ -2869,8 +2858,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of corrective action plans
@@ -2889,8 +2878,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="StatisticalStudyPlans"
-        type="StatisticalStudyPlansType"
-        minOccurs="0">
+                  type="StatisticalStudyPlansType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional StatisticalStudyPlans element defines one or more
@@ -2899,8 +2888,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="StatisticalStudiesResults"
-        type="StatisticalStudiesResultsType"
-        minOccurs="0">
+                  type="StatisticalStudiesResultsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional StatisticalStudiesResults element defines one or
@@ -2909,8 +2898,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="CorrectiveActionPlans"
-        type="CorrectiveActionPlansType"
-        minOccurs="0">
+                  type="CorrectiveActionPlansType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional CorrectiveActionPlans element defines one or more
@@ -2922,7 +2911,7 @@
   </xs:complexType>
 
   <xs:element name="Statistics"
-    type="StatisticsType">
+              type="StatisticsType">
     <xs:annotation>
       <xs:documentation>
         The global Statistics element holds all statistical plans and/or

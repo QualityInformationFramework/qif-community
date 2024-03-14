@@ -5,11 +5,6 @@
 <!-- proprietary rights to such information, such as rights to a       -->
 <!-- patent, trademark, or copyright.                                  -->
 
-<!-- The definition of LineAuxiliaryType has been changed from the     -->
-<!-- definition in Auxiliary.xsdOrig by changing the reference         -->
-<!-- to LineSegmentGroup to the two elements in LineSegmentGroup       -->
-<!-- This has no effect on the validity of any instance file.          -->
-
 <xs:schema
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns="http://qifstandards.org/xsd/qif3"
@@ -19,7 +14,7 @@
   attributeFormDefault="unqualified"
   version="3.0.0">
 
-  <xs:include schemaLocation="PrimitivesPD.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/PrimitivesPD.xsd"/>
 
   <xs:annotation>
     <xs:documentation>
@@ -37,7 +32,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="CoordinateSystem"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each CoordinateSystem element is a coordinate system.
@@ -46,8 +41,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of coordinate systems in
@@ -89,7 +84,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="Auxiliary"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Auxiliary element is an auxiliary object.
@@ -98,8 +93,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of auxiliary objects in
@@ -110,7 +105,7 @@
   </xs:complexType>
 
   <xs:complexType name="AuxiliaryBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The AuxiliaryBaseType is the abstract base type for all
@@ -132,7 +127,7 @@
       <xs:extension base="AuxiliaryBaseType">
         <xs:sequence>
           <xs:element name="XYZ"
-            type="PointType">
+                      type="PointType">
             <xs:annotation>
               <xs:documentation>
                 The XYZ element is the Cartesian three-dimensional
@@ -144,7 +139,11 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+
 <!--
+      This is commented out because the generator cannot handle a group
+      reference inside an element reference. The version below replaces
+      the group reference with two elements.
   <xs:complexType name="LineAuxiliaryType">
     <xs:annotation>
       <xs:documentation>
@@ -179,6 +178,7 @@
     </xs:complexContent>
   </xs:complexType>
 -->
+
   <xs:complexType name="LineAuxiliaryType">
     <xs:annotation>
       <xs:documentation>
@@ -188,27 +188,28 @@
     <xs:complexContent>
       <xs:extension base="AuxiliaryBaseType">
         <xs:sequence>
-	  <xs:element name="StartPoint"
-            type="PointSimpleType">
+          <xs:element name="StartPoint"
+                      type="PointSimpleType">
             <xs:annotation>
               <xs:documentation>
-		The StartPoint element is the beginning point of the line
-		segment.
+                The StartPoint element is the beginning point of the line
+                segment.
               </xs:documentation>
             </xs:annotation>
-	  </xs:element>
-	  <xs:element name="EndPoint"
-            type="PointSimpleType">
+          </xs:element>
+          <xs:element name="EndPoint"
+                      type="PointSimpleType">
             <xs:annotation>
               <xs:documentation>
-		The EndPoint element is the ending point of the line segment.
+                The EndPoint element is the ending point of the line
+                segment.
               </xs:documentation>
             </xs:annotation>
-	  </xs:element>
+          </xs:element>
           <xs:element name="LineStyle"
-            type="LineStyleType"
-            default="SOLID"
-            minOccurs="0">
+                      type="LineStyleType"
+                      default="SOLID"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional LineStyle element is the line style of the
@@ -222,7 +223,7 @@
   </xs:complexType>
 
   <xs:complexType name="AuxiliaryPlaneBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The AuxiliaryPlaneBaseType is the abstract base type for all
@@ -233,7 +234,7 @@
       <xs:extension base="AuxiliaryBaseType">
         <xs:sequence>
           <xs:element name="Plane"
-            type="PlaneType">
+                      type="PlaneType">
             <xs:annotation>
               <xs:documentation>
                 The Plane element is the plane definition.
@@ -258,7 +259,7 @@
   </xs:complexType>
 
   <xs:element name="CoordinateSystemSet"
-    type="CoordinateSystemSetType">
+              type="CoordinateSystemSetType">
     <xs:annotation>
       <xs:documentation>
         The CoordinateSystemSet global element is a collection of all
@@ -268,7 +269,7 @@
   </xs:element>
 
   <xs:element name="CoordinateSystem"
-    type="CADCoordinateSystemType">
+              type="CADCoordinateSystemType">
     <xs:annotation>
       <xs:documentation>
         The CoordinateSystem element is a Cartesian 3D coordinate system.
@@ -277,7 +278,7 @@
   </xs:element>
 
   <xs:element name="CoordinateSystemCore"
-    type="CoordinateSystemCoreType">
+              type="CoordinateSystemCoreType">
     <xs:annotation>
       <xs:documentation>
         The CoordinateSystemCore element is the mathematical core of a
@@ -287,7 +288,7 @@
   </xs:element>
 
   <xs:element name="AuxiliarySet"
-    type="AuxiliarySetType">
+              type="AuxiliarySetType">
     <xs:annotation>
       <xs:documentation>
         The AuxiliarySet global element is a collection of all
@@ -299,8 +300,8 @@
 <!-- START SUBSTITUTION GROUP FOR AUXILIARY -->
 
   <xs:element name="Auxiliary"
-    type="AuxiliaryBaseType"
-    abstract="true">
+              type="AuxiliaryBaseType"
+              abstract="true">
     <xs:annotation>
       <xs:documentation>
         The Auxiliary global element is an auxiliary object. This is
@@ -310,8 +311,8 @@
   </xs:element>
 
   <xs:element name="PointAuxiliary"
-    type="PointAuxiliaryType"
-    substitutionGroup="Auxiliary">
+              type="PointAuxiliaryType"
+              substitutionGroup="Auxiliary">
     <xs:annotation>
       <xs:documentation>
         The PointAuxiliary global element is an auxiliary point.
@@ -320,8 +321,8 @@
   </xs:element>
 
   <xs:element name="LineAuxiliary"
-    type="LineAuxiliaryType"
-    substitutionGroup="Auxiliary">
+              type="LineAuxiliaryType"
+              substitutionGroup="Auxiliary">
     <xs:annotation>
       <xs:documentation>
         The LineAuxiliary global element is an auxiliary line.
@@ -330,8 +331,8 @@
   </xs:element>
 
   <xs:element name="PlaneReference"
-    type="PlaneReferenceType"
-    substitutionGroup="Auxiliary">
+              type="PlaneReferenceType"
+              substitutionGroup="Auxiliary">
     <xs:annotation>
       <xs:documentation>
         The PlaneReference global element is a reference plane.

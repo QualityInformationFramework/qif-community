@@ -5,12 +5,6 @@
 <!-- proprietary rights to such information, such as rights to a       -->
 <!-- patent, trademark, or copyright.                                  -->
 
-<!-- In Geometry.xsdOrig, in the Polyline13CoreType, the sequence      -->
-<!-- containing nothing but a choice has been removed. The choice is   -->
-<!-- is still there. The same change was made in Polyline12CoreType    -->
-<!-- and PathTriangulationCoreType.                                    -->
-<!-- This has no effect on the validity of any instance files.         -->
-
 <xs:schema
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns="http://qifstandards.org/xsd/qif3"
@@ -20,7 +14,7 @@
   attributeFormDefault="unqualified"
   version="3.0.0">
 
-  <xs:include schemaLocation="PrimitivesPD.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/PrimitivesPD.xsd"/>
 
   <xs:annotation>
     <xs:documentation>
@@ -39,7 +33,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="PointSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PointSet element is a collection of all instances
@@ -48,7 +42,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="Curve12Set"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Curve12Set element is a collection of all 2D
@@ -58,7 +52,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="Curve13Set"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Curve13Set element is a collection of all 3D
@@ -67,7 +61,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="SurfaceSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SurfaceSet element is a collection of all
@@ -76,7 +70,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="CurveMeshSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional CurveMeshSet element is a collection of all
@@ -85,7 +79,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="SurfaceMeshSet"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SurfaceMeshSet element is a collection of all
@@ -97,7 +91,7 @@
   </xs:complexType>
 
   <xs:complexType name="GeometryBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The GeometryBaseType is the abstract base type for all geometric
@@ -120,7 +114,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="Point"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Point element is an instance of PointEntityType. Point
@@ -131,8 +125,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of points in this set.
@@ -152,7 +146,7 @@
       <xs:extension base="GeometryBaseType">
         <xs:sequence>
           <xs:element name="XYZ"
-            type="PointSimpleType">
+                      type="PointSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The XYZ element is the Cartesian three-dimensional
@@ -176,7 +170,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="Curve12"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Curve12 element is a 2D curves (curve(t):R1->R2)
@@ -186,8 +180,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of 2D curves in this set.
@@ -205,7 +199,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="Curve13"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Curve13 element is a 3D curve (curve(t):R1->R3).
@@ -214,8 +208,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of 3D curves in this set.
@@ -242,7 +236,7 @@
   </xs:complexType>
 
   <xs:complexType name="CurveCoreBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The CurveCoreBaseType is the abstract base type for all mathematical
@@ -250,8 +244,8 @@
       </xs:documentation>
     </xs:annotation>
     <xs:attribute name="domain"
-      type="ParameterRangeType"
-      use="required">
+                  type="ParameterRangeType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required domain attribute is the domain of the
@@ -262,7 +256,7 @@
   </xs:complexType>
 
   <xs:complexType name="Curve12BaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The Curve12BaseType is the abstract base type for all geometric
@@ -275,7 +269,7 @@
   </xs:complexType>
 
   <xs:complexType name="Curve13BaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The Curve13BaseType is the abstract base type for all geometric
@@ -353,8 +347,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Transform"
-            type="ElementReferenceType"
-            minOccurs="0">
+                      type="ElementReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Transform element is the identifier
@@ -422,23 +416,23 @@
       <xs:extension base="CurveCoreBaseType">
         <xs:sequence>
           <xs:element name="A"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
-                The major diameter of the arc.
+                The A element is the major diameter of the arc.
               </xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="B"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
-                The minor diameter of the arc.
+                The B element is the minor diameter of the arc.
               </xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Center"
-            type="PointSimpleType">
+                      type="PointSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The Center element is the 3D coordinates of center of the
@@ -447,7 +441,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="DirBeg"
-            type="UnitVectorSimpleType">
+                      type="UnitVectorSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The DirBeg element is a unit vector representing the
@@ -456,7 +450,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Normal"
-            type="UnitVectorSimpleType">
+                      type="UnitVectorSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The Normal element is normal of the plane wherein
@@ -466,8 +460,8 @@
           </xs:element>
         </xs:sequence>
         <xs:attribute name="form"
-          type="ArcConicFormEnumType"
-          use="required">
+                      type="ArcConicFormEnumType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required form attribute specifies the form of the conic
@@ -482,7 +476,7 @@
   <xs:complexType name="ArcConic12CoreType">
     <xs:annotation>
       <xs:documentation>
-        The ArcConic13CoreType defines the mathematical core of the
+        The ArcConic12CoreType defines the mathematical core of the
         geometric entity 'conic_arc(t):R1->R2'. A conic arc is defined as a
         portion of a conic curve. The conic curve can have one the
         following forms: an ellipse, a parabola, or a hyperbola.
@@ -492,23 +486,23 @@
       <xs:extension base="CurveCoreBaseType">
         <xs:sequence>
           <xs:element name="A"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
-                The major diameter of the arc.
+                The A element is the major diameter of the arc.
               </xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="B"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
-                The minor diameter of the arc.
+                The B element is the minor diameter of the arc.
               </xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Center"
-            type="Point2dSimpleType">
+                      type="Point2dSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The Center element is the 2D coordinates of center of the
@@ -517,7 +511,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="DirBeg"
-            type="UnitVector2dSimpleType">
+                      type="UnitVector2dSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The DirBeg element is a 2D unit vector representing the
@@ -527,8 +521,8 @@
           </xs:element>
         </xs:sequence>
         <xs:attribute name="form"
-          type="ArcConicFormEnumType"
-          use="required">
+                      type="ArcConicFormEnumType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required form attribute specifies the form of the conic
@@ -537,8 +531,8 @@
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="turned"
-          type="xs:boolean"
-          default="0">
+                      type="xs:boolean"
+                      default="0">
           <xs:annotation>
             <xs:documentation>
               The optional turned attribute shows if the arc is inverted.
@@ -596,8 +590,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Transform"
-            type="ElementReferenceType"
-            minOccurs="0">
+                      type="ElementReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Transform element is the identifier
@@ -622,7 +616,7 @@
       <xs:extension base="CurveCoreBaseType">
         <xs:sequence>
           <xs:element name="Radius"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
                 The Radius element is the arc radius.
@@ -630,7 +624,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Center"
-            type="PointSimpleType">
+                      type="PointSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The Center element is the 3D coordinates of center of the
@@ -639,7 +633,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="DirBeg"
-            type="UnitVectorSimpleType">
+                      type="UnitVectorSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The DirBeg element is a unit vector representing the
@@ -648,7 +642,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Normal"
-            type="UnitVectorSimpleType">
+                      type="UnitVectorSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The Normal element is normal of the plane wherein
@@ -673,7 +667,7 @@
       <xs:extension base="CurveCoreBaseType">
         <xs:sequence>
           <xs:element name="Radius"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
                 The Radius element is the arc radius.
@@ -681,7 +675,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Center"
-            type="Point2dSimpleType">
+                      type="Point2dSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The Center element is the 2D coordinates of center of the
@@ -690,7 +684,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="DirBeg"
-            type="UnitVector2dSimpleType">
+                      type="UnitVector2dSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The DirBeg element is a 2D unit vector representing the
@@ -700,8 +694,8 @@
           </xs:element>
         </xs:sequence>
         <xs:attribute name="turned"
-          type="xs:boolean"
-          default="0">
+                      type="xs:boolean"
+                      default="0">
           <xs:annotation>
             <xs:documentation>
               The optional turned attribute shows if the arc is inverted.
@@ -734,8 +728,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Transform"
-            type="ElementReferenceType"
-            minOccurs="0">
+                      type="ElementReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Transform element is the identifier
@@ -789,7 +783,7 @@
       <xs:extension base="CurveCoreBaseType">
         <xs:sequence>
           <xs:element name="Order"
-            type="NaturalType">
+                      type="NaturalType">
             <xs:annotation>
               <xs:documentation>
                 The Order element is the order (= degree + 1).
@@ -797,7 +791,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Knots"
-            type="ArrayDoubleType">
+                      type="ArrayDoubleType">
             <xs:annotation>
               <xs:documentation>
                 The Knots element is the knot vector - an increasing
@@ -815,7 +809,7 @@
               </xs:documentation>
             </xs:annotation>
             <xs:element name="CPs"
-              type="ArrayPoint2dType">
+                        type="ArrayPoint2dType">
               <xs:annotation>
                 <xs:documentation>
                   The CPs element is an array of 2D control points.
@@ -823,7 +817,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="CPsBinary"
-              type="ArrayBinaryType">
+                        type="ArrayBinaryType">
               <xs:annotation>
                 <xs:documentation>
                   The CPsBinary element is a binary array of 2D control
@@ -833,8 +827,8 @@
             </xs:element>
           </xs:choice>
           <xs:element name="Weights"
-            type="ArrayDoubleType"
-            minOccurs="0">
+                      type="ArrayDoubleType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Weights element is an array of control point
@@ -865,7 +859,7 @@
       <xs:extension base="CurveCoreBaseType">
         <xs:sequence>
           <xs:element name="Order"
-            type="NaturalType">
+                      type="NaturalType">
             <xs:annotation>
               <xs:documentation>
                 The Order element is the order (= degree + 1).
@@ -873,7 +867,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Knots"
-            type="ArrayDoubleType">
+                      type="ArrayDoubleType">
             <xs:annotation>
               <xs:documentation>
                 The Knots element is the knot vector - an increasing
@@ -891,7 +885,7 @@
               </xs:documentation>
             </xs:annotation>
             <xs:element name="CPs"
-              type="ArrayPointType">
+                        type="ArrayPointType">
               <xs:annotation>
                 <xs:documentation>
                   The CPs element is an array of 3D control points.
@@ -899,7 +893,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="CPsBinary"
-              type="ArrayBinaryType">
+                        type="ArrayBinaryType">
               <xs:annotation>
                 <xs:documentation>
                   The CPsBinary element is a binary array of 3D control
@@ -909,8 +903,8 @@
             </xs:element>
           </xs:choice>
           <xs:element name="Weights"
-            type="ArrayDoubleType"
-            minOccurs="0">
+                      type="ArrayDoubleType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Weights element is an array of control point
@@ -971,8 +965,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Transform"
-            type="ElementReferenceType"
-            minOccurs="0">
+                      type="ElementReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Transform element is the identifier
@@ -997,7 +991,7 @@
       <xs:extension base="CurveCoreBaseType">
         <xs:sequence>
           <xs:element name="Knots"
-            type="ArrayDoubleType">
+                      type="ArrayDoubleType">
             <xs:annotation>
               <xs:documentation>
                 The Knots element is the knot vector which contains the
@@ -1006,7 +1000,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Orders"
-            type="ArrayNaturalType">
+                      type="ArrayNaturalType">
             <xs:annotation>
               <xs:documentation>
                 The Orders element is the orders of the polynomial segments.
@@ -1017,7 +1011,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Coefficients"
-            type="ArrayPointType">
+                      type="ArrayPointType">
             <xs:annotation>
               <xs:documentation>
                 The Coefficients element is the coefficients of the
@@ -1030,8 +1024,8 @@
           </xs:element>
         </xs:sequence>
         <xs:attribute name="normalized"
-          type="xs:boolean"
-          default="0">
+                      type="xs:boolean"
+                      default="0">
           <xs:annotation>
             <xs:documentation>
               The optional normalized attribute shows if the curve is
@@ -1057,7 +1051,7 @@
       <xs:extension base="CurveCoreBaseType">
         <xs:sequence>
           <xs:element name="Knots"
-            type="ArrayDoubleType">
+                      type="ArrayDoubleType">
             <xs:annotation>
               <xs:documentation>
                 The Knots element is the knot vector which contains the
@@ -1066,7 +1060,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Orders"
-            type="ArrayNaturalType">
+                      type="ArrayNaturalType">
             <xs:annotation>
               <xs:documentation>
                 The Orders element is the orders of the polynomial segments.
@@ -1077,7 +1071,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Coefficients"
-            type="ArrayPoint2dType">
+                      type="ArrayPoint2dType">
             <xs:annotation>
               <xs:documentation>
                 The Coefficients element is the coefficients of the
@@ -1088,8 +1082,8 @@
           </xs:element>
         </xs:sequence>
         <xs:attribute name="normalized"
-          type="xs:boolean"
-          default="0">
+                      type="xs:boolean"
+                      default="0">
           <xs:annotation>
             <xs:documentation>
               The optional normalized attribute shows if the curve is
@@ -1123,8 +1117,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Transform"
-            type="ElementReferenceType"
-            minOccurs="0">
+                      type="ElementReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Transform element is the identifier
@@ -1163,6 +1157,11 @@
   </xs:complexType>
 
   <xs:complexType name="Curve12OrientedType">
+    <xs:annotation>
+      <xs:documentation>
+        The Curve12OrientedType defines an oriented curve12.
+      </xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element ref="Curve12Core">
         <xs:annotation>
@@ -1173,8 +1172,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="turned"
-      type="xs:boolean"
-      default="0">
+                  type="xs:boolean"
+                  default="0">
       <xs:annotation>
         <xs:documentation>
           The optional turned attribute shows if the Curve12 is inverted.
@@ -1187,24 +1186,29 @@
   </xs:complexType>
 
   <xs:complexType name="ArraySubCurve12Type">
+    <xs:annotation>
+      <xs:documentation>
+        The ArraySubCurve12Type defines an array of oriented Curve12.
+      </xs:documentation>
+    </xs:annotation>
     <xs:sequence>
       <xs:element name="SubCurve"
-        type="Curve12OrientedType"
-        maxOccurs="unbounded">
+                  type="Curve12OrientedType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
-            The ArraySubCurve12Type defines an array of Curve12.
+            Each SubCurve element defines an oriented Curve12.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
-          The required n attribute is the number of Curve12 objects in this
-          array.
+          The required n attribute is the number of oriented Curve12
+          objects in this array.
         </xs:documentation>
       </xs:annotation>
     </xs:attribute>
@@ -1222,7 +1226,7 @@
       <xs:extension base="CurveCoreBaseType">
         <xs:sequence>
           <xs:element name="SubCurves"
-            type="ArraySubCurve12Type">
+                      type="ArraySubCurve12Type">
             <xs:annotation>
               <xs:documentation>
                 The SubCurves element is an array of oriented sub-curves.
@@ -1250,8 +1254,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="turned"
-      type="xs:boolean"
-      default="0">
+                  type="xs:boolean"
+                  default="0">
       <xs:annotation>
         <xs:documentation>
           The optional turned attribute shows if the Curve13 is inverted.
@@ -1271,8 +1275,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="SubCurve"
-        type="Curve13OrientedType"
-        maxOccurs="unbounded">
+                  type="Curve13OrientedType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each SubCurve element is a Curve13.
@@ -1281,8 +1285,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of Curve13 objects in this
@@ -1304,7 +1308,7 @@
       <xs:extension base="CurveCoreBaseType">
         <xs:sequence>
           <xs:element name="SubCurves"
-            type="ArraySubCurve13Type">
+                      type="ArraySubCurve13Type">
             <xs:annotation>
               <xs:documentation>
                 The SubCurves element is an array of
@@ -1362,8 +1366,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Transform"
-            type="ElementReferenceType"
-            minOccurs="0">
+                      type="ElementReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Transform element is the identifier
@@ -1394,7 +1398,7 @@
             </xs:documentation>
           </xs:annotation>
           <xs:element name="Points"
-            type="ArrayPointType">
+                      type="ArrayPointType">
             <xs:annotation>
               <xs:documentation>
                 The Points element is an array of 3D polyline points.
@@ -1402,7 +1406,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="PointsBinary"
-            type="ArrayBinaryType">
+                      type="ArrayBinaryType">
             <xs:annotation>
               <xs:documentation>
                 The PointsBinary element is a binary array of 3D polyline
@@ -1433,7 +1437,7 @@
             </xs:documentation>
           </xs:annotation>
           <xs:element name="Points"
-            type="ArrayPoint2dType">
+                      type="ArrayPoint2dType">
             <xs:annotation>
               <xs:documentation>
                 The Points element is an array of 2D polyline points.
@@ -1441,7 +1445,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="PointsBinary"
-            type="ArrayBinaryType">
+                      type="ArrayBinaryType">
             <xs:annotation>
               <xs:documentation>
                 The PointsBinary element is a binary array of 2D polyline
@@ -1474,8 +1478,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Transform"
-            type="ElementReferenceType"
-            minOccurs="0">
+                      type="ElementReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Transform element is the identifier
@@ -1516,7 +1520,7 @@
 <!-- Surface Set -->
 
   <xs:complexType name="SurfaceBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The SurfaceBaseType is the abstract base type for all geometric
@@ -1537,7 +1541,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="Surface"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Surface element is a surface (surface(u, v):R2->R3).
@@ -1546,8 +1550,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of surfaces in this set.
@@ -1574,7 +1578,7 @@
   </xs:complexType>
 
   <xs:complexType name="SurfaceCoreBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The SurfaceCoreBaseType is the abstract base type for all
@@ -1582,7 +1586,7 @@
       </xs:documentation>
     </xs:annotation>
     <xs:attribute name="form"
-      type="Attr23CoreEnumType">
+                  type="Attr23CoreEnumType">
       <xs:annotation>
         <xs:documentation>
           The optional form attribute describes the surface form.
@@ -1625,7 +1629,7 @@
       <xs:extension base="SurfaceCoreBaseType">
         <xs:sequence>
           <xs:element name="OrderU"
-            type="NaturalType">
+                      type="NaturalType">
             <xs:annotation>
               <xs:documentation>
                 The OrderU element is the order in the u direction
@@ -1634,16 +1638,16 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="OrderV"
-            type="NaturalType">
+                      type="NaturalType">
             <xs:annotation>
               <xs:documentation>
-                The OrderU element is the order in the v direction
+                The OrderV element is the order in the v direction
                 (= degree + 1).
               </xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="KnotsU"
-            type="ArrayDoubleType">
+                      type="ArrayDoubleType">
             <xs:annotation>
               <xs:documentation>
                 The KnotsU element is the knot vector in the u direction.
@@ -1653,7 +1657,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="KnotsV"
-            type="ArrayDoubleType">
+                      type="ArrayDoubleType">
             <xs:annotation>
               <xs:documentation>
                 The KnotsV element is the knot vector in the v direction.
@@ -1672,7 +1676,7 @@
               </xs:documentation>
             </xs:annotation>
             <xs:element name="CPs"
-              type="ArrayPointType">
+                        type="ArrayPointType">
               <xs:annotation>
                 <xs:documentation>
                   The CPs element is an array of control points.
@@ -1680,7 +1684,7 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="CPsBinary"
-              type="ArrayBinaryType">
+                        type="ArrayBinaryType">
               <xs:annotation>
                 <xs:documentation>
                   The CPsBinary element is a binary array of control points.
@@ -1689,8 +1693,8 @@
             </xs:element>
           </xs:choice>
           <xs:element name="Weights"
-            type="ArrayDoubleType"
-            minOccurs="0">
+                      type="ArrayDoubleType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Weights element is an array of control point
@@ -1726,8 +1730,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Transform"
-            type="ElementReferenceType"
-            minOccurs="0">
+                      type="ElementReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Transform element is the identifier
@@ -1752,7 +1756,7 @@
       <xs:extension base="SurfaceCoreBaseType">
         <xs:sequence>
           <xs:element name="KnotsU"
-            type="ArrayDoubleType">
+                      type="ArrayDoubleType">
             <xs:annotation>
               <xs:documentation>
                 The KnotsU element is the knot vector in the u direction
@@ -1761,7 +1765,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="KnotsV"
-            type="ArrayDoubleType">
+                      type="ArrayDoubleType">
             <xs:annotation>
               <xs:documentation>
                 The KnotsV element is the knot vector in the v direction
@@ -1770,7 +1774,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="OrdersU"
-            type="ArrayNaturalType">
+                      type="ArrayNaturalType">
             <xs:annotation>
               <xs:documentation>
                 The OrdersU element is the orders of the polynomial patches
@@ -1782,7 +1786,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="OrdersV"
-            type="ArrayNaturalType">
+                      type="ArrayNaturalType">
             <xs:annotation>
               <xs:documentation>
                 The OrdersV element is the orders of the polynomial patches
@@ -1794,7 +1798,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Coefficients"
-            type="ArrayPointType">
+                      type="ArrayPointType">
             <xs:annotation>
               <xs:documentation>
                 The Coefficients element is the coefficients of the
@@ -1809,8 +1813,8 @@
           </xs:element>
         </xs:sequence>
         <xs:attribute name="normalized"
-          type="xs:boolean"
-          default="0">
+                      type="xs:boolean"
+                      default="0">
           <xs:annotation>
             <xs:documentation>
               The optional normalized attribute shows if the spline surface
@@ -1844,8 +1848,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Transform"
-            type="ElementReferenceType"
-            minOccurs="0">
+                      type="ElementReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Transform element is the identifier
@@ -1869,7 +1873,7 @@
       <xs:extension base="SurfaceCoreBaseType">
         <xs:sequence>
           <xs:element name="Axis"
-            type="AxisType">
+                      type="AxisType">
             <xs:annotation>
               <xs:documentation>
                 The Axis is the unit axis vector of rotation.
@@ -1877,7 +1881,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Generatrix"
-            type="Curve13CoreType">
+                      type="Curve13CoreType">
             <xs:annotation>
               <xs:documentation>
                 The Generatrix element is the 3D curve to be rotated around
@@ -1887,8 +1891,8 @@
           </xs:element>
         </xs:sequence>
         <xs:attribute name="angle"
-          type="ParameterRangeType"
-          use="required">
+                      type="ParameterRangeType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required angle attribute specifies start and
@@ -1920,8 +1924,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Transform"
-            type="ElementReferenceType"
-            minOccurs="0">
+                      type="ElementReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Transform element is the identifier
@@ -1946,7 +1950,7 @@
       <xs:extension base="SurfaceCoreBaseType">
         <xs:sequence>
           <xs:element name="TerminationPoint"
-            type="PointSimpleType">
+                      type="PointSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The TerminationPoint specifies the termination point. The
@@ -1955,7 +1959,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Curve"
-            type="Curve13CoreType">
+                      type="Curve13CoreType">
             <xs:annotation>
               <xs:documentation>
                 The Curve element is the curve to be used as the profile of
@@ -1988,8 +1992,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Transform"
-            type="ElementReferenceType"
-            minOccurs="0">
+                      type="ElementReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Transform element is the identifier
@@ -2016,9 +2020,9 @@
       <xs:extension base="SurfaceCoreBaseType">
         <xs:sequence>
           <xs:element name="Curve"
-            type="Curve13CoreType"
-            minOccurs="2"
-            maxOccurs="2">
+                      type="Curve13CoreType"
+                      minOccurs="2"
+                      maxOccurs="2">
             <xs:annotation>
               <xs:documentation>
                 The Curve element is a 3D base curve.
@@ -2027,8 +2031,8 @@
           </xs:element>
         </xs:sequence>
         <xs:attribute name="turnedSecondCurve"
-          type="xs:boolean"
-          default="0">
+                      type="xs:boolean"
+                      default="0">
           <xs:annotation>
             <xs:documentation>
               The optional turnedSecondCurve attribute shows if the second
@@ -2062,8 +2066,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Transform"
-            type="ElementReferenceType"
-            minOccurs="0">
+                      type="ElementReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Transform element is the identifier
@@ -2089,7 +2093,7 @@
       <xs:extension base="SurfaceCoreBaseType">
         <xs:sequence>
           <xs:element name="Distance"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
                 The Distance element is the offset distance.
@@ -2097,7 +2101,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Surface"
-            type="SurfaceCoreType">
+                      type="SurfaceCoreType">
             <xs:annotation>
               <xs:documentation>
                 The Surface element is the base surface for the offsetting.
@@ -2129,8 +2133,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Transform"
-            type="ElementReferenceType"
-            minOccurs="0">
+                      type="ElementReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Transform element is the identifier
@@ -2157,7 +2161,7 @@
       <xs:extension base="SurfaceCoreBaseType">
         <xs:sequence>
           <xs:element name="Origin"
-            type="PointSimpleType">
+                      type="PointSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The Origin element gives one corner of the parallelogram.
@@ -2165,7 +2169,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="DirU"
-            type="VectorSimpleType">
+                      type="VectorSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The DirU element is a vector that defines the direction and
@@ -2175,7 +2179,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="DirV"
-            type="VectorSimpleType">
+                      type="VectorSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The DirV element is a vector that defines the direction and
@@ -2185,8 +2189,8 @@
           </xs:element>
         </xs:sequence>
         <xs:attribute name="domainU"
-          type="ParameterRangeType"
-          use="required">
+                      type="ParameterRangeType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required domainU attribute gives the parameter
@@ -2195,8 +2199,8 @@
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="domainV"
-          type="ParameterRangeType"
-          use="required">
+                      type="ParameterRangeType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required domainV attribute gives the parameter
@@ -2228,8 +2232,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Transform"
-            type="ElementReferenceType"
-            minOccurs="0">
+                      type="ElementReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Transform element is the identifier
@@ -2253,7 +2257,7 @@
       <xs:extension base="SurfaceCoreBaseType">
         <xs:sequence>
           <xs:element name="DiameterBottom"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
                 The DiameterBottom element is cone diameter at the bottom.
@@ -2261,15 +2265,15 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="DiameterTop"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
-                The DiameterBottom element is cone diameter at the top.
+                The DiameterTop element is cone diameter at the top.
               </xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Length"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
                 The Length element is the cone height - distance between
@@ -2278,7 +2282,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Axis"
-            type="AxisType">
+                      type="AxisType">
             <xs:annotation>
               <xs:documentation>
                 The Axis is the unit axis vector of the cone.
@@ -2286,7 +2290,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Sweep"
-            type="SweepType">
+                      type="SweepType">
             <xs:annotation>
               <xs:documentation>
                 The Sweep element gives the start direction and the swept
@@ -2297,8 +2301,8 @@
           </xs:element>
         </xs:sequence>
         <xs:attribute name="turnedV"
-          type="xs:boolean"
-          default="false">
+                      type="xs:boolean"
+                      default="false">
           <xs:annotation>
             <xs:documentation>
               The optional turnedV attribute shows if the v direction of
@@ -2309,8 +2313,8 @@
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="scaleU"
-          type="DoublePositiveType"
-          default="1.0">
+                      type="DoublePositiveType"
+                      default="1.0">
           <xs:annotation>
             <xs:documentation>
               The optional scaleU attribute is the scaling coefficient of
@@ -2319,8 +2323,8 @@
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="scaleV"
-          type="DoublePositiveType"
-          default="1.0">
+                      type="DoublePositiveType"
+                      default="1.0">
           <xs:annotation>
             <xs:documentation>
               The optional scaleV attribute is the scaling coefficient of
@@ -2352,8 +2356,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Transform"
-            type="ElementReferenceType"
-            minOccurs="0">
+                      type="ElementReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Transform element is the identifier
@@ -2377,7 +2381,7 @@
       <xs:extension base="SurfaceCoreBaseType">
         <xs:sequence>
           <xs:element name="Diameter"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
                 The Diameter element is diameter of the cylinder.
@@ -2385,7 +2389,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Length"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
                 The Length element is height of the cylinder - distance
@@ -2394,7 +2398,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Axis"
-            type="AxisType">
+                      type="AxisType">
             <xs:annotation>
               <xs:documentation>
                 The Axis is the unit axis vector of the cylinder.
@@ -2402,7 +2406,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Sweep"
-            type="SweepType">
+                      type="SweepType">
             <xs:annotation>
               <xs:documentation>
                 The Sweep element gives the start direction and the swept
@@ -2413,8 +2417,8 @@
           </xs:element>
         </xs:sequence>
         <xs:attribute name="turnedV"
-          type="xs:boolean"
-          default="false">
+                      type="xs:boolean"
+                      default="false">
           <xs:annotation>
             <xs:documentation>
               The optional turnedV attribute shows if the v direction of
@@ -2425,8 +2429,8 @@
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="scaleU"
-          type="DoublePositiveType"
-          default="1.0">
+                      type="DoublePositiveType"
+                      default="1.0">
           <xs:annotation>
             <xs:documentation>
               The optional scaleU attribute is the scaling coefficient of
@@ -2435,8 +2439,8 @@
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="scaleV"
-          type="DoublePositiveType"
-          default="1.0">
+                      type="DoublePositiveType"
+                      default="1.0">
           <xs:annotation>
             <xs:documentation>
               The optional scaleV attribute is the scaling coefficient of
@@ -2473,8 +2477,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Transform"
-            type="ElementReferenceType"
-            minOccurs="0">
+                      type="ElementReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Transform element is the identifier
@@ -2498,7 +2502,7 @@
       <xs:extension base="SurfaceCoreBaseType">
         <xs:sequence>
           <xs:element name="Diameter"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
                 The Diameter element is diameter of the sphere.
@@ -2506,7 +2510,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Location"
-            type="PointSimpleType">
+                      type="PointSimpleType">
             <xs:annotation>
               <xs:documentation>
                 The Location element is a 3D point which defines the sphere
@@ -2515,7 +2519,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="LatitudeLongitudeSweep"
-            type="OrientedLatitudeLongitudeSweepType">
+                      type="OrientedLatitudeLongitudeSweepType">
             <xs:annotation>
               <xs:documentation>
                 The LatitudeLongitudeSweep element specifies the
@@ -2526,8 +2530,8 @@
           </xs:element>
         </xs:sequence>
         <xs:attribute name="turnedV"
-          type="xs:boolean"
-          default="false">
+                      type="xs:boolean"
+                      default="false">
           <xs:annotation>
             <xs:documentation>
               The optional turnedV attribute shows if the v direction of
@@ -2538,8 +2542,8 @@
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="scaleU"
-          type="DoublePositiveType"
-          default="1.0">
+                      type="DoublePositiveType"
+                      default="1.0">
           <xs:annotation>
             <xs:documentation>
               The optional scaleU attribute is the scaling coefficient of
@@ -2548,8 +2552,8 @@
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="scaleV"
-          type="DoublePositiveType"
-          default="1.0">
+                      type="DoublePositiveType"
+                      default="1.0">
           <xs:annotation>
             <xs:documentation>
               The optional scaleV attribute is the scaling coefficient of
@@ -2581,8 +2585,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Transform"
-            type="ElementReferenceType"
-            minOccurs="0">
+                      type="ElementReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Transform element is the identifier
@@ -2606,7 +2610,7 @@
       <xs:extension base="SurfaceCoreBaseType">
         <xs:sequence>
           <xs:element name="DiameterMinor"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
                 The DiameterMinor element is the torus minor diameter.
@@ -2614,7 +2618,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="DiameterMajor"
-            type="xs:double">
+                      type="xs:double">
             <xs:annotation>
               <xs:documentation>
                 The DiameterMajor element is the torus major diameter.
@@ -2622,7 +2626,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Axis"
-            type="AxisType">
+                      type="AxisType">
             <xs:annotation>
               <xs:documentation>
                 The Axis is the unit axis vector of the torus.
@@ -2630,7 +2634,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="LatitudeLongitudeSweep"
-            type="LatitudeLongitudeSweepType">
+                      type="LatitudeLongitudeSweepType">
             <xs:annotation>
               <xs:documentation>
                 The LatitudeLongitudeSweep element specifies the
@@ -2641,8 +2645,8 @@
           </xs:element>
         </xs:sequence>
         <xs:attribute name="turnedV"
-          type="xs:boolean"
-          default="false">
+                      type="xs:boolean"
+                      default="false">
           <xs:annotation>
             <xs:documentation>
               The optional turnedV attribute shows if the v direction of
@@ -2653,8 +2657,8 @@
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="offsetV"
-          type="xs:double"
-          default="0.0">
+                      type="xs:double"
+                      default="0.0">
           <xs:annotation>
             <xs:documentation>
               The optional offsetV attribute specifies the offset of the v
@@ -2663,8 +2667,8 @@
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="scaleU"
-          type="DoublePositiveType"
-          default="1.0">
+                      type="DoublePositiveType"
+                      default="1.0">
           <xs:annotation>
             <xs:documentation>
               The optional scaleU attribute is the scaling coefficient of
@@ -2673,8 +2677,8 @@
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="scaleV"
-          type="DoublePositiveType"
-          default="1.0">
+                      type="DoublePositiveType"
+                      default="1.0">
           <xs:annotation>
             <xs:documentation>
               The optional scaleV attribute is the scaling coefficient of
@@ -2708,8 +2712,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="Transform"
-            type="ElementReferenceType"
-            minOccurs="0">
+                      type="ElementReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Transform element is the identifier
@@ -2733,7 +2737,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="PathTriangulation"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each PathTriangulation element is a triangulation path.
@@ -2742,8 +2746,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of mesh curves in this set.
@@ -2767,7 +2771,7 @@
         </xs:documentation>
       </xs:annotation>
       <xs:element name="Edges"
-        type="ArrayI2Type">
+                  type="ArrayI2Type">
         <xs:annotation>
           <xs:documentation>
             The Edges element is an array of triangle edges which form a
@@ -2778,7 +2782,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="EdgesBinary"
-        type="ArrayBinaryType">
+                  type="ArrayBinaryType">
         <xs:annotation>
           <xs:documentation>
             The EdgesBinary element is a binary array of triangle edges
@@ -2811,7 +2815,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="MeshTriangle"
-            type="ElementReferenceType">
+                      type="ElementReferenceType">
             <xs:annotation>
               <xs:documentation>
                 The MeshTriangle element is the identifier of a triangle
@@ -2835,7 +2839,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="MeshTriangle"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each MeshTriangle element is a triangle mesh.
@@ -2844,8 +2848,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of mesh surfaces in this
@@ -2872,7 +2876,7 @@
           </xs:documentation>
         </xs:annotation>
         <xs:element name="Triangles"
-          type="ArrayI3Type">
+                    type="ArrayI3Type">
           <xs:annotation>
             <xs:documentation>
               The Triangles element is an array of indices of the triangle
@@ -2886,7 +2890,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="TrianglesBinary"
-          type="ArrayBinaryType">
+                    type="ArrayBinaryType">
           <xs:annotation>
             <xs:documentation>
               The TrianglesBinary element is a binary array of indices of
@@ -2901,8 +2905,7 @@
           </xs:annotation>
         </xs:element>
       </xs:choice>
-      <xs:choice
-        minOccurs="0">
+      <xs:choice minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             This optional compositor provides a choice of the
@@ -2910,7 +2913,7 @@
           </xs:documentation>
         </xs:annotation>
         <xs:element name="Neighbours"
-          type="ArrayI3Type">
+                    type="ArrayI3Type">
           <xs:annotation>
             <xs:documentation>
               The Neighbours element is an array of indices of the triangle
@@ -2927,7 +2930,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="NeighboursBinary"
-          type="ArrayBinaryType">
+                    type="ArrayBinaryType">
           <xs:annotation>
             <xs:documentation>
               The NeighboursBinary element is a binary array of indices of
@@ -2952,7 +2955,7 @@
           </xs:documentation>
         </xs:annotation>
         <xs:element name="Vertices"
-          type="ArrayPointType">
+                    type="ArrayPointType">
           <xs:annotation>
             <xs:documentation>
               The Vertices element is an array of 3D points. The
@@ -2964,7 +2967,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="VerticesBinary"
-          type="ArrayBinaryType">
+                    type="ArrayBinaryType">
           <xs:annotation>
             <xs:documentation>
               The VerticesBinary element is a binary array of 3D
@@ -2977,8 +2980,7 @@
           </xs:annotation>
         </xs:element>
       </xs:choice>
-      <xs:choice
-        minOccurs="0">
+      <xs:choice minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             This optional compositor provides a choice of the
@@ -2988,7 +2990,7 @@
           </xs:documentation>
         </xs:annotation>
         <xs:element name="Normals"
-          type="ArrayUnitVectorType">
+                    type="ArrayUnitVectorType">
           <xs:annotation>
             <xs:documentation>
               The Normals element is an array of unit vectors. The
@@ -3000,7 +3002,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="NormalsBinary"
-          type="ArrayBinaryType">
+                    type="ArrayBinaryType">
           <xs:annotation>
             <xs:documentation>
               The NormalsBinary element is a binary array of unit
@@ -3026,8 +3028,8 @@
     <xs:simpleContent>
       <xs:extension base="UnitVectorType">
         <xs:attribute name="vertex"
-          type="I2Type"
-          use="required">
+                      type="I2Type"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The vertex attribute is a pair of non-negative integers, 
@@ -3049,8 +3051,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="NormalSpecial"
-        type="TriangleVertexNormalType"
-        maxOccurs="unbounded">
+                  type="TriangleVertexNormalType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             The NormalSpecial element is a normal vector specified 
@@ -3060,8 +3062,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of NormalSpecial elements
@@ -3090,10 +3092,9 @@
               </xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:choice
-            minOccurs="0">
+          <xs:choice minOccurs="0">
             <xs:element name="NormalsSpecial"
-              type="ArrayTriangleVertexNormalType">
+                        type="ArrayTriangleVertexNormalType">
               <xs:annotation>
                 <xs:documentation>
                   The NormalsSpecial element is an array of normal vectors
@@ -3106,12 +3107,12 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="NormalsSpecialBinary"
-              type="ArrayBinaryType">
+                        type="ArrayBinaryType">
               <xs:annotation>
                 <xs:documentation>
-                  The NormalsBinary element is a binary array of normal
-                  vectors specified on the triangle level. Each element of
-                  this array is a pentad consisting of:
+                  The NormalsSpecialBinary element is a binary array of
+                  normal vectors specified on the triangle level. Each
+                  element of this array is a pentad consisting of:
                     a 32-bit integer index of a triangle;
                     an 8-bit integer index of a triangle vertex (0, 1 or 2);
                     a triplet of real numbers (represented in
@@ -3127,7 +3128,7 @@
   </xs:complexType>
 
   <xs:element name="GeometrySet"
-    type="GeometrySetType">
+              type="GeometrySetType">
     <xs:annotation>
       <xs:documentation>
         The GeometrySet element is a collection of all geometric entities
@@ -3175,7 +3176,7 @@
   </xs:element>
 
   <xs:element name="PointSet"
-    type="PointSetType">
+              type="PointSetType">
     <xs:annotation>
       <xs:documentation>
         The global PointSet element is a collection of all instances of
@@ -3185,7 +3186,7 @@
   </xs:element>
 
   <xs:element name="Point"
-    type="PointEntityType">
+              type="PointEntityType">
     <xs:annotation>
       <xs:documentation>
         The global Point element is a geometric entity that is a 3D
@@ -3195,7 +3196,7 @@
   </xs:element>
 
   <xs:element name="Curve12Set"
-    type="Curve12SetType">
+              type="Curve12SetType">
     <xs:annotation>
       <xs:documentation>
         The global Curve12Set element is a collection of all 2D curves
@@ -3205,7 +3206,7 @@
   </xs:element>
 
   <xs:element name="Curve13Set"
-    type="Curve13SetType">
+              type="Curve13SetType">
     <xs:annotation>
       <xs:documentation>
         The global Curve13Set element is a collection of all 3D curves
@@ -3215,8 +3216,8 @@
   </xs:element>
 
   <xs:element name="Curve12"
-    type="Curve12BaseType"
-    abstract="true">
+              type="Curve12BaseType"
+              abstract="true">
     <xs:annotation>
       <xs:documentation>
         The global Curve12 element is a 2D curve and is the head of a
@@ -3226,8 +3227,8 @@
   </xs:element>
 
   <xs:element name="Curve13"
-    type="Curve13BaseType"
-    abstract="true">
+              type="Curve13BaseType"
+              abstract="true">
     <xs:annotation>
       <xs:documentation>
         The global Curve13 element is a 3D curve and is the head of a
@@ -3237,8 +3238,8 @@
   </xs:element>
 
   <xs:element name="Curve12Core"
-    type="CurveCoreBaseType"
-    abstract="true">
+              type="CurveCoreBaseType"
+              abstract="true">
     <xs:annotation>
       <xs:documentation>
         The global Curve12Core element is a 2D curve and is the head of a
@@ -3248,8 +3249,8 @@
   </xs:element>
 
   <xs:element name="Curve13Core"
-    type="CurveCoreBaseType"
-    abstract="true">
+              type="CurveCoreBaseType"
+              abstract="true">
     <xs:annotation>
       <xs:documentation>
         The global Curve13Core element is a 3D curve and is the head of a
@@ -3259,8 +3260,8 @@
   </xs:element>
 
   <xs:element name="Segment13Core"
-    type="Segment13CoreType"
-    substitutionGroup="Curve13Core">
+              type="Segment13CoreType"
+              substitutionGroup="Curve13Core">
     <xs:annotation>
       <xs:documentation>
         The global Segment13Core element is the mathematical core of a 3D
@@ -3271,8 +3272,8 @@
   </xs:element>
 
   <xs:element name="Segment12Core"
-    type="Segment12CoreType"
-    substitutionGroup="Curve12Core">
+              type="Segment12CoreType"
+              substitutionGroup="Curve12Core">
     <xs:annotation>
       <xs:documentation>
         The global Segment12Core element is the mathematical core of a 2D
@@ -3283,8 +3284,8 @@
   </xs:element>
 
   <xs:element name="Segment13"
-    type="Segment13Type"
-    substitutionGroup="Curve13">
+              type="Segment13Type"
+              substitutionGroup="Curve13">
     <xs:annotation>
       <xs:documentation>
         The global Segment13 element is a 3D linear segment.
@@ -3293,8 +3294,8 @@
   </xs:element>
 
   <xs:element name="Segment12"
-    type="Segment12Type"
-    substitutionGroup="Curve12">
+              type="Segment12Type"
+              substitutionGroup="Curve12">
     <xs:annotation>
       <xs:documentation>
         The global Segment12 element is a 2D linear segment.
@@ -3303,8 +3304,8 @@
   </xs:element>
 
   <xs:element name="ArcConic13Core"
-    type="ArcConic13CoreType"
-    substitutionGroup="Curve13Core">
+              type="ArcConic13CoreType"
+              substitutionGroup="Curve13Core">
     <xs:annotation>
       <xs:documentation>
         The global ArcConic13Core element is the mathematical core of a
@@ -3314,8 +3315,8 @@
   </xs:element>
 
   <xs:element name="ArcConic12Core"
-    type="ArcConic12CoreType"
-    substitutionGroup="Curve12Core">
+              type="ArcConic12CoreType"
+              substitutionGroup="Curve12Core">
     <xs:annotation>
       <xs:documentation>
         The global ArcConic12Core element is the mathematical core of a
@@ -3325,8 +3326,8 @@
   </xs:element>
 
   <xs:element name="ArcConic13"
-    type="ArcConic13Type"
-    substitutionGroup="Curve13">
+              type="ArcConic13Type"
+              substitutionGroup="Curve13">
     <xs:annotation>
       <xs:documentation>
         The global ArcConic13 element is a 3D conic arc.
@@ -3335,8 +3336,8 @@
   </xs:element>
 
   <xs:element name="ArcConic12"
-    type="ArcConic12Type"
-    substitutionGroup="Curve12">
+              type="ArcConic12Type"
+              substitutionGroup="Curve12">
     <xs:annotation>
       <xs:documentation>
         The ArcConic12 element is a 2D conic arc.
@@ -3345,8 +3346,8 @@
   </xs:element>
 
   <xs:element name="ArcCircular13Core"
-    type="ArcCircular13CoreType"
-    substitutionGroup="Curve13Core">
+              type="ArcCircular13CoreType"
+              substitutionGroup="Curve13Core">
     <xs:annotation>
       <xs:documentation>
         The global ArcCircular13Core element is the mathematical core of a
@@ -3356,8 +3357,8 @@
   </xs:element>
 
   <xs:element name="ArcCircular12Core"
-    type="ArcCircular12CoreType"
-    substitutionGroup="Curve12Core">
+              type="ArcCircular12CoreType"
+              substitutionGroup="Curve12Core">
     <xs:annotation>
       <xs:documentation>
         The global ArcCircular12Core element is the mathematical core of a
@@ -3367,8 +3368,8 @@
   </xs:element>
 
   <xs:element name="ArcCircular13"
-    type="ArcCircular13Type"
-    substitutionGroup="Curve13">
+              type="ArcCircular13Type"
+              substitutionGroup="Curve13">
     <xs:annotation>
       <xs:documentation>
         The global ArcCircular13 element is a 3D circular arc.
@@ -3377,8 +3378,8 @@
   </xs:element>
 
   <xs:element name="ArcCircular12"
-    type="ArcCircular12Type"
-    substitutionGroup="Curve12">
+              type="ArcCircular12Type"
+              substitutionGroup="Curve12">
     <xs:annotation>
       <xs:documentation>
         The global ArcCircular12 element is a 2D circular arc.
@@ -3387,8 +3388,8 @@
   </xs:element>
 
   <xs:element name="Nurbs12Core"
-    type="Nurbs12CoreType"
-    substitutionGroup="Curve12Core">
+              type="Nurbs12CoreType"
+              substitutionGroup="Curve12Core">
     <xs:annotation>
       <xs:documentation>
         The global Nurbs12Core element is the mathematical core of a
@@ -3398,8 +3399,8 @@
   </xs:element>
 
   <xs:element name="Nurbs13Core"
-    type="Nurbs13CoreType"
-    substitutionGroup="Curve13Core">
+              type="Nurbs13CoreType"
+              substitutionGroup="Curve13Core">
     <xs:annotation>
       <xs:documentation>
         The global Nurbs13Core element is the mathematical core of a
@@ -3409,8 +3410,8 @@
   </xs:element>
 
   <xs:element name="Nurbs13"
-    type="Nurbs13Type"
-    substitutionGroup="Curve13">
+              type="Nurbs13Type"
+              substitutionGroup="Curve13">
     <xs:annotation>
       <xs:documentation>
         The global Nurbs13 element is a 3D NURBS curve.
@@ -3419,8 +3420,8 @@
   </xs:element>
 
   <xs:element name="Nurbs12"
-    type="Nurbs12Type"
-    substitutionGroup="Curve12">
+              type="Nurbs12Type"
+              substitutionGroup="Curve12">
     <xs:annotation>
       <xs:documentation>
         The global Nurbs12 element is a 2D NURBS curve.
@@ -3429,8 +3430,8 @@
   </xs:element>
 
   <xs:element name="Spline13Core"
-    type="Spline13CoreType"
-    substitutionGroup="Curve13Core">
+              type="Spline13CoreType"
+              substitutionGroup="Curve13Core">
     <xs:annotation>
       <xs:documentation>
         The global Spline13Core element is the mathematical core of a 3D
@@ -3441,8 +3442,8 @@
   </xs:element>
 
   <xs:element name="Spline12Core"
-    type="Spline12CoreType"
-    substitutionGroup="Curve12Core">
+              type="Spline12CoreType"
+              substitutionGroup="Curve12Core">
     <xs:annotation>
       <xs:documentation>
         The global Spline12Core is the mathematical core of a 2D spline
@@ -3453,8 +3454,8 @@
   </xs:element>
 
   <xs:element name="Spline13"
-    type="Spline13Type"
-    substitutionGroup="Curve13">
+              type="Spline13Type"
+              substitutionGroup="Curve13">
     <xs:annotation>
       <xs:documentation>
         The global Spline13 element is a 3D spline curve.
@@ -3463,8 +3464,8 @@
   </xs:element>
 
   <xs:element name="Spline12"
-    type="Spline12Type"
-    substitutionGroup="Curve12">
+              type="Spline12Type"
+              substitutionGroup="Curve12">
     <xs:annotation>
       <xs:documentation>
         The global Spline12 element is a 2D spline curve.
@@ -3473,8 +3474,8 @@
   </xs:element>
 
   <xs:element name="Aggregate12Core"
-    type="Aggregate12CoreType"
-    substitutionGroup="Curve12Core">
+              type="Aggregate12CoreType"
+              substitutionGroup="Curve12Core">
     <xs:annotation>
       <xs:documentation>
         The global Aggregate12Core element is the mathematical core of a 2D
@@ -3485,8 +3486,8 @@
   </xs:element>
 
   <xs:element name="Aggregate13Core"
-    type="Aggregate13CoreType"
-    substitutionGroup="Curve13Core">
+              type="Aggregate13CoreType"
+              substitutionGroup="Curve13Core">
     <xs:annotation>
       <xs:documentation>
         The global Aggregate13Core element is the mathematical core of a 3D
@@ -3497,8 +3498,8 @@
   </xs:element>
 
   <xs:element name="Aggregate12"
-    type="Aggregate12Type"
-    substitutionGroup="Curve12">
+              type="Aggregate12Type"
+              substitutionGroup="Curve12">
     <xs:annotation>
       <xs:documentation>
         The global Aggregate12 element is a 2D aggregate curve.
@@ -3507,8 +3508,8 @@
   </xs:element>
 
   <xs:element name="Aggregate13"
-    type="Aggregate13Type"
-    substitutionGroup="Curve13">
+              type="Aggregate13Type"
+              substitutionGroup="Curve13">
     <xs:annotation>
       <xs:documentation>
         The global Aggregate13 element is a 3D aggregate curve.
@@ -3517,8 +3518,8 @@
   </xs:element>
 
   <xs:element name="Polyline13Core"
-    type="Polyline13CoreType"
-    substitutionGroup="Curve13Core">
+              type="Polyline13CoreType"
+              substitutionGroup="Curve13Core">
     <xs:annotation>
       <xs:documentation>
         The global Polyline13Core element is the mathematical core of a
@@ -3528,8 +3529,8 @@
   </xs:element>
 
   <xs:element name="Polyline12Core"
-    type="Polyline12CoreType"
-    substitutionGroup="Curve12Core">
+              type="Polyline12CoreType"
+              substitutionGroup="Curve12Core">
     <xs:annotation>
       <xs:documentation>
         The global Polyline12Core element is the mathematical core of a
@@ -3539,8 +3540,8 @@
   </xs:element>
 
   <xs:element name="Polyline13"
-    type="Polyline13Type"
-    substitutionGroup="Curve13">
+              type="Polyline13Type"
+              substitutionGroup="Curve13">
     <xs:annotation>
       <xs:documentation>
         The global Polyline13 element is a 3D polyline.
@@ -3549,8 +3550,8 @@
   </xs:element>
 
   <xs:element name="Polyline12"
-    type="Polyline12Type"
-    substitutionGroup="Curve12">
+              type="Polyline12Type"
+              substitutionGroup="Curve12">
     <xs:annotation>
       <xs:documentation>
         The global Polyline12 element is a 2D polyline.
@@ -3559,8 +3560,8 @@
   </xs:element>
 
   <xs:element name="Surface"
-    type="SurfaceBaseType"
-    abstract="true">
+              type="SurfaceBaseType"
+              abstract="true">
     <xs:annotation>
       <xs:documentation>
         The global Surface element is a surface and is the head of a
@@ -3570,7 +3571,7 @@
   </xs:element>
 
   <xs:element name="SurfaceSet"
-    type="SurfaceSetType">
+              type="SurfaceSetType">
     <xs:annotation>
       <xs:documentation>
         The global SurfaceSet element is a collection of all surfaces
@@ -3580,8 +3581,8 @@
   </xs:element>
 
   <xs:element name="SurfaceCore"
-    type="SurfaceCoreBaseType"
-    abstract="true">
+              type="SurfaceCoreBaseType"
+              abstract="true">
     <xs:annotation>
       <xs:documentation>
         The global SurfaceCore element is a surface (surface(u, v):R2->R3)
@@ -3591,8 +3592,8 @@
   </xs:element>
 
   <xs:element name="Nurbs23Core"
-    type="Nurbs23CoreType"
-    substitutionGroup="SurfaceCore">
+              type="Nurbs23CoreType"
+              substitutionGroup="SurfaceCore">
     <xs:annotation>
       <xs:documentation>
         The global Nurbs23Core element is the mathematical core of a
@@ -3602,8 +3603,8 @@
   </xs:element>
 
   <xs:element name="Nurbs23"
-    type="Nurbs23Type"
-    substitutionGroup="Surface">
+              type="Nurbs23Type"
+              substitutionGroup="Surface">
     <xs:annotation>
       <xs:documentation>
         The global Nurbs23 element is a NURBS surface.
@@ -3612,8 +3613,8 @@
   </xs:element>
 
   <xs:element name="Spline23Core"
-    type="Spline23CoreType"
-    substitutionGroup="SurfaceCore">
+              type="Spline23CoreType"
+              substitutionGroup="SurfaceCore">
     <xs:annotation>
       <xs:documentation>
         The global Spline23Core element is the mathematical core of a
@@ -3623,8 +3624,8 @@
   </xs:element>
 
   <xs:element name="Spline23"
-    type="Spline23Type"
-    substitutionGroup="Surface">
+              type="Spline23Type"
+              substitutionGroup="Surface">
     <xs:annotation>
       <xs:documentation>
         The global Spline23 element is a spline surface.
@@ -3633,8 +3634,8 @@
   </xs:element>
 
   <xs:element name="Revolution23Core"
-    type="Revolution23CoreType"
-    substitutionGroup="SurfaceCore">
+              type="Revolution23CoreType"
+              substitutionGroup="SurfaceCore">
     <xs:annotation>
       <xs:documentation>
         The global Revolution23Core element is the mathematical core of a
@@ -3644,8 +3645,8 @@
   </xs:element>
 
   <xs:element name="Revolution23"
-    type="Revolution23Type"
-    substitutionGroup="Surface">
+              type="Revolution23Type"
+              substitutionGroup="Surface">
     <xs:annotation>
       <xs:documentation>
         The global Revolution23 element is a surface of revolution.
@@ -3654,8 +3655,8 @@
   </xs:element>
 
   <xs:element name="Extrude23Core"
-    type="Extrude23CoreType"
-    substitutionGroup="SurfaceCore">
+              type="Extrude23CoreType"
+              substitutionGroup="SurfaceCore">
     <xs:annotation>
       <xs:documentation>
         The Extrude23Core element is the mathematical core of an
@@ -3665,8 +3666,8 @@
   </xs:element>
 
   <xs:element name="Extrude23"
-    type="Extrude23Type"
-    substitutionGroup="Surface">
+              type="Extrude23Type"
+              substitutionGroup="Surface">
     <xs:annotation>
       <xs:documentation>
         The Extrude23 element is an extruded surface.
@@ -3675,8 +3676,8 @@
   </xs:element>
 
   <xs:element name="Ruled23Core"
-    type="Ruled23CoreType"
-    substitutionGroup="SurfaceCore">
+              type="Ruled23CoreType"
+              substitutionGroup="SurfaceCore">
     <xs:annotation>
       <xs:documentation>
         The global Ruled23Core element is the mathematical core of a
@@ -3686,8 +3687,8 @@
   </xs:element>
 
   <xs:element name="Ruled23"
-    type="Ruled23Type"
-    substitutionGroup="Surface">
+              type="Ruled23Type"
+              substitutionGroup="Surface">
     <xs:annotation>
       <xs:documentation>
         The global Ruled23 element is a ruled surface.
@@ -3696,8 +3697,8 @@
   </xs:element>
 
   <xs:element name="Offset23Core"
-    type="Offset23CoreType"
-    substitutionGroup="SurfaceCore">
+              type="Offset23CoreType"
+              substitutionGroup="SurfaceCore">
     <xs:annotation>
       <xs:documentation>
         The global Offset23Core element is the mathematical core of an
@@ -3707,8 +3708,8 @@
   </xs:element>
 
   <xs:element name="Offset23"
-    type="Offset23Type"
-    substitutionGroup="Surface">
+              type="Offset23Type"
+              substitutionGroup="Surface">
     <xs:annotation>
       <xs:documentation>
         The global Offset23 element is an offset surface.
@@ -3717,8 +3718,8 @@
   </xs:element>
 
   <xs:element name="Plane23Core"
-    type="Plane23CoreType"
-    substitutionGroup="SurfaceCore">
+              type="Plane23CoreType"
+              substitutionGroup="SurfaceCore">
     <xs:annotation>
       <xs:documentation>
         The global Plane23Core element is the mathematical core of a
@@ -3728,8 +3729,8 @@
   </xs:element>
 
   <xs:element name="Plane23"
-    type="Plane23Type"
-    substitutionGroup="Surface">
+              type="Plane23Type"
+              substitutionGroup="Surface">
     <xs:annotation>
       <xs:documentation>
         The global Plane23 element is a plane.
@@ -3738,8 +3739,8 @@
   </xs:element>
 
   <xs:element name="Cone23Core"
-    type="Cone23CoreType"
-    substitutionGroup="SurfaceCore">
+              type="Cone23CoreType"
+              substitutionGroup="SurfaceCore">
     <xs:annotation>
       <xs:documentation>
         The global Cone23Core element is the mathematical core of a
@@ -3749,8 +3750,8 @@
   </xs:element>
 
   <xs:element name="Cone23"
-    type="Cone23Type"
-    substitutionGroup="Surface">
+              type="Cone23Type"
+              substitutionGroup="Surface">
     <xs:annotation>
       <xs:documentation>
         The global Cone23 element is a conical surface.
@@ -3759,8 +3760,8 @@
   </xs:element>
 
   <xs:element name="Cylinder23Core"
-    type="Cylinder23CoreType"
-    substitutionGroup="SurfaceCore">
+              type="Cylinder23CoreType"
+              substitutionGroup="SurfaceCore">
     <xs:annotation>
       <xs:documentation>
         The global Cylinder23Core element is the mathematical core of a
@@ -3770,8 +3771,8 @@
   </xs:element>
 
   <xs:element name="Cylinder23"
-    type="Cylinder23Type"
-    substitutionGroup="Surface">
+              type="Cylinder23Type"
+              substitutionGroup="Surface">
     <xs:annotation>
       <xs:documentation>
         The global Cylinder23 element is a cylindrical surface.
@@ -3780,8 +3781,8 @@
   </xs:element>
 
   <xs:element name="Sphere23Core"
-    type="Sphere23CoreType"
-    substitutionGroup="SurfaceCore">
+              type="Sphere23CoreType"
+              substitutionGroup="SurfaceCore">
     <xs:annotation>
       <xs:documentation>
         The global Sphere23Core element is the mathematical core of a
@@ -3791,8 +3792,8 @@
   </xs:element>
 
   <xs:element name="Sphere23"
-    type="Sphere23Type"
-    substitutionGroup="Surface">
+              type="Sphere23Type"
+              substitutionGroup="Surface">
     <xs:annotation>
       <xs:documentation>
         The global Sphere23 element is a spherical surface.
@@ -3801,8 +3802,8 @@
   </xs:element>
 
   <xs:element name="Torus23Core"
-    type="Torus23CoreType"
-    substitutionGroup="SurfaceCore">
+              type="Torus23CoreType"
+              substitutionGroup="SurfaceCore">
     <xs:annotation>
       <xs:documentation>
         The global Torus23Core element is the mathematical core of a
@@ -3812,8 +3813,8 @@
   </xs:element>
 
   <xs:element name="Torus23"
-    type="Torus23Type"
-    substitutionGroup="Surface">
+              type="Torus23Type"
+              substitutionGroup="Surface">
     <xs:annotation>
       <xs:documentation>
         The global Torus23 element is a toroidal surface.
@@ -3822,7 +3823,7 @@
   </xs:element>
 
   <xs:element name="CurveMeshSet"
-    type="CurveMeshSetType">
+              type="CurveMeshSetType">
     <xs:annotation>
       <xs:documentation>
         The global CurveMeshSet element is a collection of all mesh curves
@@ -3832,7 +3833,7 @@
   </xs:element>
 
   <xs:element name="PathTriangulationCore"
-    type="PathTriangulationCoreType">
+              type="PathTriangulationCoreType">
     <xs:annotation>
       <xs:documentation>
         The global PathTriangulationCore element is the mathematical core
@@ -3842,7 +3843,7 @@
   </xs:element>
 
   <xs:element name="PathTriangulation"
-    type="PathTriangulationType">
+              type="PathTriangulationType">
     <xs:annotation>
       <xs:documentation>
         The global PathTriangulation element is a triangulation path
@@ -3852,7 +3853,7 @@
   </xs:element>
 
   <xs:element name="SurfaceMeshSet"
-    type="SurfaceMeshSetType">
+              type="SurfaceMeshSetType">
     <xs:annotation>
       <xs:documentation>
         The global SurfaceMeshSet element is a collection of all mesh
@@ -3862,7 +3863,7 @@
   </xs:element>
 
   <xs:element name="MeshTriangleCore"
-    type="MeshTriangleCoreType">
+              type="MeshTriangleCoreType">
     <xs:annotation>
       <xs:documentation>
         The global MeshTriangleCore element is the math core of the
@@ -3872,7 +3873,7 @@
   </xs:element>
 
   <xs:element name="MeshTriangle"
-    type="MeshTriangleType">
+              type="MeshTriangleType">
     <xs:annotation>
       <xs:documentation>
         The global MeshTriangle element is a triangle mesh.

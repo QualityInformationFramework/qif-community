@@ -14,7 +14,7 @@
   attributeFormDefault="unqualified"
   version="3.0.0">
 
-  <xs:include schemaLocation="Units.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/Units.xsd"/>
 
   <xs:annotation>
     <xs:documentation>
@@ -31,7 +31,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="RectangularUnitAreaLength"
-        type="LinearValueType">
+                  type="LinearValueType">
         <xs:annotation>
           <xs:documentation>
             The RectangularUnitAreaLength element is the length in linear
@@ -40,7 +40,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="RectangularUnitAreaWidth"
-        type="LinearValueType">
+                  type="LinearValueType">
         <xs:annotation>
           <xs:documentation>
             The RectangularUnitAreaWidth element is the width in linear
@@ -49,8 +49,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="RectangularUnitAreaOrientation"
-        type="UnitVectorType"
-        minOccurs="0">
+                  type="UnitVectorType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional RectangularUnitAreaOrientation element is the
@@ -70,7 +70,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="CircularUnitAreaDiameter"
-        type="LinearValueType">
+                  type="LinearValueType">
         <xs:annotation>
           <xs:documentation>
             The CircularUnitAreaDiameter element is the length in linear
@@ -94,21 +94,77 @@
       </xs:documentation>
     </xs:annotation>
     <xs:attribute name="combinedUncertainty"
-      type="xs:decimal"/>
+                  type="xs:decimal">
+      <xs:annotation>
+        <xs:documentation>
+          The optional combinedUncertainty attribute is a value expressing
+          the combined uncertainty assigned to the value.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="meanError"
-      type="xs:decimal"/>
+                  type="xs:decimal">
+      <xs:annotation>
+        <xs:documentation>
+          The optional meanError attribute is a value expressing the
+          mean error assigned to the value.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="xCombinedUncertainty"
-      type="xs:decimal"/>
+                  type="xs:decimal">
+      <xs:annotation>
+        <xs:documentation>
+          The optional xCombinedUncertainty attribute is a value expressing
+          the combined uncertainty assigned to the x value.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="xMeanError"
-      type="xs:decimal"/>
+                  type="xs:decimal">
+      <xs:annotation>
+        <xs:documentation>
+          The optional xMeanError attribute is a value expressing the
+          mean error assigned to the x value.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="yCombinedUncertainty"
-      type="xs:decimal"/>
+                  type="xs:decimal">
+      <xs:annotation>
+        <xs:documentation>
+          The optional yCombinedUncertainty attribute is a value expressing
+          the combined uncertainty assigned to the y value.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="yMeanError"
-      type="xs:decimal"/>
+                  type="xs:decimal">
+      <xs:annotation>
+        <xs:documentation>
+          The optional yMeanError attribute is a value expressing the
+          mean error assigned to the y value.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="zCombinedUncertainty"
-      type="xs:decimal"/>
+                  type="xs:decimal">
+      <xs:annotation>
+        <xs:documentation>
+          The optional zCombinedUncertainty attribute is a value expressing
+          the combined uncertainty assigned to the value.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="zMeanError"
-      type="xs:decimal"/>
+                  type="xs:decimal">
+      <xs:annotation>
+        <xs:documentation>
+          The optional zMeanError attribute is a value expressing the
+          mean error assigned to the value.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:attributeGroup>
 
   <xs:complexType name="MeasuredPointType">
@@ -151,7 +207,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Point"
-        type="MeasuredPointType">
+                  type="MeasuredPointType">
         <xs:annotation>
           <xs:documentation>
             The Point element is a measured point on the plane.
@@ -159,7 +215,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Normal"
-        type="MeasuredUnitVectorType">
+                  type="MeasuredUnitVectorType">
         <xs:annotation>
           <xs:documentation>
             The Normal element is the measured unit normal vector of the
@@ -178,7 +234,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="AxisPoint"
-        type="MeasuredPointType">
+                  type="MeasuredPointType">
         <xs:annotation>
           <xs:documentation>
             The AxisPoint element is the measured location of a point on the
@@ -187,7 +243,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Direction"
-        type="MeasuredUnitVectorType">
+                  type="MeasuredUnitVectorType">
         <xs:annotation>
           <xs:documentation>
             The Direction element is the measured unit vector direction of
@@ -208,7 +264,7 @@
       <xs:extension base="MeasuredAxisType">
         <xs:sequence>
           <xs:element name="Length"
-            type="MeasuredLinearValueType">
+                      type="MeasuredLinearValueType">
             <xs:annotation>
               <xs:documentation>
                 The Length element is the length of an axis or line. A
@@ -247,7 +303,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="BottomEnum"
-        type="BottomEnumType">
+                  type="BottomEnumType">
         <xs:annotation>
           <xs:documentation>
             The BottomEnum element describes an often-used bottom type for
@@ -256,7 +312,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="OtherBottom"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The OtherBottom element describes the bottom type for a 3D
@@ -276,7 +332,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Length"
-        type="LinearValueType">
+                  type="LinearValueType">
         <xs:annotation>
           <xs:documentation>
             The Length element gives the length of the box.
@@ -284,7 +340,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Width"
-        type="LinearValueType">
+                  type="LinearValueType">
         <xs:annotation>
           <xs:documentation>
             The Width element gives the width of the box.
@@ -292,7 +348,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Height"
-        type="LinearValueType">
+                  type="LinearValueType">
         <xs:annotation>
           <xs:documentation>
             The Height element gives the height of the box.
@@ -328,7 +384,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="ShapeClassEnum"
-        type="ShapeClassEnumType">
+                  type="ShapeClassEnumType">
         <xs:annotation>
           <xs:documentation>
             The ShapeClassEnum element describes an often-used shape class.
@@ -336,7 +392,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="OtherShapeClass"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The OtherShapeClass element describes a shape class in
@@ -350,17 +406,20 @@
   <xs:simpleType name="ManufacturingMethodEnumType">
     <xs:annotation>
       <xs:documentation>
-        The ManufacturingMethodEnumType enumerates values that describe the
-        methods of manufacturing a part. ADDITIVE means additive
-        manufacturing. COMPOSITE manufacturing includes lay-up and filament
-        winding. FABRICATION fabricates existing components. FORMING
-        includes forging, rolling, extrusion, pressing, bending, and
-        shearing. JOINING includes welding, brazing, sintering, bonding,
-        fastening, and press fitting. MACHINING includes all operations
-        that may be done on a machining center or other machine that
-        subtracts material such as milling, turning, drilling, reaming,
-        boring, sawing, hobbing, and electron beam machining. MOLDING
-        includes injection molding.
+        The ManufacturingMethodEnumType enumerates values that describe
+        the methods of manufacturing a part.
+          ADDITIVE means additive manufacturing.
+          COMPOSITE manufacturing includes lay-up and filament winding.
+          FABRICATION fabricates an object from components.
+          FORMING includes forging, rolling, extrusion, pressing,
+            bending, and shearing.
+          JOINING includes welding, brazing, sintering, bonding,
+            fastening, and press fitting.
+          MACHINING includes all operations that may be done on a
+            machining center or other machine that subtracts material
+            such as milling, turning, drilling, reaming, boring, sawing,
+            hobbing, and electron beam machining.
+          MOLDING includes injection molding.
       </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:NMTOKEN">
@@ -384,7 +443,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="ManufacturingMethodEnum"
-        type="ManufacturingMethodEnumType">
+                  type="ManufacturingMethodEnumType">
         <xs:annotation>
           <xs:documentation>
             The ManufacturingMethodEnum element describes an often-used
@@ -393,7 +452,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="OtherManufacturingMethod"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The OtherManufacturingMethod element describes a manufacturing
@@ -494,7 +553,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="CoordinateEnum"
-        type="CoordinateEnumType">
+                  type="CoordinateEnumType">
         <xs:annotation>
           <xs:documentation>
             The CoordinateEnum element describes an often-used coordinate
@@ -503,7 +562,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="OtherCoordinate"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The OtherCoordinate element describes a coordinate system type
@@ -524,7 +583,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Length"
-        type="LinearValueType">
+                  type="LinearValueType">
         <xs:annotation>
           <xs:documentation>
             The Length element is the length of the rectangle. One of the
@@ -534,7 +593,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="CornerPoint"
-        type="PointType">
+                  type="PointType">
         <xs:annotation>
           <xs:documentation>
             The CornerPoint element is the location of a corner of the
@@ -543,7 +602,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Width"
-        type="LinearValueType">
+                  type="LinearValueType">
         <xs:annotation>
           <xs:documentation>
             The Width element is the width of the rectangle. One of the two
@@ -553,7 +612,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="WidthDirection"
-        type="UnitVectorType">
+                  type="UnitVectorType">
         <xs:annotation>
           <xs:documentation>
             The WidthDirection element is a unit vector that gives the
@@ -562,7 +621,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="LengthDirection"
-        type="UnitVectorType">
+                  type="UnitVectorType">
         <xs:annotation>
           <xs:documentation>
             The LengthDirection element is a unit vector that gives the
@@ -583,7 +642,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="CenterPoint"
-        type="PointType">
+                  type="PointType">
         <xs:annotation>
           <xs:documentation>
             The CenterPoint element is the center of the circle.
@@ -591,7 +650,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Diameter"
-        type="LinearValueType">
+                  type="LinearValueType">
         <xs:annotation>
           <xs:documentation>
             The Diameter element is the diameter of the circle.
@@ -599,7 +658,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Normal"
-        type="UnitVectorType">
+                  type="UnitVectorType">
         <xs:annotation>
           <xs:documentation>
             The Normal element is the unit vector that gives the normal to
@@ -619,7 +678,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="CenterPoint"
-        type="PointType">
+                  type="PointType">
         <xs:annotation>
           <xs:documentation>
             The CenterPoint element is the center of the cylinder
@@ -628,7 +687,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Diameter"
-        type="LinearValueType">
+                  type="LinearValueType">
         <xs:annotation>
           <xs:documentation>
             The Diameter element is the diameter of the cylinder.
@@ -636,7 +695,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Axis"
-        type="UnitVectorType">
+                  type="UnitVectorType">
         <xs:annotation>
           <xs:documentation>
             The Axis element is the unit vector that gives the axis of the
@@ -646,7 +705,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Length"
-        type="LinearValueType">
+                  type="LinearValueType">
         <xs:annotation>
           <xs:documentation>
             The Length element is the length of the cylinder along its axis
@@ -666,7 +725,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="CenterPoint"
-        type="PointType">
+                  type="PointType">
         <xs:annotation>
           <xs:documentation>
             The CenterPoint element is the center of the sphere.
@@ -674,7 +733,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Diameter"
-        type="LinearValueType">
+                  type="LinearValueType">
         <xs:annotation>
           <xs:documentation>
             The Diameter element is the diameter of the sphere.
@@ -693,7 +752,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="StartPoint"
-        type="PointType">
+                  type="PointType">
         <xs:annotation>
           <xs:documentation>
             The StartPoint element is the starting point of the line.
@@ -701,7 +760,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Vector"
-        type="UnitVectorType">
+                  type="UnitVectorType">
         <xs:annotation>
           <xs:documentation>
             The Vector element is a unit vector giving the direction of the
@@ -721,7 +780,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="StartPoint"
-        type="MeasuredPointType">
+                  type="MeasuredPointType">
         <xs:annotation>
           <xs:documentation>
             The StartPoint element is the measured starting point of the
@@ -730,7 +789,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Vector"
-        type="MeasuredUnitVectorType">
+                  type="MeasuredUnitVectorType">
         <xs:annotation>
           <xs:documentation>
             The Vector element is a unit vector giving the measured
@@ -764,7 +823,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="EndRadius"
-        type="LinearValueType">
+                  type="LinearValueType">
         <xs:annotation>
           <xs:documentation>
             The EndRadius element describes the end radius of the slot.
@@ -772,8 +831,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Expanded"
-        type="xs:boolean"
-        minOccurs="0">
+                  type="xs:boolean"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Expanded element when set to "true" indicates that
@@ -794,7 +853,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="EndRadius"
-        type="MeasuredLinearValueType">
+                  type="MeasuredLinearValueType">
         <xs:annotation>
           <xs:documentation>
             The EndRadius element describes the measured end radius of the
@@ -803,8 +862,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Expanded"
-        type="xs:boolean"
-        minOccurs="0">
+                  type="xs:boolean"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Expanded element when set to "true" indicates that
@@ -824,7 +883,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="SlotEndEnum"
-        type="SlotEndEnumType">
+                  type="SlotEndEnumType">
         <xs:annotation>
           <xs:documentation>
             The SlotEndEnum element describes an often-used shape of the
@@ -833,7 +892,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="OtherSlotEnd"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The OtherSlotEnd element describes the shape of the end of a
@@ -922,7 +981,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="ThreadSeriesEnum"
-        type="ThreadSeriesEnumType">
+                  type="ThreadSeriesEnumType">
         <xs:annotation>
           <xs:documentation>
             The ThreadSeriesEnum element describes an often-used thread
@@ -931,7 +990,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="OtherThreadSeries"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The OtherThreadSeries element describes a thread series in
@@ -950,7 +1009,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="ThreadClassEnum"
-        type="ThreadClassEnumType">
+                  type="ThreadClassEnumType">
         <xs:annotation>
           <xs:documentation>
             The ThreadClassEnum element describes an often-used thread
@@ -959,7 +1018,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="OtherThreadClass"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The OtherThreadClass element describes a thread class in
@@ -1045,38 +1104,37 @@
       </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:NMTOKEN">
-      <xs:enumeration value="NONE"/>
-      <xs:enumeration value="UNCLASSIFIED"/>
-      <xs:enumeration value="RESTRICTED"/>
+      <xs:enumeration value="COMPANY_CONFIDENTIAL"/>
+      <xs:enumeration value="CONFIDENTIAL"/>
+      <xs:enumeration value="EU_CONFIDENTIAL"/>
       <xs:enumeration value="EU_RESTRICTED"/>
-      <xs:enumeration value="WEU_RESTRICTED"/>
+      <xs:enumeration value="EU_SECRET"/>
+      <xs:enumeration value="EU_TOP_SECRET"/>
+      <xs:enumeration value="FOCAL_TOP_SECRET"/>
       <xs:enumeration value="FOR_OFFICIAL_USE_ONLY"/>
+      <xs:enumeration value="NONE"/>
+      <xs:enumeration value="OFFICIAL_USE_ONLY"/>
+      <xs:enumeration value="PATENT"/>
       <xs:enumeration value="PROTECTED"/>
       <xs:enumeration value="PROTECTED_A"/>
       <xs:enumeration value="PROTECTED_B"/>
       <xs:enumeration value="PROTECTED_C"/>
-      <xs:enumeration value="CONFIDENTIAL"/>
-      <xs:enumeration value="EU_CONFIDENTIAL"/>
-      <xs:enumeration value="WEU_CONFIDENTIAL"/>
+      <xs:enumeration value="REGISTERED_TRADEMARK"/>
+      <xs:enumeration value="RESTRICTED"/>
       <xs:enumeration value="SECRET"/>
-      <xs:enumeration value="SECRET_NATIONAL_SECURITY_INFORMATION"/>
       <xs:enumeration value="SECRET_FORMERLY_RESTRICTED_DATA"/>
+      <xs:enumeration value="SECRET_NATIONAL_SECURITY_INFORMATION"/>
       <xs:enumeration value="SECRET_RESTRICTED_DATA"/>
-      <xs:enumeration value="SECRET"/>
-      <xs:enumeration value="EU_SECRET"/>
-      <xs:enumeration value="WEU_SECRET"/>
-      <xs:enumeration value="TOP_SECRET_NATIONAL_SECURITY_INFORMATION"/>
       <xs:enumeration value="TOP_SECRET_FORMERLY_RESTRICTED_DATA"/>
+      <xs:enumeration value="TOP_SECRET_NATIONAL_SECURITY_INFORMATION"/>
       <xs:enumeration value="TOP_SECRET_RESTRICTED_DATA"/>
-      <xs:enumeration value="EU_TOP_SECRET"/>
-      <xs:enumeration value="FOCAL_TOP_SECRET"/>
-      <xs:enumeration value="COMPANY_CONFIDENTIAL"/>
-      <xs:enumeration value="OFFICIAL_USE_ONLY"/>
       <xs:enumeration value="TRADE_SECRET"/>
       <xs:enumeration value="TRADEMARK"/>
-      <xs:enumeration value="REGISTERED_TRADEMARK"/>
-      <xs:enumeration value="PATENT"/>
+      <xs:enumeration value="UNCLASSIFIED"/>
       <xs:enumeration value="UNDEFINED"/>
+      <xs:enumeration value="WEU_CONFIDENTIAL"/>
+      <xs:enumeration value="WEU_RESTRICTED"/>
+      <xs:enumeration value="WEU_SECRET"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -1088,7 +1146,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="SecurityClassificationEnum"
-        type="SecurityClassificationEnumType">
+                  type="SecurityClassificationEnumType">
         <xs:annotation>
           <xs:documentation>
             The SecurityClassificationEnum element describes an often-used
@@ -1097,7 +1155,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="OtherSecurityClassification"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The OtherSecurityClassification element describes a security
@@ -1135,7 +1193,7 @@
   </xs:simpleType>
 
   <xs:complexType name="StatsWithReferenceBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         A StatsWithReferenceBaseType is the abstract base type for
@@ -1143,49 +1201,46 @@
         software or standard.
       </xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:choice
-        minOccurs="0">
+    <xs:choice minOccurs="0">
+      <xs:annotation>
+        <xs:documentation>
+          This optional compositor provides a choice between a reference
+          to software, a particular algorithm, or a standard.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:element name="SoftwareId"
+                  type="QIFReferenceType">
         <xs:annotation>
           <xs:documentation>
-            This optional compositor provides a choice between a reference
-            to software, a particular algorithm, or a standard.
+            The SoftwareId element defines the software reference.
           </xs:documentation>
         </xs:annotation>
-        <xs:element name="SoftwareId"
-          type="QIFReferenceType">
-          <xs:annotation>
-            <xs:documentation>
-              The SoftwareId element defines the software reference.
-            </xs:documentation>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="StandardId"
-          type="QIFReferenceType">
-          <xs:annotation>
-            <xs:documentation>
-              The StandardId element defines the standard or specification
-              reference.
-            </xs:documentation>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="AlgorithmId"
-          type="QIFReferenceType">
-          <xs:annotation>
-            <xs:documentation>
-              The AlgorithmId element defines the algorithm reference.
-            </xs:documentation>
-          </xs:annotation>
-        </xs:element>
-      </xs:choice>
-    </xs:sequence>
+      </xs:element>
+      <xs:element name="StandardId"
+                  type="QIFReferenceType">
+        <xs:annotation>
+          <xs:documentation>
+            The StandardId element defines the standard or specification
+            reference.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AlgorithmId"
+                  type="QIFReferenceType">
+        <xs:annotation>
+          <xs:documentation>
+            The AlgorithmId element defines the algorithm reference.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
   </xs:complexType>
 
   <xs:simpleType name="StatsValuesEnumType">
     <xs:annotation>
       <xs:documentation>
-        The StatsEnumType enumerates the various statistical values that
-        can be accumulated.
+        The StatsValuesEnumType enumerates the various statistical
+        values that can be accumulated.
       </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:NMTOKEN">
@@ -1268,7 +1323,7 @@
       <xs:extension base="StatsWithReferenceBaseType">
         <xs:sequence>
           <xs:element name="Stats"
-            type="ListAccumulatedStatsValuesListType">
+                      type="ListAccumulatedStatsValuesListType">
             <xs:annotation>
               <xs:documentation>
                 The Stats element is a list of one or more statistical
@@ -1325,7 +1380,7 @@
       <xs:extension base="StatsWithReferenceBaseType">
         <xs:sequence>
           <xs:element name="Stats"
-            type="ListSubgroupStatsValuesListType">
+                      type="ListSubgroupStatsValuesListType">
             <xs:annotation>
               <xs:documentation>
                 The Stats element is a list of one or more statistical
@@ -1350,7 +1405,7 @@
       <xs:extension base="StatsWithReferenceBaseType">
         <xs:sequence>
           <xs:element name="Value"
-            type="MeasuredDecimalType">
+                      type="MeasuredDecimalType">
             <xs:annotation>
               <xs:documentation>
                 The Value element is the numeric statistical result.
@@ -1375,8 +1430,8 @@
       <xs:extension base="StatsMeasuredDecimalType">
         <xs:sequence>
           <xs:element name="Id"
-            type="QIFReferenceType"
-            minOccurs="0">
+                      type="QIFReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Id element is a reference to a QIF id
@@ -1399,8 +1454,8 @@
     <xs:simpleContent>
       <xs:extension base="MeasuredDecimalType">
         <xs:attribute name="subgroupId"
-          type="QIFIdType"
-          use="required">
+                      type="QIFIdType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required subgroupId attribute references the id of the
@@ -1420,8 +1475,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="SubgroupDecimal"
-        type="SubgroupDecimalType"
-        maxOccurs="unbounded">
+                  type="SubgroupDecimalType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each SubgroupDecimal element in the list defines a decimal
@@ -1431,8 +1486,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of values in the list.
@@ -1453,7 +1508,7 @@
       <xs:extension base="StatsWithReferenceBaseType">
         <xs:sequence>
           <xs:element name="Values"
-            type="SubgroupDecimalArrayType">
+                      type="SubgroupDecimalArrayType">
             <xs:annotation>
               <xs:documentation>
                 The Values element is the array of measured values
@@ -1479,7 +1534,7 @@
       <xs:extension base="StatsWithReferenceBaseType">
         <xs:sequence>
           <xs:element name="Value"
-            type="xs:nonNegativeInteger">
+                      type="xs:nonNegativeInteger">
             <xs:annotation>
               <xs:documentation>
                 The Value element is the non negative integer statistical
@@ -1504,8 +1559,8 @@
       <xs:extension base="StatsNonNegativeIntegerType">
         <xs:sequence>
           <xs:element name="Ids"
-            type="ArrayReferenceType"
-            minOccurs="0">
+                      type="ArrayReferenceType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional Ids element is the array of QIF id references.
@@ -1527,8 +1582,8 @@
     <xs:simpleContent>
       <xs:extension base="xs:nonNegativeInteger">
         <xs:attribute name="subgroupId"
-          type="QIFIdType"
-          use="required">
+                      type="QIFIdType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required subgroupId attribute references the id of the
@@ -1549,8 +1604,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="SubgroupInteger"
-        type="SubgroupIntegerType"
-        maxOccurs="unbounded">
+                  type="SubgroupIntegerType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each SubgroupInteger element in the list defines an integer
@@ -1560,8 +1615,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of values in the list.
@@ -1582,7 +1637,7 @@
       <xs:extension base="StatsWithReferenceBaseType">
         <xs:sequence>
           <xs:element name="Values"
-            type="SubgroupIntegerArrayType">
+                      type="SubgroupIntegerArrayType">
             <xs:annotation>
               <xs:documentation>
                 The Values element is the array of integer values
@@ -1634,7 +1689,7 @@
       <xs:extension base="StatsWithReferenceBaseType">
         <xs:sequence>
           <xs:element name="Stats"
-            type="ListSummaryStatsValuesListType">
+                      type="ListSummaryStatsValuesListType">
             <xs:annotation>
               <xs:documentation>
                 The Stats element is a list of one or more statistical
@@ -1658,7 +1713,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="SummaryType"
-        type="SummaryStatsValuesEnumType">
+                  type="SummaryStatsValuesEnumType">
         <xs:annotation>
           <xs:documentation>
             The SummaryType element defines the type of summary value to
@@ -1667,7 +1722,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="SummaryStats"
-        type="ListSummaryStatsValuesType">
+                  type="ListSummaryStatsValuesType">
         <xs:annotation>
           <xs:documentation>
             The SummaryStats element defines a list of statistical values
@@ -1687,8 +1742,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="SummaryStatsValues"
-        type="SummaryStatsValuesType"
-        maxOccurs="unbounded">
+                  type="SummaryStatsValuesType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each SummaryStatsValues element in the list defines the summary
@@ -1698,8 +1753,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of summaries in the list.
@@ -1716,7 +1771,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="DigitalModelFormatEnum"
-        type="DigitalModelFormatEnumType">
+                  type="DigitalModelFormatEnumType">
         <xs:annotation>
           <xs:documentation>
             The DigitalModelFormatEnum element describes an often-used
@@ -1725,7 +1780,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="OtherDigitalModelFormat"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The OtherDigitalModelFormat element describes the format of a
@@ -1745,7 +1800,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="ScaleFactor"
-        type="xs:decimal">
+                  type="xs:decimal">
         <xs:annotation>
           <xs:documentation>
             The ScaleFactor element is the scale factor, a scale factor of
@@ -1765,7 +1820,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="PerpendicularScaleFactor"
-        type="xs:decimal">
+                  type="xs:decimal">
         <xs:annotation>
           <xs:documentation>
             The PerpendicularScaleFactor element is the scale factor
@@ -1775,7 +1830,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ParallelScaleFactor"
-        type="xs:decimal">
+                  type="xs:decimal">
         <xs:annotation>
           <xs:documentation>
             The ParallelScaleFactor element is the scale factor applied
@@ -1785,7 +1840,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Direction"
-        type="UnitVectorType">
+                  type="UnitVectorType">
         <xs:annotation>
           <xs:documentation>
             The Direction element specifies the direction for the
@@ -1805,7 +1860,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="XScaleFactor"
-        type="xs:decimal">
+                  type="xs:decimal">
         <xs:annotation>
           <xs:documentation>
             The XScaleFactor element is the scale factor applied in the
@@ -1815,7 +1870,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="XaxisDirection"
-        type="UnitVectorType">
+                  type="UnitVectorType">
         <xs:annotation>
           <xs:documentation>
             The XaxisDirection element specifies the direction of the X
@@ -1824,7 +1879,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="YScaleFactor"
-        type="xs:decimal">
+                  type="xs:decimal">
         <xs:annotation>
           <xs:documentation>
             The YScaleFactor element is the scale factor applied in the
@@ -1834,7 +1889,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="YaxisDirection"
-        type="UnitVectorType">
+                  type="UnitVectorType">
         <xs:annotation>
           <xs:documentation>
             The YaxisDirection element specifies the direction of the Y
@@ -1843,7 +1898,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ZScaleFactor"
-        type="xs:decimal">
+                  type="xs:decimal">
         <xs:annotation>
           <xs:documentation>
             The ZScaleFactor element is the scale factor applied in the
@@ -1853,7 +1908,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ZaxisDirection"
-        type="UnitVectorType">
+                  type="UnitVectorType">
         <xs:annotation>
           <xs:documentation>
             The ZaxisDirection element specifies the direction of the Z
@@ -1872,7 +1927,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Origin"
-        type="PointType">
+                  type="PointType">
         <xs:annotation>
           <xs:documentation>
             The Origin element is the origin for the scaling.
@@ -1881,7 +1936,7 @@
       </xs:element>
       <xs:choice>
         <xs:element name="UniformScale"
-          type="UniformScaleType">
+                    type="UniformScaleType">
           <xs:annotation>
             <xs:documentation>
               The UniformScale element signifies uniform scaling about the
@@ -1890,7 +1945,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="RadialDifferentialScale"
-          type="RadialDifferentialScaleType">
+                    type="RadialDifferentialScaleType">
           <xs:annotation>
             <xs:documentation>
               The RadialDifferentialScale element signifies radial
@@ -1899,7 +1954,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="AxialDifferentialScale"
-          type="AxialDifferentialScaleType">
+                    type="AxialDifferentialScaleType">
           <xs:annotation>
             <xs:documentation>
               The AxialDifferentialScale element signifies axial

@@ -5,29 +5,19 @@
 <!-- proprietary rights to such information, such as rights to a       -->
 <!-- patent, trademark, or copyright.                                  -->
 
-<!-- As compared with QIFDocument.xsdOrig (1) the importing of         -->
-<!-- xmldsig-core-schema.xsd has been commented out (2)in the          -->
-<!-- QIFDocumentType, the type of the UserDataXML element has been     -->
-<!-- changed to xs:string (3) the type of the Signature element has    -->
-<!-- been changed to xs:string.                                        -->
-<!-- These changes mean that valid instance files will still be valid, -->
-<!-- but instance files with invalid UserDataXML or Signature will     -->
-<!-- be valid.                                                         -->
-
 <xs:schema
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns="http://qifstandards.org/xsd/qif3"
   xmlns:t="http://qifstandards.org/xsd/qif3"
-  xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
   targetNamespace="http://qifstandards.org/xsd/qif3"
   elementFormDefault="qualified"
   attributeFormDefault="unqualified"
   version="3.0.0">
-<!--
+
   <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"
     schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd"/>
 
-     The following local reference to the digital signature schema from w3c
+<!-- The following local reference to the digital signature schema from w3c
      can be used to replace the above remote reference. Such a replacement
      is necessary for example in some widely-used software because the
      real-time validation of the schema by the software makes keyboard
@@ -53,7 +43,7 @@
   </xs:annotation>
 
   <xs:element name="QIFDocument"
-    type="QIFDocumentType">
+              type="QIFDocumentType">
     <xs:annotation>
       <xs:documentation>
         The global QIFDocument element is the root of a QIF document.
@@ -79,7 +69,7 @@ Altova has been notified of this problem in XMLSpy.
           The QIFIdUnique collects all QIF ids in an instance file.
         </xs:documentation>
       </xs:annotation>
-      <xs:selector xpath=".//*"/>
+      <xs:selector xpath=".//t:*"/>
       <xs:field xpath="@id"/>
     </xs:unique>
 
@@ -415,6 +405,8 @@ Altova has been notified of this problem in XMLSpy.
       refer="ProductFaceIdKey">
       <xs:annotation>
         <xs:documentation>
+          The ProductFaceIdKeyref requires that an Id in the FaceIds
+          of a FeatureZone be the id of a Face.
         </xs:documentation>
       </xs:annotation>
       <xs:selector xpath="t:FeatureZones/t:*/t:FaceIds/t:Id"/>
@@ -457,7 +449,8 @@ Altova has been notified of this problem in XMLSpy.
              | t:DatumTargetDefinitions/t:DatumTarget/t:FeatureNominalId
              | t:Characteristics/t:CharacteristicNominals/t:*
               /t:FeatureNominalIds/t:Id
-             | t:DatumDefinitions/t:DatumDefinition/t:FeatureNominalIds/t:Id
+             | t:DatumDefinitions/t:DatumDefinition/t:FeatureNominalIds
+              /t:Id
              | t:DatumReferenceFrames/t:DatumReferenceFrame/t:Datums
               /t:Datum/t:*/t:FeatureNominalId
              | t:Product/t:PartSet/t:Part/t:FeatureNominalIds/t:Id
@@ -563,7 +556,7 @@ Altova has been notified of this problem in XMLSpy.
       <xs:annotation>
         <xs:documentation>
           The FeatureMeasurementIdKeyref requires that an id in the
-          MeasurementIds of an AverageFeature be the id of a
+          MeasuredIds of an AverageFeature be the id of a
           FeatureMeasurement. This is a weak check since it does not
           require that the referenced features be the same type of feature
           as the FeatureMeasurement of the AverageFeature. That check
@@ -572,7 +565,7 @@ Altova has been notified of this problem in XMLSpy.
       </xs:annotation>
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:AverageFeatures/t:AverageFeature/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -764,12 +757,8 @@ Altova has been notified of this problem in XMLSpy.
         </xs:documentation>
       </xs:annotation>
       <xs:selector
-        xpath="t:Product/t:GeometrySet/t:*/t:*/t:*/t:*/t:*
-              /t:LatitudeLongitudeSweep/t:*
-             | t:Product/t:GeometrySet/t:*/t:*/t:*/t:LatitudeLongitudeSweep
+        xpath="t:Product/t:GeometrySet/t:*/t:*/t:*/t:LatitudeLongitudeSweep
               /t:*
-             | t:Product/t:GeometrySet/t:*/t:*/t:*/t:*/t:*/t:Sweep
-              /t:DomainAngle
              | t:Product/t:GeometrySet/t:*/t:*/t:*/t:Sweep/t:DomainAngle
              | t:Characteristics/t:CharacteristicNominals/t:*/t:TargetValue
              | t:Characteristics/t:CharacteristicNominals/t:*/t:*/t:*
@@ -779,7 +768,7 @@ Altova has been notified of this problem in XMLSpy.
              | t:Features/t:FeatureNominals/t:*/t:*/t:*
              | t:Results/t:MeasurementResultsSet/t:MeasurementResults/t:*
               /t:*/t:*/t:*
-             | t:Statistics/t:StatisticalStudyPlans/t:*/t:*
+             | t:Statistics/t:StatisticalStudyPlans/t:*/t:*/t:*
              | t:Statistics/t:StatisticalStudiesResults/t:*/t:*
              | t:Product/t:ViewSet/t:HatchStyleSet/t:HatchStyle/t:Patterns
               /t:Pattern/t:Angle
@@ -830,7 +819,7 @@ Altova has been notified of this problem in XMLSpy.
               /t:*/t:*/t:*/t:*
              | t:Results/t:MeasurementResultsSet/t:MeasurementResults/t:*
               /t:*/t:*/t:*
-             | t:Statistics/t:StatisticalStudyPlans/t:*/t:*
+             | t:Statistics/t:StatisticalStudyPlans/t:*/t:*/t:*
              | t:Statistics/t:StatisticalStudiesResults/t:*/t:*/t:*/t:*/t:*
              | t:Statistics/t:StatisticalStudiesResults/t:*/t:*/t:*/t:*
              | t:Statistics/t:StatisticalStudiesResults/t:*/t:*
@@ -868,12 +857,12 @@ Altova has been notified of this problem in XMLSpy.
              | t:Characteristics/t:CharacteristicNominals
               /t:UserDefinedTemperatureCharacteristicNominal/t:*
              | t:Characteristics/t:CharacteristicDefinitions
-              /t:UserDefinedTemperatureCharacteristicDefinition
-              /t:Tolerance/t:*
+              /t:UserDefinedTemperatureCharacteristicDefinition/t:Tolerance
+              /t:*
              | t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredCharacteristics/t:CharacteristicMeasurements
               /t:UserDefinedTemperatureCharacteristicMeasurement/t:Value
-             | t:Statistics/t:StatisticalStudyPlans/t:*/t:*
+             | t:Statistics/t:StatisticalStudyPlans/t:*/t:*/t:*
              | t:Statistics/t:StatisticalStudiesResults/t:*/t:*"/>
       <xs:field xpath="@temperatureUnit"/>
     </xs:keyref>
@@ -908,7 +897,7 @@ Altova has been notified of this problem in XMLSpy.
              | t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredCharacteristics/t:CharacteristicMeasurements
               /t:UserDefinedAreaCharacteristicMeasurement/t:Value
-             | t:Statistics/t:StatisticalStudyPlans/t:*/t:*
+             | t:Statistics/t:StatisticalStudyPlans/t:*/t:*/t:*
              | t:Statistics/t:StatisticalStudiesResults/t:*/t:*"/>
       <xs:field xpath="@areaUnit"/>
     </xs:keyref>
@@ -940,7 +929,7 @@ Altova has been notified of this problem in XMLSpy.
              | t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredCharacteristics/t:CharacteristicMeasurements
               /t:UserDefinedForceCharacteristicMeasurement/t:Value
-             | t:Statistics/t:StatisticalStudyPlans/t:*/t:*
+             | t:Statistics/t:StatisticalStudyPlans/t:*/t:*/t:*
              | t:Statistics/t:StatisticalStudiesResults/t:*/t:*"/>
       <xs:field xpath="@forceUnit"/>
     </xs:keyref>
@@ -974,7 +963,7 @@ Altova has been notified of this problem in XMLSpy.
              | t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredCharacteristics/t:CharacteristicMeasurements
               /t:UserDefinedMassCharacteristicMeasurement/t:Value
-             | t:Statistics/t:StatisticalStudyPlans/t:*/t:*
+             | t:Statistics/t:StatisticalStudyPlans/t:*/t:*/t:*
              | t:Statistics/t:StatisticalStudiesResults/t:*/t:*"/>
       <xs:field xpath="@massUnit"/>
     </xs:keyref>
@@ -1005,12 +994,11 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Characteristics/t:CharacteristicNominals
               /t:UserDefinedPressureCharacteristicNominal/t:*
              | t:Characteristics/t:CharacteristicDefinitions
-              /t:UserDefinedPressureCharacteristicDefinition/t:Tolerance
-              /t:*
+              /t:UserDefinedPressureCharacteristicDefinition/t:Tolerance/t:*
              | t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredCharacteristics/t:CharacteristicMeasurements
               /t:UserDefinedPressureCharacteristicMeasurement/t:Value
-             | t:Statistics/t:StatisticalStudyPlans/t:*/t:*
+             | t:Statistics/t:StatisticalStudyPlans/t:*/t:*/t:*
              | t:Statistics/t:StatisticalStudiesResults/t:*/t:*"/>
       <xs:field xpath="@pressureUnit"/>
     </xs:keyref>
@@ -1044,7 +1032,7 @@ Altova has been notified of this problem in XMLSpy.
              | t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredCharacteristics/t:CharacteristicMeasurements
               /t:UserDefinedSpeedCharacteristicMeasurement/t:Value
-             | t:Statistics/t:StatisticalStudyPlans/t:*/t:*
+             | t:Statistics/t:StatisticalStudyPlans/t:*/t:*/t:*
              | t:Statistics/t:StatisticalStudiesResults/t:*/t:*"/>
       <xs:field xpath="@speedUnit"/>
     </xs:keyref>
@@ -1078,7 +1066,7 @@ Altova has been notified of this problem in XMLSpy.
              | t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredCharacteristics/t:CharacteristicMeasurements
               /t:UserDefinedTimeCharacteristicMeasurement/t:Value
-             | t:Statistics/t:StatisticalStudyPlans/t:*/t:*
+             | t:Statistics/t:StatisticalStudyPlans/t:*/t:*/t:*
              | t:Statistics/t:StatisticalStudiesResults/t:*/t:*"/>
       <xs:field xpath="@timeUnit"/>
     </xs:keyref>
@@ -1109,7 +1097,7 @@ Altova has been notified of this problem in XMLSpy.
              | t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredCharacteristics/t:CharacteristicMeasurements
               /t:UserDefinedUnitCharacteristicMeasurement/t:Value
-             | t:Statistics/t:StatisticalStudyPlans/t:*/t:*
+             | t:Statistics/t:StatisticalStudyPlans/t:*/t:*/t:*
              | t:Statistics/t:StatisticalStudiesResults/t:*/t:*"/>
       <xs:field xpath="@unitName"/>
     </xs:keyref>
@@ -1219,7 +1207,7 @@ Altova has been notified of this problem in XMLSpy.
              | t:Results/t:ActualComponentSets/t:ActualComponentSet
               /t:ActualComponent/t:Traceability/t:NotedEventIds/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:*/t:NotedEventIds/t:Id"/>
+              /t:AverageFeatures/t:AverageFeature/t:*/t:NotedEventIds/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -1247,7 +1235,8 @@ Altova has been notified of this problem in XMLSpy.
         </xs:documentation>
       </xs:annotation>
       <xs:selector
-        xpath="t:Product/t:PartSet/t:Part/t:*/t:*/t:TransformId
+        xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
+              /t:MeasuredPointSets/t:MeasuredPointSet/t:TranformId
              | t:Characteristics/t:CharacteristicGroups/t:*/t:TransformId
              | t:Product/t:GeometrySet/t:Curve13Set/t:*/t:Transform/t:Id
              | t:Product/t:GeometrySet/t:SurfaceSet/t:*/t:Transform/t:Id
@@ -1300,8 +1289,13 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:DatumReferenceFrames/t:DatumReferenceFrame
              | t:Features/t:FeatureItems/t:*
+             | t:Features/t:FeatureNominals/t:*/t:Constructed/t:Transform
+              /t:Transformation
              | t:Results/t:MeasurementResultsSet/t:MeasurementResults
-              /t:CoordinateSystemActualTransforms/t:Transform"/>
+              /t:MeasuredPointSets/t:MeasuredPointSet
+             | t:Results/t:MeasurementResultsSet/t:MeasurementResults
+              /t:CoordinateSystemActualTransformAssociations
+              /t:CoordinateSystemActualTransformAssociation"/>
       <xs:field xpath="t:CoordinateSystemId"/>
     </xs:keyref>
 
@@ -1325,8 +1319,8 @@ Altova has been notified of this problem in XMLSpy.
           MachineCoordinateSystemId be the id of a CoordinateSystem.
         </xs:documentation>
       </xs:annotation>
-      <xs:selector xpath="t:CoordinateSystems"/>
-      <xs:field xpath="t:MachineCoordinateSystemId"/>
+      <xs:selector xpath="t:CoordinateSystems/t:MachineCoordinateSystem"/>
+      <xs:field xpath="t:CoordinateSystemId"/>
     </xs:keyref>
 
     <xs:keyref name="BaseCoordinateSystemIdKeyref"
@@ -1430,20 +1424,17 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Product/t:ComponentSet/t:Component/t:Traceability
               /t:MeasurementDeviceIds/t:Id
-             | t:Features/t:FeatureNominals/t:*/t:PointList/t:MeasurePoint
-              /t:MeasurementDeviceId
+             | t:Features/t:NominalPointSets/t:NominalPointSet
+              /t:MeasurePoint/t:MeasurementDeviceId
              | t:Characteristics/t:CharacteristicItems/t:*
               /t:MeasurementDeviceIds/t:Id
              | t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredCharacteristics/t:CharacteristicMeasurements/t:*
               /t:MeasurementDeviceIds/t:Id
-             | t:Results/t:MeasurementResultsSet/t:MeasurementResults
-              /t:MeasuredFeatures/t:*/t:PointList/t:MeasurePoint
-              /t:MeasurementDeviceId
              | t:Statistics/t:StatisticalStudyPlans/t:*
-              /t:MeasurementDeviceId
+              /t:MeasurementDeviceIds/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:MeasurementDeviceId"/>
+              /t:MeasurementDeviceIds/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -1452,7 +1443,7 @@ Altova has been notified of this problem in XMLSpy.
     <xs:key name="SensorIdKey">
       <xs:annotation>
         <xs:documentation>
-          The SensorsIdKey collects all QIF ids of Sensors and all ids of
+          The SensorIdKey collects all QIF ids of Sensors and all ids of
           external QIF documents.
         </xs:documentation>
       </xs:annotation>
@@ -1472,10 +1463,10 @@ Altova has been notified of this problem in XMLSpy.
         </xs:documentation>
       </xs:annotation>
       <xs:selector
-        xpath="t:Features/t:FeatureNominals/t:*/t:PointList/t:MeasurePoint
-              /t:SensorId
+        xpath="t:Features/t:NominalPointSets/t:NominalPointSet
+              /t:MeasurePoint/t:SensorId
              | t:Results/t:MeasurementResultsSet/t:MeasurementResults
-              /t:MeasuredFeatures/t:*/t:PointList/t:MeasurePoint/t:SensorId"/>
+              /t:MeasuredPointSets/t:MeasuredPointSet/t:SensorId"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -1504,11 +1495,10 @@ Altova has been notified of this problem in XMLSpy.
         </xs:documentation>
       </xs:annotation>
       <xs:selector
-        xpath="t:Features/t:FeatureNominals/t:*/t:PointList/t:MeasurePoint
-              /t:ProbeTipId
+        xpath="t:Features/t:NominalPointSets/t:NominalPointSet
+              /t:MeasurePoint/t:TipId
              | t:Results/t:MeasurementResultsSet/t:MeasurementResults
-              /t:MeasuredFeatures/t:*/t:PointList/t:MeasurePoint
-              /t:ProbeTipId"/>
+              /t:MeasuredPointSets/t:MeasuredPointSet/t:TipId"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -1554,7 +1544,7 @@ Altova has been notified of this problem in XMLSpy.
              | t:MeasurementResources/t:Tools
               /t:ToolWithComplexTactileProbeSensor
               /t:ComplexTactileProbeSensor
-             | t:MeasurementResources/t:Tools/t:ToolWithCCDCameraSensorType
+             | t:MeasurementResources/t:Tools/t:ToolWithCCDCameraSensor
               /t:ChargeCoupledDeviceCameraSensor
              | t:ExternalQIFReferences/t:ExternalQIFDocument"/>
       <xs:field xpath="@id"/>
@@ -1604,18 +1594,19 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Product/t:*/t:*/t:*/t:*/t:*/t:Id
              | t:Product/t:*/t:*/t:*/t:*/t:Id
              | t:Product/t:*/t:*/t:*/t:Id
-             | t:Product/t:*/t:*/t:Id
-             | t:Product/t:*/t:Id
-             | t:Statistics/t:*/t:*/t:*/t:*/t:*/t:*/t:Id
-             | t:Statistics/t:*/t:*/t:*/t:*/t:*/t:Id
-             | t:Statistics/t:*/t:*/t:*/t:*/t:Id"/>
-      <xs:field xpath="@asmPath"/>
+             | t:Results/t:MeasurementResultsSet/t:MeasurementResults/t:*
+              /t:*/t:*/t:Id
+             | t:Statistics/t:*/t:*/t:*/t:*/t:*/t:*/t:Id"/>
+      <xs:field xpath="@asmPathId"/>
     </xs:keyref>
 
     <xs:keyref name="ProductPartAssemblyValidationInstanceAsmPathKeyref"
       refer="AsmPathKey">
       <xs:annotation>
         <xs:documentation>
+          The ProductPartAssemblyValidationInstanceAsmPathKeyref requires
+          that an AsmPathId in an instance in a part or assembly
+          validation be the id of an AsmPath.
         </xs:documentation>
       </xs:annotation>
       <xs:selector
@@ -1878,7 +1869,7 @@ Altova has been notified of this problem in XMLSpy.
       refer="AssignableCauseIdKey">
       <xs:annotation>
         <xs:documentation>
-          The ControlMethodIdKeyref requires that an AssignableCauseId in
+          The AssignableCauseIdKeyref requires that an AssignableCauseId in
           any study results be the id of an assignable cause.
         </xs:documentation>
       </xs:annotation>
@@ -1962,7 +1953,8 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:CircularArcFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:CircularArcFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:CircularArcFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -1986,7 +1978,8 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:CircleFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:CircleFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:CircleFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2003,7 +1996,7 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:ConeFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:ConeFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature/t:ConeFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2020,7 +2013,8 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:ConicalSegmentFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:ConicalSegmentFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:ConicalSegmentFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2037,7 +2031,8 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:CylinderFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:CylinderFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:CylinderFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2054,7 +2049,8 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:CylindricalSegmentFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:CylindricalSegmentFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:CylindricalSegmentFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2071,7 +2067,8 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:EdgePointFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:EdgePointFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:EdgePointFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2088,7 +2085,8 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:EllipseFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:EllipseFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:EllipseFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2105,7 +2103,8 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:EllipticalArcFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:EllipticalArcFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:EllipticalArcFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2122,7 +2121,8 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:ElongatedCylinderFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:ElongatedCylinderFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:ElongatedCylinderFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2139,7 +2139,8 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:ExtrudedCrossSectionFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:ExtrudedCrosssectionFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:ExtrudedCrossSectionFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2156,7 +2157,7 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:GroupFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:GroupFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature/t:GroupFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2173,7 +2174,7 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:LineFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:LineFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature/t:LineFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2205,7 +2206,8 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:OppositeParallelLinesFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:OppositeParallelLinesFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:OppositeParallelLinesFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2222,7 +2224,8 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:OppositeAngledLinesFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:OppositeAngledLinesFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:OppositeAngledLinesFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2240,13 +2243,15 @@ Altova has been notified of this problem in XMLSpy.
               /t:MeasuredFeatures
               /t:OppositeParallelPlanesFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:OppositeParallelPlanesFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:OppositeParallelPlanesFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
     <xs:key name="OppositeParallelPlanesFeatureItemKey">
       <xs:selector
-        xpath="t:Features/t:FeatureItems/t:OppositeParallelPlanesFeatureItem
+        xpath="t:Features/t:FeatureItems
+              /t:OppositeParallelPlanesFeatureItem
              | t:ExternalQIFReferences/t:ExternalQIFDocument"/>
       <xs:field xpath="@id"/>
     </xs:key>
@@ -2257,7 +2262,8 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:OppositeAngledPlanesFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:OppositeAngledPlanesFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:OppositeAngledPlanesFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2362,7 +2368,7 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:PlaneFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:PlaneFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature/t:PlaneFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2379,7 +2385,8 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:PointDefinedCurveFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:PointdefinedCurveFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:PointDefinedCurveFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2396,7 +2403,8 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:PointDefinedSurfaceFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:PointdefinedSurfaceFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:PointDefinedSurfaceFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2413,7 +2421,7 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:PointFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:PointFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature/t:PointFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2430,7 +2438,8 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:SphereFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:SphereFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:SphereFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2447,7 +2456,8 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:SphericalSegmentFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:SphericalSegmentFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:SphericalSegmentFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2464,7 +2474,8 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:SurfaceOfRevolutionFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:SurfaceOfRevolutionFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:SurfaceOfRevolutionFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2481,7 +2492,8 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:ThreadedFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:ThreadedFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:ThreadedFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2498,7 +2510,8 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:ToroidalSegmentFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:ToroidalSegmentFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature
+              /t:ToroidalSegmentFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2515,7 +2528,7 @@ Altova has been notified of this problem in XMLSpy.
         xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
               /t:MeasuredFeatures/t:TorusFeatureMeasurement
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:AverageFeature/t:TorusFeatureMeasurement"/>
+              /t:AverageFeatures/t:AverageFeature/t:TorusFeatureMeasurement"/>
       <xs:field xpath="t:FeatureItemId"/>
     </xs:keyref>
 
@@ -2768,7 +2781,8 @@ Altova has been notified of this problem in XMLSpy.
     <xs:keyref name="OppositeParallelPlanesFeatureItemToNominalKeyref"
       refer="OppositeParallelPlanesFeatureNominalKey">
       <xs:selector
-        xpath="t:Features/t:FeatureItems/t:OppositeParallelPlanesFeatureItem"/>
+        xpath="t:Features/t:FeatureItems
+              /t:OppositeParallelPlanesFeatureItem"/>
       <xs:field xpath="t:FeatureNominalId"/>
     </xs:keyref>
 
@@ -2797,7 +2811,8 @@ Altova has been notified of this problem in XMLSpy.
 
     <xs:keyref name="OtherCurveFeatureItemToNominalKeyref"
       refer="OtherCurveFeatureNominalKey">
-      <xs:selector xpath="t:Features/t:FeatureItems/t:OtherCurveFeatureItem"/>
+      <xs:selector
+        xpath="t:Features/t:FeatureItems/t:OtherCurveFeatureItem"/>
       <xs:field xpath="t:FeatureNominalId"/>
     </xs:keyref>
 
@@ -2824,7 +2839,8 @@ Altova has been notified of this problem in XMLSpy.
 
     <xs:keyref name="OtherShapeFeatureItemToNominalKeyref"
       refer="OtherShapeFeatureNominalKey">
-      <xs:selector xpath="t:Features/t:FeatureItems/t:OtherShapeFeatureItem"/>
+      <xs:selector
+        xpath="t:Features/t:FeatureItems/t:OtherShapeFeatureItem"/>
       <xs:field xpath="t:FeatureNominalId"/>
     </xs:keyref>
 
@@ -2985,7 +3001,8 @@ Altova has been notified of this problem in XMLSpy.
 
     <xs:key name="SphericalSegmentFeatureNominalKey">
       <xs:selector
-        xpath="t:Features/t:FeatureNominals/t:SphericalSegmentFeatureNominal
+        xpath="t:Features/t:FeatureNominals
+              /t:SphericalSegmentFeatureNominal
              | t:ExternalQIFReferences/t:ExternalQIFDocument"/>
       <xs:field xpath="@id"/>
     </xs:key>
@@ -5508,10 +5525,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:AngleBetweenCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:AngleBetweenCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5529,10 +5546,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:AngleCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:AngleCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5550,10 +5567,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:AngleFromCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:AngleFromCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5580,10 +5597,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:AngularCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:AngularCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5601,12 +5618,12 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats
-              /t:AngularCoordinateCharacteristicStats/t:MeasurementIds
-              /t:Ids/t:Id
+              /t:AngularCoordinateCharacteristicStats/t:MeasuredIds/t:Ids
+              /t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats
-              /t:AngularCoordinateCharacteristicStats/t:Subgroup
-              /t:MeasurementIds/t:Ids/t:Id"/>
+              /t:AngularCoordinateCharacteristicStats/t:Subgroups
+              /t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5624,10 +5641,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:AngularityCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:AngularityCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5645,10 +5662,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:ChordCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:ChordCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5666,10 +5683,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:CircularRunoutCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:CircularRunoutCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5687,10 +5704,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:CircularityCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:CircularityCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5708,10 +5725,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:CoaxialityCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:CoaxialityCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5729,10 +5746,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:ConcentricityCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:ConcentricityCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5750,10 +5767,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:ConicalTaperCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:ConicalTaperCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5771,10 +5788,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:ConicityCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:ConicityCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5792,10 +5809,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:CurveLengthCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:CurveLengthCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5813,10 +5830,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:CylindricityCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:CylindricityCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5834,10 +5851,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:DepthCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:DepthCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5855,10 +5872,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:DiameterCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:DiameterCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5876,10 +5893,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:DistanceBetweenCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:DistanceBetweenCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5897,10 +5914,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:DistanceFromCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:DistanceFromCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5918,10 +5935,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:EllipticityCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:EllipticityCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5939,10 +5956,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:FlatTaperCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:FlatTaperCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -5960,10 +5977,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:FlatnessCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:FlatnessCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6053,10 +6070,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:GeometricCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:GeometricCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6074,10 +6091,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:HeightCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:HeightCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6095,10 +6112,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:LengthCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:LengthCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6161,10 +6178,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:LinearCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:LinearCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6182,10 +6199,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:LineProfileCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:LineProfileCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6202,13 +6219,20 @@ Altova has been notified of this problem in XMLSpy.
       refer="LinearCoordinateCharacteristicMeasurementKey">
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:CharacteristicsStats
-              /t:LinearCoordinateCharacteristicStats/t:MeasurementIds
-              /t:Ids/t:Id
+              /t:CharacteristicsStats/t:LinearCoordinateCharacteristicStats
+              /t:*/t:Maximum/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:CharacteristicsStats
-              /t:LinearCoordinateCharacteristicStats/t:Subgroup
-              /t:MeasurementIds/t:Ids/t:Id"/>
+              /t:CharacteristicsStats/t:LinearCoordinateCharacteristicStats
+              /t:*/t:Minimum/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:LinearCoordinateCharacteristicStats
+              /t:*/t:NumberOutOfControl/t:Ids/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:LinearCoordinateCharacteristicStats
+              /t:MeasuredIds/t:Ids/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:LinearCoordinateCharacteristicStats
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6235,10 +6259,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:LocationCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:LocationCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6262,10 +6286,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:OrientationCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:OrientationCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6283,10 +6307,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:OtherFormCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:OtherFormCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6304,10 +6328,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:ParallelismCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:ParallelismCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6324,13 +6348,11 @@ Altova has been notified of this problem in XMLSpy.
       refer="PerpendicularityCharacteristicMeasurementKey">
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:CharacteristicsStats
-              /t:PerpendicularityCharacteristicStats/t:MeasurementIds
-              /t:Ids/t:Id
+              /t:CharacteristicsStats/t:PerpendicularityCharacteristicStats
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:CharacteristicsStats
-              /t:PerpendicularityCharacteristicStats/t:Subgroup
-              /t:MeasurementIds/t:Ids/t:Id"/>
+              /t:CharacteristicsStats/t:PerpendicularityCharacteristicStats
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6348,10 +6370,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:PointProfileCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:PointProfileCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6369,10 +6391,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:PositionCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:PositionCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6390,10 +6412,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:RadiusCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:RadiusCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6411,12 +6433,12 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats
-              /t:SphericalDiameterCharacteristicStats/t:MeasurementIds
-              /t:Ids/t:Id
+              /t:SphericalDiameterCharacteristicStats/t:MeasuredIds/t:Ids
+              /t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats
-              /t:SphericalDiameterCharacteristicStats/t:Subgroup
-              /t:MeasurementIds/t:Ids/t:Id"/>
+              /t:SphericalDiameterCharacteristicStats/t:Subgroups
+              /t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6434,10 +6456,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:SphericalRadiusCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:SphericalRadiusCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6455,10 +6477,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:SphericityCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:SphericityCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6476,10 +6498,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:SquareCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:SquareCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6497,10 +6519,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:StraightnessCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:StraightnessCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6518,10 +6540,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:SurfaceProfileCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:SurfaceProfileCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6539,12 +6561,12 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats
-              /t:SurfaceProfileNonUniformCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:SurfaceProfileNonUniformCharacteristicStats/t:MeasuredIds
+              /t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats
-              /t:SurfaceProfileNonUniformCharacteristicStats/t:Subgroup
-              /t:MeasurementIds/t:Ids/t:Id"/>
+              /t:SurfaceProfileNonUniformCharacteristicStats/t:Subgroups
+              /t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6562,10 +6584,10 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:SurfaceTextureCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:MeasuredIds/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:SurfaceTextureCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6582,11 +6604,20 @@ Altova has been notified of this problem in XMLSpy.
       refer="SymmetryCharacteristicMeasurementKey">
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:CharacteristicsStats/t:SymmetryCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:CharacteristicsStats/t:SymmetryCharacteristicStats/t:*
+              /t:Maximum/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:SymmetryCharacteristicStats/t:*
+              /t:Minimum/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:SymmetryCharacteristicStats/t:*
+              /t:NumberOutOfControl/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:SymmetryCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:MeasuredIds/t:Ids/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:SymmetryCharacteristicStats
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6603,11 +6634,20 @@ Altova has been notified of this problem in XMLSpy.
       refer="ThicknessCharacteristicMeasurementKey">
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:CharacteristicsStats/t:ThicknessCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:CharacteristicsStats/t:ThicknessCharacteristicStats/t:*
+              /t:Maximum/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:ThicknessCharacteristicStats/t:*
+              /t:Minimum/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:ThicknessCharacteristicStats/t:*
+              /t:NumberOutOfControl/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:ThicknessCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:MeasuredIds/t:Ids/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:ThicknessCharacteristicStats
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6624,11 +6664,20 @@ Altova has been notified of this problem in XMLSpy.
       refer="ThreadCharacteristicMeasurementKey">
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:CharacteristicsStats/t:ThreadCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:CharacteristicsStats/t:ThreadCharacteristicStats/t:*
+              /t:Maximum/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:ThreadCharacteristicStats/t:*
+              /t:Minimum/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:ThreadCharacteristicStats/t:*
+              /t:NumberOutOfControl/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:ThreadCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:MeasuredIds/t:Ids/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:ThreadCharacteristicStats
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6645,11 +6694,20 @@ Altova has been notified of this problem in XMLSpy.
       refer="ToroidicityCharacteristicMeasurementKey">
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:CharacteristicsStats/t:ToroidicityCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:CharacteristicsStats/t:ToroidicityCharacteristicStats/t:*
+              /t:Maximum/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:ToroidicityCharacteristicStats/t:*
+              /t:Minimum/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:ToroidicityCharacteristicStats/t:*
+              /t:NumberOutOfControl/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:ToroidicityCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:MeasuredIds/t:Ids/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:ToroidicityCharacteristicStats
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6666,11 +6724,20 @@ Altova has been notified of this problem in XMLSpy.
       refer="TotalRunoutCharacteristicMeasurementKey">
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:CharacteristicsStats/t:TotalRunoutCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:CharacteristicsStats/t:TotalRunoutCharacteristicStats/t:*
+              /t:Maximum/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:TotalRunoutCharacteristicStats/t:*
+              /t:Minimum/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:TotalRunoutCharacteristicStats/t:*
+              /t:NumberOutOfControl/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:TotalRunoutCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:MeasuredIds/t:Ids/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:TotalRunoutCharacteristicStats
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6688,12 +6755,12 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats
-              /t:UserDefinedAttributeCharacteristicStats/t:MeasurementIds
+              /t:UserDefinedAttributeCharacteristicStats/t:MeasuredIds
               /t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats
-              /t:UserDefinedAttributeCharacteristicStats/t:Subgroup
-              /t:MeasurementIds/t:Ids/t:Id"/>
+              /t:UserDefinedAttributeCharacteristicStats/t:Subgroups
+              /t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6711,10 +6778,19 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:UserDefinedUnitCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:*/t:Maximum/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:UserDefinedUnitCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:*/t:Minimum/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:UserDefinedUnitCharacteristicStats
+              /t:*/t:NumberOutOfControl/t:Ids/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:UserDefinedUnitCharacteristicStats
+              /t:MeasuredIds/t:Ids/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:UserDefinedUnitCharacteristicStats
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6731,11 +6807,20 @@ Altova has been notified of this problem in XMLSpy.
       refer="WidthCharacteristicMeasurementKey">
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:CharacteristicsStats/t:WidthCharacteristicStats
-              /t:MeasurementIds/t:Ids/t:Id
+              /t:CharacteristicsStats/t:WidthCharacteristicStats/t:*
+              /t:Maximum/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:WidthCharacteristicStats/t:*
+              /t:Minimum/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:WidthCharacteristicStats/t:*
+              /t:NumberOutOfControl/t:Ids/t:Id
              | t:Statistics/t:StatisticalStudiesResults/t:*
               /t:CharacteristicsStats/t:WidthCharacteristicStats
-              /t:Subgroup/t:MeasurementIds/t:Ids/t:Id"/>
+              /t:MeasuredIds/t:Ids/t:Id
+             | t:Statistics/t:StatisticalStudiesResults/t:*
+              /t:CharacteristicsStats/t:WidthCharacteristicStats
+              /t:Subgroups/t:Subgroup/t:MeasuredIds/t:Ids/t:Id"/>
       <xs:field xpath="."/>
     </xs:keyref>
 
@@ -6745,29 +6830,16 @@ Altova has been notified of this problem in XMLSpy.
     <xs:key name="MeasurePointNominalIdKey">
       <xs:annotation>
         <xs:documentation>
-          The MeasurePointNominalKey collects all QIF ids of
+          The MeasurePointNominalIdKey collects all QIF ids of
           MeasurePointNominals.
         </xs:documentation>
       </xs:annotation>
       <xs:selector
-        xpath="t:Features/t:FeatureNominals/t:*/t:PointList/t:MeasurePoint"/>
+        xpath="t:Features/t:NominalPointSets/t:NominalPointSet
+              /t:MeasurePoint
+             | t:ExternalQIFReferences/t:ExternalQIFDocument"/>
       <xs:field xpath="@id"/>
     </xs:key>
-
-    <xs:keyref name="MeasurePointToNominalKeyref"
-      refer="MeasurePointNominalIdKey">
-      <xs:annotation>
-        <xs:documentation>
-          The MeasurePointToNominalKeyref requires that the
-          MeasurePointNominalId of a MeasurePoint be the QIF id of
-          a MeasurePointNominal.
-        </xs:documentation>
-      </xs:annotation>
-      <xs:selector
-        xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
-              /t:MeasuredFeatures/t:*/t:PointList/t:MeasurePoint"/>
-      <xs:field xpath="t:MeasurePointNominalId"/>
-    </xs:keyref>
 
 <!-- END MEASUREMENT TO NOMINAL KEY/KEYREF PAIR FOR MEASURE POINT -->
 <!-- START KEY/KEYREF PAIRS FOR DEFAULT TOLERANCES -->
@@ -6842,82 +6914,7 @@ Altova has been notified of this problem in XMLSpy.
 
 <!-- END KEY/KEYREF PAIRS FOR DEFAULT TOLERANCES -->
 <!-- START KEY AND TWO KEYREFS FOR ACTUAL MEASURE POINT -->
-
-    <xs:key name="MeasurePointIdKey">
-      <xs:annotation>
-        <xs:documentation>
-          The MeasurePointKey collects all QIF ids of
-          MeasurePoints.
-        </xs:documentation>
-      </xs:annotation>
-      <xs:selector
-        xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
-              /t:MeasuredFeatures/t:*/t:PointList/t:MeasurePoint
-             | t:ExternalQIFReferences/t:ExternalQIFDocument"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="CharacteristicToMeasurePointKeyref"
-      refer="MeasurePointIdKey">
-      <xs:annotation>
-        <xs:documentation>
-          The CharacteristicToMeasurePointKeyref requires that the
-          MeasurePointId of a PointDeviation referenced in
-          CharacteristicMeasurements be the QIF id of a MeasurePoint. This
-          applies only to profile characteristics.
-        </xs:documentation>
-      </xs:annotation>
-      <xs:selector
-        xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
-              /t:MeasuredCharacteristics/t:CharacteristicMeasurements
-              /t:LineProfileCharacteristicMeasurement/t:PointDeviations
-              /t:PointDeviation
-             | t:Results/t:MeasurementResultsSet/t:MeasurementResults
-              /t:MeasuredCharacteristics/t:CharacteristicMeasurements
-              /t:PointProfileCharacteristicMeasurement/t:PointDeviations
-              /t:PointDeviation
-             | t:Results/t:MeasurementResultsSet/t:MeasurementResults
-              /t:MeasuredCharacteristics/t:CharacteristicMeasurements
-              /t:SurfaceProfileCharacteristicMeasurement/t:PointDeviations
-              /t:PointDeviation
-             | t:Results/t:MeasurementResultsSet/t:MeasurementResults
-              /t:MeasuredCharacteristics/t:CharacteristicMeasurements
-              /t:SurfaceProfileNonUniformCharacteristicMeasurement
-              /t:PointDeviations/t:PointDeviation"/>
-      <xs:field xpath="t:MeasurePointId"/>
-    </xs:keyref>
-
-    <xs:keyref name="StatisticsCharacteristicToMeasurePointKeyref"
-      refer="MeasurePointIdKey">
-      <xs:annotation>
-        <xs:documentation>
-          The StatisticsCharacteristicToMeasurePointKeyref requires
-          that the MeasurePointId of a PointDeviation referenced in
-          CharacteristicsStats be the QIF id of a MeasurePoint. This
-          applies only to profile characteristics.
-        </xs:documentation>
-      </xs:annotation>
-      <xs:selector
-        xpath="t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:CharacteristicsStats/t:LineProfileCharacteristicStats
-              /t:PointDeviationsStats/t:PointDeviationStats
-              /t:MeasurePointMeasurementIds/t:Ids/t:Id
-             | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:CharacteristicsStats/t:PointProfileCharacteristicStats
-              /t:PointDeviationsStats/t:PointDeviationStats
-              /t:MeasurePointMeasurementIds/t:Ids/t:Id
-             | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:CharacteristicsStats/t:SurfaceProfileCharacteristicStats
-              /t:PointDeviationsStats/t:PointDeviationStats
-              /t:MeasurePointMeasurementIds/t:Ids/t:Id
-             | t:Statistics/t:StatisticalStudiesResults/t:*
-              /t:CharacteristicsStats
-              /t:SurfaceProfileNonUniformCharacteristicStats
-              /t:PointDeviationsStats/t:PointDeviationStats
-              /t:MeasurePointMeasurementIds/t:Ids/t:Id"/>
-      <xs:field xpath="."/>
-    </xs:keyref>
-
+<!-- Individual measure points do not have ids, so no MeasurePointIdKey -->
 <!-- END KEY AND TWO KEYREFS FOR ACTUAL MEASURE POINT -->
 <!-- START KEYREF FOR CHARACTERISTIC NOMINALS -->
 
@@ -7145,6 +7142,10 @@ Altova has been notified of this problem in XMLSpy.
 
 <!-- END UNREFERENCED KEYS -->
 
+<!-- The type of the Signature element of QIFDocumentType -->
+
+<!-- should be ds:SignatureType; it is currently UserDataXMLType -->
+
   <xs:complexType name="QIFDocumentType">
     <xs:annotation>
       <xs:documentation>
@@ -7153,7 +7154,7 @@ Altova has been notified of this problem in XMLSpy.
     </xs:annotation>
     <xs:sequence>
       <xs:element name="QPId"
-        type="QPIdType">
+                  type="QPIdType">
         <xs:annotation>
           <xs:documentation>
             The required QPId element is the UUID for this document
@@ -7163,7 +7164,7 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element ref="Attributes"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Attributes element contains user defined
@@ -7172,8 +7173,8 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element name="VersionHistory"
-        type="VersionHistoryType"
-        minOccurs="0">
+                  type="VersionHistoryType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional VersionHistory element gives information about
@@ -7182,8 +7183,8 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element name="Version"
-        type="VersionBaseType"
-        minOccurs="0">
+                  type="VersionBaseType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Version element gives version information about the
@@ -7192,7 +7193,7 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element ref="Header"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Header element contains information about the
@@ -7201,8 +7202,8 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element name="ValidationCounts"
-        type="ValidationCountsType"
-        minOccurs="0">
+                  type="ValidationCountsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ValidationCounts element contains redundancy
@@ -7212,8 +7213,8 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element name="ProductDataQuality"
-        type="ProductDataQualityType"
-        minOccurs="0">
+                  type="ProductDataQualityType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ProductDataQuality element contains information
@@ -7223,8 +7224,8 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element name="ExternalQIFReferences"
-        type="ExternalQIFReferencesType"
-        minOccurs="0">
+                  type="ExternalQIFReferencesType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ExternalQIFReferences element contains information
@@ -7234,7 +7235,7 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element ref="StandardsDefinitions"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional StandardsDefinitions element contains information
@@ -7243,7 +7244,7 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element ref="SoftwareDefinitions"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SoftwareDefinitions element contains information
@@ -7252,7 +7253,7 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element ref="AlgorithmDefinitions"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SoftwareDefinitions element contains information
@@ -7261,8 +7262,8 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element name="PreInspectionTraceability"
-        type="PreInspectionTraceabilityType"
-        minOccurs="0">
+                  type="PreInspectionTraceabilityType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PreInspectionTraceability element gives
@@ -7272,7 +7273,7 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element ref="FileUnits"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional FileUnits element gives information about the
@@ -7281,8 +7282,8 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element name="DatumDefinitions"
-        type="DatumDefinitionsType"
-        minOccurs="0">
+                  type="DatumDefinitionsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional DatumDefinitions element gives information about
@@ -7291,8 +7292,8 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element name="DatumTargetDefinitions"
-        type="DatumTargetDefinitionsType"
-        minOccurs="0">
+                  type="DatumTargetDefinitionsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional DatumTargetDefinitions element gives information
@@ -7301,7 +7302,7 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element ref="Transforms"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Transforms element gives information about the
@@ -7310,7 +7311,7 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element ref="CoordinateSystems"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional CoordinateSystems element gives information about
@@ -7319,8 +7320,8 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element name="DatumReferenceFrames"
-        type="DatumReferenceFramesType"
-        minOccurs="0">
+                  type="DatumReferenceFramesType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional DatumReferenceFrames element gives information
@@ -7330,7 +7331,7 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element ref="MeasurementResources"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional MeasurementResources element gives information
@@ -7339,8 +7340,8 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element name="ThreadSpecifications"
-        type="ThreadSpecificationsType"
-        minOccurs="0">
+                  type="ThreadSpecificationsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ThreadSpecifications element gives information
@@ -7349,7 +7350,7 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element ref="Product"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Product element gives information about the parts
@@ -7358,7 +7359,7 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element ref="Features"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Features element gives information about the
@@ -7367,7 +7368,7 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element ref="FeatureZones"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional FeatureZones element gives information about the
@@ -7376,7 +7377,7 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element ref="Characteristics"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Characteristics element gives information about
@@ -7385,7 +7386,7 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element ref="Plan"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Plan element gives information about
@@ -7394,7 +7395,7 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element ref="Results"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Results element gives information
@@ -7403,7 +7404,7 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element ref="Statistics"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Statistics element gives information about
@@ -7413,7 +7414,7 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element ref="ManufacturingProcessTraceabilities"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ManufacturingProcessTraceabilities element gives
@@ -7423,7 +7424,7 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element ref="Rules"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Rules element gives information about rules
@@ -7435,8 +7436,8 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDataXML"
-        type="xs:string"
-        minOccurs="0">
+                  type="UserDataXMLType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The UserDataXML element defines a user-defined XML structure
@@ -7448,12 +7449,9 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element name="Signature"
-        type="xs:string"
-        minOccurs="0">
+                  type="UserDataXMLType"
+                  minOccurs="0">
         <xs:annotation>
-          <xs:documentation>
-            The type of this element was ds:SignatureType.
-          </xs:documentation>
           <xs:documentation>
             The Signature element is as defined in the XML-Signature
             Syntax and Processing W3C Recommendation 12 February 2002.
@@ -7463,12 +7461,19 @@ Altova has been notified of this problem in XMLSpy.
       </xs:element>
     </xs:sequence>
     <xs:attribute name="versionQIF"
-      type="xs:NMTOKEN"
-      fixed="3.0.0"
-      use="required"/>
+                  type="xs:NMTOKEN"
+                  fixed="3.0.0"
+                  use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required versionQIF attribute specifies the version of QIF
+          to which the document conforms.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="idMax"
-      type="xs:unsignedInt"
-      use="required">
+                  type="xs:unsignedInt"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required idMax attribute specifies the largest Id used in the
@@ -7481,14 +7486,14 @@ Altova has been notified of this problem in XMLSpy.
   <xs:complexType name="QIFDocumentHeaderType">
     <xs:annotation>
       <xs:documentation>
-        The HeaderType contains information about the generation of this QIF
-        document.
+        The QIFDocumentHeaderType contains information about the
+        generation of this QIF document.
       </xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Application"
-        type="ApplicationType"
-        minOccurs="0">
+                  type="ApplicationType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Application element is the information about the
@@ -7498,8 +7503,8 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element name="Author"
-        type="AuthorType"
-        minOccurs="0">
+                  type="AuthorType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Author element is the author who
@@ -7508,8 +7513,8 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element name="ApplicationSource"
-        type="ApplicationType"
-        minOccurs="0">
+                  type="ApplicationType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ApplicationSource element is the information about
@@ -7518,8 +7523,8 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element name="Description"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Description element is a description of this QIF
@@ -7528,8 +7533,8 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element name="Scope"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Scope element defines the scope of this QIF
@@ -7546,7 +7551,7 @@ Altova has been notified of this problem in XMLSpy.
   </xs:complexType>
 
   <xs:element name="Header"
-    type="QIFDocumentHeaderType">
+              type="QIFDocumentHeaderType">
     <xs:annotation>
       <xs:documentation>
         The Header contains information about the creation of the
@@ -7565,8 +7570,8 @@ Altova has been notified of this problem in XMLSpy.
     </xs:annotation>
     <xs:sequence>
       <xs:element name="ExternalQIFDocument"
-        type="ExternalQIFDocumentReferenceType"
-        maxOccurs="unbounded">
+                  type="ExternalQIFDocumentReferenceType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each ExternalQIFDocument element contains information about an 
@@ -7576,8 +7581,8 @@ Altova has been notified of this problem in XMLSpy.
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of external QIF documents
@@ -7590,14 +7595,14 @@ Altova has been notified of this problem in XMLSpy.
   <xs:complexType name="ExternalQIFDocumentReferenceType">
     <xs:annotation>
       <xs:documentation>
-        The ExternalQIFDocumentReferencesType contains information about a
+        The ExternalQIFDocumentReferenceType contains information about a
         single external QIF document and assigns a QIF id used for internal
         referencing.
       </xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="QPId"
-        type="QPIdReferenceType">
+                  type="QPIdReferenceType">
         <xs:annotation>
           <xs:documentation>
             The QPId element is the QPId of the external QIF document
@@ -7606,8 +7611,8 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element name="URI"
-        type="xs:anyURI"
-        minOccurs="0">
+                  type="xs:anyURI"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional URI element is a Uniform Resource Identifier for
@@ -7616,8 +7621,8 @@ Altova has been notified of this problem in XMLSpy.
         </xs:annotation>
       </xs:element>
       <xs:element name="Description"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Description element is a description of the
@@ -7627,8 +7632,8 @@ Altova has been notified of this problem in XMLSpy.
       </xs:element>
     </xs:sequence>
     <xs:attribute name="id"
-      type="QIFIdType"
-      use="required">
+                  type="QIFIdType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The id attribute is the QIF id of the external document reference,

@@ -14,7 +14,7 @@
   attributeFormDefault="unqualified"
   version="3.0.0">
 
-  <xs:include schemaLocation="IntermediatesPMI.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/IntermediatesPMI.xsd"/>
 
   <xs:annotation>
     <xs:documentation>
@@ -31,7 +31,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="File"
-        type="FileType">
+                  type="FileType">
         <xs:annotation>
           <xs:documentation>
             The File element is information about the inspection program
@@ -40,8 +40,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Description"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Description element is a description of the file.
@@ -49,7 +49,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="FormalStandardId"
-        type="QIFReferenceType">
+                  type="QIFReferenceType">
         <xs:annotation>
           <xs:documentation>
             The FormalStandardId element is the id of the standard or
@@ -59,7 +59,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Author"
-        type="EmployeeType">
+                  type="EmployeeType">
         <xs:annotation>
           <xs:documentation>
             The Author element gives information about the author of the
@@ -80,8 +80,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="InspectionProgramGenerationSoftware"
-        type="ArrayReferenceType"
-        minOccurs="0">
+                  type="ArrayReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional InspectionProgramGenerationSoftware element gives
@@ -91,8 +91,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionProgramExecutionSoftware"
-        type="ArrayReferenceType"
-        minOccurs="0">
+                  type="ArrayReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional InspectionProgramExecutionSoftware element gives
@@ -102,8 +102,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="AnalysisSoftware"
-        type="ArrayReferenceType"
-        minOccurs="0">
+                  type="ArrayReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AnalysisSoftware element gives information about
@@ -112,8 +112,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="CADSoftware"
-        type="ArrayReferenceType"
-        minOccurs="0">
+                  type="ArrayReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional CADSoftware element gives information about the
@@ -122,8 +122,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="DMESoftware"
-        type="ArrayReferenceType"
-        minOccurs="0">
+                  type="ArrayReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional DMESoftware element gives information about the
@@ -143,7 +143,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="Attributes"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Attributes element contains user defined
@@ -152,8 +152,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ObjectTemperature"
-        type="MeasuredTemperatureValueType"
-        minOccurs="0">
+                  type="MeasuredTemperatureValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ObjectTemperature element is the temperature of
@@ -163,8 +163,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="AmbientTemperature"
-        type="MeasuredTemperatureValueType"
-        minOccurs="0">
+                  type="MeasuredTemperatureValueType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AmbientTemperature element is the temperature of
@@ -173,8 +173,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="RelativeHumidity"
-        type="MeasuredDecimalType"
-        minOccurs="0">
+                  type="MeasuredDecimalType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional RelativeHumidity element is the relative humidity
@@ -184,7 +184,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="DateAndTime"
-        type="xs:dateTime">
+                  type="xs:dateTime">
         <xs:annotation>
           <xs:documentation>
             The DateAndTime element gives the date and time at which the
@@ -193,8 +193,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="TimeDescription"
-        type="TimeDescriptionType"
-        minOccurs="0">
+                  type="TimeDescriptionType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional TimeDescription element gives the time, relative
@@ -213,8 +213,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Environment"
-        type="EnvironmentType"
-        maxOccurs="unbounded">
+                  type="EnvironmentType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Environment element gives information about an environment
@@ -224,8 +224,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of environments in the
@@ -244,8 +244,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="InspectingOrganization"
-        type="OrganizationType"
-        minOccurs="0">
+                  type="OrganizationType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional InspectingOrganization element gives information
@@ -256,8 +256,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="CustomerOrganization"
-        type="CustomerOrganizationType"
-        minOccurs="0">
+                  type="CustomerOrganizationType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional CustomerOrganization element gives information
@@ -267,8 +267,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="SupplierCode"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SupplierCode element is a number given by the
@@ -281,8 +281,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PurchaseOrderNumber"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PurchaseOrderNumber element is an identifier
@@ -296,8 +296,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="OrderNumber"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional OrderNumber element is an identifier assigned by
@@ -308,8 +308,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ReportNumber"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ReportNumber element is the number assigned to the
@@ -320,8 +320,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionScope"
-        type="InspectionScopeEnumType"
-        minOccurs="0">
+                  type="InspectionScopeEnumType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional, enumerated InspectionScope element is the scope
@@ -330,8 +330,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionMode"
-        type="InspectionModeEnumType"
-        minOccurs="0">
+                  type="InspectionModeEnumType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional, enumerated InspectionMode element is the mode of
@@ -340,8 +340,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PartialInspection"
-        type="PartialInspectionType"
-        minOccurs="0">
+                  type="PartialInspectionType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PartialInspection element gives the rationale for
@@ -352,8 +352,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="NotableEvents"
-        type="NotableEventsType"
-        minOccurs="0">
+                  type="NotableEventsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional NotableEvents element is a list of notable events
@@ -362,8 +362,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="NotedEvents"
-        type="NotedEventsType"
-        minOccurs="0">
+                  type="NotedEventsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional NotedEvents element is a list of noted events
@@ -372,8 +372,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionStart"
-        type="xs:dateTime"
-        minOccurs="0">
+                  type="xs:dateTime"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional InspectionStart element is the date and time in
@@ -382,8 +382,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionEnd"
-        type="xs:dateTime"
-        minOccurs="0">
+                  type="xs:dateTime"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional InspectionEnd element is the date and time in GMT
@@ -394,19 +394,19 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionSoftwareItems"
-        type="InspectionSoftwareItemsType"
-        minOccurs="0">
+                  type="InspectionSoftwareItemsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
-            The optional InspectionSoftwateItems element is a list of
+            The optional InspectionSoftwareItems element is a list of
             information describing the software used in model creation,
             inspection and data analysis.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionProgram"
-        type="InspectionProgramType"
-        minOccurs="0">
+                  type="InspectionProgramType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional InspectionProgram element gives information about
@@ -416,8 +416,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionOperator"
-        type="EmployeeType"
-        minOccurs="0">
+                  type="EmployeeType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional InspectionOperator element gives information about
@@ -427,8 +427,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ReportPreparer"
-        type="EmployeeType"
-        minOccurs="0">
+                  type="EmployeeType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ReportPreparer element gives information about the
@@ -438,8 +438,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ReportPreparationDate"
-        type="xs:dateTime"
-        minOccurs="0">
+                  type="xs:dateTime"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ReportPreparationDate element is the date and time
@@ -448,8 +448,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ReportType"
-        type="xs:token"
-        minOccurs="0">
+                  type="xs:token"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ReportType element is the type of inspection
@@ -458,8 +458,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="SecurityClassification"
-        type="SecurityClassificationType"
-        minOccurs="0">
+                  type="SecurityClassificationType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SecurityClassification element gives the security
@@ -468,8 +468,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PlantLocation"
-        type="LocationType"
-        minOccurs="0">
+                  type="LocationType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PlantLocation element gives information about the
@@ -477,8 +477,7 @@
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:choice
-        minOccurs="0">
+      <xs:choice minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             This optional compositor allows a choice between identifying a
@@ -489,7 +488,7 @@
           </xs:documentation>
         </xs:annotation>
         <xs:element name="ReferencedQIFPlanInstance"
-          type="QPIdFullReferenceType">
+                    type="QPIdFullReferenceType">
           <xs:annotation>
             <xs:documentation>
               The ReferencedQIFPlanInstance element identifies the
@@ -498,8 +497,8 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="ReferencedQIFPlan"
-          type="xs:NMTOKEN"
-          fixed="ThisFile">
+                    type="xs:NMTOKEN"
+                    fixed="ThisFile">
           <xs:annotation>
             <xs:documentation>
               The ReferencedQIFPlan element indicates that the QIF Plans
@@ -510,8 +509,8 @@
         </xs:element>
       </xs:choice>
       <xs:element name="Errors"
-        type="ErrorsType"
-        minOccurs="0">
+                  type="ErrorsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Errors element is a list of any errors that
@@ -520,7 +519,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="Attributes"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Attributes element contains user defined
@@ -540,8 +539,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="InspectingOrganization"
-        type="OrganizationType"
-        minOccurs="0">
+                  type="OrganizationType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional InspectingOrganization element gives information
@@ -552,8 +551,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="CustomerOrganization"
-        type="CustomerOrganizationType"
-        minOccurs="0">
+                  type="CustomerOrganizationType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional CustomerOrganization element gives information
@@ -563,8 +562,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="SupplierCode"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SupplierCode element is a number given by the
@@ -577,8 +576,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PurchaseOrderNumber"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PurchaseOrderNumber element is an identifier
@@ -592,8 +591,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="OrderNumber"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional OrderNumber element is an identifier assigned by
@@ -604,8 +603,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="AsmPathIds"
-        type="ArrayReferenceType"
-        minOccurs="0">
+                  type="ArrayReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AsmPathIds element is the list of AsmPath QIF ids.
@@ -613,8 +612,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ReportNumber"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ReportNumber element is the number to be assigned
@@ -625,8 +624,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionScope"
-        type="InspectionScopeEnumType"
-        minOccurs="0">
+                  type="InspectionScopeEnumType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional, enumerated InspectionScope element is the scope
@@ -635,8 +634,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionMode"
-        type="InspectionModeEnumType"
-        minOccurs="0">
+                  type="InspectionModeEnumType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional, enumerated InspectionMode element is the mode of
@@ -645,8 +644,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PartialInspection"
-        type="PartialInspectionType"
-        minOccurs="0">
+                  type="PartialInspectionType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PartialInspection element gives the rationale for
@@ -657,8 +656,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="NotableEvents"
-        type="NotableEventsType"
-        minOccurs="0">
+                  type="NotableEventsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional NotableEvents element is a list of notable events
@@ -667,19 +666,19 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionSoftwareItems"
-        type="InspectionSoftwareItemsType"
-        minOccurs="0">
+                  type="InspectionSoftwareItemsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
-            The optional InspectionSoftwateItems element is a list of
+            The optional InspectionSoftwareItems element is a list of
             information describing the software to be used in model
             creation, inspection and data analysis.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionProgram"
-        type="InspectionProgramType"
-        minOccurs="0">
+                  type="InspectionProgramType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional InspectionProgram element gives information about
@@ -689,8 +688,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="SecurityClassification"
-        type="SecurityClassificationType"
-        minOccurs="0">
+                  type="SecurityClassificationType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SecurityClassification element gives the security
@@ -699,8 +698,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PlantLocation"
-        type="LocationType"
-        minOccurs="0">
+                  type="LocationType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PlantLocation element gives information about the
@@ -708,8 +707,7 @@
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:choice
-        minOccurs="0">
+      <xs:choice minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             This optional compositor allows a choice between identifying a
@@ -720,7 +718,7 @@
           </xs:documentation>
         </xs:annotation>
         <xs:element name="ReferencedQIFPlanInstance"
-          type="QPIdFullReferenceType">
+                    type="QPIdFullReferenceType">
           <xs:annotation>
             <xs:documentation>
               The ReferencedQIFPlanInstance element identifies the
@@ -729,8 +727,8 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="ReferencedQIFPlan"
-          type="xs:NMTOKEN"
-          fixed="ThisFile">
+                    type="xs:NMTOKEN"
+                    fixed="ThisFile">
           <xs:annotation>
             <xs:documentation>
               The ReferencedQIFPlan element indicates that the QIF Plans
@@ -741,7 +739,7 @@
         </xs:element>
       </xs:choice>
       <xs:element name="FormalStandardId"
-        type="QIFReferenceType">
+                  type="QIFReferenceType">
         <xs:annotation>
           <xs:documentation>
             The FormalStandardId element is the id of the standard or
@@ -751,7 +749,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="Attributes"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Attributes element contains user defined
@@ -771,8 +769,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="ReportNumber"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ReportNumber element is the number to be assigned
@@ -783,8 +781,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ManufacturingProcessId"
-        type="QIFReferenceType"
-        minOccurs="0">
+                  type="QIFReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ManufacturingProcessId element is a reference to
@@ -794,8 +792,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="FixtureId"
-        type="QIFReferenceType"
-        minOccurs="0">
+                  type="QIFReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional FixtureId element is a QIF reference to a fixture
@@ -804,8 +802,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="NotableEventIds"
-        type="ArrayReferenceType"
-        minOccurs="0">
+                  type="ArrayReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional NotableEventIds element is a list of QIF ids of
@@ -814,8 +812,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionSoftwareItems"
-        type="InspectionSoftwareItemsType"
-        minOccurs="0">
+                  type="InspectionSoftwareItemsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional InspectionSoftwareItems element is a list of
@@ -824,8 +822,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionProgram"
-        type="InspectionProgramType"
-        minOccurs="0">
+                  type="InspectionProgramType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional InspectionProgram element gives information about
@@ -835,8 +833,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="MeasurementDeviceIds"
-        type="ArrayReferenceType"
-        minOccurs="0">
+                  type="ArrayReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional MeasurementDeviceIds element is a list of
@@ -846,7 +844,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="Attributes"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Attributes element contains user defined
@@ -866,8 +864,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="SampleNumber"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SampleNumber element is the number assigned to a
@@ -878,8 +876,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="LotNumber"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional LotNumber element is the number of the lot from
@@ -888,8 +886,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ReportNumber"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ReportNumber element is the number assigned to the
@@ -900,8 +898,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ManufacturingProcessId"
-        type="QIFReferenceType"
-        minOccurs="0">
+                  type="QIFReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ManufacturingProcessId element is a reference to
@@ -911,8 +909,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="FixtureId"
-        type="QIFReferenceType"
-        minOccurs="0">
+                  type="QIFReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional FixtureId element is a QIF reference to a fixture
@@ -921,8 +919,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="NotableEventIds"
-        type="ArrayReferenceType"
-        minOccurs="0">
+                  type="ArrayReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional NotableEventIds element is a list of QIF ids of
@@ -931,8 +929,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="NotedEventIds"
-        type="ArrayReferenceType"
-        minOccurs="0">
+                  type="ArrayReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional NotedEventIds element is a list of QIF ids of
@@ -941,8 +939,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionStart"
-        type="xs:dateTime"
-        minOccurs="0">
+                  type="xs:dateTime"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional InspectionStart element is the date and time in
@@ -951,8 +949,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionEnd"
-        type="xs:dateTime"
-        minOccurs="0">
+                  type="xs:dateTime"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional InspectionEnd element is the date and time in GMT
@@ -963,8 +961,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionSoftwareItems"
-        type="InspectionSoftwareItemsType"
-        minOccurs="0">
+                  type="InspectionSoftwareItemsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional InspectionSoftwareItems element is a list of
@@ -973,8 +971,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionProgram"
-        type="InspectionProgramType"
-        minOccurs="0">
+                  type="InspectionProgramType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional InspectionProgram element gives information about
@@ -984,8 +982,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="InspectionOperator"
-        type="EmployeeType"
-        minOccurs="0">
+                  type="EmployeeType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional InspectionOperator element gives information about
@@ -995,8 +993,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="MeasurementDeviceIds"
-        type="ArrayReferenceType"
-        minOccurs="0">
+                  type="ArrayReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional MeasurementDeviceIds element is a list of
@@ -1005,8 +1003,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ProductEnvironments"
-        type="EnvironmentsType"
-        minOccurs="0">
+                  type="EnvironmentsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ProductEnvironments element is a list of
@@ -1015,8 +1013,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Errors"
-        type="ErrorsType"
-        minOccurs="0">
+                  type="ErrorsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Errors element is a list of any errors that
@@ -1025,7 +1023,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element ref="Attributes"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Attributes element contains user defined
@@ -1045,7 +1043,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="ParameterType"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The ParameterType defines the type of the process parameter.
@@ -1053,7 +1051,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ParameterValue"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The ParameterValue is the value of the process parameter.
@@ -1071,8 +1069,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Parameter"
-        type="ProcessParameterType"
-        maxOccurs="unbounded">
+                  type="ProcessParameterType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Parameter element is a single process parameter in the
@@ -1082,8 +1080,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of parameters in the list.
@@ -1101,7 +1099,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="Attributes"
-        minOccurs="0">
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Attributes element contains user defined
@@ -1110,8 +1108,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Description"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Description element gives the manufacturing
@@ -1120,8 +1118,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Job"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Job element is the job number for the
@@ -1130,8 +1128,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Revision"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Revision element is the revision number of the
@@ -1140,8 +1138,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PreviousOperationId"
-        type="QIFReferenceType"
-        minOccurs="0">
+                  type="QIFReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PreviousOperationId element identifies an instance
@@ -1152,8 +1150,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Path"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Path element gives the physical route used in a
@@ -1163,8 +1161,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="MachineManufacturerName"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional MachineManufacturerName element is the name of the
@@ -1173,8 +1171,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="MachineIdentifier"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional MachineIdentifier element is the identifier for
@@ -1183,8 +1181,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="OperatorIdentifier"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional OperatorIdentifier element gives an identifier for
@@ -1193,8 +1191,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Shift"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Shift element gives the shift in which this
@@ -1203,8 +1201,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Department"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Department element is the name of the department
@@ -1213,8 +1211,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ResponsibilityIdentifier"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ResponsibilityIdentifier element gives an
@@ -1224,8 +1222,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PlantSector"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PlantSector element is the plant sector in which
@@ -1234,8 +1232,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ProcessParameters"
-        type="ProcessParametersType"
-        minOccurs="0">
+                  type="ProcessParametersType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ProcessParameters element gives the type and value
@@ -1244,8 +1242,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="AssociatedTraceabilityId"
-        type="QIFReferenceType"
-        minOccurs="0">
+                  type="QIFReferenceType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AssociatedTraceabilityId element identifies an
@@ -1260,8 +1258,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="id"
-      type="QIFIdType"
-      use="required">
+                  type="QIFIdType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The id attribute is the QIF id of the manufacturing process
@@ -1281,8 +1279,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="ManufacturingProcessTraceability"
-        type="ManufacturingProcessTraceabilityType"
-        maxOccurs="unbounded">
+                  type="ManufacturingProcessTraceabilityType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each ManufacturingProcessTraceability element gives
@@ -1292,8 +1290,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of manufacturing
@@ -1304,7 +1302,7 @@
   </xs:complexType>
 
   <xs:element name="ManufacturingProcessTraceabilities"
-    type="ManufacturingProcessTraceabilitiesType">
+              type="ManufacturingProcessTraceabilitiesType">
     <xs:annotation>
       <xs:documentation>
         The global ManufacturingProcessTraceabilities element contains a
@@ -1323,8 +1321,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Error"
-        type="xs:string"
-        maxOccurs="unbounded">
+                  type="xs:string"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Error element describes an error that occurred during the
@@ -1334,8 +1332,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of Error elements in the
@@ -1354,7 +1352,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="BaselineProductNumber"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The BaselineProductNumber element gives an identifier of a
@@ -1365,8 +1363,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="BaselineProductVersion"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional BaselineProductVersion element is the version of
@@ -1375,7 +1373,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ReasonForPartialInspection"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The ReasonForPartialInspection element is the reason for a
@@ -1412,7 +1410,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="TimeDescriptionEnum"
-        type="TimeDescriptionEnumType">
+                  type="TimeDescriptionEnumType">
         <xs:annotation>
           <xs:documentation>
             The TimeDescriptionEnum element describes an often-used
@@ -1421,7 +1419,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="OtherTimeDescription"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The OtherTimeDescription element gives a relative time in
@@ -1475,8 +1473,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="ExternalQIFReferencesCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ExternalQIFReferencesCount element is the
@@ -1485,8 +1483,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="DatumDefinitionsCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional DatumDefinitionsCount element is the number of
@@ -1495,8 +1493,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="DatumTargetDefinitionsCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional DatumTargetDefinitionsCount element is the number
@@ -1505,8 +1503,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="TransformsCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional TransformsCount element is the number of
@@ -1515,8 +1513,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="CoordinateSystemsCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional CoordinateSystemsCount element is the number of
@@ -1525,8 +1523,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="DatumReferenceFramesCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional DatumReferenceFramesCount element is the number of
@@ -1535,8 +1533,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="MeasurementResourcesCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional MeasurementResourcesCount element is the number of
@@ -1545,8 +1543,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ThreadSpecificationsCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ThreadSpecificationsCount element is the number of
@@ -1555,8 +1553,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ProductGeometrySetCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ProductGeometrySetCount element is the number of
@@ -1565,8 +1563,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ProductTopologySetCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ProductTopologySetCount element is the number of
@@ -1575,8 +1573,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ProductNoteSetCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ProductNoteSetCount element is the number of
@@ -1585,8 +1583,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ProductNoteFlagSetCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ProductNoteFlagSetCount element is the number of
@@ -1595,8 +1593,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ProductPartNoteSetCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ProductPartNoteSetCount element is the number of
@@ -1605,8 +1603,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ProductViewSetCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ProductViewSetCount element is the number of views
@@ -1615,8 +1613,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ProductLayerSetCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ProductLayerSetCount element is the number of model
@@ -1625,8 +1623,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ProductCoordinateSystemSetCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ProductCoordinateSystemSetCount element is the
@@ -1635,8 +1633,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ProductVisualizationSetCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ProductVisualizationSetCount element is the number
@@ -1646,8 +1644,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ProductAuxiliarySetCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ProductAuxiliarySetCount element is the number of
@@ -1656,8 +1654,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ProductPartSetCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ProductPartSetCount element is the number of
@@ -1666,8 +1664,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ProductAssemblySetCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ProductAssemblySetCount element is the number of
@@ -1676,8 +1674,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ProductComponentSetCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ProductComponentSetCount element is the number of
@@ -1686,8 +1684,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ProductAsmPathsCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ProductAsmPathsCount element is the number of asm
@@ -1696,8 +1694,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="FeatureDefinitionsCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional FeatureDefinitionsCount element is the number of
@@ -1706,8 +1704,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="FeatureNominalsCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional FeatureNominalsCount element is the number of
@@ -1716,8 +1714,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="FeatureItemsCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional FeatureItemsCount element is the number of
@@ -1726,8 +1724,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="CharacteristicDefinitionsCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional CharacteristicDefinitionsCount element is the
@@ -1736,8 +1734,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="DefaultCharacteristicDefinitionsCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional DefaultCharacteristicDefinitionsCount element is
@@ -1747,8 +1745,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="DefaultToleranceDefinitionsCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional DefaultToleranceDefinitionsCount element is the
@@ -1759,8 +1757,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="CharacteristicNominalsCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional CharacteristicNominalsCount element is the number
@@ -1769,8 +1767,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="CharacteristicItemsCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional CharacteristicItemsCount element is the number of
@@ -1779,8 +1777,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="CharacteristicGroupsCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional CharacteristicGroupsCount element is the number of
@@ -1789,8 +1787,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="WeldSymbolSetCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional WeldSymbolSetCount element is the number of
@@ -1799,8 +1797,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="MeasurementsPlanPresent"
-        type="xs:boolean"
-        minOccurs="0">
+                  type="xs:boolean"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional MeasurementsPlanPresent element is a boolean
@@ -1810,8 +1808,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="MeasurementsResultsCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional MeasurementsResultsCount element is the number of
@@ -1820,8 +1818,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="StatisticalStudyPlansCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional StatisticalStudyPlansCount element is the number
@@ -1830,8 +1828,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="StatisticalStudiesResultsCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional StatisticalStudiesResultsCount element is the
@@ -1840,8 +1838,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="CorrectiveActionPlansCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional CorrectiveActionPlansCount element is the number
@@ -1850,8 +1848,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ManufacturingProcessTraceabilitiesCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ManufacturingProcessTraceabilitiesCount element is
@@ -1861,8 +1859,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="FeatureRulesCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional FeatureRulesCount element is the number of
@@ -1871,8 +1869,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="DMESelectionRulesCount"
-        type="xs:unsignedInt"
-        minOccurs="0">
+                  type="xs:unsignedInt"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional DMESelectionRulesCount element is the number of
@@ -1881,8 +1879,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="SignaturePresent"
-        type="xs:boolean"
-        minOccurs="0">
+                  type="xs:boolean"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SignaturePresent element is a boolean
@@ -1919,28 +1917,26 @@
         data quality verification and validation check applies.
       </xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:choice>
-        <xs:element name="AreaEnum"
-          type="ProductDataQualityAreaEnumType">
-          <xs:annotation>
-            <xs:documentation>
-              The AreaEnum element describes an often-used product data
-              quality area.
-            </xs:documentation>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="OtherArea"
-          type="xs:string">
-          <xs:annotation>
-            <xs:documentation>
-              The OtherArea element describes the product data quality area
-              in natural language.
-            </xs:documentation>
-          </xs:annotation>
-        </xs:element>
-      </xs:choice>
-    </xs:sequence>
+    <xs:choice>
+      <xs:element name="AreaEnum"
+                  type="ProductDataQualityAreaEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The AreaEnum element describes an often-used product data
+            quality area.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OtherArea"
+                  type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            The OtherArea element describes the product data quality area
+            in natural language.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
   </xs:complexType>
 
   <xs:complexType name="ProductDataQualityCheckType">
@@ -1952,7 +1948,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Type"
-        type="ProductDataQualityAreaType">
+                  type="ProductDataQualityAreaType">
         <xs:annotation>
           <xs:documentation>
             The Type element defines the area to which this product
@@ -1961,7 +1957,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Description"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The Description element describes this particular product
@@ -1970,7 +1966,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Requirements"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The Requirements element defines the requirements of this
@@ -1979,8 +1975,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="SourceOfRequiredness"
-        type="xs:string"
-        minOccurs="0">
+                  type="xs:string"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SourceOfRequiredness element defines why this
@@ -1990,8 +1986,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ApplicationTool"
-        type="SoftwareType"
-        minOccurs="0">
+                  type="SoftwareType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ApplicationTool element gives information about
@@ -2001,8 +1997,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="XsltFile"
-        type="xs:anyURI"
-        minOccurs="0">
+                  type="xs:anyURI"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional XsltFile element is the URI for an XSLT file used
@@ -2011,7 +2007,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ResultStatement"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The ResultStatement element makes a statement about the result
@@ -2020,7 +2016,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ResultStatus"
-        type="CheckStatusEnumType">
+                  type="CheckStatusEnumType">
         <xs:annotation>
           <xs:documentation>
             The ResultStatus element is the status of this product data
@@ -2048,25 +2044,25 @@
   <xs:complexType name="ProductDataQualityChecksType">
     <xs:annotation>
       <xs:documentation>
-        The ProductDataQualityType defines a list of product
+        The ProductDataQualityChecksType defines a list of product
         data quality verification and validation checks.
       </xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="ProductDataQualityCheck"
-        type="ProductDataQualityCheckType"
-        maxOccurs="unbounded">
+                  type="ProductDataQualityCheckType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
-            Each ProductDataQualityCheckType element describes a single
+            Each ProductDataQualityCheck element describes a single
             product data quality check.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of product data quality
@@ -2085,7 +2081,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="ChecksPerformed"
-        type="xs:boolean">
+                  type="xs:boolean">
         <xs:annotation>
           <xs:documentation>
             The ChecksPerformed element indicates whether required product
@@ -2094,7 +2090,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ChecksApproved"
-        type="xs:boolean">
+                  type="xs:boolean">
         <xs:annotation>
           <xs:documentation>
             The ChecksApproved element indicates whether required product
@@ -2103,7 +2099,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Declaration"
-        type="xs:string">
+                  type="xs:string">
         <xs:annotation>
           <xs:documentation>
             The Declaration element is a declaration of the product data
@@ -2112,8 +2108,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ProductDataQualityChecks"
-        type="ProductDataQualityChecksType"
-        minOccurs="0">
+                  type="ProductDataQualityChecksType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ProductDataQualityChecks element describes one or

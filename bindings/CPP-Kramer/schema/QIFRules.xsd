@@ -14,11 +14,19 @@
   attributeFormDefault="unqualified"
   version="3.0.0">
 
-  <xs:include schemaLocation="Expressions.xsd"/>
-  <xs:include schemaLocation="IntermediatesPMI.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/Expressions.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/IntermediatesPMI.xsd"/>
 
   <xs:element name="Rules"
-    type="QIFRulesType"/>
+              type="QIFRulesType">
+    <xs:annotation>
+      <xs:documentation>
+        The global Rules element contains rules for one or both of
+        (1) inspecting features and (2) selecting dimensional measuring
+        equipment.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
 
   <xs:complexType name="QIFRulesType">
     <xs:annotation>
@@ -33,8 +41,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Version"
-        type="VersionType"
-        minOccurs="0">
+                  type="VersionType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Version element gives version information about
@@ -43,8 +51,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="RulesUnits"
-        type="RulesUnitsType"
-        minOccurs="0">
+                  type="RulesUnitsType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional RulesUnits element defines the units that apply in
@@ -57,8 +65,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="FeatureRules"
-        type="FeatureRulesType"
-        minOccurs="0">
+                  type="FeatureRulesType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional FeatureRules element defines rules for
@@ -69,8 +77,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="DMESelectionRules"
-        type="DMESelectionRulesType"
-        minOccurs="0">
+                  type="DMESelectionRulesType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional DMESelectionRules element defines a set of rules
@@ -91,8 +99,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="AreaUnit"
-        type="AreaUnitType"
-        minOccurs="0">
+                  type="AreaUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AreaUnit element defines units for area values.
@@ -100,8 +108,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="AngularUnit"
-        type="AngularUnitType"
-        minOccurs="0">
+                  type="AngularUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional AngularUnit element defines units for angle
@@ -110,8 +118,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ForceUnit"
-        type="ForceUnitType"
-        minOccurs="0">
+                  type="ForceUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional ForceUnit element defines units for force values.
@@ -119,8 +127,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="LinearUnit"
-        type="LinearUnitType"
-        minOccurs="0">
+                  type="LinearUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional LinearUnit element defines units for length
@@ -129,8 +137,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="MassUnit"
-        type="MassUnitType"
-        minOccurs="0">
+                  type="MassUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional MassUnit element defines units for mass values.
@@ -138,8 +146,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="PressureUnit"
-        type="PressureUnitType"
-        minOccurs="0">
+                  type="PressureUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional PressureUnit element defines units for pressure
@@ -148,8 +156,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="SpeedUnit"
-        type="SpeedUnitType"
-        minOccurs="0">
+                  type="SpeedUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SpeedUnit element defines units for speed values.
@@ -157,8 +165,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="TemperatureUnit"
-        type="TemperatureUnitType"
-        minOccurs="0">
+                  type="TemperatureUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional TemperatureUnit element defines units for
@@ -167,8 +175,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="TimeUnit"
-        type="TimeUnitType"
-        minOccurs="0">
+                  type="TimeUnitType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional TimeUnit element defines units for time values.
@@ -177,8 +185,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of unit definitions in the
@@ -243,8 +251,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="IfThenElseFeatureRules"
-        type="IfThenElseFeatureRulesType"
-        minOccurs="0">
+                  type="IfThenElseFeatureRulesType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional IfThenElseFeatureRules element is a set of rules
@@ -257,8 +265,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="MaxFeatureRules"
-        type="MaxFeatureRulesType"
-        minOccurs="0">
+                  type="MaxFeatureRulesType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional MaxFeatureRules element is a set of rules for
@@ -276,7 +284,7 @@
   </xs:complexType>
 
   <xs:complexType name="QIFRuleBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The abstract QIFRuleBaseType defines the base type for all QIF
@@ -285,8 +293,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="UUID"
-        type="QPIdType"
-        minOccurs="0">
+                  type="QPIdType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional UUID element is a persistent identifier for the
@@ -297,7 +305,7 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="name"
-      type="xs:token">
+                  type="xs:token">
       <xs:annotation>
         <xs:documentation>
           The optional name attribute is the name of the rule.
@@ -326,7 +334,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="IfThenFeatureRule"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each IfThenFeatureRule element defines a conditional rule for
@@ -335,8 +343,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Else"
-        type="ElseRuleType"
-        minOccurs="0">
+                  type="ElseRuleType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Else element is an unconditional rule for
@@ -346,8 +354,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of rules in this list,
@@ -384,7 +392,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="IfThenFeatureRule"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each IfThenFeatureRule element defines a conditional rule for
@@ -395,8 +403,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Else"
-        type="ElseRuleType"
-        minOccurs="0">
+                  type="ElseRuleType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional Else element is an unconditional rule for
@@ -406,8 +414,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of rules in this list,
@@ -419,7 +427,7 @@
   </xs:complexType>
 
   <xs:complexType name="PointRuleBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The abstract PointRuleBaseType defines the base type for rules for
@@ -445,7 +453,7 @@
       <xs:extension base="PointRuleBaseType">
         <xs:sequence>
           <xs:element ref="BooleanExpression"
-            minOccurs="0">
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional BooleanExpression element is the 'if' part of
@@ -454,8 +462,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenPoints"
-            type="ThenPointsType"
-            minOccurs="0">
+                      type="ThenPointsType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPoints element gives the quantity of
@@ -479,7 +487,7 @@
       <xs:extension base="PointRuleBaseType">
         <xs:sequence>
           <xs:element name="ThenPoints"
-            type="ThenPointsType">
+                      type="ThenPointsType">
             <xs:annotation>
               <xs:documentation>
                 The ThenPoints element gives (only) the quantity of points
@@ -502,54 +510,51 @@
         is in points per unit area in area units.
       </xs:documentation>
     </xs:annotation>
-    <xs:sequence>
-      <xs:choice
-        minOccurs="0">
-        <xs:element name="NumberOfPoints"
-          type="xs:unsignedInt">
-          <xs:annotation>
-            <xs:documentation>
-              The NumberOfPoints element is the number of points to be
-              used. A larger or smaller number of points must not be used.
-              This element is in an optional choice.
-            </xs:documentation>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="MinPoints"
-          type="xs:unsignedInt">
-          <xs:annotation>
-            <xs:documentation>
-              The MinPoints element is the minimum number of points to be
-              used. A smaller number of points must not be used. A larger
-              number of points may be used. This element is in an optional
-              choice.
-            </xs:documentation>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="PointDensity"
-          type="PositiveDecimalType">
-          <xs:annotation>
-            <xs:documentation>
-              The PointDensity element is the density of points to be used.
-              A larger or smaller point density must not be used, except as
-              is unavoidable because the number of points is an integer.
-              This element is in an optional choice.
-            </xs:documentation>
-          </xs:annotation>
-        </xs:element>
-        <xs:element name="MinPointDensity"
-          type="PositiveDecimalType">
-          <xs:annotation>
-            <xs:documentation>
-              The MinPointDensity element is the minimum density of points
-              to be used. A smaller point density must not be used. A larger
-              point density may be used. This element is in an optional
-              choice.
-            </xs:documentation>
-          </xs:annotation>
-        </xs:element>
-      </xs:choice>
-    </xs:sequence>
+    <xs:choice minOccurs="0">
+      <xs:element name="NumberOfPoints"
+                  type="xs:unsignedInt">
+        <xs:annotation>
+          <xs:documentation>
+            The NumberOfPoints element is the number of points to be
+            used. A larger or smaller number of points must not be used.
+            This element is in an optional choice.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MinPoints"
+                  type="xs:unsignedInt">
+        <xs:annotation>
+          <xs:documentation>
+            The MinPoints element is the minimum number of points to be
+            used. A smaller number of points must not be used. A larger
+            number of points may be used. This element is in an optional
+            choice.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PointDensity"
+                  type="PositiveDecimalType">
+        <xs:annotation>
+          <xs:documentation>
+            The PointDensity element is the density of points to be used.
+            A larger or smaller point density must not be used, except as
+            is unavoidable because the number of points is an integer.
+            This element is in an optional choice.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MinPointDensity"
+                  type="PositiveDecimalType">
+        <xs:annotation>
+          <xs:documentation>
+            The MinPointDensity element is the minimum density of points
+            to be used. A smaller point density must not be used. A larger
+            point density may be used. This element is in an optional
+            choice.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
   </xs:complexType>
 
   <xs:annotation>
@@ -590,8 +595,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="CirclePointSamplingStrategyType"
-            minOccurs="0">
+                      type="CirclePointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -601,8 +606,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -626,7 +631,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="ClosedCurvePointSamplingStrategyEnumType">
+                  type="ClosedCurvePointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -635,7 +640,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point
@@ -664,8 +669,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="CircularArcPointSamplingStrategyType"
-            minOccurs="0">
+                      type="CircularArcPointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -675,8 +680,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -700,7 +705,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="OpenCurvePointSamplingStrategyEnumType">
+                  type="OpenCurvePointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -709,7 +714,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -738,8 +743,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="ConePointSamplingStrategyType"
-            minOccurs="0">
+                      type="ConePointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -749,8 +754,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -774,7 +779,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="ConePointSamplingStrategyEnumType">
+                  type="ConePointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -783,7 +788,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -812,8 +817,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="ConicalSegmentPointSamplingStrategyType"
-            minOccurs="0">
+                      type="ConicalSegmentPointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -823,8 +828,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -849,7 +854,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="ConePointSamplingStrategyEnumType">
+                  type="ConePointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -858,7 +863,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -887,8 +892,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="CylinderPointSamplingStrategyType"
-            minOccurs="0">
+                      type="CylinderPointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -898,8 +903,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -923,7 +928,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="SurfaceOfRevolutionPointSamplingStrategyEnumType">
+                  type="SurfaceOfRevolutionPointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -932,7 +937,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -961,8 +966,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="CylindricalSegmentPointSamplingStrategyType"
-            minOccurs="0">
+                      type="CylindricalSegmentPointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -972,8 +977,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -998,7 +1003,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="SurfaceOfRevolutionPointSamplingStrategyEnumType">
+                  type="SurfaceOfRevolutionPointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -1007,7 +1012,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -1038,8 +1043,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="EllipsePointSamplingStrategyType"
-            minOccurs="0">
+                      type="EllipsePointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -1049,8 +1054,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -1074,7 +1079,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="ClosedCurvePointSamplingStrategyEnumType">
+                  type="ClosedCurvePointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -1083,7 +1088,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -1112,8 +1117,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="EllipticalArcPointSamplingStrategyType"
-            minOccurs="0">
+                      type="EllipticalArcPointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -1123,8 +1128,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -1148,7 +1153,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="OpenCurvePointSamplingStrategyEnumType">
+                  type="OpenCurvePointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -1157,7 +1162,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -1186,8 +1191,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="ElongatedCirclePointSamplingStrategyType"
-            minOccurs="0">
+                      type="ElongatedCirclePointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -1197,8 +1202,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -1223,7 +1228,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="OpenCurvePointSamplingStrategyEnumType">
+                  type="OpenCurvePointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -1232,7 +1237,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -1261,8 +1266,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="ElongatedCylinderPointSamplingStrategyType"
-            minOccurs="0">
+                      type="ElongatedCylinderPointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -1272,8 +1277,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -1298,7 +1303,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="ElongatedCylinderPointSamplingStrategyEnumType">
+                  type="ElongatedCylinderPointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -1307,7 +1312,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -1336,8 +1341,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="ExtrudedCrossSectionPointSamplingStrategyType"
-            minOccurs="0">
+                      type="ExtrudedCrossSectionPointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -1347,8 +1352,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -1373,7 +1378,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="ExtrudedCrossSectionPointSamplingStrategyEnumType">
+                  type="ExtrudedCrossSectionPointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -1382,7 +1387,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -1413,8 +1418,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="LinePointSamplingStrategyType"
-            minOccurs="0">
+                      type="LinePointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -1424,8 +1429,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -1449,7 +1454,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="OpenCurvePointSamplingStrategyEnumType">
+                  type="OpenCurvePointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -1458,7 +1463,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -1490,8 +1495,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="OppositeAngledLinesPointSamplingStrategyType"
-            minOccurs="0">
+                      type="OppositeAngledLinesPointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -1501,8 +1506,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -1527,7 +1532,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="OpenCurvePointSamplingStrategyEnumType">
+                  type="OpenCurvePointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -1536,7 +1541,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -1566,8 +1571,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="OppositeAngledPlanesPointSamplingStrategyType"
-            minOccurs="0">
+                      type="OppositeAngledPlanesPointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -1577,8 +1582,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -1603,7 +1608,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="PlanePointSamplingStrategyEnumType">
+                  type="PlanePointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -1612,7 +1617,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -1642,8 +1647,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="OppositeParallelLinesPointSamplingStrategyType"
-            minOccurs="0">
+                      type="OppositeParallelLinesPointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -1653,8 +1658,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -1679,7 +1684,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="OpenCurvePointSamplingStrategyEnumType">
+                  type="OpenCurvePointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -1688,7 +1693,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -1718,8 +1723,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="OppositeParallelPlanesPointSamplingStrategyType"
-            minOccurs="0">
+                      type="OppositeParallelPlanesPointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -1729,8 +1734,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -1755,7 +1760,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="PlanePointSamplingStrategyEnumType">
+                  type="PlanePointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -1764,7 +1769,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -1793,8 +1798,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="PlanePointSamplingStrategyType"
-            minOccurs="0">
+                      type="PlanePointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -1804,8 +1809,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -1829,7 +1834,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="PlanePointSamplingStrategyEnumType">
+                  type="PlanePointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -1838,7 +1843,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -1871,8 +1876,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="PointDefinedCurvePointSamplingStrategyType"
-            minOccurs="0">
+                      type="PointDefinedCurvePointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -1882,8 +1887,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -1908,7 +1913,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="PointDefinedPointSamplingStrategyEnumType">
+                  type="PointDefinedPointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -1917,7 +1922,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -1947,8 +1952,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="PointDefinedSurfacePointSamplingStrategyType"
-            minOccurs="0">
+                      type="PointDefinedSurfacePointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -1958,11 +1963,11 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
-                The optional ThenPointAlgorithm element is the substitute
+                The optional ThenFittingAlgorithm element is the substitute
                 feature algorithm to be used if the 'if' part of the rule
                 does not exist or evaluates to true.
               </xs:documentation>
@@ -1984,7 +1989,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="PointDefinedPointSamplingStrategyEnumType">
+                  type="PointDefinedPointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -1993,7 +1998,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -2022,8 +2027,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="PointPointSamplingStrategyType"
-            minOccurs="0">
+                      type="PointPointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -2047,7 +2052,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="PointPointSamplingStrategyEnumType">
+                  type="PointPointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -2056,7 +2061,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -2085,8 +2090,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="SpherePointSamplingStrategyType"
-            minOccurs="0">
+                      type="SpherePointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -2096,8 +2101,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -2121,7 +2126,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="SpherePointSamplingStrategyEnumType">
+                  type="SpherePointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -2130,7 +2135,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -2159,8 +2164,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="SphericalSegmentPointSamplingStrategyType"
-            minOccurs="0">
+                      type="SphericalSegmentPointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -2170,8 +2175,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -2196,7 +2201,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="SpherePointSamplingStrategyEnumType">
+                  type="SpherePointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -2205,7 +2210,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point
@@ -2235,8 +2240,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="SurfaceOfRevolutionPointSamplingStrategyType"
-            minOccurs="0">
+                      type="SurfaceOfRevolutionPointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -2246,8 +2251,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -2272,7 +2277,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="SurfaceOfRevolutionPointSamplingStrategyEnumType">
+                  type="SurfaceOfRevolutionPointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -2281,7 +2286,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -2312,8 +2317,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="ToroidalSegmentPointSamplingStrategyType"
-            minOccurs="0">
+                      type="ToroidalSegmentPointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -2323,8 +2328,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -2349,7 +2354,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="SurfaceOfRevolutionPointSamplingStrategyEnumType">
+                  type="SurfaceOfRevolutionPointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -2358,7 +2363,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -2387,8 +2392,8 @@
       <xs:extension base="IfThenFeatureRuleType">
         <xs:sequence>
           <xs:element name="ThenPointStrategy"
-            type="TorusPointSamplingStrategyType"
-            minOccurs="0">
+                      type="TorusPointSamplingStrategyType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenPointStrategy element is the point
@@ -2398,8 +2403,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ThenFittingAlgorithm"
-            type="SubstituteFeatureAlgorithmType"
-            minOccurs="0">
+                      type="SubstituteFeatureAlgorithmType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional ThenFittingAlgorithm element is the substitute
@@ -2423,7 +2428,7 @@
     </xs:annotation>
     <xs:choice>
       <xs:element name="PointSamplingStrategyEnum"
-        type="SurfaceOfRevolutionPointSamplingStrategyEnumType">
+                  type="SurfaceOfRevolutionPointSamplingStrategyEnumType">
         <xs:annotation>
           <xs:documentation>
             The PointSamplingStrategyEnum element is an often-used point
@@ -2432,7 +2437,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="UserDefinedStrategy"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The UserDefinedStrategy element is the name of a point sampling
@@ -2494,8 +2499,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="DMEDecisionRule"
-        type="IfThenDMERuleType"
-        maxOccurs="unbounded">
+                  type="IfThenDMERuleType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each DMEDecisionRule element is a rule constraining the
@@ -2505,8 +2510,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="defaultDesirability"
-      type="ZeroToOneType"
-      default="1.0">
+                  type="ZeroToOneType"
+                  default="1.0">
       <xs:annotation>
         <xs:documentation>
           The optional defaultDesirability attribute is the default value
@@ -2518,8 +2523,8 @@
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of rules in the set.
@@ -2538,7 +2543,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="DMEDecision"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each DMEDecision element indicates whether a particular DME or
@@ -2549,8 +2554,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of DMEDecisions.
@@ -2560,7 +2565,7 @@
   </xs:complexType>
 
   <xs:complexType name="DMEDecisionBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The DMEDecisionBaseType is the base type for making a decision on a
@@ -2580,7 +2585,7 @@
   </xs:complexType>
 
   <xs:complexType name="ApplicabilityBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The ApplicabilityBaseType is the base class for types that describe
@@ -2603,7 +2608,7 @@
   <xs:complexType name="QIFMustNotType">
     <xs:annotation>
       <xs:documentation>
-        The QIFMustType indicates that a 'then' must not apply.
+        The QIFMustNotType indicates that a 'then' must not apply.
       </xs:documentation>
     </xs:annotation>
     <xs:complexContent>
@@ -2620,7 +2625,7 @@
     <xs:complexContent>
       <xs:extension base="ApplicabilityBaseType">
         <xs:attribute name="desirability"
-          type="ZeroToOneType">
+                      type="ZeroToOneType">
           <xs:annotation>
             <xs:documentation>
               The optional desirability attribute indicates the
@@ -2646,7 +2651,7 @@
       <xs:extension base="DMEDecisionBaseType">
         <xs:sequence>
           <xs:element name="DMEClassName"
-            type="DMEClassNameEnumType">
+                      type="DMEClassNameEnumType">
             <xs:annotation>
               <xs:documentation>
                 The DMEClassName element is the name of a class of DME.
@@ -2654,11 +2659,11 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ParameterConstraints"
-            type="DMEParameterConstraintSetType"
-            minOccurs="0">
+                      type="DMEParameterConstraintSetType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
-                The optional DMEParameterConstraints element is a set of
+                The optional ParameterConstraints element is a set of
                 constraints on parameters of the DME being considered. If
                 this element is used with 'must not', only those DMEs
                 satisfying the constraints are ruled out.
@@ -2679,8 +2684,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="DMEParameterConstraint"
-        type="DMEParameterConstraintType"
-        maxOccurs="unbounded">
+                  type="DMEParameterConstraintType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each DMEParameterConstraint element is a constraint
@@ -2690,8 +2695,8 @@
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of DMEParameterConstraint
@@ -2718,7 +2723,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="ParameterName"
-        type="xs:token">
+                  type="xs:token">
         <xs:annotation>
           <xs:documentation>
             The ParameterName element is the xpath to a numerical-valued
@@ -2731,7 +2736,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Comparison"
-        type="ArithmeticComparisonEnumType">
+                  type="ArithmeticComparisonEnumType">
         <xs:annotation>
           <xs:documentation>
             The Comparison element is the comparison to perform between
@@ -2762,7 +2767,7 @@
       <xs:extension base="DMEDecisionBaseType">
         <xs:sequence>
           <xs:element name="DMEId"
-            type="QIFReferenceType">
+                      type="QIFReferenceType">
             <xs:annotation>
               <xs:documentation>
                 The DMEId element is the QIF id of a measurement resource.
@@ -2786,7 +2791,7 @@
       <xs:extension base="DMEDecisionBaseType">
         <xs:sequence>
           <xs:element name="Manufacturer"
-            type="xs:string">
+                      type="xs:string">
             <xs:annotation>
               <xs:documentation>
                 The Manufacturer element is the name of the manufacturer of
@@ -2795,7 +2800,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ModelNumber"
-            type="xs:string">
+                      type="xs:string">
             <xs:annotation>
               <xs:documentation>
                 The ModelNumber element is the model number of the DME.
@@ -2803,8 +2808,8 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="SerialNumber"
-            type="xs:string"
-            minOccurs="0">
+                      type="xs:string"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional SerialNumber element is the serial number of
@@ -2829,7 +2834,7 @@
       <xs:extension base="QIFRuleBaseType">
         <xs:sequence>
           <xs:element ref="BooleanExpression"
-            minOccurs="0">
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional BooleanExpression element is the 'if' part of
@@ -2838,7 +2843,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="DMEThen"
-            type="DMEThenType">
+                      type="DMEThenType">
             <xs:annotation>
               <xs:documentation>
                 The DMEThen element is set of constraints on the decision
@@ -2868,153 +2873,183 @@
 <!-- START SUBSTITUTION GROUP FOR IfThenFeatureRule -->
 
   <xs:element name="IfThenFeatureRule"
-    type="IfThenFeatureRuleType"/>
+              type="IfThenFeatureRuleType">
+    <xs:annotation>
+      <xs:documentation>
+        The global IfThenFeatureRule element is the head of a substitution
+        group. Any element that is a member of the group may be
+        substituted for the IfThenFeatureRule element anywhere the
+        IfThenFeatureRule element could be used in an instance file.  The
+        allowed substitutes are all derived from IfThenFeatureRuleType.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
 
   <xs:element name="IfThenCurveRule"
-    type="IfThenCurveRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenCurveRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenSurfaceRule"
-    type="IfThenSurfaceRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenSurfaceRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenCircleRule"
-    type="IfThenCircleRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenCircleRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenCircularArcRule"
-    type="IfThenCircularArcRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenCircularArcRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenConeRule"
-    type="IfThenConeRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenConeRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenConicalSegmentRule"
-    type="IfThenConicalSegmentRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenConicalSegmentRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenCylinderRule"
-    type="IfThenCylinderRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenCylinderRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenCylindricalSegmentRule"
-    type="IfThenCylindricalSegmentRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenCylindricalSegmentRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenEllipseRule"
-    type="IfThenEllipseRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenEllipseRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenEllipticalArcRule"
-    type="IfThenEllipticalArcRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenEllipticalArcRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenElongatedCircleRule"
-    type="IfThenElongatedCircleRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenElongatedCircleRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenElongatedCylinderRule"
-    type="IfThenElongatedCylinderRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenElongatedCylinderRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenExtrudedCrossSectionRule"
-    type="IfThenExtrudedCrossSectionRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenExtrudedCrossSectionRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenLineRule"
-    type="IfThenLineRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenLineRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenOppositeAngledLinesRule"
-    type="IfThenOppositeAngledLinesRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenOppositeAngledLinesRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenOppositeAngledPlanesRule"
-    type="IfThenOppositeAngledPlanesRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenOppositeAngledPlanesRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenOppositeParallelLinesRule"
-    type="IfThenOppositeParallelLinesRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenOppositeParallelLinesRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenOppositeParallelPlanesRule"
-    type="IfThenOppositeParallelPlanesRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenOppositeParallelPlanesRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenPlaneRule"
-    type="IfThenPlaneRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenPlaneRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenPointDefinedCurveRule"
-    type="IfThenPointDefinedCurveRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenPointDefinedCurveRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenPointDefinedSurfaceRule"
-    type="IfThenPointDefinedSurfaceRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenPointDefinedSurfaceRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenPointRule"
-    type="IfThenPointRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenPointRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenSphereRule"
-    type="IfThenSphereRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenSphereRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenSphericalSegmentRule"
-    type="IfThenSphericalSegmentRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenSphericalSegmentRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenSurfaceOfRevolutionRule"
-    type="IfThenSurfaceOfRevolutionRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenSurfaceOfRevolutionRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenToroidalSegmentRule"
-    type="IfThenToroidalSegmentRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenToroidalSegmentRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
   <xs:element name="IfThenTorusRule"
-    type="IfThenTorusRuleType"
-    substitutionGroup="IfThenFeatureRule"/>
+              type="IfThenTorusRuleType"
+              substitutionGroup="IfThenFeatureRule"/>
 
 <!-- END SUBSTITUTION GROUP FOR IfThenFeatureRule -->
 
 <!-- START SUBSTITUTION GROUP FOR DMEDecision -->
 
   <xs:element name="DMEDecision"
-    type="DMEDecisionBaseType"/>
+              type="DMEDecisionBaseType">
+    <xs:annotation>
+      <xs:documentation>
+        The global DMEDecision element is the head of a substitution
+        group. Any element that is a member of the group may be
+        substituted for the DMEDecision element anywhere the
+        DMEDecision element could be used in an instance file.  The
+        allowed substitutes are all derived from DMEDecisionBaseType.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
 
   <xs:element name="DMEDecisionClass"
-    type="DMEDecisionClassType"
-    substitutionGroup="DMEDecision"/>
+              type="DMEDecisionClassType"
+              substitutionGroup="DMEDecision"/>
 
   <xs:element name="DMEDecisionId"
-    type="DMEDecisionIdType"
-    substitutionGroup="DMEDecision"/>
+              type="DMEDecisionIdType"
+              substitutionGroup="DMEDecision"/>
 
   <xs:element name="DMEDecisionMakeModel"
-    type="DMEDecisionMakeModelType"
-    substitutionGroup="DMEDecision"/>
+              type="DMEDecisionMakeModelType"
+              substitutionGroup="DMEDecision"/>
 
 <!-- END SUBSTITUTION GROUP FOR DMEDecision -->
 
 <!-- START SUBSTITUTION GROUP FOR Applicability -->
 
   <xs:element name="Applicability"
-    type="ApplicabilityBaseType"/>
+              type="ApplicabilityBaseType">
+    <xs:annotation>
+      <xs:documentation>
+        The global Applicability element is the head of a substitution
+        group. Any element that is a member of the group may be
+        substituted for the Applicability element anywhere the
+        Applicability element could be used in an instance file. The
+        allowed substitutes are all derived from ApplicabilityBaseType.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
 
   <xs:element name="Must"
-    type="QIFMustType"
-    substitutionGroup="Applicability"/>
+              type="QIFMustType"
+              substitutionGroup="Applicability"/>
 
   <xs:element name="MustNot"
-    type="QIFMustNotType"
-    substitutionGroup="Applicability"/>
+              type="QIFMustNotType"
+              substitutionGroup="Applicability"/>
 
   <xs:element name="May"
-    type="QIFMayType"
-    substitutionGroup="Applicability"/>
+              type="QIFMayType"
+              substitutionGroup="Applicability"/>
 
 <!-- END SUBSTITUTION GROUP FOR Applicability -->
 

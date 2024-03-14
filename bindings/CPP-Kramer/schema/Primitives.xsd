@@ -5,14 +5,6 @@
 <!-- proprietary rights to such information, such as rights to a       -->
 <!-- patent, trademark, or copyright.                                  -->
 
-<!-- As compared with Primitives.xsdOrig, <xs:complexContent> has been -->
-<!-- changed to <xs:simpleContent> in 3 places. Also, the              -->
-<!-- UserDataXMLType has been commented out and the choice between     -->
-<!-- UserDataXML and UserDataBinary in AttributeUserType has been      -->
-<!-- changed to a UserDataBinary element only.                         -->
-<!-- The complex to simple changes have no effect on the validity of   -->
-<!-- any instance files, but UserDataXML is no longer allowed.         -->
-
 <xs:schema
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns="http://qifstandards.org/xsd/qif3"
@@ -21,6 +13,7 @@
   elementFormDefault="qualified"
   attributeFormDefault="unqualified"
   version="3.0.0">
+
 
   <xs:complexType name="BinaryDataType">
     <xs:annotation>
@@ -33,8 +26,8 @@
     <xs:simpleContent>
       <xs:extension base="xs:base64Binary">
         <xs:attribute name="count"
-          type="NaturalType"
-          use="required">
+                      type="NaturalType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required count attribute is the number of bytes in the
@@ -179,7 +172,7 @@
   <xs:simpleType name="ParameterRangeType">
     <xs:annotation>
       <xs:documentation>
-        The ParameterRangeBoundsType is an array of two double values used
+        The ParameterRangeType is an array of two double values used
         to represent parameter bounds. The first entry in the list is the
         first bound of the parameter, and the second entry is the second
         bound. The second entry must be larger or smaller than the first.
@@ -270,31 +263,127 @@
       </xs:documentation>
     </xs:annotation>
     <xs:attribute name="linearUnit"
-      type="xs:token"/>
+                  type="xs:token">
+      <xs:annotation>
+        <xs:documentation>
+          The optional linearUnit attribute defines the UnitName for the
+          values to which AttrPoint is applied. If no value for the
+          attribute is given in an instance file, the unit type is the
+          LinearUnit specified in the PrimaryUnits element of a FileUnits
+          element, if that specification exists, and meters if not.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="decimalPlaces"
-      type="xs:nonNegativeInteger"/>
+                  type="xs:nonNegativeInteger">
+      <xs:annotation>
+        <xs:documentation>
+          The optional decimalPlaces attribute represents the number of
+          places to the right of the decimal point to which each value
+          is specified. See documentation of SpecifiedDecimalType for more
+          detail.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="significantFigures"
-      type="xs:nonNegativeInteger"/>
+                  type="xs:nonNegativeInteger">
+      <xs:annotation>
+        <xs:documentation>
+          The optional significantFigures attribute represents the number
+          of significant figures with which each value is specified.
+          See documentation of SpecifiedDecimalType for more detail.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="validity"
-      type="ValidityEnumType"/>
+                  type="ValidityEnumType">
+      <xs:annotation>
+        <xs:documentation>
+          The optional validity attribute is the validity of all values.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="xDecimalPlaces"
-      type="xs:nonNegativeInteger"/>
+                  type="xs:nonNegativeInteger">
+      <xs:annotation>
+        <xs:documentation>
+          The optional xDecimalPlaces attribute represents the number of
+          places to the right of the decimal point to which each X value
+          is specified.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="xSignificantFigures"
-      type="xs:nonNegativeInteger"/>
+                  type="xs:nonNegativeInteger">
+      <xs:annotation>
+        <xs:documentation>
+          The optional xSignificantFigures attribute represents the number
+          of significant figures with which each X value is specified.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="xValidity"
-      type="ValidityEnumType"/>
+                  type="ValidityEnumType">
+      <xs:annotation>
+        <xs:documentation>
+          The optional xValidity attribute is the validity of all X values.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="yDecimalPlaces"
-      type="xs:nonNegativeInteger"/>
+                  type="xs:nonNegativeInteger">
+      <xs:annotation>
+        <xs:documentation>
+          The optional yDecimalPlaces attribute represents the number of
+          places to the right of the decimal point to which each Y value
+          is specified.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="ySignificantFigures"
-      type="xs:nonNegativeInteger"/>
+                  type="xs:nonNegativeInteger">
+      <xs:annotation>
+        <xs:documentation>
+          The optional ySignificantFigures attribute represents the number
+          of significant figures with which each Y value is specified.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="yValidity"
-      type="ValidityEnumType"/>
+                  type="ValidityEnumType">
+      <xs:annotation>
+        <xs:documentation>
+          The optional yValidity attribute is the validity of all Y values.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="zDecimalPlaces"
-      type="xs:nonNegativeInteger"/>
+                  type="xs:nonNegativeInteger">
+      <xs:annotation>
+        <xs:documentation>
+          The optional zDecimalPlaces attribute represents the number of
+          places to the right of the decimal point to which each Z value
+          is specified.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="zSignificantFigures"
-      type="xs:nonNegativeInteger"/>
+                  type="xs:nonNegativeInteger">
+      <xs:annotation>
+        <xs:documentation>
+          The optional zSignificantFigures attribute represents the number
+          of significant figures with which each Z value is specified.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
     <xs:attribute name="zValidity"
-      type="ValidityEnumType"/>
+                  type="ValidityEnumType">
+      <xs:annotation>
+        <xs:documentation>
+          The optional zValidity attribute is the validity of all Z values.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:attributeGroup>
 
   <xs:complexType name="PointType">
@@ -344,7 +433,7 @@
   <xs:complexType name="ArrayPoint2dType">
     <xs:annotation>
       <xs:documentation>
-        The ArrayPointType is an array of doubles representing a specific
+        The ArrayPoint2dType is an array of doubles representing a specific
         number of ordered 2D points. Each successive group of two entries
         in the array represents the X, and Y coordinates of a point.
       </xs:documentation>
@@ -352,8 +441,8 @@
     <xs:simpleContent>
       <xs:extension base="ListDoubleType">
         <xs:attribute name="count"
-          type="NaturalType"
-          use="required">
+                      type="NaturalType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required count attribute is the number of points
@@ -377,8 +466,8 @@
     <xs:simpleContent>
       <xs:extension base="ListDoubleType">
         <xs:attribute name="count"
-          type="NaturalType"
-          use="required">
+                      type="NaturalType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required count attribute gives the number of points
@@ -405,8 +494,8 @@
     <xs:simpleContent>
       <xs:extension base="ListDoubleType">
         <xs:attribute name="count"
-          type="NaturalType"
-          use="required">
+                      type="NaturalType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required count attribute gives the number of unit vectors
@@ -444,7 +533,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Point"
-        type="PointType">
+                  type="PointType">
         <xs:annotation>
           <xs:documentation>
             The Point element is a point on the plane.
@@ -452,7 +541,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Normal"
-        type="UnitVectorType">
+                  type="UnitVectorType">
         <xs:annotation>
           <xs:documentation>
             The Normal element is the unit normal vector of the plane.
@@ -472,7 +561,7 @@
       <xs:extension base="PlaneType">
         <xs:sequence>
           <xs:element name="Direction"
-            type="UnitVectorType">
+                      type="UnitVectorType">
             <xs:annotation>
               <xs:documentation>
                 The Direction element gives the direction of the positive X
@@ -493,7 +582,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="AxisPoint"
-        type="PointType">
+                  type="PointType">
         <xs:annotation>
           <xs:documentation>
             The AxisPoint element is the location of a point on the axis.
@@ -501,7 +590,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Direction"
-        type="UnitVectorType">
+                  type="UnitVectorType">
         <xs:annotation>
           <xs:documentation>
             The Direction element is the unit vector direction of the axis.
@@ -519,7 +608,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="XDirection"
-        type="UnitVectorSimpleType">
+                  type="UnitVectorSimpleType">
         <xs:annotation>
           <xs:documentation>
             The XDirection element is a unit vector that specifies the x
@@ -530,7 +619,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="YDirection"
-        type="UnitVectorSimpleType">
+                  type="UnitVectorSimpleType">
         <xs:annotation>
           <xs:documentation>
             The YDirection element is a unit vector that describes the y
@@ -541,7 +630,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="ZDirection"
-        type="UnitVectorSimpleType">
+                  type="UnitVectorSimpleType">
         <xs:annotation>
           <xs:documentation>
             The ZDirection element is a unit vector that describes the z
@@ -564,8 +653,8 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Rotation"
-        type="TransformRotationType"
-        minOccurs="0">
+                  type="TransformRotationType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The Rotation element is an orthogonal basis of the Cartesian
@@ -574,8 +663,8 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Origin"
-        type="PointSimpleType"
-        minOccurs="0">
+                  type="PointSimpleType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The Origin element is an origin of the coordinate system.
@@ -632,7 +721,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="StartPoint"
-        type="PointSimpleType">
+                  type="PointSimpleType">
         <xs:annotation>
           <xs:documentation>
             The StartPoint element is the beginning point of the line
@@ -641,7 +730,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="EndPoint"
-        type="PointSimpleType">
+                  type="PointSimpleType">
         <xs:annotation>
           <xs:documentation>
             The EndPoint element is the ending point of the line segment.
@@ -671,7 +760,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="StartPoint"
-        type="Point2dSimpleType">
+                  type="Point2dSimpleType">
         <xs:annotation>
           <xs:documentation>
             The StartPoint element is the beginning point of the 2D line
@@ -680,7 +769,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="EndPoint"
-        type="Point2dSimpleType">
+                  type="Point2dSimpleType">
         <xs:annotation>
           <xs:documentation>
             The EndPoint element is the ending point of the 2D line segment.
@@ -722,7 +811,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="DirMeridianPrime"
-        type="UnitVectorType">
+                  type="UnitVectorType">
         <xs:annotation>
           <xs:documentation>
             The DirMeridianPrime element is the direction of the prime
@@ -732,7 +821,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="DomainLatitude"
-        type="AngleRangeType">
+                  type="AngleRangeType">
         <xs:annotation>
           <xs:documentation>
             The DomainLatitude element is the latitude domain. The unit
@@ -744,7 +833,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="DomainLongitude"
-        type="AngleRangeType">
+                  type="AngleRangeType">
         <xs:annotation>
           <xs:documentation>
             The DomainLongitude element is the longitude domain. The unit
@@ -768,7 +857,7 @@
       <xs:extension base="LatitudeLongitudeSweepType">
         <xs:sequence>
           <xs:element name="DirNorthPole"
-            type="UnitVectorType">
+                      type="UnitVectorType">
             <xs:annotation>
               <xs:documentation>
                 The DirNorthPole element is the direction of the north pole
@@ -791,7 +880,7 @@
     </xs:annotation>
     <xs:sequence>
       <xs:element name="DirBeg"
-        type="UnitVectorType">
+                  type="UnitVectorType">
         <xs:annotation>
           <xs:documentation>
             The DirBeg element is a unit vector representing the beginning
@@ -800,7 +889,7 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="DomainAngle"
-        type="AngleRangeType">
+                  type="AngleRangeType">
         <xs:annotation>
           <xs:documentation>
             The DomainAngle element is the angle limits in angular units
@@ -820,7 +909,7 @@
     <xs:simpleContent>
       <xs:extension base="D2Type">
         <xs:attribute name="angularUnit"
-          type="xs:token">
+                      type="xs:token">
           <xs:annotation>
             <xs:documentation>
               The optional angularUnit attribute defines the UnitName for
@@ -835,7 +924,7 @@
   <xs:simpleType name="QIFIdAndReferenceBaseType">
     <xs:annotation>
       <xs:documentation>
-        The QIFIdandReferenceBaseType defines an unsigned integer with no
+        The QIFIdAndReferenceBaseType defines an unsigned integer with no
         leading zeros. It is used as the base type for ids and references
         to ids. It is not used as the type of an element or attribute.
       </xs:documentation>
@@ -889,7 +978,7 @@
     <xs:simpleContent>
       <xs:extension base="QIFReferenceBaseType">
         <xs:attribute name="xId"
-          type="QIFReferenceSimpleType">
+                      type="QIFReferenceSimpleType">
           <xs:annotation>
             <xs:documentation>
               The optional xId attribute is a reference to the id of a QIF
@@ -931,7 +1020,7 @@
         </xs:documentation>
       </xs:annotation>
       <xs:element name="Ids"
-        type="ListQIFReferenceSimpleType">
+                  type="ListQIFReferenceSimpleType">
         <xs:annotation>
           <xs:documentation>
             The Ids element is a list of references to the QIF ids of
@@ -941,7 +1030,7 @@
       </xs:element>
       <xs:sequence>
         <xs:element name="Id"
-          type="QIFReferenceSimpleType">
+                    type="QIFReferenceSimpleType">
           <xs:annotation>
             <xs:documentation>
               The Id element is the QIF id of an external document
@@ -950,7 +1039,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="XIds"
-          type="ListQIFReferenceSimpleType">
+                    type="ListQIFReferenceSimpleType">
           <xs:annotation>
             <xs:documentation>
               The XIds element is a list of references to the QIF ids of
@@ -961,12 +1050,13 @@
       </xs:sequence>
     </xs:choice>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of QIF id references
-          in this list.
+          in either the Ids list or the XIds list, depending on which
+          choice has been used.
         </xs:documentation>
       </xs:annotation>
     </xs:attribute>
@@ -984,7 +1074,7 @@
     <xs:complexContent>
       <xs:extension base="ListQIFReferenceType">
         <xs:attribute name="asmPathId"
-          type="QIFReferenceSimpleType">
+                      type="QIFReferenceSimpleType">
           <xs:annotation>
             <xs:documentation>
               The optional asmPathId attribute is a reference used for
@@ -1000,7 +1090,7 @@
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="asmPathXId"
-          type="QIFReferenceSimpleType">
+                      type="QIFReferenceSimpleType">
           <xs:annotation>
             <xs:documentation>
               The optional asmPathXId attribute, if used, is a reference to
@@ -1030,7 +1120,7 @@
         </xs:documentation>
       </xs:annotation>
       <xs:element name="Ids"
-        type="ArrayBinaryType">
+                  type="ArrayBinaryType">
         <xs:annotation>
           <xs:documentation>
             The Ids element is an array of QIF ids of objects found in the
@@ -1040,7 +1130,7 @@
       </xs:element>
       <xs:sequence>
         <xs:element name="Id"
-          type="QIFReferenceSimpleType">
+                    type="QIFReferenceSimpleType">
           <xs:annotation>
             <xs:documentation>
               The Id element is the QIF id of an external document
@@ -1049,7 +1139,7 @@
           </xs:annotation>
         </xs:element>
         <xs:element name="XIds"
-          type="ArrayBinaryType">
+                    type="ArrayBinaryType">
           <xs:annotation>
             <xs:documentation>
               The XIds element is an array of references to QIF ids of
@@ -1073,7 +1163,7 @@
     <xs:complexContent>
       <xs:extension base="ArrayBinaryQIFReferenceType">
         <xs:attribute name="asmPathId"
-          type="QIFReferenceSimpleType">
+                      type="QIFReferenceSimpleType">
           <xs:annotation>
             <xs:documentation>
               The optional asmPathId attribute is a reference used for
@@ -1089,7 +1179,7 @@
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="asmPathXId"
-          type="QIFReferenceSimpleType">
+                      type="QIFReferenceSimpleType">
           <xs:annotation>
             <xs:documentation>
               The optional asmPathXId attribute, if used, is a reference to
@@ -1113,8 +1203,8 @@
     <xs:simpleContent>
       <xs:extension base="QIFReferenceType">
         <xs:attribute name="active"
-          type="xs:boolean"
-          default="false">
+                      type="xs:boolean"
+                      default="false">
           <xs:annotation>
             <xs:documentation>
               The active attribute defines whether the reference is active.
@@ -1135,7 +1225,7 @@
     <xs:simpleContent>
       <xs:extension base="QIFReferenceType">
         <xs:attribute name="asmPathId"
-          type="QIFReferenceSimpleType">
+                      type="QIFReferenceSimpleType">
           <xs:annotation>
             <xs:documentation>
               The optional asmPathId attribute is a reference used for
@@ -1151,7 +1241,7 @@
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="asmPathXId"
-          type="QIFReferenceSimpleType">
+                      type="QIFReferenceSimpleType">
           <xs:annotation>
             <xs:documentation>
               The optional asmPathXId attribute, if used, is a reference to
@@ -1181,7 +1271,7 @@ end in 'Id'.
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Id"
-        type="QIFReferenceType">
+                  type="QIFReferenceType">
         <xs:annotation>
           <xs:documentation>
             The Id element is a reference to a QIF id that may not
@@ -1200,7 +1290,7 @@ end in 'Id'.
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Id"
-        type="QIFReferenceFullType">
+                  type="QIFReferenceFullType">
         <xs:annotation>
           <xs:documentation>
             The Id element is a reference to a QIF id that may include
@@ -1262,8 +1352,8 @@ end in 'Id'.
     <xs:simpleContent>
       <xs:extension base="ListNaturalType">
         <xs:attribute name="count"
-          type="NaturalType"
-          use="required">
+                      type="NaturalType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required count attribute is the number of natural numbers
@@ -1283,7 +1373,7 @@ end in 'Id'.
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Numerator"
-        type="NaturalType">
+                  type="NaturalType">
         <xs:annotation>
           <xs:documentation>
             The Numerator element is the numerator of the fraction.
@@ -1291,7 +1381,7 @@ end in 'Id'.
         </xs:annotation>
       </xs:element>
       <xs:element name="Denominator"
-        type="NaturalType">
+                  type="NaturalType">
         <xs:annotation>
           <xs:documentation>
             The Denominator element is the denominator of the fraction.
@@ -1309,8 +1399,8 @@ end in 'Id'.
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Id"
-        type="QIFReferenceType"
-        maxOccurs="unbounded">
+                  type="QIFReferenceType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Id element is a reference to the QIF id of an object.
@@ -1319,8 +1409,8 @@ end in 'Id'.
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of Id elements in this
@@ -1339,8 +1429,8 @@ end in 'Id'.
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Id"
-        type="QIFReferenceActiveType"
-        maxOccurs="unbounded">
+                  type="QIFReferenceActiveType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Id element is a reference to the QIF id of an object
@@ -1350,8 +1440,8 @@ end in 'Id'.
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of Id elements in this
@@ -1369,8 +1459,8 @@ end in 'Id'.
     </xs:annotation>
     <xs:sequence>
       <xs:element name="Id"
-        type="QIFReferenceFullType"
-        maxOccurs="unbounded">
+                  type="QIFReferenceFullType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             The Id element is a reference to a QIF id that may include
@@ -1380,8 +1470,8 @@ end in 'Id'.
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of Id elements in this
@@ -1402,7 +1492,7 @@ end in 'Id'.
     </xs:annotation>
     <xs:sequence>
       <xs:element name="FirstFeature"
-        type="QIFReferenceFullType">
+                  type="QIFReferenceFullType">
         <xs:annotation>
           <xs:documentation>
             The FirstFeature element is a reference to a QIF feature id
@@ -1411,7 +1501,7 @@ end in 'Id'.
         </xs:annotation>
       </xs:element>
       <xs:element name="SecondFeature"
-        type="QIFReferenceFullType">
+                  type="QIFReferenceFullType">
         <xs:annotation>
           <xs:documentation>
             The SecondFeature element is a reference to a QIF feature id
@@ -1420,8 +1510,8 @@ end in 'Id'.
         </xs:annotation>
       </xs:element>
       <xs:element name="FirstFeatureZone"
-        type="QIFReferenceFullType"
-        minOccurs="0">
+                  type="QIFReferenceFullType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional FirstFeatureZone element is a reference to a QIF
@@ -1431,8 +1521,8 @@ end in 'Id'.
         </xs:annotation>
       </xs:element>
       <xs:element name="SecondFeatureZone"
-        type="QIFReferenceFullType"
-        minOccurs="0">
+                  type="QIFReferenceFullType"
+                  minOccurs="0">
         <xs:annotation>
           <xs:documentation>
             The optional SecondFeatureZone element is a reference to a QIF
@@ -1447,28 +1537,29 @@ end in 'Id'.
   <xs:complexType name="ArrayPairReferenceFullType">
     <xs:annotation>
       <xs:documentation>
-        The ArrayReferenceFullType is an array of references to object IDs.
+        The ArrayPairReferenceFullType is an array of FeaturePairs.
       </xs:documentation>
     </xs:annotation>
     <xs:sequence>
       <xs:element name="FeaturePair"
-        type="QIFFeaturePairType"
-        maxOccurs="unbounded">
+                  type="QIFFeaturePairType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
-            The Id element is reference to a QIF id that may include
-            an AsmPath.
+            Each FeaturePair element is a pair of references to ids of
+            features, plus optional references to the feature zones of
+            those features.
           </xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
-          The required n attribute is the number of Id elements in this
-          array.
+          The required n attribute is the number of FeaturePair elements in
+          this array.
         </xs:documentation>
       </xs:annotation>
     </xs:attribute>
@@ -1526,7 +1617,7 @@ end in 'Id'.
     </xs:annotation>
     <xs:sequence>
       <xs:element name="ItemQPId"
-        type="QPIdReferenceType">
+                  type="QPIdReferenceType">
         <xs:annotation>
           <xs:documentation>
             The ItemQPId is the QPId of an item.
@@ -1534,9 +1625,9 @@ end in 'Id'.
         </xs:annotation>
       </xs:element>
       <xs:element name="DocumentQPId"
-        type="QPIdReferenceType"
-        minOccurs="0"
-        maxOccurs="unbounded">
+                  type="QPIdReferenceType"
+                  minOccurs="0"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each optional DocumentQPId is the QPId of a QIFDocument in
@@ -1556,8 +1647,8 @@ end in 'Id'.
     </xs:annotation>
     <xs:sequence>
       <xs:element name="QPId"
-        type="QPIdFullReferenceType"
-        maxOccurs="unbounded">
+                  type="QPIdFullReferenceType"
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each QPId element is a reference to the QPId of an object and
@@ -1567,8 +1658,8 @@ end in 'Id'.
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of QPId reference elements
@@ -1587,8 +1678,8 @@ end in 'Id'.
     <xs:simpleContent>
       <xs:extension base="ListUnsignedByteType">
         <xs:attribute name="count"
-          type="NaturalType"
-          use="required">
+                      type="NaturalType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required count attribute is the number of unsigned byte
@@ -1609,8 +1700,8 @@ end in 'Id'.
     <xs:simpleContent>
       <xs:extension base="ListIntType">
         <xs:attribute name="count"
-          type="NaturalType"
-          use="required">
+                      type="NaturalType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required count attribute is the number of integer numbers
@@ -1634,8 +1725,8 @@ end in 'Id'.
     <xs:simpleContent>
       <xs:extension base="ListIntType">
         <xs:attribute name="count"
-          type="NaturalType"
-          use="required">
+                      type="NaturalType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required count attribute gives the number of integer pairs
@@ -1660,8 +1751,8 @@ end in 'Id'.
     <xs:simpleContent>
       <xs:extension base="ListIntType">
         <xs:attribute name="count"
-          type="NaturalType"
-          use="required">
+                      type="NaturalType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required count attribute gives the number of integer
@@ -1683,8 +1774,8 @@ end in 'Id'.
     <xs:simpleContent>
       <xs:extension base="ListDoubleType">
         <xs:attribute name="count"
-          type="NaturalType"
-          use="required">
+                      type="NaturalType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required count attribute is the number of double values
@@ -1707,8 +1798,8 @@ end in 'Id'.
     <xs:simpleContent>
       <xs:extension base="xs:base64Binary">
         <xs:attribute name="count"
-          type="NaturalType"
-          use="required">
+                      type="NaturalType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required count attribute is the number of elements in this
@@ -1717,8 +1808,8 @@ end in 'Id'.
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="sizeElement"
-          type="xs:unsignedInt"
-          use="required">
+                      type="xs:unsignedInt"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required sizeElement attribute shows the size (in bytes)
@@ -1739,7 +1830,7 @@ end in 'Id'.
     </xs:annotation>
     <xs:sequence>
       <xs:element ref="Attribute"
-        maxOccurs="unbounded">
+                  maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>
             Each Attribute element is an entity attribute.
@@ -1748,8 +1839,8 @@ end in 'Id'.
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
-      type="NaturalType"
-      use="required">
+                  type="NaturalType"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required n attribute is the number of entity attributes in
@@ -1760,7 +1851,7 @@ end in 'Id'.
   </xs:complexType>
 
   <xs:complexType name="AttributeBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The AttributeBaseType is the abstract base type for all entity
@@ -1768,8 +1859,8 @@ end in 'Id'.
       </xs:documentation>
     </xs:annotation>
     <xs:attribute name="name"
-      type="xs:string"
-      use="required">
+                  type="xs:string"
+                  use="required">
       <xs:annotation>
         <xs:documentation>
           The required name attribute is the name of the entity attribute.
@@ -1789,8 +1880,8 @@ end in 'Id'.
     <xs:complexContent>
       <xs:extension base="AttributeBaseType">
         <xs:attribute name="value"
-          type="xs:boolean"
-          use="required">
+                      type="xs:boolean"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required value attribute specifies the Boolean value of
@@ -1811,8 +1902,8 @@ end in 'Id'.
     <xs:complexContent>
       <xs:extension base="AttributeBaseType">
         <xs:attribute name="value"
-          type="xs:string"
-          use="required">
+                      type="xs:string"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required value attribute specifies the string value of
@@ -1833,8 +1924,8 @@ end in 'Id'.
     <xs:complexContent>
       <xs:extension base="AttributeBaseType">
         <xs:attribute name="value"
-          type="xs:dateTime"
-          use="required">
+                      type="xs:dateTime"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required value attribute specifies the date-time value of
@@ -1856,7 +1947,7 @@ end in 'Id'.
       <xs:extension base="AttributeBaseType">
         <xs:sequence>
           <xs:element name="Value"
-            type="QPIdType">
+                      type="QPIdType">
             <xs:annotation>
               <xs:documentation>
                 The Value element specifies the QPId value of this entity
@@ -1879,8 +1970,8 @@ end in 'Id'.
     <xs:complexContent>
       <xs:extension base="AttributeBaseType">
         <xs:attribute name="value"
-          type="xs:integer"
-          use="required">
+                      type="xs:integer"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required value attribute specifies the integer value of
@@ -1902,8 +1993,8 @@ end in 'Id'.
     <xs:complexContent>
       <xs:extension base="AttributeBaseType">
         <xs:attribute name="value"
-          type="I2Type"
-          use="required">
+                      type="I2Type"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required value attribute specifies the integer pair value
@@ -1925,8 +2016,8 @@ end in 'Id'.
     <xs:complexContent>
       <xs:extension base="AttributeBaseType">
         <xs:attribute name="value"
-          type="I3Type"
-          use="required">
+                      type="I3Type"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required value attribute specifies the integer triple
@@ -1947,8 +2038,8 @@ end in 'Id'.
     <xs:complexContent>
       <xs:extension base="AttributeBaseType">
         <xs:attribute name="value"
-          type="xs:double"
-          use="required">
+                      type="xs:double"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required value attribute specifies the double value of
@@ -1970,8 +2061,8 @@ end in 'Id'.
     <xs:complexContent>
       <xs:extension base="AttributeBaseType">
         <xs:attribute name="value"
-          type="D2Type"
-          use="required">
+                      type="D2Type"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required value attribute specifies the double pair
@@ -1993,8 +2084,8 @@ end in 'Id'.
     <xs:complexContent>
       <xs:extension base="AttributeBaseType">
         <xs:attribute name="value"
-          type="D3Type"
-          use="required">
+                      type="D3Type"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required value attribute specifies the double triple
@@ -2023,7 +2114,7 @@ end in 'Id'.
             </xs:documentation>
           </xs:annotation>
           <xs:element name="UserDataXML"
-            type="UserDataXMLType">
+                      type="UserDataXMLType">
             <xs:annotation>
               <xs:documentation>
                 The UserDataXML element is the user-defined data
@@ -2032,18 +2123,17 @@ end in 'Id'.
             </xs:annotation>
           </xs:element>
           <xs:element name="UserDataBinary"
-            type="BinaryDataType">
+                      type="BinaryDataType">
             <xs:annotation>
               <xs:documentation>
-                The UserDataBinary element is a binary block of user
-                data.
+                The UserDataBinary element is a binary block of user data.
               </xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:choice>
         <xs:attribute name="nameUserAttribute"
-          type="xs:string"
-          use="required">
+                      type="xs:string"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required nameUserAttribute attribute is the name of
@@ -2056,7 +2146,6 @@ end in 'Id'.
     </xs:complexContent>
   </xs:complexType>
 
-<!--
   <xs:complexType name="UserDataXMLType">
     <xs:annotation>
       <xs:documentation>
@@ -2067,11 +2156,10 @@ end in 'Id'.
       </xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:any
-        minOccurs="0"
-        maxOccurs="unbounded"
-        namespace="##other"
-        processContents="lax">
+      <xs:any minOccurs="0"
+              maxOccurs="unbounded"
+              namespace="##other"
+              processContents="lax">
         <xs:annotation>
           <xs:documentation>
             This 'any' specifier specifies that the content must be from
@@ -2082,14 +2170,9 @@ end in 'Id'.
       </xs:any>
     </xs:sequence>
   </xs:complexType>
--->
-
-  <xs:simpleType name="UserDataXMLType">
-    <xs:restriction base="xs:string"/>
-  </xs:simpleType>
 
   <xs:element name="Attributes"
-    type="AttributesType">
+              type="AttributesType">
     <xs:annotation>
       <xs:documentation>
         The Attributes element is a list of entity attributes.
@@ -2100,8 +2183,8 @@ end in 'Id'.
 <!-- BEGIN SUBSTITUTION GROUP FOR ATTRIBUTES -->
 
   <xs:element name="Attribute"
-    type="AttributeBaseType"
-    abstract="true">
+              type="AttributeBaseType"
+              abstract="true">
     <xs:annotation>
       <xs:documentation>
         The global Attribute element is the head of a substitution group.
@@ -2113,8 +2196,8 @@ end in 'Id'.
   </xs:element>
 
   <xs:element name="AttributeBool"
-    type="AttributeBoolType"
-    substitutionGroup="Attribute">
+              type="AttributeBoolType"
+              substitutionGroup="Attribute">
     <xs:annotation>
       <xs:documentation>
         The global AttributeBool element is an entity attribute of Boolean
@@ -2124,8 +2207,8 @@ end in 'Id'.
   </xs:element>
 
   <xs:element name="AttributeStr"
-    type="AttributeStrType"
-    substitutionGroup="Attribute">
+              type="AttributeStrType"
+              substitutionGroup="Attribute">
     <xs:annotation>
       <xs:documentation>
         The global AttributeStr element is an entity attribute of string
@@ -2135,8 +2218,8 @@ end in 'Id'.
   </xs:element>
 
   <xs:element name="AttributeTime"
-    type="AttributeTimeType"
-    substitutionGroup="Attribute">
+              type="AttributeTimeType"
+              substitutionGroup="Attribute">
     <xs:annotation>
       <xs:documentation>
         The global AttributeTime element is an entity attribute of date-time
@@ -2146,8 +2229,8 @@ end in 'Id'.
   </xs:element>
 
   <xs:element name="AttributeQPId"
-    type="AttributeQPIdType"
-    substitutionGroup="Attribute">
+              type="AttributeQPIdType"
+              substitutionGroup="Attribute">
     <xs:annotation>
       <xs:documentation>
         The global AttributeQPId element is an entity attribute of QPId
@@ -2157,8 +2240,8 @@ end in 'Id'.
   </xs:element>
 
   <xs:element name="AttributeI1"
-    type="AttributeI1Type"
-    substitutionGroup="Attribute">
+              type="AttributeI1Type"
+              substitutionGroup="Attribute">
     <xs:annotation>
       <xs:documentation>
         The global AttributeI1 element is an entity attribute of integer
@@ -2168,8 +2251,8 @@ end in 'Id'.
   </xs:element>
 
   <xs:element name="AttributeI2"
-    type="AttributeI2Type"
-    substitutionGroup="Attribute">
+              type="AttributeI2Type"
+              substitutionGroup="Attribute">
     <xs:annotation>
       <xs:documentation>
         The global AttributeI2 element is an entity attribute which
@@ -2179,8 +2262,8 @@ end in 'Id'.
   </xs:element>
 
   <xs:element name="AttributeI3"
-    type="AttributeI3Type"
-    substitutionGroup="Attribute">
+              type="AttributeI3Type"
+              substitutionGroup="Attribute">
     <xs:annotation>
       <xs:documentation>
         The global AttributeI3 element is an entity attribute which
@@ -2190,8 +2273,8 @@ end in 'Id'.
   </xs:element>
 
   <xs:element name="AttributeD1"
-    type="AttributeD1Type"
-    substitutionGroup="Attribute">
+              type="AttributeD1Type"
+              substitutionGroup="Attribute">
     <xs:annotation>
       <xs:documentation>
         The global AttributeD1 element is an entity attribute of double
@@ -2201,8 +2284,8 @@ end in 'Id'.
   </xs:element>
 
   <xs:element name="AttributeD2"
-    type="AttributeD2Type"
-    substitutionGroup="Attribute">
+              type="AttributeD2Type"
+              substitutionGroup="Attribute">
     <xs:annotation>
       <xs:documentation>
         The global AttributeD2 element is an entity attribute which
@@ -2212,8 +2295,8 @@ end in 'Id'.
   </xs:element>
 
   <xs:element name="AttributeD3"
-    type="AttributeD3Type"
-    substitutionGroup="Attribute">
+              type="AttributeD3Type"
+              substitutionGroup="Attribute">
     <xs:annotation>
       <xs:documentation>
         The global AttributeD3 element is an entity attribute which
@@ -2223,8 +2306,8 @@ end in 'Id'.
   </xs:element>
 
   <xs:element name="AttributeUser"
-    type="AttributeUserType"
-    substitutionGroup="Attribute">
+              type="AttributeUserType"
+              substitutionGroup="Attribute">
     <xs:annotation>
       <xs:documentation>
         The global AttributeUser element is a user-defined entity attribute
@@ -2245,7 +2328,7 @@ end in 'Id'.
     <xs:sequence>
       <xs:choice>
         <xs:element name="Points"
-          type="ArrayPointType">
+                    type="ArrayPointType">
           <xs:annotation>
             <xs:documentation>
               The Points element is an array of 3D points.
@@ -2253,7 +2336,7 @@ end in 'Id'.
           </xs:annotation>
         </xs:element>
         <xs:element name="PointsBinary"
-          type="ArrayBinaryType">
+                    type="ArrayBinaryType">
           <xs:annotation>
             <xs:documentation>
               The PointsBinary element is a binary array of 3D points.
@@ -2264,10 +2347,9 @@ end in 'Id'.
           </xs:annotation>
         </xs:element>
       </xs:choice>
-      <xs:choice
-        minOccurs="0">
+      <xs:choice minOccurs="0">
         <xs:element name="Directions"
-          type="ArrayUnitVectorType">
+                    type="ArrayUnitVectorType">
           <xs:annotation>
             <xs:documentation>
               The optional Directions element is an array of vectors
@@ -2279,12 +2361,12 @@ end in 'Id'.
           </xs:annotation>
         </xs:element>
         <xs:element name="DirectionsBinary"
-          type="ArrayBinaryType">
+                    type="ArrayBinaryType">
           <xs:annotation>
             <xs:documentation>
-              The optional Directions element is a binary array of vectors
-              defined at the points. The directions are considered as
-              normal vectors in the case of face points, and tangent
+              The optional DirectionsBinary element is a binary array of
+              vectors defined at the points. The directions are considered
+              as normal vectors in the case of face points, and tangent
               vectors in the case of edge points. The number of the
               directions must be equal to the number of the points. Each
               element of this array is a triplet of real numbers
@@ -2306,7 +2388,7 @@ end in 'Id'.
     </xs:annotation>
     <xs:sequence>
       <xs:element name="PointMin"
-        type="PointSimpleType">
+                  type="PointSimpleType">
         <xs:annotation>
           <xs:documentation>
             The PointMin element is the minimal point of the bounding box
@@ -2315,10 +2397,10 @@ end in 'Id'.
         </xs:annotation>
       </xs:element>
       <xs:element name="PointMax"
-        type="PointSimpleType">
+                  type="PointSimpleType">
         <xs:annotation>
           <xs:documentation>
-            The PointMin element is the maximal point of the bounding box
+            The PointMax element is the maximal point of the bounding box
             (the corner with the maximum X, Y, and Z values). 
           </xs:documentation>
         </xs:annotation>

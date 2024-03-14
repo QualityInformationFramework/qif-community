@@ -5,11 +5,6 @@
 <!-- proprietary rights to such information, such as rights to a       -->
 <!-- patent, trademark, or copyright.                                  -->
 
-<!-- ArithmeticParameterValueType here is not in Expressions.xsdOrig   -->
-<!-- It was in QIFPlan.xsd, but that made problems with                -->
-<!-- substitutionGroups (if I recall correctly).                       -->
-<!-- This has no effect on the validity of any instance files.         -->
-
 <xs:schema
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns="http://qifstandards.org/xsd/qif3"
@@ -18,24 +13,348 @@
   elementFormDefault="qualified"
   attributeFormDefault="unqualified"
   version="3.0.0">
-  
-  <xs:include schemaLocation="GenericExpressions.xsd"/>
-  <xs:include schemaLocation="PrimitivesPMI.xsd"/>
+ 
+  <xs:include schemaLocation="../QIFLibrary/PrimitivesPMI.xsd"/>
 
   <xs:annotation>
     <xs:documentation>
-      This file defines QIF-specific Boolean expressions and arithmetic
-      expressions. The initial intent is that these expressions should
-      support writing QIF rules. The file includes specialized Boolean
-      expressions for identifying the types of features and
-      characteristics.
+      This file defines Boolean expressions, token expressions and
+      arithmetic expressions. These expressions support writing QIF
+      rules. The file includes specialized Boolean expressions for
+      identifying the types of features and characteristics.
 
       It is assumed that a system consuming an instance file containing
       expressions will be capable of evaluating the expressions.
     </xs:documentation>
   </xs:annotation>
 
-<!-- START QIF BOOLEAN EXPRESSIONS -->
+<!-- START GENERIC BOOLEAN EXPRESSION TYPESS -->
+
+  <xs:complexType name="BooleanExpressionBaseType"
+                  abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The BooleanExpressionBaseType defines the base type for Boolean
+        expressions. All derived types of BooleanExpressionBaseType
+        evaluate to true or false.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:complexType>
+
+  <xs:complexType name="NotType">
+    <xs:annotation>
+      <xs:documentation>
+        The NotType defines a Boolean expression that negates another
+        Boolean expression. The NotType evaluates to true if the
+        BooleanExpression element evaluates to false, and the NotType
+        evaluates to false if the BooleanExpression element evaluates to
+        true.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BooleanExpressionBaseType">
+        <xs:sequence>
+          <xs:element ref="BooleanExpression">
+            <xs:annotation>
+              <xs:documentation>
+                The BooleanExpression element is the expression that is
+                negated.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="BinaryBooleanExpressionBaseType"
+                  abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The BinaryBooleanExpressionBaseType is the base type
+        for binary Boolean expressions.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BooleanExpressionBaseType">
+        <xs:sequence>
+          <xs:element ref="BooleanExpression"
+                      minOccurs="2"
+                      maxOccurs="2">
+            <xs:annotation>
+              <xs:documentation>
+                Each BooleanExpression element is one of two Boolean
+                expressions taking part in a binary Boolean expression.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AndType">
+    <xs:annotation>
+      <xs:documentation>
+        The AndType defines an 'and' Boolean expression. The AndType
+        evaluates to true if all of the BooleanExpression elements it
+        contains evaluate to true. Otherwise, it evaluates to false. The
+        BooleanExpression elements must be evaluated in order. If any
+        BooleanExpression element evaluates to false, the remaining
+        BooleanExpression elements must not be evaluated.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BooleanExpressionBaseType">
+        <xs:sequence>
+          <xs:element ref="BooleanExpression"
+                      minOccurs="2"
+                      maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                Each Boolean Expression element is one of the Boolean
+                expressions in the AndType expression.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="n"
+                      type="NaturalType"
+                      use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required n attribute is the number of boolean expressions
+              in the AndType expression.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="OrType">
+    <xs:annotation>
+      <xs:documentation>
+        The OrType defines an 'or' Boolean expression. The OrType evaluates
+        to true if any of the BooleanExpression elements it contains
+        evaluate to true. Otherwise, it evaluates to false. The
+        BooleanExpression elements must be evaluated in order. If any
+        BooleanExpression element evaluates to true, the remaining
+        BooleanExpression elements must not be evaluated.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BooleanExpressionBaseType">
+        <xs:sequence>
+          <xs:element ref="BooleanExpression"
+                      minOccurs="2"
+                      maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                Each Boolean Expression element is one of the Boolean
+                expressions in the OrType expression.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="n"
+                      type="NaturalType"
+                      use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required n attribute is the number of boolean expressions
+              in the OrType expression.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="BooleanEqualType">
+    <xs:annotation>
+      <xs:documentation>
+        The BooleanEqualType defines a test of whether two Boolean
+        expressions are the same. The BooleanEqualType evaluates to true if
+        the two BooleanExpression elements both evaluate to true or both
+        evaluate to false. Otherwise, the BooleanEqualType evaluates to
+        false.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BinaryBooleanExpressionBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ConstantIsType">
+    <xs:annotation>
+      <xs:documentation>
+        The ConstantIsType evaluates to true if the val is QIF_TRUE and
+        evaluates to false if the val is QIF_FALSE.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BooleanExpressionBaseType">
+        <xs:attribute name="val"
+                      type="BooleanConstantEnumType"
+                      use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required val attribute is a Boolean constant given as an
+              enumeration.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+<!-- START ARITHMETIC COMPARISON BOOLEAN EXPRESSION TYPES -->
+
+  <xs:complexType name="ArithmeticComparisonBaseType"
+                  abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The ArithmeticComparisonBaseType defines the base type for
+        arithmetic comparisons. The evaluation environment for
+        arithmetic comparisons must include the arithmetic constant,
+        ComparisonTiny.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BooleanExpressionBaseType">
+        <xs:sequence>
+          <xs:element ref="ArithmeticExpression"
+                      minOccurs="2"
+                      maxOccurs="2">
+            <xs:annotation>
+              <xs:documentation>
+                Each ArithmeticExpression element is one two arithmetic
+                expressions to be compared.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArithmeticEqualType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArithmeticEqualType defines a test if the two
+        ArithmeticExpression elements are equal. The ArithmeticEqualType
+        evaluates to true if the first ArithmeticExpression element is (1)
+        less than the second ArithmeticExpression element plus
+        ComparisonTiny and (2) greater then the second ArithmeticExpression
+        element minus ComparisonTiny. Otherwise, it evaluates to false.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArithmeticComparisonBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="GreaterThanType">
+    <xs:annotation>
+      <xs:documentation>
+        The GreaterThanType defines a test if the first
+        ArithmeticExpression element is greater than the second
+        ArithmeticExpression element. The GreaterThanType evaluates to true
+        if the value of the first ArithmeticExpression element is greater
+        than or equal to the value of the second ArithmeticExpression
+        element plus ComparisonTiny. Otherwise, it evaluates to false.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArithmeticComparisonBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="GreaterOrEqualType">
+    <xs:annotation>
+      <xs:documentation>
+        The GreaterOrEqualType defines a test if the first
+        ArithmeticExpression element is greater than or equal to the second
+        ArithmeticExpression element. The GreaterOrEqualType evaluates to
+        true if the value of the first ArithmeticExpression element is
+        greater than the value of the second ArithmeticExpression element
+        minus ComparisonTiny. Otherwise, it evaluates to false.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArithmeticComparisonBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="LessThanType">
+    <xs:annotation>
+      <xs:documentation>
+        The LessThanType defines a test if the first ArithmeticExpression
+        element is less than the second ArithmeticExpression element. The
+        LessThanType evaluates to true if the value of the first
+        ArithmeticExpression element is less than or equal to the value of
+        the second ArithmeticExpression element minus ComparisonTiny.
+        Otherwise, it evaluates to false.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArithmeticComparisonBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="LessOrEqualType">
+    <xs:annotation>
+      <xs:documentation>
+        The LessOrEqualType defines a test if the first
+        ArithmeticExpression element is less than or equal to the second
+        ArithmeticExpression element. The LessOrEqualType evaluates to true
+        if the value of the first ArithmeticExpression element is less than
+        the value of the second ArithmeticExpression element plus
+        ComparisonTiny. Otherwise, it evaluates to false.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArithmeticComparisonBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+<!-- END ARITHMETIC COMPARISON BOOLEAN EXPRESSION TYPES -->
+
+<!-- START TOKEN COMPARISON BOOLEAN EXPRESSION TYPES -->
+
+  <xs:complexType name="TokenEqualType">
+    <xs:annotation>
+      <xs:documentation>
+        The TokenEqualType defines a test if the two TokenExpression
+        elements are equal. The TokenEqualType evaluates to true if the two
+        tokens are the same length and corresponding characters of the two
+        tokens are the same.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BooleanExpressionBaseType">
+        <xs:sequence>
+          <xs:element ref="TokenExpression"
+                      minOccurs="2"
+                      maxOccurs="2">
+            <xs:annotation>
+              <xs:documentation>
+                Each TokenExpression element is one of two token
+                expressions to be tested for equality.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+<!-- END TOKEN COMPARISON BOOLEAN EXPRESSION TYPES -->
+
+<!-- END GENERIC BOOLEAN EXPRESSION TYPES -->
+
+<!-- START PMI BOOLEAN EXPRESSION TYPES -->
 
   <xs:complexType name="SamplingCategoryIsType">
     <xs:annotation>
@@ -50,8 +369,8 @@
     <xs:complexContent>
       <xs:extension base="BooleanExpressionBaseType">
         <xs:attribute name="val"
-          type="xs:unsignedInt"
-          use="required">
+                      type="xs:unsignedInt"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required val attribute is the value against which to
@@ -107,8 +426,8 @@
     <xs:complexContent>
       <xs:extension base="BooleanExpressionBaseType">
         <xs:attribute name="val"
-          type="CharacteristicTypeEnumType"
-          use="required">
+                      type="CharacteristicTypeEnumType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required val attribute is the characteristic type against
@@ -135,8 +454,8 @@
     <xs:complexContent>
       <xs:extension base="BooleanExpressionBaseType">
         <xs:attribute name="val"
-          type="FeatureTypeEnumType"
-          use="required">
+                      type="FeatureTypeEnumType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required val attribute is the feature type against
@@ -161,8 +480,8 @@
     <xs:complexContent>
       <xs:extension base="BooleanExpressionBaseType">
         <xs:attribute name="val"
-          type="ShapeClassEnumType"
-          use="required">
+                      type="ShapeClassEnumType"
+                      use="required">
           <xs:annotation>
             <xs:documentation>
               The required val attribute is the shape class type against
@@ -175,12 +494,31 @@
     </xs:complexContent>
   </xs:complexType>
 
+<!-- END PMI BOOLEAN EXPRESSION TYPES -->
+
+<!-- END BOOLEAN EXPRESSION TYPES -->
+
 <!-- BEGIN ENUMERATION TYPES -->
+
+  <xs:simpleType name="BooleanConstantEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The BooleanConstantEnumType enumerates values of the two
+        Boolean constants. (The names are of these enumerated values are
+        chosen to avoid conflicts with reserved words and macro definitions
+        in common computer languages.)
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="QIF_TRUE"/>
+      <xs:enumeration value="QIF_FALSE"/>
+    </xs:restriction>
+  </xs:simpleType>
 
   <xs:simpleType name="PointSamplingStrategyEnumBaseType">
     <xs:annotation>
       <xs:documentation>
-        The PointSamplingStrategyEnumType enumerates point sampling
+        The PointSamplingStrategyEnumBaseType enumerates point sampling
         strategy types as given in ISO14406:2010.
       </xs:documentation>
     </xs:annotation>
@@ -336,7 +674,7 @@
   <xs:simpleType name="PlanePointSamplingStrategyEnumType">
     <xs:annotation>
       <xs:documentation>
-        The PointSamplingStrategyEnumType enumerates point sampling
+        The PlanePointSamplingStrategyEnumType enumerates point sampling
         strategy types as given in ISO14406:2010.
       </xs:documentation>
     </xs:annotation>
@@ -669,40 +1007,305 @@
 
 <!-- END ENUMERATION TYPES -->
 
-<!-- START SUBSTITUTION GROUP EXTENSION FOR BooleanExpression -->
+<!-- START SUBSTITUTION GROUP FOR BooleanExpression -->
+
+  <xs:element name="BooleanExpression"
+              type="BooleanExpressionBaseType"
+              abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The global BooleanExpression element is the head of a
+        substitution group. Any element that is a member of the group may
+        be substituted for the BooleanExpression element anywhere the
+        BooleanExpression element may be used in an instance file.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Not"
+              type="NotType"
+              substitutionGroup="BooleanExpression"/>
+
+  <xs:element name="ConstantIs"
+              type="ConstantIsType"
+              substitutionGroup="BooleanExpression"/>
+
+  <xs:element name="And"
+              type="AndType"
+              substitutionGroup="BooleanExpression"/>
+
+  <xs:element name="Or"
+              type="OrType"
+              substitutionGroup="BooleanExpression"/>
+
+  <xs:element name="BooleanEqual"
+              type="BooleanEqualType"
+              substitutionGroup="BooleanExpression"/>
+
+  <xs:element name="ArithmeticEqual"
+              type="ArithmeticEqualType"
+              substitutionGroup="BooleanExpression"/>
+
+  <xs:element name="GreaterThan"
+              type="GreaterThanType"
+              substitutionGroup="BooleanExpression"/>
+
+  <xs:element name="GreaterOrEqual"
+              type="GreaterOrEqualType"
+              substitutionGroup="BooleanExpression"/>
+
+  <xs:element name="LessThan"
+              type="LessThanType"
+              substitutionGroup="BooleanExpression"/>
+
+  <xs:element name="LessOrEqual"
+              type="LessOrEqualType"
+              substitutionGroup="BooleanExpression"/>
+
+  <xs:element name="TokenEqual"
+              type="TokenEqualType"
+              substitutionGroup="BooleanExpression"/>
 
   <xs:element name="CharacteristicIs"
-    type="CharacteristicIsType"
-    substitutionGroup="BooleanExpression"/>
+              type="CharacteristicIsType"
+              substitutionGroup="BooleanExpression"/>
 
   <xs:element name="FeatureIsDatum"
-    type="FeatureIsDatumType"
-    substitutionGroup="BooleanExpression"/>
+              type="FeatureIsDatumType"
+              substitutionGroup="BooleanExpression"/>
 
   <xs:element name="FeatureIsInternal"
-    type="FeatureIsInternalType"
-    substitutionGroup="BooleanExpression"/>
+              type="FeatureIsInternalType"
+              substitutionGroup="BooleanExpression"/>
 
   <xs:element name="FeatureTypeIs"
-    type="FeatureTypeIsType"
-    substitutionGroup="BooleanExpression"/>
+              type="FeatureTypeIsType"
+              substitutionGroup="BooleanExpression"/>
 
   <xs:element name="SamplingCategoryIs"
-    type="SamplingCategoryIsType"
-    substitutionGroup="BooleanExpression"/>
+              type="SamplingCategoryIsType"
+              substitutionGroup="BooleanExpression"/>
 
   <xs:element name="ShapeClassIs"
-    type="ShapeClassIsType"
-    substitutionGroup="BooleanExpression"/>
+              type="ShapeClassIsType"
+              substitutionGroup="BooleanExpression"/>
 
-<!-- END SUBSTITUTION GROUP EXTENSION FOR BooleanExpression -->
+<!-- END SUBSTITUTION GROUP FOR BooleanExpression -->
 
 <!-- END QIF BOOLEAN EXPRESSIONS -->
+
+<!-- START ARITHMETIC EXPRESSIONS -->
+
+<!-- START GENERIC ARITHMETIC EXPRESSIONS -->
+  <xs:annotation>
+    <xs:documentation>
+      The arithmetic expressions include:
+        negate
+        plus
+        minus
+        times
+        divided by
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="ArithmeticExpressionBaseType"
+                  abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The ArithmeticExpressionBaseType defines the base type for
+        arithmetic expressions. All derived types of
+        ArithmeticExpressionBaseType evaluate to an xs:decimal.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:complexType>
+
+  <xs:complexType name="ArithmeticConstantType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArithmeticConstantType defines an arithmetic constant.
+        The value of an ArithmeticConstant is the value of the val
+        attribute.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArithmeticExpressionBaseType">
+        <xs:attribute name="val"
+                      type="xs:decimal"
+                      use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required val attribute is an arithmetic constant.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="NegateType">
+    <xs:annotation>
+      <xs:documentation>
+        The NegateType defines an arithmetic operations that changes the
+        sign of a number. The value of a NegateType is the negative of the
+        value of the ArithmeticExpression element.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArithmeticExpressionBaseType">
+        <xs:sequence>
+          <xs:element ref="ArithmeticExpression">
+            <xs:annotation>
+              <xs:documentation>
+                The ArithmeticExpression element is the expression whose
+                value is negated.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="BinaryArithmeticExpressionBaseType"
+                  abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The BinaryArithmeticExpressionBaseType is the base type for
+        binary arithmetic expressions.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArithmeticExpressionBaseType">
+        <xs:sequence>
+          <xs:element ref="ArithmeticExpression"
+                      minOccurs="2"
+                      maxOccurs="2">
+            <xs:annotation>
+              <xs:documentation>
+                Each ArithmeticExpression expression element is one of two
+                arithmetic expressions being operated on to produce a
+                value.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="PolyadicArithmeticExpressionBaseType"
+                  abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The PolyadicArithmeticExpressionBaseType is the base type for
+        arithmetic expressions with operators that operate on two or more
+        expressions and for which the order of the expressions being
+        operated on is irrelevant.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArithmeticExpressionBaseType">
+        <xs:sequence>
+          <xs:element ref="ArithmeticExpression"
+                      minOccurs="2"
+                      maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                Each ArithmeticExpression expression element is one of the
+                arithmetic expressions being operated on to produce a
+                value.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="PlusType">
+    <xs:annotation>
+      <xs:documentation>
+        The PlusType defines addition. A plus type evaluates to the
+        sum of the values of its ArithmeticExpression elements.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="PolyadicArithmeticExpressionBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MaxType">
+    <xs:annotation>
+      <xs:documentation>
+        The MaxType defines taking the maximum of a number of values. A max
+        type evaluates to the maximum of the values of its
+        ArithmeticExpression elements.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="PolyadicArithmeticExpressionBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MinType">
+    <xs:annotation>
+      <xs:documentation>
+        The MinType defines taking the minimum of a number of values. A min
+        type evaluates to the minimum of the values of its
+        ArithmeticExpression elements.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="PolyadicArithmeticExpressionBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MinusType">
+    <xs:annotation>
+      <xs:documentation>
+        The MinusType defines subtraction. A minus type evaluates to the
+        value of the first ArithmeticExpression element minus the value of
+        the second ArithmeticExpression element.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BinaryArithmeticExpressionBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TimesType">
+    <xs:annotation>
+      <xs:documentation>
+        The TimesType defines multiplication. A TimesType evaluates to the
+        product of the values of its ArithmeticExpression elements.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="PolyadicArithmeticExpressionBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DividedByType">
+    <xs:annotation>
+      <xs:documentation>
+        The DividedByType defines division. A DividedByType
+        evaluates to the quotient of the values of its two
+        ArithmeticExpression elements (the first divided by the
+        second). The second ArithmeticExpression element must not
+        evaluate to zero.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BinaryArithmeticExpressionBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+<!-- END GENERIC ARITHMETIC EXPRESSIONS -->
 
 <!-- START QIF ARITHMETIC EXPRESSIONS -->
 
   <xs:complexType name="ArithmeticParameterBaseType"
-    abstract="true">
+                  abstract="true">
     <xs:annotation>
       <xs:documentation>
         The abstract ArithmeticParameterBaseType defines an arithmetic
@@ -717,7 +1320,7 @@
       <xs:extension base="ArithmeticExpressionBaseType">
         <xs:sequence>
           <xs:element name="Parameter"
-            type="xs:token">
+                      type="xs:token">
             <xs:annotation>
               <xs:documentation>
                 The Parameter element is the xpath starting from the
@@ -751,7 +1354,7 @@
       <xs:extension base="ArithmeticExpressionBaseType">
         <xs:sequence>
           <xs:element name="Parameter"
-            type="xs:token">
+                      type="xs:token">
             <xs:annotation>
               <xs:documentation>
                 The Parameter element is the xpath starting from the object
@@ -765,7 +1368,7 @@
             </xs:annotation>
           </xs:element>
           <xs:element name="ObjectId"
-            type="QIFReferenceFullType">
+                      type="QIFReferenceFullType">
             <xs:annotation>
               <xs:documentation>
                 The ObjectId element identifies the object from which the
@@ -792,11 +1395,11 @@
       <xs:extension base="ArithmeticParameterBaseType">
         <xs:sequence>
           <xs:element name="FeatureTypeEnum"
-            type="FeatureTypeEnumType"
-            minOccurs="0">
+                      type="FeatureTypeEnumType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
-                The optional CharacteristicTypeEnum element identifies the
+                The optional FeatureTypeEnum element identifies the
                 type of feature. If this element is used, the rule
                 containing the ArithmeticFeatureParameter applies only to
                 features of the given type. If this element is not used,
@@ -825,8 +1428,8 @@
       <xs:extension base="ArithmeticParameterBaseType">
         <xs:sequence>
           <xs:element name="CharacteristicTypeEnum"
-            type="CharacteristicTypeEnumType"
-            minOccurs="0">
+                      type="CharacteristicTypeEnumType"
+                      minOccurs="0">
             <xs:annotation>
               <xs:documentation>
                 The optional CharacteristicTypeEnum element identifies the
@@ -858,7 +1461,7 @@
       <xs:extension base="ArithmeticParameterBaseType">
         <xs:sequence>
           <xs:element name="DMEClassNameEnum"
-            type="DMEClassNameEnumType">
+                      type="DMEClassNameEnumType">
             <xs:annotation>
               <xs:documentation>
                 The DMEClassNameEnum element identifies the type of DME. A
@@ -963,7 +1566,7 @@
       <xs:extension base="ArithmeticExpressionBaseType">
         <xs:sequence>
           <xs:element name="VariableName"
-            type="xs:IDREF">
+                      type="xs:IDREF">
             <xs:annotation>
               <xs:documentation>
                 The VariableName element is the name of a variable.
@@ -975,50 +1578,200 @@
     </xs:complexContent>
   </xs:complexType>
 
-<!-- START SUBSTITUTION GROUP EXTENSION FOR ArithmeticExpression -->
+<!-- END QIF ARITHMETIC EXPRESSION TYPES -->
+
+<!-- END ARITHMETIC EXPRESSION TYPES -->
+
+<!-- START SUBSTITUTION GROUP FOR ArithmeticExpression -->
+
+  <xs:element name="ArithmeticExpression"
+              type="ArithmeticExpressionBaseType"
+              abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The global ArithmeticExpression element is the head of a
+        substitution group. Any element that is a member of the group may
+        be substituted for the ArithmeticExpression element anywhere the
+        ArithmeticExpression element may be used in an instance file.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="ArithmeticConstant"
+              type="ArithmeticConstantType"
+              substitutionGroup="ArithmeticExpression"/>
+
+  <xs:element name="Plus"
+              type="PlusType"
+              substitutionGroup="ArithmeticExpression"/>
+
+  <xs:element name="Max"
+              type="MaxType"
+              substitutionGroup="ArithmeticExpression"/>
+
+  <xs:element name="Min"
+              type="MinType"
+              substitutionGroup="ArithmeticExpression"/>
+
+  <xs:element name="Minus"
+              type="MinusType"
+              substitutionGroup="ArithmeticExpression"/>
+
+  <xs:element name="Negate"
+              type="NegateType"
+              substitutionGroup="ArithmeticExpression"/>
+
+  <xs:element name="Times"
+              type="TimesType"
+              substitutionGroup="ArithmeticExpression"/>
+
+  <xs:element name="DividedBy"
+              type="DividedByType"
+              substitutionGroup="ArithmeticExpression"/>
 
   <xs:element name="ArithmeticFeatureParameter"
-    type="ArithmeticFeatureParameterType"
-    substitutionGroup="ArithmeticExpression"/>
+              type="ArithmeticFeatureParameterType"
+              substitutionGroup="ArithmeticExpression"/>
 
   <xs:element name="ArithmeticCharacteristicParameter"
-    type="ArithmeticCharacteristicParameterType"
-    substitutionGroup="ArithmeticExpression"/>
+              type="ArithmeticCharacteristicParameterType"
+              substitutionGroup="ArithmeticExpression"/>
 
   <xs:element name="ArithmeticDMEParameter"
-    type="ArithmeticDMEParameterType"
-    substitutionGroup="ArithmeticExpression"/>
+              type="ArithmeticDMEParameterType"
+              substitutionGroup="ArithmeticExpression"/>
 
   <xs:element name="ArithmeticParameterValue"
-    type="ArithmeticParameterValueType"
-    substitutionGroup="ArithmeticExpression"/>
+              type="ArithmeticParameterValueType"
+              substitutionGroup="ArithmeticExpression"/>
 
   <xs:element name="ArithmeticPartParameter"
-    type="ArithmeticPartParameterType"
-    substitutionGroup="ArithmeticExpression"/>
+              type="ArithmeticPartParameterType"
+              substitutionGroup="ArithmeticExpression"/>
 
   <xs:element name="CharacteristicTolerance"
-    type="CharacteristicToleranceType"
-    substitutionGroup="ArithmeticExpression"/>
+              type="CharacteristicToleranceType"
+              substitutionGroup="ArithmeticExpression"/>
 
   <xs:element name="FeatureLength"
-    type="FeatureLengthType"
-    substitutionGroup="ArithmeticExpression"/>
+              type="FeatureLengthType"
+              substitutionGroup="ArithmeticExpression"/>
 
   <xs:element name="FeatureArea"
-    type="FeatureAreaType"
-    substitutionGroup="ArithmeticExpression"/>
+              type="FeatureAreaType"
+              substitutionGroup="ArithmeticExpression"/>
 
   <xs:element name="FeatureSize"
-    type="FeatureSizeType"
-    substitutionGroup="ArithmeticExpression"/>
+              type="FeatureSizeType"
+              substitutionGroup="ArithmeticExpression"/>
 
   <xs:element name="VariableValue"
-    type="VariableValueType"
-    substitutionGroup="ArithmeticExpression"/>
+              type="VariableValueType"
+              substitutionGroup="ArithmeticExpression"/>
 
 <!-- END SUBSTITUTION GROUP EXTENSION FOR ArithmeticExpression -->
 
 <!-- END QIF ARITHMETIC EXPRESSIONS -->
+
+<!-- START TOKEN EXPRESSIONS -->
+
+  <xs:complexType name="TokenExpressionBaseType"
+                  abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The TokenExpressionBaseType defines the base type for token
+        expressions. All derived types of TokenExpressionBaseType evaluate
+        to an xs:token.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:complexType>
+
+  <xs:complexType name="TokenConstantType">
+    <xs:annotation>
+      <xs:documentation>
+        The TokenConstantType defines an token (i.e., well-behaved string)
+        constant. The value of a TokenConstant is the value of the
+        val attribute.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="TokenExpressionBaseType">
+        <xs:attribute name="val"
+                      type="xs:token"
+                      use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required val attribute is a token constant.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TokenParameterValueType">
+    <xs:annotation>
+      <xs:documentation>
+        The TokenParameterValueType defines a token expression that
+        represents the value of a token parameter of a QIF object with a
+        QIF id (e.g., the InternalExternal of a circle feature). If the
+        identified object does not have the given parameter, the result is
+        undefined.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="TokenExpressionBaseType">
+        <xs:sequence>
+          <xs:element name="Parameter"
+                      type="xs:token">
+            <xs:annotation>
+              <xs:documentation>
+                The Parameter element is the xpath starting from the object
+                (e.g., a feature or characteristic) and ending in name of
+                the token parameter whose value is to be obtained -
+                for example, InternalExternal of a circle.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ObjectId"
+                      type="QIFReferenceFullType">
+            <xs:annotation>
+              <xs:documentation>
+                The ObjectId element identifies the object from which the
+                parameter value is to be extracted.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+<!-- START SUBSTITUTION GROUP FOR TokenExpression -->
+
+  <xs:element name="TokenExpression"
+              type="TokenExpressionBaseType"
+              abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The global TokenExpression element is the head of a
+        substitution group. Any element that is a member of the group may
+        be substituted for the TokenExpression element anywhere the
+        TokenExpression element may be used in an instance file.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="TokenConstant"
+              type="TokenConstantType"
+              substitutionGroup="TokenExpression"/>
+
+  <xs:element name="TokenParameterValue"
+              type="TokenParameterValueType"
+              substitutionGroup="TokenExpression"/>
+
+<!-- END SUBSTITUTION GROUP FOR TokenExpression -->
+
+<!-- END TOKEN EXPRESSIONS -->
 
 </xs:schema>
