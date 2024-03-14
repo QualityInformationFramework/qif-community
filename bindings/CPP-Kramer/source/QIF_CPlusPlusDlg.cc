@@ -106,11 +106,11 @@ int main()
 
   // add datum A to DRF as primary datum
   DatumWithPrecedenceType * dwpA_A = new DatumWithPrecedenceType();
-  DatumWithPreced_1013_TypeVal * dwpA_Aval = new DatumWithPreced_1013_TypeVal();
+  DatumWithPreced_1010_TypeVal * dwpA_Aval = new DatumWithPreced_1010_TypeVal();
   dwpA_Aval->SimpleDatum = dtA_A;
-  DatumWithPreced_1013_TypeChoicePair * DwpA_Achoice =
-    new DatumWithPreced_1013_TypeChoicePair
-    (DatumWithPreced_1013_TypeChoicePair::SimpleDatumE, *dwpA_Aval);
+  DatumWithPreced_1010_TypeChoicePair * DwpA_Achoice =
+    new DatumWithPreced_1010_TypeChoicePair
+    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, *dwpA_Aval);
 
   PrecedenceType * prcA_A = new PrecedenceType();
   PrecedenceTypeVal * prcA_Aval = new PrecedenceTypeVal();
@@ -119,8 +119,8 @@ int main()
     (new PrecedenceTypeChoicePair(PrecedenceTypeChoicePair::PrecedenceEnumE,
 				  *prcA_Aval));
   dwpA_A->setPrecedence(prcA_A);
-  dwpA_A->setDatumWithPreced_1013
-    (new DatumWithPreced_1013_Type(DwpA_Achoice));
+  dwpA_A->setDatumWithPreced_1010
+    (new DatumWithPreced_1010_Type(DwpA_Achoice));
   // add simple primary datum A to the datums list
   drfAdats->setDatum(new DatumWithPrecedenceTypeLisd());
   drfAdats->getDatum()->push_back(dwpA_A);
@@ -156,12 +156,12 @@ int main()
 
   // add datum A to DRF as primary datum
   DatumWithPrecedenceType * dwpA_AB = new DatumWithPrecedenceType();
-  DatumWithPreced_1013_TypeVal * dwpA_ABval =
-    new DatumWithPreced_1013_TypeVal();
+  DatumWithPreced_1010_TypeVal * dwpA_ABval =
+    new DatumWithPreced_1010_TypeVal();
   dwpA_ABval->SimpleDatum = dtA_AB;
-  DatumWithPreced_1013_TypeChoicePair * DwpA_ABchoice =
-    new DatumWithPreced_1013_TypeChoicePair
-    (DatumWithPreced_1013_TypeChoicePair::SimpleDatumE, *dwpA_ABval);
+  DatumWithPreced_1010_TypeChoicePair * DwpA_ABchoice =
+    new DatumWithPreced_1010_TypeChoicePair
+    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, *dwpA_ABval);
 
   PrecedenceType * prcA_AB = new PrecedenceType();
   PrecedenceTypeVal * prcA_ABval = new PrecedenceTypeVal();
@@ -170,8 +170,8 @@ int main()
     (new PrecedenceTypeChoicePair(PrecedenceTypeChoicePair::PrecedenceEnumE,
 				  *prcA_ABval));
   dwpA_AB->setPrecedence(prcA_AB);
-  dwpA_AB->setDatumWithPreced_1013
-    (new DatumWithPreced_1013_Type(DwpA_ABchoice));
+  dwpA_AB->setDatumWithPreced_1010
+    (new DatumWithPreced_1010_Type(DwpA_ABchoice));
   // add simple primary datum A to the datums list
   drfABdats->setDatum(new DatumWithPrecedenceTypeLisd());
   drfABdats->getDatum()->push_back(dwpA_AB);
@@ -191,12 +191,12 @@ int main()
   dtB_AB->setReferencedComponent(new ReferencedComponentEnumType("ACTUAL"));
   // add datum B to DRF as secondary datum
   DatumWithPrecedenceType * dwpB_AB = new DatumWithPrecedenceType();
-  DatumWithPreced_1013_TypeVal * dwpB_ABval =
-    new DatumWithPreced_1013_TypeVal();
+  DatumWithPreced_1010_TypeVal * dwpB_ABval =
+    new DatumWithPreced_1010_TypeVal();
   dwpB_ABval->SimpleDatum = dtB_AB;
-  DatumWithPreced_1013_TypeChoicePair * DwpB_ABchoice =
-    new DatumWithPreced_1013_TypeChoicePair
-    (DatumWithPreced_1013_TypeChoicePair::SimpleDatumE, *dwpB_ABval);
+  DatumWithPreced_1010_TypeChoicePair * DwpB_ABchoice =
+    new DatumWithPreced_1010_TypeChoicePair
+    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, *dwpB_ABval);
 
   PrecedenceType * prcB_AB = new PrecedenceType();
   PrecedenceTypeVal * prcB_ABval = new PrecedenceTypeVal();
@@ -205,8 +205,8 @@ int main()
     (new PrecedenceTypeChoicePair(PrecedenceTypeChoicePair::PrecedenceEnumE,
 				  *prcB_ABval));
   dwpB_AB->setPrecedence(prcB_AB);
-  dwpB_AB->setDatumWithPreced_1013
-    (new DatumWithPreced_1013_Type(DwpB_ABchoice));
+  dwpB_AB->setDatumWithPreced_1010
+    (new DatumWithPreced_1010_Type(DwpB_ABchoice));
   // add simple primary datum B to the datums list
   drfABdats->getDatum()->push_back(dwpB_AB);
   drfABdats->getn()->setval(1 + drfABdats->getn()->getval()); // increment n
@@ -240,12 +240,12 @@ int main()
 
   // add datum A to DRF as primary datum
   DatumWithPrecedenceType * dwpA_ABC = new DatumWithPrecedenceType();
-  DatumWithPreced_1013_TypeVal * dwpA_ABCval =
-    new DatumWithPreced_1013_TypeVal();
+  DatumWithPreced_1010_TypeVal * dwpA_ABCval =
+    new DatumWithPreced_1010_TypeVal();
   dwpA_ABCval->SimpleDatum = dtA_ABC;
-  DatumWithPreced_1013_TypeChoicePair * DwpA_ABCchoice =
-    new DatumWithPreced_1013_TypeChoicePair
-    (DatumWithPreced_1013_TypeChoicePair::SimpleDatumE, *dwpA_ABCval);
+  DatumWithPreced_1010_TypeChoicePair * DwpA_ABCchoice =
+    new DatumWithPreced_1010_TypeChoicePair
+    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, *dwpA_ABCval);
 
   PrecedenceType * prcA_ABC = new PrecedenceType();
   PrecedenceTypeVal * prcA_ABCval = new PrecedenceTypeVal();
@@ -254,8 +254,8 @@ int main()
     (new PrecedenceTypeChoicePair(PrecedenceTypeChoicePair::PrecedenceEnumE,
 				  *prcA_ABCval));
   dwpA_ABC->setPrecedence(prcA_ABC);
-  dwpA_ABC->setDatumWithPreced_1013
-    (new DatumWithPreced_1013_Type(DwpA_ABCchoice));
+  dwpA_ABC->setDatumWithPreced_1010
+    (new DatumWithPreced_1010_Type(DwpA_ABCchoice));
   // add simple primary datum A to the datums list
   drfABCdats->setDatum(new DatumWithPrecedenceTypeLisd());
   drfABCdats->getDatum()->push_back(dwpA_ABC);
@@ -275,12 +275,12 @@ int main()
   dtB_ABC->setReferencedComponent(new ReferencedComponentEnumType("ACTUAL"));
   // add datum B to DRF as secondary datum
   DatumWithPrecedenceType * dwpB_ABC = new DatumWithPrecedenceType();
-  DatumWithPreced_1013_TypeVal * dwpB_ABCval =
-    new DatumWithPreced_1013_TypeVal();
+  DatumWithPreced_1010_TypeVal * dwpB_ABCval =
+    new DatumWithPreced_1010_TypeVal();
   dwpB_ABCval->SimpleDatum = dtB_ABC;
-  DatumWithPreced_1013_TypeChoicePair * DwpB_ABCchoice =
-    new DatumWithPreced_1013_TypeChoicePair
-    (DatumWithPreced_1013_TypeChoicePair::SimpleDatumE, *dwpB_ABCval);
+  DatumWithPreced_1010_TypeChoicePair * DwpB_ABCchoice =
+    new DatumWithPreced_1010_TypeChoicePair
+    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, *dwpB_ABCval);
 
   PrecedenceType * prcB_ABC = new PrecedenceType();
   PrecedenceTypeVal * prcB_ABCval = new PrecedenceTypeVal();
@@ -289,8 +289,8 @@ int main()
     (new PrecedenceTypeChoicePair(PrecedenceTypeChoicePair::PrecedenceEnumE,
 				  *prcB_ABCval));
   dwpB_ABC->setPrecedence(prcB_ABC);
-  dwpB_ABC->setDatumWithPreced_1013
-    (new DatumWithPreced_1013_Type(DwpB_ABCchoice));
+  dwpB_ABC->setDatumWithPreced_1010
+    (new DatumWithPreced_1010_Type(DwpB_ABCchoice));
   // add simple primary datum B to the datums list
   drfABCdats->getDatum()->push_back(dwpB_ABC);
   drfABCdats->getn()->setval(1 + drfABCdats->getn()->getval()); // increment n
@@ -308,12 +308,12 @@ int main()
   dtC_ABC->setReferencedComponent(new ReferencedComponentEnumType("ACTUAL"));
   // add datum C to DRF as tertiary datum
   DatumWithPrecedenceType * dwpC_ABC = new DatumWithPrecedenceType();
-  DatumWithPreced_1013_TypeVal * dwpC_ABCval =
-    new DatumWithPreced_1013_TypeVal();
+  DatumWithPreced_1010_TypeVal * dwpC_ABCval =
+    new DatumWithPreced_1010_TypeVal();
   dwpC_ABCval->SimpleDatum = dtC_ABC;
-  DatumWithPreced_1013_TypeChoicePair * DwpC_ABCchoice =
-    new DatumWithPreced_1013_TypeChoicePair
-    (DatumWithPreced_1013_TypeChoicePair::SimpleDatumE, *dwpC_ABCval);
+  DatumWithPreced_1010_TypeChoicePair * DwpC_ABCchoice =
+    new DatumWithPreced_1010_TypeChoicePair
+    (DatumWithPreced_1010_TypeChoicePair::SimpleDatumE, *dwpC_ABCval);
 
   PrecedenceType * prcC_ABC = new PrecedenceType();
   PrecedenceTypeVal * prcC_ABCval = new PrecedenceTypeVal();
@@ -322,8 +322,8 @@ int main()
     (new PrecedenceTypeChoicePair(PrecedenceTypeChoicePair::PrecedenceEnumE,
 				  *prcC_ABCval));
   dwpC_ABC->setPrecedence(prcC_ABC);
-  dwpC_ABC->setDatumWithPreced_1013
-    (new DatumWithPreced_1013_Type(DwpC_ABCchoice));
+  dwpC_ABC->setDatumWithPreced_1010
+    (new DatumWithPreced_1010_Type(DwpC_ABCchoice));
   // add simple primary datum C to the datums list
   drfABCdats->getDatum()->push_back(dwpC_ABC);
   drfABCdats->getn()->setval(1 + drfABCdats->getn()->getval()); // increment n
@@ -490,17 +490,17 @@ int main()
   LinearValueType * flatZone = new LinearValueType("0.1");
   // a flatness can be simple, per-unit-area, or both.
   // Items is used to store this hierachy of objects
-  FlatnessCharact_1086_Type * flatDefLinear = new FlatnessCharact_1086_Type();
+  FlatnessCharact_1066_Type * flatDefLinear = new FlatnessCharact_1066_Type();
   flatDefLinear->setToleranceValue(flatZone);
-  FlatnessCharact_1056_TypeVal * flatDefVal =
-    new FlatnessCharact_1056_TypeVal();
-  flatDefVal->FlatnessCharact_1086 = flatDefLinear;
-  FlatnessCharact_1056_TypeChoicePair * flatDefChoice =
-    new FlatnessCharact_1056_TypeChoicePair
-    (FlatnessCharact_1056_TypeChoicePair::FlatnessCharact_1086E, *flatDefVal);
-  FlatnessCharact_1056_Type * flatDef1056 = new FlatnessCharact_1056_Type();
-  flatDef1056->setFlatnessCharact_1056_TypePair(flatDefChoice);
-  flatDef->setFlatnessCharact_1056(flatDef1056);
+  FlatnessCharact_1049_TypeVal * flatDefVal =
+    new FlatnessCharact_1049_TypeVal();
+  flatDefVal->FlatnessCharact_1066 = flatDefLinear;
+  FlatnessCharact_1049_TypeChoicePair * flatDefChoice =
+    new FlatnessCharact_1049_TypeChoicePair
+    (FlatnessCharact_1049_TypeChoicePair::FlatnessCharact_1066E, *flatDefVal);
+  FlatnessCharact_1049_Type * flatDef1049 = new FlatnessCharact_1049_Type();
+  flatDef1049->setFlatnessCharact_1049_TypePair(flatDefChoice);
+  flatDef->setFlatnessCharact_1049(flatDef1049);
 
   // add to list
   charDefs->getCharacteristicDefinition()->push_back(flatDef);
@@ -760,31 +760,29 @@ int main()
   LinearValueType * minusTolBC = new LinearValueType("-0.3");
   LinearToleranceType * diaBCTol = new LinearToleranceType();
   diaBCTol->setDefinedAsLimit(new XmlBoolean("false"));
-  LinearTolerance_1042_Type * minBCTol = new LinearTolerance_1042_Type();
+  LinearTolerance_1038_Type * minBCTol = new LinearTolerance_1038_Type();
   minBCTol->setMinValue(minusTolBC);
-  LinearTolerance_1035_Type * maxMinBCTol = new LinearTolerance_1035_Type();
+  LinearTolerance_1031_Type * maxMinBCTol = new LinearTolerance_1031_Type();
   maxMinBCTol->setMaxValue(plusTolBC);
-  maxMinBCTol->setLinearTolerance_1042(minBCTol);
-  LinearTolerance_1018_TypeVal * diaBCTolVal =
-    new LinearTolerance_1018_TypeVal();
-  diaBCTolVal->LinearTolerance_1035 = maxMinBCTol; 
-  LinearTolerance_1018_TypeChoicePair * diaBCTolChoice =
-    new LinearTolerance_1018_TypeChoicePair
-    (LinearTolerance_1018_TypeChoicePair::LinearTolerance_1035E,
+  maxMinBCTol->setLinearTolerance_1038(minBCTol);
+  LinearTolerance_1014_TypeVal * diaBCTolVal =
+    new LinearTolerance_1014_TypeVal();
+  diaBCTolVal->LinearTolerance_1031 = maxMinBCTol; 
+  LinearTolerance_1014_TypeChoicePair * diaBCTolChoice =
+    new LinearTolerance_1014_TypeChoicePair
+    (LinearTolerance_1014_TypeChoicePair::LinearTolerance_1031E,
      *diaBCTolVal);
-  LinearTolerance_1018_Type * diaBCTol1018 = new LinearTolerance_1018_Type();
-  diaBCTol1018->setLinearTolerance_1018_TypePair(diaBCTolChoice);
-  diaBCTol->setLinearTolerance_1018(diaBCTol1018);
-  DiameterCharact_1055_TypeVal * diaBCTolSelVal =
-    new DiameterCharact_1055_TypeVal();
+  LinearTolerance_1014_Type * diaBCTol1014 = new LinearTolerance_1014_Type();
+  diaBCTol1014->setLinearTolerance_1014_TypePair(diaBCTolChoice);
+  diaBCTol->setLinearTolerance_1014(diaBCTol1014);
+  DiameterCharacteristicDefinitionTypeVal * diaBCTolSelVal =
+    new DiameterCharacteristicDefinitionTypeVal();
   diaBCTolSelVal->Tolerance = diaBCTol;
-  DiameterCharact_1055_TypeChoicePair * diaBCTolSelChoice =
-    new DiameterCharact_1055_TypeChoicePair
-    (DiameterCharact_1055_TypeChoicePair::ToleranceE,
+  DiameterCharacteristicDefinitionTypeChoicePair * diaBCTolSelChoice =
+    new DiameterCharacteristicDefinitionTypeChoicePair
+    (DiameterCharacteristicDefinitionTypeChoicePair::ToleranceE,
      *diaBCTolSelVal);
-  DiameterCharact_1055_Type * diaBCTolSel = new DiameterCharact_1055_Type();
-  diaBCTolSel->setDiameterCharact_1055_TypePair(diaBCTolSelChoice);
-  diaBCDef->setDiameterCharact_1055(diaBCTolSel);
+  diaBCDef->setDiameterCharacteristicDefinitionTypeChoicePair(diaBCTolSelChoice);
 
   // add to list
   charDefs->getCharacteristicDefinition()->push_back(diaBCDef);
@@ -1487,31 +1485,29 @@ int main()
   LinearToleranceType * diaDiaTol = new LinearToleranceType();
   diaDiaTol->setDefinedAsLimit(new XmlBoolean("true"));
 
-  LinearTolerance_1042_Type * minDiaTol = new LinearTolerance_1042_Type();
+  LinearTolerance_1038_Type * minDiaTol = new LinearTolerance_1038_Type();
   minDiaTol->setMinValue(lowSize);
-  LinearTolerance_1035_Type * maxMinDiaTol = new LinearTolerance_1035_Type();
+  LinearTolerance_1031_Type * maxMinDiaTol = new LinearTolerance_1031_Type();
   maxMinDiaTol->setMaxValue(highSize);
-  maxMinDiaTol->setLinearTolerance_1042(minDiaTol);
-  LinearTolerance_1018_TypeVal * diaDiaTolVal =
-    new LinearTolerance_1018_TypeVal();
-  diaDiaTolVal->LinearTolerance_1035 = maxMinDiaTol; 
-  LinearTolerance_1018_TypeChoicePair * diaDiaTolChoice =
-    new LinearTolerance_1018_TypeChoicePair
-    (LinearTolerance_1018_TypeChoicePair::LinearTolerance_1035E,
+  maxMinDiaTol->setLinearTolerance_1038(minDiaTol);
+  LinearTolerance_1014_TypeVal * diaDiaTolVal =
+    new LinearTolerance_1014_TypeVal();
+  diaDiaTolVal->LinearTolerance_1031 = maxMinDiaTol; 
+  LinearTolerance_1014_TypeChoicePair * diaDiaTolChoice =
+    new LinearTolerance_1014_TypeChoicePair
+    (LinearTolerance_1014_TypeChoicePair::LinearTolerance_1031E,
      *diaDiaTolVal);
-  LinearTolerance_1018_Type * diaDiaTol1018 = new LinearTolerance_1018_Type();
-  diaDiaTol1018->setLinearTolerance_1018_TypePair(diaDiaTolChoice);
-  diaDiaTol->setLinearTolerance_1018(diaDiaTol1018);
-  DiameterCharact_1055_TypeVal * diaDiaTolSelVal =
-    new DiameterCharact_1055_TypeVal();
+  LinearTolerance_1014_Type * diaDiaTol1014 = new LinearTolerance_1014_Type();
+  diaDiaTol1014->setLinearTolerance_1014_TypePair(diaDiaTolChoice);
+  diaDiaTol->setLinearTolerance_1014(diaDiaTol1014);
+  DiameterCharacteristicDefinitionTypeVal * diaDiaTolSelVal =
+    new DiameterCharacteristicDefinitionTypeVal();
   diaDiaTolSelVal->Tolerance = diaDiaTol;
-  DiameterCharact_1055_TypeChoicePair * diaDiaTolSelChoice =
-    new DiameterCharact_1055_TypeChoicePair
-    (DiameterCharact_1055_TypeChoicePair::ToleranceE,
+  DiameterCharacteristicDefinitionTypeChoicePair * diaDiaTolSelChoice =
+    new DiameterCharacteristicDefinitionTypeChoicePair
+    (DiameterCharacteristicDefinitionTypeChoicePair::ToleranceE,
      *diaDiaTolSelVal);
-  DiameterCharact_1055_Type * diaDiaTolSel = new DiameterCharact_1055_Type();
-  diaDiaTolSel->setDiameterCharact_1055_TypePair(diaDiaTolSelChoice);
-  diaDef->setDiameterCharact_1055(diaDiaTolSel);
+   diaDef->setDiameterCharacteristicDefinitionTypeChoicePair(diaDiaTolSelChoice);
 
   // add to list
   charDefs->getCharacteristicDefinition()->push_back(diaDef);

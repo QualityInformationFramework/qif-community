@@ -4,7 +4,6 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
-#include <boost/regex.hpp>
 #include <xmlSchemaInstance.hh>
 #include "QIFPlanClasses.hh"
 
@@ -297,7 +296,7 @@ bool ActionMethodBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ActionMethodBaseType\n");
               returnValue = true;
@@ -313,7 +312,7 @@ bool ActionMethodBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -322,7 +321,7 @@ bool ActionMethodBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ActionMethodBaseType\n");
       returnValue = true;
@@ -334,8 +333,8 @@ bool ActionMethodBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -389,7 +388,15 @@ ActionMethodBaseTypeLisd::~ActionMethodBaseTypeLisd()
   #endif
 }
 
-void ActionMethodBaseTypeLisd::printSelf(FILE * outFile){}
+void ActionMethodBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ActionMethodBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -464,6 +471,13 @@ void ActionMethodsType::printSelf(FILE * outFile)
     if (ActionMethod->size() == 0)
       {
         fprintf(stderr, "ActionMethod list is empty\n");
+        exit(1);
+      }
+    if (ActionMethod->size() < 1)
+      {
+        fprintf(stderr,
+                "size of ActionMethod list (%d) less than minimum required (1)\n",
+                (int)ActionMethod->size());
         exit(1);
       }
     std::list<ActionMethodBaseType *>::iterator iter;
@@ -638,6 +652,22 @@ void ActionMethodsType::printSelf(FILE * outFile)
                 exit(1);
               }
           }
+        else if (strcmp(basie->printElement, "OpticalDigitizerMeasureFeatureMethod") == 0)
+          {
+            OpticalDigitizerMeasureFeatureMethodType * typ;
+            if ((typ = dynamic_cast<OpticalDigitizerMeasureFeatureMethodType *>(basie)))
+              {
+                fprintf(outFile, "<OpticalDigitizerMeasureFeatureMethod");
+                typ->printSelf(outFile);
+                doSpaces(0, outFile);
+                fprintf(outFile, "</OpticalDigitizerMeasureFeatureMethod>\n");
+              }
+            else
+              {
+                fprintf(stderr, "bad OpticalDigitizerMeasureFeatureMethod element\n");
+                exit(1);
+              }
+          }
         else if (strcmp(basie->printElement, "ProfileProjectorMeasureFeatureMethod") == 0)
           {
             ProfileProjectorMeasureFeatureMethodType * typ;
@@ -727,7 +757,7 @@ bool ActionMethodsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ActionMethodsType\n");
               returnValue = true;
@@ -743,7 +773,7 @@ bool ActionMethodsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -752,7 +782,7 @@ bool ActionMethodsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ActionMethodsType\n");
       returnValue = true;
@@ -764,8 +794,8 @@ bool ActionMethodsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -893,7 +923,7 @@ bool AutocollimatorMeasureFeatureMethodType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AutocollimatorMeasureFeatureMethodType\n");
               returnValue = true;
@@ -909,7 +939,7 @@ bool AutocollimatorMeasureFeatureMethodType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -918,7 +948,7 @@ bool AutocollimatorMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AutocollimatorMeasureFeatureMethodType\n");
       returnValue = true;
@@ -930,8 +960,8 @@ bool AutocollimatorMeasureFeatureMethodType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -1047,7 +1077,7 @@ bool CalibratedComparatorMeasureFeatureMethodType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CalibratedComparatorMeasureFeatureMethodType\n");
               returnValue = true;
@@ -1063,7 +1093,7 @@ bool CalibratedComparatorMeasureFeatureMethodType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -1072,7 +1102,7 @@ bool CalibratedComparatorMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CalibratedComparatorMeasureFeatureMethodType\n");
       returnValue = true;
@@ -1084,8 +1114,8 @@ bool CalibratedComparatorMeasureFeatureMethodType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -1201,7 +1231,7 @@ bool ComputedTomographyMeasureFeatureMethodType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ComputedTomographyMeasureFeatureMethodType\n");
               returnValue = true;
@@ -1217,7 +1247,7 @@ bool ComputedTomographyMeasureFeatureMethodType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -1226,7 +1256,7 @@ bool ComputedTomographyMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ComputedTomographyMeasureFeatureMethodType\n");
       returnValue = true;
@@ -1238,8 +1268,8 @@ bool ComputedTomographyMeasureFeatureMethodType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -1368,7 +1398,7 @@ bool CoordinateMeasureFeatureMethodType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CoordinateMeasureFeatureMethodType\n");
               returnValue = true;
@@ -1384,7 +1414,7 @@ bool CoordinateMeasureFeatureMethodType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -1393,7 +1423,7 @@ bool CoordinateMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CoordinateMeasureFeatureMethodType\n");
       returnValue = true;
@@ -1405,8 +1435,8 @@ bool CoordinateMeasureFeatureMethodType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -1515,7 +1545,7 @@ bool DocumentFileInstructionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DocumentFileInstructionType\n");
               returnValue = true;
@@ -1531,7 +1561,7 @@ bool DocumentFileInstructionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -1540,7 +1570,7 @@ bool DocumentFileInstructionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DocumentFileInstructionType\n");
       returnValue = true;
@@ -1552,8 +1582,8 @@ bool DocumentFileInstructionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -1946,7 +1976,7 @@ bool EstablishDatumMeasurandType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in EstablishDatumMeasurandType\n");
               returnValue = true;
@@ -1962,7 +1992,7 @@ bool EstablishDatumMeasurandType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -1971,7 +2001,7 @@ bool EstablishDatumMeasurandType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in EstablishDatumMeasurandType\n");
       returnValue = true;
@@ -1983,8 +2013,8 @@ bool EstablishDatumMeasurandType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -2098,7 +2128,7 @@ bool EvaluateCharacteristicMeasurandType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in EvaluateCharacteristicMeasurandType\n");
               returnValue = true;
@@ -2114,7 +2144,7 @@ bool EvaluateCharacteristicMeasurandType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -2123,7 +2153,7 @@ bool EvaluateCharacteristicMeasurandType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in EvaluateCharacteristicMeasurandType\n");
       returnValue = true;
@@ -2135,8 +2165,8 @@ bool EvaluateCharacteristicMeasurandType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -2365,7 +2395,7 @@ bool ExternalReferenceMeasureFeatureMethodType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ExternalReferenceMeasureFeatureMethodType\n");
               returnValue = true;
@@ -2381,7 +2411,7 @@ bool ExternalReferenceMeasureFeatureMethodType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -2390,7 +2420,7 @@ bool ExternalReferenceMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ExternalReferenceMeasureFeatureMethodType\n");
       returnValue = true;
@@ -2402,8 +2432,8 @@ bool ExternalReferenceMeasureFeatureMethodType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -2525,7 +2555,7 @@ bool GageMeasureFeatureMethodType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in GageMeasureFeatureMethodType\n");
               returnValue = true;
@@ -2541,7 +2571,7 @@ bool GageMeasureFeatureMethodType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -2550,7 +2580,7 @@ bool GageMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in GageMeasureFeatureMethodType\n");
       returnValue = true;
@@ -2562,8 +2592,8 @@ bool GageMeasureFeatureMethodType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -2589,8 +2619,7 @@ HaltActionType::HaltActionType(
     PreferredActionMethodIdIn,
     AlternativeActionMethodIdsIn,
     PreferredResourceIdsIn)
-{
-}
+{}
 
 HaltActionType::~HaltActionType() {}
 
@@ -2856,7 +2885,7 @@ bool ImageInstructionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ImageInstructionType\n");
               returnValue = true;
@@ -2872,7 +2901,7 @@ bool ImageInstructionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -2881,7 +2910,7 @@ bool ImageInstructionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ImageInstructionType\n");
       returnValue = true;
@@ -2893,8 +2922,8 @@ bool ImageInstructionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -3016,7 +3045,7 @@ bool LaserRadarMeasureFeatureMethodType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LaserRadarMeasureFeatureMethodType\n");
               returnValue = true;
@@ -3032,7 +3061,7 @@ bool LaserRadarMeasureFeatureMethodType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -3041,7 +3070,7 @@ bool LaserRadarMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LaserRadarMeasureFeatureMethodType\n");
       returnValue = true;
@@ -3053,8 +3082,8 @@ bool LaserRadarMeasureFeatureMethodType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -3170,7 +3199,7 @@ bool LaserTrackerMeasureFeatureMethodType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LaserTrackerMeasureFeatureMethodType\n");
               returnValue = true;
@@ -3186,7 +3215,7 @@ bool LaserTrackerMeasureFeatureMethodType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -3195,7 +3224,7 @@ bool LaserTrackerMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LaserTrackerMeasureFeatureMethodType\n");
       returnValue = true;
@@ -3207,8 +3236,8 @@ bool LaserTrackerMeasureFeatureMethodType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -3288,6 +3317,13 @@ void LocalVariablesType::printSelf(FILE * outFile)
         fprintf(stderr, "Variable list is empty\n");
         exit(1);
       }
+    if (Variable->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Variable list (%d) less than minimum required (1)\n",
+                (int)Variable->size());
+        exit(1);
+      }
     std::list<VariableDeclarationType *>::iterator iter;
     for (iter = Variable->begin();
          iter != Variable->end(); iter++)
@@ -3316,7 +3352,7 @@ bool LocalVariablesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in LocalVariablesType\n");
               returnValue = true;
@@ -3332,7 +3368,7 @@ bool LocalVariablesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -3341,7 +3377,7 @@ bool LocalVariablesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in LocalVariablesType\n");
       returnValue = true;
@@ -3353,8 +3389,8 @@ bool LocalVariablesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -3482,7 +3518,7 @@ bool ManualMeasureFeatureMethodType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ManualMeasureFeatureMethodType\n");
               returnValue = true;
@@ -3498,7 +3534,7 @@ bool ManualMeasureFeatureMethodType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -3507,7 +3543,7 @@ bool ManualMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ManualMeasureFeatureMethodType\n");
       returnValue = true;
@@ -3519,8 +3555,8 @@ bool ManualMeasureFeatureMethodType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -3614,7 +3650,7 @@ bool MeasurandBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MeasurandBaseType\n");
               returnValue = true;
@@ -3630,7 +3666,7 @@ bool MeasurandBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -3639,7 +3675,7 @@ bool MeasurandBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MeasurandBaseType\n");
       returnValue = true;
@@ -3651,8 +3687,8 @@ bool MeasurandBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -3694,7 +3730,15 @@ MeasurandBaseTypeLisd::~MeasurandBaseTypeLisd()
   #endif
 }
 
-void MeasurandBaseTypeLisd::printSelf(FILE * outFile){}
+void MeasurandBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<MeasurandBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -3771,6 +3815,13 @@ void MeasurandsType::printSelf(FILE * outFile)
         fprintf(stderr, "Measurand list is empty\n");
         exit(1);
       }
+    if (Measurand->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Measurand list (%d) less than minimum required (1)\n",
+                (int)Measurand->size());
+        exit(1);
+      }
     std::list<MeasurandBaseType *>::iterator iter;
     for (iter = Measurand->begin();
          iter != Measurand->end(); iter++)
@@ -3840,7 +3891,7 @@ bool MeasurandsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in MeasurandsType\n");
               returnValue = true;
@@ -3856,7 +3907,7 @@ bool MeasurandsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -3865,7 +3916,7 @@ bool MeasurandsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in MeasurandsType\n");
       returnValue = true;
@@ -3877,8 +3928,8 @@ bool MeasurandsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -4004,13 +4055,6 @@ MeasureActionGroupFunctionTypeChoicePair * MeasureActionGroupFunctionType::getMe
 
 void MeasureActionGroupFunctionType::setMeasureActionGroupFunctionTypePair(MeasureActionGroupFunctionTypeChoicePair * MeasureActionGroupFunctionTypePairIn)
 {MeasureActionGroupFunctionTypePair = MeasureActionGroupFunctionTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class MeasureActionGroupFunctionTypeChoicePair
-
-*/
-
 MeasureActionGroupFunctionTypeChoicePair::MeasureActionGroupFunctionTypeChoicePair() {}
 
 MeasureActionGroupFunctionTypeChoicePair::MeasureActionGroupFunctionTypeChoicePair(
@@ -4070,8 +4114,7 @@ MeasureEvaluateAllActionType::MeasureEvaluateAllActionType(
     PreferredActionMethodIdIn,
     AlternativeActionMethodIdsIn,
     PreferredResourceIdsIn)
-{
-}
+{}
 
 MeasureEvaluateAllActionType::~MeasureEvaluateAllActionType() {}
 
@@ -4325,7 +4368,7 @@ bool MeasureFeatureMethodBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MeasureFeatureMethodBaseType\n");
               returnValue = true;
@@ -4341,7 +4384,7 @@ bool MeasureFeatureMethodBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -4350,7 +4393,7 @@ bool MeasureFeatureMethodBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MeasureFeatureMethodBaseType\n");
       returnValue = true;
@@ -4362,8 +4405,8 @@ bool MeasureFeatureMethodBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -4665,7 +4708,7 @@ bool MicroscopeMeasureFeatureMethodType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MicroscopeMeasureFeatureMethodType\n");
               returnValue = true;
@@ -4681,7 +4724,7 @@ bool MicroscopeMeasureFeatureMethodType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -4690,7 +4733,7 @@ bool MicroscopeMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MicroscopeMeasureFeatureMethodType\n");
       returnValue = true;
@@ -4702,8 +4745,8 @@ bool MicroscopeMeasureFeatureMethodType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -5022,7 +5065,15 @@ NumberedPlanElementTypeLisd::~NumberedPlanElementTypeLisd()
   #endif
 }
 
-void NumberedPlanElementTypeLisd::printSelf(FILE * outFile){}
+void NumberedPlanElementTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<NumberedPlanElementType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -5099,6 +5150,13 @@ void NumberedPlanElementsType::printSelf(FILE * outFile)
         fprintf(stderr, "NumberedPlanElement list is empty\n");
         exit(1);
       }
+    if (NumberedPlanElement->size() < 1)
+      {
+        fprintf(stderr,
+                "size of NumberedPlanElement list (%d) less than minimum required (1)\n",
+                (int)NumberedPlanElement->size());
+        exit(1);
+      }
     std::list<NumberedPlanElementType *>::iterator iter;
     for (iter = NumberedPlanElement->begin();
          iter != NumberedPlanElement->end(); iter++)
@@ -5127,7 +5185,7 @@ bool NumberedPlanElementsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in NumberedPlanElementsType\n");
               returnValue = true;
@@ -5143,7 +5201,7 @@ bool NumberedPlanElementsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -5152,7 +5210,7 @@ bool NumberedPlanElementsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in NumberedPlanElementsType\n");
       returnValue = true;
@@ -5164,8 +5222,8 @@ bool NumberedPlanElementsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -5255,6 +5313,160 @@ NumberedPlanElementsType * OneOfActionGroupType::getSteps()
 
 void OneOfActionGroupType::setSteps(NumberedPlanElementsType * StepsIn)
 {Steps = StepsIn;}
+
+/* ***************************************************************** */
+
+/* class OpticalDigitizerMeasureFeatureMethodType
+
+*/
+
+OpticalDigitizerMeasureFeatureMethodType::OpticalDigitizerMeasureFeatureMethodType() :
+  MeasureFeatureMethodBaseType()
+{
+}
+
+OpticalDigitizerMeasureFeatureMethodType::OpticalDigitizerMeasureFeatureMethodType(
+ ArrayReferenceType * ChosenResourceIdsIn,
+ ArrayReferenceType * WorkInstructionIdsIn,
+ AttributesType * AttributesIn) :
+  MeasureFeatureMethodBaseType(
+    ChosenResourceIdsIn,
+    WorkInstructionIdsIn,
+    AttributesIn)
+{
+}
+
+OpticalDigitizerMeasureFeatureMethodType::OpticalDigitizerMeasureFeatureMethodType(
+ QIFIdType * idIn,
+ ArrayReferenceType * ChosenResourceIdsIn,
+ ArrayReferenceType * WorkInstructionIdsIn,
+ AttributesType * AttributesIn) :
+  MeasureFeatureMethodBaseType(
+    idIn,
+    ChosenResourceIdsIn,
+    WorkInstructionIdsIn,
+    AttributesIn)
+{
+}
+
+OpticalDigitizerMeasureFeatureMethodType::~OpticalDigitizerMeasureFeatureMethodType()
+{
+  #ifndef NODESTRUCT
+  #endif
+}
+
+void OpticalDigitizerMeasureFeatureMethodType::printSelf(FILE * outFile)
+{
+  bool printedOne;
+
+  printedOne = false;
+  if (id)
+    {
+      if (printedOne)
+        {
+          fprintf(outFile, "\n");
+          doSpaces(0, outFile);
+          fprintf(outFile, "  ");
+        }
+      else
+        {
+          fprintf(outFile, " ");
+          printedOne = true;
+        }
+      fprintf(outFile, "id=\"");
+      id->oPrintSelf(outFile);
+      fprintf(outFile, "\"");
+    }
+  else
+    {
+      fprintf(stderr, "required attribute \"id\" missing\n");
+      exit(1);
+    }
+  fprintf(outFile, ">\n");
+  doSpaces(+INDENT, outFile);
+  if (ChosenResourceIds)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<ChosenResourceIds");
+      ChosenResourceIds->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</ChosenResourceIds>\n");
+    }
+  if (WorkInstructionIds)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<WorkInstructionIds");
+      WorkInstructionIds->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</WorkInstructionIds>\n");
+    }
+  if (Attributes)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Attributes");
+      Attributes->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</Attributes>\n");
+    }
+  doSpaces(-INDENT, outFile);
+}
+
+bool OpticalDigitizerMeasureFeatureMethodType::badAttributes(
+ AttributePairLisd * attributes)
+{
+  std::list<AttributePair *>::iterator iter;
+  AttributePair * decl;
+  bool returnValue;
+
+  returnValue = false;
+  for (iter = attributes->begin(); iter != attributes->end(); iter++)
+    {
+      decl = *iter;
+      if (decl->name == "id")
+        {
+          QIFIdType * idVal;
+          if (this->id)
+            {
+              fprintf(stderr, "two values for id in OpticalDigitizerMeasureFeatureMethodType\n");
+              returnValue = true;
+              break;
+            }
+          idVal = new QIFIdType(decl->val.c_str());
+          if (idVal->bad)
+            {
+              delete idVal;
+              fprintf(stderr, "bad value %s for id in OpticalDigitizerMeasureFeatureMethodType\n",
+                      decl->val.c_str());
+              returnValue = true;
+              break;
+            }
+          else
+            this->id = idVal;
+        }
+      else
+        {
+          fprintf(stderr, "bad attribute in OpticalDigitizerMeasureFeatureMethodType\n");
+          returnValue = true;
+          break;
+        }
+    }
+  if (this->id == 0)
+    {
+      fprintf(stderr, "required attribute \"id\" missing in OpticalDigitizerMeasureFeatureMethodType\n");
+      returnValue = true;
+    }
+  for (iter = attributes->begin(); iter != attributes->end(); iter++)
+    {
+      delete *iter;
+    }
+  attributes->clear();
+  if (returnValue == true)
+    {
+      delete this->id;
+      this->id = 0;
+    }
+  return returnValue;
+}
 
 /* ***************************************************************** */
 
@@ -5441,7 +5653,7 @@ bool OtherMeasureFeatureMethodType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in OtherMeasureFeatureMethodType\n");
               returnValue = true;
@@ -5457,7 +5669,7 @@ bool OtherMeasureFeatureMethodType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -5466,7 +5678,7 @@ bool OtherMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherMeasureFeatureMethodType\n");
       returnValue = true;
@@ -5478,8 +5690,8 @@ bool OtherMeasureFeatureMethodType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -5734,7 +5946,15 @@ PlanElementBaseTypeLisd::~PlanElementBaseTypeLisd()
   #endif
 }
 
-void PlanElementBaseTypeLisd::printSelf(FILE * outFile){}
+void PlanElementBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<PlanElementBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -6068,6 +6288,13 @@ void PredecessorsType::printSelf(FILE * outFile)
         fprintf(stderr, "Predecessor list is empty\n");
         exit(1);
       }
+    if (Predecessor->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Predecessor list (%d) less than minimum required (1)\n",
+                (int)Predecessor->size());
+        exit(1);
+      }
     std::list<XmlPositiveInteger *>::iterator iter;
     for (iter = Predecessor->begin();
          iter != Predecessor->end(); iter++)
@@ -6095,7 +6322,7 @@ bool PredecessorsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in PredecessorsType\n");
               returnValue = true;
@@ -6111,7 +6338,7 @@ bool PredecessorsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -6120,7 +6347,7 @@ bool PredecessorsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in PredecessorsType\n");
       returnValue = true;
@@ -6132,8 +6359,8 @@ bool PredecessorsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -6261,7 +6488,7 @@ bool ProfileProjectorMeasureFeatureMethodType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ProfileProjectorMeasureFeatureMethodType\n");
               returnValue = true;
@@ -6277,7 +6504,7 @@ bool ProfileProjectorMeasureFeatureMethodType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -6286,7 +6513,7 @@ bool ProfileProjectorMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ProfileProjectorMeasureFeatureMethodType\n");
       returnValue = true;
@@ -6298,8 +6525,8 @@ bool ProfileProjectorMeasureFeatureMethodType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -6389,7 +6616,15 @@ StepWithPredecessorsTypeLisd::~StepWithPredecessorsTypeLisd()
   #endif
 }
 
-void StepWithPredecessorsTypeLisd::printSelf(FILE * outFile){}
+void StepWithPredecessorsTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<StepWithPredecessorsType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -6466,6 +6701,13 @@ void StepsWithPredecessorsType::printSelf(FILE * outFile)
         fprintf(stderr, "StepWithPredecessors list is empty\n");
         exit(1);
       }
+    if (StepWithPredecessors->size() < 1)
+      {
+        fprintf(stderr,
+                "size of StepWithPredecessors list (%d) less than minimum required (1)\n",
+                (int)StepWithPredecessors->size());
+        exit(1);
+      }
     std::list<StepWithPredecessorsType *>::iterator iter;
     for (iter = StepWithPredecessors->begin();
          iter != StepWithPredecessors->end(); iter++)
@@ -6494,7 +6736,7 @@ bool StepsWithPredecessorsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in StepsWithPredecessorsType\n");
               returnValue = true;
@@ -6510,7 +6752,7 @@ bool StepsWithPredecessorsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -6519,7 +6761,7 @@ bool StepsWithPredecessorsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in StepsWithPredecessorsType\n");
       returnValue = true;
@@ -6531,8 +6773,8 @@ bool StepsWithPredecessorsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -7131,7 +7373,15 @@ TestAndPlanElementTypeLisd::~TestAndPlanElementTypeLisd()
   #endif
 }
 
-void TestAndPlanElementTypeLisd::printSelf(FILE * outFile){}
+void TestAndPlanElementTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<TestAndPlanElementType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -7230,7 +7480,7 @@ bool TextInstructionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in TextInstructionType\n");
               returnValue = true;
@@ -7246,7 +7496,7 @@ bool TextInstructionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -7255,7 +7505,7 @@ bool TextInstructionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in TextInstructionType\n");
       returnValue = true;
@@ -7267,8 +7517,8 @@ bool TextInstructionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -7390,7 +7640,7 @@ bool TheodoliteMeasureFeatureMethodType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in TheodoliteMeasureFeatureMethodType\n");
               returnValue = true;
@@ -7406,7 +7656,7 @@ bool TheodoliteMeasureFeatureMethodType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -7415,7 +7665,7 @@ bool TheodoliteMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in TheodoliteMeasureFeatureMethodType\n");
       returnValue = true;
@@ -7427,8 +7677,8 @@ bool TheodoliteMeasureFeatureMethodType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -7544,7 +7794,7 @@ bool UniversalLengthMeasureFeatureMethodType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UniversalLengthMeasureFeatureMethodType\n");
               returnValue = true;
@@ -7560,7 +7810,7 @@ bool UniversalLengthMeasureFeatureMethodType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -7569,7 +7819,7 @@ bool UniversalLengthMeasureFeatureMethodType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UniversalLengthMeasureFeatureMethodType\n");
       returnValue = true;
@@ -7581,8 +7831,8 @@ bool UniversalLengthMeasureFeatureMethodType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -7660,6 +7910,13 @@ void UnnumberedPlanElementsType::printSelf(FILE * outFile)
     if (PlanElement->size() == 0)
       {
         fprintf(stderr, "PlanElement list is empty\n");
+        exit(1);
+      }
+    if (PlanElement->size() < 1)
+      {
+        fprintf(stderr,
+                "size of PlanElement list (%d) less than minimum required (1)\n",
+                (int)PlanElement->size());
         exit(1);
       }
     std::list<PlanElementBaseType *>::iterator iter;
@@ -7923,7 +8180,7 @@ bool UnnumberedPlanElementsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in UnnumberedPlanElementsType\n");
               returnValue = true;
@@ -7939,7 +8196,7 @@ bool UnnumberedPlanElementsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -7948,7 +8205,7 @@ bool UnnumberedPlanElementsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in UnnumberedPlanElementsType\n");
       returnValue = true;
@@ -7960,8 +8217,8 @@ bool UnnumberedPlanElementsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -8132,7 +8389,15 @@ VariableDeclarationTypeLisd::~VariableDeclarationTypeLisd()
   #endif
 }
 
-void VariableDeclarationTypeLisd::printSelf(FILE * outFile){}
+void VariableDeclarationTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<VariableDeclarationType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -8597,7 +8862,7 @@ bool VideoInstructionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in VideoInstructionType\n");
               returnValue = true;
@@ -8613,7 +8878,7 @@ bool VideoInstructionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -8622,7 +8887,7 @@ bool VideoInstructionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in VideoInstructionType\n");
       returnValue = true;
@@ -8634,8 +8899,8 @@ bool VideoInstructionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -9324,7 +9589,7 @@ bool WorkInstructionBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WorkInstructionBaseType\n");
               returnValue = true;
@@ -9340,7 +9605,7 @@ bool WorkInstructionBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -9349,7 +9614,7 @@ bool WorkInstructionBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WorkInstructionBaseType\n");
       returnValue = true;
@@ -9361,8 +9626,8 @@ bool WorkInstructionBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -9404,7 +9669,15 @@ WorkInstructionBaseTypeLisd::~WorkInstructionBaseTypeLisd()
   #endif
 }
 
-void WorkInstructionBaseTypeLisd::printSelf(FILE * outFile){}
+void WorkInstructionBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<WorkInstructionBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -9479,6 +9752,13 @@ void WorkInstructionsType::printSelf(FILE * outFile)
     if (WorkInstruction->size() == 0)
       {
         fprintf(stderr, "WorkInstruction list is empty\n");
+        exit(1);
+      }
+    if (WorkInstruction->size() < 1)
+      {
+        fprintf(stderr,
+                "size of WorkInstruction list (%d) less than minimum required (1)\n",
+                (int)WorkInstruction->size());
         exit(1);
       }
     std::list<WorkInstructionBaseType *>::iterator iter;
@@ -9582,7 +9862,7 @@ bool WorkInstructionsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in WorkInstructionsType\n");
               returnValue = true;
@@ -9598,7 +9878,7 @@ bool WorkInstructionsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -9607,7 +9887,7 @@ bool WorkInstructionsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in WorkInstructionsType\n");
       returnValue = true;
@@ -9619,8 +9899,8 @@ bool WorkInstructionsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }

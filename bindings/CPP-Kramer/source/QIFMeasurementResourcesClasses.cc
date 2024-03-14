@@ -4,7 +4,6 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
-#include <boost/regex.hpp>
 #include <xmlSchemaInstance.hh>
 #include "QIFMeasurementResourcesClasses.hh"
 
@@ -86,6 +85,13 @@ void AACMMAccuraciesType::printSelf(FILE * outFile)
         fprintf(stderr, "AACMMAccuracy list is empty\n");
         exit(1);
       }
+    if (AACMMAccuracy->size() < 1)
+      {
+        fprintf(stderr,
+                "size of AACMMAccuracy list (%d) less than minimum required (1)\n",
+                (int)AACMMAccuracy->size());
+        exit(1);
+      }
     std::list<AACMMAccuracyType *>::iterator iter;
     for (iter = AACMMAccuracy->begin();
          iter != AACMMAccuracy->end(); iter++)
@@ -114,7 +120,7 @@ bool AACMMAccuraciesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in AACMMAccuraciesType\n");
               returnValue = true;
@@ -130,7 +136,7 @@ bool AACMMAccuraciesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -139,7 +145,7 @@ bool AACMMAccuraciesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in AACMMAccuraciesType\n");
       returnValue = true;
@@ -151,8 +157,8 @@ bool AACMMAccuraciesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -317,7 +323,15 @@ AACMMAccuracyTypeLisd::~AACMMAccuracyTypeLisd()
   #endif
 }
 
-void AACMMAccuracyTypeLisd::printSelf(FILE * outFile){}
+void AACMMAccuracyTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<AACMMAccuracyType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -427,7 +441,7 @@ AACMMType::AACMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -449,7 +463,7 @@ AACMMType::AACMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -475,7 +489,7 @@ AACMMType::AACMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -498,7 +512,7 @@ AACMMType::AACMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -603,9 +617,9 @@ void AACMMType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -974,7 +988,7 @@ bool AACMMType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AACMMType\n");
               returnValue = true;
@@ -990,7 +1004,7 @@ bool AACMMType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -999,7 +1013,7 @@ bool AACMMType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AACMMType\n");
       returnValue = true;
@@ -1011,8 +1025,8 @@ bool AACMMType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -1220,13 +1234,6 @@ AccuracySourceTypeChoicePair * AccuracySourceType::getAccuracySourceTypePair()
 
 void AccuracySourceType::setAccuracySourceTypePair(AccuracySourceTypeChoicePair * AccuracySourceTypePairIn)
 {AccuracySourceTypePair = AccuracySourceTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class AccuracySourceTypeChoicePair
-
-*/
-
 AccuracySourceTypeChoicePair::AccuracySourceTypeChoicePair() {}
 
 AccuracySourceTypeChoicePair::AccuracySourceTypeChoicePair(
@@ -1376,7 +1383,7 @@ bool AngleFunctionDiscreteType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in AngleFunctionDiscreteType\n");
               returnValue = true;
@@ -1392,7 +1399,7 @@ bool AngleFunctionDiscreteType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -1401,7 +1408,7 @@ bool AngleFunctionDiscreteType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in AngleFunctionDiscreteType\n");
       returnValue = true;
@@ -1413,8 +1420,8 @@ bool AngleFunctionDiscreteType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -1513,7 +1520,7 @@ AutocollimatorType::AutocollimatorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -1537,7 +1544,7 @@ AutocollimatorType::AutocollimatorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -1565,7 +1572,7 @@ AutocollimatorType::AutocollimatorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -1590,7 +1597,7 @@ AutocollimatorType::AutocollimatorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -1699,9 +1706,9 @@ void AutocollimatorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -2084,7 +2091,7 @@ bool AutocollimatorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AutocollimatorType\n");
               returnValue = true;
@@ -2100,7 +2107,7 @@ bool AutocollimatorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -2109,7 +2116,7 @@ bool AutocollimatorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AutocollimatorType\n");
       returnValue = true;
@@ -2121,8 +2128,8 @@ bool AutocollimatorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -2308,7 +2315,7 @@ CMMType::CMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -2324,7 +2331,7 @@ CMMType::CMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -2344,7 +2351,7 @@ CMMType::CMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -2361,7 +2368,7 @@ CMMType::CMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -2454,9 +2461,9 @@ void CMMType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -2782,7 +2789,7 @@ bool CMMType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CMMType\n");
               returnValue = true;
@@ -2798,7 +2805,7 @@ bool CMMType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -2807,7 +2814,7 @@ bool CMMType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CMMType\n");
       returnValue = true;
@@ -2819,8 +2826,8 @@ bool CMMType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -3002,7 +3009,15 @@ CalibrationTypeLisd::~CalibrationTypeLisd()
   #endif
 }
 
-void CalibrationTypeLisd::printSelf(FILE * outFile){}
+void CalibrationTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<CalibrationType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -3079,6 +3094,13 @@ void CalibrationsType::printSelf(FILE * outFile)
         fprintf(stderr, "Calibration list is empty\n");
         exit(1);
       }
+    if (Calibration->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Calibration list (%d) less than minimum required (1)\n",
+                (int)Calibration->size());
+        exit(1);
+      }
     std::list<CalibrationType *>::iterator iter;
     for (iter = Calibration->begin();
          iter != Calibration->end(); iter++)
@@ -3107,7 +3129,7 @@ bool CalibrationsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in CalibrationsType\n");
               returnValue = true;
@@ -3123,7 +3145,7 @@ bool CalibrationsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -3132,7 +3154,7 @@ bool CalibrationsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in CalibrationsType\n");
       returnValue = true;
@@ -3144,8 +3166,8 @@ bool CalibrationsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -3181,7 +3203,7 @@ CaliperDialType::CaliperDialType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -3200,7 +3222,7 @@ CaliperDialType::CaliperDialType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -3223,7 +3245,7 @@ CaliperDialType::CaliperDialType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -3243,7 +3265,7 @@ CaliperDialType::CaliperDialType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -3339,9 +3361,9 @@ void CaliperDialType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -3435,7 +3457,7 @@ bool CaliperDialType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CaliperDialType\n");
               returnValue = true;
@@ -3451,7 +3473,7 @@ bool CaliperDialType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -3460,7 +3482,7 @@ bool CaliperDialType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CaliperDialType\n");
       returnValue = true;
@@ -3472,8 +3494,8 @@ bool CaliperDialType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -3497,7 +3519,7 @@ CaliperDigitalType::CaliperDigitalType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -3516,7 +3538,7 @@ CaliperDigitalType::CaliperDigitalType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -3539,7 +3561,7 @@ CaliperDigitalType::CaliperDigitalType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -3559,7 +3581,7 @@ CaliperDigitalType::CaliperDigitalType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -3655,9 +3677,9 @@ void CaliperDigitalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -3751,7 +3773,7 @@ bool CaliperDigitalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CaliperDigitalType\n");
               returnValue = true;
@@ -3767,7 +3789,7 @@ bool CaliperDigitalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -3776,7 +3798,7 @@ bool CaliperDigitalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CaliperDigitalType\n");
       returnValue = true;
@@ -3788,8 +3810,8 @@ bool CaliperDigitalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -3818,7 +3840,7 @@ CaliperType::CaliperType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -3837,7 +3859,7 @@ CaliperType::CaliperType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -3860,7 +3882,7 @@ CaliperType::CaliperType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -3880,7 +3902,7 @@ CaliperType::CaliperType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -3981,9 +4003,9 @@ void CaliperType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -4077,7 +4099,7 @@ bool CaliperType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CaliperType\n");
               returnValue = true;
@@ -4093,7 +4115,7 @@ bool CaliperType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -4102,7 +4124,7 @@ bool CaliperType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CaliperType\n");
       returnValue = true;
@@ -4114,8 +4136,8 @@ bool CaliperType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -4177,7 +4199,7 @@ CapacitiveSensorType::CapacitiveSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -4201,7 +4223,7 @@ CapacitiveSensorType::CapacitiveSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -4229,7 +4251,7 @@ CapacitiveSensorType::CapacitiveSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -4254,7 +4276,7 @@ CapacitiveSensorType::CapacitiveSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -4363,9 +4385,9 @@ void CapacitiveSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -4491,7 +4513,7 @@ bool CapacitiveSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CapacitiveSensorType\n");
               returnValue = true;
@@ -4507,7 +4529,7 @@ bool CapacitiveSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -4516,7 +4538,7 @@ bool CapacitiveSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CapacitiveSensorType\n");
       returnValue = true;
@@ -4528,8 +4550,8 @@ bool CapacitiveSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -4602,7 +4624,7 @@ CarriageType::CarriageType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  ArrayReferenceType * ToolIdsIn) :
   MeasurementResourceBaseType(
@@ -4613,7 +4635,7 @@ CarriageType::CarriageType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   ToolIds = ToolIdsIn;
@@ -4628,7 +4650,7 @@ CarriageType::CarriageType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  ArrayReferenceType * ToolIdsIn) :
   MeasurementResourceBaseType(
@@ -4640,7 +4662,7 @@ CarriageType::CarriageType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   ToolIds = ToolIdsIn;
@@ -4729,9 +4751,9 @@ void CarriageType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -4766,7 +4788,7 @@ bool CarriageType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CarriageType\n");
               returnValue = true;
@@ -4782,7 +4804,7 @@ bool CarriageType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -4791,7 +4813,7 @@ bool CarriageType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CarriageType\n");
       returnValue = true;
@@ -4803,8 +4825,8 @@ bool CarriageType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -4840,7 +4862,15 @@ CarriageTypeLisd::~CarriageTypeLisd()
   #endif
 }
 
-void CarriageTypeLisd::printSelf(FILE * outFile){}
+void CarriageTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<CarriageType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -4917,6 +4947,13 @@ void CarriagesType::printSelf(FILE * outFile)
         fprintf(stderr, "Carriage list is empty\n");
         exit(1);
       }
+    if (Carriage->size() < 2)
+      {
+        fprintf(stderr,
+                "size of Carriage list (%d) less than minimum required (2)\n",
+                (int)Carriage->size());
+        exit(1);
+      }
     std::list<CarriageType *>::iterator iter;
     for (iter = Carriage->begin();
          iter != Carriage->end(); iter++)
@@ -4945,7 +4982,7 @@ bool CarriagesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in CarriagesType\n");
               returnValue = true;
@@ -4961,7 +4998,7 @@ bool CarriagesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -4970,7 +5007,7 @@ bool CarriagesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in CarriagesType\n");
       returnValue = true;
@@ -4982,8 +5019,8 @@ bool CarriagesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -5075,6 +5112,13 @@ void CartesianCMMAccuraciesType::printSelf(FILE * outFile)
         fprintf(stderr, "CartesianCMMAccuracy list is empty\n");
         exit(1);
       }
+    if (CartesianCMMAccuracy->size() < 1)
+      {
+        fprintf(stderr,
+                "size of CartesianCMMAccuracy list (%d) less than minimum required (1)\n",
+                (int)CartesianCMMAccuracy->size());
+        exit(1);
+      }
     std::list<CartesianCMMAccuracyType *>::iterator iter;
     for (iter = CartesianCMMAccuracy->begin();
          iter != CartesianCMMAccuracy->end(); iter++)
@@ -5103,7 +5147,7 @@ bool CartesianCMMAccuraciesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in CartesianCMMAccuraciesType\n");
               returnValue = true;
@@ -5119,7 +5163,7 @@ bool CartesianCMMAccuraciesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -5128,7 +5172,7 @@ bool CartesianCMMAccuraciesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in CartesianCMMAccuraciesType\n");
       returnValue = true;
@@ -5140,8 +5184,8 @@ bool CartesianCMMAccuraciesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -5322,7 +5366,15 @@ CartesianCMMAccuracyTypeLisd::~CartesianCMMAccuracyTypeLisd()
   #endif
 }
 
-void CartesianCMMAccuracyTypeLisd::printSelf(FILE * outFile){}
+void CartesianCMMAccuracyTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<CartesianCMMAccuracyType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -5619,13 +5671,6 @@ CartesianCMMGeometryTypeChoicePair * CartesianCMMGeometryType::getCartesianCMMGe
 
 void CartesianCMMGeometryType::setCartesianCMMGeometryTypePair(CartesianCMMGeometryTypeChoicePair * CartesianCMMGeometryTypePairIn)
 {CartesianCMMGeometryTypePair = CartesianCMMGeometryTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class CartesianCMMGeometryTypeChoicePair
-
-*/
-
 CartesianCMMGeometryTypeChoicePair::CartesianCMMGeometryTypeChoicePair() {}
 
 CartesianCMMGeometryTypeChoicePair::CartesianCMMGeometryTypeChoicePair(
@@ -5826,7 +5871,7 @@ CartesianCMMType::CartesianCMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -5854,7 +5899,7 @@ CartesianCMMType::CartesianCMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -5886,7 +5931,7 @@ CartesianCMMType::CartesianCMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -5915,7 +5960,7 @@ CartesianCMMType::CartesianCMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -6032,9 +6077,9 @@ void CartesianCMMType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -6544,7 +6589,7 @@ bool CartesianCMMType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CartesianCMMType\n");
               returnValue = true;
@@ -6560,7 +6605,7 @@ bool CartesianCMMType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -6569,7 +6614,7 @@ bool CartesianCMMType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CartesianCMMType\n");
       returnValue = true;
@@ -6581,8 +6626,8 @@ bool CartesianCMMType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -6742,20 +6787,20 @@ void CartesianMeasurementDeviceScalesType::setZScale(MeasurementDeviceScaleType 
 CartesianResolutionType::CartesianResolutionType() :
   ResolutionBaseType()
 {
-  CartesianResolu_1240 = 0;
+  CartesianResolutionTypePair = 0;
 }
 
 CartesianResolutionType::CartesianResolutionType(
- CartesianResolu_1240_Type * CartesianResolu_1240In) :
+ CartesianResolutionTypeChoicePair * CartesianResolutionTypePairIn) :
   ResolutionBaseType()
 {
-  CartesianResolu_1240 = CartesianResolu_1240In;
+  CartesianResolutionTypePair = CartesianResolutionTypePairIn;
 }
 
 CartesianResolutionType::~CartesianResolutionType()
 {
   #ifndef NODESTRUCT
-  delete CartesianResolu_1240;
+  delete CartesianResolutionTypePair;
   #endif
 }
 
@@ -6763,15 +6808,52 @@ void CartesianResolutionType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  CartesianResolu_1240->printSelf(outFile);
+  CartesianResolutionTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
+CartesianResolutionTypeChoicePair * CartesianResolutionType::getCartesianResolutionTypeChoicePair()
+{return CartesianResolutionTypePair;}
 
-CartesianResolu_1240_Type * CartesianResolutionType::getCartesianResolu_1240()
-{return CartesianResolu_1240;}
+void CartesianResolutionType::setCartesianResolutionTypeChoicePair(CartesianResolutionTypeChoicePair * CartesianResolutionTypePairIn)
+{CartesianResolutionTypePair = CartesianResolutionTypePairIn;}
 
-void CartesianResolutionType::setCartesianResolu_1240(CartesianResolu_1240_Type * CartesianResolu_1240In)
-{CartesianResolu_1240 = CartesianResolu_1240In;}
+/* ***************************************************************** */
+
+CartesianResolutionTypeChoicePair::CartesianResolutionTypeChoicePair() {}
+
+CartesianResolutionTypeChoicePair::CartesianResolutionTypeChoicePair(
+ whichOne CartesianResolutionTypeTypeIn,
+ CartesianResolutionTypeVal CartesianResolutionTypeValueIn)
+{
+  CartesianResolutionTypeType = CartesianResolutionTypeTypeIn;
+  CartesianResolutionTypeValue = CartesianResolutionTypeValueIn;
+}
+
+CartesianResolutionTypeChoicePair::~CartesianResolutionTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (CartesianResolutionTypeType == CartesianResolu_1195E)
+    delete CartesianResolutionTypeValue.CartesianResolu_1195;
+  else if (CartesianResolutionTypeType == XYZResolutionE)
+    delete CartesianResolutionTypeValue.XYZResolution;
+  #endif
+}
+
+void CartesianResolutionTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (CartesianResolutionTypeType == CartesianResolu_1195E)
+    {
+      CartesianResolutionTypeValue.CartesianResolu_1195->printSelf(outFile);
+    }
+  else if (CartesianResolutionTypeType == XYZResolutionE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<XYZResolution");
+      CartesianResolutionTypeValue.XYZResolution->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</XYZResolution>\n");
+    }
+}
 
 /* ***************************************************************** */
 
@@ -6884,7 +6966,7 @@ ChargeCoupledDeviceCameraSensorType::ChargeCoupledDeviceCameraSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -6912,7 +6994,7 @@ ChargeCoupledDeviceCameraSensorType::ChargeCoupledDeviceCameraSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -6944,7 +7026,7 @@ ChargeCoupledDeviceCameraSensorType::ChargeCoupledDeviceCameraSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -6973,7 +7055,7 @@ ChargeCoupledDeviceCameraSensorType::ChargeCoupledDeviceCameraSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -7090,9 +7172,9 @@ void ChargeCoupledDeviceCameraSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -7246,7 +7328,7 @@ bool ChargeCoupledDeviceCameraSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ChargeCoupledDeviceCameraSensorType\n");
               returnValue = true;
@@ -7262,7 +7344,7 @@ bool ChargeCoupledDeviceCameraSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -7271,7 +7353,7 @@ bool ChargeCoupledDeviceCameraSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ChargeCoupledDeviceCameraSensorType\n");
       returnValue = true;
@@ -7283,8 +7365,8 @@ bool ChargeCoupledDeviceCameraSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -7788,7 +7870,7 @@ ComplexTactileProbeSensorType::ComplexTactileProbeSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -7805,7 +7887,7 @@ ComplexTactileProbeSensorType::ComplexTactileProbeSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -7826,7 +7908,7 @@ ComplexTactileProbeSensorType::ComplexTactileProbeSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -7844,7 +7926,7 @@ ComplexTactileProbeSensorType::ComplexTactileProbeSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -7939,9 +8021,9 @@ void ComplexTactileProbeSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -8016,7 +8098,7 @@ bool ComplexTactileProbeSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ComplexTactileProbeSensorType\n");
               returnValue = true;
@@ -8032,7 +8114,7 @@ bool ComplexTactileProbeSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -8041,7 +8123,7 @@ bool ComplexTactileProbeSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ComplexTactileProbeSensorType\n");
       returnValue = true;
@@ -8053,8 +8135,8 @@ bool ComplexTactileProbeSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -8101,7 +8183,7 @@ ComputedTomographyType::ComputedTomographyType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -8134,7 +8216,7 @@ ComputedTomographyType::ComputedTomographyType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -8171,7 +8253,7 @@ ComputedTomographyType::ComputedTomographyType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -8205,7 +8287,7 @@ ComputedTomographyType::ComputedTomographyType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -8332,9 +8414,9 @@ void ComputedTomographyType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -8783,7 +8865,7 @@ bool ComputedTomographyType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ComputedTomographyType\n");
               returnValue = true;
@@ -8799,7 +8881,7 @@ bool ComputedTomographyType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -8808,7 +8890,7 @@ bool ComputedTomographyType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ComputedTomographyType\n");
       returnValue = true;
@@ -8820,8 +8902,8 @@ bool ComputedTomographyType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -8957,7 +9039,7 @@ ConfocalChromaticSensorType::ConfocalChromaticSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -8983,7 +9065,7 @@ ConfocalChromaticSensorType::ConfocalChromaticSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -9013,7 +9095,7 @@ ConfocalChromaticSensorType::ConfocalChromaticSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -9040,7 +9122,7 @@ ConfocalChromaticSensorType::ConfocalChromaticSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -9153,9 +9235,9 @@ void ConfocalChromaticSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -9295,7 +9377,7 @@ bool ConfocalChromaticSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ConfocalChromaticSensorType\n");
               returnValue = true;
@@ -9311,7 +9393,7 @@ bool ConfocalChromaticSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -9320,7 +9402,7 @@ bool ConfocalChromaticSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ConfocalChromaticSensorType\n");
       returnValue = true;
@@ -9332,8 +9414,8 @@ bool ConfocalChromaticSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -9502,7 +9584,7 @@ DetachableSensorBaseType::DetachableSensorBaseType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -9518,7 +9600,7 @@ DetachableSensorBaseType::DetachableSensorBaseType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -9538,7 +9620,7 @@ DetachableSensorBaseType::DetachableSensorBaseType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -9555,7 +9637,7 @@ DetachableSensorBaseType::DetachableSensorBaseType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -9648,9 +9730,9 @@ void DetachableSensorBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -9720,7 +9802,7 @@ bool DetachableSensorBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DetachableSensorBaseType\n");
               returnValue = true;
@@ -9736,7 +9818,7 @@ bool DetachableSensorBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -9745,7 +9827,7 @@ bool DetachableSensorBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DetachableSensorBaseType\n");
       returnValue = true;
@@ -9757,8 +9839,8 @@ bool DetachableSensorBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -9788,7 +9870,15 @@ DetachableSensorBaseTypeLisd::~DetachableSensorBaseTypeLisd()
   #endif
 }
 
-void DetachableSensorBaseTypeLisd::printSelf(FILE * outFile){}
+void DetachableSensorBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<DetachableSensorBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -9863,6 +9953,13 @@ void DetachableSensorsType::printSelf(FILE * outFile)
     if (DetachableSensor->size() == 0)
       {
         fprintf(stderr, "DetachableSensor list is empty\n");
+        exit(1);
+      }
+    if (DetachableSensor->size() < 1)
+      {
+        fprintf(stderr,
+                "size of DetachableSensor list (%d) less than minimum required (1)\n",
+                (int)DetachableSensor->size());
         exit(1);
       }
     std::list<DetachableSensorBaseType *>::iterator iter;
@@ -9982,7 +10079,7 @@ bool DetachableSensorsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in DetachableSensorsType\n");
               returnValue = true;
@@ -9998,7 +10095,7 @@ bool DetachableSensorsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -10007,7 +10104,7 @@ bool DetachableSensorsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in DetachableSensorsType\n");
       returnValue = true;
@@ -10019,8 +10116,8 @@ bool DetachableSensorsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -10062,7 +10159,7 @@ DifferentialVariableReluctanceTransducerSensorType::DifferentialVariableReluctan
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -10084,7 +10181,7 @@ DifferentialVariableReluctanceTransducerSensorType::DifferentialVariableReluctan
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -10110,7 +10207,7 @@ DifferentialVariableReluctanceTransducerSensorType::DifferentialVariableReluctan
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -10133,7 +10230,7 @@ DifferentialVariableReluctanceTransducerSensorType::DifferentialVariableReluctan
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -10238,9 +10335,9 @@ void DifferentialVariableReluctanceTransducerSensorType::printSelf(FILE * outFil
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -10352,7 +10449,7 @@ bool DifferentialVariableReluctanceTransducerSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DifferentialVariableReluctanceTransducerSensorType\n");
               returnValue = true;
@@ -10368,7 +10465,7 @@ bool DifferentialVariableReluctanceTransducerSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -10377,7 +10474,7 @@ bool DifferentialVariableReluctanceTransducerSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DifferentialVariableReluctanceTransducerSensorType\n");
       returnValue = true;
@@ -10389,8 +10486,8 @@ bool DifferentialVariableReluctanceTransducerSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -10455,7 +10552,7 @@ DrawWireSensorType::DrawWireSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -10476,7 +10573,7 @@ DrawWireSensorType::DrawWireSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -10501,7 +10598,7 @@ DrawWireSensorType::DrawWireSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -10523,7 +10620,7 @@ DrawWireSensorType::DrawWireSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -10626,9 +10723,9 @@ void DrawWireSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -10733,7 +10830,7 @@ bool DrawWireSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DrawWireSensorType\n");
               returnValue = true;
@@ -10749,7 +10846,7 @@ bool DrawWireSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -10758,7 +10855,7 @@ bool DrawWireSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DrawWireSensorType\n");
       returnValue = true;
@@ -10770,8 +10867,8 @@ bool DrawWireSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -10836,7 +10933,7 @@ EddyCurrentSensorType::EddyCurrentSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -10863,7 +10960,7 @@ EddyCurrentSensorType::EddyCurrentSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -10894,7 +10991,7 @@ EddyCurrentSensorType::EddyCurrentSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -10922,7 +11019,7 @@ EddyCurrentSensorType::EddyCurrentSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -11037,9 +11134,9 @@ void EddyCurrentSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -11186,7 +11283,7 @@ bool EddyCurrentSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in EddyCurrentSensorType\n");
               returnValue = true;
@@ -11202,7 +11299,7 @@ bool EddyCurrentSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -11211,7 +11308,7 @@ bool EddyCurrentSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in EddyCurrentSensorType\n");
       returnValue = true;
@@ -11223,8 +11320,8 @@ bool EddyCurrentSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -12378,7 +12475,7 @@ FixtureType::FixtureType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn) :
   MeasurementResourceBaseType(
     NameIn,
@@ -12388,7 +12485,7 @@ FixtureType::FixtureType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
 }
@@ -12402,7 +12499,7 @@ FixtureType::FixtureType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn) :
   MeasurementResourceBaseType(
     idIn,
@@ -12413,7 +12510,7 @@ FixtureType::FixtureType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
 }
@@ -12500,9 +12597,9 @@ void FixtureType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -12529,7 +12626,7 @@ bool FixtureType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FixtureType\n");
               returnValue = true;
@@ -12545,7 +12642,7 @@ bool FixtureType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -12554,7 +12651,7 @@ bool FixtureType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FixtureType\n");
       returnValue = true;
@@ -12566,8 +12663,8 @@ bool FixtureType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -12597,7 +12694,15 @@ FixtureTypeLisd::~FixtureTypeLisd()
   #endif
 }
 
-void FixtureTypeLisd::printSelf(FILE * outFile){}
+void FixtureTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<FixtureType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -12674,6 +12779,13 @@ void FixturesType::printSelf(FILE * outFile)
         fprintf(stderr, "Fixture list is empty\n");
         exit(1);
       }
+    if (Fixture->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Fixture list (%d) less than minimum required (1)\n",
+                (int)Fixture->size());
+        exit(1);
+      }
     std::list<FixtureType *>::iterator iter;
     for (iter = Fixture->begin();
          iter != Fixture->end(); iter++)
@@ -12702,7 +12814,7 @@ bool FixturesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in FixturesType\n");
               returnValue = true;
@@ -12718,7 +12830,7 @@ bool FixturesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -12727,7 +12839,7 @@ bool FixturesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in FixturesType\n");
       returnValue = true;
@@ -12739,8 +12851,8 @@ bool FixturesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -12852,7 +12964,7 @@ bool FunctionDiscreteType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in FunctionDiscreteType\n");
               returnValue = true;
@@ -12868,7 +12980,7 @@ bool FunctionDiscreteType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -12877,7 +12989,7 @@ bool FunctionDiscreteType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in FunctionDiscreteType\n");
       returnValue = true;
@@ -12889,8 +13001,8 @@ bool FunctionDiscreteType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -12932,7 +13044,7 @@ GageDeviceType::GageDeviceType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -12946,7 +13058,7 @@ GageDeviceType::GageDeviceType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -12964,7 +13076,7 @@ GageDeviceType::GageDeviceType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -12979,7 +13091,7 @@ GageDeviceType::GageDeviceType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -13070,9 +13182,9 @@ void GageDeviceType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -13129,7 +13241,7 @@ bool GageDeviceType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in GageDeviceType\n");
               returnValue = true;
@@ -13145,7 +13257,7 @@ bool GageDeviceType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -13154,7 +13266,7 @@ bool GageDeviceType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in GageDeviceType\n");
       returnValue = true;
@@ -13166,8 +13278,8 @@ bool GageDeviceType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -13181,20 +13293,20 @@ bool GageDeviceType::badAttributes(
 ISO10360TestType::ISO10360TestType() :
   CMMAccuracyTestBaseType()
 {
-  ISO10360TestTyp_1241 = 0;
+  ISO10360TestTypePair = 0;
 }
 
 ISO10360TestType::ISO10360TestType(
- ISO10360TestTyp_1241_Type * ISO10360TestTyp_1241In) :
+ ISO10360TestTypeChoicePair * ISO10360TestTypePairIn) :
   CMMAccuracyTestBaseType()
 {
-  ISO10360TestTyp_1241 = ISO10360TestTyp_1241In;
+  ISO10360TestTypePair = ISO10360TestTypePairIn;
 }
 
 ISO10360TestType::~ISO10360TestType()
 {
   #ifndef NODESTRUCT
-  delete ISO10360TestTyp_1241;
+  delete ISO10360TestTypePair;
   #endif
 }
 
@@ -13202,15 +13314,65 @@ void ISO10360TestType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  ISO10360TestTyp_1241->printSelf(outFile);
+  ISO10360TestTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
+ISO10360TestTypeChoicePair * ISO10360TestType::getISO10360TestTypeChoicePair()
+{return ISO10360TestTypePair;}
 
-ISO10360TestTyp_1241_Type * ISO10360TestType::getISO10360TestTyp_1241()
-{return ISO10360TestTyp_1241;}
+void ISO10360TestType::setISO10360TestTypeChoicePair(ISO10360TestTypeChoicePair * ISO10360TestTypePairIn)
+{ISO10360TestTypePair = ISO10360TestTypePairIn;}
 
-void ISO10360TestType::setISO10360TestTyp_1241(ISO10360TestTyp_1241_Type * ISO10360TestTyp_1241In)
-{ISO10360TestTyp_1241 = ISO10360TestTyp_1241In;}
+/* ***************************************************************** */
+
+ISO10360TestTypeChoicePair::ISO10360TestTypeChoicePair() {}
+
+ISO10360TestTypeChoicePair::ISO10360TestTypeChoicePair(
+ whichOne ISO10360TestTypeTypeIn,
+ ISO10360TestTypeVal ISO10360TestTypeValueIn)
+{
+  ISO10360TestTypeType = ISO10360TestTypeTypeIn;
+  ISO10360TestTypeValue = ISO10360TestTypeValueIn;
+}
+
+ISO10360TestTypeChoicePair::~ISO10360TestTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (ISO10360TestTypeType == MaxErrorConstantE)
+    delete ISO10360TestTypeValue.MaxErrorConstant;
+  else if (ISO10360TestTypeType == LinearErrorE)
+    delete ISO10360TestTypeValue.LinearError;
+  else if (ISO10360TestTypeType == LesserErrorE)
+    delete ISO10360TestTypeValue.LesserError;
+  #endif
+}
+
+void ISO10360TestTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (ISO10360TestTypeType == MaxErrorConstantE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MaxErrorConstant");
+      ISO10360TestTypeValue.MaxErrorConstant->printSelf(outFile);
+      fprintf(outFile, "</MaxErrorConstant>\n");
+    }
+  else if (ISO10360TestTypeType == LinearErrorE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<LinearError");
+      ISO10360TestTypeValue.LinearError->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</LinearError>\n");
+    }
+  else if (ISO10360TestTypeType == LesserErrorE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<LesserError");
+      ISO10360TestTypeValue.LesserError->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</LesserError>\n");
+    }
+}
 
 /* ***************************************************************** */
 
@@ -13247,7 +13409,7 @@ LaserRadarType::LaserRadarType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -13279,7 +13441,7 @@ LaserRadarType::LaserRadarType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -13315,7 +13477,7 @@ LaserRadarType::LaserRadarType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -13348,7 +13510,7 @@ LaserRadarType::LaserRadarType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -13473,9 +13635,9 @@ void LaserRadarType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -13918,7 +14080,7 @@ bool LaserRadarType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LaserRadarType\n");
               returnValue = true;
@@ -13934,7 +14096,7 @@ bool LaserRadarType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -13943,7 +14105,7 @@ bool LaserRadarType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LaserRadarType\n");
       returnValue = true;
@@ -13955,8 +14117,8 @@ bool LaserRadarType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -14086,7 +14248,7 @@ LaserTrackerType::LaserTrackerType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -14112,7 +14274,7 @@ LaserTrackerType::LaserTrackerType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -14142,7 +14304,7 @@ LaserTrackerType::LaserTrackerType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -14169,7 +14331,7 @@ LaserTrackerType::LaserTrackerType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -14282,9 +14444,9 @@ void LaserTrackerType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -14684,7 +14846,7 @@ bool LaserTrackerType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LaserTrackerType\n");
               returnValue = true;
@@ -14700,7 +14862,7 @@ bool LaserTrackerType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -14709,7 +14871,7 @@ bool LaserTrackerType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LaserTrackerType\n");
       returnValue = true;
@@ -14721,8 +14883,8 @@ bool LaserTrackerType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -14817,7 +14979,7 @@ LaserTriangulationSensorType::LaserTriangulationSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -14844,7 +15006,7 @@ LaserTriangulationSensorType::LaserTriangulationSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -14875,7 +15037,7 @@ LaserTriangulationSensorType::LaserTriangulationSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -14903,7 +15065,7 @@ LaserTriangulationSensorType::LaserTriangulationSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -15018,9 +15180,9 @@ void LaserTriangulationSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -15168,7 +15330,7 @@ bool LaserTriangulationSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LaserTriangulationSensorType\n");
               returnValue = true;
@@ -15184,7 +15346,7 @@ bool LaserTriangulationSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -15193,7 +15355,7 @@ bool LaserTriangulationSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LaserTriangulationSensorType\n");
       returnValue = true;
@@ -15205,8 +15367,8 @@ bool LaserTriangulationSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -15303,7 +15465,7 @@ LaserType::LaserType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * LaserSourceIn,
  LinearValueType * LaserWaveLengthIn,
@@ -15320,7 +15482,7 @@ LaserType::LaserType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   LaserSource = LaserSourceIn;
@@ -15341,7 +15503,7 @@ LaserType::LaserType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * LaserSourceIn,
  LinearValueType * LaserWaveLengthIn,
@@ -15359,7 +15521,7 @@ LaserType::LaserType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   LaserSource = LaserSourceIn;
@@ -15460,9 +15622,9 @@ void LaserType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -15538,7 +15700,7 @@ bool LaserType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LaserType\n");
               returnValue = true;
@@ -15554,7 +15716,7 @@ bool LaserType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -15563,7 +15725,7 @@ bool LaserType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LaserType\n");
       returnValue = true;
@@ -15575,8 +15737,8 @@ bool LaserType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -15734,7 +15896,7 @@ bool LengthFunctionDiscreteType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in LengthFunctionDiscreteType\n");
               returnValue = true;
@@ -15750,7 +15912,7 @@ bool LengthFunctionDiscreteType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -15759,7 +15921,7 @@ bool LengthFunctionDiscreteType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in LengthFunctionDiscreteType\n");
       returnValue = true;
@@ -15771,8 +15933,8 @@ bool LengthFunctionDiscreteType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -15872,7 +16034,7 @@ LightPenCMMType::LightPenCMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -15896,7 +16058,7 @@ LightPenCMMType::LightPenCMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -15924,7 +16086,7 @@ LightPenCMMType::LightPenCMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -15949,7 +16111,7 @@ LightPenCMMType::LightPenCMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -16058,9 +16220,9 @@ void LightPenCMMType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -16443,7 +16605,7 @@ bool LightPenCMMType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LightPenCMMType\n");
               returnValue = true;
@@ -16459,7 +16621,7 @@ bool LightPenCMMType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -16468,7 +16630,7 @@ bool LightPenCMMType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LightPenCMMType\n");
       returnValue = true;
@@ -16480,8 +16642,8 @@ bool LightPenCMMType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -16860,7 +17022,7 @@ LinearVariableDifferentialTransformerSensorType::LinearVariableDifferentialTrans
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -16887,7 +17049,7 @@ LinearVariableDifferentialTransformerSensorType::LinearVariableDifferentialTrans
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -16918,7 +17080,7 @@ LinearVariableDifferentialTransformerSensorType::LinearVariableDifferentialTrans
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -16946,7 +17108,7 @@ LinearVariableDifferentialTransformerSensorType::LinearVariableDifferentialTrans
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -17061,9 +17223,9 @@ void LinearVariableDifferentialTransformerSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -17210,7 +17372,7 @@ bool LinearVariableDifferentialTransformerSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LinearVariableDifferentialTransformerSensorType\n");
               returnValue = true;
@@ -17226,7 +17388,7 @@ bool LinearVariableDifferentialTransformerSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -17235,7 +17397,7 @@ bool LinearVariableDifferentialTransformerSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LinearVariableDifferentialTransformerSensorType\n");
       returnValue = true;
@@ -17247,8 +17409,8 @@ bool LinearVariableDifferentialTransformerSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -17400,7 +17562,15 @@ LocatedTipTypeLisd::~LocatedTipTypeLisd()
   #endif
 }
 
-void LocatedTipTypeLisd::printSelf(FILE * outFile){}
+void LocatedTipTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<LocatedTipType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -17477,6 +17647,13 @@ void LocatedTipsType::printSelf(FILE * outFile)
         fprintf(stderr, "LocatedTip list is empty\n");
         exit(1);
       }
+    if (LocatedTip->size() < 1)
+      {
+        fprintf(stderr,
+                "size of LocatedTip list (%d) less than minimum required (1)\n",
+                (int)LocatedTip->size());
+        exit(1);
+      }
     std::list<LocatedTipType *>::iterator iter;
     for (iter = LocatedTip->begin();
          iter != LocatedTip->end(); iter++)
@@ -17505,7 +17682,7 @@ bool LocatedTipsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in LocatedTipsType\n");
               returnValue = true;
@@ -17521,7 +17698,7 @@ bool LocatedTipsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -17530,7 +17707,7 @@ bool LocatedTipsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in LocatedTipsType\n");
       returnValue = true;
@@ -17542,8 +17719,8 @@ bool LocatedTipsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -17590,7 +17767,7 @@ MagnetoInductiveSensorType::MagnetoInductiveSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -17617,7 +17794,7 @@ MagnetoInductiveSensorType::MagnetoInductiveSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -17648,7 +17825,7 @@ MagnetoInductiveSensorType::MagnetoInductiveSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -17676,7 +17853,7 @@ MagnetoInductiveSensorType::MagnetoInductiveSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -17791,9 +17968,9 @@ void MagnetoInductiveSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -17940,7 +18117,7 @@ bool MagnetoInductiveSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MagnetoInductiveSensorType\n");
               returnValue = true;
@@ -17956,7 +18133,7 @@ bool MagnetoInductiveSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -17965,7 +18142,7 @@ bool MagnetoInductiveSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MagnetoInductiveSensorType\n");
       returnValue = true;
@@ -17977,8 +18154,8 @@ bool MagnetoInductiveSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -18070,7 +18247,7 @@ ManualMeasurementDeviceType::ManualMeasurementDeviceType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -18084,7 +18261,7 @@ ManualMeasurementDeviceType::ManualMeasurementDeviceType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn)
@@ -18102,7 +18279,7 @@ ManualMeasurementDeviceType::ManualMeasurementDeviceType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -18117,7 +18294,7 @@ ManualMeasurementDeviceType::ManualMeasurementDeviceType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn)
@@ -18210,9 +18387,9 @@ void ManualMeasurementDeviceType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -18269,7 +18446,7 @@ bool ManualMeasurementDeviceType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ManualMeasurementDeviceType\n");
               returnValue = true;
@@ -18285,7 +18462,7 @@ bool ManualMeasurementDeviceType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -18294,7 +18471,7 @@ bool ManualMeasurementDeviceType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ManualMeasurementDeviceType\n");
       returnValue = true;
@@ -18306,8 +18483,8 @@ bool ManualMeasurementDeviceType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -18533,7 +18710,7 @@ MeasurementDeviceType::MeasurementDeviceType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn) :
@@ -18545,7 +18722,7 @@ MeasurementDeviceType::MeasurementDeviceType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   Calibrations = CalibrationsIn;
@@ -18561,7 +18738,7 @@ MeasurementDeviceType::MeasurementDeviceType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn) :
@@ -18574,7 +18751,7 @@ MeasurementDeviceType::MeasurementDeviceType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   Calibrations = CalibrationsIn;
@@ -18665,9 +18842,9 @@ void MeasurementDeviceType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -18710,7 +18887,7 @@ bool MeasurementDeviceType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MeasurementDeviceType\n");
               returnValue = true;
@@ -18726,7 +18903,7 @@ bool MeasurementDeviceType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -18735,7 +18912,7 @@ bool MeasurementDeviceType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MeasurementDeviceType\n");
       returnValue = true;
@@ -18747,8 +18924,8 @@ bool MeasurementDeviceType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -18790,7 +18967,15 @@ MeasurementDeviceTypeLisd::~MeasurementDeviceTypeLisd()
   #endif
 }
 
-void MeasurementDeviceTypeLisd::printSelf(FILE * outFile){}
+void MeasurementDeviceTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<MeasurementDeviceType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -18865,6 +19050,13 @@ void MeasurementDevicesType::printSelf(FILE * outFile)
     if (MeasurementDevice->size() == 0)
       {
         fprintf(stderr, "MeasurementDevice list is empty\n");
+        exit(1);
+      }
+    if (MeasurementDevice->size() < 1)
+      {
+        fprintf(stderr,
+                "size of MeasurementDevice list (%d) less than minimum required (1)\n",
+                (int)MeasurementDevice->size());
         exit(1);
       }
     std::list<MeasurementDeviceType *>::iterator iter;
@@ -19288,7 +19480,7 @@ bool MeasurementDevicesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in MeasurementDevicesType\n");
               returnValue = true;
@@ -19304,7 +19496,7 @@ bool MeasurementDevicesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -19313,7 +19505,7 @@ bool MeasurementDevicesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in MeasurementDevicesType\n");
       returnValue = true;
@@ -19325,8 +19517,8 @@ bool MeasurementDevicesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -19359,7 +19551,7 @@ MeasurementResourceBaseType::MeasurementResourceBaseType()
   SerialNumber = 0;
   Mass = 0;
   Size = 0;
-  MeasurementReso_1242 = 0;
+  MeasurementReso_1196 = 0;
   Attributes = 0;
 }
 
@@ -19371,7 +19563,7 @@ MeasurementResourceBaseType::MeasurementResourceBaseType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn)
 {
   id = 0;
@@ -19382,7 +19574,7 @@ MeasurementResourceBaseType::MeasurementResourceBaseType(
   SerialNumber = SerialNumberIn;
   Mass = MassIn;
   Size = SizeIn;
-  MeasurementReso_1242 = MeasurementReso_1242In;
+  MeasurementReso_1196 = MeasurementReso_1196In;
   Attributes = AttributesIn;
 }
 
@@ -19395,7 +19587,7 @@ MeasurementResourceBaseType::MeasurementResourceBaseType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn)
 {
   id = idIn;
@@ -19406,7 +19598,7 @@ MeasurementResourceBaseType::MeasurementResourceBaseType(
   SerialNumber = SerialNumberIn;
   Mass = MassIn;
   Size = SizeIn;
-  MeasurementReso_1242 = MeasurementReso_1242In;
+  MeasurementReso_1196 = MeasurementReso_1196In;
   Attributes = AttributesIn;
 }
 
@@ -19421,7 +19613,7 @@ MeasurementResourceBaseType::~MeasurementResourceBaseType()
   delete SerialNumber;
   delete Mass;
   delete Size;
-  delete MeasurementReso_1242;
+  delete MeasurementReso_1196;
   delete Attributes;
   #endif
 }
@@ -19502,9 +19694,9 @@ void MeasurementResourceBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -19531,7 +19723,7 @@ bool MeasurementResourceBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MeasurementResourceBaseType\n");
               returnValue = true;
@@ -19547,7 +19739,7 @@ bool MeasurementResourceBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -19556,7 +19748,7 @@ bool MeasurementResourceBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MeasurementResourceBaseType\n");
       returnValue = true;
@@ -19568,8 +19760,8 @@ bool MeasurementResourceBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -19622,11 +19814,11 @@ CartesianWorkingVolumeType * MeasurementResourceBaseType::getSize()
 void MeasurementResourceBaseType::setSize(CartesianWorkingVolumeType * SizeIn)
 {Size = SizeIn;}
 
-MeasurementReso_1242_Type * MeasurementResourceBaseType::getMeasurementReso_1242()
-{return MeasurementReso_1242;}
+MeasurementReso_1196_Type * MeasurementResourceBaseType::getMeasurementReso_1196()
+{return MeasurementReso_1196;}
 
-void MeasurementResourceBaseType::setMeasurementReso_1242(MeasurementReso_1242_Type * MeasurementReso_1242In)
-{MeasurementReso_1242 = MeasurementReso_1242In;}
+void MeasurementResourceBaseType::setMeasurementReso_1196(MeasurementReso_1196_Type * MeasurementReso_1196In)
+{MeasurementReso_1196 = MeasurementReso_1196In;}
 
 AttributesType * MeasurementResourceBaseType::getAttributes()
 {return Attributes;}
@@ -19796,7 +19988,7 @@ MeasurementRoomType::MeasurementRoomType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  TemperatureType * TemperatureRangeMinIn,
  TemperatureType * TemperatureRangeMaxIn,
@@ -19814,7 +20006,7 @@ MeasurementRoomType::MeasurementRoomType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   TemperatureRangeMin = TemperatureRangeMinIn;
@@ -19836,7 +20028,7 @@ MeasurementRoomType::MeasurementRoomType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  TemperatureType * TemperatureRangeMinIn,
  TemperatureType * TemperatureRangeMaxIn,
@@ -19855,7 +20047,7 @@ MeasurementRoomType::MeasurementRoomType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   TemperatureRangeMin = TemperatureRangeMinIn;
@@ -19958,9 +20150,9 @@ void MeasurementRoomType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -20027,7 +20219,7 @@ bool MeasurementRoomType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MeasurementRoomType\n");
               returnValue = true;
@@ -20043,7 +20235,7 @@ bool MeasurementRoomType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -20052,7 +20244,7 @@ bool MeasurementRoomType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MeasurementRoomType\n");
       returnValue = true;
@@ -20064,8 +20256,8 @@ bool MeasurementRoomType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -20143,7 +20335,15 @@ MeasurementRoomTypeLisd::~MeasurementRoomTypeLisd()
   #endif
 }
 
-void MeasurementRoomTypeLisd::printSelf(FILE * outFile){}
+void MeasurementRoomTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<MeasurementRoomType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -20220,6 +20420,13 @@ void MeasurementRoomsType::printSelf(FILE * outFile)
         fprintf(stderr, "MeasurementRoom list is empty\n");
         exit(1);
       }
+    if (MeasurementRoom->size() < 1)
+      {
+        fprintf(stderr,
+                "size of MeasurementRoom list (%d) less than minimum required (1)\n",
+                (int)MeasurementRoom->size());
+        exit(1);
+      }
     std::list<MeasurementRoomType *>::iterator iter;
     for (iter = MeasurementRoom->begin();
          iter != MeasurementRoom->end(); iter++)
@@ -20248,7 +20455,7 @@ bool MeasurementRoomsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in MeasurementRoomsType\n");
               returnValue = true;
@@ -20264,7 +20471,7 @@ bool MeasurementRoomsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -20273,7 +20480,7 @@ bool MeasurementRoomsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in MeasurementRoomsType\n");
       returnValue = true;
@@ -20285,8 +20492,8 @@ bool MeasurementRoomsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -20322,7 +20529,7 @@ MicrometerAnalogType::MicrometerAnalogType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -20340,7 +20547,7 @@ MicrometerAnalogType::MicrometerAnalogType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -20362,7 +20569,7 @@ MicrometerAnalogType::MicrometerAnalogType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -20381,7 +20588,7 @@ MicrometerAnalogType::MicrometerAnalogType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -20476,9 +20683,9 @@ void MicrometerAnalogType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -20565,7 +20772,7 @@ bool MicrometerAnalogType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MicrometerAnalogType\n");
               returnValue = true;
@@ -20581,7 +20788,7 @@ bool MicrometerAnalogType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -20590,7 +20797,7 @@ bool MicrometerAnalogType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MicrometerAnalogType\n");
       returnValue = true;
@@ -20602,8 +20809,8 @@ bool MicrometerAnalogType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -20627,7 +20834,7 @@ MicrometerDigitalType::MicrometerDigitalType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -20645,7 +20852,7 @@ MicrometerDigitalType::MicrometerDigitalType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -20667,7 +20874,7 @@ MicrometerDigitalType::MicrometerDigitalType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -20686,7 +20893,7 @@ MicrometerDigitalType::MicrometerDigitalType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -20781,9 +20988,9 @@ void MicrometerDigitalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -20870,7 +21077,7 @@ bool MicrometerDigitalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MicrometerDigitalType\n");
               returnValue = true;
@@ -20886,7 +21093,7 @@ bool MicrometerDigitalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -20895,7 +21102,7 @@ bool MicrometerDigitalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MicrometerDigitalType\n");
       returnValue = true;
@@ -20907,8 +21114,8 @@ bool MicrometerDigitalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -20936,7 +21143,7 @@ MicrometerType::MicrometerType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -20954,7 +21161,7 @@ MicrometerType::MicrometerType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -20976,7 +21183,7 @@ MicrometerType::MicrometerType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -20995,7 +21202,7 @@ MicrometerType::MicrometerType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -21094,9 +21301,9 @@ void MicrometerType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -21183,7 +21390,7 @@ bool MicrometerType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MicrometerType\n");
               returnValue = true;
@@ -21199,7 +21406,7 @@ bool MicrometerType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -21208,7 +21415,7 @@ bool MicrometerType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MicrometerType\n");
       returnValue = true;
@@ -21220,8 +21427,8 @@ bool MicrometerType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -21278,7 +21485,7 @@ MicroscopeType::MicroscopeType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -21303,7 +21510,7 @@ MicroscopeType::MicroscopeType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -21332,7 +21539,7 @@ MicroscopeType::MicroscopeType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -21358,7 +21565,7 @@ MicroscopeType::MicroscopeType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -21469,9 +21676,9 @@ void MicroscopeType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -21862,7 +22069,7 @@ bool MicroscopeType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MicroscopeType\n");
               returnValue = true;
@@ -21878,7 +22085,7 @@ bool MicroscopeType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -21887,7 +22094,7 @@ bool MicroscopeType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MicroscopeType\n");
       returnValue = true;
@@ -21899,8 +22106,8 @@ bool MicroscopeType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -21979,7 +22186,7 @@ MultipleCarriageCartesianCMMType::MultipleCarriageCartesianCMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -22008,7 +22215,7 @@ MultipleCarriageCartesianCMMType::MultipleCarriageCartesianCMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -22041,7 +22248,7 @@ MultipleCarriageCartesianCMMType::MultipleCarriageCartesianCMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -22071,7 +22278,7 @@ MultipleCarriageCartesianCMMType::MultipleCarriageCartesianCMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -22178,9 +22385,9 @@ void MultipleCarriageCartesianCMMType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -22695,7 +22902,7 @@ bool MultipleCarriageCartesianCMMType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MultipleCarriageCartesianCMMType\n");
               returnValue = true;
@@ -22711,7 +22918,7 @@ bool MultipleCarriageCartesianCMMType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -22720,7 +22927,7 @@ bool MultipleCarriageCartesianCMMType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MultipleCarriageCartesianCMMType\n");
       returnValue = true;
@@ -22732,8 +22939,8 @@ bool MultipleCarriageCartesianCMMType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -22822,7 +23029,7 @@ OpticalComparatorType::OpticalComparatorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -22847,7 +23054,7 @@ OpticalComparatorType::OpticalComparatorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -22876,7 +23083,7 @@ OpticalComparatorType::OpticalComparatorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -22902,7 +23109,7 @@ OpticalComparatorType::OpticalComparatorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -23013,9 +23220,9 @@ void OpticalComparatorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -23405,7 +23612,7 @@ bool OpticalComparatorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in OpticalComparatorType\n");
               returnValue = true;
@@ -23421,7 +23628,7 @@ bool OpticalComparatorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -23430,7 +23637,7 @@ bool OpticalComparatorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in OpticalComparatorType\n");
       returnValue = true;
@@ -23442,8 +23649,8 @@ bool OpticalComparatorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -23714,7 +23921,7 @@ ParallelLinkCMMType::ParallelLinkCMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -23741,7 +23948,7 @@ ParallelLinkCMMType::ParallelLinkCMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -23772,7 +23979,7 @@ ParallelLinkCMMType::ParallelLinkCMMType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -23800,7 +24007,7 @@ ParallelLinkCMMType::ParallelLinkCMMType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -23915,9 +24122,9 @@ void ParallelLinkCMMType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -24367,7 +24574,7 @@ bool ParallelLinkCMMType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ParallelLinkCMMType\n");
               returnValue = true;
@@ -24383,7 +24590,7 @@ bool ParallelLinkCMMType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -24392,7 +24599,7 @@ bool ParallelLinkCMMType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ParallelLinkCMMType\n");
       returnValue = true;
@@ -24404,8 +24611,8 @@ bool ParallelLinkCMMType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -24543,7 +24750,7 @@ ProbeTipType::ProbeTipType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  TipEndGeometryType * TipEndGeometryIn,
  LinearValueType * TipEndDiameterIn,
@@ -24558,7 +24765,7 @@ ProbeTipType::ProbeTipType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   TipEndGeometry = TipEndGeometryIn;
@@ -24577,7 +24784,7 @@ ProbeTipType::ProbeTipType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  TipEndGeometryType * TipEndGeometryIn,
  LinearValueType * TipEndDiameterIn,
@@ -24593,7 +24800,7 @@ ProbeTipType::ProbeTipType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   TipEndGeometry = TipEndGeometryIn;
@@ -24690,9 +24897,9 @@ void ProbeTipType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -24755,7 +24962,7 @@ bool ProbeTipType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ProbeTipType\n");
               returnValue = true;
@@ -24771,7 +24978,7 @@ bool ProbeTipType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -24780,7 +24987,7 @@ bool ProbeTipType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ProbeTipType\n");
       returnValue = true;
@@ -24792,8 +24999,8 @@ bool ProbeTipType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -24912,7 +25119,15 @@ QualificationTypeLisd::~QualificationTypeLisd()
   #endif
 }
 
-void QualificationTypeLisd::printSelf(FILE * outFile){}
+void QualificationTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<QualificationType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -24989,6 +25204,13 @@ void QualificationsType::printSelf(FILE * outFile)
         fprintf(stderr, "Qualification list is empty\n");
         exit(1);
       }
+    if (Qualification->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Qualification list (%d) less than minimum required (1)\n",
+                (int)Qualification->size());
+        exit(1);
+      }
     std::list<QualificationType *>::iterator iter;
     for (iter = Qualification->begin();
          iter != Qualification->end(); iter++)
@@ -25017,7 +25239,7 @@ bool QualificationsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in QualificationsType\n");
               returnValue = true;
@@ -25033,7 +25255,7 @@ bool QualificationsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -25042,7 +25264,7 @@ bool QualificationsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in QualificationsType\n");
       returnValue = true;
@@ -25054,8 +25276,8 @@ bool QualificationsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -25395,7 +25617,7 @@ SensorType::SensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -25411,7 +25633,7 @@ SensorType::SensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   ProtectionClass = ProtectionClassIn;
@@ -25431,7 +25653,7 @@ SensorType::SensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -25448,7 +25670,7 @@ SensorType::SensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   ProtectionClass = ProtectionClassIn;
@@ -25547,9 +25769,9 @@ void SensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -25619,7 +25841,7 @@ bool SensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SensorType\n");
               returnValue = true;
@@ -25635,7 +25857,7 @@ bool SensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -25644,7 +25866,7 @@ bool SensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SensorType\n");
       returnValue = true;
@@ -25656,8 +25878,8 @@ bool SensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -25724,7 +25946,7 @@ SimpleTactileProbeSensorType::SimpleTactileProbeSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -25747,7 +25969,7 @@ SimpleTactileProbeSensorType::SimpleTactileProbeSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -25774,7 +25996,7 @@ SimpleTactileProbeSensorType::SimpleTactileProbeSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -25798,7 +26020,7 @@ SimpleTactileProbeSensorType::SimpleTactileProbeSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -25905,9 +26127,9 @@ void SimpleTactileProbeSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -26028,7 +26250,7 @@ bool SimpleTactileProbeSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SimpleTactileProbeSensorType\n");
               returnValue = true;
@@ -26044,7 +26266,7 @@ bool SimpleTactileProbeSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -26053,7 +26275,7 @@ bool SimpleTactileProbeSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SimpleTactileProbeSensorType\n");
       returnValue = true;
@@ -26065,8 +26287,8 @@ bool SimpleTactileProbeSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -26139,7 +26361,7 @@ SineBarType::SineBarType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -26160,7 +26382,7 @@ SineBarType::SineBarType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -26185,7 +26407,7 @@ SineBarType::SineBarType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -26207,7 +26429,7 @@ SineBarType::SineBarType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -26312,9 +26534,9 @@ void SineBarType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -26420,7 +26642,7 @@ bool SineBarType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SineBarType\n");
               returnValue = true;
@@ -26436,7 +26658,7 @@ bool SineBarType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -26445,7 +26667,7 @@ bool SineBarType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SineBarType\n");
       returnValue = true;
@@ -26457,8 +26679,8 @@ bool SineBarType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -26625,20 +26847,20 @@ void SinglePointArticulationPerformanceTestType::setTwiceStandardDeviationMiddle
 SphericalResolutionType::SphericalResolutionType() :
   ResolutionBaseType()
 {
-  SphericalResolu_1243 = 0;
+  SphericalResolutionTypePair = 0;
 }
 
 SphericalResolutionType::SphericalResolutionType(
- SphericalResolu_1243_Type * SphericalResolu_1243In) :
+ SphericalResolutionTypeChoicePair * SphericalResolutionTypePairIn) :
   ResolutionBaseType()
 {
-  SphericalResolu_1243 = SphericalResolu_1243In;
+  SphericalResolutionTypePair = SphericalResolutionTypePairIn;
 }
 
 SphericalResolutionType::~SphericalResolutionType()
 {
   #ifndef NODESTRUCT
-  delete SphericalResolu_1243;
+  delete SphericalResolutionTypePair;
   #endif
 }
 
@@ -26646,15 +26868,52 @@ void SphericalResolutionType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  SphericalResolu_1243->printSelf(outFile);
+  SphericalResolutionTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
+SphericalResolutionTypeChoicePair * SphericalResolutionType::getSphericalResolutionTypeChoicePair()
+{return SphericalResolutionTypePair;}
 
-SphericalResolu_1243_Type * SphericalResolutionType::getSphericalResolu_1243()
-{return SphericalResolu_1243;}
+void SphericalResolutionType::setSphericalResolutionTypeChoicePair(SphericalResolutionTypeChoicePair * SphericalResolutionTypePairIn)
+{SphericalResolutionTypePair = SphericalResolutionTypePairIn;}
 
-void SphericalResolutionType::setSphericalResolu_1243(SphericalResolu_1243_Type * SphericalResolu_1243In)
-{SphericalResolu_1243 = SphericalResolu_1243In;}
+/* ***************************************************************** */
+
+SphericalResolutionTypeChoicePair::SphericalResolutionTypeChoicePair() {}
+
+SphericalResolutionTypeChoicePair::SphericalResolutionTypeChoicePair(
+ whichOne SphericalResolutionTypeTypeIn,
+ SphericalResolutionTypeVal SphericalResolutionTypeValueIn)
+{
+  SphericalResolutionTypeType = SphericalResolutionTypeTypeIn;
+  SphericalResolutionTypeValue = SphericalResolutionTypeValueIn;
+}
+
+SphericalResolutionTypeChoicePair::~SphericalResolutionTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (SphericalResolutionTypeType == SphericalResolu_1197E)
+    delete SphericalResolutionTypeValue.SphericalResolu_1197;
+  else if (SphericalResolutionTypeType == RAPResolutionE)
+    delete SphericalResolutionTypeValue.RAPResolution;
+  #endif
+}
+
+void SphericalResolutionTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (SphericalResolutionTypeType == SphericalResolu_1197E)
+    {
+      SphericalResolutionTypeValue.SphericalResolu_1197->printSelf(outFile);
+    }
+  else if (SphericalResolutionTypeType == RAPResolutionE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<RAPResolution");
+      SphericalResolutionTypeValue.RAPResolution->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</RAPResolution>\n");
+    }
+}
 
 /* ***************************************************************** */
 
@@ -26861,7 +27120,7 @@ StructuredLightSensorType::StructuredLightSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -26886,7 +27145,7 @@ StructuredLightSensorType::StructuredLightSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -26915,7 +27174,7 @@ StructuredLightSensorType::StructuredLightSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -26941,7 +27200,7 @@ StructuredLightSensorType::StructuredLightSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -27052,9 +27311,9 @@ void StructuredLightSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -27278,7 +27537,7 @@ bool StructuredLightSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in StructuredLightSensorType\n");
               returnValue = true;
@@ -27294,7 +27553,7 @@ bool StructuredLightSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -27303,7 +27562,7 @@ bool StructuredLightSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in StructuredLightSensorType\n");
       returnValue = true;
@@ -27315,8 +27574,8 @@ bool StructuredLightSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -27463,7 +27722,7 @@ TactileProbeSensorBaseType::TactileProbeSensorBaseType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -27479,7 +27738,7 @@ TactileProbeSensorBaseType::TactileProbeSensorBaseType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -27499,7 +27758,7 @@ TactileProbeSensorBaseType::TactileProbeSensorBaseType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -27516,7 +27775,7 @@ TactileProbeSensorBaseType::TactileProbeSensorBaseType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -27609,9 +27868,9 @@ void TactileProbeSensorBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -27681,7 +27940,7 @@ bool TactileProbeSensorBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in TactileProbeSensorBaseType\n");
               returnValue = true;
@@ -27697,7 +27956,7 @@ bool TactileProbeSensorBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -27706,7 +27965,7 @@ bool TactileProbeSensorBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in TactileProbeSensorBaseType\n");
       returnValue = true;
@@ -27718,8 +27977,8 @@ bool TactileProbeSensorBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -27883,13 +28142,6 @@ TemperatureCompensationTypeChoicePair * TemperatureCompensationType::getTemperat
 
 void TemperatureCompensationType::setTemperatureCompensationTypePair(TemperatureCompensationTypeChoicePair * TemperatureCompensationTypePairIn)
 {TemperatureCompensationTypePair = TemperatureCompensationTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class TemperatureCompensationTypeChoicePair
-
-*/
-
 TemperatureCompensationTypeChoicePair::TemperatureCompensationTypeChoicePair() {}
 
 TemperatureCompensationTypeChoicePair::TemperatureCompensationTypeChoicePair(
@@ -28029,7 +28281,15 @@ TemperatureTypeLisd::~TemperatureTypeLisd()
   #endif
 }
 
-void TemperatureTypeLisd::printSelf(FILE * outFile){}
+void TemperatureTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<TemperatureType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -28106,6 +28366,13 @@ void TemperaturesType::printSelf(FILE * outFile)
         fprintf(stderr, "Temperature list is empty\n");
         exit(1);
       }
+    if (Temperature->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Temperature list (%d) less than minimum required (1)\n",
+                (int)Temperature->size());
+        exit(1);
+      }
     std::list<TemperatureType *>::iterator iter;
     for (iter = Temperature->begin();
          iter != Temperature->end(); iter++)
@@ -28134,7 +28401,7 @@ bool TemperaturesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in TemperaturesType\n");
               returnValue = true;
@@ -28150,7 +28417,7 @@ bool TemperaturesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -28159,7 +28426,7 @@ bool TemperaturesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in TemperaturesType\n");
       returnValue = true;
@@ -28171,8 +28438,8 @@ bool TemperaturesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -28224,7 +28491,7 @@ TheodoliteType::TheodoliteType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -28256,7 +28523,7 @@ TheodoliteType::TheodoliteType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -28292,7 +28559,7 @@ TheodoliteType::TheodoliteType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -28325,7 +28592,7 @@ TheodoliteType::TheodoliteType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -28450,9 +28717,9 @@ void TheodoliteType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -28892,7 +29159,7 @@ bool TheodoliteType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in TheodoliteType\n");
               returnValue = true;
@@ -28908,7 +29175,7 @@ bool TheodoliteType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -28917,7 +29184,7 @@ bool TheodoliteType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in TheodoliteType\n");
       returnValue = true;
@@ -28929,8 +29196,8 @@ bool TheodoliteType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -29134,13 +29401,6 @@ TipEndGeometryTypeChoicePair * TipEndGeometryType::getTipEndGeometryTypePair()
 
 void TipEndGeometryType::setTipEndGeometryTypePair(TipEndGeometryTypeChoicePair * TipEndGeometryTypePairIn)
 {TipEndGeometryTypePair = TipEndGeometryTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class TipEndGeometryTypeChoicePair
-
-*/
-
 TipEndGeometryTypeChoicePair::TipEndGeometryTypeChoicePair() {}
 
 TipEndGeometryTypeChoicePair::TipEndGeometryTypeChoicePair(
@@ -29198,7 +29458,7 @@ ToolBaseType::ToolBaseType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn) :
   MeasurementResourceBaseType(
     NameIn,
@@ -29208,7 +29468,7 @@ ToolBaseType::ToolBaseType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
 }
@@ -29222,7 +29482,7 @@ ToolBaseType::ToolBaseType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn) :
   MeasurementResourceBaseType(
     idIn,
@@ -29233,7 +29493,7 @@ ToolBaseType::ToolBaseType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
 }
@@ -29320,9 +29580,9 @@ void ToolBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -29349,7 +29609,7 @@ bool ToolBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ToolBaseType\n");
               returnValue = true;
@@ -29365,7 +29625,7 @@ bool ToolBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -29374,7 +29634,7 @@ bool ToolBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolBaseType\n");
       returnValue = true;
@@ -29386,8 +29646,8 @@ bool ToolBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -29417,7 +29677,15 @@ ToolBaseTypeLisd::~ToolBaseTypeLisd()
   #endif
 }
 
-void ToolBaseTypeLisd::printSelf(FILE * outFile){}
+void ToolBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ToolBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -29439,7 +29707,7 @@ ToolWithCCDCameraSensorType::ToolWithCCDCameraSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  ChargeCoupledDeviceCameraSensorType * ChargeCoupledDeviceCameraSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -29450,7 +29718,7 @@ ToolWithCCDCameraSensorType::ToolWithCCDCameraSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   ChargeCoupledDeviceCameraSensor = ChargeCoupledDeviceCameraSensorIn;
@@ -29465,7 +29733,7 @@ ToolWithCCDCameraSensorType::ToolWithCCDCameraSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  ChargeCoupledDeviceCameraSensorType * ChargeCoupledDeviceCameraSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -29477,7 +29745,7 @@ ToolWithCCDCameraSensorType::ToolWithCCDCameraSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   ChargeCoupledDeviceCameraSensor = ChargeCoupledDeviceCameraSensorIn;
@@ -29566,9 +29834,9 @@ void ToolWithCCDCameraSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -29600,7 +29868,7 @@ bool ToolWithCCDCameraSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ToolWithCCDCameraSensorType\n");
               returnValue = true;
@@ -29616,7 +29884,7 @@ bool ToolWithCCDCameraSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -29625,7 +29893,7 @@ bool ToolWithCCDCameraSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithCCDCameraSensorType\n");
       returnValue = true;
@@ -29637,8 +29905,8 @@ bool ToolWithCCDCameraSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -29669,7 +29937,7 @@ ToolWithCapacitiveSensorType::ToolWithCapacitiveSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CapacitiveSensorType * CapacitiveSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -29680,7 +29948,7 @@ ToolWithCapacitiveSensorType::ToolWithCapacitiveSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   CapacitiveSensor = CapacitiveSensorIn;
@@ -29695,7 +29963,7 @@ ToolWithCapacitiveSensorType::ToolWithCapacitiveSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CapacitiveSensorType * CapacitiveSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -29707,7 +29975,7 @@ ToolWithCapacitiveSensorType::ToolWithCapacitiveSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   CapacitiveSensor = CapacitiveSensorIn;
@@ -29796,9 +30064,9 @@ void ToolWithCapacitiveSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -29830,7 +30098,7 @@ bool ToolWithCapacitiveSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ToolWithCapacitiveSensorType\n");
               returnValue = true;
@@ -29846,7 +30114,7 @@ bool ToolWithCapacitiveSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -29855,7 +30123,7 @@ bool ToolWithCapacitiveSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithCapacitiveSensorType\n");
       returnValue = true;
@@ -29867,8 +30135,8 @@ bool ToolWithCapacitiveSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -29899,7 +30167,7 @@ ToolWithComplexTactileProbeSensorType::ToolWithComplexTactileProbeSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  ComplexTactileProbeSensorType * ComplexTactileProbeSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -29910,7 +30178,7 @@ ToolWithComplexTactileProbeSensorType::ToolWithComplexTactileProbeSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   ComplexTactileProbeSensor = ComplexTactileProbeSensorIn;
@@ -29925,7 +30193,7 @@ ToolWithComplexTactileProbeSensorType::ToolWithComplexTactileProbeSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  ComplexTactileProbeSensorType * ComplexTactileProbeSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -29937,7 +30205,7 @@ ToolWithComplexTactileProbeSensorType::ToolWithComplexTactileProbeSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   ComplexTactileProbeSensor = ComplexTactileProbeSensorIn;
@@ -30026,9 +30294,9 @@ void ToolWithComplexTactileProbeSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -30060,7 +30328,7 @@ bool ToolWithComplexTactileProbeSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ToolWithComplexTactileProbeSensorType\n");
               returnValue = true;
@@ -30076,7 +30344,7 @@ bool ToolWithComplexTactileProbeSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -30085,7 +30353,7 @@ bool ToolWithComplexTactileProbeSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithComplexTactileProbeSensorType\n");
       returnValue = true;
@@ -30097,8 +30365,8 @@ bool ToolWithComplexTactileProbeSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -30129,7 +30397,7 @@ ToolWithConfocalChromaticSensorType::ToolWithConfocalChromaticSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  ConfocalChromaticSensorType * ConfocalChromaticSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -30140,7 +30408,7 @@ ToolWithConfocalChromaticSensorType::ToolWithConfocalChromaticSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   ConfocalChromaticSensor = ConfocalChromaticSensorIn;
@@ -30155,7 +30423,7 @@ ToolWithConfocalChromaticSensorType::ToolWithConfocalChromaticSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  ConfocalChromaticSensorType * ConfocalChromaticSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -30167,7 +30435,7 @@ ToolWithConfocalChromaticSensorType::ToolWithConfocalChromaticSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   ConfocalChromaticSensor = ConfocalChromaticSensorIn;
@@ -30256,9 +30524,9 @@ void ToolWithConfocalChromaticSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -30290,7 +30558,7 @@ bool ToolWithConfocalChromaticSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ToolWithConfocalChromaticSensorType\n");
               returnValue = true;
@@ -30306,7 +30574,7 @@ bool ToolWithConfocalChromaticSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -30315,7 +30583,7 @@ bool ToolWithConfocalChromaticSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithConfocalChromaticSensorType\n");
       returnValue = true;
@@ -30327,8 +30595,8 @@ bool ToolWithConfocalChromaticSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -30359,7 +30627,7 @@ ToolWithDVRTSensorType::ToolWithDVRTSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  DifferentialVariableReluctanceTransducerSensorType * DVRTSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -30370,7 +30638,7 @@ ToolWithDVRTSensorType::ToolWithDVRTSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   DVRTSensor = DVRTSensorIn;
@@ -30385,7 +30653,7 @@ ToolWithDVRTSensorType::ToolWithDVRTSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  DifferentialVariableReluctanceTransducerSensorType * DVRTSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -30397,7 +30665,7 @@ ToolWithDVRTSensorType::ToolWithDVRTSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   DVRTSensor = DVRTSensorIn;
@@ -30486,9 +30754,9 @@ void ToolWithDVRTSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -30520,7 +30788,7 @@ bool ToolWithDVRTSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ToolWithDVRTSensorType\n");
               returnValue = true;
@@ -30536,7 +30804,7 @@ bool ToolWithDVRTSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -30545,7 +30813,7 @@ bool ToolWithDVRTSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithDVRTSensorType\n");
       returnValue = true;
@@ -30557,8 +30825,8 @@ bool ToolWithDVRTSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -30589,7 +30857,7 @@ ToolWithDetachableSensorsType::ToolWithDetachableSensorsType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  ArrayReferenceType * SensorIdsIn) :
   ToolBaseType(
@@ -30600,7 +30868,7 @@ ToolWithDetachableSensorsType::ToolWithDetachableSensorsType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   SensorIds = SensorIdsIn;
@@ -30615,7 +30883,7 @@ ToolWithDetachableSensorsType::ToolWithDetachableSensorsType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  ArrayReferenceType * SensorIdsIn) :
   ToolBaseType(
@@ -30627,7 +30895,7 @@ ToolWithDetachableSensorsType::ToolWithDetachableSensorsType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   SensorIds = SensorIdsIn;
@@ -30716,9 +30984,9 @@ void ToolWithDetachableSensorsType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -30753,7 +31021,7 @@ bool ToolWithDetachableSensorsType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ToolWithDetachableSensorsType\n");
               returnValue = true;
@@ -30769,7 +31037,7 @@ bool ToolWithDetachableSensorsType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -30778,7 +31046,7 @@ bool ToolWithDetachableSensorsType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithDetachableSensorsType\n");
       returnValue = true;
@@ -30790,8 +31058,8 @@ bool ToolWithDetachableSensorsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -30822,7 +31090,7 @@ ToolWithDrawWireSensorType::ToolWithDrawWireSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  DrawWireSensorType * DrawWireSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -30833,7 +31101,7 @@ ToolWithDrawWireSensorType::ToolWithDrawWireSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   DrawWireSensor = DrawWireSensorIn;
@@ -30848,7 +31116,7 @@ ToolWithDrawWireSensorType::ToolWithDrawWireSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  DrawWireSensorType * DrawWireSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -30860,7 +31128,7 @@ ToolWithDrawWireSensorType::ToolWithDrawWireSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   DrawWireSensor = DrawWireSensorIn;
@@ -30949,9 +31217,9 @@ void ToolWithDrawWireSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -30983,7 +31251,7 @@ bool ToolWithDrawWireSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ToolWithDrawWireSensorType\n");
               returnValue = true;
@@ -30999,7 +31267,7 @@ bool ToolWithDrawWireSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -31008,7 +31276,7 @@ bool ToolWithDrawWireSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithDrawWireSensorType\n");
       returnValue = true;
@@ -31020,8 +31288,8 @@ bool ToolWithDrawWireSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -31052,7 +31320,7 @@ ToolWithEddyCurrentSensorType::ToolWithEddyCurrentSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  EddyCurrentSensorType * EddyCurrentSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -31063,7 +31331,7 @@ ToolWithEddyCurrentSensorType::ToolWithEddyCurrentSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   EddyCurrentSensor = EddyCurrentSensorIn;
@@ -31078,7 +31346,7 @@ ToolWithEddyCurrentSensorType::ToolWithEddyCurrentSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  EddyCurrentSensorType * EddyCurrentSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -31090,7 +31358,7 @@ ToolWithEddyCurrentSensorType::ToolWithEddyCurrentSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   EddyCurrentSensor = EddyCurrentSensorIn;
@@ -31179,9 +31447,9 @@ void ToolWithEddyCurrentSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -31213,7 +31481,7 @@ bool ToolWithEddyCurrentSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ToolWithEddyCurrentSensorType\n");
               returnValue = true;
@@ -31229,7 +31497,7 @@ bool ToolWithEddyCurrentSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -31238,7 +31506,7 @@ bool ToolWithEddyCurrentSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithEddyCurrentSensorType\n");
       returnValue = true;
@@ -31250,8 +31518,8 @@ bool ToolWithEddyCurrentSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -31281,7 +31549,7 @@ ToolWithIntegratedSensorBaseType::ToolWithIntegratedSensorBaseType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn) :
   ToolBaseType(
     NameIn,
@@ -31291,7 +31559,7 @@ ToolWithIntegratedSensorBaseType::ToolWithIntegratedSensorBaseType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
 }
@@ -31305,7 +31573,7 @@ ToolWithIntegratedSensorBaseType::ToolWithIntegratedSensorBaseType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn) :
   ToolBaseType(
     idIn,
@@ -31316,7 +31584,7 @@ ToolWithIntegratedSensorBaseType::ToolWithIntegratedSensorBaseType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
 }
@@ -31403,9 +31671,9 @@ void ToolWithIntegratedSensorBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -31432,7 +31700,7 @@ bool ToolWithIntegratedSensorBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ToolWithIntegratedSensorBaseType\n");
               returnValue = true;
@@ -31448,7 +31716,7 @@ bool ToolWithIntegratedSensorBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -31457,7 +31725,7 @@ bool ToolWithIntegratedSensorBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithIntegratedSensorBaseType\n");
       returnValue = true;
@@ -31469,8 +31737,8 @@ bool ToolWithIntegratedSensorBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -31495,7 +31763,7 @@ ToolWithLVDTSensorType::ToolWithLVDTSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  LinearVariableDifferentialTransformerSensorType * LVDTSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -31506,7 +31774,7 @@ ToolWithLVDTSensorType::ToolWithLVDTSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   LVDTSensor = LVDTSensorIn;
@@ -31521,7 +31789,7 @@ ToolWithLVDTSensorType::ToolWithLVDTSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  LinearVariableDifferentialTransformerSensorType * LVDTSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -31533,7 +31801,7 @@ ToolWithLVDTSensorType::ToolWithLVDTSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   LVDTSensor = LVDTSensorIn;
@@ -31622,9 +31890,9 @@ void ToolWithLVDTSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -31656,7 +31924,7 @@ bool ToolWithLVDTSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ToolWithLVDTSensorType\n");
               returnValue = true;
@@ -31672,7 +31940,7 @@ bool ToolWithLVDTSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -31681,7 +31949,7 @@ bool ToolWithLVDTSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithLVDTSensorType\n");
       returnValue = true;
@@ -31693,8 +31961,8 @@ bool ToolWithLVDTSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -31725,7 +31993,7 @@ ToolWithLaserTriangulationSensorType::ToolWithLaserTriangulationSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  LaserTriangulationSensorType * LaserTriangulationSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -31736,7 +32004,7 @@ ToolWithLaserTriangulationSensorType::ToolWithLaserTriangulationSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   LaserTriangulationSensor = LaserTriangulationSensorIn;
@@ -31751,7 +32019,7 @@ ToolWithLaserTriangulationSensorType::ToolWithLaserTriangulationSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  LaserTriangulationSensorType * LaserTriangulationSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -31763,7 +32031,7 @@ ToolWithLaserTriangulationSensorType::ToolWithLaserTriangulationSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   LaserTriangulationSensor = LaserTriangulationSensorIn;
@@ -31852,9 +32120,9 @@ void ToolWithLaserTriangulationSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -31886,7 +32154,7 @@ bool ToolWithLaserTriangulationSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ToolWithLaserTriangulationSensorType\n");
               returnValue = true;
@@ -31902,7 +32170,7 @@ bool ToolWithLaserTriangulationSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -31911,7 +32179,7 @@ bool ToolWithLaserTriangulationSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithLaserTriangulationSensorType\n");
       returnValue = true;
@@ -31923,8 +32191,8 @@ bool ToolWithLaserTriangulationSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -31955,7 +32223,7 @@ ToolWithMagnetoInductiveSensorType::ToolWithMagnetoInductiveSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  MagnetoInductiveSensorType * MagnetoInductiveSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -31966,7 +32234,7 @@ ToolWithMagnetoInductiveSensorType::ToolWithMagnetoInductiveSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   MagnetoInductiveSensor = MagnetoInductiveSensorIn;
@@ -31981,7 +32249,7 @@ ToolWithMagnetoInductiveSensorType::ToolWithMagnetoInductiveSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  MagnetoInductiveSensorType * MagnetoInductiveSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -31993,7 +32261,7 @@ ToolWithMagnetoInductiveSensorType::ToolWithMagnetoInductiveSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   MagnetoInductiveSensor = MagnetoInductiveSensorIn;
@@ -32082,9 +32350,9 @@ void ToolWithMagnetoInductiveSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -32116,7 +32384,7 @@ bool ToolWithMagnetoInductiveSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ToolWithMagnetoInductiveSensorType\n");
               returnValue = true;
@@ -32132,7 +32400,7 @@ bool ToolWithMagnetoInductiveSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -32141,7 +32409,7 @@ bool ToolWithMagnetoInductiveSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithMagnetoInductiveSensorType\n");
       returnValue = true;
@@ -32153,8 +32421,8 @@ bool ToolWithMagnetoInductiveSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -32185,7 +32453,7 @@ ToolWithSimpleTactileProbeSensorType::ToolWithSimpleTactileProbeSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  SimpleTactileProbeSensorType * SimpleTactileProbeSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -32196,7 +32464,7 @@ ToolWithSimpleTactileProbeSensorType::ToolWithSimpleTactileProbeSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   SimpleTactileProbeSensor = SimpleTactileProbeSensorIn;
@@ -32211,7 +32479,7 @@ ToolWithSimpleTactileProbeSensorType::ToolWithSimpleTactileProbeSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  SimpleTactileProbeSensorType * SimpleTactileProbeSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -32223,7 +32491,7 @@ ToolWithSimpleTactileProbeSensorType::ToolWithSimpleTactileProbeSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   SimpleTactileProbeSensor = SimpleTactileProbeSensorIn;
@@ -32312,9 +32580,9 @@ void ToolWithSimpleTactileProbeSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -32346,7 +32614,7 @@ bool ToolWithSimpleTactileProbeSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ToolWithSimpleTactileProbeSensorType\n");
               returnValue = true;
@@ -32362,7 +32630,7 @@ bool ToolWithSimpleTactileProbeSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -32371,7 +32639,7 @@ bool ToolWithSimpleTactileProbeSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithSimpleTactileProbeSensorType\n");
       returnValue = true;
@@ -32383,8 +32651,8 @@ bool ToolWithSimpleTactileProbeSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -32415,7 +32683,7 @@ ToolWithStructuredLightSensorType::ToolWithStructuredLightSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  StructuredLightSensorType * StructuredLightSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -32426,7 +32694,7 @@ ToolWithStructuredLightSensorType::ToolWithStructuredLightSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   StructuredLightSensor = StructuredLightSensorIn;
@@ -32441,7 +32709,7 @@ ToolWithStructuredLightSensorType::ToolWithStructuredLightSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  StructuredLightSensorType * StructuredLightSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -32453,7 +32721,7 @@ ToolWithStructuredLightSensorType::ToolWithStructuredLightSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   StructuredLightSensor = StructuredLightSensorIn;
@@ -32542,9 +32810,9 @@ void ToolWithStructuredLightSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -32576,7 +32844,7 @@ bool ToolWithStructuredLightSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ToolWithStructuredLightSensorType\n");
               returnValue = true;
@@ -32592,7 +32860,7 @@ bool ToolWithStructuredLightSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -32601,7 +32869,7 @@ bool ToolWithStructuredLightSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithStructuredLightSensorType\n");
       returnValue = true;
@@ -32613,8 +32881,8 @@ bool ToolWithStructuredLightSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -32645,7 +32913,7 @@ ToolWithUltrasonicSensorType::ToolWithUltrasonicSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  UltrasonicSensorType * UltrasonicSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -32656,7 +32924,7 @@ ToolWithUltrasonicSensorType::ToolWithUltrasonicSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   UltrasonicSensor = UltrasonicSensorIn;
@@ -32671,7 +32939,7 @@ ToolWithUltrasonicSensorType::ToolWithUltrasonicSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  UltrasonicSensorType * UltrasonicSensorIn) :
   ToolWithIntegratedSensorBaseType(
@@ -32683,7 +32951,7 @@ ToolWithUltrasonicSensorType::ToolWithUltrasonicSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn)
 {
   UltrasonicSensor = UltrasonicSensorIn;
@@ -32772,9 +33040,9 @@ void ToolWithUltrasonicSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -32806,7 +33074,7 @@ bool ToolWithUltrasonicSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ToolWithUltrasonicSensorType\n");
               returnValue = true;
@@ -32822,7 +33090,7 @@ bool ToolWithUltrasonicSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -32831,7 +33099,7 @@ bool ToolWithUltrasonicSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ToolWithUltrasonicSensorType\n");
       returnValue = true;
@@ -32843,8 +33111,8 @@ bool ToolWithUltrasonicSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -32928,6 +33196,13 @@ void ToolsType::printSelf(FILE * outFile)
     if (Tool->size() == 0)
       {
         fprintf(stderr, "Tool list is empty\n");
+        exit(1);
+      }
+    if (Tool->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Tool list (%d) less than minimum required (1)\n",
+                (int)Tool->size());
         exit(1);
       }
     std::list<ToolBaseType *>::iterator iter;
@@ -33207,7 +33482,7 @@ bool ToolsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ToolsType\n");
               returnValue = true;
@@ -33223,7 +33498,7 @@ bool ToolsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -33232,7 +33507,7 @@ bool ToolsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ToolsType\n");
       returnValue = true;
@@ -33244,8 +33519,8 @@ bool ToolsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -33337,6 +33612,20 @@ void TwentyLinearValuesType::printSelf(FILE * outFile)
         fprintf(stderr, "LinearValue list is empty\n");
         exit(1);
       }
+    if (LinearValue->size() > 20)
+      {
+        fprintf(stderr,
+                "size of LinearValue list (%d) greater than maximum allowed (20)\n",
+                (int)LinearValue->size());
+        exit(1);
+      }
+    if (LinearValue->size() < 20)
+      {
+        fprintf(stderr,
+                "size of LinearValue list (%d) less than minimum required (20)\n",
+                (int)LinearValue->size());
+        exit(1);
+      }
     std::list<LinearValueType *>::iterator iter;
     for (iter = LinearValue->begin();
          iter != LinearValue->end(); iter++)
@@ -33364,7 +33653,7 @@ bool TwentyLinearValuesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in TwentyLinearValuesType\n");
               returnValue = true;
@@ -33380,7 +33669,7 @@ bool TwentyLinearValuesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -33389,7 +33678,7 @@ bool TwentyLinearValuesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in TwentyLinearValuesType\n");
       returnValue = true;
@@ -33401,8 +33690,8 @@ bool TwentyLinearValuesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -33518,13 +33807,6 @@ TypeOfScaleTypeChoicePair * TypeOfScaleType::getTypeOfScaleTypePair()
 
 void TypeOfScaleType::setTypeOfScaleTypePair(TypeOfScaleTypeChoicePair * TypeOfScaleTypePairIn)
 {TypeOfScaleTypePair = TypeOfScaleTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class TypeOfScaleTypeChoicePair
-
-*/
-
 TypeOfScaleTypeChoicePair::TypeOfScaleTypeChoicePair() {}
 
 TypeOfScaleTypeChoicePair::TypeOfScaleTypeChoicePair(
@@ -33591,7 +33873,7 @@ UltrasonicSensorType::UltrasonicSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -33616,7 +33898,7 @@ UltrasonicSensorType::UltrasonicSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -33645,7 +33927,7 @@ UltrasonicSensorType::UltrasonicSensorType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  XmlString * ProtectionClassIn,
  XmlString * LinearityErrorIn,
@@ -33671,7 +33953,7 @@ UltrasonicSensorType::UltrasonicSensorType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     ProtectionClassIn,
     LinearityErrorIn,
@@ -33782,9 +34064,9 @@ void UltrasonicSensorType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -33917,7 +34199,7 @@ bool UltrasonicSensorType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UltrasonicSensorType\n");
               returnValue = true;
@@ -33933,7 +34215,7 @@ bool UltrasonicSensorType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -33942,7 +34224,7 @@ bool UltrasonicSensorType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UltrasonicSensorType\n");
       returnValue = true;
@@ -33954,8 +34236,8 @@ bool UltrasonicSensorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -34037,7 +34319,7 @@ UniversalDeviceType::UniversalDeviceType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -34053,7 +34335,7 @@ UniversalDeviceType::UniversalDeviceType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn)
@@ -34073,7 +34355,7 @@ UniversalDeviceType::UniversalDeviceType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -34090,7 +34372,7 @@ UniversalDeviceType::UniversalDeviceType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn)
@@ -34187,9 +34469,9 @@ void UniversalDeviceType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -34515,7 +34797,7 @@ bool UniversalDeviceType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UniversalDeviceType\n");
               returnValue = true;
@@ -34531,7 +34813,7 @@ bool UniversalDeviceType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -34540,7 +34822,7 @@ bool UniversalDeviceType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UniversalDeviceType\n");
       returnValue = true;
@@ -34552,8 +34834,8 @@ bool UniversalDeviceType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -34608,7 +34890,7 @@ UniversalLengthMeasuringType::UniversalLengthMeasuringType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -34631,7 +34913,7 @@ UniversalLengthMeasuringType::UniversalLengthMeasuringType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -34658,7 +34940,7 @@ UniversalLengthMeasuringType::UniversalLengthMeasuringType(
  XmlString * SerialNumberIn,
  MassValueType * MassIn,
  CartesianWorkingVolumeType * SizeIn,
- MeasurementReso_1242_Type * MeasurementReso_1242In,
+ MeasurementReso_1196_Type * MeasurementReso_1196In,
  AttributesType * AttributesIn,
  CalibrationsType * CalibrationsIn,
  EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -34682,7 +34964,7 @@ UniversalLengthMeasuringType::UniversalLengthMeasuringType(
     SerialNumberIn,
     MassIn,
     SizeIn,
-    MeasurementReso_1242In,
+    MeasurementReso_1196In,
     AttributesIn,
     CalibrationsIn,
     EnvironmentalRangeIn,
@@ -34789,9 +35071,9 @@ void UniversalLengthMeasuringType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Size>\n");
     }
-  if (MeasurementReso_1242)
+  if (MeasurementReso_1196)
     {
-      MeasurementReso_1242->printSelf(outFile);
+  MeasurementReso_1196->printSelf(outFile);
     }
   if (Attributes)
     {
@@ -35168,7 +35450,7 @@ bool UniversalLengthMeasuringType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UniversalLengthMeasuringType\n");
               returnValue = true;
@@ -35184,7 +35466,7 @@ bool UniversalLengthMeasuringType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -35193,7 +35475,7 @@ bool UniversalLengthMeasuringType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UniversalLengthMeasuringType\n");
       returnValue = true;
@@ -35205,8 +35487,8 @@ bool UniversalLengthMeasuringType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -35387,20 +35669,20 @@ void UserDefinedAxisType::setAxisName(XmlToken * AxisNameIn)
 UserDefinedResolutionType::UserDefinedResolutionType() :
   ResolutionBaseType()
 {
-  UserDefinedReso_1244 = 0;
+  UserDefinedResolutionTypePair = 0;
 }
 
 UserDefinedResolutionType::UserDefinedResolutionType(
- UserDefinedReso_1244_Type * UserDefinedReso_1244In) :
+ UserDefinedResolutionTypeChoicePair * UserDefinedResolutionTypePairIn) :
   ResolutionBaseType()
 {
-  UserDefinedReso_1244 = UserDefinedReso_1244In;
+  UserDefinedResolutionTypePair = UserDefinedResolutionTypePairIn;
 }
 
 UserDefinedResolutionType::~UserDefinedResolutionType()
 {
   #ifndef NODESTRUCT
-  delete UserDefinedReso_1244;
+  delete UserDefinedResolutionTypePair;
   #endif
 }
 
@@ -35408,15 +35690,52 @@ void UserDefinedResolutionType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  UserDefinedReso_1244->printSelf(outFile);
+  UserDefinedResolutionTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
+UserDefinedResolutionTypeChoicePair * UserDefinedResolutionType::getUserDefinedResolutionTypeChoicePair()
+{return UserDefinedResolutionTypePair;}
 
-UserDefinedReso_1244_Type * UserDefinedResolutionType::getUserDefinedReso_1244()
-{return UserDefinedReso_1244;}
+void UserDefinedResolutionType::setUserDefinedResolutionTypeChoicePair(UserDefinedResolutionTypeChoicePair * UserDefinedResolutionTypePairIn)
+{UserDefinedResolutionTypePair = UserDefinedResolutionTypePairIn;}
 
-void UserDefinedResolutionType::setUserDefinedReso_1244(UserDefinedReso_1244_Type * UserDefinedReso_1244In)
-{UserDefinedReso_1244 = UserDefinedReso_1244In;}
+/* ***************************************************************** */
+
+UserDefinedResolutionTypeChoicePair::UserDefinedResolutionTypeChoicePair() {}
+
+UserDefinedResolutionTypeChoicePair::UserDefinedResolutionTypeChoicePair(
+ whichOne UserDefinedResolutionTypeTypeIn,
+ UserDefinedResolutionTypeVal UserDefinedResolutionTypeValueIn)
+{
+  UserDefinedResolutionTypeType = UserDefinedResolutionTypeTypeIn;
+  UserDefinedResolutionTypeValue = UserDefinedResolutionTypeValueIn;
+}
+
+UserDefinedResolutionTypeChoicePair::~UserDefinedResolutionTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (UserDefinedResolutionTypeType == UserDefinedReso_1198E)
+    delete UserDefinedResolutionTypeValue.UserDefinedReso_1198;
+  else if (UserDefinedResolutionTypeType == ABCResolutionE)
+    delete UserDefinedResolutionTypeValue.ABCResolution;
+  #endif
+}
+
+void UserDefinedResolutionTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (UserDefinedResolutionTypeType == UserDefinedReso_1198E)
+    {
+      UserDefinedResolutionTypeValue.UserDefinedReso_1198->printSelf(outFile);
+    }
+  else if (UserDefinedResolutionTypeType == ABCResolutionE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<ABCResolution");
+      UserDefinedResolutionTypeValue.ABCResolution->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</ABCResolution>\n");
+    }
+}
 
 /* ***************************************************************** */
 
@@ -35713,421 +36032,17 @@ void XYZResolutionType::setZResolution(LinearValueType * ZResolutionIn)
 
 /* ***************************************************************** */
 
-/* class CartesianResolu_1240_Type
+/* class CartesianResolu_1195_Type
 
 */
 
-CartesianResolu_1240_Type::CartesianResolu_1240_Type()
-{
-  CartesianResolu_1240_TypePair = 0;
-}
-
-CartesianResolu_1240_Type::CartesianResolu_1240_Type(
- CartesianResolu_1240_TypeChoicePair * CartesianResolu_1240_TypePairIn)
-{
-  CartesianResolu_1240_TypePair = CartesianResolu_1240_TypePairIn;
-}
-
-CartesianResolu_1240_Type::~CartesianResolu_1240_Type()
-{
-  #ifndef NODESTRUCT
-  delete CartesianResolu_1240_TypePair;
-  #endif
-}
-
-void CartesianResolu_1240_Type::printSelf(FILE * outFile)
-{
-  CartesianResolu_1240_TypePair->printSelf(outFile);
-}
-
-CartesianResolu_1240_TypeChoicePair * CartesianResolu_1240_Type::getCartesianResolu_1240_TypePair()
-{return CartesianResolu_1240_TypePair;}
-
-void CartesianResolu_1240_Type::setCartesianResolu_1240_TypePair(CartesianResolu_1240_TypeChoicePair * CartesianResolu_1240_TypePairIn)
-{CartesianResolu_1240_TypePair = CartesianResolu_1240_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class CartesianResolu_1240_TypeChoicePair
-
-*/
-
-CartesianResolu_1240_TypeChoicePair::CartesianResolu_1240_TypeChoicePair() {}
-
-CartesianResolu_1240_TypeChoicePair::CartesianResolu_1240_TypeChoicePair(
- whichOne CartesianResolu_1240_TypeTypeIn,
- CartesianResolu_1240_TypeVal CartesianResolu_1240_TypeValueIn)
-{
-  CartesianResolu_1240_TypeType = CartesianResolu_1240_TypeTypeIn;
-  CartesianResolu_1240_TypeValue = CartesianResolu_1240_TypeValueIn;
-}
-
-CartesianResolu_1240_TypeChoicePair::~CartesianResolu_1240_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (CartesianResolu_1240_TypeType == CartesianResolu_1245E)
-    delete CartesianResolu_1240_TypeValue.CartesianResolu_1245;
-  else if (CartesianResolu_1240_TypeType == XYZResolutionE)
-    delete CartesianResolu_1240_TypeValue.XYZResolution;
-  #endif
-}
-
-void CartesianResolu_1240_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (CartesianResolu_1240_TypeType == CartesianResolu_1245E)
-    {
-      CartesianResolu_1240_TypeValue.CartesianResolu_1245->printSelf(outFile);
-    }
-  else if (CartesianResolu_1240_TypeType == XYZResolutionE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<XYZResolution");
-      CartesianResolu_1240_TypeValue.XYZResolution->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</XYZResolution>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class ISO10360TestTyp_1241_Type
-
-*/
-
-ISO10360TestTyp_1241_Type::ISO10360TestTyp_1241_Type()
-{
-  ISO10360TestTyp_1241_TypePair = 0;
-}
-
-ISO10360TestTyp_1241_Type::ISO10360TestTyp_1241_Type(
- ISO10360TestTyp_1241_TypeChoicePair * ISO10360TestTyp_1241_TypePairIn)
-{
-  ISO10360TestTyp_1241_TypePair = ISO10360TestTyp_1241_TypePairIn;
-}
-
-ISO10360TestTyp_1241_Type::~ISO10360TestTyp_1241_Type()
-{
-  #ifndef NODESTRUCT
-  delete ISO10360TestTyp_1241_TypePair;
-  #endif
-}
-
-void ISO10360TestTyp_1241_Type::printSelf(FILE * outFile)
-{
-  ISO10360TestTyp_1241_TypePair->printSelf(outFile);
-}
-
-ISO10360TestTyp_1241_TypeChoicePair * ISO10360TestTyp_1241_Type::getISO10360TestTyp_1241_TypePair()
-{return ISO10360TestTyp_1241_TypePair;}
-
-void ISO10360TestTyp_1241_Type::setISO10360TestTyp_1241_TypePair(ISO10360TestTyp_1241_TypeChoicePair * ISO10360TestTyp_1241_TypePairIn)
-{ISO10360TestTyp_1241_TypePair = ISO10360TestTyp_1241_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ISO10360TestTyp_1241_TypeChoicePair
-
-*/
-
-ISO10360TestTyp_1241_TypeChoicePair::ISO10360TestTyp_1241_TypeChoicePair() {}
-
-ISO10360TestTyp_1241_TypeChoicePair::ISO10360TestTyp_1241_TypeChoicePair(
- whichOne ISO10360TestTyp_1241_TypeTypeIn,
- ISO10360TestTyp_1241_TypeVal ISO10360TestTyp_1241_TypeValueIn)
-{
-  ISO10360TestTyp_1241_TypeType = ISO10360TestTyp_1241_TypeTypeIn;
-  ISO10360TestTyp_1241_TypeValue = ISO10360TestTyp_1241_TypeValueIn;
-}
-
-ISO10360TestTyp_1241_TypeChoicePair::~ISO10360TestTyp_1241_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (ISO10360TestTyp_1241_TypeType == MaxErrorConstantE)
-    delete ISO10360TestTyp_1241_TypeValue.MaxErrorConstant;
-  else if (ISO10360TestTyp_1241_TypeType == LinearErrorE)
-    delete ISO10360TestTyp_1241_TypeValue.LinearError;
-  else if (ISO10360TestTyp_1241_TypeType == LesserErrorE)
-    delete ISO10360TestTyp_1241_TypeValue.LesserError;
-  #endif
-}
-
-void ISO10360TestTyp_1241_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (ISO10360TestTyp_1241_TypeType == MaxErrorConstantE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MaxErrorConstant");
-      ISO10360TestTyp_1241_TypeValue.MaxErrorConstant->printSelf(outFile);
-      fprintf(outFile, "</MaxErrorConstant>\n");
-    }
-  else if (ISO10360TestTyp_1241_TypeType == LinearErrorE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<LinearError");
-      ISO10360TestTyp_1241_TypeValue.LinearError->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</LinearError>\n");
-    }
-  else if (ISO10360TestTyp_1241_TypeType == LesserErrorE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<LesserError");
-      ISO10360TestTyp_1241_TypeValue.LesserError->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</LesserError>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class MeasurementReso_1242_Type
-
-*/
-
-MeasurementReso_1242_Type::MeasurementReso_1242_Type()
-{
-  MeasurementReso_1242_TypePair = 0;
-}
-
-MeasurementReso_1242_Type::MeasurementReso_1242_Type(
- MeasurementReso_1242_TypeChoicePair * MeasurementReso_1242_TypePairIn)
-{
-  MeasurementReso_1242_TypePair = MeasurementReso_1242_TypePairIn;
-}
-
-MeasurementReso_1242_Type::~MeasurementReso_1242_Type()
-{
-  #ifndef NODESTRUCT
-  delete MeasurementReso_1242_TypePair;
-  #endif
-}
-
-void MeasurementReso_1242_Type::printSelf(FILE * outFile)
-{
-  if (MeasurementReso_1242_TypePair)
-    {
-      MeasurementReso_1242_TypePair->printSelf(outFile);
-    }
-}
-
-MeasurementReso_1242_TypeChoicePair * MeasurementReso_1242_Type::getMeasurementReso_1242_TypePair()
-{return MeasurementReso_1242_TypePair;}
-
-void MeasurementReso_1242_Type::setMeasurementReso_1242_TypePair(MeasurementReso_1242_TypeChoicePair * MeasurementReso_1242_TypePairIn)
-{MeasurementReso_1242_TypePair = MeasurementReso_1242_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class MeasurementReso_1242_TypeChoicePair
-
-*/
-
-MeasurementReso_1242_TypeChoicePair::MeasurementReso_1242_TypeChoicePair() {}
-
-MeasurementReso_1242_TypeChoicePair::MeasurementReso_1242_TypeChoicePair(
- whichOne MeasurementReso_1242_TypeTypeIn,
- MeasurementReso_1242_TypeVal MeasurementReso_1242_TypeValueIn)
-{
-  MeasurementReso_1242_TypeType = MeasurementReso_1242_TypeTypeIn;
-  MeasurementReso_1242_TypeValue = MeasurementReso_1242_TypeValueIn;
-}
-
-MeasurementReso_1242_TypeChoicePair::~MeasurementReso_1242_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (MeasurementReso_1242_TypeType == LocationIdE)
-    delete MeasurementReso_1242_TypeValue.LocationId;
-  else if (MeasurementReso_1242_TypeType == LocationE)
-    delete MeasurementReso_1242_TypeValue.Location;
-  #endif
-}
-
-void MeasurementReso_1242_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (MeasurementReso_1242_TypeType == LocationIdE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<LocationId");
-      MeasurementReso_1242_TypeValue.LocationId->printSelf(outFile);
-      fprintf(outFile, "</LocationId>\n");
-    }
-  else if (MeasurementReso_1242_TypeType == LocationE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<Location");
-      MeasurementReso_1242_TypeValue.Location->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</Location>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class SphericalResolu_1243_Type
-
-*/
-
-SphericalResolu_1243_Type::SphericalResolu_1243_Type()
-{
-  SphericalResolu_1243_TypePair = 0;
-}
-
-SphericalResolu_1243_Type::SphericalResolu_1243_Type(
- SphericalResolu_1243_TypeChoicePair * SphericalResolu_1243_TypePairIn)
-{
-  SphericalResolu_1243_TypePair = SphericalResolu_1243_TypePairIn;
-}
-
-SphericalResolu_1243_Type::~SphericalResolu_1243_Type()
-{
-  #ifndef NODESTRUCT
-  delete SphericalResolu_1243_TypePair;
-  #endif
-}
-
-void SphericalResolu_1243_Type::printSelf(FILE * outFile)
-{
-  SphericalResolu_1243_TypePair->printSelf(outFile);
-}
-
-SphericalResolu_1243_TypeChoicePair * SphericalResolu_1243_Type::getSphericalResolu_1243_TypePair()
-{return SphericalResolu_1243_TypePair;}
-
-void SphericalResolu_1243_Type::setSphericalResolu_1243_TypePair(SphericalResolu_1243_TypeChoicePair * SphericalResolu_1243_TypePairIn)
-{SphericalResolu_1243_TypePair = SphericalResolu_1243_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class SphericalResolu_1243_TypeChoicePair
-
-*/
-
-SphericalResolu_1243_TypeChoicePair::SphericalResolu_1243_TypeChoicePair() {}
-
-SphericalResolu_1243_TypeChoicePair::SphericalResolu_1243_TypeChoicePair(
- whichOne SphericalResolu_1243_TypeTypeIn,
- SphericalResolu_1243_TypeVal SphericalResolu_1243_TypeValueIn)
-{
-  SphericalResolu_1243_TypeType = SphericalResolu_1243_TypeTypeIn;
-  SphericalResolu_1243_TypeValue = SphericalResolu_1243_TypeValueIn;
-}
-
-SphericalResolu_1243_TypeChoicePair::~SphericalResolu_1243_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (SphericalResolu_1243_TypeType == SphericalResolu_1246E)
-    delete SphericalResolu_1243_TypeValue.SphericalResolu_1246;
-  else if (SphericalResolu_1243_TypeType == RAPResolutionE)
-    delete SphericalResolu_1243_TypeValue.RAPResolution;
-  #endif
-}
-
-void SphericalResolu_1243_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (SphericalResolu_1243_TypeType == SphericalResolu_1246E)
-    {
-      SphericalResolu_1243_TypeValue.SphericalResolu_1246->printSelf(outFile);
-    }
-  else if (SphericalResolu_1243_TypeType == RAPResolutionE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<RAPResolution");
-      SphericalResolu_1243_TypeValue.RAPResolution->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</RAPResolution>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class UserDefinedReso_1244_Type
-
-*/
-
-UserDefinedReso_1244_Type::UserDefinedReso_1244_Type()
-{
-  UserDefinedReso_1244_TypePair = 0;
-}
-
-UserDefinedReso_1244_Type::UserDefinedReso_1244_Type(
- UserDefinedReso_1244_TypeChoicePair * UserDefinedReso_1244_TypePairIn)
-{
-  UserDefinedReso_1244_TypePair = UserDefinedReso_1244_TypePairIn;
-}
-
-UserDefinedReso_1244_Type::~UserDefinedReso_1244_Type()
-{
-  #ifndef NODESTRUCT
-  delete UserDefinedReso_1244_TypePair;
-  #endif
-}
-
-void UserDefinedReso_1244_Type::printSelf(FILE * outFile)
-{
-  UserDefinedReso_1244_TypePair->printSelf(outFile);
-}
-
-UserDefinedReso_1244_TypeChoicePair * UserDefinedReso_1244_Type::getUserDefinedReso_1244_TypePair()
-{return UserDefinedReso_1244_TypePair;}
-
-void UserDefinedReso_1244_Type::setUserDefinedReso_1244_TypePair(UserDefinedReso_1244_TypeChoicePair * UserDefinedReso_1244_TypePairIn)
-{UserDefinedReso_1244_TypePair = UserDefinedReso_1244_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class UserDefinedReso_1244_TypeChoicePair
-
-*/
-
-UserDefinedReso_1244_TypeChoicePair::UserDefinedReso_1244_TypeChoicePair() {}
-
-UserDefinedReso_1244_TypeChoicePair::UserDefinedReso_1244_TypeChoicePair(
- whichOne UserDefinedReso_1244_TypeTypeIn,
- UserDefinedReso_1244_TypeVal UserDefinedReso_1244_TypeValueIn)
-{
-  UserDefinedReso_1244_TypeType = UserDefinedReso_1244_TypeTypeIn;
-  UserDefinedReso_1244_TypeValue = UserDefinedReso_1244_TypeValueIn;
-}
-
-UserDefinedReso_1244_TypeChoicePair::~UserDefinedReso_1244_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (UserDefinedReso_1244_TypeType == UserDefinedReso_1247E)
-    delete UserDefinedReso_1244_TypeValue.UserDefinedReso_1247;
-  else if (UserDefinedReso_1244_TypeType == ABCResolutionE)
-    delete UserDefinedReso_1244_TypeValue.ABCResolution;
-  #endif
-}
-
-void UserDefinedReso_1244_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (UserDefinedReso_1244_TypeType == UserDefinedReso_1247E)
-    {
-      UserDefinedReso_1244_TypeValue.UserDefinedReso_1247->printSelf(outFile);
-    }
-  else if (UserDefinedReso_1244_TypeType == ABCResolutionE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<ABCResolution");
-      UserDefinedReso_1244_TypeValue.ABCResolution->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</ABCResolution>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class CartesianResolu_1245_Type
-
-*/
-
-CartesianResolu_1245_Type::CartesianResolu_1245_Type()
+CartesianResolu_1195_Type::CartesianResolu_1195_Type()
 {
   CombinedCartesianResolution = 0;
   XYZResolution = 0;
 }
 
-CartesianResolu_1245_Type::CartesianResolu_1245_Type(
+CartesianResolu_1195_Type::CartesianResolu_1195_Type(
  LinearValueType * CombinedCartesianResolutionIn,
  XYZResolutionType * XYZResolutionIn)
 {
@@ -36135,7 +36050,7 @@ CartesianResolu_1245_Type::CartesianResolu_1245_Type(
   XYZResolution = XYZResolutionIn;
 }
 
-CartesianResolu_1245_Type::~CartesianResolu_1245_Type()
+CartesianResolu_1195_Type::~CartesianResolu_1195_Type()
 {
   #ifndef NODESTRUCT
   delete CombinedCartesianResolution;
@@ -36143,7 +36058,7 @@ CartesianResolu_1245_Type::~CartesianResolu_1245_Type()
   #endif
 }
 
-void CartesianResolu_1245_Type::printSelf(FILE * outFile)
+void CartesianResolu_1195_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<CombinedCartesianResolution");
@@ -36159,31 +36074,107 @@ void CartesianResolu_1245_Type::printSelf(FILE * outFile)
     }
 }
 
-LinearValueType * CartesianResolu_1245_Type::getCombinedCartesianResolution()
+LinearValueType * CartesianResolu_1195_Type::getCombinedCartesianResolution()
 {return CombinedCartesianResolution;}
 
-void CartesianResolu_1245_Type::setCombinedCartesianResolution(LinearValueType * CombinedCartesianResolutionIn)
+void CartesianResolu_1195_Type::setCombinedCartesianResolution(LinearValueType * CombinedCartesianResolutionIn)
 {CombinedCartesianResolution = CombinedCartesianResolutionIn;}
 
-XYZResolutionType * CartesianResolu_1245_Type::getXYZResolution()
+XYZResolutionType * CartesianResolu_1195_Type::getXYZResolution()
 {return XYZResolution;}
 
-void CartesianResolu_1245_Type::setXYZResolution(XYZResolutionType * XYZResolutionIn)
+void CartesianResolu_1195_Type::setXYZResolution(XYZResolutionType * XYZResolutionIn)
 {XYZResolution = XYZResolutionIn;}
 
 /* ***************************************************************** */
 
-/* class SphericalResolu_1246_Type
+/* class MeasurementReso_1196_Type
 
 */
 
-SphericalResolu_1246_Type::SphericalResolu_1246_Type()
+MeasurementReso_1196_Type::MeasurementReso_1196_Type()
+{
+  MeasurementReso_1196_TypePair = 0;
+}
+
+MeasurementReso_1196_Type::MeasurementReso_1196_Type(
+ MeasurementReso_1196_TypeChoicePair * MeasurementReso_1196_TypePairIn)
+{
+  MeasurementReso_1196_TypePair = MeasurementReso_1196_TypePairIn;
+}
+
+MeasurementReso_1196_Type::~MeasurementReso_1196_Type()
+{
+  #ifndef NODESTRUCT
+  delete MeasurementReso_1196_TypePair;
+  #endif
+}
+
+void MeasurementReso_1196_Type::printSelf(FILE * outFile)
+{
+  if (MeasurementReso_1196_TypePair)
+    {
+      MeasurementReso_1196_TypePair->printSelf(outFile);
+    }
+}
+
+MeasurementReso_1196_TypeChoicePair * MeasurementReso_1196_Type::getMeasurementReso_1196_TypePair()
+{return MeasurementReso_1196_TypePair;}
+
+void MeasurementReso_1196_Type::setMeasurementReso_1196_TypePair(MeasurementReso_1196_TypeChoicePair * MeasurementReso_1196_TypePairIn)
+{MeasurementReso_1196_TypePair = MeasurementReso_1196_TypePairIn;}
+MeasurementReso_1196_TypeChoicePair::MeasurementReso_1196_TypeChoicePair() {}
+
+MeasurementReso_1196_TypeChoicePair::MeasurementReso_1196_TypeChoicePair(
+ whichOne MeasurementReso_1196_TypeTypeIn,
+ MeasurementReso_1196_TypeVal MeasurementReso_1196_TypeValueIn)
+{
+  MeasurementReso_1196_TypeType = MeasurementReso_1196_TypeTypeIn;
+  MeasurementReso_1196_TypeValue = MeasurementReso_1196_TypeValueIn;
+}
+
+MeasurementReso_1196_TypeChoicePair::~MeasurementReso_1196_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (MeasurementReso_1196_TypeType == LocationIdE)
+    delete MeasurementReso_1196_TypeValue.LocationId;
+  else if (MeasurementReso_1196_TypeType == LocationE)
+    delete MeasurementReso_1196_TypeValue.Location;
+  #endif
+}
+
+void MeasurementReso_1196_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (MeasurementReso_1196_TypeType == LocationIdE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<LocationId");
+      MeasurementReso_1196_TypeValue.LocationId->printSelf(outFile);
+      fprintf(outFile, "</LocationId>\n");
+    }
+  else if (MeasurementReso_1196_TypeType == LocationE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Location");
+      MeasurementReso_1196_TypeValue.Location->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</Location>\n");
+    }
+}
+
+/* ***************************************************************** */
+
+/* class SphericalResolu_1197_Type
+
+*/
+
+SphericalResolu_1197_Type::SphericalResolu_1197_Type()
 {
   CombinedSphericalResolution = 0;
   RAPZResolution = 0;
 }
 
-SphericalResolu_1246_Type::SphericalResolu_1246_Type(
+SphericalResolu_1197_Type::SphericalResolu_1197_Type(
  CombinedSphericalResolutionType * CombinedSphericalResolutionIn,
  RAPZResolutionType * RAPZResolutionIn)
 {
@@ -36191,7 +36182,7 @@ SphericalResolu_1246_Type::SphericalResolu_1246_Type(
   RAPZResolution = RAPZResolutionIn;
 }
 
-SphericalResolu_1246_Type::~SphericalResolu_1246_Type()
+SphericalResolu_1197_Type::~SphericalResolu_1197_Type()
 {
   #ifndef NODESTRUCT
   delete CombinedSphericalResolution;
@@ -36199,7 +36190,7 @@ SphericalResolu_1246_Type::~SphericalResolu_1246_Type()
   #endif
 }
 
-void SphericalResolu_1246_Type::printSelf(FILE * outFile)
+void SphericalResolu_1197_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<CombinedSphericalResolution");
@@ -36213,31 +36204,31 @@ void SphericalResolu_1246_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</RAPZResolution>\n");
 }
 
-CombinedSphericalResolutionType * SphericalResolu_1246_Type::getCombinedSphericalResolution()
+CombinedSphericalResolutionType * SphericalResolu_1197_Type::getCombinedSphericalResolution()
 {return CombinedSphericalResolution;}
 
-void SphericalResolu_1246_Type::setCombinedSphericalResolution(CombinedSphericalResolutionType * CombinedSphericalResolutionIn)
+void SphericalResolu_1197_Type::setCombinedSphericalResolution(CombinedSphericalResolutionType * CombinedSphericalResolutionIn)
 {CombinedSphericalResolution = CombinedSphericalResolutionIn;}
 
-RAPZResolutionType * SphericalResolu_1246_Type::getRAPZResolution()
+RAPZResolutionType * SphericalResolu_1197_Type::getRAPZResolution()
 {return RAPZResolution;}
 
-void SphericalResolu_1246_Type::setRAPZResolution(RAPZResolutionType * RAPZResolutionIn)
+void SphericalResolu_1197_Type::setRAPZResolution(RAPZResolutionType * RAPZResolutionIn)
 {RAPZResolution = RAPZResolutionIn;}
 
 /* ***************************************************************** */
 
-/* class UserDefinedReso_1247_Type
+/* class UserDefinedReso_1198_Type
 
 */
 
-UserDefinedReso_1247_Type::UserDefinedReso_1247_Type()
+UserDefinedReso_1198_Type::UserDefinedReso_1198_Type()
 {
   CombinedUserDefinedResolution = 0;
   ABCResolution = 0;
 }
 
-UserDefinedReso_1247_Type::UserDefinedReso_1247_Type(
+UserDefinedReso_1198_Type::UserDefinedReso_1198_Type(
  CombinedUserDefinedResolutionType * CombinedUserDefinedResolutionIn,
  ABCResolutionType * ABCResolutionIn)
 {
@@ -36245,7 +36236,7 @@ UserDefinedReso_1247_Type::UserDefinedReso_1247_Type(
   ABCResolution = ABCResolutionIn;
 }
 
-UserDefinedReso_1247_Type::~UserDefinedReso_1247_Type()
+UserDefinedReso_1198_Type::~UserDefinedReso_1198_Type()
 {
   #ifndef NODESTRUCT
   delete CombinedUserDefinedResolution;
@@ -36253,7 +36244,7 @@ UserDefinedReso_1247_Type::~UserDefinedReso_1247_Type()
   #endif
 }
 
-void UserDefinedReso_1247_Type::printSelf(FILE * outFile)
+void UserDefinedReso_1198_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<CombinedUserDefinedResolution");
@@ -36267,16 +36258,16 @@ void UserDefinedReso_1247_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</ABCResolution>\n");
 }
 
-CombinedUserDefinedResolutionType * UserDefinedReso_1247_Type::getCombinedUserDefinedResolution()
+CombinedUserDefinedResolutionType * UserDefinedReso_1198_Type::getCombinedUserDefinedResolution()
 {return CombinedUserDefinedResolution;}
 
-void UserDefinedReso_1247_Type::setCombinedUserDefinedResolution(CombinedUserDefinedResolutionType * CombinedUserDefinedResolutionIn)
+void UserDefinedReso_1198_Type::setCombinedUserDefinedResolution(CombinedUserDefinedResolutionType * CombinedUserDefinedResolutionIn)
 {CombinedUserDefinedResolution = CombinedUserDefinedResolutionIn;}
 
-ABCResolutionType * UserDefinedReso_1247_Type::getABCResolution()
+ABCResolutionType * UserDefinedReso_1198_Type::getABCResolution()
 {return ABCResolution;}
 
-void UserDefinedReso_1247_Type::setABCResolution(ABCResolutionType * ABCResolutionIn)
+void UserDefinedReso_1198_Type::setABCResolution(ABCResolutionType * ABCResolutionIn)
 {ABCResolution = ABCResolutionIn;}
 
 /* ***************************************************************** */

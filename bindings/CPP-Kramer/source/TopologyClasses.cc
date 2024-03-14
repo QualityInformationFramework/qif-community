@@ -4,7 +4,6 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
-#include <boost/regex.hpp>
 #include <xmlSchemaInstance.hh>
 #include "TopologyClasses.hh"
 
@@ -152,6 +151,13 @@ void BodySetType::printSelf(FILE * outFile)
         fprintf(stderr, "Body list is empty\n");
         exit(1);
       }
+    if (Body->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Body list (%d) less than minimum required (1)\n",
+                (int)Body->size());
+        exit(1);
+      }
     std::list<BodyType *>::iterator iter;
     for (iter = Body->begin();
          iter != Body->end(); iter++)
@@ -180,7 +186,7 @@ bool BodySetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in BodySetType\n");
               returnValue = true;
@@ -196,7 +202,7 @@ bool BodySetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -205,7 +211,7 @@ bool BodySetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in BodySetType\n");
       returnValue = true;
@@ -217,8 +223,8 @@ bool BodySetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -559,7 +565,7 @@ bool BodyType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in BodyType\n");
               returnValue = true;
@@ -575,12 +581,12 @@ bool BodyType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "form")
         {
           BodyFormEnumType * formVal;
-          if (form)
+          if (this->form)
             {
               fprintf(stderr, "two values for form in BodyType\n");
               returnValue = true;
@@ -596,12 +602,12 @@ bool BodyType::badAttributes(
               break;
             }
           else
-            form = formVal;
+            this->form = formVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in BodyType\n");
               returnValue = true;
@@ -617,12 +623,12 @@ bool BodyType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in BodyType\n");
               returnValue = true;
@@ -638,12 +644,12 @@ bool BodyType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in BodyType\n");
               returnValue = true;
@@ -659,12 +665,12 @@ bool BodyType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "materialIndex")
         {
           NaturalType * materialIndexVal;
-          if (materialIndex)
+          if (this->materialIndex)
             {
               fprintf(stderr, "two values for materialIndex in BodyType\n");
               returnValue = true;
@@ -680,12 +686,12 @@ bool BodyType::badAttributes(
               break;
             }
           else
-            materialIndex = materialIndexVal;
+            this->materialIndex = materialIndexVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in BodyType\n");
               returnValue = true;
@@ -701,12 +707,12 @@ bool BodyType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in BodyType\n");
               returnValue = true;
@@ -722,7 +728,7 @@ bool BodyType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -731,7 +737,7 @@ bool BodyType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in BodyType\n");
       returnValue = true;
@@ -743,22 +749,22 @@ bool BodyType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete form;
-      form = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete materialIndex;
-      materialIndex = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->form;
+      this->form = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->materialIndex;
+      this->materialIndex = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -842,7 +848,15 @@ BodyTypeLisd::~BodyTypeLisd()
   #endif
 }
 
-void BodyTypeLisd::printSelf(FILE * outFile){}
+void BodyTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<BodyType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -929,7 +943,15 @@ CoEdgeMeshTypeLisd::~CoEdgeMeshTypeLisd()
   #endif
 }
 
-void CoEdgeMeshTypeLisd::printSelf(FILE * outFile){}
+void CoEdgeMeshTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<CoEdgeMeshType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -1016,7 +1038,15 @@ CoEdgeTypeLisd::~CoEdgeTypeLisd()
   #endif
 }
 
-void CoEdgeTypeLisd::printSelf(FILE * outFile){}
+void CoEdgeTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<CoEdgeType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -1093,6 +1123,13 @@ void CoEdgesMeshType::printSelf(FILE * outFile)
         fprintf(stderr, "CoEdgeMesh list is empty\n");
         exit(1);
       }
+    if (CoEdgeMesh->size() < 1)
+      {
+        fprintf(stderr,
+                "size of CoEdgeMesh list (%d) less than minimum required (1)\n",
+                (int)CoEdgeMesh->size());
+        exit(1);
+      }
     std::list<CoEdgeMeshType *>::iterator iter;
     for (iter = CoEdgeMesh->begin();
          iter != CoEdgeMesh->end(); iter++)
@@ -1121,7 +1158,7 @@ bool CoEdgesMeshType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in CoEdgesMeshType\n");
               returnValue = true;
@@ -1137,7 +1174,7 @@ bool CoEdgesMeshType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -1146,7 +1183,7 @@ bool CoEdgesMeshType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in CoEdgesMeshType\n");
       returnValue = true;
@@ -1158,8 +1195,8 @@ bool CoEdgesMeshType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -1251,6 +1288,13 @@ void CoEdgesType::printSelf(FILE * outFile)
         fprintf(stderr, "CoEdge list is empty\n");
         exit(1);
       }
+    if (CoEdge->size() < 1)
+      {
+        fprintf(stderr,
+                "size of CoEdge list (%d) less than minimum required (1)\n",
+                (int)CoEdge->size());
+        exit(1);
+      }
     std::list<CoEdgeType *>::iterator iter;
     for (iter = CoEdge->begin();
          iter != CoEdge->end(); iter++)
@@ -1279,7 +1323,7 @@ bool CoEdgesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in CoEdgesType\n");
               returnValue = true;
@@ -1295,7 +1339,7 @@ bool CoEdgesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -1304,7 +1348,7 @@ bool CoEdgesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in CoEdgesType\n");
       returnValue = true;
@@ -1316,8 +1360,8 @@ bool CoEdgesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -1409,6 +1453,13 @@ void EdgeSetType::printSelf(FILE * outFile)
         fprintf(stderr, "Edge list is empty\n");
         exit(1);
       }
+    if (Edge->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Edge list (%d) less than minimum required (1)\n",
+                (int)Edge->size());
+        exit(1);
+      }
     std::list<EdgeType *>::iterator iter;
     for (iter = Edge->begin();
          iter != Edge->end(); iter++)
@@ -1437,7 +1488,7 @@ bool EdgeSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in EdgeSetType\n");
               returnValue = true;
@@ -1453,7 +1504,7 @@ bool EdgeSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -1462,7 +1513,7 @@ bool EdgeSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in EdgeSetType\n");
       returnValue = true;
@@ -1474,8 +1525,8 @@ bool EdgeSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -1743,7 +1794,7 @@ bool EdgeType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in EdgeType\n");
               returnValue = true;
@@ -1759,12 +1810,12 @@ bool EdgeType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in EdgeType\n");
               returnValue = true;
@@ -1780,12 +1831,12 @@ bool EdgeType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in EdgeType\n");
               returnValue = true;
@@ -1801,12 +1852,12 @@ bool EdgeType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in EdgeType\n");
               returnValue = true;
@@ -1822,12 +1873,12 @@ bool EdgeType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in EdgeType\n");
               returnValue = true;
@@ -1843,12 +1894,12 @@ bool EdgeType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "tolerance")
         {
           XmlDouble * toleranceVal;
-          if (tolerance)
+          if (this->tolerance)
             {
               fprintf(stderr, "two values for tolerance in EdgeType\n");
               returnValue = true;
@@ -1864,12 +1915,12 @@ bool EdgeType::badAttributes(
               break;
             }
           else
-            tolerance = toleranceVal;
+            this->tolerance = toleranceVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in EdgeType\n");
               returnValue = true;
@@ -1885,7 +1936,7 @@ bool EdgeType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -1894,7 +1945,7 @@ bool EdgeType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in EdgeType\n");
       returnValue = true;
@@ -1906,20 +1957,20 @@ bool EdgeType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete tolerance;
-      tolerance = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->tolerance;
+      this->tolerance = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -1979,7 +2030,15 @@ EdgeTypeLisd::~EdgeTypeLisd()
   #endif
 }
 
-void EdgeTypeLisd::printSelf(FILE * outFile){}
+void EdgeTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<EdgeType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -2199,7 +2258,7 @@ bool FaceBaseType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in FaceBaseType\n");
               returnValue = true;
@@ -2215,12 +2274,12 @@ bool FaceBaseType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in FaceBaseType\n");
               returnValue = true;
@@ -2236,12 +2295,12 @@ bool FaceBaseType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FaceBaseType\n");
               returnValue = true;
@@ -2257,12 +2316,12 @@ bool FaceBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in FaceBaseType\n");
               returnValue = true;
@@ -2278,12 +2337,12 @@ bool FaceBaseType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in FaceBaseType\n");
               returnValue = true;
@@ -2299,12 +2358,12 @@ bool FaceBaseType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in FaceBaseType\n");
               returnValue = true;
@@ -2320,12 +2379,12 @@ bool FaceBaseType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else if (decl->name == "turned")
         {
           XmlBoolean * turnedVal;
-          if (turned)
+          if (this->turned)
             {
               fprintf(stderr, "two values for turned in FaceBaseType\n");
               returnValue = true;
@@ -2341,7 +2400,7 @@ bool FaceBaseType::badAttributes(
               break;
             }
           else
-            turned = turnedVal;
+            this->turned = turnedVal;
         }
       else
         {
@@ -2350,7 +2409,7 @@ bool FaceBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FaceBaseType\n");
       returnValue = true;
@@ -2362,20 +2421,20 @@ bool FaceBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
-      delete turned;
-      turned = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
+      delete this->turned;
+      this->turned = 0;
     }
   return returnValue;
 }
@@ -2417,7 +2476,15 @@ FaceBaseTypeLisd::~FaceBaseTypeLisd()
   #endif
 }
 
-void FaceBaseTypeLisd::printSelf(FILE * outFile){}
+void FaceBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<FaceBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -2430,9 +2497,9 @@ FaceMeshType::FaceMeshType() :
 {
   Mesh = 0;
   LoopIds = 0;
-  FaceMeshType_1224 = 0;
-  FaceMeshType_1225 = 0;
-  FaceMeshType_1226 = 0;
+  FaceMeshType_1180 = 0;
+  FaceMeshType_1181 = 0;
+  FaceMeshType_1182 = 0;
 }
 
 FaceMeshType::FaceMeshType(
@@ -2440,18 +2507,18 @@ FaceMeshType::FaceMeshType(
  ValidationFaceType * ValidationIn,
  ElementReferenceType * MeshIn,
  ArrayReferenceType * LoopIdsIn,
- FaceMeshType_1224_Type * FaceMeshType_1224In,
- FaceMeshType_1225_Type * FaceMeshType_1225In,
- FaceMeshType_1226_Type * FaceMeshType_1226In) :
+ FaceMeshType_1180_Type * FaceMeshType_1180In,
+ FaceMeshType_1181_Type * FaceMeshType_1181In,
+ FaceMeshType_1182_Type * FaceMeshType_1182In) :
   FaceBaseType(
     AttributesIn,
     ValidationIn)
 {
   Mesh = MeshIn;
   LoopIds = LoopIdsIn;
-  FaceMeshType_1224 = FaceMeshType_1224In;
-  FaceMeshType_1225 = FaceMeshType_1225In;
-  FaceMeshType_1226 = FaceMeshType_1226In;
+  FaceMeshType_1180 = FaceMeshType_1180In;
+  FaceMeshType_1181 = FaceMeshType_1181In;
+  FaceMeshType_1182 = FaceMeshType_1182In;
 }
 
 FaceMeshType::FaceMeshType(
@@ -2466,9 +2533,9 @@ FaceMeshType::FaceMeshType(
  ValidationFaceType * ValidationIn,
  ElementReferenceType * MeshIn,
  ArrayReferenceType * LoopIdsIn,
- FaceMeshType_1224_Type * FaceMeshType_1224In,
- FaceMeshType_1225_Type * FaceMeshType_1225In,
- FaceMeshType_1226_Type * FaceMeshType_1226In) :
+ FaceMeshType_1180_Type * FaceMeshType_1180In,
+ FaceMeshType_1181_Type * FaceMeshType_1181In,
+ FaceMeshType_1182_Type * FaceMeshType_1182In) :
   FaceBaseType(
     labelIn,
     idIn,
@@ -2482,9 +2549,9 @@ FaceMeshType::FaceMeshType(
 {
   Mesh = MeshIn;
   LoopIds = LoopIdsIn;
-  FaceMeshType_1224 = FaceMeshType_1224In;
-  FaceMeshType_1225 = FaceMeshType_1225In;
-  FaceMeshType_1226 = FaceMeshType_1226In;
+  FaceMeshType_1180 = FaceMeshType_1180In;
+  FaceMeshType_1181 = FaceMeshType_1181In;
+  FaceMeshType_1182 = FaceMeshType_1182In;
 }
 
 FaceMeshType::~FaceMeshType()
@@ -2492,9 +2559,9 @@ FaceMeshType::~FaceMeshType()
   #ifndef NODESTRUCT
   delete Mesh;
   delete LoopIds;
-  delete FaceMeshType_1224;
-  delete FaceMeshType_1225;
-  delete FaceMeshType_1226;
+  delete FaceMeshType_1180;
+  delete FaceMeshType_1181;
+  delete FaceMeshType_1182;
   #endif
 }
 
@@ -2658,17 +2725,17 @@ void FaceMeshType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</LoopIds>\n");
     }
-  if (FaceMeshType_1224)
+  if (FaceMeshType_1180)
     {
-      FaceMeshType_1224->printSelf(outFile);
+  FaceMeshType_1180->printSelf(outFile);
     }
-  if (FaceMeshType_1225)
+  if (FaceMeshType_1181)
     {
-      FaceMeshType_1225->printSelf(outFile);
+  FaceMeshType_1181->printSelf(outFile);
     }
-  if (FaceMeshType_1226)
+  if (FaceMeshType_1182)
     {
-      FaceMeshType_1226->printSelf(outFile);
+  FaceMeshType_1182->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -2687,7 +2754,7 @@ bool FaceMeshType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in FaceMeshType\n");
               returnValue = true;
@@ -2703,12 +2770,12 @@ bool FaceMeshType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in FaceMeshType\n");
               returnValue = true;
@@ -2724,12 +2791,12 @@ bool FaceMeshType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FaceMeshType\n");
               returnValue = true;
@@ -2745,12 +2812,12 @@ bool FaceMeshType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in FaceMeshType\n");
               returnValue = true;
@@ -2766,12 +2833,12 @@ bool FaceMeshType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in FaceMeshType\n");
               returnValue = true;
@@ -2787,12 +2854,12 @@ bool FaceMeshType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in FaceMeshType\n");
               returnValue = true;
@@ -2808,12 +2875,12 @@ bool FaceMeshType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else if (decl->name == "turned")
         {
           XmlBoolean * turnedVal;
-          if (turned)
+          if (this->turned)
             {
               fprintf(stderr, "two values for turned in FaceMeshType\n");
               returnValue = true;
@@ -2829,7 +2896,7 @@ bool FaceMeshType::badAttributes(
               break;
             }
           else
-            turned = turnedVal;
+            this->turned = turnedVal;
         }
       else
         {
@@ -2838,7 +2905,7 @@ bool FaceMeshType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FaceMeshType\n");
       returnValue = true;
@@ -2850,20 +2917,20 @@ bool FaceMeshType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
-      delete turned;
-      turned = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
+      delete this->turned;
+      this->turned = 0;
     }
   return returnValue;
 }
@@ -2880,23 +2947,23 @@ ArrayReferenceType * FaceMeshType::getLoopIds()
 void FaceMeshType::setLoopIds(ArrayReferenceType * LoopIdsIn)
 {LoopIds = LoopIdsIn;}
 
-FaceMeshType_1224_Type * FaceMeshType::getFaceMeshType_1224()
-{return FaceMeshType_1224;}
+FaceMeshType_1180_Type * FaceMeshType::getFaceMeshType_1180()
+{return FaceMeshType_1180;}
 
-void FaceMeshType::setFaceMeshType_1224(FaceMeshType_1224_Type * FaceMeshType_1224In)
-{FaceMeshType_1224 = FaceMeshType_1224In;}
+void FaceMeshType::setFaceMeshType_1180(FaceMeshType_1180_Type * FaceMeshType_1180In)
+{FaceMeshType_1180 = FaceMeshType_1180In;}
 
-FaceMeshType_1225_Type * FaceMeshType::getFaceMeshType_1225()
-{return FaceMeshType_1225;}
+FaceMeshType_1181_Type * FaceMeshType::getFaceMeshType_1181()
+{return FaceMeshType_1181;}
 
-void FaceMeshType::setFaceMeshType_1225(FaceMeshType_1225_Type * FaceMeshType_1225In)
-{FaceMeshType_1225 = FaceMeshType_1225In;}
+void FaceMeshType::setFaceMeshType_1181(FaceMeshType_1181_Type * FaceMeshType_1181In)
+{FaceMeshType_1181 = FaceMeshType_1181In;}
 
-FaceMeshType_1226_Type * FaceMeshType::getFaceMeshType_1226()
-{return FaceMeshType_1226;}
+FaceMeshType_1182_Type * FaceMeshType::getFaceMeshType_1182()
+{return FaceMeshType_1182;}
 
-void FaceMeshType::setFaceMeshType_1226(FaceMeshType_1226_Type * FaceMeshType_1226In)
-{FaceMeshType_1226 = FaceMeshType_1226In;}
+void FaceMeshType::setFaceMeshType_1182(FaceMeshType_1182_Type * FaceMeshType_1182In)
+{FaceMeshType_1182 = FaceMeshType_1182In;}
 
 /* ***************************************************************** */
 
@@ -2973,6 +3040,13 @@ void FaceSetType::printSelf(FILE * outFile)
         fprintf(stderr, "FaceBase list is empty\n");
         exit(1);
       }
+    if (FaceBase->size() < 1)
+      {
+        fprintf(stderr,
+                "size of FaceBase list (%d) less than minimum required (1)\n",
+                (int)FaceBase->size());
+        exit(1);
+      }
     std::list<FaceBaseType *>::iterator iter;
     for (iter = FaceBase->begin();
          iter != FaceBase->end(); iter++)
@@ -3042,7 +3116,7 @@ bool FaceSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in FaceSetType\n");
               returnValue = true;
@@ -3058,7 +3132,7 @@ bool FaceSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -3067,7 +3141,7 @@ bool FaceSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in FaceSetType\n");
       returnValue = true;
@@ -3079,8 +3153,8 @@ bool FaceSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -3357,7 +3431,7 @@ bool FaceType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in FaceType\n");
               returnValue = true;
@@ -3373,12 +3447,12 @@ bool FaceType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hasOuter")
         {
           XmlBoolean * hasOuterVal;
-          if (hasOuter)
+          if (this->hasOuter)
             {
               fprintf(stderr, "two values for hasOuter in FaceType\n");
               returnValue = true;
@@ -3394,12 +3468,12 @@ bool FaceType::badAttributes(
               break;
             }
           else
-            hasOuter = hasOuterVal;
+            this->hasOuter = hasOuterVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in FaceType\n");
               returnValue = true;
@@ -3415,12 +3489,12 @@ bool FaceType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FaceType\n");
               returnValue = true;
@@ -3436,12 +3510,12 @@ bool FaceType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in FaceType\n");
               returnValue = true;
@@ -3457,12 +3531,12 @@ bool FaceType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in FaceType\n");
               returnValue = true;
@@ -3478,12 +3552,12 @@ bool FaceType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in FaceType\n");
               returnValue = true;
@@ -3499,12 +3573,12 @@ bool FaceType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else if (decl->name == "turned")
         {
           XmlBoolean * turnedVal;
-          if (turned)
+          if (this->turned)
             {
               fprintf(stderr, "two values for turned in FaceType\n");
               returnValue = true;
@@ -3520,7 +3594,7 @@ bool FaceType::badAttributes(
               break;
             }
           else
-            turned = turnedVal;
+            this->turned = turnedVal;
         }
       else
         {
@@ -3529,7 +3603,7 @@ bool FaceType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FaceType\n");
       returnValue = true;
@@ -3541,22 +3615,22 @@ bool FaceType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hasOuter;
-      hasOuter = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
-      delete turned;
-      turned = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hasOuter;
+      this->hasOuter = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
+      delete this->turned;
+      this->turned = 0;
     }
   return returnValue;
 }
@@ -3761,7 +3835,7 @@ bool LoopBaseType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in LoopBaseType\n");
               returnValue = true;
@@ -3777,12 +3851,12 @@ bool LoopBaseType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in LoopBaseType\n");
               returnValue = true;
@@ -3798,12 +3872,12 @@ bool LoopBaseType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LoopBaseType\n");
               returnValue = true;
@@ -3819,12 +3893,12 @@ bool LoopBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in LoopBaseType\n");
               returnValue = true;
@@ -3840,12 +3914,12 @@ bool LoopBaseType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in LoopBaseType\n");
               returnValue = true;
@@ -3861,12 +3935,12 @@ bool LoopBaseType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in LoopBaseType\n");
               returnValue = true;
@@ -3882,7 +3956,7 @@ bool LoopBaseType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -3891,7 +3965,7 @@ bool LoopBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LoopBaseType\n");
       returnValue = true;
@@ -3903,18 +3977,18 @@ bool LoopBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -3944,7 +4018,15 @@ LoopBaseTypeLisd::~LoopBaseTypeLisd()
   #endif
 }
 
-void LoopBaseTypeLisd::printSelf(FILE * outFile){}
+void LoopBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<LoopBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -4203,7 +4285,7 @@ bool LoopMeshType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in LoopMeshType\n");
               returnValue = true;
@@ -4219,12 +4301,12 @@ bool LoopMeshType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in LoopMeshType\n");
               returnValue = true;
@@ -4240,12 +4322,12 @@ bool LoopMeshType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LoopMeshType\n");
               returnValue = true;
@@ -4261,12 +4343,12 @@ bool LoopMeshType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in LoopMeshType\n");
               returnValue = true;
@@ -4282,12 +4364,12 @@ bool LoopMeshType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in LoopMeshType\n");
               returnValue = true;
@@ -4303,12 +4385,12 @@ bool LoopMeshType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in LoopMeshType\n");
               returnValue = true;
@@ -4324,7 +4406,7 @@ bool LoopMeshType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -4333,7 +4415,7 @@ bool LoopMeshType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LoopMeshType\n");
       returnValue = true;
@@ -4345,18 +4427,18 @@ bool LoopMeshType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -4442,6 +4524,13 @@ void LoopSetType::printSelf(FILE * outFile)
         fprintf(stderr, "LoopBase list is empty\n");
         exit(1);
       }
+    if (LoopBase->size() < 1)
+      {
+        fprintf(stderr,
+                "size of LoopBase list (%d) less than minimum required (1)\n",
+                (int)LoopBase->size());
+        exit(1);
+      }
     std::list<LoopBaseType *>::iterator iter;
     for (iter = LoopBase->begin();
          iter != LoopBase->end(); iter++)
@@ -4511,7 +4600,7 @@ bool LoopSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in LoopSetType\n");
               returnValue = true;
@@ -4527,7 +4616,7 @@ bool LoopSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -4536,7 +4625,7 @@ bool LoopSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in LoopSetType\n");
       returnValue = true;
@@ -4548,8 +4637,8 @@ bool LoopSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -4781,7 +4870,7 @@ bool LoopType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in LoopType\n");
               returnValue = true;
@@ -4797,12 +4886,12 @@ bool LoopType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "form")
         {
           LoopFormEnumType * formVal;
-          if (form)
+          if (this->form)
             {
               fprintf(stderr, "two values for form in LoopType\n");
               returnValue = true;
@@ -4818,12 +4907,12 @@ bool LoopType::badAttributes(
               break;
             }
           else
-            form = formVal;
+            this->form = formVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in LoopType\n");
               returnValue = true;
@@ -4839,12 +4928,12 @@ bool LoopType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LoopType\n");
               returnValue = true;
@@ -4860,12 +4949,12 @@ bool LoopType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in LoopType\n");
               returnValue = true;
@@ -4881,12 +4970,12 @@ bool LoopType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in LoopType\n");
               returnValue = true;
@@ -4902,12 +4991,12 @@ bool LoopType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in LoopType\n");
               returnValue = true;
@@ -4923,7 +5012,7 @@ bool LoopType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -4932,7 +5021,7 @@ bool LoopType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LoopType\n");
       returnValue = true;
@@ -4944,20 +5033,20 @@ bool LoopType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete form;
-      form = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->form;
+      this->form = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -5049,6 +5138,13 @@ void PointCloudSetType::printSelf(FILE * outFile)
         fprintf(stderr, "PointCloud list is empty\n");
         exit(1);
       }
+    if (PointCloud->size() < 1)
+      {
+        fprintf(stderr,
+                "size of PointCloud list (%d) less than minimum required (1)\n",
+                (int)PointCloud->size());
+        exit(1);
+      }
     std::list<PointCloudType *>::iterator iter;
     for (iter = PointCloud->begin();
          iter != PointCloud->end(); iter++)
@@ -5077,7 +5173,7 @@ bool PointCloudSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in PointCloudSetType\n");
               returnValue = true;
@@ -5093,7 +5189,7 @@ bool PointCloudSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -5102,7 +5198,7 @@ bool PointCloudSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in PointCloudSetType\n");
       returnValue = true;
@@ -5114,8 +5210,8 @@ bool PointCloudSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -5141,25 +5237,25 @@ void PointCloudSetType::setPointCloud(PointCloudTypeLisd * PointCloudIn)
 PointCloudType::PointCloudType() :
   TopologyBaseType()
 {
-  PointCloudType_1227 = 0;
-  PointCloudType_1228 = 0;
-  PointCloudType_1229 = 0;
-  PointCloudType_1230 = 0;
+  PointCloudType_1183 = 0;
+  PointCloudType_1184 = 0;
+  PointCloudType_1185 = 0;
+  PointCloudType_1186 = 0;
 }
 
 PointCloudType::PointCloudType(
  AttributesType * AttributesIn,
- PointCloudType_1227_Type * PointCloudType_1227In,
- PointCloudType_1228_Type * PointCloudType_1228In,
- PointCloudType_1229_Type * PointCloudType_1229In,
- PointCloudType_1230_Type * PointCloudType_1230In) :
+ PointCloudType_1183_Type * PointCloudType_1183In,
+ PointCloudType_1184_Type * PointCloudType_1184In,
+ PointCloudType_1185_Type * PointCloudType_1185In,
+ PointCloudType_1186_Type * PointCloudType_1186In) :
   TopologyBaseType(
     AttributesIn)
 {
-  PointCloudType_1227 = PointCloudType_1227In;
-  PointCloudType_1228 = PointCloudType_1228In;
-  PointCloudType_1229 = PointCloudType_1229In;
-  PointCloudType_1230 = PointCloudType_1230In;
+  PointCloudType_1183 = PointCloudType_1183In;
+  PointCloudType_1184 = PointCloudType_1184In;
+  PointCloudType_1185 = PointCloudType_1185In;
+  PointCloudType_1186 = PointCloudType_1186In;
 }
 
 PointCloudType::PointCloudType(
@@ -5170,10 +5266,10 @@ PointCloudType::PointCloudType(
  XmlBoolean * hiddenIn,
  DoublePositiveType * sizeIn,
  TransparencyType * transparencyIn,
- PointCloudType_1227_Type * PointCloudType_1227In,
- PointCloudType_1228_Type * PointCloudType_1228In,
- PointCloudType_1229_Type * PointCloudType_1229In,
- PointCloudType_1230_Type * PointCloudType_1230In) :
+ PointCloudType_1183_Type * PointCloudType_1183In,
+ PointCloudType_1184_Type * PointCloudType_1184In,
+ PointCloudType_1185_Type * PointCloudType_1185In,
+ PointCloudType_1186_Type * PointCloudType_1186In) :
   TopologyBaseType(
     labelIn,
     idIn,
@@ -5183,19 +5279,19 @@ PointCloudType::PointCloudType(
     sizeIn,
     transparencyIn)
 {
-  PointCloudType_1227 = PointCloudType_1227In;
-  PointCloudType_1228 = PointCloudType_1228In;
-  PointCloudType_1229 = PointCloudType_1229In;
-  PointCloudType_1230 = PointCloudType_1230In;
+  PointCloudType_1183 = PointCloudType_1183In;
+  PointCloudType_1184 = PointCloudType_1184In;
+  PointCloudType_1185 = PointCloudType_1185In;
+  PointCloudType_1186 = PointCloudType_1186In;
 }
 
 PointCloudType::~PointCloudType()
 {
   #ifndef NODESTRUCT
-  delete PointCloudType_1227;
-  delete PointCloudType_1228;
-  delete PointCloudType_1229;
-  delete PointCloudType_1230;
+  delete PointCloudType_1183;
+  delete PointCloudType_1184;
+  delete PointCloudType_1185;
+  delete PointCloudType_1186;
   #endif
 }
 
@@ -5321,18 +5417,18 @@ void PointCloudType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  PointCloudType_1227->printSelf(outFile);
-  if (PointCloudType_1228)
+  PointCloudType_1183->printSelf(outFile);
+  if (PointCloudType_1184)
     {
-      PointCloudType_1228->printSelf(outFile);
+  PointCloudType_1184->printSelf(outFile);
     }
-  if (PointCloudType_1229)
+  if (PointCloudType_1185)
     {
-      PointCloudType_1229->printSelf(outFile);
+  PointCloudType_1185->printSelf(outFile);
     }
-  if (PointCloudType_1230)
+  if (PointCloudType_1186)
     {
-      PointCloudType_1230->printSelf(outFile);
+  PointCloudType_1186->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -5351,7 +5447,7 @@ bool PointCloudType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in PointCloudType\n");
               returnValue = true;
@@ -5367,12 +5463,12 @@ bool PointCloudType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in PointCloudType\n");
               returnValue = true;
@@ -5388,12 +5484,12 @@ bool PointCloudType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PointCloudType\n");
               returnValue = true;
@@ -5409,12 +5505,12 @@ bool PointCloudType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in PointCloudType\n");
               returnValue = true;
@@ -5430,12 +5526,12 @@ bool PointCloudType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in PointCloudType\n");
               returnValue = true;
@@ -5451,12 +5547,12 @@ bool PointCloudType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in PointCloudType\n");
               returnValue = true;
@@ -5472,7 +5568,7 @@ bool PointCloudType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -5481,7 +5577,7 @@ bool PointCloudType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PointCloudType\n");
       returnValue = true;
@@ -5493,45 +5589,45 @@ bool PointCloudType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
 
-PointCloudType_1227_Type * PointCloudType::getPointCloudType_1227()
-{return PointCloudType_1227;}
+PointCloudType_1183_Type * PointCloudType::getPointCloudType_1183()
+{return PointCloudType_1183;}
 
-void PointCloudType::setPointCloudType_1227(PointCloudType_1227_Type * PointCloudType_1227In)
-{PointCloudType_1227 = PointCloudType_1227In;}
+void PointCloudType::setPointCloudType_1183(PointCloudType_1183_Type * PointCloudType_1183In)
+{PointCloudType_1183 = PointCloudType_1183In;}
 
-PointCloudType_1228_Type * PointCloudType::getPointCloudType_1228()
-{return PointCloudType_1228;}
+PointCloudType_1184_Type * PointCloudType::getPointCloudType_1184()
+{return PointCloudType_1184;}
 
-void PointCloudType::setPointCloudType_1228(PointCloudType_1228_Type * PointCloudType_1228In)
-{PointCloudType_1228 = PointCloudType_1228In;}
+void PointCloudType::setPointCloudType_1184(PointCloudType_1184_Type * PointCloudType_1184In)
+{PointCloudType_1184 = PointCloudType_1184In;}
 
-PointCloudType_1229_Type * PointCloudType::getPointCloudType_1229()
-{return PointCloudType_1229;}
+PointCloudType_1185_Type * PointCloudType::getPointCloudType_1185()
+{return PointCloudType_1185;}
 
-void PointCloudType::setPointCloudType_1229(PointCloudType_1229_Type * PointCloudType_1229In)
-{PointCloudType_1229 = PointCloudType_1229In;}
+void PointCloudType::setPointCloudType_1185(PointCloudType_1185_Type * PointCloudType_1185In)
+{PointCloudType_1185 = PointCloudType_1185In;}
 
-PointCloudType_1230_Type * PointCloudType::getPointCloudType_1230()
-{return PointCloudType_1230;}
+PointCloudType_1186_Type * PointCloudType::getPointCloudType_1186()
+{return PointCloudType_1186;}
 
-void PointCloudType::setPointCloudType_1230(PointCloudType_1230_Type * PointCloudType_1230In)
-{PointCloudType_1230 = PointCloudType_1230In;}
+void PointCloudType::setPointCloudType_1186(PointCloudType_1186_Type * PointCloudType_1186In)
+{PointCloudType_1186 = PointCloudType_1186In;}
 
 /* ***************************************************************** */
 
@@ -5558,7 +5654,15 @@ PointCloudTypeLisd::~PointCloudTypeLisd()
   #endif
 }
 
-void PointCloudTypeLisd::printSelf(FILE * outFile){}
+void PointCloudTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<PointCloudType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -5695,6 +5799,13 @@ void ShellSetType::printSelf(FILE * outFile)
         fprintf(stderr, "Shell list is empty\n");
         exit(1);
       }
+    if (Shell->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Shell list (%d) less than minimum required (1)\n",
+                (int)Shell->size());
+        exit(1);
+      }
     std::list<ShellType *>::iterator iter;
     for (iter = Shell->begin();
          iter != Shell->end(); iter++)
@@ -5723,7 +5834,7 @@ bool ShellSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ShellSetType\n");
               returnValue = true;
@@ -5739,7 +5850,7 @@ bool ShellSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -5748,7 +5859,7 @@ bool ShellSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ShellSetType\n");
       returnValue = true;
@@ -5760,8 +5871,8 @@ bool ShellSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -6040,7 +6151,7 @@ bool ShellType::badAttributes(
       if (decl->name == "closed")
         {
           XmlBoolean * closedVal;
-          if (closed)
+          if (this->closed)
             {
               fprintf(stderr, "two values for closed in ShellType\n");
               returnValue = true;
@@ -6056,12 +6167,12 @@ bool ShellType::badAttributes(
               break;
             }
           else
-            closed = closedVal;
+            this->closed = closedVal;
         }
       else if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in ShellType\n");
               returnValue = true;
@@ -6077,12 +6188,12 @@ bool ShellType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "form")
         {
           ShellFormEnumType * formVal;
-          if (form)
+          if (this->form)
             {
               fprintf(stderr, "two values for form in ShellType\n");
               returnValue = true;
@@ -6098,12 +6209,12 @@ bool ShellType::badAttributes(
               break;
             }
           else
-            form = formVal;
+            this->form = formVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in ShellType\n");
               returnValue = true;
@@ -6119,12 +6230,12 @@ bool ShellType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ShellType\n");
               returnValue = true;
@@ -6140,12 +6251,12 @@ bool ShellType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in ShellType\n");
               returnValue = true;
@@ -6161,12 +6272,12 @@ bool ShellType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in ShellType\n");
               returnValue = true;
@@ -6182,12 +6293,12 @@ bool ShellType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in ShellType\n");
               returnValue = true;
@@ -6203,12 +6314,12 @@ bool ShellType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else if (decl->name == "turned")
         {
           XmlBoolean * turnedVal;
-          if (turned)
+          if (this->turned)
             {
               fprintf(stderr, "two values for turned in ShellType\n");
               returnValue = true;
@@ -6224,7 +6335,7 @@ bool ShellType::badAttributes(
               break;
             }
           else
-            turned = turnedVal;
+            this->turned = turnedVal;
         }
       else
         {
@@ -6233,7 +6344,7 @@ bool ShellType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ShellType\n");
       returnValue = true;
@@ -6245,24 +6356,24 @@ bool ShellType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete closed;
-      closed = 0;
-      delete color;
-      color = 0;
-      delete form;
-      form = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
-      delete turned;
-      turned = 0;
+      delete this->closed;
+      this->closed = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->form;
+      this->form = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
+      delete this->turned;
+      this->turned = 0;
     }
   return returnValue;
 }
@@ -6316,7 +6427,15 @@ ShellTypeLisd::~ShellTypeLisd()
   #endif
 }
 
-void ShellTypeLisd::printSelf(FILE * outFile){}
+void ShellTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ShellType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -6500,7 +6619,7 @@ bool TopologyBaseType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in TopologyBaseType\n");
               returnValue = true;
@@ -6516,12 +6635,12 @@ bool TopologyBaseType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in TopologyBaseType\n");
               returnValue = true;
@@ -6537,12 +6656,12 @@ bool TopologyBaseType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in TopologyBaseType\n");
               returnValue = true;
@@ -6558,12 +6677,12 @@ bool TopologyBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in TopologyBaseType\n");
               returnValue = true;
@@ -6579,12 +6698,12 @@ bool TopologyBaseType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in TopologyBaseType\n");
               returnValue = true;
@@ -6600,12 +6719,12 @@ bool TopologyBaseType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in TopologyBaseType\n");
               returnValue = true;
@@ -6621,7 +6740,7 @@ bool TopologyBaseType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -6630,7 +6749,7 @@ bool TopologyBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in TopologyBaseType\n");
       returnValue = true;
@@ -6642,18 +6761,18 @@ bool TopologyBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -7212,6 +7331,13 @@ void VertexSetType::printSelf(FILE * outFile)
         fprintf(stderr, "Vertex list is empty\n");
         exit(1);
       }
+    if (Vertex->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Vertex list (%d) less than minimum required (1)\n",
+                (int)Vertex->size());
+        exit(1);
+      }
     std::list<VertexType *>::iterator iter;
     for (iter = Vertex->begin();
          iter != Vertex->end(); iter++)
@@ -7240,7 +7366,7 @@ bool VertexSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in VertexSetType\n");
               returnValue = true;
@@ -7256,7 +7382,7 @@ bool VertexSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -7265,7 +7391,7 @@ bool VertexSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in VertexSetType\n");
       returnValue = true;
@@ -7277,8 +7403,8 @@ bool VertexSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -7510,7 +7636,7 @@ bool VertexType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in VertexType\n");
               returnValue = true;
@@ -7526,12 +7652,12 @@ bool VertexType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in VertexType\n");
               returnValue = true;
@@ -7547,12 +7673,12 @@ bool VertexType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in VertexType\n");
               returnValue = true;
@@ -7568,12 +7694,12 @@ bool VertexType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in VertexType\n");
               returnValue = true;
@@ -7589,12 +7715,12 @@ bool VertexType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in VertexType\n");
               returnValue = true;
@@ -7610,12 +7736,12 @@ bool VertexType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "tolerance")
         {
           XmlDouble * toleranceVal;
-          if (tolerance)
+          if (this->tolerance)
             {
               fprintf(stderr, "two values for tolerance in VertexType\n");
               returnValue = true;
@@ -7631,12 +7757,12 @@ bool VertexType::badAttributes(
               break;
             }
           else
-            tolerance = toleranceVal;
+            this->tolerance = toleranceVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in VertexType\n");
               returnValue = true;
@@ -7652,7 +7778,7 @@ bool VertexType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -7661,7 +7787,7 @@ bool VertexType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in VertexType\n");
       returnValue = true;
@@ -7673,20 +7799,20 @@ bool VertexType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete tolerance;
-      tolerance = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->tolerance;
+      this->tolerance = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -7728,611 +7854,570 @@ VertexTypeLisd::~VertexTypeLisd()
   #endif
 }
 
-void VertexTypeLisd::printSelf(FILE * outFile){}
-
-/* ***************************************************************** */
-
-/* class FaceMeshType_1224_Type
-
-*/
-
-FaceMeshType_1224_Type::FaceMeshType_1224_Type()
+void VertexTypeLisd::printSelf(FILE * outFile)
 {
-  FaceMeshType_1224_TypePair = 0;
-}
+  std::list<VertexType *>::iterator iter;
 
-FaceMeshType_1224_Type::FaceMeshType_1224_Type(
- FaceMeshType_1224_TypeChoicePair * FaceMeshType_1224_TypePairIn)
-{
-  FaceMeshType_1224_TypePair = FaceMeshType_1224_TypePairIn;
-}
-
-FaceMeshType_1224_Type::~FaceMeshType_1224_Type()
-{
-  #ifndef NODESTRUCT
-  delete FaceMeshType_1224_TypePair;
-  #endif
-}
-
-void FaceMeshType_1224_Type::printSelf(FILE * outFile)
-{
-  if (FaceMeshType_1224_TypePair)
+  for (iter = begin(); iter != end(); iter++)
     {
-      FaceMeshType_1224_TypePair->printSelf(outFile);
+      (*iter)->printSelf(outFile);
     }
 }
 
-FaceMeshType_1224_TypeChoicePair * FaceMeshType_1224_Type::getFaceMeshType_1224_TypePair()
-{return FaceMeshType_1224_TypePair;}
-
-void FaceMeshType_1224_Type::setFaceMeshType_1224_TypePair(FaceMeshType_1224_TypeChoicePair * FaceMeshType_1224_TypePairIn)
-{FaceMeshType_1224_TypePair = FaceMeshType_1224_TypePairIn;}
-
 /* ***************************************************************** */
 
-/* class FaceMeshType_1224_TypeChoicePair
+/* class FaceMeshType_1180_Type
 
 */
 
-FaceMeshType_1224_TypeChoicePair::FaceMeshType_1224_TypeChoicePair() {}
-
-FaceMeshType_1224_TypeChoicePair::FaceMeshType_1224_TypeChoicePair(
- whichOne FaceMeshType_1224_TypeTypeIn,
- FaceMeshType_1224_TypeVal FaceMeshType_1224_TypeValueIn)
+FaceMeshType_1180_Type::FaceMeshType_1180_Type()
 {
-  FaceMeshType_1224_TypeType = FaceMeshType_1224_TypeTypeIn;
-  FaceMeshType_1224_TypeValue = FaceMeshType_1224_TypeValueIn;
+  FaceMeshType_1180_TypePair = 0;
 }
 
-FaceMeshType_1224_TypeChoicePair::~FaceMeshType_1224_TypeChoicePair()
+FaceMeshType_1180_Type::FaceMeshType_1180_Type(
+ FaceMeshType_1180_TypeChoicePair * FaceMeshType_1180_TypePairIn)
+{
+  FaceMeshType_1180_TypePair = FaceMeshType_1180_TypePairIn;
+}
+
+FaceMeshType_1180_Type::~FaceMeshType_1180_Type()
 {
   #ifndef NODESTRUCT
-  if (FaceMeshType_1224_TypeType == TrianglesE)
-    delete FaceMeshType_1224_TypeValue.Triangles;
-  else if (FaceMeshType_1224_TypeType == TrianglesBinaryE)
-    delete FaceMeshType_1224_TypeValue.TrianglesBinary;
+  delete FaceMeshType_1180_TypePair;
   #endif
 }
 
-void FaceMeshType_1224_TypeChoicePair::printSelf(FILE * outFile)
+void FaceMeshType_1180_Type::printSelf(FILE * outFile)
 {
-  if (FaceMeshType_1224_TypeType == TrianglesE)
+  if (FaceMeshType_1180_TypePair)
+    {
+      FaceMeshType_1180_TypePair->printSelf(outFile);
+    }
+}
+
+FaceMeshType_1180_TypeChoicePair * FaceMeshType_1180_Type::getFaceMeshType_1180_TypePair()
+{return FaceMeshType_1180_TypePair;}
+
+void FaceMeshType_1180_Type::setFaceMeshType_1180_TypePair(FaceMeshType_1180_TypeChoicePair * FaceMeshType_1180_TypePairIn)
+{FaceMeshType_1180_TypePair = FaceMeshType_1180_TypePairIn;}
+FaceMeshType_1180_TypeChoicePair::FaceMeshType_1180_TypeChoicePair() {}
+
+FaceMeshType_1180_TypeChoicePair::FaceMeshType_1180_TypeChoicePair(
+ whichOne FaceMeshType_1180_TypeTypeIn,
+ FaceMeshType_1180_TypeVal FaceMeshType_1180_TypeValueIn)
+{
+  FaceMeshType_1180_TypeType = FaceMeshType_1180_TypeTypeIn;
+  FaceMeshType_1180_TypeValue = FaceMeshType_1180_TypeValueIn;
+}
+
+FaceMeshType_1180_TypeChoicePair::~FaceMeshType_1180_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (FaceMeshType_1180_TypeType == TrianglesE)
+    delete FaceMeshType_1180_TypeValue.Triangles;
+  else if (FaceMeshType_1180_TypeType == TrianglesBinaryE)
+    delete FaceMeshType_1180_TypeValue.TrianglesBinary;
+  #endif
+}
+
+void FaceMeshType_1180_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (FaceMeshType_1180_TypeType == TrianglesE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Triangles");
-      FaceMeshType_1224_TypeValue.Triangles->printSelf(outFile);
+      FaceMeshType_1180_TypeValue.Triangles->printSelf(outFile);
       fprintf(outFile, "</Triangles>\n");
     }
-  else if (FaceMeshType_1224_TypeType == TrianglesBinaryE)
+  else if (FaceMeshType_1180_TypeType == TrianglesBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesBinary");
-      FaceMeshType_1224_TypeValue.TrianglesBinary->printSelf(outFile);
+      FaceMeshType_1180_TypeValue.TrianglesBinary->printSelf(outFile);
       fprintf(outFile, "</TrianglesBinary>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class FaceMeshType_1225_Type
+/* class FaceMeshType_1181_Type
 
 */
 
-FaceMeshType_1225_Type::FaceMeshType_1225_Type()
+FaceMeshType_1181_Type::FaceMeshType_1181_Type()
 {
-  FaceMeshType_1225_TypePair = 0;
+  FaceMeshType_1181_TypePair = 0;
 }
 
-FaceMeshType_1225_Type::FaceMeshType_1225_Type(
- FaceMeshType_1225_TypeChoicePair * FaceMeshType_1225_TypePairIn)
+FaceMeshType_1181_Type::FaceMeshType_1181_Type(
+ FaceMeshType_1181_TypeChoicePair * FaceMeshType_1181_TypePairIn)
 {
-  FaceMeshType_1225_TypePair = FaceMeshType_1225_TypePairIn;
+  FaceMeshType_1181_TypePair = FaceMeshType_1181_TypePairIn;
 }
 
-FaceMeshType_1225_Type::~FaceMeshType_1225_Type()
+FaceMeshType_1181_Type::~FaceMeshType_1181_Type()
 {
   #ifndef NODESTRUCT
-  delete FaceMeshType_1225_TypePair;
+  delete FaceMeshType_1181_TypePair;
   #endif
 }
 
-void FaceMeshType_1225_Type::printSelf(FILE * outFile)
+void FaceMeshType_1181_Type::printSelf(FILE * outFile)
 {
-  if (FaceMeshType_1225_TypePair)
+  if (FaceMeshType_1181_TypePair)
     {
-      FaceMeshType_1225_TypePair->printSelf(outFile);
+      FaceMeshType_1181_TypePair->printSelf(outFile);
     }
 }
 
-FaceMeshType_1225_TypeChoicePair * FaceMeshType_1225_Type::getFaceMeshType_1225_TypePair()
-{return FaceMeshType_1225_TypePair;}
+FaceMeshType_1181_TypeChoicePair * FaceMeshType_1181_Type::getFaceMeshType_1181_TypePair()
+{return FaceMeshType_1181_TypePair;}
 
-void FaceMeshType_1225_Type::setFaceMeshType_1225_TypePair(FaceMeshType_1225_TypeChoicePair * FaceMeshType_1225_TypePairIn)
-{FaceMeshType_1225_TypePair = FaceMeshType_1225_TypePairIn;}
+void FaceMeshType_1181_Type::setFaceMeshType_1181_TypePair(FaceMeshType_1181_TypeChoicePair * FaceMeshType_1181_TypePairIn)
+{FaceMeshType_1181_TypePair = FaceMeshType_1181_TypePairIn;}
+FaceMeshType_1181_TypeChoicePair::FaceMeshType_1181_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class FaceMeshType_1225_TypeChoicePair
-
-*/
-
-FaceMeshType_1225_TypeChoicePair::FaceMeshType_1225_TypeChoicePair() {}
-
-FaceMeshType_1225_TypeChoicePair::FaceMeshType_1225_TypeChoicePair(
- whichOne FaceMeshType_1225_TypeTypeIn,
- FaceMeshType_1225_TypeVal FaceMeshType_1225_TypeValueIn)
+FaceMeshType_1181_TypeChoicePair::FaceMeshType_1181_TypeChoicePair(
+ whichOne FaceMeshType_1181_TypeTypeIn,
+ FaceMeshType_1181_TypeVal FaceMeshType_1181_TypeValueIn)
 {
-  FaceMeshType_1225_TypeType = FaceMeshType_1225_TypeTypeIn;
-  FaceMeshType_1225_TypeValue = FaceMeshType_1225_TypeValueIn;
+  FaceMeshType_1181_TypeType = FaceMeshType_1181_TypeTypeIn;
+  FaceMeshType_1181_TypeValue = FaceMeshType_1181_TypeValueIn;
 }
 
-FaceMeshType_1225_TypeChoicePair::~FaceMeshType_1225_TypeChoicePair()
+FaceMeshType_1181_TypeChoicePair::~FaceMeshType_1181_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (FaceMeshType_1225_TypeType == TrianglesVisibleE)
-    delete FaceMeshType_1225_TypeValue.TrianglesVisible;
-  else if (FaceMeshType_1225_TypeType == TrianglesVisibleBinaryE)
-    delete FaceMeshType_1225_TypeValue.TrianglesVisibleBinary;
-  else if (FaceMeshType_1225_TypeType == TrianglesHiddenE)
-    delete FaceMeshType_1225_TypeValue.TrianglesHidden;
-  else if (FaceMeshType_1225_TypeType == TrianglesHiddenBinaryE)
-    delete FaceMeshType_1225_TypeValue.TrianglesHiddenBinary;
+  if (FaceMeshType_1181_TypeType == TrianglesVisibleE)
+    delete FaceMeshType_1181_TypeValue.TrianglesVisible;
+  else if (FaceMeshType_1181_TypeType == TrianglesVisibleBinaryE)
+    delete FaceMeshType_1181_TypeValue.TrianglesVisibleBinary;
+  else if (FaceMeshType_1181_TypeType == TrianglesHiddenE)
+    delete FaceMeshType_1181_TypeValue.TrianglesHidden;
+  else if (FaceMeshType_1181_TypeType == TrianglesHiddenBinaryE)
+    delete FaceMeshType_1181_TypeValue.TrianglesHiddenBinary;
   #endif
 }
 
-void FaceMeshType_1225_TypeChoicePair::printSelf(FILE * outFile)
+void FaceMeshType_1181_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (FaceMeshType_1225_TypeType == TrianglesVisibleE)
+  if (FaceMeshType_1181_TypeType == TrianglesVisibleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesVisible");
-      FaceMeshType_1225_TypeValue.TrianglesVisible->printSelf(outFile);
+      FaceMeshType_1181_TypeValue.TrianglesVisible->printSelf(outFile);
       fprintf(outFile, "</TrianglesVisible>\n");
     }
-  else if (FaceMeshType_1225_TypeType == TrianglesVisibleBinaryE)
+  else if (FaceMeshType_1181_TypeType == TrianglesVisibleBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesVisibleBinary");
-      FaceMeshType_1225_TypeValue.TrianglesVisibleBinary->printSelf(outFile);
+      FaceMeshType_1181_TypeValue.TrianglesVisibleBinary->printSelf(outFile);
       fprintf(outFile, "</TrianglesVisibleBinary>\n");
     }
-  else if (FaceMeshType_1225_TypeType == TrianglesHiddenE)
+  else if (FaceMeshType_1181_TypeType == TrianglesHiddenE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesHidden");
-      FaceMeshType_1225_TypeValue.TrianglesHidden->printSelf(outFile);
+      FaceMeshType_1181_TypeValue.TrianglesHidden->printSelf(outFile);
       fprintf(outFile, "</TrianglesHidden>\n");
     }
-  else if (FaceMeshType_1225_TypeType == TrianglesHiddenBinaryE)
+  else if (FaceMeshType_1181_TypeType == TrianglesHiddenBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesHiddenBinary");
-      FaceMeshType_1225_TypeValue.TrianglesHiddenBinary->printSelf(outFile);
+      FaceMeshType_1181_TypeValue.TrianglesHiddenBinary->printSelf(outFile);
       fprintf(outFile, "</TrianglesHiddenBinary>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class FaceMeshType_1226_Type
+/* class FaceMeshType_1182_Type
 
 */
 
-FaceMeshType_1226_Type::FaceMeshType_1226_Type()
+FaceMeshType_1182_Type::FaceMeshType_1182_Type()
 {
-  FaceMeshType_1226_TypePair = 0;
+  FaceMeshType_1182_TypePair = 0;
 }
 
-FaceMeshType_1226_Type::FaceMeshType_1226_Type(
- FaceMeshType_1226_TypeChoicePair * FaceMeshType_1226_TypePairIn)
+FaceMeshType_1182_Type::FaceMeshType_1182_Type(
+ FaceMeshType_1182_TypeChoicePair * FaceMeshType_1182_TypePairIn)
 {
-  FaceMeshType_1226_TypePair = FaceMeshType_1226_TypePairIn;
+  FaceMeshType_1182_TypePair = FaceMeshType_1182_TypePairIn;
 }
 
-FaceMeshType_1226_Type::~FaceMeshType_1226_Type()
+FaceMeshType_1182_Type::~FaceMeshType_1182_Type()
 {
   #ifndef NODESTRUCT
-  delete FaceMeshType_1226_TypePair;
+  delete FaceMeshType_1182_TypePair;
   #endif
 }
 
-void FaceMeshType_1226_Type::printSelf(FILE * outFile)
+void FaceMeshType_1182_Type::printSelf(FILE * outFile)
 {
-  if (FaceMeshType_1226_TypePair)
+  if (FaceMeshType_1182_TypePair)
     {
-      FaceMeshType_1226_TypePair->printSelf(outFile);
+      FaceMeshType_1182_TypePair->printSelf(outFile);
     }
 }
 
-FaceMeshType_1226_TypeChoicePair * FaceMeshType_1226_Type::getFaceMeshType_1226_TypePair()
-{return FaceMeshType_1226_TypePair;}
+FaceMeshType_1182_TypeChoicePair * FaceMeshType_1182_Type::getFaceMeshType_1182_TypePair()
+{return FaceMeshType_1182_TypePair;}
 
-void FaceMeshType_1226_Type::setFaceMeshType_1226_TypePair(FaceMeshType_1226_TypeChoicePair * FaceMeshType_1226_TypePairIn)
-{FaceMeshType_1226_TypePair = FaceMeshType_1226_TypePairIn;}
+void FaceMeshType_1182_Type::setFaceMeshType_1182_TypePair(FaceMeshType_1182_TypeChoicePair * FaceMeshType_1182_TypePairIn)
+{FaceMeshType_1182_TypePair = FaceMeshType_1182_TypePairIn;}
+FaceMeshType_1182_TypeChoicePair::FaceMeshType_1182_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class FaceMeshType_1226_TypeChoicePair
-
-*/
-
-FaceMeshType_1226_TypeChoicePair::FaceMeshType_1226_TypeChoicePair() {}
-
-FaceMeshType_1226_TypeChoicePair::FaceMeshType_1226_TypeChoicePair(
- whichOne FaceMeshType_1226_TypeTypeIn,
- FaceMeshType_1226_TypeVal FaceMeshType_1226_TypeValueIn)
+FaceMeshType_1182_TypeChoicePair::FaceMeshType_1182_TypeChoicePair(
+ whichOne FaceMeshType_1182_TypeTypeIn,
+ FaceMeshType_1182_TypeVal FaceMeshType_1182_TypeValueIn)
 {
-  FaceMeshType_1226_TypeType = FaceMeshType_1226_TypeTypeIn;
-  FaceMeshType_1226_TypeValue = FaceMeshType_1226_TypeValueIn;
+  FaceMeshType_1182_TypeType = FaceMeshType_1182_TypeTypeIn;
+  FaceMeshType_1182_TypeValue = FaceMeshType_1182_TypeValueIn;
 }
 
-FaceMeshType_1226_TypeChoicePair::~FaceMeshType_1226_TypeChoicePair()
+FaceMeshType_1182_TypeChoicePair::~FaceMeshType_1182_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (FaceMeshType_1226_TypeType == TrianglesColorE)
-    delete FaceMeshType_1226_TypeValue.TrianglesColor;
-  else if (FaceMeshType_1226_TypeType == TrianglesColorBinaryE)
-    delete FaceMeshType_1226_TypeValue.TrianglesColorBinary;
+  if (FaceMeshType_1182_TypeType == TrianglesColorE)
+    delete FaceMeshType_1182_TypeValue.TrianglesColor;
+  else if (FaceMeshType_1182_TypeType == TrianglesColorBinaryE)
+    delete FaceMeshType_1182_TypeValue.TrianglesColorBinary;
   #endif
 }
 
-void FaceMeshType_1226_TypeChoicePair::printSelf(FILE * outFile)
+void FaceMeshType_1182_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (FaceMeshType_1226_TypeType == TrianglesColorE)
+  if (FaceMeshType_1182_TypeType == TrianglesColorE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesColor");
-      FaceMeshType_1226_TypeValue.TrianglesColor->printSelf(outFile);
+      FaceMeshType_1182_TypeValue.TrianglesColor->printSelf(outFile);
       fprintf(outFile, "</TrianglesColor>\n");
     }
-  else if (FaceMeshType_1226_TypeType == TrianglesColorBinaryE)
+  else if (FaceMeshType_1182_TypeType == TrianglesColorBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesColorBinary");
-      FaceMeshType_1226_TypeValue.TrianglesColorBinary->printSelf(outFile);
+      FaceMeshType_1182_TypeValue.TrianglesColorBinary->printSelf(outFile);
       fprintf(outFile, "</TrianglesColorBinary>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class PointCloudType_1227_Type
+/* class PointCloudType_1183_Type
 
 */
 
-PointCloudType_1227_Type::PointCloudType_1227_Type()
+PointCloudType_1183_Type::PointCloudType_1183_Type()
 {
-  PointCloudType_1227_TypePair = 0;
+  PointCloudType_1183_TypePair = 0;
 }
 
-PointCloudType_1227_Type::PointCloudType_1227_Type(
- PointCloudType_1227_TypeChoicePair * PointCloudType_1227_TypePairIn)
+PointCloudType_1183_Type::PointCloudType_1183_Type(
+ PointCloudType_1183_TypeChoicePair * PointCloudType_1183_TypePairIn)
 {
-  PointCloudType_1227_TypePair = PointCloudType_1227_TypePairIn;
+  PointCloudType_1183_TypePair = PointCloudType_1183_TypePairIn;
 }
 
-PointCloudType_1227_Type::~PointCloudType_1227_Type()
+PointCloudType_1183_Type::~PointCloudType_1183_Type()
 {
   #ifndef NODESTRUCT
-  delete PointCloudType_1227_TypePair;
+  delete PointCloudType_1183_TypePair;
   #endif
 }
 
-void PointCloudType_1227_Type::printSelf(FILE * outFile)
+void PointCloudType_1183_Type::printSelf(FILE * outFile)
 {
-  PointCloudType_1227_TypePair->printSelf(outFile);
+  PointCloudType_1183_TypePair->printSelf(outFile);
 }
 
-PointCloudType_1227_TypeChoicePair * PointCloudType_1227_Type::getPointCloudType_1227_TypePair()
-{return PointCloudType_1227_TypePair;}
+PointCloudType_1183_TypeChoicePair * PointCloudType_1183_Type::getPointCloudType_1183_TypePair()
+{return PointCloudType_1183_TypePair;}
 
-void PointCloudType_1227_Type::setPointCloudType_1227_TypePair(PointCloudType_1227_TypeChoicePair * PointCloudType_1227_TypePairIn)
-{PointCloudType_1227_TypePair = PointCloudType_1227_TypePairIn;}
+void PointCloudType_1183_Type::setPointCloudType_1183_TypePair(PointCloudType_1183_TypeChoicePair * PointCloudType_1183_TypePairIn)
+{PointCloudType_1183_TypePair = PointCloudType_1183_TypePairIn;}
+PointCloudType_1183_TypeChoicePair::PointCloudType_1183_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class PointCloudType_1227_TypeChoicePair
-
-*/
-
-PointCloudType_1227_TypeChoicePair::PointCloudType_1227_TypeChoicePair() {}
-
-PointCloudType_1227_TypeChoicePair::PointCloudType_1227_TypeChoicePair(
- whichOne PointCloudType_1227_TypeTypeIn,
- PointCloudType_1227_TypeVal PointCloudType_1227_TypeValueIn)
+PointCloudType_1183_TypeChoicePair::PointCloudType_1183_TypeChoicePair(
+ whichOne PointCloudType_1183_TypeTypeIn,
+ PointCloudType_1183_TypeVal PointCloudType_1183_TypeValueIn)
 {
-  PointCloudType_1227_TypeType = PointCloudType_1227_TypeTypeIn;
-  PointCloudType_1227_TypeValue = PointCloudType_1227_TypeValueIn;
+  PointCloudType_1183_TypeType = PointCloudType_1183_TypeTypeIn;
+  PointCloudType_1183_TypeValue = PointCloudType_1183_TypeValueIn;
 }
 
-PointCloudType_1227_TypeChoicePair::~PointCloudType_1227_TypeChoicePair()
+PointCloudType_1183_TypeChoicePair::~PointCloudType_1183_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (PointCloudType_1227_TypeType == PointsE)
-    delete PointCloudType_1227_TypeValue.Points;
-  else if (PointCloudType_1227_TypeType == PointsBinaryE)
-    delete PointCloudType_1227_TypeValue.PointsBinary;
+  if (PointCloudType_1183_TypeType == PointsE)
+    delete PointCloudType_1183_TypeValue.Points;
+  else if (PointCloudType_1183_TypeType == PointsBinaryE)
+    delete PointCloudType_1183_TypeValue.PointsBinary;
   #endif
 }
 
-void PointCloudType_1227_TypeChoicePair::printSelf(FILE * outFile)
+void PointCloudType_1183_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (PointCloudType_1227_TypeType == PointsE)
+  if (PointCloudType_1183_TypeType == PointsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Points");
-      PointCloudType_1227_TypeValue.Points->printSelf(outFile);
+      PointCloudType_1183_TypeValue.Points->printSelf(outFile);
       fprintf(outFile, "</Points>\n");
     }
-  else if (PointCloudType_1227_TypeType == PointsBinaryE)
+  else if (PointCloudType_1183_TypeType == PointsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsBinary");
-      PointCloudType_1227_TypeValue.PointsBinary->printSelf(outFile);
+      PointCloudType_1183_TypeValue.PointsBinary->printSelf(outFile);
       fprintf(outFile, "</PointsBinary>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class PointCloudType_1228_Type
+/* class PointCloudType_1184_Type
 
 */
 
-PointCloudType_1228_Type::PointCloudType_1228_Type()
+PointCloudType_1184_Type::PointCloudType_1184_Type()
 {
-  PointCloudType_1228_TypePair = 0;
+  PointCloudType_1184_TypePair = 0;
 }
 
-PointCloudType_1228_Type::PointCloudType_1228_Type(
- PointCloudType_1228_TypeChoicePair * PointCloudType_1228_TypePairIn)
+PointCloudType_1184_Type::PointCloudType_1184_Type(
+ PointCloudType_1184_TypeChoicePair * PointCloudType_1184_TypePairIn)
 {
-  PointCloudType_1228_TypePair = PointCloudType_1228_TypePairIn;
+  PointCloudType_1184_TypePair = PointCloudType_1184_TypePairIn;
 }
 
-PointCloudType_1228_Type::~PointCloudType_1228_Type()
+PointCloudType_1184_Type::~PointCloudType_1184_Type()
 {
   #ifndef NODESTRUCT
-  delete PointCloudType_1228_TypePair;
+  delete PointCloudType_1184_TypePair;
   #endif
 }
 
-void PointCloudType_1228_Type::printSelf(FILE * outFile)
+void PointCloudType_1184_Type::printSelf(FILE * outFile)
 {
-  if (PointCloudType_1228_TypePair)
+  if (PointCloudType_1184_TypePair)
     {
-      PointCloudType_1228_TypePair->printSelf(outFile);
+      PointCloudType_1184_TypePair->printSelf(outFile);
     }
 }
 
-PointCloudType_1228_TypeChoicePair * PointCloudType_1228_Type::getPointCloudType_1228_TypePair()
-{return PointCloudType_1228_TypePair;}
+PointCloudType_1184_TypeChoicePair * PointCloudType_1184_Type::getPointCloudType_1184_TypePair()
+{return PointCloudType_1184_TypePair;}
 
-void PointCloudType_1228_Type::setPointCloudType_1228_TypePair(PointCloudType_1228_TypeChoicePair * PointCloudType_1228_TypePairIn)
-{PointCloudType_1228_TypePair = PointCloudType_1228_TypePairIn;}
+void PointCloudType_1184_Type::setPointCloudType_1184_TypePair(PointCloudType_1184_TypeChoicePair * PointCloudType_1184_TypePairIn)
+{PointCloudType_1184_TypePair = PointCloudType_1184_TypePairIn;}
+PointCloudType_1184_TypeChoicePair::PointCloudType_1184_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class PointCloudType_1228_TypeChoicePair
-
-*/
-
-PointCloudType_1228_TypeChoicePair::PointCloudType_1228_TypeChoicePair() {}
-
-PointCloudType_1228_TypeChoicePair::PointCloudType_1228_TypeChoicePair(
- whichOne PointCloudType_1228_TypeTypeIn,
- PointCloudType_1228_TypeVal PointCloudType_1228_TypeValueIn)
+PointCloudType_1184_TypeChoicePair::PointCloudType_1184_TypeChoicePair(
+ whichOne PointCloudType_1184_TypeTypeIn,
+ PointCloudType_1184_TypeVal PointCloudType_1184_TypeValueIn)
 {
-  PointCloudType_1228_TypeType = PointCloudType_1228_TypeTypeIn;
-  PointCloudType_1228_TypeValue = PointCloudType_1228_TypeValueIn;
+  PointCloudType_1184_TypeType = PointCloudType_1184_TypeTypeIn;
+  PointCloudType_1184_TypeValue = PointCloudType_1184_TypeValueIn;
 }
 
-PointCloudType_1228_TypeChoicePair::~PointCloudType_1228_TypeChoicePair()
+PointCloudType_1184_TypeChoicePair::~PointCloudType_1184_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (PointCloudType_1228_TypeType == NormalsE)
-    delete PointCloudType_1228_TypeValue.Normals;
-  else if (PointCloudType_1228_TypeType == NormalsBinaryE)
-    delete PointCloudType_1228_TypeValue.NormalsBinary;
+  if (PointCloudType_1184_TypeType == NormalsE)
+    delete PointCloudType_1184_TypeValue.Normals;
+  else if (PointCloudType_1184_TypeType == NormalsBinaryE)
+    delete PointCloudType_1184_TypeValue.NormalsBinary;
   #endif
 }
 
-void PointCloudType_1228_TypeChoicePair::printSelf(FILE * outFile)
+void PointCloudType_1184_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (PointCloudType_1228_TypeType == NormalsE)
+  if (PointCloudType_1184_TypeType == NormalsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Normals");
-      PointCloudType_1228_TypeValue.Normals->printSelf(outFile);
+      PointCloudType_1184_TypeValue.Normals->printSelf(outFile);
       fprintf(outFile, "</Normals>\n");
     }
-  else if (PointCloudType_1228_TypeType == NormalsBinaryE)
+  else if (PointCloudType_1184_TypeType == NormalsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NormalsBinary");
-      PointCloudType_1228_TypeValue.NormalsBinary->printSelf(outFile);
+      PointCloudType_1184_TypeValue.NormalsBinary->printSelf(outFile);
       fprintf(outFile, "</NormalsBinary>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class PointCloudType_1229_Type
+/* class PointCloudType_1185_Type
 
 */
 
-PointCloudType_1229_Type::PointCloudType_1229_Type()
+PointCloudType_1185_Type::PointCloudType_1185_Type()
 {
-  PointCloudType_1229_TypePair = 0;
+  PointCloudType_1185_TypePair = 0;
 }
 
-PointCloudType_1229_Type::PointCloudType_1229_Type(
- PointCloudType_1229_TypeChoicePair * PointCloudType_1229_TypePairIn)
+PointCloudType_1185_Type::PointCloudType_1185_Type(
+ PointCloudType_1185_TypeChoicePair * PointCloudType_1185_TypePairIn)
 {
-  PointCloudType_1229_TypePair = PointCloudType_1229_TypePairIn;
+  PointCloudType_1185_TypePair = PointCloudType_1185_TypePairIn;
 }
 
-PointCloudType_1229_Type::~PointCloudType_1229_Type()
+PointCloudType_1185_Type::~PointCloudType_1185_Type()
 {
   #ifndef NODESTRUCT
-  delete PointCloudType_1229_TypePair;
+  delete PointCloudType_1185_TypePair;
   #endif
 }
 
-void PointCloudType_1229_Type::printSelf(FILE * outFile)
+void PointCloudType_1185_Type::printSelf(FILE * outFile)
 {
-  if (PointCloudType_1229_TypePair)
+  if (PointCloudType_1185_TypePair)
     {
-      PointCloudType_1229_TypePair->printSelf(outFile);
+      PointCloudType_1185_TypePair->printSelf(outFile);
     }
 }
 
-PointCloudType_1229_TypeChoicePair * PointCloudType_1229_Type::getPointCloudType_1229_TypePair()
-{return PointCloudType_1229_TypePair;}
+PointCloudType_1185_TypeChoicePair * PointCloudType_1185_Type::getPointCloudType_1185_TypePair()
+{return PointCloudType_1185_TypePair;}
 
-void PointCloudType_1229_Type::setPointCloudType_1229_TypePair(PointCloudType_1229_TypeChoicePair * PointCloudType_1229_TypePairIn)
-{PointCloudType_1229_TypePair = PointCloudType_1229_TypePairIn;}
+void PointCloudType_1185_Type::setPointCloudType_1185_TypePair(PointCloudType_1185_TypeChoicePair * PointCloudType_1185_TypePairIn)
+{PointCloudType_1185_TypePair = PointCloudType_1185_TypePairIn;}
+PointCloudType_1185_TypeChoicePair::PointCloudType_1185_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class PointCloudType_1229_TypeChoicePair
-
-*/
-
-PointCloudType_1229_TypeChoicePair::PointCloudType_1229_TypeChoicePair() {}
-
-PointCloudType_1229_TypeChoicePair::PointCloudType_1229_TypeChoicePair(
- whichOne PointCloudType_1229_TypeTypeIn,
- PointCloudType_1229_TypeVal PointCloudType_1229_TypeValueIn)
+PointCloudType_1185_TypeChoicePair::PointCloudType_1185_TypeChoicePair(
+ whichOne PointCloudType_1185_TypeTypeIn,
+ PointCloudType_1185_TypeVal PointCloudType_1185_TypeValueIn)
 {
-  PointCloudType_1229_TypeType = PointCloudType_1229_TypeTypeIn;
-  PointCloudType_1229_TypeValue = PointCloudType_1229_TypeValueIn;
+  PointCloudType_1185_TypeType = PointCloudType_1185_TypeTypeIn;
+  PointCloudType_1185_TypeValue = PointCloudType_1185_TypeValueIn;
 }
 
-PointCloudType_1229_TypeChoicePair::~PointCloudType_1229_TypeChoicePair()
+PointCloudType_1185_TypeChoicePair::~PointCloudType_1185_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (PointCloudType_1229_TypeType == PointsVisibleE)
-    delete PointCloudType_1229_TypeValue.PointsVisible;
-  else if (PointCloudType_1229_TypeType == PointsVisibleBinaryE)
-    delete PointCloudType_1229_TypeValue.PointsVisibleBinary;
-  else if (PointCloudType_1229_TypeType == PointsHiddenE)
-    delete PointCloudType_1229_TypeValue.PointsHidden;
-  else if (PointCloudType_1229_TypeType == PointsHiddenBinaryE)
-    delete PointCloudType_1229_TypeValue.PointsHiddenBinary;
+  if (PointCloudType_1185_TypeType == PointsVisibleE)
+    delete PointCloudType_1185_TypeValue.PointsVisible;
+  else if (PointCloudType_1185_TypeType == PointsVisibleBinaryE)
+    delete PointCloudType_1185_TypeValue.PointsVisibleBinary;
+  else if (PointCloudType_1185_TypeType == PointsHiddenE)
+    delete PointCloudType_1185_TypeValue.PointsHidden;
+  else if (PointCloudType_1185_TypeType == PointsHiddenBinaryE)
+    delete PointCloudType_1185_TypeValue.PointsHiddenBinary;
   #endif
 }
 
-void PointCloudType_1229_TypeChoicePair::printSelf(FILE * outFile)
+void PointCloudType_1185_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (PointCloudType_1229_TypeType == PointsVisibleE)
+  if (PointCloudType_1185_TypeType == PointsVisibleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsVisible");
-      PointCloudType_1229_TypeValue.PointsVisible->printSelf(outFile);
+      PointCloudType_1185_TypeValue.PointsVisible->printSelf(outFile);
       fprintf(outFile, "</PointsVisible>\n");
     }
-  else if (PointCloudType_1229_TypeType == PointsVisibleBinaryE)
+  else if (PointCloudType_1185_TypeType == PointsVisibleBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsVisibleBinary");
-      PointCloudType_1229_TypeValue.PointsVisibleBinary->printSelf(outFile);
+      PointCloudType_1185_TypeValue.PointsVisibleBinary->printSelf(outFile);
       fprintf(outFile, "</PointsVisibleBinary>\n");
     }
-  else if (PointCloudType_1229_TypeType == PointsHiddenE)
+  else if (PointCloudType_1185_TypeType == PointsHiddenE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsHidden");
-      PointCloudType_1229_TypeValue.PointsHidden->printSelf(outFile);
+      PointCloudType_1185_TypeValue.PointsHidden->printSelf(outFile);
       fprintf(outFile, "</PointsHidden>\n");
     }
-  else if (PointCloudType_1229_TypeType == PointsHiddenBinaryE)
+  else if (PointCloudType_1185_TypeType == PointsHiddenBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsHiddenBinary");
-      PointCloudType_1229_TypeValue.PointsHiddenBinary->printSelf(outFile);
+      PointCloudType_1185_TypeValue.PointsHiddenBinary->printSelf(outFile);
       fprintf(outFile, "</PointsHiddenBinary>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class PointCloudType_1230_Type
+/* class PointCloudType_1186_Type
 
 */
 
-PointCloudType_1230_Type::PointCloudType_1230_Type()
+PointCloudType_1186_Type::PointCloudType_1186_Type()
 {
-  PointCloudType_1230_TypePair = 0;
+  PointCloudType_1186_TypePair = 0;
 }
 
-PointCloudType_1230_Type::PointCloudType_1230_Type(
- PointCloudType_1230_TypeChoicePair * PointCloudType_1230_TypePairIn)
+PointCloudType_1186_Type::PointCloudType_1186_Type(
+ PointCloudType_1186_TypeChoicePair * PointCloudType_1186_TypePairIn)
 {
-  PointCloudType_1230_TypePair = PointCloudType_1230_TypePairIn;
+  PointCloudType_1186_TypePair = PointCloudType_1186_TypePairIn;
 }
 
-PointCloudType_1230_Type::~PointCloudType_1230_Type()
+PointCloudType_1186_Type::~PointCloudType_1186_Type()
 {
   #ifndef NODESTRUCT
-  delete PointCloudType_1230_TypePair;
+  delete PointCloudType_1186_TypePair;
   #endif
 }
 
-void PointCloudType_1230_Type::printSelf(FILE * outFile)
+void PointCloudType_1186_Type::printSelf(FILE * outFile)
 {
-  if (PointCloudType_1230_TypePair)
+  if (PointCloudType_1186_TypePair)
     {
-      PointCloudType_1230_TypePair->printSelf(outFile);
+      PointCloudType_1186_TypePair->printSelf(outFile);
     }
 }
 
-PointCloudType_1230_TypeChoicePair * PointCloudType_1230_Type::getPointCloudType_1230_TypePair()
-{return PointCloudType_1230_TypePair;}
+PointCloudType_1186_TypeChoicePair * PointCloudType_1186_Type::getPointCloudType_1186_TypePair()
+{return PointCloudType_1186_TypePair;}
 
-void PointCloudType_1230_Type::setPointCloudType_1230_TypePair(PointCloudType_1230_TypeChoicePair * PointCloudType_1230_TypePairIn)
-{PointCloudType_1230_TypePair = PointCloudType_1230_TypePairIn;}
+void PointCloudType_1186_Type::setPointCloudType_1186_TypePair(PointCloudType_1186_TypeChoicePair * PointCloudType_1186_TypePairIn)
+{PointCloudType_1186_TypePair = PointCloudType_1186_TypePairIn;}
+PointCloudType_1186_TypeChoicePair::PointCloudType_1186_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class PointCloudType_1230_TypeChoicePair
-
-*/
-
-PointCloudType_1230_TypeChoicePair::PointCloudType_1230_TypeChoicePair() {}
-
-PointCloudType_1230_TypeChoicePair::PointCloudType_1230_TypeChoicePair(
- whichOne PointCloudType_1230_TypeTypeIn,
- PointCloudType_1230_TypeVal PointCloudType_1230_TypeValueIn)
+PointCloudType_1186_TypeChoicePair::PointCloudType_1186_TypeChoicePair(
+ whichOne PointCloudType_1186_TypeTypeIn,
+ PointCloudType_1186_TypeVal PointCloudType_1186_TypeValueIn)
 {
-  PointCloudType_1230_TypeType = PointCloudType_1230_TypeTypeIn;
-  PointCloudType_1230_TypeValue = PointCloudType_1230_TypeValueIn;
+  PointCloudType_1186_TypeType = PointCloudType_1186_TypeTypeIn;
+  PointCloudType_1186_TypeValue = PointCloudType_1186_TypeValueIn;
 }
 
-PointCloudType_1230_TypeChoicePair::~PointCloudType_1230_TypeChoicePair()
+PointCloudType_1186_TypeChoicePair::~PointCloudType_1186_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (PointCloudType_1230_TypeType == PointsColorE)
-    delete PointCloudType_1230_TypeValue.PointsColor;
-  else if (PointCloudType_1230_TypeType == PointsColorBinaryE)
-    delete PointCloudType_1230_TypeValue.PointsColorBinary;
+  if (PointCloudType_1186_TypeType == PointsColorE)
+    delete PointCloudType_1186_TypeValue.PointsColor;
+  else if (PointCloudType_1186_TypeType == PointsColorBinaryE)
+    delete PointCloudType_1186_TypeValue.PointsColorBinary;
   #endif
 }
 
-void PointCloudType_1230_TypeChoicePair::printSelf(FILE * outFile)
+void PointCloudType_1186_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (PointCloudType_1230_TypeType == PointsColorE)
+  if (PointCloudType_1186_TypeType == PointsColorE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsColor");
-      PointCloudType_1230_TypeValue.PointsColor->printSelf(outFile);
+      PointCloudType_1186_TypeValue.PointsColor->printSelf(outFile);
       fprintf(outFile, "</PointsColor>\n");
     }
-  else if (PointCloudType_1230_TypeType == PointsColorBinaryE)
+  else if (PointCloudType_1186_TypeType == PointsColorBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PointsColorBinary");
-      PointCloudType_1230_TypeValue.PointsColorBinary->printSelf(outFile);
+      PointCloudType_1186_TypeValue.PointsColorBinary->printSelf(outFile);
       fprintf(outFile, "</PointsColorBinary>\n");
     }
 }

@@ -16,6 +16,7 @@ class AlgorithmType;
 class AlgorithmTypeLisd;
 class AlgorithmsType;
 class AlignmentFeatureType;
+class AlignmentFeatureTypeChoicePair;
 class AlignmentOperationBaseType;
 class AlignmentOperationBaseTypeLisd;
 class AlignmentOperationsType;
@@ -63,6 +64,7 @@ class DefiningPointNominalTypeLisd;
 class DegreeOfFreedomEnumType;
 class DegreeOfFreedomEnumTypeLisd;
 class DegreesOfFreedomType;
+class DegreesOfFreedomTypeChoicePair;
 class DiameterModifierEnumType;
 class DimensionDeterminationEnumType;
 class DimensionModifierEnumType;
@@ -190,61 +192,57 @@ class VirtualMeasurementType;
 class ZoneDataSetType;
 class ZoneDataType;
 class ZoneDataTypeLisd;
-class AlgorithmType_1008_Type;
-class AlgorithmType_1008_TypeChoicePair;
-class AlignmentFeatur_1009_Type;
-class AlignmentFeatur_1009_TypeChoicePair;
-class AngularToleranc_1010_Type;
-class AngularToleranc_1010_TypeChoicePair;
-class AngularToleranc_1011_Type;
-class AngularToleranc_1011_TypeChoicePair;
-class AreaToleranceTy_1012_Type;
-class AreaToleranceTy_1012_TypeChoicePair;
-class DatumWithPreced_1013_Type;
-class DatumWithPreced_1013_TypeChoicePair;
-class DegreesOfFreedo_1014_Type;
-class DegreesOfFreedo_1014_TypeChoicePair;
-class DirectionalOffs_1015_Type;
-class DirectionalOffs_1015_TypeChoicePair;
-class ForceToleranceT_1016_Type;
-class ForceToleranceT_1016_TypeChoicePair;
-class LinearTolerance_1017_Type;
-class LinearTolerance_1017_TypeChoicePair;
-class LinearTolerance_1018_Type;
-class LinearTolerance_1018_TypeChoicePair;
-class MassToleranceTy_1019_Type;
-class MassToleranceTy_1019_TypeChoicePair;
-class MaterialType_1020_Type;
-class MaterialType_1020_TypeChoicePair;
-class PressureToleran_1021_Type;
-class PressureToleran_1021_TypeChoicePair;
-class SequencedDatumT_1022_Type;
-class SequencedDatumT_1022_TypeChoicePair;
-class SpeedToleranceT_1023_Type;
-class SpeedToleranceT_1023_TypeChoicePair;
-class SubstituteFeatu_1024_Type;
-class SubstituteFeatu_1024_TypeChoicePair;
-class TemperatureTole_1025_Type;
-class TemperatureTole_1025_TypeChoicePair;
-class TimeToleranceTy_1026_Type;
-class TimeToleranceTy_1026_TypeChoicePair;
-class ToleranceZonePe_1027_Type;
-class ToleranceZonePe_1027_TypeChoicePair;
-class AlgorithmType_1_1028_Type;
-class AlgorithmType_1_1029_Type;
-class AngularToleranc_1030_Type;
-class AngularToleranc_1031_Type;
-class AreaToleranceTy_1032_Type;
-class ForceToleranceT_1033_Type;
-class LinearTolerance_1034_Type;
-class LinearTolerance_1035_Type;
-class LinearTolerance_1036_Type;
-class MassToleranceTy_1037_Type;
-class PressureToleran_1038_Type;
-class SpeedToleranceT_1039_Type;
-class TemperatureTole_1040_Type;
-class TimeToleranceTy_1041_Type;
-class LinearTolerance_1042_Type;
+class AlgorithmType_1006_Type;
+class AlgorithmType_1006_TypeChoicePair;
+class AngularToleranc_1007_Type;
+class AngularToleranc_1007_TypeChoicePair;
+class AngularToleranc_1008_Type;
+class AngularToleranc_1008_TypeChoicePair;
+class AreaToleranceTy_1009_Type;
+class AreaToleranceTy_1009_TypeChoicePair;
+class DatumWithPreced_1010_Type;
+class DatumWithPreced_1010_TypeChoicePair;
+class DirectionalOffs_1011_Type;
+class DirectionalOffs_1011_TypeChoicePair;
+class ForceToleranceT_1012_Type;
+class ForceToleranceT_1012_TypeChoicePair;
+class LinearTolerance_1013_Type;
+class LinearTolerance_1013_TypeChoicePair;
+class LinearTolerance_1014_Type;
+class LinearTolerance_1014_TypeChoicePair;
+class MassToleranceTy_1015_Type;
+class MassToleranceTy_1015_TypeChoicePair;
+class MaterialType_1016_Type;
+class MaterialType_1016_TypeChoicePair;
+class PressureToleran_1017_Type;
+class PressureToleran_1017_TypeChoicePair;
+class SequencedDatumT_1018_Type;
+class SequencedDatumT_1018_TypeChoicePair;
+class SpeedToleranceT_1019_Type;
+class SpeedToleranceT_1019_TypeChoicePair;
+class SubstituteFeatu_1020_Type;
+class SubstituteFeatu_1020_TypeChoicePair;
+class TemperatureTole_1021_Type;
+class TemperatureTole_1021_TypeChoicePair;
+class TimeToleranceTy_1022_Type;
+class TimeToleranceTy_1022_TypeChoicePair;
+class ToleranceZonePe_1023_Type;
+class ToleranceZonePe_1023_TypeChoicePair;
+class AlgorithmType_1_1024_Type;
+class AlgorithmType_1_1025_Type;
+class AngularToleranc_1026_Type;
+class AngularToleranc_1027_Type;
+class AreaToleranceTy_1028_Type;
+class ForceToleranceT_1029_Type;
+class LinearTolerance_1030_Type;
+class LinearTolerance_1031_Type;
+class LinearTolerance_1032_Type;
+class MassToleranceTy_1033_Type;
+class PressureToleran_1034_Type;
+class SpeedToleranceT_1035_Type;
+class TemperatureTole_1036_Type;
+class TimeToleranceTy_1037_Type;
+class LinearTolerance_1038_Type;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -319,13 +317,13 @@ public:
   AlgorithmType();
   AlgorithmType(
     AttributesType * AttributesIn,
-    AlgorithmType_1008_Type * AlgorithmType_1008In,
+    AlgorithmType_1006_Type * AlgorithmType_1006In,
     XmlString * NameIn,
     XmlString * DescriptionIn);
   AlgorithmType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
-    AlgorithmType_1008_Type * AlgorithmType_1008In,
+    AlgorithmType_1006_Type * AlgorithmType_1006In,
     XmlString * NameIn,
     XmlString * DescriptionIn);
   ~AlgorithmType();
@@ -337,8 +335,8 @@ public:
 
   AttributesType * getAttributes();
   void setAttributes(AttributesType * AttributesIn);
-  AlgorithmType_1008_Type * getAlgorithmType_1008();
-  void setAlgorithmType_1008(AlgorithmType_1008_Type * AlgorithmType_1008In);
+  AlgorithmType_1006_Type * getAlgorithmType_1006();
+  void setAlgorithmType_1006(AlgorithmType_1006_Type * AlgorithmType_1006In);
   XmlString * getName();
   void setName(XmlString * NameIn);
   XmlString * getDescription();
@@ -347,7 +345,7 @@ public:
 protected:
   QIFIdType * id;
   AttributesType * Attributes;
-  AlgorithmType_1008_Type * AlgorithmType_1008;
+  AlgorithmType_1006_Type * AlgorithmType_1006;
   XmlString * Name;
   XmlString * Description;
 };
@@ -401,15 +399,43 @@ class AlignmentFeatureType :
 public:
   AlignmentFeatureType();
   AlignmentFeatureType(
-    AlignmentFeatur_1009_Type * AlignmentFeatur_1009In);
+    AlignmentFeatureTypeChoicePair * AlignmentFeatureTypePairIn);
   ~AlignmentFeatureType();
   void printSelf(FILE * outFile);
 
-  AlignmentFeatur_1009_Type * getAlignmentFeatur_1009();
-  void setAlignmentFeatur_1009(AlignmentFeatur_1009_Type * AlignmentFeatur_1009In);
+  AlignmentFeatureTypeChoicePair * getAlignmentFeatureTypePair();
+  void setAlignmentFeatureTypePair(AlignmentFeatureTypeChoicePair * AlignmentFeatureTypePairIn);
 
 protected:
-  AlignmentFeatur_1009_Type * AlignmentFeatur_1009;
+  AlignmentFeatureTypeChoicePair * AlignmentFeatureTypePair;
+};
+
+/* ***************************************************************** */
+
+union AlignmentFeatureTypeVal
+{
+  QIFReferenceFullType * DatumDefinitionId;
+  BaseFeatureType * BaseFeature;
+};
+
+/* ***************************************************************** */
+
+class AlignmentFeatureTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    DatumDefinitionIdE,
+    BaseFeatureE };
+  AlignmentFeatureTypeChoicePair();
+  AlignmentFeatureTypeChoicePair(
+    whichOne AlignmentFeatureTypeTypeIn,
+    AlignmentFeatureTypeVal AlignmentFeatureTypeValueIn);
+  ~AlignmentFeatureTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne AlignmentFeatureTypeType;
+  AlignmentFeatureTypeVal AlignmentFeatureTypeValue;
 };
 
 /* ***************************************************************** */
@@ -522,11 +548,11 @@ public:
   AngularToleranceDefinitionType();
   AngularToleranceDefinitionType(
     AttributesType * AttributesIn,
-    AngularToleranc_1010_Type * AngularToleranc_1010In);
+    AngularToleranc_1007_Type * AngularToleranc_1007In);
   AngularToleranceDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
-    AngularToleranc_1010_Type * AngularToleranc_1010In);
+    AngularToleranc_1007_Type * AngularToleranc_1007In);
   ~AngularToleranceDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -536,13 +562,13 @@ public:
 
   AttributesType * getAttributes();
   void setAttributes(AttributesType * AttributesIn);
-  AngularToleranc_1010_Type * getAngularToleranc_1010();
-  void setAngularToleranc_1010(AngularToleranc_1010_Type * AngularToleranc_1010In);
+  AngularToleranc_1007_Type * getAngularToleranc_1007();
+  void setAngularToleranc_1007(AngularToleranc_1007_Type * AngularToleranc_1007In);
 
 protected:
   QIFIdType * id;
   AttributesType * Attributes;
-  AngularToleranc_1010_Type * AngularToleranc_1010;
+  AngularToleranc_1007_Type * AngularToleranc_1007;
 };
 
 /* ***************************************************************** */
@@ -553,21 +579,21 @@ class AngularToleranceType :
 public:
   AngularToleranceType();
   AngularToleranceType(
-    AngularToleranc_1011_Type * AngularToleranc_1011In,
+    AngularToleranc_1008_Type * AngularToleranc_1008In,
     XmlBoolean * DefinedAsLimitIn,
     AttributesType * AttributesIn);
   ~AngularToleranceType();
   void printSelf(FILE * outFile);
 
-  AngularToleranc_1011_Type * getAngularToleranc_1011();
-  void setAngularToleranc_1011(AngularToleranc_1011_Type * AngularToleranc_1011In);
+  AngularToleranc_1008_Type * getAngularToleranc_1008();
+  void setAngularToleranc_1008(AngularToleranc_1008_Type * AngularToleranc_1008In);
   XmlBoolean * getDefinedAsLimit();
   void setDefinedAsLimit(XmlBoolean * DefinedAsLimitIn);
   AttributesType * getAttributes();
   void setAttributes(AttributesType * AttributesIn);
 
 protected:
-  AngularToleranc_1011_Type * AngularToleranc_1011;
+  AngularToleranc_1008_Type * AngularToleranc_1008;
   XmlBoolean * DefinedAsLimit;
   AttributesType * Attributes;
 };
@@ -580,21 +606,21 @@ class AreaToleranceType :
 public:
   AreaToleranceType();
   AreaToleranceType(
-    AreaToleranceTy_1012_Type * AreaToleranceTy_1012In,
+    AreaToleranceTy_1009_Type * AreaToleranceTy_1009In,
     XmlBoolean * DefinedAsLimitIn,
     AttributesType * AttributesIn);
   ~AreaToleranceType();
   void printSelf(FILE * outFile);
 
-  AreaToleranceTy_1012_Type * getAreaToleranceTy_1012();
-  void setAreaToleranceTy_1012(AreaToleranceTy_1012_Type * AreaToleranceTy_1012In);
+  AreaToleranceTy_1009_Type * getAreaToleranceTy_1009();
+  void setAreaToleranceTy_1009(AreaToleranceTy_1009_Type * AreaToleranceTy_1009In);
   XmlBoolean * getDefinedAsLimit();
   void setDefinedAsLimit(XmlBoolean * DefinedAsLimitIn);
   AttributesType * getAttributes();
   void setAttributes(AttributesType * AttributesIn);
 
 protected:
-  AreaToleranceTy_1012_Type * AreaToleranceTy_1012;
+  AreaToleranceTy_1009_Type * AreaToleranceTy_1009;
   XmlBoolean * DefinedAsLimit;
   AttributesType * Attributes;
 };
@@ -1402,18 +1428,18 @@ class DatumWithPrecedenceType :
 public:
   DatumWithPrecedenceType();
   DatumWithPrecedenceType(
-    DatumWithPreced_1013_Type * DatumWithPreced_1013In,
+    DatumWithPreced_1010_Type * DatumWithPreced_1010In,
     PrecedenceType * PrecedenceIn);
   ~DatumWithPrecedenceType();
   void printSelf(FILE * outFile);
 
-  DatumWithPreced_1013_Type * getDatumWithPreced_1013();
-  void setDatumWithPreced_1013(DatumWithPreced_1013_Type * DatumWithPreced_1013In);
+  DatumWithPreced_1010_Type * getDatumWithPreced_1010();
+  void setDatumWithPreced_1010(DatumWithPreced_1010_Type * DatumWithPreced_1010In);
   PrecedenceType * getPrecedence();
   void setPrecedence(PrecedenceType * PrecedenceIn);
 
 protected:
-  DatumWithPreced_1013_Type * DatumWithPreced_1013;
+  DatumWithPreced_1010_Type * DatumWithPreced_1010;
   PrecedenceType * Precedence;
 };
 
@@ -1498,10 +1524,10 @@ class DegreesOfFreedomType :
 public:
   DegreesOfFreedomType();
   DegreesOfFreedomType(
-    DegreesOfFreedo_1014_Type * DegreesOfFreedo_1014In);
+    DegreesOfFreedomTypeChoicePair * DegreesOfFreedomTypePairIn);
   DegreesOfFreedomType(
     NaturalType * nIn,
-    DegreesOfFreedo_1014_Type * DegreesOfFreedo_1014In);
+    DegreesOfFreedomTypeChoicePair * DegreesOfFreedomTypePairIn);
   ~DegreesOfFreedomType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -1509,12 +1535,40 @@ public:
   NaturalType * getn();
   void setn(NaturalType * nIn);
 
-  DegreesOfFreedo_1014_Type * getDegreesOfFreedo_1014();
-  void setDegreesOfFreedo_1014(DegreesOfFreedo_1014_Type * DegreesOfFreedo_1014In);
+  DegreesOfFreedomTypeChoicePair * getDegreesOfFreedomTypePair();
+  void setDegreesOfFreedomTypePair(DegreesOfFreedomTypeChoicePair * DegreesOfFreedomTypePairIn);
 
 protected:
   NaturalType * n;
-  DegreesOfFreedo_1014_Type * DegreesOfFreedo_1014;
+  DegreesOfFreedomTypeChoicePair * DegreesOfFreedomTypePair;
+};
+
+/* ***************************************************************** */
+
+union DegreesOfFreedomTypeVal
+{
+  DegreeOfFreedomEnumTypeLisd * DegreeOfFreedom;
+  ISODegreeOfFreedomEnumTypeLisd * ISODegreeOfFreedom;
+};
+
+/* ***************************************************************** */
+
+class DegreesOfFreedomTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    DegreeOfFreedomE,
+    ISODegreeOfFreedomE };
+  DegreesOfFreedomTypeChoicePair();
+  DegreesOfFreedomTypeChoicePair(
+    whichOne DegreesOfFreedomTypeTypeIn,
+    DegreesOfFreedomTypeVal DegreesOfFreedomTypeValueIn);
+  ~DegreesOfFreedomTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne DegreesOfFreedomTypeType;
+  DegreesOfFreedomTypeVal DegreesOfFreedomTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1624,18 +1678,18 @@ public:
   DirectionalOffsetType();
   DirectionalOffsetType(
     LinearValueType * OffsetIn,
-    DirectionalOffs_1015_Type * DirectionalOffs_1015In);
+    DirectionalOffs_1011_Type * DirectionalOffs_1011In);
   ~DirectionalOffsetType();
   void printSelf(FILE * outFile);
 
   LinearValueType * getOffset();
   void setOffset(LinearValueType * OffsetIn);
-  DirectionalOffs_1015_Type * getDirectionalOffs_1015();
-  void setDirectionalOffs_1015(DirectionalOffs_1015_Type * DirectionalOffs_1015In);
+  DirectionalOffs_1011_Type * getDirectionalOffs_1011();
+  void setDirectionalOffs_1011(DirectionalOffs_1011_Type * DirectionalOffs_1011In);
 
 protected:
   LinearValueType * Offset;
-  DirectionalOffs_1015_Type * DirectionalOffs_1015;
+  DirectionalOffs_1011_Type * DirectionalOffs_1011;
 };
 
 /* ***************************************************************** */
@@ -1950,21 +2004,21 @@ class ForceToleranceType :
 public:
   ForceToleranceType();
   ForceToleranceType(
-    ForceToleranceT_1016_Type * ForceToleranceT_1016In,
+    ForceToleranceT_1012_Type * ForceToleranceT_1012In,
     XmlBoolean * DefinedAsLimitIn,
     AttributesType * AttributesIn);
   ~ForceToleranceType();
   void printSelf(FILE * outFile);
 
-  ForceToleranceT_1016_Type * getForceToleranceT_1016();
-  void setForceToleranceT_1016(ForceToleranceT_1016_Type * ForceToleranceT_1016In);
+  ForceToleranceT_1012_Type * getForceToleranceT_1012();
+  void setForceToleranceT_1012(ForceToleranceT_1012_Type * ForceToleranceT_1012In);
   XmlBoolean * getDefinedAsLimit();
   void setDefinedAsLimit(XmlBoolean * DefinedAsLimitIn);
   AttributesType * getAttributes();
   void setAttributes(AttributesType * AttributesIn);
 
 protected:
-  ForceToleranceT_1016_Type * ForceToleranceT_1016;
+  ForceToleranceT_1012_Type * ForceToleranceT_1012;
   XmlBoolean * DefinedAsLimit;
   AttributesType * Attributes;
 };
@@ -2176,11 +2230,11 @@ public:
   LinearToleranceDefinitionType();
   LinearToleranceDefinitionType(
     AttributesType * AttributesIn,
-    LinearTolerance_1017_Type * LinearTolerance_1017In);
+    LinearTolerance_1013_Type * LinearTolerance_1013In);
   LinearToleranceDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
-    LinearTolerance_1017_Type * LinearTolerance_1017In);
+    LinearTolerance_1013_Type * LinearTolerance_1013In);
   ~LinearToleranceDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -2190,13 +2244,13 @@ public:
 
   AttributesType * getAttributes();
   void setAttributes(AttributesType * AttributesIn);
-  LinearTolerance_1017_Type * getLinearTolerance_1017();
-  void setLinearTolerance_1017(LinearTolerance_1017_Type * LinearTolerance_1017In);
+  LinearTolerance_1013_Type * getLinearTolerance_1013();
+  void setLinearTolerance_1013(LinearTolerance_1013_Type * LinearTolerance_1013In);
 
 protected:
   QIFIdType * id;
   AttributesType * Attributes;
-  LinearTolerance_1017_Type * LinearTolerance_1017;
+  LinearTolerance_1013_Type * LinearTolerance_1013;
 };
 
 /* ***************************************************************** */
@@ -2207,21 +2261,21 @@ class LinearToleranceType :
 public:
   LinearToleranceType();
   LinearToleranceType(
-    LinearTolerance_1018_Type * LinearTolerance_1018In,
+    LinearTolerance_1014_Type * LinearTolerance_1014In,
     XmlBoolean * DefinedAsLimitIn,
     AttributesType * AttributesIn);
   ~LinearToleranceType();
   void printSelf(FILE * outFile);
 
-  LinearTolerance_1018_Type * getLinearTolerance_1018();
-  void setLinearTolerance_1018(LinearTolerance_1018_Type * LinearTolerance_1018In);
+  LinearTolerance_1014_Type * getLinearTolerance_1014();
+  void setLinearTolerance_1014(LinearTolerance_1014_Type * LinearTolerance_1014In);
   XmlBoolean * getDefinedAsLimit();
   void setDefinedAsLimit(XmlBoolean * DefinedAsLimitIn);
   AttributesType * getAttributes();
   void setAttributes(AttributesType * AttributesIn);
 
 protected:
-  LinearTolerance_1018_Type * LinearTolerance_1018;
+  LinearTolerance_1014_Type * LinearTolerance_1014;
   XmlBoolean * DefinedAsLimit;
   AttributesType * Attributes;
 };
@@ -2317,21 +2371,21 @@ class MassToleranceType :
 public:
   MassToleranceType();
   MassToleranceType(
-    MassToleranceTy_1019_Type * MassToleranceTy_1019In,
+    MassToleranceTy_1015_Type * MassToleranceTy_1015In,
     XmlBoolean * DefinedAsLimitIn,
     AttributesType * AttributesIn);
   ~MassToleranceType();
   void printSelf(FILE * outFile);
 
-  MassToleranceTy_1019_Type * getMassToleranceTy_1019();
-  void setMassToleranceTy_1019(MassToleranceTy_1019_Type * MassToleranceTy_1019In);
+  MassToleranceTy_1015_Type * getMassToleranceTy_1015();
+  void setMassToleranceTy_1015(MassToleranceTy_1015_Type * MassToleranceTy_1015In);
   XmlBoolean * getDefinedAsLimit();
   void setDefinedAsLimit(XmlBoolean * DefinedAsLimitIn);
   AttributesType * getAttributes();
   void setAttributes(AttributesType * AttributesIn);
 
 protected:
-  MassToleranceTy_1019_Type * MassToleranceTy_1019;
+  MassToleranceTy_1015_Type * MassToleranceTy_1015;
   XmlBoolean * DefinedAsLimit;
   AttributesType * Attributes;
 };
@@ -2377,7 +2431,7 @@ public:
   MaterialType();
   MaterialType(
     AttributesType * AttributesIn,
-    MaterialType_1020_Type * MaterialType_1020In,
+    MaterialType_1016_Type * MaterialType_1016In,
     XmlString * DescriptionIn,
     XmlDouble * MassDensityIn,
     XmlDouble * PoissonsRatioIn,
@@ -2392,7 +2446,7 @@ public:
     NaturalType * IndexIn,
     XmlToken * MaterialNameIn,
     AttributesType * AttributesIn,
-    MaterialType_1020_Type * MaterialType_1020In,
+    MaterialType_1016_Type * MaterialType_1016In,
     XmlString * DescriptionIn,
     XmlDouble * MassDensityIn,
     XmlDouble * PoissonsRatioIn,
@@ -2414,8 +2468,8 @@ public:
 
   AttributesType * getAttributes();
   void setAttributes(AttributesType * AttributesIn);
-  MaterialType_1020_Type * getMaterialType_1020();
-  void setMaterialType_1020(MaterialType_1020_Type * MaterialType_1020In);
+  MaterialType_1016_Type * getMaterialType_1016();
+  void setMaterialType_1016(MaterialType_1016_Type * MaterialType_1016In);
   XmlString * getDescription();
   void setDescription(XmlString * DescriptionIn);
   XmlDouble * getMassDensity();
@@ -2441,7 +2495,7 @@ protected:
   NaturalType * Index;
   XmlToken * MaterialName;
   AttributesType * Attributes;
-  MaterialType_1020_Type * MaterialType_1020;
+  MaterialType_1016_Type * MaterialType_1016;
   XmlString * Description;
   XmlDouble * MassDensity;
   XmlDouble * PoissonsRatio;
@@ -3262,21 +3316,21 @@ class PressureToleranceType :
 public:
   PressureToleranceType();
   PressureToleranceType(
-    PressureToleran_1021_Type * PressureToleran_1021In,
+    PressureToleran_1017_Type * PressureToleran_1017In,
     XmlBoolean * DefinedAsLimitIn,
     AttributesType * AttributesIn);
   ~PressureToleranceType();
   void printSelf(FILE * outFile);
 
-  PressureToleran_1021_Type * getPressureToleran_1021();
-  void setPressureToleran_1021(PressureToleran_1021_Type * PressureToleran_1021In);
+  PressureToleran_1017_Type * getPressureToleran_1017();
+  void setPressureToleran_1017(PressureToleran_1017_Type * PressureToleran_1017In);
   XmlBoolean * getDefinedAsLimit();
   void setDefinedAsLimit(XmlBoolean * DefinedAsLimitIn);
   AttributesType * getAttributes();
   void setAttributes(AttributesType * AttributesIn);
 
 protected:
-  PressureToleran_1021_Type * PressureToleran_1021;
+  PressureToleran_1017_Type * PressureToleran_1017;
   XmlBoolean * DefinedAsLimit;
   AttributesType * Attributes;
 };
@@ -3442,18 +3496,18 @@ class SequencedDatumType :
 public:
   SequencedDatumType();
   SequencedDatumType(
-    SequencedDatumT_1022_Type * SequencedDatumT_1022In,
+    SequencedDatumT_1018_Type * SequencedDatumT_1018In,
     NaturalType * SequenceNumberIn);
   ~SequencedDatumType();
   void printSelf(FILE * outFile);
 
-  SequencedDatumT_1022_Type * getSequencedDatumT_1022();
-  void setSequencedDatumT_1022(SequencedDatumT_1022_Type * SequencedDatumT_1022In);
+  SequencedDatumT_1018_Type * getSequencedDatumT_1018();
+  void setSequencedDatumT_1018(SequencedDatumT_1018_Type * SequencedDatumT_1018In);
   NaturalType * getSequenceNumber();
   void setSequenceNumber(NaturalType * SequenceNumberIn);
 
 protected:
-  SequencedDatumT_1022_Type * SequencedDatumT_1022;
+  SequencedDatumT_1018_Type * SequencedDatumT_1018;
   NaturalType * SequenceNumber;
 };
 
@@ -3620,21 +3674,21 @@ class SpeedToleranceType :
 public:
   SpeedToleranceType();
   SpeedToleranceType(
-    SpeedToleranceT_1023_Type * SpeedToleranceT_1023In,
+    SpeedToleranceT_1019_Type * SpeedToleranceT_1019In,
     XmlBoolean * DefinedAsLimitIn,
     AttributesType * AttributesIn);
   ~SpeedToleranceType();
   void printSelf(FILE * outFile);
 
-  SpeedToleranceT_1023_Type * getSpeedToleranceT_1023();
-  void setSpeedToleranceT_1023(SpeedToleranceT_1023_Type * SpeedToleranceT_1023In);
+  SpeedToleranceT_1019_Type * getSpeedToleranceT_1019();
+  void setSpeedToleranceT_1019(SpeedToleranceT_1019_Type * SpeedToleranceT_1019In);
   XmlBoolean * getDefinedAsLimit();
   void setDefinedAsLimit(XmlBoolean * DefinedAsLimitIn);
   AttributesType * getAttributes();
   void setAttributes(AttributesType * AttributesIn);
 
 protected:
-  SpeedToleranceT_1023_Type * SpeedToleranceT_1023;
+  SpeedToleranceT_1019_Type * SpeedToleranceT_1019;
   XmlBoolean * DefinedAsLimit;
   AttributesType * Attributes;
 };
@@ -3835,18 +3889,18 @@ public:
   SubstituteFeatureAlgorithmType();
   SubstituteFeatureAlgorithmType(
     AttributesType * AttributesIn,
-    SubstituteFeatu_1024_Type * SubstituteFeatu_1024In);
+    SubstituteFeatu_1020_Type * SubstituteFeatu_1020In);
   ~SubstituteFeatureAlgorithmType();
   void printSelf(FILE * outFile);
 
   AttributesType * getAttributes();
   void setAttributes(AttributesType * AttributesIn);
-  SubstituteFeatu_1024_Type * getSubstituteFeatu_1024();
-  void setSubstituteFeatu_1024(SubstituteFeatu_1024_Type * SubstituteFeatu_1024In);
+  SubstituteFeatu_1020_Type * getSubstituteFeatu_1020();
+  void setSubstituteFeatu_1020(SubstituteFeatu_1020_Type * SubstituteFeatu_1020In);
 
 protected:
   AttributesType * Attributes;
-  SubstituteFeatu_1024_Type * SubstituteFeatu_1024;
+  SubstituteFeatu_1020_Type * SubstituteFeatu_1020;
 };
 
 /* ***************************************************************** */
@@ -3857,21 +3911,21 @@ class TemperatureToleranceType :
 public:
   TemperatureToleranceType();
   TemperatureToleranceType(
-    TemperatureTole_1025_Type * TemperatureTole_1025In,
+    TemperatureTole_1021_Type * TemperatureTole_1021In,
     XmlBoolean * DefinedAsLimitIn,
     AttributesType * AttributesIn);
   ~TemperatureToleranceType();
   void printSelf(FILE * outFile);
 
-  TemperatureTole_1025_Type * getTemperatureTole_1025();
-  void setTemperatureTole_1025(TemperatureTole_1025_Type * TemperatureTole_1025In);
+  TemperatureTole_1021_Type * getTemperatureTole_1021();
+  void setTemperatureTole_1021(TemperatureTole_1021_Type * TemperatureTole_1021In);
   XmlBoolean * getDefinedAsLimit();
   void setDefinedAsLimit(XmlBoolean * DefinedAsLimitIn);
   AttributesType * getAttributes();
   void setAttributes(AttributesType * AttributesIn);
 
 protected:
-  TemperatureTole_1025_Type * TemperatureTole_1025;
+  TemperatureTole_1021_Type * TemperatureTole_1021;
   XmlBoolean * DefinedAsLimit;
   AttributesType * Attributes;
 };
@@ -4063,21 +4117,21 @@ class TimeToleranceType :
 public:
   TimeToleranceType();
   TimeToleranceType(
-    TimeToleranceTy_1026_Type * TimeToleranceTy_1026In,
+    TimeToleranceTy_1022_Type * TimeToleranceTy_1022In,
     XmlBoolean * DefinedAsLimitIn,
     AttributesType * AttributesIn);
   ~TimeToleranceType();
   void printSelf(FILE * outFile);
 
-  TimeToleranceTy_1026_Type * getTimeToleranceTy_1026();
-  void setTimeToleranceTy_1026(TimeToleranceTy_1026_Type * TimeToleranceTy_1026In);
+  TimeToleranceTy_1022_Type * getTimeToleranceTy_1022();
+  void setTimeToleranceTy_1022(TimeToleranceTy_1022_Type * TimeToleranceTy_1022In);
   XmlBoolean * getDefinedAsLimit();
   void setDefinedAsLimit(XmlBoolean * DefinedAsLimitIn);
   AttributesType * getAttributes();
   void setAttributes(AttributesType * AttributesIn);
 
 protected:
-  TimeToleranceTy_1026_Type * TimeToleranceTy_1026;
+  TimeToleranceTy_1022_Type * TimeToleranceTy_1022;
   XmlBoolean * DefinedAsLimit;
   AttributesType * Attributes;
 };
@@ -4114,18 +4168,18 @@ public:
   ToleranceZonePerUnitAreaType();
   ToleranceZonePerUnitAreaType(
     LinearValueType * ToleranceValuePerUnitIn,
-    ToleranceZonePe_1027_Type * ToleranceZonePe_1027In);
+    ToleranceZonePe_1023_Type * ToleranceZonePe_1023In);
   ~ToleranceZonePerUnitAreaType();
   void printSelf(FILE * outFile);
 
   LinearValueType * getToleranceValuePerUnit();
   void setToleranceValuePerUnit(LinearValueType * ToleranceValuePerUnitIn);
-  ToleranceZonePe_1027_Type * getToleranceZonePe_1027();
-  void setToleranceZonePe_1027(ToleranceZonePe_1027_Type * ToleranceZonePe_1027In);
+  ToleranceZonePe_1023_Type * getToleranceZonePe_1023();
+  void setToleranceZonePe_1023(ToleranceZonePe_1023_Type * ToleranceZonePe_1023In);
 
 protected:
   LinearValueType * ToleranceValuePerUnit;
-  ToleranceZonePe_1027_Type * ToleranceZonePe_1027;
+  ToleranceZonePe_1023_Type * ToleranceZonePe_1023;
 };
 
 /* ***************************************************************** */
@@ -4464,263 +4518,216 @@ public:
 
 /* ***************************************************************** */
 
-class AlgorithmType_1008_Type :
+class AlgorithmType_1006_Type :
   public XmlTypeBase
 {
 public:
-  AlgorithmType_1008_Type();
-  AlgorithmType_1008_Type(
-    AlgorithmType_1008_TypeChoicePair * AlgorithmType_1008_TypePairIn);
-  ~AlgorithmType_1008_Type();
+  AlgorithmType_1006_Type();
+  AlgorithmType_1006_Type(
+    AlgorithmType_1006_TypeChoicePair * AlgorithmType_1006_TypePairIn);
+  ~AlgorithmType_1006_Type();
   void printSelf(FILE * outFile);
 
-  AlgorithmType_1008_TypeChoicePair * getAlgorithmType_1008_TypePair();
-  void setAlgorithmType_1008_TypePair(AlgorithmType_1008_TypeChoicePair * AlgorithmType_1008_TypePairIn);
+  AlgorithmType_1006_TypeChoicePair * getAlgorithmType_1006_TypePair();
+  void setAlgorithmType_1006_TypePair(AlgorithmType_1006_TypeChoicePair * AlgorithmType_1006_TypePairIn);
 
 protected:
-  AlgorithmType_1008_TypeChoicePair * AlgorithmType_1008_TypePair;
+  AlgorithmType_1006_TypeChoicePair * AlgorithmType_1006_TypePair;
 };
 
 /* ***************************************************************** */
 
-union AlgorithmType_1008_TypeVal
+union AlgorithmType_1006_TypeVal
 {
-  AlgorithmType_1_1028_Type * AlgorithmType_1_1028;
-  AlgorithmType_1_1029_Type * AlgorithmType_1_1029;
+  AlgorithmType_1_1024_Type * AlgorithmType_1_1024;
+  AlgorithmType_1_1025_Type * AlgorithmType_1_1025;
 };
 
 /* ***************************************************************** */
 
-class AlgorithmType_1008_TypeChoicePair :
+class AlgorithmType_1006_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    AlgorithmType_1_1028E,
-    AlgorithmType_1_1029E };
-  AlgorithmType_1008_TypeChoicePair();
-  AlgorithmType_1008_TypeChoicePair(
-    whichOne AlgorithmType_1008_TypeTypeIn,
-    AlgorithmType_1008_TypeVal AlgorithmType_1008_TypeValueIn);
-  ~AlgorithmType_1008_TypeChoicePair();
+    AlgorithmType_1_1024E,
+    AlgorithmType_1_1025E };
+  AlgorithmType_1006_TypeChoicePair();
+  AlgorithmType_1006_TypeChoicePair(
+    whichOne AlgorithmType_1006_TypeTypeIn,
+    AlgorithmType_1006_TypeVal AlgorithmType_1006_TypeValueIn);
+  ~AlgorithmType_1006_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne AlgorithmType_1008_TypeType;
-  AlgorithmType_1008_TypeVal AlgorithmType_1008_TypeValue;
+  whichOne AlgorithmType_1006_TypeType;
+  AlgorithmType_1006_TypeVal AlgorithmType_1006_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class AlignmentFeatur_1009_Type :
+class AngularToleranc_1007_Type :
   public XmlTypeBase
 {
 public:
-  AlignmentFeatur_1009_Type();
-  AlignmentFeatur_1009_Type(
-    AlignmentFeatur_1009_TypeChoicePair * AlignmentFeatur_1009_TypePairIn);
-  ~AlignmentFeatur_1009_Type();
+  AngularToleranc_1007_Type();
+  AngularToleranc_1007_Type(
+    AngularToleranc_1007_TypeChoicePair * AngularToleranc_1007_TypePairIn);
+  ~AngularToleranc_1007_Type();
   void printSelf(FILE * outFile);
 
-  AlignmentFeatur_1009_TypeChoicePair * getAlignmentFeatur_1009_TypePair();
-  void setAlignmentFeatur_1009_TypePair(AlignmentFeatur_1009_TypeChoicePair * AlignmentFeatur_1009_TypePairIn);
+  AngularToleranc_1007_TypeChoicePair * getAngularToleranc_1007_TypePair();
+  void setAngularToleranc_1007_TypePair(AngularToleranc_1007_TypeChoicePair * AngularToleranc_1007_TypePairIn);
 
 protected:
-  AlignmentFeatur_1009_TypeChoicePair * AlignmentFeatur_1009_TypePair;
+  AngularToleranc_1007_TypeChoicePair * AngularToleranc_1007_TypePair;
 };
 
 /* ***************************************************************** */
 
-union AlignmentFeatur_1009_TypeVal
+union AngularToleranc_1007_TypeVal
 {
-  QIFReferenceFullType * DatumDefinitionId;
-  BaseFeatureType * BaseFeature;
-};
-
-/* ***************************************************************** */
-
-class AlignmentFeatur_1009_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    DatumDefinitionIdE,
-    BaseFeatureE };
-  AlignmentFeatur_1009_TypeChoicePair();
-  AlignmentFeatur_1009_TypeChoicePair(
-    whichOne AlignmentFeatur_1009_TypeTypeIn,
-    AlignmentFeatur_1009_TypeVal AlignmentFeatur_1009_TypeValueIn);
-  ~AlignmentFeatur_1009_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne AlignmentFeatur_1009_TypeType;
-  AlignmentFeatur_1009_TypeVal AlignmentFeatur_1009_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class AngularToleranc_1010_Type :
-  public XmlTypeBase
-{
-public:
-  AngularToleranc_1010_Type();
-  AngularToleranc_1010_Type(
-    AngularToleranc_1010_TypeChoicePair * AngularToleranc_1010_TypePairIn);
-  ~AngularToleranc_1010_Type();
-  void printSelf(FILE * outFile);
-
-  AngularToleranc_1010_TypeChoicePair * getAngularToleranc_1010_TypePair();
-  void setAngularToleranc_1010_TypePair(AngularToleranc_1010_TypeChoicePair * AngularToleranc_1010_TypePairIn);
-
-protected:
-  AngularToleranc_1010_TypeChoicePair * AngularToleranc_1010_TypePair;
-};
-
-/* ***************************************************************** */
-
-union AngularToleranc_1010_TypeVal
-{
-  AngularToleranc_1030_Type * AngularToleranc_1030;
+  AngularToleranc_1026_Type * AngularToleranc_1026;
   AngularValueType * MinValue;
 };
 
 /* ***************************************************************** */
 
-class AngularToleranc_1010_TypeChoicePair :
+class AngularToleranc_1007_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    AngularToleranc_1030E,
+    AngularToleranc_1026E,
     MinValueE };
-  AngularToleranc_1010_TypeChoicePair();
-  AngularToleranc_1010_TypeChoicePair(
-    whichOne AngularToleranc_1010_TypeTypeIn,
-    AngularToleranc_1010_TypeVal AngularToleranc_1010_TypeValueIn);
-  ~AngularToleranc_1010_TypeChoicePair();
+  AngularToleranc_1007_TypeChoicePair();
+  AngularToleranc_1007_TypeChoicePair(
+    whichOne AngularToleranc_1007_TypeTypeIn,
+    AngularToleranc_1007_TypeVal AngularToleranc_1007_TypeValueIn);
+  ~AngularToleranc_1007_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne AngularToleranc_1010_TypeType;
-  AngularToleranc_1010_TypeVal AngularToleranc_1010_TypeValue;
+  whichOne AngularToleranc_1007_TypeType;
+  AngularToleranc_1007_TypeVal AngularToleranc_1007_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class AngularToleranc_1011_Type :
+class AngularToleranc_1008_Type :
   public XmlTypeBase
 {
 public:
-  AngularToleranc_1011_Type();
-  AngularToleranc_1011_Type(
-    AngularToleranc_1011_TypeChoicePair * AngularToleranc_1011_TypePairIn);
-  ~AngularToleranc_1011_Type();
+  AngularToleranc_1008_Type();
+  AngularToleranc_1008_Type(
+    AngularToleranc_1008_TypeChoicePair * AngularToleranc_1008_TypePairIn);
+  ~AngularToleranc_1008_Type();
   void printSelf(FILE * outFile);
 
-  AngularToleranc_1011_TypeChoicePair * getAngularToleranc_1011_TypePair();
-  void setAngularToleranc_1011_TypePair(AngularToleranc_1011_TypeChoicePair * AngularToleranc_1011_TypePairIn);
+  AngularToleranc_1008_TypeChoicePair * getAngularToleranc_1008_TypePair();
+  void setAngularToleranc_1008_TypePair(AngularToleranc_1008_TypeChoicePair * AngularToleranc_1008_TypePairIn);
 
 protected:
-  AngularToleranc_1011_TypeChoicePair * AngularToleranc_1011_TypePair;
+  AngularToleranc_1008_TypeChoicePair * AngularToleranc_1008_TypePair;
 };
 
 /* ***************************************************************** */
 
-union AngularToleranc_1011_TypeVal
+union AngularToleranc_1008_TypeVal
 {
-  AngularToleranc_1031_Type * AngularToleranc_1031;
+  AngularToleranc_1027_Type * AngularToleranc_1027;
   AngularValueType * MinValue;
   QIFReferenceFullType * DefinitionId;
 };
 
 /* ***************************************************************** */
 
-class AngularToleranc_1011_TypeChoicePair :
+class AngularToleranc_1008_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    AngularToleranc_1031E,
+    AngularToleranc_1027E,
     MinValueE,
     DefinitionIdE };
-  AngularToleranc_1011_TypeChoicePair();
-  AngularToleranc_1011_TypeChoicePair(
-    whichOne AngularToleranc_1011_TypeTypeIn,
-    AngularToleranc_1011_TypeVal AngularToleranc_1011_TypeValueIn);
-  ~AngularToleranc_1011_TypeChoicePair();
+  AngularToleranc_1008_TypeChoicePair();
+  AngularToleranc_1008_TypeChoicePair(
+    whichOne AngularToleranc_1008_TypeTypeIn,
+    AngularToleranc_1008_TypeVal AngularToleranc_1008_TypeValueIn);
+  ~AngularToleranc_1008_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne AngularToleranc_1011_TypeType;
-  AngularToleranc_1011_TypeVal AngularToleranc_1011_TypeValue;
+  whichOne AngularToleranc_1008_TypeType;
+  AngularToleranc_1008_TypeVal AngularToleranc_1008_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class AreaToleranceTy_1012_Type :
+class AreaToleranceTy_1009_Type :
   public XmlTypeBase
 {
 public:
-  AreaToleranceTy_1012_Type();
-  AreaToleranceTy_1012_Type(
-    AreaToleranceTy_1012_TypeChoicePair * AreaToleranceTy_1012_TypePairIn);
-  ~AreaToleranceTy_1012_Type();
+  AreaToleranceTy_1009_Type();
+  AreaToleranceTy_1009_Type(
+    AreaToleranceTy_1009_TypeChoicePair * AreaToleranceTy_1009_TypePairIn);
+  ~AreaToleranceTy_1009_Type();
   void printSelf(FILE * outFile);
 
-  AreaToleranceTy_1012_TypeChoicePair * getAreaToleranceTy_1012_TypePair();
-  void setAreaToleranceTy_1012_TypePair(AreaToleranceTy_1012_TypeChoicePair * AreaToleranceTy_1012_TypePairIn);
+  AreaToleranceTy_1009_TypeChoicePair * getAreaToleranceTy_1009_TypePair();
+  void setAreaToleranceTy_1009_TypePair(AreaToleranceTy_1009_TypeChoicePair * AreaToleranceTy_1009_TypePairIn);
 
 protected:
-  AreaToleranceTy_1012_TypeChoicePair * AreaToleranceTy_1012_TypePair;
+  AreaToleranceTy_1009_TypeChoicePair * AreaToleranceTy_1009_TypePair;
 };
 
 /* ***************************************************************** */
 
-union AreaToleranceTy_1012_TypeVal
+union AreaToleranceTy_1009_TypeVal
 {
-  AreaToleranceTy_1032_Type * AreaToleranceTy_1032;
+  AreaToleranceTy_1028_Type * AreaToleranceTy_1028;
   AreaValueType * MinValue;
 };
 
 /* ***************************************************************** */
 
-class AreaToleranceTy_1012_TypeChoicePair :
+class AreaToleranceTy_1009_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    AreaToleranceTy_1032E,
+    AreaToleranceTy_1028E,
     MinValueE };
-  AreaToleranceTy_1012_TypeChoicePair();
-  AreaToleranceTy_1012_TypeChoicePair(
-    whichOne AreaToleranceTy_1012_TypeTypeIn,
-    AreaToleranceTy_1012_TypeVal AreaToleranceTy_1012_TypeValueIn);
-  ~AreaToleranceTy_1012_TypeChoicePair();
+  AreaToleranceTy_1009_TypeChoicePair();
+  AreaToleranceTy_1009_TypeChoicePair(
+    whichOne AreaToleranceTy_1009_TypeTypeIn,
+    AreaToleranceTy_1009_TypeVal AreaToleranceTy_1009_TypeValueIn);
+  ~AreaToleranceTy_1009_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne AreaToleranceTy_1012_TypeType;
-  AreaToleranceTy_1012_TypeVal AreaToleranceTy_1012_TypeValue;
+  whichOne AreaToleranceTy_1009_TypeType;
+  AreaToleranceTy_1009_TypeVal AreaToleranceTy_1009_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class DatumWithPreced_1013_Type :
+class DatumWithPreced_1010_Type :
   public XmlTypeBase
 {
 public:
-  DatumWithPreced_1013_Type();
-  DatumWithPreced_1013_Type(
-    DatumWithPreced_1013_TypeChoicePair * DatumWithPreced_1013_TypePairIn);
-  ~DatumWithPreced_1013_Type();
+  DatumWithPreced_1010_Type();
+  DatumWithPreced_1010_Type(
+    DatumWithPreced_1010_TypeChoicePair * DatumWithPreced_1010_TypePairIn);
+  ~DatumWithPreced_1010_Type();
   void printSelf(FILE * outFile);
 
-  DatumWithPreced_1013_TypeChoicePair * getDatumWithPreced_1013_TypePair();
-  void setDatumWithPreced_1013_TypePair(DatumWithPreced_1013_TypeChoicePair * DatumWithPreced_1013_TypePairIn);
+  DatumWithPreced_1010_TypeChoicePair * getDatumWithPreced_1010_TypePair();
+  void setDatumWithPreced_1010_TypePair(DatumWithPreced_1010_TypeChoicePair * DatumWithPreced_1010_TypePairIn);
 
 protected:
-  DatumWithPreced_1013_TypeChoicePair * DatumWithPreced_1013_TypePair;
+  DatumWithPreced_1010_TypeChoicePair * DatumWithPreced_1010_TypePair;
 };
 
 /* ***************************************************************** */
 
-union DatumWithPreced_1013_TypeVal
+union DatumWithPreced_1010_TypeVal
 {
   DatumType * SimpleDatum;
   NominalDatumFeatureType * NominalDatumFeature;
@@ -4730,7 +4737,7 @@ union DatumWithPreced_1013_TypeVal
 
 /* ***************************************************************** */
 
-class DatumWithPreced_1013_TypeChoicePair :
+class DatumWithPreced_1010_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -4739,86 +4746,39 @@ public:
     NominalDatumFeatureE,
     MeasuredDatumFeatureE,
     CompoundDatumE };
-  DatumWithPreced_1013_TypeChoicePair();
-  DatumWithPreced_1013_TypeChoicePair(
-    whichOne DatumWithPreced_1013_TypeTypeIn,
-    DatumWithPreced_1013_TypeVal DatumWithPreced_1013_TypeValueIn);
-  ~DatumWithPreced_1013_TypeChoicePair();
+  DatumWithPreced_1010_TypeChoicePair();
+  DatumWithPreced_1010_TypeChoicePair(
+    whichOne DatumWithPreced_1010_TypeTypeIn,
+    DatumWithPreced_1010_TypeVal DatumWithPreced_1010_TypeValueIn);
+  ~DatumWithPreced_1010_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne DatumWithPreced_1013_TypeType;
-  DatumWithPreced_1013_TypeVal DatumWithPreced_1013_TypeValue;
+  whichOne DatumWithPreced_1010_TypeType;
+  DatumWithPreced_1010_TypeVal DatumWithPreced_1010_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class DegreesOfFreedo_1014_Type :
+class DirectionalOffs_1011_Type :
   public XmlTypeBase
 {
 public:
-  DegreesOfFreedo_1014_Type();
-  DegreesOfFreedo_1014_Type(
-    DegreesOfFreedo_1014_TypeChoicePair * DegreesOfFreedo_1014_TypePairIn);
-  ~DegreesOfFreedo_1014_Type();
+  DirectionalOffs_1011_Type();
+  DirectionalOffs_1011_Type(
+    DirectionalOffs_1011_TypeChoicePair * DirectionalOffs_1011_TypePairIn);
+  ~DirectionalOffs_1011_Type();
   void printSelf(FILE * outFile);
 
-  DegreesOfFreedo_1014_TypeChoicePair * getDegreesOfFreedo_1014_TypePair();
-  void setDegreesOfFreedo_1014_TypePair(DegreesOfFreedo_1014_TypeChoicePair * DegreesOfFreedo_1014_TypePairIn);
+  DirectionalOffs_1011_TypeChoicePair * getDirectionalOffs_1011_TypePair();
+  void setDirectionalOffs_1011_TypePair(DirectionalOffs_1011_TypeChoicePair * DirectionalOffs_1011_TypePairIn);
 
 protected:
-  DegreesOfFreedo_1014_TypeChoicePair * DegreesOfFreedo_1014_TypePair;
+  DirectionalOffs_1011_TypeChoicePair * DirectionalOffs_1011_TypePair;
 };
 
 /* ***************************************************************** */
 
-union DegreesOfFreedo_1014_TypeVal
-{
-  DegreeOfFreedomEnumTypeLisd * DegreeOfFreedom;
-  ISODegreeOfFreedomEnumTypeLisd * ISODegreeOfFreedom;
-};
-
-/* ***************************************************************** */
-
-class DegreesOfFreedo_1014_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    DegreeOfFreedomE,
-    ISODegreeOfFreedomE };
-  DegreesOfFreedo_1014_TypeChoicePair();
-  DegreesOfFreedo_1014_TypeChoicePair(
-    whichOne DegreesOfFreedo_1014_TypeTypeIn,
-    DegreesOfFreedo_1014_TypeVal DegreesOfFreedo_1014_TypeValueIn);
-  ~DegreesOfFreedo_1014_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne DegreesOfFreedo_1014_TypeType;
-  DegreesOfFreedo_1014_TypeVal DegreesOfFreedo_1014_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class DirectionalOffs_1015_Type :
-  public XmlTypeBase
-{
-public:
-  DirectionalOffs_1015_Type();
-  DirectionalOffs_1015_Type(
-    DirectionalOffs_1015_TypeChoicePair * DirectionalOffs_1015_TypePairIn);
-  ~DirectionalOffs_1015_Type();
-  void printSelf(FILE * outFile);
-
-  DirectionalOffs_1015_TypeChoicePair * getDirectionalOffs_1015_TypePair();
-  void setDirectionalOffs_1015_TypePair(DirectionalOffs_1015_TypeChoicePair * DirectionalOffs_1015_TypePairIn);
-
-protected:
-  DirectionalOffs_1015_TypeChoicePair * DirectionalOffs_1015_TypePair;
-};
-
-/* ***************************************************************** */
-
-union DirectionalOffs_1015_TypeVal
+union DirectionalOffs_1011_TypeVal
 {
   UnitVectorType * NominalDirection;
   BaseFeatureType * FeatureDirection;
@@ -4826,236 +4786,236 @@ union DirectionalOffs_1015_TypeVal
 
 /* ***************************************************************** */
 
-class DirectionalOffs_1015_TypeChoicePair :
+class DirectionalOffs_1011_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     NominalDirectionE,
     FeatureDirectionE };
-  DirectionalOffs_1015_TypeChoicePair();
-  DirectionalOffs_1015_TypeChoicePair(
-    whichOne DirectionalOffs_1015_TypeTypeIn,
-    DirectionalOffs_1015_TypeVal DirectionalOffs_1015_TypeValueIn);
-  ~DirectionalOffs_1015_TypeChoicePair();
+  DirectionalOffs_1011_TypeChoicePair();
+  DirectionalOffs_1011_TypeChoicePair(
+    whichOne DirectionalOffs_1011_TypeTypeIn,
+    DirectionalOffs_1011_TypeVal DirectionalOffs_1011_TypeValueIn);
+  ~DirectionalOffs_1011_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne DirectionalOffs_1015_TypeType;
-  DirectionalOffs_1015_TypeVal DirectionalOffs_1015_TypeValue;
+  whichOne DirectionalOffs_1011_TypeType;
+  DirectionalOffs_1011_TypeVal DirectionalOffs_1011_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class ForceToleranceT_1016_Type :
+class ForceToleranceT_1012_Type :
   public XmlTypeBase
 {
 public:
-  ForceToleranceT_1016_Type();
-  ForceToleranceT_1016_Type(
-    ForceToleranceT_1016_TypeChoicePair * ForceToleranceT_1016_TypePairIn);
-  ~ForceToleranceT_1016_Type();
+  ForceToleranceT_1012_Type();
+  ForceToleranceT_1012_Type(
+    ForceToleranceT_1012_TypeChoicePair * ForceToleranceT_1012_TypePairIn);
+  ~ForceToleranceT_1012_Type();
   void printSelf(FILE * outFile);
 
-  ForceToleranceT_1016_TypeChoicePair * getForceToleranceT_1016_TypePair();
-  void setForceToleranceT_1016_TypePair(ForceToleranceT_1016_TypeChoicePair * ForceToleranceT_1016_TypePairIn);
+  ForceToleranceT_1012_TypeChoicePair * getForceToleranceT_1012_TypePair();
+  void setForceToleranceT_1012_TypePair(ForceToleranceT_1012_TypeChoicePair * ForceToleranceT_1012_TypePairIn);
 
 protected:
-  ForceToleranceT_1016_TypeChoicePair * ForceToleranceT_1016_TypePair;
+  ForceToleranceT_1012_TypeChoicePair * ForceToleranceT_1012_TypePair;
 };
 
 /* ***************************************************************** */
 
-union ForceToleranceT_1016_TypeVal
+union ForceToleranceT_1012_TypeVal
 {
-  ForceToleranceT_1033_Type * ForceToleranceT_1033;
+  ForceToleranceT_1029_Type * ForceToleranceT_1029;
   ForceValueType * MinValue;
 };
 
 /* ***************************************************************** */
 
-class ForceToleranceT_1016_TypeChoicePair :
+class ForceToleranceT_1012_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    ForceToleranceT_1033E,
+    ForceToleranceT_1029E,
     MinValueE };
-  ForceToleranceT_1016_TypeChoicePair();
-  ForceToleranceT_1016_TypeChoicePair(
-    whichOne ForceToleranceT_1016_TypeTypeIn,
-    ForceToleranceT_1016_TypeVal ForceToleranceT_1016_TypeValueIn);
-  ~ForceToleranceT_1016_TypeChoicePair();
+  ForceToleranceT_1012_TypeChoicePair();
+  ForceToleranceT_1012_TypeChoicePair(
+    whichOne ForceToleranceT_1012_TypeTypeIn,
+    ForceToleranceT_1012_TypeVal ForceToleranceT_1012_TypeValueIn);
+  ~ForceToleranceT_1012_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ForceToleranceT_1016_TypeType;
-  ForceToleranceT_1016_TypeVal ForceToleranceT_1016_TypeValue;
+  whichOne ForceToleranceT_1012_TypeType;
+  ForceToleranceT_1012_TypeVal ForceToleranceT_1012_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class LinearTolerance_1017_Type :
+class LinearTolerance_1013_Type :
   public XmlTypeBase
 {
 public:
-  LinearTolerance_1017_Type();
-  LinearTolerance_1017_Type(
-    LinearTolerance_1017_TypeChoicePair * LinearTolerance_1017_TypePairIn);
-  ~LinearTolerance_1017_Type();
+  LinearTolerance_1013_Type();
+  LinearTolerance_1013_Type(
+    LinearTolerance_1013_TypeChoicePair * LinearTolerance_1013_TypePairIn);
+  ~LinearTolerance_1013_Type();
   void printSelf(FILE * outFile);
 
-  LinearTolerance_1017_TypeChoicePair * getLinearTolerance_1017_TypePair();
-  void setLinearTolerance_1017_TypePair(LinearTolerance_1017_TypeChoicePair * LinearTolerance_1017_TypePairIn);
+  LinearTolerance_1013_TypeChoicePair * getLinearTolerance_1013_TypePair();
+  void setLinearTolerance_1013_TypePair(LinearTolerance_1013_TypeChoicePair * LinearTolerance_1013_TypePairIn);
 
 protected:
-  LinearTolerance_1017_TypeChoicePair * LinearTolerance_1017_TypePair;
+  LinearTolerance_1013_TypeChoicePair * LinearTolerance_1013_TypePair;
 };
 
 /* ***************************************************************** */
 
-union LinearTolerance_1017_TypeVal
+union LinearTolerance_1013_TypeVal
 {
-  LinearTolerance_1034_Type * LinearTolerance_1034;
+  LinearTolerance_1030_Type * LinearTolerance_1030;
   LinearValueType * MinValue;
 };
 
 /* ***************************************************************** */
 
-class LinearTolerance_1017_TypeChoicePair :
+class LinearTolerance_1013_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    LinearTolerance_1034E,
+    LinearTolerance_1030E,
     MinValueE };
-  LinearTolerance_1017_TypeChoicePair();
-  LinearTolerance_1017_TypeChoicePair(
-    whichOne LinearTolerance_1017_TypeTypeIn,
-    LinearTolerance_1017_TypeVal LinearTolerance_1017_TypeValueIn);
-  ~LinearTolerance_1017_TypeChoicePair();
+  LinearTolerance_1013_TypeChoicePair();
+  LinearTolerance_1013_TypeChoicePair(
+    whichOne LinearTolerance_1013_TypeTypeIn,
+    LinearTolerance_1013_TypeVal LinearTolerance_1013_TypeValueIn);
+  ~LinearTolerance_1013_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne LinearTolerance_1017_TypeType;
-  LinearTolerance_1017_TypeVal LinearTolerance_1017_TypeValue;
+  whichOne LinearTolerance_1013_TypeType;
+  LinearTolerance_1013_TypeVal LinearTolerance_1013_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class LinearTolerance_1018_Type :
+class LinearTolerance_1014_Type :
   public XmlTypeBase
 {
 public:
-  LinearTolerance_1018_Type();
-  LinearTolerance_1018_Type(
-    LinearTolerance_1018_TypeChoicePair * LinearTolerance_1018_TypePairIn);
-  ~LinearTolerance_1018_Type();
+  LinearTolerance_1014_Type();
+  LinearTolerance_1014_Type(
+    LinearTolerance_1014_TypeChoicePair * LinearTolerance_1014_TypePairIn);
+  ~LinearTolerance_1014_Type();
   void printSelf(FILE * outFile);
 
-  LinearTolerance_1018_TypeChoicePair * getLinearTolerance_1018_TypePair();
-  void setLinearTolerance_1018_TypePair(LinearTolerance_1018_TypeChoicePair * LinearTolerance_1018_TypePairIn);
+  LinearTolerance_1014_TypeChoicePair * getLinearTolerance_1014_TypePair();
+  void setLinearTolerance_1014_TypePair(LinearTolerance_1014_TypeChoicePair * LinearTolerance_1014_TypePairIn);
 
 protected:
-  LinearTolerance_1018_TypeChoicePair * LinearTolerance_1018_TypePair;
+  LinearTolerance_1014_TypeChoicePair * LinearTolerance_1014_TypePair;
 };
 
 /* ***************************************************************** */
 
-union LinearTolerance_1018_TypeVal
+union LinearTolerance_1014_TypeVal
 {
-  LinearTolerance_1035_Type * LinearTolerance_1035;
-  LinearTolerance_1036_Type * LinearTolerance_1036;
+  LinearTolerance_1031_Type * LinearTolerance_1031;
+  LinearTolerance_1032_Type * LinearTolerance_1032;
   QIFReferenceFullType * DefinitionId;
 };
 
 /* ***************************************************************** */
 
-class LinearTolerance_1018_TypeChoicePair :
+class LinearTolerance_1014_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    LinearTolerance_1035E,
-    LinearTolerance_1036E,
+    LinearTolerance_1031E,
+    LinearTolerance_1032E,
     DefinitionIdE };
-  LinearTolerance_1018_TypeChoicePair();
-  LinearTolerance_1018_TypeChoicePair(
-    whichOne LinearTolerance_1018_TypeTypeIn,
-    LinearTolerance_1018_TypeVal LinearTolerance_1018_TypeValueIn);
-  ~LinearTolerance_1018_TypeChoicePair();
+  LinearTolerance_1014_TypeChoicePair();
+  LinearTolerance_1014_TypeChoicePair(
+    whichOne LinearTolerance_1014_TypeTypeIn,
+    LinearTolerance_1014_TypeVal LinearTolerance_1014_TypeValueIn);
+  ~LinearTolerance_1014_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne LinearTolerance_1018_TypeType;
-  LinearTolerance_1018_TypeVal LinearTolerance_1018_TypeValue;
+  whichOne LinearTolerance_1014_TypeType;
+  LinearTolerance_1014_TypeVal LinearTolerance_1014_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class MassToleranceTy_1019_Type :
+class MassToleranceTy_1015_Type :
   public XmlTypeBase
 {
 public:
-  MassToleranceTy_1019_Type();
-  MassToleranceTy_1019_Type(
-    MassToleranceTy_1019_TypeChoicePair * MassToleranceTy_1019_TypePairIn);
-  ~MassToleranceTy_1019_Type();
+  MassToleranceTy_1015_Type();
+  MassToleranceTy_1015_Type(
+    MassToleranceTy_1015_TypeChoicePair * MassToleranceTy_1015_TypePairIn);
+  ~MassToleranceTy_1015_Type();
   void printSelf(FILE * outFile);
 
-  MassToleranceTy_1019_TypeChoicePair * getMassToleranceTy_1019_TypePair();
-  void setMassToleranceTy_1019_TypePair(MassToleranceTy_1019_TypeChoicePair * MassToleranceTy_1019_TypePairIn);
+  MassToleranceTy_1015_TypeChoicePair * getMassToleranceTy_1015_TypePair();
+  void setMassToleranceTy_1015_TypePair(MassToleranceTy_1015_TypeChoicePair * MassToleranceTy_1015_TypePairIn);
 
 protected:
-  MassToleranceTy_1019_TypeChoicePair * MassToleranceTy_1019_TypePair;
+  MassToleranceTy_1015_TypeChoicePair * MassToleranceTy_1015_TypePair;
 };
 
 /* ***************************************************************** */
 
-union MassToleranceTy_1019_TypeVal
+union MassToleranceTy_1015_TypeVal
 {
-  MassToleranceTy_1037_Type * MassToleranceTy_1037;
+  MassToleranceTy_1033_Type * MassToleranceTy_1033;
   MassValueType * MinValue;
 };
 
 /* ***************************************************************** */
 
-class MassToleranceTy_1019_TypeChoicePair :
+class MassToleranceTy_1015_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    MassToleranceTy_1037E,
+    MassToleranceTy_1033E,
     MinValueE };
-  MassToleranceTy_1019_TypeChoicePair();
-  MassToleranceTy_1019_TypeChoicePair(
-    whichOne MassToleranceTy_1019_TypeTypeIn,
-    MassToleranceTy_1019_TypeVal MassToleranceTy_1019_TypeValueIn);
-  ~MassToleranceTy_1019_TypeChoicePair();
+  MassToleranceTy_1015_TypeChoicePair();
+  MassToleranceTy_1015_TypeChoicePair(
+    whichOne MassToleranceTy_1015_TypeTypeIn,
+    MassToleranceTy_1015_TypeVal MassToleranceTy_1015_TypeValueIn);
+  ~MassToleranceTy_1015_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne MassToleranceTy_1019_TypeType;
-  MassToleranceTy_1019_TypeVal MassToleranceTy_1019_TypeValue;
+  whichOne MassToleranceTy_1015_TypeType;
+  MassToleranceTy_1015_TypeVal MassToleranceTy_1015_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class MaterialType_1020_Type :
+class MaterialType_1016_Type :
   public XmlTypeBase
 {
 public:
-  MaterialType_1020_Type();
-  MaterialType_1020_Type(
-    MaterialType_1020_TypeChoicePair * MaterialType_1020_TypePairIn);
-  ~MaterialType_1020_Type();
+  MaterialType_1016_Type();
+  MaterialType_1016_Type(
+    MaterialType_1016_TypeChoicePair * MaterialType_1016_TypePairIn);
+  ~MaterialType_1016_Type();
   void printSelf(FILE * outFile);
 
-  MaterialType_1020_TypeChoicePair * getMaterialType_1020_TypePair();
-  void setMaterialType_1020_TypePair(MaterialType_1020_TypeChoicePair * MaterialType_1020_TypePairIn);
+  MaterialType_1016_TypeChoicePair * getMaterialType_1016_TypePair();
+  void setMaterialType_1016_TypePair(MaterialType_1016_TypeChoicePair * MaterialType_1016_TypePairIn);
 
 protected:
-  MaterialType_1020_TypeChoicePair * MaterialType_1020_TypePair;
+  MaterialType_1016_TypeChoicePair * MaterialType_1016_TypePair;
 };
 
 /* ***************************************************************** */
 
-union MaterialType_1020_TypeVal
+union MaterialType_1016_TypeVal
 {
   MaterialClassEnumType * MaterialClassEnum;
   XmlString * OtherMaterialClass;
@@ -5063,93 +5023,93 @@ union MaterialType_1020_TypeVal
 
 /* ***************************************************************** */
 
-class MaterialType_1020_TypeChoicePair :
+class MaterialType_1016_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     MaterialClassEnumE,
     OtherMaterialClassE };
-  MaterialType_1020_TypeChoicePair();
-  MaterialType_1020_TypeChoicePair(
-    whichOne MaterialType_1020_TypeTypeIn,
-    MaterialType_1020_TypeVal MaterialType_1020_TypeValueIn);
-  ~MaterialType_1020_TypeChoicePair();
+  MaterialType_1016_TypeChoicePair();
+  MaterialType_1016_TypeChoicePair(
+    whichOne MaterialType_1016_TypeTypeIn,
+    MaterialType_1016_TypeVal MaterialType_1016_TypeValueIn);
+  ~MaterialType_1016_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne MaterialType_1020_TypeType;
-  MaterialType_1020_TypeVal MaterialType_1020_TypeValue;
+  whichOne MaterialType_1016_TypeType;
+  MaterialType_1016_TypeVal MaterialType_1016_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class PressureToleran_1021_Type :
+class PressureToleran_1017_Type :
   public XmlTypeBase
 {
 public:
-  PressureToleran_1021_Type();
-  PressureToleran_1021_Type(
-    PressureToleran_1021_TypeChoicePair * PressureToleran_1021_TypePairIn);
-  ~PressureToleran_1021_Type();
+  PressureToleran_1017_Type();
+  PressureToleran_1017_Type(
+    PressureToleran_1017_TypeChoicePair * PressureToleran_1017_TypePairIn);
+  ~PressureToleran_1017_Type();
   void printSelf(FILE * outFile);
 
-  PressureToleran_1021_TypeChoicePair * getPressureToleran_1021_TypePair();
-  void setPressureToleran_1021_TypePair(PressureToleran_1021_TypeChoicePair * PressureToleran_1021_TypePairIn);
+  PressureToleran_1017_TypeChoicePair * getPressureToleran_1017_TypePair();
+  void setPressureToleran_1017_TypePair(PressureToleran_1017_TypeChoicePair * PressureToleran_1017_TypePairIn);
 
 protected:
-  PressureToleran_1021_TypeChoicePair * PressureToleran_1021_TypePair;
+  PressureToleran_1017_TypeChoicePair * PressureToleran_1017_TypePair;
 };
 
 /* ***************************************************************** */
 
-union PressureToleran_1021_TypeVal
+union PressureToleran_1017_TypeVal
 {
-  PressureToleran_1038_Type * PressureToleran_1038;
+  PressureToleran_1034_Type * PressureToleran_1034;
   PressureValueType * MinValue;
 };
 
 /* ***************************************************************** */
 
-class PressureToleran_1021_TypeChoicePair :
+class PressureToleran_1017_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    PressureToleran_1038E,
+    PressureToleran_1034E,
     MinValueE };
-  PressureToleran_1021_TypeChoicePair();
-  PressureToleran_1021_TypeChoicePair(
-    whichOne PressureToleran_1021_TypeTypeIn,
-    PressureToleran_1021_TypeVal PressureToleran_1021_TypeValueIn);
-  ~PressureToleran_1021_TypeChoicePair();
+  PressureToleran_1017_TypeChoicePair();
+  PressureToleran_1017_TypeChoicePair(
+    whichOne PressureToleran_1017_TypeTypeIn,
+    PressureToleran_1017_TypeVal PressureToleran_1017_TypeValueIn);
+  ~PressureToleran_1017_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne PressureToleran_1021_TypeType;
-  PressureToleran_1021_TypeVal PressureToleran_1021_TypeValue;
+  whichOne PressureToleran_1017_TypeType;
+  PressureToleran_1017_TypeVal PressureToleran_1017_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class SequencedDatumT_1022_Type :
+class SequencedDatumT_1018_Type :
   public XmlTypeBase
 {
 public:
-  SequencedDatumT_1022_Type();
-  SequencedDatumT_1022_Type(
-    SequencedDatumT_1022_TypeChoicePair * SequencedDatumT_1022_TypePairIn);
-  ~SequencedDatumT_1022_Type();
+  SequencedDatumT_1018_Type();
+  SequencedDatumT_1018_Type(
+    SequencedDatumT_1018_TypeChoicePair * SequencedDatumT_1018_TypePairIn);
+  ~SequencedDatumT_1018_Type();
   void printSelf(FILE * outFile);
 
-  SequencedDatumT_1022_TypeChoicePair * getSequencedDatumT_1022_TypePair();
-  void setSequencedDatumT_1022_TypePair(SequencedDatumT_1022_TypeChoicePair * SequencedDatumT_1022_TypePairIn);
+  SequencedDatumT_1018_TypeChoicePair * getSequencedDatumT_1018_TypePair();
+  void setSequencedDatumT_1018_TypePair(SequencedDatumT_1018_TypeChoicePair * SequencedDatumT_1018_TypePairIn);
 
 protected:
-  SequencedDatumT_1022_TypeChoicePair * SequencedDatumT_1022_TypePair;
+  SequencedDatumT_1018_TypeChoicePair * SequencedDatumT_1018_TypePair;
 };
 
 /* ***************************************************************** */
 
-union SequencedDatumT_1022_TypeVal
+union SequencedDatumT_1018_TypeVal
 {
   DatumType * SimpleDatum;
   CompoundDatumType * CompoundDatum;
@@ -5157,93 +5117,93 @@ union SequencedDatumT_1022_TypeVal
 
 /* ***************************************************************** */
 
-class SequencedDatumT_1022_TypeChoicePair :
+class SequencedDatumT_1018_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     SimpleDatumE,
     CompoundDatumE };
-  SequencedDatumT_1022_TypeChoicePair();
-  SequencedDatumT_1022_TypeChoicePair(
-    whichOne SequencedDatumT_1022_TypeTypeIn,
-    SequencedDatumT_1022_TypeVal SequencedDatumT_1022_TypeValueIn);
-  ~SequencedDatumT_1022_TypeChoicePair();
+  SequencedDatumT_1018_TypeChoicePair();
+  SequencedDatumT_1018_TypeChoicePair(
+    whichOne SequencedDatumT_1018_TypeTypeIn,
+    SequencedDatumT_1018_TypeVal SequencedDatumT_1018_TypeValueIn);
+  ~SequencedDatumT_1018_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne SequencedDatumT_1022_TypeType;
-  SequencedDatumT_1022_TypeVal SequencedDatumT_1022_TypeValue;
+  whichOne SequencedDatumT_1018_TypeType;
+  SequencedDatumT_1018_TypeVal SequencedDatumT_1018_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class SpeedToleranceT_1023_Type :
+class SpeedToleranceT_1019_Type :
   public XmlTypeBase
 {
 public:
-  SpeedToleranceT_1023_Type();
-  SpeedToleranceT_1023_Type(
-    SpeedToleranceT_1023_TypeChoicePair * SpeedToleranceT_1023_TypePairIn);
-  ~SpeedToleranceT_1023_Type();
+  SpeedToleranceT_1019_Type();
+  SpeedToleranceT_1019_Type(
+    SpeedToleranceT_1019_TypeChoicePair * SpeedToleranceT_1019_TypePairIn);
+  ~SpeedToleranceT_1019_Type();
   void printSelf(FILE * outFile);
 
-  SpeedToleranceT_1023_TypeChoicePair * getSpeedToleranceT_1023_TypePair();
-  void setSpeedToleranceT_1023_TypePair(SpeedToleranceT_1023_TypeChoicePair * SpeedToleranceT_1023_TypePairIn);
+  SpeedToleranceT_1019_TypeChoicePair * getSpeedToleranceT_1019_TypePair();
+  void setSpeedToleranceT_1019_TypePair(SpeedToleranceT_1019_TypeChoicePair * SpeedToleranceT_1019_TypePairIn);
 
 protected:
-  SpeedToleranceT_1023_TypeChoicePair * SpeedToleranceT_1023_TypePair;
+  SpeedToleranceT_1019_TypeChoicePair * SpeedToleranceT_1019_TypePair;
 };
 
 /* ***************************************************************** */
 
-union SpeedToleranceT_1023_TypeVal
+union SpeedToleranceT_1019_TypeVal
 {
-  SpeedToleranceT_1039_Type * SpeedToleranceT_1039;
+  SpeedToleranceT_1035_Type * SpeedToleranceT_1035;
   SpeedValueType * MinValue;
 };
 
 /* ***************************************************************** */
 
-class SpeedToleranceT_1023_TypeChoicePair :
+class SpeedToleranceT_1019_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    SpeedToleranceT_1039E,
+    SpeedToleranceT_1035E,
     MinValueE };
-  SpeedToleranceT_1023_TypeChoicePair();
-  SpeedToleranceT_1023_TypeChoicePair(
-    whichOne SpeedToleranceT_1023_TypeTypeIn,
-    SpeedToleranceT_1023_TypeVal SpeedToleranceT_1023_TypeValueIn);
-  ~SpeedToleranceT_1023_TypeChoicePair();
+  SpeedToleranceT_1019_TypeChoicePair();
+  SpeedToleranceT_1019_TypeChoicePair(
+    whichOne SpeedToleranceT_1019_TypeTypeIn,
+    SpeedToleranceT_1019_TypeVal SpeedToleranceT_1019_TypeValueIn);
+  ~SpeedToleranceT_1019_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne SpeedToleranceT_1023_TypeType;
-  SpeedToleranceT_1023_TypeVal SpeedToleranceT_1023_TypeValue;
+  whichOne SpeedToleranceT_1019_TypeType;
+  SpeedToleranceT_1019_TypeVal SpeedToleranceT_1019_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class SubstituteFeatu_1024_Type :
+class SubstituteFeatu_1020_Type :
   public XmlTypeBase
 {
 public:
-  SubstituteFeatu_1024_Type();
-  SubstituteFeatu_1024_Type(
-    SubstituteFeatu_1024_TypeChoicePair * SubstituteFeatu_1024_TypePairIn);
-  ~SubstituteFeatu_1024_Type();
+  SubstituteFeatu_1020_Type();
+  SubstituteFeatu_1020_Type(
+    SubstituteFeatu_1020_TypeChoicePair * SubstituteFeatu_1020_TypePairIn);
+  ~SubstituteFeatu_1020_Type();
   void printSelf(FILE * outFile);
 
-  SubstituteFeatu_1024_TypeChoicePair * getSubstituteFeatu_1024_TypePair();
-  void setSubstituteFeatu_1024_TypePair(SubstituteFeatu_1024_TypeChoicePair * SubstituteFeatu_1024_TypePairIn);
+  SubstituteFeatu_1020_TypeChoicePair * getSubstituteFeatu_1020_TypePair();
+  void setSubstituteFeatu_1020_TypePair(SubstituteFeatu_1020_TypeChoicePair * SubstituteFeatu_1020_TypePairIn);
 
 protected:
-  SubstituteFeatu_1024_TypeChoicePair * SubstituteFeatu_1024_TypePair;
+  SubstituteFeatu_1020_TypeChoicePair * SubstituteFeatu_1020_TypePair;
 };
 
 /* ***************************************************************** */
 
-union SubstituteFeatu_1024_TypeVal
+union SubstituteFeatu_1020_TypeVal
 {
   SubstituteFeatureAlgorithmEnumType * SubstituteFeatureAlgorithmEnum;
   QIFReferenceType * SubstituteFeatureAlgorithmId;
@@ -5252,7 +5212,7 @@ union SubstituteFeatu_1024_TypeVal
 
 /* ***************************************************************** */
 
-class SubstituteFeatu_1024_TypeChoicePair :
+class SubstituteFeatu_1020_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -5260,133 +5220,133 @@ public:
     SubstituteFeatureAlgorithmEnumE,
     SubstituteFeatureAlgorithmIdE,
     OtherSubstituteFeatureAlgorithmE };
-  SubstituteFeatu_1024_TypeChoicePair();
-  SubstituteFeatu_1024_TypeChoicePair(
-    whichOne SubstituteFeatu_1024_TypeTypeIn,
-    SubstituteFeatu_1024_TypeVal SubstituteFeatu_1024_TypeValueIn);
-  ~SubstituteFeatu_1024_TypeChoicePair();
+  SubstituteFeatu_1020_TypeChoicePair();
+  SubstituteFeatu_1020_TypeChoicePair(
+    whichOne SubstituteFeatu_1020_TypeTypeIn,
+    SubstituteFeatu_1020_TypeVal SubstituteFeatu_1020_TypeValueIn);
+  ~SubstituteFeatu_1020_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne SubstituteFeatu_1024_TypeType;
-  SubstituteFeatu_1024_TypeVal SubstituteFeatu_1024_TypeValue;
+  whichOne SubstituteFeatu_1020_TypeType;
+  SubstituteFeatu_1020_TypeVal SubstituteFeatu_1020_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class TemperatureTole_1025_Type :
+class TemperatureTole_1021_Type :
   public XmlTypeBase
 {
 public:
-  TemperatureTole_1025_Type();
-  TemperatureTole_1025_Type(
-    TemperatureTole_1025_TypeChoicePair * TemperatureTole_1025_TypePairIn);
-  ~TemperatureTole_1025_Type();
+  TemperatureTole_1021_Type();
+  TemperatureTole_1021_Type(
+    TemperatureTole_1021_TypeChoicePair * TemperatureTole_1021_TypePairIn);
+  ~TemperatureTole_1021_Type();
   void printSelf(FILE * outFile);
 
-  TemperatureTole_1025_TypeChoicePair * getTemperatureTole_1025_TypePair();
-  void setTemperatureTole_1025_TypePair(TemperatureTole_1025_TypeChoicePair * TemperatureTole_1025_TypePairIn);
+  TemperatureTole_1021_TypeChoicePair * getTemperatureTole_1021_TypePair();
+  void setTemperatureTole_1021_TypePair(TemperatureTole_1021_TypeChoicePair * TemperatureTole_1021_TypePairIn);
 
 protected:
-  TemperatureTole_1025_TypeChoicePair * TemperatureTole_1025_TypePair;
+  TemperatureTole_1021_TypeChoicePair * TemperatureTole_1021_TypePair;
 };
 
 /* ***************************************************************** */
 
-union TemperatureTole_1025_TypeVal
+union TemperatureTole_1021_TypeVal
 {
-  TemperatureTole_1040_Type * TemperatureTole_1040;
+  TemperatureTole_1036_Type * TemperatureTole_1036;
   TemperatureValueType * MinValue;
 };
 
 /* ***************************************************************** */
 
-class TemperatureTole_1025_TypeChoicePair :
+class TemperatureTole_1021_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    TemperatureTole_1040E,
+    TemperatureTole_1036E,
     MinValueE };
-  TemperatureTole_1025_TypeChoicePair();
-  TemperatureTole_1025_TypeChoicePair(
-    whichOne TemperatureTole_1025_TypeTypeIn,
-    TemperatureTole_1025_TypeVal TemperatureTole_1025_TypeValueIn);
-  ~TemperatureTole_1025_TypeChoicePair();
+  TemperatureTole_1021_TypeChoicePair();
+  TemperatureTole_1021_TypeChoicePair(
+    whichOne TemperatureTole_1021_TypeTypeIn,
+    TemperatureTole_1021_TypeVal TemperatureTole_1021_TypeValueIn);
+  ~TemperatureTole_1021_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne TemperatureTole_1025_TypeType;
-  TemperatureTole_1025_TypeVal TemperatureTole_1025_TypeValue;
+  whichOne TemperatureTole_1021_TypeType;
+  TemperatureTole_1021_TypeVal TemperatureTole_1021_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class TimeToleranceTy_1026_Type :
+class TimeToleranceTy_1022_Type :
   public XmlTypeBase
 {
 public:
-  TimeToleranceTy_1026_Type();
-  TimeToleranceTy_1026_Type(
-    TimeToleranceTy_1026_TypeChoicePair * TimeToleranceTy_1026_TypePairIn);
-  ~TimeToleranceTy_1026_Type();
+  TimeToleranceTy_1022_Type();
+  TimeToleranceTy_1022_Type(
+    TimeToleranceTy_1022_TypeChoicePair * TimeToleranceTy_1022_TypePairIn);
+  ~TimeToleranceTy_1022_Type();
   void printSelf(FILE * outFile);
 
-  TimeToleranceTy_1026_TypeChoicePair * getTimeToleranceTy_1026_TypePair();
-  void setTimeToleranceTy_1026_TypePair(TimeToleranceTy_1026_TypeChoicePair * TimeToleranceTy_1026_TypePairIn);
+  TimeToleranceTy_1022_TypeChoicePair * getTimeToleranceTy_1022_TypePair();
+  void setTimeToleranceTy_1022_TypePair(TimeToleranceTy_1022_TypeChoicePair * TimeToleranceTy_1022_TypePairIn);
 
 protected:
-  TimeToleranceTy_1026_TypeChoicePair * TimeToleranceTy_1026_TypePair;
+  TimeToleranceTy_1022_TypeChoicePair * TimeToleranceTy_1022_TypePair;
 };
 
 /* ***************************************************************** */
 
-union TimeToleranceTy_1026_TypeVal
+union TimeToleranceTy_1022_TypeVal
 {
-  TimeToleranceTy_1041_Type * TimeToleranceTy_1041;
+  TimeToleranceTy_1037_Type * TimeToleranceTy_1037;
   TimeValueType * MinValue;
 };
 
 /* ***************************************************************** */
 
-class TimeToleranceTy_1026_TypeChoicePair :
+class TimeToleranceTy_1022_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    TimeToleranceTy_1041E,
+    TimeToleranceTy_1037E,
     MinValueE };
-  TimeToleranceTy_1026_TypeChoicePair();
-  TimeToleranceTy_1026_TypeChoicePair(
-    whichOne TimeToleranceTy_1026_TypeTypeIn,
-    TimeToleranceTy_1026_TypeVal TimeToleranceTy_1026_TypeValueIn);
-  ~TimeToleranceTy_1026_TypeChoicePair();
+  TimeToleranceTy_1022_TypeChoicePair();
+  TimeToleranceTy_1022_TypeChoicePair(
+    whichOne TimeToleranceTy_1022_TypeTypeIn,
+    TimeToleranceTy_1022_TypeVal TimeToleranceTy_1022_TypeValueIn);
+  ~TimeToleranceTy_1022_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne TimeToleranceTy_1026_TypeType;
-  TimeToleranceTy_1026_TypeVal TimeToleranceTy_1026_TypeValue;
+  whichOne TimeToleranceTy_1022_TypeType;
+  TimeToleranceTy_1022_TypeVal TimeToleranceTy_1022_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class ToleranceZonePe_1027_Type :
+class ToleranceZonePe_1023_Type :
   public XmlTypeBase
 {
 public:
-  ToleranceZonePe_1027_Type();
-  ToleranceZonePe_1027_Type(
-    ToleranceZonePe_1027_TypeChoicePair * ToleranceZonePe_1027_TypePairIn);
-  ~ToleranceZonePe_1027_Type();
+  ToleranceZonePe_1023_Type();
+  ToleranceZonePe_1023_Type(
+    ToleranceZonePe_1023_TypeChoicePair * ToleranceZonePe_1023_TypePairIn);
+  ~ToleranceZonePe_1023_Type();
   void printSelf(FILE * outFile);
 
-  ToleranceZonePe_1027_TypeChoicePair * getToleranceZonePe_1027_TypePair();
-  void setToleranceZonePe_1027_TypePair(ToleranceZonePe_1027_TypeChoicePair * ToleranceZonePe_1027_TypePairIn);
+  ToleranceZonePe_1023_TypeChoicePair * getToleranceZonePe_1023_TypePair();
+  void setToleranceZonePe_1023_TypePair(ToleranceZonePe_1023_TypeChoicePair * ToleranceZonePe_1023_TypePairIn);
 
 protected:
-  ToleranceZonePe_1027_TypeChoicePair * ToleranceZonePe_1027_TypePair;
+  ToleranceZonePe_1023_TypeChoicePair * ToleranceZonePe_1023_TypePair;
 };
 
 /* ***************************************************************** */
 
-union ToleranceZonePe_1027_TypeVal
+union ToleranceZonePe_1023_TypeVal
 {
   RectangularUnitAreaType * RectangularUnitArea;
   CircularUnitAreaType * CircularUnitArea;
@@ -5394,35 +5354,35 @@ union ToleranceZonePe_1027_TypeVal
 
 /* ***************************************************************** */
 
-class ToleranceZonePe_1027_TypeChoicePair :
+class ToleranceZonePe_1023_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     RectangularUnitAreaE,
     CircularUnitAreaE };
-  ToleranceZonePe_1027_TypeChoicePair();
-  ToleranceZonePe_1027_TypeChoicePair(
-    whichOne ToleranceZonePe_1027_TypeTypeIn,
-    ToleranceZonePe_1027_TypeVal ToleranceZonePe_1027_TypeValueIn);
-  ~ToleranceZonePe_1027_TypeChoicePair();
+  ToleranceZonePe_1023_TypeChoicePair();
+  ToleranceZonePe_1023_TypeChoicePair(
+    whichOne ToleranceZonePe_1023_TypeTypeIn,
+    ToleranceZonePe_1023_TypeVal ToleranceZonePe_1023_TypeValueIn);
+  ~ToleranceZonePe_1023_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ToleranceZonePe_1027_TypeType;
-  ToleranceZonePe_1027_TypeVal ToleranceZonePe_1027_TypeValue;
+  whichOne ToleranceZonePe_1023_TypeType;
+  ToleranceZonePe_1023_TypeVal ToleranceZonePe_1023_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class AlgorithmType_1_1028_Type :
+class AlgorithmType_1_1024_Type :
   public XmlTypeBase
 {
 public:
-  AlgorithmType_1_1028_Type();
-  AlgorithmType_1_1028_Type(
+  AlgorithmType_1_1024_Type();
+  AlgorithmType_1_1024_Type(
     QIFReferenceType * SoftwareIdIn,
     XmlString * ParametersIn);
-  ~AlgorithmType_1_1028_Type();
+  ~AlgorithmType_1_1024_Type();
   void printSelf(FILE * outFile);
 
   QIFReferenceType * getSoftwareId();
@@ -5437,15 +5397,15 @@ protected:
 
 /* ***************************************************************** */
 
-class AlgorithmType_1_1029_Type :
+class AlgorithmType_1_1025_Type :
   public XmlTypeBase
 {
 public:
-  AlgorithmType_1_1029_Type();
-  AlgorithmType_1_1029_Type(
+  AlgorithmType_1_1025_Type();
+  AlgorithmType_1_1025_Type(
     QIFReferenceType * StandardIdIn,
     XmlString * SectionIn);
-  ~AlgorithmType_1_1029_Type();
+  ~AlgorithmType_1_1025_Type();
   void printSelf(FILE * outFile);
 
   QIFReferenceType * getStandardId();
@@ -5460,15 +5420,15 @@ protected:
 
 /* ***************************************************************** */
 
-class AngularToleranc_1030_Type :
+class AngularToleranc_1026_Type :
   public XmlTypeBase
 {
 public:
-  AngularToleranc_1030_Type();
-  AngularToleranc_1030_Type(
+  AngularToleranc_1026_Type();
+  AngularToleranc_1026_Type(
     AngularValueType * MaxValueIn,
     AngularValueType * MinValueIn);
-  ~AngularToleranc_1030_Type();
+  ~AngularToleranc_1026_Type();
   void printSelf(FILE * outFile);
 
   AngularValueType * getMaxValue();
@@ -5483,15 +5443,15 @@ protected:
 
 /* ***************************************************************** */
 
-class AngularToleranc_1031_Type :
+class AngularToleranc_1027_Type :
   public XmlTypeBase
 {
 public:
-  AngularToleranc_1031_Type();
-  AngularToleranc_1031_Type(
+  AngularToleranc_1027_Type();
+  AngularToleranc_1027_Type(
     AngularValueType * MaxValueIn,
     AngularValueType * MinValueIn);
-  ~AngularToleranc_1031_Type();
+  ~AngularToleranc_1027_Type();
   void printSelf(FILE * outFile);
 
   AngularValueType * getMaxValue();
@@ -5506,15 +5466,15 @@ protected:
 
 /* ***************************************************************** */
 
-class AreaToleranceTy_1032_Type :
+class AreaToleranceTy_1028_Type :
   public XmlTypeBase
 {
 public:
-  AreaToleranceTy_1032_Type();
-  AreaToleranceTy_1032_Type(
+  AreaToleranceTy_1028_Type();
+  AreaToleranceTy_1028_Type(
     AreaValueType * MaxValueIn,
     AreaValueType * MinValueIn);
-  ~AreaToleranceTy_1032_Type();
+  ~AreaToleranceTy_1028_Type();
   void printSelf(FILE * outFile);
 
   AreaValueType * getMaxValue();
@@ -5529,15 +5489,15 @@ protected:
 
 /* ***************************************************************** */
 
-class ForceToleranceT_1033_Type :
+class ForceToleranceT_1029_Type :
   public XmlTypeBase
 {
 public:
-  ForceToleranceT_1033_Type();
-  ForceToleranceT_1033_Type(
+  ForceToleranceT_1029_Type();
+  ForceToleranceT_1029_Type(
     ForceValueType * MaxValueIn,
     ForceValueType * MinValueIn);
-  ~ForceToleranceT_1033_Type();
+  ~ForceToleranceT_1029_Type();
   void printSelf(FILE * outFile);
 
   ForceValueType * getMaxValue();
@@ -5552,15 +5512,15 @@ protected:
 
 /* ***************************************************************** */
 
-class LinearTolerance_1034_Type :
+class LinearTolerance_1030_Type :
   public XmlTypeBase
 {
 public:
-  LinearTolerance_1034_Type();
-  LinearTolerance_1034_Type(
+  LinearTolerance_1030_Type();
+  LinearTolerance_1030_Type(
     LinearValueType * MaxValueIn,
     LinearValueType * MinValueIn);
-  ~LinearTolerance_1034_Type();
+  ~LinearTolerance_1030_Type();
   void printSelf(FILE * outFile);
 
   LinearValueType * getMaxValue();
@@ -5575,42 +5535,42 @@ protected:
 
 /* ***************************************************************** */
 
-class LinearTolerance_1035_Type :
+class LinearTolerance_1031_Type :
   public XmlTypeBase
 {
 public:
-  LinearTolerance_1035_Type();
-  LinearTolerance_1035_Type(
+  LinearTolerance_1031_Type();
+  LinearTolerance_1031_Type(
     LinearValueType * MaxValueIn,
     LinearDualValueType * MaxDualValueIn,
-    LinearTolerance_1042_Type * LinearTolerance_1042In);
-  ~LinearTolerance_1035_Type();
+    LinearTolerance_1038_Type * LinearTolerance_1038In);
+  ~LinearTolerance_1031_Type();
   void printSelf(FILE * outFile);
 
   LinearValueType * getMaxValue();
   void setMaxValue(LinearValueType * MaxValueIn);
   LinearDualValueType * getMaxDualValue();
   void setMaxDualValue(LinearDualValueType * MaxDualValueIn);
-  LinearTolerance_1042_Type * getLinearTolerance_1042();
-  void setLinearTolerance_1042(LinearTolerance_1042_Type * LinearTolerance_1042In);
+  LinearTolerance_1038_Type * getLinearTolerance_1038();
+  void setLinearTolerance_1038(LinearTolerance_1038_Type * LinearTolerance_1038In);
 
 protected:
   LinearValueType * MaxValue;
   LinearDualValueType * MaxDualValue;
-  LinearTolerance_1042_Type * LinearTolerance_1042;
+  LinearTolerance_1038_Type * LinearTolerance_1038;
 };
 
 /* ***************************************************************** */
 
-class LinearTolerance_1036_Type :
+class LinearTolerance_1032_Type :
   public XmlTypeBase
 {
 public:
-  LinearTolerance_1036_Type();
-  LinearTolerance_1036_Type(
+  LinearTolerance_1032_Type();
+  LinearTolerance_1032_Type(
     LinearValueType * MinValueIn,
     LinearDualValueType * MinDualValueIn);
-  ~LinearTolerance_1036_Type();
+  ~LinearTolerance_1032_Type();
   void printSelf(FILE * outFile);
 
   LinearValueType * getMinValue();
@@ -5625,15 +5585,15 @@ protected:
 
 /* ***************************************************************** */
 
-class MassToleranceTy_1037_Type :
+class MassToleranceTy_1033_Type :
   public XmlTypeBase
 {
 public:
-  MassToleranceTy_1037_Type();
-  MassToleranceTy_1037_Type(
+  MassToleranceTy_1033_Type();
+  MassToleranceTy_1033_Type(
     MassValueType * MaxValueIn,
     MassValueType * MinValueIn);
-  ~MassToleranceTy_1037_Type();
+  ~MassToleranceTy_1033_Type();
   void printSelf(FILE * outFile);
 
   MassValueType * getMaxValue();
@@ -5648,15 +5608,15 @@ protected:
 
 /* ***************************************************************** */
 
-class PressureToleran_1038_Type :
+class PressureToleran_1034_Type :
   public XmlTypeBase
 {
 public:
-  PressureToleran_1038_Type();
-  PressureToleran_1038_Type(
+  PressureToleran_1034_Type();
+  PressureToleran_1034_Type(
     PressureValueType * MaxValueIn,
     PressureValueType * MinValueIn);
-  ~PressureToleran_1038_Type();
+  ~PressureToleran_1034_Type();
   void printSelf(FILE * outFile);
 
   PressureValueType * getMaxValue();
@@ -5671,15 +5631,15 @@ protected:
 
 /* ***************************************************************** */
 
-class SpeedToleranceT_1039_Type :
+class SpeedToleranceT_1035_Type :
   public XmlTypeBase
 {
 public:
-  SpeedToleranceT_1039_Type();
-  SpeedToleranceT_1039_Type(
+  SpeedToleranceT_1035_Type();
+  SpeedToleranceT_1035_Type(
     SpeedValueType * MaxValueIn,
     SpeedValueType * MinValueIn);
-  ~SpeedToleranceT_1039_Type();
+  ~SpeedToleranceT_1035_Type();
   void printSelf(FILE * outFile);
 
   SpeedValueType * getMaxValue();
@@ -5694,15 +5654,15 @@ protected:
 
 /* ***************************************************************** */
 
-class TemperatureTole_1040_Type :
+class TemperatureTole_1036_Type :
   public XmlTypeBase
 {
 public:
-  TemperatureTole_1040_Type();
-  TemperatureTole_1040_Type(
+  TemperatureTole_1036_Type();
+  TemperatureTole_1036_Type(
     TemperatureValueType * MaxValueIn,
     TemperatureValueType * MinValueIn);
-  ~TemperatureTole_1040_Type();
+  ~TemperatureTole_1036_Type();
   void printSelf(FILE * outFile);
 
   TemperatureValueType * getMaxValue();
@@ -5717,15 +5677,15 @@ protected:
 
 /* ***************************************************************** */
 
-class TimeToleranceTy_1041_Type :
+class TimeToleranceTy_1037_Type :
   public XmlTypeBase
 {
 public:
-  TimeToleranceTy_1041_Type();
-  TimeToleranceTy_1041_Type(
+  TimeToleranceTy_1037_Type();
+  TimeToleranceTy_1037_Type(
     TimeValueType * MaxValueIn,
     TimeValueType * MinValueIn);
-  ~TimeToleranceTy_1041_Type();
+  ~TimeToleranceTy_1037_Type();
   void printSelf(FILE * outFile);
 
   TimeValueType * getMaxValue();
@@ -5740,15 +5700,15 @@ protected:
 
 /* ***************************************************************** */
 
-class LinearTolerance_1042_Type :
+class LinearTolerance_1038_Type :
   public XmlTypeBase
 {
 public:
-  LinearTolerance_1042_Type();
-  LinearTolerance_1042_Type(
+  LinearTolerance_1038_Type();
+  LinearTolerance_1038_Type(
     LinearValueType * MinValueIn,
     LinearDualValueType * MinDualValueIn);
-  ~LinearTolerance_1042_Type();
+  ~LinearTolerance_1038_Type();
   void printSelf(FILE * outFile);
 
   LinearValueType * getMinValue();

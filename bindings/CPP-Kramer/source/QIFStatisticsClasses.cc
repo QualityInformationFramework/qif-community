@@ -4,7 +4,6 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
-#include <boost/regex.hpp>
 #include <xmlSchemaInstance.hh>
 #include "QIFStatisticsClasses.hh"
 
@@ -224,7 +223,7 @@ bool AbsoluteLimitsByUnitType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in AbsoluteLimitsByUnitType\n");
               returnValue = true;
@@ -240,7 +239,7 @@ bool AbsoluteLimitsByUnitType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -249,7 +248,7 @@ bool AbsoluteLimitsByUnitType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in AbsoluteLimitsByUnitType\n");
       returnValue = true;
@@ -261,8 +260,8 @@ bool AbsoluteLimitsByUnitType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -546,7 +545,7 @@ bool AbsoluteMeasurementsByUnitType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in AbsoluteMeasurementsByUnitType\n");
               returnValue = true;
@@ -562,7 +561,7 @@ bool AbsoluteMeasurementsByUnitType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -571,7 +570,7 @@ bool AbsoluteMeasurementsByUnitType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in AbsoluteMeasurementsByUnitType\n");
       returnValue = true;
@@ -583,8 +582,8 @@ bool AbsoluteMeasurementsByUnitType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -670,14 +669,14 @@ BiasStudyPlanType::BiasStudyPlanType() :
 BiasStudyPlanType::BiasStudyPlanType(
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn,
  XmlPositiveInteger * NumberOfSamplesIn,
  XmlPositiveInteger * SubgroupSizeIn,
@@ -685,14 +684,14 @@ BiasStudyPlanType::BiasStudyPlanType(
   MultipleProductInstanceStudyPlanBaseType(
     VersionIn,
     AttributesIn,
-    StatisticalStud_1208In,
-    StatisticalStud_1209In,
+    StatisticalStud_1167In,
+    StatisticalStud_1168In,
     StatsValuesSummarysIn,
     PreInspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     PlanIdIn,
-    StatisticalStud_1210In,
+    StatisticalStud_1169In,
     CorrectiveActionPlanIdIn,
     NumberOfSamplesIn,
     SubgroupSizeIn)
@@ -704,14 +703,14 @@ BiasStudyPlanType::BiasStudyPlanType(
  QIFIdType * idIn,
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn,
  XmlPositiveInteger * NumberOfSamplesIn,
  XmlPositiveInteger * SubgroupSizeIn,
@@ -720,14 +719,14 @@ BiasStudyPlanType::BiasStudyPlanType(
     idIn,
     VersionIn,
     AttributesIn,
-    StatisticalStud_1208In,
-    StatisticalStud_1209In,
+    StatisticalStud_1167In,
+    StatisticalStud_1168In,
     StatsValuesSummarysIn,
     PreInspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     PlanIdIn,
-    StatisticalStud_1210In,
+    StatisticalStud_1169In,
     CorrectiveActionPlanIdIn,
     NumberOfSamplesIn,
     SubgroupSizeIn)
@@ -787,13 +786,13 @@ void BiasStudyPlanType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (StatisticalStud_1208)
+  if (StatisticalStud_1167)
     {
-      StatisticalStud_1208->printSelf(outFile);
+      StatisticalStud_1167->printSelf(outFile);
     }
-  if (StatisticalStud_1209)
+  if (StatisticalStud_1168)
     {
-      StatisticalStud_1209->printSelf(outFile);
+      StatisticalStud_1168->printSelf(outFile);
     }
   {
     if (!StatsValuesSummarys)
@@ -840,9 +839,9 @@ void BiasStudyPlanType::printSelf(FILE * outFile)
       PlanId->printSelf(outFile);
       fprintf(outFile, "</PlanId>\n");
     }
-  if (StatisticalStud_1210)
+  if (StatisticalStud_1169)
     {
-      StatisticalStud_1210->printSelf(outFile);
+  StatisticalStud_1169->printSelf(outFile);
     }
   if (CorrectiveActionPlanId)
     {
@@ -887,7 +886,7 @@ bool BiasStudyPlanType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in BiasStudyPlanType\n");
               returnValue = true;
@@ -903,7 +902,7 @@ bool BiasStudyPlanType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -912,7 +911,7 @@ bool BiasStudyPlanType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in BiasStudyPlanType\n");
       returnValue = true;
@@ -924,8 +923,8 @@ bool BiasStudyPlanType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -953,13 +952,13 @@ BiasStudyResultsType::BiasStudyResultsType(
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -979,13 +978,13 @@ BiasStudyResultsType::BiasStudyResultsType(
     ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesIn,
     StatusIn,
-    StatisticalStud_1211In,
+    StatisticalStud_1170In,
     StudyIssuesIn,
     InspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     StudyIdIn,
-    StatisticalStud_1212In,
+    StatisticalStud_1171In,
     AverageFeaturesIn,
     CharacteristicsStatsIn,
     LinearStatsSummariesIn,
@@ -1009,13 +1008,13 @@ BiasStudyResultsType::BiasStudyResultsType(
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -1036,13 +1035,13 @@ BiasStudyResultsType::BiasStudyResultsType(
     ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesIn,
     StatusIn,
-    StatisticalStud_1211In,
+    StatisticalStud_1170In,
     StudyIssuesIn,
     InspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     StudyIdIn,
-    StatisticalStud_1212In,
+    StatisticalStud_1171In,
     AverageFeaturesIn,
     CharacteristicsStatsIn,
     LinearStatsSummariesIn,
@@ -1118,9 +1117,9 @@ void BiasStudyResultsType::printSelf(FILE * outFile)
   Status->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "</Status>\n");
-  if (StatisticalStud_1211)
+  if (StatisticalStud_1170)
     {
-      StatisticalStud_1211->printSelf(outFile);
+  StatisticalStud_1170->printSelf(outFile);
     }
   if (StudyIssues)
     {
@@ -1159,9 +1158,9 @@ void BiasStudyResultsType::printSelf(FILE * outFile)
       StudyId->printSelf(outFile);
       fprintf(outFile, "</StudyId>\n");
     }
-  if (StatisticalStud_1212)
+  if (StatisticalStud_1171)
     {
-      StatisticalStud_1212->printSelf(outFile);
+  StatisticalStud_1171->printSelf(outFile);
     }
   if (AverageFeatures)
     {
@@ -1296,7 +1295,7 @@ bool BiasStudyResultsType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in BiasStudyResultsType\n");
               returnValue = true;
@@ -1312,7 +1311,7 @@ bool BiasStudyResultsType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -1321,7 +1320,7 @@ bool BiasStudyResultsType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in BiasStudyResultsType\n");
       returnValue = true;
@@ -1333,8 +1332,8 @@ bool BiasStudyResultsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -1360,81 +1359,81 @@ void BiasStudyResultsType::setMeasurementDeviceIds(ArrayReferenceType * Measurem
 CapabilityStudyPlanType::CapabilityStudyPlanType() :
   MultipleProductInstanceStudyPlanBaseType()
 {
-  CapabilityStudy_1199 = 0;
+  CapabilityStudyPlanTypePair = 0;
 }
 
 CapabilityStudyPlanType::CapabilityStudyPlanType(
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn,
  XmlPositiveInteger * NumberOfSamplesIn,
  XmlPositiveInteger * SubgroupSizeIn,
- CapabilityStudy_1199_Type * CapabilityStudy_1199In) :
+ CapabilityStudyPlanTypeChoicePair * CapabilityStudyPlanTypePairIn) :
   MultipleProductInstanceStudyPlanBaseType(
     VersionIn,
     AttributesIn,
-    StatisticalStud_1208In,
-    StatisticalStud_1209In,
+    StatisticalStud_1167In,
+    StatisticalStud_1168In,
     StatsValuesSummarysIn,
     PreInspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     PlanIdIn,
-    StatisticalStud_1210In,
+    StatisticalStud_1169In,
     CorrectiveActionPlanIdIn,
     NumberOfSamplesIn,
     SubgroupSizeIn)
 {
-  CapabilityStudy_1199 = CapabilityStudy_1199In;
+  CapabilityStudyPlanTypePair = CapabilityStudyPlanTypePairIn;
 }
 
 CapabilityStudyPlanType::CapabilityStudyPlanType(
  QIFIdType * idIn,
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn,
  XmlPositiveInteger * NumberOfSamplesIn,
  XmlPositiveInteger * SubgroupSizeIn,
- CapabilityStudy_1199_Type * CapabilityStudy_1199In) :
+ CapabilityStudyPlanTypeChoicePair * CapabilityStudyPlanTypePairIn) :
   MultipleProductInstanceStudyPlanBaseType(
     idIn,
     VersionIn,
     AttributesIn,
-    StatisticalStud_1208In,
-    StatisticalStud_1209In,
+    StatisticalStud_1167In,
+    StatisticalStud_1168In,
     StatsValuesSummarysIn,
     PreInspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     PlanIdIn,
-    StatisticalStud_1210In,
+    StatisticalStud_1169In,
     CorrectiveActionPlanIdIn,
     NumberOfSamplesIn,
     SubgroupSizeIn)
 {
-  CapabilityStudy_1199 = CapabilityStudy_1199In;
+  CapabilityStudyPlanTypePair = CapabilityStudyPlanTypePairIn;
 }
 
 CapabilityStudyPlanType::~CapabilityStudyPlanType()
 {
   #ifndef NODESTRUCT
-  delete CapabilityStudy_1199;
+  delete CapabilityStudyPlanTypePair;
   #endif
 }
 
@@ -1483,13 +1482,13 @@ void CapabilityStudyPlanType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (StatisticalStud_1208)
+  if (StatisticalStud_1167)
     {
-      StatisticalStud_1208->printSelf(outFile);
+      StatisticalStud_1167->printSelf(outFile);
     }
-  if (StatisticalStud_1209)
+  if (StatisticalStud_1168)
     {
-      StatisticalStud_1209->printSelf(outFile);
+      StatisticalStud_1168->printSelf(outFile);
     }
   {
     if (!StatsValuesSummarys)
@@ -1536,9 +1535,9 @@ void CapabilityStudyPlanType::printSelf(FILE * outFile)
       PlanId->printSelf(outFile);
       fprintf(outFile, "</PlanId>\n");
     }
-  if (StatisticalStud_1210)
+  if (StatisticalStud_1169)
     {
-      StatisticalStud_1210->printSelf(outFile);
+  StatisticalStud_1169->printSelf(outFile);
     }
   if (CorrectiveActionPlanId)
     {
@@ -1558,8 +1557,55 @@ void CapabilityStudyPlanType::printSelf(FILE * outFile)
       SubgroupSize->printSelf(outFile);
       fprintf(outFile, "</SubgroupSize>\n");
     }
-  CapabilityStudy_1199->printSelf(outFile);
+  CapabilityStudyPlanTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
+}
+CapabilityStudyPlanTypeChoicePair * CapabilityStudyPlanType::getCapabilityStudyPlanTypeChoicePair()
+{return CapabilityStudyPlanTypePair;}
+
+void CapabilityStudyPlanType::setCapabilityStudyPlanTypeChoicePair(CapabilityStudyPlanTypeChoicePair * CapabilityStudyPlanTypePairIn)
+{CapabilityStudyPlanTypePair = CapabilityStudyPlanTypePairIn;}
+
+/* ***************************************************************** */
+
+CapabilityStudyPlanTypeChoicePair::CapabilityStudyPlanTypeChoicePair() {}
+
+CapabilityStudyPlanTypeChoicePair::CapabilityStudyPlanTypeChoicePair(
+ whichOne CapabilityStudyPlanTypeTypeIn,
+ CapabilityStudyPlanTypeVal CapabilityStudyPlanTypeValueIn)
+{
+  CapabilityStudyPlanTypeType = CapabilityStudyPlanTypeTypeIn;
+  CapabilityStudyPlanTypeValue = CapabilityStudyPlanTypeValueIn;
+}
+
+CapabilityStudyPlanTypeChoicePair::~CapabilityStudyPlanTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (CapabilityStudyPlanTypeType == CpkThresholdE)
+    delete CapabilityStudyPlanTypeValue.CpkThreshold;
+  else if (CapabilityStudyPlanTypeType == PpkThresholdE)
+    delete CapabilityStudyPlanTypeValue.PpkThreshold;
+  #endif
+}
+
+void CapabilityStudyPlanTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (CapabilityStudyPlanTypeType == CpkThresholdE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<CpkThreshold");
+      CapabilityStudyPlanTypeValue.CpkThreshold->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</CpkThreshold>\n");
+    }
+  else if (CapabilityStudyPlanTypeType == PpkThresholdE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<PpkThreshold");
+      CapabilityStudyPlanTypeValue.PpkThreshold->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</PpkThreshold>\n");
+    }
 }
 
 bool CapabilityStudyPlanType::badAttributes(
@@ -1576,7 +1622,7 @@ bool CapabilityStudyPlanType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CapabilityStudyPlanType\n");
               returnValue = true;
@@ -1592,7 +1638,7 @@ bool CapabilityStudyPlanType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -1601,7 +1647,7 @@ bool CapabilityStudyPlanType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CapabilityStudyPlanType\n");
       returnValue = true;
@@ -1613,17 +1659,11 @@ bool CapabilityStudyPlanType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
-
-CapabilityStudy_1199_Type * CapabilityStudyPlanType::getCapabilityStudy_1199()
-{return CapabilityStudy_1199;}
-
-void CapabilityStudyPlanType::setCapabilityStudy_1199(CapabilityStudy_1199_Type * CapabilityStudy_1199In)
-{CapabilityStudy_1199 = CapabilityStudy_1199In;}
 
 /* ***************************************************************** */
 
@@ -1640,13 +1680,13 @@ CapabilityStudyResultsType::CapabilityStudyResultsType(
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -1666,13 +1706,13 @@ CapabilityStudyResultsType::CapabilityStudyResultsType(
     ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesIn,
     StatusIn,
-    StatisticalStud_1211In,
+    StatisticalStud_1170In,
     StudyIssuesIn,
     InspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     StudyIdIn,
-    StatisticalStud_1212In,
+    StatisticalStud_1171In,
     AverageFeaturesIn,
     CharacteristicsStatsIn,
     LinearStatsSummariesIn,
@@ -1696,13 +1736,13 @@ CapabilityStudyResultsType::CapabilityStudyResultsType(
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -1723,13 +1763,13 @@ CapabilityStudyResultsType::CapabilityStudyResultsType(
     ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesIn,
     StatusIn,
-    StatisticalStud_1211In,
+    StatisticalStud_1170In,
     StudyIssuesIn,
     InspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     StudyIdIn,
-    StatisticalStud_1212In,
+    StatisticalStud_1171In,
     AverageFeaturesIn,
     CharacteristicsStatsIn,
     LinearStatsSummariesIn,
@@ -1803,9 +1843,9 @@ void CapabilityStudyResultsType::printSelf(FILE * outFile)
   Status->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "</Status>\n");
-  if (StatisticalStud_1211)
+  if (StatisticalStud_1170)
     {
-      StatisticalStud_1211->printSelf(outFile);
+  StatisticalStud_1170->printSelf(outFile);
     }
   if (StudyIssues)
     {
@@ -1844,9 +1884,9 @@ void CapabilityStudyResultsType::printSelf(FILE * outFile)
       StudyId->printSelf(outFile);
       fprintf(outFile, "</StudyId>\n");
     }
-  if (StatisticalStud_1212)
+  if (StatisticalStud_1171)
     {
-      StatisticalStud_1212->printSelf(outFile);
+  StatisticalStud_1171->printSelf(outFile);
     }
   if (AverageFeatures)
     {
@@ -1980,7 +2020,7 @@ bool CapabilityStudyResultsType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CapabilityStudyResultsType\n");
               returnValue = true;
@@ -1996,7 +2036,7 @@ bool CapabilityStudyResultsType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -2005,7 +2045,7 @@ bool CapabilityStudyResultsType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CapabilityStudyResultsType\n");
       returnValue = true;
@@ -2017,8 +2057,8 @@ bool CapabilityStudyResultsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -2034,30 +2074,30 @@ ControlMethodType::ControlMethodType()
   id = 0;
   AssignableCauseIds = 0;
   Attributes = 0;
-  ControlMethodTy_1200 = 0;
+  ControlMethodTy_1159 = 0;
 }
 
 ControlMethodType::ControlMethodType(
  ArrayReferenceType * AssignableCauseIdsIn,
  AttributesType * AttributesIn,
- ControlMethodTy_1200_Type * ControlMethodTy_1200In)
+ ControlMethodTy_1159_Type * ControlMethodTy_1159In)
 {
   id = 0;
   AssignableCauseIds = AssignableCauseIdsIn;
   Attributes = AttributesIn;
-  ControlMethodTy_1200 = ControlMethodTy_1200In;
+  ControlMethodTy_1159 = ControlMethodTy_1159In;
 }
 
 ControlMethodType::ControlMethodType(
  QIFIdType * idIn,
  ArrayReferenceType * AssignableCauseIdsIn,
  AttributesType * AttributesIn,
- ControlMethodTy_1200_Type * ControlMethodTy_1200In)
+ ControlMethodTy_1159_Type * ControlMethodTy_1159In)
 {
   id = idIn;
   AssignableCauseIds = AssignableCauseIdsIn;
   Attributes = AttributesIn;
-  ControlMethodTy_1200 = ControlMethodTy_1200In;
+  ControlMethodTy_1159 = ControlMethodTy_1159In;
 }
 
 ControlMethodType::~ControlMethodType()
@@ -2066,7 +2106,7 @@ ControlMethodType::~ControlMethodType()
   delete id;
   delete AssignableCauseIds;
   delete Attributes;
-  delete ControlMethodTy_1200;
+  delete ControlMethodTy_1159;
   #endif
 }
 
@@ -2115,7 +2155,7 @@ void ControlMethodType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  ControlMethodTy_1200->printSelf(outFile);
+  ControlMethodTy_1159->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -2133,7 +2173,7 @@ bool ControlMethodType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ControlMethodType\n");
               returnValue = true;
@@ -2149,7 +2189,7 @@ bool ControlMethodType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -2158,7 +2198,7 @@ bool ControlMethodType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ControlMethodType\n");
       returnValue = true;
@@ -2170,8 +2210,8 @@ bool ControlMethodType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -2194,11 +2234,11 @@ AttributesType * ControlMethodType::getAttributes()
 void ControlMethodType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-ControlMethodTy_1200_Type * ControlMethodType::getControlMethodTy_1200()
-{return ControlMethodTy_1200;}
+ControlMethodTy_1159_Type * ControlMethodType::getControlMethodTy_1159()
+{return ControlMethodTy_1159;}
 
-void ControlMethodType::setControlMethodTy_1200(ControlMethodTy_1200_Type * ControlMethodTy_1200In)
-{ControlMethodTy_1200 = ControlMethodTy_1200In;}
+void ControlMethodType::setControlMethodTy_1159(ControlMethodTy_1159_Type * ControlMethodTy_1159In)
+{ControlMethodTy_1159 = ControlMethodTy_1159In;}
 
 /* ***************************************************************** */
 
@@ -2225,7 +2265,15 @@ ControlMethodTypeLisd::~ControlMethodTypeLisd()
   #endif
 }
 
-void ControlMethodTypeLisd::printSelf(FILE * outFile){}
+void ControlMethodTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ControlMethodType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -2302,6 +2350,13 @@ void ControlMethodsType::printSelf(FILE * outFile)
         fprintf(stderr, "ControlMethod list is empty\n");
         exit(1);
       }
+    if (ControlMethod->size() < 1)
+      {
+        fprintf(stderr,
+                "size of ControlMethod list (%d) less than minimum required (1)\n",
+                (int)ControlMethod->size());
+        exit(1);
+      }
     std::list<ControlMethodType *>::iterator iter;
     for (iter = ControlMethod->begin();
          iter != ControlMethod->end(); iter++)
@@ -2330,7 +2385,7 @@ bool ControlMethodsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ControlMethodsType\n");
               returnValue = true;
@@ -2346,7 +2401,7 @@ bool ControlMethodsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -2355,7 +2410,7 @@ bool ControlMethodsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ControlMethodsType\n");
       returnValue = true;
@@ -2367,8 +2422,8 @@ bool ControlMethodsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -2510,7 +2565,7 @@ bool CorrectiveActionPlanType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CorrectiveActionPlanType\n");
               returnValue = true;
@@ -2526,7 +2581,7 @@ bool CorrectiveActionPlanType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -2535,7 +2590,7 @@ bool CorrectiveActionPlanType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CorrectiveActionPlanType\n");
       returnValue = true;
@@ -2547,8 +2602,8 @@ bool CorrectiveActionPlanType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -2608,7 +2663,15 @@ CorrectiveActionPlanTypeLisd::~CorrectiveActionPlanTypeLisd()
   #endif
 }
 
-void CorrectiveActionPlanTypeLisd::printSelf(FILE * outFile){}
+void CorrectiveActionPlanTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<CorrectiveActionPlanType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -2685,6 +2748,13 @@ void CorrectiveActionPlansType::printSelf(FILE * outFile)
         fprintf(stderr, "CorrectiveActionPlan list is empty\n");
         exit(1);
       }
+    if (CorrectiveActionPlan->size() < 1)
+      {
+        fprintf(stderr,
+                "size of CorrectiveActionPlan list (%d) less than minimum required (1)\n",
+                (int)CorrectiveActionPlan->size());
+        exit(1);
+      }
     std::list<CorrectiveActionPlanType *>::iterator iter;
     for (iter = CorrectiveActionPlan->begin();
          iter != CorrectiveActionPlan->end(); iter++)
@@ -2713,7 +2783,7 @@ bool CorrectiveActionPlansType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in CorrectiveActionPlansType\n");
               returnValue = true;
@@ -2729,7 +2799,7 @@ bool CorrectiveActionPlansType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -2738,7 +2808,7 @@ bool CorrectiveActionPlansType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in CorrectiveActionPlansType\n");
       returnValue = true;
@@ -2750,8 +2820,8 @@ bool CorrectiveActionPlansType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -2991,7 +3061,7 @@ bool CriteriaByUnitType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in CriteriaByUnitType\n");
               returnValue = true;
@@ -3007,7 +3077,7 @@ bool CriteriaByUnitType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -3016,7 +3086,7 @@ bool CriteriaByUnitType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in CriteriaByUnitType\n");
       returnValue = true;
@@ -3028,8 +3098,8 @@ bool CriteriaByUnitType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -3110,78 +3180,78 @@ FirstArticleStudyPlanType::FirstArticleStudyPlanType() :
   StatisticalStudyPlanBaseType()
 {
   InSpecRatio = 0;
-  FirstArticleStu_1201 = 0;
+  FirstArticleStu_1160 = 0;
 }
 
 FirstArticleStudyPlanType::FirstArticleStudyPlanType(
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn,
  XmlDecimal * InSpecRatioIn,
- FirstArticleStu_1201_Type * FirstArticleStu_1201In) :
+ FirstArticleStu_1160_Type * FirstArticleStu_1160In) :
   StatisticalStudyPlanBaseType(
     VersionIn,
     AttributesIn,
-    StatisticalStud_1208In,
-    StatisticalStud_1209In,
+    StatisticalStud_1167In,
+    StatisticalStud_1168In,
     StatsValuesSummarysIn,
     PreInspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     PlanIdIn,
-    StatisticalStud_1210In,
+    StatisticalStud_1169In,
     CorrectiveActionPlanIdIn)
 {
   InSpecRatio = InSpecRatioIn;
-  FirstArticleStu_1201 = FirstArticleStu_1201In;
+  FirstArticleStu_1160 = FirstArticleStu_1160In;
 }
 
 FirstArticleStudyPlanType::FirstArticleStudyPlanType(
  QIFIdType * idIn,
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn,
  XmlDecimal * InSpecRatioIn,
- FirstArticleStu_1201_Type * FirstArticleStu_1201In) :
+ FirstArticleStu_1160_Type * FirstArticleStu_1160In) :
   StatisticalStudyPlanBaseType(
     idIn,
     VersionIn,
     AttributesIn,
-    StatisticalStud_1208In,
-    StatisticalStud_1209In,
+    StatisticalStud_1167In,
+    StatisticalStud_1168In,
     StatsValuesSummarysIn,
     PreInspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     PlanIdIn,
-    StatisticalStud_1210In,
+    StatisticalStud_1169In,
     CorrectiveActionPlanIdIn)
 {
   InSpecRatio = InSpecRatioIn;
-  FirstArticleStu_1201 = FirstArticleStu_1201In;
+  FirstArticleStu_1160 = FirstArticleStu_1160In;
 }
 
 FirstArticleStudyPlanType::~FirstArticleStudyPlanType()
 {
   #ifndef NODESTRUCT
   delete InSpecRatio;
-  delete FirstArticleStu_1201;
+  delete FirstArticleStu_1160;
   #endif
 }
 
@@ -3230,13 +3300,13 @@ void FirstArticleStudyPlanType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (StatisticalStud_1208)
+  if (StatisticalStud_1167)
     {
-      StatisticalStud_1208->printSelf(outFile);
+      StatisticalStud_1167->printSelf(outFile);
     }
-  if (StatisticalStud_1209)
+  if (StatisticalStud_1168)
     {
-      StatisticalStud_1209->printSelf(outFile);
+      StatisticalStud_1168->printSelf(outFile);
     }
   {
     if (!StatsValuesSummarys)
@@ -3283,9 +3353,9 @@ void FirstArticleStudyPlanType::printSelf(FILE * outFile)
       PlanId->printSelf(outFile);
       fprintf(outFile, "</PlanId>\n");
     }
-  if (StatisticalStud_1210)
+  if (StatisticalStud_1169)
     {
-      StatisticalStud_1210->printSelf(outFile);
+  StatisticalStud_1169->printSelf(outFile);
     }
   if (CorrectiveActionPlanId)
     {
@@ -3298,7 +3368,7 @@ void FirstArticleStudyPlanType::printSelf(FILE * outFile)
   fprintf(outFile, "<InSpecRatio");
   InSpecRatio->printSelf(outFile);
   fprintf(outFile, "</InSpecRatio>\n");
-  FirstArticleStu_1201->printSelf(outFile);
+  FirstArticleStu_1160->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -3316,7 +3386,7 @@ bool FirstArticleStudyPlanType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FirstArticleStudyPlanType\n");
               returnValue = true;
@@ -3332,7 +3402,7 @@ bool FirstArticleStudyPlanType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -3341,7 +3411,7 @@ bool FirstArticleStudyPlanType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FirstArticleStudyPlanType\n");
       returnValue = true;
@@ -3353,8 +3423,8 @@ bool FirstArticleStudyPlanType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -3365,11 +3435,11 @@ XmlDecimal * FirstArticleStudyPlanType::getInSpecRatio()
 void FirstArticleStudyPlanType::setInSpecRatio(XmlDecimal * InSpecRatioIn)
 {InSpecRatio = InSpecRatioIn;}
 
-FirstArticleStu_1201_Type * FirstArticleStudyPlanType::getFirstArticleStu_1201()
-{return FirstArticleStu_1201;}
+FirstArticleStu_1160_Type * FirstArticleStudyPlanType::getFirstArticleStu_1160()
+{return FirstArticleStu_1160;}
 
-void FirstArticleStudyPlanType::setFirstArticleStu_1201(FirstArticleStu_1201_Type * FirstArticleStu_1201In)
-{FirstArticleStu_1201 = FirstArticleStu_1201In;}
+void FirstArticleStudyPlanType::setFirstArticleStu_1160(FirstArticleStu_1160_Type * FirstArticleStu_1160In)
+{FirstArticleStu_1160 = FirstArticleStu_1160In;}
 
 /* ***************************************************************** */
 
@@ -3389,13 +3459,13 @@ FirstArticleStudyResultsType::FirstArticleStudyResultsType(
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -3416,13 +3486,13 @@ FirstArticleStudyResultsType::FirstArticleStudyResultsType(
     ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesIn,
     StatusIn,
-    StatisticalStud_1211In,
+    StatisticalStud_1170In,
     StudyIssuesIn,
     InspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     StudyIdIn,
-    StatisticalStud_1212In,
+    StatisticalStud_1171In,
     AverageFeaturesIn,
     CharacteristicsStatsIn,
     LinearStatsSummariesIn,
@@ -3447,13 +3517,13 @@ FirstArticleStudyResultsType::FirstArticleStudyResultsType(
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -3475,13 +3545,13 @@ FirstArticleStudyResultsType::FirstArticleStudyResultsType(
     ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesIn,
     StatusIn,
-    StatisticalStud_1211In,
+    StatisticalStud_1170In,
     StudyIssuesIn,
     InspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     StudyIdIn,
-    StatisticalStud_1212In,
+    StatisticalStud_1171In,
     AverageFeaturesIn,
     CharacteristicsStatsIn,
     LinearStatsSummariesIn,
@@ -3559,9 +3629,9 @@ void FirstArticleStudyResultsType::printSelf(FILE * outFile)
   Status->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "</Status>\n");
-  if (StatisticalStud_1211)
+  if (StatisticalStud_1170)
     {
-      StatisticalStud_1211->printSelf(outFile);
+  StatisticalStud_1170->printSelf(outFile);
     }
   if (StudyIssues)
     {
@@ -3600,9 +3670,9 @@ void FirstArticleStudyResultsType::printSelf(FILE * outFile)
       StudyId->printSelf(outFile);
       fprintf(outFile, "</StudyId>\n");
     }
-  if (StatisticalStud_1212)
+  if (StatisticalStud_1171)
     {
-      StatisticalStud_1212->printSelf(outFile);
+  StatisticalStud_1171->printSelf(outFile);
     }
   if (AverageFeatures)
     {
@@ -3747,7 +3817,7 @@ bool FirstArticleStudyResultsType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FirstArticleStudyResultsType\n");
               returnValue = true;
@@ -3763,7 +3833,7 @@ bool FirstArticleStudyResultsType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -3772,7 +3842,7 @@ bool FirstArticleStudyResultsType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FirstArticleStudyResultsType\n");
       returnValue = true;
@@ -3784,8 +3854,8 @@ bool FirstArticleStudyResultsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -3882,42 +3952,42 @@ GageRandRStudyPlanType::GageRandRStudyPlanType() :
   NumberOfAppraisers = 0;
   NumberOfParts = 0;
   NumberOfTrials = 0;
-  GageRandRStudyP_1202 = 0;
-  GageRandRStudyP_1203 = 0;
-  GageRandRStudyP_1204 = 0;
+  GageRandRStudyP_1161 = 0;
+  GageRandRStudyP_1162 = 0;
+  GageRandRStudyP_1163 = 0;
 }
 
 GageRandRStudyPlanType::GageRandRStudyPlanType(
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn,
  ArrayReferenceType * MeasurementDeviceIdsIn,
  GageRandRStudyEnumType * RandRStudyTypeIn,
  XmlPositiveInteger * NumberOfAppraisersIn,
  XmlPositiveInteger * NumberOfPartsIn,
  XmlPositiveInteger * NumberOfTrialsIn,
- GageRandRStudyP_1202_Type * GageRandRStudyP_1202In,
- GageRandRStudyP_1203_Type * GageRandRStudyP_1203In,
- GageRandRStudyP_1204_Type * GageRandRStudyP_1204In) :
+ GageRandRStudyP_1161_Type * GageRandRStudyP_1161In,
+ GageRandRStudyP_1162_Type * GageRandRStudyP_1162In,
+ GageRandRStudyP_1163_Type * GageRandRStudyP_1163In) :
   StatisticalStudyPlanBaseType(
     VersionIn,
     AttributesIn,
-    StatisticalStud_1208In,
-    StatisticalStud_1209In,
+    StatisticalStud_1167In,
+    StatisticalStud_1168In,
     StatsValuesSummarysIn,
     PreInspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     PlanIdIn,
-    StatisticalStud_1210In,
+    StatisticalStud_1169In,
     CorrectiveActionPlanIdIn)
 {
   MeasurementDeviceIds = MeasurementDeviceIdsIn;
@@ -3925,44 +3995,44 @@ GageRandRStudyPlanType::GageRandRStudyPlanType(
   NumberOfAppraisers = NumberOfAppraisersIn;
   NumberOfParts = NumberOfPartsIn;
   NumberOfTrials = NumberOfTrialsIn;
-  GageRandRStudyP_1202 = GageRandRStudyP_1202In;
-  GageRandRStudyP_1203 = GageRandRStudyP_1203In;
-  GageRandRStudyP_1204 = GageRandRStudyP_1204In;
+  GageRandRStudyP_1161 = GageRandRStudyP_1161In;
+  GageRandRStudyP_1162 = GageRandRStudyP_1162In;
+  GageRandRStudyP_1163 = GageRandRStudyP_1163In;
 }
 
 GageRandRStudyPlanType::GageRandRStudyPlanType(
  QIFIdType * idIn,
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn,
  ArrayReferenceType * MeasurementDeviceIdsIn,
  GageRandRStudyEnumType * RandRStudyTypeIn,
  XmlPositiveInteger * NumberOfAppraisersIn,
  XmlPositiveInteger * NumberOfPartsIn,
  XmlPositiveInteger * NumberOfTrialsIn,
- GageRandRStudyP_1202_Type * GageRandRStudyP_1202In,
- GageRandRStudyP_1203_Type * GageRandRStudyP_1203In,
- GageRandRStudyP_1204_Type * GageRandRStudyP_1204In) :
+ GageRandRStudyP_1161_Type * GageRandRStudyP_1161In,
+ GageRandRStudyP_1162_Type * GageRandRStudyP_1162In,
+ GageRandRStudyP_1163_Type * GageRandRStudyP_1163In) :
   StatisticalStudyPlanBaseType(
     idIn,
     VersionIn,
     AttributesIn,
-    StatisticalStud_1208In,
-    StatisticalStud_1209In,
+    StatisticalStud_1167In,
+    StatisticalStud_1168In,
     StatsValuesSummarysIn,
     PreInspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     PlanIdIn,
-    StatisticalStud_1210In,
+    StatisticalStud_1169In,
     CorrectiveActionPlanIdIn)
 {
   MeasurementDeviceIds = MeasurementDeviceIdsIn;
@@ -3970,9 +4040,9 @@ GageRandRStudyPlanType::GageRandRStudyPlanType(
   NumberOfAppraisers = NumberOfAppraisersIn;
   NumberOfParts = NumberOfPartsIn;
   NumberOfTrials = NumberOfTrialsIn;
-  GageRandRStudyP_1202 = GageRandRStudyP_1202In;
-  GageRandRStudyP_1203 = GageRandRStudyP_1203In;
-  GageRandRStudyP_1204 = GageRandRStudyP_1204In;
+  GageRandRStudyP_1161 = GageRandRStudyP_1161In;
+  GageRandRStudyP_1162 = GageRandRStudyP_1162In;
+  GageRandRStudyP_1163 = GageRandRStudyP_1163In;
 }
 
 GageRandRStudyPlanType::~GageRandRStudyPlanType()
@@ -3983,9 +4053,9 @@ GageRandRStudyPlanType::~GageRandRStudyPlanType()
   delete NumberOfAppraisers;
   delete NumberOfParts;
   delete NumberOfTrials;
-  delete GageRandRStudyP_1202;
-  delete GageRandRStudyP_1203;
-  delete GageRandRStudyP_1204;
+  delete GageRandRStudyP_1161;
+  delete GageRandRStudyP_1162;
+  delete GageRandRStudyP_1163;
   #endif
 }
 
@@ -4034,13 +4104,13 @@ void GageRandRStudyPlanType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (StatisticalStud_1208)
+  if (StatisticalStud_1167)
     {
-      StatisticalStud_1208->printSelf(outFile);
+      StatisticalStud_1167->printSelf(outFile);
     }
-  if (StatisticalStud_1209)
+  if (StatisticalStud_1168)
     {
-      StatisticalStud_1209->printSelf(outFile);
+      StatisticalStud_1168->printSelf(outFile);
     }
   {
     if (!StatsValuesSummarys)
@@ -4087,9 +4157,9 @@ void GageRandRStudyPlanType::printSelf(FILE * outFile)
       PlanId->printSelf(outFile);
       fprintf(outFile, "</PlanId>\n");
     }
-  if (StatisticalStud_1210)
+  if (StatisticalStud_1169)
     {
-      StatisticalStud_1210->printSelf(outFile);
+  StatisticalStud_1169->printSelf(outFile);
     }
   if (CorrectiveActionPlanId)
     {
@@ -4122,17 +4192,17 @@ void GageRandRStudyPlanType::printSelf(FILE * outFile)
   fprintf(outFile, "<NumberOfTrials");
   NumberOfTrials->printSelf(outFile);
   fprintf(outFile, "</NumberOfTrials>\n");
-  if (GageRandRStudyP_1202)
+  if (GageRandRStudyP_1161)
     {
-      GageRandRStudyP_1202->printSelf(outFile);
+  GageRandRStudyP_1161->printSelf(outFile);
     }
-  if (GageRandRStudyP_1203)
+  if (GageRandRStudyP_1162)
     {
-      GageRandRStudyP_1203->printSelf(outFile);
+  GageRandRStudyP_1162->printSelf(outFile);
     }
-  if (GageRandRStudyP_1204)
+  if (GageRandRStudyP_1163)
     {
-      GageRandRStudyP_1204->printSelf(outFile);
+  GageRandRStudyP_1163->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -4151,7 +4221,7 @@ bool GageRandRStudyPlanType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in GageRandRStudyPlanType\n");
               returnValue = true;
@@ -4167,7 +4237,7 @@ bool GageRandRStudyPlanType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -4176,7 +4246,7 @@ bool GageRandRStudyPlanType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in GageRandRStudyPlanType\n");
       returnValue = true;
@@ -4188,8 +4258,8 @@ bool GageRandRStudyPlanType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -4224,23 +4294,23 @@ XmlPositiveInteger * GageRandRStudyPlanType::getNumberOfTrials()
 void GageRandRStudyPlanType::setNumberOfTrials(XmlPositiveInteger * NumberOfTrialsIn)
 {NumberOfTrials = NumberOfTrialsIn;}
 
-GageRandRStudyP_1202_Type * GageRandRStudyPlanType::getGageRandRStudyP_1202()
-{return GageRandRStudyP_1202;}
+GageRandRStudyP_1161_Type * GageRandRStudyPlanType::getGageRandRStudyP_1161()
+{return GageRandRStudyP_1161;}
 
-void GageRandRStudyPlanType::setGageRandRStudyP_1202(GageRandRStudyP_1202_Type * GageRandRStudyP_1202In)
-{GageRandRStudyP_1202 = GageRandRStudyP_1202In;}
+void GageRandRStudyPlanType::setGageRandRStudyP_1161(GageRandRStudyP_1161_Type * GageRandRStudyP_1161In)
+{GageRandRStudyP_1161 = GageRandRStudyP_1161In;}
 
-GageRandRStudyP_1203_Type * GageRandRStudyPlanType::getGageRandRStudyP_1203()
-{return GageRandRStudyP_1203;}
+GageRandRStudyP_1162_Type * GageRandRStudyPlanType::getGageRandRStudyP_1162()
+{return GageRandRStudyP_1162;}
 
-void GageRandRStudyPlanType::setGageRandRStudyP_1203(GageRandRStudyP_1203_Type * GageRandRStudyP_1203In)
-{GageRandRStudyP_1203 = GageRandRStudyP_1203In;}
+void GageRandRStudyPlanType::setGageRandRStudyP_1162(GageRandRStudyP_1162_Type * GageRandRStudyP_1162In)
+{GageRandRStudyP_1162 = GageRandRStudyP_1162In;}
 
-GageRandRStudyP_1204_Type * GageRandRStudyPlanType::getGageRandRStudyP_1204()
-{return GageRandRStudyP_1204;}
+GageRandRStudyP_1163_Type * GageRandRStudyPlanType::getGageRandRStudyP_1163()
+{return GageRandRStudyP_1163;}
 
-void GageRandRStudyPlanType::setGageRandRStudyP_1204(GageRandRStudyP_1204_Type * GageRandRStudyP_1204In)
-{GageRandRStudyP_1204 = GageRandRStudyP_1204In;}
+void GageRandRStudyPlanType::setGageRandRStudyP_1163(GageRandRStudyP_1163_Type * GageRandRStudyP_1163In)
+{GageRandRStudyP_1163 = GageRandRStudyP_1163In;}
 
 /* ***************************************************************** */
 
@@ -4261,13 +4331,13 @@ GageRandRStudyResultsType::GageRandRStudyResultsType(
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -4289,13 +4359,13 @@ GageRandRStudyResultsType::GageRandRStudyResultsType(
     ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesIn,
     StatusIn,
-    StatisticalStud_1211In,
+    StatisticalStud_1170In,
     StudyIssuesIn,
     InspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     StudyIdIn,
-    StatisticalStud_1212In,
+    StatisticalStud_1171In,
     AverageFeaturesIn,
     CharacteristicsStatsIn,
     LinearStatsSummariesIn,
@@ -4321,13 +4391,13 @@ GageRandRStudyResultsType::GageRandRStudyResultsType(
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -4350,13 +4420,13 @@ GageRandRStudyResultsType::GageRandRStudyResultsType(
     ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesIn,
     StatusIn,
-    StatisticalStud_1211In,
+    StatisticalStud_1170In,
     StudyIssuesIn,
     InspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     StudyIdIn,
-    StatisticalStud_1212In,
+    StatisticalStud_1171In,
     AverageFeaturesIn,
     CharacteristicsStatsIn,
     LinearStatsSummariesIn,
@@ -4436,9 +4506,9 @@ void GageRandRStudyResultsType::printSelf(FILE * outFile)
   Status->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "</Status>\n");
-  if (StatisticalStud_1211)
+  if (StatisticalStud_1170)
     {
-      StatisticalStud_1211->printSelf(outFile);
+  StatisticalStud_1170->printSelf(outFile);
     }
   if (StudyIssues)
     {
@@ -4477,9 +4547,9 @@ void GageRandRStudyResultsType::printSelf(FILE * outFile)
       StudyId->printSelf(outFile);
       fprintf(outFile, "</StudyId>\n");
     }
-  if (StatisticalStud_1212)
+  if (StatisticalStud_1171)
     {
-      StatisticalStud_1212->printSelf(outFile);
+  StatisticalStud_1171->printSelf(outFile);
     }
   if (AverageFeatures)
     {
@@ -4622,7 +4692,7 @@ bool GageRandRStudyResultsType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in GageRandRStudyResultsType\n");
               returnValue = true;
@@ -4638,7 +4708,7 @@ bool GageRandRStudyResultsType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -4647,7 +4717,7 @@ bool GageRandRStudyResultsType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in GageRandRStudyResultsType\n");
       returnValue = true;
@@ -4659,8 +4729,8 @@ bool GageRandRStudyResultsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -4700,75 +4770,75 @@ LinearityStudyPlanType::LinearityStudyPlanType() :
 {
   MeasurementDeviceIds = 0;
   GoodnessOfFitThreshold = 0;
-  LinearityStudyP_1205 = 0;
+  LinearityStudyP_1164 = 0;
 }
 
 LinearityStudyPlanType::LinearityStudyPlanType(
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn,
  ArrayReferenceType * MeasurementDeviceIdsIn,
  XmlDecimal * GoodnessOfFitThresholdIn,
- LinearityStudyP_1205_Type * LinearityStudyP_1205In) :
+ LinearityStudyP_1164_Type * LinearityStudyP_1164In) :
   StatisticalStudyPlanBaseType(
     VersionIn,
     AttributesIn,
-    StatisticalStud_1208In,
-    StatisticalStud_1209In,
+    StatisticalStud_1167In,
+    StatisticalStud_1168In,
     StatsValuesSummarysIn,
     PreInspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     PlanIdIn,
-    StatisticalStud_1210In,
+    StatisticalStud_1169In,
     CorrectiveActionPlanIdIn)
 {
   MeasurementDeviceIds = MeasurementDeviceIdsIn;
   GoodnessOfFitThreshold = GoodnessOfFitThresholdIn;
-  LinearityStudyP_1205 = LinearityStudyP_1205In;
+  LinearityStudyP_1164 = LinearityStudyP_1164In;
 }
 
 LinearityStudyPlanType::LinearityStudyPlanType(
  QIFIdType * idIn,
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn,
  ArrayReferenceType * MeasurementDeviceIdsIn,
  XmlDecimal * GoodnessOfFitThresholdIn,
- LinearityStudyP_1205_Type * LinearityStudyP_1205In) :
+ LinearityStudyP_1164_Type * LinearityStudyP_1164In) :
   StatisticalStudyPlanBaseType(
     idIn,
     VersionIn,
     AttributesIn,
-    StatisticalStud_1208In,
-    StatisticalStud_1209In,
+    StatisticalStud_1167In,
+    StatisticalStud_1168In,
     StatsValuesSummarysIn,
     PreInspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     PlanIdIn,
-    StatisticalStud_1210In,
+    StatisticalStud_1169In,
     CorrectiveActionPlanIdIn)
 {
   MeasurementDeviceIds = MeasurementDeviceIdsIn;
   GoodnessOfFitThreshold = GoodnessOfFitThresholdIn;
-  LinearityStudyP_1205 = LinearityStudyP_1205In;
+  LinearityStudyP_1164 = LinearityStudyP_1164In;
 }
 
 LinearityStudyPlanType::~LinearityStudyPlanType()
@@ -4776,7 +4846,7 @@ LinearityStudyPlanType::~LinearityStudyPlanType()
   #ifndef NODESTRUCT
   delete MeasurementDeviceIds;
   delete GoodnessOfFitThreshold;
-  delete LinearityStudyP_1205;
+  delete LinearityStudyP_1164;
   #endif
 }
 
@@ -4825,13 +4895,13 @@ void LinearityStudyPlanType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (StatisticalStud_1208)
+  if (StatisticalStud_1167)
     {
-      StatisticalStud_1208->printSelf(outFile);
+      StatisticalStud_1167->printSelf(outFile);
     }
-  if (StatisticalStud_1209)
+  if (StatisticalStud_1168)
     {
-      StatisticalStud_1209->printSelf(outFile);
+      StatisticalStud_1168->printSelf(outFile);
     }
   {
     if (!StatsValuesSummarys)
@@ -4878,9 +4948,9 @@ void LinearityStudyPlanType::printSelf(FILE * outFile)
       PlanId->printSelf(outFile);
       fprintf(outFile, "</PlanId>\n");
     }
-  if (StatisticalStud_1210)
+  if (StatisticalStud_1169)
     {
-      StatisticalStud_1210->printSelf(outFile);
+  StatisticalStud_1169->printSelf(outFile);
     }
   if (CorrectiveActionPlanId)
     {
@@ -4904,7 +4974,7 @@ void LinearityStudyPlanType::printSelf(FILE * outFile)
       GoodnessOfFitThreshold->printSelf(outFile);
       fprintf(outFile, "</GoodnessOfFitThreshold>\n");
     }
-  LinearityStudyP_1205->printSelf(outFile);
+  LinearityStudyP_1164->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -4922,7 +4992,7 @@ bool LinearityStudyPlanType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LinearityStudyPlanType\n");
               returnValue = true;
@@ -4938,7 +5008,7 @@ bool LinearityStudyPlanType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -4947,7 +5017,7 @@ bool LinearityStudyPlanType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LinearityStudyPlanType\n");
       returnValue = true;
@@ -4959,8 +5029,8 @@ bool LinearityStudyPlanType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -4977,11 +5047,11 @@ XmlDecimal * LinearityStudyPlanType::getGoodnessOfFitThreshold()
 void LinearityStudyPlanType::setGoodnessOfFitThreshold(XmlDecimal * GoodnessOfFitThresholdIn)
 {GoodnessOfFitThreshold = GoodnessOfFitThresholdIn;}
 
-LinearityStudyP_1205_Type * LinearityStudyPlanType::getLinearityStudyP_1205()
-{return LinearityStudyP_1205;}
+LinearityStudyP_1164_Type * LinearityStudyPlanType::getLinearityStudyP_1164()
+{return LinearityStudyP_1164;}
 
-void LinearityStudyPlanType::setLinearityStudyP_1205(LinearityStudyP_1205_Type * LinearityStudyP_1205In)
-{LinearityStudyP_1205 = LinearityStudyP_1205In;}
+void LinearityStudyPlanType::setLinearityStudyP_1164(LinearityStudyP_1164_Type * LinearityStudyP_1164In)
+{LinearityStudyP_1164 = LinearityStudyP_1164In;}
 
 /* ***************************************************************** */
 
@@ -4995,7 +5065,7 @@ LinearityStudyResultsType::LinearityStudyResultsType() :
   SampleSize = 0;
   MeasurementDeviceIds = 0;
   GoodnessOfFit = 0;
-  LinearityStudyR_1206 = 0;
+  LinearityStudyR_1165 = 0;
   RelativeLinearity = 0;
 }
 
@@ -5003,13 +5073,13 @@ LinearityStudyResultsType::LinearityStudyResultsType(
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -5026,19 +5096,19 @@ LinearityStudyResultsType::LinearityStudyResultsType(
  XmlPositiveInteger * SampleSizeIn,
  ArrayReferenceType * MeasurementDeviceIdsIn,
  MeasuredDecimalType * GoodnessOfFitIn,
- LinearityStudyR_1206_Type * LinearityStudyR_1206In,
+ LinearityStudyR_1165_Type * LinearityStudyR_1165In,
  MeasuredDecimalType * RelativeLinearityIn) :
   StatisticalStudyResultsBaseType(
     ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesIn,
     StatusIn,
-    StatisticalStud_1211In,
+    StatisticalStud_1170In,
     StudyIssuesIn,
     InspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     StudyIdIn,
-    StatisticalStud_1212In,
+    StatisticalStud_1171In,
     AverageFeaturesIn,
     CharacteristicsStatsIn,
     LinearStatsSummariesIn,
@@ -5056,7 +5126,7 @@ LinearityStudyResultsType::LinearityStudyResultsType(
   SampleSize = SampleSizeIn;
   MeasurementDeviceIds = MeasurementDeviceIdsIn;
   GoodnessOfFit = GoodnessOfFitIn;
-  LinearityStudyR_1206 = LinearityStudyR_1206In;
+  LinearityStudyR_1165 = LinearityStudyR_1165In;
   RelativeLinearity = RelativeLinearityIn;
 }
 
@@ -5065,13 +5135,13 @@ LinearityStudyResultsType::LinearityStudyResultsType(
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -5088,20 +5158,20 @@ LinearityStudyResultsType::LinearityStudyResultsType(
  XmlPositiveInteger * SampleSizeIn,
  ArrayReferenceType * MeasurementDeviceIdsIn,
  MeasuredDecimalType * GoodnessOfFitIn,
- LinearityStudyR_1206_Type * LinearityStudyR_1206In,
+ LinearityStudyR_1165_Type * LinearityStudyR_1165In,
  MeasuredDecimalType * RelativeLinearityIn) :
   StatisticalStudyResultsBaseType(
     idIn,
     ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesIn,
     StatusIn,
-    StatisticalStud_1211In,
+    StatisticalStud_1170In,
     StudyIssuesIn,
     InspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     StudyIdIn,
-    StatisticalStud_1212In,
+    StatisticalStud_1171In,
     AverageFeaturesIn,
     CharacteristicsStatsIn,
     LinearStatsSummariesIn,
@@ -5119,7 +5189,7 @@ LinearityStudyResultsType::LinearityStudyResultsType(
   SampleSize = SampleSizeIn;
   MeasurementDeviceIds = MeasurementDeviceIdsIn;
   GoodnessOfFit = GoodnessOfFitIn;
-  LinearityStudyR_1206 = LinearityStudyR_1206In;
+  LinearityStudyR_1165 = LinearityStudyR_1165In;
   RelativeLinearity = RelativeLinearityIn;
 }
 
@@ -5129,7 +5199,7 @@ LinearityStudyResultsType::~LinearityStudyResultsType()
   delete SampleSize;
   delete MeasurementDeviceIds;
   delete GoodnessOfFit;
-  delete LinearityStudyR_1206;
+  delete LinearityStudyR_1165;
   delete RelativeLinearity;
   #endif
 }
@@ -5183,9 +5253,9 @@ void LinearityStudyResultsType::printSelf(FILE * outFile)
   Status->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "</Status>\n");
-  if (StatisticalStud_1211)
+  if (StatisticalStud_1170)
     {
-      StatisticalStud_1211->printSelf(outFile);
+  StatisticalStud_1170->printSelf(outFile);
     }
   if (StudyIssues)
     {
@@ -5224,9 +5294,9 @@ void LinearityStudyResultsType::printSelf(FILE * outFile)
       StudyId->printSelf(outFile);
       fprintf(outFile, "</StudyId>\n");
     }
-  if (StatisticalStud_1212)
+  if (StatisticalStud_1171)
     {
-      StatisticalStud_1212->printSelf(outFile);
+  StatisticalStud_1171->printSelf(outFile);
     }
   if (AverageFeatures)
     {
@@ -5351,9 +5421,9 @@ void LinearityStudyResultsType::printSelf(FILE * outFile)
       GoodnessOfFit->printSelf(outFile);
       fprintf(outFile, "</GoodnessOfFit>\n");
     }
-  if (LinearityStudyR_1206)
+  if (LinearityStudyR_1165)
     {
-      LinearityStudyR_1206->printSelf(outFile);
+  LinearityStudyR_1165->printSelf(outFile);
     }
   if (RelativeLinearity)
     {
@@ -5379,7 +5449,7 @@ bool LinearityStudyResultsType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LinearityStudyResultsType\n");
               returnValue = true;
@@ -5395,7 +5465,7 @@ bool LinearityStudyResultsType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -5404,7 +5474,7 @@ bool LinearityStudyResultsType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LinearityStudyResultsType\n");
       returnValue = true;
@@ -5416,8 +5486,8 @@ bool LinearityStudyResultsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -5440,11 +5510,11 @@ MeasuredDecimalType * LinearityStudyResultsType::getGoodnessOfFit()
 void LinearityStudyResultsType::setGoodnessOfFit(MeasuredDecimalType * GoodnessOfFitIn)
 {GoodnessOfFit = GoodnessOfFitIn;}
 
-LinearityStudyR_1206_Type * LinearityStudyResultsType::getLinearityStudyR_1206()
-{return LinearityStudyR_1206;}
+LinearityStudyR_1165_Type * LinearityStudyResultsType::getLinearityStudyR_1165()
+{return LinearityStudyR_1165;}
 
-void LinearityStudyResultsType::setLinearityStudyR_1206(LinearityStudyR_1206_Type * LinearityStudyR_1206In)
-{LinearityStudyR_1206 = LinearityStudyR_1206In;}
+void LinearityStudyResultsType::setLinearityStudyR_1165(LinearityStudyR_1165_Type * LinearityStudyR_1165In)
+{LinearityStudyR_1165 = LinearityStudyR_1165In;}
 
 MeasuredDecimalType * LinearityStudyResultsType::getRelativeLinearity()
 {return RelativeLinearity;}
@@ -5468,28 +5538,28 @@ MultipleProductInstanceStudyPlanBaseType::MultipleProductInstanceStudyPlanBaseTy
 MultipleProductInstanceStudyPlanBaseType::MultipleProductInstanceStudyPlanBaseType(
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn,
  XmlPositiveInteger * NumberOfSamplesIn,
  XmlPositiveInteger * SubgroupSizeIn) :
   StatisticalStudyPlanBaseType(
     VersionIn,
     AttributesIn,
-    StatisticalStud_1208In,
-    StatisticalStud_1209In,
+    StatisticalStud_1167In,
+    StatisticalStud_1168In,
     StatsValuesSummarysIn,
     PreInspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     PlanIdIn,
-    StatisticalStud_1210In,
+    StatisticalStud_1169In,
     CorrectiveActionPlanIdIn)
 {
   NumberOfSamples = NumberOfSamplesIn;
@@ -5500,14 +5570,14 @@ MultipleProductInstanceStudyPlanBaseType::MultipleProductInstanceStudyPlanBaseTy
  QIFIdType * idIn,
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn,
  XmlPositiveInteger * NumberOfSamplesIn,
  XmlPositiveInteger * SubgroupSizeIn) :
@@ -5515,14 +5585,14 @@ MultipleProductInstanceStudyPlanBaseType::MultipleProductInstanceStudyPlanBaseTy
     idIn,
     VersionIn,
     AttributesIn,
-    StatisticalStud_1208In,
-    StatisticalStud_1209In,
+    StatisticalStud_1167In,
+    StatisticalStud_1168In,
     StatsValuesSummarysIn,
     PreInspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     PlanIdIn,
-    StatisticalStud_1210In,
+    StatisticalStud_1169In,
     CorrectiveActionPlanIdIn)
 {
   NumberOfSamples = NumberOfSamplesIn;
@@ -5582,13 +5652,13 @@ void MultipleProductInstanceStudyPlanBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (StatisticalStud_1208)
+  if (StatisticalStud_1167)
     {
-      StatisticalStud_1208->printSelf(outFile);
+      StatisticalStud_1167->printSelf(outFile);
     }
-  if (StatisticalStud_1209)
+  if (StatisticalStud_1168)
     {
-      StatisticalStud_1209->printSelf(outFile);
+      StatisticalStud_1168->printSelf(outFile);
     }
   {
     if (!StatsValuesSummarys)
@@ -5635,9 +5705,9 @@ void MultipleProductInstanceStudyPlanBaseType::printSelf(FILE * outFile)
       PlanId->printSelf(outFile);
       fprintf(outFile, "</PlanId>\n");
     }
-  if (StatisticalStud_1210)
+  if (StatisticalStud_1169)
     {
-      StatisticalStud_1210->printSelf(outFile);
+  StatisticalStud_1169->printSelf(outFile);
     }
   if (CorrectiveActionPlanId)
     {
@@ -5674,7 +5744,7 @@ bool MultipleProductInstanceStudyPlanBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MultipleProductInstanceStudyPlanBaseType\n");
               returnValue = true;
@@ -5690,7 +5760,7 @@ bool MultipleProductInstanceStudyPlanBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -5699,7 +5769,7 @@ bool MultipleProductInstanceStudyPlanBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MultipleProductInstanceStudyPlanBaseType\n");
       returnValue = true;
@@ -5711,8 +5781,8 @@ bool MultipleProductInstanceStudyPlanBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -5746,13 +5816,13 @@ MultipleProductInstanceStudyResultsBaseType::MultipleProductInstanceStudyResults
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -5772,13 +5842,13 @@ MultipleProductInstanceStudyResultsBaseType::MultipleProductInstanceStudyResults
     ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesIn,
     StatusIn,
-    StatisticalStud_1211In,
+    StatisticalStud_1170In,
     StudyIssuesIn,
     InspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     StudyIdIn,
-    StatisticalStud_1212In,
+    StatisticalStud_1171In,
     AverageFeaturesIn,
     CharacteristicsStatsIn,
     LinearStatsSummariesIn,
@@ -5802,13 +5872,13 @@ MultipleProductInstanceStudyResultsBaseType::MultipleProductInstanceStudyResults
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -5829,13 +5899,13 @@ MultipleProductInstanceStudyResultsBaseType::MultipleProductInstanceStudyResults
     ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesIn,
     StatusIn,
-    StatisticalStud_1211In,
+    StatisticalStud_1170In,
     StudyIssuesIn,
     InspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     StudyIdIn,
-    StatisticalStud_1212In,
+    StatisticalStud_1171In,
     AverageFeaturesIn,
     CharacteristicsStatsIn,
     LinearStatsSummariesIn,
@@ -5911,9 +5981,9 @@ void MultipleProductInstanceStudyResultsBaseType::printSelf(FILE * outFile)
   Status->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "</Status>\n");
-  if (StatisticalStud_1211)
+  if (StatisticalStud_1170)
     {
-      StatisticalStud_1211->printSelf(outFile);
+  StatisticalStud_1170->printSelf(outFile);
     }
   if (StudyIssues)
     {
@@ -5952,9 +6022,9 @@ void MultipleProductInstanceStudyResultsBaseType::printSelf(FILE * outFile)
       StudyId->printSelf(outFile);
       fprintf(outFile, "</StudyId>\n");
     }
-  if (StatisticalStud_1212)
+  if (StatisticalStud_1171)
     {
-      StatisticalStud_1212->printSelf(outFile);
+  StatisticalStud_1171->printSelf(outFile);
     }
   if (AverageFeatures)
     {
@@ -6088,7 +6158,7 @@ bool MultipleProductInstanceStudyResultsBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MultipleProductInstanceStudyResultsBaseType\n");
               returnValue = true;
@@ -6104,7 +6174,7 @@ bool MultipleProductInstanceStudyResultsBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -6113,7 +6183,7 @@ bool MultipleProductInstanceStudyResultsBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MultipleProductInstanceStudyResultsBaseType\n");
       returnValue = true;
@@ -6125,8 +6195,8 @@ bool MultipleProductInstanceStudyResultsBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -6155,79 +6225,79 @@ ProcessDifferenceStudyPlanType::ProcessDifferenceStudyPlanType() :
   NumberOfSamples = 0;
   SubgroupSize = 0;
   ManufacturingProcessId = 0;
-  ProcessDifferen_1207 = 0;
+  ProcessDifferen_1166 = 0;
 }
 
 ProcessDifferenceStudyPlanType::ProcessDifferenceStudyPlanType(
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn,
  XmlPositiveInteger * NumberOfSamplesIn,
  XmlPositiveInteger * SubgroupSizeIn,
  QIFReferenceType * ManufacturingProcessIdIn,
- ProcessDifferen_1207_Type * ProcessDifferen_1207In) :
+ ProcessDifferen_1166_Type * ProcessDifferen_1166In) :
   StatisticalStudyPlanBaseType(
     VersionIn,
     AttributesIn,
-    StatisticalStud_1208In,
-    StatisticalStud_1209In,
+    StatisticalStud_1167In,
+    StatisticalStud_1168In,
     StatsValuesSummarysIn,
     PreInspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     PlanIdIn,
-    StatisticalStud_1210In,
+    StatisticalStud_1169In,
     CorrectiveActionPlanIdIn)
 {
   NumberOfSamples = NumberOfSamplesIn;
   SubgroupSize = SubgroupSizeIn;
   ManufacturingProcessId = ManufacturingProcessIdIn;
-  ProcessDifferen_1207 = ProcessDifferen_1207In;
+  ProcessDifferen_1166 = ProcessDifferen_1166In;
 }
 
 ProcessDifferenceStudyPlanType::ProcessDifferenceStudyPlanType(
  QIFIdType * idIn,
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn,
  XmlPositiveInteger * NumberOfSamplesIn,
  XmlPositiveInteger * SubgroupSizeIn,
  QIFReferenceType * ManufacturingProcessIdIn,
- ProcessDifferen_1207_Type * ProcessDifferen_1207In) :
+ ProcessDifferen_1166_Type * ProcessDifferen_1166In) :
   StatisticalStudyPlanBaseType(
     idIn,
     VersionIn,
     AttributesIn,
-    StatisticalStud_1208In,
-    StatisticalStud_1209In,
+    StatisticalStud_1167In,
+    StatisticalStud_1168In,
     StatsValuesSummarysIn,
     PreInspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     PlanIdIn,
-    StatisticalStud_1210In,
+    StatisticalStud_1169In,
     CorrectiveActionPlanIdIn)
 {
   NumberOfSamples = NumberOfSamplesIn;
   SubgroupSize = SubgroupSizeIn;
   ManufacturingProcessId = ManufacturingProcessIdIn;
-  ProcessDifferen_1207 = ProcessDifferen_1207In;
+  ProcessDifferen_1166 = ProcessDifferen_1166In;
 }
 
 ProcessDifferenceStudyPlanType::~ProcessDifferenceStudyPlanType()
@@ -6236,7 +6306,7 @@ ProcessDifferenceStudyPlanType::~ProcessDifferenceStudyPlanType()
   delete NumberOfSamples;
   delete SubgroupSize;
   delete ManufacturingProcessId;
-  delete ProcessDifferen_1207;
+  delete ProcessDifferen_1166;
   #endif
 }
 
@@ -6285,13 +6355,13 @@ void ProcessDifferenceStudyPlanType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (StatisticalStud_1208)
+  if (StatisticalStud_1167)
     {
-      StatisticalStud_1208->printSelf(outFile);
+      StatisticalStud_1167->printSelf(outFile);
     }
-  if (StatisticalStud_1209)
+  if (StatisticalStud_1168)
     {
-      StatisticalStud_1209->printSelf(outFile);
+      StatisticalStud_1168->printSelf(outFile);
     }
   {
     if (!StatsValuesSummarys)
@@ -6338,9 +6408,9 @@ void ProcessDifferenceStudyPlanType::printSelf(FILE * outFile)
       PlanId->printSelf(outFile);
       fprintf(outFile, "</PlanId>\n");
     }
-  if (StatisticalStud_1210)
+  if (StatisticalStud_1169)
     {
-      StatisticalStud_1210->printSelf(outFile);
+  StatisticalStud_1169->printSelf(outFile);
     }
   if (CorrectiveActionPlanId)
     {
@@ -6364,7 +6434,7 @@ void ProcessDifferenceStudyPlanType::printSelf(FILE * outFile)
       ManufacturingProcessId->printSelf(outFile);
       fprintf(outFile, "</ManufacturingProcessId>\n");
     }
-  ProcessDifferen_1207->printSelf(outFile);
+  ProcessDifferen_1166->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -6382,7 +6452,7 @@ bool ProcessDifferenceStudyPlanType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ProcessDifferenceStudyPlanType\n");
               returnValue = true;
@@ -6398,7 +6468,7 @@ bool ProcessDifferenceStudyPlanType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -6407,7 +6477,7 @@ bool ProcessDifferenceStudyPlanType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ProcessDifferenceStudyPlanType\n");
       returnValue = true;
@@ -6419,8 +6489,8 @@ bool ProcessDifferenceStudyPlanType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -6443,11 +6513,11 @@ QIFReferenceType * ProcessDifferenceStudyPlanType::getManufacturingProcessId()
 void ProcessDifferenceStudyPlanType::setManufacturingProcessId(QIFReferenceType * ManufacturingProcessIdIn)
 {ManufacturingProcessId = ManufacturingProcessIdIn;}
 
-ProcessDifferen_1207_Type * ProcessDifferenceStudyPlanType::getProcessDifferen_1207()
-{return ProcessDifferen_1207;}
+ProcessDifferen_1166_Type * ProcessDifferenceStudyPlanType::getProcessDifferen_1166()
+{return ProcessDifferen_1166;}
 
-void ProcessDifferenceStudyPlanType::setProcessDifferen_1207(ProcessDifferen_1207_Type * ProcessDifferen_1207In)
-{ProcessDifferen_1207 = ProcessDifferen_1207In;}
+void ProcessDifferenceStudyPlanType::setProcessDifferen_1166(ProcessDifferen_1166_Type * ProcessDifferen_1166In)
+{ProcessDifferen_1166 = ProcessDifferen_1166In;}
 
 /* ***************************************************************** */
 
@@ -6469,13 +6539,13 @@ ProcessDifferenceStudyResultsType::ProcessDifferenceStudyResultsType(
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -6498,13 +6568,13 @@ ProcessDifferenceStudyResultsType::ProcessDifferenceStudyResultsType(
     ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesIn,
     StatusIn,
-    StatisticalStud_1211In,
+    StatisticalStud_1170In,
     StudyIssuesIn,
     InspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     StudyIdIn,
-    StatisticalStud_1212In,
+    StatisticalStud_1171In,
     AverageFeaturesIn,
     CharacteristicsStatsIn,
     LinearStatsSummariesIn,
@@ -6531,13 +6601,13 @@ ProcessDifferenceStudyResultsType::ProcessDifferenceStudyResultsType(
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -6561,13 +6631,13 @@ ProcessDifferenceStudyResultsType::ProcessDifferenceStudyResultsType(
     ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesIn,
     StatusIn,
-    StatisticalStud_1211In,
+    StatisticalStud_1170In,
     StudyIssuesIn,
     InspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     StudyIdIn,
-    StatisticalStud_1212In,
+    StatisticalStud_1171In,
     AverageFeaturesIn,
     CharacteristicsStatsIn,
     LinearStatsSummariesIn,
@@ -6649,9 +6719,9 @@ void ProcessDifferenceStudyResultsType::printSelf(FILE * outFile)
   Status->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "</Status>\n");
-  if (StatisticalStud_1211)
+  if (StatisticalStud_1170)
     {
-      StatisticalStud_1211->printSelf(outFile);
+  StatisticalStud_1170->printSelf(outFile);
     }
   if (StudyIssues)
     {
@@ -6690,9 +6760,9 @@ void ProcessDifferenceStudyResultsType::printSelf(FILE * outFile)
       StudyId->printSelf(outFile);
       fprintf(outFile, "</StudyId>\n");
     }
-  if (StatisticalStud_1212)
+  if (StatisticalStud_1171)
     {
-      StatisticalStud_1212->printSelf(outFile);
+  StatisticalStud_1171->printSelf(outFile);
     }
   if (AverageFeatures)
     {
@@ -6845,7 +6915,7 @@ bool ProcessDifferenceStudyResultsType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ProcessDifferenceStudyResultsType\n");
               returnValue = true;
@@ -6861,7 +6931,7 @@ bool ProcessDifferenceStudyResultsType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -6870,7 +6940,7 @@ bool ProcessDifferenceStudyResultsType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ProcessDifferenceStudyResultsType\n");
       returnValue = true;
@@ -6882,8 +6952,8 @@ bool ProcessDifferenceStudyResultsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -6934,14 +7004,14 @@ ProductionStudyPlanType::ProductionStudyPlanType() :
 ProductionStudyPlanType::ProductionStudyPlanType(
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn,
  XmlPositiveInteger * NumberOfSamplesIn,
  XmlPositiveInteger * SubgroupSizeIn,
@@ -6950,14 +7020,14 @@ ProductionStudyPlanType::ProductionStudyPlanType(
   MultipleProductInstanceStudyPlanBaseType(
     VersionIn,
     AttributesIn,
-    StatisticalStud_1208In,
-    StatisticalStud_1209In,
+    StatisticalStud_1167In,
+    StatisticalStud_1168In,
     StatsValuesSummarysIn,
     PreInspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     PlanIdIn,
-    StatisticalStud_1210In,
+    StatisticalStud_1169In,
     CorrectiveActionPlanIdIn,
     NumberOfSamplesIn,
     SubgroupSizeIn)
@@ -6970,14 +7040,14 @@ ProductionStudyPlanType::ProductionStudyPlanType(
  QIFIdType * idIn,
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn,
  XmlPositiveInteger * NumberOfSamplesIn,
  XmlPositiveInteger * SubgroupSizeIn,
@@ -6987,14 +7057,14 @@ ProductionStudyPlanType::ProductionStudyPlanType(
     idIn,
     VersionIn,
     AttributesIn,
-    StatisticalStud_1208In,
-    StatisticalStud_1209In,
+    StatisticalStud_1167In,
+    StatisticalStud_1168In,
     StatsValuesSummarysIn,
     PreInspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     PlanIdIn,
-    StatisticalStud_1210In,
+    StatisticalStud_1169In,
     CorrectiveActionPlanIdIn,
     NumberOfSamplesIn,
     SubgroupSizeIn)
@@ -7056,13 +7126,13 @@ void ProductionStudyPlanType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (StatisticalStud_1208)
+  if (StatisticalStud_1167)
     {
-      StatisticalStud_1208->printSelf(outFile);
+      StatisticalStud_1167->printSelf(outFile);
     }
-  if (StatisticalStud_1209)
+  if (StatisticalStud_1168)
     {
-      StatisticalStud_1209->printSelf(outFile);
+      StatisticalStud_1168->printSelf(outFile);
     }
   {
     if (!StatsValuesSummarys)
@@ -7109,9 +7179,9 @@ void ProductionStudyPlanType::printSelf(FILE * outFile)
       PlanId->printSelf(outFile);
       fprintf(outFile, "</PlanId>\n");
     }
-  if (StatisticalStud_1210)
+  if (StatisticalStud_1169)
     {
-      StatisticalStud_1210->printSelf(outFile);
+  StatisticalStud_1169->printSelf(outFile);
     }
   if (CorrectiveActionPlanId)
     {
@@ -7158,7 +7228,7 @@ bool ProductionStudyPlanType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ProductionStudyPlanType\n");
               returnValue = true;
@@ -7174,7 +7244,7 @@ bool ProductionStudyPlanType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -7183,7 +7253,7 @@ bool ProductionStudyPlanType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ProductionStudyPlanType\n");
       returnValue = true;
@@ -7195,8 +7265,8 @@ bool ProductionStudyPlanType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -7229,13 +7299,13 @@ ProductionStudyResultsType::ProductionStudyResultsType(
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -7256,13 +7326,13 @@ ProductionStudyResultsType::ProductionStudyResultsType(
     ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesIn,
     StatusIn,
-    StatisticalStud_1211In,
+    StatisticalStud_1170In,
     StudyIssuesIn,
     InspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     StudyIdIn,
-    StatisticalStud_1212In,
+    StatisticalStud_1171In,
     AverageFeaturesIn,
     CharacteristicsStatsIn,
     LinearStatsSummariesIn,
@@ -7287,13 +7357,13 @@ ProductionStudyResultsType::ProductionStudyResultsType(
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -7315,13 +7385,13 @@ ProductionStudyResultsType::ProductionStudyResultsType(
     ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesIn,
     StatusIn,
-    StatisticalStud_1211In,
+    StatisticalStud_1170In,
     StudyIssuesIn,
     InspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     StudyIdIn,
-    StatisticalStud_1212In,
+    StatisticalStud_1171In,
     AverageFeaturesIn,
     CharacteristicsStatsIn,
     LinearStatsSummariesIn,
@@ -7397,9 +7467,9 @@ void ProductionStudyResultsType::printSelf(FILE * outFile)
   Status->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "</Status>\n");
-  if (StatisticalStud_1211)
+  if (StatisticalStud_1170)
     {
-      StatisticalStud_1211->printSelf(outFile);
+  StatisticalStud_1170->printSelf(outFile);
     }
   if (StudyIssues)
     {
@@ -7438,9 +7508,9 @@ void ProductionStudyResultsType::printSelf(FILE * outFile)
       StudyId->printSelf(outFile);
       fprintf(outFile, "</StudyId>\n");
     }
-  if (StatisticalStud_1212)
+  if (StatisticalStud_1171)
     {
-      StatisticalStud_1212->printSelf(outFile);
+  StatisticalStud_1171->printSelf(outFile);
     }
   if (AverageFeatures)
     {
@@ -7568,6 +7638,13 @@ void ProductionStudyResultsType::printSelf(FILE * outFile)
         fprintf(stderr, "ControlIssueDetailsList list is empty\n");
         exit(1);
       }
+    if (ControlIssueDetailsList->size() < 1)
+      {
+        fprintf(stderr,
+                "size of ControlIssueDetailsList list (%d) less than minimum required (1)\n",
+                (int)ControlIssueDetailsList->size());
+        exit(1);
+      }
     std::list<ControlIssueDetailsListType *>::iterator iter;
     for (iter = ControlIssueDetailsList->begin();
          iter != ControlIssueDetailsList->end(); iter++)
@@ -7596,7 +7673,7 @@ bool ProductionStudyResultsType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ProductionStudyResultsType\n");
               returnValue = true;
@@ -7612,7 +7689,7 @@ bool ProductionStudyResultsType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -7621,7 +7698,7 @@ bool ProductionStudyResultsType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ProductionStudyResultsType\n");
       returnValue = true;
@@ -7633,8 +7710,8 @@ bool ProductionStudyResultsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -7659,28 +7736,28 @@ SimpleStudyPlanType::SimpleStudyPlanType() :
 SimpleStudyPlanType::SimpleStudyPlanType(
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn,
  XmlPositiveInteger * NumberOfSamplesIn,
  XmlPositiveInteger * SubgroupSizeIn) :
   MultipleProductInstanceStudyPlanBaseType(
     VersionIn,
     AttributesIn,
-    StatisticalStud_1208In,
-    StatisticalStud_1209In,
+    StatisticalStud_1167In,
+    StatisticalStud_1168In,
     StatsValuesSummarysIn,
     PreInspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     PlanIdIn,
-    StatisticalStud_1210In,
+    StatisticalStud_1169In,
     CorrectiveActionPlanIdIn,
     NumberOfSamplesIn,
     SubgroupSizeIn)
@@ -7691,14 +7768,14 @@ SimpleStudyPlanType::SimpleStudyPlanType(
  QIFIdType * idIn,
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn,
  XmlPositiveInteger * NumberOfSamplesIn,
  XmlPositiveInteger * SubgroupSizeIn) :
@@ -7706,14 +7783,14 @@ SimpleStudyPlanType::SimpleStudyPlanType(
     idIn,
     VersionIn,
     AttributesIn,
-    StatisticalStud_1208In,
-    StatisticalStud_1209In,
+    StatisticalStud_1167In,
+    StatisticalStud_1168In,
     StatsValuesSummarysIn,
     PreInspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     PlanIdIn,
-    StatisticalStud_1210In,
+    StatisticalStud_1169In,
     CorrectiveActionPlanIdIn,
     NumberOfSamplesIn,
     SubgroupSizeIn)
@@ -7771,13 +7848,13 @@ void SimpleStudyPlanType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (StatisticalStud_1208)
+  if (StatisticalStud_1167)
     {
-      StatisticalStud_1208->printSelf(outFile);
+      StatisticalStud_1167->printSelf(outFile);
     }
-  if (StatisticalStud_1209)
+  if (StatisticalStud_1168)
     {
-      StatisticalStud_1209->printSelf(outFile);
+      StatisticalStud_1168->printSelf(outFile);
     }
   {
     if (!StatsValuesSummarys)
@@ -7824,9 +7901,9 @@ void SimpleStudyPlanType::printSelf(FILE * outFile)
       PlanId->printSelf(outFile);
       fprintf(outFile, "</PlanId>\n");
     }
-  if (StatisticalStud_1210)
+  if (StatisticalStud_1169)
     {
-      StatisticalStud_1210->printSelf(outFile);
+  StatisticalStud_1169->printSelf(outFile);
     }
   if (CorrectiveActionPlanId)
     {
@@ -7863,7 +7940,7 @@ bool SimpleStudyPlanType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SimpleStudyPlanType\n");
               returnValue = true;
@@ -7879,7 +7956,7 @@ bool SimpleStudyPlanType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -7888,7 +7965,7 @@ bool SimpleStudyPlanType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SimpleStudyPlanType\n");
       returnValue = true;
@@ -7900,8 +7977,8 @@ bool SimpleStudyPlanType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -7921,13 +7998,13 @@ SimpleStudyResultsType::SimpleStudyResultsType(
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -7947,13 +8024,13 @@ SimpleStudyResultsType::SimpleStudyResultsType(
     ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesIn,
     StatusIn,
-    StatisticalStud_1211In,
+    StatisticalStud_1170In,
     StudyIssuesIn,
     InspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     StudyIdIn,
-    StatisticalStud_1212In,
+    StatisticalStud_1171In,
     AverageFeaturesIn,
     CharacteristicsStatsIn,
     LinearStatsSummariesIn,
@@ -7977,13 +8054,13 @@ SimpleStudyResultsType::SimpleStudyResultsType(
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -8004,13 +8081,13 @@ SimpleStudyResultsType::SimpleStudyResultsType(
     ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesIn,
     StatusIn,
-    StatisticalStud_1211In,
+    StatisticalStud_1170In,
     StudyIssuesIn,
     InspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     StudyIdIn,
-    StatisticalStud_1212In,
+    StatisticalStud_1171In,
     AverageFeaturesIn,
     CharacteristicsStatsIn,
     LinearStatsSummariesIn,
@@ -8084,9 +8161,9 @@ void SimpleStudyResultsType::printSelf(FILE * outFile)
   Status->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "</Status>\n");
-  if (StatisticalStud_1211)
+  if (StatisticalStud_1170)
     {
-      StatisticalStud_1211->printSelf(outFile);
+  StatisticalStud_1170->printSelf(outFile);
     }
   if (StudyIssues)
     {
@@ -8125,9 +8202,9 @@ void SimpleStudyResultsType::printSelf(FILE * outFile)
       StudyId->printSelf(outFile);
       fprintf(outFile, "</StudyId>\n");
     }
-  if (StatisticalStud_1212)
+  if (StatisticalStud_1171)
     {
-      StatisticalStud_1212->printSelf(outFile);
+  StatisticalStud_1171->printSelf(outFile);
     }
   if (AverageFeatures)
     {
@@ -8261,7 +8338,7 @@ bool SimpleStudyResultsType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SimpleStudyResultsType\n");
               returnValue = true;
@@ -8277,7 +8354,7 @@ bool SimpleStudyResultsType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -8286,7 +8363,7 @@ bool SimpleStudyResultsType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SimpleStudyResultsType\n");
       returnValue = true;
@@ -8298,8 +8375,8 @@ bool SimpleStudyResultsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -8322,14 +8399,14 @@ StabilityStudyPlanType::StabilityStudyPlanType() :
 StabilityStudyPlanType::StabilityStudyPlanType(
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn,
  ArrayReferenceType * MeasurementDeviceIdsIn,
  XmlPositiveInteger * SampleSizeIn,
@@ -8338,14 +8415,14 @@ StabilityStudyPlanType::StabilityStudyPlanType(
   StatisticalStudyPlanBaseType(
     VersionIn,
     AttributesIn,
-    StatisticalStud_1208In,
-    StatisticalStud_1209In,
+    StatisticalStud_1167In,
+    StatisticalStud_1168In,
     StatsValuesSummarysIn,
     PreInspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     PlanIdIn,
-    StatisticalStud_1210In,
+    StatisticalStud_1169In,
     CorrectiveActionPlanIdIn)
 {
   MeasurementDeviceIds = MeasurementDeviceIdsIn;
@@ -8358,14 +8435,14 @@ StabilityStudyPlanType::StabilityStudyPlanType(
  QIFIdType * idIn,
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn,
  ArrayReferenceType * MeasurementDeviceIdsIn,
  XmlPositiveInteger * SampleSizeIn,
@@ -8375,14 +8452,14 @@ StabilityStudyPlanType::StabilityStudyPlanType(
     idIn,
     VersionIn,
     AttributesIn,
-    StatisticalStud_1208In,
-    StatisticalStud_1209In,
+    StatisticalStud_1167In,
+    StatisticalStud_1168In,
     StatsValuesSummarysIn,
     PreInspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     PlanIdIn,
-    StatisticalStud_1210In,
+    StatisticalStud_1169In,
     CorrectiveActionPlanIdIn)
 {
   MeasurementDeviceIds = MeasurementDeviceIdsIn;
@@ -8446,13 +8523,13 @@ void StabilityStudyPlanType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (StatisticalStud_1208)
+  if (StatisticalStud_1167)
     {
-      StatisticalStud_1208->printSelf(outFile);
+      StatisticalStud_1167->printSelf(outFile);
     }
-  if (StatisticalStud_1209)
+  if (StatisticalStud_1168)
     {
-      StatisticalStud_1209->printSelf(outFile);
+      StatisticalStud_1168->printSelf(outFile);
     }
   {
     if (!StatsValuesSummarys)
@@ -8499,9 +8576,9 @@ void StabilityStudyPlanType::printSelf(FILE * outFile)
       PlanId->printSelf(outFile);
       fprintf(outFile, "</PlanId>\n");
     }
-  if (StatisticalStud_1210)
+  if (StatisticalStud_1169)
     {
-      StatisticalStud_1210->printSelf(outFile);
+  StatisticalStud_1169->printSelf(outFile);
     }
   if (CorrectiveActionPlanId)
     {
@@ -8548,7 +8625,7 @@ bool StabilityStudyPlanType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in StabilityStudyPlanType\n");
               returnValue = true;
@@ -8564,7 +8641,7 @@ bool StabilityStudyPlanType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -8573,7 +8650,7 @@ bool StabilityStudyPlanType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in StabilityStudyPlanType\n");
       returnValue = true;
@@ -8585,8 +8662,8 @@ bool StabilityStudyPlanType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -8632,13 +8709,13 @@ StabilityStudyResultsType::StabilityStudyResultsType(
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -8658,13 +8735,13 @@ StabilityStudyResultsType::StabilityStudyResultsType(
     ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesIn,
     StatusIn,
-    StatisticalStud_1211In,
+    StatisticalStud_1170In,
     StudyIssuesIn,
     InspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     StudyIdIn,
-    StatisticalStud_1212In,
+    StatisticalStud_1171In,
     AverageFeaturesIn,
     CharacteristicsStatsIn,
     LinearStatsSummariesIn,
@@ -8688,13 +8765,13 @@ StabilityStudyResultsType::StabilityStudyResultsType(
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -8715,13 +8792,13 @@ StabilityStudyResultsType::StabilityStudyResultsType(
     ThisStatisticalStudyResultsInstanceQPIdIn,
     AttributesIn,
     StatusIn,
-    StatisticalStud_1211In,
+    StatisticalStud_1170In,
     StudyIssuesIn,
     InspectionTraceabilityIn,
     NameIn,
     DescriptionIn,
     StudyIdIn,
-    StatisticalStud_1212In,
+    StatisticalStud_1171In,
     AverageFeaturesIn,
     CharacteristicsStatsIn,
     LinearStatsSummariesIn,
@@ -8797,9 +8874,9 @@ void StabilityStudyResultsType::printSelf(FILE * outFile)
   Status->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "</Status>\n");
-  if (StatisticalStud_1211)
+  if (StatisticalStud_1170)
     {
-      StatisticalStud_1211->printSelf(outFile);
+  StatisticalStud_1170->printSelf(outFile);
     }
   if (StudyIssues)
     {
@@ -8838,9 +8915,9 @@ void StabilityStudyResultsType::printSelf(FILE * outFile)
       StudyId->printSelf(outFile);
       fprintf(outFile, "</StudyId>\n");
     }
-  if (StatisticalStud_1212)
+  if (StatisticalStud_1171)
     {
-      StatisticalStud_1212->printSelf(outFile);
+  StatisticalStud_1171->printSelf(outFile);
     }
   if (AverageFeatures)
     {
@@ -8975,7 +9052,7 @@ bool StabilityStudyResultsType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in StabilityStudyResultsType\n");
               returnValue = true;
@@ -8991,7 +9068,7 @@ bool StabilityStudyResultsType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -9000,7 +9077,7 @@ bool StabilityStudyResultsType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in StabilityStudyResultsType\n");
       returnValue = true;
@@ -9012,8 +9089,8 @@ bool StabilityStudyResultsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -9103,6 +9180,13 @@ void StatisticalStudiesResultsType::printSelf(FILE * outFile)
     if (StatisticalStudyResults->size() == 0)
       {
         fprintf(stderr, "StatisticalStudyResults list is empty\n");
+        exit(1);
+      }
+    if (StatisticalStudyResults->size() < 1)
+      {
+        fprintf(stderr,
+                "size of StatisticalStudyResults list (%d) less than minimum required (1)\n",
+                (int)StatisticalStudyResults->size());
         exit(1);
       }
     std::list<StatisticalStudyResultsBaseType *>::iterator iter;
@@ -9286,7 +9370,7 @@ bool StatisticalStudiesResultsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in StatisticalStudiesResultsType\n");
               returnValue = true;
@@ -9302,7 +9386,7 @@ bool StatisticalStudiesResultsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -9311,7 +9395,7 @@ bool StatisticalStudiesResultsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in StatisticalStudiesResultsType\n");
       returnValue = true;
@@ -9323,8 +9407,8 @@ bool StatisticalStudiesResultsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -9352,41 +9436,41 @@ StatisticalStudyPlanBaseType::StatisticalStudyPlanBaseType()
   id = 0;
   Version = 0;
   Attributes = 0;
-  StatisticalStud_1208 = 0;
-  StatisticalStud_1209 = 0;
+  StatisticalStud_1167 = 0;
+  StatisticalStud_1168 = 0;
   StatsValuesSummarys = 0;
   PreInspectionTraceability = 0;
   Name = 0;
   Description = 0;
   PlanId = 0;
-  StatisticalStud_1210 = 0;
+  StatisticalStud_1169 = 0;
   CorrectiveActionPlanId = 0;
 }
 
 StatisticalStudyPlanBaseType::StatisticalStudyPlanBaseType(
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn)
 {
   id = 0;
   Version = VersionIn;
   Attributes = AttributesIn;
-  StatisticalStud_1208 = StatisticalStud_1208In;
-  StatisticalStud_1209 = StatisticalStud_1209In;
+  StatisticalStud_1167 = StatisticalStud_1167In;
+  StatisticalStud_1168 = StatisticalStud_1168In;
   StatsValuesSummarys = StatsValuesSummarysIn;
   PreInspectionTraceability = PreInspectionTraceabilityIn;
   Name = NameIn;
   Description = DescriptionIn;
   PlanId = PlanIdIn;
-  StatisticalStud_1210 = StatisticalStud_1210In;
+  StatisticalStud_1169 = StatisticalStud_1169In;
   CorrectiveActionPlanId = CorrectiveActionPlanIdIn;
 }
 
@@ -9394,27 +9478,27 @@ StatisticalStudyPlanBaseType::StatisticalStudyPlanBaseType(
  QIFIdType * idIn,
  VersionType * VersionIn,
  AttributesType * AttributesIn,
- StatisticalStud_1208_Type * StatisticalStud_1208In,
- StatisticalStud_1209_Type * StatisticalStud_1209In,
+ StatisticalStud_1167_Type * StatisticalStud_1167In,
+ StatisticalStud_1168_Type * StatisticalStud_1168In,
  SummaryStatsValuesListTypeLisd * StatsValuesSummarysIn,
  PreInspectionTraceabilityType * PreInspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * PlanIdIn,
- StatisticalStud_1210_Type * StatisticalStud_1210In,
+ StatisticalStud_1169_Type * StatisticalStud_1169In,
  QIFReferenceType * CorrectiveActionPlanIdIn)
 {
   id = idIn;
   Version = VersionIn;
   Attributes = AttributesIn;
-  StatisticalStud_1208 = StatisticalStud_1208In;
-  StatisticalStud_1209 = StatisticalStud_1209In;
+  StatisticalStud_1167 = StatisticalStud_1167In;
+  StatisticalStud_1168 = StatisticalStud_1168In;
   StatsValuesSummarys = StatsValuesSummarysIn;
   PreInspectionTraceability = PreInspectionTraceabilityIn;
   Name = NameIn;
   Description = DescriptionIn;
   PlanId = PlanIdIn;
-  StatisticalStud_1210 = StatisticalStud_1210In;
+  StatisticalStud_1169 = StatisticalStud_1169In;
   CorrectiveActionPlanId = CorrectiveActionPlanIdIn;
 }
 
@@ -9424,14 +9508,14 @@ StatisticalStudyPlanBaseType::~StatisticalStudyPlanBaseType()
   delete id;
   delete Version;
   delete Attributes;
-  delete StatisticalStud_1208;
-  delete StatisticalStud_1209;
+  delete StatisticalStud_1167;
+  delete StatisticalStud_1168;
   delete StatsValuesSummarys;
   delete PreInspectionTraceability;
   delete Name;
   delete Description;
   delete PlanId;
-  delete StatisticalStud_1210;
+  delete StatisticalStud_1169;
   delete CorrectiveActionPlanId;
   #endif
 }
@@ -9481,13 +9565,13 @@ void StatisticalStudyPlanBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (StatisticalStud_1208)
+  if (StatisticalStud_1167)
     {
-      StatisticalStud_1208->printSelf(outFile);
+      StatisticalStud_1167->printSelf(outFile);
     }
-  if (StatisticalStud_1209)
+  if (StatisticalStud_1168)
     {
-      StatisticalStud_1209->printSelf(outFile);
+      StatisticalStud_1168->printSelf(outFile);
     }
   {
     if (!StatsValuesSummarys)
@@ -9534,9 +9618,9 @@ void StatisticalStudyPlanBaseType::printSelf(FILE * outFile)
       PlanId->printSelf(outFile);
       fprintf(outFile, "</PlanId>\n");
     }
-  if (StatisticalStud_1210)
+  if (StatisticalStud_1169)
     {
-      StatisticalStud_1210->printSelf(outFile);
+  StatisticalStud_1169->printSelf(outFile);
     }
   if (CorrectiveActionPlanId)
     {
@@ -9562,7 +9646,7 @@ bool StatisticalStudyPlanBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in StatisticalStudyPlanBaseType\n");
               returnValue = true;
@@ -9578,7 +9662,7 @@ bool StatisticalStudyPlanBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -9587,7 +9671,7 @@ bool StatisticalStudyPlanBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in StatisticalStudyPlanBaseType\n");
       returnValue = true;
@@ -9599,8 +9683,8 @@ bool StatisticalStudyPlanBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -9623,17 +9707,17 @@ AttributesType * StatisticalStudyPlanBaseType::getAttributes()
 void StatisticalStudyPlanBaseType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-StatisticalStud_1208_Type * StatisticalStudyPlanBaseType::getStatisticalStud_1208()
-{return StatisticalStud_1208;}
+StatisticalStud_1167_Type * StatisticalStudyPlanBaseType::getStatisticalStud_1167()
+{return StatisticalStud_1167;}
 
-void StatisticalStudyPlanBaseType::setStatisticalStud_1208(StatisticalStud_1208_Type * StatisticalStud_1208In)
-{StatisticalStud_1208 = StatisticalStud_1208In;}
+void StatisticalStudyPlanBaseType::setStatisticalStud_1167(StatisticalStud_1167_Type * StatisticalStud_1167In)
+{StatisticalStud_1167 = StatisticalStud_1167In;}
 
-StatisticalStud_1209_Type * StatisticalStudyPlanBaseType::getStatisticalStud_1209()
-{return StatisticalStud_1209;}
+StatisticalStud_1168_Type * StatisticalStudyPlanBaseType::getStatisticalStud_1168()
+{return StatisticalStud_1168;}
 
-void StatisticalStudyPlanBaseType::setStatisticalStud_1209(StatisticalStud_1209_Type * StatisticalStud_1209In)
-{StatisticalStud_1209 = StatisticalStud_1209In;}
+void StatisticalStudyPlanBaseType::setStatisticalStud_1168(StatisticalStud_1168_Type * StatisticalStud_1168In)
+{StatisticalStud_1168 = StatisticalStud_1168In;}
 
 SummaryStatsValuesListTypeLisd * StatisticalStudyPlanBaseType::getStatsValuesSummarys()
 {return StatsValuesSummarys;}
@@ -9665,11 +9749,11 @@ QIFReferenceType * StatisticalStudyPlanBaseType::getPlanId()
 void StatisticalStudyPlanBaseType::setPlanId(QIFReferenceType * PlanIdIn)
 {PlanId = PlanIdIn;}
 
-StatisticalStud_1210_Type * StatisticalStudyPlanBaseType::getStatisticalStud_1210()
-{return StatisticalStud_1210;}
+StatisticalStud_1169_Type * StatisticalStudyPlanBaseType::getStatisticalStud_1169()
+{return StatisticalStud_1169;}
 
-void StatisticalStudyPlanBaseType::setStatisticalStud_1210(StatisticalStud_1210_Type * StatisticalStud_1210In)
-{StatisticalStud_1210 = StatisticalStud_1210In;}
+void StatisticalStudyPlanBaseType::setStatisticalStud_1169(StatisticalStud_1169_Type * StatisticalStud_1169In)
+{StatisticalStud_1169 = StatisticalStud_1169In;}
 
 QIFReferenceType * StatisticalStudyPlanBaseType::getCorrectiveActionPlanId()
 {return CorrectiveActionPlanId;}
@@ -9702,7 +9786,15 @@ StatisticalStudyPlanBaseTypeLisd::~StatisticalStudyPlanBaseTypeLisd()
   #endif
 }
 
-void StatisticalStudyPlanBaseTypeLisd::printSelf(FILE * outFile){}
+void StatisticalStudyPlanBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<StatisticalStudyPlanBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -9777,6 +9869,13 @@ void StatisticalStudyPlansType::printSelf(FILE * outFile)
     if (StatisticalStudyPlan->size() == 0)
       {
         fprintf(stderr, "StatisticalStudyPlan list is empty\n");
+        exit(1);
+      }
+    if (StatisticalStudyPlan->size() < 1)
+      {
+        fprintf(stderr,
+                "size of StatisticalStudyPlan list (%d) less than minimum required (1)\n",
+                (int)StatisticalStudyPlan->size());
         exit(1);
       }
     std::list<StatisticalStudyPlanBaseType *>::iterator iter;
@@ -9960,7 +10059,7 @@ bool StatisticalStudyPlansType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in StatisticalStudyPlansType\n");
               returnValue = true;
@@ -9976,7 +10075,7 @@ bool StatisticalStudyPlansType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -9985,7 +10084,7 @@ bool StatisticalStudyPlansType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in StatisticalStudyPlansType\n");
       returnValue = true;
@@ -9997,8 +10096,8 @@ bool StatisticalStudyPlansType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -10027,13 +10126,13 @@ StatisticalStudyResultsBaseType::StatisticalStudyResultsBaseType()
   ThisStatisticalStudyResultsInstanceQPId = 0;
   Attributes = 0;
   Status = 0;
-  StatisticalStud_1211 = 0;
+  StatisticalStud_1170 = 0;
   StudyIssues = 0;
   InspectionTraceability = 0;
   Name = 0;
   Description = 0;
   StudyId = 0;
-  StatisticalStud_1212 = 0;
+  StatisticalStud_1171 = 0;
   AverageFeatures = 0;
   CharacteristicsStats = 0;
   LinearStatsSummaries = 0;
@@ -10053,13 +10152,13 @@ StatisticalStudyResultsBaseType::StatisticalStudyResultsBaseType(
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -10078,13 +10177,13 @@ StatisticalStudyResultsBaseType::StatisticalStudyResultsBaseType(
   ThisStatisticalStudyResultsInstanceQPId = ThisStatisticalStudyResultsInstanceQPIdIn;
   Attributes = AttributesIn;
   Status = StatusIn;
-  StatisticalStud_1211 = StatisticalStud_1211In;
+  StatisticalStud_1170 = StatisticalStud_1170In;
   StudyIssues = StudyIssuesIn;
   InspectionTraceability = InspectionTraceabilityIn;
   Name = NameIn;
   Description = DescriptionIn;
   StudyId = StudyIdIn;
-  StatisticalStud_1212 = StatisticalStud_1212In;
+  StatisticalStud_1171 = StatisticalStud_1171In;
   AverageFeatures = AverageFeaturesIn;
   CharacteristicsStats = CharacteristicsStatsIn;
   LinearStatsSummaries = LinearStatsSummariesIn;
@@ -10105,13 +10204,13 @@ StatisticalStudyResultsBaseType::StatisticalStudyResultsBaseType(
  QPIdType * ThisStatisticalStudyResultsInstanceQPIdIn,
  AttributesType * AttributesIn,
  StatsEvalStatusType * StatusIn,
- StatisticalStud_1211_Type * StatisticalStud_1211In,
+ StatisticalStud_1170_Type * StatisticalStud_1170In,
  StudyIssuesType * StudyIssuesIn,
  InspectionTraceabilityType * InspectionTraceabilityIn,
  XmlToken * NameIn,
  XmlString * DescriptionIn,
  QIFReferenceType * StudyIdIn,
- StatisticalStud_1212_Type * StatisticalStud_1212In,
+ StatisticalStud_1171_Type * StatisticalStud_1171In,
  AverageFeaturesType * AverageFeaturesIn,
  CharacteristicsStatsType * CharacteristicsStatsIn,
  SummariesStatisticsLinearType * LinearStatsSummariesIn,
@@ -10130,13 +10229,13 @@ StatisticalStudyResultsBaseType::StatisticalStudyResultsBaseType(
   ThisStatisticalStudyResultsInstanceQPId = ThisStatisticalStudyResultsInstanceQPIdIn;
   Attributes = AttributesIn;
   Status = StatusIn;
-  StatisticalStud_1211 = StatisticalStud_1211In;
+  StatisticalStud_1170 = StatisticalStud_1170In;
   StudyIssues = StudyIssuesIn;
   InspectionTraceability = InspectionTraceabilityIn;
   Name = NameIn;
   Description = DescriptionIn;
   StudyId = StudyIdIn;
-  StatisticalStud_1212 = StatisticalStud_1212In;
+  StatisticalStud_1171 = StatisticalStud_1171In;
   AverageFeatures = AverageFeaturesIn;
   CharacteristicsStats = CharacteristicsStatsIn;
   LinearStatsSummaries = LinearStatsSummariesIn;
@@ -10159,13 +10258,13 @@ StatisticalStudyResultsBaseType::~StatisticalStudyResultsBaseType()
   delete ThisStatisticalStudyResultsInstanceQPId;
   delete Attributes;
   delete Status;
-  delete StatisticalStud_1211;
+  delete StatisticalStud_1170;
   delete StudyIssues;
   delete InspectionTraceability;
   delete Name;
   delete Description;
   delete StudyId;
-  delete StatisticalStud_1212;
+  delete StatisticalStud_1171;
   delete AverageFeatures;
   delete CharacteristicsStats;
   delete LinearStatsSummaries;
@@ -10231,9 +10330,9 @@ void StatisticalStudyResultsBaseType::printSelf(FILE * outFile)
   Status->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "</Status>\n");
-  if (StatisticalStud_1211)
+  if (StatisticalStud_1170)
     {
-      StatisticalStud_1211->printSelf(outFile);
+  StatisticalStud_1170->printSelf(outFile);
     }
   if (StudyIssues)
     {
@@ -10272,9 +10371,9 @@ void StatisticalStudyResultsBaseType::printSelf(FILE * outFile)
       StudyId->printSelf(outFile);
       fprintf(outFile, "</StudyId>\n");
     }
-  if (StatisticalStud_1212)
+  if (StatisticalStud_1171)
     {
-      StatisticalStud_1212->printSelf(outFile);
+  StatisticalStud_1171->printSelf(outFile);
     }
   if (AverageFeatures)
     {
@@ -10397,7 +10496,7 @@ bool StatisticalStudyResultsBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in StatisticalStudyResultsBaseType\n");
               returnValue = true;
@@ -10413,7 +10512,7 @@ bool StatisticalStudyResultsBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -10422,7 +10521,7 @@ bool StatisticalStudyResultsBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in StatisticalStudyResultsBaseType\n");
       returnValue = true;
@@ -10434,8 +10533,8 @@ bool StatisticalStudyResultsBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -10464,11 +10563,11 @@ StatsEvalStatusType * StatisticalStudyResultsBaseType::getStatus()
 void StatisticalStudyResultsBaseType::setStatus(StatsEvalStatusType * StatusIn)
 {Status = StatusIn;}
 
-StatisticalStud_1211_Type * StatisticalStudyResultsBaseType::getStatisticalStud_1211()
-{return StatisticalStud_1211;}
+StatisticalStud_1170_Type * StatisticalStudyResultsBaseType::getStatisticalStud_1170()
+{return StatisticalStud_1170;}
 
-void StatisticalStudyResultsBaseType::setStatisticalStud_1211(StatisticalStud_1211_Type * StatisticalStud_1211In)
-{StatisticalStud_1211 = StatisticalStud_1211In;}
+void StatisticalStudyResultsBaseType::setStatisticalStud_1170(StatisticalStud_1170_Type * StatisticalStud_1170In)
+{StatisticalStud_1170 = StatisticalStud_1170In;}
 
 StudyIssuesType * StatisticalStudyResultsBaseType::getStudyIssues()
 {return StudyIssues;}
@@ -10500,11 +10599,11 @@ QIFReferenceType * StatisticalStudyResultsBaseType::getStudyId()
 void StatisticalStudyResultsBaseType::setStudyId(QIFReferenceType * StudyIdIn)
 {StudyId = StudyIdIn;}
 
-StatisticalStud_1212_Type * StatisticalStudyResultsBaseType::getStatisticalStud_1212()
-{return StatisticalStud_1212;}
+StatisticalStud_1171_Type * StatisticalStudyResultsBaseType::getStatisticalStud_1171()
+{return StatisticalStud_1171;}
 
-void StatisticalStudyResultsBaseType::setStatisticalStud_1212(StatisticalStud_1212_Type * StatisticalStud_1212In)
-{StatisticalStud_1212 = StatisticalStud_1212In;}
+void StatisticalStudyResultsBaseType::setStatisticalStud_1171(StatisticalStud_1171_Type * StatisticalStud_1171In)
+{StatisticalStud_1171 = StatisticalStud_1171In;}
 
 AverageFeaturesType * StatisticalStudyResultsBaseType::getAverageFeatures()
 {return AverageFeatures;}
@@ -10609,7 +10708,15 @@ StatisticalStudyResultsBaseTypeLisd::~StatisticalStudyResultsBaseTypeLisd()
   #endif
 }
 
-void StatisticalStudyResultsBaseTypeLisd::printSelf(FILE * outFile){}
+void StatisticalStudyResultsBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<StatisticalStudyResultsBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -10694,271 +10801,183 @@ void StatisticsType::setCorrectiveActionPlans(CorrectiveActionPlansType * Correc
 
 /* ***************************************************************** */
 
-/* class CapabilityStudy_1199_Type
+/* class ControlMethodTy_1159_Type
 
 */
 
-CapabilityStudy_1199_Type::CapabilityStudy_1199_Type()
+ControlMethodTy_1159_Type::ControlMethodTy_1159_Type()
 {
-  CapabilityStudy_1199_TypePair = 0;
+  ControlMethodTy_1159_TypePair = 0;
 }
 
-CapabilityStudy_1199_Type::CapabilityStudy_1199_Type(
- CapabilityStudy_1199_TypeChoicePair * CapabilityStudy_1199_TypePairIn)
+ControlMethodTy_1159_Type::ControlMethodTy_1159_Type(
+ ControlMethodTy_1159_TypeChoicePair * ControlMethodTy_1159_TypePairIn)
 {
-  CapabilityStudy_1199_TypePair = CapabilityStudy_1199_TypePairIn;
+  ControlMethodTy_1159_TypePair = ControlMethodTy_1159_TypePairIn;
 }
 
-CapabilityStudy_1199_Type::~CapabilityStudy_1199_Type()
+ControlMethodTy_1159_Type::~ControlMethodTy_1159_Type()
 {
   #ifndef NODESTRUCT
-  delete CapabilityStudy_1199_TypePair;
+  delete ControlMethodTy_1159_TypePair;
   #endif
 }
 
-void CapabilityStudy_1199_Type::printSelf(FILE * outFile)
+void ControlMethodTy_1159_Type::printSelf(FILE * outFile)
 {
-  CapabilityStudy_1199_TypePair->printSelf(outFile);
+  ControlMethodTy_1159_TypePair->printSelf(outFile);
 }
 
-CapabilityStudy_1199_TypeChoicePair * CapabilityStudy_1199_Type::getCapabilityStudy_1199_TypePair()
-{return CapabilityStudy_1199_TypePair;}
+ControlMethodTy_1159_TypeChoicePair * ControlMethodTy_1159_Type::getControlMethodTy_1159_TypePair()
+{return ControlMethodTy_1159_TypePair;}
 
-void CapabilityStudy_1199_Type::setCapabilityStudy_1199_TypePair(CapabilityStudy_1199_TypeChoicePair * CapabilityStudy_1199_TypePairIn)
-{CapabilityStudy_1199_TypePair = CapabilityStudy_1199_TypePairIn;}
+void ControlMethodTy_1159_Type::setControlMethodTy_1159_TypePair(ControlMethodTy_1159_TypeChoicePair * ControlMethodTy_1159_TypePairIn)
+{ControlMethodTy_1159_TypePair = ControlMethodTy_1159_TypePairIn;}
+ControlMethodTy_1159_TypeChoicePair::ControlMethodTy_1159_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class CapabilityStudy_1199_TypeChoicePair
-
-*/
-
-CapabilityStudy_1199_TypeChoicePair::CapabilityStudy_1199_TypeChoicePair() {}
-
-CapabilityStudy_1199_TypeChoicePair::CapabilityStudy_1199_TypeChoicePair(
- whichOne CapabilityStudy_1199_TypeTypeIn,
- CapabilityStudy_1199_TypeVal CapabilityStudy_1199_TypeValueIn)
+ControlMethodTy_1159_TypeChoicePair::ControlMethodTy_1159_TypeChoicePair(
+ whichOne ControlMethodTy_1159_TypeTypeIn,
+ ControlMethodTy_1159_TypeVal ControlMethodTy_1159_TypeValueIn)
 {
-  CapabilityStudy_1199_TypeType = CapabilityStudy_1199_TypeTypeIn;
-  CapabilityStudy_1199_TypeValue = CapabilityStudy_1199_TypeValueIn;
+  ControlMethodTy_1159_TypeType = ControlMethodTy_1159_TypeTypeIn;
+  ControlMethodTy_1159_TypeValue = ControlMethodTy_1159_TypeValueIn;
 }
 
-CapabilityStudy_1199_TypeChoicePair::~CapabilityStudy_1199_TypeChoicePair()
+ControlMethodTy_1159_TypeChoicePair::~ControlMethodTy_1159_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (CapabilityStudy_1199_TypeType == CpkThresholdE)
-    delete CapabilityStudy_1199_TypeValue.CpkThreshold;
-  else if (CapabilityStudy_1199_TypeType == PpkThresholdE)
-    delete CapabilityStudy_1199_TypeValue.PpkThreshold;
+  if (ControlMethodTy_1159_TypeType == NumOutOfToleranceE)
+    delete ControlMethodTy_1159_TypeValue.NumOutOfTolerance;
+  else if (ControlMethodTy_1159_TypeType == CpThresholdE)
+    delete ControlMethodTy_1159_TypeValue.CpThreshold;
+  else if (ControlMethodTy_1159_TypeType == CpkThresholdE)
+    delete ControlMethodTy_1159_TypeValue.CpkThreshold;
+  else if (ControlMethodTy_1159_TypeType == PpThresholdE)
+    delete ControlMethodTy_1159_TypeValue.PpThreshold;
+  else if (ControlMethodTy_1159_TypeType == PpkThresholdE)
+    delete ControlMethodTy_1159_TypeValue.PpkThreshold;
+  else if (ControlMethodTy_1159_TypeType == NumOutOfControlE)
+    delete ControlMethodTy_1159_TypeValue.NumOutOfControl;
+  else if (ControlMethodTy_1159_TypeType == TrendGroupingE)
+    delete ControlMethodTy_1159_TypeValue.TrendGrouping;
+  else if (ControlMethodTy_1159_TypeType == SkewGroupingE)
+    delete ControlMethodTy_1159_TypeValue.SkewGrouping;
+  else if (ControlMethodTy_1159_TypeType == OneThirdGroupingE)
+    delete ControlMethodTy_1159_TypeValue.OneThirdGrouping;
+  else if (ControlMethodTy_1159_TypeType == TwoThirdsGroupingE)
+    delete ControlMethodTy_1159_TypeValue.TwoThirdsGrouping;
+  else if (ControlMethodTy_1159_TypeType == OscillationE)
+    delete ControlMethodTy_1159_TypeValue.Oscillation;
+  else if (ControlMethodTy_1159_TypeType == StratificationE)
+    delete ControlMethodTy_1159_TypeValue.Stratification;
+  else if (ControlMethodTy_1159_TypeType == NumOutOfControlRngE)
+    delete ControlMethodTy_1159_TypeValue.NumOutOfControlRng;
   #endif
 }
 
-void CapabilityStudy_1199_TypeChoicePair::printSelf(FILE * outFile)
+void ControlMethodTy_1159_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (CapabilityStudy_1199_TypeType == CpkThresholdE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<CpkThreshold");
-      CapabilityStudy_1199_TypeValue.CpkThreshold->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</CpkThreshold>\n");
-    }
-  else if (CapabilityStudy_1199_TypeType == PpkThresholdE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<PpkThreshold");
-      CapabilityStudy_1199_TypeValue.PpkThreshold->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</PpkThreshold>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class ControlMethodTy_1200_Type
-
-*/
-
-ControlMethodTy_1200_Type::ControlMethodTy_1200_Type()
-{
-  ControlMethodTy_1200_TypePair = 0;
-}
-
-ControlMethodTy_1200_Type::ControlMethodTy_1200_Type(
- ControlMethodTy_1200_TypeChoicePair * ControlMethodTy_1200_TypePairIn)
-{
-  ControlMethodTy_1200_TypePair = ControlMethodTy_1200_TypePairIn;
-}
-
-ControlMethodTy_1200_Type::~ControlMethodTy_1200_Type()
-{
-  #ifndef NODESTRUCT
-  delete ControlMethodTy_1200_TypePair;
-  #endif
-}
-
-void ControlMethodTy_1200_Type::printSelf(FILE * outFile)
-{
-  ControlMethodTy_1200_TypePair->printSelf(outFile);
-}
-
-ControlMethodTy_1200_TypeChoicePair * ControlMethodTy_1200_Type::getControlMethodTy_1200_TypePair()
-{return ControlMethodTy_1200_TypePair;}
-
-void ControlMethodTy_1200_Type::setControlMethodTy_1200_TypePair(ControlMethodTy_1200_TypeChoicePair * ControlMethodTy_1200_TypePairIn)
-{ControlMethodTy_1200_TypePair = ControlMethodTy_1200_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ControlMethodTy_1200_TypeChoicePair
-
-*/
-
-ControlMethodTy_1200_TypeChoicePair::ControlMethodTy_1200_TypeChoicePair() {}
-
-ControlMethodTy_1200_TypeChoicePair::ControlMethodTy_1200_TypeChoicePair(
- whichOne ControlMethodTy_1200_TypeTypeIn,
- ControlMethodTy_1200_TypeVal ControlMethodTy_1200_TypeValueIn)
-{
-  ControlMethodTy_1200_TypeType = ControlMethodTy_1200_TypeTypeIn;
-  ControlMethodTy_1200_TypeValue = ControlMethodTy_1200_TypeValueIn;
-}
-
-ControlMethodTy_1200_TypeChoicePair::~ControlMethodTy_1200_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (ControlMethodTy_1200_TypeType == NumOutOfToleranceE)
-    delete ControlMethodTy_1200_TypeValue.NumOutOfTolerance;
-  else if (ControlMethodTy_1200_TypeType == CpThresholdE)
-    delete ControlMethodTy_1200_TypeValue.CpThreshold;
-  else if (ControlMethodTy_1200_TypeType == CpkThresholdE)
-    delete ControlMethodTy_1200_TypeValue.CpkThreshold;
-  else if (ControlMethodTy_1200_TypeType == PpThresholdE)
-    delete ControlMethodTy_1200_TypeValue.PpThreshold;
-  else if (ControlMethodTy_1200_TypeType == PpkThresholdE)
-    delete ControlMethodTy_1200_TypeValue.PpkThreshold;
-  else if (ControlMethodTy_1200_TypeType == NumOutOfControlE)
-    delete ControlMethodTy_1200_TypeValue.NumOutOfControl;
-  else if (ControlMethodTy_1200_TypeType == TrendGroupingE)
-    delete ControlMethodTy_1200_TypeValue.TrendGrouping;
-  else if (ControlMethodTy_1200_TypeType == SkewGroupingE)
-    delete ControlMethodTy_1200_TypeValue.SkewGrouping;
-  else if (ControlMethodTy_1200_TypeType == OneThirdGroupingE)
-    delete ControlMethodTy_1200_TypeValue.OneThirdGrouping;
-  else if (ControlMethodTy_1200_TypeType == TwoThirdsGroupingE)
-    delete ControlMethodTy_1200_TypeValue.TwoThirdsGrouping;
-  else if (ControlMethodTy_1200_TypeType == OscillationE)
-    delete ControlMethodTy_1200_TypeValue.Oscillation;
-  else if (ControlMethodTy_1200_TypeType == StratificationE)
-    delete ControlMethodTy_1200_TypeValue.Stratification;
-  else if (ControlMethodTy_1200_TypeType == NumOutOfControlRngE)
-    delete ControlMethodTy_1200_TypeValue.NumOutOfControlRng;
-  #endif
-}
-
-void ControlMethodTy_1200_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (ControlMethodTy_1200_TypeType == NumOutOfToleranceE)
+  if (ControlMethodTy_1159_TypeType == NumOutOfToleranceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NumOutOfTolerance");
-      ControlMethodTy_1200_TypeValue.NumOutOfTolerance->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue.NumOutOfTolerance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</NumOutOfTolerance>\n");
     }
-  else if (ControlMethodTy_1200_TypeType == CpThresholdE)
+  else if (ControlMethodTy_1159_TypeType == CpThresholdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CpThreshold");
-      ControlMethodTy_1200_TypeValue.CpThreshold->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue.CpThreshold->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</CpThreshold>\n");
     }
-  else if (ControlMethodTy_1200_TypeType == CpkThresholdE)
+  else if (ControlMethodTy_1159_TypeType == CpkThresholdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CpkThreshold");
-      ControlMethodTy_1200_TypeValue.CpkThreshold->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue.CpkThreshold->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</CpkThreshold>\n");
     }
-  else if (ControlMethodTy_1200_TypeType == PpThresholdE)
+  else if (ControlMethodTy_1159_TypeType == PpThresholdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PpThreshold");
-      ControlMethodTy_1200_TypeValue.PpThreshold->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue.PpThreshold->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</PpThreshold>\n");
     }
-  else if (ControlMethodTy_1200_TypeType == PpkThresholdE)
+  else if (ControlMethodTy_1159_TypeType == PpkThresholdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PpkThreshold");
-      ControlMethodTy_1200_TypeValue.PpkThreshold->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue.PpkThreshold->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</PpkThreshold>\n");
     }
-  else if (ControlMethodTy_1200_TypeType == NumOutOfControlE)
+  else if (ControlMethodTy_1159_TypeType == NumOutOfControlE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NumOutOfControl");
-      ControlMethodTy_1200_TypeValue.NumOutOfControl->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue.NumOutOfControl->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</NumOutOfControl>\n");
     }
-  else if (ControlMethodTy_1200_TypeType == TrendGroupingE)
+  else if (ControlMethodTy_1159_TypeType == TrendGroupingE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrendGrouping");
-      ControlMethodTy_1200_TypeValue.TrendGrouping->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue.TrendGrouping->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</TrendGrouping>\n");
     }
-  else if (ControlMethodTy_1200_TypeType == SkewGroupingE)
+  else if (ControlMethodTy_1159_TypeType == SkewGroupingE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SkewGrouping");
-      ControlMethodTy_1200_TypeValue.SkewGrouping->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue.SkewGrouping->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</SkewGrouping>\n");
     }
-  else if (ControlMethodTy_1200_TypeType == OneThirdGroupingE)
+  else if (ControlMethodTy_1159_TypeType == OneThirdGroupingE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OneThirdGrouping");
-      ControlMethodTy_1200_TypeValue.OneThirdGrouping->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue.OneThirdGrouping->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</OneThirdGrouping>\n");
     }
-  else if (ControlMethodTy_1200_TypeType == TwoThirdsGroupingE)
+  else if (ControlMethodTy_1159_TypeType == TwoThirdsGroupingE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TwoThirdsGrouping");
-      ControlMethodTy_1200_TypeValue.TwoThirdsGrouping->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue.TwoThirdsGrouping->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</TwoThirdsGrouping>\n");
     }
-  else if (ControlMethodTy_1200_TypeType == OscillationE)
+  else if (ControlMethodTy_1159_TypeType == OscillationE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Oscillation");
-      ControlMethodTy_1200_TypeValue.Oscillation->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue.Oscillation->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Oscillation>\n");
     }
-  else if (ControlMethodTy_1200_TypeType == StratificationE)
+  else if (ControlMethodTy_1159_TypeType == StratificationE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Stratification");
-      ControlMethodTy_1200_TypeValue.Stratification->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue.Stratification->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Stratification>\n");
     }
-  else if (ControlMethodTy_1200_TypeType == NumOutOfControlRngE)
+  else if (ControlMethodTy_1159_TypeType == NumOutOfControlRngE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NumOutOfControlRng");
-      ControlMethodTy_1200_TypeValue.NumOutOfControlRng->printSelf(outFile);
+      ControlMethodTy_1159_TypeValue.NumOutOfControlRng->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</NumOutOfControlRng>\n");
     }
@@ -10966,163 +10985,149 @@ void ControlMethodTy_1200_TypeChoicePair::printSelf(FILE * outFile)
 
 /* ***************************************************************** */
 
-/* class FirstArticleStu_1201_Type
+/* class FirstArticleStu_1160_Type
 
 */
 
-FirstArticleStu_1201_Type::FirstArticleStu_1201_Type()
+FirstArticleStu_1160_Type::FirstArticleStu_1160_Type()
 {
-  FirstArticleStu_1201_TypePair = 0;
+  FirstArticleStu_1160_TypePair = 0;
 }
 
-FirstArticleStu_1201_Type::FirstArticleStu_1201_Type(
- FirstArticleStu_1201_TypeChoicePair * FirstArticleStu_1201_TypePairIn)
+FirstArticleStu_1160_Type::FirstArticleStu_1160_Type(
+ FirstArticleStu_1160_TypeChoicePair * FirstArticleStu_1160_TypePairIn)
 {
-  FirstArticleStu_1201_TypePair = FirstArticleStu_1201_TypePairIn;
+  FirstArticleStu_1160_TypePair = FirstArticleStu_1160_TypePairIn;
 }
 
-FirstArticleStu_1201_Type::~FirstArticleStu_1201_Type()
+FirstArticleStu_1160_Type::~FirstArticleStu_1160_Type()
 {
   #ifndef NODESTRUCT
-  delete FirstArticleStu_1201_TypePair;
+  delete FirstArticleStu_1160_TypePair;
   #endif
 }
 
-void FirstArticleStu_1201_Type::printSelf(FILE * outFile)
+void FirstArticleStu_1160_Type::printSelf(FILE * outFile)
 {
-  FirstArticleStu_1201_TypePair->printSelf(outFile);
+  FirstArticleStu_1160_TypePair->printSelf(outFile);
 }
 
-FirstArticleStu_1201_TypeChoicePair * FirstArticleStu_1201_Type::getFirstArticleStu_1201_TypePair()
-{return FirstArticleStu_1201_TypePair;}
+FirstArticleStu_1160_TypeChoicePair * FirstArticleStu_1160_Type::getFirstArticleStu_1160_TypePair()
+{return FirstArticleStu_1160_TypePair;}
 
-void FirstArticleStu_1201_Type::setFirstArticleStu_1201_TypePair(FirstArticleStu_1201_TypeChoicePair * FirstArticleStu_1201_TypePairIn)
-{FirstArticleStu_1201_TypePair = FirstArticleStu_1201_TypePairIn;}
+void FirstArticleStu_1160_Type::setFirstArticleStu_1160_TypePair(FirstArticleStu_1160_TypeChoicePair * FirstArticleStu_1160_TypePairIn)
+{FirstArticleStu_1160_TypePair = FirstArticleStu_1160_TypePairIn;}
+FirstArticleStu_1160_TypeChoicePair::FirstArticleStu_1160_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class FirstArticleStu_1201_TypeChoicePair
-
-*/
-
-FirstArticleStu_1201_TypeChoicePair::FirstArticleStu_1201_TypeChoicePair() {}
-
-FirstArticleStu_1201_TypeChoicePair::FirstArticleStu_1201_TypeChoicePair(
- whichOne FirstArticleStu_1201_TypeTypeIn,
- FirstArticleStu_1201_TypeVal FirstArticleStu_1201_TypeValueIn)
+FirstArticleStu_1160_TypeChoicePair::FirstArticleStu_1160_TypeChoicePair(
+ whichOne FirstArticleStu_1160_TypeTypeIn,
+ FirstArticleStu_1160_TypeVal FirstArticleStu_1160_TypeValueIn)
 {
-  FirstArticleStu_1201_TypeType = FirstArticleStu_1201_TypeTypeIn;
-  FirstArticleStu_1201_TypeValue = FirstArticleStu_1201_TypeValueIn;
+  FirstArticleStu_1160_TypeType = FirstArticleStu_1160_TypeTypeIn;
+  FirstArticleStu_1160_TypeValue = FirstArticleStu_1160_TypeValueIn;
 }
 
-FirstArticleStu_1201_TypeChoicePair::~FirstArticleStu_1201_TypeChoicePair()
+FirstArticleStu_1160_TypeChoicePair::~FirstArticleStu_1160_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (FirstArticleStu_1201_TypeType == AbsoluteMaximumsE)
-    delete FirstArticleStu_1201_TypeValue.AbsoluteMaximums;
-  else if (FirstArticleStu_1201_TypeType == RelativeMaximumE)
-    delete FirstArticleStu_1201_TypeValue.RelativeMaximum;
+  if (FirstArticleStu_1160_TypeType == AbsoluteMaximumsE)
+    delete FirstArticleStu_1160_TypeValue.AbsoluteMaximums;
+  else if (FirstArticleStu_1160_TypeType == RelativeMaximumE)
+    delete FirstArticleStu_1160_TypeValue.RelativeMaximum;
   #endif
 }
 
-void FirstArticleStu_1201_TypeChoicePair::printSelf(FILE * outFile)
+void FirstArticleStu_1160_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (FirstArticleStu_1201_TypeType == AbsoluteMaximumsE)
+  if (FirstArticleStu_1160_TypeType == AbsoluteMaximumsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AbsoluteMaximums");
-      FirstArticleStu_1201_TypeValue.AbsoluteMaximums->printSelf(outFile);
+      FirstArticleStu_1160_TypeValue.AbsoluteMaximums->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</AbsoluteMaximums>\n");
     }
-  else if (FirstArticleStu_1201_TypeType == RelativeMaximumE)
+  else if (FirstArticleStu_1160_TypeType == RelativeMaximumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RelativeMaximum");
-      FirstArticleStu_1201_TypeValue.RelativeMaximum->printSelf(outFile);
+      FirstArticleStu_1160_TypeValue.RelativeMaximum->printSelf(outFile);
       fprintf(outFile, "</RelativeMaximum>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class GageRandRStudyP_1202_Type
+/* class GageRandRStudyP_1161_Type
 
 */
 
-GageRandRStudyP_1202_Type::GageRandRStudyP_1202_Type()
+GageRandRStudyP_1161_Type::GageRandRStudyP_1161_Type()
 {
-  GageRandRStudyP_1202_TypePair = 0;
+  GageRandRStudyP_1161_TypePair = 0;
 }
 
-GageRandRStudyP_1202_Type::GageRandRStudyP_1202_Type(
- GageRandRStudyP_1202_TypeChoicePair * GageRandRStudyP_1202_TypePairIn)
+GageRandRStudyP_1161_Type::GageRandRStudyP_1161_Type(
+ GageRandRStudyP_1161_TypeChoicePair * GageRandRStudyP_1161_TypePairIn)
 {
-  GageRandRStudyP_1202_TypePair = GageRandRStudyP_1202_TypePairIn;
+  GageRandRStudyP_1161_TypePair = GageRandRStudyP_1161_TypePairIn;
 }
 
-GageRandRStudyP_1202_Type::~GageRandRStudyP_1202_Type()
+GageRandRStudyP_1161_Type::~GageRandRStudyP_1161_Type()
 {
   #ifndef NODESTRUCT
-  delete GageRandRStudyP_1202_TypePair;
+  delete GageRandRStudyP_1161_TypePair;
   #endif
 }
 
-void GageRandRStudyP_1202_Type::printSelf(FILE * outFile)
+void GageRandRStudyP_1161_Type::printSelf(FILE * outFile)
 {
-  if (GageRandRStudyP_1202_TypePair)
+  if (GageRandRStudyP_1161_TypePair)
     {
-      GageRandRStudyP_1202_TypePair->printSelf(outFile);
+      GageRandRStudyP_1161_TypePair->printSelf(outFile);
     }
 }
 
-GageRandRStudyP_1202_TypeChoicePair * GageRandRStudyP_1202_Type::getGageRandRStudyP_1202_TypePair()
-{return GageRandRStudyP_1202_TypePair;}
+GageRandRStudyP_1161_TypeChoicePair * GageRandRStudyP_1161_Type::getGageRandRStudyP_1161_TypePair()
+{return GageRandRStudyP_1161_TypePair;}
 
-void GageRandRStudyP_1202_Type::setGageRandRStudyP_1202_TypePair(GageRandRStudyP_1202_TypeChoicePair * GageRandRStudyP_1202_TypePairIn)
-{GageRandRStudyP_1202_TypePair = GageRandRStudyP_1202_TypePairIn;}
+void GageRandRStudyP_1161_Type::setGageRandRStudyP_1161_TypePair(GageRandRStudyP_1161_TypeChoicePair * GageRandRStudyP_1161_TypePairIn)
+{GageRandRStudyP_1161_TypePair = GageRandRStudyP_1161_TypePairIn;}
+GageRandRStudyP_1161_TypeChoicePair::GageRandRStudyP_1161_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class GageRandRStudyP_1202_TypeChoicePair
-
-*/
-
-GageRandRStudyP_1202_TypeChoicePair::GageRandRStudyP_1202_TypeChoicePair() {}
-
-GageRandRStudyP_1202_TypeChoicePair::GageRandRStudyP_1202_TypeChoicePair(
- whichOne GageRandRStudyP_1202_TypeTypeIn,
- GageRandRStudyP_1202_TypeVal GageRandRStudyP_1202_TypeValueIn)
+GageRandRStudyP_1161_TypeChoicePair::GageRandRStudyP_1161_TypeChoicePair(
+ whichOne GageRandRStudyP_1161_TypeTypeIn,
+ GageRandRStudyP_1161_TypeVal GageRandRStudyP_1161_TypeValueIn)
 {
-  GageRandRStudyP_1202_TypeType = GageRandRStudyP_1202_TypeTypeIn;
-  GageRandRStudyP_1202_TypeValue = GageRandRStudyP_1202_TypeValueIn;
+  GageRandRStudyP_1161_TypeType = GageRandRStudyP_1161_TypeTypeIn;
+  GageRandRStudyP_1161_TypeValue = GageRandRStudyP_1161_TypeValueIn;
 }
 
-GageRandRStudyP_1202_TypeChoicePair::~GageRandRStudyP_1202_TypeChoicePair()
+GageRandRStudyP_1161_TypeChoicePair::~GageRandRStudyP_1161_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (GageRandRStudyP_1202_TypeType == MaximumRelativeAppraiserVariationE)
-    delete GageRandRStudyP_1202_TypeValue.MaximumRelativeAppraiserVariation;
-  else if (GageRandRStudyP_1202_TypeType == MaximumAbsoluteAppraiserVariationE)
-    delete GageRandRStudyP_1202_TypeValue.MaximumAbsoluteAppraiserVariation;
+  if (GageRandRStudyP_1161_TypeType == MaximumRelativeAppraiserVariationE)
+    delete GageRandRStudyP_1161_TypeValue.MaximumRelativeAppraiserVariation;
+  else if (GageRandRStudyP_1161_TypeType == MaximumAbsoluteAppraiserVariationE)
+    delete GageRandRStudyP_1161_TypeValue.MaximumAbsoluteAppraiserVariation;
   #endif
 }
 
-void GageRandRStudyP_1202_TypeChoicePair::printSelf(FILE * outFile)
+void GageRandRStudyP_1161_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (GageRandRStudyP_1202_TypeType == MaximumRelativeAppraiserVariationE)
+  if (GageRandRStudyP_1161_TypeType == MaximumRelativeAppraiserVariationE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MaximumRelativeAppraiserVariation");
-      GageRandRStudyP_1202_TypeValue.MaximumRelativeAppraiserVariation->printSelf(outFile);
+      GageRandRStudyP_1161_TypeValue.MaximumRelativeAppraiserVariation->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MaximumRelativeAppraiserVariation>\n");
     }
-  else if (GageRandRStudyP_1202_TypeType == MaximumAbsoluteAppraiserVariationE)
+  else if (GageRandRStudyP_1161_TypeType == MaximumAbsoluteAppraiserVariationE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MaximumAbsoluteAppraiserVariation");
-      GageRandRStudyP_1202_TypeValue.MaximumAbsoluteAppraiserVariation->printSelf(outFile);
+      GageRandRStudyP_1161_TypeValue.MaximumAbsoluteAppraiserVariation->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MaximumAbsoluteAppraiserVariation>\n");
     }
@@ -11130,83 +11135,76 @@ void GageRandRStudyP_1202_TypeChoicePair::printSelf(FILE * outFile)
 
 /* ***************************************************************** */
 
-/* class GageRandRStudyP_1203_Type
+/* class GageRandRStudyP_1162_Type
 
 */
 
-GageRandRStudyP_1203_Type::GageRandRStudyP_1203_Type()
+GageRandRStudyP_1162_Type::GageRandRStudyP_1162_Type()
 {
-  GageRandRStudyP_1203_TypePair = 0;
+  GageRandRStudyP_1162_TypePair = 0;
 }
 
-GageRandRStudyP_1203_Type::GageRandRStudyP_1203_Type(
- GageRandRStudyP_1203_TypeChoicePair * GageRandRStudyP_1203_TypePairIn)
+GageRandRStudyP_1162_Type::GageRandRStudyP_1162_Type(
+ GageRandRStudyP_1162_TypeChoicePair * GageRandRStudyP_1162_TypePairIn)
 {
-  GageRandRStudyP_1203_TypePair = GageRandRStudyP_1203_TypePairIn;
+  GageRandRStudyP_1162_TypePair = GageRandRStudyP_1162_TypePairIn;
 }
 
-GageRandRStudyP_1203_Type::~GageRandRStudyP_1203_Type()
+GageRandRStudyP_1162_Type::~GageRandRStudyP_1162_Type()
 {
   #ifndef NODESTRUCT
-  delete GageRandRStudyP_1203_TypePair;
+  delete GageRandRStudyP_1162_TypePair;
   #endif
 }
 
-void GageRandRStudyP_1203_Type::printSelf(FILE * outFile)
+void GageRandRStudyP_1162_Type::printSelf(FILE * outFile)
 {
-  if (GageRandRStudyP_1203_TypePair)
+  if (GageRandRStudyP_1162_TypePair)
     {
-      GageRandRStudyP_1203_TypePair->printSelf(outFile);
+      GageRandRStudyP_1162_TypePair->printSelf(outFile);
     }
 }
 
-GageRandRStudyP_1203_TypeChoicePair * GageRandRStudyP_1203_Type::getGageRandRStudyP_1203_TypePair()
-{return GageRandRStudyP_1203_TypePair;}
+GageRandRStudyP_1162_TypeChoicePair * GageRandRStudyP_1162_Type::getGageRandRStudyP_1162_TypePair()
+{return GageRandRStudyP_1162_TypePair;}
 
-void GageRandRStudyP_1203_Type::setGageRandRStudyP_1203_TypePair(GageRandRStudyP_1203_TypeChoicePair * GageRandRStudyP_1203_TypePairIn)
-{GageRandRStudyP_1203_TypePair = GageRandRStudyP_1203_TypePairIn;}
+void GageRandRStudyP_1162_Type::setGageRandRStudyP_1162_TypePair(GageRandRStudyP_1162_TypeChoicePair * GageRandRStudyP_1162_TypePairIn)
+{GageRandRStudyP_1162_TypePair = GageRandRStudyP_1162_TypePairIn;}
+GageRandRStudyP_1162_TypeChoicePair::GageRandRStudyP_1162_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class GageRandRStudyP_1203_TypeChoicePair
-
-*/
-
-GageRandRStudyP_1203_TypeChoicePair::GageRandRStudyP_1203_TypeChoicePair() {}
-
-GageRandRStudyP_1203_TypeChoicePair::GageRandRStudyP_1203_TypeChoicePair(
- whichOne GageRandRStudyP_1203_TypeTypeIn,
- GageRandRStudyP_1203_TypeVal GageRandRStudyP_1203_TypeValueIn)
+GageRandRStudyP_1162_TypeChoicePair::GageRandRStudyP_1162_TypeChoicePair(
+ whichOne GageRandRStudyP_1162_TypeTypeIn,
+ GageRandRStudyP_1162_TypeVal GageRandRStudyP_1162_TypeValueIn)
 {
-  GageRandRStudyP_1203_TypeType = GageRandRStudyP_1203_TypeTypeIn;
-  GageRandRStudyP_1203_TypeValue = GageRandRStudyP_1203_TypeValueIn;
+  GageRandRStudyP_1162_TypeType = GageRandRStudyP_1162_TypeTypeIn;
+  GageRandRStudyP_1162_TypeValue = GageRandRStudyP_1162_TypeValueIn;
 }
 
-GageRandRStudyP_1203_TypeChoicePair::~GageRandRStudyP_1203_TypeChoicePair()
+GageRandRStudyP_1162_TypeChoicePair::~GageRandRStudyP_1162_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (GageRandRStudyP_1203_TypeType == MaximumRelativeEquipmentVariationE)
-    delete GageRandRStudyP_1203_TypeValue.MaximumRelativeEquipmentVariation;
-  else if (GageRandRStudyP_1203_TypeType == MaximumAbsoluteEquipmentVariationE)
-    delete GageRandRStudyP_1203_TypeValue.MaximumAbsoluteEquipmentVariation;
+  if (GageRandRStudyP_1162_TypeType == MaximumRelativeEquipmentVariationE)
+    delete GageRandRStudyP_1162_TypeValue.MaximumRelativeEquipmentVariation;
+  else if (GageRandRStudyP_1162_TypeType == MaximumAbsoluteEquipmentVariationE)
+    delete GageRandRStudyP_1162_TypeValue.MaximumAbsoluteEquipmentVariation;
   #endif
 }
 
-void GageRandRStudyP_1203_TypeChoicePair::printSelf(FILE * outFile)
+void GageRandRStudyP_1162_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (GageRandRStudyP_1203_TypeType == MaximumRelativeEquipmentVariationE)
+  if (GageRandRStudyP_1162_TypeType == MaximumRelativeEquipmentVariationE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MaximumRelativeEquipmentVariation");
-      GageRandRStudyP_1203_TypeValue.MaximumRelativeEquipmentVariation->printSelf(outFile);
+      GageRandRStudyP_1162_TypeValue.MaximumRelativeEquipmentVariation->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MaximumRelativeEquipmentVariation>\n");
     }
-  else if (GageRandRStudyP_1203_TypeType == MaximumAbsoluteEquipmentVariationE)
+  else if (GageRandRStudyP_1162_TypeType == MaximumAbsoluteEquipmentVariationE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MaximumAbsoluteEquipmentVariation");
-      GageRandRStudyP_1203_TypeValue.MaximumAbsoluteEquipmentVariation->printSelf(outFile);
+      GageRandRStudyP_1162_TypeValue.MaximumAbsoluteEquipmentVariation->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MaximumAbsoluteEquipmentVariation>\n");
     }
@@ -11214,83 +11212,76 @@ void GageRandRStudyP_1203_TypeChoicePair::printSelf(FILE * outFile)
 
 /* ***************************************************************** */
 
-/* class GageRandRStudyP_1204_Type
+/* class GageRandRStudyP_1163_Type
 
 */
 
-GageRandRStudyP_1204_Type::GageRandRStudyP_1204_Type()
+GageRandRStudyP_1163_Type::GageRandRStudyP_1163_Type()
 {
-  GageRandRStudyP_1204_TypePair = 0;
+  GageRandRStudyP_1163_TypePair = 0;
 }
 
-GageRandRStudyP_1204_Type::GageRandRStudyP_1204_Type(
- GageRandRStudyP_1204_TypeChoicePair * GageRandRStudyP_1204_TypePairIn)
+GageRandRStudyP_1163_Type::GageRandRStudyP_1163_Type(
+ GageRandRStudyP_1163_TypeChoicePair * GageRandRStudyP_1163_TypePairIn)
 {
-  GageRandRStudyP_1204_TypePair = GageRandRStudyP_1204_TypePairIn;
+  GageRandRStudyP_1163_TypePair = GageRandRStudyP_1163_TypePairIn;
 }
 
-GageRandRStudyP_1204_Type::~GageRandRStudyP_1204_Type()
+GageRandRStudyP_1163_Type::~GageRandRStudyP_1163_Type()
 {
   #ifndef NODESTRUCT
-  delete GageRandRStudyP_1204_TypePair;
+  delete GageRandRStudyP_1163_TypePair;
   #endif
 }
 
-void GageRandRStudyP_1204_Type::printSelf(FILE * outFile)
+void GageRandRStudyP_1163_Type::printSelf(FILE * outFile)
 {
-  if (GageRandRStudyP_1204_TypePair)
+  if (GageRandRStudyP_1163_TypePair)
     {
-      GageRandRStudyP_1204_TypePair->printSelf(outFile);
+      GageRandRStudyP_1163_TypePair->printSelf(outFile);
     }
 }
 
-GageRandRStudyP_1204_TypeChoicePair * GageRandRStudyP_1204_Type::getGageRandRStudyP_1204_TypePair()
-{return GageRandRStudyP_1204_TypePair;}
+GageRandRStudyP_1163_TypeChoicePair * GageRandRStudyP_1163_Type::getGageRandRStudyP_1163_TypePair()
+{return GageRandRStudyP_1163_TypePair;}
 
-void GageRandRStudyP_1204_Type::setGageRandRStudyP_1204_TypePair(GageRandRStudyP_1204_TypeChoicePair * GageRandRStudyP_1204_TypePairIn)
-{GageRandRStudyP_1204_TypePair = GageRandRStudyP_1204_TypePairIn;}
+void GageRandRStudyP_1163_Type::setGageRandRStudyP_1163_TypePair(GageRandRStudyP_1163_TypeChoicePair * GageRandRStudyP_1163_TypePairIn)
+{GageRandRStudyP_1163_TypePair = GageRandRStudyP_1163_TypePairIn;}
+GageRandRStudyP_1163_TypeChoicePair::GageRandRStudyP_1163_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class GageRandRStudyP_1204_TypeChoicePair
-
-*/
-
-GageRandRStudyP_1204_TypeChoicePair::GageRandRStudyP_1204_TypeChoicePair() {}
-
-GageRandRStudyP_1204_TypeChoicePair::GageRandRStudyP_1204_TypeChoicePair(
- whichOne GageRandRStudyP_1204_TypeTypeIn,
- GageRandRStudyP_1204_TypeVal GageRandRStudyP_1204_TypeValueIn)
+GageRandRStudyP_1163_TypeChoicePair::GageRandRStudyP_1163_TypeChoicePair(
+ whichOne GageRandRStudyP_1163_TypeTypeIn,
+ GageRandRStudyP_1163_TypeVal GageRandRStudyP_1163_TypeValueIn)
 {
-  GageRandRStudyP_1204_TypeType = GageRandRStudyP_1204_TypeTypeIn;
-  GageRandRStudyP_1204_TypeValue = GageRandRStudyP_1204_TypeValueIn;
+  GageRandRStudyP_1163_TypeType = GageRandRStudyP_1163_TypeTypeIn;
+  GageRandRStudyP_1163_TypeValue = GageRandRStudyP_1163_TypeValueIn;
 }
 
-GageRandRStudyP_1204_TypeChoicePair::~GageRandRStudyP_1204_TypeChoicePair()
+GageRandRStudyP_1163_TypeChoicePair::~GageRandRStudyP_1163_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (GageRandRStudyP_1204_TypeType == MaximumRelativeTotalRandRE)
-    delete GageRandRStudyP_1204_TypeValue.MaximumRelativeTotalRandR;
-  else if (GageRandRStudyP_1204_TypeType == MaximumAbsoluteTotalRandRE)
-    delete GageRandRStudyP_1204_TypeValue.MaximumAbsoluteTotalRandR;
+  if (GageRandRStudyP_1163_TypeType == MaximumRelativeTotalRandRE)
+    delete GageRandRStudyP_1163_TypeValue.MaximumRelativeTotalRandR;
+  else if (GageRandRStudyP_1163_TypeType == MaximumAbsoluteTotalRandRE)
+    delete GageRandRStudyP_1163_TypeValue.MaximumAbsoluteTotalRandR;
   #endif
 }
 
-void GageRandRStudyP_1204_TypeChoicePair::printSelf(FILE * outFile)
+void GageRandRStudyP_1163_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (GageRandRStudyP_1204_TypeType == MaximumRelativeTotalRandRE)
+  if (GageRandRStudyP_1163_TypeType == MaximumRelativeTotalRandRE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MaximumRelativeTotalRandR");
-      GageRandRStudyP_1204_TypeValue.MaximumRelativeTotalRandR->printSelf(outFile);
+      GageRandRStudyP_1163_TypeValue.MaximumRelativeTotalRandR->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MaximumRelativeTotalRandR>\n");
     }
-  else if (GageRandRStudyP_1204_TypeType == MaximumAbsoluteTotalRandRE)
+  else if (GageRandRStudyP_1163_TypeType == MaximumAbsoluteTotalRandRE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MaximumAbsoluteTotalRandR");
-      GageRandRStudyP_1204_TypeValue.MaximumAbsoluteTotalRandR->printSelf(outFile);
+      GageRandRStudyP_1163_TypeValue.MaximumAbsoluteTotalRandR->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MaximumAbsoluteTotalRandR>\n");
     }
@@ -11298,331 +11289,310 @@ void GageRandRStudyP_1204_TypeChoicePair::printSelf(FILE * outFile)
 
 /* ***************************************************************** */
 
-/* class LinearityStudyP_1205_Type
+/* class LinearityStudyP_1164_Type
 
 */
 
-LinearityStudyP_1205_Type::LinearityStudyP_1205_Type()
+LinearityStudyP_1164_Type::LinearityStudyP_1164_Type()
 {
-  LinearityStudyP_1205_TypePair = 0;
+  LinearityStudyP_1164_TypePair = 0;
 }
 
-LinearityStudyP_1205_Type::LinearityStudyP_1205_Type(
- LinearityStudyP_1205_TypeChoicePair * LinearityStudyP_1205_TypePairIn)
+LinearityStudyP_1164_Type::LinearityStudyP_1164_Type(
+ LinearityStudyP_1164_TypeChoicePair * LinearityStudyP_1164_TypePairIn)
 {
-  LinearityStudyP_1205_TypePair = LinearityStudyP_1205_TypePairIn;
+  LinearityStudyP_1164_TypePair = LinearityStudyP_1164_TypePairIn;
 }
 
-LinearityStudyP_1205_Type::~LinearityStudyP_1205_Type()
+LinearityStudyP_1164_Type::~LinearityStudyP_1164_Type()
 {
   #ifndef NODESTRUCT
-  delete LinearityStudyP_1205_TypePair;
+  delete LinearityStudyP_1164_TypePair;
   #endif
 }
 
-void LinearityStudyP_1205_Type::printSelf(FILE * outFile)
+void LinearityStudyP_1164_Type::printSelf(FILE * outFile)
 {
-  LinearityStudyP_1205_TypePair->printSelf(outFile);
+  LinearityStudyP_1164_TypePair->printSelf(outFile);
 }
 
-LinearityStudyP_1205_TypeChoicePair * LinearityStudyP_1205_Type::getLinearityStudyP_1205_TypePair()
-{return LinearityStudyP_1205_TypePair;}
+LinearityStudyP_1164_TypeChoicePair * LinearityStudyP_1164_Type::getLinearityStudyP_1164_TypePair()
+{return LinearityStudyP_1164_TypePair;}
 
-void LinearityStudyP_1205_Type::setLinearityStudyP_1205_TypePair(LinearityStudyP_1205_TypeChoicePair * LinearityStudyP_1205_TypePairIn)
-{LinearityStudyP_1205_TypePair = LinearityStudyP_1205_TypePairIn;}
+void LinearityStudyP_1164_Type::setLinearityStudyP_1164_TypePair(LinearityStudyP_1164_TypeChoicePair * LinearityStudyP_1164_TypePairIn)
+{LinearityStudyP_1164_TypePair = LinearityStudyP_1164_TypePairIn;}
+LinearityStudyP_1164_TypeChoicePair::LinearityStudyP_1164_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class LinearityStudyP_1205_TypeChoicePair
-
-*/
-
-LinearityStudyP_1205_TypeChoicePair::LinearityStudyP_1205_TypeChoicePair() {}
-
-LinearityStudyP_1205_TypeChoicePair::LinearityStudyP_1205_TypeChoicePair(
- whichOne LinearityStudyP_1205_TypeTypeIn,
- LinearityStudyP_1205_TypeVal LinearityStudyP_1205_TypeValueIn)
+LinearityStudyP_1164_TypeChoicePair::LinearityStudyP_1164_TypeChoicePair(
+ whichOne LinearityStudyP_1164_TypeTypeIn,
+ LinearityStudyP_1164_TypeVal LinearityStudyP_1164_TypeValueIn)
 {
-  LinearityStudyP_1205_TypeType = LinearityStudyP_1205_TypeTypeIn;
-  LinearityStudyP_1205_TypeValue = LinearityStudyP_1205_TypeValueIn;
+  LinearityStudyP_1164_TypeType = LinearityStudyP_1164_TypeTypeIn;
+  LinearityStudyP_1164_TypeValue = LinearityStudyP_1164_TypeValueIn;
 }
 
-LinearityStudyP_1205_TypeChoicePair::~LinearityStudyP_1205_TypeChoicePair()
+LinearityStudyP_1164_TypeChoicePair::~LinearityStudyP_1164_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (LinearityStudyP_1205_TypeType == AbsoluteMinimumsE)
-    delete LinearityStudyP_1205_TypeValue.AbsoluteMinimums;
-  else if (LinearityStudyP_1205_TypeType == RelativeLinearityMinimumE)
-    delete LinearityStudyP_1205_TypeValue.RelativeLinearityMinimum;
+  if (LinearityStudyP_1164_TypeType == AbsoluteMinimumsE)
+    delete LinearityStudyP_1164_TypeValue.AbsoluteMinimums;
+  else if (LinearityStudyP_1164_TypeType == RelativeLinearityMinimumE)
+    delete LinearityStudyP_1164_TypeValue.RelativeLinearityMinimum;
   #endif
 }
 
-void LinearityStudyP_1205_TypeChoicePair::printSelf(FILE * outFile)
+void LinearityStudyP_1164_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (LinearityStudyP_1205_TypeType == AbsoluteMinimumsE)
+  if (LinearityStudyP_1164_TypeType == AbsoluteMinimumsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AbsoluteMinimums");
-      LinearityStudyP_1205_TypeValue.AbsoluteMinimums->printSelf(outFile);
+      LinearityStudyP_1164_TypeValue.AbsoluteMinimums->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</AbsoluteMinimums>\n");
     }
-  else if (LinearityStudyP_1205_TypeType == RelativeLinearityMinimumE)
+  else if (LinearityStudyP_1164_TypeType == RelativeLinearityMinimumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RelativeLinearityMinimum");
-      LinearityStudyP_1205_TypeValue.RelativeLinearityMinimum->printSelf(outFile);
+      LinearityStudyP_1164_TypeValue.RelativeLinearityMinimum->printSelf(outFile);
       fprintf(outFile, "</RelativeLinearityMinimum>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class LinearityStudyR_1206_Type
+/* class LinearityStudyR_1165_Type
 
 */
 
-LinearityStudyR_1206_Type::LinearityStudyR_1206_Type()
+LinearityStudyR_1165_Type::LinearityStudyR_1165_Type()
 {
-  LinearityStudyR_1206_TypePair = 0;
+  LinearityStudyR_1165_TypePair = 0;
 }
 
-LinearityStudyR_1206_Type::LinearityStudyR_1206_Type(
- LinearityStudyR_1206_TypeChoicePair * LinearityStudyR_1206_TypePairIn)
+LinearityStudyR_1165_Type::LinearityStudyR_1165_Type(
+ LinearityStudyR_1165_TypeChoicePair * LinearityStudyR_1165_TypePairIn)
 {
-  LinearityStudyR_1206_TypePair = LinearityStudyR_1206_TypePairIn;
+  LinearityStudyR_1165_TypePair = LinearityStudyR_1165_TypePairIn;
 }
 
-LinearityStudyR_1206_Type::~LinearityStudyR_1206_Type()
+LinearityStudyR_1165_Type::~LinearityStudyR_1165_Type()
 {
   #ifndef NODESTRUCT
-  delete LinearityStudyR_1206_TypePair;
+  delete LinearityStudyR_1165_TypePair;
   #endif
 }
 
-void LinearityStudyR_1206_Type::printSelf(FILE * outFile)
+void LinearityStudyR_1165_Type::printSelf(FILE * outFile)
 {
-  if (LinearityStudyR_1206_TypePair)
+  if (LinearityStudyR_1165_TypePair)
     {
-      LinearityStudyR_1206_TypePair->printSelf(outFile);
+      LinearityStudyR_1165_TypePair->printSelf(outFile);
     }
 }
 
-LinearityStudyR_1206_TypeChoicePair * LinearityStudyR_1206_Type::getLinearityStudyR_1206_TypePair()
-{return LinearityStudyR_1206_TypePair;}
+LinearityStudyR_1165_TypeChoicePair * LinearityStudyR_1165_Type::getLinearityStudyR_1165_TypePair()
+{return LinearityStudyR_1165_TypePair;}
 
-void LinearityStudyR_1206_Type::setLinearityStudyR_1206_TypePair(LinearityStudyR_1206_TypeChoicePair * LinearityStudyR_1206_TypePairIn)
-{LinearityStudyR_1206_TypePair = LinearityStudyR_1206_TypePairIn;}
+void LinearityStudyR_1165_Type::setLinearityStudyR_1165_TypePair(LinearityStudyR_1165_TypeChoicePair * LinearityStudyR_1165_TypePairIn)
+{LinearityStudyR_1165_TypePair = LinearityStudyR_1165_TypePairIn;}
+LinearityStudyR_1165_TypeChoicePair::LinearityStudyR_1165_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class LinearityStudyR_1206_TypeChoicePair
-
-*/
-
-LinearityStudyR_1206_TypeChoicePair::LinearityStudyR_1206_TypeChoicePair() {}
-
-LinearityStudyR_1206_TypeChoicePair::LinearityStudyR_1206_TypeChoicePair(
- whichOne LinearityStudyR_1206_TypeTypeIn,
- LinearityStudyR_1206_TypeVal LinearityStudyR_1206_TypeValueIn)
+LinearityStudyR_1165_TypeChoicePair::LinearityStudyR_1165_TypeChoicePair(
+ whichOne LinearityStudyR_1165_TypeTypeIn,
+ LinearityStudyR_1165_TypeVal LinearityStudyR_1165_TypeValueIn)
 {
-  LinearityStudyR_1206_TypeType = LinearityStudyR_1206_TypeTypeIn;
-  LinearityStudyR_1206_TypeValue = LinearityStudyR_1206_TypeValueIn;
+  LinearityStudyR_1165_TypeType = LinearityStudyR_1165_TypeTypeIn;
+  LinearityStudyR_1165_TypeValue = LinearityStudyR_1165_TypeValueIn;
 }
 
-LinearityStudyR_1206_TypeChoicePair::~LinearityStudyR_1206_TypeChoicePair()
+LinearityStudyR_1165_TypeChoicePair::~LinearityStudyR_1165_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (LinearityStudyR_1206_TypeType == LinearAbsoluteLinearityE)
-    delete LinearityStudyR_1206_TypeValue.LinearAbsoluteLinearity;
-  else if (LinearityStudyR_1206_TypeType == AngularAbsoluteLinearityE)
-    delete LinearityStudyR_1206_TypeValue.AngularAbsoluteLinearity;
-  else if (LinearityStudyR_1206_TypeType == AreaAbsoluteLinearityE)
-    delete LinearityStudyR_1206_TypeValue.AreaAbsoluteLinearity;
-  else if (LinearityStudyR_1206_TypeType == ForceAbsoluteLinearityE)
-    delete LinearityStudyR_1206_TypeValue.ForceAbsoluteLinearity;
-  else if (LinearityStudyR_1206_TypeType == MassAbsoluteLinearityE)
-    delete LinearityStudyR_1206_TypeValue.MassAbsoluteLinearity;
-  else if (LinearityStudyR_1206_TypeType == PressureAbsoluteLinearityE)
-    delete LinearityStudyR_1206_TypeValue.PressureAbsoluteLinearity;
-  else if (LinearityStudyR_1206_TypeType == SpeedAbsoluteLinearityE)
-    delete LinearityStudyR_1206_TypeValue.SpeedAbsoluteLinearity;
-  else if (LinearityStudyR_1206_TypeType == TemperatureAbsoluteLinearityE)
-    delete LinearityStudyR_1206_TypeValue.TemperatureAbsoluteLinearity;
-  else if (LinearityStudyR_1206_TypeType == TimeAbsoluteLinearityE)
-    delete LinearityStudyR_1206_TypeValue.TimeAbsoluteLinearity;
-  else if (LinearityStudyR_1206_TypeType == UserDefinedUnitAbsoluteLinearityE)
-    delete LinearityStudyR_1206_TypeValue.UserDefinedUnitAbsoluteLinearity;
+  if (LinearityStudyR_1165_TypeType == LinearAbsoluteLinearityE)
+    delete LinearityStudyR_1165_TypeValue.LinearAbsoluteLinearity;
+  else if (LinearityStudyR_1165_TypeType == AngularAbsoluteLinearityE)
+    delete LinearityStudyR_1165_TypeValue.AngularAbsoluteLinearity;
+  else if (LinearityStudyR_1165_TypeType == AreaAbsoluteLinearityE)
+    delete LinearityStudyR_1165_TypeValue.AreaAbsoluteLinearity;
+  else if (LinearityStudyR_1165_TypeType == ForceAbsoluteLinearityE)
+    delete LinearityStudyR_1165_TypeValue.ForceAbsoluteLinearity;
+  else if (LinearityStudyR_1165_TypeType == MassAbsoluteLinearityE)
+    delete LinearityStudyR_1165_TypeValue.MassAbsoluteLinearity;
+  else if (LinearityStudyR_1165_TypeType == PressureAbsoluteLinearityE)
+    delete LinearityStudyR_1165_TypeValue.PressureAbsoluteLinearity;
+  else if (LinearityStudyR_1165_TypeType == SpeedAbsoluteLinearityE)
+    delete LinearityStudyR_1165_TypeValue.SpeedAbsoluteLinearity;
+  else if (LinearityStudyR_1165_TypeType == TemperatureAbsoluteLinearityE)
+    delete LinearityStudyR_1165_TypeValue.TemperatureAbsoluteLinearity;
+  else if (LinearityStudyR_1165_TypeType == TimeAbsoluteLinearityE)
+    delete LinearityStudyR_1165_TypeValue.TimeAbsoluteLinearity;
+  else if (LinearityStudyR_1165_TypeType == UserDefinedUnitAbsoluteLinearityE)
+    delete LinearityStudyR_1165_TypeValue.UserDefinedUnitAbsoluteLinearity;
   #endif
 }
 
-void LinearityStudyR_1206_TypeChoicePair::printSelf(FILE * outFile)
+void LinearityStudyR_1165_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (LinearityStudyR_1206_TypeType == LinearAbsoluteLinearityE)
+  if (LinearityStudyR_1165_TypeType == LinearAbsoluteLinearityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<LinearAbsoluteLinearity");
-      LinearityStudyR_1206_TypeValue.LinearAbsoluteLinearity->printSelf(outFile);
+      LinearityStudyR_1165_TypeValue.LinearAbsoluteLinearity->printSelf(outFile);
       fprintf(outFile, "</LinearAbsoluteLinearity>\n");
     }
-  else if (LinearityStudyR_1206_TypeType == AngularAbsoluteLinearityE)
+  else if (LinearityStudyR_1165_TypeType == AngularAbsoluteLinearityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AngularAbsoluteLinearity");
-      LinearityStudyR_1206_TypeValue.AngularAbsoluteLinearity->printSelf(outFile);
+      LinearityStudyR_1165_TypeValue.AngularAbsoluteLinearity->printSelf(outFile);
       fprintf(outFile, "</AngularAbsoluteLinearity>\n");
     }
-  else if (LinearityStudyR_1206_TypeType == AreaAbsoluteLinearityE)
+  else if (LinearityStudyR_1165_TypeType == AreaAbsoluteLinearityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AreaAbsoluteLinearity");
-      LinearityStudyR_1206_TypeValue.AreaAbsoluteLinearity->printSelf(outFile);
+      LinearityStudyR_1165_TypeValue.AreaAbsoluteLinearity->printSelf(outFile);
       fprintf(outFile, "</AreaAbsoluteLinearity>\n");
     }
-  else if (LinearityStudyR_1206_TypeType == ForceAbsoluteLinearityE)
+  else if (LinearityStudyR_1165_TypeType == ForceAbsoluteLinearityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ForceAbsoluteLinearity");
-      LinearityStudyR_1206_TypeValue.ForceAbsoluteLinearity->printSelf(outFile);
+      LinearityStudyR_1165_TypeValue.ForceAbsoluteLinearity->printSelf(outFile);
       fprintf(outFile, "</ForceAbsoluteLinearity>\n");
     }
-  else if (LinearityStudyR_1206_TypeType == MassAbsoluteLinearityE)
+  else if (LinearityStudyR_1165_TypeType == MassAbsoluteLinearityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MassAbsoluteLinearity");
-      LinearityStudyR_1206_TypeValue.MassAbsoluteLinearity->printSelf(outFile);
+      LinearityStudyR_1165_TypeValue.MassAbsoluteLinearity->printSelf(outFile);
       fprintf(outFile, "</MassAbsoluteLinearity>\n");
     }
-  else if (LinearityStudyR_1206_TypeType == PressureAbsoluteLinearityE)
+  else if (LinearityStudyR_1165_TypeType == PressureAbsoluteLinearityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<PressureAbsoluteLinearity");
-      LinearityStudyR_1206_TypeValue.PressureAbsoluteLinearity->printSelf(outFile);
+      LinearityStudyR_1165_TypeValue.PressureAbsoluteLinearity->printSelf(outFile);
       fprintf(outFile, "</PressureAbsoluteLinearity>\n");
     }
-  else if (LinearityStudyR_1206_TypeType == SpeedAbsoluteLinearityE)
+  else if (LinearityStudyR_1165_TypeType == SpeedAbsoluteLinearityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SpeedAbsoluteLinearity");
-      LinearityStudyR_1206_TypeValue.SpeedAbsoluteLinearity->printSelf(outFile);
+      LinearityStudyR_1165_TypeValue.SpeedAbsoluteLinearity->printSelf(outFile);
       fprintf(outFile, "</SpeedAbsoluteLinearity>\n");
     }
-  else if (LinearityStudyR_1206_TypeType == TemperatureAbsoluteLinearityE)
+  else if (LinearityStudyR_1165_TypeType == TemperatureAbsoluteLinearityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TemperatureAbsoluteLinearity");
-      LinearityStudyR_1206_TypeValue.TemperatureAbsoluteLinearity->printSelf(outFile);
+      LinearityStudyR_1165_TypeValue.TemperatureAbsoluteLinearity->printSelf(outFile);
       fprintf(outFile, "</TemperatureAbsoluteLinearity>\n");
     }
-  else if (LinearityStudyR_1206_TypeType == TimeAbsoluteLinearityE)
+  else if (LinearityStudyR_1165_TypeType == TimeAbsoluteLinearityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TimeAbsoluteLinearity");
-      LinearityStudyR_1206_TypeValue.TimeAbsoluteLinearity->printSelf(outFile);
+      LinearityStudyR_1165_TypeValue.TimeAbsoluteLinearity->printSelf(outFile);
       fprintf(outFile, "</TimeAbsoluteLinearity>\n");
     }
-  else if (LinearityStudyR_1206_TypeType == UserDefinedUnitAbsoluteLinearityE)
+  else if (LinearityStudyR_1165_TypeType == UserDefinedUnitAbsoluteLinearityE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDefinedUnitAbsoluteLinearity");
-      LinearityStudyR_1206_TypeValue.UserDefinedUnitAbsoluteLinearity->printSelf(outFile);
+      LinearityStudyR_1165_TypeValue.UserDefinedUnitAbsoluteLinearity->printSelf(outFile);
       fprintf(outFile, "</UserDefinedUnitAbsoluteLinearity>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class ProcessDifferen_1207_Type
+/* class ProcessDifferen_1166_Type
 
 */
 
-ProcessDifferen_1207_Type::ProcessDifferen_1207_Type()
+ProcessDifferen_1166_Type::ProcessDifferen_1166_Type()
 {
-  ProcessDifferen_1207_TypePair = 0;
+  ProcessDifferen_1166_TypePair = 0;
 }
 
-ProcessDifferen_1207_Type::ProcessDifferen_1207_Type(
- ProcessDifferen_1207_TypeChoicePair * ProcessDifferen_1207_TypePairIn)
+ProcessDifferen_1166_Type::ProcessDifferen_1166_Type(
+ ProcessDifferen_1166_TypeChoicePair * ProcessDifferen_1166_TypePairIn)
 {
-  ProcessDifferen_1207_TypePair = ProcessDifferen_1207_TypePairIn;
+  ProcessDifferen_1166_TypePair = ProcessDifferen_1166_TypePairIn;
 }
 
-ProcessDifferen_1207_Type::~ProcessDifferen_1207_Type()
+ProcessDifferen_1166_Type::~ProcessDifferen_1166_Type()
 {
   #ifndef NODESTRUCT
-  delete ProcessDifferen_1207_TypePair;
+  delete ProcessDifferen_1166_TypePair;
   #endif
 }
 
-void ProcessDifferen_1207_Type::printSelf(FILE * outFile)
+void ProcessDifferen_1166_Type::printSelf(FILE * outFile)
 {
-  ProcessDifferen_1207_TypePair->printSelf(outFile);
+  ProcessDifferen_1166_TypePair->printSelf(outFile);
 }
 
-ProcessDifferen_1207_TypeChoicePair * ProcessDifferen_1207_Type::getProcessDifferen_1207_TypePair()
-{return ProcessDifferen_1207_TypePair;}
+ProcessDifferen_1166_TypeChoicePair * ProcessDifferen_1166_Type::getProcessDifferen_1166_TypePair()
+{return ProcessDifferen_1166_TypePair;}
 
-void ProcessDifferen_1207_Type::setProcessDifferen_1207_TypePair(ProcessDifferen_1207_TypeChoicePair * ProcessDifferen_1207_TypePairIn)
-{ProcessDifferen_1207_TypePair = ProcessDifferen_1207_TypePairIn;}
+void ProcessDifferen_1166_Type::setProcessDifferen_1166_TypePair(ProcessDifferen_1166_TypeChoicePair * ProcessDifferen_1166_TypePairIn)
+{ProcessDifferen_1166_TypePair = ProcessDifferen_1166_TypePairIn;}
+ProcessDifferen_1166_TypeChoicePair::ProcessDifferen_1166_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class ProcessDifferen_1207_TypeChoicePair
-
-*/
-
-ProcessDifferen_1207_TypeChoicePair::ProcessDifferen_1207_TypeChoicePair() {}
-
-ProcessDifferen_1207_TypeChoicePair::ProcessDifferen_1207_TypeChoicePair(
- whichOne ProcessDifferen_1207_TypeTypeIn,
- ProcessDifferen_1207_TypeVal ProcessDifferen_1207_TypeValueIn)
+ProcessDifferen_1166_TypeChoicePair::ProcessDifferen_1166_TypeChoicePair(
+ whichOne ProcessDifferen_1166_TypeTypeIn,
+ ProcessDifferen_1166_TypeVal ProcessDifferen_1166_TypeValueIn)
 {
-  ProcessDifferen_1207_TypeType = ProcessDifferen_1207_TypeTypeIn;
-  ProcessDifferen_1207_TypeValue = ProcessDifferen_1207_TypeValueIn;
+  ProcessDifferen_1166_TypeType = ProcessDifferen_1166_TypeTypeIn;
+  ProcessDifferen_1166_TypeValue = ProcessDifferen_1166_TypeValueIn;
 }
 
-ProcessDifferen_1207_TypeChoicePair::~ProcessDifferen_1207_TypeChoicePair()
+ProcessDifferen_1166_TypeChoicePair::~ProcessDifferen_1166_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (ProcessDifferen_1207_TypeType == AbsoluteDifferencesE)
-    delete ProcessDifferen_1207_TypeValue.AbsoluteDifferences;
-  else if (ProcessDifferen_1207_TypeType == RelativeDifferenceE)
-    delete ProcessDifferen_1207_TypeValue.RelativeDifference;
+  if (ProcessDifferen_1166_TypeType == AbsoluteDifferencesE)
+    delete ProcessDifferen_1166_TypeValue.AbsoluteDifferences;
+  else if (ProcessDifferen_1166_TypeType == RelativeDifferenceE)
+    delete ProcessDifferen_1166_TypeValue.RelativeDifference;
   #endif
 }
 
-void ProcessDifferen_1207_TypeChoicePair::printSelf(FILE * outFile)
+void ProcessDifferen_1166_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (ProcessDifferen_1207_TypeType == AbsoluteDifferencesE)
+  if (ProcessDifferen_1166_TypeType == AbsoluteDifferencesE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AbsoluteDifferences");
-      ProcessDifferen_1207_TypeValue.AbsoluteDifferences->printSelf(outFile);
+      ProcessDifferen_1166_TypeValue.AbsoluteDifferences->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</AbsoluteDifferences>\n");
     }
-  else if (ProcessDifferen_1207_TypeType == RelativeDifferenceE)
+  else if (ProcessDifferen_1166_TypeType == RelativeDifferenceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RelativeDifference");
-      ProcessDifferen_1207_TypeValue.RelativeDifference->printSelf(outFile);
+      ProcessDifferen_1166_TypeValue.RelativeDifference->printSelf(outFile);
       fprintf(outFile, "</RelativeDifference>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class StatisticalStud_1208_Type
+/* class StatisticalStud_1167_Type
 
 */
 
-StatisticalStud_1208_Type::StatisticalStud_1208_Type()
+StatisticalStud_1167_Type::StatisticalStud_1167_Type()
 {
   FeatureItemIds = 0;
   CalculateAverageFeatures = 0;
 }
 
-StatisticalStud_1208_Type::StatisticalStud_1208_Type(
+StatisticalStud_1167_Type::StatisticalStud_1167_Type(
  ArrayReferenceType * FeatureItemIdsIn,
  XmlBoolean * CalculateAverageFeaturesIn)
 {
@@ -11630,7 +11600,7 @@ StatisticalStud_1208_Type::StatisticalStud_1208_Type(
   CalculateAverageFeatures = CalculateAverageFeaturesIn;
 }
 
-StatisticalStud_1208_Type::~StatisticalStud_1208_Type()
+StatisticalStud_1167_Type::~StatisticalStud_1167_Type()
 {
   #ifndef NODESTRUCT
   delete FeatureItemIds;
@@ -11638,7 +11608,7 @@ StatisticalStud_1208_Type::~StatisticalStud_1208_Type()
   #endif
 }
 
-void StatisticalStud_1208_Type::printSelf(FILE * outFile)
+void StatisticalStud_1167_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<FeatureItemIds");
@@ -11654,32 +11624,32 @@ void StatisticalStud_1208_Type::printSelf(FILE * outFile)
     }
 }
 
-ArrayReferenceType * StatisticalStud_1208_Type::getFeatureItemIds()
+ArrayReferenceType * StatisticalStud_1167_Type::getFeatureItemIds()
 {return FeatureItemIds;}
 
-void StatisticalStud_1208_Type::setFeatureItemIds(ArrayReferenceType * FeatureItemIdsIn)
+void StatisticalStud_1167_Type::setFeatureItemIds(ArrayReferenceType * FeatureItemIdsIn)
 {FeatureItemIds = FeatureItemIdsIn;}
 
-XmlBoolean * StatisticalStud_1208_Type::getCalculateAverageFeatures()
+XmlBoolean * StatisticalStud_1167_Type::getCalculateAverageFeatures()
 {return CalculateAverageFeatures;}
 
-void StatisticalStud_1208_Type::setCalculateAverageFeatures(XmlBoolean * CalculateAverageFeaturesIn)
+void StatisticalStud_1167_Type::setCalculateAverageFeatures(XmlBoolean * CalculateAverageFeaturesIn)
 {CalculateAverageFeatures = CalculateAverageFeaturesIn;}
 
 /* ***************************************************************** */
 
-/* class StatisticalStud_1209_Type
+/* class StatisticalStud_1168_Type
 
 */
 
-StatisticalStud_1209_Type::StatisticalStud_1209_Type()
+StatisticalStud_1168_Type::StatisticalStud_1168_Type()
 {
   CharacteristicItemIds = 0;
   StatsValuesPerChar = 0;
   StatsValuesPerSubgroup = 0;
 }
 
-StatisticalStud_1209_Type::StatisticalStud_1209_Type(
+StatisticalStud_1168_Type::StatisticalStud_1168_Type(
  ArrayReferenceType * CharacteristicItemIdsIn,
  ListAccumulatedStatsValuesTypeLisd * StatsValuesPerCharIn,
  ListSubgroupStatsValuesTypeLisd * StatsValuesPerSubgroupIn)
@@ -11689,7 +11659,7 @@ StatisticalStud_1209_Type::StatisticalStud_1209_Type(
   StatsValuesPerSubgroup = StatsValuesPerSubgroupIn;
 }
 
-StatisticalStud_1209_Type::~StatisticalStud_1209_Type()
+StatisticalStud_1168_Type::~StatisticalStud_1168_Type()
 {
   #ifndef NODESTRUCT
   delete CharacteristicItemIds;
@@ -11698,7 +11668,7 @@ StatisticalStud_1209_Type::~StatisticalStud_1209_Type()
   #endif
 }
 
-void StatisticalStud_1209_Type::printSelf(FILE * outFile)
+void StatisticalStud_1168_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<CharacteristicItemIds");
@@ -11739,269 +11709,248 @@ void StatisticalStud_1209_Type::printSelf(FILE * outFile)
   }
 }
 
-ArrayReferenceType * StatisticalStud_1209_Type::getCharacteristicItemIds()
+ArrayReferenceType * StatisticalStud_1168_Type::getCharacteristicItemIds()
 {return CharacteristicItemIds;}
 
-void StatisticalStud_1209_Type::setCharacteristicItemIds(ArrayReferenceType * CharacteristicItemIdsIn)
+void StatisticalStud_1168_Type::setCharacteristicItemIds(ArrayReferenceType * CharacteristicItemIdsIn)
 {CharacteristicItemIds = CharacteristicItemIdsIn;}
 
-ListAccumulatedStatsValuesTypeLisd * StatisticalStud_1209_Type::getStatsValuesPerChar()
+ListAccumulatedStatsValuesTypeLisd * StatisticalStud_1168_Type::getStatsValuesPerChar()
 {return StatsValuesPerChar;}
 
-void StatisticalStud_1209_Type::setStatsValuesPerChar(ListAccumulatedStatsValuesTypeLisd * StatsValuesPerCharIn)
+void StatisticalStud_1168_Type::setStatsValuesPerChar(ListAccumulatedStatsValuesTypeLisd * StatsValuesPerCharIn)
 {StatsValuesPerChar = StatsValuesPerCharIn;}
 
-ListSubgroupStatsValuesTypeLisd * StatisticalStud_1209_Type::getStatsValuesPerSubgroup()
+ListSubgroupStatsValuesTypeLisd * StatisticalStud_1168_Type::getStatsValuesPerSubgroup()
 {return StatsValuesPerSubgroup;}
 
-void StatisticalStud_1209_Type::setStatsValuesPerSubgroup(ListSubgroupStatsValuesTypeLisd * StatsValuesPerSubgroupIn)
+void StatisticalStud_1168_Type::setStatsValuesPerSubgroup(ListSubgroupStatsValuesTypeLisd * StatsValuesPerSubgroupIn)
 {StatsValuesPerSubgroup = StatsValuesPerSubgroupIn;}
 
 /* ***************************************************************** */
 
-/* class StatisticalStud_1210_Type
+/* class StatisticalStud_1169_Type
 
 */
 
-StatisticalStud_1210_Type::StatisticalStud_1210_Type()
+StatisticalStud_1169_Type::StatisticalStud_1169_Type()
 {
-  StatisticalStud_1210_TypePair = 0;
+  StatisticalStud_1169_TypePair = 0;
 }
 
-StatisticalStud_1210_Type::StatisticalStud_1210_Type(
- StatisticalStud_1210_TypeChoicePair * StatisticalStud_1210_TypePairIn)
+StatisticalStud_1169_Type::StatisticalStud_1169_Type(
+ StatisticalStud_1169_TypeChoicePair * StatisticalStud_1169_TypePairIn)
 {
-  StatisticalStud_1210_TypePair = StatisticalStud_1210_TypePairIn;
+  StatisticalStud_1169_TypePair = StatisticalStud_1169_TypePairIn;
 }
 
-StatisticalStud_1210_Type::~StatisticalStud_1210_Type()
+StatisticalStud_1169_Type::~StatisticalStud_1169_Type()
 {
   #ifndef NODESTRUCT
-  delete StatisticalStud_1210_TypePair;
+  delete StatisticalStud_1169_TypePair;
   #endif
 }
 
-void StatisticalStud_1210_Type::printSelf(FILE * outFile)
+void StatisticalStud_1169_Type::printSelf(FILE * outFile)
 {
-  if (StatisticalStud_1210_TypePair)
+  if (StatisticalStud_1169_TypePair)
     {
-      StatisticalStud_1210_TypePair->printSelf(outFile);
+      StatisticalStud_1169_TypePair->printSelf(outFile);
     }
 }
 
-StatisticalStud_1210_TypeChoicePair * StatisticalStud_1210_Type::getStatisticalStud_1210_TypePair()
-{return StatisticalStud_1210_TypePair;}
+StatisticalStud_1169_TypeChoicePair * StatisticalStud_1169_Type::getStatisticalStud_1169_TypePair()
+{return StatisticalStud_1169_TypePair;}
 
-void StatisticalStud_1210_Type::setStatisticalStud_1210_TypePair(StatisticalStud_1210_TypeChoicePair * StatisticalStud_1210_TypePairIn)
-{StatisticalStud_1210_TypePair = StatisticalStud_1210_TypePairIn;}
+void StatisticalStud_1169_Type::setStatisticalStud_1169_TypePair(StatisticalStud_1169_TypeChoicePair * StatisticalStud_1169_TypePairIn)
+{StatisticalStud_1169_TypePair = StatisticalStud_1169_TypePairIn;}
+StatisticalStud_1169_TypeChoicePair::StatisticalStud_1169_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class StatisticalStud_1210_TypeChoicePair
-
-*/
-
-StatisticalStud_1210_TypeChoicePair::StatisticalStud_1210_TypeChoicePair() {}
-
-StatisticalStud_1210_TypeChoicePair::StatisticalStud_1210_TypeChoicePair(
- whichOne StatisticalStud_1210_TypeTypeIn,
- StatisticalStud_1210_TypeVal StatisticalStud_1210_TypeValueIn)
+StatisticalStud_1169_TypeChoicePair::StatisticalStud_1169_TypeChoicePair(
+ whichOne StatisticalStud_1169_TypeTypeIn,
+ StatisticalStud_1169_TypeVal StatisticalStud_1169_TypeValueIn)
 {
-  StatisticalStud_1210_TypeType = StatisticalStud_1210_TypeTypeIn;
-  StatisticalStud_1210_TypeValue = StatisticalStud_1210_TypeValueIn;
+  StatisticalStud_1169_TypeType = StatisticalStud_1169_TypeTypeIn;
+  StatisticalStud_1169_TypeValue = StatisticalStud_1169_TypeValueIn;
 }
 
-StatisticalStud_1210_TypeChoicePair::~StatisticalStud_1210_TypeChoicePair()
+StatisticalStud_1169_TypeChoicePair::~StatisticalStud_1169_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (StatisticalStud_1210_TypeType == SoftwareIdE)
-    delete StatisticalStud_1210_TypeValue.SoftwareId;
-  else if (StatisticalStud_1210_TypeType == StandardIdE)
-    delete StatisticalStud_1210_TypeValue.StandardId;
+  if (StatisticalStud_1169_TypeType == SoftwareIdE)
+    delete StatisticalStud_1169_TypeValue.SoftwareId;
+  else if (StatisticalStud_1169_TypeType == StandardIdE)
+    delete StatisticalStud_1169_TypeValue.StandardId;
   #endif
 }
 
-void StatisticalStud_1210_TypeChoicePair::printSelf(FILE * outFile)
+void StatisticalStud_1169_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (StatisticalStud_1210_TypeType == SoftwareIdE)
+  if (StatisticalStud_1169_TypeType == SoftwareIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SoftwareId");
-      StatisticalStud_1210_TypeValue.SoftwareId->printSelf(outFile);
+      StatisticalStud_1169_TypeValue.SoftwareId->printSelf(outFile);
       fprintf(outFile, "</SoftwareId>\n");
     }
-  else if (StatisticalStud_1210_TypeType == StandardIdE)
+  else if (StatisticalStud_1169_TypeType == StandardIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<StandardId");
-      StatisticalStud_1210_TypeValue.StandardId->printSelf(outFile);
+      StatisticalStud_1169_TypeValue.StandardId->printSelf(outFile);
       fprintf(outFile, "</StandardId>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class StatisticalStud_1211_Type
+/* class StatisticalStud_1170_Type
 
 */
 
-StatisticalStud_1211_Type::StatisticalStud_1211_Type()
+StatisticalStud_1170_Type::StatisticalStud_1170_Type()
 {
-  StatisticalStud_1211_TypePair = 0;
+  StatisticalStud_1170_TypePair = 0;
 }
 
-StatisticalStud_1211_Type::StatisticalStud_1211_Type(
- StatisticalStud_1211_TypeChoicePair * StatisticalStud_1211_TypePairIn)
+StatisticalStud_1170_Type::StatisticalStud_1170_Type(
+ StatisticalStud_1170_TypeChoicePair * StatisticalStud_1170_TypePairIn)
 {
-  StatisticalStud_1211_TypePair = StatisticalStud_1211_TypePairIn;
+  StatisticalStud_1170_TypePair = StatisticalStud_1170_TypePairIn;
 }
 
-StatisticalStud_1211_Type::~StatisticalStud_1211_Type()
+StatisticalStud_1170_Type::~StatisticalStud_1170_Type()
 {
   #ifndef NODESTRUCT
-  delete StatisticalStud_1211_TypePair;
+  delete StatisticalStud_1170_TypePair;
   #endif
 }
 
-void StatisticalStud_1211_Type::printSelf(FILE * outFile)
+void StatisticalStud_1170_Type::printSelf(FILE * outFile)
 {
-  if (StatisticalStud_1211_TypePair)
+  if (StatisticalStud_1170_TypePair)
     {
-      StatisticalStud_1211_TypePair->printSelf(outFile);
+      StatisticalStud_1170_TypePair->printSelf(outFile);
     }
 }
 
-StatisticalStud_1211_TypeChoicePair * StatisticalStud_1211_Type::getStatisticalStud_1211_TypePair()
-{return StatisticalStud_1211_TypePair;}
+StatisticalStud_1170_TypeChoicePair * StatisticalStud_1170_Type::getStatisticalStud_1170_TypePair()
+{return StatisticalStud_1170_TypePair;}
 
-void StatisticalStud_1211_Type::setStatisticalStud_1211_TypePair(StatisticalStud_1211_TypeChoicePair * StatisticalStud_1211_TypePairIn)
-{StatisticalStud_1211_TypePair = StatisticalStud_1211_TypePairIn;}
+void StatisticalStud_1170_Type::setStatisticalStud_1170_TypePair(StatisticalStud_1170_TypeChoicePair * StatisticalStud_1170_TypePairIn)
+{StatisticalStud_1170_TypePair = StatisticalStud_1170_TypePairIn;}
+StatisticalStud_1170_TypeChoicePair::StatisticalStud_1170_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class StatisticalStud_1211_TypeChoicePair
-
-*/
-
-StatisticalStud_1211_TypeChoicePair::StatisticalStud_1211_TypeChoicePair() {}
-
-StatisticalStud_1211_TypeChoicePair::StatisticalStud_1211_TypeChoicePair(
- whichOne StatisticalStud_1211_TypeTypeIn,
- StatisticalStud_1211_TypeVal StatisticalStud_1211_TypeValueIn)
+StatisticalStud_1170_TypeChoicePair::StatisticalStud_1170_TypeChoicePair(
+ whichOne StatisticalStud_1170_TypeTypeIn,
+ StatisticalStud_1170_TypeVal StatisticalStud_1170_TypeValueIn)
 {
-  StatisticalStud_1211_TypeType = StatisticalStud_1211_TypeTypeIn;
-  StatisticalStud_1211_TypeValue = StatisticalStud_1211_TypeValueIn;
+  StatisticalStud_1170_TypeType = StatisticalStud_1170_TypeTypeIn;
+  StatisticalStud_1170_TypeValue = StatisticalStud_1170_TypeValueIn;
 }
 
-StatisticalStud_1211_TypeChoicePair::~StatisticalStud_1211_TypeChoicePair()
+StatisticalStud_1170_TypeChoicePair::~StatisticalStud_1170_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (StatisticalStud_1211_TypeType == SoftwareIdE)
-    delete StatisticalStud_1211_TypeValue.SoftwareId;
-  else if (StatisticalStud_1211_TypeType == StandardIdE)
-    delete StatisticalStud_1211_TypeValue.StandardId;
+  if (StatisticalStud_1170_TypeType == SoftwareIdE)
+    delete StatisticalStud_1170_TypeValue.SoftwareId;
+  else if (StatisticalStud_1170_TypeType == StandardIdE)
+    delete StatisticalStud_1170_TypeValue.StandardId;
   #endif
 }
 
-void StatisticalStud_1211_TypeChoicePair::printSelf(FILE * outFile)
+void StatisticalStud_1170_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (StatisticalStud_1211_TypeType == SoftwareIdE)
+  if (StatisticalStud_1170_TypeType == SoftwareIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SoftwareId");
-      StatisticalStud_1211_TypeValue.SoftwareId->printSelf(outFile);
+      StatisticalStud_1170_TypeValue.SoftwareId->printSelf(outFile);
       fprintf(outFile, "</SoftwareId>\n");
     }
-  else if (StatisticalStud_1211_TypeType == StandardIdE)
+  else if (StatisticalStud_1170_TypeType == StandardIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<StandardId");
-      StatisticalStud_1211_TypeValue.StandardId->printSelf(outFile);
+      StatisticalStud_1170_TypeValue.StandardId->printSelf(outFile);
       fprintf(outFile, "</StandardId>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class StatisticalStud_1212_Type
+/* class StatisticalStud_1171_Type
 
 */
 
-StatisticalStud_1212_Type::StatisticalStud_1212_Type()
+StatisticalStud_1171_Type::StatisticalStud_1171_Type()
 {
-  StatisticalStud_1212_TypePair = 0;
+  StatisticalStud_1171_TypePair = 0;
 }
 
-StatisticalStud_1212_Type::StatisticalStud_1212_Type(
- StatisticalStud_1212_TypeChoicePair * StatisticalStud_1212_TypePairIn)
+StatisticalStud_1171_Type::StatisticalStud_1171_Type(
+ StatisticalStud_1171_TypeChoicePair * StatisticalStud_1171_TypePairIn)
 {
-  StatisticalStud_1212_TypePair = StatisticalStud_1212_TypePairIn;
+  StatisticalStud_1171_TypePair = StatisticalStud_1171_TypePairIn;
 }
 
-StatisticalStud_1212_Type::~StatisticalStud_1212_Type()
+StatisticalStud_1171_Type::~StatisticalStud_1171_Type()
 {
   #ifndef NODESTRUCT
-  delete StatisticalStud_1212_TypePair;
+  delete StatisticalStud_1171_TypePair;
   #endif
 }
 
-void StatisticalStud_1212_Type::printSelf(FILE * outFile)
+void StatisticalStud_1171_Type::printSelf(FILE * outFile)
 {
-  if (StatisticalStud_1212_TypePair)
+  if (StatisticalStud_1171_TypePair)
     {
-      StatisticalStud_1212_TypePair->printSelf(outFile);
+      StatisticalStud_1171_TypePair->printSelf(outFile);
     }
 }
 
-StatisticalStud_1212_TypeChoicePair * StatisticalStud_1212_Type::getStatisticalStud_1212_TypePair()
-{return StatisticalStud_1212_TypePair;}
+StatisticalStud_1171_TypeChoicePair * StatisticalStud_1171_Type::getStatisticalStud_1171_TypePair()
+{return StatisticalStud_1171_TypePair;}
 
-void StatisticalStud_1212_Type::setStatisticalStud_1212_TypePair(StatisticalStud_1212_TypeChoicePair * StatisticalStud_1212_TypePairIn)
-{StatisticalStud_1212_TypePair = StatisticalStud_1212_TypePairIn;}
+void StatisticalStud_1171_Type::setStatisticalStud_1171_TypePair(StatisticalStud_1171_TypeChoicePair * StatisticalStud_1171_TypePairIn)
+{StatisticalStud_1171_TypePair = StatisticalStud_1171_TypePairIn;}
+StatisticalStud_1171_TypeChoicePair::StatisticalStud_1171_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class StatisticalStud_1212_TypeChoicePair
-
-*/
-
-StatisticalStud_1212_TypeChoicePair::StatisticalStud_1212_TypeChoicePair() {}
-
-StatisticalStud_1212_TypeChoicePair::StatisticalStud_1212_TypeChoicePair(
- whichOne StatisticalStud_1212_TypeTypeIn,
- StatisticalStud_1212_TypeVal StatisticalStud_1212_TypeValueIn)
+StatisticalStud_1171_TypeChoicePair::StatisticalStud_1171_TypeChoicePair(
+ whichOne StatisticalStud_1171_TypeTypeIn,
+ StatisticalStud_1171_TypeVal StatisticalStud_1171_TypeValueIn)
 {
-  StatisticalStud_1212_TypeType = StatisticalStud_1212_TypeTypeIn;
-  StatisticalStud_1212_TypeValue = StatisticalStud_1212_TypeValueIn;
+  StatisticalStud_1171_TypeType = StatisticalStud_1171_TypeTypeIn;
+  StatisticalStud_1171_TypeValue = StatisticalStud_1171_TypeValueIn;
 }
 
-StatisticalStud_1212_TypeChoicePair::~StatisticalStud_1212_TypeChoicePair()
+StatisticalStud_1171_TypeChoicePair::~StatisticalStud_1171_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (StatisticalStud_1212_TypeType == ResultsIdsE)
-    delete StatisticalStud_1212_TypeValue.ResultsIds;
-  else if (StatisticalStud_1212_TypeType == ResultsQPIdsE)
-    delete StatisticalStud_1212_TypeValue.ResultsQPIds;
-  else if (StatisticalStud_1212_TypeType == ResultsFilesE)
-    delete StatisticalStud_1212_TypeValue.ResultsFiles;
+  if (StatisticalStud_1171_TypeType == ResultsIdsE)
+    delete StatisticalStud_1171_TypeValue.ResultsIds;
+  else if (StatisticalStud_1171_TypeType == ResultsQPIdsE)
+    delete StatisticalStud_1171_TypeValue.ResultsQPIds;
+  else if (StatisticalStud_1171_TypeType == ResultsFilesE)
+    delete StatisticalStud_1171_TypeValue.ResultsFiles;
   #endif
 }
 
-void StatisticalStud_1212_TypeChoicePair::printSelf(FILE * outFile)
+void StatisticalStud_1171_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (StatisticalStud_1212_TypeType == ResultsIdsE)
+  if (StatisticalStud_1171_TypeType == ResultsIdsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ResultsIds");
-      StatisticalStud_1212_TypeValue.ResultsIds->printSelf(outFile);
+      StatisticalStud_1171_TypeValue.ResultsIds->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ResultsIds>\n");
     }
-  else if (StatisticalStud_1212_TypeType == ResultsQPIdsE)
+  else if (StatisticalStud_1171_TypeType == ResultsQPIdsE)
     {
       std::list<ArrayQPIdFullReferenceType *>::iterator iter;
-      for (iter = StatisticalStud_1212_TypeValue.ResultsQPIds->begin();
-           iter != StatisticalStud_1212_TypeValue.ResultsQPIds->end();
+      for (iter = StatisticalStud_1171_TypeValue.ResultsQPIds->begin();
+           iter != StatisticalStud_1171_TypeValue.ResultsQPIds->end();
            iter++)
         {
           doSpaces(0, outFile);
@@ -12011,11 +11960,11 @@ void StatisticalStud_1212_TypeChoicePair::printSelf(FILE * outFile)
           fprintf(outFile, "</ResultsQPIds>\n");
         }
     }
-  else if (StatisticalStud_1212_TypeType == ResultsFilesE)
+  else if (StatisticalStud_1171_TypeType == ResultsFilesE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ResultsFiles");
-      StatisticalStud_1212_TypeValue.ResultsFiles->printSelf(outFile);
+      StatisticalStud_1171_TypeValue.ResultsFiles->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ResultsFiles>\n");
     }

@@ -49,6 +49,7 @@ class NumberedPlanElementType;
 class NumberedPlanElementTypeLisd;
 class NumberedPlanElementsType;
 class OneOfActionGroupType;
+class OpticalDigitizerMeasureFeatureMethodType;
 class OrderedActionGroupType;
 class OtherMeasureFeatureMethodType;
 class PartiallyOrderedActionGroupType;
@@ -437,6 +438,27 @@ public:
 protected:
   NaturalType * n;
   NumberedPlanElementTypeLisd * NumberedPlanElement;
+};
+
+/* ***************************************************************** */
+
+class OpticalDigitizerMeasureFeatureMethodType :
+  public MeasureFeatureMethodBaseType
+{
+public:
+  OpticalDigitizerMeasureFeatureMethodType();
+  OpticalDigitizerMeasureFeatureMethodType(
+    ArrayReferenceType * ChosenResourceIdsIn,
+    ArrayReferenceType * WorkInstructionIdsIn,
+    AttributesType * AttributesIn);
+  OpticalDigitizerMeasureFeatureMethodType(
+    QIFIdType * idIn,
+    ArrayReferenceType * ChosenResourceIdsIn,
+    ArrayReferenceType * WorkInstructionIdsIn,
+    AttributesType * AttributesIn);
+  ~OpticalDigitizerMeasureFeatureMethodType();
+  void printSelf(FILE * outFile);
+  bool badAttributes(AttributePairLisd * attributes);
 };
 
 /* ***************************************************************** */

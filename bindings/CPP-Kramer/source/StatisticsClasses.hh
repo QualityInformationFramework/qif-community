@@ -15,6 +15,7 @@ class AngleBetweenCharacteristicStatsEvalType;
 class AngleCharacteristicStatsEvalType;
 class AngleFromCharacteristicStatsEvalType;
 class AngularCharacteristicStatsEvalType;
+class AngularCharacteristicStatsEvalTypeChoicePair;
 class AngularCoordinateCharacteristicStatsEvalType;
 class AngularityCharacteristicStatsEvalType;
 class AssignableCauseEnumType;
@@ -91,8 +92,10 @@ class GeometricCharacteristicStatsEvalType;
 class HeightCharacteristicStatsEvalType;
 class LengthCharacteristicStatsEvalType;
 class LimitingNumberType;
+class LimitingNumberTypeChoicePair;
 class LineProfileCharacteristicStatsEvalType;
 class LinearCharacteristicStatsEvalType;
+class LinearCharacteristicStatsEvalTypeChoicePair;
 class LinearCoordinateCharacteristicStatsEvalType;
 class LocationCharacteristicStatsEvalType;
 class OneSidedCapabilityCalculationEnumType;
@@ -197,16 +200,26 @@ class ThreadCharacteristicStatsEvalType;
 class ToroidicityCharacteristicStatsEvalType;
 class TotalRunoutCharacteristicStatsEvalType;
 class UserDefinedAngularCharacteristicStatsEvalType;
+class UserDefinedAngularCharacteristicStatsEvalTypeChoicePair;
 class UserDefinedAreaCharacteristicStatsEvalType;
+class UserDefinedAreaCharacteristicStatsEvalTypeChoicePair;
 class UserDefinedAttributeCharacteristicStatsEvalType;
 class UserDefinedForceCharacteristicStatsEvalType;
+class UserDefinedForceCharacteristicStatsEvalTypeChoicePair;
 class UserDefinedLinearCharacteristicStatsEvalType;
+class UserDefinedLinearCharacteristicStatsEvalTypeChoicePair;
 class UserDefinedMassCharacteristicStatsEvalType;
+class UserDefinedMassCharacteristicStatsEvalTypeChoicePair;
 class UserDefinedPressureCharacteristicStatsEvalType;
+class UserDefinedPressureCharacteristicStatsEvalTypeChoicePair;
 class UserDefinedSpeedCharacteristicStatsEvalType;
+class UserDefinedSpeedCharacteristicStatsEvalTypeChoicePair;
 class UserDefinedTemperatureCharacteristicStatsEvalType;
+class UserDefinedTemperatureCharacteristicStatsEvalTypeChoicePair;
 class UserDefinedTimeCharacteristicStatsEvalType;
+class UserDefinedTimeCharacteristicStatsEvalTypeChoicePair;
 class UserDefinedUnitCharacteristicStatsEvalType;
+class UserDefinedUnitCharacteristicStatsEvalTypeChoicePair;
 class WeldBevelCharacteristicStatsEvalType;
 class WeldCharacteristicStatsEvalBaseType;
 class WeldCompoundCharacteristicStatsEvalType;
@@ -226,99 +239,73 @@ class WeldSurfacingCharacteristicStatsEvalType;
 class WeldUCharacteristicStatsEvalType;
 class WeldVCharacteristicStatsEvalType;
 class WidthCharacteristicStatsEvalType;
-class AngularCharacte_1127_Type;
-class AngularCharacte_1127_TypeChoicePair;
-class AssignableCause_1128_Type;
-class AssignableCause_1128_TypeChoicePair;
-class CharacteristicS_1129_Type;
-class CharacteristicS_1129_TypeChoicePair;
-class CharacteristicS_1130_Type;
-class CharacteristicS_1130_TypeChoicePair;
-class CorrectiveActio_1131_Type;
-class CorrectiveActio_1131_TypeChoicePair;
-class CriterionDecima_1132_Type;
-class CriterionIntege_1133_Type;
-class LimitingNumberT_1134_Type;
-class LimitingNumberT_1134_TypeChoicePair;
-class LinearCharacter_1135_Type;
-class LinearCharacter_1135_TypeChoicePair;
-class SamplingMethodT_1136_Type;
-class SamplingMethodT_1136_TypeChoicePair;
-class StudyIssueType_1137_Type;
-class StudyIssueType_1137_TypeChoicePair;
-class UserDefinedAngu_1138_Type;
-class UserDefinedAngu_1138_TypeChoicePair;
-class UserDefinedArea_1139_Type;
-class UserDefinedArea_1139_TypeChoicePair;
-class UserDefinedForc_1140_Type;
-class UserDefinedForc_1140_TypeChoicePair;
-class UserDefinedLine_1141_Type;
-class UserDefinedLine_1141_TypeChoicePair;
-class UserDefinedMass_1142_Type;
-class UserDefinedMass_1142_TypeChoicePair;
-class UserDefinedPres_1143_Type;
-class UserDefinedPres_1143_TypeChoicePair;
-class UserDefinedSpee_1144_Type;
-class UserDefinedSpee_1144_TypeChoicePair;
+class AngularCharacte_1100_Type;
+class AngularCharacte_1101_Type;
+class AngularCharacte_1102_Type;
+class AngularCharacte_1103_Type;
+class AssignableCause_1104_Type;
+class AssignableCause_1104_TypeChoicePair;
+class CharacteristicS_1105_Type;
+class CharacteristicS_1105_TypeChoicePair;
+class CharacteristicS_1106_Type;
+class CharacteristicS_1106_TypeChoicePair;
+class CorrectiveActio_1107_Type;
+class CorrectiveActio_1107_TypeChoicePair;
+class CriterionDecima_1108_Type;
+class CriterionIntege_1109_Type;
+class LinearCharacter_1110_Type;
+class LinearCharacter_1111_Type;
+class LinearCharacter_1112_Type;
+class LinearCharacter_1113_Type;
+class SamplingMethodT_1114_Type;
+class SamplingMethodT_1114_TypeChoicePair;
+class StudyIssueType_1115_Type;
+class StudyIssueType_1115_TypeChoicePair;
+class UserDefinedAngu_1116_Type;
+class UserDefinedAngu_1117_Type;
+class UserDefinedAngu_1118_Type;
+class UserDefinedAngu_1119_Type;
+class UserDefinedArea_1120_Type;
+class UserDefinedArea_1121_Type;
+class UserDefinedArea_1122_Type;
+class UserDefinedArea_1123_Type;
+class UserDefinedForc_1124_Type;
+class UserDefinedForc_1125_Type;
+class UserDefinedForc_1126_Type;
+class UserDefinedForc_1127_Type;
+class UserDefinedLine_1128_Type;
+class UserDefinedLine_1129_Type;
+class UserDefinedLine_1130_Type;
+class UserDefinedLine_1131_Type;
+class UserDefinedMass_1132_Type;
+class UserDefinedMass_1133_Type;
+class UserDefinedMass_1134_Type;
+class UserDefinedMass_1135_Type;
+class UserDefinedPres_1136_Type;
+class UserDefinedPres_1137_Type;
+class UserDefinedPres_1138_Type;
+class UserDefinedPres_1139_Type;
+class UserDefinedSpee_1140_Type;
+class UserDefinedSpee_1141_Type;
+class UserDefinedSpee_1142_Type;
+class UserDefinedSpee_1143_Type;
+class UserDefinedTemp_1144_Type;
 class UserDefinedTemp_1145_Type;
-class UserDefinedTemp_1145_TypeChoicePair;
-class UserDefinedTime_1146_Type;
-class UserDefinedTime_1146_TypeChoicePair;
-class UserDefinedUnit_1147_Type;
-class UserDefinedUnit_1147_TypeChoicePair;
-class AngularCharacte_1148_Type;
-class AngularCharacte_1149_Type;
-class AngularCharacte_1150_Type;
-class AngularCharacte_1151_Type;
-class CharacteristicS_1152_Type;
-class CharacteristicS_1152_TypeChoicePair;
-class CharacteristicS_1153_Type;
-class CharacteristicS_1153_TypeChoicePair;
-class LinearCharacter_1154_Type;
-class LinearCharacter_1155_Type;
-class LinearCharacter_1156_Type;
-class LinearCharacter_1157_Type;
+class UserDefinedTemp_1146_Type;
+class UserDefinedTemp_1147_Type;
+class UserDefinedTime_1148_Type;
+class UserDefinedTime_1149_Type;
+class UserDefinedTime_1150_Type;
+class UserDefinedTime_1151_Type;
+class UserDefinedUnit_1152_Type;
+class UserDefinedUnit_1153_Type;
+class UserDefinedUnit_1154_Type;
+class UserDefinedUnit_1155_Type;
+class CharacteristicS_1156_Type;
+class CharacteristicS_1156_TypeChoicePair;
+class CharacteristicS_1157_Type;
+class CharacteristicS_1157_TypeChoicePair;
 class SamplingMethodT_1158_Type;
-class UserDefinedAngu_1159_Type;
-class UserDefinedAngu_1160_Type;
-class UserDefinedAngu_1161_Type;
-class UserDefinedAngu_1162_Type;
-class UserDefinedArea_1163_Type;
-class UserDefinedArea_1164_Type;
-class UserDefinedArea_1165_Type;
-class UserDefinedArea_1166_Type;
-class UserDefinedForc_1167_Type;
-class UserDefinedForc_1168_Type;
-class UserDefinedForc_1169_Type;
-class UserDefinedForc_1170_Type;
-class UserDefinedLine_1171_Type;
-class UserDefinedLine_1172_Type;
-class UserDefinedLine_1173_Type;
-class UserDefinedLine_1174_Type;
-class UserDefinedMass_1175_Type;
-class UserDefinedMass_1176_Type;
-class UserDefinedMass_1177_Type;
-class UserDefinedMass_1178_Type;
-class UserDefinedPres_1179_Type;
-class UserDefinedPres_1180_Type;
-class UserDefinedPres_1181_Type;
-class UserDefinedPres_1182_Type;
-class UserDefinedSpee_1183_Type;
-class UserDefinedSpee_1184_Type;
-class UserDefinedSpee_1185_Type;
-class UserDefinedSpee_1186_Type;
-class UserDefinedTemp_1187_Type;
-class UserDefinedTemp_1188_Type;
-class UserDefinedTemp_1189_Type;
-class UserDefinedTemp_1190_Type;
-class UserDefinedTime_1191_Type;
-class UserDefinedTime_1192_Type;
-class UserDefinedTime_1193_Type;
-class UserDefinedTime_1194_Type;
-class UserDefinedUnit_1195_Type;
-class UserDefinedUnit_1196_Type;
-class UserDefinedUnit_1197_Type;
-class UserDefinedUnit_1198_Type;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -362,12 +349,12 @@ public:
   AssignableCauseType();
   AssignableCauseType(
     AttributesType * AttributesIn,
-    AssignableCause_1128_Type * AssignableCause_1128In,
+    AssignableCause_1104_Type * AssignableCause_1104In,
     ArrayReferenceType * CorrectiveActionIdsIn);
   AssignableCauseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
-    AssignableCause_1128_Type * AssignableCause_1128In,
+    AssignableCause_1104_Type * AssignableCause_1104In,
     ArrayReferenceType * CorrectiveActionIdsIn);
   ~AssignableCauseType();
   void printSelf(FILE * outFile);
@@ -378,15 +365,15 @@ public:
 
   AttributesType * getAttributes();
   void setAttributes(AttributesType * AttributesIn);
-  AssignableCause_1128_Type * getAssignableCause_1128();
-  void setAssignableCause_1128(AssignableCause_1128_Type * AssignableCause_1128In);
+  AssignableCause_1104_Type * getAssignableCause_1104();
+  void setAssignableCause_1104(AssignableCause_1104_Type * AssignableCause_1104In);
   ArrayReferenceType * getCorrectiveActionIds();
   void setCorrectiveActionIds(ArrayReferenceType * CorrectiveActionIdsIn);
 
 protected:
   QIFIdType * id;
   AttributesType * Attributes;
-  AssignableCause_1128_Type * AssignableCause_1128;
+  AssignableCause_1104_Type * AssignableCause_1104;
   ArrayReferenceType * CorrectiveActionIds;
 };
 
@@ -504,8 +491,8 @@ public:
   CharacteristicStatsEvalBaseType();
   CharacteristicStatsEvalBaseType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn);
@@ -514,10 +501,10 @@ public:
 
   AttributesType * getAttributes();
   void setAttributes(AttributesType * AttributesIn);
-  CharacteristicS_1129_Type * getCharacteristicS_1129();
-  void setCharacteristicS_1129(CharacteristicS_1129_Type * CharacteristicS_1129In);
-  CharacteristicS_1130_Type * getCharacteristicS_1130();
-  void setCharacteristicS_1130(CharacteristicS_1130_Type * CharacteristicS_1130In);
+  CharacteristicS_1105_Type * getCharacteristicS_1105();
+  void setCharacteristicS_1105(CharacteristicS_1105_Type * CharacteristicS_1105In);
+  CharacteristicS_1106_Type * getCharacteristicS_1106();
+  void setCharacteristicS_1106(CharacteristicS_1106_Type * CharacteristicS_1106In);
   StatsEvalStatusType * getStatus();
   void setStatus(StatsEvalStatusType * StatusIn);
   StudyIssuesType * getStudyIssues();
@@ -527,8 +514,8 @@ public:
 
 protected:
   AttributesType * Attributes;
-  CharacteristicS_1129_Type * CharacteristicS_1129;
-  CharacteristicS_1130_Type * CharacteristicS_1130;
+  CharacteristicS_1105_Type * CharacteristicS_1105;
+  CharacteristicS_1106_Type * CharacteristicS_1106;
   StatsEvalStatusType * Status;
   StudyIssuesType * StudyIssues;
   DistributionTransformationType * DistributionTransformation;
@@ -848,11 +835,11 @@ public:
   CorrectiveActionType();
   CorrectiveActionType(
     AttributesType * AttributesIn,
-    CorrectiveActio_1131_Type * CorrectiveActio_1131In);
+    CorrectiveActio_1107_Type * CorrectiveActio_1107In);
   CorrectiveActionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
-    CorrectiveActio_1131_Type * CorrectiveActio_1131In);
+    CorrectiveActio_1107_Type * CorrectiveActio_1107In);
   ~CorrectiveActionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -862,13 +849,13 @@ public:
 
   AttributesType * getAttributes();
   void setAttributes(AttributesType * AttributesIn);
-  CorrectiveActio_1131_Type * getCorrectiveActio_1131();
-  void setCorrectiveActio_1131(CorrectiveActio_1131_Type * CorrectiveActio_1131In);
+  CorrectiveActio_1107_Type * getCorrectiveActio_1107();
+  void setCorrectiveActio_1107(CorrectiveActio_1107_Type * CorrectiveActio_1107In);
 
 protected:
   QIFIdType * id;
   AttributesType * Attributes;
-  CorrectiveActio_1131_Type * CorrectiveActio_1131;
+  CorrectiveActio_1107_Type * CorrectiveActio_1107;
 };
 
 /* ***************************************************************** */
@@ -921,18 +908,18 @@ public:
   CriterionDecimalType();
   CriterionDecimalType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In);
+    CriterionDecima_1108_Type * CriterionDecima_1108In);
   ~CriterionDecimalType();
   void printSelf(FILE * outFile);
 
   XmlDecimal * getLimit();
   void setLimit(XmlDecimal * LimitIn);
-  CriterionDecima_1132_Type * getCriterionDecima_1132();
-  void setCriterionDecima_1132(CriterionDecima_1132_Type * CriterionDecima_1132In);
+  CriterionDecima_1108_Type * getCriterionDecima_1108();
+  void setCriterionDecima_1108(CriterionDecima_1108_Type * CriterionDecima_1108In);
 
 protected:
   XmlDecimal * Limit;
-  CriterionDecima_1132_Type * CriterionDecima_1132;
+  CriterionDecima_1108_Type * CriterionDecima_1108;
 };
 
 /* ***************************************************************** */
@@ -944,10 +931,10 @@ public:
   CriterionForceType();
   CriterionForceType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In);
+    CriterionDecima_1108_Type * CriterionDecima_1108In);
   CriterionForceType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In,
+    CriterionDecima_1108_Type * CriterionDecima_1108In,
     XmlToken * forceUnitIn);
   ~CriterionForceType();
   void printSelf(FILE * outFile);
@@ -969,18 +956,18 @@ public:
   CriterionIntegerType();
   CriterionIntegerType(
     XmlPositiveInteger * LimitIn,
-    CriterionIntege_1133_Type * CriterionIntege_1133In);
+    CriterionIntege_1109_Type * CriterionIntege_1109In);
   ~CriterionIntegerType();
   void printSelf(FILE * outFile);
 
   XmlPositiveInteger * getLimit();
   void setLimit(XmlPositiveInteger * LimitIn);
-  CriterionIntege_1133_Type * getCriterionIntege_1133();
-  void setCriterionIntege_1133(CriterionIntege_1133_Type * CriterionIntege_1133In);
+  CriterionIntege_1109_Type * getCriterionIntege_1109();
+  void setCriterionIntege_1109(CriterionIntege_1109_Type * CriterionIntege_1109In);
 
 protected:
   XmlPositiveInteger * Limit;
-  CriterionIntege_1133_Type * CriterionIntege_1133;
+  CriterionIntege_1109_Type * CriterionIntege_1109;
 };
 
 /* ***************************************************************** */
@@ -992,10 +979,10 @@ public:
   CriterionLinearType();
   CriterionLinearType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In);
+    CriterionDecima_1108_Type * CriterionDecima_1108In);
   CriterionLinearType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In,
+    CriterionDecima_1108_Type * CriterionDecima_1108In,
     XmlToken * linearUnitIn);
   ~CriterionLinearType();
   void printSelf(FILE * outFile);
@@ -1017,10 +1004,10 @@ public:
   CriterionMassType();
   CriterionMassType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In);
+    CriterionDecima_1108_Type * CriterionDecima_1108In);
   CriterionMassType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In,
+    CriterionDecima_1108_Type * CriterionDecima_1108In,
     XmlToken * massUnitIn);
   ~CriterionMassType();
   void printSelf(FILE * outFile);
@@ -1069,10 +1056,10 @@ public:
   CriterionPressureType();
   CriterionPressureType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In);
+    CriterionDecima_1108_Type * CriterionDecima_1108In);
   CriterionPressureType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In,
+    CriterionDecima_1108_Type * CriterionDecima_1108In,
     XmlToken * pressureUnitIn);
   ~CriterionPressureType();
   void printSelf(FILE * outFile);
@@ -1094,10 +1081,10 @@ public:
   CriterionSpeedType();
   CriterionSpeedType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In);
+    CriterionDecima_1108_Type * CriterionDecima_1108In);
   CriterionSpeedType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In,
+    CriterionDecima_1108_Type * CriterionDecima_1108In,
     XmlToken * speedUnitIn);
   ~CriterionSpeedType();
   void printSelf(FILE * outFile);
@@ -1119,10 +1106,10 @@ public:
   CriterionTemperatureType();
   CriterionTemperatureType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In);
+    CriterionDecima_1108_Type * CriterionDecima_1108In);
   CriterionTemperatureType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In,
+    CriterionDecima_1108_Type * CriterionDecima_1108In,
     XmlToken * temperatureUnitIn);
   ~CriterionTemperatureType();
   void printSelf(FILE * outFile);
@@ -1144,10 +1131,10 @@ public:
   CriterionTimeType();
   CriterionTimeType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In);
+    CriterionDecima_1108_Type * CriterionDecima_1108In);
   CriterionTimeType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In,
+    CriterionDecima_1108_Type * CriterionDecima_1108In,
     XmlToken * timeUnitIn);
   ~CriterionTimeType();
   void printSelf(FILE * outFile);
@@ -1169,10 +1156,10 @@ public:
   CriterionUserDefinedUnitType();
   CriterionUserDefinedUnitType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In);
+    CriterionDecima_1108_Type * CriterionDecima_1108In);
   CriterionUserDefinedUnitType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In,
+    CriterionDecima_1108_Type * CriterionDecima_1108In,
     XmlToken * unitNameIn);
   ~CriterionUserDefinedUnitType();
   void printSelf(FILE * outFile);
@@ -1464,8 +1451,8 @@ public:
   GeometricCharacteristicStatsEvalType();
   GeometricCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -1496,15 +1483,43 @@ class LimitingNumberType :
 public:
   LimitingNumberType();
   LimitingNumberType(
-    LimitingNumberT_1134_Type * LimitingNumberT_1134In);
+    LimitingNumberTypeChoicePair * LimitingNumberTypePairIn);
   ~LimitingNumberType();
   void printSelf(FILE * outFile);
 
-  LimitingNumberT_1134_Type * getLimitingNumberT_1134();
-  void setLimitingNumberT_1134(LimitingNumberT_1134_Type * LimitingNumberT_1134In);
+  LimitingNumberTypeChoicePair * getLimitingNumberTypePair();
+  void setLimitingNumberTypePair(LimitingNumberTypeChoicePair * LimitingNumberTypePairIn);
 
 protected:
-  LimitingNumberT_1134_Type * LimitingNumberT_1134;
+  LimitingNumberTypeChoicePair * LimitingNumberTypePair;
+};
+
+/* ***************************************************************** */
+
+union LimitingNumberTypeVal
+{
+  XmlNonNegativeInteger * Count;
+  XmlDecimal * Fraction;
+};
+
+/* ***************************************************************** */
+
+class LimitingNumberTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    CountE,
+    FractionE };
+  LimitingNumberTypeChoicePair();
+  LimitingNumberTypeChoicePair(
+    whichOne LimitingNumberTypeTypeIn,
+    LimitingNumberTypeVal LimitingNumberTypeValueIn);
+  ~LimitingNumberTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne LimitingNumberTypeType;
+  LimitingNumberTypeVal LimitingNumberTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1516,20 +1531,55 @@ public:
   LinearCharacteristicStatsEvalType();
   LinearCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    LinearCharacter_1135_Type * LinearCharacter_1135In);
+    LinearCharacteristicStatsEvalTypeChoicePair * LinearCharacteristicStatsEvalTypePairIn);
   ~LinearCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
-
-  LinearCharacter_1135_Type * getLinearCharacter_1135();
-  void setLinearCharacter_1135(LinearCharacter_1135_Type * LinearCharacter_1135In);
+  LinearCharacteristicStatsEvalTypeChoicePair * getLinearCharacteristicStatsEvalTypeChoicePair();
+  void setLinearCharacteristicStatsEvalTypeChoicePair(LinearCharacteristicStatsEvalTypeChoicePair * LinearCharacteristicStatsEvalTypePairIn);
 
 protected:
-  LinearCharacter_1135_Type * LinearCharacter_1135;
+  LinearCharacteristicStatsEvalTypeChoicePair * LinearCharacteristicStatsEvalTypePair;
+};
+
+/* ***************************************************************** */
+
+union LinearCharacteristicStatsEvalTypeVal
+{
+  LinearCharacter_1110_Type * LinearCharacter_1110;
+  LinearCharacter_1111_Type * LinearCharacter_1111;
+  StatsLinearType * MinValueStats;
+  LinearCharacter_1112_Type * LinearCharacter_1112;
+  LinearCharacter_1113_Type * LinearCharacter_1113;
+  StatsLinearType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class LinearCharacteristicStatsEvalTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    LinearCharacter_1110E,
+    LinearCharacter_1111E,
+    MinValueStatsE,
+    LinearCharacter_1112E,
+    LinearCharacter_1113E,
+    MinDeviationStatsE };
+  LinearCharacteristicStatsEvalTypeChoicePair();
+  LinearCharacteristicStatsEvalTypeChoicePair(
+    whichOne LinearCharacteristicStatsEvalTypeTypeIn,
+    LinearCharacteristicStatsEvalTypeVal LinearCharacteristicStatsEvalTypeValueIn);
+  ~LinearCharacteristicStatsEvalTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne LinearCharacteristicStatsEvalTypeType;
+  LinearCharacteristicStatsEvalTypeVal LinearCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1541,12 +1591,12 @@ public:
   LinearCoordinateCharacteristicStatsEvalType();
   LinearCoordinateCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    LinearCharacter_1135_Type * LinearCharacter_1135In);
+    LinearCharacteristicStatsEvalTypeChoicePair * LinearCharacteristicStatsEvalTypePairIn);
   ~LinearCoordinateCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
@@ -1560,8 +1610,8 @@ public:
   LocationCharacteristicStatsEvalType();
   LocationCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -1604,8 +1654,8 @@ public:
   OrientationCharacteristicStatsEvalType();
   OrientationCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -1644,8 +1694,8 @@ public:
   ParallelismCharacteristicStatsEvalType();
   ParallelismCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -1669,8 +1719,8 @@ public:
   PerpendicularityCharacteristicStatsEvalType();
   PerpendicularityCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -1774,8 +1824,8 @@ public:
   PositionCharacteristicStatsEvalType();
   PositionCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -1811,8 +1861,8 @@ public:
   ProfileCharacteristicStatsEvalBaseType();
   ProfileCharacteristicStatsEvalBaseType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -1859,12 +1909,12 @@ public:
   RadiusCharacteristicStatsEvalType();
   RadiusCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    LinearCharacter_1135_Type * LinearCharacter_1135In);
+    LinearCharacteristicStatsEvalTypeChoicePair * LinearCharacteristicStatsEvalTypePairIn);
   ~RadiusCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
@@ -1878,8 +1928,8 @@ public:
   RunoutCharacteristicStatsEvalBaseType();
   RunoutCharacteristicStatsEvalBaseType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -1973,18 +2023,18 @@ public:
   SamplingMethodType();
   SamplingMethodType(
     XmlPositiveInteger * SampleSizeIn,
-    SamplingMethodT_1136_Type * SamplingMethodT_1136In);
+    SamplingMethodT_1114_Type * SamplingMethodT_1114In);
   ~SamplingMethodType();
   void printSelf(FILE * outFile);
 
   XmlPositiveInteger * getSampleSize();
   void setSampleSize(XmlPositiveInteger * SampleSizeIn);
-  SamplingMethodT_1136_Type * getSamplingMethodT_1136();
-  void setSamplingMethodT_1136(SamplingMethodT_1136_Type * SamplingMethodT_1136In);
+  SamplingMethodT_1114_Type * getSamplingMethodT_1114();
+  void setSamplingMethodT_1114(SamplingMethodT_1114_Type * SamplingMethodT_1114In);
 
 protected:
   XmlPositiveInteger * SampleSize;
-  SamplingMethodT_1136_Type * SamplingMethodT_1136;
+  SamplingMethodT_1114_Type * SamplingMethodT_1114;
 };
 
 /* ***************************************************************** */
@@ -1996,12 +2046,12 @@ public:
   SphericalDiameterCharacteristicStatsEvalType();
   SphericalDiameterCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    LinearCharacter_1135_Type * LinearCharacter_1135In);
+    LinearCharacteristicStatsEvalTypeChoicePair * LinearCharacteristicStatsEvalTypePairIn);
   ~SphericalDiameterCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
@@ -2015,12 +2065,12 @@ public:
   SphericalRadiusCharacteristicStatsEvalType();
   SphericalRadiusCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    LinearCharacter_1135_Type * LinearCharacter_1135In);
+    LinearCharacteristicStatsEvalTypeChoicePair * LinearCharacteristicStatsEvalTypePairIn);
   ~SphericalRadiusCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
@@ -2034,12 +2084,12 @@ public:
   SquareCharacteristicStatsEvalType();
   SquareCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    LinearCharacter_1135_Type * LinearCharacter_1135In);
+    LinearCharacteristicStatsEvalTypeChoicePair * LinearCharacteristicStatsEvalTypePairIn);
   ~SquareCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
@@ -2519,14 +2569,14 @@ public:
     ArrayReferenceType * AssignableCauseIdsIn,
     ArrayReferenceType * CorrectiveActionIdsIn,
     XmlString * ResolutionIn,
-    StudyIssueType_1137_Type * StudyIssueType_1137In);
+    StudyIssueType_1115_Type * StudyIssueType_1115In);
   StudyIssueType(
     QIFIdType * idIn,
     InspectionTraceabilityType * TraceabilityIn,
     ArrayReferenceType * AssignableCauseIdsIn,
     ArrayReferenceType * CorrectiveActionIdsIn,
     XmlString * ResolutionIn,
-    StudyIssueType_1137_Type * StudyIssueType_1137In);
+    StudyIssueType_1115_Type * StudyIssueType_1115In);
   ~StudyIssueType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -2542,8 +2592,8 @@ public:
   void setCorrectiveActionIds(ArrayReferenceType * CorrectiveActionIdsIn);
   XmlString * getResolution();
   void setResolution(XmlString * ResolutionIn);
-  StudyIssueType_1137_Type * getStudyIssueType_1137();
-  void setStudyIssueType_1137(StudyIssueType_1137_Type * StudyIssueType_1137In);
+  StudyIssueType_1115_Type * getStudyIssueType_1115();
+  void setStudyIssueType_1115(StudyIssueType_1115_Type * StudyIssueType_1115In);
 
 protected:
   QIFIdType * id;
@@ -2551,7 +2601,7 @@ protected:
   ArrayReferenceType * AssignableCauseIds;
   ArrayReferenceType * CorrectiveActionIds;
   XmlString * Resolution;
-  StudyIssueType_1137_Type * StudyIssueType_1137;
+  StudyIssueType_1115_Type * StudyIssueType_1115;
 };
 
 /* ***************************************************************** */
@@ -3078,8 +3128,8 @@ public:
   SurfaceProfileCharacteristicStatsEvalType();
   SurfaceProfileCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3105,8 +3155,8 @@ public:
   SurfaceProfileNonUniformCharacteristicStatsEvalType();
   SurfaceProfileNonUniformCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3132,8 +3182,8 @@ public:
   SurfaceTextureCharacteristicStatsEvalType();
   SurfaceTextureCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3157,8 +3207,8 @@ public:
   SymmetryCharacteristicStatsEvalType();
   SymmetryCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3190,12 +3240,12 @@ public:
   ThicknessCharacteristicStatsEvalType();
   ThicknessCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    LinearCharacter_1135_Type * LinearCharacter_1135In);
+    LinearCharacteristicStatsEvalTypeChoicePair * LinearCharacteristicStatsEvalTypePairIn);
   ~ThicknessCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
@@ -3209,8 +3259,8 @@ public:
   ThreadCharacteristicStatsEvalType();
   ThreadCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3242,8 +3292,8 @@ public:
   TotalRunoutCharacteristicStatsEvalType();
   TotalRunoutCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3265,20 +3315,55 @@ public:
   UserDefinedAngularCharacteristicStatsEvalType();
   UserDefinedAngularCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    UserDefinedAngu_1138_Type * UserDefinedAngu_1138In);
+    UserDefinedAngularCharacteristicStatsEvalTypeChoicePair * UserDefinedAngularCharacteristicStatsEvalTypePairIn);
   ~UserDefinedAngularCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
-
-  UserDefinedAngu_1138_Type * getUserDefinedAngu_1138();
-  void setUserDefinedAngu_1138(UserDefinedAngu_1138_Type * UserDefinedAngu_1138In);
+  UserDefinedAngularCharacteristicStatsEvalTypeChoicePair * getUserDefinedAngularCharacteristicStatsEvalTypeChoicePair();
+  void setUserDefinedAngularCharacteristicStatsEvalTypeChoicePair(UserDefinedAngularCharacteristicStatsEvalTypeChoicePair * UserDefinedAngularCharacteristicStatsEvalTypePairIn);
 
 protected:
-  UserDefinedAngu_1138_Type * UserDefinedAngu_1138;
+  UserDefinedAngularCharacteristicStatsEvalTypeChoicePair * UserDefinedAngularCharacteristicStatsEvalTypePair;
+};
+
+/* ***************************************************************** */
+
+union UserDefinedAngularCharacteristicStatsEvalTypeVal
+{
+  UserDefinedAngu_1116_Type * UserDefinedAngu_1116;
+  UserDefinedAngu_1117_Type * UserDefinedAngu_1117;
+  StatsAngularType * MinValueStats;
+  UserDefinedAngu_1118_Type * UserDefinedAngu_1118;
+  UserDefinedAngu_1119_Type * UserDefinedAngu_1119;
+  StatsAngularType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedAngularCharacteristicStatsEvalTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    UserDefinedAngu_1116E,
+    UserDefinedAngu_1117E,
+    MinValueStatsE,
+    UserDefinedAngu_1118E,
+    UserDefinedAngu_1119E,
+    MinDeviationStatsE };
+  UserDefinedAngularCharacteristicStatsEvalTypeChoicePair();
+  UserDefinedAngularCharacteristicStatsEvalTypeChoicePair(
+    whichOne UserDefinedAngularCharacteristicStatsEvalTypeTypeIn,
+    UserDefinedAngularCharacteristicStatsEvalTypeVal UserDefinedAngularCharacteristicStatsEvalTypeValueIn);
+  ~UserDefinedAngularCharacteristicStatsEvalTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne UserDefinedAngularCharacteristicStatsEvalTypeType;
+  UserDefinedAngularCharacteristicStatsEvalTypeVal UserDefinedAngularCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3290,20 +3375,55 @@ public:
   UserDefinedAreaCharacteristicStatsEvalType();
   UserDefinedAreaCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    UserDefinedArea_1139_Type * UserDefinedArea_1139In);
+    UserDefinedAreaCharacteristicStatsEvalTypeChoicePair * UserDefinedAreaCharacteristicStatsEvalTypePairIn);
   ~UserDefinedAreaCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
-
-  UserDefinedArea_1139_Type * getUserDefinedArea_1139();
-  void setUserDefinedArea_1139(UserDefinedArea_1139_Type * UserDefinedArea_1139In);
+  UserDefinedAreaCharacteristicStatsEvalTypeChoicePair * getUserDefinedAreaCharacteristicStatsEvalTypeChoicePair();
+  void setUserDefinedAreaCharacteristicStatsEvalTypeChoicePair(UserDefinedAreaCharacteristicStatsEvalTypeChoicePair * UserDefinedAreaCharacteristicStatsEvalTypePairIn);
 
 protected:
-  UserDefinedArea_1139_Type * UserDefinedArea_1139;
+  UserDefinedAreaCharacteristicStatsEvalTypeChoicePair * UserDefinedAreaCharacteristicStatsEvalTypePair;
+};
+
+/* ***************************************************************** */
+
+union UserDefinedAreaCharacteristicStatsEvalTypeVal
+{
+  UserDefinedArea_1120_Type * UserDefinedArea_1120;
+  UserDefinedArea_1121_Type * UserDefinedArea_1121;
+  StatsAreaType * MinValueStats;
+  UserDefinedArea_1122_Type * UserDefinedArea_1122;
+  UserDefinedArea_1123_Type * UserDefinedArea_1123;
+  StatsAreaType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedAreaCharacteristicStatsEvalTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    UserDefinedArea_1120E,
+    UserDefinedArea_1121E,
+    MinValueStatsE,
+    UserDefinedArea_1122E,
+    UserDefinedArea_1123E,
+    MinDeviationStatsE };
+  UserDefinedAreaCharacteristicStatsEvalTypeChoicePair();
+  UserDefinedAreaCharacteristicStatsEvalTypeChoicePair(
+    whichOne UserDefinedAreaCharacteristicStatsEvalTypeTypeIn,
+    UserDefinedAreaCharacteristicStatsEvalTypeVal UserDefinedAreaCharacteristicStatsEvalTypeValueIn);
+  ~UserDefinedAreaCharacteristicStatsEvalTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne UserDefinedAreaCharacteristicStatsEvalTypeType;
+  UserDefinedAreaCharacteristicStatsEvalTypeVal UserDefinedAreaCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3315,8 +3435,8 @@ public:
   UserDefinedAttributeCharacteristicStatsEvalType();
   UserDefinedAttributeCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3340,20 +3460,55 @@ public:
   UserDefinedForceCharacteristicStatsEvalType();
   UserDefinedForceCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    UserDefinedForc_1140_Type * UserDefinedForc_1140In);
+    UserDefinedForceCharacteristicStatsEvalTypeChoicePair * UserDefinedForceCharacteristicStatsEvalTypePairIn);
   ~UserDefinedForceCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
-
-  UserDefinedForc_1140_Type * getUserDefinedForc_1140();
-  void setUserDefinedForc_1140(UserDefinedForc_1140_Type * UserDefinedForc_1140In);
+  UserDefinedForceCharacteristicStatsEvalTypeChoicePair * getUserDefinedForceCharacteristicStatsEvalTypeChoicePair();
+  void setUserDefinedForceCharacteristicStatsEvalTypeChoicePair(UserDefinedForceCharacteristicStatsEvalTypeChoicePair * UserDefinedForceCharacteristicStatsEvalTypePairIn);
 
 protected:
-  UserDefinedForc_1140_Type * UserDefinedForc_1140;
+  UserDefinedForceCharacteristicStatsEvalTypeChoicePair * UserDefinedForceCharacteristicStatsEvalTypePair;
+};
+
+/* ***************************************************************** */
+
+union UserDefinedForceCharacteristicStatsEvalTypeVal
+{
+  UserDefinedForc_1124_Type * UserDefinedForc_1124;
+  UserDefinedForc_1125_Type * UserDefinedForc_1125;
+  StatsForceType * MinValueStats;
+  UserDefinedForc_1126_Type * UserDefinedForc_1126;
+  UserDefinedForc_1127_Type * UserDefinedForc_1127;
+  StatsForceType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedForceCharacteristicStatsEvalTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    UserDefinedForc_1124E,
+    UserDefinedForc_1125E,
+    MinValueStatsE,
+    UserDefinedForc_1126E,
+    UserDefinedForc_1127E,
+    MinDeviationStatsE };
+  UserDefinedForceCharacteristicStatsEvalTypeChoicePair();
+  UserDefinedForceCharacteristicStatsEvalTypeChoicePair(
+    whichOne UserDefinedForceCharacteristicStatsEvalTypeTypeIn,
+    UserDefinedForceCharacteristicStatsEvalTypeVal UserDefinedForceCharacteristicStatsEvalTypeValueIn);
+  ~UserDefinedForceCharacteristicStatsEvalTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne UserDefinedForceCharacteristicStatsEvalTypeType;
+  UserDefinedForceCharacteristicStatsEvalTypeVal UserDefinedForceCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3365,20 +3520,55 @@ public:
   UserDefinedLinearCharacteristicStatsEvalType();
   UserDefinedLinearCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    UserDefinedLine_1141_Type * UserDefinedLine_1141In);
+    UserDefinedLinearCharacteristicStatsEvalTypeChoicePair * UserDefinedLinearCharacteristicStatsEvalTypePairIn);
   ~UserDefinedLinearCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
-
-  UserDefinedLine_1141_Type * getUserDefinedLine_1141();
-  void setUserDefinedLine_1141(UserDefinedLine_1141_Type * UserDefinedLine_1141In);
+  UserDefinedLinearCharacteristicStatsEvalTypeChoicePair * getUserDefinedLinearCharacteristicStatsEvalTypeChoicePair();
+  void setUserDefinedLinearCharacteristicStatsEvalTypeChoicePair(UserDefinedLinearCharacteristicStatsEvalTypeChoicePair * UserDefinedLinearCharacteristicStatsEvalTypePairIn);
 
 protected:
-  UserDefinedLine_1141_Type * UserDefinedLine_1141;
+  UserDefinedLinearCharacteristicStatsEvalTypeChoicePair * UserDefinedLinearCharacteristicStatsEvalTypePair;
+};
+
+/* ***************************************************************** */
+
+union UserDefinedLinearCharacteristicStatsEvalTypeVal
+{
+  UserDefinedLine_1128_Type * UserDefinedLine_1128;
+  UserDefinedLine_1129_Type * UserDefinedLine_1129;
+  StatsLinearType * MinValueStats;
+  UserDefinedLine_1130_Type * UserDefinedLine_1130;
+  UserDefinedLine_1131_Type * UserDefinedLine_1131;
+  StatsLinearType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedLinearCharacteristicStatsEvalTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    UserDefinedLine_1128E,
+    UserDefinedLine_1129E,
+    MinValueStatsE,
+    UserDefinedLine_1130E,
+    UserDefinedLine_1131E,
+    MinDeviationStatsE };
+  UserDefinedLinearCharacteristicStatsEvalTypeChoicePair();
+  UserDefinedLinearCharacteristicStatsEvalTypeChoicePair(
+    whichOne UserDefinedLinearCharacteristicStatsEvalTypeTypeIn,
+    UserDefinedLinearCharacteristicStatsEvalTypeVal UserDefinedLinearCharacteristicStatsEvalTypeValueIn);
+  ~UserDefinedLinearCharacteristicStatsEvalTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne UserDefinedLinearCharacteristicStatsEvalTypeType;
+  UserDefinedLinearCharacteristicStatsEvalTypeVal UserDefinedLinearCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3390,20 +3580,55 @@ public:
   UserDefinedMassCharacteristicStatsEvalType();
   UserDefinedMassCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    UserDefinedMass_1142_Type * UserDefinedMass_1142In);
+    UserDefinedMassCharacteristicStatsEvalTypeChoicePair * UserDefinedMassCharacteristicStatsEvalTypePairIn);
   ~UserDefinedMassCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
-
-  UserDefinedMass_1142_Type * getUserDefinedMass_1142();
-  void setUserDefinedMass_1142(UserDefinedMass_1142_Type * UserDefinedMass_1142In);
+  UserDefinedMassCharacteristicStatsEvalTypeChoicePair * getUserDefinedMassCharacteristicStatsEvalTypeChoicePair();
+  void setUserDefinedMassCharacteristicStatsEvalTypeChoicePair(UserDefinedMassCharacteristicStatsEvalTypeChoicePair * UserDefinedMassCharacteristicStatsEvalTypePairIn);
 
 protected:
-  UserDefinedMass_1142_Type * UserDefinedMass_1142;
+  UserDefinedMassCharacteristicStatsEvalTypeChoicePair * UserDefinedMassCharacteristicStatsEvalTypePair;
+};
+
+/* ***************************************************************** */
+
+union UserDefinedMassCharacteristicStatsEvalTypeVal
+{
+  UserDefinedMass_1132_Type * UserDefinedMass_1132;
+  UserDefinedMass_1133_Type * UserDefinedMass_1133;
+  StatsMassType * MinValueStats;
+  UserDefinedMass_1134_Type * UserDefinedMass_1134;
+  UserDefinedMass_1135_Type * UserDefinedMass_1135;
+  StatsMassType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedMassCharacteristicStatsEvalTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    UserDefinedMass_1132E,
+    UserDefinedMass_1133E,
+    MinValueStatsE,
+    UserDefinedMass_1134E,
+    UserDefinedMass_1135E,
+    MinDeviationStatsE };
+  UserDefinedMassCharacteristicStatsEvalTypeChoicePair();
+  UserDefinedMassCharacteristicStatsEvalTypeChoicePair(
+    whichOne UserDefinedMassCharacteristicStatsEvalTypeTypeIn,
+    UserDefinedMassCharacteristicStatsEvalTypeVal UserDefinedMassCharacteristicStatsEvalTypeValueIn);
+  ~UserDefinedMassCharacteristicStatsEvalTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne UserDefinedMassCharacteristicStatsEvalTypeType;
+  UserDefinedMassCharacteristicStatsEvalTypeVal UserDefinedMassCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3415,20 +3640,55 @@ public:
   UserDefinedPressureCharacteristicStatsEvalType();
   UserDefinedPressureCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    UserDefinedPres_1143_Type * UserDefinedPres_1143In);
+    UserDefinedPressureCharacteristicStatsEvalTypeChoicePair * UserDefinedPressureCharacteristicStatsEvalTypePairIn);
   ~UserDefinedPressureCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
-
-  UserDefinedPres_1143_Type * getUserDefinedPres_1143();
-  void setUserDefinedPres_1143(UserDefinedPres_1143_Type * UserDefinedPres_1143In);
+  UserDefinedPressureCharacteristicStatsEvalTypeChoicePair * getUserDefinedPressureCharacteristicStatsEvalTypeChoicePair();
+  void setUserDefinedPressureCharacteristicStatsEvalTypeChoicePair(UserDefinedPressureCharacteristicStatsEvalTypeChoicePair * UserDefinedPressureCharacteristicStatsEvalTypePairIn);
 
 protected:
-  UserDefinedPres_1143_Type * UserDefinedPres_1143;
+  UserDefinedPressureCharacteristicStatsEvalTypeChoicePair * UserDefinedPressureCharacteristicStatsEvalTypePair;
+};
+
+/* ***************************************************************** */
+
+union UserDefinedPressureCharacteristicStatsEvalTypeVal
+{
+  UserDefinedPres_1136_Type * UserDefinedPres_1136;
+  UserDefinedPres_1137_Type * UserDefinedPres_1137;
+  StatsPressureType * MinValueStats;
+  UserDefinedPres_1138_Type * UserDefinedPres_1138;
+  UserDefinedPres_1139_Type * UserDefinedPres_1139;
+  StatsPressureType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedPressureCharacteristicStatsEvalTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    UserDefinedPres_1136E,
+    UserDefinedPres_1137E,
+    MinValueStatsE,
+    UserDefinedPres_1138E,
+    UserDefinedPres_1139E,
+    MinDeviationStatsE };
+  UserDefinedPressureCharacteristicStatsEvalTypeChoicePair();
+  UserDefinedPressureCharacteristicStatsEvalTypeChoicePair(
+    whichOne UserDefinedPressureCharacteristicStatsEvalTypeTypeIn,
+    UserDefinedPressureCharacteristicStatsEvalTypeVal UserDefinedPressureCharacteristicStatsEvalTypeValueIn);
+  ~UserDefinedPressureCharacteristicStatsEvalTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne UserDefinedPressureCharacteristicStatsEvalTypeType;
+  UserDefinedPressureCharacteristicStatsEvalTypeVal UserDefinedPressureCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3440,20 +3700,55 @@ public:
   UserDefinedSpeedCharacteristicStatsEvalType();
   UserDefinedSpeedCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    UserDefinedSpee_1144_Type * UserDefinedSpee_1144In);
+    UserDefinedSpeedCharacteristicStatsEvalTypeChoicePair * UserDefinedSpeedCharacteristicStatsEvalTypePairIn);
   ~UserDefinedSpeedCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
-
-  UserDefinedSpee_1144_Type * getUserDefinedSpee_1144();
-  void setUserDefinedSpee_1144(UserDefinedSpee_1144_Type * UserDefinedSpee_1144In);
+  UserDefinedSpeedCharacteristicStatsEvalTypeChoicePair * getUserDefinedSpeedCharacteristicStatsEvalTypeChoicePair();
+  void setUserDefinedSpeedCharacteristicStatsEvalTypeChoicePair(UserDefinedSpeedCharacteristicStatsEvalTypeChoicePair * UserDefinedSpeedCharacteristicStatsEvalTypePairIn);
 
 protected:
-  UserDefinedSpee_1144_Type * UserDefinedSpee_1144;
+  UserDefinedSpeedCharacteristicStatsEvalTypeChoicePair * UserDefinedSpeedCharacteristicStatsEvalTypePair;
+};
+
+/* ***************************************************************** */
+
+union UserDefinedSpeedCharacteristicStatsEvalTypeVal
+{
+  UserDefinedSpee_1140_Type * UserDefinedSpee_1140;
+  UserDefinedSpee_1141_Type * UserDefinedSpee_1141;
+  StatsSpeedType * MinValueStats;
+  UserDefinedSpee_1142_Type * UserDefinedSpee_1142;
+  UserDefinedSpee_1143_Type * UserDefinedSpee_1143;
+  StatsSpeedType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedSpeedCharacteristicStatsEvalTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    UserDefinedSpee_1140E,
+    UserDefinedSpee_1141E,
+    MinValueStatsE,
+    UserDefinedSpee_1142E,
+    UserDefinedSpee_1143E,
+    MinDeviationStatsE };
+  UserDefinedSpeedCharacteristicStatsEvalTypeChoicePair();
+  UserDefinedSpeedCharacteristicStatsEvalTypeChoicePair(
+    whichOne UserDefinedSpeedCharacteristicStatsEvalTypeTypeIn,
+    UserDefinedSpeedCharacteristicStatsEvalTypeVal UserDefinedSpeedCharacteristicStatsEvalTypeValueIn);
+  ~UserDefinedSpeedCharacteristicStatsEvalTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne UserDefinedSpeedCharacteristicStatsEvalTypeType;
+  UserDefinedSpeedCharacteristicStatsEvalTypeVal UserDefinedSpeedCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3465,20 +3760,55 @@ public:
   UserDefinedTemperatureCharacteristicStatsEvalType();
   UserDefinedTemperatureCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    UserDefinedTemp_1145_Type * UserDefinedTemp_1145In);
+    UserDefinedTemperatureCharacteristicStatsEvalTypeChoicePair * UserDefinedTemperatureCharacteristicStatsEvalTypePairIn);
   ~UserDefinedTemperatureCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
-
-  UserDefinedTemp_1145_Type * getUserDefinedTemp_1145();
-  void setUserDefinedTemp_1145(UserDefinedTemp_1145_Type * UserDefinedTemp_1145In);
+  UserDefinedTemperatureCharacteristicStatsEvalTypeChoicePair * getUserDefinedTemperatureCharacteristicStatsEvalTypeChoicePair();
+  void setUserDefinedTemperatureCharacteristicStatsEvalTypeChoicePair(UserDefinedTemperatureCharacteristicStatsEvalTypeChoicePair * UserDefinedTemperatureCharacteristicStatsEvalTypePairIn);
 
 protected:
+  UserDefinedTemperatureCharacteristicStatsEvalTypeChoicePair * UserDefinedTemperatureCharacteristicStatsEvalTypePair;
+};
+
+/* ***************************************************************** */
+
+union UserDefinedTemperatureCharacteristicStatsEvalTypeVal
+{
+  UserDefinedTemp_1144_Type * UserDefinedTemp_1144;
   UserDefinedTemp_1145_Type * UserDefinedTemp_1145;
+  StatsTemperatureType * MinValueStats;
+  UserDefinedTemp_1146_Type * UserDefinedTemp_1146;
+  UserDefinedTemp_1147_Type * UserDefinedTemp_1147;
+  StatsTemperatureType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedTemperatureCharacteristicStatsEvalTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    UserDefinedTemp_1144E,
+    UserDefinedTemp_1145E,
+    MinValueStatsE,
+    UserDefinedTemp_1146E,
+    UserDefinedTemp_1147E,
+    MinDeviationStatsE };
+  UserDefinedTemperatureCharacteristicStatsEvalTypeChoicePair();
+  UserDefinedTemperatureCharacteristicStatsEvalTypeChoicePair(
+    whichOne UserDefinedTemperatureCharacteristicStatsEvalTypeTypeIn,
+    UserDefinedTemperatureCharacteristicStatsEvalTypeVal UserDefinedTemperatureCharacteristicStatsEvalTypeValueIn);
+  ~UserDefinedTemperatureCharacteristicStatsEvalTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne UserDefinedTemperatureCharacteristicStatsEvalTypeType;
+  UserDefinedTemperatureCharacteristicStatsEvalTypeVal UserDefinedTemperatureCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3490,20 +3820,55 @@ public:
   UserDefinedTimeCharacteristicStatsEvalType();
   UserDefinedTimeCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    UserDefinedTime_1146_Type * UserDefinedTime_1146In);
+    UserDefinedTimeCharacteristicStatsEvalTypeChoicePair * UserDefinedTimeCharacteristicStatsEvalTypePairIn);
   ~UserDefinedTimeCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
-
-  UserDefinedTime_1146_Type * getUserDefinedTime_1146();
-  void setUserDefinedTime_1146(UserDefinedTime_1146_Type * UserDefinedTime_1146In);
+  UserDefinedTimeCharacteristicStatsEvalTypeChoicePair * getUserDefinedTimeCharacteristicStatsEvalTypeChoicePair();
+  void setUserDefinedTimeCharacteristicStatsEvalTypeChoicePair(UserDefinedTimeCharacteristicStatsEvalTypeChoicePair * UserDefinedTimeCharacteristicStatsEvalTypePairIn);
 
 protected:
-  UserDefinedTime_1146_Type * UserDefinedTime_1146;
+  UserDefinedTimeCharacteristicStatsEvalTypeChoicePair * UserDefinedTimeCharacteristicStatsEvalTypePair;
+};
+
+/* ***************************************************************** */
+
+union UserDefinedTimeCharacteristicStatsEvalTypeVal
+{
+  UserDefinedTime_1148_Type * UserDefinedTime_1148;
+  UserDefinedTime_1149_Type * UserDefinedTime_1149;
+  StatsTimeType * MinValueStats;
+  UserDefinedTime_1150_Type * UserDefinedTime_1150;
+  UserDefinedTime_1151_Type * UserDefinedTime_1151;
+  StatsTimeType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedTimeCharacteristicStatsEvalTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    UserDefinedTime_1148E,
+    UserDefinedTime_1149E,
+    MinValueStatsE,
+    UserDefinedTime_1150E,
+    UserDefinedTime_1151E,
+    MinDeviationStatsE };
+  UserDefinedTimeCharacteristicStatsEvalTypeChoicePair();
+  UserDefinedTimeCharacteristicStatsEvalTypeChoicePair(
+    whichOne UserDefinedTimeCharacteristicStatsEvalTypeTypeIn,
+    UserDefinedTimeCharacteristicStatsEvalTypeVal UserDefinedTimeCharacteristicStatsEvalTypeValueIn);
+  ~UserDefinedTimeCharacteristicStatsEvalTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne UserDefinedTimeCharacteristicStatsEvalTypeType;
+  UserDefinedTimeCharacteristicStatsEvalTypeVal UserDefinedTimeCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3515,20 +3880,55 @@ public:
   UserDefinedUnitCharacteristicStatsEvalType();
   UserDefinedUnitCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    UserDefinedUnit_1147_Type * UserDefinedUnit_1147In);
+    UserDefinedUnitCharacteristicStatsEvalTypeChoicePair * UserDefinedUnitCharacteristicStatsEvalTypePairIn);
   ~UserDefinedUnitCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
-
-  UserDefinedUnit_1147_Type * getUserDefinedUnit_1147();
-  void setUserDefinedUnit_1147(UserDefinedUnit_1147_Type * UserDefinedUnit_1147In);
+  UserDefinedUnitCharacteristicStatsEvalTypeChoicePair * getUserDefinedUnitCharacteristicStatsEvalTypeChoicePair();
+  void setUserDefinedUnitCharacteristicStatsEvalTypeChoicePair(UserDefinedUnitCharacteristicStatsEvalTypeChoicePair * UserDefinedUnitCharacteristicStatsEvalTypePairIn);
 
 protected:
-  UserDefinedUnit_1147_Type * UserDefinedUnit_1147;
+  UserDefinedUnitCharacteristicStatsEvalTypeChoicePair * UserDefinedUnitCharacteristicStatsEvalTypePair;
+};
+
+/* ***************************************************************** */
+
+union UserDefinedUnitCharacteristicStatsEvalTypeVal
+{
+  UserDefinedUnit_1152_Type * UserDefinedUnit_1152;
+  UserDefinedUnit_1153_Type * UserDefinedUnit_1153;
+  StatsUserDefinedUnitType * MinValueStats;
+  UserDefinedUnit_1154_Type * UserDefinedUnit_1154;
+  UserDefinedUnit_1155_Type * UserDefinedUnit_1155;
+  StatsUserDefinedUnitType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedUnitCharacteristicStatsEvalTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    UserDefinedUnit_1152E,
+    UserDefinedUnit_1153E,
+    MinValueStatsE,
+    UserDefinedUnit_1154E,
+    UserDefinedUnit_1155E,
+    MinDeviationStatsE };
+  UserDefinedUnitCharacteristicStatsEvalTypeChoicePair();
+  UserDefinedUnitCharacteristicStatsEvalTypeChoicePair(
+    whichOne UserDefinedUnitCharacteristicStatsEvalTypeTypeIn,
+    UserDefinedUnitCharacteristicStatsEvalTypeVal UserDefinedUnitCharacteristicStatsEvalTypeValueIn);
+  ~UserDefinedUnitCharacteristicStatsEvalTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne UserDefinedUnitCharacteristicStatsEvalTypeType;
+  UserDefinedUnitCharacteristicStatsEvalTypeVal UserDefinedUnitCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3540,8 +3940,8 @@ public:
   WeldCharacteristicStatsEvalBaseType();
   WeldCharacteristicStatsEvalBaseType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3565,8 +3965,8 @@ public:
   WeldCompoundCharacteristicStatsEvalType();
   WeldCompoundCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3584,8 +3984,8 @@ public:
   WeldEdgeCharacteristicStatsEvalType();
   WeldEdgeCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3603,8 +4003,8 @@ public:
   WeldFilletCharacteristicStatsEvalType();
   WeldFilletCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3622,8 +4022,8 @@ public:
   WeldFlareBevelCharacteristicStatsEvalType();
   WeldFlareBevelCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3641,8 +4041,8 @@ public:
   WeldFlareVCharacteristicStatsEvalType();
   WeldFlareVCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3660,8 +4060,8 @@ public:
   WeldJCharacteristicStatsEvalType();
   WeldJCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3679,8 +4079,8 @@ public:
   WeldPlugCharacteristicStatsEvalType();
   WeldPlugCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3698,8 +4098,8 @@ public:
   WeldScarfCharacteristicStatsEvalType();
   WeldScarfCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3717,8 +4117,8 @@ public:
   WeldSeamCharacteristicStatsEvalType();
   WeldSeamCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3736,8 +4136,8 @@ public:
   WeldSlotCharacteristicStatsEvalType();
   WeldSlotCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3755,8 +4155,8 @@ public:
   WeldSpotCharacteristicStatsEvalType();
   WeldSpotCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3774,8 +4174,8 @@ public:
   WeldSquareCharacteristicStatsEvalType();
   WeldSquareCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3793,8 +4193,8 @@ public:
   WeldStudCharacteristicStatsEvalType();
   WeldStudCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3812,8 +4212,8 @@ public:
   WeldSurfacingCharacteristicStatsEvalType();
   WeldSurfacingCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3831,8 +4231,8 @@ public:
   WeldUCharacteristicStatsEvalType();
   WeldUCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3850,8 +4250,8 @@ public:
   WeldVCharacteristicStatsEvalType();
   WeldVCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -3869,1065 +4269,28 @@ public:
   WidthCharacteristicStatsEvalType();
   WidthCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    LinearCharacter_1135_Type * LinearCharacter_1135In);
+    LinearCharacteristicStatsEvalTypeChoicePair * LinearCharacteristicStatsEvalTypePairIn);
   ~WidthCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
 
 /* ***************************************************************** */
 
-class AngularCharacte_1127_Type :
+class AngularCharacte_1100_Type :
   public XmlTypeBase
 {
 public:
-  AngularCharacte_1127_Type();
-  AngularCharacte_1127_Type(
-    AngularCharacte_1127_TypeChoicePair * AngularCharacte_1127_TypePairIn);
-  ~AngularCharacte_1127_Type();
-  void printSelf(FILE * outFile);
-
-  AngularCharacte_1127_TypeChoicePair * getAngularCharacte_1127_TypePair();
-  void setAngularCharacte_1127_TypePair(AngularCharacte_1127_TypeChoicePair * AngularCharacte_1127_TypePairIn);
-
-protected:
-  AngularCharacte_1127_TypeChoicePair * AngularCharacte_1127_TypePair;
-};
-
-/* ***************************************************************** */
-
-union AngularCharacte_1127_TypeVal
-{
-  AngularCharacte_1148_Type * AngularCharacte_1148;
-  AngularCharacte_1149_Type * AngularCharacte_1149;
-  StatsAngularType * MinValueStats;
-  AngularCharacte_1150_Type * AngularCharacte_1150;
-  AngularCharacte_1151_Type * AngularCharacte_1151;
-  StatsAngularType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class AngularCharacte_1127_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    AngularCharacte_1148E,
-    AngularCharacte_1149E,
-    MinValueStatsE,
-    AngularCharacte_1150E,
-    AngularCharacte_1151E,
-    MinDeviationStatsE };
-  AngularCharacte_1127_TypeChoicePair();
-  AngularCharacte_1127_TypeChoicePair(
-    whichOne AngularCharacte_1127_TypeTypeIn,
-    AngularCharacte_1127_TypeVal AngularCharacte_1127_TypeValueIn);
-  ~AngularCharacte_1127_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne AngularCharacte_1127_TypeType;
-  AngularCharacte_1127_TypeVal AngularCharacte_1127_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class AssignableCause_1128_Type :
-  public XmlTypeBase
-{
-public:
-  AssignableCause_1128_Type();
-  AssignableCause_1128_Type(
-    AssignableCause_1128_TypeChoicePair * AssignableCause_1128_TypePairIn);
-  ~AssignableCause_1128_Type();
-  void printSelf(FILE * outFile);
-
-  AssignableCause_1128_TypeChoicePair * getAssignableCause_1128_TypePair();
-  void setAssignableCause_1128_TypePair(AssignableCause_1128_TypeChoicePair * AssignableCause_1128_TypePairIn);
-
-protected:
-  AssignableCause_1128_TypeChoicePair * AssignableCause_1128_TypePair;
-};
-
-/* ***************************************************************** */
-
-union AssignableCause_1128_TypeVal
-{
-  XmlString * Description;
-  AssignableCauseEnumType * AssignableCauseEnum;
-};
-
-/* ***************************************************************** */
-
-class AssignableCause_1128_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    DescriptionE,
-    AssignableCauseEnumE };
-  AssignableCause_1128_TypeChoicePair();
-  AssignableCause_1128_TypeChoicePair(
-    whichOne AssignableCause_1128_TypeTypeIn,
-    AssignableCause_1128_TypeVal AssignableCause_1128_TypeValueIn);
-  ~AssignableCause_1128_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne AssignableCause_1128_TypeType;
-  AssignableCause_1128_TypeVal AssignableCause_1128_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class CharacteristicS_1129_Type :
-  public XmlTypeBase
-{
-public:
-  CharacteristicS_1129_Type();
-  CharacteristicS_1129_Type(
-    CharacteristicS_1129_TypeChoicePair * CharacteristicS_1129_TypePairIn);
-  ~CharacteristicS_1129_Type();
-  void printSelf(FILE * outFile);
-
-  CharacteristicS_1129_TypeChoicePair * getCharacteristicS_1129_TypePair();
-  void setCharacteristicS_1129_TypePair(CharacteristicS_1129_TypeChoicePair * CharacteristicS_1129_TypePairIn);
-
-protected:
-  CharacteristicS_1129_TypeChoicePair * CharacteristicS_1129_TypePair;
-};
-
-/* ***************************************************************** */
-
-union CharacteristicS_1129_TypeVal
-{
-  QIFReferenceType * SoftwareId;
-  QIFReferenceType * StandardId;
-  QIFReferenceType * AlgorithmId;
-};
-
-/* ***************************************************************** */
-
-class CharacteristicS_1129_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    SoftwareIdE,
-    StandardIdE,
-    AlgorithmIdE };
-  CharacteristicS_1129_TypeChoicePair();
-  CharacteristicS_1129_TypeChoicePair(
-    whichOne CharacteristicS_1129_TypeTypeIn,
-    CharacteristicS_1129_TypeVal CharacteristicS_1129_TypeValueIn);
-  ~CharacteristicS_1129_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne CharacteristicS_1129_TypeType;
-  CharacteristicS_1129_TypeVal CharacteristicS_1129_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class CharacteristicS_1130_Type :
-  public XmlTypeBase
-{
-public:
-  CharacteristicS_1130_Type();
-  CharacteristicS_1130_Type(
-    CharacteristicS_1130_TypeChoicePair * CharacteristicS_1130_TypePairIn);
-  ~CharacteristicS_1130_Type();
-  void printSelf(FILE * outFile);
-
-  CharacteristicS_1130_TypeChoicePair * getCharacteristicS_1130_TypePair();
-  void setCharacteristicS_1130_TypePair(CharacteristicS_1130_TypeChoicePair * CharacteristicS_1130_TypePairIn);
-
-protected:
-  CharacteristicS_1130_TypeChoicePair * CharacteristicS_1130_TypePair;
-};
-
-/* ***************************************************************** */
-
-union CharacteristicS_1130_TypeVal
-{
-  CharacteristicS_1152_Type * CharacteristicS_1152;
-  CharacteristicS_1153_Type * CharacteristicS_1153;
-};
-
-/* ***************************************************************** */
-
-class CharacteristicS_1130_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    CharacteristicS_1152E,
-    CharacteristicS_1153E };
-  CharacteristicS_1130_TypeChoicePair();
-  CharacteristicS_1130_TypeChoicePair(
-    whichOne CharacteristicS_1130_TypeTypeIn,
-    CharacteristicS_1130_TypeVal CharacteristicS_1130_TypeValueIn);
-  ~CharacteristicS_1130_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne CharacteristicS_1130_TypeType;
-  CharacteristicS_1130_TypeVal CharacteristicS_1130_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class CorrectiveActio_1131_Type :
-  public XmlTypeBase
-{
-public:
-  CorrectiveActio_1131_Type();
-  CorrectiveActio_1131_Type(
-    CorrectiveActio_1131_TypeChoicePair * CorrectiveActio_1131_TypePairIn);
-  ~CorrectiveActio_1131_Type();
-  void printSelf(FILE * outFile);
-
-  CorrectiveActio_1131_TypeChoicePair * getCorrectiveActio_1131_TypePair();
-  void setCorrectiveActio_1131_TypePair(CorrectiveActio_1131_TypeChoicePair * CorrectiveActio_1131_TypePairIn);
-
-protected:
-  CorrectiveActio_1131_TypeChoicePair * CorrectiveActio_1131_TypePair;
-};
-
-/* ***************************************************************** */
-
-union CorrectiveActio_1131_TypeVal
-{
-  XmlString * ActionToTake;
-  ActionToTakeEnumType * ActionToTakeEnum;
-};
-
-/* ***************************************************************** */
-
-class CorrectiveActio_1131_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    ActionToTakeE,
-    ActionToTakeEnumE };
-  CorrectiveActio_1131_TypeChoicePair();
-  CorrectiveActio_1131_TypeChoicePair(
-    whichOne CorrectiveActio_1131_TypeTypeIn,
-    CorrectiveActio_1131_TypeVal CorrectiveActio_1131_TypeValueIn);
-  ~CorrectiveActio_1131_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne CorrectiveActio_1131_TypeType;
-  CorrectiveActio_1131_TypeVal CorrectiveActio_1131_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class CriterionDecima_1132_Type :
-  public XmlTypeBase
-{
-public:
-  CriterionDecima_1132_Type();
-  CriterionDecima_1132_Type(
-    LimitingNumberType * NumberAllowedExceptionsIn,
-    XmlDecimal * ExtremeLimitIn);
-  ~CriterionDecima_1132_Type();
-  void printSelf(FILE * outFile);
-
-  LimitingNumberType * getNumberAllowedExceptions();
-  void setNumberAllowedExceptions(LimitingNumberType * NumberAllowedExceptionsIn);
-  XmlDecimal * getExtremeLimit();
-  void setExtremeLimit(XmlDecimal * ExtremeLimitIn);
-
-protected:
-  LimitingNumberType * NumberAllowedExceptions;
-  XmlDecimal * ExtremeLimit;
-};
-
-/* ***************************************************************** */
-
-class CriterionIntege_1133_Type :
-  public XmlTypeBase
-{
-public:
-  CriterionIntege_1133_Type();
-  CriterionIntege_1133_Type(
-    LimitingNumberType * NumberAllowedExceptionsIn,
-    XmlPositiveInteger * ExtremeLimitIn);
-  ~CriterionIntege_1133_Type();
-  void printSelf(FILE * outFile);
-
-  LimitingNumberType * getNumberAllowedExceptions();
-  void setNumberAllowedExceptions(LimitingNumberType * NumberAllowedExceptionsIn);
-  XmlPositiveInteger * getExtremeLimit();
-  void setExtremeLimit(XmlPositiveInteger * ExtremeLimitIn);
-
-protected:
-  LimitingNumberType * NumberAllowedExceptions;
-  XmlPositiveInteger * ExtremeLimit;
-};
-
-/* ***************************************************************** */
-
-class LimitingNumberT_1134_Type :
-  public XmlTypeBase
-{
-public:
-  LimitingNumberT_1134_Type();
-  LimitingNumberT_1134_Type(
-    LimitingNumberT_1134_TypeChoicePair * LimitingNumberT_1134_TypePairIn);
-  ~LimitingNumberT_1134_Type();
-  void printSelf(FILE * outFile);
-
-  LimitingNumberT_1134_TypeChoicePair * getLimitingNumberT_1134_TypePair();
-  void setLimitingNumberT_1134_TypePair(LimitingNumberT_1134_TypeChoicePair * LimitingNumberT_1134_TypePairIn);
-
-protected:
-  LimitingNumberT_1134_TypeChoicePair * LimitingNumberT_1134_TypePair;
-};
-
-/* ***************************************************************** */
-
-union LimitingNumberT_1134_TypeVal
-{
-  XmlNonNegativeInteger * Count;
-  XmlDecimal * Fraction;
-};
-
-/* ***************************************************************** */
-
-class LimitingNumberT_1134_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    CountE,
-    FractionE };
-  LimitingNumberT_1134_TypeChoicePair();
-  LimitingNumberT_1134_TypeChoicePair(
-    whichOne LimitingNumberT_1134_TypeTypeIn,
-    LimitingNumberT_1134_TypeVal LimitingNumberT_1134_TypeValueIn);
-  ~LimitingNumberT_1134_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne LimitingNumberT_1134_TypeType;
-  LimitingNumberT_1134_TypeVal LimitingNumberT_1134_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class LinearCharacter_1135_Type :
-  public XmlTypeBase
-{
-public:
-  LinearCharacter_1135_Type();
-  LinearCharacter_1135_Type(
-    LinearCharacter_1135_TypeChoicePair * LinearCharacter_1135_TypePairIn);
-  ~LinearCharacter_1135_Type();
-  void printSelf(FILE * outFile);
-
-  LinearCharacter_1135_TypeChoicePair * getLinearCharacter_1135_TypePair();
-  void setLinearCharacter_1135_TypePair(LinearCharacter_1135_TypeChoicePair * LinearCharacter_1135_TypePairIn);
-
-protected:
-  LinearCharacter_1135_TypeChoicePair * LinearCharacter_1135_TypePair;
-};
-
-/* ***************************************************************** */
-
-union LinearCharacter_1135_TypeVal
-{
-  LinearCharacter_1154_Type * LinearCharacter_1154;
-  LinearCharacter_1155_Type * LinearCharacter_1155;
-  StatsLinearType * MinValueStats;
-  LinearCharacter_1156_Type * LinearCharacter_1156;
-  LinearCharacter_1157_Type * LinearCharacter_1157;
-  StatsLinearType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class LinearCharacter_1135_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    LinearCharacter_1154E,
-    LinearCharacter_1155E,
-    MinValueStatsE,
-    LinearCharacter_1156E,
-    LinearCharacter_1157E,
-    MinDeviationStatsE };
-  LinearCharacter_1135_TypeChoicePair();
-  LinearCharacter_1135_TypeChoicePair(
-    whichOne LinearCharacter_1135_TypeTypeIn,
-    LinearCharacter_1135_TypeVal LinearCharacter_1135_TypeValueIn);
-  ~LinearCharacter_1135_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne LinearCharacter_1135_TypeType;
-  LinearCharacter_1135_TypeVal LinearCharacter_1135_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class SamplingMethodT_1136_Type :
-  public XmlTypeBase
-{
-public:
-  SamplingMethodT_1136_Type();
-  SamplingMethodT_1136_Type(
-    SamplingMethodT_1136_TypeChoicePair * SamplingMethodT_1136_TypePairIn);
-  ~SamplingMethodT_1136_Type();
-  void printSelf(FILE * outFile);
-
-  SamplingMethodT_1136_TypeChoicePair * getSamplingMethodT_1136_TypePair();
-  void setSamplingMethodT_1136_TypePair(SamplingMethodT_1136_TypeChoicePair * SamplingMethodT_1136_TypePairIn);
-
-protected:
-  SamplingMethodT_1136_TypeChoicePair * SamplingMethodT_1136_TypePair;
-};
-
-/* ***************************************************************** */
-
-union SamplingMethodT_1136_TypeVal
-{
-  XmlPositiveInteger * SamplingPeriod;
-  SamplingMethodT_1158_Type * SamplingMethodT_1158;
-};
-
-/* ***************************************************************** */
-
-class SamplingMethodT_1136_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    SamplingPeriodE,
-    SamplingMethodT_1158E };
-  SamplingMethodT_1136_TypeChoicePair();
-  SamplingMethodT_1136_TypeChoicePair(
-    whichOne SamplingMethodT_1136_TypeTypeIn,
-    SamplingMethodT_1136_TypeVal SamplingMethodT_1136_TypeValueIn);
-  ~SamplingMethodT_1136_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne SamplingMethodT_1136_TypeType;
-  SamplingMethodT_1136_TypeVal SamplingMethodT_1136_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class StudyIssueType_1137_Type :
-  public XmlTypeBase
-{
-public:
-  StudyIssueType_1137_Type();
-  StudyIssueType_1137_Type(
-    StudyIssueType_1137_TypeChoicePair * StudyIssueType_1137_TypePairIn);
-  ~StudyIssueType_1137_Type();
-  void printSelf(FILE * outFile);
-
-  StudyIssueType_1137_TypeChoicePair * getStudyIssueType_1137_TypePair();
-  void setStudyIssueType_1137_TypePair(StudyIssueType_1137_TypeChoicePair * StudyIssueType_1137_TypePairIn);
-
-protected:
-  StudyIssueType_1137_TypeChoicePair * StudyIssueType_1137_TypePair;
-};
-
-/* ***************************************************************** */
-
-union StudyIssueType_1137_TypeVal
-{
-  ArrayReferenceType * CharacteristicMeasurementIds;
-  ArrayReferenceType * SubgroupIds;
-};
-
-/* ***************************************************************** */
-
-class StudyIssueType_1137_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    CharacteristicMeasurementIdsE,
-    SubgroupIdsE };
-  StudyIssueType_1137_TypeChoicePair();
-  StudyIssueType_1137_TypeChoicePair(
-    whichOne StudyIssueType_1137_TypeTypeIn,
-    StudyIssueType_1137_TypeVal StudyIssueType_1137_TypeValueIn);
-  ~StudyIssueType_1137_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne StudyIssueType_1137_TypeType;
-  StudyIssueType_1137_TypeVal StudyIssueType_1137_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedAngu_1138_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedAngu_1138_Type();
-  UserDefinedAngu_1138_Type(
-    UserDefinedAngu_1138_TypeChoicePair * UserDefinedAngu_1138_TypePairIn);
-  ~UserDefinedAngu_1138_Type();
-  void printSelf(FILE * outFile);
-
-  UserDefinedAngu_1138_TypeChoicePair * getUserDefinedAngu_1138_TypePair();
-  void setUserDefinedAngu_1138_TypePair(UserDefinedAngu_1138_TypeChoicePair * UserDefinedAngu_1138_TypePairIn);
-
-protected:
-  UserDefinedAngu_1138_TypeChoicePair * UserDefinedAngu_1138_TypePair;
-};
-
-/* ***************************************************************** */
-
-union UserDefinedAngu_1138_TypeVal
-{
-  UserDefinedAngu_1159_Type * UserDefinedAngu_1159;
-  UserDefinedAngu_1160_Type * UserDefinedAngu_1160;
-  StatsAngularType * MinValueStats;
-  UserDefinedAngu_1161_Type * UserDefinedAngu_1161;
-  UserDefinedAngu_1162_Type * UserDefinedAngu_1162;
-  StatsAngularType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedAngu_1138_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    UserDefinedAngu_1159E,
-    UserDefinedAngu_1160E,
-    MinValueStatsE,
-    UserDefinedAngu_1161E,
-    UserDefinedAngu_1162E,
-    MinDeviationStatsE };
-  UserDefinedAngu_1138_TypeChoicePair();
-  UserDefinedAngu_1138_TypeChoicePair(
-    whichOne UserDefinedAngu_1138_TypeTypeIn,
-    UserDefinedAngu_1138_TypeVal UserDefinedAngu_1138_TypeValueIn);
-  ~UserDefinedAngu_1138_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne UserDefinedAngu_1138_TypeType;
-  UserDefinedAngu_1138_TypeVal UserDefinedAngu_1138_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedArea_1139_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedArea_1139_Type();
-  UserDefinedArea_1139_Type(
-    UserDefinedArea_1139_TypeChoicePair * UserDefinedArea_1139_TypePairIn);
-  ~UserDefinedArea_1139_Type();
-  void printSelf(FILE * outFile);
-
-  UserDefinedArea_1139_TypeChoicePair * getUserDefinedArea_1139_TypePair();
-  void setUserDefinedArea_1139_TypePair(UserDefinedArea_1139_TypeChoicePair * UserDefinedArea_1139_TypePairIn);
-
-protected:
-  UserDefinedArea_1139_TypeChoicePair * UserDefinedArea_1139_TypePair;
-};
-
-/* ***************************************************************** */
-
-union UserDefinedArea_1139_TypeVal
-{
-  UserDefinedArea_1163_Type * UserDefinedArea_1163;
-  UserDefinedArea_1164_Type * UserDefinedArea_1164;
-  StatsAreaType * MinValueStats;
-  UserDefinedArea_1165_Type * UserDefinedArea_1165;
-  UserDefinedArea_1166_Type * UserDefinedArea_1166;
-  StatsAreaType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedArea_1139_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    UserDefinedArea_1163E,
-    UserDefinedArea_1164E,
-    MinValueStatsE,
-    UserDefinedArea_1165E,
-    UserDefinedArea_1166E,
-    MinDeviationStatsE };
-  UserDefinedArea_1139_TypeChoicePair();
-  UserDefinedArea_1139_TypeChoicePair(
-    whichOne UserDefinedArea_1139_TypeTypeIn,
-    UserDefinedArea_1139_TypeVal UserDefinedArea_1139_TypeValueIn);
-  ~UserDefinedArea_1139_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne UserDefinedArea_1139_TypeType;
-  UserDefinedArea_1139_TypeVal UserDefinedArea_1139_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedForc_1140_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedForc_1140_Type();
-  UserDefinedForc_1140_Type(
-    UserDefinedForc_1140_TypeChoicePair * UserDefinedForc_1140_TypePairIn);
-  ~UserDefinedForc_1140_Type();
-  void printSelf(FILE * outFile);
-
-  UserDefinedForc_1140_TypeChoicePair * getUserDefinedForc_1140_TypePair();
-  void setUserDefinedForc_1140_TypePair(UserDefinedForc_1140_TypeChoicePair * UserDefinedForc_1140_TypePairIn);
-
-protected:
-  UserDefinedForc_1140_TypeChoicePair * UserDefinedForc_1140_TypePair;
-};
-
-/* ***************************************************************** */
-
-union UserDefinedForc_1140_TypeVal
-{
-  UserDefinedForc_1167_Type * UserDefinedForc_1167;
-  UserDefinedForc_1168_Type * UserDefinedForc_1168;
-  StatsForceType * MinValueStats;
-  UserDefinedForc_1169_Type * UserDefinedForc_1169;
-  UserDefinedForc_1170_Type * UserDefinedForc_1170;
-  StatsForceType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedForc_1140_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    UserDefinedForc_1167E,
-    UserDefinedForc_1168E,
-    MinValueStatsE,
-    UserDefinedForc_1169E,
-    UserDefinedForc_1170E,
-    MinDeviationStatsE };
-  UserDefinedForc_1140_TypeChoicePair();
-  UserDefinedForc_1140_TypeChoicePair(
-    whichOne UserDefinedForc_1140_TypeTypeIn,
-    UserDefinedForc_1140_TypeVal UserDefinedForc_1140_TypeValueIn);
-  ~UserDefinedForc_1140_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne UserDefinedForc_1140_TypeType;
-  UserDefinedForc_1140_TypeVal UserDefinedForc_1140_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedLine_1141_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedLine_1141_Type();
-  UserDefinedLine_1141_Type(
-    UserDefinedLine_1141_TypeChoicePair * UserDefinedLine_1141_TypePairIn);
-  ~UserDefinedLine_1141_Type();
-  void printSelf(FILE * outFile);
-
-  UserDefinedLine_1141_TypeChoicePair * getUserDefinedLine_1141_TypePair();
-  void setUserDefinedLine_1141_TypePair(UserDefinedLine_1141_TypeChoicePair * UserDefinedLine_1141_TypePairIn);
-
-protected:
-  UserDefinedLine_1141_TypeChoicePair * UserDefinedLine_1141_TypePair;
-};
-
-/* ***************************************************************** */
-
-union UserDefinedLine_1141_TypeVal
-{
-  UserDefinedLine_1171_Type * UserDefinedLine_1171;
-  UserDefinedLine_1172_Type * UserDefinedLine_1172;
-  StatsLinearType * MinValueStats;
-  UserDefinedLine_1173_Type * UserDefinedLine_1173;
-  UserDefinedLine_1174_Type * UserDefinedLine_1174;
-  StatsLinearType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedLine_1141_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    UserDefinedLine_1171E,
-    UserDefinedLine_1172E,
-    MinValueStatsE,
-    UserDefinedLine_1173E,
-    UserDefinedLine_1174E,
-    MinDeviationStatsE };
-  UserDefinedLine_1141_TypeChoicePair();
-  UserDefinedLine_1141_TypeChoicePair(
-    whichOne UserDefinedLine_1141_TypeTypeIn,
-    UserDefinedLine_1141_TypeVal UserDefinedLine_1141_TypeValueIn);
-  ~UserDefinedLine_1141_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne UserDefinedLine_1141_TypeType;
-  UserDefinedLine_1141_TypeVal UserDefinedLine_1141_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedMass_1142_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedMass_1142_Type();
-  UserDefinedMass_1142_Type(
-    UserDefinedMass_1142_TypeChoicePair * UserDefinedMass_1142_TypePairIn);
-  ~UserDefinedMass_1142_Type();
-  void printSelf(FILE * outFile);
-
-  UserDefinedMass_1142_TypeChoicePair * getUserDefinedMass_1142_TypePair();
-  void setUserDefinedMass_1142_TypePair(UserDefinedMass_1142_TypeChoicePair * UserDefinedMass_1142_TypePairIn);
-
-protected:
-  UserDefinedMass_1142_TypeChoicePair * UserDefinedMass_1142_TypePair;
-};
-
-/* ***************************************************************** */
-
-union UserDefinedMass_1142_TypeVal
-{
-  UserDefinedMass_1175_Type * UserDefinedMass_1175;
-  UserDefinedMass_1176_Type * UserDefinedMass_1176;
-  StatsMassType * MinValueStats;
-  UserDefinedMass_1177_Type * UserDefinedMass_1177;
-  UserDefinedMass_1178_Type * UserDefinedMass_1178;
-  StatsMassType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedMass_1142_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    UserDefinedMass_1175E,
-    UserDefinedMass_1176E,
-    MinValueStatsE,
-    UserDefinedMass_1177E,
-    UserDefinedMass_1178E,
-    MinDeviationStatsE };
-  UserDefinedMass_1142_TypeChoicePair();
-  UserDefinedMass_1142_TypeChoicePair(
-    whichOne UserDefinedMass_1142_TypeTypeIn,
-    UserDefinedMass_1142_TypeVal UserDefinedMass_1142_TypeValueIn);
-  ~UserDefinedMass_1142_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne UserDefinedMass_1142_TypeType;
-  UserDefinedMass_1142_TypeVal UserDefinedMass_1142_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedPres_1143_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedPres_1143_Type();
-  UserDefinedPres_1143_Type(
-    UserDefinedPres_1143_TypeChoicePair * UserDefinedPres_1143_TypePairIn);
-  ~UserDefinedPres_1143_Type();
-  void printSelf(FILE * outFile);
-
-  UserDefinedPres_1143_TypeChoicePair * getUserDefinedPres_1143_TypePair();
-  void setUserDefinedPres_1143_TypePair(UserDefinedPres_1143_TypeChoicePair * UserDefinedPres_1143_TypePairIn);
-
-protected:
-  UserDefinedPres_1143_TypeChoicePair * UserDefinedPres_1143_TypePair;
-};
-
-/* ***************************************************************** */
-
-union UserDefinedPres_1143_TypeVal
-{
-  UserDefinedPres_1179_Type * UserDefinedPres_1179;
-  UserDefinedPres_1180_Type * UserDefinedPres_1180;
-  StatsPressureType * MinValueStats;
-  UserDefinedPres_1181_Type * UserDefinedPres_1181;
-  UserDefinedPres_1182_Type * UserDefinedPres_1182;
-  StatsPressureType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedPres_1143_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    UserDefinedPres_1179E,
-    UserDefinedPres_1180E,
-    MinValueStatsE,
-    UserDefinedPres_1181E,
-    UserDefinedPres_1182E,
-    MinDeviationStatsE };
-  UserDefinedPres_1143_TypeChoicePair();
-  UserDefinedPres_1143_TypeChoicePair(
-    whichOne UserDefinedPres_1143_TypeTypeIn,
-    UserDefinedPres_1143_TypeVal UserDefinedPres_1143_TypeValueIn);
-  ~UserDefinedPres_1143_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne UserDefinedPres_1143_TypeType;
-  UserDefinedPres_1143_TypeVal UserDefinedPres_1143_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedSpee_1144_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedSpee_1144_Type();
-  UserDefinedSpee_1144_Type(
-    UserDefinedSpee_1144_TypeChoicePair * UserDefinedSpee_1144_TypePairIn);
-  ~UserDefinedSpee_1144_Type();
-  void printSelf(FILE * outFile);
-
-  UserDefinedSpee_1144_TypeChoicePair * getUserDefinedSpee_1144_TypePair();
-  void setUserDefinedSpee_1144_TypePair(UserDefinedSpee_1144_TypeChoicePair * UserDefinedSpee_1144_TypePairIn);
-
-protected:
-  UserDefinedSpee_1144_TypeChoicePair * UserDefinedSpee_1144_TypePair;
-};
-
-/* ***************************************************************** */
-
-union UserDefinedSpee_1144_TypeVal
-{
-  UserDefinedSpee_1183_Type * UserDefinedSpee_1183;
-  UserDefinedSpee_1184_Type * UserDefinedSpee_1184;
-  StatsSpeedType * MinValueStats;
-  UserDefinedSpee_1185_Type * UserDefinedSpee_1185;
-  UserDefinedSpee_1186_Type * UserDefinedSpee_1186;
-  StatsSpeedType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedSpee_1144_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    UserDefinedSpee_1183E,
-    UserDefinedSpee_1184E,
-    MinValueStatsE,
-    UserDefinedSpee_1185E,
-    UserDefinedSpee_1186E,
-    MinDeviationStatsE };
-  UserDefinedSpee_1144_TypeChoicePair();
-  UserDefinedSpee_1144_TypeChoicePair(
-    whichOne UserDefinedSpee_1144_TypeTypeIn,
-    UserDefinedSpee_1144_TypeVal UserDefinedSpee_1144_TypeValueIn);
-  ~UserDefinedSpee_1144_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne UserDefinedSpee_1144_TypeType;
-  UserDefinedSpee_1144_TypeVal UserDefinedSpee_1144_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedTemp_1145_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedTemp_1145_Type();
-  UserDefinedTemp_1145_Type(
-    UserDefinedTemp_1145_TypeChoicePair * UserDefinedTemp_1145_TypePairIn);
-  ~UserDefinedTemp_1145_Type();
-  void printSelf(FILE * outFile);
-
-  UserDefinedTemp_1145_TypeChoicePair * getUserDefinedTemp_1145_TypePair();
-  void setUserDefinedTemp_1145_TypePair(UserDefinedTemp_1145_TypeChoicePair * UserDefinedTemp_1145_TypePairIn);
-
-protected:
-  UserDefinedTemp_1145_TypeChoicePair * UserDefinedTemp_1145_TypePair;
-};
-
-/* ***************************************************************** */
-
-union UserDefinedTemp_1145_TypeVal
-{
-  UserDefinedTemp_1187_Type * UserDefinedTemp_1187;
-  UserDefinedTemp_1188_Type * UserDefinedTemp_1188;
-  StatsTemperatureType * MinValueStats;
-  UserDefinedTemp_1189_Type * UserDefinedTemp_1189;
-  UserDefinedTemp_1190_Type * UserDefinedTemp_1190;
-  StatsTemperatureType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedTemp_1145_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    UserDefinedTemp_1187E,
-    UserDefinedTemp_1188E,
-    MinValueStatsE,
-    UserDefinedTemp_1189E,
-    UserDefinedTemp_1190E,
-    MinDeviationStatsE };
-  UserDefinedTemp_1145_TypeChoicePair();
-  UserDefinedTemp_1145_TypeChoicePair(
-    whichOne UserDefinedTemp_1145_TypeTypeIn,
-    UserDefinedTemp_1145_TypeVal UserDefinedTemp_1145_TypeValueIn);
-  ~UserDefinedTemp_1145_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne UserDefinedTemp_1145_TypeType;
-  UserDefinedTemp_1145_TypeVal UserDefinedTemp_1145_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedTime_1146_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedTime_1146_Type();
-  UserDefinedTime_1146_Type(
-    UserDefinedTime_1146_TypeChoicePair * UserDefinedTime_1146_TypePairIn);
-  ~UserDefinedTime_1146_Type();
-  void printSelf(FILE * outFile);
-
-  UserDefinedTime_1146_TypeChoicePair * getUserDefinedTime_1146_TypePair();
-  void setUserDefinedTime_1146_TypePair(UserDefinedTime_1146_TypeChoicePair * UserDefinedTime_1146_TypePairIn);
-
-protected:
-  UserDefinedTime_1146_TypeChoicePair * UserDefinedTime_1146_TypePair;
-};
-
-/* ***************************************************************** */
-
-union UserDefinedTime_1146_TypeVal
-{
-  UserDefinedTime_1191_Type * UserDefinedTime_1191;
-  UserDefinedTime_1192_Type * UserDefinedTime_1192;
-  StatsTimeType * MinValueStats;
-  UserDefinedTime_1193_Type * UserDefinedTime_1193;
-  UserDefinedTime_1194_Type * UserDefinedTime_1194;
-  StatsTimeType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedTime_1146_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    UserDefinedTime_1191E,
-    UserDefinedTime_1192E,
-    MinValueStatsE,
-    UserDefinedTime_1193E,
-    UserDefinedTime_1194E,
-    MinDeviationStatsE };
-  UserDefinedTime_1146_TypeChoicePair();
-  UserDefinedTime_1146_TypeChoicePair(
-    whichOne UserDefinedTime_1146_TypeTypeIn,
-    UserDefinedTime_1146_TypeVal UserDefinedTime_1146_TypeValueIn);
-  ~UserDefinedTime_1146_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne UserDefinedTime_1146_TypeType;
-  UserDefinedTime_1146_TypeVal UserDefinedTime_1146_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedUnit_1147_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedUnit_1147_Type();
-  UserDefinedUnit_1147_Type(
-    UserDefinedUnit_1147_TypeChoicePair * UserDefinedUnit_1147_TypePairIn);
-  ~UserDefinedUnit_1147_Type();
-  void printSelf(FILE * outFile);
-
-  UserDefinedUnit_1147_TypeChoicePair * getUserDefinedUnit_1147_TypePair();
-  void setUserDefinedUnit_1147_TypePair(UserDefinedUnit_1147_TypeChoicePair * UserDefinedUnit_1147_TypePairIn);
-
-protected:
-  UserDefinedUnit_1147_TypeChoicePair * UserDefinedUnit_1147_TypePair;
-};
-
-/* ***************************************************************** */
-
-union UserDefinedUnit_1147_TypeVal
-{
-  UserDefinedUnit_1195_Type * UserDefinedUnit_1195;
-  UserDefinedUnit_1196_Type * UserDefinedUnit_1196;
-  StatsUserDefinedUnitType * MinValueStats;
-  UserDefinedUnit_1197_Type * UserDefinedUnit_1197;
-  UserDefinedUnit_1198_Type * UserDefinedUnit_1198;
-  StatsUserDefinedUnitType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedUnit_1147_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    UserDefinedUnit_1195E,
-    UserDefinedUnit_1196E,
-    MinValueStatsE,
-    UserDefinedUnit_1197E,
-    UserDefinedUnit_1198E,
-    MinDeviationStatsE };
-  UserDefinedUnit_1147_TypeChoicePair();
-  UserDefinedUnit_1147_TypeChoicePair(
-    whichOne UserDefinedUnit_1147_TypeTypeIn,
-    UserDefinedUnit_1147_TypeVal UserDefinedUnit_1147_TypeValueIn);
-  ~UserDefinedUnit_1147_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne UserDefinedUnit_1147_TypeType;
-  UserDefinedUnit_1147_TypeVal UserDefinedUnit_1147_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class AngularCharacte_1148_Type :
-  public XmlTypeBase
-{
-public:
-  AngularCharacte_1148_Type();
-  AngularCharacte_1148_Type(
+  AngularCharacte_1100_Type();
+  AngularCharacte_1100_Type(
     StatsWithTolAngularType * ValueStatsIn,
     StatsAngularType * MaxValueStatsIn,
     StatsAngularType * MinValueStatsIn);
-  ~AngularCharacte_1148_Type();
+  ~AngularCharacte_1100_Type();
   void printSelf(FILE * outFile);
 
   StatsWithTolAngularType * getValueStats();
@@ -4945,15 +4308,15 @@ protected:
 
 /* ***************************************************************** */
 
-class AngularCharacte_1149_Type :
+class AngularCharacte_1101_Type :
   public XmlTypeBase
 {
 public:
-  AngularCharacte_1149_Type();
-  AngularCharacte_1149_Type(
+  AngularCharacte_1101_Type();
+  AngularCharacte_1101_Type(
     StatsAngularType * MaxValueStatsIn,
     StatsAngularType * MinValueStatsIn);
-  ~AngularCharacte_1149_Type();
+  ~AngularCharacte_1101_Type();
   void printSelf(FILE * outFile);
 
   StatsAngularType * getMaxValueStats();
@@ -4968,16 +4331,16 @@ protected:
 
 /* ***************************************************************** */
 
-class AngularCharacte_1150_Type :
+class AngularCharacte_1102_Type :
   public XmlTypeBase
 {
 public:
-  AngularCharacte_1150_Type();
-  AngularCharacte_1150_Type(
+  AngularCharacte_1102_Type();
+  AngularCharacte_1102_Type(
     StatsWithTolAngularType * DeviationStatsIn,
     StatsAngularType * MaxDeviationStatsIn,
     StatsAngularType * MinDeviationStatsIn);
-  ~AngularCharacte_1150_Type();
+  ~AngularCharacte_1102_Type();
   void printSelf(FILE * outFile);
 
   StatsWithTolAngularType * getDeviationStats();
@@ -4995,15 +4358,15 @@ protected:
 
 /* ***************************************************************** */
 
-class AngularCharacte_1151_Type :
+class AngularCharacte_1103_Type :
   public XmlTypeBase
 {
 public:
-  AngularCharacte_1151_Type();
-  AngularCharacte_1151_Type(
+  AngularCharacte_1103_Type();
+  AngularCharacte_1103_Type(
     StatsAngularType * MaxDeviationStatsIn,
     StatsAngularType * MinDeviationStatsIn);
-  ~AngularCharacte_1151_Type();
+  ~AngularCharacte_1103_Type();
   void printSelf(FILE * outFile);
 
   StatsAngularType * getMaxDeviationStats();
@@ -5018,110 +4381,252 @@ protected:
 
 /* ***************************************************************** */
 
-class CharacteristicS_1152_Type :
+class AssignableCause_1104_Type :
   public XmlTypeBase
 {
 public:
-  CharacteristicS_1152_Type();
-  CharacteristicS_1152_Type(
-    CharacteristicS_1152_TypeChoicePair * CharacteristicS_1152_TypePairIn);
-  ~CharacteristicS_1152_Type();
+  AssignableCause_1104_Type();
+  AssignableCause_1104_Type(
+    AssignableCause_1104_TypeChoicePair * AssignableCause_1104_TypePairIn);
+  ~AssignableCause_1104_Type();
   void printSelf(FILE * outFile);
 
-  CharacteristicS_1152_TypeChoicePair * getCharacteristicS_1152_TypePair();
-  void setCharacteristicS_1152_TypePair(CharacteristicS_1152_TypeChoicePair * CharacteristicS_1152_TypePairIn);
+  AssignableCause_1104_TypeChoicePair * getAssignableCause_1104_TypePair();
+  void setAssignableCause_1104_TypePair(AssignableCause_1104_TypeChoicePair * AssignableCause_1104_TypePairIn);
 
 protected:
-  CharacteristicS_1152_TypeChoicePair * CharacteristicS_1152_TypePair;
+  AssignableCause_1104_TypeChoicePair * AssignableCause_1104_TypePair;
 };
 
 /* ***************************************************************** */
 
-union CharacteristicS_1152_TypeVal
+union AssignableCause_1104_TypeVal
 {
-  StatsArrayIdType * MeasuredIds;
-  SubgroupsType * Subgroups;
+  XmlString * Description;
+  AssignableCauseEnumType * AssignableCauseEnum;
 };
 
 /* ***************************************************************** */
 
-class CharacteristicS_1152_TypeChoicePair :
+class AssignableCause_1104_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    MeasuredIdsE,
-    SubgroupsE };
-  CharacteristicS_1152_TypeChoicePair();
-  CharacteristicS_1152_TypeChoicePair(
-    whichOne CharacteristicS_1152_TypeTypeIn,
-    CharacteristicS_1152_TypeVal CharacteristicS_1152_TypeValueIn);
-  ~CharacteristicS_1152_TypeChoicePair();
+    DescriptionE,
+    AssignableCauseEnumE };
+  AssignableCause_1104_TypeChoicePair();
+  AssignableCause_1104_TypeChoicePair(
+    whichOne AssignableCause_1104_TypeTypeIn,
+    AssignableCause_1104_TypeVal AssignableCause_1104_TypeValueIn);
+  ~AssignableCause_1104_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne CharacteristicS_1152_TypeType;
-  CharacteristicS_1152_TypeVal CharacteristicS_1152_TypeValue;
+  whichOne AssignableCause_1104_TypeType;
+  AssignableCause_1104_TypeVal AssignableCause_1104_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class CharacteristicS_1153_Type :
+class CharacteristicS_1105_Type :
   public XmlTypeBase
 {
 public:
-  CharacteristicS_1153_Type();
-  CharacteristicS_1153_Type(
-    CharacteristicS_1153_TypeChoicePair * CharacteristicS_1153_TypePairIn);
-  ~CharacteristicS_1153_Type();
+  CharacteristicS_1105_Type();
+  CharacteristicS_1105_Type(
+    CharacteristicS_1105_TypeChoicePair * CharacteristicS_1105_TypePairIn);
+  ~CharacteristicS_1105_Type();
   void printSelf(FILE * outFile);
 
-  CharacteristicS_1153_TypeChoicePair * getCharacteristicS_1153_TypePair();
-  void setCharacteristicS_1153_TypePair(CharacteristicS_1153_TypeChoicePair * CharacteristicS_1153_TypePairIn);
+  CharacteristicS_1105_TypeChoicePair * getCharacteristicS_1105_TypePair();
+  void setCharacteristicS_1105_TypePair(CharacteristicS_1105_TypeChoicePair * CharacteristicS_1105_TypePairIn);
 
 protected:
-  CharacteristicS_1153_TypeChoicePair * CharacteristicS_1153_TypePair;
+  CharacteristicS_1105_TypeChoicePair * CharacteristicS_1105_TypePair;
 };
 
 /* ***************************************************************** */
 
-union CharacteristicS_1153_TypeVal
+union CharacteristicS_1105_TypeVal
 {
-  StatsValuesType * MeasuredValues;
-  SubgroupValuesType * SubgroupValues;
+  QIFReferenceType * SoftwareId;
+  QIFReferenceType * StandardId;
+  QIFReferenceType * AlgorithmId;
 };
 
 /* ***************************************************************** */
 
-class CharacteristicS_1153_TypeChoicePair :
+class CharacteristicS_1105_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    MeasuredValuesE,
-    SubgroupValuesE };
-  CharacteristicS_1153_TypeChoicePair();
-  CharacteristicS_1153_TypeChoicePair(
-    whichOne CharacteristicS_1153_TypeTypeIn,
-    CharacteristicS_1153_TypeVal CharacteristicS_1153_TypeValueIn);
-  ~CharacteristicS_1153_TypeChoicePair();
+    SoftwareIdE,
+    StandardIdE,
+    AlgorithmIdE };
+  CharacteristicS_1105_TypeChoicePair();
+  CharacteristicS_1105_TypeChoicePair(
+    whichOne CharacteristicS_1105_TypeTypeIn,
+    CharacteristicS_1105_TypeVal CharacteristicS_1105_TypeValueIn);
+  ~CharacteristicS_1105_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne CharacteristicS_1153_TypeType;
-  CharacteristicS_1153_TypeVal CharacteristicS_1153_TypeValue;
+  whichOne CharacteristicS_1105_TypeType;
+  CharacteristicS_1105_TypeVal CharacteristicS_1105_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class LinearCharacter_1154_Type :
+class CharacteristicS_1106_Type :
   public XmlTypeBase
 {
 public:
-  LinearCharacter_1154_Type();
-  LinearCharacter_1154_Type(
+  CharacteristicS_1106_Type();
+  CharacteristicS_1106_Type(
+    CharacteristicS_1106_TypeChoicePair * CharacteristicS_1106_TypePairIn);
+  ~CharacteristicS_1106_Type();
+  void printSelf(FILE * outFile);
+
+  CharacteristicS_1106_TypeChoicePair * getCharacteristicS_1106_TypePair();
+  void setCharacteristicS_1106_TypePair(CharacteristicS_1106_TypeChoicePair * CharacteristicS_1106_TypePairIn);
+
+protected:
+  CharacteristicS_1106_TypeChoicePair * CharacteristicS_1106_TypePair;
+};
+
+/* ***************************************************************** */
+
+union CharacteristicS_1106_TypeVal
+{
+  CharacteristicS_1156_Type * CharacteristicS_1156;
+  CharacteristicS_1157_Type * CharacteristicS_1157;
+};
+
+/* ***************************************************************** */
+
+class CharacteristicS_1106_TypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    CharacteristicS_1156E,
+    CharacteristicS_1157E };
+  CharacteristicS_1106_TypeChoicePair();
+  CharacteristicS_1106_TypeChoicePair(
+    whichOne CharacteristicS_1106_TypeTypeIn,
+    CharacteristicS_1106_TypeVal CharacteristicS_1106_TypeValueIn);
+  ~CharacteristicS_1106_TypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne CharacteristicS_1106_TypeType;
+  CharacteristicS_1106_TypeVal CharacteristicS_1106_TypeValue;
+};
+
+/* ***************************************************************** */
+
+class CorrectiveActio_1107_Type :
+  public XmlTypeBase
+{
+public:
+  CorrectiveActio_1107_Type();
+  CorrectiveActio_1107_Type(
+    CorrectiveActio_1107_TypeChoicePair * CorrectiveActio_1107_TypePairIn);
+  ~CorrectiveActio_1107_Type();
+  void printSelf(FILE * outFile);
+
+  CorrectiveActio_1107_TypeChoicePair * getCorrectiveActio_1107_TypePair();
+  void setCorrectiveActio_1107_TypePair(CorrectiveActio_1107_TypeChoicePair * CorrectiveActio_1107_TypePairIn);
+
+protected:
+  CorrectiveActio_1107_TypeChoicePair * CorrectiveActio_1107_TypePair;
+};
+
+/* ***************************************************************** */
+
+union CorrectiveActio_1107_TypeVal
+{
+  XmlString * ActionToTake;
+  ActionToTakeEnumType * ActionToTakeEnum;
+};
+
+/* ***************************************************************** */
+
+class CorrectiveActio_1107_TypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    ActionToTakeE,
+    ActionToTakeEnumE };
+  CorrectiveActio_1107_TypeChoicePair();
+  CorrectiveActio_1107_TypeChoicePair(
+    whichOne CorrectiveActio_1107_TypeTypeIn,
+    CorrectiveActio_1107_TypeVal CorrectiveActio_1107_TypeValueIn);
+  ~CorrectiveActio_1107_TypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne CorrectiveActio_1107_TypeType;
+  CorrectiveActio_1107_TypeVal CorrectiveActio_1107_TypeValue;
+};
+
+/* ***************************************************************** */
+
+class CriterionDecima_1108_Type :
+  public XmlTypeBase
+{
+public:
+  CriterionDecima_1108_Type();
+  CriterionDecima_1108_Type(
+    LimitingNumberType * NumberAllowedExceptionsIn,
+    XmlDecimal * ExtremeLimitIn);
+  ~CriterionDecima_1108_Type();
+  void printSelf(FILE * outFile);
+
+  LimitingNumberType * getNumberAllowedExceptions();
+  void setNumberAllowedExceptions(LimitingNumberType * NumberAllowedExceptionsIn);
+  XmlDecimal * getExtremeLimit();
+  void setExtremeLimit(XmlDecimal * ExtremeLimitIn);
+
+protected:
+  LimitingNumberType * NumberAllowedExceptions;
+  XmlDecimal * ExtremeLimit;
+};
+
+/* ***************************************************************** */
+
+class CriterionIntege_1109_Type :
+  public XmlTypeBase
+{
+public:
+  CriterionIntege_1109_Type();
+  CriterionIntege_1109_Type(
+    LimitingNumberType * NumberAllowedExceptionsIn,
+    XmlPositiveInteger * ExtremeLimitIn);
+  ~CriterionIntege_1109_Type();
+  void printSelf(FILE * outFile);
+
+  LimitingNumberType * getNumberAllowedExceptions();
+  void setNumberAllowedExceptions(LimitingNumberType * NumberAllowedExceptionsIn);
+  XmlPositiveInteger * getExtremeLimit();
+  void setExtremeLimit(XmlPositiveInteger * ExtremeLimitIn);
+
+protected:
+  LimitingNumberType * NumberAllowedExceptions;
+  XmlPositiveInteger * ExtremeLimit;
+};
+
+/* ***************************************************************** */
+
+class LinearCharacter_1110_Type :
+  public XmlTypeBase
+{
+public:
+  LinearCharacter_1110_Type();
+  LinearCharacter_1110_Type(
     StatsWithTolLinearType * ValueStatsIn,
     StatsLinearType * MaxValueStatsIn,
     StatsLinearType * MinValueStatsIn);
-  ~LinearCharacter_1154_Type();
+  ~LinearCharacter_1110_Type();
   void printSelf(FILE * outFile);
 
   StatsWithTolLinearType * getValueStats();
@@ -5139,15 +4644,15 @@ protected:
 
 /* ***************************************************************** */
 
-class LinearCharacter_1155_Type :
+class LinearCharacter_1111_Type :
   public XmlTypeBase
 {
 public:
-  LinearCharacter_1155_Type();
-  LinearCharacter_1155_Type(
+  LinearCharacter_1111_Type();
+  LinearCharacter_1111_Type(
     StatsLinearType * MaxValueStatsIn,
     StatsLinearType * MinValueStatsIn);
-  ~LinearCharacter_1155_Type();
+  ~LinearCharacter_1111_Type();
   void printSelf(FILE * outFile);
 
   StatsLinearType * getMaxValueStats();
@@ -5162,16 +4667,16 @@ protected:
 
 /* ***************************************************************** */
 
-class LinearCharacter_1156_Type :
+class LinearCharacter_1112_Type :
   public XmlTypeBase
 {
 public:
-  LinearCharacter_1156_Type();
-  LinearCharacter_1156_Type(
+  LinearCharacter_1112_Type();
+  LinearCharacter_1112_Type(
     StatsWithTolLinearType * DeviationStatsIn,
     StatsLinearType * MaxDeviationStatsIn,
     StatsLinearType * MinDeviationStatsIn);
-  ~LinearCharacter_1156_Type();
+  ~LinearCharacter_1112_Type();
   void printSelf(FILE * outFile);
 
   StatsWithTolLinearType * getDeviationStats();
@@ -5189,15 +4694,15 @@ protected:
 
 /* ***************************************************************** */
 
-class LinearCharacter_1157_Type :
+class LinearCharacter_1113_Type :
   public XmlTypeBase
 {
 public:
-  LinearCharacter_1157_Type();
-  LinearCharacter_1157_Type(
+  LinearCharacter_1113_Type();
+  LinearCharacter_1113_Type(
     StatsLinearType * MaxDeviationStatsIn,
     StatsLinearType * MinDeviationStatsIn);
-  ~LinearCharacter_1157_Type();
+  ~LinearCharacter_1113_Type();
   void printSelf(FILE * outFile);
 
   StatsLinearType * getMaxDeviationStats();
@@ -5208,6 +4713,1194 @@ public:
 protected:
   StatsLinearType * MaxDeviationStats;
   StatsLinearType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class SamplingMethodT_1114_Type :
+  public XmlTypeBase
+{
+public:
+  SamplingMethodT_1114_Type();
+  SamplingMethodT_1114_Type(
+    SamplingMethodT_1114_TypeChoicePair * SamplingMethodT_1114_TypePairIn);
+  ~SamplingMethodT_1114_Type();
+  void printSelf(FILE * outFile);
+
+  SamplingMethodT_1114_TypeChoicePair * getSamplingMethodT_1114_TypePair();
+  void setSamplingMethodT_1114_TypePair(SamplingMethodT_1114_TypeChoicePair * SamplingMethodT_1114_TypePairIn);
+
+protected:
+  SamplingMethodT_1114_TypeChoicePair * SamplingMethodT_1114_TypePair;
+};
+
+/* ***************************************************************** */
+
+union SamplingMethodT_1114_TypeVal
+{
+  XmlPositiveInteger * SamplingPeriod;
+  SamplingMethodT_1158_Type * SamplingMethodT_1158;
+};
+
+/* ***************************************************************** */
+
+class SamplingMethodT_1114_TypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    SamplingPeriodE,
+    SamplingMethodT_1158E };
+  SamplingMethodT_1114_TypeChoicePair();
+  SamplingMethodT_1114_TypeChoicePair(
+    whichOne SamplingMethodT_1114_TypeTypeIn,
+    SamplingMethodT_1114_TypeVal SamplingMethodT_1114_TypeValueIn);
+  ~SamplingMethodT_1114_TypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne SamplingMethodT_1114_TypeType;
+  SamplingMethodT_1114_TypeVal SamplingMethodT_1114_TypeValue;
+};
+
+/* ***************************************************************** */
+
+class StudyIssueType_1115_Type :
+  public XmlTypeBase
+{
+public:
+  StudyIssueType_1115_Type();
+  StudyIssueType_1115_Type(
+    StudyIssueType_1115_TypeChoicePair * StudyIssueType_1115_TypePairIn);
+  ~StudyIssueType_1115_Type();
+  void printSelf(FILE * outFile);
+
+  StudyIssueType_1115_TypeChoicePair * getStudyIssueType_1115_TypePair();
+  void setStudyIssueType_1115_TypePair(StudyIssueType_1115_TypeChoicePair * StudyIssueType_1115_TypePairIn);
+
+protected:
+  StudyIssueType_1115_TypeChoicePair * StudyIssueType_1115_TypePair;
+};
+
+/* ***************************************************************** */
+
+union StudyIssueType_1115_TypeVal
+{
+  ArrayReferenceType * CharacteristicMeasurementIds;
+  ArrayReferenceType * SubgroupIds;
+};
+
+/* ***************************************************************** */
+
+class StudyIssueType_1115_TypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    CharacteristicMeasurementIdsE,
+    SubgroupIdsE };
+  StudyIssueType_1115_TypeChoicePair();
+  StudyIssueType_1115_TypeChoicePair(
+    whichOne StudyIssueType_1115_TypeTypeIn,
+    StudyIssueType_1115_TypeVal StudyIssueType_1115_TypeValueIn);
+  ~StudyIssueType_1115_TypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne StudyIssueType_1115_TypeType;
+  StudyIssueType_1115_TypeVal StudyIssueType_1115_TypeValue;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedAngu_1116_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedAngu_1116_Type();
+  UserDefinedAngu_1116_Type(
+    StatsWithTolAngularType * ValueStatsIn,
+    StatsAngularType * MaxValueStatsIn,
+    StatsAngularType * MinValueStatsIn);
+  ~UserDefinedAngu_1116_Type();
+  void printSelf(FILE * outFile);
+
+  StatsWithTolAngularType * getValueStats();
+  void setValueStats(StatsWithTolAngularType * ValueStatsIn);
+  StatsAngularType * getMaxValueStats();
+  void setMaxValueStats(StatsAngularType * MaxValueStatsIn);
+  StatsAngularType * getMinValueStats();
+  void setMinValueStats(StatsAngularType * MinValueStatsIn);
+
+protected:
+  StatsWithTolAngularType * ValueStats;
+  StatsAngularType * MaxValueStats;
+  StatsAngularType * MinValueStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedAngu_1117_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedAngu_1117_Type();
+  UserDefinedAngu_1117_Type(
+    StatsAngularType * MaxValueStatsIn,
+    StatsAngularType * MinValueStatsIn);
+  ~UserDefinedAngu_1117_Type();
+  void printSelf(FILE * outFile);
+
+  StatsAngularType * getMaxValueStats();
+  void setMaxValueStats(StatsAngularType * MaxValueStatsIn);
+  StatsAngularType * getMinValueStats();
+  void setMinValueStats(StatsAngularType * MinValueStatsIn);
+
+protected:
+  StatsAngularType * MaxValueStats;
+  StatsAngularType * MinValueStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedAngu_1118_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedAngu_1118_Type();
+  UserDefinedAngu_1118_Type(
+    StatsWithTolAngularType * DeviationStatsIn,
+    StatsAngularType * MaxDeviationStatsIn,
+    StatsAngularType * MinDeviationStatsIn);
+  ~UserDefinedAngu_1118_Type();
+  void printSelf(FILE * outFile);
+
+  StatsWithTolAngularType * getDeviationStats();
+  void setDeviationStats(StatsWithTolAngularType * DeviationStatsIn);
+  StatsAngularType * getMaxDeviationStats();
+  void setMaxDeviationStats(StatsAngularType * MaxDeviationStatsIn);
+  StatsAngularType * getMinDeviationStats();
+  void setMinDeviationStats(StatsAngularType * MinDeviationStatsIn);
+
+protected:
+  StatsWithTolAngularType * DeviationStats;
+  StatsAngularType * MaxDeviationStats;
+  StatsAngularType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedAngu_1119_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedAngu_1119_Type();
+  UserDefinedAngu_1119_Type(
+    StatsAngularType * MaxDeviationStatsIn,
+    StatsAngularType * MinDeviationStatsIn);
+  ~UserDefinedAngu_1119_Type();
+  void printSelf(FILE * outFile);
+
+  StatsAngularType * getMaxDeviationStats();
+  void setMaxDeviationStats(StatsAngularType * MaxDeviationStatsIn);
+  StatsAngularType * getMinDeviationStats();
+  void setMinDeviationStats(StatsAngularType * MinDeviationStatsIn);
+
+protected:
+  StatsAngularType * MaxDeviationStats;
+  StatsAngularType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedArea_1120_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedArea_1120_Type();
+  UserDefinedArea_1120_Type(
+    StatsWithTolAreaType * ValueStatsIn,
+    StatsAreaType * MaxValueStatsIn,
+    StatsAreaType * MinValueStatsIn);
+  ~UserDefinedArea_1120_Type();
+  void printSelf(FILE * outFile);
+
+  StatsWithTolAreaType * getValueStats();
+  void setValueStats(StatsWithTolAreaType * ValueStatsIn);
+  StatsAreaType * getMaxValueStats();
+  void setMaxValueStats(StatsAreaType * MaxValueStatsIn);
+  StatsAreaType * getMinValueStats();
+  void setMinValueStats(StatsAreaType * MinValueStatsIn);
+
+protected:
+  StatsWithTolAreaType * ValueStats;
+  StatsAreaType * MaxValueStats;
+  StatsAreaType * MinValueStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedArea_1121_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedArea_1121_Type();
+  UserDefinedArea_1121_Type(
+    StatsAreaType * MaxValueStatsIn,
+    StatsAreaType * MinValueStatsIn);
+  ~UserDefinedArea_1121_Type();
+  void printSelf(FILE * outFile);
+
+  StatsAreaType * getMaxValueStats();
+  void setMaxValueStats(StatsAreaType * MaxValueStatsIn);
+  StatsAreaType * getMinValueStats();
+  void setMinValueStats(StatsAreaType * MinValueStatsIn);
+
+protected:
+  StatsAreaType * MaxValueStats;
+  StatsAreaType * MinValueStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedArea_1122_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedArea_1122_Type();
+  UserDefinedArea_1122_Type(
+    StatsWithTolAreaType * DeviationStatsIn,
+    StatsAreaType * MaxDeviationStatsIn,
+    StatsAreaType * MinDeviationStatsIn);
+  ~UserDefinedArea_1122_Type();
+  void printSelf(FILE * outFile);
+
+  StatsWithTolAreaType * getDeviationStats();
+  void setDeviationStats(StatsWithTolAreaType * DeviationStatsIn);
+  StatsAreaType * getMaxDeviationStats();
+  void setMaxDeviationStats(StatsAreaType * MaxDeviationStatsIn);
+  StatsAreaType * getMinDeviationStats();
+  void setMinDeviationStats(StatsAreaType * MinDeviationStatsIn);
+
+protected:
+  StatsWithTolAreaType * DeviationStats;
+  StatsAreaType * MaxDeviationStats;
+  StatsAreaType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedArea_1123_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedArea_1123_Type();
+  UserDefinedArea_1123_Type(
+    StatsAreaType * MaxDeviationStatsIn,
+    StatsAreaType * MinDeviationStatsIn);
+  ~UserDefinedArea_1123_Type();
+  void printSelf(FILE * outFile);
+
+  StatsAreaType * getMaxDeviationStats();
+  void setMaxDeviationStats(StatsAreaType * MaxDeviationStatsIn);
+  StatsAreaType * getMinDeviationStats();
+  void setMinDeviationStats(StatsAreaType * MinDeviationStatsIn);
+
+protected:
+  StatsAreaType * MaxDeviationStats;
+  StatsAreaType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedForc_1124_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedForc_1124_Type();
+  UserDefinedForc_1124_Type(
+    StatsWithTolForceType * ValueStatsIn,
+    StatsForceType * MaxValueStatsIn,
+    StatsForceType * MinValueStatsIn);
+  ~UserDefinedForc_1124_Type();
+  void printSelf(FILE * outFile);
+
+  StatsWithTolForceType * getValueStats();
+  void setValueStats(StatsWithTolForceType * ValueStatsIn);
+  StatsForceType * getMaxValueStats();
+  void setMaxValueStats(StatsForceType * MaxValueStatsIn);
+  StatsForceType * getMinValueStats();
+  void setMinValueStats(StatsForceType * MinValueStatsIn);
+
+protected:
+  StatsWithTolForceType * ValueStats;
+  StatsForceType * MaxValueStats;
+  StatsForceType * MinValueStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedForc_1125_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedForc_1125_Type();
+  UserDefinedForc_1125_Type(
+    StatsForceType * MaxValueStatsIn,
+    StatsForceType * MinValueStatsIn);
+  ~UserDefinedForc_1125_Type();
+  void printSelf(FILE * outFile);
+
+  StatsForceType * getMaxValueStats();
+  void setMaxValueStats(StatsForceType * MaxValueStatsIn);
+  StatsForceType * getMinValueStats();
+  void setMinValueStats(StatsForceType * MinValueStatsIn);
+
+protected:
+  StatsForceType * MaxValueStats;
+  StatsForceType * MinValueStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedForc_1126_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedForc_1126_Type();
+  UserDefinedForc_1126_Type(
+    StatsWithTolForceType * DeviationStatsIn,
+    StatsForceType * MaxDeviationStatsIn,
+    StatsForceType * MinDeviationStatsIn);
+  ~UserDefinedForc_1126_Type();
+  void printSelf(FILE * outFile);
+
+  StatsWithTolForceType * getDeviationStats();
+  void setDeviationStats(StatsWithTolForceType * DeviationStatsIn);
+  StatsForceType * getMaxDeviationStats();
+  void setMaxDeviationStats(StatsForceType * MaxDeviationStatsIn);
+  StatsForceType * getMinDeviationStats();
+  void setMinDeviationStats(StatsForceType * MinDeviationStatsIn);
+
+protected:
+  StatsWithTolForceType * DeviationStats;
+  StatsForceType * MaxDeviationStats;
+  StatsForceType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedForc_1127_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedForc_1127_Type();
+  UserDefinedForc_1127_Type(
+    StatsForceType * MaxDeviationStatsIn,
+    StatsForceType * MinDeviationStatsIn);
+  ~UserDefinedForc_1127_Type();
+  void printSelf(FILE * outFile);
+
+  StatsForceType * getMaxDeviationStats();
+  void setMaxDeviationStats(StatsForceType * MaxDeviationStatsIn);
+  StatsForceType * getMinDeviationStats();
+  void setMinDeviationStats(StatsForceType * MinDeviationStatsIn);
+
+protected:
+  StatsForceType * MaxDeviationStats;
+  StatsForceType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedLine_1128_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedLine_1128_Type();
+  UserDefinedLine_1128_Type(
+    StatsWithTolLinearType * ValueStatsIn,
+    StatsLinearType * MaxValueStatsIn,
+    StatsLinearType * MinValueStatsIn);
+  ~UserDefinedLine_1128_Type();
+  void printSelf(FILE * outFile);
+
+  StatsWithTolLinearType * getValueStats();
+  void setValueStats(StatsWithTolLinearType * ValueStatsIn);
+  StatsLinearType * getMaxValueStats();
+  void setMaxValueStats(StatsLinearType * MaxValueStatsIn);
+  StatsLinearType * getMinValueStats();
+  void setMinValueStats(StatsLinearType * MinValueStatsIn);
+
+protected:
+  StatsWithTolLinearType * ValueStats;
+  StatsLinearType * MaxValueStats;
+  StatsLinearType * MinValueStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedLine_1129_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedLine_1129_Type();
+  UserDefinedLine_1129_Type(
+    StatsLinearType * MaxValueStatsIn,
+    StatsLinearType * MinValueStatsIn);
+  ~UserDefinedLine_1129_Type();
+  void printSelf(FILE * outFile);
+
+  StatsLinearType * getMaxValueStats();
+  void setMaxValueStats(StatsLinearType * MaxValueStatsIn);
+  StatsLinearType * getMinValueStats();
+  void setMinValueStats(StatsLinearType * MinValueStatsIn);
+
+protected:
+  StatsLinearType * MaxValueStats;
+  StatsLinearType * MinValueStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedLine_1130_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedLine_1130_Type();
+  UserDefinedLine_1130_Type(
+    StatsWithTolLinearType * DeviationStatsIn,
+    StatsLinearType * MaxDeviationStatsIn,
+    StatsLinearType * MinDeviationStatsIn);
+  ~UserDefinedLine_1130_Type();
+  void printSelf(FILE * outFile);
+
+  StatsWithTolLinearType * getDeviationStats();
+  void setDeviationStats(StatsWithTolLinearType * DeviationStatsIn);
+  StatsLinearType * getMaxDeviationStats();
+  void setMaxDeviationStats(StatsLinearType * MaxDeviationStatsIn);
+  StatsLinearType * getMinDeviationStats();
+  void setMinDeviationStats(StatsLinearType * MinDeviationStatsIn);
+
+protected:
+  StatsWithTolLinearType * DeviationStats;
+  StatsLinearType * MaxDeviationStats;
+  StatsLinearType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedLine_1131_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedLine_1131_Type();
+  UserDefinedLine_1131_Type(
+    StatsLinearType * MaxDeviationStatsIn,
+    StatsLinearType * MinDeviationStatsIn);
+  ~UserDefinedLine_1131_Type();
+  void printSelf(FILE * outFile);
+
+  StatsLinearType * getMaxDeviationStats();
+  void setMaxDeviationStats(StatsLinearType * MaxDeviationStatsIn);
+  StatsLinearType * getMinDeviationStats();
+  void setMinDeviationStats(StatsLinearType * MinDeviationStatsIn);
+
+protected:
+  StatsLinearType * MaxDeviationStats;
+  StatsLinearType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedMass_1132_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedMass_1132_Type();
+  UserDefinedMass_1132_Type(
+    StatsWithTolMassType * ValueStatsIn,
+    StatsMassType * MaxValueStatsIn,
+    StatsMassType * MinValueStatsIn);
+  ~UserDefinedMass_1132_Type();
+  void printSelf(FILE * outFile);
+
+  StatsWithTolMassType * getValueStats();
+  void setValueStats(StatsWithTolMassType * ValueStatsIn);
+  StatsMassType * getMaxValueStats();
+  void setMaxValueStats(StatsMassType * MaxValueStatsIn);
+  StatsMassType * getMinValueStats();
+  void setMinValueStats(StatsMassType * MinValueStatsIn);
+
+protected:
+  StatsWithTolMassType * ValueStats;
+  StatsMassType * MaxValueStats;
+  StatsMassType * MinValueStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedMass_1133_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedMass_1133_Type();
+  UserDefinedMass_1133_Type(
+    StatsMassType * MaxValueStatsIn,
+    StatsMassType * MinValueStatsIn);
+  ~UserDefinedMass_1133_Type();
+  void printSelf(FILE * outFile);
+
+  StatsMassType * getMaxValueStats();
+  void setMaxValueStats(StatsMassType * MaxValueStatsIn);
+  StatsMassType * getMinValueStats();
+  void setMinValueStats(StatsMassType * MinValueStatsIn);
+
+protected:
+  StatsMassType * MaxValueStats;
+  StatsMassType * MinValueStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedMass_1134_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedMass_1134_Type();
+  UserDefinedMass_1134_Type(
+    StatsWithTolMassType * DeviationStatsIn,
+    StatsMassType * MaxDeviationStatsIn,
+    StatsMassType * MinDeviationStatsIn);
+  ~UserDefinedMass_1134_Type();
+  void printSelf(FILE * outFile);
+
+  StatsWithTolMassType * getDeviationStats();
+  void setDeviationStats(StatsWithTolMassType * DeviationStatsIn);
+  StatsMassType * getMaxDeviationStats();
+  void setMaxDeviationStats(StatsMassType * MaxDeviationStatsIn);
+  StatsMassType * getMinDeviationStats();
+  void setMinDeviationStats(StatsMassType * MinDeviationStatsIn);
+
+protected:
+  StatsWithTolMassType * DeviationStats;
+  StatsMassType * MaxDeviationStats;
+  StatsMassType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedMass_1135_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedMass_1135_Type();
+  UserDefinedMass_1135_Type(
+    StatsMassType * MaxDeviationStatsIn,
+    StatsMassType * MinDeviationStatsIn);
+  ~UserDefinedMass_1135_Type();
+  void printSelf(FILE * outFile);
+
+  StatsMassType * getMaxDeviationStats();
+  void setMaxDeviationStats(StatsMassType * MaxDeviationStatsIn);
+  StatsMassType * getMinDeviationStats();
+  void setMinDeviationStats(StatsMassType * MinDeviationStatsIn);
+
+protected:
+  StatsMassType * MaxDeviationStats;
+  StatsMassType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedPres_1136_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedPres_1136_Type();
+  UserDefinedPres_1136_Type(
+    StatsWithTolPressureType * ValueStatsIn,
+    StatsPressureType * MaxValueStatsIn,
+    StatsPressureType * MinValueStatsIn);
+  ~UserDefinedPres_1136_Type();
+  void printSelf(FILE * outFile);
+
+  StatsWithTolPressureType * getValueStats();
+  void setValueStats(StatsWithTolPressureType * ValueStatsIn);
+  StatsPressureType * getMaxValueStats();
+  void setMaxValueStats(StatsPressureType * MaxValueStatsIn);
+  StatsPressureType * getMinValueStats();
+  void setMinValueStats(StatsPressureType * MinValueStatsIn);
+
+protected:
+  StatsWithTolPressureType * ValueStats;
+  StatsPressureType * MaxValueStats;
+  StatsPressureType * MinValueStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedPres_1137_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedPres_1137_Type();
+  UserDefinedPres_1137_Type(
+    StatsPressureType * MaxValueStatsIn,
+    StatsPressureType * MinValueStatsIn);
+  ~UserDefinedPres_1137_Type();
+  void printSelf(FILE * outFile);
+
+  StatsPressureType * getMaxValueStats();
+  void setMaxValueStats(StatsPressureType * MaxValueStatsIn);
+  StatsPressureType * getMinValueStats();
+  void setMinValueStats(StatsPressureType * MinValueStatsIn);
+
+protected:
+  StatsPressureType * MaxValueStats;
+  StatsPressureType * MinValueStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedPres_1138_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedPres_1138_Type();
+  UserDefinedPres_1138_Type(
+    StatsWithTolPressureType * DeviationStatsIn,
+    StatsPressureType * MaxDeviationStatsIn,
+    StatsPressureType * MinDeviationStatsIn);
+  ~UserDefinedPres_1138_Type();
+  void printSelf(FILE * outFile);
+
+  StatsWithTolPressureType * getDeviationStats();
+  void setDeviationStats(StatsWithTolPressureType * DeviationStatsIn);
+  StatsPressureType * getMaxDeviationStats();
+  void setMaxDeviationStats(StatsPressureType * MaxDeviationStatsIn);
+  StatsPressureType * getMinDeviationStats();
+  void setMinDeviationStats(StatsPressureType * MinDeviationStatsIn);
+
+protected:
+  StatsWithTolPressureType * DeviationStats;
+  StatsPressureType * MaxDeviationStats;
+  StatsPressureType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedPres_1139_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedPres_1139_Type();
+  UserDefinedPres_1139_Type(
+    StatsPressureType * MaxDeviationStatsIn,
+    StatsPressureType * MinDeviationStatsIn);
+  ~UserDefinedPres_1139_Type();
+  void printSelf(FILE * outFile);
+
+  StatsPressureType * getMaxDeviationStats();
+  void setMaxDeviationStats(StatsPressureType * MaxDeviationStatsIn);
+  StatsPressureType * getMinDeviationStats();
+  void setMinDeviationStats(StatsPressureType * MinDeviationStatsIn);
+
+protected:
+  StatsPressureType * MaxDeviationStats;
+  StatsPressureType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedSpee_1140_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedSpee_1140_Type();
+  UserDefinedSpee_1140_Type(
+    StatsWithTolSpeedType * ValueStatsIn,
+    StatsSpeedType * MaxValueStatsIn,
+    StatsSpeedType * MinValueStatsIn);
+  ~UserDefinedSpee_1140_Type();
+  void printSelf(FILE * outFile);
+
+  StatsWithTolSpeedType * getValueStats();
+  void setValueStats(StatsWithTolSpeedType * ValueStatsIn);
+  StatsSpeedType * getMaxValueStats();
+  void setMaxValueStats(StatsSpeedType * MaxValueStatsIn);
+  StatsSpeedType * getMinValueStats();
+  void setMinValueStats(StatsSpeedType * MinValueStatsIn);
+
+protected:
+  StatsWithTolSpeedType * ValueStats;
+  StatsSpeedType * MaxValueStats;
+  StatsSpeedType * MinValueStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedSpee_1141_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedSpee_1141_Type();
+  UserDefinedSpee_1141_Type(
+    StatsSpeedType * MaxValueStatsIn,
+    StatsSpeedType * MinValueStatsIn);
+  ~UserDefinedSpee_1141_Type();
+  void printSelf(FILE * outFile);
+
+  StatsSpeedType * getMaxValueStats();
+  void setMaxValueStats(StatsSpeedType * MaxValueStatsIn);
+  StatsSpeedType * getMinValueStats();
+  void setMinValueStats(StatsSpeedType * MinValueStatsIn);
+
+protected:
+  StatsSpeedType * MaxValueStats;
+  StatsSpeedType * MinValueStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedSpee_1142_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedSpee_1142_Type();
+  UserDefinedSpee_1142_Type(
+    StatsWithTolSpeedType * DeviationStatsIn,
+    StatsSpeedType * MaxDeviationStatsIn,
+    StatsSpeedType * MinDeviationStatsIn);
+  ~UserDefinedSpee_1142_Type();
+  void printSelf(FILE * outFile);
+
+  StatsWithTolSpeedType * getDeviationStats();
+  void setDeviationStats(StatsWithTolSpeedType * DeviationStatsIn);
+  StatsSpeedType * getMaxDeviationStats();
+  void setMaxDeviationStats(StatsSpeedType * MaxDeviationStatsIn);
+  StatsSpeedType * getMinDeviationStats();
+  void setMinDeviationStats(StatsSpeedType * MinDeviationStatsIn);
+
+protected:
+  StatsWithTolSpeedType * DeviationStats;
+  StatsSpeedType * MaxDeviationStats;
+  StatsSpeedType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedSpee_1143_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedSpee_1143_Type();
+  UserDefinedSpee_1143_Type(
+    StatsSpeedType * MaxDeviationStatsIn,
+    StatsSpeedType * MinDeviationStatsIn);
+  ~UserDefinedSpee_1143_Type();
+  void printSelf(FILE * outFile);
+
+  StatsSpeedType * getMaxDeviationStats();
+  void setMaxDeviationStats(StatsSpeedType * MaxDeviationStatsIn);
+  StatsSpeedType * getMinDeviationStats();
+  void setMinDeviationStats(StatsSpeedType * MinDeviationStatsIn);
+
+protected:
+  StatsSpeedType * MaxDeviationStats;
+  StatsSpeedType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedTemp_1144_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedTemp_1144_Type();
+  UserDefinedTemp_1144_Type(
+    StatsWithTolTemperatureType * ValueStatsIn,
+    StatsTemperatureType * MaxValueStatsIn,
+    StatsTemperatureType * MinValueStatsIn);
+  ~UserDefinedTemp_1144_Type();
+  void printSelf(FILE * outFile);
+
+  StatsWithTolTemperatureType * getValueStats();
+  void setValueStats(StatsWithTolTemperatureType * ValueStatsIn);
+  StatsTemperatureType * getMaxValueStats();
+  void setMaxValueStats(StatsTemperatureType * MaxValueStatsIn);
+  StatsTemperatureType * getMinValueStats();
+  void setMinValueStats(StatsTemperatureType * MinValueStatsIn);
+
+protected:
+  StatsWithTolTemperatureType * ValueStats;
+  StatsTemperatureType * MaxValueStats;
+  StatsTemperatureType * MinValueStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedTemp_1145_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedTemp_1145_Type();
+  UserDefinedTemp_1145_Type(
+    StatsTemperatureType * MaxValueStatsIn,
+    StatsTemperatureType * MinValueStatsIn);
+  ~UserDefinedTemp_1145_Type();
+  void printSelf(FILE * outFile);
+
+  StatsTemperatureType * getMaxValueStats();
+  void setMaxValueStats(StatsTemperatureType * MaxValueStatsIn);
+  StatsTemperatureType * getMinValueStats();
+  void setMinValueStats(StatsTemperatureType * MinValueStatsIn);
+
+protected:
+  StatsTemperatureType * MaxValueStats;
+  StatsTemperatureType * MinValueStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedTemp_1146_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedTemp_1146_Type();
+  UserDefinedTemp_1146_Type(
+    StatsWithTolTemperatureType * DeviationStatsIn,
+    StatsTemperatureType * MaxDeviationStatsIn,
+    StatsTemperatureType * MinDeviationStatsIn);
+  ~UserDefinedTemp_1146_Type();
+  void printSelf(FILE * outFile);
+
+  StatsWithTolTemperatureType * getDeviationStats();
+  void setDeviationStats(StatsWithTolTemperatureType * DeviationStatsIn);
+  StatsTemperatureType * getMaxDeviationStats();
+  void setMaxDeviationStats(StatsTemperatureType * MaxDeviationStatsIn);
+  StatsTemperatureType * getMinDeviationStats();
+  void setMinDeviationStats(StatsTemperatureType * MinDeviationStatsIn);
+
+protected:
+  StatsWithTolTemperatureType * DeviationStats;
+  StatsTemperatureType * MaxDeviationStats;
+  StatsTemperatureType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedTemp_1147_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedTemp_1147_Type();
+  UserDefinedTemp_1147_Type(
+    StatsTemperatureType * MaxDeviationStatsIn,
+    StatsTemperatureType * MinDeviationStatsIn);
+  ~UserDefinedTemp_1147_Type();
+  void printSelf(FILE * outFile);
+
+  StatsTemperatureType * getMaxDeviationStats();
+  void setMaxDeviationStats(StatsTemperatureType * MaxDeviationStatsIn);
+  StatsTemperatureType * getMinDeviationStats();
+  void setMinDeviationStats(StatsTemperatureType * MinDeviationStatsIn);
+
+protected:
+  StatsTemperatureType * MaxDeviationStats;
+  StatsTemperatureType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedTime_1148_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedTime_1148_Type();
+  UserDefinedTime_1148_Type(
+    StatsWithTolTimeType * ValueStatsIn,
+    StatsTimeType * MaxValueStatsIn,
+    StatsTimeType * MinValueStatsIn);
+  ~UserDefinedTime_1148_Type();
+  void printSelf(FILE * outFile);
+
+  StatsWithTolTimeType * getValueStats();
+  void setValueStats(StatsWithTolTimeType * ValueStatsIn);
+  StatsTimeType * getMaxValueStats();
+  void setMaxValueStats(StatsTimeType * MaxValueStatsIn);
+  StatsTimeType * getMinValueStats();
+  void setMinValueStats(StatsTimeType * MinValueStatsIn);
+
+protected:
+  StatsWithTolTimeType * ValueStats;
+  StatsTimeType * MaxValueStats;
+  StatsTimeType * MinValueStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedTime_1149_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedTime_1149_Type();
+  UserDefinedTime_1149_Type(
+    StatsTimeType * MaxValueStatsIn,
+    StatsTimeType * MinValueStatsIn);
+  ~UserDefinedTime_1149_Type();
+  void printSelf(FILE * outFile);
+
+  StatsTimeType * getMaxValueStats();
+  void setMaxValueStats(StatsTimeType * MaxValueStatsIn);
+  StatsTimeType * getMinValueStats();
+  void setMinValueStats(StatsTimeType * MinValueStatsIn);
+
+protected:
+  StatsTimeType * MaxValueStats;
+  StatsTimeType * MinValueStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedTime_1150_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedTime_1150_Type();
+  UserDefinedTime_1150_Type(
+    StatsWithTolTimeType * DeviationStatsIn,
+    StatsTimeType * MaxDeviationStatsIn,
+    StatsTimeType * MinDeviationStatsIn);
+  ~UserDefinedTime_1150_Type();
+  void printSelf(FILE * outFile);
+
+  StatsWithTolTimeType * getDeviationStats();
+  void setDeviationStats(StatsWithTolTimeType * DeviationStatsIn);
+  StatsTimeType * getMaxDeviationStats();
+  void setMaxDeviationStats(StatsTimeType * MaxDeviationStatsIn);
+  StatsTimeType * getMinDeviationStats();
+  void setMinDeviationStats(StatsTimeType * MinDeviationStatsIn);
+
+protected:
+  StatsWithTolTimeType * DeviationStats;
+  StatsTimeType * MaxDeviationStats;
+  StatsTimeType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedTime_1151_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedTime_1151_Type();
+  UserDefinedTime_1151_Type(
+    StatsTimeType * MaxDeviationStatsIn,
+    StatsTimeType * MinDeviationStatsIn);
+  ~UserDefinedTime_1151_Type();
+  void printSelf(FILE * outFile);
+
+  StatsTimeType * getMaxDeviationStats();
+  void setMaxDeviationStats(StatsTimeType * MaxDeviationStatsIn);
+  StatsTimeType * getMinDeviationStats();
+  void setMinDeviationStats(StatsTimeType * MinDeviationStatsIn);
+
+protected:
+  StatsTimeType * MaxDeviationStats;
+  StatsTimeType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedUnit_1152_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedUnit_1152_Type();
+  UserDefinedUnit_1152_Type(
+    StatsWithTolUserDefinedUnitType * ValueStatsIn,
+    StatsUserDefinedUnitType * MaxValueStatsIn,
+    StatsUserDefinedUnitType * MinValueStatsIn);
+  ~UserDefinedUnit_1152_Type();
+  void printSelf(FILE * outFile);
+
+  StatsWithTolUserDefinedUnitType * getValueStats();
+  void setValueStats(StatsWithTolUserDefinedUnitType * ValueStatsIn);
+  StatsUserDefinedUnitType * getMaxValueStats();
+  void setMaxValueStats(StatsUserDefinedUnitType * MaxValueStatsIn);
+  StatsUserDefinedUnitType * getMinValueStats();
+  void setMinValueStats(StatsUserDefinedUnitType * MinValueStatsIn);
+
+protected:
+  StatsWithTolUserDefinedUnitType * ValueStats;
+  StatsUserDefinedUnitType * MaxValueStats;
+  StatsUserDefinedUnitType * MinValueStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedUnit_1153_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedUnit_1153_Type();
+  UserDefinedUnit_1153_Type(
+    StatsUserDefinedUnitType * MaxValueStatsIn,
+    StatsUserDefinedUnitType * MinValueStatsIn);
+  ~UserDefinedUnit_1153_Type();
+  void printSelf(FILE * outFile);
+
+  StatsUserDefinedUnitType * getMaxValueStats();
+  void setMaxValueStats(StatsUserDefinedUnitType * MaxValueStatsIn);
+  StatsUserDefinedUnitType * getMinValueStats();
+  void setMinValueStats(StatsUserDefinedUnitType * MinValueStatsIn);
+
+protected:
+  StatsUserDefinedUnitType * MaxValueStats;
+  StatsUserDefinedUnitType * MinValueStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedUnit_1154_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedUnit_1154_Type();
+  UserDefinedUnit_1154_Type(
+    StatsWithTolUserDefinedUnitType * DeviationStatsIn,
+    StatsUserDefinedUnitType * MaxDeviationStatsIn,
+    StatsUserDefinedUnitType * MinDeviationStatsIn);
+  ~UserDefinedUnit_1154_Type();
+  void printSelf(FILE * outFile);
+
+  StatsWithTolUserDefinedUnitType * getDeviationStats();
+  void setDeviationStats(StatsWithTolUserDefinedUnitType * DeviationStatsIn);
+  StatsUserDefinedUnitType * getMaxDeviationStats();
+  void setMaxDeviationStats(StatsUserDefinedUnitType * MaxDeviationStatsIn);
+  StatsUserDefinedUnitType * getMinDeviationStats();
+  void setMinDeviationStats(StatsUserDefinedUnitType * MinDeviationStatsIn);
+
+protected:
+  StatsWithTolUserDefinedUnitType * DeviationStats;
+  StatsUserDefinedUnitType * MaxDeviationStats;
+  StatsUserDefinedUnitType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedUnit_1155_Type :
+  public XmlTypeBase
+{
+public:
+  UserDefinedUnit_1155_Type();
+  UserDefinedUnit_1155_Type(
+    StatsUserDefinedUnitType * MaxDeviationStatsIn,
+    StatsUserDefinedUnitType * MinDeviationStatsIn);
+  ~UserDefinedUnit_1155_Type();
+  void printSelf(FILE * outFile);
+
+  StatsUserDefinedUnitType * getMaxDeviationStats();
+  void setMaxDeviationStats(StatsUserDefinedUnitType * MaxDeviationStatsIn);
+  StatsUserDefinedUnitType * getMinDeviationStats();
+  void setMinDeviationStats(StatsUserDefinedUnitType * MinDeviationStatsIn);
+
+protected:
+  StatsUserDefinedUnitType * MaxDeviationStats;
+  StatsUserDefinedUnitType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class CharacteristicS_1156_Type :
+  public XmlTypeBase
+{
+public:
+  CharacteristicS_1156_Type();
+  CharacteristicS_1156_Type(
+    CharacteristicS_1156_TypeChoicePair * CharacteristicS_1156_TypePairIn);
+  ~CharacteristicS_1156_Type();
+  void printSelf(FILE * outFile);
+
+  CharacteristicS_1156_TypeChoicePair * getCharacteristicS_1156_TypePair();
+  void setCharacteristicS_1156_TypePair(CharacteristicS_1156_TypeChoicePair * CharacteristicS_1156_TypePairIn);
+
+protected:
+  CharacteristicS_1156_TypeChoicePair * CharacteristicS_1156_TypePair;
+};
+
+/* ***************************************************************** */
+
+union CharacteristicS_1156_TypeVal
+{
+  StatsArrayIdType * MeasuredIds;
+  SubgroupsType * Subgroups;
+};
+
+/* ***************************************************************** */
+
+class CharacteristicS_1156_TypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    MeasuredIdsE,
+    SubgroupsE };
+  CharacteristicS_1156_TypeChoicePair();
+  CharacteristicS_1156_TypeChoicePair(
+    whichOne CharacteristicS_1156_TypeTypeIn,
+    CharacteristicS_1156_TypeVal CharacteristicS_1156_TypeValueIn);
+  ~CharacteristicS_1156_TypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne CharacteristicS_1156_TypeType;
+  CharacteristicS_1156_TypeVal CharacteristicS_1156_TypeValue;
+};
+
+/* ***************************************************************** */
+
+class CharacteristicS_1157_Type :
+  public XmlTypeBase
+{
+public:
+  CharacteristicS_1157_Type();
+  CharacteristicS_1157_Type(
+    CharacteristicS_1157_TypeChoicePair * CharacteristicS_1157_TypePairIn);
+  ~CharacteristicS_1157_Type();
+  void printSelf(FILE * outFile);
+
+  CharacteristicS_1157_TypeChoicePair * getCharacteristicS_1157_TypePair();
+  void setCharacteristicS_1157_TypePair(CharacteristicS_1157_TypeChoicePair * CharacteristicS_1157_TypePairIn);
+
+protected:
+  CharacteristicS_1157_TypeChoicePair * CharacteristicS_1157_TypePair;
+};
+
+/* ***************************************************************** */
+
+union CharacteristicS_1157_TypeVal
+{
+  StatsValuesType * MeasuredValues;
+  SubgroupValuesType * SubgroupValues;
+};
+
+/* ***************************************************************** */
+
+class CharacteristicS_1157_TypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    MeasuredValuesE,
+    SubgroupValuesE };
+  CharacteristicS_1157_TypeChoicePair();
+  CharacteristicS_1157_TypeChoicePair(
+    whichOne CharacteristicS_1157_TypeTypeIn,
+    CharacteristicS_1157_TypeVal CharacteristicS_1157_TypeValueIn);
+  ~CharacteristicS_1157_TypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne CharacteristicS_1157_TypeType;
+  CharacteristicS_1157_TypeVal CharacteristicS_1157_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -5235,1006 +5928,6 @@ protected:
 
 /* ***************************************************************** */
 
-class UserDefinedAngu_1159_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedAngu_1159_Type();
-  UserDefinedAngu_1159_Type(
-    StatsWithTolAngularType * ValueStatsIn,
-    StatsAngularType * MaxValueStatsIn,
-    StatsAngularType * MinValueStatsIn);
-  ~UserDefinedAngu_1159_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithTolAngularType * getValueStats();
-  void setValueStats(StatsWithTolAngularType * ValueStatsIn);
-  StatsAngularType * getMaxValueStats();
-  void setMaxValueStats(StatsAngularType * MaxValueStatsIn);
-  StatsAngularType * getMinValueStats();
-  void setMinValueStats(StatsAngularType * MinValueStatsIn);
-
-protected:
-  StatsWithTolAngularType * ValueStats;
-  StatsAngularType * MaxValueStats;
-  StatsAngularType * MinValueStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedAngu_1160_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedAngu_1160_Type();
-  UserDefinedAngu_1160_Type(
-    StatsAngularType * MaxValueStatsIn,
-    StatsAngularType * MinValueStatsIn);
-  ~UserDefinedAngu_1160_Type();
-  void printSelf(FILE * outFile);
-
-  StatsAngularType * getMaxValueStats();
-  void setMaxValueStats(StatsAngularType * MaxValueStatsIn);
-  StatsAngularType * getMinValueStats();
-  void setMinValueStats(StatsAngularType * MinValueStatsIn);
-
-protected:
-  StatsAngularType * MaxValueStats;
-  StatsAngularType * MinValueStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedAngu_1161_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedAngu_1161_Type();
-  UserDefinedAngu_1161_Type(
-    StatsWithTolAngularType * DeviationStatsIn,
-    StatsAngularType * MaxDeviationStatsIn,
-    StatsAngularType * MinDeviationStatsIn);
-  ~UserDefinedAngu_1161_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithTolAngularType * getDeviationStats();
-  void setDeviationStats(StatsWithTolAngularType * DeviationStatsIn);
-  StatsAngularType * getMaxDeviationStats();
-  void setMaxDeviationStats(StatsAngularType * MaxDeviationStatsIn);
-  StatsAngularType * getMinDeviationStats();
-  void setMinDeviationStats(StatsAngularType * MinDeviationStatsIn);
-
-protected:
-  StatsWithTolAngularType * DeviationStats;
-  StatsAngularType * MaxDeviationStats;
-  StatsAngularType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedAngu_1162_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedAngu_1162_Type();
-  UserDefinedAngu_1162_Type(
-    StatsAngularType * MaxDeviationStatsIn,
-    StatsAngularType * MinDeviationStatsIn);
-  ~UserDefinedAngu_1162_Type();
-  void printSelf(FILE * outFile);
-
-  StatsAngularType * getMaxDeviationStats();
-  void setMaxDeviationStats(StatsAngularType * MaxDeviationStatsIn);
-  StatsAngularType * getMinDeviationStats();
-  void setMinDeviationStats(StatsAngularType * MinDeviationStatsIn);
-
-protected:
-  StatsAngularType * MaxDeviationStats;
-  StatsAngularType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedArea_1163_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedArea_1163_Type();
-  UserDefinedArea_1163_Type(
-    StatsWithTolAreaType * ValueStatsIn,
-    StatsAreaType * MaxValueStatsIn,
-    StatsAreaType * MinValueStatsIn);
-  ~UserDefinedArea_1163_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithTolAreaType * getValueStats();
-  void setValueStats(StatsWithTolAreaType * ValueStatsIn);
-  StatsAreaType * getMaxValueStats();
-  void setMaxValueStats(StatsAreaType * MaxValueStatsIn);
-  StatsAreaType * getMinValueStats();
-  void setMinValueStats(StatsAreaType * MinValueStatsIn);
-
-protected:
-  StatsWithTolAreaType * ValueStats;
-  StatsAreaType * MaxValueStats;
-  StatsAreaType * MinValueStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedArea_1164_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedArea_1164_Type();
-  UserDefinedArea_1164_Type(
-    StatsAreaType * MaxValueStatsIn,
-    StatsAreaType * MinValueStatsIn);
-  ~UserDefinedArea_1164_Type();
-  void printSelf(FILE * outFile);
-
-  StatsAreaType * getMaxValueStats();
-  void setMaxValueStats(StatsAreaType * MaxValueStatsIn);
-  StatsAreaType * getMinValueStats();
-  void setMinValueStats(StatsAreaType * MinValueStatsIn);
-
-protected:
-  StatsAreaType * MaxValueStats;
-  StatsAreaType * MinValueStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedArea_1165_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedArea_1165_Type();
-  UserDefinedArea_1165_Type(
-    StatsWithTolAreaType * DeviationStatsIn,
-    StatsAreaType * MaxDeviationStatsIn,
-    StatsAreaType * MinDeviationStatsIn);
-  ~UserDefinedArea_1165_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithTolAreaType * getDeviationStats();
-  void setDeviationStats(StatsWithTolAreaType * DeviationStatsIn);
-  StatsAreaType * getMaxDeviationStats();
-  void setMaxDeviationStats(StatsAreaType * MaxDeviationStatsIn);
-  StatsAreaType * getMinDeviationStats();
-  void setMinDeviationStats(StatsAreaType * MinDeviationStatsIn);
-
-protected:
-  StatsWithTolAreaType * DeviationStats;
-  StatsAreaType * MaxDeviationStats;
-  StatsAreaType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedArea_1166_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedArea_1166_Type();
-  UserDefinedArea_1166_Type(
-    StatsAreaType * MaxDeviationStatsIn,
-    StatsAreaType * MinDeviationStatsIn);
-  ~UserDefinedArea_1166_Type();
-  void printSelf(FILE * outFile);
-
-  StatsAreaType * getMaxDeviationStats();
-  void setMaxDeviationStats(StatsAreaType * MaxDeviationStatsIn);
-  StatsAreaType * getMinDeviationStats();
-  void setMinDeviationStats(StatsAreaType * MinDeviationStatsIn);
-
-protected:
-  StatsAreaType * MaxDeviationStats;
-  StatsAreaType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedForc_1167_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedForc_1167_Type();
-  UserDefinedForc_1167_Type(
-    StatsWithTolForceType * ValueStatsIn,
-    StatsForceType * MaxValueStatsIn,
-    StatsForceType * MinValueStatsIn);
-  ~UserDefinedForc_1167_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithTolForceType * getValueStats();
-  void setValueStats(StatsWithTolForceType * ValueStatsIn);
-  StatsForceType * getMaxValueStats();
-  void setMaxValueStats(StatsForceType * MaxValueStatsIn);
-  StatsForceType * getMinValueStats();
-  void setMinValueStats(StatsForceType * MinValueStatsIn);
-
-protected:
-  StatsWithTolForceType * ValueStats;
-  StatsForceType * MaxValueStats;
-  StatsForceType * MinValueStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedForc_1168_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedForc_1168_Type();
-  UserDefinedForc_1168_Type(
-    StatsForceType * MaxValueStatsIn,
-    StatsForceType * MinValueStatsIn);
-  ~UserDefinedForc_1168_Type();
-  void printSelf(FILE * outFile);
-
-  StatsForceType * getMaxValueStats();
-  void setMaxValueStats(StatsForceType * MaxValueStatsIn);
-  StatsForceType * getMinValueStats();
-  void setMinValueStats(StatsForceType * MinValueStatsIn);
-
-protected:
-  StatsForceType * MaxValueStats;
-  StatsForceType * MinValueStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedForc_1169_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedForc_1169_Type();
-  UserDefinedForc_1169_Type(
-    StatsWithTolForceType * DeviationStatsIn,
-    StatsForceType * MaxDeviationStatsIn,
-    StatsForceType * MinDeviationStatsIn);
-  ~UserDefinedForc_1169_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithTolForceType * getDeviationStats();
-  void setDeviationStats(StatsWithTolForceType * DeviationStatsIn);
-  StatsForceType * getMaxDeviationStats();
-  void setMaxDeviationStats(StatsForceType * MaxDeviationStatsIn);
-  StatsForceType * getMinDeviationStats();
-  void setMinDeviationStats(StatsForceType * MinDeviationStatsIn);
-
-protected:
-  StatsWithTolForceType * DeviationStats;
-  StatsForceType * MaxDeviationStats;
-  StatsForceType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedForc_1170_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedForc_1170_Type();
-  UserDefinedForc_1170_Type(
-    StatsForceType * MaxDeviationStatsIn,
-    StatsForceType * MinDeviationStatsIn);
-  ~UserDefinedForc_1170_Type();
-  void printSelf(FILE * outFile);
-
-  StatsForceType * getMaxDeviationStats();
-  void setMaxDeviationStats(StatsForceType * MaxDeviationStatsIn);
-  StatsForceType * getMinDeviationStats();
-  void setMinDeviationStats(StatsForceType * MinDeviationStatsIn);
-
-protected:
-  StatsForceType * MaxDeviationStats;
-  StatsForceType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedLine_1171_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedLine_1171_Type();
-  UserDefinedLine_1171_Type(
-    StatsWithTolLinearType * ValueStatsIn,
-    StatsLinearType * MaxValueStatsIn,
-    StatsLinearType * MinValueStatsIn);
-  ~UserDefinedLine_1171_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithTolLinearType * getValueStats();
-  void setValueStats(StatsWithTolLinearType * ValueStatsIn);
-  StatsLinearType * getMaxValueStats();
-  void setMaxValueStats(StatsLinearType * MaxValueStatsIn);
-  StatsLinearType * getMinValueStats();
-  void setMinValueStats(StatsLinearType * MinValueStatsIn);
-
-protected:
-  StatsWithTolLinearType * ValueStats;
-  StatsLinearType * MaxValueStats;
-  StatsLinearType * MinValueStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedLine_1172_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedLine_1172_Type();
-  UserDefinedLine_1172_Type(
-    StatsLinearType * MaxValueStatsIn,
-    StatsLinearType * MinValueStatsIn);
-  ~UserDefinedLine_1172_Type();
-  void printSelf(FILE * outFile);
-
-  StatsLinearType * getMaxValueStats();
-  void setMaxValueStats(StatsLinearType * MaxValueStatsIn);
-  StatsLinearType * getMinValueStats();
-  void setMinValueStats(StatsLinearType * MinValueStatsIn);
-
-protected:
-  StatsLinearType * MaxValueStats;
-  StatsLinearType * MinValueStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedLine_1173_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedLine_1173_Type();
-  UserDefinedLine_1173_Type(
-    StatsWithTolLinearType * DeviationStatsIn,
-    StatsLinearType * MaxDeviationStatsIn,
-    StatsLinearType * MinDeviationStatsIn);
-  ~UserDefinedLine_1173_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithTolLinearType * getDeviationStats();
-  void setDeviationStats(StatsWithTolLinearType * DeviationStatsIn);
-  StatsLinearType * getMaxDeviationStats();
-  void setMaxDeviationStats(StatsLinearType * MaxDeviationStatsIn);
-  StatsLinearType * getMinDeviationStats();
-  void setMinDeviationStats(StatsLinearType * MinDeviationStatsIn);
-
-protected:
-  StatsWithTolLinearType * DeviationStats;
-  StatsLinearType * MaxDeviationStats;
-  StatsLinearType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedLine_1174_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedLine_1174_Type();
-  UserDefinedLine_1174_Type(
-    StatsLinearType * MaxDeviationStatsIn,
-    StatsLinearType * MinDeviationStatsIn);
-  ~UserDefinedLine_1174_Type();
-  void printSelf(FILE * outFile);
-
-  StatsLinearType * getMaxDeviationStats();
-  void setMaxDeviationStats(StatsLinearType * MaxDeviationStatsIn);
-  StatsLinearType * getMinDeviationStats();
-  void setMinDeviationStats(StatsLinearType * MinDeviationStatsIn);
-
-protected:
-  StatsLinearType * MaxDeviationStats;
-  StatsLinearType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedMass_1175_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedMass_1175_Type();
-  UserDefinedMass_1175_Type(
-    StatsWithTolMassType * ValueStatsIn,
-    StatsMassType * MaxValueStatsIn,
-    StatsMassType * MinValueStatsIn);
-  ~UserDefinedMass_1175_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithTolMassType * getValueStats();
-  void setValueStats(StatsWithTolMassType * ValueStatsIn);
-  StatsMassType * getMaxValueStats();
-  void setMaxValueStats(StatsMassType * MaxValueStatsIn);
-  StatsMassType * getMinValueStats();
-  void setMinValueStats(StatsMassType * MinValueStatsIn);
-
-protected:
-  StatsWithTolMassType * ValueStats;
-  StatsMassType * MaxValueStats;
-  StatsMassType * MinValueStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedMass_1176_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedMass_1176_Type();
-  UserDefinedMass_1176_Type(
-    StatsMassType * MaxValueStatsIn,
-    StatsMassType * MinValueStatsIn);
-  ~UserDefinedMass_1176_Type();
-  void printSelf(FILE * outFile);
-
-  StatsMassType * getMaxValueStats();
-  void setMaxValueStats(StatsMassType * MaxValueStatsIn);
-  StatsMassType * getMinValueStats();
-  void setMinValueStats(StatsMassType * MinValueStatsIn);
-
-protected:
-  StatsMassType * MaxValueStats;
-  StatsMassType * MinValueStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedMass_1177_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedMass_1177_Type();
-  UserDefinedMass_1177_Type(
-    StatsWithTolMassType * DeviationStatsIn,
-    StatsMassType * MaxDeviationStatsIn,
-    StatsMassType * MinDeviationStatsIn);
-  ~UserDefinedMass_1177_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithTolMassType * getDeviationStats();
-  void setDeviationStats(StatsWithTolMassType * DeviationStatsIn);
-  StatsMassType * getMaxDeviationStats();
-  void setMaxDeviationStats(StatsMassType * MaxDeviationStatsIn);
-  StatsMassType * getMinDeviationStats();
-  void setMinDeviationStats(StatsMassType * MinDeviationStatsIn);
-
-protected:
-  StatsWithTolMassType * DeviationStats;
-  StatsMassType * MaxDeviationStats;
-  StatsMassType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedMass_1178_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedMass_1178_Type();
-  UserDefinedMass_1178_Type(
-    StatsMassType * MaxDeviationStatsIn,
-    StatsMassType * MinDeviationStatsIn);
-  ~UserDefinedMass_1178_Type();
-  void printSelf(FILE * outFile);
-
-  StatsMassType * getMaxDeviationStats();
-  void setMaxDeviationStats(StatsMassType * MaxDeviationStatsIn);
-  StatsMassType * getMinDeviationStats();
-  void setMinDeviationStats(StatsMassType * MinDeviationStatsIn);
-
-protected:
-  StatsMassType * MaxDeviationStats;
-  StatsMassType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedPres_1179_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedPres_1179_Type();
-  UserDefinedPres_1179_Type(
-    StatsWithTolPressureType * ValueStatsIn,
-    StatsPressureType * MaxValueStatsIn,
-    StatsPressureType * MinValueStatsIn);
-  ~UserDefinedPres_1179_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithTolPressureType * getValueStats();
-  void setValueStats(StatsWithTolPressureType * ValueStatsIn);
-  StatsPressureType * getMaxValueStats();
-  void setMaxValueStats(StatsPressureType * MaxValueStatsIn);
-  StatsPressureType * getMinValueStats();
-  void setMinValueStats(StatsPressureType * MinValueStatsIn);
-
-protected:
-  StatsWithTolPressureType * ValueStats;
-  StatsPressureType * MaxValueStats;
-  StatsPressureType * MinValueStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedPres_1180_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedPres_1180_Type();
-  UserDefinedPres_1180_Type(
-    StatsPressureType * MaxValueStatsIn,
-    StatsPressureType * MinValueStatsIn);
-  ~UserDefinedPres_1180_Type();
-  void printSelf(FILE * outFile);
-
-  StatsPressureType * getMaxValueStats();
-  void setMaxValueStats(StatsPressureType * MaxValueStatsIn);
-  StatsPressureType * getMinValueStats();
-  void setMinValueStats(StatsPressureType * MinValueStatsIn);
-
-protected:
-  StatsPressureType * MaxValueStats;
-  StatsPressureType * MinValueStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedPres_1181_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedPres_1181_Type();
-  UserDefinedPres_1181_Type(
-    StatsWithTolPressureType * DeviationStatsIn,
-    StatsPressureType * MaxDeviationStatsIn,
-    StatsPressureType * MinDeviationStatsIn);
-  ~UserDefinedPres_1181_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithTolPressureType * getDeviationStats();
-  void setDeviationStats(StatsWithTolPressureType * DeviationStatsIn);
-  StatsPressureType * getMaxDeviationStats();
-  void setMaxDeviationStats(StatsPressureType * MaxDeviationStatsIn);
-  StatsPressureType * getMinDeviationStats();
-  void setMinDeviationStats(StatsPressureType * MinDeviationStatsIn);
-
-protected:
-  StatsWithTolPressureType * DeviationStats;
-  StatsPressureType * MaxDeviationStats;
-  StatsPressureType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedPres_1182_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedPres_1182_Type();
-  UserDefinedPres_1182_Type(
-    StatsPressureType * MaxDeviationStatsIn,
-    StatsPressureType * MinDeviationStatsIn);
-  ~UserDefinedPres_1182_Type();
-  void printSelf(FILE * outFile);
-
-  StatsPressureType * getMaxDeviationStats();
-  void setMaxDeviationStats(StatsPressureType * MaxDeviationStatsIn);
-  StatsPressureType * getMinDeviationStats();
-  void setMinDeviationStats(StatsPressureType * MinDeviationStatsIn);
-
-protected:
-  StatsPressureType * MaxDeviationStats;
-  StatsPressureType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedSpee_1183_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedSpee_1183_Type();
-  UserDefinedSpee_1183_Type(
-    StatsWithTolSpeedType * ValueStatsIn,
-    StatsSpeedType * MaxValueStatsIn,
-    StatsSpeedType * MinValueStatsIn);
-  ~UserDefinedSpee_1183_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithTolSpeedType * getValueStats();
-  void setValueStats(StatsWithTolSpeedType * ValueStatsIn);
-  StatsSpeedType * getMaxValueStats();
-  void setMaxValueStats(StatsSpeedType * MaxValueStatsIn);
-  StatsSpeedType * getMinValueStats();
-  void setMinValueStats(StatsSpeedType * MinValueStatsIn);
-
-protected:
-  StatsWithTolSpeedType * ValueStats;
-  StatsSpeedType * MaxValueStats;
-  StatsSpeedType * MinValueStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedSpee_1184_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedSpee_1184_Type();
-  UserDefinedSpee_1184_Type(
-    StatsSpeedType * MaxValueStatsIn,
-    StatsSpeedType * MinValueStatsIn);
-  ~UserDefinedSpee_1184_Type();
-  void printSelf(FILE * outFile);
-
-  StatsSpeedType * getMaxValueStats();
-  void setMaxValueStats(StatsSpeedType * MaxValueStatsIn);
-  StatsSpeedType * getMinValueStats();
-  void setMinValueStats(StatsSpeedType * MinValueStatsIn);
-
-protected:
-  StatsSpeedType * MaxValueStats;
-  StatsSpeedType * MinValueStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedSpee_1185_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedSpee_1185_Type();
-  UserDefinedSpee_1185_Type(
-    StatsWithTolSpeedType * DeviationStatsIn,
-    StatsSpeedType * MaxDeviationStatsIn,
-    StatsSpeedType * MinDeviationStatsIn);
-  ~UserDefinedSpee_1185_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithTolSpeedType * getDeviationStats();
-  void setDeviationStats(StatsWithTolSpeedType * DeviationStatsIn);
-  StatsSpeedType * getMaxDeviationStats();
-  void setMaxDeviationStats(StatsSpeedType * MaxDeviationStatsIn);
-  StatsSpeedType * getMinDeviationStats();
-  void setMinDeviationStats(StatsSpeedType * MinDeviationStatsIn);
-
-protected:
-  StatsWithTolSpeedType * DeviationStats;
-  StatsSpeedType * MaxDeviationStats;
-  StatsSpeedType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedSpee_1186_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedSpee_1186_Type();
-  UserDefinedSpee_1186_Type(
-    StatsSpeedType * MaxDeviationStatsIn,
-    StatsSpeedType * MinDeviationStatsIn);
-  ~UserDefinedSpee_1186_Type();
-  void printSelf(FILE * outFile);
-
-  StatsSpeedType * getMaxDeviationStats();
-  void setMaxDeviationStats(StatsSpeedType * MaxDeviationStatsIn);
-  StatsSpeedType * getMinDeviationStats();
-  void setMinDeviationStats(StatsSpeedType * MinDeviationStatsIn);
-
-protected:
-  StatsSpeedType * MaxDeviationStats;
-  StatsSpeedType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedTemp_1187_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedTemp_1187_Type();
-  UserDefinedTemp_1187_Type(
-    StatsWithTolTemperatureType * ValueStatsIn,
-    StatsTemperatureType * MaxValueStatsIn,
-    StatsTemperatureType * MinValueStatsIn);
-  ~UserDefinedTemp_1187_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithTolTemperatureType * getValueStats();
-  void setValueStats(StatsWithTolTemperatureType * ValueStatsIn);
-  StatsTemperatureType * getMaxValueStats();
-  void setMaxValueStats(StatsTemperatureType * MaxValueStatsIn);
-  StatsTemperatureType * getMinValueStats();
-  void setMinValueStats(StatsTemperatureType * MinValueStatsIn);
-
-protected:
-  StatsWithTolTemperatureType * ValueStats;
-  StatsTemperatureType * MaxValueStats;
-  StatsTemperatureType * MinValueStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedTemp_1188_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedTemp_1188_Type();
-  UserDefinedTemp_1188_Type(
-    StatsTemperatureType * MaxValueStatsIn,
-    StatsTemperatureType * MinValueStatsIn);
-  ~UserDefinedTemp_1188_Type();
-  void printSelf(FILE * outFile);
-
-  StatsTemperatureType * getMaxValueStats();
-  void setMaxValueStats(StatsTemperatureType * MaxValueStatsIn);
-  StatsTemperatureType * getMinValueStats();
-  void setMinValueStats(StatsTemperatureType * MinValueStatsIn);
-
-protected:
-  StatsTemperatureType * MaxValueStats;
-  StatsTemperatureType * MinValueStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedTemp_1189_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedTemp_1189_Type();
-  UserDefinedTemp_1189_Type(
-    StatsWithTolTemperatureType * DeviationStatsIn,
-    StatsTemperatureType * MaxDeviationStatsIn,
-    StatsTemperatureType * MinDeviationStatsIn);
-  ~UserDefinedTemp_1189_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithTolTemperatureType * getDeviationStats();
-  void setDeviationStats(StatsWithTolTemperatureType * DeviationStatsIn);
-  StatsTemperatureType * getMaxDeviationStats();
-  void setMaxDeviationStats(StatsTemperatureType * MaxDeviationStatsIn);
-  StatsTemperatureType * getMinDeviationStats();
-  void setMinDeviationStats(StatsTemperatureType * MinDeviationStatsIn);
-
-protected:
-  StatsWithTolTemperatureType * DeviationStats;
-  StatsTemperatureType * MaxDeviationStats;
-  StatsTemperatureType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedTemp_1190_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedTemp_1190_Type();
-  UserDefinedTemp_1190_Type(
-    StatsTemperatureType * MaxDeviationStatsIn,
-    StatsTemperatureType * MinDeviationStatsIn);
-  ~UserDefinedTemp_1190_Type();
-  void printSelf(FILE * outFile);
-
-  StatsTemperatureType * getMaxDeviationStats();
-  void setMaxDeviationStats(StatsTemperatureType * MaxDeviationStatsIn);
-  StatsTemperatureType * getMinDeviationStats();
-  void setMinDeviationStats(StatsTemperatureType * MinDeviationStatsIn);
-
-protected:
-  StatsTemperatureType * MaxDeviationStats;
-  StatsTemperatureType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedTime_1191_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedTime_1191_Type();
-  UserDefinedTime_1191_Type(
-    StatsWithTolTimeType * ValueStatsIn,
-    StatsTimeType * MaxValueStatsIn,
-    StatsTimeType * MinValueStatsIn);
-  ~UserDefinedTime_1191_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithTolTimeType * getValueStats();
-  void setValueStats(StatsWithTolTimeType * ValueStatsIn);
-  StatsTimeType * getMaxValueStats();
-  void setMaxValueStats(StatsTimeType * MaxValueStatsIn);
-  StatsTimeType * getMinValueStats();
-  void setMinValueStats(StatsTimeType * MinValueStatsIn);
-
-protected:
-  StatsWithTolTimeType * ValueStats;
-  StatsTimeType * MaxValueStats;
-  StatsTimeType * MinValueStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedTime_1192_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedTime_1192_Type();
-  UserDefinedTime_1192_Type(
-    StatsTimeType * MaxValueStatsIn,
-    StatsTimeType * MinValueStatsIn);
-  ~UserDefinedTime_1192_Type();
-  void printSelf(FILE * outFile);
-
-  StatsTimeType * getMaxValueStats();
-  void setMaxValueStats(StatsTimeType * MaxValueStatsIn);
-  StatsTimeType * getMinValueStats();
-  void setMinValueStats(StatsTimeType * MinValueStatsIn);
-
-protected:
-  StatsTimeType * MaxValueStats;
-  StatsTimeType * MinValueStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedTime_1193_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedTime_1193_Type();
-  UserDefinedTime_1193_Type(
-    StatsWithTolTimeType * DeviationStatsIn,
-    StatsTimeType * MaxDeviationStatsIn,
-    StatsTimeType * MinDeviationStatsIn);
-  ~UserDefinedTime_1193_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithTolTimeType * getDeviationStats();
-  void setDeviationStats(StatsWithTolTimeType * DeviationStatsIn);
-  StatsTimeType * getMaxDeviationStats();
-  void setMaxDeviationStats(StatsTimeType * MaxDeviationStatsIn);
-  StatsTimeType * getMinDeviationStats();
-  void setMinDeviationStats(StatsTimeType * MinDeviationStatsIn);
-
-protected:
-  StatsWithTolTimeType * DeviationStats;
-  StatsTimeType * MaxDeviationStats;
-  StatsTimeType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedTime_1194_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedTime_1194_Type();
-  UserDefinedTime_1194_Type(
-    StatsTimeType * MaxDeviationStatsIn,
-    StatsTimeType * MinDeviationStatsIn);
-  ~UserDefinedTime_1194_Type();
-  void printSelf(FILE * outFile);
-
-  StatsTimeType * getMaxDeviationStats();
-  void setMaxDeviationStats(StatsTimeType * MaxDeviationStatsIn);
-  StatsTimeType * getMinDeviationStats();
-  void setMinDeviationStats(StatsTimeType * MinDeviationStatsIn);
-
-protected:
-  StatsTimeType * MaxDeviationStats;
-  StatsTimeType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedUnit_1195_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedUnit_1195_Type();
-  UserDefinedUnit_1195_Type(
-    StatsWithTolUserDefinedUnitType * ValueStatsIn,
-    StatsUserDefinedUnitType * MaxValueStatsIn,
-    StatsUserDefinedUnitType * MinValueStatsIn);
-  ~UserDefinedUnit_1195_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithTolUserDefinedUnitType * getValueStats();
-  void setValueStats(StatsWithTolUserDefinedUnitType * ValueStatsIn);
-  StatsUserDefinedUnitType * getMaxValueStats();
-  void setMaxValueStats(StatsUserDefinedUnitType * MaxValueStatsIn);
-  StatsUserDefinedUnitType * getMinValueStats();
-  void setMinValueStats(StatsUserDefinedUnitType * MinValueStatsIn);
-
-protected:
-  StatsWithTolUserDefinedUnitType * ValueStats;
-  StatsUserDefinedUnitType * MaxValueStats;
-  StatsUserDefinedUnitType * MinValueStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedUnit_1196_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedUnit_1196_Type();
-  UserDefinedUnit_1196_Type(
-    StatsUserDefinedUnitType * MaxValueStatsIn,
-    StatsUserDefinedUnitType * MinValueStatsIn);
-  ~UserDefinedUnit_1196_Type();
-  void printSelf(FILE * outFile);
-
-  StatsUserDefinedUnitType * getMaxValueStats();
-  void setMaxValueStats(StatsUserDefinedUnitType * MaxValueStatsIn);
-  StatsUserDefinedUnitType * getMinValueStats();
-  void setMinValueStats(StatsUserDefinedUnitType * MinValueStatsIn);
-
-protected:
-  StatsUserDefinedUnitType * MaxValueStats;
-  StatsUserDefinedUnitType * MinValueStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedUnit_1197_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedUnit_1197_Type();
-  UserDefinedUnit_1197_Type(
-    StatsWithTolUserDefinedUnitType * DeviationStatsIn,
-    StatsUserDefinedUnitType * MaxDeviationStatsIn,
-    StatsUserDefinedUnitType * MinDeviationStatsIn);
-  ~UserDefinedUnit_1197_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithTolUserDefinedUnitType * getDeviationStats();
-  void setDeviationStats(StatsWithTolUserDefinedUnitType * DeviationStatsIn);
-  StatsUserDefinedUnitType * getMaxDeviationStats();
-  void setMaxDeviationStats(StatsUserDefinedUnitType * MaxDeviationStatsIn);
-  StatsUserDefinedUnitType * getMinDeviationStats();
-  void setMinDeviationStats(StatsUserDefinedUnitType * MinDeviationStatsIn);
-
-protected:
-  StatsWithTolUserDefinedUnitType * DeviationStats;
-  StatsUserDefinedUnitType * MaxDeviationStats;
-  StatsUserDefinedUnitType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedUnit_1198_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedUnit_1198_Type();
-  UserDefinedUnit_1198_Type(
-    StatsUserDefinedUnitType * MaxDeviationStatsIn,
-    StatsUserDefinedUnitType * MinDeviationStatsIn);
-  ~UserDefinedUnit_1198_Type();
-  void printSelf(FILE * outFile);
-
-  StatsUserDefinedUnitType * getMaxDeviationStats();
-  void setMaxDeviationStats(StatsUserDefinedUnitType * MaxDeviationStatsIn);
-  StatsUserDefinedUnitType * getMinDeviationStats();
-  void setMinDeviationStats(StatsUserDefinedUnitType * MinDeviationStatsIn);
-
-protected:
-  StatsUserDefinedUnitType * MaxDeviationStats;
-  StatsUserDefinedUnitType * MinDeviationStats;
-};
-
-/* ***************************************************************** */
-
 class AngularCharacteristicStatsEvalType :
   public CharacteristicStatsEvalBaseType
 {
@@ -6242,20 +5935,55 @@ public:
   AngularCharacteristicStatsEvalType();
   AngularCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    AngularCharacte_1127_Type * AngularCharacte_1127In);
+    AngularCharacteristicStatsEvalTypeChoicePair * AngularCharacteristicStatsEvalTypePairIn);
   ~AngularCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
-
-  AngularCharacte_1127_Type * getAngularCharacte_1127();
-  void setAngularCharacte_1127(AngularCharacte_1127_Type * AngularCharacte_1127In);
+  AngularCharacteristicStatsEvalTypeChoicePair * getAngularCharacteristicStatsEvalTypeChoicePair();
+  void setAngularCharacteristicStatsEvalTypeChoicePair(AngularCharacteristicStatsEvalTypeChoicePair * AngularCharacteristicStatsEvalTypePairIn);
 
 protected:
-  AngularCharacte_1127_Type * AngularCharacte_1127;
+  AngularCharacteristicStatsEvalTypeChoicePair * AngularCharacteristicStatsEvalTypePair;
+};
+
+/* ***************************************************************** */
+
+union AngularCharacteristicStatsEvalTypeVal
+{
+  AngularCharacte_1100_Type * AngularCharacte_1100;
+  AngularCharacte_1101_Type * AngularCharacte_1101;
+  StatsAngularType * MinValueStats;
+  AngularCharacte_1102_Type * AngularCharacte_1102;
+  AngularCharacte_1103_Type * AngularCharacte_1103;
+  StatsAngularType * MinDeviationStats;
+};
+
+/* ***************************************************************** */
+
+class AngularCharacteristicStatsEvalTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    AngularCharacte_1100E,
+    AngularCharacte_1101E,
+    MinValueStatsE,
+    AngularCharacte_1102E,
+    AngularCharacte_1103E,
+    MinDeviationStatsE };
+  AngularCharacteristicStatsEvalTypeChoicePair();
+  AngularCharacteristicStatsEvalTypeChoicePair(
+    whichOne AngularCharacteristicStatsEvalTypeTypeIn,
+    AngularCharacteristicStatsEvalTypeVal AngularCharacteristicStatsEvalTypeValueIn);
+  ~AngularCharacteristicStatsEvalTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne AngularCharacteristicStatsEvalTypeType;
+  AngularCharacteristicStatsEvalTypeVal AngularCharacteristicStatsEvalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -6267,12 +5995,12 @@ public:
   AngularCoordinateCharacteristicStatsEvalType();
   AngularCoordinateCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    AngularCharacte_1127_Type * AngularCharacte_1127In);
+    AngularCharacteristicStatsEvalTypeChoicePair * AngularCharacteristicStatsEvalTypePairIn);
   ~AngularCoordinateCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
@@ -6286,8 +6014,8 @@ public:
   AngularityCharacteristicStatsEvalType();
   AngularityCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -6311,12 +6039,12 @@ public:
   ChordCharacteristicStatsEvalType();
   ChordCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    LinearCharacter_1135_Type * LinearCharacter_1135In);
+    LinearCharacteristicStatsEvalTypeChoicePair * LinearCharacteristicStatsEvalTypePairIn);
   ~ChordCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
@@ -6330,8 +6058,8 @@ public:
   CircularRunoutCharacteristicStatsEvalType();
   CircularRunoutCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -6353,8 +6081,8 @@ public:
   CoaxialityCharacteristicStatsEvalType();
   CoaxialityCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -6412,8 +6140,8 @@ public:
   ConcentricityCharacteristicStatsEvalType();
   ConcentricityCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -6441,12 +6169,12 @@ public:
   ConicalTaperCharacteristicStatsEvalType();
   ConicalTaperCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    LinearCharacter_1135_Type * LinearCharacter_1135In);
+    LinearCharacteristicStatsEvalTypeChoicePair * LinearCharacteristicStatsEvalTypePairIn);
   ~ConicalTaperCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
@@ -6460,10 +6188,10 @@ public:
   CriterionAngularType();
   CriterionAngularType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In);
+    CriterionDecima_1108_Type * CriterionDecima_1108In);
   CriterionAngularType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In,
+    CriterionDecima_1108_Type * CriterionDecima_1108In,
     XmlToken * angularUnitIn);
   ~CriterionAngularType();
   void printSelf(FILE * outFile);
@@ -6485,10 +6213,10 @@ public:
   CriterionAreaType();
   CriterionAreaType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In);
+    CriterionDecima_1108_Type * CriterionDecima_1108In);
   CriterionAreaType(
     XmlDecimal * LimitIn,
-    CriterionDecima_1132_Type * CriterionDecima_1132In,
+    CriterionDecima_1108_Type * CriterionDecima_1108In,
     XmlToken * areaUnitIn);
   ~CriterionAreaType();
   void printSelf(FILE * outFile);
@@ -6510,12 +6238,12 @@ public:
   CurveLengthCharacteristicStatsEvalType();
   CurveLengthCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    LinearCharacter_1135_Type * LinearCharacter_1135In);
+    LinearCharacteristicStatsEvalTypeChoicePair * LinearCharacteristicStatsEvalTypePairIn);
   ~CurveLengthCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
@@ -6529,12 +6257,12 @@ public:
   DepthCharacteristicStatsEvalType();
   DepthCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    LinearCharacter_1135_Type * LinearCharacter_1135In);
+    LinearCharacteristicStatsEvalTypeChoicePair * LinearCharacteristicStatsEvalTypePairIn);
   ~DepthCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
@@ -6548,12 +6276,12 @@ public:
   DiameterCharacteristicStatsEvalType();
   DiameterCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    LinearCharacter_1135_Type * LinearCharacter_1135In);
+    LinearCharacteristicStatsEvalTypeChoicePair * LinearCharacteristicStatsEvalTypePairIn);
   ~DiameterCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
@@ -6567,12 +6295,12 @@ public:
   DistanceBetweenCharacteristicStatsEvalType();
   DistanceBetweenCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    LinearCharacter_1135_Type * LinearCharacter_1135In);
+    LinearCharacteristicStatsEvalTypeChoicePair * LinearCharacteristicStatsEvalTypePairIn);
   ~DistanceBetweenCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
@@ -6586,12 +6314,12 @@ public:
   DistanceFromCharacteristicStatsEvalType();
   DistanceFromCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    LinearCharacter_1135_Type * LinearCharacter_1135In);
+    LinearCharacteristicStatsEvalTypeChoicePair * LinearCharacteristicStatsEvalTypePairIn);
   ~DistanceFromCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
@@ -6605,12 +6333,12 @@ public:
   FlatTaperCharacteristicStatsEvalType();
   FlatTaperCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    LinearCharacter_1135_Type * LinearCharacter_1135In);
+    LinearCharacteristicStatsEvalTypeChoicePair * LinearCharacteristicStatsEvalTypePairIn);
   ~FlatTaperCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
@@ -6624,8 +6352,8 @@ public:
   FormCharacteristicStatsEvalBaseType();
   FormCharacteristicStatsEvalBaseType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -6652,12 +6380,12 @@ public:
   HeightCharacteristicStatsEvalType();
   HeightCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    LinearCharacter_1135_Type * LinearCharacter_1135In);
+    LinearCharacteristicStatsEvalTypeChoicePair * LinearCharacteristicStatsEvalTypePairIn);
   ~HeightCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
@@ -6671,12 +6399,12 @@ public:
   LengthCharacteristicStatsEvalType();
   LengthCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    LinearCharacter_1135_Type * LinearCharacter_1135In);
+    LinearCharacteristicStatsEvalTypeChoicePair * LinearCharacteristicStatsEvalTypePairIn);
   ~LengthCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
@@ -6690,8 +6418,8 @@ public:
   LineProfileCharacteristicStatsEvalType();
   LineProfileCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -6717,8 +6445,8 @@ public:
   OtherFormCharacteristicStatsEvalType();
   OtherFormCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -6739,8 +6467,8 @@ public:
   PointProfileCharacteristicStatsEvalType();
   PointProfileCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -6766,8 +6494,8 @@ public:
   SphericityCharacteristicStatsEvalType();
   SphericityCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -7038,8 +6766,8 @@ public:
   StraightnessCharacteristicStatsEvalType();
   StraightnessCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -7440,8 +7168,8 @@ public:
   ToroidicityCharacteristicStatsEvalType();
   ToroidicityCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -7462,8 +7190,8 @@ public:
   WeldBevelCharacteristicStatsEvalType();
   WeldBevelCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -7481,12 +7209,12 @@ public:
   AngleBetweenCharacteristicStatsEvalType();
   AngleBetweenCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    AngularCharacte_1127_Type * AngularCharacte_1127In);
+    AngularCharacteristicStatsEvalTypeChoicePair * AngularCharacteristicStatsEvalTypePairIn);
   ~AngleBetweenCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
@@ -7500,12 +7228,12 @@ public:
   AngleCharacteristicStatsEvalType();
   AngleCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    AngularCharacte_1127_Type * AngularCharacte_1127In);
+    AngularCharacteristicStatsEvalTypeChoicePair * AngularCharacteristicStatsEvalTypePairIn);
   ~AngleCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
@@ -7519,12 +7247,12 @@ public:
   AngleFromCharacteristicStatsEvalType();
   AngleFromCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
-    AngularCharacte_1127_Type * AngularCharacte_1127In);
+    AngularCharacteristicStatsEvalTypeChoicePair * AngularCharacteristicStatsEvalTypePairIn);
   ~AngleFromCharacteristicStatsEvalType();
   void printSelf(FILE * outFile);
 };
@@ -7538,8 +7266,8 @@ public:
   CircularityCharacteristicStatsEvalType();
   CircularityCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -7567,8 +7295,8 @@ public:
   ConicityCharacteristicStatsEvalType();
   ConicityCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -7589,8 +7317,8 @@ public:
   CylindricityCharacteristicStatsEvalType();
   CylindricityCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -7618,8 +7346,8 @@ public:
   EllipticityCharacteristicStatsEvalType();
   EllipticityCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,
@@ -7640,8 +7368,8 @@ public:
   FlatnessCharacteristicStatsEvalType();
   FlatnessCharacteristicStatsEvalType(
     AttributesType * AttributesIn,
-    CharacteristicS_1129_Type * CharacteristicS_1129In,
-    CharacteristicS_1130_Type * CharacteristicS_1130In,
+    CharacteristicS_1105_Type * CharacteristicS_1105In,
+    CharacteristicS_1106_Type * CharacteristicS_1106In,
     StatsEvalStatusType * StatusIn,
     StudyIssuesType * StudyIssuesIn,
     DistributionTransformationType * DistributionTransformationIn,

@@ -49,14 +49,9 @@ const int XmlIDREF::idrefSize = 100;
 
 The printSelf functions here (which are used in printing XML data
 files) call the xxxIsBad function before printing.  If the returned
-value is true (meaning the data is bad), an error message is printed
-to stderr, and this exits.
-
-It might be a good idea to have a global "exit" flag that is checked
-by the printSelf functions. If the exit flag is set to true, printSelf
-will behave as described above. If the exit flag is set to false, the
-printSelf will not print anything to the outFile, will print a warning
-message to stderr, and will not exit.
+value is true (meaning the data is bad), this throws a
+SchemaInstanceError containing an error message is printed. The
+catcher of the SchemaInstanceError can decide what to do.
 
 The constructors here that take a char * argument read the argument.
 It is up to the caller to check that the argument is not 0. The
@@ -69,7 +64,7 @@ does not exit if there is an error. It is up to the caller of the
 constructor to check the value of bad and decide what to do if bad
 is true.
 
-The XXXIsBad functions are necessary even though bad is public and
+The XXXIsBad functions are necessary even when bad is public and
 could be accessed directly because if a descendant type of a built in
 type is defined, an XXXIsBad function will be defined for each member of
 the chain of descendants, and each of those will call the XXXIsBad
@@ -132,8 +127,8 @@ AttributePair::AttributePair(
  const char * nameIn,
  const char * valIn)
 {
-  name = nameIn; // automatic write to std::string
-  val = valIn;   // automatic write to std::string
+  PROT(name) = nameIn; // automatic write to std::string
+  PROT(val) = valIn;   // automatic write to std::string
 }
 
 AttributePair::~AttributePair() {}
@@ -143,18 +138,18 @@ void AttributePair::PRINTSELFDECL
 
 }
 
-#ifdef ACCESS
-  std::string AttributePair::getname()
-  {return name;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+std::string AttributePair::GET(name)()
+{return PROT(name);}
 
-  void AttributePair::setname(std::string nameIn)
-  {name = nameIn;}
+void AttributePair::SET(name)(std::string nameIn)
+{PROT(name) = nameIn;}
 
-  std::string AttributePair::getval()
-  {return val;}
+std::string AttributePair::GET(val)()
+{return PROT(val);}
 
-  void AttributePair::setval(std::string valIn)
-  {val = valIn;}
+void AttributePair::SET(val)(std::string valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -201,49 +196,108 @@ SchemaLocation::SchemaLocation(
   const char * locationIn,
   bool hasNamespaceIn)
 {
-  prefix = prefixIn;     // automatic write to std::string
-  location = locationIn; // automatic write to std::string
-  hasNamespace = hasNamespaceIn;
+  PROT(prefix) = prefixIn;     // automatic write to std::string
+  PROT(location) = locationIn; // automatic write to std::string
+  PROT(hasNamespace) = hasNamespaceIn;
 }
 
 SchemaLocation::~SchemaLocation() {}
 
 void SchemaLocation::PRINTSELFDECL
 {
-  if (hasNamespace)
+  if (PROT(hasNamespace))
     {
-      XFPRINTF "  %s:schemaLocation=\n", prefix.c_str());
+      XFPRINTF "  %s:schemaLocation=\n", PROT(prefix).c_str());
     }
   else
     {
-      XFPRINTF "  %s:noNamespaceSchemaLocation=\n", prefix.c_str());
+      XFPRINTF "  %s:noNamespaceSchemaLocation=\n", PROT(prefix).c_str());
     }
-  XFPRINTF "    \"%s\"", location.c_str());
+  XFPRINTF "    \"%s\"", PROT(location).c_str());
 }
 
-#ifdef ACCESS
-  std::string SchemaLocation::getprefix()
-  {return prefix;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+std::string SchemaLocation::GET(prefix)()
+{return PROT(prefix);}
 
-  void SchemaLocation::setprefix(std::string prefixIn)
-  {prefix = prefixIn;}
+void SchemaLocation::SET(prefix)(std::string prefixIn)
+{PROT(prefix) = prefixIn;}
   
-  std::string SchemaLocation::getlocation()
-  {return location;}
+std::string SchemaLocation::GET(location)()
+{return PROT(location);}
 
-  void SchemaLocation::setlocation(std::string locationIn)
-  {location = locationIn;}
+void SchemaLocation::SET(location)(std::string locationIn)
+{PROT(location) = locationIn;}
 
-  bool SchemaLocation::gethasNamespace()
-  {return hasNamespace;}
+bool SchemaLocation::GET(hasNamespace)()
+{return PROT(hasNamespace);}
 
-  void SchemaLocation::sethasNamespace(bool hasNamespaceIn)
-  {hasNamespace = hasNamespaceIn;}
+void SchemaLocation::SET(hasNamespace)(bool hasNamespaceIn)
+{PROT(hasNamespace) = hasNamespaceIn;}
 #endif
 
 
 /*********************************************************************/
+/* class XmlAnyString
 
+This is a pseudo-basic class for handling the text of an XmlAny.
+
+Note that '>' is not included in PRINTSELFDECL, but \n is included.
+
+*/
+
+XmlAnyString::XmlAnyString()
+{
+  PROT(val) = "";
+  PROT(bad) = true;
+}
+
+XmlAnyString::XmlAnyString(
+  const char * valIn)
+{
+  PROT(val) = valIn; // automatic write to std::string
+  PROT(bad) = false;
+}
+
+XmlAnyString::~XmlAnyString() {}
+
+bool XmlAnyString::XmlAnyStringIsBad()
+{
+  return PROT(bad);
+}
+
+void XmlAnyString::PRINTSELFDECL
+{
+  if (XmlAnyStringIsBad())
+    {
+      throw(SchemaInstanceError("xs:any string value is bad"));
+    }
+  XFPRINTF "%s\n", PROT(val).c_str());
+}
+
+void XmlAnyString::OPRINTSELFDECL
+{
+  if (XmlAnyStringIsBad())
+    {
+      throw(SchemaInstanceError("xs:any string value is bad"));
+    }
+  XFPRINTF "%s", PROT(val).c_str());
+}
+
+void XmlAnyString::printBad(FILE * badFile)
+{
+  fprintf(badFile, "%s", PROT(val).c_str());
+}
+
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+std::string XmlAnyString::GET(val)()
+{return PROT(val);}
+
+void XmlAnyString::SET(val)(std::string valIn)
+{PROT(val) = valIn;}
+#endif
+
+/*********************************************************************/
 /* class XmlAnyURI
 
 This is a class for handling XML basic type anyURI. 
@@ -252,56 +306,54 @@ This is a class for handling XML basic type anyURI.
 
 XmlAnyURI::XmlAnyURI()
 {
-  val = "";
-  bad = true;
+  PROT(val) = "";
+  PROT(bad) = true;
 }
 
 XmlAnyURI::XmlAnyURI(
   const char * valIn)
 {
-  val = valIn; // automatic write to std::string
-  bad = false;
+  PROT(val) = valIn; // automatic write to std::string
+  PROT(bad) = false;
 }
 
 XmlAnyURI::~XmlAnyURI() {}
 
 bool XmlAnyURI::XmlAnyURIIsBad()
 {
-  return bad;
+  return PROT(bad);
 }
 
 void XmlAnyURI::PRINTSELFDECL
 {
   if (XmlAnyURIIsBad())
     {
-      fprintf(stderr, "anyURI value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("anyURI value is bad"));
     }
-  XFPRINTF ">%s", val.c_str());
+  XFPRINTF ">%s", PROT(val).c_str());
 }
 
 void XmlAnyURI::OPRINTSELFDECL
 {
   if (XmlAnyURIIsBad())
     {
-      fprintf(stderr, "anyURI value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("anyURI value is bad"));
     }
-  XFPRINTF "%s", val.c_str());
+  XFPRINTF "%s", PROT(val).c_str());
 }
 
-#ifdef ACCESS
-  std::string XmlAnyURI::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string XmlAnyURI::GET(val)()
+  {return PROT(val);}
 
-  void XmlAnyURI::setval(std::string valIn)
-  {val = valIn;}
+  void XmlAnyURI::SET(val)(std::string valIn)
+  {PROT(val) = valIn;}
 
-  bool XmlAnyURI::getbad()
-  {return bad;}
+  bool XmlAnyURI::GET(bad)()
+  {return PROT(bad);}
 
-  void XmlAnyURI::setbad(bool badIn)
-  {bad = badIn;}
+  void XmlAnyURI::SET(bad)(bool badIn)
+  {PROT(bad) = badIn;}
 #endif
 
 /*********************************************************************/
@@ -332,8 +384,8 @@ above) is used for a bad value.
 
 XmlBase64Binary::XmlBase64Binary()
 {
-  val = "!";
-  bad = true;
+  PROT(val) = "!";
+  PROT(bad) = true;
 }
 
 XmlBase64Binary::XmlBase64Binary(
@@ -354,13 +406,13 @@ XmlBase64Binary::XmlBase64Binary(
     }
   if (valIn[n] || (count % 4))
     {
-      val = "!";
-      bad = true;
+      PROT(val) = "!";
+      PROT(bad) = true;
     }
   else
     {
-      val = valIn;
-      bad = false;
+      PROT(val) = valIn;
+      PROT(bad) = false;
     }
 }
 
@@ -373,28 +425,28 @@ bool XmlBase64Binary::XmlBase64BinaryIsBad()
   int count;
   
   count = 0;
-  if (val.length() == 0)
+  if (PROT(val).length() == 0)
     { // empty string is legal
-      bad = false;
+      PROT(bad) = false;
       return false;
     }
-  for (n = 0; n < val.length(); n++)
+  for (n = 0; n < PROT(val).length(); n++)
     {
-      c = val[n];
+      c = PROT(val)[n];
       if (isalnum(c) || (c == '+') || (c == '/') || (c == '='))
         count++;
       else if (isspace(c));
       else
 	break;
     }
-  if ((n != val.length()) || (count % 4))
+  if ((n != PROT(val).length()) || (count % 4))
     {
-      bad = true;
+      PROT(bad) = true;
       return true;
     }
   else
     {
-      bad = false;
+      PROT(bad) = false;
       return false;
     }
 }
@@ -403,28 +455,26 @@ void XmlBase64Binary::PRINTSELFDECL
 {
   if (XmlBase64BinaryIsBad())
     {
-      fprintf(stderr, "base64Binary value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("base64Binary value is bad"));
     }
-  XFPRINTF ">%s", val.c_str());
+  XFPRINTF ">%s", PROT(val).c_str());
 }
 
 void XmlBase64Binary::OPRINTSELFDECL
 {
   if (XmlBase64BinaryIsBad())
     {
-      fprintf(stderr, "base64Binary value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("base64Binary value is bad"));
     }
-  XFPRINTF "%s", val.c_str());
+  XFPRINTF "%s", PROT(val).c_str());
 }
 
-#ifdef ACCESS
-  std::string XmlBase64Binary::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string XmlBase64Binary::GET(val)()
+  {return PROT(val);}
 
-  void XmlBase64Binary::setval(std::string valIn)
-  {val = valIn;}
+  void XmlBase64Binary::SET(val)(std::string valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -479,7 +529,7 @@ void XmlBase64BinaryLisd::OPRINTSELFDECL
 
 void XmlBase64Binary::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%s", val.c_str());
+  fprintf(badFile, "%s", PROT(val).c_str());
 }
 
 /*********************************************************************/
@@ -492,19 +542,18 @@ XmlBasicLisdBase::XmlBasicLisdBase() {}
 
 XmlBasicLisdBase::~XmlBasicLisdBase() {}
 
-#ifdef ACCESS
-  const char * XmlBasicLisdBase::getprintElement()
-  {return printElement;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+const char * XmlBasicLisdBase::GET(printElement)()
+  {return PROT(printElement);}
 
-  void XmlBasicLisdBase::setprintElement(const char * printElementIn)
-  {printElement = printElementIn;}
+void XmlBasicLisdBase::SET(printElement)(const char * printElementIn)
+  {PROT(printElement) = printElementIn;}
 
-  bool XmlBasicLisdBase::getbad()
-  {return bad;}
+  bool XmlBasicLisdBase::GET(bad)()
+  {return PROT(bad);}
 
-  void XmlBasicLisdBase::setbad(bool badIn)
-  {bad = badIn;}
-
+  void XmlBasicLisdBase::SET(bad)(bool badIn)
+  {PROT(bad) = badIn;}
 #endif
 
 /*********************************************************************/
@@ -520,8 +569,8 @@ could have an unknown value.
 
 XmlBoolean::XmlBoolean()
 {
-  val = true;
-  bad = true;
+  PROT(val) = true;
+  PROT(bad) = true;
 }
 
 XmlBoolean::XmlBoolean(
@@ -534,9 +583,9 @@ XmlBoolean::XmlBoolean(
   //skip leading white space and handle empty or white string
   if (valIn[start] == 0)
     {
-      val = true;
+      PROT(val) = true;
       fprintf(stderr, "%s is not a valid boolean\n", valIn);
-      bad = true;
+      PROT(bad) = true;
       return;
     }
   for (stop = (strlen(valIn) - 1); (isspace(valIn[stop])); stop--);
@@ -544,19 +593,19 @@ XmlBoolean::XmlBoolean(
     {
       if (valIn[start] == '1')
 	{
-	  val = true;
-	  bad = false;
+	  PROT(val) = true;
+	  PROT(bad) = false;
 	}
       else if (valIn[start] == '0')
 	{
-	  val = false;
-	  bad = false;
+	  PROT(val) = false;
+	  PROT(bad) = false;
 	}
       else
 	{
-	  val = true;
+	  PROT(val) = true;
 	  fprintf(stderr, "%s is not a valid boolean\n", valIn);
-	  bad = true;
+	  PROT(bad) = true;
 	}
     }
   else if ((stop - start) == 3)
@@ -564,14 +613,14 @@ XmlBoolean::XmlBoolean(
       if ((valIn[start] == 't') && (valIn[start+1] == 'r') &&
 	  (valIn[start+2] == 'u') && (valIn[start+3] == 'e'))
 	{
-	  val = true;
-	  bad = false;
+	  PROT(val) = true;
+	  PROT(bad) = false;
 	}
       else
 	{
-	  val = true;
+	  PROT(val) = true;
 	  fprintf(stderr, "%s is not a valid boolean\n", valIn);
-	  bad = true;
+	  PROT(bad) = true;
 	}
     }
   else if ((stop - start) == 4)
@@ -580,21 +629,21 @@ XmlBoolean::XmlBoolean(
 	  (valIn[start+2] == 'l') && (valIn[start+3] == 's') &&
 	  (valIn[start+4] == 'e'))
 	{
-	  val = false;
-	  bad = false;
+	  PROT(val) = false;
+	  PROT(bad) = false;
 	}
       else
 	{
-	  val = true;
+	  PROT(val) = true;
 	  fprintf(stderr, "%s is not a valid boolean\n", valIn);
-	  bad = true;
+	  PROT(bad) = true;
 	}
     }
   else
     {
-      val = true;
+      PROT(val) = true;
       fprintf(stderr, "%s is not a valid boolean\n", valIn);
-      bad = true;
+      PROT(bad) = true;
     }
 }
 
@@ -602,35 +651,33 @@ XmlBoolean::~XmlBoolean() {}
 
 bool XmlBoolean::XmlBooleanIsBad()
 {
-  return bad;
+  return PROT(bad);
 }
 
 void XmlBoolean::PRINTSELFDECL
 {
   if (XmlBooleanIsBad())
     {
-      fprintf(stderr, "boolean value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("boolean value is bad"));
     }
-  XFPRINTF "%s", (val ? ">true" : ">false"));
+  XFPRINTF "%s", (PROT(val) ? ">true" : ">false"));
 }
 
 void XmlBoolean::OPRINTSELFDECL
 {
   if (XmlBooleanIsBad())
     {
-      fprintf(stderr, "boolean value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("boolean value is bad"));
     }
-  XFPRINTF "%s", (val ? "true" : "false"));
+  XFPRINTF "%s", (PROT(val) ? "true" : "false"));
 }
 
-#ifdef ACCESS
-  bool XmlBoolean::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  bool XmlBoolean::GET(val)()
+  {return PROT(val);}
 
-  void XmlBoolean::setval(bool valIn)
-  {val = valIn;}
+  void XmlBoolean::SET(val)(bool valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -656,10 +703,10 @@ XmlBooleanLisd::XmlBooleanLisd(
 XmlBooleanLisd::XmlBooleanLisd(
  const char * valueString)
 {
-  XmlBoolean * val;
+  XmlBoolean * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
   for (n = 0; valueString[n]; n++)
     { 
@@ -675,24 +722,24 @@ XmlBooleanLisd::XmlBooleanLisd(
       if ((n - start) > 199)
 	{
 	  fprintf(stderr, "%s is not a valid boolean list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlBoolean(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlBoolean(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid boolean list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -744,55 +791,53 @@ not checking the requirements for a date and is allowing any string.
 
 XmlDate::XmlDate()
 {
-  val = "";
-  bad = true;
+  PROT(val) = "";
+  PROT(bad) = true;
 }
 
 XmlDate::XmlDate(
   const char * valIn)
 {
-  val = valIn; // automatic write to std::string
-  bad = false;
+  PROT(val) = valIn; // automatic write to std::string
+  PROT(bad) = false;
 }
 
 XmlDate::~XmlDate() {}
 
 bool XmlDate::XmlDateIsBad()
 {
-  return bad;
+  return PROT(bad);
 }
 
 void XmlDate::PRINTSELFDECL
 {
   if (XmlDateIsBad())
     {
-      fprintf(stderr, "date value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("date value is bad"));
     }
-  XFPRINTF ">%s", val.c_str());
+  XFPRINTF ">%s", PROT(val).c_str());
 }
 
 void XmlDate::OPRINTSELFDECL
 {
   if (XmlDateIsBad())
     {
-      fprintf(stderr, "date value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("date value is bad"));
     }
-  XFPRINTF "%s", val.c_str());
+  XFPRINTF "%s", PROT(val).c_str());
 }
 
 void XmlDate::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%s", val.c_str());
+  fprintf(badFile, "%s", PROT(val).c_str());
 }
 
-#ifdef ACCESS
-  std::string XmlDate::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string XmlDate::GET(val)()
+  {return PROT(val);}
 
-  void XmlDate::setval(std::string valIn)
-  {val = valIn;}
+  void XmlDate::SET(val)(std::string valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -818,10 +863,10 @@ XmlDateLisd::XmlDateLisd(
 XmlDateLisd::XmlDateLisd(
  const char * valueString)
 {
-  XmlDate * val;
+  XmlDate * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
   for (n = 0; valueString[n]; n++)
     { 
@@ -837,24 +882,24 @@ XmlDateLisd::XmlDateLisd(
       if ((n - start) > 199)
 	{
 	  fprintf(stderr, "%s is not a valid date list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlDate(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlDate(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid date list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -906,55 +951,53 @@ not checking the requirements for a dateTime and is allowing any string.
 
 XmlDateTime::XmlDateTime()
 {
-  val = "";
-  bad = true;
+  PROT(val) = "";
+  PROT(bad) = true;
 }
 
 XmlDateTime::XmlDateTime(
   const char * valIn)
 {
-  val = valIn; // automatic write to std::string
-  bad = false;
+  PROT(val) = valIn; // automatic write to std::string
+  PROT(bad) = false;
 }
 
 XmlDateTime::~XmlDateTime() {}
 
 bool XmlDateTime::XmlDateTimeIsBad()
 {
-  return bad;
+  return PROT(bad);
 }
 
 void XmlDateTime::PRINTSELFDECL
 {
   if (XmlDateTimeIsBad())
     {
-      fprintf(stderr, "dateTime value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("dateTime value is bad"));
     }
-  XFPRINTF ">%s", val.c_str());
+  XFPRINTF ">%s", PROT(val).c_str());
 }
 
 void XmlDateTime::OPRINTSELFDECL
 {
   if (XmlDateTimeIsBad())
     {
-      fprintf(stderr, "dateTime value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("dateTime value is bad"));
     }
-  XFPRINTF "%s", val.c_str());
+  XFPRINTF "%s", PROT(val).c_str());
 }
 
 void XmlDateTime::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%s", val.c_str());
+  fprintf(badFile, "%s", PROT(val).c_str());
 }
 
-#ifdef ACCESS
-  std::string XmlDateTime::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string XmlDateTime::GET(val)()
+  {return PROT(val);}
 
-  void XmlDateTime::setval(std::string valIn)
-  {val = valIn;}
+  void XmlDateTime::SET(val)(std::string valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -980,10 +1023,10 @@ XmlDateTimeLisd::XmlDateTimeLisd(
 XmlDateTimeLisd::XmlDateTimeLisd(
  const char * valueString)
 {
-  XmlDateTime * val;
+  XmlDateTime * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
   for (n = 0; valueString[n]; n++)
     { 
@@ -999,24 +1042,24 @@ XmlDateTimeLisd::XmlDateTimeLisd(
       if ((n - start) > 199)
 	{
 	  fprintf(stderr, "%s is not a valid dateTime list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlDateTime(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlDateTime(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid dateTime list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -1068,8 +1111,8 @@ Might add fussier checks similar to the ones for unsignedInt.
 
 XmlDecimal::XmlDecimal()
 {
-  val = 0;
-  bad = true;
+  PROT(val) = 0;
+  PROT(bad) = true;
 }
 
 XmlDecimal::XmlDecimal(
@@ -1078,80 +1121,79 @@ XmlDecimal::XmlDecimal(
   int n;
   int m; // number of digits after decimal point
 
-  if (sscanf(valueString, "%lf", &val) == 1)
+  if (sscanf(valueString, "%lf", &PROT(val)) == 1)
     {
-      bad = false;
+      PROT(bad) = false;
     }
   else
     {
       fprintf(stderr, "%s is not a valid decimal\n", valueString);
-      bad = true;
+      PROT(bad) = true;
     }
   for (n = 0; (valueString[n] && (valueString[n] != '.')); n++);
   if (!valueString[n])
     { // number ended without a decimal point
-      places = ((XmlSchemaInstanceBase::places < 0) ?
-		-XmlSchemaInstanceBase::places : 0);
+      PROT(places) = ((XmlSchemaInstanceBase::places < 0) ?
+		      -XmlSchemaInstanceBase::places : 0);
       return;
     }
   for (m = 0, n++; (valueString[n] && (valueString[n] < 58)); n++, m++);
-  places = ((XmlSchemaInstanceBase::places < 0) ?
-	    -XmlSchemaInstanceBase::places : m);
+  PROT(places) = ((XmlSchemaInstanceBase::places < 0) ?
+		  -XmlSchemaInstanceBase::places : m);
 }
 
 XmlDecimal::XmlDecimal(
   double valIn)
 {
-  val = valIn;
-  bad = false;
-  places = ((XmlSchemaInstanceBase::places < 0) ?
-	    -XmlSchemaInstanceBase::places : XmlSchemaInstanceBase::places);
+  PROT(val) = valIn;
+  PROT(bad) = false;
+  PROT(places) = ((XmlSchemaInstanceBase::places < 0) ?
+		  -XmlSchemaInstanceBase::places :
+		  XmlSchemaInstanceBase::places);
 }
 
 XmlDecimal::~XmlDecimal() {}
 
 bool XmlDecimal::XmlDecimalIsBad()
 {
-  return bad;
+  return PROT(bad);
 }
 
 void XmlDecimal::PRINTSELFDECL
 {
   if (XmlDecimalIsBad())
     {
-      fprintf(stderr, "decimal value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("decimal value is bad"));
     }
-  XFPRINTF ">%.*f", places, val);
+  XFPRINTF ">%.*f", PROT(places), PROT(val));
 }
 
 void XmlDecimal::OPRINTSELFDECL
 {
   if (XmlDecimalIsBad())
     {
-      fprintf(stderr, "decimal value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("decimal value is bad"));
     }
-  XFPRINTF "%.*f", places, val);
+  XFPRINTF "%.*f", PROT(places), PROT(val));
 }
 
 void XmlDecimal::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%f", val);
+  fprintf(badFile, "%f", PROT(val));
 }
 
-#ifdef ACCESS
-  double XmlDecimal::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+double XmlDecimal::GET(val)()
+{return PROT(val);}
 
-  void XmlDecimal::setval(double valIn)
-  {val = valIn;}
+void XmlDecimal::SET(val)(double valIn)
+{PROT(val) = valIn;}
 
-  short int XmlDecimal::getplaces()
-  {return places;}
+short int XmlDecimal::GET(places)()
+{return PROT(places);}
 
-  void XmlDecimal::setplaces(short int placesIn)
-  {places = placesIn;}
+void XmlDecimal::SET(places)(short int placesIn)
+{PROT(places) = placesIn;}
 #endif
 
 /*********************************************************************/
@@ -1177,12 +1219,12 @@ XmlDecimalLisd::XmlDecimalLisd(
 XmlDecimalLisd::XmlDecimalLisd(
  const char * valueString)
 {
-  XmlDecimal * val;
+  XmlDecimal * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
-  bad = false;
+  PROT(bad) = false;
   for (n = 0; valueString[n]; n++)
     { 
       for (; (valueString[n] != 0) && (isspace(valueString[n])); n++)
@@ -1197,24 +1239,24 @@ XmlDecimalLisd::XmlDecimalLisd(
       if ((n - start) > 199)
 	{
 	  fprintf(stderr, "%s is not a valid decimal list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlDecimal(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlDecimal(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid decimal list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -1274,10 +1316,10 @@ set to true and val is set to 0.
 XmlDouble::XmlDouble()
 {
   const char formats[] = {'f', 'e', 'E', 'f', 'e', 'E'};
-  val = 0;
-  places = XmlSchemaInstanceBase::places;
-  format = formats[XmlSchemaInstanceBase::format];
-  bad = true;
+  PROT(val) = 0;
+  PROT(places) = XmlSchemaInstanceBase::places;
+  PROT(format) = formats[XmlSchemaInstanceBase::format];
+  PROT(bad) = true;
 }
 
 XmlDouble::XmlDouble(
@@ -1287,38 +1329,38 @@ XmlDouble::XmlDouble(
   int m; // number of digits after decimal point
   const char formats[] = {'f', 'e', 'E', 'f', 'e', 'E'};
 
-  if ((sscanf(valueString, " %lf %n", &val, &n) == 1) &&
+  if ((sscanf(valueString, " %lf %n", &PROT(val), &n) == 1) &&
       (n == (int)strlen(valueString)))
     { //skip white space around number and require all characters be read
-      bad = false;
+      PROT(bad) = false;
     }
   else
     {
       fprintf(stderr, "%s is not a valid double\n", valueString);
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
     }
   for (n = 0; (valueString[n] && (valueString[n] != '.')); n++);
   if (!valueString[n])
     { // number ended without a decimal point
-      places = ((XmlSchemaInstanceBase::places < 0) ?
-		-XmlSchemaInstanceBase::places : 0);
-      format = ((XmlSchemaInstanceBase::format > 2) ?
-		formats[XmlSchemaInstanceBase::format] : 'f');
+      PROT(places) = ((XmlSchemaInstanceBase::places < 0) ?
+		      -XmlSchemaInstanceBase::places : 0);
+      PROT(format) = ((XmlSchemaInstanceBase::format > 2) ?
+		      formats[XmlSchemaInstanceBase::format] : 'f');
       return;
     }
   for (m = 0, n++; (valueString[n] && (valueString[n] < 58)); n++, m++);
-  places = ((XmlSchemaInstanceBase::places < 0) ?
-	    -XmlSchemaInstanceBase::places : m);
+  PROT(places) = ((XmlSchemaInstanceBase::places < 0) ?
+		  -XmlSchemaInstanceBase::places : m);
   if (!valueString[n])
     { // number ended with no exponent 
-      format = ((XmlSchemaInstanceBase::format > 2) ?
-		formats[XmlSchemaInstanceBase::format] : 'f');
+      PROT(format) = ((XmlSchemaInstanceBase::format > 2) ?
+		      formats[XmlSchemaInstanceBase::format] : 'f');
     }
   else
     { // number has e or E
-      format = ((XmlSchemaInstanceBase::format > 2) ?
-		formats[XmlSchemaInstanceBase::format] : valueString[n]);
+      PROT(format) = ((XmlSchemaInstanceBase::format > 2) ?
+		      formats[XmlSchemaInstanceBase::format] : valueString[n]);
     }
 }
 
@@ -1326,18 +1368,19 @@ XmlDouble::XmlDouble(
   double valIn)
 {
   const char formats[] = {'f', 'e', 'E', 'f', 'e', 'E'};
-  val = valIn;
-  bad = false;
-  places = ((XmlSchemaInstanceBase::places < 0) ?
-	    -XmlSchemaInstanceBase::places : XmlSchemaInstanceBase::places);
-  format = formats[XmlSchemaInstanceBase::format];
+  PROT(val) = valIn;
+  PROT(bad) = false;
+  PROT(places) = ((XmlSchemaInstanceBase::places < 0) ?
+		  -XmlSchemaInstanceBase::places :
+		  XmlSchemaInstanceBase::places);
+  PROT(format) = formats[XmlSchemaInstanceBase::format];
 }
 
 XmlDouble::~XmlDouble() {}
 
 bool XmlDouble::XmlDoubleIsBad()
 {
-  return bad;
+  return PROT(bad);
 }
 
 void XmlDouble::PRINTSELFDECL
@@ -1345,11 +1388,10 @@ void XmlDouble::PRINTSELFDECL
   static char printFormat[10];
   if (XmlDoubleIsBad())
     {
-      fprintf(stderr, "double value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("double value is bad"));
     }
-  snprintf(printFormat, 10, ">%%.%d%c", places, format);
-  XFPRINTF printFormat, val);
+  snprintf(printFormat, 10, ">%%.%d%c", PROT(places), PROT(format));
+  XFPRINTF printFormat, PROT(val));
 }
 
 void XmlDouble::OPRINTSELFDECL
@@ -1357,36 +1399,35 @@ void XmlDouble::OPRINTSELFDECL
   static char printFormat[10];
   if (XmlDoubleIsBad())
     {
-      fprintf(stderr, "double value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("double value is bad"));
     }
-  snprintf(printFormat, 10, "%%.%d%c", places, format);
-  XFPRINTF printFormat, val);
+  snprintf(printFormat, 10, "%%.%d%c", PROT(places), PROT(format));
+  XFPRINTF printFormat, PROT(val));
 }
 
 void XmlDouble::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%f", val);
+  fprintf(badFile, "%f", PROT(val));
 }
 
-#ifdef ACCESS
-  double XmlDouble::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+double XmlDouble::GET(val)()
+{return PROT(val);}
 
-  void XmlDouble::setval(double valIn)
-  {val = valIn;}
+void XmlDouble::SET(val)(double valIn)
+{PROT(val) = valIn;}
 
-  short int XmlDouble::getplaces()
-  {return places;}
+short int XmlDouble::GET(places)()
+{return PROT(places);}
 
-  void XmlDouble::setplaces(short int placesIn)
-  {places = placesIn;}
+void XmlDouble::SET(places)(short int placesIn)
+{PROT(places) = placesIn;}
 
-  char XmlDouble::getformat()
-  {return format;}
+char XmlDouble::GET(format)()
+{return PROT(format);}
 
-  void XmlDouble::setformat(char formatIn)
-  {format = formatIn;}
+void XmlDouble::SET(format)(char formatIn)
+{PROT(format) = formatIn;}
 #endif
 
 /*********************************************************************/
@@ -1412,12 +1453,12 @@ XmlDoubleLisd::XmlDoubleLisd(
 XmlDoubleLisd::XmlDoubleLisd(
  const char * valueString)
 {
-  XmlDouble * val;
+  XmlDouble * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
-  bad = false;
+  PROT(bad) = false;
   for (n = 0; valueString[n]; n++)
     { 
       for (; (valueString[n] != 0) && (isspace(valueString[n])); n++)
@@ -1432,24 +1473,23 @@ XmlDoubleLisd::XmlDoubleLisd(
       if ((n - start) > 199)
 	{
 	  fprintf(stderr, "%s is not a valid double list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlDouble(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlDouble(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
-	  fprintf(stderr, "%s is not a valid double list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -1469,7 +1509,7 @@ XmlDoubleLisd::~XmlDoubleLisd()
 
 bool XmlDoubleLisd::XmlDoubleLisdIsBad()
 {
-  return bad;
+  return PROT(bad);
 }
 
 void XmlDoubleLisd::PRINTNAMEDECL
@@ -1514,10 +1554,10 @@ set to true and val is set to 0.
 XmlFloat::XmlFloat()
 {
   const char formats[] = {'f', 'e', 'E', 'f', 'e', 'E'};
-  val = 0.0;
-  places = XmlSchemaInstanceBase::places;
-  format = formats[XmlSchemaInstanceBase::format];
-  bad = true;
+  PROT(val) = 0.0;
+  PROT(places) = XmlSchemaInstanceBase::places;
+  PROT(format) = formats[XmlSchemaInstanceBase::format];
+  PROT(bad) = true;
 }
 
 XmlFloat::XmlFloat(
@@ -1527,38 +1567,38 @@ XmlFloat::XmlFloat(
   int m; // number of digits after decimal point
   const char formats[] = {'f', 'e', 'E', 'f', 'e', 'E'};
 
-  if ((sscanf(valueString, " %f %n", &val, &n) == 1) &&
+  if ((sscanf(valueString, " %f %n", &PROT(val), &n) == 1) &&
       (n == (int)strlen(valueString)))
     { //skip white space around number and require all characters be read
-      bad = false;
+      PROT(bad) = false;
     }
   else
     {
       fprintf(stderr, "%s is not a valid float\n", valueString);
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
     }
   for (n = 0; (valueString[n] && (valueString[n] != '.')); n++);
   if (!valueString[n])
     { // number ended without a decimal point
-      places = ((XmlSchemaInstanceBase::places < 0) ?
-		-XmlSchemaInstanceBase::places : 0);
-      format = ((XmlSchemaInstanceBase::format > 2) ?
-		formats[XmlSchemaInstanceBase::format] : 'f');
+      PROT(places) = ((XmlSchemaInstanceBase::places < 0) ?
+		      -XmlSchemaInstanceBase::places : 0);
+      PROT(format) = ((XmlSchemaInstanceBase::format > 2) ?
+		      formats[XmlSchemaInstanceBase::format] : 'f');
       return;
     }
   for (m = 0, n++; (valueString[n] && (valueString[n] < 58)); n++, m++);
-  places = ((XmlSchemaInstanceBase::places < 0) ?
-	    -XmlSchemaInstanceBase::places : m);
+  PROT(places) = ((XmlSchemaInstanceBase::places < 0) ?
+		  -XmlSchemaInstanceBase::places : m);
   if (!valueString[n])
     { // number ended with no exponent 
-      format = ((XmlSchemaInstanceBase::format > 2) ?
-		formats[XmlSchemaInstanceBase::format] : 'f');
+      PROT(format) = ((XmlSchemaInstanceBase::format > 2) ?
+		      formats[XmlSchemaInstanceBase::format] : 'f');
     }
   else
     { // number has e or E
-      format = ((XmlSchemaInstanceBase::format > 2) ?
-		formats[XmlSchemaInstanceBase::format] : valueString[n]);
+      PROT(format) = ((XmlSchemaInstanceBase::format > 2) ?
+		      formats[XmlSchemaInstanceBase::format] : valueString[n]);
     }
 }
 
@@ -1566,18 +1606,19 @@ XmlFloat::XmlFloat(
   float valIn)
 {
   const char formats[] = {'f', 'e', 'E', 'f', 'e', 'E'};
-  val = valIn;
-  bad = false;
-  places = ((XmlSchemaInstanceBase::places < 0) ?
-	    -XmlSchemaInstanceBase::places : XmlSchemaInstanceBase::places);
-  format = formats[XmlSchemaInstanceBase::format];
+  PROT(val) = valIn;
+  PROT(bad) = false;
+  PROT(places) = ((XmlSchemaInstanceBase::places < 0) ?
+		  -XmlSchemaInstanceBase::places :
+		  XmlSchemaInstanceBase::places);
+  PROT(format) = formats[XmlSchemaInstanceBase::format];
 }
 
 XmlFloat::~XmlFloat() {}
 
 bool XmlFloat::XmlFloatIsBad()
 {
-  return bad;
+  return PROT(bad);
 }
 
 void XmlFloat::PRINTSELFDECL
@@ -1585,11 +1626,10 @@ void XmlFloat::PRINTSELFDECL
   static char printFormat[10];
   if (XmlFloatIsBad())
     {
-      fprintf(stderr, "float value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("float value is bad"));
     }
-  snprintf(printFormat, 10, ">%%.%d%c", places, format);
-  XFPRINTF printFormat, val);
+  snprintf(printFormat, 10, ">%%.%d%c", PROT(places), PROT(format));
+  XFPRINTF printFormat, PROT(val));
 }
 
 void XmlFloat::OPRINTSELFDECL
@@ -1597,36 +1637,35 @@ void XmlFloat::OPRINTSELFDECL
   static char printFormat[10];
   if (XmlFloatIsBad())
     {
-      fprintf(stderr, "float value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("float value is bad"));
     }
-  snprintf(printFormat, 10, "%%.%d%c", places, format);
-  XFPRINTF printFormat, val);
+  snprintf(printFormat, 10, "%%.%d%c", PROT(places), PROT(format));
+  XFPRINTF printFormat, PROT(val));
 }
 
 void XmlFloat::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%f", val);
+  fprintf(badFile, "%f", PROT(val));
 }
 
-#ifdef ACCESS
-  float XmlFloat::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+float XmlFloat::GET(val)()
+{return PROT(val);}
 
-  void XmlFloat::setval(float valIn)
-  {val = valIn;}
+void XmlFloat::SET(val)(float valIn)
+{PROT(val) = valIn;}
 
-  short int XmlFloat::getplaces()
-  {return places;}
+short int XmlFloat::GET(places)()
+{return PROT(places);}
 
-  void XmlFloat::setplaces(short int placesIn)
-  {places = placesIn;}
+void XmlFloat::SET(places)(short int placesIn)
+{PROT(places) = placesIn;}
 
-  char XmlFloat::getformat()
-  {return format;}
+char XmlFloat::GET(format)()
+{return PROT(format);}
 
-  void XmlFloat::setformat(char formatIn)
-  {format = formatIn;}
+void XmlFloat::SET(format)(char formatIn)
+{PROT(format) = formatIn;}
 #endif
 
 /*********************************************************************/
@@ -1652,12 +1691,16 @@ XmlFloatLisd::XmlFloatLisd(
 XmlFloatLisd::XmlFloatLisd(
  const char * valueString)
 {
-  XmlFloat * val;
+  XmlFloat * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
-  bad = false;
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  SET(bad)(false);
+#else
+  PROT(bad) = false;
+#endif
   for (n = 0; valueString[n]; n++)
     { 
       for (; (valueString[n] != 0) && (isspace(valueString[n])); n++)
@@ -1671,25 +1714,24 @@ XmlFloatLisd::XmlFloatLisd(
       for (; (valueString[n] != 0) && (!isspace(valueString[n])); n++);
       if ((n - start) > 199)
 	{
-	  fprintf(stderr, "%s is not a valid float list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlFloat(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlFloat(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid float list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -1788,9 +1830,9 @@ XmlID::XmlID()
       if (allIDs.find(buffer) == allIDs.end())
 	break;
     }
-  val = buffer;
-  allIDs.insert(val);
-  bad = false;
+  PROT(val) = buffer;
+  allIDs.insert(PROT(val));
+  PROT(bad) = false;
 }
 
 XmlID::XmlID(
@@ -1805,7 +1847,7 @@ XmlID::XmlID(
   if (length > NAMESIZE)
     {
       fprintf(stderr, "ID %s is too long", valIn);
-      bad = true;
+      PROT(bad) = true;
       return;
     }
   strncpy(buffer, valIn, NAMESIZE);
@@ -1815,8 +1857,8 @@ XmlID::XmlID(
   if ((int)strlen(buffer + start) > idSize)
     {
       fprintf(stderr, "the ID %s is too long\n", buffer + start);
-      val = "";
-      bad = true;
+      PROT(val) = "";
+      PROT(bad) = true;
       return;
     }
   n = start;
@@ -1824,8 +1866,8 @@ XmlID::XmlID(
       ((buffer[n] < 'a') || (buffer[n] > 'z')) &&
       ((buffer[n] < 'A') || (buffer[n] > 'Z')))
     { // first non-white character is not allowed
-      val = "";
-      bad = true;
+      PROT(val) = "";
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid ID\n", buffer + start);
       return;
     }
@@ -1837,59 +1879,59 @@ XmlID::XmlID(
 	     ((buffer[n] >= '0') && (buffer[n] <= '9'))); n++);
   if (buffer[n])
     { // buffer[n] should be 0 but isn't
-      val = "";
-      bad = true;
+      PROT(val) = "";
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid ID\n", buffer + start);
       return;
     }
    else
     {
-      val = buffer + start; // automatic write to std::string
-      if (allIDs.find(val) != allIDs.end())
+      PROT(val) = buffer + start; // automatic write to std::string
+      if (allIDs.find(PROT(val)) != allIDs.end())
 	{
-	  fprintf(stderr, "ID value %s is already in use\n", val.c_str());
-	  val = "";
-	  bad = true;
+	  fprintf(stderr, "ID value %s is already in use\n", PROT(val).c_str());
+	  PROT(val) = "";
+	  PROT(bad) = true;
 	}
       else
 	{ // everything OK
-	  bad = false;
-	  allIDs.insert(val);
+	  PROT(bad) = false;
+	  allIDs.insert(PROT(val));
 	}
     }
 }
 
 XmlID::~XmlID()
 {
-  allIDs.erase(val);
+  allIDs.erase(PROT(val));
 }
 
 bool XmlID::XmlIDIsBad()
 {
   int n;
 
-  if (bad)
+  if (PROT(bad))
     return true;
-  else if ((int)val.size() > idSize)
+  else if ((int)PROT(val).size() > idSize)
     return true;
-  else if (allIDs.find(val) == allIDs.end())
+  else if (allIDs.find(PROT(val)) == allIDs.end())
     return true;
-  else if ((val[0] != '_') &&
-	   ((val[0] < 'a') || (val[0] > 'z')) &&
-	   ((val[0] < 'A') || (val[0] > 'Z')))
+  else if ((PROT(val)[0] != '_') &&
+	   ((PROT(val)[0] < 'a') || (PROT(val)[0] > 'z')) &&
+	   ((PROT(val)[0] < 'A') || (PROT(val)[0] > 'Z')))
     { // first character is not allowed
-      val = "";
+      PROT(val) = "";
       return true;
     }
-  for (n=1; ((val[n] == '_') ||
-	     (val[n] == '.') ||
-	     (val[n] == '-') ||
-	     ((val[n] >= 'a') && (val[n] <= 'z')) ||
-	     ((val[n] >= 'A') && (val[n] <= 'Z')) ||
-	     ((val[n] >= '0') && (val[n] <= '9'))); n++);
-  if (val[n])
+  for (n=1; ((PROT(val)[n] == '_') ||
+	     (PROT(val)[n] == '.') ||
+	     (PROT(val)[n] == '-') ||
+	     ((PROT(val)[n] >= 'a') && (PROT(val)[n] <= 'z')) ||
+	     ((PROT(val)[n] >= 'A') && (PROT(val)[n] <= 'Z')) ||
+	     ((PROT(val)[n] >= '0') && (PROT(val)[n] <= '9'))); n++);
+  if (PROT(val)[n])
     { // val[n] should be 0 but isn't
-      val = "";
+      PROT(val) = "";
       return true;
     }
   return false;
@@ -1897,35 +1939,37 @@ bool XmlID::XmlIDIsBad()
 
 void XmlID::PRINTSELFDECL
 {
+  char mess[NAMESIZE];
   if (XmlIDIsBad())
     {
-      fprintf(stderr, "ID %s is bad\n", val.c_str());
-      exit(1);
+      snprintf(mess, NAMESIZE, "ID %s is bad\n", PROT(val).c_str());
+      throw(SchemaInstanceError(mess));
     }
-  XFPRINTF ">%s", val.c_str());
+  XFPRINTF ">%s", PROT(val).c_str());
 }
 
 void XmlID::OPRINTSELFDECL
 {
+  char mess[NAMESIZE];
   if (XmlIDIsBad())
     {
-      fprintf(stderr, "ID %s is bad\n", val.c_str());
-      exit(1);
+      snprintf(mess, NAMESIZE, "ID %s is bad\n", PROT(val).c_str());
+      throw(SchemaInstanceError(mess));
     }
-  XFPRINTF "%s", val.c_str());
+  XFPRINTF "%s", PROT(val).c_str());
 }
 
 void XmlID::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%s", val.c_str());
+  fprintf(badFile, "%s", PROT(val).c_str());
 }
 
-#ifdef ACCESS
-  std::string XmlID::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string XmlID::GET(val)()
+  {return PROT(val);}
 
-  void XmlID::setval(std::string valIn)
-  {val = valIn;}
+  void XmlID::SET(val)(std::string valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -1951,12 +1995,12 @@ XmlIDLisd::XmlIDLisd(
 XmlIDLisd::XmlIDLisd(
  const char * valueString)
 {
-  XmlID * val;
+  XmlID * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
-  bad = false;
+  PROT(bad) = false;
   for (n = 0; valueString[n]; n++)
     { 
       for (; (valueString[n] != 0) && (isspace(valueString[n])); n++)
@@ -1971,24 +2015,24 @@ XmlIDLisd::XmlIDLisd(
       if ((n - start) > 199)
 	{
 	  fprintf(stderr, "%s is not a valid ID list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlID(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlID(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid ID list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -2065,8 +2109,8 @@ useful to the find and insert operations.
 
 XmlIDREF::XmlIDREF()
 {
-  val = "";
-  bad = true;
+  PROT(val) = "";
+  PROT(bad) = true;
 }
 
 XmlIDREF::XmlIDREF(
@@ -2080,8 +2124,8 @@ XmlIDREF::XmlIDREF(
   length = strlen(valIn);
   if (length > NAMESIZE)
     {
-      fprintf(stderr, "IDREF %s is too long", valIn);
-      exit(1);
+      snprintf(buffer, NAMESIZE, "IDREF is too long: %s", valIn);
+      throw(SchemaInstanceError(buffer));
     }
   strncpy(buffer, valIn, NAMESIZE);
   for (start=0; isspace(buffer[start]); start++);
@@ -2090,9 +2134,9 @@ XmlIDREF::XmlIDREF(
   if ((int)strlen(buffer + start) > idrefSize)
     {
       fprintf(stderr,
-	      "the IDREF %s is too long\n", buffer + start);
-      val = "";
-      bad = true;
+	      "IDREF %s is too long\n", buffer + start);
+      PROT(val) = "";
+      PROT(bad) = true;
       return;
     }
   n = start;
@@ -2100,8 +2144,8 @@ XmlIDREF::XmlIDREF(
       ((buffer[n] < 'a') || (buffer[n] > 'z')) &&
       ((buffer[n] < 'A') || (buffer[n] > 'Z')))
     { // first non-white character is not allowed
-      val = "";
-      bad = true;
+      PROT(val) = "";
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid IDREF\n", buffer + start);
       return;
     }
@@ -2113,47 +2157,47 @@ XmlIDREF::XmlIDREF(
 	     ((buffer[n] >= '0') && (buffer[n] <= '9'))); n++);
   if (buffer[n])
     { // buffer[n] should be 0 but isn't
-      val = "";
-      bad = true;
+      PROT(val) = "";
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid IDREF\n", buffer + start);
       return;
     }
-  val = buffer + start; // automatic write to std::string
-  bad = false;
-  allIDREFs.insert(val);
+  PROT(val) = buffer + start; // automatic write to std::string
+  PROT(bad) = false;
+  allIDREFs.insert(PROT(val));
 }
 
 XmlIDREF::~XmlIDREF()
 {
-  allIDREFs.erase(val);
+  allIDREFs.erase(PROT(val));
 }
 
 bool XmlIDREF::XmlIDREFIsBad()
 {
   int n;
 
-  if (bad)
+  if (PROT(bad))
     return true;
-  else if ((int)val.size() > idrefSize)
+  else if ((int)PROT(val).size() > idrefSize)
     return true;
-  else if (XmlID::allIDs.find(val) == XmlID::allIDs.end())
+  else if (XmlID::allIDs.find(PROT(val)) == XmlID::allIDs.end())
     return true;
-  else if ((val[0] != '_') &&
-	   ((val[0] < 'a') || (val[0] > 'z')) &&
-	   ((val[0] < 'A') || (val[0] > 'Z')))
+  else if ((PROT(val)[0] != '_') &&
+	   ((PROT(val)[0] < 'a') || (PROT(val)[0] > 'z')) &&
+	   ((PROT(val)[0] < 'A') || (PROT(val)[0] > 'Z')))
     { // first character is not allowed
-      val = "";
+      PROT(val) = "";
       return true;
     }
-  for (n=1; ((val[n] == '_') ||
-	     (val[n] == '.') ||
-	     (val[n] == '-') ||
-	     ((val[n] >= 'a') && (val[n] <= 'z')) ||
-	     ((val[n] >= 'A') && (val[n] <= 'Z')) ||
-	     ((val[n] >= '0') && (val[n] <= '9'))); n++);
-  if (val[n])
+  for (n=1; ((PROT(val)[n] == '_') ||
+	     (PROT(val)[n] == '.') ||
+	     (PROT(val)[n] == '-') ||
+	     ((PROT(val)[n] >= 'a') && (PROT(val)[n] <= 'z')) ||
+	     ((PROT(val)[n] >= 'A') && (PROT(val)[n] <= 'Z')) ||
+	     ((PROT(val)[n] >= '0') && (PROT(val)[n] <= '9'))); n++);
+  if (PROT(val)[n])
     { // val[n] should be 0 but isn't
-      val = "";
+      PROT(val) = "";
       return true;
     }
   return false;
@@ -2161,27 +2205,29 @@ bool XmlIDREF::XmlIDREFIsBad()
 
 void XmlIDREF::PRINTSELFDECL
 {
+  char mess[NAMESIZE];
   if (XmlIDREFIsBad())
     {
-      fprintf(stderr, "IDREF %s is bad\n", val.c_str());
-      exit(1);
+      snprintf(mess, NAMESIZE, "IDREF %s is bad\n", PROT(val).c_str());
+      throw(SchemaInstanceError(mess));
     }
-  XFPRINTF ">%s", val.c_str());
+  XFPRINTF ">%s", PROT(val).c_str());
 }
 
 void XmlIDREF::OPRINTSELFDECL
 {
+  char mess[NAMESIZE];
   if (XmlIDREFIsBad())
     {
-      fprintf(stderr, "IDREF %s is bad\n", val.c_str());
-      exit(1);
+      snprintf(mess, NAMESIZE, "IDREF %s is bad\n", PROT(val).c_str());
+      throw(SchemaInstanceError(mess));
     }
-  XFPRINTF "%s", val.c_str());
+  XFPRINTF "%s", PROT(val).c_str());
 }
 
 void XmlIDREF::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%s", val.c_str());
+  fprintf(badFile, "%s", PROT(val).c_str());
 }
 
 bool XmlIDREF::idMissing()
@@ -2199,12 +2245,12 @@ bool XmlIDREF::idMissing()
   return false;
 }
 
-#ifdef ACCESS
-  std::string XmlIDREF::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string XmlIDREF::GET(val)()
+  {return PROT(val);}
 
-  void XmlIDREF::setval(std::string valIn)
-  {val = valIn;}
+  void XmlIDREF::SET(val)(std::string valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -2230,12 +2276,12 @@ XmlIDREFLisd::XmlIDREFLisd(
 XmlIDREFLisd::XmlIDREFLisd(
  const char * valueString)
 {
-  XmlIDREF * val;
+  XmlIDREF * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
-  bad = false;
+  PROT(bad) = false;
   for (n = 0; valueString[n]; n++)
     { 
       for (; (valueString[n] != 0) && (isspace(valueString[n])); n++)
@@ -2250,24 +2296,24 @@ XmlIDREFLisd::XmlIDREFLisd(
       if ((n - start) > 199)
 	{
 	  fprintf(stderr, "%s is not a valid IDREF list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlIDREF(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlIDREF(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid IDREF list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -2329,8 +2375,8 @@ If any check fails, bad is set to true and val is set to 0.
 
 XmlInt::XmlInt()
 {
-  val = 0;
-  bad = true;
+  PROT(val) = 0;
+  PROT(bad) = true;
 }
 
 XmlInt::XmlInt(
@@ -2346,24 +2392,24 @@ XmlInt::XmlInt(
   start = n;
   if ((valIn[n] < '0') || (valIn[n] > '9'))
     { // first non-white-space non-one-sign is not a digit
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid int\n", valIn);
       return;
     }
   for (n++ ; ((valIn[n] >= '0') && (valIn[n] <= '9')); n++);
   if ((n - start) > 11)
     { // too many digits
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid int\n", valIn);
       return;
     }
   for ( ; isspace(valIn[n]); n++);
   if (valIn[n])
     { // valIn[n] should be 0 but isn't
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid int\n", valIn);
       return;
     }
@@ -2371,20 +2417,20 @@ XmlInt::XmlInt(
     {
       if ((longVal < -2147483648) || (longVal > 2147483647))
 	{
-	  val = 0;
-	  bad = true;
+	  PROT(val) = 0;
+	  PROT(bad) = true;
 	  fprintf(stderr, "%s is not a valid int\n", valIn);
 	}      
       else
 	{
-	  val = (int)longVal;
-	  bad = false;
+	  PROT(val) = (int)longVal;
+	  PROT(bad) = false;
 	}
     }
   else
     {
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid int\n", valIn);
     }
 }
@@ -2393,40 +2439,38 @@ XmlInt::~XmlInt() {}
 
 bool XmlInt::XmlIntIsBad()
 {
-  return bad;
+  return PROT(bad);
 }
 
 void XmlInt::PRINTSELFDECL
 {
   if (XmlIntIsBad())
     {
-      fprintf(stderr, "int value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("int value is bad"));
     }
-  XFPRINTF ">%d", val);
+  XFPRINTF ">%d", PROT(val));
 }
 
 void XmlInt::OPRINTSELFDECL
 {
   if (XmlIntIsBad())
     {
-      fprintf(stderr, "int value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("int value is bad"));
     }
-  XFPRINTF "%d", val);
+  XFPRINTF "%d", PROT(val));
 }
 
 void XmlInt::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%d", val);
+  fprintf(badFile, "%d", PROT(val));
 }
 
-#ifdef ACCESS
-  int XmlInt::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  int XmlInt::GET(val)()
+  {return PROT(val);}
 
-  void XmlInt::setval(int valIn)
-  {val = valIn;}
+  void XmlInt::SET(val)(int valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -2452,10 +2496,10 @@ XmlIntLisd::XmlIntLisd(
 XmlIntLisd::XmlIntLisd(
  const char * valueString)
 {
-  XmlInt * val;
+  XmlInt * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
   for (n = 0; valueString[n]; n++)
     { 
@@ -2471,24 +2515,24 @@ XmlIntLisd::XmlIntLisd(
       if ((n - start) > 199)
 	{
 	  fprintf(stderr, "%s is not a valid int list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlInt(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlInt(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid int list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -2549,8 +2593,8 @@ If any check fails, bad is set to true and val is set to 0.
 
 XmlInteger::XmlInteger()
 {
-  val = 0;
-  bad = true;
+  PROT(val) = 0;
+  PROT(bad) = true;
 }
 
 XmlInteger::XmlInteger(
@@ -2563,8 +2607,8 @@ XmlInteger::XmlInteger(
     n++;
   if ((valIn[n] < '0') || (valIn[n] > '9'))
     { // first non-white-space non-one-sign is not a digit
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid integer\n", valIn);
       return;
     }
@@ -2572,19 +2616,19 @@ XmlInteger::XmlInteger(
   for ( ; valIn[n] && isspace(valIn[n]); n++);
   if (valIn[n])
     { // valIn[n] should be 0 but isn't
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid integer\n", valIn);
       return;
     }
-  else if (sscanf(valIn, "%d", &val) == 1)
+  else if (sscanf(valIn, "%d", &PROT(val)) == 1)
     {
-      bad = false;
+      PROT(bad) = false;
     }
   else
     {
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid integer\n", valIn);
     }
 }
@@ -2593,40 +2637,38 @@ XmlInteger::~XmlInteger() {}
 
 bool XmlInteger::XmlIntegerIsBad()
 {
-  return bad;
+  return PROT(bad);
 }
 
 void XmlInteger::PRINTSELFDECL
 {
   if (XmlIntegerIsBad())
     {
-      fprintf(stderr, "integer value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("integer value is bad"));
     }
-  XFPRINTF ">%d", val);
+  XFPRINTF ">%d", PROT(val));
 }
 
 void XmlInteger::OPRINTSELFDECL
 {
   if (XmlIntegerIsBad())
     {
-      fprintf(stderr, "integer value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("integer value is bad"));
     }
-  XFPRINTF "%d", val);
+  XFPRINTF "%d", PROT(val));
 }
 
 void XmlInteger::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%d", val);
+  fprintf(badFile, "%d", PROT(val));
 }
 
-#ifdef ACCESS
-  int XmlInteger::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  int XmlInteger::GET(val)()
+  {return PROT(val);}
 
-  void XmlInteger::setval(int valIn)
-  {val = valIn;}
+  void XmlInteger::SET(val)(int valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -2652,10 +2694,10 @@ XmlIntegerLisd::XmlIntegerLisd(
 XmlIntegerLisd::XmlIntegerLisd(
  const char * valueString)
 {
-  XmlInteger * val;
+  XmlInteger * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
   for (n = 0; valueString[n]; n++)
     { 
@@ -2671,24 +2713,24 @@ XmlIntegerLisd::XmlIntegerLisd(
       if ((n - start) > 199)
 	{
 	  fprintf(stderr, "%s is not a valid integer list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlInteger(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlInteger(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid integer list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -2749,8 +2791,8 @@ If any check fails, bad is set to true and val is set to 0.
 
 XmlLong::XmlLong()
 {
-  val = 0;
-  bad = true;
+  PROT(val) = 0;
+  PROT(bad) = true;
 }
 
 XmlLong::XmlLong(
@@ -2763,8 +2805,8 @@ XmlLong::XmlLong(
     n++;
   if ((valIn[n] < '0') || (valIn[n] > '9'))
     { // first non-white-space non-one-sign is not a digit
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid long\n", valIn);
       return;
     }
@@ -2772,19 +2814,19 @@ XmlLong::XmlLong(
   for ( ; isspace(valIn[n]); n++);
   if (valIn[n])
     { // valIn[n] should be 0 but isn't
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid long\n", valIn);
       return;
     }
-  else if (sscanf(valIn, "%ld", &val) == 1)
+  else if (sscanf(valIn, "%ld", &PROT(val)) == 1)
     {
-      bad = false;
+      PROT(bad) = false;
     }
   else
     {
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid long\n", valIn);
     }
 }
@@ -2793,40 +2835,38 @@ XmlLong::~XmlLong() {}
 
 bool XmlLong::XmlLongIsBad()
 {
-  return bad;
+  return PROT(bad);
 }
 
 void XmlLong::PRINTSELFDECL
 {
   if (XmlLongIsBad())
     {
-      fprintf(stderr, "long value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("long value is bad"));
     }
-  XFPRINTF ">%ld", val);
+  XFPRINTF ">%ld", PROT(val));
 }
 
 void XmlLong::OPRINTSELFDECL
 {
   if (XmlLongIsBad())
     {
-      fprintf(stderr, "long value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("long value is bad"));
     }
-  XFPRINTF "%ld", val);
+  XFPRINTF "%ld", PROT(val));
 }
 
 void XmlLong::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%ld", val);
+  fprintf(badFile, "%ld", PROT(val));
 }
 
-#ifdef ACCESS
-  long XmlLong::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  long XmlLong::GET(val)()
+  {return PROT(val);}
 
-  void XmlLong::setval(long valIn)
-  {val = valIn;}
+  void XmlLong::SET(val)(long valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -2852,10 +2892,10 @@ XmlLongLisd::XmlLongLisd(
 XmlLongLisd::XmlLongLisd(
  const char * valueString)
 {
-  XmlLong * val;
+  XmlLong * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
   for (n = 0; valueString[n]; n++)
     { 
@@ -2871,24 +2911,24 @@ XmlLongLisd::XmlLongLisd(
       if ((n - start) > 199)
 	{
 	  fprintf(stderr, "%s is not a valid long list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlLong(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlLong(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid long list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -2951,8 +2991,8 @@ value of NCName is collapse.
 
 XmlNCName::XmlNCName()
 {
-  val = "";
-  bad = true;
+  PROT(val) = "";
+  PROT(bad) = true;
 }
 
 XmlNCName::XmlNCName(
@@ -2965,8 +3005,8 @@ XmlNCName::XmlNCName(
 
   if (strlen(valIn) > NAMESIZE)
     {
-      fprintf(stderr, "NCName %s is too long", valIn);
-      exit(1);
+      snprintf(buffer, NAMESIZE, "NCName is too long: %s", valIn);
+      throw(SchemaInstanceError(buffer));
     }
   strncpy(buffer, valIn, NAMESIZE);
   for (n=0; isspace(buffer[n]); n++);
@@ -2975,8 +3015,8 @@ XmlNCName::XmlNCName(
       ((buffer[n] < 'a') || (buffer[n] > 'z')) &&
       ((buffer[n] < 'A') || (buffer[n] > 'Z')))
     { // first non-white-space character is not allowed
-      val = "";
-      bad = true;
+      PROT(val) = "";
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid NCName\n", valIn);
       return;
     }
@@ -2990,14 +3030,14 @@ XmlNCName::XmlNCName(
   for ( ; isspace(buffer[n]); n++);
   if (buffer[n])
     { // buffer[n] should be 0 but isn't
-      val = "";
-      bad = true;
+      PROT(val) = "";
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid NCName\n", valIn);
       return;
     }
   buffer[end] = 0;
-  val = (buffer + start); // automatic write to std::string
-  bad = false;
+  PROT(val) = (buffer + start); // automatic write to std::string
+  PROT(bad) = false;
 }
 
 XmlNCName::~XmlNCName() {}
@@ -3007,18 +3047,18 @@ bool XmlNCName::XmlNCNameIsBad()
 {
   int n;
 
-  if (bad)
+  if (PROT(bad))
     return true;
-  for (n=0; ((val[n] == '_') ||
-             (val[n] == '.') ||
-             (val[n] == '-') ||
-             ((val[n] >= 'a') && (val[n] <= 'z')) ||
-             ((val[n] >= 'A') && (val[n] <= 'Z')) ||
-             ((val[n] >= '0') && (val[n] <= '9'))); n++);
-  if ((n == 0) || val[n])
+  for (n=0; ((PROT(val)[n] == '_') ||
+             (PROT(val)[n] == '.') ||
+             (PROT(val)[n] == '-') ||
+             ((PROT(val)[n] >= 'a') && (PROT(val)[n] <= 'z')) ||
+             ((PROT(val)[n] >= 'A') && (PROT(val)[n] <= 'Z')) ||
+             ((PROT(val)[n] >= '0') && (PROT(val)[n] <= '9'))); n++);
+  if ((n == 0) || PROT(val)[n])
     return true;
-  else if ((val[0] == '.') || (val[0] == '-') ||
-	   ((val[0] >= '0') && (val[0] <= '9')))
+  else if ((PROT(val)[0] == '.') || (PROT(val)[0] == '-') ||
+	   ((PROT(val)[0] >= '0') && (PROT(val)[0] <= '9')))
     return true;
   else
     return false;
@@ -3026,35 +3066,37 @@ bool XmlNCName::XmlNCNameIsBad()
 
 void XmlNCName::PRINTSELFDECL
 {
+  char mess[NAMESIZE];
   if (XmlNCNameIsBad())
     {
-      fprintf(stderr, "NCName value %s is bad\n", val.c_str());
-      exit(1);
+      snprintf(mess, NAMESIZE, "NCName value %s is bad", PROT(val).c_str());
+      throw(SchemaInstanceError(mess));
     }
-  XFPRINTF ">%s", val.c_str());
+  XFPRINTF ">%s", PROT(val).c_str());
 }
 
 void XmlNCName::OPRINTSELFDECL
 {
+  char mess[NAMESIZE];
   if (XmlNCNameIsBad())
     {
-      fprintf(stderr, "NCName value %s is bad\n", val.c_str());
-      exit(1);
+      snprintf(mess, NAMESIZE, "NCName value %s is bad", PROT(val).c_str());
+      throw(SchemaInstanceError(mess));
     }
-  XFPRINTF "%s", val.c_str());
+  XFPRINTF "%s", PROT(val).c_str());
 }
 
 void XmlNCName::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%s", val.c_str());
+  fprintf(badFile, "%s", PROT(val).c_str());
 }
 
-#ifdef ACCESS
-  std::string XmlNCName::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string XmlNCName::GET(val)()
+  {return PROT(val);}
 
-  void XmlNCName::setval(std::string valIn)
-  {val = valIn;}
+  void XmlNCName::SET(val)(std::string valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -3080,10 +3122,10 @@ XmlNCNameLisd::XmlNCNameLisd(
 XmlNCNameLisd::XmlNCNameLisd(
  const char * valueString)
 {
-  XmlNCName * val;
+  XmlNCName * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
   for (n = 0; valueString[n]; n++)
     {
@@ -3099,24 +3141,24 @@ XmlNCNameLisd::XmlNCNameLisd(
       if ((n - start) > 199)
         {
           fprintf(stderr, "%s is not a valid NCName list\n", valueString);
-          bad = true;
+          PROT(bad) = true;
           break;
         }
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlNCName(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlNCName(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
         {
           fprintf(stderr, "%s is not a valid NCName list\n", valueString);
-          bad = true;
+          PROT(bad) = true;
           break;
         }
       else
-        push_back(val);
+        push_back(valu);
       if (valueString[n] == 0)
             break;
     }
@@ -3178,8 +3220,8 @@ If any check fails, bad is set to true and val is set to 0.
 
 XmlNegativeInteger::XmlNegativeInteger()
 {
-  val = 0;
-  bad = true;
+  PROT(val) = 0;
+  PROT(bad) = true;
 }
 
 XmlNegativeInteger::XmlNegativeInteger(
@@ -3190,8 +3232,8 @@ XmlNegativeInteger::XmlNegativeInteger(
   for (n=0; isspace(valIn[n]); n++);
   if (valIn[n] == '+')
     { // first non-white-space character is a plus sign - not allowed
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid negativeInteger\n", valIn);
       return;
     }
@@ -3199,8 +3241,8 @@ XmlNegativeInteger::XmlNegativeInteger(
     n++;
   if ((valIn[n] < '0') || (valIn[n] > '9'))
     { // first non-white-space non-minus-sign character is not a digit
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid negativeInteger\n", valIn);
       return;
     }
@@ -3208,26 +3250,26 @@ XmlNegativeInteger::XmlNegativeInteger(
   for ( ; isspace(valIn[n]); n++);
   if (valIn[n])
     { // valIn[n] should be 0 but isn't
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid negativeInteger\n", valIn);
       return;
     }
-  else if (sscanf(valIn, "%d", &val) == 1)
+  else if (sscanf(valIn, "%d", &PROT(val)) == 1)
     {
-      if (val < 0)
-	bad = false;
+      if (PROT(val) < 0)
+	PROT(bad) = false;
       else
 	{
-	  val = 0;
-	  bad = true;
+	  PROT(val) = 0;
+	  PROT(bad) = true;
 	  fprintf(stderr, "%s is not a valid negativeInteger\n", valIn);
 	}
     }
   else
     {
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid negativeInteger\n", valIn);
     }
 }
@@ -3236,9 +3278,9 @@ XmlNegativeInteger::~XmlNegativeInteger() {}
 
 bool XmlNegativeInteger::XmlNegativeIntegerIsBad()
 {
-  if (bad)
+  if (PROT(bad))
     return true;
-  else if (val > -1)
+  else if (PROT(val) > -1)
     return true;
   else
     return false;
@@ -3248,33 +3290,31 @@ void XmlNegativeInteger::PRINTSELFDECL
 {
   if (XmlNegativeIntegerIsBad())
     {
-      fprintf(stderr, "negativeInteger value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("negativeInteger value is bad"));
     }
-  XFPRINTF ">%d", val);
+  XFPRINTF ">%d", PROT(val));
 }
 
 void XmlNegativeInteger::OPRINTSELFDECL
 {
   if (XmlNegativeIntegerIsBad())
     {
-      fprintf(stderr, "negativeInteger value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("negativeInteger value is bad"));
     }
-  XFPRINTF "%d", val);
+  XFPRINTF "%d", PROT(val));
 }
 
 void XmlNegativeInteger::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%d", val);
+  fprintf(badFile, "%d", PROT(val));
 }
 
-#ifdef ACCESS
-  int XmlNegativeInteger::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  int XmlNegativeInteger::GET(val)()
+  {return PROT(val);}
 
-  void XmlNegativeInteger::setval(int valIn)
-  {val = valIn;}
+  void XmlNegativeInteger::SET(val)(int valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -3300,10 +3340,10 @@ XmlNegativeIntegerLisd::XmlNegativeIntegerLisd(
 XmlNegativeIntegerLisd::XmlNegativeIntegerLisd(
  const char * valueString)
 {
-  XmlNegativeInteger * val;
+  XmlNegativeInteger * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
   for (n = 0; valueString[n]; n++)
     { 
@@ -3320,25 +3360,25 @@ XmlNegativeIntegerLisd::XmlNegativeIntegerLisd(
 	{
 	  fprintf(stderr, "%s is not a valid negativeInteger list\n",
 		  valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlNegativeInteger(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlNegativeInteger(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid negativeInteger list\n",
 		  valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -3399,8 +3439,8 @@ value of NMTOKEN is collapse.
 
 XmlNMTOKEN::XmlNMTOKEN()
 {
-  val = "";
-  bad = true;
+  PROT(val) = "";
+  PROT(bad) = true;
 }
 
 XmlNMTOKEN::XmlNMTOKEN(
@@ -3413,8 +3453,8 @@ XmlNMTOKEN::XmlNMTOKEN(
 
   if (strlen(valIn) > NAMESIZE)
     {
-      fprintf(stderr, "NMTOKEN %s is too long", valIn);
-      exit(1);
+      snprintf(buffer, NAMESIZE, "NMTOKEN is too long: %s", valIn);
+      throw(SchemaInstanceError(buffer));
     }
   strncpy(buffer, valIn, NAMESIZE);
   for (n=0; isspace(buffer[n]); n++);
@@ -3427,8 +3467,8 @@ XmlNMTOKEN::XmlNMTOKEN(
       ((buffer[n] < 'A') || (buffer[n] > 'Z')) &&
       ((buffer[n] < '0') || (buffer[n] > '9')))
     { // first non-white-space character is not allowed
-      val = "";
-      bad = true;
+      PROT(val) = "";
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid NMTOKEN\n", valIn);
       return;
     }
@@ -3443,14 +3483,14 @@ XmlNMTOKEN::XmlNMTOKEN(
   for ( ; isspace(buffer[n]); n++);
   if (buffer[n])
     { // buffer[n] should be 0 but isn't
-      val = "";
-      bad = true;
+      PROT(val) = "";
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid NMTOKEN\n", valIn);
       return;
     }
   buffer[end] = 0;
-  val = (buffer + start); // automatic write to std::string
-  bad = false;
+  PROT(val) = (buffer + start); // automatic write to std::string
+  PROT(bad) = false;
 }
 
 XmlNMTOKEN::~XmlNMTOKEN() {}
@@ -3459,51 +3499,55 @@ bool XmlNMTOKEN::XmlNMTOKENIsBad()
 {
   int n;
   
-  if (bad)
+  if (PROT(bad))
     return true;
-  for (n=0; ((val[n] == ':') ||
-	     (val[n] == '_') ||
-	     (val[n] == '.') ||
-	     (val[n] == '-') ||
-	     ((val[n] >= 'a') && (val[n] <= 'z')) ||
-	     ((val[n] >= 'A') && (val[n] <= 'Z')) ||
-	     ((val[n] >= '0') && (val[n] <= '9'))); n++);
-  if ((n == 0) || val[n])
+  for (n=0; ((PROT(val)[n] == ':') ||
+	     (PROT(val)[n] == '_') ||
+	     (PROT(val)[n] == '.') ||
+	     (PROT(val)[n] == '-') ||
+	     ((PROT(val)[n] >= 'a') && (PROT(val)[n] <= 'z')) ||
+	     ((PROT(val)[n] >= 'A') && (PROT(val)[n] <= 'Z')) ||
+	     ((PROT(val)[n] >= '0') && (PROT(val)[n] <= '9'))); n++);
+  if ((n == 0) || PROT(val)[n])
     return true;
   return false;
 }
 
 void XmlNMTOKEN::PRINTSELFDECL
 {
+  char mess[NAMESIZE];
   if (XmlNMTOKENIsBad())
     {
-      fprintf(stderr, "NMTOKEN value %s is bad\n", val.c_str());
-      exit(1);
+      snprintf(mess, NAMESIZE, "NMTOKEN value %s is bad\n",
+	       PROT(val).c_str());
+      throw(SchemaInstanceError(mess));
     }
-  XFPRINTF ">%s", val.c_str());
+  XFPRINTF ">%s", PROT(val).c_str());
 }
 
 void XmlNMTOKEN::OPRINTSELFDECL
 {
+  char mess[NAMESIZE];
   if (XmlNMTOKENIsBad())
     {
-      fprintf(stderr, "NMTOKEN value %s is bad\n", val.c_str());
-      exit(1);
+      snprintf(mess, NAMESIZE, "NMTOKEN value %s is bad\n",
+	       PROT(val).c_str());
+      throw(SchemaInstanceError(mess));
     }
-  XFPRINTF "%s", val.c_str());
+  XFPRINTF "%s", PROT(val).c_str());
 }
 
 void XmlNMTOKEN::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%s", val.c_str());
+  fprintf(badFile, "%s", PROT(val).c_str());
 }
 
-#ifdef ACCESS
-  std::string XmlNMTOKEN::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string XmlNMTOKEN::GET(val)()
+  {return PROT(val);}
 
-  void XmlNMTOKEN::setval(std::string valIn)
-  {val = valIn;}
+  void XmlNMTOKEN::SET(val)(std::string valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -3529,10 +3573,10 @@ XmlNMTOKENLisd::XmlNMTOKENLisd(
 XmlNMTOKENLisd::XmlNMTOKENLisd(
  const char * valueString)
 {
-  XmlNMTOKEN * val;
+  XmlNMTOKEN * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
   for (n = 0; valueString[n]; n++)
     { 
@@ -3548,24 +3592,24 @@ XmlNMTOKENLisd::XmlNMTOKENLisd(
       if ((n - start) > 199)
 	{
 	  fprintf(stderr, "%s is not a valid NMTOKEN list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlNMTOKEN(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlNMTOKEN(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid NMTOKEN list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -3627,8 +3671,8 @@ If any check fails, bad is set to true and val is set to 0.
 
 XmlNonNegativeInteger::XmlNonNegativeInteger()
 {
-  val = 0;
-  bad = true;
+  PROT(val) = 0;
+  PROT(bad) = true;
 }
 
 XmlNonNegativeInteger::XmlNonNegativeInteger(
@@ -3639,8 +3683,8 @@ XmlNonNegativeInteger::XmlNonNegativeInteger(
   for (n=0; isspace(valIn[n]); n++);
   if (valIn[n] == '-')
     { // first non-space is a minus sign - not allowed
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid nonNegativeInteger\n", valIn);
       return;
     }
@@ -3648,8 +3692,8 @@ XmlNonNegativeInteger::XmlNonNegativeInteger(
     n++;
   if ((valIn[n] < '0') || (valIn[n] > '9'))
     { // first non-white-space non-plus-sign character is not a digit
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid nonNegativeInteger\n", valIn);
       return;
     }
@@ -3657,26 +3701,26 @@ XmlNonNegativeInteger::XmlNonNegativeInteger(
   for ( ; isspace(valIn[n]); n++);
   if (valIn[n])
     { // valIn[n] should be 0 but isn't
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid nonNegativeInteger\n", valIn);
       return;
     }
-  else if (sscanf(valIn, "%d", &val) == 1)
+  else if (sscanf(valIn, "%d", &PROT(val)) == 1)
     {
-      if (val > -1)
-	bad = false;
+      if (PROT(val) > -1)
+	PROT(bad) = false;
       else
 	{
-	  val = 0;
-	  bad = true;
+	  PROT(val) = 0;
+	  PROT(bad) = true;
 	  fprintf(stderr, "%s is not a valid nonNegativeInteger\n", valIn);
 	}
     }
   else
     {
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid nonNegativeInteger\n", valIn);
     }
 }
@@ -3685,9 +3729,9 @@ XmlNonNegativeInteger::~XmlNonNegativeInteger() {}
 
 bool XmlNonNegativeInteger::XmlNonNegativeIntegerIsBad()
 {
-  if (bad)
+  if (PROT(bad))
     return true;
-  else if (val < 0)
+  else if (PROT(val) < 0)
     return true;
   else
     return false;
@@ -3697,33 +3741,31 @@ void XmlNonNegativeInteger::PRINTSELFDECL
 {
   if (XmlNonNegativeIntegerIsBad())
     {
-      fprintf(stderr, "nonNegativeInteger value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("nonNegativeInteger value is bad"));
     }
-  XFPRINTF ">%d", val);
+  XFPRINTF ">%d", PROT(val));
 }
 
 void XmlNonNegativeInteger::OPRINTSELFDECL
 {
   if (XmlNonNegativeIntegerIsBad())
     {
-      fprintf(stderr, "nonNegativeInteger value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("nonNegativeInteger value is bad"));
     }
-  XFPRINTF "%d", val);
+  XFPRINTF "%d", PROT(val));
 }
 
 void XmlNonNegativeInteger::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%d", val);
+  fprintf(badFile, "%d", PROT(val));
 }
 
-#ifdef ACCESS
-  int XmlNonNegativeInteger::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  int XmlNonNegativeInteger::GET(val)()
+  {return PROT(val);}
 
-  void XmlNonNegativeInteger::setval(int valIn)
-  {val = valIn;}
+  void XmlNonNegativeInteger::SET(val)(int valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -3749,10 +3791,10 @@ XmlNonNegativeIntegerLisd::XmlNonNegativeIntegerLisd(
 XmlNonNegativeIntegerLisd::XmlNonNegativeIntegerLisd(
  const char * valueString)
 {
-  XmlNonNegativeInteger * val;
+  XmlNonNegativeInteger * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
   for (n = 0; valueString[n]; n++)
     { 
@@ -3769,25 +3811,25 @@ XmlNonNegativeIntegerLisd::XmlNonNegativeIntegerLisd(
 	{
 	  fprintf(stderr, "%s is not a valid nonNegativeInteger list\n",
 		  valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlNonNegativeInteger(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlNonNegativeInteger(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid nonNegativeInteger list\n",
 		  valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -3849,8 +3891,8 @@ If any check fails, bad is set to true and val is set to 0.
 
 XmlNonPositiveInteger::XmlNonPositiveInteger()
 {
-  val = 0;
-  bad = true;
+  PROT(val) = 0;
+  PROT(bad) = true;
 }
 
 XmlNonPositiveInteger::XmlNonPositiveInteger(
@@ -3861,8 +3903,8 @@ XmlNonPositiveInteger::XmlNonPositiveInteger(
   for (n=0; isspace(valIn[n]); n++);
   if (valIn[n] == '+')
     { // first non-white-space character is a plus sign - not allowed
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid nonPositiveInteger\n", valIn);
       return;
     }
@@ -3870,8 +3912,8 @@ XmlNonPositiveInteger::XmlNonPositiveInteger(
     n++;
   if ((valIn[n] < '0') || (valIn[n] > '9'))
     { // first non-white-space non-minus-sign character is not a digit
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid nonPositiveInteger\n", valIn);
       return;
     }
@@ -3879,26 +3921,26 @@ XmlNonPositiveInteger::XmlNonPositiveInteger(
   for ( ; isspace(valIn[n]); n++);
   if (valIn[n])
     { // valIn[n] should be 0 but isn't
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid nonPositiveInteger\n", valIn);
       return;
     }
-  else if (sscanf(valIn, "%d", &val) == 1)
+  else if (sscanf(valIn, "%d", &PROT(val)) == 1)
     {
-      if (val < 1)
-	bad = false;
+      if (PROT(val) < 1)
+	PROT(bad) = false;
       else
 	{
-	  val = 0;
-	  bad = true;
+	  PROT(val) = 0;
+	  PROT(bad) = true;
 	  fprintf(stderr, "%s is not a valid nonPositiveInteger\n", valIn);
 	}
     }
   else
     {
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid nonPositiveInteger\n", valIn);
     }
 }
@@ -3907,9 +3949,9 @@ XmlNonPositiveInteger::~XmlNonPositiveInteger() {}
 
 bool XmlNonPositiveInteger::XmlNonPositiveIntegerIsBad()
 {
-  if (bad)
+  if (PROT(bad))
     return true;
-  else if (val > 0)
+  else if (PROT(val) > 0)
     return true;
   else
     return false;
@@ -3919,33 +3961,31 @@ void XmlNonPositiveInteger::PRINTSELFDECL
 {
   if (XmlNonPositiveIntegerIsBad())
     {
-      fprintf(stderr, "nonPositiveInteger value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("nonPositiveInteger value is bad"));
     }
-  XFPRINTF ">%d", val);
+  XFPRINTF ">%d", PROT(val));
 }
 
 void XmlNonPositiveInteger::OPRINTSELFDECL
 {
   if (XmlNonPositiveIntegerIsBad())
     {
-      fprintf(stderr, "nonPositiveInteger value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("nonPositiveInteger value is bad"));
     }
-  XFPRINTF "%d", val);
+  XFPRINTF "%d", PROT(val));
 }
 
 void XmlNonPositiveInteger::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%d", val);
+  fprintf(badFile, "%d", PROT(val));
 }
 
-#ifdef ACCESS
-  int XmlNonPositiveInteger::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  int XmlNonPositiveInteger::GET(val)()
+  {return PROT(val);}
 
-  void XmlNonPositiveInteger::setval(int valIn)
-  {val = valIn;}
+  void XmlNonPositiveInteger::SET(val)(int valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -3971,10 +4011,10 @@ XmlNonPositiveIntegerLisd::XmlNonPositiveIntegerLisd(
 XmlNonPositiveIntegerLisd::XmlNonPositiveIntegerLisd(
  const char * valueString)
 {
-  XmlNonPositiveInteger * val;
+  XmlNonPositiveInteger * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
   for (n = 0; valueString[n]; n++)
     { 
@@ -3991,25 +4031,25 @@ XmlNonPositiveIntegerLisd::XmlNonPositiveIntegerLisd(
 	{
 	  fprintf(stderr, "%s is not a valid nonPositiveInteger list\n",
 		  valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlNonPositiveInteger(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlNonPositiveInteger(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid nonPositiveInteger list\n",
 		  valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -4060,12 +4100,12 @@ XmlOPrintTypeBase::XmlOPrintTypeBase() {}
 
 XmlOPrintTypeBase::~XmlOPrintTypeBase() {}
 
-#ifdef ACCESS
-  bool XmlOPrintTypeBase::getbad()
-  {return bad;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  bool XmlOPrintTypeBase::GET(bad)()
+  {return PROT(bad);}
 
-  void XmlOPrintTypeBase::setbad(bool badIn)
-  {bad = badIn;}
+  void XmlOPrintTypeBase::SET(bad)(bool badIn)
+  {PROT(bad) = badIn;}
 #endif
 
 
@@ -4090,8 +4130,8 @@ If any check fails, bad is set to true and val is set to 0.
 
 XmlPositiveInteger::XmlPositiveInteger()
 {
-  val = 0;
-  bad = true;
+  PROT(val) = 0;
+  PROT(bad) = true;
 }
 
 XmlPositiveInteger::XmlPositiveInteger(
@@ -4102,8 +4142,8 @@ XmlPositiveInteger::XmlPositiveInteger(
   for (n=0; isspace(valIn[n]); n++);
   if (valIn[n] == '-')
     { // first non-white-space character is a minus sign - not allowed
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid positiveInteger\n", valIn);
       return;
     }
@@ -4111,8 +4151,8 @@ XmlPositiveInteger::XmlPositiveInteger(
     n++;
   if ((valIn[n] < '0') || (valIn[n] > '9'))
     { // first non-white-space non-one-sign is not a digit
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid positiveInteger\n", valIn);
       return;
     }
@@ -4120,26 +4160,26 @@ XmlPositiveInteger::XmlPositiveInteger(
   for ( ; isspace(valIn[n]); n++);
   if (valIn[n])
     { // valIn[n] should be 0 but isn't
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid positiveInteger\n", valIn);
       return;
     }
-  else if (sscanf(valIn, "%d", &val) == 1)
+  else if (sscanf(valIn, "%d", &PROT(val)) == 1)
     {
-      if (val > 0)
-	bad = false;
+      if (PROT(val) > 0)
+	PROT(bad) = false;
       else
 	{
-	  val = 0;
-	  bad = true;
+	  PROT(val) = 0;
+	  PROT(bad) = true;
 	  fprintf(stderr, "%s is not a valid positiveInteger\n", valIn);
 	}
     }
   else
     {
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid positiveInteger\n", valIn);
     }
 }
@@ -4148,9 +4188,9 @@ XmlPositiveInteger::~XmlPositiveInteger() {}
 
 bool XmlPositiveInteger::XmlPositiveIntegerIsBad()
 {
-  if (bad)
+  if (PROT(bad))
     return true;
-  else if (val < 1)
+  else if (PROT(val) < 1)
     return true;
   else
     return false;
@@ -4160,33 +4200,31 @@ void XmlPositiveInteger::PRINTSELFDECL
 {
   if (XmlPositiveIntegerIsBad())
     {
-      fprintf(stderr, "positiveInteger value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("positiveInteger value is bad"));
     }
-  XFPRINTF ">%d", val);
+  XFPRINTF ">%d", PROT(val));
 }
 
 void XmlPositiveInteger::OPRINTSELFDECL
 {
   if (XmlPositiveIntegerIsBad())
     {
-      fprintf(stderr, "positiveInteger value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("positiveInteger value is bad"));
     }
-  XFPRINTF "%d", val);
+  XFPRINTF "%d", PROT(val));
 }
 
 void XmlPositiveInteger::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%d", val);
+  fprintf(badFile, "%d", PROT(val));
 }
 
-#ifdef ACCESS
-  int XmlPositiveInteger::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  int XmlPositiveInteger::GET(val)()
+  {return PROT(val);}
 
-  void XmlPositiveInteger::setval(int valIn)
-  {val = valIn;}
+  void XmlPositiveInteger::SET(val)(int valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -4212,10 +4250,10 @@ XmlPositiveIntegerLisd::XmlPositiveIntegerLisd(
 XmlPositiveIntegerLisd::XmlPositiveIntegerLisd(
  const char * valueString)
 {
-  XmlPositiveInteger * val;
+  XmlPositiveInteger * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
   for (n = 0; valueString[n]; n++)
     { 
@@ -4232,25 +4270,25 @@ XmlPositiveIntegerLisd::XmlPositiveIntegerLisd(
 	{
 	  fprintf(stderr, "%s is not a valid positiveInteger list\n",
 		  valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlPositiveInteger(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlPositiveInteger(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid negativeInteger list\n",
 		  valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -4336,8 +4374,8 @@ If any check fails, bad is set to true and val is set to 0.
 
 XmlShort::XmlShort()
 {
-  val = 0;
-  bad = true;
+  PROT(val) = 0;
+  PROT(bad) = true;
 }
 
 XmlShort::XmlShort(
@@ -4352,43 +4390,43 @@ XmlShort::XmlShort(
   start = n;
   if ((valIn[n] < '0') || (valIn[n] > '9'))
     { // first non-white-space non-one-sign character is not a digit
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid short\n", valIn);
       return;
     }
   for (n++ ; ((valIn[n] >= '0') && (valIn[n] <= '9')); n++);
   if ((n - start) > 6)
     { // too many digits
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid short\n", valIn);
       return;
     }
   for ( ; isspace(valIn[n]); n++);
   if (valIn[n])
     { // valIn[n] should be 0 but isn't
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid short\n", valIn);
       return;
     }
-  else if (sscanf(valIn, "%d", &val) == 1)
+  else if (sscanf(valIn, "%d", &PROT(val)) == 1)
     {
-      if ((val < -32768) || (val > 32767))
+      if ((PROT(val) < -32768) || (PROT(val) > 32767))
 	{ // val is out of allowed range
-	  val = 0;
-	  bad = true;
+	  PROT(val) = 0;
+	  PROT(bad) = true;
 	  fprintf(stderr, "%s is not a valid short\n", valIn);
 	  return;
 	}
       else
-	bad = false;
+	PROT(bad) = false;
     }
   else
     {
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid short\n", valIn);
     }
 }
@@ -4397,40 +4435,38 @@ XmlShort::~XmlShort() {}
 
 bool XmlShort::XmlShortIsBad()
 {
-  return bad;
+  return PROT(bad);
 }
 
 void XmlShort::PRINTSELFDECL
 {
   if (XmlShortIsBad())
     {
-      fprintf(stderr, "short value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("short value is bad"));
     }
-  XFPRINTF ">%d", val);
+  XFPRINTF ">%d", PROT(val));
 }
 
 void XmlShort::OPRINTSELFDECL
 {
   if (XmlShortIsBad())
     {
-      fprintf(stderr, "short value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("short value is bad"));
     }
-  XFPRINTF "%d", val);
+  XFPRINTF "%d", PROT(val));
 }
 
 void XmlShort::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%d", val);
+  fprintf(badFile, "%d", PROT(val));
 }
 
-#ifdef ACCESS
-  int XmlShort::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  int XmlShort::GET(val)()
+  {return PROT(val);}
 
-  void XmlShort::setval(int valIn)
-  {val = valIn;}
+  void XmlShort::SET(val)(int valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -4456,10 +4492,10 @@ XmlShortLisd::XmlShortLisd(
 XmlShortLisd::XmlShortLisd(
  const char * valueString)
 {
-  XmlShort * val;
+  XmlShort * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
   for (n = 0; valueString[n]; n++)
     { 
@@ -4475,24 +4511,24 @@ XmlShortLisd::XmlShortLisd(
       if ((n - start) > 199)
 	{
 	  fprintf(stderr, "%s is not a valid short list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlShort(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlShort(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid short list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -4542,55 +4578,53 @@ This is a class for handling XML basic type string.
 
 XmlString::XmlString()
 {
-  val = "";
-  bad = true;
+  PROT(val) = "";
+  PROT(bad) = true;
 }
 
 XmlString::XmlString(
   const char * valIn)
 {
-  val = valIn; // automatic write to std::string
-  bad = false;
+  PROT(val) = valIn; // automatic write to std::string
+  PROT(bad) = false;
 }
 
 XmlString::~XmlString() {}
 
 bool XmlString::XmlStringIsBad()
 {
-  return bad;
+  return PROT(bad);
 }
 
 void XmlString::PRINTSELFDECL
 {
   if (XmlStringIsBad())
     {
-      fprintf(stderr, "string value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("string value is bad"));
     }
-  XFPRINTF ">%s", val.c_str());
+  XFPRINTF ">%s", PROT(val).c_str());
 }
 
 void XmlString::OPRINTSELFDECL
 {
   if (XmlStringIsBad())
     {
-      fprintf(stderr, "string value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("string value is bad"));
     }
-  XFPRINTF "%s", val.c_str());
+  XFPRINTF "%s", PROT(val).c_str());
 }
 
 void XmlString::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%s", val.c_str());
+  fprintf(badFile, "%s", PROT(val).c_str());
 }
 
-#ifdef ACCESS
-  std::string XmlString::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string XmlString::GET(val)()
+  {return PROT(val);}
 
-  void XmlString::setval(std::string valIn)
-  {val = valIn;}
+  void XmlString::SET(val)(std::string valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -4654,55 +4688,53 @@ not checking the requirements for a time and is allowing any string.
 
 XmlTime::XmlTime()
 {
-  val = "";
-  bad = true;
+  PROT(val) = "";
+  PROT(bad) = true;
 }
 
 XmlTime::XmlTime(
   const char * valIn)
 {
-  val = valIn; // automatic write to std::string
-  bad = false;
+  PROT(val) = valIn; // automatic write to std::string
+  PROT(bad) = false;
 }
 
 XmlTime::~XmlTime() {}
 
 bool XmlTime::XmlTimeIsBad()
 {
-  return bad;
+  return PROT(bad);
 }
 
 void XmlTime::PRINTSELFDECL
 {
   if (XmlTimeIsBad())
     {
-      fprintf(stderr, "time value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("time value is bad"));
     }
-  XFPRINTF ">%s", val.c_str());
+  XFPRINTF ">%s", PROT(val).c_str());
 }
 
 void XmlTime::OPRINTSELFDECL
 {
   if (XmlTimeIsBad())
     {
-      fprintf(stderr, "time value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("time value is bad"));
     }
-  XFPRINTF "%s", val.c_str());
+  XFPRINTF "%s", PROT(val).c_str());
 }
 
 void XmlTime::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%s", val.c_str());
+  fprintf(badFile, "%s", PROT(val).c_str());
 }
 
-#ifdef ACCESS
-  std::string XmlTime::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string XmlTime::GET(val)()
+  {return PROT(val);}
 
-  void XmlTime::setval(std::string valIn)
-  {val = valIn;}
+  void XmlTime::SET(val)(std::string valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -4728,10 +4760,10 @@ XmlTimeLisd::XmlTimeLisd(
 XmlTimeLisd::XmlTimeLisd(
  const char * valueString)
 {
-  XmlTime * val;
+  XmlTime * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
   for (n = 0; valueString[n]; n++)
     { 
@@ -4747,24 +4779,24 @@ XmlTimeLisd::XmlTimeLisd(
       if ((n - start) > 199)
 	{
 	  fprintf(stderr, "%s is not a valid time list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlTime(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlTime(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid time list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -4820,8 +4852,8 @@ It is OK if the valIn in the constructor is an empty string.
 
 XmlToken::XmlToken()
 {
-  val = "";
-  bad = true;
+  PROT(val) = "";
+  PROT(bad) = true;
 }
 
 XmlToken::XmlToken(
@@ -4853,8 +4885,8 @@ XmlToken::XmlToken(
   buffer[m] = 0;
   if ((m > 0) && (buffer[m-1] == 32))
     (buffer[m-1] = 0);
-  val = buffer; // automatic write to std::string
-  bad = false;
+  PROT(val) = buffer; // automatic write to std::string
+  PROT(bad) = false;
   delete [] buffer;
 }
 
@@ -4862,40 +4894,38 @@ XmlToken::~XmlToken() {}
 
 bool XmlToken::XmlTokenIsBad()
 {
-  return bad;
+  return PROT(bad);
 }
 
 void XmlToken::PRINTSELFDECL
 {
   if (XmlTokenIsBad())
     {
-      fprintf(stderr, "token value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("token value is bad"));
     }
-  XFPRINTF ">%s", val.c_str());
+  XFPRINTF ">%s", PROT(val).c_str());
 }
 
 void XmlToken::OPRINTSELFDECL
 {
   if (XmlTokenIsBad())
     {
-      fprintf(stderr, "token value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("token value is bad"));
     }
-  XFPRINTF "%s", val.c_str());
+  XFPRINTF "%s", PROT(val).c_str());
 }
 
 void XmlToken::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%s", val.c_str());
+  fprintf(badFile, "%s", PROT(val).c_str());
 }
 
-#ifdef ACCESS
-  std::string XmlToken::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string XmlToken::GET(val)()
+  {return PROT(val);}
 
-  void XmlToken::setval(std::string valIn)
-  {val = valIn;}
+  void XmlToken::SET(val)(std::string valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -4921,10 +4951,10 @@ XmlTokenLisd::XmlTokenLisd(
 XmlTokenLisd::XmlTokenLisd(
  const char * valueString)
 {
-  XmlToken * val;
+  XmlToken * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
   for (n = 0; valueString[n]; n++)
     { 
@@ -4940,24 +4970,24 @@ XmlTokenLisd::XmlTokenLisd(
       if ((n - start) > 199)
 	{
 	  fprintf(stderr, "%s is not a valid token list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlToken(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlToken(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid token list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -5008,12 +5038,12 @@ XmlTypeBase::XmlTypeBase() {}
 
 XmlTypeBase::~XmlTypeBase() {}
 
-#ifdef ACCESS
-  const char * XmlTypeBase::getprintElement()
-  {return printElement;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+const char * XmlTypeBase::GET(printElement)()
+{return PROT(printElement);}
 
-  void XmlTypeBase::setprintElement(const char * printElementIn)
-  {printElement = printElementIn;}
+void XmlTypeBase::SET(printElement)(const char * printElementIn)
+{PROT(printElement) = printElementIn;}
 #endif
 
 /*********************************************************************/
@@ -5043,8 +5073,8 @@ sets the value by casting the unsigned int to an unsigned byte.
 
 XmlUnsignedByte::XmlUnsignedByte()
 {
-  val = 0;
-  bad = true;
+  PROT(val) = 0;
+  PROT(bad) = true;
 }
 
 XmlUnsignedByte::XmlUnsignedByte(
@@ -5057,8 +5087,12 @@ XmlUnsignedByte::XmlUnsignedByte(
   for (n=0; isspace(valIn[n]); n++);
   if ((valIn[n] < '0') || (valIn[n] > '9'))
     { // first non-white-space character is not a digit
-      val = 0;
+      PROT(val) = 0;
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      SET(bad)(true);
+#else
       bad = true;
+#endif
       fprintf(stderr, "%s is not a valid unsignedByte\n", valIn);
       return;
     }
@@ -5066,16 +5100,20 @@ XmlUnsignedByte::XmlUnsignedByte(
   for (n++ ; ((valIn[n] >= '0') && (valIn[n] <= '9')); n++);
   if ((n - start) > 4)
     { // too many digits
-      val = 0;
+      PROT(val) = 0;
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      SET(bad)(true);
+#else
       bad = true;
+#endif
       fprintf(stderr, "%s is not a valid unsignedByte\n", valIn);
       return;
     }
   for ( ; isspace(valIn[n]); n++);
   if (valIn[n])
     { // valIn[n] should be 0 but isn't
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid unsignedByte\n", valIn);
       return;
     }
@@ -5083,20 +5121,20 @@ XmlUnsignedByte::XmlUnsignedByte(
     {
       if (intVal > 255)
 	{
-	  val = 0;
-	  bad = true;
+	  PROT(val) = 0;
+	  PROT(bad) = true;
 	  fprintf(stderr, "%s is not a valid unsignedByte\n", valIn);
 	}
       else
 	{
-	  val = (unsigned char)intVal;
-	  bad = false;
+	  PROT(val) = (unsigned char)intVal;
+	  PROT(bad) = false;
 	}
     }
   else
     {
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid unsignedByte\n", valIn);
     }
 }
@@ -5105,40 +5143,38 @@ XmlUnsignedByte::~XmlUnsignedByte() {}
 
 bool XmlUnsignedByte::XmlUnsignedByteIsBad()
 {
-  return bad;
+  return PROT(bad);
 }
 
 void XmlUnsignedByte::PRINTSELFDECL
 {
   if (XmlUnsignedByteIsBad())
     {
-      fprintf(stderr, "unsignedByte value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("unsignedByte value is bad"));
     }
-  XFPRINTF ">%u", (unsigned int)val);
+  XFPRINTF ">%u", (unsigned int)PROT(val));
 }
 
 void XmlUnsignedByte::OPRINTSELFDECL
 {
   if (XmlUnsignedByteIsBad())
     {
-      fprintf(stderr, "unsignedByte value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("unsignedByte value is bad"));
     }
-  XFPRINTF "%u", (unsigned int)val);
+  XFPRINTF "%u", (unsigned int)PROT(val));
 }
 
 void XmlUnsignedByte::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%u", (unsigned int)val);
+  fprintf(badFile, "%u", (unsigned int)PROT(val));
 }
 
-#ifdef ACCESS
-  unsigned char XmlUnsignedByte::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  unsigned char XmlUnsignedByte::GET(val)()
+  {return PROT(val);}
 
-  void XmlUnsignedByte::setval(unsigned char valIn)
-  {val = valIn;}
+  void XmlUnsignedByte::SET(val)(unsigned char valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -5164,10 +5200,10 @@ XmlUnsignedByteLisd::XmlUnsignedByteLisd(
 XmlUnsignedByteLisd::XmlUnsignedByteLisd(
  const char * valueString)
 {
-  XmlUnsignedByte * val;
+  XmlUnsignedByte * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
   for (n = 0; valueString[n]; n++)
     { 
@@ -5183,24 +5219,24 @@ XmlUnsignedByteLisd::XmlUnsignedByteLisd(
       if ((n - start) > 199)
 	{
 	  fprintf(stderr, "%s is not a valid unsignedByte list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlUnsignedByte(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlUnsignedByte(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid unsignedByte list\n", valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -5208,14 +5244,14 @@ XmlUnsignedByteLisd::XmlUnsignedByteLisd(
 
 XmlUnsignedByteLisd::~XmlUnsignedByteLisd()
 {
-  #ifndef NODESTRUCT
+#ifndef NODESTRUCT
   std::list<XmlUnsignedByte *>::iterator iter;
 
   for (iter = begin(); iter != end(); iter++)
     {
       delete *iter;
     }
-  #endif
+#endif
 }
 
 void XmlUnsignedByteLisd::PRINTNAMEDECL
@@ -5261,8 +5297,8 @@ If any check fails, bad is set to true and val is set to 0.
 
 XmlUnsignedInt::XmlUnsignedInt()
 {
-  val = 0;
-  bad = true;
+  PROT(val) = 0;
+  PROT(bad) = true;
 }
 
 XmlUnsignedInt::XmlUnsignedInt(
@@ -5275,8 +5311,8 @@ XmlUnsignedInt::XmlUnsignedInt(
   for (n=0; isspace(valIn[n]); n++);
   if ((valIn[n] < '0') || (valIn[n] > '9'))
     { // first non-white-space character is not a digit
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid unsignedInt\n", valIn);
       return;
     }
@@ -5284,16 +5320,16 @@ XmlUnsignedInt::XmlUnsignedInt(
   for (n++ ; ((valIn[n] >= '0') && (valIn[n] <= '9')); n++);
   if ((n - start) > 11)
     { // too many digits
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid unsignedInt\n", valIn);
       return;
     }
   for ( ; isspace(valIn[n]); n++);
   if (valIn[n])
     { // valIn[n] should be 0 but isn't
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid unsignedInt\n", valIn);
       return;
     }
@@ -5301,20 +5337,20 @@ XmlUnsignedInt::XmlUnsignedInt(
     {
       if (longVal > 4294967295)
 	{
-	  val = 0;
-	  bad = true;
+	  PROT(val) = 0;
+	  PROT(bad) = true;
 	  fprintf(stderr, "%s is not a valid unsignedInt\n", valIn);
 	}
       else
 	{
-	  val = (unsigned int)longVal;
-	  bad = false;
+	  PROT(val) = (unsigned int)longVal;
+	  PROT(bad) = false;
 	}
     }
   else
     {
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid unsignedInt\n", valIn);
     }
 }
@@ -5323,40 +5359,38 @@ XmlUnsignedInt::~XmlUnsignedInt() {}
 
 bool XmlUnsignedInt::XmlUnsignedIntIsBad()
 {
-  return bad;
+  return PROT(bad);
 }
 
 void XmlUnsignedInt::PRINTSELFDECL
 {
   if (XmlUnsignedIntIsBad())
     {
-      fprintf(stderr, "unsignedInt value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("unsignedInt value is bad"));
     }
-  XFPRINTF ">%u", val);
+  XFPRINTF ">%u", PROT(val));
 }
 
 void XmlUnsignedInt::OPRINTSELFDECL
 {
   if (XmlUnsignedIntIsBad())
     {
-      fprintf(stderr, "unsignedInt value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("unsignedInt value is bad"));
     }
-  XFPRINTF "%u", val);
+  XFPRINTF "%u", PROT(val));
 }
 
 void XmlUnsignedInt::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%u", val);
+  fprintf(badFile, "%u", PROT(val));
 }
 
-#ifdef ACCESS
-unsigned int  XmlUnsignedInt::getval()
-{return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+unsigned int  XmlUnsignedInt::GET(val)()
+{return PROT(val);}
 
-void XmlUnsignedInt::setval(unsigned int valIn)
-{val = valIn;}
+void XmlUnsignedInt::SET(val)(unsigned int valIn)
+{PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -5382,12 +5416,16 @@ XmlUnsignedIntLisd::XmlUnsignedIntLisd(
 XmlUnsignedIntLisd::XmlUnsignedIntLisd(
  const char * valueString)
 {
-  XmlUnsignedInt * val;
+  XmlUnsignedInt * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  SET(bad)(false);
+#else
   bad = false;
+#endif
   for (n = 0; valueString[n]; n++)
     { 
       for (; (valueString[n] != 0) && (isspace(valueString[n])); n++)
@@ -5403,25 +5441,25 @@ XmlUnsignedIntLisd::XmlUnsignedIntLisd(
 	{
 	  fprintf(stderr, "%s is not a valid unsignedInt list\n",
 		  valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlUnsignedInt(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlUnsignedInt(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid unsignedInt list\n",
 		  valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -5481,8 +5519,8 @@ If any check fails, bad is set to true and val is set to 0.
 
 XmlUnsignedLong::XmlUnsignedLong()
 {
-  val = 0;
-  bad = true;
+  PROT(val) = 0;
+  PROT(bad) = true;
 }
 
 XmlUnsignedLong::XmlUnsignedLong(
@@ -5493,8 +5531,8 @@ XmlUnsignedLong::XmlUnsignedLong(
   for (n=0; isspace(valIn[n]); n++);
   if ((valIn[n] < '0') || (valIn[n] > '9'))
     { // first non-white-space character is not a digit
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid unsignedLong\n", valIn);
       return;
     }
@@ -5502,19 +5540,19 @@ XmlUnsignedLong::XmlUnsignedLong(
   for ( ; isspace(valIn[n]); n++);
   if (valIn[n])
     { // valIn[n] should be 0 but isn't
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid unsignedLong\n", valIn);
       return;
     }
-  else if (sscanf(valIn, "%ld", &val) == 1)
+  else if (sscanf(valIn, "%ld", &PROT(val)) == 1)
     {
-      bad = false;
+      PROT(bad) = false;
     }
   else
     {
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid unsignedLong\n", valIn);
     }
 }
@@ -5523,40 +5561,38 @@ XmlUnsignedLong::~XmlUnsignedLong() {}
 
 bool XmlUnsignedLong::XmlUnsignedLongIsBad()
 {
-  return bad;
+  return PROT(bad);
 }
 
 void XmlUnsignedLong::PRINTSELFDECL
 {
   if (XmlUnsignedLongIsBad())
     {
-      fprintf(stderr, "unsignedLong value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("unsignedLong value is bad"));
     }
-  XFPRINTF ">%lu", val);
+  XFPRINTF ">%lu", PROT(val));
 }
 
 void XmlUnsignedLong::OPRINTSELFDECL
 {
   if (XmlUnsignedLongIsBad())
     {
-      fprintf(stderr, "unsignedLong value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("unsignedLong value is bad"));
     }
-  XFPRINTF "%lu", val);
+  XFPRINTF "%lu", PROT(val));
 }
 
 void XmlUnsignedLong::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%lu", val);
+  fprintf(badFile, "%lu", PROT(val));
 }
 
-#ifdef ACCESS
-  unsigned long XmlUnsignedLong::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  unsigned long XmlUnsignedLong::GET(val)()
+  {return PROT(val);}
 
-  void XmlUnsignedLong::setval(unsigned long valIn)
-  {val = valIn;}
+  void XmlUnsignedLong::SET(val)(unsigned long valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -5582,10 +5618,10 @@ XmlUnsignedLongLisd::XmlUnsignedLongLisd(
 XmlUnsignedLongLisd::XmlUnsignedLongLisd(
  const char * valueString)
 {
-  XmlUnsignedLong * val;
+  XmlUnsignedLong * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
   for (n = 0; valueString[n]; n++)
     { 
@@ -5602,25 +5638,25 @@ XmlUnsignedLongLisd::XmlUnsignedLongLisd(
 	{
 	  fprintf(stderr, "%s is not a valid unsignedLong list\n",
 		  valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlUnsignedLong(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlUnsignedLong(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid unsignedLong list\n",
 		  valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -5681,8 +5717,8 @@ If any check fails, bad is set to true and val is set to 0.
 
 XmlUnsignedShort::XmlUnsignedShort()
 {
-  val = 0;
-  bad = true;
+  PROT(val) = 0;
+  PROT(bad) = true;
 }
 
 XmlUnsignedShort::XmlUnsignedShort(
@@ -5695,8 +5731,8 @@ XmlUnsignedShort::XmlUnsignedShort(
   for (n=0; isspace(valIn[n]); n++);
   if ((valIn[n] < '0') || (valIn[n] > '9'))
     { // first non-white-space character is not a digit
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid unsignedShort\n", valIn);
       return;
     }
@@ -5704,16 +5740,16 @@ XmlUnsignedShort::XmlUnsignedShort(
   for (n++ ; ((valIn[n] >= '0') && (valIn[n] <= '9')); n++);
   if ((n - start) > 6)
     { // too many digits
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid unsignedShort\n", valIn);
       return;
     }
   for ( ; isspace(valIn[n]); n++);
   if (valIn[n])
     { // valIn[n] should be 0 but isn't
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid unsignedShort\n", valIn);
       return;
     }
@@ -5721,20 +5757,20 @@ XmlUnsignedShort::XmlUnsignedShort(
     {
       if (intVal > 65535)
 	{
-	  val = 0;
-	  bad = true;
+	  PROT(val) = 0;
+	  PROT(bad) = true;
 	  fprintf(stderr, "%s is not a valid unsignedShort\n", valIn);
 	}
       else
 	{
-	  val = (unsigned short)intVal;
-	  bad = false;
+	  PROT(val) = (unsigned short)intVal;
+	  PROT(bad) = false;
 	}
     }
   else
     {
-      val = 0;
-      bad = true;
+      PROT(val) = 0;
+      PROT(bad) = true;
       fprintf(stderr, "%s is not a valid unsignedShort\n", valIn);
     }
 }
@@ -5743,40 +5779,38 @@ XmlUnsignedShort::~XmlUnsignedShort() {}
 
 bool XmlUnsignedShort::XmlUnsignedShortIsBad()
 {
-  return bad;
+  return PROT(bad);
 }
 
 void XmlUnsignedShort::PRINTSELFDECL
 {
   if (XmlUnsignedShortIsBad())
     {
-      fprintf(stderr, "unsignedShort value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("unsignedShort value is bad"));
     }
-  XFPRINTF ">%hu", val);
+  XFPRINTF ">%hu", PROT(val));
 }
 
 void XmlUnsignedShort::OPRINTSELFDECL
 {
   if (XmlUnsignedShortIsBad())
     {
-      fprintf(stderr, "unsignedShort value is bad\n");
-      exit(1);
+      throw(SchemaInstanceError("unsignedShort value is bad"));
     }
-  XFPRINTF "%hu", val);
+  XFPRINTF "%hu", PROT(val));
 }
 
 void XmlUnsignedShort::printBad(FILE * badFile)
 {
-  fprintf(badFile, "%hu", val);
+  fprintf(badFile, "%hu", PROT(val));
 }
 
-#ifdef ACCESS
-  unsigned short XmlUnsignedShort::getval()
-  {return val;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  unsigned short XmlUnsignedShort::GET(val)()
+  {return PROT(val);}
 
-  void XmlUnsignedShort::setval(unsigned short valIn)
-  {val = valIn;}
+  void XmlUnsignedShort::SET(val)(unsigned short valIn)
+  {PROT(val) = valIn;}
 #endif
 
 /*********************************************************************/
@@ -5802,10 +5836,10 @@ XmlUnsignedShortLisd::XmlUnsignedShortLisd(
 XmlUnsignedShortLisd::XmlUnsignedShortLisd(
  const char * valueString)
 {
-  XmlUnsignedShort * val;
+  XmlUnsignedShort * valu;
   int n;
   int start;
-  char buffer[200];
+  char buffer[NAMESIZE];
 
   for (n = 0; valueString[n]; n++)
     { 
@@ -5822,25 +5856,25 @@ XmlUnsignedShortLisd::XmlUnsignedShortLisd(
 	{
 	  fprintf(stderr, "%s is not a valid unsignedShort list\n",
 		  valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       strncpy(buffer, valueString + start, 199);
       buffer[n - start] = 0;
-      val = new XmlUnsignedShort(buffer);
-#ifdef ACCESS
-      if (val->getbad())
+      valu = new XmlUnsignedShort(buffer);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+      if (valu->GET(bad)())
 #else
-      if (val->bad)
+      if (valu->bad)
 #endif
 	{
 	  fprintf(stderr, "%s is not a valid unsignedShort list\n",
 		  valueString);
-	  bad = true;
+	  PROT(bad) = true;
 	  break;
 	}
       else
-	push_back(val);
+	push_back(valu);
       if (valueString[n] == 0)
 	    break;
     }
@@ -5889,8 +5923,8 @@ void XmlUnsignedShortLisd::OPRINTSELFDECL
 
 XmlVersion::XmlVersion()
 {
-  encoding[0] = 0;
-  standalone[0] = 0;
+  PROT(encoding)[0] = 0;
+  PROT(standalone)[0] = 0;
 }
 
 XmlVersion::XmlVersion(
@@ -5899,10 +5933,10 @@ XmlVersion::XmlVersion(
 {
   if ((strncmp(encodingIn, "UTF-8", 6) == 0) ||
       (strncmp(encodingIn, "utf-8", 6) == 0))
-    strncpy(encoding, encodingIn, 6);
+    strncpy(PROT(encoding), encodingIn, 6);
   if ((strncmp(standaloneIn, "no", 5) == 0) ||
       (strncmp(standaloneIn, "yes", 5) == 0))
-    strncpy(standalone, standaloneIn, 5);
+    strncpy(PROT(standalone), standaloneIn, 5);
 }
 
 XmlVersion::~XmlVersion() {}
@@ -5910,33 +5944,33 @@ XmlVersion::~XmlVersion() {}
 void XmlVersion::PRINTSELFDECL
 {
   XFPRINTF "<?xml version=\"1.0\"");
-  if ((strncmp(encoding, "UTF-8", 6) == 0) ||
-      (strncmp(encoding, "utf-8", 6) == 0))
-    XFPRINTF " encoding=\"%s\"", encoding);
-  if ((strncmp(standalone, "no", 5) == 0) ||
-      (strncmp(standalone, "yes", 5) == 0))
-    XFPRINTF " standalone=\"%s\"", standalone);
+  if ((strncmp(PROT(encoding), "UTF-8", 6) == 0) ||
+      (strncmp(PROT(encoding), "utf-8", 6) == 0))
+    XFPRINTF " encoding=\"%s\"", PROT(encoding));
+  if ((strncmp(PROT(standalone), "no", 5) == 0) ||
+      (strncmp(PROT(standalone), "yes", 5) == 0))
+    XFPRINTF " standalone=\"%s\"", PROT(standalone));
   XFPRINTF "?>\n");
 }
 
-#ifdef ACCESS
-  char * XmlVersion::getencoding()
-  {return encoding;}
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+char * XmlVersion::GET(encoding)()
+{return PROT(encoding);}
 
-  void XmlVersion::setencoding(char * encodingIn)
-  {
-    strncpy(encoding, encodingIn, 9);
-    encoding[9] = 0;
-  }
+void XmlVersion::SET(encoding)(char * encodingIn)
+{
+  strncpy(PROT(encoding), encodingIn, 9);
+  PROT(encoding)[9] = 0;
+}
 
-  char * XmlVersion::getstandalone()
-  {return standalone;}
+char * XmlVersion::GET(standalone)()
+{return PROT(standalone);}
 
-  void XmlVersion::setstandalone(char * standaloneIn)
-  {
-    strncpy(standalone, standaloneIn, 9);
-    standalone[9] = 0;
-  }
+void XmlVersion::SET(standalone)(char * standaloneIn)
+{
+  strncpy(PROT(standalone), standaloneIn, 9);
+  PROT(standalone)[9] = 0;
+}
 
 #endif
 

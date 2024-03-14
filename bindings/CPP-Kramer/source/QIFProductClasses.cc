@@ -4,7 +4,6 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
-#include <boost/regex.hpp>
 #include <xmlSchemaInstance.hh>
 #include "QIFProductClasses.hh"
 
@@ -100,7 +99,7 @@ bool AsmPathType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AsmPathType\n");
               returnValue = true;
@@ -116,7 +115,7 @@ bool AsmPathType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -125,7 +124,7 @@ bool AsmPathType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AsmPathType\n");
       returnValue = true;
@@ -137,8 +136,8 @@ bool AsmPathType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -180,7 +179,15 @@ AsmPathTypeLisd::~AsmPathTypeLisd()
   #endif
 }
 
-void AsmPathTypeLisd::printSelf(FILE * outFile){}
+void AsmPathTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<AsmPathType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -257,6 +264,13 @@ void AsmPathsType::printSelf(FILE * outFile)
         fprintf(stderr, "AsmPath list is empty\n");
         exit(1);
       }
+    if (AsmPath->size() < 1)
+      {
+        fprintf(stderr,
+                "size of AsmPath list (%d) less than minimum required (1)\n",
+                (int)AsmPath->size());
+        exit(1);
+      }
     std::list<AsmPathType *>::iterator iter;
     for (iter = AsmPath->begin();
          iter != AsmPath->end(); iter++)
@@ -285,7 +299,7 @@ bool AsmPathsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in AsmPathsType\n");
               returnValue = true;
@@ -301,7 +315,7 @@ bool AsmPathsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -310,7 +324,7 @@ bool AsmPathsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in AsmPathsType\n");
       returnValue = true;
@@ -322,8 +336,8 @@ bool AsmPathsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -415,6 +429,13 @@ void AssemblySetType::printSelf(FILE * outFile)
         fprintf(stderr, "Assembly list is empty\n");
         exit(1);
       }
+    if (Assembly->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Assembly list (%d) less than minimum required (1)\n",
+                (int)Assembly->size());
+        exit(1);
+      }
     std::list<AssemblyType *>::iterator iter;
     for (iter = Assembly->begin();
          iter != Assembly->end(); iter++)
@@ -443,7 +464,7 @@ bool AssemblySetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in AssemblySetType\n");
               returnValue = true;
@@ -459,7 +480,7 @@ bool AssemblySetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -468,7 +489,7 @@ bool AssemblySetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in AssemblySetType\n");
       returnValue = true;
@@ -480,8 +501,8 @@ bool AssemblySetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -993,7 +1014,7 @@ bool AssemblyType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in AssemblyType\n");
               returnValue = true;
@@ -1009,12 +1030,12 @@ bool AssemblyType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in AssemblyType\n");
               returnValue = true;
@@ -1030,12 +1051,12 @@ bool AssemblyType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AssemblyType\n");
               returnValue = true;
@@ -1051,12 +1072,12 @@ bool AssemblyType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in AssemblyType\n");
               returnValue = true;
@@ -1072,12 +1093,12 @@ bool AssemblyType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "materialIndex")
         {
           NaturalType * materialIndexVal;
-          if (materialIndex)
+          if (this->materialIndex)
             {
               fprintf(stderr, "two values for materialIndex in AssemblyType\n");
               returnValue = true;
@@ -1093,12 +1114,12 @@ bool AssemblyType::badAttributes(
               break;
             }
           else
-            materialIndex = materialIndexVal;
+            this->materialIndex = materialIndexVal;
         }
       else if (decl->name == "originMassProperty")
         {
           PointSimpleType * originMassPropertyVal;
-          if (originMassProperty)
+          if (this->originMassProperty)
             {
               fprintf(stderr, "two values for originMassProperty in AssemblyType\n");
               returnValue = true;
@@ -1114,12 +1135,12 @@ bool AssemblyType::badAttributes(
               break;
             }
           else
-            originMassProperty = originMassPropertyVal;
+            this->originMassProperty = originMassPropertyVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in AssemblyType\n");
               returnValue = true;
@@ -1135,12 +1156,12 @@ bool AssemblyType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in AssemblyType\n");
               returnValue = true;
@@ -1156,7 +1177,7 @@ bool AssemblyType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -1165,7 +1186,7 @@ bool AssemblyType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AssemblyType\n");
       returnValue = true;
@@ -1177,22 +1198,22 @@ bool AssemblyType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete materialIndex;
-      materialIndex = 0;
-      delete originMassProperty;
-      originMassProperty = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->materialIndex;
+      this->materialIndex = 0;
+      delete this->originMassProperty;
+      this->originMassProperty = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -1240,7 +1261,15 @@ AssemblyTypeLisd::~AssemblyTypeLisd()
   #endif
 }
 
-void AssemblyTypeLisd::printSelf(FILE * outFile){}
+void AssemblyTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<AssemblyType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -1317,6 +1346,13 @@ void ComponentSetType::printSelf(FILE * outFile)
         fprintf(stderr, "Component list is empty\n");
         exit(1);
       }
+    if (Component->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Component list (%d) less than minimum required (1)\n",
+                (int)Component->size());
+        exit(1);
+      }
     std::list<ComponentType *>::iterator iter;
     for (iter = Component->begin();
          iter != Component->end(); iter++)
@@ -1345,7 +1381,7 @@ bool ComponentSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ComponentSetType\n");
               returnValue = true;
@@ -1361,7 +1397,7 @@ bool ComponentSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -1370,7 +1406,7 @@ bool ComponentSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ComponentSetType\n");
       returnValue = true;
@@ -1382,8 +1418,8 @@ bool ComponentSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -1412,7 +1448,7 @@ ComponentType::ComponentType() :
   Transform = 0;
   UUID = 0;
   Traceability = 0;
-  ComponentType_1238 = 0;
+  ComponentType_1193 = 0;
 }
 
 ComponentType::ComponentType(
@@ -1420,14 +1456,14 @@ ComponentType::ComponentType(
  ElementReferenceType * TransformIn,
  QPIdType * UUIDIn,
  ProductTraceabilityType * TraceabilityIn,
- ComponentType_1238_Type * ComponentType_1238In) :
+ ComponentType_1193_Type * ComponentType_1193In) :
   DrawableBaseType(
     AttributesIn)
 {
   Transform = TransformIn;
   UUID = UUIDIn;
   Traceability = TraceabilityIn;
-  ComponentType_1238 = ComponentType_1238In;
+  ComponentType_1193 = ComponentType_1193In;
 }
 
 ComponentType::ComponentType(
@@ -1441,7 +1477,7 @@ ComponentType::ComponentType(
  ElementReferenceType * TransformIn,
  QPIdType * UUIDIn,
  ProductTraceabilityType * TraceabilityIn,
- ComponentType_1238_Type * ComponentType_1238In) :
+ ComponentType_1193_Type * ComponentType_1193In) :
   DrawableBaseType(
     labelIn,
     idIn,
@@ -1454,7 +1490,7 @@ ComponentType::ComponentType(
   Transform = TransformIn;
   UUID = UUIDIn;
   Traceability = TraceabilityIn;
-  ComponentType_1238 = ComponentType_1238In;
+  ComponentType_1193 = ComponentType_1193In;
 }
 
 ComponentType::~ComponentType()
@@ -1463,7 +1499,7 @@ ComponentType::~ComponentType()
   delete Transform;
   delete UUID;
   delete Traceability;
-  delete ComponentType_1238;
+  delete ComponentType_1193;
   #endif
 }
 
@@ -1612,7 +1648,7 @@ void ComponentType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Traceability>\n");
     }
-  ComponentType_1238->printSelf(outFile);
+  ComponentType_1193->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -1630,7 +1666,7 @@ bool ComponentType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in ComponentType\n");
               returnValue = true;
@@ -1646,12 +1682,12 @@ bool ComponentType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in ComponentType\n");
               returnValue = true;
@@ -1667,12 +1703,12 @@ bool ComponentType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ComponentType\n");
               returnValue = true;
@@ -1688,12 +1724,12 @@ bool ComponentType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in ComponentType\n");
               returnValue = true;
@@ -1709,12 +1745,12 @@ bool ComponentType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in ComponentType\n");
               returnValue = true;
@@ -1730,12 +1766,12 @@ bool ComponentType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in ComponentType\n");
               returnValue = true;
@@ -1751,7 +1787,7 @@ bool ComponentType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -1760,7 +1796,7 @@ bool ComponentType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ComponentType\n");
       returnValue = true;
@@ -1772,18 +1808,18 @@ bool ComponentType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -1806,11 +1842,11 @@ ProductTraceabilityType * ComponentType::getTraceability()
 void ComponentType::setTraceability(ProductTraceabilityType * TraceabilityIn)
 {Traceability = TraceabilityIn;}
 
-ComponentType_1238_Type * ComponentType::getComponentType_1238()
-{return ComponentType_1238;}
+ComponentType_1193_Type * ComponentType::getComponentType_1193()
+{return ComponentType_1193;}
 
-void ComponentType::setComponentType_1238(ComponentType_1238_Type * ComponentType_1238In)
-{ComponentType_1238 = ComponentType_1238In;}
+void ComponentType::setComponentType_1193(ComponentType_1193_Type * ComponentType_1193In)
+{ComponentType_1193 = ComponentType_1193In;}
 
 /* ***************************************************************** */
 
@@ -1837,7 +1873,15 @@ ComponentTypeLisd::~ComponentTypeLisd()
   #endif
 }
 
-void ComponentTypeLisd::printSelf(FILE * outFile){}
+void ComponentTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ComponentType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -1944,13 +1988,6 @@ DefinitionExternalTypeChoicePairLisd * DefinitionExternalType::getDefinitionExte
 
 void DefinitionExternalType::setDefinitionExternalTypePairs(DefinitionExternalTypeChoicePairLisd * DefinitionExternalTypePairsIn)
 {DefinitionExternalTypePairs = DefinitionExternalTypePairsIn;}
-
-/* ***************************************************************** */
-
-/* class DefinitionExternalTypeChoicePair
-
-*/
-
 DefinitionExternalTypeChoicePair::DefinitionExternalTypeChoicePair() {}
 
 DefinitionExternalTypeChoicePair::DefinitionExternalTypeChoicePair(
@@ -2011,6 +2048,103 @@ void DefinitionExternalTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
+bool DefinitionExternalType::badAttributes(
+ AttributePairLisd * attributes)
+{
+  std::list<AttributePair *>::iterator iter;
+  AttributePair * decl;
+  bool returnValue;
+
+  returnValue = false;
+  for (iter = attributes->begin(); iter != attributes->end(); iter++)
+    {
+      decl = *iter;
+      if (decl->name == "id")
+        {
+          QIFIdType * idVal;
+          if (this->id)
+            {
+              fprintf(stderr, "two values for id in DefinitionExternalType\n");
+              returnValue = true;
+              break;
+            }
+          idVal = new QIFIdType(decl->val.c_str());
+          if (idVal->bad)
+            {
+              delete idVal;
+              fprintf(stderr, "bad value %s for id in DefinitionExternalType\n",
+                      decl->val.c_str());
+              returnValue = true;
+              break;
+            }
+          else
+            this->id = idVal;
+        }
+      else if (decl->name == "n")
+        {
+          NaturalType * nVal;
+          if (this->n)
+            {
+              fprintf(stderr, "two values for n in DefinitionExternalType\n");
+              returnValue = true;
+              break;
+            }
+          nVal = new NaturalType(decl->val.c_str());
+          if (nVal->bad)
+            {
+              delete nVal;
+              fprintf(stderr, "bad value %s for n in DefinitionExternalType\n",
+                      decl->val.c_str());
+              returnValue = true;
+              break;
+            }
+          else
+            this->n = nVal;
+        }
+      else
+        {
+          fprintf(stderr, "bad attribute in DefinitionExternalType\n");
+          returnValue = true;
+          break;
+        }
+    }
+  if (this->id == 0)
+    {
+      fprintf(stderr, "required attribute \"id\" missing in DefinitionExternalType\n");
+      returnValue = true;
+    }
+  if (this->n == 0)
+    {
+      fprintf(stderr, "required attribute \"n\" missing in DefinitionExternalType\n");
+      returnValue = true;
+    }
+  for (iter = attributes->begin(); iter != attributes->end(); iter++)
+    {
+      delete *iter;
+    }
+  attributes->clear();
+  if (returnValue == true)
+    {
+      delete this->id;
+      this->id = 0;
+      delete this->n;
+      this->n = 0;
+    }
+  return returnValue;
+}
+
+QIFIdType * DefinitionExternalType::getid()
+{return id;}
+
+void DefinitionExternalType::setid(QIFIdType * idIn)
+{id = idIn;}
+
+NaturalType * DefinitionExternalType::getn()
+{return n;}
+
+void DefinitionExternalType::setn(NaturalType * nIn)
+{n = nIn;}
+
 /* ***************************************************************** */
 
 /* class DefinitionExternalTypeChoicePairLisd
@@ -2040,111 +2174,11 @@ void DefinitionExternalTypeChoicePairLisd::printSelf(FILE * outFile)
 {
   std::list<DefinitionExternalTypeChoicePair *>::iterator iter;
 
-  fprintf(outFile, ">\n");
-  doSpaces(+INDENT, outFile);
   for (iter = begin(); iter != end(); iter++)
     {
       (*iter)->printSelf(outFile);
     }
-  doSpaces(-INDENT, outFile);
 }
-
-bool DefinitionExternalType::badAttributes(
- AttributePairLisd * attributes)
-{
-  std::list<AttributePair *>::iterator iter;
-  AttributePair * decl;
-  bool returnValue;
-
-  returnValue = false;
-  for (iter = attributes->begin(); iter != attributes->end(); iter++)
-    {
-      decl = *iter;
-      if (decl->name == "id")
-        {
-          QIFIdType * idVal;
-          if (id)
-            {
-              fprintf(stderr, "two values for id in DefinitionExternalType\n");
-              returnValue = true;
-              break;
-            }
-          idVal = new QIFIdType(decl->val.c_str());
-          if (idVal->bad)
-            {
-              delete idVal;
-              fprintf(stderr, "bad value %s for id in DefinitionExternalType\n",
-                      decl->val.c_str());
-              returnValue = true;
-              break;
-            }
-          else
-            id = idVal;
-        }
-      else if (decl->name == "n")
-        {
-          NaturalType * nVal;
-          if (n)
-            {
-              fprintf(stderr, "two values for n in DefinitionExternalType\n");
-              returnValue = true;
-              break;
-            }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
-            {
-              delete nVal;
-              fprintf(stderr, "bad value %s for n in DefinitionExternalType\n",
-                      decl->val.c_str());
-              returnValue = true;
-              break;
-            }
-          else
-            n = nVal;
-        }
-      else
-        {
-          fprintf(stderr, "bad attribute in DefinitionExternalType\n");
-          returnValue = true;
-          break;
-        }
-    }
-  if (id == 0)
-    {
-      fprintf(stderr, "required attribute \"id\" missing in DefinitionExternalType\n");
-      returnValue = true;
-    }
-  if (n == 0)
-    {
-      fprintf(stderr, "required attribute \"n\" missing in DefinitionExternalType\n");
-      returnValue = true;
-    }
-  for (iter = attributes->begin(); iter != attributes->end(); iter++)
-    {
-      delete *iter;
-    }
-  attributes->clear();
-  if (returnValue == true)
-    {
-      delete id;
-      id = 0;
-      delete n;
-      n = 0;
-    }
-  return returnValue;
-}
-
-QIFIdType * DefinitionExternalType::getid()
-{return id;}
-
-void DefinitionExternalType::setid(QIFIdType * idIn)
-{id = idIn;}
-
-NaturalType * DefinitionExternalType::getn()
-{return n;}
-
-void DefinitionExternalType::setn(NaturalType * nIn)
-{n = nIn;}
 
 /* ***************************************************************** */
 
@@ -2311,7 +2345,7 @@ bool DigitalDrawingType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DigitalDrawingType\n");
               returnValue = true;
@@ -2327,7 +2361,7 @@ bool DigitalDrawingType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -2336,7 +2370,7 @@ bool DigitalDrawingType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DigitalDrawingType\n");
       returnValue = true;
@@ -2348,8 +2382,8 @@ bool DigitalDrawingType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -2607,7 +2641,7 @@ bool DigitalModelType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DigitalModelType\n");
               returnValue = true;
@@ -2623,7 +2657,7 @@ bool DigitalModelType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -2632,7 +2666,7 @@ bool DigitalModelType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DigitalModelType\n");
       returnValue = true;
@@ -2644,8 +2678,8 @@ bool DigitalModelType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -3136,7 +3170,7 @@ bool FolderAssemblyType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in FolderAssemblyType\n");
               returnValue = true;
@@ -3152,12 +3186,12 @@ bool FolderAssemblyType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in FolderAssemblyType\n");
               returnValue = true;
@@ -3173,12 +3207,12 @@ bool FolderAssemblyType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FolderAssemblyType\n");
               returnValue = true;
@@ -3194,12 +3228,12 @@ bool FolderAssemblyType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in FolderAssemblyType\n");
               returnValue = true;
@@ -3215,12 +3249,12 @@ bool FolderAssemblyType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in FolderAssemblyType\n");
               returnValue = true;
@@ -3236,12 +3270,12 @@ bool FolderAssemblyType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in FolderAssemblyType\n");
               returnValue = true;
@@ -3257,7 +3291,7 @@ bool FolderAssemblyType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -3266,7 +3300,7 @@ bool FolderAssemblyType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FolderAssemblyType\n");
       returnValue = true;
@@ -3278,18 +3312,18 @@ bool FolderAssemblyType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -3325,7 +3359,15 @@ FolderAssemblyTypeLisd::~FolderAssemblyTypeLisd()
   #endif
 }
 
-void FolderAssemblyTypeLisd::printSelf(FILE * outFile){}
+void FolderAssemblyTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<FolderAssemblyType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -3705,7 +3747,7 @@ bool FolderPartAssemblyBaseType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in FolderPartAssemblyBaseType\n");
               returnValue = true;
@@ -3721,12 +3763,12 @@ bool FolderPartAssemblyBaseType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in FolderPartAssemblyBaseType\n");
               returnValue = true;
@@ -3742,12 +3784,12 @@ bool FolderPartAssemblyBaseType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FolderPartAssemblyBaseType\n");
               returnValue = true;
@@ -3763,12 +3805,12 @@ bool FolderPartAssemblyBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in FolderPartAssemblyBaseType\n");
               returnValue = true;
@@ -3784,12 +3826,12 @@ bool FolderPartAssemblyBaseType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in FolderPartAssemblyBaseType\n");
               returnValue = true;
@@ -3805,12 +3847,12 @@ bool FolderPartAssemblyBaseType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in FolderPartAssemblyBaseType\n");
               returnValue = true;
@@ -3826,7 +3868,7 @@ bool FolderPartAssemblyBaseType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -3835,7 +3877,7 @@ bool FolderPartAssemblyBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FolderPartAssemblyBaseType\n");
       returnValue = true;
@@ -3847,18 +3889,18 @@ bool FolderPartAssemblyBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -4297,7 +4339,7 @@ bool FolderPartType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in FolderPartType\n");
               returnValue = true;
@@ -4313,12 +4355,12 @@ bool FolderPartType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in FolderPartType\n");
               returnValue = true;
@@ -4334,12 +4376,12 @@ bool FolderPartType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FolderPartType\n");
               returnValue = true;
@@ -4355,12 +4397,12 @@ bool FolderPartType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in FolderPartType\n");
               returnValue = true;
@@ -4376,12 +4418,12 @@ bool FolderPartType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in FolderPartType\n");
               returnValue = true;
@@ -4397,12 +4439,12 @@ bool FolderPartType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in FolderPartType\n");
               returnValue = true;
@@ -4418,7 +4460,7 @@ bool FolderPartType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -4427,7 +4469,7 @@ bool FolderPartType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FolderPartType\n");
       returnValue = true;
@@ -4439,18 +4481,18 @@ bool FolderPartType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -4480,7 +4522,15 @@ FolderPartTypeLisd::~FolderPartTypeLisd()
   #endif
 }
 
-void FolderPartTypeLisd::printSelf(FILE * outFile){}
+void FolderPartTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<FolderPartType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -4557,6 +4607,13 @@ void FoldersAssemblyType::printSelf(FILE * outFile)
         fprintf(stderr, "FolderAssembly list is empty\n");
         exit(1);
       }
+    if (FolderAssembly->size() < 1)
+      {
+        fprintf(stderr,
+                "size of FolderAssembly list (%d) less than minimum required (1)\n",
+                (int)FolderAssembly->size());
+        exit(1);
+      }
     std::list<FolderAssemblyType *>::iterator iter;
     for (iter = FolderAssembly->begin();
          iter != FolderAssembly->end(); iter++)
@@ -4585,7 +4642,7 @@ bool FoldersAssemblyType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in FoldersAssemblyType\n");
               returnValue = true;
@@ -4601,7 +4658,7 @@ bool FoldersAssemblyType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -4610,7 +4667,7 @@ bool FoldersAssemblyType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in FoldersAssemblyType\n");
       returnValue = true;
@@ -4622,8 +4679,8 @@ bool FoldersAssemblyType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -4715,6 +4772,13 @@ void FoldersPartType::printSelf(FILE * outFile)
         fprintf(stderr, "FolderPart list is empty\n");
         exit(1);
       }
+    if (FolderPart->size() < 1)
+      {
+        fprintf(stderr,
+                "size of FolderPart list (%d) less than minimum required (1)\n",
+                (int)FolderPart->size());
+        exit(1);
+      }
     std::list<FolderPartType *>::iterator iter;
     for (iter = FolderPart->begin();
          iter != FolderPart->end(); iter++)
@@ -4743,7 +4807,7 @@ bool FoldersPartType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in FoldersPartType\n");
               returnValue = true;
@@ -4759,7 +4823,7 @@ bool FoldersPartType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -4768,7 +4832,7 @@ bool FoldersPartType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in FoldersPartType\n");
       returnValue = true;
@@ -4780,8 +4844,8 @@ bool FoldersPartType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -4935,6 +4999,13 @@ void LayerSetType::printSelf(FILE * outFile)
         fprintf(stderr, "Layer list is empty\n");
         exit(1);
       }
+    if (Layer->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Layer list (%d) less than minimum required (1)\n",
+                (int)Layer->size());
+        exit(1);
+      }
     std::list<LayerType *>::iterator iter;
     for (iter = Layer->begin();
          iter != Layer->end(); iter++)
@@ -4963,7 +5034,7 @@ bool LayerSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in LayerSetType\n");
               returnValue = true;
@@ -4979,7 +5050,7 @@ bool LayerSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -4988,7 +5059,7 @@ bool LayerSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in LayerSetType\n");
       returnValue = true;
@@ -5000,8 +5071,8 @@ bool LayerSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -5263,7 +5334,7 @@ bool LayerType::badAttributes(
       if (decl->name == "applyColor")
         {
           XmlBoolean * applyColorVal;
-          if (applyColor)
+          if (this->applyColor)
             {
               fprintf(stderr, "two values for applyColor in LayerType\n");
               returnValue = true;
@@ -5279,12 +5350,12 @@ bool LayerType::badAttributes(
               break;
             }
           else
-            applyColor = applyColorVal;
+            this->applyColor = applyColorVal;
         }
       else if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in LayerType\n");
               returnValue = true;
@@ -5300,12 +5371,12 @@ bool LayerType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in LayerType\n");
               returnValue = true;
@@ -5321,12 +5392,12 @@ bool LayerType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LayerType\n");
               returnValue = true;
@@ -5342,12 +5413,12 @@ bool LayerType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "index")
         {
           XmlUnsignedInt * indexVal;
-          if (index)
+          if (this->index)
             {
               fprintf(stderr, "two values for index in LayerType\n");
               returnValue = true;
@@ -5363,12 +5434,12 @@ bool LayerType::badAttributes(
               break;
             }
           else
-            index = indexVal;
+            this->index = indexVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in LayerType\n");
               returnValue = true;
@@ -5384,12 +5455,12 @@ bool LayerType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in LayerType\n");
               returnValue = true;
@@ -5405,12 +5476,12 @@ bool LayerType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in LayerType\n");
               returnValue = true;
@@ -5426,7 +5497,7 @@ bool LayerType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -5435,12 +5506,12 @@ bool LayerType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LayerType\n");
       returnValue = true;
     }
-  if (index == 0)
+  if (this->index == 0)
     {
       fprintf(stderr, "required attribute \"index\" missing in LayerType\n");
       returnValue = true;
@@ -5452,22 +5523,22 @@ bool LayerType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete applyColor;
-      applyColor = 0;
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete index;
-      index = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->applyColor;
+      this->applyColor = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->index;
+      this->index = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -5515,7 +5586,15 @@ LayerTypeLisd::~LayerTypeLisd()
   #endif
 }
 
-void LayerTypeLisd::printSelf(FILE * outFile){}
+void LayerTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<LayerType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -5592,6 +5671,13 @@ void NoteFlagSetType::printSelf(FILE * outFile)
         fprintf(stderr, "NoteFlag list is empty\n");
         exit(1);
       }
+    if (NoteFlag->size() < 1)
+      {
+        fprintf(stderr,
+                "size of NoteFlag list (%d) less than minimum required (1)\n",
+                (int)NoteFlag->size());
+        exit(1);
+      }
     std::list<NoteFlagType *>::iterator iter;
     for (iter = NoteFlag->begin();
          iter != NoteFlag->end(); iter++)
@@ -5620,7 +5706,7 @@ bool NoteFlagSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in NoteFlagSetType\n");
               returnValue = true;
@@ -5636,7 +5722,7 @@ bool NoteFlagSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -5645,7 +5731,7 @@ bool NoteFlagSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in NoteFlagSetType\n");
       returnValue = true;
@@ -5657,8 +5743,8 @@ bool NoteFlagSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -5934,7 +6020,7 @@ bool NoteFlagType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in NoteFlagType\n");
               returnValue = true;
@@ -5950,12 +6036,12 @@ bool NoteFlagType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "form")
         {
           NoteFormEnumType * formVal;
-          if (form)
+          if (this->form)
             {
               fprintf(stderr, "two values for form in NoteFlagType\n");
               returnValue = true;
@@ -5971,12 +6057,12 @@ bool NoteFlagType::badAttributes(
               break;
             }
           else
-            form = formVal;
+            this->form = formVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in NoteFlagType\n");
               returnValue = true;
@@ -5992,12 +6078,12 @@ bool NoteFlagType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in NoteFlagType\n");
               returnValue = true;
@@ -6013,12 +6099,12 @@ bool NoteFlagType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in NoteFlagType\n");
               returnValue = true;
@@ -6034,12 +6120,12 @@ bool NoteFlagType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in NoteFlagType\n");
               returnValue = true;
@@ -6055,12 +6141,12 @@ bool NoteFlagType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in NoteFlagType\n");
               returnValue = true;
@@ -6076,7 +6162,7 @@ bool NoteFlagType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -6085,7 +6171,7 @@ bool NoteFlagType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in NoteFlagType\n");
       returnValue = true;
@@ -6097,20 +6183,20 @@ bool NoteFlagType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete form;
-      form = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->form;
+      this->form = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -6152,7 +6238,15 @@ NoteFlagTypeLisd::~NoteFlagTypeLisd()
   #endif
 }
 
-void NoteFlagTypeLisd::printSelf(FILE * outFile){}
+void NoteFlagTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<NoteFlagType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -6287,6 +6381,13 @@ void NoteSetType::printSelf(FILE * outFile)
         fprintf(stderr, "Note list is empty\n");
         exit(1);
       }
+    if (Note->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Note list (%d) less than minimum required (1)\n",
+                (int)Note->size());
+        exit(1);
+      }
     std::list<NoteType *>::iterator iter;
     for (iter = Note->begin();
          iter != Note->end(); iter++)
@@ -6315,7 +6416,7 @@ bool NoteSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in NoteSetType\n");
               returnValue = true;
@@ -6331,7 +6432,7 @@ bool NoteSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -6340,7 +6441,7 @@ bool NoteSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in NoteSetType\n");
       returnValue = true;
@@ -6352,8 +6453,8 @@ bool NoteSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -6612,7 +6713,7 @@ bool NoteType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in NoteType\n");
               returnValue = true;
@@ -6628,12 +6729,12 @@ bool NoteType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "form")
         {
           NoteFormEnumType * formVal;
-          if (form)
+          if (this->form)
             {
               fprintf(stderr, "two values for form in NoteType\n");
               returnValue = true;
@@ -6649,12 +6750,12 @@ bool NoteType::badAttributes(
               break;
             }
           else
-            form = formVal;
+            this->form = formVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in NoteType\n");
               returnValue = true;
@@ -6670,12 +6771,12 @@ bool NoteType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in NoteType\n");
               returnValue = true;
@@ -6691,12 +6792,12 @@ bool NoteType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in NoteType\n");
               returnValue = true;
@@ -6712,12 +6813,12 @@ bool NoteType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in NoteType\n");
               returnValue = true;
@@ -6733,12 +6834,12 @@ bool NoteType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in NoteType\n");
               returnValue = true;
@@ -6754,7 +6855,7 @@ bool NoteType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -6763,7 +6864,7 @@ bool NoteType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in NoteType\n");
       returnValue = true;
@@ -6775,20 +6876,20 @@ bool NoteType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete form;
-      form = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->form;
+      this->form = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -6842,7 +6943,15 @@ NoteTypeLisd::~NoteTypeLisd()
   #endif
 }
 
-void NoteTypeLisd::printSelf(FILE * outFile){}
+void NoteTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<NoteType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -7346,7 +7455,7 @@ bool PartAssemblyBaseType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in PartAssemblyBaseType\n");
               returnValue = true;
@@ -7362,12 +7471,12 @@ bool PartAssemblyBaseType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in PartAssemblyBaseType\n");
               returnValue = true;
@@ -7383,12 +7492,12 @@ bool PartAssemblyBaseType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PartAssemblyBaseType\n");
               returnValue = true;
@@ -7404,12 +7513,12 @@ bool PartAssemblyBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in PartAssemblyBaseType\n");
               returnValue = true;
@@ -7425,12 +7534,12 @@ bool PartAssemblyBaseType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "materialIndex")
         {
           NaturalType * materialIndexVal;
-          if (materialIndex)
+          if (this->materialIndex)
             {
               fprintf(stderr, "two values for materialIndex in PartAssemblyBaseType\n");
               returnValue = true;
@@ -7446,12 +7555,12 @@ bool PartAssemblyBaseType::badAttributes(
               break;
             }
           else
-            materialIndex = materialIndexVal;
+            this->materialIndex = materialIndexVal;
         }
       else if (decl->name == "originMassProperty")
         {
           PointSimpleType * originMassPropertyVal;
-          if (originMassProperty)
+          if (this->originMassProperty)
             {
               fprintf(stderr, "two values for originMassProperty in PartAssemblyBaseType\n");
               returnValue = true;
@@ -7467,12 +7576,12 @@ bool PartAssemblyBaseType::badAttributes(
               break;
             }
           else
-            originMassProperty = originMassPropertyVal;
+            this->originMassProperty = originMassPropertyVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in PartAssemblyBaseType\n");
               returnValue = true;
@@ -7488,12 +7597,12 @@ bool PartAssemblyBaseType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in PartAssemblyBaseType\n");
               returnValue = true;
@@ -7509,7 +7618,7 @@ bool PartAssemblyBaseType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -7518,7 +7627,7 @@ bool PartAssemblyBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PartAssemblyBaseType\n");
       returnValue = true;
@@ -7530,22 +7639,22 @@ bool PartAssemblyBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete materialIndex;
-      materialIndex = 0;
-      delete originMassProperty;
-      originMassProperty = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->materialIndex;
+      this->materialIndex = 0;
+      delete this->originMassProperty;
+      this->originMassProperty = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -7988,6 +8097,13 @@ void PartNoteSetType::printSelf(FILE * outFile)
         fprintf(stderr, "PartNote list is empty\n");
         exit(1);
       }
+    if (PartNote->size() < 1)
+      {
+        fprintf(stderr,
+                "size of PartNote list (%d) less than minimum required (1)\n",
+                (int)PartNote->size());
+        exit(1);
+      }
     std::list<PartNoteType *>::iterator iter;
     for (iter = PartNote->begin();
          iter != PartNote->end(); iter++)
@@ -8016,7 +8132,7 @@ bool PartNoteSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in PartNoteSetType\n");
               returnValue = true;
@@ -8032,7 +8148,7 @@ bool PartNoteSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -8041,7 +8157,7 @@ bool PartNoteSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in PartNoteSetType\n");
       returnValue = true;
@@ -8053,8 +8169,8 @@ bool PartNoteSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -8280,7 +8396,7 @@ bool PartNoteType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in PartNoteType\n");
               returnValue = true;
@@ -8296,12 +8412,12 @@ bool PartNoteType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in PartNoteType\n");
               returnValue = true;
@@ -8317,12 +8433,12 @@ bool PartNoteType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PartNoteType\n");
               returnValue = true;
@@ -8338,12 +8454,12 @@ bool PartNoteType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in PartNoteType\n");
               returnValue = true;
@@ -8359,12 +8475,12 @@ bool PartNoteType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in PartNoteType\n");
               returnValue = true;
@@ -8380,12 +8496,12 @@ bool PartNoteType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in PartNoteType\n");
               returnValue = true;
@@ -8401,7 +8517,7 @@ bool PartNoteType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -8410,7 +8526,7 @@ bool PartNoteType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PartNoteType\n");
       returnValue = true;
@@ -8422,18 +8538,18 @@ bool PartNoteType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -8475,7 +8591,15 @@ PartNoteTypeLisd::~PartNoteTypeLisd()
   #endif
 }
 
-void PartNoteTypeLisd::printSelf(FILE * outFile){}
+void PartNoteTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<PartNoteType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -8552,6 +8676,13 @@ void PartSetType::printSelf(FILE * outFile)
         fprintf(stderr, "Part list is empty\n");
         exit(1);
       }
+    if (Part->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Part list (%d) less than minimum required (1)\n",
+                (int)Part->size());
+        exit(1);
+      }
     std::list<PartType *>::iterator iter;
     for (iter = Part->begin();
          iter != Part->end(); iter++)
@@ -8580,7 +8711,7 @@ bool PartSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in PartSetType\n");
               returnValue = true;
@@ -8596,7 +8727,7 @@ bool PartSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -8605,7 +8736,7 @@ bool PartSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in PartSetType\n");
       returnValue = true;
@@ -8617,8 +8748,8 @@ bool PartSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -9133,7 +9264,7 @@ bool PartType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in PartType\n");
               returnValue = true;
@@ -9149,12 +9280,12 @@ bool PartType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in PartType\n");
               returnValue = true;
@@ -9170,12 +9301,12 @@ bool PartType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PartType\n");
               returnValue = true;
@@ -9191,12 +9322,12 @@ bool PartType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in PartType\n");
               returnValue = true;
@@ -9212,12 +9343,12 @@ bool PartType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "materialIndex")
         {
           NaturalType * materialIndexVal;
-          if (materialIndex)
+          if (this->materialIndex)
             {
               fprintf(stderr, "two values for materialIndex in PartType\n");
               returnValue = true;
@@ -9233,12 +9364,12 @@ bool PartType::badAttributes(
               break;
             }
           else
-            materialIndex = materialIndexVal;
+            this->materialIndex = materialIndexVal;
         }
       else if (decl->name == "originMassProperty")
         {
           PointSimpleType * originMassPropertyVal;
-          if (originMassProperty)
+          if (this->originMassProperty)
             {
               fprintf(stderr, "two values for originMassProperty in PartType\n");
               returnValue = true;
@@ -9254,12 +9385,12 @@ bool PartType::badAttributes(
               break;
             }
           else
-            originMassProperty = originMassPropertyVal;
+            this->originMassProperty = originMassPropertyVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in PartType\n");
               returnValue = true;
@@ -9275,12 +9406,12 @@ bool PartType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in PartType\n");
               returnValue = true;
@@ -9296,7 +9427,7 @@ bool PartType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -9305,7 +9436,7 @@ bool PartType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PartType\n");
       returnValue = true;
@@ -9317,22 +9448,22 @@ bool PartType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete materialIndex;
-      materialIndex = 0;
-      delete originMassProperty;
-      originMassProperty = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->materialIndex;
+      this->materialIndex = 0;
+      delete this->originMassProperty;
+      this->originMassProperty = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -9380,7 +9511,15 @@ PartTypeLisd::~PartTypeLisd()
   #endif
 }
 
-void PartTypeLisd::printSelf(FILE * outFile){}
+void PartTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<PartType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -9533,7 +9672,7 @@ bool PhysicalModelType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PhysicalModelType\n");
               returnValue = true;
@@ -9549,7 +9688,7 @@ bool PhysicalModelType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -9558,7 +9697,7 @@ bool PhysicalModelType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PhysicalModelType\n");
       returnValue = true;
@@ -9570,8 +9709,8 @@ bool PhysicalModelType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -9782,7 +9921,7 @@ bool PrintedDrawingType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PrintedDrawingType\n");
               returnValue = true;
@@ -9798,7 +9937,7 @@ bool PrintedDrawingType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -9807,7 +9946,7 @@ bool PrintedDrawingType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PrintedDrawingType\n");
       returnValue = true;
@@ -9819,8 +9958,8 @@ bool PrintedDrawingType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -10033,7 +10172,7 @@ ProductType::ProductType()
   PartSet = 0;
   AssemblySet = 0;
   ComponentSet = 0;
-  ProductType_1239 = 0;
+  ProductType_1194 = 0;
   AsmPaths = 0;
   MaterialLibrary = 0;
 }
@@ -10053,7 +10192,7 @@ ProductType::ProductType(
  PartSetType * PartSetIn,
  AssemblySetType * AssemblySetIn,
  ComponentSetType * ComponentSetIn,
- ProductType_1239_Type * ProductType_1239In,
+ ProductType_1194_Type * ProductType_1194In,
  AsmPathsType * AsmPathsIn,
  MaterialsType * MaterialLibraryIn)
 {
@@ -10071,7 +10210,7 @@ ProductType::ProductType(
   PartSet = PartSetIn;
   AssemblySet = AssemblySetIn;
   ComponentSet = ComponentSetIn;
-  ProductType_1239 = ProductType_1239In;
+  ProductType_1194 = ProductType_1194In;
   AsmPaths = AsmPathsIn;
   MaterialLibrary = MaterialLibraryIn;
 }
@@ -10093,7 +10232,7 @@ ProductType::~ProductType()
   delete PartSet;
   delete AssemblySet;
   delete ComponentSet;
-  delete ProductType_1239;
+  delete ProductType_1194;
   delete AsmPaths;
   delete MaterialLibrary;
   #endif
@@ -10215,9 +10354,9 @@ void ProductType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</ComponentSet>\n");
     }
-  if (ProductType_1239)
+  if (ProductType_1194)
     {
-      ProductType_1239->printSelf(outFile);
+  ProductType_1194->printSelf(outFile);
     }
   if (AsmPaths)
     {
@@ -10322,11 +10461,11 @@ ComponentSetType * ProductType::getComponentSet()
 void ProductType::setComponentSet(ComponentSetType * ComponentSetIn)
 {ComponentSet = ComponentSetIn;}
 
-ProductType_1239_Type * ProductType::getProductType_1239()
-{return ProductType_1239;}
+ProductType_1194_Type * ProductType::getProductType_1194()
+{return ProductType_1194;}
 
-void ProductType::setProductType_1239(ProductType_1239_Type * ProductType_1239In)
-{ProductType_1239 = ProductType_1239In;}
+void ProductType::setProductType_1194(ProductType_1194_Type * ProductType_1194In)
+{ProductType_1194 = ProductType_1194In;}
 
 AsmPathsType * ProductType::getAsmPaths()
 {return AsmPaths;}
@@ -10501,7 +10640,15 @@ ValidationPartAssemblyInstanceTypeLisd::~ValidationPartAssemblyInstanceTypeLisd(
   #endif
 }
 
-void ValidationPartAssemblyInstanceTypeLisd::printSelf(FILE * outFile){}
+void ValidationPartAssemblyInstanceTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ValidationPartAssemblyInstanceType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -10578,6 +10725,13 @@ void ValidationPartAssemblyInstancesType::printSelf(FILE * outFile)
         fprintf(stderr, "Instance list is empty\n");
         exit(1);
       }
+    if (Instance->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Instance list (%d) less than minimum required (1)\n",
+                (int)Instance->size());
+        exit(1);
+      }
     std::list<ValidationPartAssemblyInstanceType *>::iterator iter;
     for (iter = Instance->begin();
          iter != Instance->end(); iter++)
@@ -10606,7 +10760,7 @@ bool ValidationPartAssemblyInstancesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ValidationPartAssemblyInstancesType\n");
               returnValue = true;
@@ -10622,7 +10776,7 @@ bool ValidationPartAssemblyInstancesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -10631,7 +10785,7 @@ bool ValidationPartAssemblyInstancesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ValidationPartAssemblyInstancesType\n");
       returnValue = true;
@@ -10643,8 +10797,8 @@ bool ValidationPartAssemblyInstancesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -10813,80 +10967,73 @@ void ValidationPartAssemblyType::setInstances(ValidationPartAssemblyInstancesTyp
 
 /* ***************************************************************** */
 
-/* class ComponentType_1238_Type
+/* class ComponentType_1193_Type
 
 */
 
-ComponentType_1238_Type::ComponentType_1238_Type()
+ComponentType_1193_Type::ComponentType_1193_Type()
 {
-  ComponentType_1238_TypePair = 0;
+  ComponentType_1193_TypePair = 0;
 }
 
-ComponentType_1238_Type::ComponentType_1238_Type(
- ComponentType_1238_TypeChoicePair * ComponentType_1238_TypePairIn)
+ComponentType_1193_Type::ComponentType_1193_Type(
+ ComponentType_1193_TypeChoicePair * ComponentType_1193_TypePairIn)
 {
-  ComponentType_1238_TypePair = ComponentType_1238_TypePairIn;
+  ComponentType_1193_TypePair = ComponentType_1193_TypePairIn;
 }
 
-ComponentType_1238_Type::~ComponentType_1238_Type()
+ComponentType_1193_Type::~ComponentType_1193_Type()
 {
   #ifndef NODESTRUCT
-  delete ComponentType_1238_TypePair;
+  delete ComponentType_1193_TypePair;
   #endif
 }
 
-void ComponentType_1238_Type::printSelf(FILE * outFile)
+void ComponentType_1193_Type::printSelf(FILE * outFile)
 {
-  ComponentType_1238_TypePair->printSelf(outFile);
+  ComponentType_1193_TypePair->printSelf(outFile);
 }
 
-ComponentType_1238_TypeChoicePair * ComponentType_1238_Type::getComponentType_1238_TypePair()
-{return ComponentType_1238_TypePair;}
+ComponentType_1193_TypeChoicePair * ComponentType_1193_Type::getComponentType_1193_TypePair()
+{return ComponentType_1193_TypePair;}
 
-void ComponentType_1238_Type::setComponentType_1238_TypePair(ComponentType_1238_TypeChoicePair * ComponentType_1238_TypePairIn)
-{ComponentType_1238_TypePair = ComponentType_1238_TypePairIn;}
+void ComponentType_1193_Type::setComponentType_1193_TypePair(ComponentType_1193_TypeChoicePair * ComponentType_1193_TypePairIn)
+{ComponentType_1193_TypePair = ComponentType_1193_TypePairIn;}
+ComponentType_1193_TypeChoicePair::ComponentType_1193_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class ComponentType_1238_TypeChoicePair
-
-*/
-
-ComponentType_1238_TypeChoicePair::ComponentType_1238_TypeChoicePair() {}
-
-ComponentType_1238_TypeChoicePair::ComponentType_1238_TypeChoicePair(
- whichOne ComponentType_1238_TypeTypeIn,
- ComponentType_1238_TypeVal ComponentType_1238_TypeValueIn)
+ComponentType_1193_TypeChoicePair::ComponentType_1193_TypeChoicePair(
+ whichOne ComponentType_1193_TypeTypeIn,
+ ComponentType_1193_TypeVal ComponentType_1193_TypeValueIn)
 {
-  ComponentType_1238_TypeType = ComponentType_1238_TypeTypeIn;
-  ComponentType_1238_TypeValue = ComponentType_1238_TypeValueIn;
+  ComponentType_1193_TypeType = ComponentType_1193_TypeTypeIn;
+  ComponentType_1193_TypeValue = ComponentType_1193_TypeValueIn;
 }
 
-ComponentType_1238_TypeChoicePair::~ComponentType_1238_TypeChoicePair()
+ComponentType_1193_TypeChoicePair::~ComponentType_1193_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (ComponentType_1238_TypeType == PartE)
-    delete ComponentType_1238_TypeValue.Part;
-  else if (ComponentType_1238_TypeType == AssemblyE)
-    delete ComponentType_1238_TypeValue.Assembly;
+  if (ComponentType_1193_TypeType == PartE)
+    delete ComponentType_1193_TypeValue.Part;
+  else if (ComponentType_1193_TypeType == AssemblyE)
+    delete ComponentType_1193_TypeValue.Assembly;
   #endif
 }
 
-void ComponentType_1238_TypeChoicePair::printSelf(FILE * outFile)
+void ComponentType_1193_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (ComponentType_1238_TypeType == PartE)
+  if (ComponentType_1193_TypeType == PartE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Part");
-      ComponentType_1238_TypeValue.Part->printSelf(outFile);
+      ComponentType_1193_TypeValue.Part->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Part>\n");
     }
-  else if (ComponentType_1238_TypeType == AssemblyE)
+  else if (ComponentType_1193_TypeType == AssemblyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Assembly");
-      ComponentType_1238_TypeValue.Assembly->printSelf(outFile);
+      ComponentType_1193_TypeValue.Assembly->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Assembly>\n");
     }
@@ -10894,93 +11041,86 @@ void ComponentType_1238_TypeChoicePair::printSelf(FILE * outFile)
 
 /* ***************************************************************** */
 
-/* class ProductType_1239_Type
+/* class ProductType_1194_Type
 
 */
 
-ProductType_1239_Type::ProductType_1239_Type()
+ProductType_1194_Type::ProductType_1194_Type()
 {
-  ProductType_1239_TypePair = 0;
+  ProductType_1194_TypePair = 0;
 }
 
-ProductType_1239_Type::ProductType_1239_Type(
- ProductType_1239_TypeChoicePair * ProductType_1239_TypePairIn)
+ProductType_1194_Type::ProductType_1194_Type(
+ ProductType_1194_TypeChoicePair * ProductType_1194_TypePairIn)
 {
-  ProductType_1239_TypePair = ProductType_1239_TypePairIn;
+  ProductType_1194_TypePair = ProductType_1194_TypePairIn;
 }
 
-ProductType_1239_Type::~ProductType_1239_Type()
+ProductType_1194_Type::~ProductType_1194_Type()
 {
   #ifndef NODESTRUCT
-  delete ProductType_1239_TypePair;
+  delete ProductType_1194_TypePair;
   #endif
 }
 
-void ProductType_1239_Type::printSelf(FILE * outFile)
+void ProductType_1194_Type::printSelf(FILE * outFile)
 {
-  if (ProductType_1239_TypePair)
+  if (ProductType_1194_TypePair)
     {
-      ProductType_1239_TypePair->printSelf(outFile);
+      ProductType_1194_TypePair->printSelf(outFile);
     }
 }
 
-ProductType_1239_TypeChoicePair * ProductType_1239_Type::getProductType_1239_TypePair()
-{return ProductType_1239_TypePair;}
+ProductType_1194_TypeChoicePair * ProductType_1194_Type::getProductType_1194_TypePair()
+{return ProductType_1194_TypePair;}
 
-void ProductType_1239_Type::setProductType_1239_TypePair(ProductType_1239_TypeChoicePair * ProductType_1239_TypePairIn)
-{ProductType_1239_TypePair = ProductType_1239_TypePairIn;}
+void ProductType_1194_Type::setProductType_1194_TypePair(ProductType_1194_TypeChoicePair * ProductType_1194_TypePairIn)
+{ProductType_1194_TypePair = ProductType_1194_TypePairIn;}
+ProductType_1194_TypeChoicePair::ProductType_1194_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class ProductType_1239_TypeChoicePair
-
-*/
-
-ProductType_1239_TypeChoicePair::ProductType_1239_TypeChoicePair() {}
-
-ProductType_1239_TypeChoicePair::ProductType_1239_TypeChoicePair(
- whichOne ProductType_1239_TypeTypeIn,
- ProductType_1239_TypeVal ProductType_1239_TypeValueIn)
+ProductType_1194_TypeChoicePair::ProductType_1194_TypeChoicePair(
+ whichOne ProductType_1194_TypeTypeIn,
+ ProductType_1194_TypeVal ProductType_1194_TypeValueIn)
 {
-  ProductType_1239_TypeType = ProductType_1239_TypeTypeIn;
-  ProductType_1239_TypeValue = ProductType_1239_TypeValueIn;
+  ProductType_1194_TypeType = ProductType_1194_TypeTypeIn;
+  ProductType_1194_TypeValue = ProductType_1194_TypeValueIn;
 }
 
-ProductType_1239_TypeChoicePair::~ProductType_1239_TypeChoicePair()
+ProductType_1194_TypeChoicePair::~ProductType_1194_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (ProductType_1239_TypeType == RootPartE)
-    delete ProductType_1239_TypeValue.RootPart;
-  else if (ProductType_1239_TypeType == RootAssemblyE)
-    delete ProductType_1239_TypeValue.RootAssembly;
-  else if (ProductType_1239_TypeType == RootComponentE)
-    delete ProductType_1239_TypeValue.RootComponent;
+  if (ProductType_1194_TypeType == RootPartE)
+    delete ProductType_1194_TypeValue.RootPart;
+  else if (ProductType_1194_TypeType == RootAssemblyE)
+    delete ProductType_1194_TypeValue.RootAssembly;
+  else if (ProductType_1194_TypeType == RootComponentE)
+    delete ProductType_1194_TypeValue.RootComponent;
   #endif
 }
 
-void ProductType_1239_TypeChoicePair::printSelf(FILE * outFile)
+void ProductType_1194_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (ProductType_1239_TypeType == RootPartE)
+  if (ProductType_1194_TypeType == RootPartE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RootPart");
-      ProductType_1239_TypeValue.RootPart->printSelf(outFile);
+      ProductType_1194_TypeValue.RootPart->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</RootPart>\n");
     }
-  else if (ProductType_1239_TypeType == RootAssemblyE)
+  else if (ProductType_1194_TypeType == RootAssemblyE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RootAssembly");
-      ProductType_1239_TypeValue.RootAssembly->printSelf(outFile);
+      ProductType_1194_TypeValue.RootAssembly->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</RootAssembly>\n");
     }
-  else if (ProductType_1239_TypeType == RootComponentE)
+  else if (ProductType_1194_TypeType == RootComponentE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RootComponent");
-      ProductType_1239_TypeValue.RootComponent->printSelf(outFile);
+      ProductType_1194_TypeValue.RootComponent->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</RootComponent>\n");
     }

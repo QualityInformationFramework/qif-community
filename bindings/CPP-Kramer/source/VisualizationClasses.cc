@@ -4,7 +4,6 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
-#include <boost/regex.hpp>
 #include <xmlSchemaInstance.hh>
 #include "VisualizationClasses.hh"
 
@@ -146,6 +145,13 @@ void AnnotationViewSetType::printSelf(FILE * outFile)
         fprintf(stderr, "AnnotationView list is empty\n");
         exit(1);
       }
+    if (AnnotationView->size() < 1)
+      {
+        fprintf(stderr,
+                "size of AnnotationView list (%d) less than minimum required (1)\n",
+                (int)AnnotationView->size());
+        exit(1);
+      }
     std::list<AnnotationViewType *>::iterator iter;
     for (iter = AnnotationView->begin();
          iter != AnnotationView->end(); iter++)
@@ -174,7 +180,7 @@ bool AnnotationViewSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in AnnotationViewSetType\n");
               returnValue = true;
@@ -190,7 +196,7 @@ bool AnnotationViewSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -199,7 +205,7 @@ bool AnnotationViewSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in AnnotationViewSetType\n");
       returnValue = true;
@@ -211,8 +217,8 @@ bool AnnotationViewSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -355,7 +361,7 @@ bool AnnotationViewType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AnnotationViewType\n");
               returnValue = true;
@@ -371,12 +377,12 @@ bool AnnotationViewType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in AnnotationViewType\n");
               returnValue = true;
@@ -392,7 +398,7 @@ bool AnnotationViewType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else
         {
@@ -401,7 +407,7 @@ bool AnnotationViewType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AnnotationViewType\n");
       returnValue = true;
@@ -413,10 +419,10 @@ bool AnnotationViewType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
     }
   return returnValue;
 }
@@ -458,7 +464,15 @@ AnnotationViewTypeLisd::~AnnotationViewTypeLisd()
   #endif
 }
 
-void AnnotationViewTypeLisd::printSelf(FILE * outFile){}
+void AnnotationViewTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<AnnotationViewType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -497,13 +511,6 @@ Area2dTypeChoicePair * Area2dType::getArea2dTypePair()
 
 void Area2dType::setArea2dTypePair(Area2dTypeChoicePair * Area2dTypePairIn)
 {Area2dTypePair = Area2dTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class Area2dTypeChoicePair
-
-*/
-
 Area2dTypeChoicePair::Area2dTypeChoicePair() {}
 
 Area2dTypeChoicePair::Area2dTypeChoicePair(
@@ -569,7 +576,15 @@ Area2dTypeLisd::~Area2dTypeLisd()
   #endif
 }
 
-void Area2dTypeLisd::printSelf(FILE * outFile){}
+void Area2dTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<Area2dType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -646,6 +661,13 @@ void Areas2dType::printSelf(FILE * outFile)
         fprintf(stderr, "Area list is empty\n");
         exit(1);
       }
+    if (Area->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Area list (%d) less than minimum required (1)\n",
+                (int)Area->size());
+        exit(1);
+      }
     std::list<Area2dType *>::iterator iter;
     for (iter = Area->begin();
          iter != Area->end(); iter++)
@@ -674,7 +696,7 @@ bool Areas2dType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in Areas2dType\n");
               returnValue = true;
@@ -690,7 +712,7 @@ bool Areas2dType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -699,7 +721,7 @@ bool Areas2dType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in Areas2dType\n");
       returnValue = true;
@@ -711,8 +733,8 @@ bool Areas2dType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -862,6 +884,13 @@ void CameraSetType::printSelf(FILE * outFile)
         fprintf(stderr, "Camera list is empty\n");
         exit(1);
       }
+    if (Camera->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Camera list (%d) less than minimum required (1)\n",
+                (int)Camera->size());
+        exit(1);
+      }
     std::list<CameraType *>::iterator iter;
     for (iter = Camera->begin();
          iter != Camera->end(); iter++)
@@ -890,7 +919,7 @@ bool CameraSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in CameraSetType\n");
               returnValue = true;
@@ -906,7 +935,7 @@ bool CameraSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -915,7 +944,7 @@ bool CameraSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in CameraSetType\n");
       returnValue = true;
@@ -927,8 +956,8 @@ bool CameraSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -1134,7 +1163,7 @@ bool CameraType::badAttributes(
       if (decl->name == "form")
         {
           CameraFormEnumType * formVal;
-          if (form)
+          if (this->form)
             {
               fprintf(stderr, "two values for form in CameraType\n");
               returnValue = true;
@@ -1150,12 +1179,12 @@ bool CameraType::badAttributes(
               break;
             }
           else
-            form = formVal;
+            this->form = formVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CameraType\n");
               returnValue = true;
@@ -1171,12 +1200,12 @@ bool CameraType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in CameraType\n");
               returnValue = true;
@@ -1192,7 +1221,7 @@ bool CameraType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else
         {
@@ -1201,7 +1230,7 @@ bool CameraType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CameraType\n");
       returnValue = true;
@@ -1213,12 +1242,12 @@ bool CameraType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete form;
-      form = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
+      delete this->form;
+      this->form = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
     }
   return returnValue;
 }
@@ -1290,7 +1319,15 @@ CameraTypeLisd::~CameraTypeLisd()
   #endif
 }
 
-void CameraTypeLisd::printSelf(FILE * outFile){}
+void CameraTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<CameraType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -1459,7 +1496,15 @@ DisplayStyleGroupTypeLisd::~DisplayStyleGroupTypeLisd()
   #endif
 }
 
-void DisplayStyleGroupTypeLisd::printSelf(FILE * outFile){}
+void DisplayStyleGroupTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<DisplayStyleGroupType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -1536,6 +1581,13 @@ void DisplayStyleGroupsType::printSelf(FILE * outFile)
         fprintf(stderr, "DisplayStyleGroup list is empty\n");
         exit(1);
       }
+    if (DisplayStyleGroup->size() < 1)
+      {
+        fprintf(stderr,
+                "size of DisplayStyleGroup list (%d) less than minimum required (1)\n",
+                (int)DisplayStyleGroup->size());
+        exit(1);
+      }
     std::list<DisplayStyleGroupType *>::iterator iter;
     for (iter = DisplayStyleGroup->begin();
          iter != DisplayStyleGroup->end(); iter++)
@@ -1564,7 +1616,7 @@ bool DisplayStyleGroupsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in DisplayStyleGroupsType\n");
               returnValue = true;
@@ -1580,7 +1632,7 @@ bool DisplayStyleGroupsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -1589,7 +1641,7 @@ bool DisplayStyleGroupsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in DisplayStyleGroupsType\n");
       returnValue = true;
@@ -1601,8 +1653,8 @@ bool DisplayStyleGroupsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -1769,6 +1821,13 @@ void DisplayStyleSetType::printSelf(FILE * outFile)
         fprintf(stderr, "DisplayStyle list is empty\n");
         exit(1);
       }
+    if (DisplayStyle->size() < 1)
+      {
+        fprintf(stderr,
+                "size of DisplayStyle list (%d) less than minimum required (1)\n",
+                (int)DisplayStyle->size());
+        exit(1);
+      }
     std::list<DisplayStyleType *>::iterator iter;
     for (iter = DisplayStyle->begin();
          iter != DisplayStyle->end(); iter++)
@@ -1797,7 +1856,7 @@ bool DisplayStyleSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in DisplayStyleSetType\n");
               returnValue = true;
@@ -1813,7 +1872,7 @@ bool DisplayStyleSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -1822,7 +1881,7 @@ bool DisplayStyleSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in DisplayStyleSetType\n");
       returnValue = true;
@@ -1834,8 +1893,8 @@ bool DisplayStyleSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -1983,7 +2042,7 @@ bool DisplayStyleType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DisplayStyleType\n");
               returnValue = true;
@@ -1999,12 +2058,12 @@ bool DisplayStyleType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in DisplayStyleType\n");
               returnValue = true;
@@ -2020,7 +2079,7 @@ bool DisplayStyleType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else
         {
@@ -2029,7 +2088,7 @@ bool DisplayStyleType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DisplayStyleType\n");
       returnValue = true;
@@ -2041,10 +2100,10 @@ bool DisplayStyleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
     }
   return returnValue;
 }
@@ -2086,7 +2145,15 @@ DisplayStyleTypeLisd::~DisplayStyleTypeLisd()
   #endif
 }
 
-void DisplayStyleTypeLisd::printSelf(FILE * outFile){}
+void DisplayStyleTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<DisplayStyleType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -2096,17 +2163,17 @@ void DisplayStyleTypeLisd::printSelf(FILE * outFile){}
 
 ExplodedViewMoveGroupType::ExplodedViewMoveGroupType()
 {
-  ExplodedViewMov_1231 = 0;
+  ExplodedViewMov_1187 = 0;
   ComponentIds = 0;
   BodyIds = 0;
 }
 
 ExplodedViewMoveGroupType::ExplodedViewMoveGroupType(
- ExplodedViewMov_1231_Type * ExplodedViewMov_1231In,
+ ExplodedViewMov_1187_Type * ExplodedViewMov_1187In,
  ArrayReferenceFullType * ComponentIdsIn,
  ArrayReferenceFullType * BodyIdsIn)
 {
-  ExplodedViewMov_1231 = ExplodedViewMov_1231In;
+  ExplodedViewMov_1187 = ExplodedViewMov_1187In;
   ComponentIds = ComponentIdsIn;
   BodyIds = BodyIdsIn;
 }
@@ -2114,7 +2181,7 @@ ExplodedViewMoveGroupType::ExplodedViewMoveGroupType(
 ExplodedViewMoveGroupType::~ExplodedViewMoveGroupType()
 {
   #ifndef NODESTRUCT
-  delete ExplodedViewMov_1231;
+  delete ExplodedViewMov_1187;
   delete ComponentIds;
   delete BodyIds;
   #endif
@@ -2124,7 +2191,7 @@ void ExplodedViewMoveGroupType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  ExplodedViewMov_1231->printSelf(outFile);
+  ExplodedViewMov_1187->printSelf(outFile);
   if (ComponentIds)
     {
       doSpaces(0, outFile);
@@ -2144,11 +2211,11 @@ void ExplodedViewMoveGroupType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-ExplodedViewMov_1231_Type * ExplodedViewMoveGroupType::getExplodedViewMov_1231()
-{return ExplodedViewMov_1231;}
+ExplodedViewMov_1187_Type * ExplodedViewMoveGroupType::getExplodedViewMov_1187()
+{return ExplodedViewMov_1187;}
 
-void ExplodedViewMoveGroupType::setExplodedViewMov_1231(ExplodedViewMov_1231_Type * ExplodedViewMov_1231In)
-{ExplodedViewMov_1231 = ExplodedViewMov_1231In;}
+void ExplodedViewMoveGroupType::setExplodedViewMov_1187(ExplodedViewMov_1187_Type * ExplodedViewMov_1187In)
+{ExplodedViewMov_1187 = ExplodedViewMov_1187In;}
 
 ArrayReferenceFullType * ExplodedViewMoveGroupType::getComponentIds()
 {return ComponentIds;}
@@ -2187,7 +2254,15 @@ ExplodedViewMoveGroupTypeLisd::~ExplodedViewMoveGroupTypeLisd()
   #endif
 }
 
-void ExplodedViewMoveGroupTypeLisd::printSelf(FILE * outFile){}
+void ExplodedViewMoveGroupTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ExplodedViewMoveGroupType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -2264,6 +2339,13 @@ void ExplodedViewMoveGroupsType::printSelf(FILE * outFile)
         fprintf(stderr, "MoveGroup list is empty\n");
         exit(1);
       }
+    if (MoveGroup->size() < 1)
+      {
+        fprintf(stderr,
+                "size of MoveGroup list (%d) less than minimum required (1)\n",
+                (int)MoveGroup->size());
+        exit(1);
+      }
     std::list<ExplodedViewMoveGroupType *>::iterator iter;
     for (iter = MoveGroup->begin();
          iter != MoveGroup->end(); iter++)
@@ -2292,7 +2374,7 @@ bool ExplodedViewMoveGroupsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ExplodedViewMoveGroupsType\n");
               returnValue = true;
@@ -2308,7 +2390,7 @@ bool ExplodedViewMoveGroupsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -2317,7 +2399,7 @@ bool ExplodedViewMoveGroupsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ExplodedViewMoveGroupsType\n");
       returnValue = true;
@@ -2329,8 +2411,8 @@ bool ExplodedViewMoveGroupsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -2478,6 +2560,13 @@ void ExplodedViewSetType::printSelf(FILE * outFile)
         fprintf(stderr, "ExplodedView list is empty\n");
         exit(1);
       }
+    if (ExplodedView->size() < 1)
+      {
+        fprintf(stderr,
+                "size of ExplodedView list (%d) less than minimum required (1)\n",
+                (int)ExplodedView->size());
+        exit(1);
+      }
     std::list<ExplodedViewType *>::iterator iter;
     for (iter = ExplodedView->begin();
          iter != ExplodedView->end(); iter++)
@@ -2506,7 +2595,7 @@ bool ExplodedViewSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ExplodedViewSetType\n");
               returnValue = true;
@@ -2522,7 +2611,7 @@ bool ExplodedViewSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -2531,7 +2620,7 @@ bool ExplodedViewSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ExplodedViewSetType\n");
       returnValue = true;
@@ -2543,8 +2632,8 @@ bool ExplodedViewSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -2733,7 +2822,7 @@ bool ExplodedViewType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ExplodedViewType\n");
               returnValue = true;
@@ -2749,12 +2838,12 @@ bool ExplodedViewType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in ExplodedViewType\n");
               returnValue = true;
@@ -2770,7 +2859,7 @@ bool ExplodedViewType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else
         {
@@ -2779,7 +2868,7 @@ bool ExplodedViewType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ExplodedViewType\n");
       returnValue = true;
@@ -2791,10 +2880,10 @@ bool ExplodedViewType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
     }
   return returnValue;
 }
@@ -2830,7 +2919,15 @@ ExplodedViewTypeLisd::~ExplodedViewTypeLisd()
   #endif
 }
 
-void ExplodedViewTypeLisd::printSelf(FILE * outFile){}
+void ExplodedViewTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ExplodedViewType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -3020,7 +3117,7 @@ bool FontType::badAttributes(
       if (decl->name == "bold")
         {
           XmlBoolean * boldVal;
-          if (bold)
+          if (this->bold)
             {
               fprintf(stderr, "two values for bold in FontType\n");
               returnValue = true;
@@ -3036,12 +3133,12 @@ bool FontType::badAttributes(
               break;
             }
           else
-            bold = boldVal;
+            this->bold = boldVal;
         }
       else if (decl->name == "index")
         {
           XmlUnsignedInt * indexVal;
-          if (index)
+          if (this->index)
             {
               fprintf(stderr, "two values for index in FontType\n");
               returnValue = true;
@@ -3057,12 +3154,12 @@ bool FontType::badAttributes(
               break;
             }
           else
-            index = indexVal;
+            this->index = indexVal;
         }
       else if (decl->name == "italic")
         {
           XmlBoolean * italicVal;
-          if (italic)
+          if (this->italic)
             {
               fprintf(stderr, "two values for italic in FontType\n");
               returnValue = true;
@@ -3078,12 +3175,12 @@ bool FontType::badAttributes(
               break;
             }
           else
-            italic = italicVal;
+            this->italic = italicVal;
         }
       else if (decl->name == "underline")
         {
           XmlBoolean * underlineVal;
-          if (underline)
+          if (this->underline)
             {
               fprintf(stderr, "two values for underline in FontType\n");
               returnValue = true;
@@ -3099,7 +3196,7 @@ bool FontType::badAttributes(
               break;
             }
           else
-            underline = underlineVal;
+            this->underline = underlineVal;
         }
       else
         {
@@ -3108,7 +3205,7 @@ bool FontType::badAttributes(
           break;
         }
     }
-  if (index == 0)
+  if (this->index == 0)
     {
       fprintf(stderr, "required attribute \"index\" missing in FontType\n");
       returnValue = true;
@@ -3120,14 +3217,14 @@ bool FontType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete bold;
-      bold = 0;
-      delete index;
-      index = 0;
-      delete italic;
-      italic = 0;
-      delete underline;
-      underline = 0;
+      delete this->bold;
+      this->bold = 0;
+      delete this->index;
+      this->index = 0;
+      delete this->italic;
+      this->italic = 0;
+      delete this->underline;
+      this->underline = 0;
     }
   return returnValue;
 }
@@ -3205,7 +3302,15 @@ FontTypeLisd::~FontTypeLisd()
   #endif
 }
 
-void FontTypeLisd::printSelf(FILE * outFile){}
+void FontTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<FontType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -3282,6 +3387,13 @@ void FontsType::printSelf(FILE * outFile)
         fprintf(stderr, "Font list is empty\n");
         exit(1);
       }
+    if (Font->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Font list (%d) less than minimum required (1)\n",
+                (int)Font->size());
+        exit(1);
+      }
     std::list<FontType *>::iterator iter;
     for (iter = Font->begin();
          iter != Font->end(); iter++)
@@ -3310,7 +3422,7 @@ bool FontsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in FontsType\n");
               returnValue = true;
@@ -3326,7 +3438,7 @@ bool FontsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -3335,7 +3447,7 @@ bool FontsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in FontsType\n");
       returnValue = true;
@@ -3347,8 +3459,8 @@ bool FontsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -3406,7 +3518,15 @@ FrameBaseTypeLisd::~FrameBaseTypeLisd()
   #endif
 }
 
-void FrameBaseTypeLisd::printSelf(FILE * outFile){}
+void FrameBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<FrameBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -3501,7 +3621,7 @@ bool FrameCircularType::badAttributes(
       if (decl->name == "crossed")
         {
           XmlBoolean * crossedVal;
-          if (crossed)
+          if (this->crossed)
             {
               fprintf(stderr, "two values for crossed in FrameCircularType\n");
               returnValue = true;
@@ -3517,7 +3637,7 @@ bool FrameCircularType::badAttributes(
               break;
             }
           else
-            crossed = crossedVal;
+            this->crossed = crossedVal;
         }
       else
         {
@@ -3533,8 +3653,8 @@ bool FrameCircularType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete crossed;
-      crossed = 0;
+      delete this->crossed;
+      this->crossed = 0;
     }
   return returnValue;
 }
@@ -3654,7 +3774,7 @@ bool FrameFlagType::badAttributes(
       if (decl->name == "right")
         {
           XmlBoolean * rightVal;
-          if (right)
+          if (this->right)
             {
               fprintf(stderr, "two values for right in FrameFlagType\n");
               returnValue = true;
@@ -3670,7 +3790,7 @@ bool FrameFlagType::badAttributes(
               break;
             }
           else
-            right = rightVal;
+            this->right = rightVal;
         }
       else
         {
@@ -3686,8 +3806,8 @@ bool FrameFlagType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete right;
-      right = 0;
+      delete this->right;
+      this->right = 0;
     }
   return returnValue;
 }
@@ -3737,6 +3857,20 @@ void FrameHexagonalType::printSelf(FILE * outFile)
     if (Point->size() == 0)
       {
         fprintf(stderr, "Point list is empty\n");
+        exit(1);
+      }
+    if (Point->size() > 6)
+      {
+        fprintf(stderr,
+                "size of Point list (%d) greater than maximum allowed (6)\n",
+                (int)Point->size());
+        exit(1);
+      }
+    if (Point->size() < 6)
+      {
+        fprintf(stderr,
+                "size of Point list (%d) less than minimum required (6)\n",
+                (int)Point->size());
         exit(1);
       }
     std::list<Point2dSimpleType *>::iterator iter;
@@ -3842,6 +3976,20 @@ void FrameOctagonalType::printSelf(FILE * outFile)
         fprintf(stderr, "Point list is empty\n");
         exit(1);
       }
+    if (Point->size() > 8)
+      {
+        fprintf(stderr,
+                "size of Point list (%d) greater than maximum allowed (8)\n",
+                (int)Point->size());
+        exit(1);
+      }
+    if (Point->size() < 8)
+      {
+        fprintf(stderr,
+                "size of Point list (%d) less than minimum required (8)\n",
+                (int)Point->size());
+        exit(1);
+      }
     std::list<Point2dSimpleType *>::iterator iter;
     for (iter = Point->begin();
          iter != Point->end(); iter++)
@@ -3900,6 +4048,20 @@ void FramePentagonalType::printSelf(FILE * outFile)
     if (Point->size() == 0)
       {
         fprintf(stderr, "Point list is empty\n");
+        exit(1);
+      }
+    if (Point->size() > 5)
+      {
+        fprintf(stderr,
+                "size of Point list (%d) greater than maximum allowed (5)\n",
+                (int)Point->size());
+        exit(1);
+      }
+    if (Point->size() < 5)
+      {
+        fprintf(stderr,
+                "size of Point list (%d) less than minimum required (5)\n",
+                (int)Point->size());
         exit(1);
       }
     std::list<Point2dSimpleType *>::iterator iter;
@@ -4031,6 +4193,20 @@ void FrameTriangleType::printSelf(FILE * outFile)
     if (Point->size() == 0)
       {
         fprintf(stderr, "Point list is empty\n");
+        exit(1);
+      }
+    if (Point->size() > 3)
+      {
+        fprintf(stderr,
+                "size of Point list (%d) greater than maximum allowed (3)\n",
+                (int)Point->size());
+        exit(1);
+      }
+    if (Point->size() < 3)
+      {
+        fprintf(stderr,
+                "size of Point list (%d) less than minimum required (3)\n",
+                (int)Point->size());
         exit(1);
       }
     std::list<Point2dSimpleType *>::iterator iter;
@@ -4329,6 +4505,13 @@ void FramesType::printSelf(FILE * outFile)
         fprintf(stderr, "Frame list is empty\n");
         exit(1);
       }
+    if (Frame->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Frame list (%d) less than minimum required (1)\n",
+                (int)Frame->size());
+        exit(1);
+      }
     std::list<FrameBaseType *>::iterator iter;
     for (iter = Frame->begin();
          iter != Frame->end(); iter++)
@@ -4510,7 +4693,7 @@ bool FramesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in FramesType\n");
               returnValue = true;
@@ -4526,7 +4709,7 @@ bool FramesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -4535,7 +4718,7 @@ bool FramesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in FramesType\n");
       returnValue = true;
@@ -4547,8 +4730,8 @@ bool FramesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -4756,7 +4939,15 @@ HatchPatternTypeLisd::~HatchPatternTypeLisd()
   #endif
 }
 
-void HatchPatternTypeLisd::printSelf(FILE * outFile){}
+void HatchPatternTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<HatchPatternType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -4833,6 +5024,13 @@ void HatchPatternsType::printSelf(FILE * outFile)
         fprintf(stderr, "Pattern list is empty\n");
         exit(1);
       }
+    if (Pattern->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Pattern list (%d) less than minimum required (1)\n",
+                (int)Pattern->size());
+        exit(1);
+      }
     std::list<HatchPatternType *>::iterator iter;
     for (iter = Pattern->begin();
          iter != Pattern->end(); iter++)
@@ -4861,7 +5059,7 @@ bool HatchPatternsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in HatchPatternsType\n");
               returnValue = true;
@@ -4877,7 +5075,7 @@ bool HatchPatternsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -4886,7 +5084,7 @@ bool HatchPatternsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in HatchPatternsType\n");
       returnValue = true;
@@ -4898,8 +5096,8 @@ bool HatchPatternsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -5053,6 +5251,13 @@ void HatchStyleSetType::printSelf(FILE * outFile)
         fprintf(stderr, "HatchStyle list is empty\n");
         exit(1);
       }
+    if (HatchStyle->size() < 1)
+      {
+        fprintf(stderr,
+                "size of HatchStyle list (%d) less than minimum required (1)\n",
+                (int)HatchStyle->size());
+        exit(1);
+      }
     std::list<HatchStyleType *>::iterator iter;
     for (iter = HatchStyle->begin();
          iter != HatchStyle->end(); iter++)
@@ -5081,7 +5286,7 @@ bool HatchStyleSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in HatchStyleSetType\n");
               returnValue = true;
@@ -5097,7 +5302,7 @@ bool HatchStyleSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -5106,7 +5311,7 @@ bool HatchStyleSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in HatchStyleSetType\n");
       returnValue = true;
@@ -5118,8 +5323,8 @@ bool HatchStyleSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -5279,7 +5484,7 @@ bool HatchStyleType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in HatchStyleType\n");
               returnValue = true;
@@ -5295,12 +5500,12 @@ bool HatchStyleType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in HatchStyleType\n");
               returnValue = true;
@@ -5316,7 +5521,7 @@ bool HatchStyleType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else
         {
@@ -5325,7 +5530,7 @@ bool HatchStyleType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in HatchStyleType\n");
       returnValue = true;
@@ -5337,10 +5542,10 @@ bool HatchStyleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
     }
   return returnValue;
 }
@@ -5388,7 +5593,15 @@ HatchStyleTypeLisd::~HatchStyleTypeLisd()
   #endif
 }
 
-void HatchStyleTypeLisd::printSelf(FILE * outFile){}
+void HatchStyleTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<HatchStyleType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -5955,7 +6168,7 @@ bool LeaderHeadFormType::badAttributes(
       if (decl->name == "normal")
         {
           D3Type * normalVal;
-          if (normal)
+          if (this->normal)
             {
               fprintf(stderr, "two values for normal in LeaderHeadFormType\n");
               returnValue = true;
@@ -5971,7 +6184,7 @@ bool LeaderHeadFormType::badAttributes(
               break;
             }
           else
-            normal = normalVal;
+            this->normal = normalVal;
         }
       else
         {
@@ -5987,8 +6200,8 @@ bool LeaderHeadFormType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete normal;
-      normal = 0;
+      delete this->normal;
+      this->normal = 0;
     }
   return returnValue;
 }
@@ -6155,7 +6368,15 @@ LeaderTypeLisd::~LeaderTypeLisd()
   #endif
 }
 
-void LeaderTypeLisd::printSelf(FILE * outFile){}
+void LeaderTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<LeaderType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -6225,26 +6446,26 @@ LogicalOperationType::LogicalOperationType()
 {
   index = 0;
   Action = 0;
-  LogicalOperatio_1232 = 0;
+  LogicalOperatio_1188 = 0;
 }
 
 LogicalOperationType::LogicalOperationType(
  LogicalOperationEnumType * ActionIn,
- LogicalOperatio_1232_Type * LogicalOperatio_1232In)
+ LogicalOperatio_1188_Type * LogicalOperatio_1188In)
 {
   index = 0;
   Action = ActionIn;
-  LogicalOperatio_1232 = LogicalOperatio_1232In;
+  LogicalOperatio_1188 = LogicalOperatio_1188In;
 }
 
 LogicalOperationType::LogicalOperationType(
  XmlUnsignedInt * indexIn,
  LogicalOperationEnumType * ActionIn,
- LogicalOperatio_1232_Type * LogicalOperatio_1232In)
+ LogicalOperatio_1188_Type * LogicalOperatio_1188In)
 {
   index = indexIn;
   Action = ActionIn;
-  LogicalOperatio_1232 = LogicalOperatio_1232In;
+  LogicalOperatio_1188 = LogicalOperatio_1188In;
 }
 
 LogicalOperationType::~LogicalOperationType()
@@ -6252,7 +6473,7 @@ LogicalOperationType::~LogicalOperationType()
   #ifndef NODESTRUCT
   delete index;
   delete Action;
-  delete LogicalOperatio_1232;
+  delete LogicalOperatio_1188;
   #endif
 }
 
@@ -6289,7 +6510,7 @@ void LogicalOperationType::printSelf(FILE * outFile)
   fprintf(outFile, "<Action");
   Action->printSelf(outFile);
   fprintf(outFile, "</Action>\n");
-  LogicalOperatio_1232->printSelf(outFile);
+  LogicalOperatio_1188->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -6307,7 +6528,7 @@ bool LogicalOperationType::badAttributes(
       if (decl->name == "index")
         {
           XmlUnsignedInt * indexVal;
-          if (index)
+          if (this->index)
             {
               fprintf(stderr, "two values for index in LogicalOperationType\n");
               returnValue = true;
@@ -6323,7 +6544,7 @@ bool LogicalOperationType::badAttributes(
               break;
             }
           else
-            index = indexVal;
+            this->index = indexVal;
         }
       else
         {
@@ -6332,7 +6553,7 @@ bool LogicalOperationType::badAttributes(
           break;
         }
     }
-  if (index == 0)
+  if (this->index == 0)
     {
       fprintf(stderr, "required attribute \"index\" missing in LogicalOperationType\n");
       returnValue = true;
@@ -6344,8 +6565,8 @@ bool LogicalOperationType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete index;
-      index = 0;
+      delete this->index;
+      this->index = 0;
     }
   return returnValue;
 }
@@ -6362,11 +6583,11 @@ LogicalOperationEnumType * LogicalOperationType::getAction()
 void LogicalOperationType::setAction(LogicalOperationEnumType * ActionIn)
 {Action = ActionIn;}
 
-LogicalOperatio_1232_Type * LogicalOperationType::getLogicalOperatio_1232()
-{return LogicalOperatio_1232;}
+LogicalOperatio_1188_Type * LogicalOperationType::getLogicalOperatio_1188()
+{return LogicalOperatio_1188;}
 
-void LogicalOperationType::setLogicalOperatio_1232(LogicalOperatio_1232_Type * LogicalOperatio_1232In)
-{LogicalOperatio_1232 = LogicalOperatio_1232In;}
+void LogicalOperationType::setLogicalOperatio_1188(LogicalOperatio_1188_Type * LogicalOperatio_1188In)
+{LogicalOperatio_1188 = LogicalOperatio_1188In;}
 
 /* ***************************************************************** */
 
@@ -6393,7 +6614,15 @@ LogicalOperationTypeLisd::~LogicalOperationTypeLisd()
   #endif
 }
 
-void LogicalOperationTypeLisd::printSelf(FILE * outFile){}
+void LogicalOperationTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<LogicalOperationType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -6470,6 +6699,13 @@ void LogicalOperationsType::printSelf(FILE * outFile)
         fprintf(stderr, "LogicalOperation list is empty\n");
         exit(1);
       }
+    if (LogicalOperation->size() < 1)
+      {
+        fprintf(stderr,
+                "size of LogicalOperation list (%d) less than minimum required (1)\n",
+                (int)LogicalOperation->size());
+        exit(1);
+      }
     std::list<LogicalOperationType *>::iterator iter;
     for (iter = LogicalOperation->begin();
          iter != LogicalOperation->end(); iter++)
@@ -6498,7 +6734,7 @@ bool LogicalOperationsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in LogicalOperationsType\n");
               returnValue = true;
@@ -6514,7 +6750,7 @@ bool LogicalOperationsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -6523,7 +6759,7 @@ bool LogicalOperationsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in LogicalOperationsType\n");
       returnValue = true;
@@ -6535,8 +6771,8 @@ bool LogicalOperationsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -6628,6 +6864,13 @@ void Loops2dType::printSelf(FILE * outFile)
         fprintf(stderr, "Loop list is empty\n");
         exit(1);
       }
+    if (Loop->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Loop list (%d) less than minimum required (1)\n",
+                (int)Loop->size());
+        exit(1);
+      }
     std::list<Polyline2dType *>::iterator iter;
     for (iter = Loop->begin();
          iter != Loop->end(); iter++)
@@ -6656,7 +6899,7 @@ bool Loops2dType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in Loops2dType\n");
               returnValue = true;
@@ -6672,7 +6915,7 @@ bool Loops2dType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -6681,7 +6924,7 @@ bool Loops2dType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in Loops2dType\n");
       returnValue = true;
@@ -6693,8 +6936,8 @@ bool Loops2dType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -6827,6 +7070,13 @@ void PMIDisplaySetType::printSelf(FILE * outFile)
         fprintf(stderr, "PMIDisplay list is empty\n");
         exit(1);
       }
+    if (PMIDisplay->size() < 1)
+      {
+        fprintf(stderr,
+                "size of PMIDisplay list (%d) less than minimum required (1)\n",
+                (int)PMIDisplay->size());
+        exit(1);
+      }
     std::list<PMIDisplayType *>::iterator iter;
     for (iter = PMIDisplay->begin();
          iter != PMIDisplay->end(); iter++)
@@ -6855,7 +7105,7 @@ bool PMIDisplaySetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in PMIDisplaySetType\n");
               returnValue = true;
@@ -6871,7 +7121,7 @@ bool PMIDisplaySetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -6880,7 +7130,7 @@ bool PMIDisplaySetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in PMIDisplaySetType\n");
       returnValue = true;
@@ -6892,8 +7142,8 @@ bool PMIDisplaySetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -7250,7 +7500,15 @@ PMIDisplayTypeLisd::~PMIDisplayTypeLisd()
   #endif
 }
 
-void PMIDisplayTypeLisd::printSelf(FILE * outFile){}
+void PMIDisplayTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<PMIDisplayType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -7337,29 +7595,29 @@ void PlanePMIDisplayType::setDirection(UnitVectorType * DirectionIn)
 Polyline2dType::Polyline2dType()
 {
   color = 0;
-  Polyline2dType_1233 = 0;
+  Polyline2dTypePair = 0;
 }
 
 Polyline2dType::Polyline2dType(
- Polyline2dType_1233_Type * Polyline2dType_1233In)
+ Polyline2dTypeChoicePair * Polyline2dTypePairIn)
 {
   color = 0;
-  Polyline2dType_1233 = Polyline2dType_1233In;
+  Polyline2dTypePair = Polyline2dTypePairIn;
 }
 
 Polyline2dType::Polyline2dType(
  ColorType * colorIn,
- Polyline2dType_1233_Type * Polyline2dType_1233In)
+ Polyline2dTypeChoicePair * Polyline2dTypePairIn)
 {
   color = colorIn;
-  Polyline2dType_1233 = Polyline2dType_1233In;
+  Polyline2dTypePair = Polyline2dTypePairIn;
 }
 
 Polyline2dType::~Polyline2dType()
 {
   #ifndef NODESTRUCT
   delete color;
-  delete Polyline2dType_1233;
+  delete Polyline2dTypePair;
   #endif
 }
 
@@ -7387,8 +7645,51 @@ void Polyline2dType::printSelf(FILE * outFile)
     }
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  Polyline2dType_1233->printSelf(outFile);
+  Polyline2dTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
+}
+
+Polyline2dTypeChoicePair * Polyline2dType::getPolyline2dTypePair()
+{return Polyline2dTypePair;}
+
+void Polyline2dType::setPolyline2dTypePair(Polyline2dTypeChoicePair * Polyline2dTypePairIn)
+{Polyline2dTypePair = Polyline2dTypePairIn;}
+Polyline2dTypeChoicePair::Polyline2dTypeChoicePair() {}
+
+Polyline2dTypeChoicePair::Polyline2dTypeChoicePair(
+ whichOne Polyline2dTypeTypeIn,
+ Polyline2dTypeVal Polyline2dTypeValueIn)
+{
+  Polyline2dTypeType = Polyline2dTypeTypeIn;
+  Polyline2dTypeValue = Polyline2dTypeValueIn;
+}
+
+Polyline2dTypeChoicePair::~Polyline2dTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (Polyline2dTypeType == PointsE)
+    delete Polyline2dTypeValue.Points;
+  else if (Polyline2dTypeType == PointsBinaryE)
+    delete Polyline2dTypeValue.PointsBinary;
+  #endif
+}
+
+void Polyline2dTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (Polyline2dTypeType == PointsE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Points");
+      Polyline2dTypeValue.Points->printSelf(outFile);
+      fprintf(outFile, "</Points>\n");
+    }
+  else if (Polyline2dTypeType == PointsBinaryE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<PointsBinary");
+      Polyline2dTypeValue.PointsBinary->printSelf(outFile);
+      fprintf(outFile, "</PointsBinary>\n");
+    }
 }
 
 bool Polyline2dType::badAttributes(
@@ -7405,7 +7706,7 @@ bool Polyline2dType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in Polyline2dType\n");
               returnValue = true;
@@ -7421,7 +7722,7 @@ bool Polyline2dType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else
         {
@@ -7437,8 +7738,8 @@ bool Polyline2dType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
+      delete this->color;
+      this->color = 0;
     }
   return returnValue;
 }
@@ -7448,12 +7749,6 @@ ColorType * Polyline2dType::getcolor()
 
 void Polyline2dType::setcolor(ColorType * colorIn)
 {color = colorIn;}
-
-Polyline2dType_1233_Type * Polyline2dType::getPolyline2dType_1233()
-{return Polyline2dType_1233;}
-
-void Polyline2dType::setPolyline2dType_1233(Polyline2dType_1233_Type * Polyline2dType_1233In)
-{Polyline2dType_1233 = Polyline2dType_1233In;}
 
 /* ***************************************************************** */
 
@@ -7480,7 +7775,15 @@ Polyline2dTypeLisd::~Polyline2dTypeLisd()
   #endif
 }
 
-void Polyline2dTypeLisd::printSelf(FILE * outFile){}
+void Polyline2dTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<Polyline2dType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -7557,6 +7860,13 @@ void Polylines2dType::printSelf(FILE * outFile)
         fprintf(stderr, "Polyline list is empty\n");
         exit(1);
       }
+    if (Polyline->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Polyline list (%d) less than minimum required (1)\n",
+                (int)Polyline->size());
+        exit(1);
+      }
     std::list<Polyline2dType *>::iterator iter;
     for (iter = Polyline->begin();
          iter != Polyline->end(); iter++)
@@ -7585,7 +7895,7 @@ bool Polylines2dType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in Polylines2dType\n");
               returnValue = true;
@@ -7601,7 +7911,7 @@ bool Polylines2dType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -7610,7 +7920,7 @@ bool Polylines2dType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in Polylines2dType\n");
       returnValue = true;
@@ -7622,8 +7932,8 @@ bool Polylines2dType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -7715,6 +8025,13 @@ void SavedViewSetType::printSelf(FILE * outFile)
         fprintf(stderr, "SavedView list is empty\n");
         exit(1);
       }
+    if (SavedView->size() < 1)
+      {
+        fprintf(stderr,
+                "size of SavedView list (%d) less than minimum required (1)\n",
+                (int)SavedView->size());
+        exit(1);
+      }
     std::list<SavedViewType *>::iterator iter;
     for (iter = SavedView->begin();
          iter != SavedView->end(); iter++)
@@ -7743,7 +8060,7 @@ bool SavedViewSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in SavedViewSetType\n");
               returnValue = true;
@@ -7759,7 +8076,7 @@ bool SavedViewSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -7768,7 +8085,7 @@ bool SavedViewSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in SavedViewSetType\n");
       returnValue = true;
@@ -7780,8 +8097,8 @@ bool SavedViewSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -8039,7 +8356,7 @@ bool SavedViewType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SavedViewType\n");
               returnValue = true;
@@ -8055,12 +8372,12 @@ bool SavedViewType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in SavedViewType\n");
               returnValue = true;
@@ -8076,7 +8393,7 @@ bool SavedViewType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else
         {
@@ -8085,7 +8402,7 @@ bool SavedViewType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SavedViewType\n");
       returnValue = true;
@@ -8097,10 +8414,10 @@ bool SavedViewType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
     }
   return returnValue;
 }
@@ -8190,7 +8507,15 @@ SavedViewTypeLisd::~SavedViewTypeLisd()
   #endif
 }
 
-void SavedViewTypeLisd::printSelf(FILE * outFile){}
+void SavedViewTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<SavedViewType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -8276,7 +8601,15 @@ SectionAreaTypeLisd::~SectionAreaTypeLisd()
   #endif
 }
 
-void SectionAreaTypeLisd::printSelf(FILE * outFile){}
+void SectionAreaTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<SectionAreaType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -8353,6 +8686,13 @@ void SectionAreasType::printSelf(FILE * outFile)
         fprintf(stderr, "Area list is empty\n");
         exit(1);
       }
+    if (Area->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Area list (%d) less than minimum required (1)\n",
+                (int)Area->size());
+        exit(1);
+      }
     std::list<SectionAreaType *>::iterator iter;
     for (iter = Area->begin();
          iter != Area->end(); iter++)
@@ -8381,7 +8721,7 @@ bool SectionAreasType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in SectionAreasType\n");
               returnValue = true;
@@ -8397,7 +8737,7 @@ bool SectionAreasType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -8406,7 +8746,7 @@ bool SectionAreasType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in SectionAreasType\n");
       returnValue = true;
@@ -8418,8 +8758,8 @@ bool SectionAreasType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -8511,6 +8851,13 @@ void SectionEdgesType::printSelf(FILE * outFile)
         fprintf(stderr, "Edge list is empty\n");
         exit(1);
       }
+    if (Edge->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Edge list (%d) less than minimum required (1)\n",
+                (int)Edge->size());
+        exit(1);
+      }
     std::list<EdgeOrientedType *>::iterator iter;
     for (iter = Edge->begin();
          iter != Edge->end(); iter++)
@@ -8539,7 +8886,7 @@ bool SectionEdgesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in SectionEdgesType\n");
               returnValue = true;
@@ -8555,7 +8902,7 @@ bool SectionEdgesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -8564,7 +8911,7 @@ bool SectionEdgesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in SectionEdgesType\n");
       returnValue = true;
@@ -8576,8 +8923,8 @@ bool SectionEdgesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -8717,7 +9064,15 @@ SectionGroupTypeLisd::~SectionGroupTypeLisd()
   #endif
 }
 
-void SectionGroupTypeLisd::printSelf(FILE * outFile){}
+void SectionGroupTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<SectionGroupType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -8794,6 +9149,13 @@ void SectionGroupsType::printSelf(FILE * outFile)
         fprintf(stderr, "SectionGroup list is empty\n");
         exit(1);
       }
+    if (SectionGroup->size() < 1)
+      {
+        fprintf(stderr,
+                "size of SectionGroup list (%d) less than minimum required (1)\n",
+                (int)SectionGroup->size());
+        exit(1);
+      }
     std::list<SectionGroupType *>::iterator iter;
     for (iter = SectionGroup->begin();
          iter != SectionGroup->end(); iter++)
@@ -8822,7 +9184,7 @@ bool SectionGroupsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in SectionGroupsType\n");
               returnValue = true;
@@ -8838,7 +9200,7 @@ bool SectionGroupsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -8847,7 +9209,7 @@ bool SectionGroupsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in SectionGroupsType\n");
       returnValue = true;
@@ -8859,8 +9221,8 @@ bool SectionGroupsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -8952,6 +9314,13 @@ void SectionLoopsType::printSelf(FILE * outFile)
         fprintf(stderr, "Loop list is empty\n");
         exit(1);
       }
+    if (Loop->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Loop list (%d) less than minimum required (1)\n",
+                (int)Loop->size());
+        exit(1);
+      }
     std::list<SectionPathType *>::iterator iter;
     for (iter = Loop->begin();
          iter != Loop->end(); iter++)
@@ -8980,7 +9349,7 @@ bool SectionLoopsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in SectionLoopsType\n");
               returnValue = true;
@@ -8996,7 +9365,7 @@ bool SectionLoopsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -9005,7 +9374,7 @@ bool SectionLoopsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in SectionLoopsType\n");
       returnValue = true;
@@ -9017,8 +9386,8 @@ bool SectionLoopsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -9102,7 +9471,15 @@ SectionPathTypeLisd::~SectionPathTypeLisd()
   #endif
 }
 
-void SectionPathTypeLisd::printSelf(FILE * outFile){}
+void SectionPathTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<SectionPathType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -9179,6 +9556,13 @@ void SectionPathsType::printSelf(FILE * outFile)
         fprintf(stderr, "Path list is empty\n");
         exit(1);
       }
+    if (Path->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Path list (%d) less than minimum required (1)\n",
+                (int)Path->size());
+        exit(1);
+      }
     std::list<SectionPathType *>::iterator iter;
     for (iter = Path->begin();
          iter != Path->end(); iter++)
@@ -9207,7 +9591,7 @@ bool SectionPathsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in SectionPathsType\n");
               returnValue = true;
@@ -9223,7 +9607,7 @@ bool SectionPathsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -9232,7 +9616,7 @@ bool SectionPathsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in SectionPathsType\n");
       returnValue = true;
@@ -9244,8 +9628,8 @@ bool SectionPathsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -9424,7 +9808,15 @@ SimplifiedRepresentationGroupTypeLisd::~SimplifiedRepresentationGroupTypeLisd()
   #endif
 }
 
-void SimplifiedRepresentationGroupTypeLisd::printSelf(FILE * outFile){}
+void SimplifiedRepresentationGroupTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<SimplifiedRepresentationGroupType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -9501,6 +9893,13 @@ void SimplifiedRepresentationGroupsType::printSelf(FILE * outFile)
         fprintf(stderr, "SimplifiedRepresentationGroup list is empty\n");
         exit(1);
       }
+    if (SimplifiedRepresentationGroup->size() < 1)
+      {
+        fprintf(stderr,
+                "size of SimplifiedRepresentationGroup list (%d) less than minimum required (1)\n",
+                (int)SimplifiedRepresentationGroup->size());
+        exit(1);
+      }
     std::list<SimplifiedRepresentationGroupType *>::iterator iter;
     for (iter = SimplifiedRepresentationGroup->begin();
          iter != SimplifiedRepresentationGroup->end(); iter++)
@@ -9529,7 +9928,7 @@ bool SimplifiedRepresentationGroupsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in SimplifiedRepresentationGroupsType\n");
               returnValue = true;
@@ -9545,7 +9944,7 @@ bool SimplifiedRepresentationGroupsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -9554,7 +9953,7 @@ bool SimplifiedRepresentationGroupsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in SimplifiedRepresentationGroupsType\n");
       returnValue = true;
@@ -9566,8 +9965,8 @@ bool SimplifiedRepresentationGroupsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -9659,6 +10058,13 @@ void SimplifiedRepresentationSetType::printSelf(FILE * outFile)
         fprintf(stderr, "SimplifiedRepresentation list is empty\n");
         exit(1);
       }
+    if (SimplifiedRepresentation->size() < 1)
+      {
+        fprintf(stderr,
+                "size of SimplifiedRepresentation list (%d) less than minimum required (1)\n",
+                (int)SimplifiedRepresentation->size());
+        exit(1);
+      }
     std::list<SimplifiedRepresentationType *>::iterator iter;
     for (iter = SimplifiedRepresentation->begin();
          iter != SimplifiedRepresentation->end(); iter++)
@@ -9687,7 +10093,7 @@ bool SimplifiedRepresentationSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in SimplifiedRepresentationSetType\n");
               returnValue = true;
@@ -9703,7 +10109,7 @@ bool SimplifiedRepresentationSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -9712,7 +10118,7 @@ bool SimplifiedRepresentationSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in SimplifiedRepresentationSetType\n");
       returnValue = true;
@@ -9724,8 +10130,8 @@ bool SimplifiedRepresentationSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -9872,7 +10278,7 @@ bool SimplifiedRepresentationType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SimplifiedRepresentationType\n");
               returnValue = true;
@@ -9888,12 +10294,12 @@ bool SimplifiedRepresentationType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in SimplifiedRepresentationType\n");
               returnValue = true;
@@ -9909,7 +10315,7 @@ bool SimplifiedRepresentationType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else
         {
@@ -9918,7 +10324,7 @@ bool SimplifiedRepresentationType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SimplifiedRepresentationType\n");
       returnValue = true;
@@ -9930,10 +10336,10 @@ bool SimplifiedRepresentationType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
     }
   return returnValue;
 }
@@ -9975,7 +10381,15 @@ SimplifiedRepresentationTypeLisd::~SimplifiedRepresentationTypeLisd()
   #endif
 }
 
-void SimplifiedRepresentationTypeLisd::printSelf(FILE * outFile){}
+void SimplifiedRepresentationTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<SimplifiedRepresentationType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -10057,7 +10471,15 @@ TextTypeLisd::~TextTypeLisd()
   #endif
 }
 
-void TextTypeLisd::printSelf(FILE * outFile){}
+void TextTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<TextType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -10183,6 +10605,13 @@ void TextsType::printSelf(FILE * outFile)
         fprintf(stderr, "Text list is empty\n");
         exit(1);
       }
+    if (Text->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Text list (%d) less than minimum required (1)\n",
+                (int)Text->size());
+        exit(1);
+      }
     std::list<TextType *>::iterator iter;
     for (iter = Text->begin();
          iter != Text->end(); iter++)
@@ -10211,7 +10640,7 @@ bool TextsType::badAttributes(
       if (decl->name == "fontIndex")
         {
           XmlUnsignedInt * fontIndexVal;
-          if (fontIndex)
+          if (this->fontIndex)
             {
               fprintf(stderr, "two values for fontIndex in TextsType\n");
               returnValue = true;
@@ -10227,12 +10656,12 @@ bool TextsType::badAttributes(
               break;
             }
           else
-            fontIndex = fontIndexVal;
+            this->fontIndex = fontIndexVal;
         }
       else if (decl->name == "lineHeight")
         {
           XmlDouble * lineHeightVal;
-          if (lineHeight)
+          if (this->lineHeight)
             {
               fprintf(stderr, "two values for lineHeight in TextsType\n");
               returnValue = true;
@@ -10248,12 +10677,12 @@ bool TextsType::badAttributes(
               break;
             }
           else
-            lineHeight = lineHeightVal;
+            this->lineHeight = lineHeightVal;
         }
       else if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in TextsType\n");
               returnValue = true;
@@ -10269,7 +10698,7 @@ bool TextsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -10278,12 +10707,12 @@ bool TextsType::badAttributes(
           break;
         }
     }
-  if (fontIndex == 0)
+  if (this->fontIndex == 0)
     {
       fprintf(stderr, "required attribute \"fontIndex\" missing in TextsType\n");
       returnValue = true;
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in TextsType\n");
       returnValue = true;
@@ -10295,12 +10724,12 @@ bool TextsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete fontIndex;
-      fontIndex = 0;
-      delete lineHeight;
-      lineHeight = 0;
-      delete n;
-      n = 0;
+      delete this->fontIndex;
+      this->fontIndex = 0;
+      delete this->lineHeight;
+      this->lineHeight = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -10430,7 +10859,15 @@ TrailingZeroDimensionalCharacteristicDisplayGroupTypeLisd::~TrailingZeroDimensio
   #endif
 }
 
-void TrailingZeroDimensionalCharacteristicDisplayGroupTypeLisd::printSelf(FILE * outFile){}
+void TrailingZeroDimensionalCharacteristicDisplayGroupTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<TrailingZeroDimensionalCharacteristicDisplayGroupType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -10507,6 +10944,13 @@ void TrailingZeroDimensionalCharacteristicDisplayGroupsType::printSelf(FILE * ou
         fprintf(stderr, "TrailingZeroDimensionalCharacteristicDisplayGroup list is empty\n");
         exit(1);
       }
+    if (TrailingZeroDimensionalCharacteristicDisplayGroup->size() < 1)
+      {
+        fprintf(stderr,
+                "size of TrailingZeroDimensionalCharacteristicDisplayGroup list (%d) less than minimum required (1)\n",
+                (int)TrailingZeroDimensionalCharacteristicDisplayGroup->size());
+        exit(1);
+      }
     std::list<TrailingZeroDimensionalCharacteristicDisplayGroupType *>::iterator iter;
     for (iter = TrailingZeroDimensionalCharacteristicDisplayGroup->begin();
          iter != TrailingZeroDimensionalCharacteristicDisplayGroup->end(); iter++)
@@ -10535,7 +10979,7 @@ bool TrailingZeroDimensionalCharacteristicDisplayGroupsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in TrailingZeroDimensionalCharacteristicDisplayGroupsType\n");
               returnValue = true;
@@ -10551,7 +10995,7 @@ bool TrailingZeroDimensionalCharacteristicDisplayGroupsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -10560,7 +11004,7 @@ bool TrailingZeroDimensionalCharacteristicDisplayGroupsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in TrailingZeroDimensionalCharacteristicDisplayGroupsType\n");
       returnValue = true;
@@ -10572,8 +11016,8 @@ bool TrailingZeroDimensionalCharacteristicDisplayGroupsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -10785,7 +11229,15 @@ TrailingZeroGeometricCharacteristicDisplayGroupTypeLisd::~TrailingZeroGeometricC
   #endif
 }
 
-void TrailingZeroGeometricCharacteristicDisplayGroupTypeLisd::printSelf(FILE * outFile){}
+void TrailingZeroGeometricCharacteristicDisplayGroupTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<TrailingZeroGeometricCharacteristicDisplayGroupType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -10862,6 +11314,13 @@ void TrailingZeroGeometricCharacteristicDisplayGroupsType::printSelf(FILE * outF
         fprintf(stderr, "TrailingZeroGeometricCharacteristicDisplayGroup list is empty\n");
         exit(1);
       }
+    if (TrailingZeroGeometricCharacteristicDisplayGroup->size() < 1)
+      {
+        fprintf(stderr,
+                "size of TrailingZeroGeometricCharacteristicDisplayGroup list (%d) less than minimum required (1)\n",
+                (int)TrailingZeroGeometricCharacteristicDisplayGroup->size());
+        exit(1);
+      }
     std::list<TrailingZeroGeometricCharacteristicDisplayGroupType *>::iterator iter;
     for (iter = TrailingZeroGeometricCharacteristicDisplayGroup->begin();
          iter != TrailingZeroGeometricCharacteristicDisplayGroup->end(); iter++)
@@ -10890,7 +11349,7 @@ bool TrailingZeroGeometricCharacteristicDisplayGroupsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in TrailingZeroGeometricCharacteristicDisplayGroupsType\n");
               returnValue = true;
@@ -10906,7 +11365,7 @@ bool TrailingZeroGeometricCharacteristicDisplayGroupsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -10915,7 +11374,7 @@ bool TrailingZeroGeometricCharacteristicDisplayGroupsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in TrailingZeroGeometricCharacteristicDisplayGroupsType\n");
       returnValue = true;
@@ -10927,8 +11386,8 @@ bool TrailingZeroGeometricCharacteristicDisplayGroupsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -10953,23 +11412,23 @@ void TrailingZeroGeometricCharacteristicDisplayGroupsType::setTrailingZeroGeomet
 
 Triangulation2dType::Triangulation2dType()
 {
-  Triangulation2d_1234 = 0;
-  Triangulation2d_1235 = 0;
+  Triangulation2d_1189 = 0;
+  Triangulation2d_1190 = 0;
 }
 
 Triangulation2dType::Triangulation2dType(
- Triangulation2d_1234_Type * Triangulation2d_1234In,
- Triangulation2d_1235_Type * Triangulation2d_1235In)
+ Triangulation2d_1189_Type * Triangulation2d_1189In,
+ Triangulation2d_1190_Type * Triangulation2d_1190In)
 {
-  Triangulation2d_1234 = Triangulation2d_1234In;
-  Triangulation2d_1235 = Triangulation2d_1235In;
+  Triangulation2d_1189 = Triangulation2d_1189In;
+  Triangulation2d_1190 = Triangulation2d_1190In;
 }
 
 Triangulation2dType::~Triangulation2dType()
 {
   #ifndef NODESTRUCT
-  delete Triangulation2d_1234;
-  delete Triangulation2d_1235;
+  delete Triangulation2d_1189;
+  delete Triangulation2d_1190;
   #endif
 }
 
@@ -10977,22 +11436,22 @@ void Triangulation2dType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  Triangulation2d_1234->printSelf(outFile);
-  Triangulation2d_1235->printSelf(outFile);
+  Triangulation2d_1189->printSelf(outFile);
+  Triangulation2d_1190->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-Triangulation2d_1234_Type * Triangulation2dType::getTriangulation2d_1234()
-{return Triangulation2d_1234;}
+Triangulation2d_1189_Type * Triangulation2dType::getTriangulation2d_1189()
+{return Triangulation2d_1189;}
 
-void Triangulation2dType::setTriangulation2d_1234(Triangulation2d_1234_Type * Triangulation2d_1234In)
-{Triangulation2d_1234 = Triangulation2d_1234In;}
+void Triangulation2dType::setTriangulation2d_1189(Triangulation2d_1189_Type * Triangulation2d_1189In)
+{Triangulation2d_1189 = Triangulation2d_1189In;}
 
-Triangulation2d_1235_Type * Triangulation2dType::getTriangulation2d_1235()
-{return Triangulation2d_1235;}
+Triangulation2d_1190_Type * Triangulation2dType::getTriangulation2d_1190()
+{return Triangulation2d_1190;}
 
-void Triangulation2dType::setTriangulation2d_1235(Triangulation2d_1235_Type * Triangulation2d_1235In)
-{Triangulation2d_1235 = Triangulation2d_1235In;}
+void Triangulation2dType::setTriangulation2d_1190(Triangulation2d_1190_Type * Triangulation2d_1190In)
+{Triangulation2d_1190 = Triangulation2d_1190In;}
 
 /* ***************************************************************** */
 
@@ -11608,13 +12067,6 @@ WitnessLinesTypeChoicePair * WitnessLinesType::getWitnessLinesTypePair()
 
 void WitnessLinesType::setWitnessLinesTypePair(WitnessLinesTypeChoicePair * WitnessLinesTypePairIn)
 {WitnessLinesTypePair = WitnessLinesTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class WitnessLinesTypeChoicePair
-
-*/
-
 WitnessLinesTypeChoicePair::WitnessLinesTypeChoicePair() {}
 
 WitnessLinesTypeChoicePair::WitnessLinesTypeChoicePair(
@@ -11628,22 +12080,22 @@ WitnessLinesTypeChoicePair::WitnessLinesTypeChoicePair(
 WitnessLinesTypeChoicePair::~WitnessLinesTypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (WitnessLinesTypeType == WitnessLinesTyp_1236E)
-    delete WitnessLinesTypeValue.WitnessLinesTyp_1236;
-  else if (WitnessLinesTypeType == WitnessLinesTyp_1237E)
-    delete WitnessLinesTypeValue.WitnessLinesTyp_1237;
+  if (WitnessLinesTypeType == WitnessLinesTyp_1191E)
+    delete WitnessLinesTypeValue.WitnessLinesTyp_1191;
+  else if (WitnessLinesTypeType == WitnessLinesTyp_1192E)
+    delete WitnessLinesTypeValue.WitnessLinesTyp_1192;
   #endif
 }
 
 void WitnessLinesTypeChoicePair::printSelf(FILE * outFile)
 {
-  if (WitnessLinesTypeType == WitnessLinesTyp_1236E)
+  if (WitnessLinesTypeType == WitnessLinesTyp_1191E)
     {
-      WitnessLinesTypeValue.WitnessLinesTyp_1236->printSelf(outFile);
+      WitnessLinesTypeValue.WitnessLinesTyp_1191->printSelf(outFile);
     }
-  else if (WitnessLinesTypeType == WitnessLinesTyp_1237E)
+  else if (WitnessLinesTypeType == WitnessLinesTyp_1192E)
     {
-      WitnessLinesTypeValue.WitnessLinesTyp_1237->printSelf(outFile);
+      WitnessLinesTypeValue.WitnessLinesTyp_1192->printSelf(outFile);
     }
 }
 
@@ -11661,7 +12113,7 @@ bool WitnessLinesType::badAttributes(
       if (decl->name == "width")
         {
           XmlDouble * widthVal;
-          if (width)
+          if (this->width)
             {
               fprintf(stderr, "two values for width in WitnessLinesType\n");
               returnValue = true;
@@ -11677,7 +12129,7 @@ bool WitnessLinesType::badAttributes(
               break;
             }
           else
-            width = widthVal;
+            this->width = widthVal;
         }
       else
         {
@@ -11686,7 +12138,7 @@ bool WitnessLinesType::badAttributes(
           break;
         }
     }
-  if (width == 0)
+  if (this->width == 0)
     {
       fprintf(stderr, "required attribute \"width\" missing in WitnessLinesType\n");
       returnValue = true;
@@ -11698,8 +12150,8 @@ bool WitnessLinesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete width;
-      width = 0;
+      delete this->width;
+      this->width = 0;
     }
   return returnValue;
 }
@@ -11810,7 +12262,7 @@ bool ZoneSectionPlaneType::badAttributes(
       if (decl->name == "index")
         {
           XmlUnsignedInt * indexVal;
-          if (index)
+          if (this->index)
             {
               fprintf(stderr, "two values for index in ZoneSectionPlaneType\n");
               returnValue = true;
@@ -11826,7 +12278,7 @@ bool ZoneSectionPlaneType::badAttributes(
               break;
             }
           else
-            index = indexVal;
+            this->index = indexVal;
         }
       else
         {
@@ -11835,7 +12287,7 @@ bool ZoneSectionPlaneType::badAttributes(
           break;
         }
     }
-  if (index == 0)
+  if (this->index == 0)
     {
       fprintf(stderr, "required attribute \"index\" missing in ZoneSectionPlaneType\n");
       returnValue = true;
@@ -11847,8 +12299,8 @@ bool ZoneSectionPlaneType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete index;
-      index = 0;
+      delete this->index;
+      this->index = 0;
     }
   return returnValue;
 }
@@ -11896,7 +12348,15 @@ ZoneSectionPlaneTypeLisd::~ZoneSectionPlaneTypeLisd()
   #endif
 }
 
-void ZoneSectionPlaneTypeLisd::printSelf(FILE * outFile){}
+void ZoneSectionPlaneTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ZoneSectionPlaneType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -11973,6 +12433,13 @@ void ZoneSectionPlanesType::printSelf(FILE * outFile)
         fprintf(stderr, "SectionPlane list is empty\n");
         exit(1);
       }
+    if (SectionPlane->size() < 1)
+      {
+        fprintf(stderr,
+                "size of SectionPlane list (%d) less than minimum required (1)\n",
+                (int)SectionPlane->size());
+        exit(1);
+      }
     std::list<ZoneSectionPlaneType *>::iterator iter;
     for (iter = SectionPlane->begin();
          iter != SectionPlane->end(); iter++)
@@ -12001,7 +12468,7 @@ bool ZoneSectionPlanesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ZoneSectionPlanesType\n");
               returnValue = true;
@@ -12017,7 +12484,7 @@ bool ZoneSectionPlanesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -12026,7 +12493,7 @@ bool ZoneSectionPlanesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ZoneSectionPlanesType\n");
       returnValue = true;
@@ -12038,8 +12505,8 @@ bool ZoneSectionPlanesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -12131,6 +12598,13 @@ void ZoneSectionSetType::printSelf(FILE * outFile)
         fprintf(stderr, "ZoneSection list is empty\n");
         exit(1);
       }
+    if (ZoneSection->size() < 1)
+      {
+        fprintf(stderr,
+                "size of ZoneSection list (%d) less than minimum required (1)\n",
+                (int)ZoneSection->size());
+        exit(1);
+      }
     std::list<ZoneSectionType *>::iterator iter;
     for (iter = ZoneSection->begin();
          iter != ZoneSection->end(); iter++)
@@ -12159,7 +12633,7 @@ bool ZoneSectionSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ZoneSectionSetType\n");
               returnValue = true;
@@ -12175,7 +12649,7 @@ bool ZoneSectionSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -12184,7 +12658,7 @@ bool ZoneSectionSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ZoneSectionSetType\n");
       returnValue = true;
@@ -12196,8 +12670,8 @@ bool ZoneSectionSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -12367,7 +12841,7 @@ bool ZoneSectionType::badAttributes(
       if (decl->name == "hatching")
         {
           XmlBoolean * hatchingVal;
-          if (hatching)
+          if (this->hatching)
             {
               fprintf(stderr, "two values for hatching in ZoneSectionType\n");
               returnValue = true;
@@ -12383,12 +12857,12 @@ bool ZoneSectionType::badAttributes(
               break;
             }
           else
-            hatching = hatchingVal;
+            this->hatching = hatchingVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ZoneSectionType\n");
               returnValue = true;
@@ -12404,12 +12878,12 @@ bool ZoneSectionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in ZoneSectionType\n");
               returnValue = true;
@@ -12425,7 +12899,7 @@ bool ZoneSectionType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else
         {
@@ -12434,7 +12908,7 @@ bool ZoneSectionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ZoneSectionType\n");
       returnValue = true;
@@ -12446,12 +12920,12 @@ bool ZoneSectionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete hatching;
-      hatching = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
+      delete this->hatching;
+      this->hatching = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
     }
   return returnValue;
 }
@@ -12499,84 +12973,85 @@ ZoneSectionTypeLisd::~ZoneSectionTypeLisd()
   #endif
 }
 
-void ZoneSectionTypeLisd::printSelf(FILE * outFile){}
+void ZoneSectionTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ZoneSectionType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
-/* class ExplodedViewMov_1231_Type
+/* class ExplodedViewMov_1187_Type
 
 */
 
-ExplodedViewMov_1231_Type::ExplodedViewMov_1231_Type()
+ExplodedViewMov_1187_Type::ExplodedViewMov_1187_Type()
 {
-  ExplodedViewMov_1231_TypePair = 0;
+  ExplodedViewMov_1187_TypePair = 0;
 }
 
-ExplodedViewMov_1231_Type::ExplodedViewMov_1231_Type(
- ExplodedViewMov_1231_TypeChoicePair * ExplodedViewMov_1231_TypePairIn)
+ExplodedViewMov_1187_Type::ExplodedViewMov_1187_Type(
+ ExplodedViewMov_1187_TypeChoicePair * ExplodedViewMov_1187_TypePairIn)
 {
-  ExplodedViewMov_1231_TypePair = ExplodedViewMov_1231_TypePairIn;
+  ExplodedViewMov_1187_TypePair = ExplodedViewMov_1187_TypePairIn;
 }
 
-ExplodedViewMov_1231_Type::~ExplodedViewMov_1231_Type()
+ExplodedViewMov_1187_Type::~ExplodedViewMov_1187_Type()
 {
   #ifndef NODESTRUCT
-  delete ExplodedViewMov_1231_TypePair;
+  delete ExplodedViewMov_1187_TypePair;
   #endif
 }
 
-void ExplodedViewMov_1231_Type::printSelf(FILE * outFile)
+void ExplodedViewMov_1187_Type::printSelf(FILE * outFile)
 {
-  ExplodedViewMov_1231_TypePair->printSelf(outFile);
+  ExplodedViewMov_1187_TypePair->printSelf(outFile);
 }
 
-ExplodedViewMov_1231_TypeChoicePair * ExplodedViewMov_1231_Type::getExplodedViewMov_1231_TypePair()
-{return ExplodedViewMov_1231_TypePair;}
+ExplodedViewMov_1187_TypeChoicePair * ExplodedViewMov_1187_Type::getExplodedViewMov_1187_TypePair()
+{return ExplodedViewMov_1187_TypePair;}
 
-void ExplodedViewMov_1231_Type::setExplodedViewMov_1231_TypePair(ExplodedViewMov_1231_TypeChoicePair * ExplodedViewMov_1231_TypePairIn)
-{ExplodedViewMov_1231_TypePair = ExplodedViewMov_1231_TypePairIn;}
+void ExplodedViewMov_1187_Type::setExplodedViewMov_1187_TypePair(ExplodedViewMov_1187_TypeChoicePair * ExplodedViewMov_1187_TypePairIn)
+{ExplodedViewMov_1187_TypePair = ExplodedViewMov_1187_TypePairIn;}
+ExplodedViewMov_1187_TypeChoicePair::ExplodedViewMov_1187_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class ExplodedViewMov_1231_TypeChoicePair
-
-*/
-
-ExplodedViewMov_1231_TypeChoicePair::ExplodedViewMov_1231_TypeChoicePair() {}
-
-ExplodedViewMov_1231_TypeChoicePair::ExplodedViewMov_1231_TypeChoicePair(
- whichOne ExplodedViewMov_1231_TypeTypeIn,
- ExplodedViewMov_1231_TypeVal ExplodedViewMov_1231_TypeValueIn)
+ExplodedViewMov_1187_TypeChoicePair::ExplodedViewMov_1187_TypeChoicePair(
+ whichOne ExplodedViewMov_1187_TypeTypeIn,
+ ExplodedViewMov_1187_TypeVal ExplodedViewMov_1187_TypeValueIn)
 {
-  ExplodedViewMov_1231_TypeType = ExplodedViewMov_1231_TypeTypeIn;
-  ExplodedViewMov_1231_TypeValue = ExplodedViewMov_1231_TypeValueIn;
+  ExplodedViewMov_1187_TypeType = ExplodedViewMov_1187_TypeTypeIn;
+  ExplodedViewMov_1187_TypeValue = ExplodedViewMov_1187_TypeValueIn;
 }
 
-ExplodedViewMov_1231_TypeChoicePair::~ExplodedViewMov_1231_TypeChoicePair()
+ExplodedViewMov_1187_TypeChoicePair::~ExplodedViewMov_1187_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (ExplodedViewMov_1231_TypeType == TranslateE)
-    delete ExplodedViewMov_1231_TypeValue.Translate;
-  else if (ExplodedViewMov_1231_TypeType == RotateE)
-    delete ExplodedViewMov_1231_TypeValue.Rotate;
+  if (ExplodedViewMov_1187_TypeType == TranslateE)
+    delete ExplodedViewMov_1187_TypeValue.Translate;
+  else if (ExplodedViewMov_1187_TypeType == RotateE)
+    delete ExplodedViewMov_1187_TypeValue.Rotate;
   #endif
 }
 
-void ExplodedViewMov_1231_TypeChoicePair::printSelf(FILE * outFile)
+void ExplodedViewMov_1187_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (ExplodedViewMov_1231_TypeType == TranslateE)
+  if (ExplodedViewMov_1187_TypeType == TranslateE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Translate");
-      ExplodedViewMov_1231_TypeValue.Translate->printSelf(outFile);
+      ExplodedViewMov_1187_TypeValue.Translate->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Translate>\n");
     }
-  else if (ExplodedViewMov_1231_TypeType == RotateE)
+  else if (ExplodedViewMov_1187_TypeType == RotateE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Rotate");
-      ExplodedViewMov_1231_TypeValue.Rotate->printSelf(outFile);
+      ExplodedViewMov_1187_TypeValue.Rotate->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</Rotate>\n");
     }
@@ -12584,106 +13059,99 @@ void ExplodedViewMov_1231_TypeChoicePair::printSelf(FILE * outFile)
 
 /* ***************************************************************** */
 
-/* class LogicalOperatio_1232_Type
+/* class LogicalOperatio_1188_Type
 
 */
 
-LogicalOperatio_1232_Type::LogicalOperatio_1232_Type()
+LogicalOperatio_1188_Type::LogicalOperatio_1188_Type()
 {
-  LogicalOperatio_1232_TypePairs = 0;
+  LogicalOperatio_1188_TypePairs = 0;
 }
 
-LogicalOperatio_1232_Type::LogicalOperatio_1232_Type(
- LogicalOperatio_1232_TypeChoicePairLisd * LogicalOperatio_1232_TypePairsIn)
+LogicalOperatio_1188_Type::LogicalOperatio_1188_Type(
+ LogicalOperatio_1188_TypeChoicePairLisd * LogicalOperatio_1188_TypePairsIn)
 {
-  LogicalOperatio_1232_TypePairs = LogicalOperatio_1232_TypePairsIn;
+  LogicalOperatio_1188_TypePairs = LogicalOperatio_1188_TypePairsIn;
 }
 
-LogicalOperatio_1232_Type::~LogicalOperatio_1232_Type()
+LogicalOperatio_1188_Type::~LogicalOperatio_1188_Type()
 {
   #ifndef NODESTRUCT
-  delete LogicalOperatio_1232_TypePairs;
+  delete LogicalOperatio_1188_TypePairs;
   #endif
 }
 
-void LogicalOperatio_1232_Type::printSelf(FILE * outFile)
+void LogicalOperatio_1188_Type::printSelf(FILE * outFile)
 {
-  std::list<LogicalOperatio_1232_TypeChoicePair *>::iterator iter;
+  std::list<LogicalOperatio_1188_TypeChoicePair *>::iterator iter;
 
-  for (iter = LogicalOperatio_1232_TypePairs->begin();
-       iter != LogicalOperatio_1232_TypePairs->end(); iter++)
+  for (iter = LogicalOperatio_1188_TypePairs->begin();
+       iter != LogicalOperatio_1188_TypePairs->end(); iter++)
     {
       (*iter)->printSelf(outFile);
     }
 }
 
-LogicalOperatio_1232_TypeChoicePairLisd * LogicalOperatio_1232_Type::getLogicalOperatio_1232_TypePairs()
-{return LogicalOperatio_1232_TypePairs;}
+LogicalOperatio_1188_TypeChoicePairLisd * LogicalOperatio_1188_Type::getLogicalOperatio_1188_TypePairs()
+{return LogicalOperatio_1188_TypePairs;}
 
-void LogicalOperatio_1232_Type::setLogicalOperatio_1232_TypePairs(LogicalOperatio_1232_TypeChoicePairLisd * LogicalOperatio_1232_TypePairsIn)
-{LogicalOperatio_1232_TypePairs = LogicalOperatio_1232_TypePairsIn;}
+void LogicalOperatio_1188_Type::setLogicalOperatio_1188_TypePairs(LogicalOperatio_1188_TypeChoicePairLisd * LogicalOperatio_1188_TypePairsIn)
+{LogicalOperatio_1188_TypePairs = LogicalOperatio_1188_TypePairsIn;}
+LogicalOperatio_1188_TypeChoicePair::LogicalOperatio_1188_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class LogicalOperatio_1232_TypeChoicePair
-
-*/
-
-LogicalOperatio_1232_TypeChoicePair::LogicalOperatio_1232_TypeChoicePair() {}
-
-LogicalOperatio_1232_TypeChoicePair::LogicalOperatio_1232_TypeChoicePair(
- whichOne LogicalOperatio_1232_TypeTypeIn,
- LogicalOperatio_1232_TypeVal LogicalOperatio_1232_TypeValueIn)
+LogicalOperatio_1188_TypeChoicePair::LogicalOperatio_1188_TypeChoicePair(
+ whichOne LogicalOperatio_1188_TypeTypeIn,
+ LogicalOperatio_1188_TypeVal LogicalOperatio_1188_TypeValueIn)
 {
-  LogicalOperatio_1232_TypeType = LogicalOperatio_1232_TypeTypeIn;
-  LogicalOperatio_1232_TypeValue = LogicalOperatio_1232_TypeValueIn;
+  LogicalOperatio_1188_TypeType = LogicalOperatio_1188_TypeTypeIn;
+  LogicalOperatio_1188_TypeValue = LogicalOperatio_1188_TypeValueIn;
 }
 
-LogicalOperatio_1232_TypeChoicePair::~LogicalOperatio_1232_TypeChoicePair()
+LogicalOperatio_1188_TypeChoicePair::~LogicalOperatio_1188_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (LogicalOperatio_1232_TypeType == SectionPlaneE)
-    delete LogicalOperatio_1232_TypeValue.SectionPlane;
-  else if (LogicalOperatio_1232_TypeType == LogicalOperationResultE)
-    delete LogicalOperatio_1232_TypeValue.LogicalOperationResult;
+  if (LogicalOperatio_1188_TypeType == SectionPlaneE)
+    delete LogicalOperatio_1188_TypeValue.SectionPlane;
+  else if (LogicalOperatio_1188_TypeType == LogicalOperationResultE)
+    delete LogicalOperatio_1188_TypeValue.LogicalOperationResult;
   #endif
 }
 
-void LogicalOperatio_1232_TypeChoicePair::printSelf(FILE * outFile)
+void LogicalOperatio_1188_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (LogicalOperatio_1232_TypeType == SectionPlaneE)
+  if (LogicalOperatio_1188_TypeType == SectionPlaneE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SectionPlane");
-      LogicalOperatio_1232_TypeValue.SectionPlane->printSelf(outFile);
+      LogicalOperatio_1188_TypeValue.SectionPlane->printSelf(outFile);
       fprintf(outFile, "</SectionPlane>\n");
     }
-  else if (LogicalOperatio_1232_TypeType == LogicalOperationResultE)
+  else if (LogicalOperatio_1188_TypeType == LogicalOperationResultE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<LogicalOperationResult");
-      LogicalOperatio_1232_TypeValue.LogicalOperationResult->printSelf(outFile);
+      LogicalOperatio_1188_TypeValue.LogicalOperationResult->printSelf(outFile);
       fprintf(outFile, "</LogicalOperationResult>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class LogicalOperatio_1232_TypeChoicePairLisd
+/* class LogicalOperatio_1188_TypeChoicePairLisd
 
 */
 
-LogicalOperatio_1232_TypeChoicePairLisd::LogicalOperatio_1232_TypeChoicePairLisd() {}
+LogicalOperatio_1188_TypeChoicePairLisd::LogicalOperatio_1188_TypeChoicePairLisd() {}
 
-LogicalOperatio_1232_TypeChoicePairLisd::LogicalOperatio_1232_TypeChoicePairLisd(LogicalOperatio_1232_TypeChoicePair * aLogicalOperatio_1232_TypeChoicePair)
+LogicalOperatio_1188_TypeChoicePairLisd::LogicalOperatio_1188_TypeChoicePairLisd(LogicalOperatio_1188_TypeChoicePair * aLogicalOperatio_1188_TypeChoicePair)
 {
-  push_back(aLogicalOperatio_1232_TypeChoicePair);
+  push_back(aLogicalOperatio_1188_TypeChoicePair);
 }
 
-LogicalOperatio_1232_TypeChoicePairLisd::~LogicalOperatio_1232_TypeChoicePairLisd()
+LogicalOperatio_1188_TypeChoicePairLisd::~LogicalOperatio_1188_TypeChoicePairLisd()
 {
   #ifndef NODESTRUCT
-  std::list<LogicalOperatio_1232_TypeChoicePair *>::iterator iter;
+  std::list<LogicalOperatio_1188_TypeChoicePair *>::iterator iter;
 
   for (iter = begin(); iter != end(); iter++)
     {
@@ -12692,308 +13160,185 @@ LogicalOperatio_1232_TypeChoicePairLisd::~LogicalOperatio_1232_TypeChoicePairLis
   #endif
 }
 
-void LogicalOperatio_1232_TypeChoicePairLisd::printSelf(FILE * outFile)
+void LogicalOperatio_1188_TypeChoicePairLisd::printSelf(FILE * outFile)
 {
-  std::list<LogicalOperatio_1232_TypeChoicePair *>::iterator iter;
+  std::list<LogicalOperatio_1188_TypeChoicePair *>::iterator iter;
 
-  fprintf(outFile, ">\n");
-  doSpaces(+INDENT, outFile);
   for (iter = begin(); iter != end(); iter++)
     {
       (*iter)->printSelf(outFile);
     }
-  doSpaces(-INDENT, outFile);
 }
 
 /* ***************************************************************** */
 
-/* class LogicalOperatio_1232_TypeLisd
+/* class Triangulation2d_1189_Type
 
 */
 
-LogicalOperatio_1232_TypeLisd::LogicalOperatio_1232_TypeLisd() {}
-
-LogicalOperatio_1232_TypeLisd::LogicalOperatio_1232_TypeLisd(LogicalOperatio_1232_Type * aLogicalOperatio_1232_Type)
+Triangulation2d_1189_Type::Triangulation2d_1189_Type()
 {
-  push_back(aLogicalOperatio_1232_Type);
+  Triangulation2d_1189_TypePair = 0;
 }
 
-LogicalOperatio_1232_TypeLisd::~LogicalOperatio_1232_TypeLisd()
+Triangulation2d_1189_Type::Triangulation2d_1189_Type(
+ Triangulation2d_1189_TypeChoicePair * Triangulation2d_1189_TypePairIn)
+{
+  Triangulation2d_1189_TypePair = Triangulation2d_1189_TypePairIn;
+}
+
+Triangulation2d_1189_Type::~Triangulation2d_1189_Type()
 {
   #ifndef NODESTRUCT
-  std::list<LogicalOperatio_1232_Type *>::iterator iter;
-
-  for (iter = begin(); iter != end(); iter++)
-    {
-      delete *iter;
-    }
+  delete Triangulation2d_1189_TypePair;
   #endif
 }
 
-void LogicalOperatio_1232_TypeLisd::printSelf(FILE * outFile){}
-
-/* ***************************************************************** */
-
-/* class Polyline2dType_1233_Type
-
-*/
-
-Polyline2dType_1233_Type::Polyline2dType_1233_Type()
+void Triangulation2d_1189_Type::printSelf(FILE * outFile)
 {
-  Polyline2dType_1233_TypePair = 0;
+  Triangulation2d_1189_TypePair->printSelf(outFile);
 }
 
-Polyline2dType_1233_Type::Polyline2dType_1233_Type(
- Polyline2dType_1233_TypeChoicePair * Polyline2dType_1233_TypePairIn)
+Triangulation2d_1189_TypeChoicePair * Triangulation2d_1189_Type::getTriangulation2d_1189_TypePair()
+{return Triangulation2d_1189_TypePair;}
+
+void Triangulation2d_1189_Type::setTriangulation2d_1189_TypePair(Triangulation2d_1189_TypeChoicePair * Triangulation2d_1189_TypePairIn)
+{Triangulation2d_1189_TypePair = Triangulation2d_1189_TypePairIn;}
+Triangulation2d_1189_TypeChoicePair::Triangulation2d_1189_TypeChoicePair() {}
+
+Triangulation2d_1189_TypeChoicePair::Triangulation2d_1189_TypeChoicePair(
+ whichOne Triangulation2d_1189_TypeTypeIn,
+ Triangulation2d_1189_TypeVal Triangulation2d_1189_TypeValueIn)
 {
-  Polyline2dType_1233_TypePair = Polyline2dType_1233_TypePairIn;
+  Triangulation2d_1189_TypeType = Triangulation2d_1189_TypeTypeIn;
+  Triangulation2d_1189_TypeValue = Triangulation2d_1189_TypeValueIn;
 }
 
-Polyline2dType_1233_Type::~Polyline2dType_1233_Type()
+Triangulation2d_1189_TypeChoicePair::~Triangulation2d_1189_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  delete Polyline2dType_1233_TypePair;
+  if (Triangulation2d_1189_TypeType == VerticesE)
+    delete Triangulation2d_1189_TypeValue.Vertices;
+  else if (Triangulation2d_1189_TypeType == VerticesBinaryE)
+    delete Triangulation2d_1189_TypeValue.VerticesBinary;
   #endif
 }
 
-void Polyline2dType_1233_Type::printSelf(FILE * outFile)
+void Triangulation2d_1189_TypeChoicePair::printSelf(FILE * outFile)
 {
-  Polyline2dType_1233_TypePair->printSelf(outFile);
-}
-
-Polyline2dType_1233_TypeChoicePair * Polyline2dType_1233_Type::getPolyline2dType_1233_TypePair()
-{return Polyline2dType_1233_TypePair;}
-
-void Polyline2dType_1233_Type::setPolyline2dType_1233_TypePair(Polyline2dType_1233_TypeChoicePair * Polyline2dType_1233_TypePairIn)
-{Polyline2dType_1233_TypePair = Polyline2dType_1233_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class Polyline2dType_1233_TypeChoicePair
-
-*/
-
-Polyline2dType_1233_TypeChoicePair::Polyline2dType_1233_TypeChoicePair() {}
-
-Polyline2dType_1233_TypeChoicePair::Polyline2dType_1233_TypeChoicePair(
- whichOne Polyline2dType_1233_TypeTypeIn,
- Polyline2dType_1233_TypeVal Polyline2dType_1233_TypeValueIn)
-{
-  Polyline2dType_1233_TypeType = Polyline2dType_1233_TypeTypeIn;
-  Polyline2dType_1233_TypeValue = Polyline2dType_1233_TypeValueIn;
-}
-
-Polyline2dType_1233_TypeChoicePair::~Polyline2dType_1233_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (Polyline2dType_1233_TypeType == PointsE)
-    delete Polyline2dType_1233_TypeValue.Points;
-  else if (Polyline2dType_1233_TypeType == PointsBinaryE)
-    delete Polyline2dType_1233_TypeValue.PointsBinary;
-  #endif
-}
-
-void Polyline2dType_1233_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (Polyline2dType_1233_TypeType == PointsE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<Points");
-      Polyline2dType_1233_TypeValue.Points->printSelf(outFile);
-      fprintf(outFile, "</Points>\n");
-    }
-  else if (Polyline2dType_1233_TypeType == PointsBinaryE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<PointsBinary");
-      Polyline2dType_1233_TypeValue.PointsBinary->printSelf(outFile);
-      fprintf(outFile, "</PointsBinary>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class Triangulation2d_1234_Type
-
-*/
-
-Triangulation2d_1234_Type::Triangulation2d_1234_Type()
-{
-  Triangulation2d_1234_TypePair = 0;
-}
-
-Triangulation2d_1234_Type::Triangulation2d_1234_Type(
- Triangulation2d_1234_TypeChoicePair * Triangulation2d_1234_TypePairIn)
-{
-  Triangulation2d_1234_TypePair = Triangulation2d_1234_TypePairIn;
-}
-
-Triangulation2d_1234_Type::~Triangulation2d_1234_Type()
-{
-  #ifndef NODESTRUCT
-  delete Triangulation2d_1234_TypePair;
-  #endif
-}
-
-void Triangulation2d_1234_Type::printSelf(FILE * outFile)
-{
-  Triangulation2d_1234_TypePair->printSelf(outFile);
-}
-
-Triangulation2d_1234_TypeChoicePair * Triangulation2d_1234_Type::getTriangulation2d_1234_TypePair()
-{return Triangulation2d_1234_TypePair;}
-
-void Triangulation2d_1234_Type::setTriangulation2d_1234_TypePair(Triangulation2d_1234_TypeChoicePair * Triangulation2d_1234_TypePairIn)
-{Triangulation2d_1234_TypePair = Triangulation2d_1234_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class Triangulation2d_1234_TypeChoicePair
-
-*/
-
-Triangulation2d_1234_TypeChoicePair::Triangulation2d_1234_TypeChoicePair() {}
-
-Triangulation2d_1234_TypeChoicePair::Triangulation2d_1234_TypeChoicePair(
- whichOne Triangulation2d_1234_TypeTypeIn,
- Triangulation2d_1234_TypeVal Triangulation2d_1234_TypeValueIn)
-{
-  Triangulation2d_1234_TypeType = Triangulation2d_1234_TypeTypeIn;
-  Triangulation2d_1234_TypeValue = Triangulation2d_1234_TypeValueIn;
-}
-
-Triangulation2d_1234_TypeChoicePair::~Triangulation2d_1234_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (Triangulation2d_1234_TypeType == VerticesE)
-    delete Triangulation2d_1234_TypeValue.Vertices;
-  else if (Triangulation2d_1234_TypeType == VerticesBinaryE)
-    delete Triangulation2d_1234_TypeValue.VerticesBinary;
-  #endif
-}
-
-void Triangulation2d_1234_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (Triangulation2d_1234_TypeType == VerticesE)
+  if (Triangulation2d_1189_TypeType == VerticesE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Vertices");
-      Triangulation2d_1234_TypeValue.Vertices->printSelf(outFile);
+      Triangulation2d_1189_TypeValue.Vertices->printSelf(outFile);
       fprintf(outFile, "</Vertices>\n");
     }
-  else if (Triangulation2d_1234_TypeType == VerticesBinaryE)
+  else if (Triangulation2d_1189_TypeType == VerticesBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<VerticesBinary");
-      Triangulation2d_1234_TypeValue.VerticesBinary->printSelf(outFile);
+      Triangulation2d_1189_TypeValue.VerticesBinary->printSelf(outFile);
       fprintf(outFile, "</VerticesBinary>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class Triangulation2d_1235_Type
+/* class Triangulation2d_1190_Type
 
 */
 
-Triangulation2d_1235_Type::Triangulation2d_1235_Type()
+Triangulation2d_1190_Type::Triangulation2d_1190_Type()
 {
-  Triangulation2d_1235_TypePair = 0;
+  Triangulation2d_1190_TypePair = 0;
 }
 
-Triangulation2d_1235_Type::Triangulation2d_1235_Type(
- Triangulation2d_1235_TypeChoicePair * Triangulation2d_1235_TypePairIn)
+Triangulation2d_1190_Type::Triangulation2d_1190_Type(
+ Triangulation2d_1190_TypeChoicePair * Triangulation2d_1190_TypePairIn)
 {
-  Triangulation2d_1235_TypePair = Triangulation2d_1235_TypePairIn;
+  Triangulation2d_1190_TypePair = Triangulation2d_1190_TypePairIn;
 }
 
-Triangulation2d_1235_Type::~Triangulation2d_1235_Type()
+Triangulation2d_1190_Type::~Triangulation2d_1190_Type()
 {
   #ifndef NODESTRUCT
-  delete Triangulation2d_1235_TypePair;
+  delete Triangulation2d_1190_TypePair;
   #endif
 }
 
-void Triangulation2d_1235_Type::printSelf(FILE * outFile)
+void Triangulation2d_1190_Type::printSelf(FILE * outFile)
 {
-  Triangulation2d_1235_TypePair->printSelf(outFile);
+  Triangulation2d_1190_TypePair->printSelf(outFile);
 }
 
-Triangulation2d_1235_TypeChoicePair * Triangulation2d_1235_Type::getTriangulation2d_1235_TypePair()
-{return Triangulation2d_1235_TypePair;}
+Triangulation2d_1190_TypeChoicePair * Triangulation2d_1190_Type::getTriangulation2d_1190_TypePair()
+{return Triangulation2d_1190_TypePair;}
 
-void Triangulation2d_1235_Type::setTriangulation2d_1235_TypePair(Triangulation2d_1235_TypeChoicePair * Triangulation2d_1235_TypePairIn)
-{Triangulation2d_1235_TypePair = Triangulation2d_1235_TypePairIn;}
+void Triangulation2d_1190_Type::setTriangulation2d_1190_TypePair(Triangulation2d_1190_TypeChoicePair * Triangulation2d_1190_TypePairIn)
+{Triangulation2d_1190_TypePair = Triangulation2d_1190_TypePairIn;}
+Triangulation2d_1190_TypeChoicePair::Triangulation2d_1190_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class Triangulation2d_1235_TypeChoicePair
-
-*/
-
-Triangulation2d_1235_TypeChoicePair::Triangulation2d_1235_TypeChoicePair() {}
-
-Triangulation2d_1235_TypeChoicePair::Triangulation2d_1235_TypeChoicePair(
- whichOne Triangulation2d_1235_TypeTypeIn,
- Triangulation2d_1235_TypeVal Triangulation2d_1235_TypeValueIn)
+Triangulation2d_1190_TypeChoicePair::Triangulation2d_1190_TypeChoicePair(
+ whichOne Triangulation2d_1190_TypeTypeIn,
+ Triangulation2d_1190_TypeVal Triangulation2d_1190_TypeValueIn)
 {
-  Triangulation2d_1235_TypeType = Triangulation2d_1235_TypeTypeIn;
-  Triangulation2d_1235_TypeValue = Triangulation2d_1235_TypeValueIn;
+  Triangulation2d_1190_TypeType = Triangulation2d_1190_TypeTypeIn;
+  Triangulation2d_1190_TypeValue = Triangulation2d_1190_TypeValueIn;
 }
 
-Triangulation2d_1235_TypeChoicePair::~Triangulation2d_1235_TypeChoicePair()
+Triangulation2d_1190_TypeChoicePair::~Triangulation2d_1190_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (Triangulation2d_1235_TypeType == TrianglesE)
-    delete Triangulation2d_1235_TypeValue.Triangles;
-  else if (Triangulation2d_1235_TypeType == TrianglesBinaryE)
-    delete Triangulation2d_1235_TypeValue.TrianglesBinary;
-  else if (Triangulation2d_1235_TypeType == TrianglesColorE)
-    delete Triangulation2d_1235_TypeValue.TrianglesColor;
-  else if (Triangulation2d_1235_TypeType == TrianglesColorBinaryE)
-    delete Triangulation2d_1235_TypeValue.TrianglesColorBinary;
+  if (Triangulation2d_1190_TypeType == TrianglesE)
+    delete Triangulation2d_1190_TypeValue.Triangles;
+  else if (Triangulation2d_1190_TypeType == TrianglesBinaryE)
+    delete Triangulation2d_1190_TypeValue.TrianglesBinary;
+  else if (Triangulation2d_1190_TypeType == TrianglesColorE)
+    delete Triangulation2d_1190_TypeValue.TrianglesColor;
+  else if (Triangulation2d_1190_TypeType == TrianglesColorBinaryE)
+    delete Triangulation2d_1190_TypeValue.TrianglesColorBinary;
   #endif
 }
 
-void Triangulation2d_1235_TypeChoicePair::printSelf(FILE * outFile)
+void Triangulation2d_1190_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (Triangulation2d_1235_TypeType == TrianglesE)
+  if (Triangulation2d_1190_TypeType == TrianglesE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Triangles");
-      Triangulation2d_1235_TypeValue.Triangles->printSelf(outFile);
+      Triangulation2d_1190_TypeValue.Triangles->printSelf(outFile);
       fprintf(outFile, "</Triangles>\n");
     }
-  else if (Triangulation2d_1235_TypeType == TrianglesBinaryE)
+  else if (Triangulation2d_1190_TypeType == TrianglesBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesBinary");
-      Triangulation2d_1235_TypeValue.TrianglesBinary->printSelf(outFile);
+      Triangulation2d_1190_TypeValue.TrianglesBinary->printSelf(outFile);
       fprintf(outFile, "</TrianglesBinary>\n");
     }
-  else if (Triangulation2d_1235_TypeType == TrianglesColorE)
+  else if (Triangulation2d_1190_TypeType == TrianglesColorE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesColor");
-      Triangulation2d_1235_TypeValue.TrianglesColor->printSelf(outFile);
+      Triangulation2d_1190_TypeValue.TrianglesColor->printSelf(outFile);
       fprintf(outFile, "</TrianglesColor>\n");
     }
-  else if (Triangulation2d_1235_TypeType == TrianglesColorBinaryE)
+  else if (Triangulation2d_1190_TypeType == TrianglesColorBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<TrianglesColorBinary");
-      Triangulation2d_1235_TypeValue.TrianglesColorBinary->printSelf(outFile);
+      Triangulation2d_1190_TypeValue.TrianglesColorBinary->printSelf(outFile);
       fprintf(outFile, "</TrianglesColorBinary>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class WitnessLinesTyp_1236_Type
+/* class WitnessLinesTyp_1191_Type
 
 */
 
-WitnessLinesTyp_1236_Type::WitnessLinesTyp_1236_Type()
+WitnessLinesTyp_1191_Type::WitnessLinesTyp_1191_Type()
 {
   Segment1 = 0;
   ZextensionPoint1 = 0;
@@ -13001,7 +13346,7 @@ WitnessLinesTyp_1236_Type::WitnessLinesTyp_1236_Type()
   ZextensionPoint2 = 0;
 }
 
-WitnessLinesTyp_1236_Type::WitnessLinesTyp_1236_Type(
+WitnessLinesTyp_1191_Type::WitnessLinesTyp_1191_Type(
  LineSegment2dType * Segment1In,
  PointSimpleType * ZextensionPoint1In,
  LineSegment2dType * Segment2In,
@@ -13013,7 +13358,7 @@ WitnessLinesTyp_1236_Type::WitnessLinesTyp_1236_Type(
   ZextensionPoint2 = ZextensionPoint2In;
 }
 
-WitnessLinesTyp_1236_Type::~WitnessLinesTyp_1236_Type()
+WitnessLinesTyp_1191_Type::~WitnessLinesTyp_1191_Type()
 {
   #ifndef NODESTRUCT
   delete Segment1;
@@ -13023,7 +13368,7 @@ WitnessLinesTyp_1236_Type::~WitnessLinesTyp_1236_Type()
   #endif
 }
 
-void WitnessLinesTyp_1236_Type::printSelf(FILE * outFile)
+void WitnessLinesTyp_1191_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<Segment1");
@@ -13051,37 +13396,37 @@ void WitnessLinesTyp_1236_Type::printSelf(FILE * outFile)
     }
 }
 
-LineSegment2dType * WitnessLinesTyp_1236_Type::getSegment1()
+LineSegment2dType * WitnessLinesTyp_1191_Type::getSegment1()
 {return Segment1;}
 
-void WitnessLinesTyp_1236_Type::setSegment1(LineSegment2dType * Segment1In)
+void WitnessLinesTyp_1191_Type::setSegment1(LineSegment2dType * Segment1In)
 {Segment1 = Segment1In;}
 
-PointSimpleType * WitnessLinesTyp_1236_Type::getZextensionPoint1()
+PointSimpleType * WitnessLinesTyp_1191_Type::getZextensionPoint1()
 {return ZextensionPoint1;}
 
-void WitnessLinesTyp_1236_Type::setZextensionPoint1(PointSimpleType * ZextensionPoint1In)
+void WitnessLinesTyp_1191_Type::setZextensionPoint1(PointSimpleType * ZextensionPoint1In)
 {ZextensionPoint1 = ZextensionPoint1In;}
 
-LineSegment2dType * WitnessLinesTyp_1236_Type::getSegment2()
+LineSegment2dType * WitnessLinesTyp_1191_Type::getSegment2()
 {return Segment2;}
 
-void WitnessLinesTyp_1236_Type::setSegment2(LineSegment2dType * Segment2In)
+void WitnessLinesTyp_1191_Type::setSegment2(LineSegment2dType * Segment2In)
 {Segment2 = Segment2In;}
 
-PointSimpleType * WitnessLinesTyp_1236_Type::getZextensionPoint2()
+PointSimpleType * WitnessLinesTyp_1191_Type::getZextensionPoint2()
 {return ZextensionPoint2;}
 
-void WitnessLinesTyp_1236_Type::setZextensionPoint2(PointSimpleType * ZextensionPoint2In)
+void WitnessLinesTyp_1191_Type::setZextensionPoint2(PointSimpleType * ZextensionPoint2In)
 {ZextensionPoint2 = ZextensionPoint2In;}
 
 /* ***************************************************************** */
 
-/* class WitnessLinesTyp_1237_Type
+/* class WitnessLinesTyp_1192_Type
 
 */
 
-WitnessLinesTyp_1237_Type::WitnessLinesTyp_1237_Type()
+WitnessLinesTyp_1192_Type::WitnessLinesTyp_1192_Type()
 {
   BeginPoint = 0;
   EndPoint = 0;
@@ -13089,7 +13434,7 @@ WitnessLinesTyp_1237_Type::WitnessLinesTyp_1237_Type()
   CircleRadius = 0;
 }
 
-WitnessLinesTyp_1237_Type::WitnessLinesTyp_1237_Type(
+WitnessLinesTyp_1192_Type::WitnessLinesTyp_1192_Type(
  Point2dSimpleType * BeginPointIn,
  Point2dSimpleType * EndPointIn,
  Point2dSimpleType * CircleCenterIn,
@@ -13101,7 +13446,7 @@ WitnessLinesTyp_1237_Type::WitnessLinesTyp_1237_Type(
   CircleRadius = CircleRadiusIn;
 }
 
-WitnessLinesTyp_1237_Type::~WitnessLinesTyp_1237_Type()
+WitnessLinesTyp_1192_Type::~WitnessLinesTyp_1192_Type()
 {
   #ifndef NODESTRUCT
   delete BeginPoint;
@@ -13111,7 +13456,7 @@ WitnessLinesTyp_1237_Type::~WitnessLinesTyp_1237_Type()
   #endif
 }
 
-void WitnessLinesTyp_1237_Type::printSelf(FILE * outFile)
+void WitnessLinesTyp_1192_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<BeginPoint");
@@ -13131,28 +13476,28 @@ void WitnessLinesTyp_1237_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</CircleRadius>\n");
 }
 
-Point2dSimpleType * WitnessLinesTyp_1237_Type::getBeginPoint()
+Point2dSimpleType * WitnessLinesTyp_1192_Type::getBeginPoint()
 {return BeginPoint;}
 
-void WitnessLinesTyp_1237_Type::setBeginPoint(Point2dSimpleType * BeginPointIn)
+void WitnessLinesTyp_1192_Type::setBeginPoint(Point2dSimpleType * BeginPointIn)
 {BeginPoint = BeginPointIn;}
 
-Point2dSimpleType * WitnessLinesTyp_1237_Type::getEndPoint()
+Point2dSimpleType * WitnessLinesTyp_1192_Type::getEndPoint()
 {return EndPoint;}
 
-void WitnessLinesTyp_1237_Type::setEndPoint(Point2dSimpleType * EndPointIn)
+void WitnessLinesTyp_1192_Type::setEndPoint(Point2dSimpleType * EndPointIn)
 {EndPoint = EndPointIn;}
 
-Point2dSimpleType * WitnessLinesTyp_1237_Type::getCircleCenter()
+Point2dSimpleType * WitnessLinesTyp_1192_Type::getCircleCenter()
 {return CircleCenter;}
 
-void WitnessLinesTyp_1237_Type::setCircleCenter(Point2dSimpleType * CircleCenterIn)
+void WitnessLinesTyp_1192_Type::setCircleCenter(Point2dSimpleType * CircleCenterIn)
 {CircleCenter = CircleCenterIn;}
 
-DoublePositiveType * WitnessLinesTyp_1237_Type::getCircleRadius()
+DoublePositiveType * WitnessLinesTyp_1192_Type::getCircleRadius()
 {return CircleRadius;}
 
-void WitnessLinesTyp_1237_Type::setCircleRadius(DoublePositiveType * CircleRadiusIn)
+void WitnessLinesTyp_1192_Type::setCircleRadius(DoublePositiveType * CircleRadiusIn)
 {CircleRadius = CircleRadiusIn;}
 
 /* ***************************************************************** */

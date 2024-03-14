@@ -199,8 +199,8 @@ public:
     StatisticsType * StatisticsIn,
     ManufacturingProcessTraceabilitiesType * ManufacturingProcessTraceabilitiesIn,
     QIFRulesType * RulesIn,
-    XmlString * UserDataXMLIn,
-    XmlString * SignatureIn);
+    UserDataXMLType * UserDataXMLIn,
+    UserDataXMLType * SignatureIn);
   QIFDocumentType(
     XmlUnsignedInt * idMaxIn,
     XmlNMTOKEN * versionQIFIn,
@@ -233,8 +233,8 @@ public:
     StatisticsType * StatisticsIn,
     ManufacturingProcessTraceabilitiesType * ManufacturingProcessTraceabilitiesIn,
     QIFRulesType * RulesIn,
-    XmlString * UserDataXMLIn,
-    XmlString * SignatureIn);
+    UserDataXMLType * UserDataXMLIn,
+    UserDataXMLType * SignatureIn);
   ~QIFDocumentType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -302,10 +302,10 @@ public:
   void setManufacturingProcessTraceabilities(ManufacturingProcessTraceabilitiesType * ManufacturingProcessTraceabilitiesIn);
   QIFRulesType * getRules();
   void setRules(QIFRulesType * RulesIn);
-  XmlString * getUserDataXML();
-  void setUserDataXML(XmlString * UserDataXMLIn);
-  XmlString * getSignature();
-  void setSignature(XmlString * SignatureIn);
+  UserDataXMLType * getUserDataXML();
+  void setUserDataXML(UserDataXMLType * UserDataXMLIn);
+  UserDataXMLType * getSignature();
+  void setSignature(UserDataXMLType * SignatureIn);
 
 protected:
   XmlUnsignedInt * idMax;
@@ -339,8 +339,8 @@ protected:
   StatisticsType * Statistics;
   ManufacturingProcessTraceabilitiesType * ManufacturingProcessTraceabilities;
   QIFRulesType * Rules;
-  XmlString * UserDataXML;
-  XmlString * Signature;
+  UserDataXMLType * UserDataXML;
+  UserDataXMLType * Signature;
 };
 
 /* ***************************************************************** */

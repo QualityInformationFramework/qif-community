@@ -101,7 +101,7 @@ bool AngleRangeType::badAttributes(
       if (decl->name == "angularUnit")
         {
           XmlToken * angularUnitVal;
-          if (angularUnit)
+          if (this->angularUnit)
             {
               fprintf(stderr, "two values for angularUnit in AngleRangeType\n");
               returnValue = true;
@@ -117,7 +117,7 @@ bool AngleRangeType::badAttributes(
               break;
             }
           else
-            angularUnit = angularUnitVal;
+            this->angularUnit = angularUnitVal;
         }
       else
         {
@@ -133,8 +133,8 @@ bool AngleRangeType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete angularUnit;
-      angularUnit = 0;
+      delete this->angularUnit;
+      this->angularUnit = 0;
     }
   return returnValue;
 }
@@ -245,7 +245,7 @@ bool ArrayBinaryQIFReferenceFullType::badAttributes(
       if (decl->name == "asmPathId")
         {
           QIFReferenceSimpleType * asmPathIdVal;
-          if (asmPathId)
+          if (this->asmPathId)
             {
               fprintf(stderr, "two values for asmPathId in ArrayBinaryQIFReferenceFullType\n");
               returnValue = true;
@@ -261,12 +261,12 @@ bool ArrayBinaryQIFReferenceFullType::badAttributes(
               break;
             }
           else
-            asmPathId = asmPathIdVal;
+            this->asmPathId = asmPathIdVal;
         }
       else if (decl->name == "asmPathXId")
         {
           QIFReferenceSimpleType * asmPathXIdVal;
-          if (asmPathXId)
+          if (this->asmPathXId)
             {
               fprintf(stderr, "two values for asmPathXId in ArrayBinaryQIFReferenceFullType\n");
               returnValue = true;
@@ -282,7 +282,7 @@ bool ArrayBinaryQIFReferenceFullType::badAttributes(
               break;
             }
           else
-            asmPathXId = asmPathXIdVal;
+            this->asmPathXId = asmPathXIdVal;
         }
       else
         {
@@ -298,10 +298,10 @@ bool ArrayBinaryQIFReferenceFullType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete asmPathId;
-      asmPathId = 0;
-      delete asmPathXId;
-      asmPathXId = 0;
+      delete this->asmPathId;
+      this->asmPathId = 0;
+      delete this->asmPathXId;
+      this->asmPathXId = 0;
     }
   return returnValue;
 }
@@ -355,13 +355,6 @@ ArrayBinaryQIFReferenceTypeChoicePair * ArrayBinaryQIFReferenceType::getArrayBin
 
 void ArrayBinaryQIFReferenceType::setArrayBinaryQIFReferenceTypePair(ArrayBinaryQIFReferenceTypeChoicePair * ArrayBinaryQIFReferenceTypePairIn)
 {ArrayBinaryQIFReferenceTypePair = ArrayBinaryQIFReferenceTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ArrayBinaryQIFReferenceTypeChoicePair
-
-*/
-
 ArrayBinaryQIFReferenceTypeChoicePair::ArrayBinaryQIFReferenceTypeChoicePair() {}
 
 ArrayBinaryQIFReferenceTypeChoicePair::ArrayBinaryQIFReferenceTypeChoicePair(
@@ -507,7 +500,7 @@ bool ArrayBinaryType::badAttributes(
       if (decl->name == "count")
         {
           NaturalType * countVal;
-          if (count)
+          if (this->count)
             {
               fprintf(stderr, "two values for count in ArrayBinaryType\n");
               returnValue = true;
@@ -523,12 +516,12 @@ bool ArrayBinaryType::badAttributes(
               break;
             }
           else
-            count = countVal;
+            this->count = countVal;
         }
       else if (decl->name == "sizeElement")
         {
           XmlUnsignedInt * sizeElementVal;
-          if (sizeElement)
+          if (this->sizeElement)
             {
               fprintf(stderr, "two values for sizeElement in ArrayBinaryType\n");
               returnValue = true;
@@ -544,7 +537,7 @@ bool ArrayBinaryType::badAttributes(
               break;
             }
           else
-            sizeElement = sizeElementVal;
+            this->sizeElement = sizeElementVal;
         }
       else
         {
@@ -553,12 +546,12 @@ bool ArrayBinaryType::badAttributes(
           break;
         }
     }
-  if (count == 0)
+  if (this->count == 0)
     {
       fprintf(stderr, "required attribute \"count\" missing in ArrayBinaryType\n");
       returnValue = true;
     }
-  if (sizeElement == 0)
+  if (this->sizeElement == 0)
     {
       fprintf(stderr, "required attribute \"sizeElement\" missing in ArrayBinaryType\n");
       returnValue = true;
@@ -570,10 +563,10 @@ bool ArrayBinaryType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete count;
-      count = 0;
-      delete sizeElement;
-      sizeElement = 0;
+      delete this->count;
+      this->count = 0;
+      delete this->sizeElement;
+      this->sizeElement = 0;
     }
   return returnValue;
 }
@@ -673,7 +666,7 @@ bool ArrayDoubleType::badAttributes(
       if (decl->name == "count")
         {
           NaturalType * countVal;
-          if (count)
+          if (this->count)
             {
               fprintf(stderr, "two values for count in ArrayDoubleType\n");
               returnValue = true;
@@ -689,7 +682,7 @@ bool ArrayDoubleType::badAttributes(
               break;
             }
           else
-            count = countVal;
+            this->count = countVal;
         }
       else
         {
@@ -698,7 +691,7 @@ bool ArrayDoubleType::badAttributes(
           break;
         }
     }
-  if (count == 0)
+  if (this->count == 0)
     {
       fprintf(stderr, "required attribute \"count\" missing in ArrayDoubleType\n");
       returnValue = true;
@@ -710,8 +703,8 @@ bool ArrayDoubleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete count;
-      count = 0;
+      delete this->count;
+      this->count = 0;
     }
   return returnValue;
 }
@@ -805,7 +798,7 @@ bool ArrayI2Type::badAttributes(
       if (decl->name == "count")
         {
           NaturalType * countVal;
-          if (count)
+          if (this->count)
             {
               fprintf(stderr, "two values for count in ArrayI2Type\n");
               returnValue = true;
@@ -821,7 +814,7 @@ bool ArrayI2Type::badAttributes(
               break;
             }
           else
-            count = countVal;
+            this->count = countVal;
         }
       else
         {
@@ -830,7 +823,7 @@ bool ArrayI2Type::badAttributes(
           break;
         }
     }
-  if (count == 0)
+  if (this->count == 0)
     {
       fprintf(stderr, "required attribute \"count\" missing in ArrayI2Type\n");
       returnValue = true;
@@ -842,8 +835,8 @@ bool ArrayI2Type::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete count;
-      count = 0;
+      delete this->count;
+      this->count = 0;
     }
   return returnValue;
 }
@@ -937,7 +930,7 @@ bool ArrayI3Type::badAttributes(
       if (decl->name == "count")
         {
           NaturalType * countVal;
-          if (count)
+          if (this->count)
             {
               fprintf(stderr, "two values for count in ArrayI3Type\n");
               returnValue = true;
@@ -953,7 +946,7 @@ bool ArrayI3Type::badAttributes(
               break;
             }
           else
-            count = countVal;
+            this->count = countVal;
         }
       else
         {
@@ -962,7 +955,7 @@ bool ArrayI3Type::badAttributes(
           break;
         }
     }
-  if (count == 0)
+  if (this->count == 0)
     {
       fprintf(stderr, "required attribute \"count\" missing in ArrayI3Type\n");
       returnValue = true;
@@ -974,8 +967,8 @@ bool ArrayI3Type::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete count;
-      count = 0;
+      delete this->count;
+      this->count = 0;
     }
   return returnValue;
 }
@@ -1069,7 +1062,7 @@ bool ArrayIntType::badAttributes(
       if (decl->name == "count")
         {
           NaturalType * countVal;
-          if (count)
+          if (this->count)
             {
               fprintf(stderr, "two values for count in ArrayIntType\n");
               returnValue = true;
@@ -1085,7 +1078,7 @@ bool ArrayIntType::badAttributes(
               break;
             }
           else
-            count = countVal;
+            this->count = countVal;
         }
       else
         {
@@ -1094,7 +1087,7 @@ bool ArrayIntType::badAttributes(
           break;
         }
     }
-  if (count == 0)
+  if (this->count == 0)
     {
       fprintf(stderr, "required attribute \"count\" missing in ArrayIntType\n");
       returnValue = true;
@@ -1106,8 +1099,8 @@ bool ArrayIntType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete count;
-      count = 0;
+      delete this->count;
+      this->count = 0;
     }
   return returnValue;
 }
@@ -1201,7 +1194,7 @@ bool ArrayNaturalType::badAttributes(
       if (decl->name == "count")
         {
           NaturalType * countVal;
-          if (count)
+          if (this->count)
             {
               fprintf(stderr, "two values for count in ArrayNaturalType\n");
               returnValue = true;
@@ -1217,7 +1210,7 @@ bool ArrayNaturalType::badAttributes(
               break;
             }
           else
-            count = countVal;
+            this->count = countVal;
         }
       else
         {
@@ -1226,7 +1219,7 @@ bool ArrayNaturalType::badAttributes(
           break;
         }
     }
-  if (count == 0)
+  if (this->count == 0)
     {
       fprintf(stderr, "required attribute \"count\" missing in ArrayNaturalType\n");
       returnValue = true;
@@ -1238,8 +1231,8 @@ bool ArrayNaturalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete count;
-      count = 0;
+      delete this->count;
+      this->count = 0;
     }
   return returnValue;
 }
@@ -1325,6 +1318,13 @@ void ArrayPairReferenceFullType::printSelf(FILE * outFile)
         fprintf(stderr, "FeaturePair list is empty\n");
         exit(1);
       }
+    if (FeaturePair->size() < 1)
+      {
+        fprintf(stderr,
+                "size of FeaturePair list (%d) less than minimum required (1)\n",
+                (int)FeaturePair->size());
+        exit(1);
+      }
     std::list<QIFFeaturePairType *>::iterator iter;
     for (iter = FeaturePair->begin();
          iter != FeaturePair->end(); iter++)
@@ -1353,7 +1353,7 @@ bool ArrayPairReferenceFullType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ArrayPairReferenceFullType\n");
               returnValue = true;
@@ -1369,7 +1369,7 @@ bool ArrayPairReferenceFullType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -1378,7 +1378,7 @@ bool ArrayPairReferenceFullType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ArrayPairReferenceFullType\n");
       returnValue = true;
@@ -1390,8 +1390,8 @@ bool ArrayPairReferenceFullType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -1491,7 +1491,7 @@ bool ArrayPoint2dType::badAttributes(
       if (decl->name == "count")
         {
           NaturalType * countVal;
-          if (count)
+          if (this->count)
             {
               fprintf(stderr, "two values for count in ArrayPoint2dType\n");
               returnValue = true;
@@ -1507,7 +1507,7 @@ bool ArrayPoint2dType::badAttributes(
               break;
             }
           else
-            count = countVal;
+            this->count = countVal;
         }
       else
         {
@@ -1516,7 +1516,7 @@ bool ArrayPoint2dType::badAttributes(
           break;
         }
     }
-  if (count == 0)
+  if (this->count == 0)
     {
       fprintf(stderr, "required attribute \"count\" missing in ArrayPoint2dType\n");
       returnValue = true;
@@ -1528,8 +1528,8 @@ bool ArrayPoint2dType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete count;
-      count = 0;
+      delete this->count;
+      this->count = 0;
     }
   return returnValue;
 }
@@ -1909,7 +1909,7 @@ bool ArrayPointType::badAttributes(
       if (decl->name == "count")
         {
           NaturalType * countVal;
-          if (count)
+          if (this->count)
             {
               fprintf(stderr, "two values for count in ArrayPointType\n");
               returnValue = true;
@@ -1925,12 +1925,12 @@ bool ArrayPointType::badAttributes(
               break;
             }
           else
-            count = countVal;
+            this->count = countVal;
         }
       else if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in ArrayPointType\n");
               returnValue = true;
@@ -1946,12 +1946,12 @@ bool ArrayPointType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "linearUnit")
         {
           XmlToken * linearUnitVal;
-          if (linearUnit)
+          if (this->linearUnit)
             {
               fprintf(stderr, "two values for linearUnit in ArrayPointType\n");
               returnValue = true;
@@ -1967,12 +1967,12 @@ bool ArrayPointType::badAttributes(
               break;
             }
           else
-            linearUnit = linearUnitVal;
+            this->linearUnit = linearUnitVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in ArrayPointType\n");
               returnValue = true;
@@ -1988,12 +1988,12 @@ bool ArrayPointType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else if (decl->name == "validity")
         {
           ValidityEnumType * validityVal;
-          if (validity)
+          if (this->validity)
             {
               fprintf(stderr, "two values for validity in ArrayPointType\n");
               returnValue = true;
@@ -2009,12 +2009,12 @@ bool ArrayPointType::badAttributes(
               break;
             }
           else
-            validity = validityVal;
+            this->validity = validityVal;
         }
       else if (decl->name == "xDecimalPlaces")
         {
           XmlNonNegativeInteger * xDecimalPlacesVal;
-          if (xDecimalPlaces)
+          if (this->xDecimalPlaces)
             {
               fprintf(stderr, "two values for xDecimalPlaces in ArrayPointType\n");
               returnValue = true;
@@ -2030,12 +2030,12 @@ bool ArrayPointType::badAttributes(
               break;
             }
           else
-            xDecimalPlaces = xDecimalPlacesVal;
+            this->xDecimalPlaces = xDecimalPlacesVal;
         }
       else if (decl->name == "xSignificantFigures")
         {
           XmlNonNegativeInteger * xSignificantFiguresVal;
-          if (xSignificantFigures)
+          if (this->xSignificantFigures)
             {
               fprintf(stderr, "two values for xSignificantFigures in ArrayPointType\n");
               returnValue = true;
@@ -2051,12 +2051,12 @@ bool ArrayPointType::badAttributes(
               break;
             }
           else
-            xSignificantFigures = xSignificantFiguresVal;
+            this->xSignificantFigures = xSignificantFiguresVal;
         }
       else if (decl->name == "xValidity")
         {
           ValidityEnumType * xValidityVal;
-          if (xValidity)
+          if (this->xValidity)
             {
               fprintf(stderr, "two values for xValidity in ArrayPointType\n");
               returnValue = true;
@@ -2072,12 +2072,12 @@ bool ArrayPointType::badAttributes(
               break;
             }
           else
-            xValidity = xValidityVal;
+            this->xValidity = xValidityVal;
         }
       else if (decl->name == "yDecimalPlaces")
         {
           XmlNonNegativeInteger * yDecimalPlacesVal;
-          if (yDecimalPlaces)
+          if (this->yDecimalPlaces)
             {
               fprintf(stderr, "two values for yDecimalPlaces in ArrayPointType\n");
               returnValue = true;
@@ -2093,12 +2093,12 @@ bool ArrayPointType::badAttributes(
               break;
             }
           else
-            yDecimalPlaces = yDecimalPlacesVal;
+            this->yDecimalPlaces = yDecimalPlacesVal;
         }
       else if (decl->name == "ySignificantFigures")
         {
           XmlNonNegativeInteger * ySignificantFiguresVal;
-          if (ySignificantFigures)
+          if (this->ySignificantFigures)
             {
               fprintf(stderr, "two values for ySignificantFigures in ArrayPointType\n");
               returnValue = true;
@@ -2114,12 +2114,12 @@ bool ArrayPointType::badAttributes(
               break;
             }
           else
-            ySignificantFigures = ySignificantFiguresVal;
+            this->ySignificantFigures = ySignificantFiguresVal;
         }
       else if (decl->name == "yValidity")
         {
           ValidityEnumType * yValidityVal;
-          if (yValidity)
+          if (this->yValidity)
             {
               fprintf(stderr, "two values for yValidity in ArrayPointType\n");
               returnValue = true;
@@ -2135,12 +2135,12 @@ bool ArrayPointType::badAttributes(
               break;
             }
           else
-            yValidity = yValidityVal;
+            this->yValidity = yValidityVal;
         }
       else if (decl->name == "zDecimalPlaces")
         {
           XmlNonNegativeInteger * zDecimalPlacesVal;
-          if (zDecimalPlaces)
+          if (this->zDecimalPlaces)
             {
               fprintf(stderr, "two values for zDecimalPlaces in ArrayPointType\n");
               returnValue = true;
@@ -2156,12 +2156,12 @@ bool ArrayPointType::badAttributes(
               break;
             }
           else
-            zDecimalPlaces = zDecimalPlacesVal;
+            this->zDecimalPlaces = zDecimalPlacesVal;
         }
       else if (decl->name == "zSignificantFigures")
         {
           XmlNonNegativeInteger * zSignificantFiguresVal;
-          if (zSignificantFigures)
+          if (this->zSignificantFigures)
             {
               fprintf(stderr, "two values for zSignificantFigures in ArrayPointType\n");
               returnValue = true;
@@ -2177,12 +2177,12 @@ bool ArrayPointType::badAttributes(
               break;
             }
           else
-            zSignificantFigures = zSignificantFiguresVal;
+            this->zSignificantFigures = zSignificantFiguresVal;
         }
       else if (decl->name == "zValidity")
         {
           ValidityEnumType * zValidityVal;
-          if (zValidity)
+          if (this->zValidity)
             {
               fprintf(stderr, "two values for zValidity in ArrayPointType\n");
               returnValue = true;
@@ -2198,7 +2198,7 @@ bool ArrayPointType::badAttributes(
               break;
             }
           else
-            zValidity = zValidityVal;
+            this->zValidity = zValidityVal;
         }
       else
         {
@@ -2207,7 +2207,7 @@ bool ArrayPointType::badAttributes(
           break;
         }
     }
-  if (count == 0)
+  if (this->count == 0)
     {
       fprintf(stderr, "required attribute \"count\" missing in ArrayPointType\n");
       returnValue = true;
@@ -2219,34 +2219,34 @@ bool ArrayPointType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete count;
-      count = 0;
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete linearUnit;
-      linearUnit = 0;
-      delete significantFigures;
-      significantFigures = 0;
-      delete validity;
-      validity = 0;
-      delete xDecimalPlaces;
-      xDecimalPlaces = 0;
-      delete xSignificantFigures;
-      xSignificantFigures = 0;
-      delete xValidity;
-      xValidity = 0;
-      delete yDecimalPlaces;
-      yDecimalPlaces = 0;
-      delete ySignificantFigures;
-      ySignificantFigures = 0;
-      delete yValidity;
-      yValidity = 0;
-      delete zDecimalPlaces;
-      zDecimalPlaces = 0;
-      delete zSignificantFigures;
-      zSignificantFigures = 0;
-      delete zValidity;
-      zValidity = 0;
+      delete this->count;
+      this->count = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->linearUnit;
+      this->linearUnit = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
+      delete this->validity;
+      this->validity = 0;
+      delete this->xDecimalPlaces;
+      this->xDecimalPlaces = 0;
+      delete this->xSignificantFigures;
+      this->xSignificantFigures = 0;
+      delete this->xValidity;
+      this->xValidity = 0;
+      delete this->yDecimalPlaces;
+      this->yDecimalPlaces = 0;
+      delete this->ySignificantFigures;
+      this->ySignificantFigures = 0;
+      delete this->yValidity;
+      this->yValidity = 0;
+      delete this->zDecimalPlaces;
+      this->zDecimalPlaces = 0;
+      delete this->zSignificantFigures;
+      this->zSignificantFigures = 0;
+      delete this->zValidity;
+      this->zValidity = 0;
     }
   return returnValue;
 }
@@ -2410,6 +2410,13 @@ void ArrayQPIdFullReferenceType::printSelf(FILE * outFile)
         fprintf(stderr, "QPId list is empty\n");
         exit(1);
       }
+    if (QPId->size() < 1)
+      {
+        fprintf(stderr,
+                "size of QPId list (%d) less than minimum required (1)\n",
+                (int)QPId->size());
+        exit(1);
+      }
     std::list<QPIdFullReferenceType *>::iterator iter;
     for (iter = QPId->begin();
          iter != QPId->end(); iter++)
@@ -2438,7 +2445,7 @@ bool ArrayQPIdFullReferenceType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ArrayQPIdFullReferenceType\n");
               returnValue = true;
@@ -2454,7 +2461,7 @@ bool ArrayQPIdFullReferenceType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -2463,7 +2470,7 @@ bool ArrayQPIdFullReferenceType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ArrayQPIdFullReferenceType\n");
       returnValue = true;
@@ -2475,8 +2482,8 @@ bool ArrayQPIdFullReferenceType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -2518,7 +2525,15 @@ ArrayQPIdFullReferenceTypeLisd::~ArrayQPIdFullReferenceTypeLisd()
   #endif
 }
 
-void ArrayQPIdFullReferenceTypeLisd::printSelf(FILE * outFile){}
+void ArrayQPIdFullReferenceTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ArrayQPIdFullReferenceType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -2595,6 +2610,13 @@ void ArrayReferenceActiveType::printSelf(FILE * outFile)
         fprintf(stderr, "Id list is empty\n");
         exit(1);
       }
+    if (Id->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Id list (%d) less than minimum required (1)\n",
+                (int)Id->size());
+        exit(1);
+      }
     std::list<QIFReferenceActiveType *>::iterator iter;
     for (iter = Id->begin();
          iter != Id->end(); iter++)
@@ -2622,7 +2644,7 @@ bool ArrayReferenceActiveType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ArrayReferenceActiveType\n");
               returnValue = true;
@@ -2638,7 +2660,7 @@ bool ArrayReferenceActiveType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -2647,7 +2669,7 @@ bool ArrayReferenceActiveType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ArrayReferenceActiveType\n");
       returnValue = true;
@@ -2659,8 +2681,8 @@ bool ArrayReferenceActiveType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -2752,6 +2774,13 @@ void ArrayReferenceFullType::printSelf(FILE * outFile)
         fprintf(stderr, "Id list is empty\n");
         exit(1);
       }
+    if (Id->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Id list (%d) less than minimum required (1)\n",
+                (int)Id->size());
+        exit(1);
+      }
     std::list<QIFReferenceFullType *>::iterator iter;
     for (iter = Id->begin();
          iter != Id->end(); iter++)
@@ -2779,7 +2808,7 @@ bool ArrayReferenceFullType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ArrayReferenceFullType\n");
               returnValue = true;
@@ -2795,7 +2824,7 @@ bool ArrayReferenceFullType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -2804,7 +2833,7 @@ bool ArrayReferenceFullType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ArrayReferenceFullType\n");
       returnValue = true;
@@ -2816,8 +2845,8 @@ bool ArrayReferenceFullType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -2909,6 +2938,13 @@ void ArrayReferenceType::printSelf(FILE * outFile)
         fprintf(stderr, "Id list is empty\n");
         exit(1);
       }
+    if (Id->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Id list (%d) less than minimum required (1)\n",
+                (int)Id->size());
+        exit(1);
+      }
     std::list<QIFReferenceType *>::iterator iter;
     for (iter = Id->begin();
          iter != Id->end(); iter++)
@@ -2936,7 +2972,7 @@ bool ArrayReferenceType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ArrayReferenceType\n");
               returnValue = true;
@@ -2952,7 +2988,7 @@ bool ArrayReferenceType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -2961,7 +2997,7 @@ bool ArrayReferenceType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ArrayReferenceType\n");
       returnValue = true;
@@ -2973,8 +3009,8 @@ bool ArrayReferenceType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -3360,7 +3396,7 @@ bool ArrayUnitVectorType::badAttributes(
       if (decl->name == "count")
         {
           NaturalType * countVal;
-          if (count)
+          if (this->count)
             {
               fprintf(stderr, "two values for count in ArrayUnitVectorType\n");
               returnValue = true;
@@ -3376,12 +3412,12 @@ bool ArrayUnitVectorType::badAttributes(
               break;
             }
           else
-            count = countVal;
+            this->count = countVal;
         }
       else if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in ArrayUnitVectorType\n");
               returnValue = true;
@@ -3397,12 +3433,12 @@ bool ArrayUnitVectorType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "linearUnit")
         {
           XmlToken * linearUnitVal;
-          if (linearUnit)
+          if (this->linearUnit)
             {
               fprintf(stderr, "two values for linearUnit in ArrayUnitVectorType\n");
               returnValue = true;
@@ -3418,12 +3454,12 @@ bool ArrayUnitVectorType::badAttributes(
               break;
             }
           else
-            linearUnit = linearUnitVal;
+            this->linearUnit = linearUnitVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in ArrayUnitVectorType\n");
               returnValue = true;
@@ -3439,12 +3475,12 @@ bool ArrayUnitVectorType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else if (decl->name == "validity")
         {
           ValidityEnumType * validityVal;
-          if (validity)
+          if (this->validity)
             {
               fprintf(stderr, "two values for validity in ArrayUnitVectorType\n");
               returnValue = true;
@@ -3460,12 +3496,12 @@ bool ArrayUnitVectorType::badAttributes(
               break;
             }
           else
-            validity = validityVal;
+            this->validity = validityVal;
         }
       else if (decl->name == "xDecimalPlaces")
         {
           XmlNonNegativeInteger * xDecimalPlacesVal;
-          if (xDecimalPlaces)
+          if (this->xDecimalPlaces)
             {
               fprintf(stderr, "two values for xDecimalPlaces in ArrayUnitVectorType\n");
               returnValue = true;
@@ -3481,12 +3517,12 @@ bool ArrayUnitVectorType::badAttributes(
               break;
             }
           else
-            xDecimalPlaces = xDecimalPlacesVal;
+            this->xDecimalPlaces = xDecimalPlacesVal;
         }
       else if (decl->name == "xSignificantFigures")
         {
           XmlNonNegativeInteger * xSignificantFiguresVal;
-          if (xSignificantFigures)
+          if (this->xSignificantFigures)
             {
               fprintf(stderr, "two values for xSignificantFigures in ArrayUnitVectorType\n");
               returnValue = true;
@@ -3502,12 +3538,12 @@ bool ArrayUnitVectorType::badAttributes(
               break;
             }
           else
-            xSignificantFigures = xSignificantFiguresVal;
+            this->xSignificantFigures = xSignificantFiguresVal;
         }
       else if (decl->name == "xValidity")
         {
           ValidityEnumType * xValidityVal;
-          if (xValidity)
+          if (this->xValidity)
             {
               fprintf(stderr, "two values for xValidity in ArrayUnitVectorType\n");
               returnValue = true;
@@ -3523,12 +3559,12 @@ bool ArrayUnitVectorType::badAttributes(
               break;
             }
           else
-            xValidity = xValidityVal;
+            this->xValidity = xValidityVal;
         }
       else if (decl->name == "yDecimalPlaces")
         {
           XmlNonNegativeInteger * yDecimalPlacesVal;
-          if (yDecimalPlaces)
+          if (this->yDecimalPlaces)
             {
               fprintf(stderr, "two values for yDecimalPlaces in ArrayUnitVectorType\n");
               returnValue = true;
@@ -3544,12 +3580,12 @@ bool ArrayUnitVectorType::badAttributes(
               break;
             }
           else
-            yDecimalPlaces = yDecimalPlacesVal;
+            this->yDecimalPlaces = yDecimalPlacesVal;
         }
       else if (decl->name == "ySignificantFigures")
         {
           XmlNonNegativeInteger * ySignificantFiguresVal;
-          if (ySignificantFigures)
+          if (this->ySignificantFigures)
             {
               fprintf(stderr, "two values for ySignificantFigures in ArrayUnitVectorType\n");
               returnValue = true;
@@ -3565,12 +3601,12 @@ bool ArrayUnitVectorType::badAttributes(
               break;
             }
           else
-            ySignificantFigures = ySignificantFiguresVal;
+            this->ySignificantFigures = ySignificantFiguresVal;
         }
       else if (decl->name == "yValidity")
         {
           ValidityEnumType * yValidityVal;
-          if (yValidity)
+          if (this->yValidity)
             {
               fprintf(stderr, "two values for yValidity in ArrayUnitVectorType\n");
               returnValue = true;
@@ -3586,12 +3622,12 @@ bool ArrayUnitVectorType::badAttributes(
               break;
             }
           else
-            yValidity = yValidityVal;
+            this->yValidity = yValidityVal;
         }
       else if (decl->name == "zDecimalPlaces")
         {
           XmlNonNegativeInteger * zDecimalPlacesVal;
-          if (zDecimalPlaces)
+          if (this->zDecimalPlaces)
             {
               fprintf(stderr, "two values for zDecimalPlaces in ArrayUnitVectorType\n");
               returnValue = true;
@@ -3607,12 +3643,12 @@ bool ArrayUnitVectorType::badAttributes(
               break;
             }
           else
-            zDecimalPlaces = zDecimalPlacesVal;
+            this->zDecimalPlaces = zDecimalPlacesVal;
         }
       else if (decl->name == "zSignificantFigures")
         {
           XmlNonNegativeInteger * zSignificantFiguresVal;
-          if (zSignificantFigures)
+          if (this->zSignificantFigures)
             {
               fprintf(stderr, "two values for zSignificantFigures in ArrayUnitVectorType\n");
               returnValue = true;
@@ -3628,12 +3664,12 @@ bool ArrayUnitVectorType::badAttributes(
               break;
             }
           else
-            zSignificantFigures = zSignificantFiguresVal;
+            this->zSignificantFigures = zSignificantFiguresVal;
         }
       else if (decl->name == "zValidity")
         {
           ValidityEnumType * zValidityVal;
-          if (zValidity)
+          if (this->zValidity)
             {
               fprintf(stderr, "two values for zValidity in ArrayUnitVectorType\n");
               returnValue = true;
@@ -3649,7 +3685,7 @@ bool ArrayUnitVectorType::badAttributes(
               break;
             }
           else
-            zValidity = zValidityVal;
+            this->zValidity = zValidityVal;
         }
       else
         {
@@ -3658,7 +3694,7 @@ bool ArrayUnitVectorType::badAttributes(
           break;
         }
     }
-  if (count == 0)
+  if (this->count == 0)
     {
       fprintf(stderr, "required attribute \"count\" missing in ArrayUnitVectorType\n");
       returnValue = true;
@@ -3670,34 +3706,34 @@ bool ArrayUnitVectorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete count;
-      count = 0;
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete linearUnit;
-      linearUnit = 0;
-      delete significantFigures;
-      significantFigures = 0;
-      delete validity;
-      validity = 0;
-      delete xDecimalPlaces;
-      xDecimalPlaces = 0;
-      delete xSignificantFigures;
-      xSignificantFigures = 0;
-      delete xValidity;
-      xValidity = 0;
-      delete yDecimalPlaces;
-      yDecimalPlaces = 0;
-      delete ySignificantFigures;
-      ySignificantFigures = 0;
-      delete yValidity;
-      yValidity = 0;
-      delete zDecimalPlaces;
-      zDecimalPlaces = 0;
-      delete zSignificantFigures;
-      zSignificantFigures = 0;
-      delete zValidity;
-      zValidity = 0;
+      delete this->count;
+      this->count = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->linearUnit;
+      this->linearUnit = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
+      delete this->validity;
+      this->validity = 0;
+      delete this->xDecimalPlaces;
+      this->xDecimalPlaces = 0;
+      delete this->xSignificantFigures;
+      this->xSignificantFigures = 0;
+      delete this->xValidity;
+      this->xValidity = 0;
+      delete this->yDecimalPlaces;
+      this->yDecimalPlaces = 0;
+      delete this->ySignificantFigures;
+      this->ySignificantFigures = 0;
+      delete this->yValidity;
+      this->yValidity = 0;
+      delete this->zDecimalPlaces;
+      this->zDecimalPlaces = 0;
+      delete this->zSignificantFigures;
+      this->zSignificantFigures = 0;
+      delete this->zValidity;
+      this->zValidity = 0;
     }
   return returnValue;
 }
@@ -3869,7 +3905,7 @@ bool ArrayUnsignedByteType::badAttributes(
       if (decl->name == "count")
         {
           NaturalType * countVal;
-          if (count)
+          if (this->count)
             {
               fprintf(stderr, "two values for count in ArrayUnsignedByteType\n");
               returnValue = true;
@@ -3885,7 +3921,7 @@ bool ArrayUnsignedByteType::badAttributes(
               break;
             }
           else
-            count = countVal;
+            this->count = countVal;
         }
       else
         {
@@ -3894,7 +3930,7 @@ bool ArrayUnsignedByteType::badAttributes(
           break;
         }
     }
-  if (count == 0)
+  if (this->count == 0)
     {
       fprintf(stderr, "required attribute \"count\" missing in ArrayUnsignedByteType\n");
       returnValue = true;
@@ -3906,8 +3942,8 @@ bool ArrayUnsignedByteType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete count;
-      count = 0;
+      delete this->count;
+      this->count = 0;
     }
   return returnValue;
 }
@@ -3984,7 +4020,7 @@ bool AttributeBaseType::badAttributes(
       if (decl->name == "name")
         {
           XmlString * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in AttributeBaseType\n");
               returnValue = true;
@@ -4000,7 +4036,7 @@ bool AttributeBaseType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -4009,7 +4045,7 @@ bool AttributeBaseType::badAttributes(
           break;
         }
     }
-  if (name == 0)
+  if (this->name == 0)
     {
       fprintf(stderr, "required attribute \"name\" missing in AttributeBaseType\n");
       returnValue = true;
@@ -4021,8 +4057,8 @@ bool AttributeBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -4058,7 +4094,15 @@ AttributeBaseTypeLisd::~AttributeBaseTypeLisd()
   #endif
 }
 
-void AttributeBaseTypeLisd::printSelf(FILE * outFile){}
+void AttributeBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<AttributeBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -4154,7 +4198,7 @@ bool AttributeBoolType::badAttributes(
       if (decl->name == "name")
         {
           XmlString * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in AttributeBoolType\n");
               returnValue = true;
@@ -4170,12 +4214,12 @@ bool AttributeBoolType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else if (decl->name == "value")
         {
           XmlBoolean * valueVal;
-          if (value)
+          if (this->value)
             {
               fprintf(stderr, "two values for value in AttributeBoolType\n");
               returnValue = true;
@@ -4191,7 +4235,7 @@ bool AttributeBoolType::badAttributes(
               break;
             }
           else
-            value = valueVal;
+            this->value = valueVal;
         }
       else
         {
@@ -4200,12 +4244,12 @@ bool AttributeBoolType::badAttributes(
           break;
         }
     }
-  if (name == 0)
+  if (this->name == 0)
     {
       fprintf(stderr, "required attribute \"name\" missing in AttributeBoolType\n");
       returnValue = true;
     }
-  if (value == 0)
+  if (this->value == 0)
     {
       fprintf(stderr, "required attribute \"value\" missing in AttributeBoolType\n");
       returnValue = true;
@@ -4217,10 +4261,10 @@ bool AttributeBoolType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
-      delete value;
-      value = 0;
+      delete this->name;
+      this->name = 0;
+      delete this->value;
+      this->value = 0;
     }
   return returnValue;
 }
@@ -4325,7 +4369,7 @@ bool AttributeD1Type::badAttributes(
       if (decl->name == "name")
         {
           XmlString * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in AttributeD1Type\n");
               returnValue = true;
@@ -4341,12 +4385,12 @@ bool AttributeD1Type::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else if (decl->name == "value")
         {
           XmlDouble * valueVal;
-          if (value)
+          if (this->value)
             {
               fprintf(stderr, "two values for value in AttributeD1Type\n");
               returnValue = true;
@@ -4362,7 +4406,7 @@ bool AttributeD1Type::badAttributes(
               break;
             }
           else
-            value = valueVal;
+            this->value = valueVal;
         }
       else
         {
@@ -4371,12 +4415,12 @@ bool AttributeD1Type::badAttributes(
           break;
         }
     }
-  if (name == 0)
+  if (this->name == 0)
     {
       fprintf(stderr, "required attribute \"name\" missing in AttributeD1Type\n");
       returnValue = true;
     }
-  if (value == 0)
+  if (this->value == 0)
     {
       fprintf(stderr, "required attribute \"value\" missing in AttributeD1Type\n");
       returnValue = true;
@@ -4388,10 +4432,10 @@ bool AttributeD1Type::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
-      delete value;
-      value = 0;
+      delete this->name;
+      this->name = 0;
+      delete this->value;
+      this->value = 0;
     }
   return returnValue;
 }
@@ -4496,7 +4540,7 @@ bool AttributeD2Type::badAttributes(
       if (decl->name == "name")
         {
           XmlString * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in AttributeD2Type\n");
               returnValue = true;
@@ -4512,12 +4556,12 @@ bool AttributeD2Type::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else if (decl->name == "value")
         {
           D2Type * valueVal;
-          if (value)
+          if (this->value)
             {
               fprintf(stderr, "two values for value in AttributeD2Type\n");
               returnValue = true;
@@ -4533,7 +4577,7 @@ bool AttributeD2Type::badAttributes(
               break;
             }
           else
-            value = valueVal;
+            this->value = valueVal;
         }
       else
         {
@@ -4542,12 +4586,12 @@ bool AttributeD2Type::badAttributes(
           break;
         }
     }
-  if (name == 0)
+  if (this->name == 0)
     {
       fprintf(stderr, "required attribute \"name\" missing in AttributeD2Type\n");
       returnValue = true;
     }
-  if (value == 0)
+  if (this->value == 0)
     {
       fprintf(stderr, "required attribute \"value\" missing in AttributeD2Type\n");
       returnValue = true;
@@ -4559,10 +4603,10 @@ bool AttributeD2Type::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
-      delete value;
-      value = 0;
+      delete this->name;
+      this->name = 0;
+      delete this->value;
+      this->value = 0;
     }
   return returnValue;
 }
@@ -4667,7 +4711,7 @@ bool AttributeD3Type::badAttributes(
       if (decl->name == "name")
         {
           XmlString * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in AttributeD3Type\n");
               returnValue = true;
@@ -4683,12 +4727,12 @@ bool AttributeD3Type::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else if (decl->name == "value")
         {
           D3Type * valueVal;
-          if (value)
+          if (this->value)
             {
               fprintf(stderr, "two values for value in AttributeD3Type\n");
               returnValue = true;
@@ -4704,7 +4748,7 @@ bool AttributeD3Type::badAttributes(
               break;
             }
           else
-            value = valueVal;
+            this->value = valueVal;
         }
       else
         {
@@ -4713,12 +4757,12 @@ bool AttributeD3Type::badAttributes(
           break;
         }
     }
-  if (name == 0)
+  if (this->name == 0)
     {
       fprintf(stderr, "required attribute \"name\" missing in AttributeD3Type\n");
       returnValue = true;
     }
-  if (value == 0)
+  if (this->value == 0)
     {
       fprintf(stderr, "required attribute \"value\" missing in AttributeD3Type\n");
       returnValue = true;
@@ -4730,10 +4774,10 @@ bool AttributeD3Type::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
-      delete value;
-      value = 0;
+      delete this->name;
+      this->name = 0;
+      delete this->value;
+      this->value = 0;
     }
   return returnValue;
 }
@@ -4838,7 +4882,7 @@ bool AttributeI1Type::badAttributes(
       if (decl->name == "name")
         {
           XmlString * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in AttributeI1Type\n");
               returnValue = true;
@@ -4854,12 +4898,12 @@ bool AttributeI1Type::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else if (decl->name == "value")
         {
           XmlInteger * valueVal;
-          if (value)
+          if (this->value)
             {
               fprintf(stderr, "two values for value in AttributeI1Type\n");
               returnValue = true;
@@ -4875,7 +4919,7 @@ bool AttributeI1Type::badAttributes(
               break;
             }
           else
-            value = valueVal;
+            this->value = valueVal;
         }
       else
         {
@@ -4884,12 +4928,12 @@ bool AttributeI1Type::badAttributes(
           break;
         }
     }
-  if (name == 0)
+  if (this->name == 0)
     {
       fprintf(stderr, "required attribute \"name\" missing in AttributeI1Type\n");
       returnValue = true;
     }
-  if (value == 0)
+  if (this->value == 0)
     {
       fprintf(stderr, "required attribute \"value\" missing in AttributeI1Type\n");
       returnValue = true;
@@ -4901,10 +4945,10 @@ bool AttributeI1Type::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
-      delete value;
-      value = 0;
+      delete this->name;
+      this->name = 0;
+      delete this->value;
+      this->value = 0;
     }
   return returnValue;
 }
@@ -5009,7 +5053,7 @@ bool AttributeI2Type::badAttributes(
       if (decl->name == "name")
         {
           XmlString * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in AttributeI2Type\n");
               returnValue = true;
@@ -5025,12 +5069,12 @@ bool AttributeI2Type::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else if (decl->name == "value")
         {
           I2Type * valueVal;
-          if (value)
+          if (this->value)
             {
               fprintf(stderr, "two values for value in AttributeI2Type\n");
               returnValue = true;
@@ -5046,7 +5090,7 @@ bool AttributeI2Type::badAttributes(
               break;
             }
           else
-            value = valueVal;
+            this->value = valueVal;
         }
       else
         {
@@ -5055,12 +5099,12 @@ bool AttributeI2Type::badAttributes(
           break;
         }
     }
-  if (name == 0)
+  if (this->name == 0)
     {
       fprintf(stderr, "required attribute \"name\" missing in AttributeI2Type\n");
       returnValue = true;
     }
-  if (value == 0)
+  if (this->value == 0)
     {
       fprintf(stderr, "required attribute \"value\" missing in AttributeI2Type\n");
       returnValue = true;
@@ -5072,10 +5116,10 @@ bool AttributeI2Type::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
-      delete value;
-      value = 0;
+      delete this->name;
+      this->name = 0;
+      delete this->value;
+      this->value = 0;
     }
   return returnValue;
 }
@@ -5180,7 +5224,7 @@ bool AttributeI3Type::badAttributes(
       if (decl->name == "name")
         {
           XmlString * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in AttributeI3Type\n");
               returnValue = true;
@@ -5196,12 +5240,12 @@ bool AttributeI3Type::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else if (decl->name == "value")
         {
           I3Type * valueVal;
-          if (value)
+          if (this->value)
             {
               fprintf(stderr, "two values for value in AttributeI3Type\n");
               returnValue = true;
@@ -5217,7 +5261,7 @@ bool AttributeI3Type::badAttributes(
               break;
             }
           else
-            value = valueVal;
+            this->value = valueVal;
         }
       else
         {
@@ -5226,12 +5270,12 @@ bool AttributeI3Type::badAttributes(
           break;
         }
     }
-  if (name == 0)
+  if (this->name == 0)
     {
       fprintf(stderr, "required attribute \"name\" missing in AttributeI3Type\n");
       returnValue = true;
     }
-  if (value == 0)
+  if (this->value == 0)
     {
       fprintf(stderr, "required attribute \"value\" missing in AttributeI3Type\n");
       returnValue = true;
@@ -5243,10 +5287,10 @@ bool AttributeI3Type::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
-      delete value;
-      value = 0;
+      delete this->name;
+      this->name = 0;
+      delete this->value;
+      this->value = 0;
     }
   return returnValue;
 }
@@ -5342,7 +5386,7 @@ bool AttributeQPIdType::badAttributes(
       if (decl->name == "name")
         {
           XmlString * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in AttributeQPIdType\n");
               returnValue = true;
@@ -5358,7 +5402,7 @@ bool AttributeQPIdType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -5367,7 +5411,7 @@ bool AttributeQPIdType::badAttributes(
           break;
         }
     }
-  if (name == 0)
+  if (this->name == 0)
     {
       fprintf(stderr, "required attribute \"name\" missing in AttributeQPIdType\n");
       returnValue = true;
@@ -5379,8 +5423,8 @@ bool AttributeQPIdType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -5485,7 +5529,7 @@ bool AttributeStrType::badAttributes(
       if (decl->name == "name")
         {
           XmlString * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in AttributeStrType\n");
               returnValue = true;
@@ -5501,12 +5545,12 @@ bool AttributeStrType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else if (decl->name == "value")
         {
           XmlString * valueVal;
-          if (value)
+          if (this->value)
             {
               fprintf(stderr, "two values for value in AttributeStrType\n");
               returnValue = true;
@@ -5522,7 +5566,7 @@ bool AttributeStrType::badAttributes(
               break;
             }
           else
-            value = valueVal;
+            this->value = valueVal;
         }
       else
         {
@@ -5531,12 +5575,12 @@ bool AttributeStrType::badAttributes(
           break;
         }
     }
-  if (name == 0)
+  if (this->name == 0)
     {
       fprintf(stderr, "required attribute \"name\" missing in AttributeStrType\n");
       returnValue = true;
     }
-  if (value == 0)
+  if (this->value == 0)
     {
       fprintf(stderr, "required attribute \"value\" missing in AttributeStrType\n");
       returnValue = true;
@@ -5548,10 +5592,10 @@ bool AttributeStrType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
-      delete value;
-      value = 0;
+      delete this->name;
+      this->name = 0;
+      delete this->value;
+      this->value = 0;
     }
   return returnValue;
 }
@@ -5656,7 +5700,7 @@ bool AttributeTimeType::badAttributes(
       if (decl->name == "name")
         {
           XmlString * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in AttributeTimeType\n");
               returnValue = true;
@@ -5672,12 +5716,12 @@ bool AttributeTimeType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else if (decl->name == "value")
         {
           XmlDateTime * valueVal;
-          if (value)
+          if (this->value)
             {
               fprintf(stderr, "two values for value in AttributeTimeType\n");
               returnValue = true;
@@ -5693,7 +5737,7 @@ bool AttributeTimeType::badAttributes(
               break;
             }
           else
-            value = valueVal;
+            this->value = valueVal;
         }
       else
         {
@@ -5702,12 +5746,12 @@ bool AttributeTimeType::badAttributes(
           break;
         }
     }
-  if (name == 0)
+  if (this->name == 0)
     {
       fprintf(stderr, "required attribute \"name\" missing in AttributeTimeType\n");
       returnValue = true;
     }
-  if (value == 0)
+  if (this->value == 0)
     {
       fprintf(stderr, "required attribute \"value\" missing in AttributeTimeType\n");
       returnValue = true;
@@ -5719,10 +5763,10 @@ bool AttributeTimeType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
-      delete value;
-      value = 0;
+      delete this->name;
+      this->name = 0;
+      delete this->value;
+      this->value = 0;
     }
   return returnValue;
 }
@@ -5743,33 +5787,33 @@ AttributeUserType::AttributeUserType() :
   AttributeBaseType()
 {
   nameUserAttribute = 0;
-  AttributeUserTy_1002 = 0;
+  AttributeUserTypePair = 0;
 }
 
 AttributeUserType::AttributeUserType(
- AttributeUserTy_1002_Type * AttributeUserTy_1002In) :
+ AttributeUserTypeChoicePair * AttributeUserTypePairIn) :
   AttributeBaseType()
 {
   nameUserAttribute = 0;
-  AttributeUserTy_1002 = AttributeUserTy_1002In;
+  AttributeUserTypePair = AttributeUserTypePairIn;
 }
 
 AttributeUserType::AttributeUserType(
  XmlString * nameIn,
  XmlString * nameUserAttributeIn,
- AttributeUserTy_1002_Type * AttributeUserTy_1002In) :
+ AttributeUserTypeChoicePair * AttributeUserTypePairIn) :
   AttributeBaseType(
     nameIn)
 {
   nameUserAttribute = nameUserAttributeIn;
-  AttributeUserTy_1002 = AttributeUserTy_1002In;
+  AttributeUserTypePair = AttributeUserTypePairIn;
 }
 
 AttributeUserType::~AttributeUserType()
 {
   #ifndef NODESTRUCT
   delete nameUserAttribute;
-  delete AttributeUserTy_1002;
+  delete AttributeUserTypePair;
   #endif
 }
 
@@ -5824,8 +5868,54 @@ void AttributeUserType::printSelf(FILE * outFile)
     }
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  AttributeUserTy_1002->printSelf(outFile);
+  AttributeUserTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
+}
+AttributeUserTypeChoicePair * AttributeUserType::getAttributeUserTypeChoicePair()
+{return AttributeUserTypePair;}
+
+void AttributeUserType::setAttributeUserTypeChoicePair(AttributeUserTypeChoicePair * AttributeUserTypePairIn)
+{AttributeUserTypePair = AttributeUserTypePairIn;}
+
+/* ***************************************************************** */
+
+AttributeUserTypeChoicePair::AttributeUserTypeChoicePair() {}
+
+AttributeUserTypeChoicePair::AttributeUserTypeChoicePair(
+ whichOne AttributeUserTypeTypeIn,
+ AttributeUserTypeVal AttributeUserTypeValueIn)
+{
+  AttributeUserTypeType = AttributeUserTypeTypeIn;
+  AttributeUserTypeValue = AttributeUserTypeValueIn;
+}
+
+AttributeUserTypeChoicePair::~AttributeUserTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (AttributeUserTypeType == UserDataXMLE)
+    delete AttributeUserTypeValue.UserDataXML;
+  else if (AttributeUserTypeType == UserDataBinaryE)
+    delete AttributeUserTypeValue.UserDataBinary;
+  #endif
+}
+
+void AttributeUserTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (AttributeUserTypeType == UserDataXMLE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<UserDataXML");
+      AttributeUserTypeValue.UserDataXML->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</UserDataXML>\n");
+    }
+  else if (AttributeUserTypeType == UserDataBinaryE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<UserDataBinary");
+      AttributeUserTypeValue.UserDataBinary->printSelf(outFile);
+      fprintf(outFile, "</UserDataBinary>\n");
+    }
 }
 
 bool AttributeUserType::badAttributes(
@@ -5842,7 +5932,7 @@ bool AttributeUserType::badAttributes(
       if (decl->name == "name")
         {
           XmlString * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in AttributeUserType\n");
               returnValue = true;
@@ -5858,12 +5948,12 @@ bool AttributeUserType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else if (decl->name == "nameUserAttribute")
         {
           XmlString * nameUserAttributeVal;
-          if (nameUserAttribute)
+          if (this->nameUserAttribute)
             {
               fprintf(stderr, "two values for nameUserAttribute in AttributeUserType\n");
               returnValue = true;
@@ -5879,7 +5969,7 @@ bool AttributeUserType::badAttributes(
               break;
             }
           else
-            nameUserAttribute = nameUserAttributeVal;
+            this->nameUserAttribute = nameUserAttributeVal;
         }
       else
         {
@@ -5888,12 +5978,12 @@ bool AttributeUserType::badAttributes(
           break;
         }
     }
-  if (name == 0)
+  if (this->name == 0)
     {
       fprintf(stderr, "required attribute \"name\" missing in AttributeUserType\n");
       returnValue = true;
     }
-  if (nameUserAttribute == 0)
+  if (this->nameUserAttribute == 0)
     {
       fprintf(stderr, "required attribute \"nameUserAttribute\" missing in AttributeUserType\n");
       returnValue = true;
@@ -5905,10 +5995,10 @@ bool AttributeUserType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
-      delete nameUserAttribute;
-      nameUserAttribute = 0;
+      delete this->name;
+      this->name = 0;
+      delete this->nameUserAttribute;
+      this->nameUserAttribute = 0;
     }
   return returnValue;
 }
@@ -5918,12 +6008,6 @@ XmlString * AttributeUserType::getnameUserAttribute()
 
 void AttributeUserType::setnameUserAttribute(XmlString * nameUserAttributeIn)
 {nameUserAttribute = nameUserAttributeIn;}
-
-AttributeUserTy_1002_Type * AttributeUserType::getAttributeUserTy_1002()
-{return AttributeUserTy_1002;}
-
-void AttributeUserType::setAttributeUserTy_1002(AttributeUserTy_1002_Type * AttributeUserTy_1002In)
-{AttributeUserTy_1002 = AttributeUserTy_1002In;}
 
 /* ***************************************************************** */
 
@@ -5998,6 +6082,13 @@ void AttributesType::printSelf(FILE * outFile)
     if (Attribute->size() == 0)
       {
         fprintf(stderr, "Attribute list is empty\n");
+        exit(1);
+      }
+    if (Attribute->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Attribute list (%d) less than minimum required (1)\n",
+                (int)Attribute->size());
         exit(1);
       }
     std::list<AttributeBaseType *>::iterator iter;
@@ -6195,7 +6286,7 @@ bool AttributesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in AttributesType\n");
               returnValue = true;
@@ -6211,7 +6302,7 @@ bool AttributesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -6220,7 +6311,7 @@ bool AttributesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in AttributesType\n");
       returnValue = true;
@@ -6232,8 +6323,8 @@ bool AttributesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -6388,7 +6479,7 @@ bool BinaryDataType::badAttributes(
       if (decl->name == "count")
         {
           NaturalType * countVal;
-          if (count)
+          if (this->count)
             {
               fprintf(stderr, "two values for count in BinaryDataType\n");
               returnValue = true;
@@ -6404,7 +6495,7 @@ bool BinaryDataType::badAttributes(
               break;
             }
           else
-            count = countVal;
+            this->count = countVal;
         }
       else
         {
@@ -6413,7 +6504,7 @@ bool BinaryDataType::badAttributes(
           break;
         }
     }
-  if (count == 0)
+  if (this->count == 0)
     {
       fprintf(stderr, "required attribute \"count\" missing in BinaryDataType\n");
       returnValue = true;
@@ -6425,8 +6516,8 @@ bool BinaryDataType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete count;
-      count = 0;
+      delete this->count;
+      this->count = 0;
     }
   return returnValue;
 }
@@ -7547,7 +7638,7 @@ bool LineSegmentType::badAttributes(
       if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in LineSegmentType\n");
               returnValue = true;
@@ -7563,12 +7654,12 @@ bool LineSegmentType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "linearUnit")
         {
           XmlToken * linearUnitVal;
-          if (linearUnit)
+          if (this->linearUnit)
             {
               fprintf(stderr, "two values for linearUnit in LineSegmentType\n");
               returnValue = true;
@@ -7584,12 +7675,12 @@ bool LineSegmentType::badAttributes(
               break;
             }
           else
-            linearUnit = linearUnitVal;
+            this->linearUnit = linearUnitVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in LineSegmentType\n");
               returnValue = true;
@@ -7605,12 +7696,12 @@ bool LineSegmentType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else if (decl->name == "validity")
         {
           ValidityEnumType * validityVal;
-          if (validity)
+          if (this->validity)
             {
               fprintf(stderr, "two values for validity in LineSegmentType\n");
               returnValue = true;
@@ -7626,12 +7717,12 @@ bool LineSegmentType::badAttributes(
               break;
             }
           else
-            validity = validityVal;
+            this->validity = validityVal;
         }
       else if (decl->name == "xDecimalPlaces")
         {
           XmlNonNegativeInteger * xDecimalPlacesVal;
-          if (xDecimalPlaces)
+          if (this->xDecimalPlaces)
             {
               fprintf(stderr, "two values for xDecimalPlaces in LineSegmentType\n");
               returnValue = true;
@@ -7647,12 +7738,12 @@ bool LineSegmentType::badAttributes(
               break;
             }
           else
-            xDecimalPlaces = xDecimalPlacesVal;
+            this->xDecimalPlaces = xDecimalPlacesVal;
         }
       else if (decl->name == "xSignificantFigures")
         {
           XmlNonNegativeInteger * xSignificantFiguresVal;
-          if (xSignificantFigures)
+          if (this->xSignificantFigures)
             {
               fprintf(stderr, "two values for xSignificantFigures in LineSegmentType\n");
               returnValue = true;
@@ -7668,12 +7759,12 @@ bool LineSegmentType::badAttributes(
               break;
             }
           else
-            xSignificantFigures = xSignificantFiguresVal;
+            this->xSignificantFigures = xSignificantFiguresVal;
         }
       else if (decl->name == "xValidity")
         {
           ValidityEnumType * xValidityVal;
-          if (xValidity)
+          if (this->xValidity)
             {
               fprintf(stderr, "two values for xValidity in LineSegmentType\n");
               returnValue = true;
@@ -7689,12 +7780,12 @@ bool LineSegmentType::badAttributes(
               break;
             }
           else
-            xValidity = xValidityVal;
+            this->xValidity = xValidityVal;
         }
       else if (decl->name == "yDecimalPlaces")
         {
           XmlNonNegativeInteger * yDecimalPlacesVal;
-          if (yDecimalPlaces)
+          if (this->yDecimalPlaces)
             {
               fprintf(stderr, "two values for yDecimalPlaces in LineSegmentType\n");
               returnValue = true;
@@ -7710,12 +7801,12 @@ bool LineSegmentType::badAttributes(
               break;
             }
           else
-            yDecimalPlaces = yDecimalPlacesVal;
+            this->yDecimalPlaces = yDecimalPlacesVal;
         }
       else if (decl->name == "ySignificantFigures")
         {
           XmlNonNegativeInteger * ySignificantFiguresVal;
-          if (ySignificantFigures)
+          if (this->ySignificantFigures)
             {
               fprintf(stderr, "two values for ySignificantFigures in LineSegmentType\n");
               returnValue = true;
@@ -7731,12 +7822,12 @@ bool LineSegmentType::badAttributes(
               break;
             }
           else
-            ySignificantFigures = ySignificantFiguresVal;
+            this->ySignificantFigures = ySignificantFiguresVal;
         }
       else if (decl->name == "yValidity")
         {
           ValidityEnumType * yValidityVal;
-          if (yValidity)
+          if (this->yValidity)
             {
               fprintf(stderr, "two values for yValidity in LineSegmentType\n");
               returnValue = true;
@@ -7752,12 +7843,12 @@ bool LineSegmentType::badAttributes(
               break;
             }
           else
-            yValidity = yValidityVal;
+            this->yValidity = yValidityVal;
         }
       else if (decl->name == "zDecimalPlaces")
         {
           XmlNonNegativeInteger * zDecimalPlacesVal;
-          if (zDecimalPlaces)
+          if (this->zDecimalPlaces)
             {
               fprintf(stderr, "two values for zDecimalPlaces in LineSegmentType\n");
               returnValue = true;
@@ -7773,12 +7864,12 @@ bool LineSegmentType::badAttributes(
               break;
             }
           else
-            zDecimalPlaces = zDecimalPlacesVal;
+            this->zDecimalPlaces = zDecimalPlacesVal;
         }
       else if (decl->name == "zSignificantFigures")
         {
           XmlNonNegativeInteger * zSignificantFiguresVal;
-          if (zSignificantFigures)
+          if (this->zSignificantFigures)
             {
               fprintf(stderr, "two values for zSignificantFigures in LineSegmentType\n");
               returnValue = true;
@@ -7794,12 +7885,12 @@ bool LineSegmentType::badAttributes(
               break;
             }
           else
-            zSignificantFigures = zSignificantFiguresVal;
+            this->zSignificantFigures = zSignificantFiguresVal;
         }
       else if (decl->name == "zValidity")
         {
           ValidityEnumType * zValidityVal;
-          if (zValidity)
+          if (this->zValidity)
             {
               fprintf(stderr, "two values for zValidity in LineSegmentType\n");
               returnValue = true;
@@ -7815,7 +7906,7 @@ bool LineSegmentType::badAttributes(
               break;
             }
           else
-            zValidity = zValidityVal;
+            this->zValidity = zValidityVal;
         }
       else
         {
@@ -7831,32 +7922,32 @@ bool LineSegmentType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete linearUnit;
-      linearUnit = 0;
-      delete significantFigures;
-      significantFigures = 0;
-      delete validity;
-      validity = 0;
-      delete xDecimalPlaces;
-      xDecimalPlaces = 0;
-      delete xSignificantFigures;
-      xSignificantFigures = 0;
-      delete xValidity;
-      xValidity = 0;
-      delete yDecimalPlaces;
-      yDecimalPlaces = 0;
-      delete ySignificantFigures;
-      ySignificantFigures = 0;
-      delete yValidity;
-      yValidity = 0;
-      delete zDecimalPlaces;
-      zDecimalPlaces = 0;
-      delete zSignificantFigures;
-      zSignificantFigures = 0;
-      delete zValidity;
-      zValidity = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->linearUnit;
+      this->linearUnit = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
+      delete this->validity;
+      this->validity = 0;
+      delete this->xDecimalPlaces;
+      this->xDecimalPlaces = 0;
+      delete this->xSignificantFigures;
+      this->xSignificantFigures = 0;
+      delete this->xValidity;
+      this->xValidity = 0;
+      delete this->yDecimalPlaces;
+      this->yDecimalPlaces = 0;
+      delete this->ySignificantFigures;
+      this->ySignificantFigures = 0;
+      delete this->yValidity;
+      this->yValidity = 0;
+      delete this->zDecimalPlaces;
+      this->zDecimalPlaces = 0;
+      delete this->zSignificantFigures;
+      this->zSignificantFigures = 0;
+      delete this->zValidity;
+      this->zValidity = 0;
     }
   return returnValue;
 }
@@ -8335,7 +8426,7 @@ bool ListQIFReferenceFullType::badAttributes(
       if (decl->name == "asmPathId")
         {
           QIFReferenceSimpleType * asmPathIdVal;
-          if (asmPathId)
+          if (this->asmPathId)
             {
               fprintf(stderr, "two values for asmPathId in ListQIFReferenceFullType\n");
               returnValue = true;
@@ -8351,12 +8442,12 @@ bool ListQIFReferenceFullType::badAttributes(
               break;
             }
           else
-            asmPathId = asmPathIdVal;
+            this->asmPathId = asmPathIdVal;
         }
       else if (decl->name == "asmPathXId")
         {
           QIFReferenceSimpleType * asmPathXIdVal;
-          if (asmPathXId)
+          if (this->asmPathXId)
             {
               fprintf(stderr, "two values for asmPathXId in ListQIFReferenceFullType\n");
               returnValue = true;
@@ -8372,12 +8463,12 @@ bool ListQIFReferenceFullType::badAttributes(
               break;
             }
           else
-            asmPathXId = asmPathXIdVal;
+            this->asmPathXId = asmPathXIdVal;
         }
       else if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ListQIFReferenceFullType\n");
               returnValue = true;
@@ -8393,7 +8484,7 @@ bool ListQIFReferenceFullType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -8402,7 +8493,7 @@ bool ListQIFReferenceFullType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ListQIFReferenceFullType\n");
       returnValue = true;
@@ -8414,12 +8505,12 @@ bool ListQIFReferenceFullType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete asmPathId;
-      asmPathId = 0;
-      delete asmPathXId;
-      asmPathXId = 0;
-      delete n;
-      n = 0;
+      delete this->asmPathId;
+      this->asmPathId = 0;
+      delete this->asmPathXId;
+      this->asmPathXId = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -8605,13 +8696,6 @@ ListQIFReferenceTypeChoicePair * ListQIFReferenceType::getListQIFReferenceTypePa
 
 void ListQIFReferenceType::setListQIFReferenceTypePair(ListQIFReferenceTypeChoicePair * ListQIFReferenceTypePairIn)
 {ListQIFReferenceTypePair = ListQIFReferenceTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ListQIFReferenceTypeChoicePair
-
-*/
-
 ListQIFReferenceTypeChoicePair::ListQIFReferenceTypeChoicePair() {}
 
 ListQIFReferenceTypeChoicePair::ListQIFReferenceTypeChoicePair(
@@ -8627,8 +8711,8 @@ ListQIFReferenceTypeChoicePair::~ListQIFReferenceTypeChoicePair()
   #ifndef NODESTRUCT
   if (ListQIFReferenceTypeType == IdsE)
     delete ListQIFReferenceTypeValue.Ids;
-  else if (ListQIFReferenceTypeType == ListQIFReferenc_1003E)
-    delete ListQIFReferenceTypeValue.ListQIFReferenc_1003;
+  else if (ListQIFReferenceTypeType == ListQIFReferenc_1002E)
+    delete ListQIFReferenceTypeValue.ListQIFReferenc_1002;
   #endif
 }
 
@@ -8641,9 +8725,9 @@ void ListQIFReferenceTypeChoicePair::printSelf(FILE * outFile)
       ListQIFReferenceTypeValue.Ids->printSelf(outFile);
       fprintf(outFile, "</Ids>\n");
     }
-  else if (ListQIFReferenceTypeType == ListQIFReferenc_1003E)
+  else if (ListQIFReferenceTypeType == ListQIFReferenc_1002E)
     {
-      ListQIFReferenceTypeValue.ListQIFReferenc_1003->printSelf(outFile);
+      ListQIFReferenceTypeValue.ListQIFReferenc_1002->printSelf(outFile);
     }
 }
 
@@ -8661,7 +8745,7 @@ bool ListQIFReferenceType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ListQIFReferenceType\n");
               returnValue = true;
@@ -8677,7 +8761,7 @@ bool ListQIFReferenceType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -8686,7 +8770,7 @@ bool ListQIFReferenceType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ListQIFReferenceType\n");
       returnValue = true;
@@ -8698,8 +8782,8 @@ bool ListQIFReferenceType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -9676,7 +9760,7 @@ bool PointType::badAttributes(
       if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in PointType\n");
               returnValue = true;
@@ -9692,12 +9776,12 @@ bool PointType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "linearUnit")
         {
           XmlToken * linearUnitVal;
-          if (linearUnit)
+          if (this->linearUnit)
             {
               fprintf(stderr, "two values for linearUnit in PointType\n");
               returnValue = true;
@@ -9713,12 +9797,12 @@ bool PointType::badAttributes(
               break;
             }
           else
-            linearUnit = linearUnitVal;
+            this->linearUnit = linearUnitVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in PointType\n");
               returnValue = true;
@@ -9734,12 +9818,12 @@ bool PointType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else if (decl->name == "validity")
         {
           ValidityEnumType * validityVal;
-          if (validity)
+          if (this->validity)
             {
               fprintf(stderr, "two values for validity in PointType\n");
               returnValue = true;
@@ -9755,12 +9839,12 @@ bool PointType::badAttributes(
               break;
             }
           else
-            validity = validityVal;
+            this->validity = validityVal;
         }
       else if (decl->name == "xDecimalPlaces")
         {
           XmlNonNegativeInteger * xDecimalPlacesVal;
-          if (xDecimalPlaces)
+          if (this->xDecimalPlaces)
             {
               fprintf(stderr, "two values for xDecimalPlaces in PointType\n");
               returnValue = true;
@@ -9776,12 +9860,12 @@ bool PointType::badAttributes(
               break;
             }
           else
-            xDecimalPlaces = xDecimalPlacesVal;
+            this->xDecimalPlaces = xDecimalPlacesVal;
         }
       else if (decl->name == "xSignificantFigures")
         {
           XmlNonNegativeInteger * xSignificantFiguresVal;
-          if (xSignificantFigures)
+          if (this->xSignificantFigures)
             {
               fprintf(stderr, "two values for xSignificantFigures in PointType\n");
               returnValue = true;
@@ -9797,12 +9881,12 @@ bool PointType::badAttributes(
               break;
             }
           else
-            xSignificantFigures = xSignificantFiguresVal;
+            this->xSignificantFigures = xSignificantFiguresVal;
         }
       else if (decl->name == "xValidity")
         {
           ValidityEnumType * xValidityVal;
-          if (xValidity)
+          if (this->xValidity)
             {
               fprintf(stderr, "two values for xValidity in PointType\n");
               returnValue = true;
@@ -9818,12 +9902,12 @@ bool PointType::badAttributes(
               break;
             }
           else
-            xValidity = xValidityVal;
+            this->xValidity = xValidityVal;
         }
       else if (decl->name == "yDecimalPlaces")
         {
           XmlNonNegativeInteger * yDecimalPlacesVal;
-          if (yDecimalPlaces)
+          if (this->yDecimalPlaces)
             {
               fprintf(stderr, "two values for yDecimalPlaces in PointType\n");
               returnValue = true;
@@ -9839,12 +9923,12 @@ bool PointType::badAttributes(
               break;
             }
           else
-            yDecimalPlaces = yDecimalPlacesVal;
+            this->yDecimalPlaces = yDecimalPlacesVal;
         }
       else if (decl->name == "ySignificantFigures")
         {
           XmlNonNegativeInteger * ySignificantFiguresVal;
-          if (ySignificantFigures)
+          if (this->ySignificantFigures)
             {
               fprintf(stderr, "two values for ySignificantFigures in PointType\n");
               returnValue = true;
@@ -9860,12 +9944,12 @@ bool PointType::badAttributes(
               break;
             }
           else
-            ySignificantFigures = ySignificantFiguresVal;
+            this->ySignificantFigures = ySignificantFiguresVal;
         }
       else if (decl->name == "yValidity")
         {
           ValidityEnumType * yValidityVal;
-          if (yValidity)
+          if (this->yValidity)
             {
               fprintf(stderr, "two values for yValidity in PointType\n");
               returnValue = true;
@@ -9881,12 +9965,12 @@ bool PointType::badAttributes(
               break;
             }
           else
-            yValidity = yValidityVal;
+            this->yValidity = yValidityVal;
         }
       else if (decl->name == "zDecimalPlaces")
         {
           XmlNonNegativeInteger * zDecimalPlacesVal;
-          if (zDecimalPlaces)
+          if (this->zDecimalPlaces)
             {
               fprintf(stderr, "two values for zDecimalPlaces in PointType\n");
               returnValue = true;
@@ -9902,12 +9986,12 @@ bool PointType::badAttributes(
               break;
             }
           else
-            zDecimalPlaces = zDecimalPlacesVal;
+            this->zDecimalPlaces = zDecimalPlacesVal;
         }
       else if (decl->name == "zSignificantFigures")
         {
           XmlNonNegativeInteger * zSignificantFiguresVal;
-          if (zSignificantFigures)
+          if (this->zSignificantFigures)
             {
               fprintf(stderr, "two values for zSignificantFigures in PointType\n");
               returnValue = true;
@@ -9923,12 +10007,12 @@ bool PointType::badAttributes(
               break;
             }
           else
-            zSignificantFigures = zSignificantFiguresVal;
+            this->zSignificantFigures = zSignificantFiguresVal;
         }
       else if (decl->name == "zValidity")
         {
           ValidityEnumType * zValidityVal;
-          if (zValidity)
+          if (this->zValidity)
             {
               fprintf(stderr, "two values for zValidity in PointType\n");
               returnValue = true;
@@ -9944,7 +10028,7 @@ bool PointType::badAttributes(
               break;
             }
           else
-            zValidity = zValidityVal;
+            this->zValidity = zValidityVal;
         }
       else
         {
@@ -9960,32 +10044,32 @@ bool PointType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete linearUnit;
-      linearUnit = 0;
-      delete significantFigures;
-      significantFigures = 0;
-      delete validity;
-      validity = 0;
-      delete xDecimalPlaces;
-      xDecimalPlaces = 0;
-      delete xSignificantFigures;
-      xSignificantFigures = 0;
-      delete xValidity;
-      xValidity = 0;
-      delete yDecimalPlaces;
-      yDecimalPlaces = 0;
-      delete ySignificantFigures;
-      ySignificantFigures = 0;
-      delete yValidity;
-      yValidity = 0;
-      delete zDecimalPlaces;
-      zDecimalPlaces = 0;
-      delete zSignificantFigures;
-      zSignificantFigures = 0;
-      delete zValidity;
-      zValidity = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->linearUnit;
+      this->linearUnit = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
+      delete this->validity;
+      this->validity = 0;
+      delete this->xDecimalPlaces;
+      this->xDecimalPlaces = 0;
+      delete this->xSignificantFigures;
+      this->xSignificantFigures = 0;
+      delete this->xValidity;
+      this->xValidity = 0;
+      delete this->yDecimalPlaces;
+      this->yDecimalPlaces = 0;
+      delete this->ySignificantFigures;
+      this->ySignificantFigures = 0;
+      delete this->yValidity;
+      this->yValidity = 0;
+      delete this->zDecimalPlaces;
+      this->zDecimalPlaces = 0;
+      delete this->zSignificantFigures;
+      this->zSignificantFigures = 0;
+      delete this->zValidity;
+      this->zValidity = 0;
     }
   return returnValue;
 }
@@ -10391,7 +10475,7 @@ bool PolyLineType::badAttributes(
       if (decl->name == "count")
         {
           NaturalType * countVal;
-          if (count)
+          if (this->count)
             {
               fprintf(stderr, "two values for count in PolyLineType\n");
               returnValue = true;
@@ -10407,12 +10491,12 @@ bool PolyLineType::badAttributes(
               break;
             }
           else
-            count = countVal;
+            this->count = countVal;
         }
       else if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in PolyLineType\n");
               returnValue = true;
@@ -10428,12 +10512,12 @@ bool PolyLineType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "linearUnit")
         {
           XmlToken * linearUnitVal;
-          if (linearUnit)
+          if (this->linearUnit)
             {
               fprintf(stderr, "two values for linearUnit in PolyLineType\n");
               returnValue = true;
@@ -10449,12 +10533,12 @@ bool PolyLineType::badAttributes(
               break;
             }
           else
-            linearUnit = linearUnitVal;
+            this->linearUnit = linearUnitVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in PolyLineType\n");
               returnValue = true;
@@ -10470,12 +10554,12 @@ bool PolyLineType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else if (decl->name == "validity")
         {
           ValidityEnumType * validityVal;
-          if (validity)
+          if (this->validity)
             {
               fprintf(stderr, "two values for validity in PolyLineType\n");
               returnValue = true;
@@ -10491,12 +10575,12 @@ bool PolyLineType::badAttributes(
               break;
             }
           else
-            validity = validityVal;
+            this->validity = validityVal;
         }
       else if (decl->name == "xDecimalPlaces")
         {
           XmlNonNegativeInteger * xDecimalPlacesVal;
-          if (xDecimalPlaces)
+          if (this->xDecimalPlaces)
             {
               fprintf(stderr, "two values for xDecimalPlaces in PolyLineType\n");
               returnValue = true;
@@ -10512,12 +10596,12 @@ bool PolyLineType::badAttributes(
               break;
             }
           else
-            xDecimalPlaces = xDecimalPlacesVal;
+            this->xDecimalPlaces = xDecimalPlacesVal;
         }
       else if (decl->name == "xSignificantFigures")
         {
           XmlNonNegativeInteger * xSignificantFiguresVal;
-          if (xSignificantFigures)
+          if (this->xSignificantFigures)
             {
               fprintf(stderr, "two values for xSignificantFigures in PolyLineType\n");
               returnValue = true;
@@ -10533,12 +10617,12 @@ bool PolyLineType::badAttributes(
               break;
             }
           else
-            xSignificantFigures = xSignificantFiguresVal;
+            this->xSignificantFigures = xSignificantFiguresVal;
         }
       else if (decl->name == "xValidity")
         {
           ValidityEnumType * xValidityVal;
-          if (xValidity)
+          if (this->xValidity)
             {
               fprintf(stderr, "two values for xValidity in PolyLineType\n");
               returnValue = true;
@@ -10554,12 +10638,12 @@ bool PolyLineType::badAttributes(
               break;
             }
           else
-            xValidity = xValidityVal;
+            this->xValidity = xValidityVal;
         }
       else if (decl->name == "yDecimalPlaces")
         {
           XmlNonNegativeInteger * yDecimalPlacesVal;
-          if (yDecimalPlaces)
+          if (this->yDecimalPlaces)
             {
               fprintf(stderr, "two values for yDecimalPlaces in PolyLineType\n");
               returnValue = true;
@@ -10575,12 +10659,12 @@ bool PolyLineType::badAttributes(
               break;
             }
           else
-            yDecimalPlaces = yDecimalPlacesVal;
+            this->yDecimalPlaces = yDecimalPlacesVal;
         }
       else if (decl->name == "ySignificantFigures")
         {
           XmlNonNegativeInteger * ySignificantFiguresVal;
-          if (ySignificantFigures)
+          if (this->ySignificantFigures)
             {
               fprintf(stderr, "two values for ySignificantFigures in PolyLineType\n");
               returnValue = true;
@@ -10596,12 +10680,12 @@ bool PolyLineType::badAttributes(
               break;
             }
           else
-            ySignificantFigures = ySignificantFiguresVal;
+            this->ySignificantFigures = ySignificantFiguresVal;
         }
       else if (decl->name == "yValidity")
         {
           ValidityEnumType * yValidityVal;
-          if (yValidity)
+          if (this->yValidity)
             {
               fprintf(stderr, "two values for yValidity in PolyLineType\n");
               returnValue = true;
@@ -10617,12 +10701,12 @@ bool PolyLineType::badAttributes(
               break;
             }
           else
-            yValidity = yValidityVal;
+            this->yValidity = yValidityVal;
         }
       else if (decl->name == "zDecimalPlaces")
         {
           XmlNonNegativeInteger * zDecimalPlacesVal;
-          if (zDecimalPlaces)
+          if (this->zDecimalPlaces)
             {
               fprintf(stderr, "two values for zDecimalPlaces in PolyLineType\n");
               returnValue = true;
@@ -10638,12 +10722,12 @@ bool PolyLineType::badAttributes(
               break;
             }
           else
-            zDecimalPlaces = zDecimalPlacesVal;
+            this->zDecimalPlaces = zDecimalPlacesVal;
         }
       else if (decl->name == "zSignificantFigures")
         {
           XmlNonNegativeInteger * zSignificantFiguresVal;
-          if (zSignificantFigures)
+          if (this->zSignificantFigures)
             {
               fprintf(stderr, "two values for zSignificantFigures in PolyLineType\n");
               returnValue = true;
@@ -10659,12 +10743,12 @@ bool PolyLineType::badAttributes(
               break;
             }
           else
-            zSignificantFigures = zSignificantFiguresVal;
+            this->zSignificantFigures = zSignificantFiguresVal;
         }
       else if (decl->name == "zValidity")
         {
           ValidityEnumType * zValidityVal;
-          if (zValidity)
+          if (this->zValidity)
             {
               fprintf(stderr, "two values for zValidity in PolyLineType\n");
               returnValue = true;
@@ -10680,7 +10764,7 @@ bool PolyLineType::badAttributes(
               break;
             }
           else
-            zValidity = zValidityVal;
+            this->zValidity = zValidityVal;
         }
       else
         {
@@ -10689,7 +10773,7 @@ bool PolyLineType::badAttributes(
           break;
         }
     }
-  if (count == 0)
+  if (this->count == 0)
     {
       fprintf(stderr, "required attribute \"count\" missing in PolyLineType\n");
       returnValue = true;
@@ -10701,34 +10785,34 @@ bool PolyLineType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete count;
-      count = 0;
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete linearUnit;
-      linearUnit = 0;
-      delete significantFigures;
-      significantFigures = 0;
-      delete validity;
-      validity = 0;
-      delete xDecimalPlaces;
-      xDecimalPlaces = 0;
-      delete xSignificantFigures;
-      xSignificantFigures = 0;
-      delete xValidity;
-      xValidity = 0;
-      delete yDecimalPlaces;
-      yDecimalPlaces = 0;
-      delete ySignificantFigures;
-      ySignificantFigures = 0;
-      delete yValidity;
-      yValidity = 0;
-      delete zDecimalPlaces;
-      zDecimalPlaces = 0;
-      delete zSignificantFigures;
-      zSignificantFigures = 0;
-      delete zValidity;
-      zValidity = 0;
+      delete this->count;
+      this->count = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->linearUnit;
+      this->linearUnit = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
+      delete this->validity;
+      this->validity = 0;
+      delete this->xDecimalPlaces;
+      this->xDecimalPlaces = 0;
+      delete this->xSignificantFigures;
+      this->xSignificantFigures = 0;
+      delete this->xValidity;
+      this->xValidity = 0;
+      delete this->yDecimalPlaces;
+      this->yDecimalPlaces = 0;
+      delete this->ySignificantFigures;
+      this->ySignificantFigures = 0;
+      delete this->yValidity;
+      this->yValidity = 0;
+      delete this->zDecimalPlaces;
+      this->zDecimalPlaces = 0;
+      delete this->zSignificantFigures;
+      this->zSignificantFigures = 0;
+      delete this->zValidity;
+      this->zValidity = 0;
     }
   return returnValue;
 }
@@ -10847,7 +10931,15 @@ QIFFeaturePairTypeLisd::~QIFFeaturePairTypeLisd()
   #endif
 }
 
-void QIFFeaturePairTypeLisd::printSelf(FILE * outFile){}
+void QIFFeaturePairTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<QIFFeaturePairType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -11070,7 +11162,7 @@ bool QIFReferenceActiveType::badAttributes(
       if (decl->name == "active")
         {
           XmlBoolean * activeVal;
-          if (active)
+          if (this->active)
             {
               fprintf(stderr, "two values for active in QIFReferenceActiveType\n");
               returnValue = true;
@@ -11086,12 +11178,12 @@ bool QIFReferenceActiveType::badAttributes(
               break;
             }
           else
-            active = activeVal;
+            this->active = activeVal;
         }
       else if (decl->name == "xId")
         {
           QIFReferenceSimpleType * xIdVal;
-          if (xId)
+          if (this->xId)
             {
               fprintf(stderr, "two values for xId in QIFReferenceActiveType\n");
               returnValue = true;
@@ -11107,7 +11199,7 @@ bool QIFReferenceActiveType::badAttributes(
               break;
             }
           else
-            xId = xIdVal;
+            this->xId = xIdVal;
         }
       else
         {
@@ -11123,10 +11215,10 @@ bool QIFReferenceActiveType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete active;
-      active = 0;
-      delete xId;
-      xId = 0;
+      delete this->active;
+      this->active = 0;
+      delete this->xId;
+      this->xId = 0;
     }
   return returnValue;
 }
@@ -11162,7 +11254,15 @@ QIFReferenceActiveTypeLisd::~QIFReferenceActiveTypeLisd()
   #endif
 }
 
-void QIFReferenceActiveTypeLisd::printSelf(FILE * outFile){}
+void QIFReferenceActiveTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<QIFReferenceActiveType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -11349,7 +11449,7 @@ bool QIFReferenceFullType::badAttributes(
       if (decl->name == "asmPathId")
         {
           QIFReferenceSimpleType * asmPathIdVal;
-          if (asmPathId)
+          if (this->asmPathId)
             {
               fprintf(stderr, "two values for asmPathId in QIFReferenceFullType\n");
               returnValue = true;
@@ -11365,12 +11465,12 @@ bool QIFReferenceFullType::badAttributes(
               break;
             }
           else
-            asmPathId = asmPathIdVal;
+            this->asmPathId = asmPathIdVal;
         }
       else if (decl->name == "asmPathXId")
         {
           QIFReferenceSimpleType * asmPathXIdVal;
-          if (asmPathXId)
+          if (this->asmPathXId)
             {
               fprintf(stderr, "two values for asmPathXId in QIFReferenceFullType\n");
               returnValue = true;
@@ -11386,12 +11486,12 @@ bool QIFReferenceFullType::badAttributes(
               break;
             }
           else
-            asmPathXId = asmPathXIdVal;
+            this->asmPathXId = asmPathXIdVal;
         }
       else if (decl->name == "xId")
         {
           QIFReferenceSimpleType * xIdVal;
-          if (xId)
+          if (this->xId)
             {
               fprintf(stderr, "two values for xId in QIFReferenceFullType\n");
               returnValue = true;
@@ -11407,7 +11507,7 @@ bool QIFReferenceFullType::badAttributes(
               break;
             }
           else
-            xId = xIdVal;
+            this->xId = xIdVal;
         }
       else
         {
@@ -11423,12 +11523,12 @@ bool QIFReferenceFullType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete asmPathId;
-      asmPathId = 0;
-      delete asmPathXId;
-      asmPathXId = 0;
-      delete xId;
-      xId = 0;
+      delete this->asmPathId;
+      this->asmPathId = 0;
+      delete this->asmPathXId;
+      this->asmPathXId = 0;
+      delete this->xId;
+      this->xId = 0;
     }
   return returnValue;
 }
@@ -11470,7 +11570,15 @@ QIFReferenceFullTypeLisd::~QIFReferenceFullTypeLisd()
   #endif
 }
 
-void QIFReferenceFullTypeLisd::printSelf(FILE * outFile){}
+void QIFReferenceFullTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<QIFReferenceFullType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -11616,7 +11724,7 @@ bool QIFReferenceType::badAttributes(
       if (decl->name == "xId")
         {
           QIFReferenceSimpleType * xIdVal;
-          if (xId)
+          if (this->xId)
             {
               fprintf(stderr, "two values for xId in QIFReferenceType\n");
               returnValue = true;
@@ -11632,7 +11740,7 @@ bool QIFReferenceType::badAttributes(
               break;
             }
           else
-            xId = xIdVal;
+            this->xId = xIdVal;
         }
       else
         {
@@ -11648,8 +11756,8 @@ bool QIFReferenceType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete xId;
-      xId = 0;
+      delete this->xId;
+      this->xId = 0;
     }
   return returnValue;
 }
@@ -11685,7 +11793,15 @@ QIFReferenceTypeLisd::~QIFReferenceTypeLisd()
   #endif
 }
 
-void QIFReferenceTypeLisd::printSelf(FILE * outFile){}
+void QIFReferenceTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<QIFReferenceType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -11778,7 +11894,15 @@ QPIdFullReferenceTypeLisd::~QPIdFullReferenceTypeLisd()
   #endif
 }
 
-void QPIdFullReferenceTypeLisd::printSelf(FILE * outFile){}
+void QPIdFullReferenceTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<QPIdFullReferenceType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -12400,7 +12524,7 @@ bool TransformMatrixType::badAttributes(
       if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in TransformMatrixType\n");
               returnValue = true;
@@ -12416,12 +12540,12 @@ bool TransformMatrixType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "linearUnit")
         {
           XmlToken * linearUnitVal;
-          if (linearUnit)
+          if (this->linearUnit)
             {
               fprintf(stderr, "two values for linearUnit in TransformMatrixType\n");
               returnValue = true;
@@ -12437,12 +12561,12 @@ bool TransformMatrixType::badAttributes(
               break;
             }
           else
-            linearUnit = linearUnitVal;
+            this->linearUnit = linearUnitVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in TransformMatrixType\n");
               returnValue = true;
@@ -12458,12 +12582,12 @@ bool TransformMatrixType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else if (decl->name == "validity")
         {
           ValidityEnumType * validityVal;
-          if (validity)
+          if (this->validity)
             {
               fprintf(stderr, "two values for validity in TransformMatrixType\n");
               returnValue = true;
@@ -12479,12 +12603,12 @@ bool TransformMatrixType::badAttributes(
               break;
             }
           else
-            validity = validityVal;
+            this->validity = validityVal;
         }
       else if (decl->name == "xDecimalPlaces")
         {
           XmlNonNegativeInteger * xDecimalPlacesVal;
-          if (xDecimalPlaces)
+          if (this->xDecimalPlaces)
             {
               fprintf(stderr, "two values for xDecimalPlaces in TransformMatrixType\n");
               returnValue = true;
@@ -12500,12 +12624,12 @@ bool TransformMatrixType::badAttributes(
               break;
             }
           else
-            xDecimalPlaces = xDecimalPlacesVal;
+            this->xDecimalPlaces = xDecimalPlacesVal;
         }
       else if (decl->name == "xSignificantFigures")
         {
           XmlNonNegativeInteger * xSignificantFiguresVal;
-          if (xSignificantFigures)
+          if (this->xSignificantFigures)
             {
               fprintf(stderr, "two values for xSignificantFigures in TransformMatrixType\n");
               returnValue = true;
@@ -12521,12 +12645,12 @@ bool TransformMatrixType::badAttributes(
               break;
             }
           else
-            xSignificantFigures = xSignificantFiguresVal;
+            this->xSignificantFigures = xSignificantFiguresVal;
         }
       else if (decl->name == "xValidity")
         {
           ValidityEnumType * xValidityVal;
-          if (xValidity)
+          if (this->xValidity)
             {
               fprintf(stderr, "two values for xValidity in TransformMatrixType\n");
               returnValue = true;
@@ -12542,12 +12666,12 @@ bool TransformMatrixType::badAttributes(
               break;
             }
           else
-            xValidity = xValidityVal;
+            this->xValidity = xValidityVal;
         }
       else if (decl->name == "yDecimalPlaces")
         {
           XmlNonNegativeInteger * yDecimalPlacesVal;
-          if (yDecimalPlaces)
+          if (this->yDecimalPlaces)
             {
               fprintf(stderr, "two values for yDecimalPlaces in TransformMatrixType\n");
               returnValue = true;
@@ -12563,12 +12687,12 @@ bool TransformMatrixType::badAttributes(
               break;
             }
           else
-            yDecimalPlaces = yDecimalPlacesVal;
+            this->yDecimalPlaces = yDecimalPlacesVal;
         }
       else if (decl->name == "ySignificantFigures")
         {
           XmlNonNegativeInteger * ySignificantFiguresVal;
-          if (ySignificantFigures)
+          if (this->ySignificantFigures)
             {
               fprintf(stderr, "two values for ySignificantFigures in TransformMatrixType\n");
               returnValue = true;
@@ -12584,12 +12708,12 @@ bool TransformMatrixType::badAttributes(
               break;
             }
           else
-            ySignificantFigures = ySignificantFiguresVal;
+            this->ySignificantFigures = ySignificantFiguresVal;
         }
       else if (decl->name == "yValidity")
         {
           ValidityEnumType * yValidityVal;
-          if (yValidity)
+          if (this->yValidity)
             {
               fprintf(stderr, "two values for yValidity in TransformMatrixType\n");
               returnValue = true;
@@ -12605,12 +12729,12 @@ bool TransformMatrixType::badAttributes(
               break;
             }
           else
-            yValidity = yValidityVal;
+            this->yValidity = yValidityVal;
         }
       else if (decl->name == "zDecimalPlaces")
         {
           XmlNonNegativeInteger * zDecimalPlacesVal;
-          if (zDecimalPlaces)
+          if (this->zDecimalPlaces)
             {
               fprintf(stderr, "two values for zDecimalPlaces in TransformMatrixType\n");
               returnValue = true;
@@ -12626,12 +12750,12 @@ bool TransformMatrixType::badAttributes(
               break;
             }
           else
-            zDecimalPlaces = zDecimalPlacesVal;
+            this->zDecimalPlaces = zDecimalPlacesVal;
         }
       else if (decl->name == "zSignificantFigures")
         {
           XmlNonNegativeInteger * zSignificantFiguresVal;
-          if (zSignificantFigures)
+          if (this->zSignificantFigures)
             {
               fprintf(stderr, "two values for zSignificantFigures in TransformMatrixType\n");
               returnValue = true;
@@ -12647,12 +12771,12 @@ bool TransformMatrixType::badAttributes(
               break;
             }
           else
-            zSignificantFigures = zSignificantFiguresVal;
+            this->zSignificantFigures = zSignificantFiguresVal;
         }
       else if (decl->name == "zValidity")
         {
           ValidityEnumType * zValidityVal;
-          if (zValidity)
+          if (this->zValidity)
             {
               fprintf(stderr, "two values for zValidity in TransformMatrixType\n");
               returnValue = true;
@@ -12668,7 +12792,7 @@ bool TransformMatrixType::badAttributes(
               break;
             }
           else
-            zValidity = zValidityVal;
+            this->zValidity = zValidityVal;
         }
       else
         {
@@ -12684,32 +12808,32 @@ bool TransformMatrixType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete linearUnit;
-      linearUnit = 0;
-      delete significantFigures;
-      significantFigures = 0;
-      delete validity;
-      validity = 0;
-      delete xDecimalPlaces;
-      xDecimalPlaces = 0;
-      delete xSignificantFigures;
-      xSignificantFigures = 0;
-      delete xValidity;
-      xValidity = 0;
-      delete yDecimalPlaces;
-      yDecimalPlaces = 0;
-      delete ySignificantFigures;
-      ySignificantFigures = 0;
-      delete yValidity;
-      yValidity = 0;
-      delete zDecimalPlaces;
-      zDecimalPlaces = 0;
-      delete zSignificantFigures;
-      zSignificantFigures = 0;
-      delete zValidity;
-      zValidity = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->linearUnit;
+      this->linearUnit = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
+      delete this->validity;
+      this->validity = 0;
+      delete this->xDecimalPlaces;
+      this->xDecimalPlaces = 0;
+      delete this->xSignificantFigures;
+      this->xSignificantFigures = 0;
+      delete this->xValidity;
+      this->xValidity = 0;
+      delete this->yDecimalPlaces;
+      this->yDecimalPlaces = 0;
+      delete this->ySignificantFigures;
+      this->ySignificantFigures = 0;
+      delete this->yValidity;
+      this->yValidity = 0;
+      delete this->zDecimalPlaces;
+      this->zDecimalPlaces = 0;
+      delete this->zSignificantFigures;
+      this->zSignificantFigures = 0;
+      delete this->zValidity;
+      this->zValidity = 0;
     }
   return returnValue;
 }
@@ -13343,7 +13467,7 @@ bool UnitVectorType::badAttributes(
       if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in UnitVectorType\n");
               returnValue = true;
@@ -13359,12 +13483,12 @@ bool UnitVectorType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "linearUnit")
         {
           XmlToken * linearUnitVal;
-          if (linearUnit)
+          if (this->linearUnit)
             {
               fprintf(stderr, "two values for linearUnit in UnitVectorType\n");
               returnValue = true;
@@ -13380,12 +13504,12 @@ bool UnitVectorType::badAttributes(
               break;
             }
           else
-            linearUnit = linearUnitVal;
+            this->linearUnit = linearUnitVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in UnitVectorType\n");
               returnValue = true;
@@ -13401,12 +13525,12 @@ bool UnitVectorType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else if (decl->name == "validity")
         {
           ValidityEnumType * validityVal;
-          if (validity)
+          if (this->validity)
             {
               fprintf(stderr, "two values for validity in UnitVectorType\n");
               returnValue = true;
@@ -13422,12 +13546,12 @@ bool UnitVectorType::badAttributes(
               break;
             }
           else
-            validity = validityVal;
+            this->validity = validityVal;
         }
       else if (decl->name == "xDecimalPlaces")
         {
           XmlNonNegativeInteger * xDecimalPlacesVal;
-          if (xDecimalPlaces)
+          if (this->xDecimalPlaces)
             {
               fprintf(stderr, "two values for xDecimalPlaces in UnitVectorType\n");
               returnValue = true;
@@ -13443,12 +13567,12 @@ bool UnitVectorType::badAttributes(
               break;
             }
           else
-            xDecimalPlaces = xDecimalPlacesVal;
+            this->xDecimalPlaces = xDecimalPlacesVal;
         }
       else if (decl->name == "xSignificantFigures")
         {
           XmlNonNegativeInteger * xSignificantFiguresVal;
-          if (xSignificantFigures)
+          if (this->xSignificantFigures)
             {
               fprintf(stderr, "two values for xSignificantFigures in UnitVectorType\n");
               returnValue = true;
@@ -13464,12 +13588,12 @@ bool UnitVectorType::badAttributes(
               break;
             }
           else
-            xSignificantFigures = xSignificantFiguresVal;
+            this->xSignificantFigures = xSignificantFiguresVal;
         }
       else if (decl->name == "xValidity")
         {
           ValidityEnumType * xValidityVal;
-          if (xValidity)
+          if (this->xValidity)
             {
               fprintf(stderr, "two values for xValidity in UnitVectorType\n");
               returnValue = true;
@@ -13485,12 +13609,12 @@ bool UnitVectorType::badAttributes(
               break;
             }
           else
-            xValidity = xValidityVal;
+            this->xValidity = xValidityVal;
         }
       else if (decl->name == "yDecimalPlaces")
         {
           XmlNonNegativeInteger * yDecimalPlacesVal;
-          if (yDecimalPlaces)
+          if (this->yDecimalPlaces)
             {
               fprintf(stderr, "two values for yDecimalPlaces in UnitVectorType\n");
               returnValue = true;
@@ -13506,12 +13630,12 @@ bool UnitVectorType::badAttributes(
               break;
             }
           else
-            yDecimalPlaces = yDecimalPlacesVal;
+            this->yDecimalPlaces = yDecimalPlacesVal;
         }
       else if (decl->name == "ySignificantFigures")
         {
           XmlNonNegativeInteger * ySignificantFiguresVal;
-          if (ySignificantFigures)
+          if (this->ySignificantFigures)
             {
               fprintf(stderr, "two values for ySignificantFigures in UnitVectorType\n");
               returnValue = true;
@@ -13527,12 +13651,12 @@ bool UnitVectorType::badAttributes(
               break;
             }
           else
-            ySignificantFigures = ySignificantFiguresVal;
+            this->ySignificantFigures = ySignificantFiguresVal;
         }
       else if (decl->name == "yValidity")
         {
           ValidityEnumType * yValidityVal;
-          if (yValidity)
+          if (this->yValidity)
             {
               fprintf(stderr, "two values for yValidity in UnitVectorType\n");
               returnValue = true;
@@ -13548,12 +13672,12 @@ bool UnitVectorType::badAttributes(
               break;
             }
           else
-            yValidity = yValidityVal;
+            this->yValidity = yValidityVal;
         }
       else if (decl->name == "zDecimalPlaces")
         {
           XmlNonNegativeInteger * zDecimalPlacesVal;
-          if (zDecimalPlaces)
+          if (this->zDecimalPlaces)
             {
               fprintf(stderr, "two values for zDecimalPlaces in UnitVectorType\n");
               returnValue = true;
@@ -13569,12 +13693,12 @@ bool UnitVectorType::badAttributes(
               break;
             }
           else
-            zDecimalPlaces = zDecimalPlacesVal;
+            this->zDecimalPlaces = zDecimalPlacesVal;
         }
       else if (decl->name == "zSignificantFigures")
         {
           XmlNonNegativeInteger * zSignificantFiguresVal;
-          if (zSignificantFigures)
+          if (this->zSignificantFigures)
             {
               fprintf(stderr, "two values for zSignificantFigures in UnitVectorType\n");
               returnValue = true;
@@ -13590,12 +13714,12 @@ bool UnitVectorType::badAttributes(
               break;
             }
           else
-            zSignificantFigures = zSignificantFiguresVal;
+            this->zSignificantFigures = zSignificantFiguresVal;
         }
       else if (decl->name == "zValidity")
         {
           ValidityEnumType * zValidityVal;
-          if (zValidity)
+          if (this->zValidity)
             {
               fprintf(stderr, "two values for zValidity in UnitVectorType\n");
               returnValue = true;
@@ -13611,7 +13735,7 @@ bool UnitVectorType::badAttributes(
               break;
             }
           else
-            zValidity = zValidityVal;
+            this->zValidity = zValidityVal;
         }
       else
         {
@@ -13627,32 +13751,32 @@ bool UnitVectorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete linearUnit;
-      linearUnit = 0;
-      delete significantFigures;
-      significantFigures = 0;
-      delete validity;
-      validity = 0;
-      delete xDecimalPlaces;
-      xDecimalPlaces = 0;
-      delete xSignificantFigures;
-      xSignificantFigures = 0;
-      delete xValidity;
-      xValidity = 0;
-      delete yDecimalPlaces;
-      yDecimalPlaces = 0;
-      delete ySignificantFigures;
-      ySignificantFigures = 0;
-      delete yValidity;
-      yValidity = 0;
-      delete zDecimalPlaces;
-      zDecimalPlaces = 0;
-      delete zSignificantFigures;
-      zSignificantFigures = 0;
-      delete zValidity;
-      zValidity = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->linearUnit;
+      this->linearUnit = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
+      delete this->validity;
+      this->validity = 0;
+      delete this->xDecimalPlaces;
+      this->xDecimalPlaces = 0;
+      delete this->xSignificantFigures;
+      this->xSignificantFigures = 0;
+      delete this->xValidity;
+      this->xValidity = 0;
+      delete this->yDecimalPlaces;
+      this->yDecimalPlaces = 0;
+      delete this->ySignificantFigures;
+      this->ySignificantFigures = 0;
+      delete this->yValidity;
+      this->yValidity = 0;
+      delete this->zDecimalPlaces;
+      this->zDecimalPlaces = 0;
+      delete this->zSignificantFigures;
+      this->zSignificantFigures = 0;
+      delete this->zValidity;
+      this->zValidity = 0;
     }
   return returnValue;
 }
@@ -13741,52 +13865,37 @@ void UnitVectorType::setzValidity(ValidityEnumType * zValidityIn)
 
 */
 
-UserDataXMLType::UserDataXMLType() :
-  XmlString()
+UserDataXMLType::UserDataXMLType()
 {
+  XmlAnyElement = 0;
 }
 
 UserDataXMLType::UserDataXMLType(
- const char * valIn) :
-  XmlString(
-    valIn)
-{}
-
-UserDataXMLType::~UserDataXMLType() {}
-
-bool UserDataXMLType::UserDataXMLTypeIsBad()
+ XmlAnyString * XmlAnyElementIn)
 {
-  return (false);
+  XmlAnyElement = XmlAnyElementIn;
 }
 
-void UserDataXMLType::printName(FILE * outFile)
+UserDataXMLType::~UserDataXMLType()
 {
-  fprintf(outFile, "UserDataXMLType");
+  #ifndef NODESTRUCT
+  delete XmlAnyElement;
+  #endif
 }
 
 void UserDataXMLType::printSelf(FILE * outFile)
 {
-  if (UserDataXMLTypeIsBad())
-    {
-      fprintf(stderr, "bad UserDataXMLType value, ");
-      XmlString::printBad(stderr);
-      fprintf(stderr, " exiting\n");
-      exit(1);
-    }
-  XmlString::printSelf(outFile);
+  fprintf(outFile, ">\n");
+  doSpaces(+INDENT, outFile);
+  XmlAnyElement->printSelf(outFile);
+  doSpaces(-INDENT, outFile);
 }
 
-void UserDataXMLType::oPrintSelf(FILE * outFile)
-{
-  if (UserDataXMLTypeIsBad())
-    {
-      fprintf(stderr, "bad UserDataXMLType value, ");
-      XmlString::printBad(stderr);
-      fprintf(stderr, " exiting\n");
-      exit(1);
-    }
-  XmlString::oPrintSelf(outFile);
-}
+XmlAnyString * UserDataXMLType::getXmlAnyElement()
+{return XmlAnyElement;}
+
+void UserDataXMLType::setXmlAnyElement(XmlAnyString * XmlAnyElementIn)
+{XmlAnyElement = XmlAnyElementIn;}
 
 /* ***************************************************************** */
 
@@ -13796,23 +13905,23 @@ void UserDataXMLType::oPrintSelf(FILE * outFile)
 
 ValidationPointsType::ValidationPointsType()
 {
+  ValidationPoint_1003 = 0;
   ValidationPoint_1004 = 0;
-  ValidationPoint_1005 = 0;
 }
 
 ValidationPointsType::ValidationPointsType(
- ValidationPoint_1004_Type * ValidationPoint_1004In,
- ValidationPoint_1005_Type * ValidationPoint_1005In)
+ ValidationPoint_1003_Type * ValidationPoint_1003In,
+ ValidationPoint_1004_Type * ValidationPoint_1004In)
 {
+  ValidationPoint_1003 = ValidationPoint_1003In;
   ValidationPoint_1004 = ValidationPoint_1004In;
-  ValidationPoint_1005 = ValidationPoint_1005In;
 }
 
 ValidationPointsType::~ValidationPointsType()
 {
   #ifndef NODESTRUCT
+  delete ValidationPoint_1003;
   delete ValidationPoint_1004;
-  delete ValidationPoint_1005;
   #endif
 }
 
@@ -13820,25 +13929,25 @@ void ValidationPointsType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  ValidationPoint_1004->printSelf(outFile);
-  if (ValidationPoint_1005)
+  ValidationPoint_1003->printSelf(outFile);
+  if (ValidationPoint_1004)
     {
-      ValidationPoint_1005->printSelf(outFile);
+  ValidationPoint_1004->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
+
+ValidationPoint_1003_Type * ValidationPointsType::getValidationPoint_1003()
+{return ValidationPoint_1003;}
+
+void ValidationPointsType::setValidationPoint_1003(ValidationPoint_1003_Type * ValidationPoint_1003In)
+{ValidationPoint_1003 = ValidationPoint_1003In;}
 
 ValidationPoint_1004_Type * ValidationPointsType::getValidationPoint_1004()
 {return ValidationPoint_1004;}
 
 void ValidationPointsType::setValidationPoint_1004(ValidationPoint_1004_Type * ValidationPoint_1004In)
 {ValidationPoint_1004 = ValidationPoint_1004In;}
-
-ValidationPoint_1005_Type * ValidationPointsType::getValidationPoint_1005()
-{return ValidationPoint_1005;}
-
-void ValidationPointsType::setValidationPoint_1005(ValidationPoint_1005_Type * ValidationPoint_1005In)
-{ValidationPoint_1005 = ValidationPoint_1005In;}
 
 /* ***************************************************************** */
 
@@ -14322,7 +14431,7 @@ bool VectorType::badAttributes(
       if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in VectorType\n");
               returnValue = true;
@@ -14338,12 +14447,12 @@ bool VectorType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "linearUnit")
         {
           XmlToken * linearUnitVal;
-          if (linearUnit)
+          if (this->linearUnit)
             {
               fprintf(stderr, "two values for linearUnit in VectorType\n");
               returnValue = true;
@@ -14359,12 +14468,12 @@ bool VectorType::badAttributes(
               break;
             }
           else
-            linearUnit = linearUnitVal;
+            this->linearUnit = linearUnitVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in VectorType\n");
               returnValue = true;
@@ -14380,12 +14489,12 @@ bool VectorType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else if (decl->name == "validity")
         {
           ValidityEnumType * validityVal;
-          if (validity)
+          if (this->validity)
             {
               fprintf(stderr, "two values for validity in VectorType\n");
               returnValue = true;
@@ -14401,12 +14510,12 @@ bool VectorType::badAttributes(
               break;
             }
           else
-            validity = validityVal;
+            this->validity = validityVal;
         }
       else if (decl->name == "xDecimalPlaces")
         {
           XmlNonNegativeInteger * xDecimalPlacesVal;
-          if (xDecimalPlaces)
+          if (this->xDecimalPlaces)
             {
               fprintf(stderr, "two values for xDecimalPlaces in VectorType\n");
               returnValue = true;
@@ -14422,12 +14531,12 @@ bool VectorType::badAttributes(
               break;
             }
           else
-            xDecimalPlaces = xDecimalPlacesVal;
+            this->xDecimalPlaces = xDecimalPlacesVal;
         }
       else if (decl->name == "xSignificantFigures")
         {
           XmlNonNegativeInteger * xSignificantFiguresVal;
-          if (xSignificantFigures)
+          if (this->xSignificantFigures)
             {
               fprintf(stderr, "two values for xSignificantFigures in VectorType\n");
               returnValue = true;
@@ -14443,12 +14552,12 @@ bool VectorType::badAttributes(
               break;
             }
           else
-            xSignificantFigures = xSignificantFiguresVal;
+            this->xSignificantFigures = xSignificantFiguresVal;
         }
       else if (decl->name == "xValidity")
         {
           ValidityEnumType * xValidityVal;
-          if (xValidity)
+          if (this->xValidity)
             {
               fprintf(stderr, "two values for xValidity in VectorType\n");
               returnValue = true;
@@ -14464,12 +14573,12 @@ bool VectorType::badAttributes(
               break;
             }
           else
-            xValidity = xValidityVal;
+            this->xValidity = xValidityVal;
         }
       else if (decl->name == "yDecimalPlaces")
         {
           XmlNonNegativeInteger * yDecimalPlacesVal;
-          if (yDecimalPlaces)
+          if (this->yDecimalPlaces)
             {
               fprintf(stderr, "two values for yDecimalPlaces in VectorType\n");
               returnValue = true;
@@ -14485,12 +14594,12 @@ bool VectorType::badAttributes(
               break;
             }
           else
-            yDecimalPlaces = yDecimalPlacesVal;
+            this->yDecimalPlaces = yDecimalPlacesVal;
         }
       else if (decl->name == "ySignificantFigures")
         {
           XmlNonNegativeInteger * ySignificantFiguresVal;
-          if (ySignificantFigures)
+          if (this->ySignificantFigures)
             {
               fprintf(stderr, "two values for ySignificantFigures in VectorType\n");
               returnValue = true;
@@ -14506,12 +14615,12 @@ bool VectorType::badAttributes(
               break;
             }
           else
-            ySignificantFigures = ySignificantFiguresVal;
+            this->ySignificantFigures = ySignificantFiguresVal;
         }
       else if (decl->name == "yValidity")
         {
           ValidityEnumType * yValidityVal;
-          if (yValidity)
+          if (this->yValidity)
             {
               fprintf(stderr, "two values for yValidity in VectorType\n");
               returnValue = true;
@@ -14527,12 +14636,12 @@ bool VectorType::badAttributes(
               break;
             }
           else
-            yValidity = yValidityVal;
+            this->yValidity = yValidityVal;
         }
       else if (decl->name == "zDecimalPlaces")
         {
           XmlNonNegativeInteger * zDecimalPlacesVal;
-          if (zDecimalPlaces)
+          if (this->zDecimalPlaces)
             {
               fprintf(stderr, "two values for zDecimalPlaces in VectorType\n");
               returnValue = true;
@@ -14548,12 +14657,12 @@ bool VectorType::badAttributes(
               break;
             }
           else
-            zDecimalPlaces = zDecimalPlacesVal;
+            this->zDecimalPlaces = zDecimalPlacesVal;
         }
       else if (decl->name == "zSignificantFigures")
         {
           XmlNonNegativeInteger * zSignificantFiguresVal;
-          if (zSignificantFigures)
+          if (this->zSignificantFigures)
             {
               fprintf(stderr, "two values for zSignificantFigures in VectorType\n");
               returnValue = true;
@@ -14569,12 +14678,12 @@ bool VectorType::badAttributes(
               break;
             }
           else
-            zSignificantFigures = zSignificantFiguresVal;
+            this->zSignificantFigures = zSignificantFiguresVal;
         }
       else if (decl->name == "zValidity")
         {
           ValidityEnumType * zValidityVal;
-          if (zValidity)
+          if (this->zValidity)
             {
               fprintf(stderr, "two values for zValidity in VectorType\n");
               returnValue = true;
@@ -14590,7 +14699,7 @@ bool VectorType::badAttributes(
               break;
             }
           else
-            zValidity = zValidityVal;
+            this->zValidity = zValidityVal;
         }
       else
         {
@@ -14606,32 +14715,32 @@ bool VectorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete linearUnit;
-      linearUnit = 0;
-      delete significantFigures;
-      significantFigures = 0;
-      delete validity;
-      validity = 0;
-      delete xDecimalPlaces;
-      xDecimalPlaces = 0;
-      delete xSignificantFigures;
-      xSignificantFigures = 0;
-      delete xValidity;
-      xValidity = 0;
-      delete yDecimalPlaces;
-      yDecimalPlaces = 0;
-      delete ySignificantFigures;
-      ySignificantFigures = 0;
-      delete yValidity;
-      yValidity = 0;
-      delete zDecimalPlaces;
-      zDecimalPlaces = 0;
-      delete zSignificantFigures;
-      zSignificantFigures = 0;
-      delete zValidity;
-      zValidity = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->linearUnit;
+      this->linearUnit = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
+      delete this->validity;
+      this->validity = 0;
+      delete this->xDecimalPlaces;
+      this->xDecimalPlaces = 0;
+      delete this->xSignificantFigures;
+      this->xSignificantFigures = 0;
+      delete this->xValidity;
+      this->xValidity = 0;
+      delete this->yDecimalPlaces;
+      this->yDecimalPlaces = 0;
+      delete this->ySignificantFigures;
+      this->ySignificantFigures = 0;
+      delete this->yValidity;
+      this->yValidity = 0;
+      delete this->zDecimalPlaces;
+      this->zDecimalPlaces = 0;
+      delete this->zSignificantFigures;
+      this->zSignificantFigures = 0;
+      delete this->zValidity;
+      this->zValidity = 0;
     }
   return returnValue;
 }
@@ -14768,96 +14877,17 @@ void ArrayBinaryQIFR_1001_Type::setXIds(ArrayBinaryType * XIdsIn)
 
 /* ***************************************************************** */
 
-/* class AttributeUserTy_1002_Type
+/* class ListQIFReferenc_1002_Type
 
 */
 
-AttributeUserTy_1002_Type::AttributeUserTy_1002_Type()
-{
-  AttributeUserTy_1002_TypePair = 0;
-}
-
-AttributeUserTy_1002_Type::AttributeUserTy_1002_Type(
- AttributeUserTy_1002_TypeChoicePair * AttributeUserTy_1002_TypePairIn)
-{
-  AttributeUserTy_1002_TypePair = AttributeUserTy_1002_TypePairIn;
-}
-
-AttributeUserTy_1002_Type::~AttributeUserTy_1002_Type()
-{
-  #ifndef NODESTRUCT
-  delete AttributeUserTy_1002_TypePair;
-  #endif
-}
-
-void AttributeUserTy_1002_Type::printSelf(FILE * outFile)
-{
-  AttributeUserTy_1002_TypePair->printSelf(outFile);
-}
-
-AttributeUserTy_1002_TypeChoicePair * AttributeUserTy_1002_Type::getAttributeUserTy_1002_TypePair()
-{return AttributeUserTy_1002_TypePair;}
-
-void AttributeUserTy_1002_Type::setAttributeUserTy_1002_TypePair(AttributeUserTy_1002_TypeChoicePair * AttributeUserTy_1002_TypePairIn)
-{AttributeUserTy_1002_TypePair = AttributeUserTy_1002_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class AttributeUserTy_1002_TypeChoicePair
-
-*/
-
-AttributeUserTy_1002_TypeChoicePair::AttributeUserTy_1002_TypeChoicePair() {}
-
-AttributeUserTy_1002_TypeChoicePair::AttributeUserTy_1002_TypeChoicePair(
- whichOne AttributeUserTy_1002_TypeTypeIn,
- AttributeUserTy_1002_TypeVal AttributeUserTy_1002_TypeValueIn)
-{
-  AttributeUserTy_1002_TypeType = AttributeUserTy_1002_TypeTypeIn;
-  AttributeUserTy_1002_TypeValue = AttributeUserTy_1002_TypeValueIn;
-}
-
-AttributeUserTy_1002_TypeChoicePair::~AttributeUserTy_1002_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (AttributeUserTy_1002_TypeType == UserDataXMLE)
-    delete AttributeUserTy_1002_TypeValue.UserDataXML;
-  else if (AttributeUserTy_1002_TypeType == UserDataBinaryE)
-    delete AttributeUserTy_1002_TypeValue.UserDataBinary;
-  #endif
-}
-
-void AttributeUserTy_1002_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (AttributeUserTy_1002_TypeType == UserDataXMLE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<UserDataXML");
-      AttributeUserTy_1002_TypeValue.UserDataXML->printSelf(outFile);
-      fprintf(outFile, "</UserDataXML>\n");
-    }
-  else if (AttributeUserTy_1002_TypeType == UserDataBinaryE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<UserDataBinary");
-      AttributeUserTy_1002_TypeValue.UserDataBinary->printSelf(outFile);
-      fprintf(outFile, "</UserDataBinary>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class ListQIFReferenc_1003_Type
-
-*/
-
-ListQIFReferenc_1003_Type::ListQIFReferenc_1003_Type()
+ListQIFReferenc_1002_Type::ListQIFReferenc_1002_Type()
 {
   Id = 0;
   XIds = 0;
 }
 
-ListQIFReferenc_1003_Type::ListQIFReferenc_1003_Type(
+ListQIFReferenc_1002_Type::ListQIFReferenc_1002_Type(
  QIFReferenceSimpleType * IdIn,
  ListQIFReferenceSimpleType * XIdsIn)
 {
@@ -14865,7 +14895,7 @@ ListQIFReferenc_1003_Type::ListQIFReferenc_1003_Type(
   XIds = XIdsIn;
 }
 
-ListQIFReferenc_1003_Type::~ListQIFReferenc_1003_Type()
+ListQIFReferenc_1002_Type::~ListQIFReferenc_1002_Type()
 {
   #ifndef NODESTRUCT
   delete Id;
@@ -14873,7 +14903,7 @@ ListQIFReferenc_1003_Type::~ListQIFReferenc_1003_Type()
   #endif
 }
 
-void ListQIFReferenc_1003_Type::printSelf(FILE * outFile)
+void ListQIFReferenc_1002_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<Id");
@@ -14885,17 +14915,89 @@ void ListQIFReferenc_1003_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</XIds>\n");
 }
 
-QIFReferenceSimpleType * ListQIFReferenc_1003_Type::getId()
+QIFReferenceSimpleType * ListQIFReferenc_1002_Type::getId()
 {return Id;}
 
-void ListQIFReferenc_1003_Type::setId(QIFReferenceSimpleType * IdIn)
+void ListQIFReferenc_1002_Type::setId(QIFReferenceSimpleType * IdIn)
 {Id = IdIn;}
 
-ListQIFReferenceSimpleType * ListQIFReferenc_1003_Type::getXIds()
+ListQIFReferenceSimpleType * ListQIFReferenc_1002_Type::getXIds()
 {return XIds;}
 
-void ListQIFReferenc_1003_Type::setXIds(ListQIFReferenceSimpleType * XIdsIn)
+void ListQIFReferenc_1002_Type::setXIds(ListQIFReferenceSimpleType * XIdsIn)
 {XIds = XIdsIn;}
+
+/* ***************************************************************** */
+
+/* class ValidationPoint_1003_Type
+
+*/
+
+ValidationPoint_1003_Type::ValidationPoint_1003_Type()
+{
+  ValidationPoint_1003_TypePair = 0;
+}
+
+ValidationPoint_1003_Type::ValidationPoint_1003_Type(
+ ValidationPoint_1003_TypeChoicePair * ValidationPoint_1003_TypePairIn)
+{
+  ValidationPoint_1003_TypePair = ValidationPoint_1003_TypePairIn;
+}
+
+ValidationPoint_1003_Type::~ValidationPoint_1003_Type()
+{
+  #ifndef NODESTRUCT
+  delete ValidationPoint_1003_TypePair;
+  #endif
+}
+
+void ValidationPoint_1003_Type::printSelf(FILE * outFile)
+{
+  ValidationPoint_1003_TypePair->printSelf(outFile);
+}
+
+ValidationPoint_1003_TypeChoicePair * ValidationPoint_1003_Type::getValidationPoint_1003_TypePair()
+{return ValidationPoint_1003_TypePair;}
+
+void ValidationPoint_1003_Type::setValidationPoint_1003_TypePair(ValidationPoint_1003_TypeChoicePair * ValidationPoint_1003_TypePairIn)
+{ValidationPoint_1003_TypePair = ValidationPoint_1003_TypePairIn;}
+ValidationPoint_1003_TypeChoicePair::ValidationPoint_1003_TypeChoicePair() {}
+
+ValidationPoint_1003_TypeChoicePair::ValidationPoint_1003_TypeChoicePair(
+ whichOne ValidationPoint_1003_TypeTypeIn,
+ ValidationPoint_1003_TypeVal ValidationPoint_1003_TypeValueIn)
+{
+  ValidationPoint_1003_TypeType = ValidationPoint_1003_TypeTypeIn;
+  ValidationPoint_1003_TypeValue = ValidationPoint_1003_TypeValueIn;
+}
+
+ValidationPoint_1003_TypeChoicePair::~ValidationPoint_1003_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (ValidationPoint_1003_TypeType == PointsE)
+    delete ValidationPoint_1003_TypeValue.Points;
+  else if (ValidationPoint_1003_TypeType == PointsBinaryE)
+    delete ValidationPoint_1003_TypeValue.PointsBinary;
+  #endif
+}
+
+void ValidationPoint_1003_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (ValidationPoint_1003_TypeType == PointsE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Points");
+      ValidationPoint_1003_TypeValue.Points->printSelf(outFile);
+      fprintf(outFile, "</Points>\n");
+    }
+  else if (ValidationPoint_1003_TypeType == PointsBinaryE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<PointsBinary");
+      ValidationPoint_1003_TypeValue.PointsBinary->printSelf(outFile);
+      fprintf(outFile, "</PointsBinary>\n");
+    }
+}
 
 /* ***************************************************************** */
 
@@ -14923,7 +15025,10 @@ ValidationPoint_1004_Type::~ValidationPoint_1004_Type()
 
 void ValidationPoint_1004_Type::printSelf(FILE * outFile)
 {
-  ValidationPoint_1004_TypePair->printSelf(outFile);
+  if (ValidationPoint_1004_TypePair)
+    {
+      ValidationPoint_1004_TypePair->printSelf(outFile);
+    }
 }
 
 ValidationPoint_1004_TypeChoicePair * ValidationPoint_1004_Type::getValidationPoint_1004_TypePair()
@@ -14931,13 +15036,6 @@ ValidationPoint_1004_TypeChoicePair * ValidationPoint_1004_Type::getValidationPo
 
 void ValidationPoint_1004_Type::setValidationPoint_1004_TypePair(ValidationPoint_1004_TypeChoicePair * ValidationPoint_1004_TypePairIn)
 {ValidationPoint_1004_TypePair = ValidationPoint_1004_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ValidationPoint_1004_TypeChoicePair
-
-*/
-
 ValidationPoint_1004_TypeChoicePair::ValidationPoint_1004_TypeChoicePair() {}
 
 ValidationPoint_1004_TypeChoicePair::ValidationPoint_1004_TypeChoicePair(
@@ -14951,109 +15049,27 @@ ValidationPoint_1004_TypeChoicePair::ValidationPoint_1004_TypeChoicePair(
 ValidationPoint_1004_TypeChoicePair::~ValidationPoint_1004_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (ValidationPoint_1004_TypeType == PointsE)
-    delete ValidationPoint_1004_TypeValue.Points;
-  else if (ValidationPoint_1004_TypeType == PointsBinaryE)
-    delete ValidationPoint_1004_TypeValue.PointsBinary;
+  if (ValidationPoint_1004_TypeType == DirectionsE)
+    delete ValidationPoint_1004_TypeValue.Directions;
+  else if (ValidationPoint_1004_TypeType == DirectionsBinaryE)
+    delete ValidationPoint_1004_TypeValue.DirectionsBinary;
   #endif
 }
 
 void ValidationPoint_1004_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (ValidationPoint_1004_TypeType == PointsE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<Points");
-      ValidationPoint_1004_TypeValue.Points->printSelf(outFile);
-      fprintf(outFile, "</Points>\n");
-    }
-  else if (ValidationPoint_1004_TypeType == PointsBinaryE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<PointsBinary");
-      ValidationPoint_1004_TypeValue.PointsBinary->printSelf(outFile);
-      fprintf(outFile, "</PointsBinary>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class ValidationPoint_1005_Type
-
-*/
-
-ValidationPoint_1005_Type::ValidationPoint_1005_Type()
-{
-  ValidationPoint_1005_TypePair = 0;
-}
-
-ValidationPoint_1005_Type::ValidationPoint_1005_Type(
- ValidationPoint_1005_TypeChoicePair * ValidationPoint_1005_TypePairIn)
-{
-  ValidationPoint_1005_TypePair = ValidationPoint_1005_TypePairIn;
-}
-
-ValidationPoint_1005_Type::~ValidationPoint_1005_Type()
-{
-  #ifndef NODESTRUCT
-  delete ValidationPoint_1005_TypePair;
-  #endif
-}
-
-void ValidationPoint_1005_Type::printSelf(FILE * outFile)
-{
-  if (ValidationPoint_1005_TypePair)
-    {
-      ValidationPoint_1005_TypePair->printSelf(outFile);
-    }
-}
-
-ValidationPoint_1005_TypeChoicePair * ValidationPoint_1005_Type::getValidationPoint_1005_TypePair()
-{return ValidationPoint_1005_TypePair;}
-
-void ValidationPoint_1005_Type::setValidationPoint_1005_TypePair(ValidationPoint_1005_TypeChoicePair * ValidationPoint_1005_TypePairIn)
-{ValidationPoint_1005_TypePair = ValidationPoint_1005_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ValidationPoint_1005_TypeChoicePair
-
-*/
-
-ValidationPoint_1005_TypeChoicePair::ValidationPoint_1005_TypeChoicePair() {}
-
-ValidationPoint_1005_TypeChoicePair::ValidationPoint_1005_TypeChoicePair(
- whichOne ValidationPoint_1005_TypeTypeIn,
- ValidationPoint_1005_TypeVal ValidationPoint_1005_TypeValueIn)
-{
-  ValidationPoint_1005_TypeType = ValidationPoint_1005_TypeTypeIn;
-  ValidationPoint_1005_TypeValue = ValidationPoint_1005_TypeValueIn;
-}
-
-ValidationPoint_1005_TypeChoicePair::~ValidationPoint_1005_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (ValidationPoint_1005_TypeType == DirectionsE)
-    delete ValidationPoint_1005_TypeValue.Directions;
-  else if (ValidationPoint_1005_TypeType == DirectionsBinaryE)
-    delete ValidationPoint_1005_TypeValue.DirectionsBinary;
-  #endif
-}
-
-void ValidationPoint_1005_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (ValidationPoint_1005_TypeType == DirectionsE)
+  if (ValidationPoint_1004_TypeType == DirectionsE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<Directions");
-      ValidationPoint_1005_TypeValue.Directions->printSelf(outFile);
+      ValidationPoint_1004_TypeValue.Directions->printSelf(outFile);
       fprintf(outFile, "</Directions>\n");
     }
-  else if (ValidationPoint_1005_TypeType == DirectionsBinaryE)
+  else if (ValidationPoint_1004_TypeType == DirectionsBinaryE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DirectionsBinary");
-      ValidationPoint_1005_TypeValue.DirectionsBinary->printSelf(outFile);
+      ValidationPoint_1004_TypeValue.DirectionsBinary->printSelf(outFile);
       fprintf(outFile, "</DirectionsBinary>\n");
     }
 }

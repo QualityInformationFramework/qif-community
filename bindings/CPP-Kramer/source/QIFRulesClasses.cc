@@ -4,7 +4,6 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
-#include <boost/regex.hpp>
 #include <xmlSchemaInstance.hh>
 #include "QIFRulesClasses.hh"
 
@@ -64,13 +63,6 @@ CirclePointSamplingStrategyTypeChoicePair * CirclePointSamplingStrategyType::get
 
 void CirclePointSamplingStrategyType::setCirclePointSamplingStrategyTypePair(CirclePointSamplingStrategyTypeChoicePair * CirclePointSamplingStrategyTypePairIn)
 {CirclePointSamplingStrategyTypePair = CirclePointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class CirclePointSamplingStrategyTypeChoicePair
-
-*/
-
 CirclePointSamplingStrategyTypeChoicePair::CirclePointSamplingStrategyTypeChoicePair() {}
 
 CirclePointSamplingStrategyTypeChoicePair::CirclePointSamplingStrategyTypeChoicePair(
@@ -146,13 +138,6 @@ CircularArcPointSamplingStrategyTypeChoicePair * CircularArcPointSamplingStrateg
 
 void CircularArcPointSamplingStrategyType::setCircularArcPointSamplingStrategyTypePair(CircularArcPointSamplingStrategyTypeChoicePair * CircularArcPointSamplingStrategyTypePairIn)
 {CircularArcPointSamplingStrategyTypePair = CircularArcPointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class CircularArcPointSamplingStrategyTypeChoicePair
-
-*/
-
 CircularArcPointSamplingStrategyTypeChoicePair::CircularArcPointSamplingStrategyTypeChoicePair() {}
 
 CircularArcPointSamplingStrategyTypeChoicePair::CircularArcPointSamplingStrategyTypeChoicePair(
@@ -228,13 +213,6 @@ ConePointSamplingStrategyTypeChoicePair * ConePointSamplingStrategyType::getCone
 
 void ConePointSamplingStrategyType::setConePointSamplingStrategyTypePair(ConePointSamplingStrategyTypeChoicePair * ConePointSamplingStrategyTypePairIn)
 {ConePointSamplingStrategyTypePair = ConePointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ConePointSamplingStrategyTypeChoicePair
-
-*/
-
 ConePointSamplingStrategyTypeChoicePair::ConePointSamplingStrategyTypeChoicePair() {}
 
 ConePointSamplingStrategyTypeChoicePair::ConePointSamplingStrategyTypeChoicePair(
@@ -310,13 +288,6 @@ ConicalSegmentPointSamplingStrategyTypeChoicePair * ConicalSegmentPointSamplingS
 
 void ConicalSegmentPointSamplingStrategyType::setConicalSegmentPointSamplingStrategyTypePair(ConicalSegmentPointSamplingStrategyTypeChoicePair * ConicalSegmentPointSamplingStrategyTypePairIn)
 {ConicalSegmentPointSamplingStrategyTypePair = ConicalSegmentPointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ConicalSegmentPointSamplingStrategyTypeChoicePair
-
-*/
-
 ConicalSegmentPointSamplingStrategyTypeChoicePair::ConicalSegmentPointSamplingStrategyTypeChoicePair() {}
 
 ConicalSegmentPointSamplingStrategyTypeChoicePair::ConicalSegmentPointSamplingStrategyTypeChoicePair(
@@ -392,13 +363,6 @@ CylinderPointSamplingStrategyTypeChoicePair * CylinderPointSamplingStrategyType:
 
 void CylinderPointSamplingStrategyType::setCylinderPointSamplingStrategyTypePair(CylinderPointSamplingStrategyTypeChoicePair * CylinderPointSamplingStrategyTypePairIn)
 {CylinderPointSamplingStrategyTypePair = CylinderPointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class CylinderPointSamplingStrategyTypeChoicePair
-
-*/
-
 CylinderPointSamplingStrategyTypeChoicePair::CylinderPointSamplingStrategyTypeChoicePair() {}
 
 CylinderPointSamplingStrategyTypeChoicePair::CylinderPointSamplingStrategyTypeChoicePair(
@@ -474,13 +438,6 @@ CylindricalSegmentPointSamplingStrategyTypeChoicePair * CylindricalSegmentPointS
 
 void CylindricalSegmentPointSamplingStrategyType::setCylindricalSegmentPointSamplingStrategyTypePair(CylindricalSegmentPointSamplingStrategyTypeChoicePair * CylindricalSegmentPointSamplingStrategyTypePairIn)
 {CylindricalSegmentPointSamplingStrategyTypePair = CylindricalSegmentPointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class CylindricalSegmentPointSamplingStrategyTypeChoicePair
-
-*/
-
 CylindricalSegmentPointSamplingStrategyTypeChoicePair::CylindricalSegmentPointSamplingStrategyTypeChoicePair() {}
 
 CylindricalSegmentPointSamplingStrategyTypeChoicePair::CylindricalSegmentPointSamplingStrategyTypeChoicePair(
@@ -637,7 +594,15 @@ DMEDecisionBaseTypeLisd::~DMEDecisionBaseTypeLisd()
   #endif
 }
 
-void DMEDecisionBaseTypeLisd::printSelf(FILE * outFile){}
+void DMEDecisionBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<DMEDecisionBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -1066,6 +1031,13 @@ void DMEParameterConstraintSetType::printSelf(FILE * outFile)
         fprintf(stderr, "DMEParameterConstraint list is empty\n");
         exit(1);
       }
+    if (DMEParameterConstraint->size() < 1)
+      {
+        fprintf(stderr,
+                "size of DMEParameterConstraint list (%d) less than minimum required (1)\n",
+                (int)DMEParameterConstraint->size());
+        exit(1);
+      }
     std::list<DMEParameterConstraintType *>::iterator iter;
     for (iter = DMEParameterConstraint->begin();
          iter != DMEParameterConstraint->end(); iter++)
@@ -1094,7 +1066,7 @@ bool DMEParameterConstraintSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in DMEParameterConstraintSetType\n");
               returnValue = true;
@@ -1110,7 +1082,7 @@ bool DMEParameterConstraintSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -1119,7 +1091,7 @@ bool DMEParameterConstraintSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in DMEParameterConstraintSetType\n");
       returnValue = true;
@@ -1131,8 +1103,8 @@ bool DMEParameterConstraintSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -1531,7 +1503,15 @@ DMEParameterConstraintTypeLisd::~DMEParameterConstraintTypeLisd()
   #endif
 }
 
-void DMEParameterConstraintTypeLisd::printSelf(FILE * outFile){}
+void DMEParameterConstraintTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<DMEParameterConstraintType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -1630,6 +1610,13 @@ void DMESelectionRulesType::printSelf(FILE * outFile)
         fprintf(stderr, "DMEDecisionRule list is empty\n");
         exit(1);
       }
+    if (DMEDecisionRule->size() < 1)
+      {
+        fprintf(stderr,
+                "size of DMEDecisionRule list (%d) less than minimum required (1)\n",
+                (int)DMEDecisionRule->size());
+        exit(1);
+      }
     std::list<IfThenDMERuleType *>::iterator iter;
     for (iter = DMEDecisionRule->begin();
          iter != DMEDecisionRule->end(); iter++)
@@ -1658,7 +1645,7 @@ bool DMESelectionRulesType::badAttributes(
       if (decl->name == "defaultDesirability")
         {
           ZeroToOneType * defaultDesirabilityVal;
-          if (defaultDesirability)
+          if (this->defaultDesirability)
             {
               fprintf(stderr, "two values for defaultDesirability in DMESelectionRulesType\n");
               returnValue = true;
@@ -1674,12 +1661,12 @@ bool DMESelectionRulesType::badAttributes(
               break;
             }
           else
-            defaultDesirability = defaultDesirabilityVal;
+            this->defaultDesirability = defaultDesirabilityVal;
         }
       else if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in DMESelectionRulesType\n");
               returnValue = true;
@@ -1695,7 +1682,7 @@ bool DMESelectionRulesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -1704,7 +1691,7 @@ bool DMESelectionRulesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in DMESelectionRulesType\n");
       returnValue = true;
@@ -1716,10 +1703,10 @@ bool DMESelectionRulesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete defaultDesirability;
-      defaultDesirability = 0;
-      delete n;
-      n = 0;
+      delete this->defaultDesirability;
+      this->defaultDesirability = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -1817,6 +1804,13 @@ void DMEThenType::printSelf(FILE * outFile)
         fprintf(stderr, "DMEDecision list is empty\n");
         exit(1);
       }
+    if (DMEDecision->size() < 1)
+      {
+        fprintf(stderr,
+                "size of DMEDecision list (%d) less than minimum required (1)\n",
+                (int)DMEDecision->size());
+        exit(1);
+      }
     std::list<DMEDecisionBaseType *>::iterator iter;
     for (iter = DMEDecision->begin();
          iter != DMEDecision->end(); iter++)
@@ -1902,7 +1896,7 @@ bool DMEThenType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in DMEThenType\n");
               returnValue = true;
@@ -1918,7 +1912,7 @@ bool DMEThenType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -1927,7 +1921,7 @@ bool DMEThenType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in DMEThenType\n");
       returnValue = true;
@@ -1939,8 +1933,8 @@ bool DMEThenType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -1994,13 +1988,6 @@ EllipsePointSamplingStrategyTypeChoicePair * EllipsePointSamplingStrategyType::g
 
 void EllipsePointSamplingStrategyType::setEllipsePointSamplingStrategyTypePair(EllipsePointSamplingStrategyTypeChoicePair * EllipsePointSamplingStrategyTypePairIn)
 {EllipsePointSamplingStrategyTypePair = EllipsePointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class EllipsePointSamplingStrategyTypeChoicePair
-
-*/
-
 EllipsePointSamplingStrategyTypeChoicePair::EllipsePointSamplingStrategyTypeChoicePair() {}
 
 EllipsePointSamplingStrategyTypeChoicePair::EllipsePointSamplingStrategyTypeChoicePair(
@@ -2076,13 +2063,6 @@ EllipticalArcPointSamplingStrategyTypeChoicePair * EllipticalArcPointSamplingStr
 
 void EllipticalArcPointSamplingStrategyType::setEllipticalArcPointSamplingStrategyTypePair(EllipticalArcPointSamplingStrategyTypeChoicePair * EllipticalArcPointSamplingStrategyTypePairIn)
 {EllipticalArcPointSamplingStrategyTypePair = EllipticalArcPointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class EllipticalArcPointSamplingStrategyTypeChoicePair
-
-*/
-
 EllipticalArcPointSamplingStrategyTypeChoicePair::EllipticalArcPointSamplingStrategyTypeChoicePair() {}
 
 EllipticalArcPointSamplingStrategyTypeChoicePair::EllipticalArcPointSamplingStrategyTypeChoicePair(
@@ -2158,13 +2138,6 @@ ElongatedCirclePointSamplingStrategyTypeChoicePair * ElongatedCirclePointSamplin
 
 void ElongatedCirclePointSamplingStrategyType::setElongatedCirclePointSamplingStrategyTypePair(ElongatedCirclePointSamplingStrategyTypeChoicePair * ElongatedCirclePointSamplingStrategyTypePairIn)
 {ElongatedCirclePointSamplingStrategyTypePair = ElongatedCirclePointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ElongatedCirclePointSamplingStrategyTypeChoicePair
-
-*/
-
 ElongatedCirclePointSamplingStrategyTypeChoicePair::ElongatedCirclePointSamplingStrategyTypeChoicePair() {}
 
 ElongatedCirclePointSamplingStrategyTypeChoicePair::ElongatedCirclePointSamplingStrategyTypeChoicePair(
@@ -2240,13 +2213,6 @@ ElongatedCylinderPointSamplingStrategyTypeChoicePair * ElongatedCylinderPointSam
 
 void ElongatedCylinderPointSamplingStrategyType::setElongatedCylinderPointSamplingStrategyTypePair(ElongatedCylinderPointSamplingStrategyTypeChoicePair * ElongatedCylinderPointSamplingStrategyTypePairIn)
 {ElongatedCylinderPointSamplingStrategyTypePair = ElongatedCylinderPointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ElongatedCylinderPointSamplingStrategyTypeChoicePair
-
-*/
-
 ElongatedCylinderPointSamplingStrategyTypeChoicePair::ElongatedCylinderPointSamplingStrategyTypeChoicePair() {}
 
 ElongatedCylinderPointSamplingStrategyTypeChoicePair::ElongatedCylinderPointSamplingStrategyTypeChoicePair(
@@ -2377,7 +2343,7 @@ bool ElseRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in ElseRuleType\n");
               returnValue = true;
@@ -2393,7 +2359,7 @@ bool ElseRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -2409,8 +2375,8 @@ bool ElseRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -2458,13 +2424,6 @@ ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair * ExtrudedCrossSectionPo
 
 void ExtrudedCrossSectionPointSamplingStrategyType::setExtrudedCrossSectionPointSamplingStrategyTypePair(ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair * ExtrudedCrossSectionPointSamplingStrategyTypePairIn)
 {ExtrudedCrossSectionPointSamplingStrategyTypePair = ExtrudedCrossSectionPointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair
-
-*/
-
 ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair::ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair() {}
 
 ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair::ExtrudedCrossSectionPointSamplingStrategyTypeChoicePair(
@@ -2966,7 +2925,7 @@ bool IfThenCircleRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenCircleRuleType\n");
               returnValue = true;
@@ -2982,7 +2941,7 @@ bool IfThenCircleRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -2998,8 +2957,8 @@ bool IfThenCircleRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -3416,7 +3375,7 @@ bool IfThenCircularArcRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenCircularArcRuleType\n");
               returnValue = true;
@@ -3432,7 +3391,7 @@ bool IfThenCircularArcRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -3448,8 +3407,8 @@ bool IfThenCircularArcRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -3866,7 +3825,7 @@ bool IfThenConeRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenConeRuleType\n");
               returnValue = true;
@@ -3882,7 +3841,7 @@ bool IfThenConeRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -3898,8 +3857,8 @@ bool IfThenConeRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -4316,7 +4275,7 @@ bool IfThenConicalSegmentRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenConicalSegmentRuleType\n");
               returnValue = true;
@@ -4332,7 +4291,7 @@ bool IfThenConicalSegmentRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -4348,8 +4307,8 @@ bool IfThenConicalSegmentRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -4738,7 +4697,7 @@ bool IfThenCurveRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenCurveRuleType\n");
               returnValue = true;
@@ -4754,7 +4713,7 @@ bool IfThenCurveRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -4770,8 +4729,8 @@ bool IfThenCurveRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -5176,7 +5135,7 @@ bool IfThenCylinderRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenCylinderRuleType\n");
               returnValue = true;
@@ -5192,7 +5151,7 @@ bool IfThenCylinderRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -5208,8 +5167,8 @@ bool IfThenCylinderRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -5626,7 +5585,7 @@ bool IfThenCylindricalSegmentRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenCylindricalSegmentRuleType\n");
               returnValue = true;
@@ -5642,7 +5601,7 @@ bool IfThenCylindricalSegmentRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -5658,8 +5617,8 @@ bool IfThenCylindricalSegmentRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -6049,7 +6008,7 @@ bool IfThenDMERuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenDMERuleType\n");
               returnValue = true;
@@ -6065,7 +6024,7 @@ bool IfThenDMERuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -6081,8 +6040,8 @@ bool IfThenDMERuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -6124,7 +6083,15 @@ IfThenDMERuleTypeLisd::~IfThenDMERuleTypeLisd()
   #endif
 }
 
-void IfThenDMERuleTypeLisd::printSelf(FILE * outFile){}
+void IfThenDMERuleTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<IfThenDMERuleType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -6526,7 +6493,7 @@ bool IfThenEllipseRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenEllipseRuleType\n");
               returnValue = true;
@@ -6542,7 +6509,7 @@ bool IfThenEllipseRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -6558,8 +6525,8 @@ bool IfThenEllipseRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -6976,7 +6943,7 @@ bool IfThenEllipticalArcRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenEllipticalArcRuleType\n");
               returnValue = true;
@@ -6992,7 +6959,7 @@ bool IfThenEllipticalArcRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -7008,8 +6975,8 @@ bool IfThenEllipticalArcRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -7426,7 +7393,7 @@ bool IfThenElongatedCircleRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenElongatedCircleRuleType\n");
               returnValue = true;
@@ -7442,7 +7409,7 @@ bool IfThenElongatedCircleRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -7458,8 +7425,8 @@ bool IfThenElongatedCircleRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -7876,7 +7843,7 @@ bool IfThenElongatedCylinderRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenElongatedCylinderRuleType\n");
               returnValue = true;
@@ -7892,7 +7859,7 @@ bool IfThenElongatedCylinderRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -7908,8 +7875,8 @@ bool IfThenElongatedCylinderRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -8005,6 +7972,13 @@ void IfThenElseFeatureRulesType::printSelf(FILE * outFile)
     if (IfThenFeatureRule->size() == 0)
       {
         fprintf(stderr, "IfThenFeatureRule list is empty\n");
+        exit(1);
+      }
+    if (IfThenFeatureRule->size() < 1)
+      {
+        fprintf(stderr,
+                "size of IfThenFeatureRule list (%d) less than minimum required (1)\n",
+                (int)IfThenFeatureRule->size());
         exit(1);
       }
     std::list<IfThenFeatureRuleType *>::iterator iter;
@@ -8500,7 +8474,7 @@ bool IfThenElseFeatureRulesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in IfThenElseFeatureRulesType\n");
               returnValue = true;
@@ -8516,7 +8490,7 @@ bool IfThenElseFeatureRulesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -8525,7 +8499,7 @@ bool IfThenElseFeatureRulesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in IfThenElseFeatureRulesType\n");
       returnValue = true;
@@ -8537,8 +8511,8 @@ bool IfThenElseFeatureRulesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -8961,7 +8935,7 @@ bool IfThenExtrudedCrossSectionRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenExtrudedCrossSectionRuleType\n");
               returnValue = true;
@@ -8977,7 +8951,7 @@ bool IfThenExtrudedCrossSectionRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -8993,8 +8967,8 @@ bool IfThenExtrudedCrossSectionRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -9387,7 +9361,7 @@ bool IfThenFeatureRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenFeatureRuleType\n");
               returnValue = true;
@@ -9403,7 +9377,7 @@ bool IfThenFeatureRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -9419,8 +9393,8 @@ bool IfThenFeatureRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -9462,7 +9436,15 @@ IfThenFeatureRuleTypeLisd::~IfThenFeatureRuleTypeLisd()
   #endif
 }
 
-void IfThenFeatureRuleTypeLisd::printSelf(FILE * outFile){}
+void IfThenFeatureRuleTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<IfThenFeatureRuleType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -9864,7 +9846,7 @@ bool IfThenLineRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenLineRuleType\n");
               returnValue = true;
@@ -9880,7 +9862,7 @@ bool IfThenLineRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -9896,8 +9878,8 @@ bool IfThenLineRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -10314,7 +10296,7 @@ bool IfThenOppositeAngledLinesRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenOppositeAngledLinesRuleType\n");
               returnValue = true;
@@ -10330,7 +10312,7 @@ bool IfThenOppositeAngledLinesRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -10346,8 +10328,8 @@ bool IfThenOppositeAngledLinesRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -10764,7 +10746,7 @@ bool IfThenOppositeAngledPlanesRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenOppositeAngledPlanesRuleType\n");
               returnValue = true;
@@ -10780,7 +10762,7 @@ bool IfThenOppositeAngledPlanesRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -10796,8 +10778,8 @@ bool IfThenOppositeAngledPlanesRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -11214,7 +11196,7 @@ bool IfThenOppositeParallelLinesRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenOppositeParallelLinesRuleType\n");
               returnValue = true;
@@ -11230,7 +11212,7 @@ bool IfThenOppositeParallelLinesRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -11246,8 +11228,8 @@ bool IfThenOppositeParallelLinesRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -11664,7 +11646,7 @@ bool IfThenOppositeParallelPlanesRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenOppositeParallelPlanesRuleType\n");
               returnValue = true;
@@ -11680,7 +11662,7 @@ bool IfThenOppositeParallelPlanesRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -11696,8 +11678,8 @@ bool IfThenOppositeParallelPlanesRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -12114,7 +12096,7 @@ bool IfThenPlaneRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenPlaneRuleType\n");
               returnValue = true;
@@ -12130,7 +12112,7 @@ bool IfThenPlaneRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -12146,8 +12128,8 @@ bool IfThenPlaneRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -12564,7 +12546,7 @@ bool IfThenPointDefinedCurveRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenPointDefinedCurveRuleType\n");
               returnValue = true;
@@ -12580,7 +12562,7 @@ bool IfThenPointDefinedCurveRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -12596,8 +12578,8 @@ bool IfThenPointDefinedCurveRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -13014,7 +12996,7 @@ bool IfThenPointDefinedSurfaceRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenPointDefinedSurfaceRuleType\n");
               returnValue = true;
@@ -13030,7 +13012,7 @@ bool IfThenPointDefinedSurfaceRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -13046,8 +13028,8 @@ bool IfThenPointDefinedSurfaceRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -13450,7 +13432,7 @@ bool IfThenPointRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenPointRuleType\n");
               returnValue = true;
@@ -13466,7 +13448,7 @@ bool IfThenPointRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -13482,8 +13464,8 @@ bool IfThenPointRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -13894,7 +13876,7 @@ bool IfThenSphereRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenSphereRuleType\n");
               returnValue = true;
@@ -13910,7 +13892,7 @@ bool IfThenSphereRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -13926,8 +13908,8 @@ bool IfThenSphereRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -14344,7 +14326,7 @@ bool IfThenSphericalSegmentRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenSphericalSegmentRuleType\n");
               returnValue = true;
@@ -14360,7 +14342,7 @@ bool IfThenSphericalSegmentRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -14376,8 +14358,8 @@ bool IfThenSphericalSegmentRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -14794,7 +14776,7 @@ bool IfThenSurfaceOfRevolutionRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenSurfaceOfRevolutionRuleType\n");
               returnValue = true;
@@ -14810,7 +14792,7 @@ bool IfThenSurfaceOfRevolutionRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -14826,8 +14808,8 @@ bool IfThenSurfaceOfRevolutionRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -15216,7 +15198,7 @@ bool IfThenSurfaceRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenSurfaceRuleType\n");
               returnValue = true;
@@ -15232,7 +15214,7 @@ bool IfThenSurfaceRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -15248,8 +15230,8 @@ bool IfThenSurfaceRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -15654,7 +15636,7 @@ bool IfThenToroidalSegmentRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenToroidalSegmentRuleType\n");
               returnValue = true;
@@ -15670,7 +15652,7 @@ bool IfThenToroidalSegmentRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -15686,8 +15668,8 @@ bool IfThenToroidalSegmentRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -16104,7 +16086,7 @@ bool IfThenTorusRuleType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in IfThenTorusRuleType\n");
               returnValue = true;
@@ -16120,7 +16102,7 @@ bool IfThenTorusRuleType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -16136,8 +16118,8 @@ bool IfThenTorusRuleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -16191,13 +16173,6 @@ LinePointSamplingStrategyTypeChoicePair * LinePointSamplingStrategyType::getLine
 
 void LinePointSamplingStrategyType::setLinePointSamplingStrategyTypePair(LinePointSamplingStrategyTypeChoicePair * LinePointSamplingStrategyTypePairIn)
 {LinePointSamplingStrategyTypePair = LinePointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class LinePointSamplingStrategyTypeChoicePair
-
-*/
-
 LinePointSamplingStrategyTypeChoicePair::LinePointSamplingStrategyTypeChoicePair() {}
 
 LinePointSamplingStrategyTypeChoicePair::LinePointSamplingStrategyTypeChoicePair(
@@ -16315,6 +16290,13 @@ void MaxFeatureRulesType::printSelf(FILE * outFile)
     if (IfThenFeatureRule->size() == 0)
       {
         fprintf(stderr, "IfThenFeatureRule list is empty\n");
+        exit(1);
+      }
+    if (IfThenFeatureRule->size() < 1)
+      {
+        fprintf(stderr,
+                "size of IfThenFeatureRule list (%d) less than minimum required (1)\n",
+                (int)IfThenFeatureRule->size());
         exit(1);
       }
     std::list<IfThenFeatureRuleType *>::iterator iter;
@@ -16810,7 +16792,7 @@ bool MaxFeatureRulesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in MaxFeatureRulesType\n");
               returnValue = true;
@@ -16826,7 +16808,7 @@ bool MaxFeatureRulesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -16835,7 +16817,7 @@ bool MaxFeatureRulesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in MaxFeatureRulesType\n");
       returnValue = true;
@@ -16847,8 +16829,8 @@ bool MaxFeatureRulesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -16908,13 +16890,6 @@ OppositeAngledLinesPointSamplingStrategyTypeChoicePair * OppositeAngledLinesPoin
 
 void OppositeAngledLinesPointSamplingStrategyType::setOppositeAngledLinesPointSamplingStrategyTypePair(OppositeAngledLinesPointSamplingStrategyTypeChoicePair * OppositeAngledLinesPointSamplingStrategyTypePairIn)
 {OppositeAngledLinesPointSamplingStrategyTypePair = OppositeAngledLinesPointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class OppositeAngledLinesPointSamplingStrategyTypeChoicePair
-
-*/
-
 OppositeAngledLinesPointSamplingStrategyTypeChoicePair::OppositeAngledLinesPointSamplingStrategyTypeChoicePair() {}
 
 OppositeAngledLinesPointSamplingStrategyTypeChoicePair::OppositeAngledLinesPointSamplingStrategyTypeChoicePair(
@@ -16990,13 +16965,6 @@ OppositeAngledPlanesPointSamplingStrategyTypeChoicePair * OppositeAngledPlanesPo
 
 void OppositeAngledPlanesPointSamplingStrategyType::setOppositeAngledPlanesPointSamplingStrategyTypePair(OppositeAngledPlanesPointSamplingStrategyTypeChoicePair * OppositeAngledPlanesPointSamplingStrategyTypePairIn)
 {OppositeAngledPlanesPointSamplingStrategyTypePair = OppositeAngledPlanesPointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class OppositeAngledPlanesPointSamplingStrategyTypeChoicePair
-
-*/
-
 OppositeAngledPlanesPointSamplingStrategyTypeChoicePair::OppositeAngledPlanesPointSamplingStrategyTypeChoicePair() {}
 
 OppositeAngledPlanesPointSamplingStrategyTypeChoicePair::OppositeAngledPlanesPointSamplingStrategyTypeChoicePair(
@@ -17072,13 +17040,6 @@ OppositeParallelLinesPointSamplingStrategyTypeChoicePair * OppositeParallelLines
 
 void OppositeParallelLinesPointSamplingStrategyType::setOppositeParallelLinesPointSamplingStrategyTypePair(OppositeParallelLinesPointSamplingStrategyTypeChoicePair * OppositeParallelLinesPointSamplingStrategyTypePairIn)
 {OppositeParallelLinesPointSamplingStrategyTypePair = OppositeParallelLinesPointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class OppositeParallelLinesPointSamplingStrategyTypeChoicePair
-
-*/
-
 OppositeParallelLinesPointSamplingStrategyTypeChoicePair::OppositeParallelLinesPointSamplingStrategyTypeChoicePair() {}
 
 OppositeParallelLinesPointSamplingStrategyTypeChoicePair::OppositeParallelLinesPointSamplingStrategyTypeChoicePair(
@@ -17154,13 +17115,6 @@ OppositeParallelPlanesPointSamplingStrategyTypeChoicePair * OppositeParallelPlan
 
 void OppositeParallelPlanesPointSamplingStrategyType::setOppositeParallelPlanesPointSamplingStrategyTypePair(OppositeParallelPlanesPointSamplingStrategyTypeChoicePair * OppositeParallelPlanesPointSamplingStrategyTypePairIn)
 {OppositeParallelPlanesPointSamplingStrategyTypePair = OppositeParallelPlanesPointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class OppositeParallelPlanesPointSamplingStrategyTypeChoicePair
-
-*/
-
 OppositeParallelPlanesPointSamplingStrategyTypeChoicePair::OppositeParallelPlanesPointSamplingStrategyTypeChoicePair() {}
 
 OppositeParallelPlanesPointSamplingStrategyTypeChoicePair::OppositeParallelPlanesPointSamplingStrategyTypeChoicePair(
@@ -17236,13 +17190,6 @@ PlanePointSamplingStrategyTypeChoicePair * PlanePointSamplingStrategyType::getPl
 
 void PlanePointSamplingStrategyType::setPlanePointSamplingStrategyTypePair(PlanePointSamplingStrategyTypeChoicePair * PlanePointSamplingStrategyTypePairIn)
 {PlanePointSamplingStrategyTypePair = PlanePointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class PlanePointSamplingStrategyTypeChoicePair
-
-*/
-
 PlanePointSamplingStrategyTypeChoicePair::PlanePointSamplingStrategyTypeChoicePair() {}
 
 PlanePointSamplingStrategyTypeChoicePair::PlanePointSamplingStrategyTypeChoicePair(
@@ -17318,13 +17265,6 @@ PointDefinedCurvePointSamplingStrategyTypeChoicePair * PointDefinedCurvePointSam
 
 void PointDefinedCurvePointSamplingStrategyType::setPointDefinedCurvePointSamplingStrategyTypePair(PointDefinedCurvePointSamplingStrategyTypeChoicePair * PointDefinedCurvePointSamplingStrategyTypePairIn)
 {PointDefinedCurvePointSamplingStrategyTypePair = PointDefinedCurvePointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class PointDefinedCurvePointSamplingStrategyTypeChoicePair
-
-*/
-
 PointDefinedCurvePointSamplingStrategyTypeChoicePair::PointDefinedCurvePointSamplingStrategyTypeChoicePair() {}
 
 PointDefinedCurvePointSamplingStrategyTypeChoicePair::PointDefinedCurvePointSamplingStrategyTypeChoicePair(
@@ -17400,13 +17340,6 @@ PointDefinedSurfacePointSamplingStrategyTypeChoicePair * PointDefinedSurfacePoin
 
 void PointDefinedSurfacePointSamplingStrategyType::setPointDefinedSurfacePointSamplingStrategyTypePair(PointDefinedSurfacePointSamplingStrategyTypeChoicePair * PointDefinedSurfacePointSamplingStrategyTypePairIn)
 {PointDefinedSurfacePointSamplingStrategyTypePair = PointDefinedSurfacePointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class PointDefinedSurfacePointSamplingStrategyTypeChoicePair
-
-*/
-
 PointDefinedSurfacePointSamplingStrategyTypeChoicePair::PointDefinedSurfacePointSamplingStrategyTypeChoicePair() {}
 
 PointDefinedSurfacePointSamplingStrategyTypeChoicePair::PointDefinedSurfacePointSamplingStrategyTypeChoicePair(
@@ -17482,13 +17415,6 @@ PointPointSamplingStrategyTypeChoicePair * PointPointSamplingStrategyType::getPo
 
 void PointPointSamplingStrategyType::setPointPointSamplingStrategyTypePair(PointPointSamplingStrategyTypeChoicePair * PointPointSamplingStrategyTypePairIn)
 {PointPointSamplingStrategyTypePair = PointPointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class PointPointSamplingStrategyTypeChoicePair
-
-*/
-
 PointPointSamplingStrategyTypeChoicePair::PointPointSamplingStrategyTypeChoicePair() {}
 
 PointPointSamplingStrategyTypeChoicePair::PointPointSamplingStrategyTypeChoicePair(
@@ -17608,7 +17534,7 @@ bool PointRuleBaseType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in PointRuleBaseType\n");
               returnValue = true;
@@ -17624,7 +17550,7 @@ bool PointRuleBaseType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -17640,8 +17566,8 @@ bool PointRuleBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -17711,7 +17637,7 @@ bool QIFMayType::badAttributes(
       if (decl->name == "desirability")
         {
           ZeroToOneType * desirabilityVal;
-          if (desirability)
+          if (this->desirability)
             {
               fprintf(stderr, "two values for desirability in QIFMayType\n");
               returnValue = true;
@@ -17727,7 +17653,7 @@ bool QIFMayType::badAttributes(
               break;
             }
           else
-            desirability = desirabilityVal;
+            this->desirability = desirabilityVal;
         }
       else
         {
@@ -17743,8 +17669,8 @@ bool QIFMayType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete desirability;
-      desirability = 0;
+      delete this->desirability;
+      this->desirability = 0;
     }
   return returnValue;
 }
@@ -17870,7 +17796,7 @@ bool QIFRuleBaseType::badAttributes(
       if (decl->name == "name")
         {
           XmlToken * nameVal;
-          if (name)
+          if (this->name)
             {
               fprintf(stderr, "two values for name in QIFRuleBaseType\n");
               returnValue = true;
@@ -17886,7 +17812,7 @@ bool QIFRuleBaseType::badAttributes(
               break;
             }
           else
-            name = nameVal;
+            this->name = nameVal;
         }
       else
         {
@@ -17902,8 +17828,8 @@ bool QIFRuleBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete name;
-      name = 0;
+      delete this->name;
+      this->name = 0;
     }
   return returnValue;
 }
@@ -18220,7 +18146,7 @@ bool RulesUnitsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in RulesUnitsType\n");
               returnValue = true;
@@ -18236,7 +18162,7 @@ bool RulesUnitsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -18245,7 +18171,7 @@ bool RulesUnitsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in RulesUnitsType\n");
       returnValue = true;
@@ -18257,8 +18183,8 @@ bool RulesUnitsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -18360,13 +18286,6 @@ SpherePointSamplingStrategyTypeChoicePair * SpherePointSamplingStrategyType::get
 
 void SpherePointSamplingStrategyType::setSpherePointSamplingStrategyTypePair(SpherePointSamplingStrategyTypeChoicePair * SpherePointSamplingStrategyTypePairIn)
 {SpherePointSamplingStrategyTypePair = SpherePointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class SpherePointSamplingStrategyTypeChoicePair
-
-*/
-
 SpherePointSamplingStrategyTypeChoicePair::SpherePointSamplingStrategyTypeChoicePair() {}
 
 SpherePointSamplingStrategyTypeChoicePair::SpherePointSamplingStrategyTypeChoicePair(
@@ -18442,13 +18361,6 @@ SphericalSegmentPointSamplingStrategyTypeChoicePair * SphericalSegmentPointSampl
 
 void SphericalSegmentPointSamplingStrategyType::setSphericalSegmentPointSamplingStrategyTypePair(SphericalSegmentPointSamplingStrategyTypeChoicePair * SphericalSegmentPointSamplingStrategyTypePairIn)
 {SphericalSegmentPointSamplingStrategyTypePair = SphericalSegmentPointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class SphericalSegmentPointSamplingStrategyTypeChoicePair
-
-*/
-
 SphericalSegmentPointSamplingStrategyTypeChoicePair::SphericalSegmentPointSamplingStrategyTypeChoicePair() {}
 
 SphericalSegmentPointSamplingStrategyTypeChoicePair::SphericalSegmentPointSamplingStrategyTypeChoicePair(
@@ -18524,13 +18436,6 @@ SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair * SurfaceOfRevolutionPoin
 
 void SurfaceOfRevolutionPointSamplingStrategyType::setSurfaceOfRevolutionPointSamplingStrategyTypePair(SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair * SurfaceOfRevolutionPointSamplingStrategyTypePairIn)
 {SurfaceOfRevolutionPointSamplingStrategyTypePair = SurfaceOfRevolutionPointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair
-
-*/
-
 SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair::SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair() {}
 
 SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair::SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair(
@@ -18577,19 +18482,19 @@ void SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair::printSelf(FILE * ou
 
 ThenPointsType::ThenPointsType()
 {
-  ThenPointsType_1213 = 0;
+  ThenPointsTypePair = 0;
 }
 
 ThenPointsType::ThenPointsType(
- ThenPointsType_1213_Type * ThenPointsType_1213In)
+ ThenPointsTypeChoicePair * ThenPointsTypePairIn)
 {
-  ThenPointsType_1213 = ThenPointsType_1213In;
+  ThenPointsTypePair = ThenPointsTypePairIn;
 }
 
 ThenPointsType::~ThenPointsType()
 {
   #ifndef NODESTRUCT
-  delete ThenPointsType_1213;
+  delete ThenPointsTypePair;
   #endif
 }
 
@@ -18597,18 +18502,73 @@ void ThenPointsType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (ThenPointsType_1213)
+  if (ThenPointsTypePair)
     {
-      ThenPointsType_1213->printSelf(outFile);
+      ThenPointsTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
 
-ThenPointsType_1213_Type * ThenPointsType::getThenPointsType_1213()
-{return ThenPointsType_1213;}
+ThenPointsTypeChoicePair * ThenPointsType::getThenPointsTypePair()
+{return ThenPointsTypePair;}
 
-void ThenPointsType::setThenPointsType_1213(ThenPointsType_1213_Type * ThenPointsType_1213In)
-{ThenPointsType_1213 = ThenPointsType_1213In;}
+void ThenPointsType::setThenPointsTypePair(ThenPointsTypeChoicePair * ThenPointsTypePairIn)
+{ThenPointsTypePair = ThenPointsTypePairIn;}
+ThenPointsTypeChoicePair::ThenPointsTypeChoicePair() {}
+
+ThenPointsTypeChoicePair::ThenPointsTypeChoicePair(
+ whichOne ThenPointsTypeTypeIn,
+ ThenPointsTypeVal ThenPointsTypeValueIn)
+{
+  ThenPointsTypeType = ThenPointsTypeTypeIn;
+  ThenPointsTypeValue = ThenPointsTypeValueIn;
+}
+
+ThenPointsTypeChoicePair::~ThenPointsTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (ThenPointsTypeType == NumberOfPointsE)
+    delete ThenPointsTypeValue.NumberOfPoints;
+  else if (ThenPointsTypeType == MinPointsE)
+    delete ThenPointsTypeValue.MinPoints;
+  else if (ThenPointsTypeType == PointDensityE)
+    delete ThenPointsTypeValue.PointDensity;
+  else if (ThenPointsTypeType == MinPointDensityE)
+    delete ThenPointsTypeValue.MinPointDensity;
+  #endif
+}
+
+void ThenPointsTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (ThenPointsTypeType == NumberOfPointsE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<NumberOfPoints");
+      ThenPointsTypeValue.NumberOfPoints->printSelf(outFile);
+      fprintf(outFile, "</NumberOfPoints>\n");
+    }
+  else if (ThenPointsTypeType == MinPointsE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinPoints");
+      ThenPointsTypeValue.MinPoints->printSelf(outFile);
+      fprintf(outFile, "</MinPoints>\n");
+    }
+  else if (ThenPointsTypeType == PointDensityE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<PointDensity");
+      ThenPointsTypeValue.PointDensity->printSelf(outFile);
+      fprintf(outFile, "</PointDensity>\n");
+    }
+  else if (ThenPointsTypeType == MinPointDensityE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<MinPointDensity");
+      ThenPointsTypeValue.MinPointDensity->printSelf(outFile);
+      fprintf(outFile, "</MinPointDensity>\n");
+    }
+}
 
 /* ***************************************************************** */
 
@@ -18647,13 +18607,6 @@ ToroidalSegmentPointSamplingStrategyTypeChoicePair * ToroidalSegmentPointSamplin
 
 void ToroidalSegmentPointSamplingStrategyType::setToroidalSegmentPointSamplingStrategyTypePair(ToroidalSegmentPointSamplingStrategyTypeChoicePair * ToroidalSegmentPointSamplingStrategyTypePairIn)
 {ToroidalSegmentPointSamplingStrategyTypePair = ToroidalSegmentPointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ToroidalSegmentPointSamplingStrategyTypeChoicePair
-
-*/
-
 ToroidalSegmentPointSamplingStrategyTypeChoicePair::ToroidalSegmentPointSamplingStrategyTypeChoicePair() {}
 
 ToroidalSegmentPointSamplingStrategyTypeChoicePair::ToroidalSegmentPointSamplingStrategyTypeChoicePair(
@@ -18729,13 +18682,6 @@ TorusPointSamplingStrategyTypeChoicePair * TorusPointSamplingStrategyType::getTo
 
 void TorusPointSamplingStrategyType::setTorusPointSamplingStrategyTypePair(TorusPointSamplingStrategyTypeChoicePair * TorusPointSamplingStrategyTypePairIn)
 {TorusPointSamplingStrategyTypePair = TorusPointSamplingStrategyTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class TorusPointSamplingStrategyTypeChoicePair
-
-*/
-
 TorusPointSamplingStrategyTypeChoicePair::TorusPointSamplingStrategyTypeChoicePair() {}
 
 TorusPointSamplingStrategyTypeChoicePair::TorusPointSamplingStrategyTypeChoicePair(
@@ -18832,106 +18778,6 @@ void ZeroToOneType::oPrintSelf(FILE * outFile)
       exit(1);
     }
   XmlDouble::oPrintSelf(outFile);
-}
-
-/* ***************************************************************** */
-
-/* class ThenPointsType_1213_Type
-
-*/
-
-ThenPointsType_1213_Type::ThenPointsType_1213_Type()
-{
-  ThenPointsType_1213_TypePair = 0;
-}
-
-ThenPointsType_1213_Type::ThenPointsType_1213_Type(
- ThenPointsType_1213_TypeChoicePair * ThenPointsType_1213_TypePairIn)
-{
-  ThenPointsType_1213_TypePair = ThenPointsType_1213_TypePairIn;
-}
-
-ThenPointsType_1213_Type::~ThenPointsType_1213_Type()
-{
-  #ifndef NODESTRUCT
-  delete ThenPointsType_1213_TypePair;
-  #endif
-}
-
-void ThenPointsType_1213_Type::printSelf(FILE * outFile)
-{
-  if (ThenPointsType_1213_TypePair)
-    {
-      ThenPointsType_1213_TypePair->printSelf(outFile);
-    }
-}
-
-ThenPointsType_1213_TypeChoicePair * ThenPointsType_1213_Type::getThenPointsType_1213_TypePair()
-{return ThenPointsType_1213_TypePair;}
-
-void ThenPointsType_1213_Type::setThenPointsType_1213_TypePair(ThenPointsType_1213_TypeChoicePair * ThenPointsType_1213_TypePairIn)
-{ThenPointsType_1213_TypePair = ThenPointsType_1213_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ThenPointsType_1213_TypeChoicePair
-
-*/
-
-ThenPointsType_1213_TypeChoicePair::ThenPointsType_1213_TypeChoicePair() {}
-
-ThenPointsType_1213_TypeChoicePair::ThenPointsType_1213_TypeChoicePair(
- whichOne ThenPointsType_1213_TypeTypeIn,
- ThenPointsType_1213_TypeVal ThenPointsType_1213_TypeValueIn)
-{
-  ThenPointsType_1213_TypeType = ThenPointsType_1213_TypeTypeIn;
-  ThenPointsType_1213_TypeValue = ThenPointsType_1213_TypeValueIn;
-}
-
-ThenPointsType_1213_TypeChoicePair::~ThenPointsType_1213_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (ThenPointsType_1213_TypeType == NumberOfPointsE)
-    delete ThenPointsType_1213_TypeValue.NumberOfPoints;
-  else if (ThenPointsType_1213_TypeType == MinPointsE)
-    delete ThenPointsType_1213_TypeValue.MinPoints;
-  else if (ThenPointsType_1213_TypeType == PointDensityE)
-    delete ThenPointsType_1213_TypeValue.PointDensity;
-  else if (ThenPointsType_1213_TypeType == MinPointDensityE)
-    delete ThenPointsType_1213_TypeValue.MinPointDensity;
-  #endif
-}
-
-void ThenPointsType_1213_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (ThenPointsType_1213_TypeType == NumberOfPointsE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<NumberOfPoints");
-      ThenPointsType_1213_TypeValue.NumberOfPoints->printSelf(outFile);
-      fprintf(outFile, "</NumberOfPoints>\n");
-    }
-  else if (ThenPointsType_1213_TypeType == MinPointsE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinPoints");
-      ThenPointsType_1213_TypeValue.MinPoints->printSelf(outFile);
-      fprintf(outFile, "</MinPoints>\n");
-    }
-  else if (ThenPointsType_1213_TypeType == PointDensityE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<PointDensity");
-      ThenPointsType_1213_TypeValue.PointDensity->printSelf(outFile);
-      fprintf(outFile, "</PointDensity>\n");
-    }
-  else if (ThenPointsType_1213_TypeType == MinPointDensityE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<MinPointDensity");
-      ThenPointsType_1213_TypeValue.MinPointDensity->printSelf(outFile);
-      fprintf(outFile, "</MinPointDensity>\n");
-    }
 }
 
 /* ***************************************************************** */

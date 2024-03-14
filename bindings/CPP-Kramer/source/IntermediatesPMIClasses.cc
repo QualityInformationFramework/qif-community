@@ -4,7 +4,6 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
-#include <boost/regex.hpp>
 #include <xmlSchemaInstance.hh>
 #include "IntermediatesPMIClasses.hh"
 
@@ -110,13 +109,6 @@ AddressDescriptionTypeChoicePair * AddressDescriptionType::getAddressDescription
 
 void AddressDescriptionType::setAddressDescriptionTypePair(AddressDescriptionTypeChoicePair * AddressDescriptionTypePairIn)
 {AddressDescriptionTypePair = AddressDescriptionTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class AddressDescriptionTypeChoicePair
-
-*/
-
 AddressDescriptionTypeChoicePair::AddressDescriptionTypeChoicePair() {}
 
 AddressDescriptionTypeChoicePair::AddressDescriptionTypeChoicePair(
@@ -165,20 +157,20 @@ AlgorithmType::AlgorithmType()
 {
   id = 0;
   Attributes = 0;
-  AlgorithmType_1008 = 0;
+  AlgorithmType_1006 = 0;
   Name = 0;
   Description = 0;
 }
 
 AlgorithmType::AlgorithmType(
  AttributesType * AttributesIn,
- AlgorithmType_1008_Type * AlgorithmType_1008In,
+ AlgorithmType_1006_Type * AlgorithmType_1006In,
  XmlString * NameIn,
  XmlString * DescriptionIn)
 {
   id = 0;
   Attributes = AttributesIn;
-  AlgorithmType_1008 = AlgorithmType_1008In;
+  AlgorithmType_1006 = AlgorithmType_1006In;
   Name = NameIn;
   Description = DescriptionIn;
 }
@@ -186,13 +178,13 @@ AlgorithmType::AlgorithmType(
 AlgorithmType::AlgorithmType(
  QIFIdType * idIn,
  AttributesType * AttributesIn,
- AlgorithmType_1008_Type * AlgorithmType_1008In,
+ AlgorithmType_1006_Type * AlgorithmType_1006In,
  XmlString * NameIn,
  XmlString * DescriptionIn)
 {
   id = idIn;
   Attributes = AttributesIn;
-  AlgorithmType_1008 = AlgorithmType_1008In;
+  AlgorithmType_1006 = AlgorithmType_1006In;
   Name = NameIn;
   Description = DescriptionIn;
 }
@@ -202,7 +194,7 @@ AlgorithmType::~AlgorithmType()
   #ifndef NODESTRUCT
   delete id;
   delete Attributes;
-  delete AlgorithmType_1008;
+  delete AlgorithmType_1006;
   delete Name;
   delete Description;
   #endif
@@ -245,7 +237,7 @@ void AlgorithmType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  AlgorithmType_1008->printSelf(outFile);
+  AlgorithmType_1006->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<Name");
   Name->printSelf(outFile);
@@ -274,7 +266,7 @@ bool AlgorithmType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AlgorithmType\n");
               returnValue = true;
@@ -290,7 +282,7 @@ bool AlgorithmType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -299,7 +291,7 @@ bool AlgorithmType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AlgorithmType\n");
       returnValue = true;
@@ -311,8 +303,8 @@ bool AlgorithmType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -329,11 +321,11 @@ AttributesType * AlgorithmType::getAttributes()
 void AlgorithmType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-AlgorithmType_1008_Type * AlgorithmType::getAlgorithmType_1008()
-{return AlgorithmType_1008;}
+AlgorithmType_1006_Type * AlgorithmType::getAlgorithmType_1006()
+{return AlgorithmType_1006;}
 
-void AlgorithmType::setAlgorithmType_1008(AlgorithmType_1008_Type * AlgorithmType_1008In)
-{AlgorithmType_1008 = AlgorithmType_1008In;}
+void AlgorithmType::setAlgorithmType_1006(AlgorithmType_1006_Type * AlgorithmType_1006In)
+{AlgorithmType_1006 = AlgorithmType_1006In;}
 
 XmlString * AlgorithmType::getName()
 {return Name;}
@@ -372,7 +364,15 @@ AlgorithmTypeLisd::~AlgorithmTypeLisd()
   #endif
 }
 
-void AlgorithmTypeLisd::printSelf(FILE * outFile){}
+void AlgorithmTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<AlgorithmType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -449,6 +449,13 @@ void AlgorithmsType::printSelf(FILE * outFile)
         fprintf(stderr, "Algorithm list is empty\n");
         exit(1);
       }
+    if (Algorithm->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Algorithm list (%d) less than minimum required (1)\n",
+                (int)Algorithm->size());
+        exit(1);
+      }
     std::list<AlgorithmType *>::iterator iter;
     for (iter = Algorithm->begin();
          iter != Algorithm->end(); iter++)
@@ -477,7 +484,7 @@ bool AlgorithmsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in AlgorithmsType\n");
               returnValue = true;
@@ -493,7 +500,7 @@ bool AlgorithmsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -502,7 +509,7 @@ bool AlgorithmsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in AlgorithmsType\n");
       returnValue = true;
@@ -514,8 +521,8 @@ bool AlgorithmsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -540,19 +547,19 @@ void AlgorithmsType::setAlgorithm(AlgorithmTypeLisd * AlgorithmIn)
 
 AlignmentFeatureType::AlignmentFeatureType()
 {
-  AlignmentFeatur_1009 = 0;
+  AlignmentFeatureTypePair = 0;
 }
 
 AlignmentFeatureType::AlignmentFeatureType(
- AlignmentFeatur_1009_Type * AlignmentFeatur_1009In)
+ AlignmentFeatureTypeChoicePair * AlignmentFeatureTypePairIn)
 {
-  AlignmentFeatur_1009 = AlignmentFeatur_1009In;
+  AlignmentFeatureTypePair = AlignmentFeatureTypePairIn;
 }
 
 AlignmentFeatureType::~AlignmentFeatureType()
 {
   #ifndef NODESTRUCT
-  delete AlignmentFeatur_1009;
+  delete AlignmentFeatureTypePair;
   #endif
 }
 
@@ -560,15 +567,53 @@ void AlignmentFeatureType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  AlignmentFeatur_1009->printSelf(outFile);
+  AlignmentFeatureTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-AlignmentFeatur_1009_Type * AlignmentFeatureType::getAlignmentFeatur_1009()
-{return AlignmentFeatur_1009;}
+AlignmentFeatureTypeChoicePair * AlignmentFeatureType::getAlignmentFeatureTypePair()
+{return AlignmentFeatureTypePair;}
 
-void AlignmentFeatureType::setAlignmentFeatur_1009(AlignmentFeatur_1009_Type * AlignmentFeatur_1009In)
-{AlignmentFeatur_1009 = AlignmentFeatur_1009In;}
+void AlignmentFeatureType::setAlignmentFeatureTypePair(AlignmentFeatureTypeChoicePair * AlignmentFeatureTypePairIn)
+{AlignmentFeatureTypePair = AlignmentFeatureTypePairIn;}
+AlignmentFeatureTypeChoicePair::AlignmentFeatureTypeChoicePair() {}
+
+AlignmentFeatureTypeChoicePair::AlignmentFeatureTypeChoicePair(
+ whichOne AlignmentFeatureTypeTypeIn,
+ AlignmentFeatureTypeVal AlignmentFeatureTypeValueIn)
+{
+  AlignmentFeatureTypeType = AlignmentFeatureTypeTypeIn;
+  AlignmentFeatureTypeValue = AlignmentFeatureTypeValueIn;
+}
+
+AlignmentFeatureTypeChoicePair::~AlignmentFeatureTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (AlignmentFeatureTypeType == DatumDefinitionIdE)
+    delete AlignmentFeatureTypeValue.DatumDefinitionId;
+  else if (AlignmentFeatureTypeType == BaseFeatureE)
+    delete AlignmentFeatureTypeValue.BaseFeature;
+  #endif
+}
+
+void AlignmentFeatureTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (AlignmentFeatureTypeType == DatumDefinitionIdE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<DatumDefinitionId");
+      AlignmentFeatureTypeValue.DatumDefinitionId->printSelf(outFile);
+      fprintf(outFile, "</DatumDefinitionId>\n");
+    }
+  else if (AlignmentFeatureTypeType == BaseFeatureE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<BaseFeature");
+      AlignmentFeatureTypeValue.BaseFeature->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</BaseFeature>\n");
+    }
+}
 
 /* ***************************************************************** */
 
@@ -654,7 +699,15 @@ AlignmentOperationBaseTypeLisd::~AlignmentOperationBaseTypeLisd()
   #endif
 }
 
-void AlignmentOperationBaseTypeLisd::printSelf(FILE * outFile){}
+void AlignmentOperationBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<AlignmentOperationBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -735,6 +788,13 @@ void AlignmentOperationsType::printSelf(FILE * outFile)
     if (AlignmentOperation->size() == 0)
       {
         fprintf(stderr, "AlignmentOperation list is empty\n");
+        exit(1);
+      }
+    if (AlignmentOperation->size() < 1)
+      {
+        fprintf(stderr,
+                "size of AlignmentOperation list (%d) less than minimum required (1)\n",
+                (int)AlignmentOperation->size());
         exit(1);
       }
     std::list<AlignmentOperationBaseType *>::iterator iter;
@@ -909,7 +969,7 @@ bool AlignmentOperationsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in AlignmentOperationsType\n");
               returnValue = true;
@@ -925,7 +985,7 @@ bool AlignmentOperationsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -934,7 +994,7 @@ bool AlignmentOperationsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in AlignmentOperationsType\n");
       returnValue = true;
@@ -946,8 +1006,8 @@ bool AlignmentOperationsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -1098,26 +1158,26 @@ AngularToleranceDefinitionType::AngularToleranceDefinitionType()
 {
   id = 0;
   Attributes = 0;
-  AngularToleranc_1010 = 0;
+  AngularToleranc_1007 = 0;
 }
 
 AngularToleranceDefinitionType::AngularToleranceDefinitionType(
  AttributesType * AttributesIn,
- AngularToleranc_1010_Type * AngularToleranc_1010In)
+ AngularToleranc_1007_Type * AngularToleranc_1007In)
 {
   id = 0;
   Attributes = AttributesIn;
-  AngularToleranc_1010 = AngularToleranc_1010In;
+  AngularToleranc_1007 = AngularToleranc_1007In;
 }
 
 AngularToleranceDefinitionType::AngularToleranceDefinitionType(
  QIFIdType * idIn,
  AttributesType * AttributesIn,
- AngularToleranc_1010_Type * AngularToleranc_1010In)
+ AngularToleranc_1007_Type * AngularToleranc_1007In)
 {
   id = idIn;
   Attributes = AttributesIn;
-  AngularToleranc_1010 = AngularToleranc_1010In;
+  AngularToleranc_1007 = AngularToleranc_1007In;
 }
 
 AngularToleranceDefinitionType::~AngularToleranceDefinitionType()
@@ -1125,7 +1185,7 @@ AngularToleranceDefinitionType::~AngularToleranceDefinitionType()
   #ifndef NODESTRUCT
   delete id;
   delete Attributes;
-  delete AngularToleranc_1010;
+  delete AngularToleranc_1007;
   #endif
 }
 
@@ -1166,7 +1226,7 @@ void AngularToleranceDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  AngularToleranc_1010->printSelf(outFile);
+  AngularToleranc_1007->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -1184,7 +1244,7 @@ bool AngularToleranceDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngularToleranceDefinitionType\n");
               returnValue = true;
@@ -1200,7 +1260,7 @@ bool AngularToleranceDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -1209,7 +1269,7 @@ bool AngularToleranceDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngularToleranceDefinitionType\n");
       returnValue = true;
@@ -1221,8 +1281,8 @@ bool AngularToleranceDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -1239,11 +1299,11 @@ AttributesType * AngularToleranceDefinitionType::getAttributes()
 void AngularToleranceDefinitionType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-AngularToleranc_1010_Type * AngularToleranceDefinitionType::getAngularToleranc_1010()
-{return AngularToleranc_1010;}
+AngularToleranc_1007_Type * AngularToleranceDefinitionType::getAngularToleranc_1007()
+{return AngularToleranc_1007;}
 
-void AngularToleranceDefinitionType::setAngularToleranc_1010(AngularToleranc_1010_Type * AngularToleranc_1010In)
-{AngularToleranc_1010 = AngularToleranc_1010In;}
+void AngularToleranceDefinitionType::setAngularToleranc_1007(AngularToleranc_1007_Type * AngularToleranc_1007In)
+{AngularToleranc_1007 = AngularToleranc_1007In;}
 
 /* ***************************************************************** */
 
@@ -1253,17 +1313,17 @@ void AngularToleranceDefinitionType::setAngularToleranc_1010(AngularToleranc_101
 
 AngularToleranceType::AngularToleranceType()
 {
-  AngularToleranc_1011 = 0;
+  AngularToleranc_1008 = 0;
   DefinedAsLimit = 0;
   Attributes = 0;
 }
 
 AngularToleranceType::AngularToleranceType(
- AngularToleranc_1011_Type * AngularToleranc_1011In,
+ AngularToleranc_1008_Type * AngularToleranc_1008In,
  XmlBoolean * DefinedAsLimitIn,
  AttributesType * AttributesIn)
 {
-  AngularToleranc_1011 = AngularToleranc_1011In;
+  AngularToleranc_1008 = AngularToleranc_1008In;
   DefinedAsLimit = DefinedAsLimitIn;
   Attributes = AttributesIn;
 }
@@ -1271,7 +1331,7 @@ AngularToleranceType::AngularToleranceType(
 AngularToleranceType::~AngularToleranceType()
 {
   #ifndef NODESTRUCT
-  delete AngularToleranc_1011;
+  delete AngularToleranc_1008;
   delete DefinedAsLimit;
   delete Attributes;
   #endif
@@ -1281,7 +1341,7 @@ void AngularToleranceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  AngularToleranc_1011->printSelf(outFile);
+  AngularToleranc_1008->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<DefinedAsLimit");
   DefinedAsLimit->printSelf(outFile);
@@ -1297,11 +1357,11 @@ void AngularToleranceType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-AngularToleranc_1011_Type * AngularToleranceType::getAngularToleranc_1011()
-{return AngularToleranc_1011;}
+AngularToleranc_1008_Type * AngularToleranceType::getAngularToleranc_1008()
+{return AngularToleranc_1008;}
 
-void AngularToleranceType::setAngularToleranc_1011(AngularToleranc_1011_Type * AngularToleranc_1011In)
-{AngularToleranc_1011 = AngularToleranc_1011In;}
+void AngularToleranceType::setAngularToleranc_1008(AngularToleranc_1008_Type * AngularToleranc_1008In)
+{AngularToleranc_1008 = AngularToleranc_1008In;}
 
 XmlBoolean * AngularToleranceType::getDefinedAsLimit()
 {return DefinedAsLimit;}
@@ -1323,17 +1383,17 @@ void AngularToleranceType::setAttributes(AttributesType * AttributesIn)
 
 AreaToleranceType::AreaToleranceType()
 {
-  AreaToleranceTy_1012 = 0;
+  AreaToleranceTy_1009 = 0;
   DefinedAsLimit = 0;
   Attributes = 0;
 }
 
 AreaToleranceType::AreaToleranceType(
- AreaToleranceTy_1012_Type * AreaToleranceTy_1012In,
+ AreaToleranceTy_1009_Type * AreaToleranceTy_1009In,
  XmlBoolean * DefinedAsLimitIn,
  AttributesType * AttributesIn)
 {
-  AreaToleranceTy_1012 = AreaToleranceTy_1012In;
+  AreaToleranceTy_1009 = AreaToleranceTy_1009In;
   DefinedAsLimit = DefinedAsLimitIn;
   Attributes = AttributesIn;
 }
@@ -1341,7 +1401,7 @@ AreaToleranceType::AreaToleranceType(
 AreaToleranceType::~AreaToleranceType()
 {
   #ifndef NODESTRUCT
-  delete AreaToleranceTy_1012;
+  delete AreaToleranceTy_1009;
   delete DefinedAsLimit;
   delete Attributes;
   #endif
@@ -1351,7 +1411,7 @@ void AreaToleranceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  AreaToleranceTy_1012->printSelf(outFile);
+  AreaToleranceTy_1009->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<DefinedAsLimit");
   DefinedAsLimit->printSelf(outFile);
@@ -1367,11 +1427,11 @@ void AreaToleranceType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-AreaToleranceTy_1012_Type * AreaToleranceType::getAreaToleranceTy_1012()
-{return AreaToleranceTy_1012;}
+AreaToleranceTy_1009_Type * AreaToleranceType::getAreaToleranceTy_1009()
+{return AreaToleranceTy_1009;}
 
-void AreaToleranceType::setAreaToleranceTy_1012(AreaToleranceTy_1012_Type * AreaToleranceTy_1012In)
-{AreaToleranceTy_1012 = AreaToleranceTy_1012In;}
+void AreaToleranceType::setAreaToleranceTy_1009(AreaToleranceTy_1009_Type * AreaToleranceTy_1009In)
+{AreaToleranceTy_1009 = AreaToleranceTy_1009In;}
 
 XmlBoolean * AreaToleranceType::getDefinedAsLimit()
 {return DefinedAsLimit;}
@@ -1465,7 +1525,15 @@ BaseFeatureTypeLisd::~BaseFeatureTypeLisd()
   #endif
 }
 
-void BaseFeatureTypeLisd::printSelf(FILE * outFile){}
+void BaseFeatureTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<BaseFeatureType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -1576,6 +1644,13 @@ void BestFitAlignmentOperationType::printSelf(FILE * outFile)
         fprintf(stderr, "BaseFeature list is empty\n");
         exit(1);
       }
+    if (BaseFeature->size() < 1)
+      {
+        fprintf(stderr,
+                "size of BaseFeature list (%d) less than minimum required (1)\n",
+                (int)BaseFeature->size());
+        exit(1);
+      }
     std::list<SequencedBaseFeatureType *>::iterator iter;
     for (iter = BaseFeature->begin();
          iter != BaseFeature->end(); iter++)
@@ -1604,7 +1679,7 @@ bool BestFitAlignmentOperationType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in BestFitAlignmentOperationType\n");
               returnValue = true;
@@ -1620,7 +1695,7 @@ bool BestFitAlignmentOperationType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -1629,7 +1704,7 @@ bool BestFitAlignmentOperationType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in BestFitAlignmentOperationType\n");
       returnValue = true;
@@ -1641,8 +1716,8 @@ bool BestFitAlignmentOperationType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -1927,6 +2002,13 @@ void CompoundDatumType::printSelf(FILE * outFile)
         fprintf(stderr, "Datum list is empty\n");
         exit(1);
       }
+    if (Datum->size() < 2)
+      {
+        fprintf(stderr,
+                "size of Datum list (%d) less than minimum required (2)\n",
+                (int)Datum->size());
+        exit(1);
+      }
     std::list<SequencedDatumType *>::iterator iter;
     for (iter = Datum->begin();
          iter != Datum->end(); iter++)
@@ -1962,7 +2044,7 @@ bool CompoundDatumType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in CompoundDatumType\n");
               returnValue = true;
@@ -1978,7 +2060,7 @@ bool CompoundDatumType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -1987,7 +2069,7 @@ bool CompoundDatumType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in CompoundDatumType\n");
       returnValue = true;
@@ -1999,8 +2081,8 @@ bool CompoundDatumType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -2103,7 +2185,15 @@ CoordinateSystemActualTransformAssociationTypeLisd::~CoordinateSystemActualTrans
   #endif
 }
 
-void CoordinateSystemActualTransformAssociationTypeLisd::printSelf(FILE * outFile){}
+void CoordinateSystemActualTransformAssociationTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<CoordinateSystemActualTransformAssociationType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -2180,6 +2270,13 @@ void CoordinateSystemActualTransformAssociationsType::printSelf(FILE * outFile)
         fprintf(stderr, "CoordinateSystemActualTransformAssociation list is empty\n");
         exit(1);
       }
+    if (CoordinateSystemActualTransformAssociation->size() < 1)
+      {
+        fprintf(stderr,
+                "size of CoordinateSystemActualTransformAssociation list (%d) less than minimum required (1)\n",
+                (int)CoordinateSystemActualTransformAssociation->size());
+        exit(1);
+      }
     std::list<CoordinateSystemActualTransformAssociationType *>::iterator iter;
     for (iter = CoordinateSystemActualTransformAssociation->begin();
          iter != CoordinateSystemActualTransformAssociation->end(); iter++)
@@ -2208,7 +2305,7 @@ bool CoordinateSystemActualTransformAssociationsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in CoordinateSystemActualTransformAssociationsType\n");
               returnValue = true;
@@ -2224,7 +2321,7 @@ bool CoordinateSystemActualTransformAssociationsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -2233,7 +2330,7 @@ bool CoordinateSystemActualTransformAssociationsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in CoordinateSystemActualTransformAssociationsType\n");
       returnValue = true;
@@ -2245,8 +2342,8 @@ bool CoordinateSystemActualTransformAssociationsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -2338,6 +2435,13 @@ void CoordinateSystemListType::printSelf(FILE * outFile)
         fprintf(stderr, "CoordinateSystem list is empty\n");
         exit(1);
       }
+    if (CoordinateSystem->size() < 1)
+      {
+        fprintf(stderr,
+                "size of CoordinateSystem list (%d) less than minimum required (1)\n",
+                (int)CoordinateSystem->size());
+        exit(1);
+      }
     std::list<CoordinateSystemType *>::iterator iter;
     for (iter = CoordinateSystem->begin();
          iter != CoordinateSystem->end(); iter++)
@@ -2366,7 +2470,7 @@ bool CoordinateSystemListType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in CoordinateSystemListType\n");
               returnValue = true;
@@ -2382,7 +2486,7 @@ bool CoordinateSystemListType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -2391,7 +2495,7 @@ bool CoordinateSystemListType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in CoordinateSystemListType\n");
       returnValue = true;
@@ -2403,8 +2507,8 @@ bool CoordinateSystemListType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -2590,7 +2694,7 @@ bool CoordinateSystemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CoordinateSystemType\n");
               returnValue = true;
@@ -2606,7 +2710,7 @@ bool CoordinateSystemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -2615,7 +2719,7 @@ bool CoordinateSystemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CoordinateSystemType\n");
       returnValue = true;
@@ -2627,8 +2731,8 @@ bool CoordinateSystemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -2706,7 +2810,15 @@ CoordinateSystemTypeLisd::~CoordinateSystemTypeLisd()
   #endif
 }
 
-void CoordinateSystemTypeLisd::printSelf(FILE * outFile){}
+void CoordinateSystemTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<CoordinateSystemType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -2989,7 +3101,7 @@ bool DatumDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DatumDefinitionType\n");
               returnValue = true;
@@ -3005,7 +3117,7 @@ bool DatumDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -3014,7 +3126,7 @@ bool DatumDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DatumDefinitionType\n");
       returnValue = true;
@@ -3026,8 +3138,8 @@ bool DatumDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -3087,7 +3199,15 @@ DatumDefinitionTypeLisd::~DatumDefinitionTypeLisd()
   #endif
 }
 
-void DatumDefinitionTypeLisd::printSelf(FILE * outFile){}
+void DatumDefinitionTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<DatumDefinitionType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -3164,6 +3284,13 @@ void DatumDefinitionsType::printSelf(FILE * outFile)
         fprintf(stderr, "DatumDefinition list is empty\n");
         exit(1);
       }
+    if (DatumDefinition->size() < 1)
+      {
+        fprintf(stderr,
+                "size of DatumDefinition list (%d) less than minimum required (1)\n",
+                (int)DatumDefinition->size());
+        exit(1);
+      }
     std::list<DatumDefinitionType *>::iterator iter;
     for (iter = DatumDefinition->begin();
          iter != DatumDefinition->end(); iter++)
@@ -3192,7 +3319,7 @@ bool DatumDefinitionsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in DatumDefinitionsType\n");
               returnValue = true;
@@ -3208,7 +3335,7 @@ bool DatumDefinitionsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -3217,7 +3344,7 @@ bool DatumDefinitionsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in DatumDefinitionsType\n");
       returnValue = true;
@@ -3229,8 +3356,8 @@ bool DatumDefinitionsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -3325,13 +3452,6 @@ DatumFeatureSimulatorModifierTypeChoicePair * DatumFeatureSimulatorModifierType:
 
 void DatumFeatureSimulatorModifierType::setDatumFeatureSimulatorModifierTypePair(DatumFeatureSimulatorModifierTypeChoicePair * DatumFeatureSimulatorModifierTypePairIn)
 {DatumFeatureSimulatorModifierTypePair = DatumFeatureSimulatorModifierTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class DatumFeatureSimulatorModifierTypeChoicePair
-
-*/
-
 DatumFeatureSimulatorModifierTypeChoicePair::DatumFeatureSimulatorModifierTypeChoicePair() {}
 
 DatumFeatureSimulatorModifierTypeChoicePair::DatumFeatureSimulatorModifierTypeChoicePair(
@@ -3611,7 +3731,7 @@ bool DatumReferenceFrameType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DatumReferenceFrameType\n");
               returnValue = true;
@@ -3627,7 +3747,7 @@ bool DatumReferenceFrameType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -3636,7 +3756,7 @@ bool DatumReferenceFrameType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DatumReferenceFrameType\n");
       returnValue = true;
@@ -3648,8 +3768,8 @@ bool DatumReferenceFrameType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -3715,7 +3835,15 @@ DatumReferenceFrameTypeLisd::~DatumReferenceFrameTypeLisd()
   #endif
 }
 
-void DatumReferenceFrameTypeLisd::printSelf(FILE * outFile){}
+void DatumReferenceFrameTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<DatumReferenceFrameType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -3792,6 +3920,13 @@ void DatumReferenceFramesType::printSelf(FILE * outFile)
         fprintf(stderr, "DatumReferenceFrame list is empty\n");
         exit(1);
       }
+    if (DatumReferenceFrame->size() < 1)
+      {
+        fprintf(stderr,
+                "size of DatumReferenceFrame list (%d) less than minimum required (1)\n",
+                (int)DatumReferenceFrame->size());
+        exit(1);
+      }
     std::list<DatumReferenceFrameType *>::iterator iter;
     for (iter = DatumReferenceFrame->begin();
          iter != DatumReferenceFrame->end(); iter++)
@@ -3820,7 +3955,7 @@ bool DatumReferenceFramesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in DatumReferenceFramesType\n");
               returnValue = true;
@@ -3836,7 +3971,7 @@ bool DatumReferenceFramesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -3845,7 +3980,7 @@ bool DatumReferenceFramesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in DatumReferenceFramesType\n");
       returnValue = true;
@@ -3857,8 +3992,8 @@ bool DatumReferenceFramesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -3950,6 +4085,13 @@ void DatumTargetDefinitionsType::printSelf(FILE * outFile)
         fprintf(stderr, "DatumTarget list is empty\n");
         exit(1);
       }
+    if (DatumTarget->size() < 1)
+      {
+        fprintf(stderr,
+                "size of DatumTarget list (%d) less than minimum required (1)\n",
+                (int)DatumTarget->size());
+        exit(1);
+      }
     std::list<DatumTargetType *>::iterator iter;
     for (iter = DatumTarget->begin();
          iter != DatumTarget->end(); iter++)
@@ -3978,7 +4120,7 @@ bool DatumTargetDefinitionsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in DatumTargetDefinitionsType\n");
               returnValue = true;
@@ -3994,7 +4136,7 @@ bool DatumTargetDefinitionsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -4003,7 +4145,7 @@ bool DatumTargetDefinitionsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in DatumTargetDefinitionsType\n");
       returnValue = true;
@@ -4015,8 +4157,8 @@ bool DatumTargetDefinitionsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -4172,7 +4314,7 @@ bool DatumTargetType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DatumTargetType\n");
               returnValue = true;
@@ -4188,7 +4330,7 @@ bool DatumTargetType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -4197,7 +4339,7 @@ bool DatumTargetType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DatumTargetType\n");
       returnValue = true;
@@ -4209,8 +4351,8 @@ bool DatumTargetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -4276,7 +4418,15 @@ DatumTargetTypeLisd::~DatumTargetTypeLisd()
   #endif
 }
 
-void DatumTargetTypeLisd::printSelf(FILE * outFile){}
+void DatumTargetTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<DatumTargetType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -4656,22 +4806,22 @@ void DatumType::setAttributes(AttributesType * AttributesIn)
 
 DatumWithPrecedenceType::DatumWithPrecedenceType()
 {
-  DatumWithPreced_1013 = 0;
+  DatumWithPreced_1010 = 0;
   Precedence = 0;
 }
 
 DatumWithPrecedenceType::DatumWithPrecedenceType(
- DatumWithPreced_1013_Type * DatumWithPreced_1013In,
+ DatumWithPreced_1010_Type * DatumWithPreced_1010In,
  PrecedenceType * PrecedenceIn)
 {
-  DatumWithPreced_1013 = DatumWithPreced_1013In;
+  DatumWithPreced_1010 = DatumWithPreced_1010In;
   Precedence = PrecedenceIn;
 }
 
 DatumWithPrecedenceType::~DatumWithPrecedenceType()
 {
   #ifndef NODESTRUCT
-  delete DatumWithPreced_1013;
+  delete DatumWithPreced_1010;
   delete Precedence;
   #endif
 }
@@ -4680,7 +4830,7 @@ void DatumWithPrecedenceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  DatumWithPreced_1013->printSelf(outFile);
+  DatumWithPreced_1010->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<Precedence");
   Precedence->printSelf(outFile);
@@ -4689,11 +4839,11 @@ void DatumWithPrecedenceType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-DatumWithPreced_1013_Type * DatumWithPrecedenceType::getDatumWithPreced_1013()
-{return DatumWithPreced_1013;}
+DatumWithPreced_1010_Type * DatumWithPrecedenceType::getDatumWithPreced_1010()
+{return DatumWithPreced_1010;}
 
-void DatumWithPrecedenceType::setDatumWithPreced_1013(DatumWithPreced_1013_Type * DatumWithPreced_1013In)
-{DatumWithPreced_1013 = DatumWithPreced_1013In;}
+void DatumWithPrecedenceType::setDatumWithPreced_1010(DatumWithPreced_1010_Type * DatumWithPreced_1010In)
+{DatumWithPreced_1010 = DatumWithPreced_1010In;}
 
 PrecedenceType * DatumWithPrecedenceType::getPrecedence()
 {return Precedence;}
@@ -4726,7 +4876,15 @@ DatumWithPrecedenceTypeLisd::~DatumWithPrecedenceTypeLisd()
   #endif
 }
 
-void DatumWithPrecedenceTypeLisd::printSelf(FILE * outFile){}
+void DatumWithPrecedenceTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<DatumWithPrecedenceType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -4803,6 +4961,20 @@ void DatumsType::printSelf(FILE * outFile)
         fprintf(stderr, "Datum list is empty\n");
         exit(1);
       }
+    if (Datum->size() > 5)
+      {
+        fprintf(stderr,
+                "size of Datum list (%d) greater than maximum allowed (5)\n",
+                (int)Datum->size());
+        exit(1);
+      }
+    if (Datum->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Datum list (%d) less than minimum required (1)\n",
+                (int)Datum->size());
+        exit(1);
+      }
     std::list<DatumWithPrecedenceType *>::iterator iter;
     for (iter = Datum->begin();
          iter != Datum->end(); iter++)
@@ -4831,7 +5003,7 @@ bool DatumsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in DatumsType\n");
               returnValue = true;
@@ -4847,7 +5019,7 @@ bool DatumsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -4856,7 +5028,7 @@ bool DatumsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in DatumsType\n");
       returnValue = true;
@@ -4868,8 +5040,8 @@ bool DatumsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -4990,7 +5162,7 @@ bool DefiningPointMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DefiningPointMeasurementType\n");
               returnValue = true;
@@ -5006,7 +5178,7 @@ bool DefiningPointMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -5015,7 +5187,7 @@ bool DefiningPointMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DefiningPointMeasurementType\n");
       returnValue = true;
@@ -5027,8 +5199,8 @@ bool DefiningPointMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -5064,7 +5236,15 @@ DefiningPointMeasurementTypeLisd::~DefiningPointMeasurementTypeLisd()
   #endif
 }
 
-void DefiningPointMeasurementTypeLisd::printSelf(FILE * outFile){}
+void DefiningPointMeasurementTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<DefiningPointMeasurementType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -5170,7 +5350,7 @@ bool DefiningPointNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DefiningPointNominalType\n");
               returnValue = true;
@@ -5186,7 +5366,7 @@ bool DefiningPointNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -5195,7 +5375,7 @@ bool DefiningPointNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DefiningPointNominalType\n");
       returnValue = true;
@@ -5207,8 +5387,8 @@ bool DefiningPointNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -5244,7 +5424,15 @@ DefiningPointNominalTypeLisd::~DefiningPointNominalTypeLisd()
   #endif
 }
 
-void DefiningPointNominalTypeLisd::printSelf(FILE * outFile){}
+void DefiningPointNominalTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<DefiningPointNominalType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -5366,29 +5554,29 @@ void DegreeOfFreedomEnumTypeLisd::printSelf(FILE * outFile)
 DegreesOfFreedomType::DegreesOfFreedomType()
 {
   n = 0;
-  DegreesOfFreedo_1014 = 0;
+  DegreesOfFreedomTypePair = 0;
 }
 
 DegreesOfFreedomType::DegreesOfFreedomType(
- DegreesOfFreedo_1014_Type * DegreesOfFreedo_1014In)
+ DegreesOfFreedomTypeChoicePair * DegreesOfFreedomTypePairIn)
 {
   n = 0;
-  DegreesOfFreedo_1014 = DegreesOfFreedo_1014In;
+  DegreesOfFreedomTypePair = DegreesOfFreedomTypePairIn;
 }
 
 DegreesOfFreedomType::DegreesOfFreedomType(
  NaturalType * nIn,
- DegreesOfFreedo_1014_Type * DegreesOfFreedo_1014In)
+ DegreesOfFreedomTypeChoicePair * DegreesOfFreedomTypePairIn)
 {
   n = nIn;
-  DegreesOfFreedo_1014 = DegreesOfFreedo_1014In;
+  DegreesOfFreedomTypePair = DegreesOfFreedomTypePairIn;
 }
 
 DegreesOfFreedomType::~DegreesOfFreedomType()
 {
   #ifndef NODESTRUCT
   delete n;
-  delete DegreesOfFreedo_1014;
+  delete DegreesOfFreedomTypePair;
   #endif
 }
 
@@ -5421,8 +5609,63 @@ void DegreesOfFreedomType::printSelf(FILE * outFile)
     }
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  DegreesOfFreedo_1014->printSelf(outFile);
+  DegreesOfFreedomTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
+}
+
+DegreesOfFreedomTypeChoicePair * DegreesOfFreedomType::getDegreesOfFreedomTypePair()
+{return DegreesOfFreedomTypePair;}
+
+void DegreesOfFreedomType::setDegreesOfFreedomTypePair(DegreesOfFreedomTypeChoicePair * DegreesOfFreedomTypePairIn)
+{DegreesOfFreedomTypePair = DegreesOfFreedomTypePairIn;}
+DegreesOfFreedomTypeChoicePair::DegreesOfFreedomTypeChoicePair() {}
+
+DegreesOfFreedomTypeChoicePair::DegreesOfFreedomTypeChoicePair(
+ whichOne DegreesOfFreedomTypeTypeIn,
+ DegreesOfFreedomTypeVal DegreesOfFreedomTypeValueIn)
+{
+  DegreesOfFreedomTypeType = DegreesOfFreedomTypeTypeIn;
+  DegreesOfFreedomTypeValue = DegreesOfFreedomTypeValueIn;
+}
+
+DegreesOfFreedomTypeChoicePair::~DegreesOfFreedomTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (DegreesOfFreedomTypeType == DegreeOfFreedomE)
+    delete DegreesOfFreedomTypeValue.DegreeOfFreedom;
+  else if (DegreesOfFreedomTypeType == ISODegreeOfFreedomE)
+    delete DegreesOfFreedomTypeValue.ISODegreeOfFreedom;
+  #endif
+}
+
+void DegreesOfFreedomTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (DegreesOfFreedomTypeType == DegreeOfFreedomE)
+    {
+      std::list<DegreeOfFreedomEnumType *>::iterator iter;
+      for (iter = DegreesOfFreedomTypeValue.DegreeOfFreedom->begin();
+           iter != DegreesOfFreedomTypeValue.DegreeOfFreedom->end();
+           iter++)
+        {
+          doSpaces(0, outFile);
+          fprintf(outFile, "<DegreeOfFreedom");
+          (*iter)->printSelf(outFile);
+          fprintf(outFile, "</DegreeOfFreedom>\n");
+        }
+    }
+  else if (DegreesOfFreedomTypeType == ISODegreeOfFreedomE)
+    {
+      std::list<ISODegreeOfFreedomEnumType *>::iterator iter;
+      for (iter = DegreesOfFreedomTypeValue.ISODegreeOfFreedom->begin();
+           iter != DegreesOfFreedomTypeValue.ISODegreeOfFreedom->end();
+           iter++)
+        {
+          doSpaces(0, outFile);
+          fprintf(outFile, "<ISODegreeOfFreedom");
+          (*iter)->printSelf(outFile);
+          fprintf(outFile, "</ISODegreeOfFreedom>\n");
+        }
+    }
 }
 
 bool DegreesOfFreedomType::badAttributes(
@@ -5439,7 +5682,7 @@ bool DegreesOfFreedomType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in DegreesOfFreedomType\n");
               returnValue = true;
@@ -5455,7 +5698,7 @@ bool DegreesOfFreedomType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -5464,7 +5707,7 @@ bool DegreesOfFreedomType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in DegreesOfFreedomType\n");
       returnValue = true;
@@ -5476,8 +5719,8 @@ bool DegreesOfFreedomType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -5487,12 +5730,6 @@ NaturalType * DegreesOfFreedomType::getn()
 
 void DegreesOfFreedomType::setn(NaturalType * nIn)
 {n = nIn;}
-
-DegreesOfFreedo_1014_Type * DegreesOfFreedomType::getDegreesOfFreedo_1014()
-{return DegreesOfFreedo_1014;}
-
-void DegreesOfFreedomType::setDegreesOfFreedo_1014(DegreesOfFreedo_1014_Type * DegreesOfFreedo_1014In)
-{DegreesOfFreedo_1014 = DegreesOfFreedo_1014In;}
 
 /* ***************************************************************** */
 
@@ -5828,22 +6065,22 @@ void DirectionFeatureType::setDatumDefinitionId(QIFReferenceFullType * DatumDefi
 DirectionalOffsetType::DirectionalOffsetType()
 {
   Offset = 0;
-  DirectionalOffs_1015 = 0;
+  DirectionalOffs_1011 = 0;
 }
 
 DirectionalOffsetType::DirectionalOffsetType(
  LinearValueType * OffsetIn,
- DirectionalOffs_1015_Type * DirectionalOffs_1015In)
+ DirectionalOffs_1011_Type * DirectionalOffs_1011In)
 {
   Offset = OffsetIn;
-  DirectionalOffs_1015 = DirectionalOffs_1015In;
+  DirectionalOffs_1011 = DirectionalOffs_1011In;
 }
 
 DirectionalOffsetType::~DirectionalOffsetType()
 {
   #ifndef NODESTRUCT
   delete Offset;
-  delete DirectionalOffs_1015;
+  delete DirectionalOffs_1011;
   #endif
 }
 
@@ -5855,7 +6092,7 @@ void DirectionalOffsetType::printSelf(FILE * outFile)
   fprintf(outFile, "<Offset");
   Offset->printSelf(outFile);
   fprintf(outFile, "</Offset>\n");
-  DirectionalOffs_1015->printSelf(outFile);
+  DirectionalOffs_1011->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -5865,11 +6102,11 @@ LinearValueType * DirectionalOffsetType::getOffset()
 void DirectionalOffsetType::setOffset(LinearValueType * OffsetIn)
 {Offset = OffsetIn;}
 
-DirectionalOffs_1015_Type * DirectionalOffsetType::getDirectionalOffs_1015()
-{return DirectionalOffs_1015;}
+DirectionalOffs_1011_Type * DirectionalOffsetType::getDirectionalOffs_1011()
+{return DirectionalOffs_1011;}
 
-void DirectionalOffsetType::setDirectionalOffs_1015(DirectionalOffs_1015_Type * DirectionalOffs_1015In)
-{DirectionalOffs_1015 = DirectionalOffs_1015In;}
+void DirectionalOffsetType::setDirectionalOffs_1011(DirectionalOffs_1011_Type * DirectionalOffs_1011In)
+{DirectionalOffs_1011 = DirectionalOffs_1011In;}
 
 /* ***************************************************************** */
 
@@ -6031,7 +6268,15 @@ EmployeeTypeLisd::~EmployeeTypeLisd()
   #endif
 }
 
-void EmployeeTypeLisd::printSelf(FILE * outFile){}
+void EmployeeTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<EmployeeType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -6108,6 +6353,13 @@ void EntitiesExternalType::printSelf(FILE * outFile)
         fprintf(stderr, "Entity list is empty\n");
         exit(1);
       }
+    if (Entity->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Entity list (%d) less than minimum required (1)\n",
+                (int)Entity->size());
+        exit(1);
+      }
     std::list<EntityExternalType *>::iterator iter;
     for (iter = Entity->begin();
          iter != Entity->end(); iter++)
@@ -6136,7 +6388,7 @@ bool EntitiesExternalType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in EntitiesExternalType\n");
               returnValue = true;
@@ -6152,7 +6404,7 @@ bool EntitiesExternalType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -6161,7 +6413,7 @@ bool EntitiesExternalType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in EntitiesExternalType\n");
       returnValue = true;
@@ -6173,8 +6425,8 @@ bool EntitiesExternalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -6302,7 +6554,7 @@ bool EntityExternalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in EntityExternalType\n");
               returnValue = true;
@@ -6318,7 +6570,7 @@ bool EntityExternalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -6327,7 +6579,7 @@ bool EntityExternalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in EntityExternalType\n");
       returnValue = true;
@@ -6339,8 +6591,8 @@ bool EntityExternalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -6394,7 +6646,15 @@ EntityExternalTypeLisd::~EntityExternalTypeLisd()
   #endif
 }
 
-void EntityExternalTypeLisd::printSelf(FILE * outFile){}
+void EntityExternalTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<EntityExternalType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -6481,7 +6741,7 @@ bool EventBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in EventBaseType\n");
               returnValue = true;
@@ -6497,7 +6757,7 @@ bool EventBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -6506,7 +6766,7 @@ bool EventBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in EventBaseType\n");
       returnValue = true;
@@ -6518,8 +6778,8 @@ bool EventBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -6631,7 +6891,15 @@ ExternalFileReferenceTypeLisd::~ExternalFileReferenceTypeLisd()
   #endif
 }
 
-void ExternalFileReferenceTypeLisd::printSelf(FILE * outFile){}
+void ExternalFileReferenceTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ExternalFileReferenceType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -6708,6 +6976,13 @@ void ExternalFileReferencesType::printSelf(FILE * outFile)
         fprintf(stderr, "ExternalFileReference list is empty\n");
         exit(1);
       }
+    if (ExternalFileReference->size() < 1)
+      {
+        fprintf(stderr,
+                "size of ExternalFileReference list (%d) less than minimum required (1)\n",
+                (int)ExternalFileReference->size());
+        exit(1);
+      }
     std::list<ExternalFileReferenceType *>::iterator iter;
     for (iter = ExternalFileReference->begin();
          iter != ExternalFileReference->end(); iter++)
@@ -6736,7 +7011,7 @@ bool ExternalFileReferencesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ExternalFileReferencesType\n");
               returnValue = true;
@@ -6752,7 +7027,7 @@ bool ExternalFileReferencesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -6761,7 +7036,7 @@ bool ExternalFileReferencesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ExternalFileReferencesType\n");
       returnValue = true;
@@ -6773,8 +7048,8 @@ bool ExternalFileReferencesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -6828,13 +7103,6 @@ FileSpecTypeChoicePair * FileSpecType::getFileSpecTypePair()
 
 void FileSpecType::setFileSpecTypePair(FileSpecTypeChoicePair * FileSpecTypePairIn)
 {FileSpecTypePair = FileSpecTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class FileSpecTypeChoicePair
-
-*/
-
 FileSpecTypeChoicePair::FileSpecTypeChoicePair() {}
 
 FileSpecTypeChoicePair::FileSpecTypeChoicePair(
@@ -6957,17 +7225,17 @@ void FileType::setFormat(DigitalModelFormatType * FormatIn)
 
 ForceToleranceType::ForceToleranceType()
 {
-  ForceToleranceT_1016 = 0;
+  ForceToleranceT_1012 = 0;
   DefinedAsLimit = 0;
   Attributes = 0;
 }
 
 ForceToleranceType::ForceToleranceType(
- ForceToleranceT_1016_Type * ForceToleranceT_1016In,
+ ForceToleranceT_1012_Type * ForceToleranceT_1012In,
  XmlBoolean * DefinedAsLimitIn,
  AttributesType * AttributesIn)
 {
-  ForceToleranceT_1016 = ForceToleranceT_1016In;
+  ForceToleranceT_1012 = ForceToleranceT_1012In;
   DefinedAsLimit = DefinedAsLimitIn;
   Attributes = AttributesIn;
 }
@@ -6975,7 +7243,7 @@ ForceToleranceType::ForceToleranceType(
 ForceToleranceType::~ForceToleranceType()
 {
   #ifndef NODESTRUCT
-  delete ForceToleranceT_1016;
+  delete ForceToleranceT_1012;
   delete DefinedAsLimit;
   delete Attributes;
   #endif
@@ -6985,7 +7253,7 @@ void ForceToleranceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  ForceToleranceT_1016->printSelf(outFile);
+  ForceToleranceT_1012->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<DefinedAsLimit");
   DefinedAsLimit->printSelf(outFile);
@@ -7001,11 +7269,11 @@ void ForceToleranceType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-ForceToleranceT_1016_Type * ForceToleranceType::getForceToleranceT_1016()
-{return ForceToleranceT_1016;}
+ForceToleranceT_1012_Type * ForceToleranceType::getForceToleranceT_1012()
+{return ForceToleranceT_1012;}
 
-void ForceToleranceType::setForceToleranceT_1016(ForceToleranceT_1016_Type * ForceToleranceT_1016In)
-{ForceToleranceT_1016 = ForceToleranceT_1016In;}
+void ForceToleranceType::setForceToleranceT_1012(ForceToleranceT_1012_Type * ForceToleranceT_1012In)
+{ForceToleranceT_1012 = ForceToleranceT_1012In;}
 
 XmlBoolean * ForceToleranceType::getDefinedAsLimit()
 {return DefinedAsLimit;}
@@ -7237,13 +7505,6 @@ InspectionStatusTypeChoicePair * InspectionStatusType::getInspectionStatusTypePa
 
 void InspectionStatusType::setInspectionStatusTypePair(InspectionStatusTypeChoicePair * InspectionStatusTypePairIn)
 {InspectionStatusTypePair = InspectionStatusTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class InspectionStatusTypeChoicePair
-
-*/
-
 InspectionStatusTypeChoicePair::InspectionStatusTypeChoicePair() {}
 
 InspectionStatusTypeChoicePair::InspectionStatusTypeChoicePair(
@@ -7492,7 +7753,7 @@ bool LimitsAndFitsSpecificationType::badAttributes(
       if (decl->name == "zoneVariance")
         {
           LimitsAndFitsZoneVarianceType * zoneVarianceVal;
-          if (zoneVariance)
+          if (this->zoneVariance)
             {
               fprintf(stderr, "two values for zoneVariance in LimitsAndFitsSpecificationType\n");
               returnValue = true;
@@ -7508,7 +7769,7 @@ bool LimitsAndFitsSpecificationType::badAttributes(
               break;
             }
           else
-            zoneVariance = zoneVarianceVal;
+            this->zoneVariance = zoneVarianceVal;
         }
       else
         {
@@ -7517,7 +7778,7 @@ bool LimitsAndFitsSpecificationType::badAttributes(
           break;
         }
     }
-  if (zoneVariance == 0)
+  if (this->zoneVariance == 0)
     {
       fprintf(stderr, "required attribute \"zoneVariance\" missing in LimitsAndFitsSpecificationType\n");
       returnValue = true;
@@ -7529,8 +7790,8 @@ bool LimitsAndFitsSpecificationType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete zoneVariance;
-      zoneVariance = 0;
+      delete this->zoneVariance;
+      this->zoneVariance = 0;
     }
   return returnValue;
 }
@@ -7683,26 +7944,26 @@ LinearToleranceDefinitionType::LinearToleranceDefinitionType()
 {
   id = 0;
   Attributes = 0;
-  LinearTolerance_1017 = 0;
+  LinearTolerance_1013 = 0;
 }
 
 LinearToleranceDefinitionType::LinearToleranceDefinitionType(
  AttributesType * AttributesIn,
- LinearTolerance_1017_Type * LinearTolerance_1017In)
+ LinearTolerance_1013_Type * LinearTolerance_1013In)
 {
   id = 0;
   Attributes = AttributesIn;
-  LinearTolerance_1017 = LinearTolerance_1017In;
+  LinearTolerance_1013 = LinearTolerance_1013In;
 }
 
 LinearToleranceDefinitionType::LinearToleranceDefinitionType(
  QIFIdType * idIn,
  AttributesType * AttributesIn,
- LinearTolerance_1017_Type * LinearTolerance_1017In)
+ LinearTolerance_1013_Type * LinearTolerance_1013In)
 {
   id = idIn;
   Attributes = AttributesIn;
-  LinearTolerance_1017 = LinearTolerance_1017In;
+  LinearTolerance_1013 = LinearTolerance_1013In;
 }
 
 LinearToleranceDefinitionType::~LinearToleranceDefinitionType()
@@ -7710,7 +7971,7 @@ LinearToleranceDefinitionType::~LinearToleranceDefinitionType()
   #ifndef NODESTRUCT
   delete id;
   delete Attributes;
-  delete LinearTolerance_1017;
+  delete LinearTolerance_1013;
   #endif
 }
 
@@ -7751,7 +8012,7 @@ void LinearToleranceDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  LinearTolerance_1017->printSelf(outFile);
+  LinearTolerance_1013->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -7769,7 +8030,7 @@ bool LinearToleranceDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LinearToleranceDefinitionType\n");
               returnValue = true;
@@ -7785,7 +8046,7 @@ bool LinearToleranceDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -7794,7 +8055,7 @@ bool LinearToleranceDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LinearToleranceDefinitionType\n");
       returnValue = true;
@@ -7806,8 +8067,8 @@ bool LinearToleranceDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -7824,11 +8085,11 @@ AttributesType * LinearToleranceDefinitionType::getAttributes()
 void LinearToleranceDefinitionType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-LinearTolerance_1017_Type * LinearToleranceDefinitionType::getLinearTolerance_1017()
-{return LinearTolerance_1017;}
+LinearTolerance_1013_Type * LinearToleranceDefinitionType::getLinearTolerance_1013()
+{return LinearTolerance_1013;}
 
-void LinearToleranceDefinitionType::setLinearTolerance_1017(LinearTolerance_1017_Type * LinearTolerance_1017In)
-{LinearTolerance_1017 = LinearTolerance_1017In;}
+void LinearToleranceDefinitionType::setLinearTolerance_1013(LinearTolerance_1013_Type * LinearTolerance_1013In)
+{LinearTolerance_1013 = LinearTolerance_1013In;}
 
 /* ***************************************************************** */
 
@@ -7838,17 +8099,17 @@ void LinearToleranceDefinitionType::setLinearTolerance_1017(LinearTolerance_1017
 
 LinearToleranceType::LinearToleranceType()
 {
-  LinearTolerance_1018 = 0;
+  LinearTolerance_1014 = 0;
   DefinedAsLimit = 0;
   Attributes = 0;
 }
 
 LinearToleranceType::LinearToleranceType(
- LinearTolerance_1018_Type * LinearTolerance_1018In,
+ LinearTolerance_1014_Type * LinearTolerance_1014In,
  XmlBoolean * DefinedAsLimitIn,
  AttributesType * AttributesIn)
 {
-  LinearTolerance_1018 = LinearTolerance_1018In;
+  LinearTolerance_1014 = LinearTolerance_1014In;
   DefinedAsLimit = DefinedAsLimitIn;
   Attributes = AttributesIn;
 }
@@ -7856,7 +8117,7 @@ LinearToleranceType::LinearToleranceType(
 LinearToleranceType::~LinearToleranceType()
 {
   #ifndef NODESTRUCT
-  delete LinearTolerance_1018;
+  delete LinearTolerance_1014;
   delete DefinedAsLimit;
   delete Attributes;
   #endif
@@ -7866,7 +8127,7 @@ void LinearToleranceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  LinearTolerance_1018->printSelf(outFile);
+  LinearTolerance_1014->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<DefinedAsLimit");
   DefinedAsLimit->printSelf(outFile);
@@ -7882,11 +8143,11 @@ void LinearToleranceType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-LinearTolerance_1018_Type * LinearToleranceType::getLinearTolerance_1018()
-{return LinearTolerance_1018;}
+LinearTolerance_1014_Type * LinearToleranceType::getLinearTolerance_1014()
+{return LinearTolerance_1014;}
 
-void LinearToleranceType::setLinearTolerance_1018(LinearTolerance_1018_Type * LinearTolerance_1018In)
-{LinearTolerance_1018 = LinearTolerance_1018In;}
+void LinearToleranceType::setLinearTolerance_1014(LinearTolerance_1014_Type * LinearTolerance_1014In)
+{LinearTolerance_1014 = LinearTolerance_1014In;}
 
 XmlBoolean * LinearToleranceType::getDefinedAsLimit()
 {return DefinedAsLimit;}
@@ -7999,7 +8260,7 @@ bool LocationType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LocationType\n");
               returnValue = true;
@@ -8015,7 +8276,7 @@ bool LocationType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -8024,7 +8285,7 @@ bool LocationType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LocationType\n");
       returnValue = true;
@@ -8036,8 +8297,8 @@ bool LocationType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -8075,8 +8336,7 @@ MachineCoordinateSystemOperationType::MachineCoordinateSystemOperationType(
   AlignmentOperationBaseType(
     SequenceNumberIn,
     AttributesIn)
-{
-}
+{}
 
 MachineCoordinateSystemOperationType::~MachineCoordinateSystemOperationType() {}
 
@@ -8182,7 +8442,15 @@ MachineCoordinateSystemTypeLisd::~MachineCoordinateSystemTypeLisd()
   #endif
 }
 
-void MachineCoordinateSystemTypeLisd::printSelf(FILE * outFile){}
+void MachineCoordinateSystemTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<MachineCoordinateSystemType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -8192,17 +8460,17 @@ void MachineCoordinateSystemTypeLisd::printSelf(FILE * outFile){}
 
 MassToleranceType::MassToleranceType()
 {
-  MassToleranceTy_1019 = 0;
+  MassToleranceTy_1015 = 0;
   DefinedAsLimit = 0;
   Attributes = 0;
 }
 
 MassToleranceType::MassToleranceType(
- MassToleranceTy_1019_Type * MassToleranceTy_1019In,
+ MassToleranceTy_1015_Type * MassToleranceTy_1015In,
  XmlBoolean * DefinedAsLimitIn,
  AttributesType * AttributesIn)
 {
-  MassToleranceTy_1019 = MassToleranceTy_1019In;
+  MassToleranceTy_1015 = MassToleranceTy_1015In;
   DefinedAsLimit = DefinedAsLimitIn;
   Attributes = AttributesIn;
 }
@@ -8210,7 +8478,7 @@ MassToleranceType::MassToleranceType(
 MassToleranceType::~MassToleranceType()
 {
   #ifndef NODESTRUCT
-  delete MassToleranceTy_1019;
+  delete MassToleranceTy_1015;
   delete DefinedAsLimit;
   delete Attributes;
   #endif
@@ -8220,7 +8488,7 @@ void MassToleranceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  MassToleranceTy_1019->printSelf(outFile);
+  MassToleranceTy_1015->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<DefinedAsLimit");
   DefinedAsLimit->printSelf(outFile);
@@ -8236,11 +8504,11 @@ void MassToleranceType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-MassToleranceTy_1019_Type * MassToleranceType::getMassToleranceTy_1019()
-{return MassToleranceTy_1019;}
+MassToleranceTy_1015_Type * MassToleranceType::getMassToleranceTy_1015()
+{return MassToleranceTy_1015;}
 
-void MassToleranceType::setMassToleranceTy_1019(MassToleranceTy_1019_Type * MassToleranceTy_1019In)
-{MassToleranceTy_1019 = MassToleranceTy_1019In;}
+void MassToleranceType::setMassToleranceTy_1015(MassToleranceTy_1015_Type * MassToleranceTy_1015In)
+{MassToleranceTy_1015 = MassToleranceTy_1015In;}
 
 XmlBoolean * MassToleranceType::getDefinedAsLimit()
 {return DefinedAsLimit;}
@@ -8403,7 +8671,7 @@ MaterialType::MaterialType()
   Index = 0;
   MaterialName = 0;
   Attributes = 0;
-  MaterialType_1020 = 0;
+  MaterialType_1016 = 0;
   Description = 0;
   MassDensity = 0;
   PoissonsRatio = 0;
@@ -8418,7 +8686,7 @@ MaterialType::MaterialType()
 
 MaterialType::MaterialType(
  AttributesType * AttributesIn,
- MaterialType_1020_Type * MaterialType_1020In,
+ MaterialType_1016_Type * MaterialType_1016In,
  XmlString * DescriptionIn,
  XmlDouble * MassDensityIn,
  XmlDouble * PoissonsRatioIn,
@@ -8433,7 +8701,7 @@ MaterialType::MaterialType(
   Index = 0;
   MaterialName = 0;
   Attributes = AttributesIn;
-  MaterialType_1020 = MaterialType_1020In;
+  MaterialType_1016 = MaterialType_1016In;
   Description = DescriptionIn;
   MassDensity = MassDensityIn;
   PoissonsRatio = PoissonsRatioIn;
@@ -8450,7 +8718,7 @@ MaterialType::MaterialType(
  NaturalType * IndexIn,
  XmlToken * MaterialNameIn,
  AttributesType * AttributesIn,
- MaterialType_1020_Type * MaterialType_1020In,
+ MaterialType_1016_Type * MaterialType_1016In,
  XmlString * DescriptionIn,
  XmlDouble * MassDensityIn,
  XmlDouble * PoissonsRatioIn,
@@ -8465,7 +8733,7 @@ MaterialType::MaterialType(
   Index = IndexIn;
   MaterialName = MaterialNameIn;
   Attributes = AttributesIn;
-  MaterialType_1020 = MaterialType_1020In;
+  MaterialType_1016 = MaterialType_1016In;
   Description = DescriptionIn;
   MassDensity = MassDensityIn;
   PoissonsRatio = PoissonsRatioIn;
@@ -8484,7 +8752,7 @@ MaterialType::~MaterialType()
   delete Index;
   delete MaterialName;
   delete Attributes;
-  delete MaterialType_1020;
+  delete MaterialType_1016;
   delete Description;
   delete MassDensity;
   delete PoissonsRatio;
@@ -8557,9 +8825,9 @@ void MaterialType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  if (MaterialType_1020)
+  if (MaterialType_1016)
     {
-      MaterialType_1020->printSelf(outFile);
+  MaterialType_1016->printSelf(outFile);
     }
   if (Description)
     {
@@ -8648,7 +8916,7 @@ bool MaterialType::badAttributes(
       if (decl->name == "Index")
         {
           NaturalType * IndexVal;
-          if (Index)
+          if (this->Index)
             {
               fprintf(stderr, "two values for Index in MaterialType\n");
               returnValue = true;
@@ -8664,12 +8932,12 @@ bool MaterialType::badAttributes(
               break;
             }
           else
-            Index = IndexVal;
+            this->Index = IndexVal;
         }
       else if (decl->name == "MaterialName")
         {
           XmlToken * MaterialNameVal;
-          if (MaterialName)
+          if (this->MaterialName)
             {
               fprintf(stderr, "two values for MaterialName in MaterialType\n");
               returnValue = true;
@@ -8685,7 +8953,7 @@ bool MaterialType::badAttributes(
               break;
             }
           else
-            MaterialName = MaterialNameVal;
+            this->MaterialName = MaterialNameVal;
         }
       else
         {
@@ -8694,12 +8962,12 @@ bool MaterialType::badAttributes(
           break;
         }
     }
-  if (Index == 0)
+  if (this->Index == 0)
     {
       fprintf(stderr, "required attribute \"Index\" missing in MaterialType\n");
       returnValue = true;
     }
-  if (MaterialName == 0)
+  if (this->MaterialName == 0)
     {
       fprintf(stderr, "required attribute \"MaterialName\" missing in MaterialType\n");
       returnValue = true;
@@ -8711,10 +8979,10 @@ bool MaterialType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete Index;
-      Index = 0;
-      delete MaterialName;
-      MaterialName = 0;
+      delete this->Index;
+      this->Index = 0;
+      delete this->MaterialName;
+      this->MaterialName = 0;
     }
   return returnValue;
 }
@@ -8737,11 +9005,11 @@ AttributesType * MaterialType::getAttributes()
 void MaterialType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-MaterialType_1020_Type * MaterialType::getMaterialType_1020()
-{return MaterialType_1020;}
+MaterialType_1016_Type * MaterialType::getMaterialType_1016()
+{return MaterialType_1016;}
 
-void MaterialType::setMaterialType_1020(MaterialType_1020_Type * MaterialType_1020In)
-{MaterialType_1020 = MaterialType_1020In;}
+void MaterialType::setMaterialType_1016(MaterialType_1016_Type * MaterialType_1016In)
+{MaterialType_1016 = MaterialType_1016In;}
 
 XmlString * MaterialType::getDescription()
 {return Description;}
@@ -8828,7 +9096,15 @@ MaterialTypeLisd::~MaterialTypeLisd()
   #endif
 }
 
-void MaterialTypeLisd::printSelf(FILE * outFile){}
+void MaterialTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<MaterialType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -8905,6 +9181,13 @@ void MaterialsType::printSelf(FILE * outFile)
         fprintf(stderr, "Material list is empty\n");
         exit(1);
       }
+    if (Material->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Material list (%d) less than minimum required (1)\n",
+                (int)Material->size());
+        exit(1);
+      }
     std::list<MaterialType *>::iterator iter;
     for (iter = Material->begin();
          iter != Material->end(); iter++)
@@ -8933,7 +9216,7 @@ bool MaterialsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in MaterialsType\n");
               returnValue = true;
@@ -8949,7 +9232,7 @@ bool MaterialsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -8958,7 +9241,7 @@ bool MaterialsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in MaterialsType\n");
       returnValue = true;
@@ -8970,8 +9253,8 @@ bool MaterialsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -9121,7 +9404,7 @@ bool MeasurePointNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MeasurePointNominalType\n");
               returnValue = true;
@@ -9137,7 +9420,7 @@ bool MeasurePointNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -9146,7 +9429,7 @@ bool MeasurePointNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MeasurePointNominalType\n");
       returnValue = true;
@@ -9158,8 +9441,8 @@ bool MeasurePointNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -9207,7 +9490,15 @@ MeasurePointNominalTypeLisd::~MeasurePointNominalTypeLisd()
   #endif
 }
 
-void MeasurePointNominalTypeLisd::printSelf(FILE * outFile){}
+void MeasurePointNominalTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<MeasurePointNominalType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -9374,7 +9665,7 @@ bool MeasuredPointWithNormalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MeasuredPointWithNormalBaseType\n");
               returnValue = true;
@@ -9390,7 +9681,7 @@ bool MeasuredPointWithNormalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -9399,7 +9690,7 @@ bool MeasuredPointWithNormalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MeasuredPointWithNormalBaseType\n");
       returnValue = true;
@@ -9411,8 +9702,8 @@ bool MeasuredPointWithNormalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -9534,13 +9825,6 @@ MeasurementDirectiveTypeChoicePair * MeasurementDirectiveType::getMeasurementDir
 
 void MeasurementDirectiveType::setMeasurementDirectiveTypePair(MeasurementDirectiveTypeChoicePair * MeasurementDirectiveTypePairIn)
 {MeasurementDirectiveTypePair = MeasurementDirectiveTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class MeasurementDirectiveTypeChoicePair
-
-*/
-
 MeasurementDirectiveTypeChoicePair::MeasurementDirectiveTypeChoicePair() {}
 
 MeasurementDirectiveTypeChoicePair::MeasurementDirectiveTypeChoicePair(
@@ -9677,6 +9961,20 @@ void MeasurementOffsetAlignmentOperationType::printSelf(FILE * outFile)
         fprintf(stderr, "Origin list is empty\n");
         exit(1);
       }
+    if (Origin->size() > 3)
+      {
+        fprintf(stderr,
+                "size of Origin list (%d) greater than maximum allowed (3)\n",
+                (int)Origin->size());
+        exit(1);
+      }
+    if (Origin->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Origin list (%d) less than minimum required (1)\n",
+                (int)Origin->size());
+        exit(1);
+      }
     std::list<MeasurementOriginOffsetType *>::iterator iter;
     for (iter = Origin->begin();
          iter != Origin->end(); iter++)
@@ -9705,7 +10003,7 @@ bool MeasurementOffsetAlignmentOperationType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in MeasurementOffsetAlignmentOperationType\n");
               returnValue = true;
@@ -9721,7 +10019,7 @@ bool MeasurementOffsetAlignmentOperationType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -9730,7 +10028,7 @@ bool MeasurementOffsetAlignmentOperationType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in MeasurementOffsetAlignmentOperationType\n");
       returnValue = true;
@@ -9742,8 +10040,8 @@ bool MeasurementOffsetAlignmentOperationType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -9841,7 +10139,15 @@ MeasurementOriginOffsetTypeLisd::~MeasurementOriginOffsetTypeLisd()
   #endif
 }
 
-void MeasurementOriginOffsetTypeLisd::printSelf(FILE * outFile){}
+void MeasurementOriginOffsetTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<MeasurementOriginOffsetType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -10132,7 +10438,7 @@ bool MultiLeadThreadSpecificationType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MultiLeadThreadSpecificationType\n");
               returnValue = true;
@@ -10148,7 +10454,7 @@ bool MultiLeadThreadSpecificationType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -10157,7 +10463,7 @@ bool MultiLeadThreadSpecificationType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MultiLeadThreadSpecificationType\n");
       returnValue = true;
@@ -10169,8 +10475,8 @@ bool MultiLeadThreadSpecificationType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -10206,8 +10512,7 @@ NominalDatumFeatureType::NominalDatumFeatureType(
  QIFReferenceFullType * FeatureNominalIdIn) :
   DatumFeatureBaseType(
     FeatureNominalIdIn)
-{
-}
+{}
 
 NominalDatumFeatureType::~NominalDatumFeatureType() {}
 
@@ -10505,7 +10810,7 @@ bool NotableEventType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in NotableEventType\n");
               returnValue = true;
@@ -10521,7 +10826,7 @@ bool NotableEventType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -10530,7 +10835,7 @@ bool NotableEventType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in NotableEventType\n");
       returnValue = true;
@@ -10542,8 +10847,8 @@ bool NotableEventType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -10579,7 +10884,15 @@ NotableEventTypeLisd::~NotableEventTypeLisd()
   #endif
 }
 
-void NotableEventTypeLisd::printSelf(FILE * outFile){}
+void NotableEventTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<NotableEventType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -10656,6 +10969,13 @@ void NotableEventsType::printSelf(FILE * outFile)
         fprintf(stderr, "NotableEvent list is empty\n");
         exit(1);
       }
+    if (NotableEvent->size() < 1)
+      {
+        fprintf(stderr,
+                "size of NotableEvent list (%d) less than minimum required (1)\n",
+                (int)NotableEvent->size());
+        exit(1);
+      }
     std::list<NotableEventType *>::iterator iter;
     for (iter = NotableEvent->begin();
          iter != NotableEvent->end(); iter++)
@@ -10684,7 +11004,7 @@ bool NotableEventsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in NotableEventsType\n");
               returnValue = true;
@@ -10700,7 +11020,7 @@ bool NotableEventsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -10709,7 +11029,7 @@ bool NotableEventsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in NotableEventsType\n");
       returnValue = true;
@@ -10721,8 +11041,8 @@ bool NotableEventsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -10858,7 +11178,7 @@ bool NotedEventType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in NotedEventType\n");
               returnValue = true;
@@ -10874,7 +11194,7 @@ bool NotedEventType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -10883,7 +11203,7 @@ bool NotedEventType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in NotedEventType\n");
       returnValue = true;
@@ -10895,8 +11215,8 @@ bool NotedEventType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -10944,7 +11264,15 @@ NotedEventTypeLisd::~NotedEventTypeLisd()
   #endif
 }
 
-void NotedEventTypeLisd::printSelf(FILE * outFile){}
+void NotedEventTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<NotedEventType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -11021,6 +11349,13 @@ void NotedEventsType::printSelf(FILE * outFile)
         fprintf(stderr, "NotedEvent list is empty\n");
         exit(1);
       }
+    if (NotedEvent->size() < 1)
+      {
+        fprintf(stderr,
+                "size of NotedEvent list (%d) less than minimum required (1)\n",
+                (int)NotedEvent->size());
+        exit(1);
+      }
     std::list<NotedEventType *>::iterator iter;
     for (iter = NotedEvent->begin();
          iter != NotedEvent->end(); iter++)
@@ -11049,7 +11384,7 @@ bool NotedEventsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in NotedEventsType\n");
               returnValue = true;
@@ -11065,7 +11400,7 @@ bool NotedEventsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -11074,7 +11409,7 @@ bool NotedEventsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in NotedEventsType\n");
       returnValue = true;
@@ -11086,8 +11421,8 @@ bool NotedEventsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -11569,7 +11904,7 @@ bool PointSetReferenceBaseType::badAttributes(
       if (decl->name == "xId")
         {
           QIFReferenceSimpleType * xIdVal;
-          if (xId)
+          if (this->xId)
             {
               fprintf(stderr, "two values for xId in PointSetReferenceBaseType\n");
               returnValue = true;
@@ -11585,7 +11920,7 @@ bool PointSetReferenceBaseType::badAttributes(
               break;
             }
           else
-            xId = xIdVal;
+            this->xId = xIdVal;
         }
       else
         {
@@ -11601,8 +11936,8 @@ bool PointSetReferenceBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete xId;
-      xId = 0;
+      delete this->xId;
+      this->xId = 0;
     }
   return returnValue;
 }
@@ -11632,7 +11967,15 @@ PointSetReferenceBaseTypeLisd::~PointSetReferenceBaseTypeLisd()
   #endif
 }
 
-void PointSetReferenceBaseTypeLisd::printSelf(FILE * outFile){}
+void PointSetReferenceBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<PointSetReferenceBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -11749,7 +12092,7 @@ bool PointSetReferenceRangeType::badAttributes(
       if (decl->name == "range")
         {
           Natural2Type * rangeVal;
-          if (range)
+          if (this->range)
             {
               fprintf(stderr, "two values for range in PointSetReferenceRangeType\n");
               returnValue = true;
@@ -11765,12 +12108,12 @@ bool PointSetReferenceRangeType::badAttributes(
               break;
             }
           else
-            range = rangeVal;
+            this->range = rangeVal;
         }
       else if (decl->name == "xId")
         {
           QIFReferenceSimpleType * xIdVal;
-          if (xId)
+          if (this->xId)
             {
               fprintf(stderr, "two values for xId in PointSetReferenceRangeType\n");
               returnValue = true;
@@ -11786,7 +12129,7 @@ bool PointSetReferenceRangeType::badAttributes(
               break;
             }
           else
-            xId = xIdVal;
+            this->xId = xIdVal;
         }
       else
         {
@@ -11795,7 +12138,7 @@ bool PointSetReferenceRangeType::badAttributes(
           break;
         }
     }
-  if (range == 0)
+  if (this->range == 0)
     {
       fprintf(stderr, "required attribute \"range\" missing in PointSetReferenceRangeType\n");
       returnValue = true;
@@ -11807,10 +12150,10 @@ bool PointSetReferenceRangeType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete range;
-      range = 0;
-      delete xId;
-      xId = 0;
+      delete this->range;
+      this->range = 0;
+      delete this->xId;
+      this->xId = 0;
     }
   return returnValue;
 }
@@ -11936,7 +12279,7 @@ bool PointSetReferenceSingleType::badAttributes(
       if (decl->name == "index")
         {
           NaturalType * indexVal;
-          if (index)
+          if (this->index)
             {
               fprintf(stderr, "two values for index in PointSetReferenceSingleType\n");
               returnValue = true;
@@ -11952,12 +12295,12 @@ bool PointSetReferenceSingleType::badAttributes(
               break;
             }
           else
-            index = indexVal;
+            this->index = indexVal;
         }
       else if (decl->name == "xId")
         {
           QIFReferenceSimpleType * xIdVal;
-          if (xId)
+          if (this->xId)
             {
               fprintf(stderr, "two values for xId in PointSetReferenceSingleType\n");
               returnValue = true;
@@ -11973,7 +12316,7 @@ bool PointSetReferenceSingleType::badAttributes(
               break;
             }
           else
-            xId = xIdVal;
+            this->xId = xIdVal;
         }
       else
         {
@@ -11982,7 +12325,7 @@ bool PointSetReferenceSingleType::badAttributes(
           break;
         }
     }
-  if (index == 0)
+  if (this->index == 0)
     {
       fprintf(stderr, "required attribute \"index\" missing in PointSetReferenceSingleType\n");
       returnValue = true;
@@ -11994,10 +12337,10 @@ bool PointSetReferenceSingleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete index;
-      index = 0;
-      delete xId;
-      xId = 0;
+      delete this->index;
+      this->index = 0;
+      delete this->xId;
+      this->xId = 0;
     }
   return returnValue;
 }
@@ -12092,7 +12435,7 @@ bool PointSetReferenceWholeType::badAttributes(
       if (decl->name == "xId")
         {
           QIFReferenceSimpleType * xIdVal;
-          if (xId)
+          if (this->xId)
             {
               fprintf(stderr, "two values for xId in PointSetReferenceWholeType\n");
               returnValue = true;
@@ -12108,7 +12451,7 @@ bool PointSetReferenceWholeType::badAttributes(
               break;
             }
           else
-            xId = xIdVal;
+            this->xId = xIdVal;
         }
       else
         {
@@ -12124,8 +12467,8 @@ bool PointSetReferenceWholeType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete xId;
-      xId = 0;
+      delete this->xId;
+      this->xId = 0;
     }
   return returnValue;
 }
@@ -12228,7 +12571,7 @@ bool PointWithNormalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PointWithNormalBaseType\n");
               returnValue = true;
@@ -12244,7 +12587,7 @@ bool PointWithNormalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -12253,7 +12596,7 @@ bool PointWithNormalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PointWithNormalBaseType\n");
       returnValue = true;
@@ -12265,8 +12608,8 @@ bool PointWithNormalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -12392,13 +12735,6 @@ PrecedenceTypeChoicePair * PrecedenceType::getPrecedenceTypePair()
 
 void PrecedenceType::setPrecedenceTypePair(PrecedenceTypeChoicePair * PrecedenceTypePairIn)
 {PrecedenceTypePair = PrecedenceTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class PrecedenceTypeChoicePair
-
-*/
-
 PrecedenceTypeChoicePair::PrecedenceTypeChoicePair() {}
 
 PrecedenceTypeChoicePair::PrecedenceTypeChoicePair(
@@ -12445,17 +12781,17 @@ void PrecedenceTypeChoicePair::printSelf(FILE * outFile)
 
 PressureToleranceType::PressureToleranceType()
 {
-  PressureToleran_1021 = 0;
+  PressureToleran_1017 = 0;
   DefinedAsLimit = 0;
   Attributes = 0;
 }
 
 PressureToleranceType::PressureToleranceType(
- PressureToleran_1021_Type * PressureToleran_1021In,
+ PressureToleran_1017_Type * PressureToleran_1017In,
  XmlBoolean * DefinedAsLimitIn,
  AttributesType * AttributesIn)
 {
-  PressureToleran_1021 = PressureToleran_1021In;
+  PressureToleran_1017 = PressureToleran_1017In;
   DefinedAsLimit = DefinedAsLimitIn;
   Attributes = AttributesIn;
 }
@@ -12463,7 +12799,7 @@ PressureToleranceType::PressureToleranceType(
 PressureToleranceType::~PressureToleranceType()
 {
   #ifndef NODESTRUCT
-  delete PressureToleran_1021;
+  delete PressureToleran_1017;
   delete DefinedAsLimit;
   delete Attributes;
   #endif
@@ -12473,7 +12809,7 @@ void PressureToleranceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  PressureToleran_1021->printSelf(outFile);
+  PressureToleran_1017->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<DefinedAsLimit");
   DefinedAsLimit->printSelf(outFile);
@@ -12489,11 +12825,11 @@ void PressureToleranceType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-PressureToleran_1021_Type * PressureToleranceType::getPressureToleran_1021()
-{return PressureToleran_1021;}
+PressureToleran_1017_Type * PressureToleranceType::getPressureToleran_1017()
+{return PressureToleran_1017;}
 
-void PressureToleranceType::setPressureToleran_1021(PressureToleran_1021_Type * PressureToleran_1021In)
-{PressureToleran_1021 = PressureToleran_1021In;}
+void PressureToleranceType::setPressureToleran_1017(PressureToleran_1017_Type * PressureToleran_1017In)
+{PressureToleran_1017 = PressureToleran_1017In;}
 
 XmlBoolean * PressureToleranceType::getDefinedAsLimit()
 {return DefinedAsLimit;}
@@ -12996,7 +13332,15 @@ SequencedBaseFeatureTypeLisd::~SequencedBaseFeatureTypeLisd()
   #endif
 }
 
-void SequencedBaseFeatureTypeLisd::printSelf(FILE * outFile){}
+void SequencedBaseFeatureTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<SequencedBaseFeatureType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -13006,22 +13350,22 @@ void SequencedBaseFeatureTypeLisd::printSelf(FILE * outFile){}
 
 SequencedDatumType::SequencedDatumType()
 {
-  SequencedDatumT_1022 = 0;
+  SequencedDatumT_1018 = 0;
   SequenceNumber = 0;
 }
 
 SequencedDatumType::SequencedDatumType(
- SequencedDatumT_1022_Type * SequencedDatumT_1022In,
+ SequencedDatumT_1018_Type * SequencedDatumT_1018In,
  NaturalType * SequenceNumberIn)
 {
-  SequencedDatumT_1022 = SequencedDatumT_1022In;
+  SequencedDatumT_1018 = SequencedDatumT_1018In;
   SequenceNumber = SequenceNumberIn;
 }
 
 SequencedDatumType::~SequencedDatumType()
 {
   #ifndef NODESTRUCT
-  delete SequencedDatumT_1022;
+  delete SequencedDatumT_1018;
   delete SequenceNumber;
   #endif
 }
@@ -13030,7 +13374,7 @@ void SequencedDatumType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  SequencedDatumT_1022->printSelf(outFile);
+  SequencedDatumT_1018->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<SequenceNumber");
   SequenceNumber->printSelf(outFile);
@@ -13038,11 +13382,11 @@ void SequencedDatumType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-SequencedDatumT_1022_Type * SequencedDatumType::getSequencedDatumT_1022()
-{return SequencedDatumT_1022;}
+SequencedDatumT_1018_Type * SequencedDatumType::getSequencedDatumT_1018()
+{return SequencedDatumT_1018;}
 
-void SequencedDatumType::setSequencedDatumT_1022(SequencedDatumT_1022_Type * SequencedDatumT_1022In)
-{SequencedDatumT_1022 = SequencedDatumT_1022In;}
+void SequencedDatumType::setSequencedDatumT_1018(SequencedDatumT_1018_Type * SequencedDatumT_1018In)
+{SequencedDatumT_1018 = SequencedDatumT_1018In;}
 
 NaturalType * SequencedDatumType::getSequenceNumber()
 {return SequenceNumber;}
@@ -13075,7 +13419,15 @@ SequencedDatumTypeLisd::~SequencedDatumTypeLisd()
   #endif
 }
 
-void SequencedDatumTypeLisd::printSelf(FILE * outFile){}
+void SequencedDatumTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<SequencedDatumType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -13152,6 +13504,13 @@ void SignOffsType::printSelf(FILE * outFile)
         fprintf(stderr, "Employee list is empty\n");
         exit(1);
       }
+    if (Employee->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Employee list (%d) less than minimum required (1)\n",
+                (int)Employee->size());
+        exit(1);
+      }
     std::list<EmployeeType *>::iterator iter;
     for (iter = Employee->begin();
          iter != Employee->end(); iter++)
@@ -13180,7 +13539,7 @@ bool SignOffsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in SignOffsType\n");
               returnValue = true;
@@ -13196,7 +13555,7 @@ bool SignOffsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -13205,7 +13564,7 @@ bool SignOffsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in SignOffsType\n");
       returnValue = true;
@@ -13217,8 +13576,8 @@ bool SignOffsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -13471,7 +13830,7 @@ bool SingleLeadThreadSpecificationType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SingleLeadThreadSpecificationType\n");
               returnValue = true;
@@ -13487,7 +13846,7 @@ bool SingleLeadThreadSpecificationType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -13496,7 +13855,7 @@ bool SingleLeadThreadSpecificationType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SingleLeadThreadSpecificationType\n");
       returnValue = true;
@@ -13508,8 +13867,8 @@ bool SingleLeadThreadSpecificationType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -13682,7 +14041,7 @@ bool SoftwareType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SoftwareType\n");
               returnValue = true;
@@ -13698,7 +14057,7 @@ bool SoftwareType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -13707,7 +14066,7 @@ bool SoftwareType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SoftwareType\n");
       returnValue = true;
@@ -13719,8 +14078,8 @@ bool SoftwareType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -13798,7 +14157,15 @@ SoftwareTypeLisd::~SoftwareTypeLisd()
   #endif
 }
 
-void SoftwareTypeLisd::printSelf(FILE * outFile){}
+void SoftwareTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<SoftwareType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -13875,6 +14242,13 @@ void SoftwaresType::printSelf(FILE * outFile)
         fprintf(stderr, "Software list is empty\n");
         exit(1);
       }
+    if (Software->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Software list (%d) less than minimum required (1)\n",
+                (int)Software->size());
+        exit(1);
+      }
     std::list<SoftwareType *>::iterator iter;
     for (iter = Software->begin();
          iter != Software->end(); iter++)
@@ -13903,7 +14277,7 @@ bool SoftwaresType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in SoftwaresType\n");
               returnValue = true;
@@ -13919,7 +14293,7 @@ bool SoftwaresType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -13928,7 +14302,7 @@ bool SoftwaresType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in SoftwaresType\n");
       returnValue = true;
@@ -13940,8 +14314,8 @@ bool SoftwaresType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -13966,17 +14340,17 @@ void SoftwaresType::setSoftware(SoftwareTypeLisd * SoftwareIn)
 
 SpeedToleranceType::SpeedToleranceType()
 {
-  SpeedToleranceT_1023 = 0;
+  SpeedToleranceT_1019 = 0;
   DefinedAsLimit = 0;
   Attributes = 0;
 }
 
 SpeedToleranceType::SpeedToleranceType(
- SpeedToleranceT_1023_Type * SpeedToleranceT_1023In,
+ SpeedToleranceT_1019_Type * SpeedToleranceT_1019In,
  XmlBoolean * DefinedAsLimitIn,
  AttributesType * AttributesIn)
 {
-  SpeedToleranceT_1023 = SpeedToleranceT_1023In;
+  SpeedToleranceT_1019 = SpeedToleranceT_1019In;
   DefinedAsLimit = DefinedAsLimitIn;
   Attributes = AttributesIn;
 }
@@ -13984,7 +14358,7 @@ SpeedToleranceType::SpeedToleranceType(
 SpeedToleranceType::~SpeedToleranceType()
 {
   #ifndef NODESTRUCT
-  delete SpeedToleranceT_1023;
+  delete SpeedToleranceT_1019;
   delete DefinedAsLimit;
   delete Attributes;
   #endif
@@ -13994,7 +14368,7 @@ void SpeedToleranceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  SpeedToleranceT_1023->printSelf(outFile);
+  SpeedToleranceT_1019->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<DefinedAsLimit");
   DefinedAsLimit->printSelf(outFile);
@@ -14010,11 +14384,11 @@ void SpeedToleranceType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-SpeedToleranceT_1023_Type * SpeedToleranceType::getSpeedToleranceT_1023()
-{return SpeedToleranceT_1023;}
+SpeedToleranceT_1019_Type * SpeedToleranceType::getSpeedToleranceT_1019()
+{return SpeedToleranceT_1019;}
 
-void SpeedToleranceType::setSpeedToleranceT_1023(SpeedToleranceT_1023_Type * SpeedToleranceT_1023In)
-{SpeedToleranceT_1023 = SpeedToleranceT_1023In;}
+void SpeedToleranceType::setSpeedToleranceT_1019(SpeedToleranceT_1019_Type * SpeedToleranceT_1019In)
+{SpeedToleranceT_1019 = SpeedToleranceT_1019In;}
 
 XmlBoolean * SpeedToleranceType::getDefinedAsLimit()
 {return DefinedAsLimit;}
@@ -14217,7 +14591,7 @@ bool StandardType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in StandardType\n");
               returnValue = true;
@@ -14233,7 +14607,7 @@ bool StandardType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -14242,7 +14616,7 @@ bool StandardType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in StandardType\n");
       returnValue = true;
@@ -14254,8 +14628,8 @@ bool StandardType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -14345,7 +14719,15 @@ StandardTypeLisd::~StandardTypeLisd()
   #endif
 }
 
-void StandardTypeLisd::printSelf(FILE * outFile){}
+void StandardTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<StandardType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -14476,13 +14858,6 @@ StandardsOrganizationTypeChoicePair * StandardsOrganizationType::getStandardsOrg
 
 void StandardsOrganizationType::setStandardsOrganizationTypePair(StandardsOrganizationTypeChoicePair * StandardsOrganizationTypePairIn)
 {StandardsOrganizationTypePair = StandardsOrganizationTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class StandardsOrganizationTypeChoicePair
-
-*/
-
 StandardsOrganizationTypeChoicePair::StandardsOrganizationTypeChoicePair() {}
 
 StandardsOrganizationTypeChoicePair::StandardsOrganizationTypeChoicePair(
@@ -14596,6 +14971,13 @@ void StandardsType::printSelf(FILE * outFile)
         fprintf(stderr, "Standard list is empty\n");
         exit(1);
       }
+    if (Standard->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Standard list (%d) less than minimum required (1)\n",
+                (int)Standard->size());
+        exit(1);
+      }
     std::list<StandardType *>::iterator iter;
     for (iter = Standard->begin();
          iter != Standard->end(); iter++)
@@ -14624,7 +15006,7 @@ bool StandardsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in StandardsType\n");
               returnValue = true;
@@ -14640,7 +15022,7 @@ bool StandardsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -14649,7 +15031,7 @@ bool StandardsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in StandardsType\n");
       returnValue = true;
@@ -14661,8 +15043,8 @@ bool StandardsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -14770,22 +15152,22 @@ void SubstituteFeatureAlgorithmEnumType::oPrintSelf(FILE * outFile)
 SubstituteFeatureAlgorithmType::SubstituteFeatureAlgorithmType()
 {
   Attributes = 0;
-  SubstituteFeatu_1024 = 0;
+  SubstituteFeatu_1020 = 0;
 }
 
 SubstituteFeatureAlgorithmType::SubstituteFeatureAlgorithmType(
  AttributesType * AttributesIn,
- SubstituteFeatu_1024_Type * SubstituteFeatu_1024In)
+ SubstituteFeatu_1020_Type * SubstituteFeatu_1020In)
 {
   Attributes = AttributesIn;
-  SubstituteFeatu_1024 = SubstituteFeatu_1024In;
+  SubstituteFeatu_1020 = SubstituteFeatu_1020In;
 }
 
 SubstituteFeatureAlgorithmType::~SubstituteFeatureAlgorithmType()
 {
   #ifndef NODESTRUCT
   delete Attributes;
-  delete SubstituteFeatu_1024;
+  delete SubstituteFeatu_1020;
   #endif
 }
 
@@ -14801,7 +15183,7 @@ void SubstituteFeatureAlgorithmType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Attributes>\n");
     }
-  SubstituteFeatu_1024->printSelf(outFile);
+  SubstituteFeatu_1020->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -14811,11 +15193,11 @@ AttributesType * SubstituteFeatureAlgorithmType::getAttributes()
 void SubstituteFeatureAlgorithmType::setAttributes(AttributesType * AttributesIn)
 {Attributes = AttributesIn;}
 
-SubstituteFeatu_1024_Type * SubstituteFeatureAlgorithmType::getSubstituteFeatu_1024()
-{return SubstituteFeatu_1024;}
+SubstituteFeatu_1020_Type * SubstituteFeatureAlgorithmType::getSubstituteFeatu_1020()
+{return SubstituteFeatu_1020;}
 
-void SubstituteFeatureAlgorithmType::setSubstituteFeatu_1024(SubstituteFeatu_1024_Type * SubstituteFeatu_1024In)
-{SubstituteFeatu_1024 = SubstituteFeatu_1024In;}
+void SubstituteFeatureAlgorithmType::setSubstituteFeatu_1020(SubstituteFeatu_1020_Type * SubstituteFeatu_1020In)
+{SubstituteFeatu_1020 = SubstituteFeatu_1020In;}
 
 /* ***************************************************************** */
 
@@ -14825,17 +15207,17 @@ void SubstituteFeatureAlgorithmType::setSubstituteFeatu_1024(SubstituteFeatu_102
 
 TemperatureToleranceType::TemperatureToleranceType()
 {
-  TemperatureTole_1025 = 0;
+  TemperatureTole_1021 = 0;
   DefinedAsLimit = 0;
   Attributes = 0;
 }
 
 TemperatureToleranceType::TemperatureToleranceType(
- TemperatureTole_1025_Type * TemperatureTole_1025In,
+ TemperatureTole_1021_Type * TemperatureTole_1021In,
  XmlBoolean * DefinedAsLimitIn,
  AttributesType * AttributesIn)
 {
-  TemperatureTole_1025 = TemperatureTole_1025In;
+  TemperatureTole_1021 = TemperatureTole_1021In;
   DefinedAsLimit = DefinedAsLimitIn;
   Attributes = AttributesIn;
 }
@@ -14843,7 +15225,7 @@ TemperatureToleranceType::TemperatureToleranceType(
 TemperatureToleranceType::~TemperatureToleranceType()
 {
   #ifndef NODESTRUCT
-  delete TemperatureTole_1025;
+  delete TemperatureTole_1021;
   delete DefinedAsLimit;
   delete Attributes;
   #endif
@@ -14853,7 +15235,7 @@ void TemperatureToleranceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  TemperatureTole_1025->printSelf(outFile);
+  TemperatureTole_1021->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<DefinedAsLimit");
   DefinedAsLimit->printSelf(outFile);
@@ -14869,11 +15251,11 @@ void TemperatureToleranceType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-TemperatureTole_1025_Type * TemperatureToleranceType::getTemperatureTole_1025()
-{return TemperatureTole_1025;}
+TemperatureTole_1021_Type * TemperatureToleranceType::getTemperatureTole_1021()
+{return TemperatureTole_1021;}
 
-void TemperatureToleranceType::setTemperatureTole_1025(TemperatureTole_1025_Type * TemperatureTole_1025In)
-{TemperatureTole_1025 = TemperatureTole_1025In;}
+void TemperatureToleranceType::setTemperatureTole_1021(TemperatureTole_1021_Type * TemperatureTole_1021In)
+{TemperatureTole_1021 = TemperatureTole_1021In;}
 
 XmlBoolean * TemperatureToleranceType::getDefinedAsLimit()
 {return DefinedAsLimit;}
@@ -14972,7 +15354,7 @@ bool TextThreadSpecificationType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in TextThreadSpecificationType\n");
               returnValue = true;
@@ -14988,7 +15370,7 @@ bool TextThreadSpecificationType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -14997,7 +15379,7 @@ bool TextThreadSpecificationType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in TextThreadSpecificationType\n");
       returnValue = true;
@@ -15009,8 +15391,8 @@ bool TextThreadSpecificationType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -15201,7 +15583,7 @@ bool ThreadSpecificationDetailedBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ThreadSpecificationDetailedBaseType\n");
               returnValue = true;
@@ -15217,7 +15599,7 @@ bool ThreadSpecificationDetailedBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -15226,7 +15608,7 @@ bool ThreadSpecificationDetailedBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ThreadSpecificationDetailedBaseType\n");
       returnValue = true;
@@ -15238,8 +15620,8 @@ bool ThreadSpecificationDetailedBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -15335,13 +15717,6 @@ ThreadSpecificationTypeChoicePair * ThreadSpecificationType::getThreadSpecificat
 
 void ThreadSpecificationType::setThreadSpecificationTypePair(ThreadSpecificationTypeChoicePair * ThreadSpecificationTypePairIn)
 {ThreadSpecificationTypePair = ThreadSpecificationTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ThreadSpecificationTypeChoicePair
-
-*/
-
 ThreadSpecificationTypeChoicePair::ThreadSpecificationTypeChoicePair() {}
 
 ThreadSpecificationTypeChoicePair::ThreadSpecificationTypeChoicePair(
@@ -15417,7 +15792,15 @@ ThreadSpecificationTypeLisd::~ThreadSpecificationTypeLisd()
   #endif
 }
 
-void ThreadSpecificationTypeLisd::printSelf(FILE * outFile){}
+void ThreadSpecificationTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ThreadSpecificationType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -15494,6 +15877,13 @@ void ThreadSpecificationsType::printSelf(FILE * outFile)
         fprintf(stderr, "ThreadSpecification list is empty\n");
         exit(1);
       }
+    if (ThreadSpecification->size() < 1)
+      {
+        fprintf(stderr,
+                "size of ThreadSpecification list (%d) less than minimum required (1)\n",
+                (int)ThreadSpecification->size());
+        exit(1);
+      }
     std::list<ThreadSpecificationType *>::iterator iter;
     for (iter = ThreadSpecification->begin();
          iter != ThreadSpecification->end(); iter++)
@@ -15522,7 +15912,7 @@ bool ThreadSpecificationsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ThreadSpecificationsType\n");
               returnValue = true;
@@ -15538,7 +15928,7 @@ bool ThreadSpecificationsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -15547,7 +15937,7 @@ bool ThreadSpecificationsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ThreadSpecificationsType\n");
       returnValue = true;
@@ -15559,8 +15949,8 @@ bool ThreadSpecificationsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -15585,17 +15975,17 @@ void ThreadSpecificationsType::setThreadSpecification(ThreadSpecificationTypeLis
 
 TimeToleranceType::TimeToleranceType()
 {
-  TimeToleranceTy_1026 = 0;
+  TimeToleranceTy_1022 = 0;
   DefinedAsLimit = 0;
   Attributes = 0;
 }
 
 TimeToleranceType::TimeToleranceType(
- TimeToleranceTy_1026_Type * TimeToleranceTy_1026In,
+ TimeToleranceTy_1022_Type * TimeToleranceTy_1022In,
  XmlBoolean * DefinedAsLimitIn,
  AttributesType * AttributesIn)
 {
-  TimeToleranceTy_1026 = TimeToleranceTy_1026In;
+  TimeToleranceTy_1022 = TimeToleranceTy_1022In;
   DefinedAsLimit = DefinedAsLimitIn;
   Attributes = AttributesIn;
 }
@@ -15603,7 +15993,7 @@ TimeToleranceType::TimeToleranceType(
 TimeToleranceType::~TimeToleranceType()
 {
   #ifndef NODESTRUCT
-  delete TimeToleranceTy_1026;
+  delete TimeToleranceTy_1022;
   delete DefinedAsLimit;
   delete Attributes;
   #endif
@@ -15613,7 +16003,7 @@ void TimeToleranceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  TimeToleranceTy_1026->printSelf(outFile);
+  TimeToleranceTy_1022->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<DefinedAsLimit");
   DefinedAsLimit->printSelf(outFile);
@@ -15629,11 +16019,11 @@ void TimeToleranceType::printSelf(FILE * outFile)
   doSpaces(-INDENT, outFile);
 }
 
-TimeToleranceTy_1026_Type * TimeToleranceType::getTimeToleranceTy_1026()
-{return TimeToleranceTy_1026;}
+TimeToleranceTy_1022_Type * TimeToleranceType::getTimeToleranceTy_1022()
+{return TimeToleranceTy_1022;}
 
-void TimeToleranceType::setTimeToleranceTy_1026(TimeToleranceTy_1026_Type * TimeToleranceTy_1026In)
-{TimeToleranceTy_1026 = TimeToleranceTy_1026In;}
+void TimeToleranceType::setTimeToleranceTy_1022(TimeToleranceTy_1022_Type * TimeToleranceTy_1022In)
+{TimeToleranceTy_1022 = TimeToleranceTy_1022In;}
 
 XmlBoolean * TimeToleranceType::getDefinedAsLimit()
 {return DefinedAsLimit;}
@@ -15711,22 +16101,22 @@ void ToleranceZonePerUnitAngleType::setUnitAngle(AngularValueType * UnitAngleIn)
 ToleranceZonePerUnitAreaType::ToleranceZonePerUnitAreaType()
 {
   ToleranceValuePerUnit = 0;
-  ToleranceZonePe_1027 = 0;
+  ToleranceZonePe_1023 = 0;
 }
 
 ToleranceZonePerUnitAreaType::ToleranceZonePerUnitAreaType(
  LinearValueType * ToleranceValuePerUnitIn,
- ToleranceZonePe_1027_Type * ToleranceZonePe_1027In)
+ ToleranceZonePe_1023_Type * ToleranceZonePe_1023In)
 {
   ToleranceValuePerUnit = ToleranceValuePerUnitIn;
-  ToleranceZonePe_1027 = ToleranceZonePe_1027In;
+  ToleranceZonePe_1023 = ToleranceZonePe_1023In;
 }
 
 ToleranceZonePerUnitAreaType::~ToleranceZonePerUnitAreaType()
 {
   #ifndef NODESTRUCT
   delete ToleranceValuePerUnit;
-  delete ToleranceZonePe_1027;
+  delete ToleranceZonePe_1023;
   #endif
 }
 
@@ -15738,7 +16128,7 @@ void ToleranceZonePerUnitAreaType::printSelf(FILE * outFile)
   fprintf(outFile, "<ToleranceValuePerUnit");
   ToleranceValuePerUnit->printSelf(outFile);
   fprintf(outFile, "</ToleranceValuePerUnit>\n");
-  ToleranceZonePe_1027->printSelf(outFile);
+  ToleranceZonePe_1023->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -15748,11 +16138,11 @@ LinearValueType * ToleranceZonePerUnitAreaType::getToleranceValuePerUnit()
 void ToleranceZonePerUnitAreaType::setToleranceValuePerUnit(LinearValueType * ToleranceValuePerUnitIn)
 {ToleranceValuePerUnit = ToleranceValuePerUnitIn;}
 
-ToleranceZonePe_1027_Type * ToleranceZonePerUnitAreaType::getToleranceZonePe_1027()
-{return ToleranceZonePe_1027;}
+ToleranceZonePe_1023_Type * ToleranceZonePerUnitAreaType::getToleranceZonePe_1023()
+{return ToleranceZonePe_1023;}
 
-void ToleranceZonePerUnitAreaType::setToleranceZonePe_1027(ToleranceZonePe_1027_Type * ToleranceZonePe_1027In)
-{ToleranceZonePe_1027 = ToleranceZonePe_1027In;}
+void ToleranceZonePerUnitAreaType::setToleranceZonePe_1023(ToleranceZonePe_1023_Type * ToleranceZonePe_1023In)
+{ToleranceZonePe_1023 = ToleranceZonePe_1023In;}
 
 /* ***************************************************************** */
 
@@ -16253,7 +16643,7 @@ bool TransformInstanceType::badAttributes(
       if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in TransformInstanceType\n");
               returnValue = true;
@@ -16269,12 +16659,12 @@ bool TransformInstanceType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in TransformInstanceType\n");
               returnValue = true;
@@ -16290,12 +16680,12 @@ bool TransformInstanceType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "linearUnit")
         {
           XmlToken * linearUnitVal;
-          if (linearUnit)
+          if (this->linearUnit)
             {
               fprintf(stderr, "two values for linearUnit in TransformInstanceType\n");
               returnValue = true;
@@ -16311,12 +16701,12 @@ bool TransformInstanceType::badAttributes(
               break;
             }
           else
-            linearUnit = linearUnitVal;
+            this->linearUnit = linearUnitVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in TransformInstanceType\n");
               returnValue = true;
@@ -16332,12 +16722,12 @@ bool TransformInstanceType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else if (decl->name == "validity")
         {
           ValidityEnumType * validityVal;
-          if (validity)
+          if (this->validity)
             {
               fprintf(stderr, "two values for validity in TransformInstanceType\n");
               returnValue = true;
@@ -16353,12 +16743,12 @@ bool TransformInstanceType::badAttributes(
               break;
             }
           else
-            validity = validityVal;
+            this->validity = validityVal;
         }
       else if (decl->name == "xDecimalPlaces")
         {
           XmlNonNegativeInteger * xDecimalPlacesVal;
-          if (xDecimalPlaces)
+          if (this->xDecimalPlaces)
             {
               fprintf(stderr, "two values for xDecimalPlaces in TransformInstanceType\n");
               returnValue = true;
@@ -16374,12 +16764,12 @@ bool TransformInstanceType::badAttributes(
               break;
             }
           else
-            xDecimalPlaces = xDecimalPlacesVal;
+            this->xDecimalPlaces = xDecimalPlacesVal;
         }
       else if (decl->name == "xSignificantFigures")
         {
           XmlNonNegativeInteger * xSignificantFiguresVal;
-          if (xSignificantFigures)
+          if (this->xSignificantFigures)
             {
               fprintf(stderr, "two values for xSignificantFigures in TransformInstanceType\n");
               returnValue = true;
@@ -16395,12 +16785,12 @@ bool TransformInstanceType::badAttributes(
               break;
             }
           else
-            xSignificantFigures = xSignificantFiguresVal;
+            this->xSignificantFigures = xSignificantFiguresVal;
         }
       else if (decl->name == "xValidity")
         {
           ValidityEnumType * xValidityVal;
-          if (xValidity)
+          if (this->xValidity)
             {
               fprintf(stderr, "two values for xValidity in TransformInstanceType\n");
               returnValue = true;
@@ -16416,12 +16806,12 @@ bool TransformInstanceType::badAttributes(
               break;
             }
           else
-            xValidity = xValidityVal;
+            this->xValidity = xValidityVal;
         }
       else if (decl->name == "yDecimalPlaces")
         {
           XmlNonNegativeInteger * yDecimalPlacesVal;
-          if (yDecimalPlaces)
+          if (this->yDecimalPlaces)
             {
               fprintf(stderr, "two values for yDecimalPlaces in TransformInstanceType\n");
               returnValue = true;
@@ -16437,12 +16827,12 @@ bool TransformInstanceType::badAttributes(
               break;
             }
           else
-            yDecimalPlaces = yDecimalPlacesVal;
+            this->yDecimalPlaces = yDecimalPlacesVal;
         }
       else if (decl->name == "ySignificantFigures")
         {
           XmlNonNegativeInteger * ySignificantFiguresVal;
-          if (ySignificantFigures)
+          if (this->ySignificantFigures)
             {
               fprintf(stderr, "two values for ySignificantFigures in TransformInstanceType\n");
               returnValue = true;
@@ -16458,12 +16848,12 @@ bool TransformInstanceType::badAttributes(
               break;
             }
           else
-            ySignificantFigures = ySignificantFiguresVal;
+            this->ySignificantFigures = ySignificantFiguresVal;
         }
       else if (decl->name == "yValidity")
         {
           ValidityEnumType * yValidityVal;
-          if (yValidity)
+          if (this->yValidity)
             {
               fprintf(stderr, "two values for yValidity in TransformInstanceType\n");
               returnValue = true;
@@ -16479,12 +16869,12 @@ bool TransformInstanceType::badAttributes(
               break;
             }
           else
-            yValidity = yValidityVal;
+            this->yValidity = yValidityVal;
         }
       else if (decl->name == "zDecimalPlaces")
         {
           XmlNonNegativeInteger * zDecimalPlacesVal;
-          if (zDecimalPlaces)
+          if (this->zDecimalPlaces)
             {
               fprintf(stderr, "two values for zDecimalPlaces in TransformInstanceType\n");
               returnValue = true;
@@ -16500,12 +16890,12 @@ bool TransformInstanceType::badAttributes(
               break;
             }
           else
-            zDecimalPlaces = zDecimalPlacesVal;
+            this->zDecimalPlaces = zDecimalPlacesVal;
         }
       else if (decl->name == "zSignificantFigures")
         {
           XmlNonNegativeInteger * zSignificantFiguresVal;
-          if (zSignificantFigures)
+          if (this->zSignificantFigures)
             {
               fprintf(stderr, "two values for zSignificantFigures in TransformInstanceType\n");
               returnValue = true;
@@ -16521,12 +16911,12 @@ bool TransformInstanceType::badAttributes(
               break;
             }
           else
-            zSignificantFigures = zSignificantFiguresVal;
+            this->zSignificantFigures = zSignificantFiguresVal;
         }
       else if (decl->name == "zValidity")
         {
           ValidityEnumType * zValidityVal;
-          if (zValidity)
+          if (this->zValidity)
             {
               fprintf(stderr, "two values for zValidity in TransformInstanceType\n");
               returnValue = true;
@@ -16542,7 +16932,7 @@ bool TransformInstanceType::badAttributes(
               break;
             }
           else
-            zValidity = zValidityVal;
+            this->zValidity = zValidityVal;
         }
       else
         {
@@ -16551,7 +16941,7 @@ bool TransformInstanceType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in TransformInstanceType\n");
       returnValue = true;
@@ -16563,34 +16953,34 @@ bool TransformInstanceType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete id;
-      id = 0;
-      delete linearUnit;
-      linearUnit = 0;
-      delete significantFigures;
-      significantFigures = 0;
-      delete validity;
-      validity = 0;
-      delete xDecimalPlaces;
-      xDecimalPlaces = 0;
-      delete xSignificantFigures;
-      xSignificantFigures = 0;
-      delete xValidity;
-      xValidity = 0;
-      delete yDecimalPlaces;
-      yDecimalPlaces = 0;
-      delete ySignificantFigures;
-      ySignificantFigures = 0;
-      delete yValidity;
-      yValidity = 0;
-      delete zDecimalPlaces;
-      zDecimalPlaces = 0;
-      delete zSignificantFigures;
-      zSignificantFigures = 0;
-      delete zValidity;
-      zValidity = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->linearUnit;
+      this->linearUnit = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
+      delete this->validity;
+      this->validity = 0;
+      delete this->xDecimalPlaces;
+      this->xDecimalPlaces = 0;
+      delete this->xSignificantFigures;
+      this->xSignificantFigures = 0;
+      delete this->xValidity;
+      this->xValidity = 0;
+      delete this->yDecimalPlaces;
+      this->yDecimalPlaces = 0;
+      delete this->ySignificantFigures;
+      this->ySignificantFigures = 0;
+      delete this->yValidity;
+      this->yValidity = 0;
+      delete this->zDecimalPlaces;
+      this->zDecimalPlaces = 0;
+      delete this->zSignificantFigures;
+      this->zSignificantFigures = 0;
+      delete this->zValidity;
+      this->zValidity = 0;
     }
   return returnValue;
 }
@@ -16638,7 +17028,15 @@ TransformInstanceTypeLisd::~TransformInstanceTypeLisd()
   #endif
 }
 
-void TransformInstanceTypeLisd::printSelf(FILE * outFile){}
+void TransformInstanceTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<TransformInstanceType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -16715,6 +17113,13 @@ void TransformListType::printSelf(FILE * outFile)
         fprintf(stderr, "Transform list is empty\n");
         exit(1);
       }
+    if (Transform->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Transform list (%d) less than minimum required (1)\n",
+                (int)Transform->size());
+        exit(1);
+      }
     std::list<TransformInstanceType *>::iterator iter;
     for (iter = Transform->begin();
          iter != Transform->end(); iter++)
@@ -16743,7 +17148,7 @@ bool TransformListType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in TransformListType\n");
               returnValue = true;
@@ -16759,7 +17164,7 @@ bool TransformListType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -16768,7 +17173,7 @@ bool TransformListType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in TransformListType\n");
       returnValue = true;
@@ -16780,8 +17185,8 @@ bool TransformListType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -16935,6 +17340,13 @@ void VersionHistoryType::printSelf(FILE * outFile)
         fprintf(stderr, "EarlierVersion list is empty\n");
         exit(1);
       }
+    if (EarlierVersion->size() < 1)
+      {
+        fprintf(stderr,
+                "size of EarlierVersion list (%d) less than minimum required (1)\n",
+                (int)EarlierVersion->size());
+        exit(1);
+      }
     std::list<VersionReferenceType *>::iterator iter;
     for (iter = EarlierVersion->begin();
          iter != EarlierVersion->end(); iter++)
@@ -16963,7 +17375,7 @@ bool VersionHistoryType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in VersionHistoryType\n");
               returnValue = true;
@@ -16979,7 +17391,7 @@ bool VersionHistoryType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -16988,7 +17400,7 @@ bool VersionHistoryType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in VersionHistoryType\n");
       returnValue = true;
@@ -17000,8 +17412,8 @@ bool VersionHistoryType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -17108,7 +17520,15 @@ VersionReferenceTypeLisd::~VersionReferenceTypeLisd()
   #endif
 }
 
-void VersionReferenceTypeLisd::printSelf(FILE * outFile){}
+void VersionReferenceTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<VersionReferenceType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -17241,7 +17661,7 @@ bool VirtualMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in VirtualMeasurementType\n");
               returnValue = true;
@@ -17257,7 +17677,7 @@ bool VirtualMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -17266,7 +17686,7 @@ bool VirtualMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in VirtualMeasurementType\n");
       returnValue = true;
@@ -17278,8 +17698,8 @@ bool VirtualMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -17365,6 +17785,13 @@ void ZoneDataSetType::printSelf(FILE * outFile)
         fprintf(stderr, "ZoneData list is empty\n");
         exit(1);
       }
+    if (ZoneData->size() < 1)
+      {
+        fprintf(stderr,
+                "size of ZoneData list (%d) less than minimum required (1)\n",
+                (int)ZoneData->size());
+        exit(1);
+      }
     std::list<ZoneDataType *>::iterator iter;
     for (iter = ZoneData->begin();
          iter != ZoneData->end(); iter++)
@@ -17393,7 +17820,7 @@ bool ZoneDataSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ZoneDataSetType\n");
               returnValue = true;
@@ -17409,7 +17836,7 @@ bool ZoneDataSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -17418,7 +17845,7 @@ bool ZoneDataSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ZoneDataSetType\n");
       returnValue = true;
@@ -17430,8 +17857,8 @@ bool ZoneDataSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -17542,494 +17969,387 @@ ZoneDataTypeLisd::~ZoneDataTypeLisd()
   #endif
 }
 
-void ZoneDataTypeLisd::printSelf(FILE * outFile){}
-
-/* ***************************************************************** */
-
-/* class AlgorithmType_1008_Type
-
-*/
-
-AlgorithmType_1008_Type::AlgorithmType_1008_Type()
+void ZoneDataTypeLisd::printSelf(FILE * outFile)
 {
-  AlgorithmType_1008_TypePair = 0;
-}
+  std::list<ZoneDataType *>::iterator iter;
 
-AlgorithmType_1008_Type::AlgorithmType_1008_Type(
- AlgorithmType_1008_TypeChoicePair * AlgorithmType_1008_TypePairIn)
-{
-  AlgorithmType_1008_TypePair = AlgorithmType_1008_TypePairIn;
-}
-
-AlgorithmType_1008_Type::~AlgorithmType_1008_Type()
-{
-  #ifndef NODESTRUCT
-  delete AlgorithmType_1008_TypePair;
-  #endif
-}
-
-void AlgorithmType_1008_Type::printSelf(FILE * outFile)
-{
-  AlgorithmType_1008_TypePair->printSelf(outFile);
-}
-
-AlgorithmType_1008_TypeChoicePair * AlgorithmType_1008_Type::getAlgorithmType_1008_TypePair()
-{return AlgorithmType_1008_TypePair;}
-
-void AlgorithmType_1008_Type::setAlgorithmType_1008_TypePair(AlgorithmType_1008_TypeChoicePair * AlgorithmType_1008_TypePairIn)
-{AlgorithmType_1008_TypePair = AlgorithmType_1008_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class AlgorithmType_1008_TypeChoicePair
-
-*/
-
-AlgorithmType_1008_TypeChoicePair::AlgorithmType_1008_TypeChoicePair() {}
-
-AlgorithmType_1008_TypeChoicePair::AlgorithmType_1008_TypeChoicePair(
- whichOne AlgorithmType_1008_TypeTypeIn,
- AlgorithmType_1008_TypeVal AlgorithmType_1008_TypeValueIn)
-{
-  AlgorithmType_1008_TypeType = AlgorithmType_1008_TypeTypeIn;
-  AlgorithmType_1008_TypeValue = AlgorithmType_1008_TypeValueIn;
-}
-
-AlgorithmType_1008_TypeChoicePair::~AlgorithmType_1008_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (AlgorithmType_1008_TypeType == AlgorithmType_1_1028E)
-    delete AlgorithmType_1008_TypeValue.AlgorithmType_1_1028;
-  else if (AlgorithmType_1008_TypeType == AlgorithmType_1_1029E)
-    delete AlgorithmType_1008_TypeValue.AlgorithmType_1_1029;
-  #endif
-}
-
-void AlgorithmType_1008_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (AlgorithmType_1008_TypeType == AlgorithmType_1_1028E)
+  for (iter = begin(); iter != end(); iter++)
     {
-      AlgorithmType_1008_TypeValue.AlgorithmType_1_1028->printSelf(outFile);
-    }
-  else if (AlgorithmType_1008_TypeType == AlgorithmType_1_1029E)
-    {
-      AlgorithmType_1008_TypeValue.AlgorithmType_1_1029->printSelf(outFile);
+      (*iter)->printSelf(outFile);
     }
 }
 
 /* ***************************************************************** */
 
-/* class AlignmentFeatur_1009_Type
+/* class AlgorithmType_1006_Type
 
 */
 
-AlignmentFeatur_1009_Type::AlignmentFeatur_1009_Type()
+AlgorithmType_1006_Type::AlgorithmType_1006_Type()
 {
-  AlignmentFeatur_1009_TypePair = 0;
+  AlgorithmType_1006_TypePair = 0;
 }
 
-AlignmentFeatur_1009_Type::AlignmentFeatur_1009_Type(
- AlignmentFeatur_1009_TypeChoicePair * AlignmentFeatur_1009_TypePairIn)
+AlgorithmType_1006_Type::AlgorithmType_1006_Type(
+ AlgorithmType_1006_TypeChoicePair * AlgorithmType_1006_TypePairIn)
 {
-  AlignmentFeatur_1009_TypePair = AlignmentFeatur_1009_TypePairIn;
+  AlgorithmType_1006_TypePair = AlgorithmType_1006_TypePairIn;
 }
 
-AlignmentFeatur_1009_Type::~AlignmentFeatur_1009_Type()
+AlgorithmType_1006_Type::~AlgorithmType_1006_Type()
 {
   #ifndef NODESTRUCT
-  delete AlignmentFeatur_1009_TypePair;
+  delete AlgorithmType_1006_TypePair;
   #endif
 }
 
-void AlignmentFeatur_1009_Type::printSelf(FILE * outFile)
+void AlgorithmType_1006_Type::printSelf(FILE * outFile)
 {
-  AlignmentFeatur_1009_TypePair->printSelf(outFile);
+  AlgorithmType_1006_TypePair->printSelf(outFile);
 }
 
-AlignmentFeatur_1009_TypeChoicePair * AlignmentFeatur_1009_Type::getAlignmentFeatur_1009_TypePair()
-{return AlignmentFeatur_1009_TypePair;}
+AlgorithmType_1006_TypeChoicePair * AlgorithmType_1006_Type::getAlgorithmType_1006_TypePair()
+{return AlgorithmType_1006_TypePair;}
 
-void AlignmentFeatur_1009_Type::setAlignmentFeatur_1009_TypePair(AlignmentFeatur_1009_TypeChoicePair * AlignmentFeatur_1009_TypePairIn)
-{AlignmentFeatur_1009_TypePair = AlignmentFeatur_1009_TypePairIn;}
+void AlgorithmType_1006_Type::setAlgorithmType_1006_TypePair(AlgorithmType_1006_TypeChoicePair * AlgorithmType_1006_TypePairIn)
+{AlgorithmType_1006_TypePair = AlgorithmType_1006_TypePairIn;}
+AlgorithmType_1006_TypeChoicePair::AlgorithmType_1006_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class AlignmentFeatur_1009_TypeChoicePair
-
-*/
-
-AlignmentFeatur_1009_TypeChoicePair::AlignmentFeatur_1009_TypeChoicePair() {}
-
-AlignmentFeatur_1009_TypeChoicePair::AlignmentFeatur_1009_TypeChoicePair(
- whichOne AlignmentFeatur_1009_TypeTypeIn,
- AlignmentFeatur_1009_TypeVal AlignmentFeatur_1009_TypeValueIn)
+AlgorithmType_1006_TypeChoicePair::AlgorithmType_1006_TypeChoicePair(
+ whichOne AlgorithmType_1006_TypeTypeIn,
+ AlgorithmType_1006_TypeVal AlgorithmType_1006_TypeValueIn)
 {
-  AlignmentFeatur_1009_TypeType = AlignmentFeatur_1009_TypeTypeIn;
-  AlignmentFeatur_1009_TypeValue = AlignmentFeatur_1009_TypeValueIn;
+  AlgorithmType_1006_TypeType = AlgorithmType_1006_TypeTypeIn;
+  AlgorithmType_1006_TypeValue = AlgorithmType_1006_TypeValueIn;
 }
 
-AlignmentFeatur_1009_TypeChoicePair::~AlignmentFeatur_1009_TypeChoicePair()
+AlgorithmType_1006_TypeChoicePair::~AlgorithmType_1006_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (AlignmentFeatur_1009_TypeType == DatumDefinitionIdE)
-    delete AlignmentFeatur_1009_TypeValue.DatumDefinitionId;
-  else if (AlignmentFeatur_1009_TypeType == BaseFeatureE)
-    delete AlignmentFeatur_1009_TypeValue.BaseFeature;
+  if (AlgorithmType_1006_TypeType == AlgorithmType_1_1024E)
+    delete AlgorithmType_1006_TypeValue.AlgorithmType_1_1024;
+  else if (AlgorithmType_1006_TypeType == AlgorithmType_1_1025E)
+    delete AlgorithmType_1006_TypeValue.AlgorithmType_1_1025;
   #endif
 }
 
-void AlignmentFeatur_1009_TypeChoicePair::printSelf(FILE * outFile)
+void AlgorithmType_1006_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (AlignmentFeatur_1009_TypeType == DatumDefinitionIdE)
+  if (AlgorithmType_1006_TypeType == AlgorithmType_1_1024E)
     {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<DatumDefinitionId");
-      AlignmentFeatur_1009_TypeValue.DatumDefinitionId->printSelf(outFile);
-      fprintf(outFile, "</DatumDefinitionId>\n");
+      AlgorithmType_1006_TypeValue.AlgorithmType_1_1024->printSelf(outFile);
     }
-  else if (AlignmentFeatur_1009_TypeType == BaseFeatureE)
+  else if (AlgorithmType_1006_TypeType == AlgorithmType_1_1025E)
     {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<BaseFeature");
-      AlignmentFeatur_1009_TypeValue.BaseFeature->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</BaseFeature>\n");
+      AlgorithmType_1006_TypeValue.AlgorithmType_1_1025->printSelf(outFile);
     }
 }
 
 /* ***************************************************************** */
 
-/* class AngularToleranc_1010_Type
+/* class AngularToleranc_1007_Type
 
 */
 
-AngularToleranc_1010_Type::AngularToleranc_1010_Type()
+AngularToleranc_1007_Type::AngularToleranc_1007_Type()
 {
-  AngularToleranc_1010_TypePair = 0;
+  AngularToleranc_1007_TypePair = 0;
 }
 
-AngularToleranc_1010_Type::AngularToleranc_1010_Type(
- AngularToleranc_1010_TypeChoicePair * AngularToleranc_1010_TypePairIn)
+AngularToleranc_1007_Type::AngularToleranc_1007_Type(
+ AngularToleranc_1007_TypeChoicePair * AngularToleranc_1007_TypePairIn)
 {
-  AngularToleranc_1010_TypePair = AngularToleranc_1010_TypePairIn;
+  AngularToleranc_1007_TypePair = AngularToleranc_1007_TypePairIn;
 }
 
-AngularToleranc_1010_Type::~AngularToleranc_1010_Type()
+AngularToleranc_1007_Type::~AngularToleranc_1007_Type()
 {
   #ifndef NODESTRUCT
-  delete AngularToleranc_1010_TypePair;
+  delete AngularToleranc_1007_TypePair;
   #endif
 }
 
-void AngularToleranc_1010_Type::printSelf(FILE * outFile)
+void AngularToleranc_1007_Type::printSelf(FILE * outFile)
 {
-  AngularToleranc_1010_TypePair->printSelf(outFile);
+  AngularToleranc_1007_TypePair->printSelf(outFile);
 }
 
-AngularToleranc_1010_TypeChoicePair * AngularToleranc_1010_Type::getAngularToleranc_1010_TypePair()
-{return AngularToleranc_1010_TypePair;}
+AngularToleranc_1007_TypeChoicePair * AngularToleranc_1007_Type::getAngularToleranc_1007_TypePair()
+{return AngularToleranc_1007_TypePair;}
 
-void AngularToleranc_1010_Type::setAngularToleranc_1010_TypePair(AngularToleranc_1010_TypeChoicePair * AngularToleranc_1010_TypePairIn)
-{AngularToleranc_1010_TypePair = AngularToleranc_1010_TypePairIn;}
+void AngularToleranc_1007_Type::setAngularToleranc_1007_TypePair(AngularToleranc_1007_TypeChoicePair * AngularToleranc_1007_TypePairIn)
+{AngularToleranc_1007_TypePair = AngularToleranc_1007_TypePairIn;}
+AngularToleranc_1007_TypeChoicePair::AngularToleranc_1007_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class AngularToleranc_1010_TypeChoicePair
-
-*/
-
-AngularToleranc_1010_TypeChoicePair::AngularToleranc_1010_TypeChoicePair() {}
-
-AngularToleranc_1010_TypeChoicePair::AngularToleranc_1010_TypeChoicePair(
- whichOne AngularToleranc_1010_TypeTypeIn,
- AngularToleranc_1010_TypeVal AngularToleranc_1010_TypeValueIn)
+AngularToleranc_1007_TypeChoicePair::AngularToleranc_1007_TypeChoicePair(
+ whichOne AngularToleranc_1007_TypeTypeIn,
+ AngularToleranc_1007_TypeVal AngularToleranc_1007_TypeValueIn)
 {
-  AngularToleranc_1010_TypeType = AngularToleranc_1010_TypeTypeIn;
-  AngularToleranc_1010_TypeValue = AngularToleranc_1010_TypeValueIn;
+  AngularToleranc_1007_TypeType = AngularToleranc_1007_TypeTypeIn;
+  AngularToleranc_1007_TypeValue = AngularToleranc_1007_TypeValueIn;
 }
 
-AngularToleranc_1010_TypeChoicePair::~AngularToleranc_1010_TypeChoicePair()
+AngularToleranc_1007_TypeChoicePair::~AngularToleranc_1007_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (AngularToleranc_1010_TypeType == AngularToleranc_1030E)
-    delete AngularToleranc_1010_TypeValue.AngularToleranc_1030;
-  else if (AngularToleranc_1010_TypeType == MinValueE)
-    delete AngularToleranc_1010_TypeValue.MinValue;
+  if (AngularToleranc_1007_TypeType == AngularToleranc_1026E)
+    delete AngularToleranc_1007_TypeValue.AngularToleranc_1026;
+  else if (AngularToleranc_1007_TypeType == MinValueE)
+    delete AngularToleranc_1007_TypeValue.MinValue;
   #endif
 }
 
-void AngularToleranc_1010_TypeChoicePair::printSelf(FILE * outFile)
+void AngularToleranc_1007_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (AngularToleranc_1010_TypeType == AngularToleranc_1030E)
+  if (AngularToleranc_1007_TypeType == AngularToleranc_1026E)
     {
-      AngularToleranc_1010_TypeValue.AngularToleranc_1030->printSelf(outFile);
+      AngularToleranc_1007_TypeValue.AngularToleranc_1026->printSelf(outFile);
     }
-  else if (AngularToleranc_1010_TypeType == MinValueE)
+  else if (AngularToleranc_1007_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      AngularToleranc_1010_TypeValue.MinValue->printSelf(outFile);
+      AngularToleranc_1007_TypeValue.MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class AngularToleranc_1011_Type
+/* class AngularToleranc_1008_Type
 
 */
 
-AngularToleranc_1011_Type::AngularToleranc_1011_Type()
+AngularToleranc_1008_Type::AngularToleranc_1008_Type()
 {
-  AngularToleranc_1011_TypePair = 0;
+  AngularToleranc_1008_TypePair = 0;
 }
 
-AngularToleranc_1011_Type::AngularToleranc_1011_Type(
- AngularToleranc_1011_TypeChoicePair * AngularToleranc_1011_TypePairIn)
+AngularToleranc_1008_Type::AngularToleranc_1008_Type(
+ AngularToleranc_1008_TypeChoicePair * AngularToleranc_1008_TypePairIn)
 {
-  AngularToleranc_1011_TypePair = AngularToleranc_1011_TypePairIn;
+  AngularToleranc_1008_TypePair = AngularToleranc_1008_TypePairIn;
 }
 
-AngularToleranc_1011_Type::~AngularToleranc_1011_Type()
+AngularToleranc_1008_Type::~AngularToleranc_1008_Type()
 {
   #ifndef NODESTRUCT
-  delete AngularToleranc_1011_TypePair;
+  delete AngularToleranc_1008_TypePair;
   #endif
 }
 
-void AngularToleranc_1011_Type::printSelf(FILE * outFile)
+void AngularToleranc_1008_Type::printSelf(FILE * outFile)
 {
-  AngularToleranc_1011_TypePair->printSelf(outFile);
+  AngularToleranc_1008_TypePair->printSelf(outFile);
 }
 
-AngularToleranc_1011_TypeChoicePair * AngularToleranc_1011_Type::getAngularToleranc_1011_TypePair()
-{return AngularToleranc_1011_TypePair;}
+AngularToleranc_1008_TypeChoicePair * AngularToleranc_1008_Type::getAngularToleranc_1008_TypePair()
+{return AngularToleranc_1008_TypePair;}
 
-void AngularToleranc_1011_Type::setAngularToleranc_1011_TypePair(AngularToleranc_1011_TypeChoicePair * AngularToleranc_1011_TypePairIn)
-{AngularToleranc_1011_TypePair = AngularToleranc_1011_TypePairIn;}
+void AngularToleranc_1008_Type::setAngularToleranc_1008_TypePair(AngularToleranc_1008_TypeChoicePair * AngularToleranc_1008_TypePairIn)
+{AngularToleranc_1008_TypePair = AngularToleranc_1008_TypePairIn;}
+AngularToleranc_1008_TypeChoicePair::AngularToleranc_1008_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class AngularToleranc_1011_TypeChoicePair
-
-*/
-
-AngularToleranc_1011_TypeChoicePair::AngularToleranc_1011_TypeChoicePair() {}
-
-AngularToleranc_1011_TypeChoicePair::AngularToleranc_1011_TypeChoicePair(
- whichOne AngularToleranc_1011_TypeTypeIn,
- AngularToleranc_1011_TypeVal AngularToleranc_1011_TypeValueIn)
+AngularToleranc_1008_TypeChoicePair::AngularToleranc_1008_TypeChoicePair(
+ whichOne AngularToleranc_1008_TypeTypeIn,
+ AngularToleranc_1008_TypeVal AngularToleranc_1008_TypeValueIn)
 {
-  AngularToleranc_1011_TypeType = AngularToleranc_1011_TypeTypeIn;
-  AngularToleranc_1011_TypeValue = AngularToleranc_1011_TypeValueIn;
+  AngularToleranc_1008_TypeType = AngularToleranc_1008_TypeTypeIn;
+  AngularToleranc_1008_TypeValue = AngularToleranc_1008_TypeValueIn;
 }
 
-AngularToleranc_1011_TypeChoicePair::~AngularToleranc_1011_TypeChoicePair()
+AngularToleranc_1008_TypeChoicePair::~AngularToleranc_1008_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (AngularToleranc_1011_TypeType == AngularToleranc_1031E)
-    delete AngularToleranc_1011_TypeValue.AngularToleranc_1031;
-  else if (AngularToleranc_1011_TypeType == MinValueE)
-    delete AngularToleranc_1011_TypeValue.MinValue;
-  else if (AngularToleranc_1011_TypeType == DefinitionIdE)
-    delete AngularToleranc_1011_TypeValue.DefinitionId;
+  if (AngularToleranc_1008_TypeType == AngularToleranc_1027E)
+    delete AngularToleranc_1008_TypeValue.AngularToleranc_1027;
+  else if (AngularToleranc_1008_TypeType == MinValueE)
+    delete AngularToleranc_1008_TypeValue.MinValue;
+  else if (AngularToleranc_1008_TypeType == DefinitionIdE)
+    delete AngularToleranc_1008_TypeValue.DefinitionId;
   #endif
 }
 
-void AngularToleranc_1011_TypeChoicePair::printSelf(FILE * outFile)
+void AngularToleranc_1008_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (AngularToleranc_1011_TypeType == AngularToleranc_1031E)
+  if (AngularToleranc_1008_TypeType == AngularToleranc_1027E)
     {
-      AngularToleranc_1011_TypeValue.AngularToleranc_1031->printSelf(outFile);
+      AngularToleranc_1008_TypeValue.AngularToleranc_1027->printSelf(outFile);
     }
-  else if (AngularToleranc_1011_TypeType == MinValueE)
+  else if (AngularToleranc_1008_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      AngularToleranc_1011_TypeValue.MinValue->printSelf(outFile);
+      AngularToleranc_1008_TypeValue.MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
-  else if (AngularToleranc_1011_TypeType == DefinitionIdE)
+  else if (AngularToleranc_1008_TypeType == DefinitionIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DefinitionId");
-      AngularToleranc_1011_TypeValue.DefinitionId->printSelf(outFile);
+      AngularToleranc_1008_TypeValue.DefinitionId->printSelf(outFile);
       fprintf(outFile, "</DefinitionId>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class AreaToleranceTy_1012_Type
+/* class AreaToleranceTy_1009_Type
 
 */
 
-AreaToleranceTy_1012_Type::AreaToleranceTy_1012_Type()
+AreaToleranceTy_1009_Type::AreaToleranceTy_1009_Type()
 {
-  AreaToleranceTy_1012_TypePair = 0;
+  AreaToleranceTy_1009_TypePair = 0;
 }
 
-AreaToleranceTy_1012_Type::AreaToleranceTy_1012_Type(
- AreaToleranceTy_1012_TypeChoicePair * AreaToleranceTy_1012_TypePairIn)
+AreaToleranceTy_1009_Type::AreaToleranceTy_1009_Type(
+ AreaToleranceTy_1009_TypeChoicePair * AreaToleranceTy_1009_TypePairIn)
 {
-  AreaToleranceTy_1012_TypePair = AreaToleranceTy_1012_TypePairIn;
+  AreaToleranceTy_1009_TypePair = AreaToleranceTy_1009_TypePairIn;
 }
 
-AreaToleranceTy_1012_Type::~AreaToleranceTy_1012_Type()
+AreaToleranceTy_1009_Type::~AreaToleranceTy_1009_Type()
 {
   #ifndef NODESTRUCT
-  delete AreaToleranceTy_1012_TypePair;
+  delete AreaToleranceTy_1009_TypePair;
   #endif
 }
 
-void AreaToleranceTy_1012_Type::printSelf(FILE * outFile)
+void AreaToleranceTy_1009_Type::printSelf(FILE * outFile)
 {
-  AreaToleranceTy_1012_TypePair->printSelf(outFile);
+  AreaToleranceTy_1009_TypePair->printSelf(outFile);
 }
 
-AreaToleranceTy_1012_TypeChoicePair * AreaToleranceTy_1012_Type::getAreaToleranceTy_1012_TypePair()
-{return AreaToleranceTy_1012_TypePair;}
+AreaToleranceTy_1009_TypeChoicePair * AreaToleranceTy_1009_Type::getAreaToleranceTy_1009_TypePair()
+{return AreaToleranceTy_1009_TypePair;}
 
-void AreaToleranceTy_1012_Type::setAreaToleranceTy_1012_TypePair(AreaToleranceTy_1012_TypeChoicePair * AreaToleranceTy_1012_TypePairIn)
-{AreaToleranceTy_1012_TypePair = AreaToleranceTy_1012_TypePairIn;}
+void AreaToleranceTy_1009_Type::setAreaToleranceTy_1009_TypePair(AreaToleranceTy_1009_TypeChoicePair * AreaToleranceTy_1009_TypePairIn)
+{AreaToleranceTy_1009_TypePair = AreaToleranceTy_1009_TypePairIn;}
+AreaToleranceTy_1009_TypeChoicePair::AreaToleranceTy_1009_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class AreaToleranceTy_1012_TypeChoicePair
-
-*/
-
-AreaToleranceTy_1012_TypeChoicePair::AreaToleranceTy_1012_TypeChoicePair() {}
-
-AreaToleranceTy_1012_TypeChoicePair::AreaToleranceTy_1012_TypeChoicePair(
- whichOne AreaToleranceTy_1012_TypeTypeIn,
- AreaToleranceTy_1012_TypeVal AreaToleranceTy_1012_TypeValueIn)
+AreaToleranceTy_1009_TypeChoicePair::AreaToleranceTy_1009_TypeChoicePair(
+ whichOne AreaToleranceTy_1009_TypeTypeIn,
+ AreaToleranceTy_1009_TypeVal AreaToleranceTy_1009_TypeValueIn)
 {
-  AreaToleranceTy_1012_TypeType = AreaToleranceTy_1012_TypeTypeIn;
-  AreaToleranceTy_1012_TypeValue = AreaToleranceTy_1012_TypeValueIn;
+  AreaToleranceTy_1009_TypeType = AreaToleranceTy_1009_TypeTypeIn;
+  AreaToleranceTy_1009_TypeValue = AreaToleranceTy_1009_TypeValueIn;
 }
 
-AreaToleranceTy_1012_TypeChoicePair::~AreaToleranceTy_1012_TypeChoicePair()
+AreaToleranceTy_1009_TypeChoicePair::~AreaToleranceTy_1009_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (AreaToleranceTy_1012_TypeType == AreaToleranceTy_1032E)
-    delete AreaToleranceTy_1012_TypeValue.AreaToleranceTy_1032;
-  else if (AreaToleranceTy_1012_TypeType == MinValueE)
-    delete AreaToleranceTy_1012_TypeValue.MinValue;
+  if (AreaToleranceTy_1009_TypeType == AreaToleranceTy_1028E)
+    delete AreaToleranceTy_1009_TypeValue.AreaToleranceTy_1028;
+  else if (AreaToleranceTy_1009_TypeType == MinValueE)
+    delete AreaToleranceTy_1009_TypeValue.MinValue;
   #endif
 }
 
-void AreaToleranceTy_1012_TypeChoicePair::printSelf(FILE * outFile)
+void AreaToleranceTy_1009_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (AreaToleranceTy_1012_TypeType == AreaToleranceTy_1032E)
+  if (AreaToleranceTy_1009_TypeType == AreaToleranceTy_1028E)
     {
-      AreaToleranceTy_1012_TypeValue.AreaToleranceTy_1032->printSelf(outFile);
+      AreaToleranceTy_1009_TypeValue.AreaToleranceTy_1028->printSelf(outFile);
     }
-  else if (AreaToleranceTy_1012_TypeType == MinValueE)
+  else if (AreaToleranceTy_1009_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      AreaToleranceTy_1012_TypeValue.MinValue->printSelf(outFile);
+      AreaToleranceTy_1009_TypeValue.MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class DatumWithPreced_1013_Type
+/* class DatumWithPreced_1010_Type
 
 */
 
-DatumWithPreced_1013_Type::DatumWithPreced_1013_Type()
+DatumWithPreced_1010_Type::DatumWithPreced_1010_Type()
 {
-  DatumWithPreced_1013_TypePair = 0;
+  DatumWithPreced_1010_TypePair = 0;
 }
 
-DatumWithPreced_1013_Type::DatumWithPreced_1013_Type(
- DatumWithPreced_1013_TypeChoicePair * DatumWithPreced_1013_TypePairIn)
+DatumWithPreced_1010_Type::DatumWithPreced_1010_Type(
+ DatumWithPreced_1010_TypeChoicePair * DatumWithPreced_1010_TypePairIn)
 {
-  DatumWithPreced_1013_TypePair = DatumWithPreced_1013_TypePairIn;
+  DatumWithPreced_1010_TypePair = DatumWithPreced_1010_TypePairIn;
 }
 
-DatumWithPreced_1013_Type::~DatumWithPreced_1013_Type()
+DatumWithPreced_1010_Type::~DatumWithPreced_1010_Type()
 {
   #ifndef NODESTRUCT
-  delete DatumWithPreced_1013_TypePair;
+  delete DatumWithPreced_1010_TypePair;
   #endif
 }
 
-void DatumWithPreced_1013_Type::printSelf(FILE * outFile)
+void DatumWithPreced_1010_Type::printSelf(FILE * outFile)
 {
-  DatumWithPreced_1013_TypePair->printSelf(outFile);
+  DatumWithPreced_1010_TypePair->printSelf(outFile);
 }
 
-DatumWithPreced_1013_TypeChoicePair * DatumWithPreced_1013_Type::getDatumWithPreced_1013_TypePair()
-{return DatumWithPreced_1013_TypePair;}
+DatumWithPreced_1010_TypeChoicePair * DatumWithPreced_1010_Type::getDatumWithPreced_1010_TypePair()
+{return DatumWithPreced_1010_TypePair;}
 
-void DatumWithPreced_1013_Type::setDatumWithPreced_1013_TypePair(DatumWithPreced_1013_TypeChoicePair * DatumWithPreced_1013_TypePairIn)
-{DatumWithPreced_1013_TypePair = DatumWithPreced_1013_TypePairIn;}
+void DatumWithPreced_1010_Type::setDatumWithPreced_1010_TypePair(DatumWithPreced_1010_TypeChoicePair * DatumWithPreced_1010_TypePairIn)
+{DatumWithPreced_1010_TypePair = DatumWithPreced_1010_TypePairIn;}
+DatumWithPreced_1010_TypeChoicePair::DatumWithPreced_1010_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class DatumWithPreced_1013_TypeChoicePair
-
-*/
-
-DatumWithPreced_1013_TypeChoicePair::DatumWithPreced_1013_TypeChoicePair() {}
-
-DatumWithPreced_1013_TypeChoicePair::DatumWithPreced_1013_TypeChoicePair(
- whichOne DatumWithPreced_1013_TypeTypeIn,
- DatumWithPreced_1013_TypeVal DatumWithPreced_1013_TypeValueIn)
+DatumWithPreced_1010_TypeChoicePair::DatumWithPreced_1010_TypeChoicePair(
+ whichOne DatumWithPreced_1010_TypeTypeIn,
+ DatumWithPreced_1010_TypeVal DatumWithPreced_1010_TypeValueIn)
 {
-  DatumWithPreced_1013_TypeType = DatumWithPreced_1013_TypeTypeIn;
-  DatumWithPreced_1013_TypeValue = DatumWithPreced_1013_TypeValueIn;
+  DatumWithPreced_1010_TypeType = DatumWithPreced_1010_TypeTypeIn;
+  DatumWithPreced_1010_TypeValue = DatumWithPreced_1010_TypeValueIn;
 }
 
-DatumWithPreced_1013_TypeChoicePair::~DatumWithPreced_1013_TypeChoicePair()
+DatumWithPreced_1010_TypeChoicePair::~DatumWithPreced_1010_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (DatumWithPreced_1013_TypeType == SimpleDatumE)
-    delete DatumWithPreced_1013_TypeValue.SimpleDatum;
-  else if (DatumWithPreced_1013_TypeType == NominalDatumFeatureE)
-    delete DatumWithPreced_1013_TypeValue.NominalDatumFeature;
-  else if (DatumWithPreced_1013_TypeType == MeasuredDatumFeatureE)
-    delete DatumWithPreced_1013_TypeValue.MeasuredDatumFeature;
-  else if (DatumWithPreced_1013_TypeType == CompoundDatumE)
-    delete DatumWithPreced_1013_TypeValue.CompoundDatum;
+  if (DatumWithPreced_1010_TypeType == SimpleDatumE)
+    delete DatumWithPreced_1010_TypeValue.SimpleDatum;
+  else if (DatumWithPreced_1010_TypeType == NominalDatumFeatureE)
+    delete DatumWithPreced_1010_TypeValue.NominalDatumFeature;
+  else if (DatumWithPreced_1010_TypeType == MeasuredDatumFeatureE)
+    delete DatumWithPreced_1010_TypeValue.MeasuredDatumFeature;
+  else if (DatumWithPreced_1010_TypeType == CompoundDatumE)
+    delete DatumWithPreced_1010_TypeValue.CompoundDatum;
   #endif
 }
 
-void DatumWithPreced_1013_TypeChoicePair::printSelf(FILE * outFile)
+void DatumWithPreced_1010_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (DatumWithPreced_1013_TypeType == SimpleDatumE)
+  if (DatumWithPreced_1010_TypeType == SimpleDatumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SimpleDatum");
-      DatumWithPreced_1013_TypeValue.SimpleDatum->printSelf(outFile);
+      DatumWithPreced_1010_TypeValue.SimpleDatum->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</SimpleDatum>\n");
     }
-  else if (DatumWithPreced_1013_TypeType == NominalDatumFeatureE)
+  else if (DatumWithPreced_1010_TypeType == NominalDatumFeatureE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NominalDatumFeature");
-      DatumWithPreced_1013_TypeValue.NominalDatumFeature->printSelf(outFile);
+      DatumWithPreced_1010_TypeValue.NominalDatumFeature->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</NominalDatumFeature>\n");
     }
-  else if (DatumWithPreced_1013_TypeType == MeasuredDatumFeatureE)
+  else if (DatumWithPreced_1010_TypeType == MeasuredDatumFeatureE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MeasuredDatumFeature");
-      DatumWithPreced_1013_TypeValue.MeasuredDatumFeature->printSelf(outFile);
+      DatumWithPreced_1010_TypeValue.MeasuredDatumFeature->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</MeasuredDatumFeature>\n");
     }
-  else if (DatumWithPreced_1013_TypeType == CompoundDatumE)
+  else if (DatumWithPreced_1010_TypeType == CompoundDatumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CompoundDatum");
-      DatumWithPreced_1013_TypeValue.CompoundDatum->printSelf(outFile);
+      DatumWithPreced_1010_TypeValue.CompoundDatum->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</CompoundDatum>\n");
     }
@@ -18037,170 +18357,72 @@ void DatumWithPreced_1013_TypeChoicePair::printSelf(FILE * outFile)
 
 /* ***************************************************************** */
 
-/* class DegreesOfFreedo_1014_Type
+/* class DirectionalOffs_1011_Type
 
 */
 
-DegreesOfFreedo_1014_Type::DegreesOfFreedo_1014_Type()
+DirectionalOffs_1011_Type::DirectionalOffs_1011_Type()
 {
-  DegreesOfFreedo_1014_TypePair = 0;
+  DirectionalOffs_1011_TypePair = 0;
 }
 
-DegreesOfFreedo_1014_Type::DegreesOfFreedo_1014_Type(
- DegreesOfFreedo_1014_TypeChoicePair * DegreesOfFreedo_1014_TypePairIn)
+DirectionalOffs_1011_Type::DirectionalOffs_1011_Type(
+ DirectionalOffs_1011_TypeChoicePair * DirectionalOffs_1011_TypePairIn)
 {
-  DegreesOfFreedo_1014_TypePair = DegreesOfFreedo_1014_TypePairIn;
+  DirectionalOffs_1011_TypePair = DirectionalOffs_1011_TypePairIn;
 }
 
-DegreesOfFreedo_1014_Type::~DegreesOfFreedo_1014_Type()
+DirectionalOffs_1011_Type::~DirectionalOffs_1011_Type()
 {
   #ifndef NODESTRUCT
-  delete DegreesOfFreedo_1014_TypePair;
+  delete DirectionalOffs_1011_TypePair;
   #endif
 }
 
-void DegreesOfFreedo_1014_Type::printSelf(FILE * outFile)
+void DirectionalOffs_1011_Type::printSelf(FILE * outFile)
 {
-  DegreesOfFreedo_1014_TypePair->printSelf(outFile);
+  DirectionalOffs_1011_TypePair->printSelf(outFile);
 }
 
-DegreesOfFreedo_1014_TypeChoicePair * DegreesOfFreedo_1014_Type::getDegreesOfFreedo_1014_TypePair()
-{return DegreesOfFreedo_1014_TypePair;}
+DirectionalOffs_1011_TypeChoicePair * DirectionalOffs_1011_Type::getDirectionalOffs_1011_TypePair()
+{return DirectionalOffs_1011_TypePair;}
 
-void DegreesOfFreedo_1014_Type::setDegreesOfFreedo_1014_TypePair(DegreesOfFreedo_1014_TypeChoicePair * DegreesOfFreedo_1014_TypePairIn)
-{DegreesOfFreedo_1014_TypePair = DegreesOfFreedo_1014_TypePairIn;}
+void DirectionalOffs_1011_Type::setDirectionalOffs_1011_TypePair(DirectionalOffs_1011_TypeChoicePair * DirectionalOffs_1011_TypePairIn)
+{DirectionalOffs_1011_TypePair = DirectionalOffs_1011_TypePairIn;}
+DirectionalOffs_1011_TypeChoicePair::DirectionalOffs_1011_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class DegreesOfFreedo_1014_TypeChoicePair
-
-*/
-
-DegreesOfFreedo_1014_TypeChoicePair::DegreesOfFreedo_1014_TypeChoicePair() {}
-
-DegreesOfFreedo_1014_TypeChoicePair::DegreesOfFreedo_1014_TypeChoicePair(
- whichOne DegreesOfFreedo_1014_TypeTypeIn,
- DegreesOfFreedo_1014_TypeVal DegreesOfFreedo_1014_TypeValueIn)
+DirectionalOffs_1011_TypeChoicePair::DirectionalOffs_1011_TypeChoicePair(
+ whichOne DirectionalOffs_1011_TypeTypeIn,
+ DirectionalOffs_1011_TypeVal DirectionalOffs_1011_TypeValueIn)
 {
-  DegreesOfFreedo_1014_TypeType = DegreesOfFreedo_1014_TypeTypeIn;
-  DegreesOfFreedo_1014_TypeValue = DegreesOfFreedo_1014_TypeValueIn;
+  DirectionalOffs_1011_TypeType = DirectionalOffs_1011_TypeTypeIn;
+  DirectionalOffs_1011_TypeValue = DirectionalOffs_1011_TypeValueIn;
 }
 
-DegreesOfFreedo_1014_TypeChoicePair::~DegreesOfFreedo_1014_TypeChoicePair()
+DirectionalOffs_1011_TypeChoicePair::~DirectionalOffs_1011_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (DegreesOfFreedo_1014_TypeType == DegreeOfFreedomE)
-    delete DegreesOfFreedo_1014_TypeValue.DegreeOfFreedom;
-  else if (DegreesOfFreedo_1014_TypeType == ISODegreeOfFreedomE)
-    delete DegreesOfFreedo_1014_TypeValue.ISODegreeOfFreedom;
+  if (DirectionalOffs_1011_TypeType == NominalDirectionE)
+    delete DirectionalOffs_1011_TypeValue.NominalDirection;
+  else if (DirectionalOffs_1011_TypeType == FeatureDirectionE)
+    delete DirectionalOffs_1011_TypeValue.FeatureDirection;
   #endif
 }
 
-void DegreesOfFreedo_1014_TypeChoicePair::printSelf(FILE * outFile)
+void DirectionalOffs_1011_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (DegreesOfFreedo_1014_TypeType == DegreeOfFreedomE)
-    {
-      std::list<DegreeOfFreedomEnumType *>::iterator iter;
-      for (iter = DegreesOfFreedo_1014_TypeValue.DegreeOfFreedom->begin();
-           iter != DegreesOfFreedo_1014_TypeValue.DegreeOfFreedom->end();
-           iter++)
-        {
-          doSpaces(0, outFile);
-          fprintf(outFile, "<DegreeOfFreedom");
-          (*iter)->printSelf(outFile);
-          fprintf(outFile, "</DegreeOfFreedom>\n");
-        }
-    }
-  else if (DegreesOfFreedo_1014_TypeType == ISODegreeOfFreedomE)
-    {
-      std::list<ISODegreeOfFreedomEnumType *>::iterator iter;
-      for (iter = DegreesOfFreedo_1014_TypeValue.ISODegreeOfFreedom->begin();
-           iter != DegreesOfFreedo_1014_TypeValue.ISODegreeOfFreedom->end();
-           iter++)
-        {
-          doSpaces(0, outFile);
-          fprintf(outFile, "<ISODegreeOfFreedom");
-          (*iter)->printSelf(outFile);
-          fprintf(outFile, "</ISODegreeOfFreedom>\n");
-        }
-    }
-}
-
-/* ***************************************************************** */
-
-/* class DirectionalOffs_1015_Type
-
-*/
-
-DirectionalOffs_1015_Type::DirectionalOffs_1015_Type()
-{
-  DirectionalOffs_1015_TypePair = 0;
-}
-
-DirectionalOffs_1015_Type::DirectionalOffs_1015_Type(
- DirectionalOffs_1015_TypeChoicePair * DirectionalOffs_1015_TypePairIn)
-{
-  DirectionalOffs_1015_TypePair = DirectionalOffs_1015_TypePairIn;
-}
-
-DirectionalOffs_1015_Type::~DirectionalOffs_1015_Type()
-{
-  #ifndef NODESTRUCT
-  delete DirectionalOffs_1015_TypePair;
-  #endif
-}
-
-void DirectionalOffs_1015_Type::printSelf(FILE * outFile)
-{
-  DirectionalOffs_1015_TypePair->printSelf(outFile);
-}
-
-DirectionalOffs_1015_TypeChoicePair * DirectionalOffs_1015_Type::getDirectionalOffs_1015_TypePair()
-{return DirectionalOffs_1015_TypePair;}
-
-void DirectionalOffs_1015_Type::setDirectionalOffs_1015_TypePair(DirectionalOffs_1015_TypeChoicePair * DirectionalOffs_1015_TypePairIn)
-{DirectionalOffs_1015_TypePair = DirectionalOffs_1015_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class DirectionalOffs_1015_TypeChoicePair
-
-*/
-
-DirectionalOffs_1015_TypeChoicePair::DirectionalOffs_1015_TypeChoicePair() {}
-
-DirectionalOffs_1015_TypeChoicePair::DirectionalOffs_1015_TypeChoicePair(
- whichOne DirectionalOffs_1015_TypeTypeIn,
- DirectionalOffs_1015_TypeVal DirectionalOffs_1015_TypeValueIn)
-{
-  DirectionalOffs_1015_TypeType = DirectionalOffs_1015_TypeTypeIn;
-  DirectionalOffs_1015_TypeValue = DirectionalOffs_1015_TypeValueIn;
-}
-
-DirectionalOffs_1015_TypeChoicePair::~DirectionalOffs_1015_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (DirectionalOffs_1015_TypeType == NominalDirectionE)
-    delete DirectionalOffs_1015_TypeValue.NominalDirection;
-  else if (DirectionalOffs_1015_TypeType == FeatureDirectionE)
-    delete DirectionalOffs_1015_TypeValue.FeatureDirection;
-  #endif
-}
-
-void DirectionalOffs_1015_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (DirectionalOffs_1015_TypeType == NominalDirectionE)
+  if (DirectionalOffs_1011_TypeType == NominalDirectionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<NominalDirection");
-      DirectionalOffs_1015_TypeValue.NominalDirection->printSelf(outFile);
+      DirectionalOffs_1011_TypeValue.NominalDirection->printSelf(outFile);
       fprintf(outFile, "</NominalDirection>\n");
     }
-  else if (DirectionalOffs_1015_TypeType == FeatureDirectionE)
+  else if (DirectionalOffs_1011_TypeType == FeatureDirectionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<FeatureDirection");
-      DirectionalOffs_1015_TypeValue.FeatureDirection->printSelf(outFile);
+      DirectionalOffs_1011_TypeValue.FeatureDirection->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</FeatureDirection>\n");
     }
@@ -18208,548 +18430,499 @@ void DirectionalOffs_1015_TypeChoicePair::printSelf(FILE * outFile)
 
 /* ***************************************************************** */
 
-/* class ForceToleranceT_1016_Type
+/* class ForceToleranceT_1012_Type
 
 */
 
-ForceToleranceT_1016_Type::ForceToleranceT_1016_Type()
+ForceToleranceT_1012_Type::ForceToleranceT_1012_Type()
 {
-  ForceToleranceT_1016_TypePair = 0;
+  ForceToleranceT_1012_TypePair = 0;
 }
 
-ForceToleranceT_1016_Type::ForceToleranceT_1016_Type(
- ForceToleranceT_1016_TypeChoicePair * ForceToleranceT_1016_TypePairIn)
+ForceToleranceT_1012_Type::ForceToleranceT_1012_Type(
+ ForceToleranceT_1012_TypeChoicePair * ForceToleranceT_1012_TypePairIn)
 {
-  ForceToleranceT_1016_TypePair = ForceToleranceT_1016_TypePairIn;
+  ForceToleranceT_1012_TypePair = ForceToleranceT_1012_TypePairIn;
 }
 
-ForceToleranceT_1016_Type::~ForceToleranceT_1016_Type()
+ForceToleranceT_1012_Type::~ForceToleranceT_1012_Type()
 {
   #ifndef NODESTRUCT
-  delete ForceToleranceT_1016_TypePair;
+  delete ForceToleranceT_1012_TypePair;
   #endif
 }
 
-void ForceToleranceT_1016_Type::printSelf(FILE * outFile)
+void ForceToleranceT_1012_Type::printSelf(FILE * outFile)
 {
-  ForceToleranceT_1016_TypePair->printSelf(outFile);
+  ForceToleranceT_1012_TypePair->printSelf(outFile);
 }
 
-ForceToleranceT_1016_TypeChoicePair * ForceToleranceT_1016_Type::getForceToleranceT_1016_TypePair()
-{return ForceToleranceT_1016_TypePair;}
+ForceToleranceT_1012_TypeChoicePair * ForceToleranceT_1012_Type::getForceToleranceT_1012_TypePair()
+{return ForceToleranceT_1012_TypePair;}
 
-void ForceToleranceT_1016_Type::setForceToleranceT_1016_TypePair(ForceToleranceT_1016_TypeChoicePair * ForceToleranceT_1016_TypePairIn)
-{ForceToleranceT_1016_TypePair = ForceToleranceT_1016_TypePairIn;}
+void ForceToleranceT_1012_Type::setForceToleranceT_1012_TypePair(ForceToleranceT_1012_TypeChoicePair * ForceToleranceT_1012_TypePairIn)
+{ForceToleranceT_1012_TypePair = ForceToleranceT_1012_TypePairIn;}
+ForceToleranceT_1012_TypeChoicePair::ForceToleranceT_1012_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class ForceToleranceT_1016_TypeChoicePair
-
-*/
-
-ForceToleranceT_1016_TypeChoicePair::ForceToleranceT_1016_TypeChoicePair() {}
-
-ForceToleranceT_1016_TypeChoicePair::ForceToleranceT_1016_TypeChoicePair(
- whichOne ForceToleranceT_1016_TypeTypeIn,
- ForceToleranceT_1016_TypeVal ForceToleranceT_1016_TypeValueIn)
+ForceToleranceT_1012_TypeChoicePair::ForceToleranceT_1012_TypeChoicePair(
+ whichOne ForceToleranceT_1012_TypeTypeIn,
+ ForceToleranceT_1012_TypeVal ForceToleranceT_1012_TypeValueIn)
 {
-  ForceToleranceT_1016_TypeType = ForceToleranceT_1016_TypeTypeIn;
-  ForceToleranceT_1016_TypeValue = ForceToleranceT_1016_TypeValueIn;
+  ForceToleranceT_1012_TypeType = ForceToleranceT_1012_TypeTypeIn;
+  ForceToleranceT_1012_TypeValue = ForceToleranceT_1012_TypeValueIn;
 }
 
-ForceToleranceT_1016_TypeChoicePair::~ForceToleranceT_1016_TypeChoicePair()
+ForceToleranceT_1012_TypeChoicePair::~ForceToleranceT_1012_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (ForceToleranceT_1016_TypeType == ForceToleranceT_1033E)
-    delete ForceToleranceT_1016_TypeValue.ForceToleranceT_1033;
-  else if (ForceToleranceT_1016_TypeType == MinValueE)
-    delete ForceToleranceT_1016_TypeValue.MinValue;
+  if (ForceToleranceT_1012_TypeType == ForceToleranceT_1029E)
+    delete ForceToleranceT_1012_TypeValue.ForceToleranceT_1029;
+  else if (ForceToleranceT_1012_TypeType == MinValueE)
+    delete ForceToleranceT_1012_TypeValue.MinValue;
   #endif
 }
 
-void ForceToleranceT_1016_TypeChoicePair::printSelf(FILE * outFile)
+void ForceToleranceT_1012_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (ForceToleranceT_1016_TypeType == ForceToleranceT_1033E)
+  if (ForceToleranceT_1012_TypeType == ForceToleranceT_1029E)
     {
-      ForceToleranceT_1016_TypeValue.ForceToleranceT_1033->printSelf(outFile);
+      ForceToleranceT_1012_TypeValue.ForceToleranceT_1029->printSelf(outFile);
     }
-  else if (ForceToleranceT_1016_TypeType == MinValueE)
+  else if (ForceToleranceT_1012_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      ForceToleranceT_1016_TypeValue.MinValue->printSelf(outFile);
+      ForceToleranceT_1012_TypeValue.MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class LinearTolerance_1017_Type
+/* class LinearTolerance_1013_Type
 
 */
 
-LinearTolerance_1017_Type::LinearTolerance_1017_Type()
+LinearTolerance_1013_Type::LinearTolerance_1013_Type()
 {
-  LinearTolerance_1017_TypePair = 0;
+  LinearTolerance_1013_TypePair = 0;
 }
 
-LinearTolerance_1017_Type::LinearTolerance_1017_Type(
- LinearTolerance_1017_TypeChoicePair * LinearTolerance_1017_TypePairIn)
+LinearTolerance_1013_Type::LinearTolerance_1013_Type(
+ LinearTolerance_1013_TypeChoicePair * LinearTolerance_1013_TypePairIn)
 {
-  LinearTolerance_1017_TypePair = LinearTolerance_1017_TypePairIn;
+  LinearTolerance_1013_TypePair = LinearTolerance_1013_TypePairIn;
 }
 
-LinearTolerance_1017_Type::~LinearTolerance_1017_Type()
+LinearTolerance_1013_Type::~LinearTolerance_1013_Type()
 {
   #ifndef NODESTRUCT
-  delete LinearTolerance_1017_TypePair;
+  delete LinearTolerance_1013_TypePair;
   #endif
 }
 
-void LinearTolerance_1017_Type::printSelf(FILE * outFile)
+void LinearTolerance_1013_Type::printSelf(FILE * outFile)
 {
-  LinearTolerance_1017_TypePair->printSelf(outFile);
+  LinearTolerance_1013_TypePair->printSelf(outFile);
 }
 
-LinearTolerance_1017_TypeChoicePair * LinearTolerance_1017_Type::getLinearTolerance_1017_TypePair()
-{return LinearTolerance_1017_TypePair;}
+LinearTolerance_1013_TypeChoicePair * LinearTolerance_1013_Type::getLinearTolerance_1013_TypePair()
+{return LinearTolerance_1013_TypePair;}
 
-void LinearTolerance_1017_Type::setLinearTolerance_1017_TypePair(LinearTolerance_1017_TypeChoicePair * LinearTolerance_1017_TypePairIn)
-{LinearTolerance_1017_TypePair = LinearTolerance_1017_TypePairIn;}
+void LinearTolerance_1013_Type::setLinearTolerance_1013_TypePair(LinearTolerance_1013_TypeChoicePair * LinearTolerance_1013_TypePairIn)
+{LinearTolerance_1013_TypePair = LinearTolerance_1013_TypePairIn;}
+LinearTolerance_1013_TypeChoicePair::LinearTolerance_1013_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class LinearTolerance_1017_TypeChoicePair
-
-*/
-
-LinearTolerance_1017_TypeChoicePair::LinearTolerance_1017_TypeChoicePair() {}
-
-LinearTolerance_1017_TypeChoicePair::LinearTolerance_1017_TypeChoicePair(
- whichOne LinearTolerance_1017_TypeTypeIn,
- LinearTolerance_1017_TypeVal LinearTolerance_1017_TypeValueIn)
+LinearTolerance_1013_TypeChoicePair::LinearTolerance_1013_TypeChoicePair(
+ whichOne LinearTolerance_1013_TypeTypeIn,
+ LinearTolerance_1013_TypeVal LinearTolerance_1013_TypeValueIn)
 {
-  LinearTolerance_1017_TypeType = LinearTolerance_1017_TypeTypeIn;
-  LinearTolerance_1017_TypeValue = LinearTolerance_1017_TypeValueIn;
+  LinearTolerance_1013_TypeType = LinearTolerance_1013_TypeTypeIn;
+  LinearTolerance_1013_TypeValue = LinearTolerance_1013_TypeValueIn;
 }
 
-LinearTolerance_1017_TypeChoicePair::~LinearTolerance_1017_TypeChoicePair()
+LinearTolerance_1013_TypeChoicePair::~LinearTolerance_1013_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (LinearTolerance_1017_TypeType == LinearTolerance_1034E)
-    delete LinearTolerance_1017_TypeValue.LinearTolerance_1034;
-  else if (LinearTolerance_1017_TypeType == MinValueE)
-    delete LinearTolerance_1017_TypeValue.MinValue;
+  if (LinearTolerance_1013_TypeType == LinearTolerance_1030E)
+    delete LinearTolerance_1013_TypeValue.LinearTolerance_1030;
+  else if (LinearTolerance_1013_TypeType == MinValueE)
+    delete LinearTolerance_1013_TypeValue.MinValue;
   #endif
 }
 
-void LinearTolerance_1017_TypeChoicePair::printSelf(FILE * outFile)
+void LinearTolerance_1013_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (LinearTolerance_1017_TypeType == LinearTolerance_1034E)
+  if (LinearTolerance_1013_TypeType == LinearTolerance_1030E)
     {
-      LinearTolerance_1017_TypeValue.LinearTolerance_1034->printSelf(outFile);
+      LinearTolerance_1013_TypeValue.LinearTolerance_1030->printSelf(outFile);
     }
-  else if (LinearTolerance_1017_TypeType == MinValueE)
+  else if (LinearTolerance_1013_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      LinearTolerance_1017_TypeValue.MinValue->printSelf(outFile);
+      LinearTolerance_1013_TypeValue.MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class LinearTolerance_1018_Type
+/* class LinearTolerance_1014_Type
 
 */
 
-LinearTolerance_1018_Type::LinearTolerance_1018_Type()
+LinearTolerance_1014_Type::LinearTolerance_1014_Type()
 {
-  LinearTolerance_1018_TypePair = 0;
+  LinearTolerance_1014_TypePair = 0;
 }
 
-LinearTolerance_1018_Type::LinearTolerance_1018_Type(
- LinearTolerance_1018_TypeChoicePair * LinearTolerance_1018_TypePairIn)
+LinearTolerance_1014_Type::LinearTolerance_1014_Type(
+ LinearTolerance_1014_TypeChoicePair * LinearTolerance_1014_TypePairIn)
 {
-  LinearTolerance_1018_TypePair = LinearTolerance_1018_TypePairIn;
+  LinearTolerance_1014_TypePair = LinearTolerance_1014_TypePairIn;
 }
 
-LinearTolerance_1018_Type::~LinearTolerance_1018_Type()
+LinearTolerance_1014_Type::~LinearTolerance_1014_Type()
 {
   #ifndef NODESTRUCT
-  delete LinearTolerance_1018_TypePair;
+  delete LinearTolerance_1014_TypePair;
   #endif
 }
 
-void LinearTolerance_1018_Type::printSelf(FILE * outFile)
+void LinearTolerance_1014_Type::printSelf(FILE * outFile)
 {
-  LinearTolerance_1018_TypePair->printSelf(outFile);
+  LinearTolerance_1014_TypePair->printSelf(outFile);
 }
 
-LinearTolerance_1018_TypeChoicePair * LinearTolerance_1018_Type::getLinearTolerance_1018_TypePair()
-{return LinearTolerance_1018_TypePair;}
+LinearTolerance_1014_TypeChoicePair * LinearTolerance_1014_Type::getLinearTolerance_1014_TypePair()
+{return LinearTolerance_1014_TypePair;}
 
-void LinearTolerance_1018_Type::setLinearTolerance_1018_TypePair(LinearTolerance_1018_TypeChoicePair * LinearTolerance_1018_TypePairIn)
-{LinearTolerance_1018_TypePair = LinearTolerance_1018_TypePairIn;}
+void LinearTolerance_1014_Type::setLinearTolerance_1014_TypePair(LinearTolerance_1014_TypeChoicePair * LinearTolerance_1014_TypePairIn)
+{LinearTolerance_1014_TypePair = LinearTolerance_1014_TypePairIn;}
+LinearTolerance_1014_TypeChoicePair::LinearTolerance_1014_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class LinearTolerance_1018_TypeChoicePair
-
-*/
-
-LinearTolerance_1018_TypeChoicePair::LinearTolerance_1018_TypeChoicePair() {}
-
-LinearTolerance_1018_TypeChoicePair::LinearTolerance_1018_TypeChoicePair(
- whichOne LinearTolerance_1018_TypeTypeIn,
- LinearTolerance_1018_TypeVal LinearTolerance_1018_TypeValueIn)
+LinearTolerance_1014_TypeChoicePair::LinearTolerance_1014_TypeChoicePair(
+ whichOne LinearTolerance_1014_TypeTypeIn,
+ LinearTolerance_1014_TypeVal LinearTolerance_1014_TypeValueIn)
 {
-  LinearTolerance_1018_TypeType = LinearTolerance_1018_TypeTypeIn;
-  LinearTolerance_1018_TypeValue = LinearTolerance_1018_TypeValueIn;
+  LinearTolerance_1014_TypeType = LinearTolerance_1014_TypeTypeIn;
+  LinearTolerance_1014_TypeValue = LinearTolerance_1014_TypeValueIn;
 }
 
-LinearTolerance_1018_TypeChoicePair::~LinearTolerance_1018_TypeChoicePair()
+LinearTolerance_1014_TypeChoicePair::~LinearTolerance_1014_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (LinearTolerance_1018_TypeType == LinearTolerance_1035E)
-    delete LinearTolerance_1018_TypeValue.LinearTolerance_1035;
-  else if (LinearTolerance_1018_TypeType == LinearTolerance_1036E)
-    delete LinearTolerance_1018_TypeValue.LinearTolerance_1036;
-  else if (LinearTolerance_1018_TypeType == DefinitionIdE)
-    delete LinearTolerance_1018_TypeValue.DefinitionId;
+  if (LinearTolerance_1014_TypeType == LinearTolerance_1031E)
+    delete LinearTolerance_1014_TypeValue.LinearTolerance_1031;
+  else if (LinearTolerance_1014_TypeType == LinearTolerance_1032E)
+    delete LinearTolerance_1014_TypeValue.LinearTolerance_1032;
+  else if (LinearTolerance_1014_TypeType == DefinitionIdE)
+    delete LinearTolerance_1014_TypeValue.DefinitionId;
   #endif
 }
 
-void LinearTolerance_1018_TypeChoicePair::printSelf(FILE * outFile)
+void LinearTolerance_1014_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (LinearTolerance_1018_TypeType == LinearTolerance_1035E)
+  if (LinearTolerance_1014_TypeType == LinearTolerance_1031E)
     {
-      LinearTolerance_1018_TypeValue.LinearTolerance_1035->printSelf(outFile);
+      LinearTolerance_1014_TypeValue.LinearTolerance_1031->printSelf(outFile);
     }
-  else if (LinearTolerance_1018_TypeType == LinearTolerance_1036E)
+  else if (LinearTolerance_1014_TypeType == LinearTolerance_1032E)
     {
-      LinearTolerance_1018_TypeValue.LinearTolerance_1036->printSelf(outFile);
+      LinearTolerance_1014_TypeValue.LinearTolerance_1032->printSelf(outFile);
     }
-  else if (LinearTolerance_1018_TypeType == DefinitionIdE)
+  else if (LinearTolerance_1014_TypeType == DefinitionIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<DefinitionId");
-      LinearTolerance_1018_TypeValue.DefinitionId->printSelf(outFile);
+      LinearTolerance_1014_TypeValue.DefinitionId->printSelf(outFile);
       fprintf(outFile, "</DefinitionId>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class MassToleranceTy_1019_Type
+/* class MassToleranceTy_1015_Type
 
 */
 
-MassToleranceTy_1019_Type::MassToleranceTy_1019_Type()
+MassToleranceTy_1015_Type::MassToleranceTy_1015_Type()
 {
-  MassToleranceTy_1019_TypePair = 0;
+  MassToleranceTy_1015_TypePair = 0;
 }
 
-MassToleranceTy_1019_Type::MassToleranceTy_1019_Type(
- MassToleranceTy_1019_TypeChoicePair * MassToleranceTy_1019_TypePairIn)
+MassToleranceTy_1015_Type::MassToleranceTy_1015_Type(
+ MassToleranceTy_1015_TypeChoicePair * MassToleranceTy_1015_TypePairIn)
 {
-  MassToleranceTy_1019_TypePair = MassToleranceTy_1019_TypePairIn;
+  MassToleranceTy_1015_TypePair = MassToleranceTy_1015_TypePairIn;
 }
 
-MassToleranceTy_1019_Type::~MassToleranceTy_1019_Type()
+MassToleranceTy_1015_Type::~MassToleranceTy_1015_Type()
 {
   #ifndef NODESTRUCT
-  delete MassToleranceTy_1019_TypePair;
+  delete MassToleranceTy_1015_TypePair;
   #endif
 }
 
-void MassToleranceTy_1019_Type::printSelf(FILE * outFile)
+void MassToleranceTy_1015_Type::printSelf(FILE * outFile)
 {
-  MassToleranceTy_1019_TypePair->printSelf(outFile);
+  MassToleranceTy_1015_TypePair->printSelf(outFile);
 }
 
-MassToleranceTy_1019_TypeChoicePair * MassToleranceTy_1019_Type::getMassToleranceTy_1019_TypePair()
-{return MassToleranceTy_1019_TypePair;}
+MassToleranceTy_1015_TypeChoicePair * MassToleranceTy_1015_Type::getMassToleranceTy_1015_TypePair()
+{return MassToleranceTy_1015_TypePair;}
 
-void MassToleranceTy_1019_Type::setMassToleranceTy_1019_TypePair(MassToleranceTy_1019_TypeChoicePair * MassToleranceTy_1019_TypePairIn)
-{MassToleranceTy_1019_TypePair = MassToleranceTy_1019_TypePairIn;}
+void MassToleranceTy_1015_Type::setMassToleranceTy_1015_TypePair(MassToleranceTy_1015_TypeChoicePair * MassToleranceTy_1015_TypePairIn)
+{MassToleranceTy_1015_TypePair = MassToleranceTy_1015_TypePairIn;}
+MassToleranceTy_1015_TypeChoicePair::MassToleranceTy_1015_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class MassToleranceTy_1019_TypeChoicePair
-
-*/
-
-MassToleranceTy_1019_TypeChoicePair::MassToleranceTy_1019_TypeChoicePair() {}
-
-MassToleranceTy_1019_TypeChoicePair::MassToleranceTy_1019_TypeChoicePair(
- whichOne MassToleranceTy_1019_TypeTypeIn,
- MassToleranceTy_1019_TypeVal MassToleranceTy_1019_TypeValueIn)
+MassToleranceTy_1015_TypeChoicePair::MassToleranceTy_1015_TypeChoicePair(
+ whichOne MassToleranceTy_1015_TypeTypeIn,
+ MassToleranceTy_1015_TypeVal MassToleranceTy_1015_TypeValueIn)
 {
-  MassToleranceTy_1019_TypeType = MassToleranceTy_1019_TypeTypeIn;
-  MassToleranceTy_1019_TypeValue = MassToleranceTy_1019_TypeValueIn;
+  MassToleranceTy_1015_TypeType = MassToleranceTy_1015_TypeTypeIn;
+  MassToleranceTy_1015_TypeValue = MassToleranceTy_1015_TypeValueIn;
 }
 
-MassToleranceTy_1019_TypeChoicePair::~MassToleranceTy_1019_TypeChoicePair()
+MassToleranceTy_1015_TypeChoicePair::~MassToleranceTy_1015_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (MassToleranceTy_1019_TypeType == MassToleranceTy_1037E)
-    delete MassToleranceTy_1019_TypeValue.MassToleranceTy_1037;
-  else if (MassToleranceTy_1019_TypeType == MinValueE)
-    delete MassToleranceTy_1019_TypeValue.MinValue;
+  if (MassToleranceTy_1015_TypeType == MassToleranceTy_1033E)
+    delete MassToleranceTy_1015_TypeValue.MassToleranceTy_1033;
+  else if (MassToleranceTy_1015_TypeType == MinValueE)
+    delete MassToleranceTy_1015_TypeValue.MinValue;
   #endif
 }
 
-void MassToleranceTy_1019_TypeChoicePair::printSelf(FILE * outFile)
+void MassToleranceTy_1015_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (MassToleranceTy_1019_TypeType == MassToleranceTy_1037E)
+  if (MassToleranceTy_1015_TypeType == MassToleranceTy_1033E)
     {
-      MassToleranceTy_1019_TypeValue.MassToleranceTy_1037->printSelf(outFile);
+      MassToleranceTy_1015_TypeValue.MassToleranceTy_1033->printSelf(outFile);
     }
-  else if (MassToleranceTy_1019_TypeType == MinValueE)
+  else if (MassToleranceTy_1015_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      MassToleranceTy_1019_TypeValue.MinValue->printSelf(outFile);
+      MassToleranceTy_1015_TypeValue.MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class MaterialType_1020_Type
+/* class MaterialType_1016_Type
 
 */
 
-MaterialType_1020_Type::MaterialType_1020_Type()
+MaterialType_1016_Type::MaterialType_1016_Type()
 {
-  MaterialType_1020_TypePair = 0;
+  MaterialType_1016_TypePair = 0;
 }
 
-MaterialType_1020_Type::MaterialType_1020_Type(
- MaterialType_1020_TypeChoicePair * MaterialType_1020_TypePairIn)
+MaterialType_1016_Type::MaterialType_1016_Type(
+ MaterialType_1016_TypeChoicePair * MaterialType_1016_TypePairIn)
 {
-  MaterialType_1020_TypePair = MaterialType_1020_TypePairIn;
+  MaterialType_1016_TypePair = MaterialType_1016_TypePairIn;
 }
 
-MaterialType_1020_Type::~MaterialType_1020_Type()
+MaterialType_1016_Type::~MaterialType_1016_Type()
 {
   #ifndef NODESTRUCT
-  delete MaterialType_1020_TypePair;
+  delete MaterialType_1016_TypePair;
   #endif
 }
 
-void MaterialType_1020_Type::printSelf(FILE * outFile)
+void MaterialType_1016_Type::printSelf(FILE * outFile)
 {
-  if (MaterialType_1020_TypePair)
+  if (MaterialType_1016_TypePair)
     {
-      MaterialType_1020_TypePair->printSelf(outFile);
+      MaterialType_1016_TypePair->printSelf(outFile);
     }
 }
 
-MaterialType_1020_TypeChoicePair * MaterialType_1020_Type::getMaterialType_1020_TypePair()
-{return MaterialType_1020_TypePair;}
+MaterialType_1016_TypeChoicePair * MaterialType_1016_Type::getMaterialType_1016_TypePair()
+{return MaterialType_1016_TypePair;}
 
-void MaterialType_1020_Type::setMaterialType_1020_TypePair(MaterialType_1020_TypeChoicePair * MaterialType_1020_TypePairIn)
-{MaterialType_1020_TypePair = MaterialType_1020_TypePairIn;}
+void MaterialType_1016_Type::setMaterialType_1016_TypePair(MaterialType_1016_TypeChoicePair * MaterialType_1016_TypePairIn)
+{MaterialType_1016_TypePair = MaterialType_1016_TypePairIn;}
+MaterialType_1016_TypeChoicePair::MaterialType_1016_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class MaterialType_1020_TypeChoicePair
-
-*/
-
-MaterialType_1020_TypeChoicePair::MaterialType_1020_TypeChoicePair() {}
-
-MaterialType_1020_TypeChoicePair::MaterialType_1020_TypeChoicePair(
- whichOne MaterialType_1020_TypeTypeIn,
- MaterialType_1020_TypeVal MaterialType_1020_TypeValueIn)
+MaterialType_1016_TypeChoicePair::MaterialType_1016_TypeChoicePair(
+ whichOne MaterialType_1016_TypeTypeIn,
+ MaterialType_1016_TypeVal MaterialType_1016_TypeValueIn)
 {
-  MaterialType_1020_TypeType = MaterialType_1020_TypeTypeIn;
-  MaterialType_1020_TypeValue = MaterialType_1020_TypeValueIn;
+  MaterialType_1016_TypeType = MaterialType_1016_TypeTypeIn;
+  MaterialType_1016_TypeValue = MaterialType_1016_TypeValueIn;
 }
 
-MaterialType_1020_TypeChoicePair::~MaterialType_1020_TypeChoicePair()
+MaterialType_1016_TypeChoicePair::~MaterialType_1016_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (MaterialType_1020_TypeType == MaterialClassEnumE)
-    delete MaterialType_1020_TypeValue.MaterialClassEnum;
-  else if (MaterialType_1020_TypeType == OtherMaterialClassE)
-    delete MaterialType_1020_TypeValue.OtherMaterialClass;
+  if (MaterialType_1016_TypeType == MaterialClassEnumE)
+    delete MaterialType_1016_TypeValue.MaterialClassEnum;
+  else if (MaterialType_1016_TypeType == OtherMaterialClassE)
+    delete MaterialType_1016_TypeValue.OtherMaterialClass;
   #endif
 }
 
-void MaterialType_1020_TypeChoicePair::printSelf(FILE * outFile)
+void MaterialType_1016_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (MaterialType_1020_TypeType == MaterialClassEnumE)
+  if (MaterialType_1016_TypeType == MaterialClassEnumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MaterialClassEnum");
-      MaterialType_1020_TypeValue.MaterialClassEnum->printSelf(outFile);
+      MaterialType_1016_TypeValue.MaterialClassEnum->printSelf(outFile);
       fprintf(outFile, "</MaterialClassEnum>\n");
     }
-  else if (MaterialType_1020_TypeType == OtherMaterialClassE)
+  else if (MaterialType_1016_TypeType == OtherMaterialClassE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherMaterialClass");
-      MaterialType_1020_TypeValue.OtherMaterialClass->printSelf(outFile);
+      MaterialType_1016_TypeValue.OtherMaterialClass->printSelf(outFile);
       fprintf(outFile, "</OtherMaterialClass>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class PressureToleran_1021_Type
+/* class PressureToleran_1017_Type
 
 */
 
-PressureToleran_1021_Type::PressureToleran_1021_Type()
+PressureToleran_1017_Type::PressureToleran_1017_Type()
 {
-  PressureToleran_1021_TypePair = 0;
+  PressureToleran_1017_TypePair = 0;
 }
 
-PressureToleran_1021_Type::PressureToleran_1021_Type(
- PressureToleran_1021_TypeChoicePair * PressureToleran_1021_TypePairIn)
+PressureToleran_1017_Type::PressureToleran_1017_Type(
+ PressureToleran_1017_TypeChoicePair * PressureToleran_1017_TypePairIn)
 {
-  PressureToleran_1021_TypePair = PressureToleran_1021_TypePairIn;
+  PressureToleran_1017_TypePair = PressureToleran_1017_TypePairIn;
 }
 
-PressureToleran_1021_Type::~PressureToleran_1021_Type()
+PressureToleran_1017_Type::~PressureToleran_1017_Type()
 {
   #ifndef NODESTRUCT
-  delete PressureToleran_1021_TypePair;
+  delete PressureToleran_1017_TypePair;
   #endif
 }
 
-void PressureToleran_1021_Type::printSelf(FILE * outFile)
+void PressureToleran_1017_Type::printSelf(FILE * outFile)
 {
-  PressureToleran_1021_TypePair->printSelf(outFile);
+  PressureToleran_1017_TypePair->printSelf(outFile);
 }
 
-PressureToleran_1021_TypeChoicePair * PressureToleran_1021_Type::getPressureToleran_1021_TypePair()
-{return PressureToleran_1021_TypePair;}
+PressureToleran_1017_TypeChoicePair * PressureToleran_1017_Type::getPressureToleran_1017_TypePair()
+{return PressureToleran_1017_TypePair;}
 
-void PressureToleran_1021_Type::setPressureToleran_1021_TypePair(PressureToleran_1021_TypeChoicePair * PressureToleran_1021_TypePairIn)
-{PressureToleran_1021_TypePair = PressureToleran_1021_TypePairIn;}
+void PressureToleran_1017_Type::setPressureToleran_1017_TypePair(PressureToleran_1017_TypeChoicePair * PressureToleran_1017_TypePairIn)
+{PressureToleran_1017_TypePair = PressureToleran_1017_TypePairIn;}
+PressureToleran_1017_TypeChoicePair::PressureToleran_1017_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class PressureToleran_1021_TypeChoicePair
-
-*/
-
-PressureToleran_1021_TypeChoicePair::PressureToleran_1021_TypeChoicePair() {}
-
-PressureToleran_1021_TypeChoicePair::PressureToleran_1021_TypeChoicePair(
- whichOne PressureToleran_1021_TypeTypeIn,
- PressureToleran_1021_TypeVal PressureToleran_1021_TypeValueIn)
+PressureToleran_1017_TypeChoicePair::PressureToleran_1017_TypeChoicePair(
+ whichOne PressureToleran_1017_TypeTypeIn,
+ PressureToleran_1017_TypeVal PressureToleran_1017_TypeValueIn)
 {
-  PressureToleran_1021_TypeType = PressureToleran_1021_TypeTypeIn;
-  PressureToleran_1021_TypeValue = PressureToleran_1021_TypeValueIn;
+  PressureToleran_1017_TypeType = PressureToleran_1017_TypeTypeIn;
+  PressureToleran_1017_TypeValue = PressureToleran_1017_TypeValueIn;
 }
 
-PressureToleran_1021_TypeChoicePair::~PressureToleran_1021_TypeChoicePair()
+PressureToleran_1017_TypeChoicePair::~PressureToleran_1017_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (PressureToleran_1021_TypeType == PressureToleran_1038E)
-    delete PressureToleran_1021_TypeValue.PressureToleran_1038;
-  else if (PressureToleran_1021_TypeType == MinValueE)
-    delete PressureToleran_1021_TypeValue.MinValue;
+  if (PressureToleran_1017_TypeType == PressureToleran_1034E)
+    delete PressureToleran_1017_TypeValue.PressureToleran_1034;
+  else if (PressureToleran_1017_TypeType == MinValueE)
+    delete PressureToleran_1017_TypeValue.MinValue;
   #endif
 }
 
-void PressureToleran_1021_TypeChoicePair::printSelf(FILE * outFile)
+void PressureToleran_1017_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (PressureToleran_1021_TypeType == PressureToleran_1038E)
+  if (PressureToleran_1017_TypeType == PressureToleran_1034E)
     {
-      PressureToleran_1021_TypeValue.PressureToleran_1038->printSelf(outFile);
+      PressureToleran_1017_TypeValue.PressureToleran_1034->printSelf(outFile);
     }
-  else if (PressureToleran_1021_TypeType == MinValueE)
+  else if (PressureToleran_1017_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      PressureToleran_1021_TypeValue.MinValue->printSelf(outFile);
+      PressureToleran_1017_TypeValue.MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class SequencedDatumT_1022_Type
+/* class SequencedDatumT_1018_Type
 
 */
 
-SequencedDatumT_1022_Type::SequencedDatumT_1022_Type()
+SequencedDatumT_1018_Type::SequencedDatumT_1018_Type()
 {
-  SequencedDatumT_1022_TypePair = 0;
+  SequencedDatumT_1018_TypePair = 0;
 }
 
-SequencedDatumT_1022_Type::SequencedDatumT_1022_Type(
- SequencedDatumT_1022_TypeChoicePair * SequencedDatumT_1022_TypePairIn)
+SequencedDatumT_1018_Type::SequencedDatumT_1018_Type(
+ SequencedDatumT_1018_TypeChoicePair * SequencedDatumT_1018_TypePairIn)
 {
-  SequencedDatumT_1022_TypePair = SequencedDatumT_1022_TypePairIn;
+  SequencedDatumT_1018_TypePair = SequencedDatumT_1018_TypePairIn;
 }
 
-SequencedDatumT_1022_Type::~SequencedDatumT_1022_Type()
+SequencedDatumT_1018_Type::~SequencedDatumT_1018_Type()
 {
   #ifndef NODESTRUCT
-  delete SequencedDatumT_1022_TypePair;
+  delete SequencedDatumT_1018_TypePair;
   #endif
 }
 
-void SequencedDatumT_1022_Type::printSelf(FILE * outFile)
+void SequencedDatumT_1018_Type::printSelf(FILE * outFile)
 {
-  SequencedDatumT_1022_TypePair->printSelf(outFile);
+  SequencedDatumT_1018_TypePair->printSelf(outFile);
 }
 
-SequencedDatumT_1022_TypeChoicePair * SequencedDatumT_1022_Type::getSequencedDatumT_1022_TypePair()
-{return SequencedDatumT_1022_TypePair;}
+SequencedDatumT_1018_TypeChoicePair * SequencedDatumT_1018_Type::getSequencedDatumT_1018_TypePair()
+{return SequencedDatumT_1018_TypePair;}
 
-void SequencedDatumT_1022_Type::setSequencedDatumT_1022_TypePair(SequencedDatumT_1022_TypeChoicePair * SequencedDatumT_1022_TypePairIn)
-{SequencedDatumT_1022_TypePair = SequencedDatumT_1022_TypePairIn;}
+void SequencedDatumT_1018_Type::setSequencedDatumT_1018_TypePair(SequencedDatumT_1018_TypeChoicePair * SequencedDatumT_1018_TypePairIn)
+{SequencedDatumT_1018_TypePair = SequencedDatumT_1018_TypePairIn;}
+SequencedDatumT_1018_TypeChoicePair::SequencedDatumT_1018_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class SequencedDatumT_1022_TypeChoicePair
-
-*/
-
-SequencedDatumT_1022_TypeChoicePair::SequencedDatumT_1022_TypeChoicePair() {}
-
-SequencedDatumT_1022_TypeChoicePair::SequencedDatumT_1022_TypeChoicePair(
- whichOne SequencedDatumT_1022_TypeTypeIn,
- SequencedDatumT_1022_TypeVal SequencedDatumT_1022_TypeValueIn)
+SequencedDatumT_1018_TypeChoicePair::SequencedDatumT_1018_TypeChoicePair(
+ whichOne SequencedDatumT_1018_TypeTypeIn,
+ SequencedDatumT_1018_TypeVal SequencedDatumT_1018_TypeValueIn)
 {
-  SequencedDatumT_1022_TypeType = SequencedDatumT_1022_TypeTypeIn;
-  SequencedDatumT_1022_TypeValue = SequencedDatumT_1022_TypeValueIn;
+  SequencedDatumT_1018_TypeType = SequencedDatumT_1018_TypeTypeIn;
+  SequencedDatumT_1018_TypeValue = SequencedDatumT_1018_TypeValueIn;
 }
 
-SequencedDatumT_1022_TypeChoicePair::~SequencedDatumT_1022_TypeChoicePair()
+SequencedDatumT_1018_TypeChoicePair::~SequencedDatumT_1018_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (SequencedDatumT_1022_TypeType == SimpleDatumE)
-    delete SequencedDatumT_1022_TypeValue.SimpleDatum;
-  else if (SequencedDatumT_1022_TypeType == CompoundDatumE)
-    delete SequencedDatumT_1022_TypeValue.CompoundDatum;
+  if (SequencedDatumT_1018_TypeType == SimpleDatumE)
+    delete SequencedDatumT_1018_TypeValue.SimpleDatum;
+  else if (SequencedDatumT_1018_TypeType == CompoundDatumE)
+    delete SequencedDatumT_1018_TypeValue.CompoundDatum;
   #endif
 }
 
-void SequencedDatumT_1022_TypeChoicePair::printSelf(FILE * outFile)
+void SequencedDatumT_1018_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (SequencedDatumT_1022_TypeType == SimpleDatumE)
+  if (SequencedDatumT_1018_TypeType == SimpleDatumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SimpleDatum");
-      SequencedDatumT_1022_TypeValue.SimpleDatum->printSelf(outFile);
+      SequencedDatumT_1018_TypeValue.SimpleDatum->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</SimpleDatum>\n");
     }
-  else if (SequencedDatumT_1022_TypeType == CompoundDatumE)
+  else if (SequencedDatumT_1018_TypeType == CompoundDatumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CompoundDatum");
-      SequencedDatumT_1022_TypeValue.CompoundDatum->printSelf(outFile);
+      SequencedDatumT_1018_TypeValue.CompoundDatum->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</CompoundDatum>\n");
     }
@@ -18757,396 +18930,361 @@ void SequencedDatumT_1022_TypeChoicePair::printSelf(FILE * outFile)
 
 /* ***************************************************************** */
 
-/* class SpeedToleranceT_1023_Type
+/* class SpeedToleranceT_1019_Type
 
 */
 
-SpeedToleranceT_1023_Type::SpeedToleranceT_1023_Type()
+SpeedToleranceT_1019_Type::SpeedToleranceT_1019_Type()
 {
-  SpeedToleranceT_1023_TypePair = 0;
+  SpeedToleranceT_1019_TypePair = 0;
 }
 
-SpeedToleranceT_1023_Type::SpeedToleranceT_1023_Type(
- SpeedToleranceT_1023_TypeChoicePair * SpeedToleranceT_1023_TypePairIn)
+SpeedToleranceT_1019_Type::SpeedToleranceT_1019_Type(
+ SpeedToleranceT_1019_TypeChoicePair * SpeedToleranceT_1019_TypePairIn)
 {
-  SpeedToleranceT_1023_TypePair = SpeedToleranceT_1023_TypePairIn;
+  SpeedToleranceT_1019_TypePair = SpeedToleranceT_1019_TypePairIn;
 }
 
-SpeedToleranceT_1023_Type::~SpeedToleranceT_1023_Type()
+SpeedToleranceT_1019_Type::~SpeedToleranceT_1019_Type()
 {
   #ifndef NODESTRUCT
-  delete SpeedToleranceT_1023_TypePair;
+  delete SpeedToleranceT_1019_TypePair;
   #endif
 }
 
-void SpeedToleranceT_1023_Type::printSelf(FILE * outFile)
+void SpeedToleranceT_1019_Type::printSelf(FILE * outFile)
 {
-  SpeedToleranceT_1023_TypePair->printSelf(outFile);
+  SpeedToleranceT_1019_TypePair->printSelf(outFile);
 }
 
-SpeedToleranceT_1023_TypeChoicePair * SpeedToleranceT_1023_Type::getSpeedToleranceT_1023_TypePair()
-{return SpeedToleranceT_1023_TypePair;}
+SpeedToleranceT_1019_TypeChoicePair * SpeedToleranceT_1019_Type::getSpeedToleranceT_1019_TypePair()
+{return SpeedToleranceT_1019_TypePair;}
 
-void SpeedToleranceT_1023_Type::setSpeedToleranceT_1023_TypePair(SpeedToleranceT_1023_TypeChoicePair * SpeedToleranceT_1023_TypePairIn)
-{SpeedToleranceT_1023_TypePair = SpeedToleranceT_1023_TypePairIn;}
+void SpeedToleranceT_1019_Type::setSpeedToleranceT_1019_TypePair(SpeedToleranceT_1019_TypeChoicePair * SpeedToleranceT_1019_TypePairIn)
+{SpeedToleranceT_1019_TypePair = SpeedToleranceT_1019_TypePairIn;}
+SpeedToleranceT_1019_TypeChoicePair::SpeedToleranceT_1019_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class SpeedToleranceT_1023_TypeChoicePair
-
-*/
-
-SpeedToleranceT_1023_TypeChoicePair::SpeedToleranceT_1023_TypeChoicePair() {}
-
-SpeedToleranceT_1023_TypeChoicePair::SpeedToleranceT_1023_TypeChoicePair(
- whichOne SpeedToleranceT_1023_TypeTypeIn,
- SpeedToleranceT_1023_TypeVal SpeedToleranceT_1023_TypeValueIn)
+SpeedToleranceT_1019_TypeChoicePair::SpeedToleranceT_1019_TypeChoicePair(
+ whichOne SpeedToleranceT_1019_TypeTypeIn,
+ SpeedToleranceT_1019_TypeVal SpeedToleranceT_1019_TypeValueIn)
 {
-  SpeedToleranceT_1023_TypeType = SpeedToleranceT_1023_TypeTypeIn;
-  SpeedToleranceT_1023_TypeValue = SpeedToleranceT_1023_TypeValueIn;
+  SpeedToleranceT_1019_TypeType = SpeedToleranceT_1019_TypeTypeIn;
+  SpeedToleranceT_1019_TypeValue = SpeedToleranceT_1019_TypeValueIn;
 }
 
-SpeedToleranceT_1023_TypeChoicePair::~SpeedToleranceT_1023_TypeChoicePair()
+SpeedToleranceT_1019_TypeChoicePair::~SpeedToleranceT_1019_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (SpeedToleranceT_1023_TypeType == SpeedToleranceT_1039E)
-    delete SpeedToleranceT_1023_TypeValue.SpeedToleranceT_1039;
-  else if (SpeedToleranceT_1023_TypeType == MinValueE)
-    delete SpeedToleranceT_1023_TypeValue.MinValue;
+  if (SpeedToleranceT_1019_TypeType == SpeedToleranceT_1035E)
+    delete SpeedToleranceT_1019_TypeValue.SpeedToleranceT_1035;
+  else if (SpeedToleranceT_1019_TypeType == MinValueE)
+    delete SpeedToleranceT_1019_TypeValue.MinValue;
   #endif
 }
 
-void SpeedToleranceT_1023_TypeChoicePair::printSelf(FILE * outFile)
+void SpeedToleranceT_1019_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (SpeedToleranceT_1023_TypeType == SpeedToleranceT_1039E)
+  if (SpeedToleranceT_1019_TypeType == SpeedToleranceT_1035E)
     {
-      SpeedToleranceT_1023_TypeValue.SpeedToleranceT_1039->printSelf(outFile);
+      SpeedToleranceT_1019_TypeValue.SpeedToleranceT_1035->printSelf(outFile);
     }
-  else if (SpeedToleranceT_1023_TypeType == MinValueE)
+  else if (SpeedToleranceT_1019_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      SpeedToleranceT_1023_TypeValue.MinValue->printSelf(outFile);
+      SpeedToleranceT_1019_TypeValue.MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class SubstituteFeatu_1024_Type
+/* class SubstituteFeatu_1020_Type
 
 */
 
-SubstituteFeatu_1024_Type::SubstituteFeatu_1024_Type()
+SubstituteFeatu_1020_Type::SubstituteFeatu_1020_Type()
 {
-  SubstituteFeatu_1024_TypePair = 0;
+  SubstituteFeatu_1020_TypePair = 0;
 }
 
-SubstituteFeatu_1024_Type::SubstituteFeatu_1024_Type(
- SubstituteFeatu_1024_TypeChoicePair * SubstituteFeatu_1024_TypePairIn)
+SubstituteFeatu_1020_Type::SubstituteFeatu_1020_Type(
+ SubstituteFeatu_1020_TypeChoicePair * SubstituteFeatu_1020_TypePairIn)
 {
-  SubstituteFeatu_1024_TypePair = SubstituteFeatu_1024_TypePairIn;
+  SubstituteFeatu_1020_TypePair = SubstituteFeatu_1020_TypePairIn;
 }
 
-SubstituteFeatu_1024_Type::~SubstituteFeatu_1024_Type()
+SubstituteFeatu_1020_Type::~SubstituteFeatu_1020_Type()
 {
   #ifndef NODESTRUCT
-  delete SubstituteFeatu_1024_TypePair;
+  delete SubstituteFeatu_1020_TypePair;
   #endif
 }
 
-void SubstituteFeatu_1024_Type::printSelf(FILE * outFile)
+void SubstituteFeatu_1020_Type::printSelf(FILE * outFile)
 {
-  SubstituteFeatu_1024_TypePair->printSelf(outFile);
+  SubstituteFeatu_1020_TypePair->printSelf(outFile);
 }
 
-SubstituteFeatu_1024_TypeChoicePair * SubstituteFeatu_1024_Type::getSubstituteFeatu_1024_TypePair()
-{return SubstituteFeatu_1024_TypePair;}
+SubstituteFeatu_1020_TypeChoicePair * SubstituteFeatu_1020_Type::getSubstituteFeatu_1020_TypePair()
+{return SubstituteFeatu_1020_TypePair;}
 
-void SubstituteFeatu_1024_Type::setSubstituteFeatu_1024_TypePair(SubstituteFeatu_1024_TypeChoicePair * SubstituteFeatu_1024_TypePairIn)
-{SubstituteFeatu_1024_TypePair = SubstituteFeatu_1024_TypePairIn;}
+void SubstituteFeatu_1020_Type::setSubstituteFeatu_1020_TypePair(SubstituteFeatu_1020_TypeChoicePair * SubstituteFeatu_1020_TypePairIn)
+{SubstituteFeatu_1020_TypePair = SubstituteFeatu_1020_TypePairIn;}
+SubstituteFeatu_1020_TypeChoicePair::SubstituteFeatu_1020_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class SubstituteFeatu_1024_TypeChoicePair
-
-*/
-
-SubstituteFeatu_1024_TypeChoicePair::SubstituteFeatu_1024_TypeChoicePair() {}
-
-SubstituteFeatu_1024_TypeChoicePair::SubstituteFeatu_1024_TypeChoicePair(
- whichOne SubstituteFeatu_1024_TypeTypeIn,
- SubstituteFeatu_1024_TypeVal SubstituteFeatu_1024_TypeValueIn)
+SubstituteFeatu_1020_TypeChoicePair::SubstituteFeatu_1020_TypeChoicePair(
+ whichOne SubstituteFeatu_1020_TypeTypeIn,
+ SubstituteFeatu_1020_TypeVal SubstituteFeatu_1020_TypeValueIn)
 {
-  SubstituteFeatu_1024_TypeType = SubstituteFeatu_1024_TypeTypeIn;
-  SubstituteFeatu_1024_TypeValue = SubstituteFeatu_1024_TypeValueIn;
+  SubstituteFeatu_1020_TypeType = SubstituteFeatu_1020_TypeTypeIn;
+  SubstituteFeatu_1020_TypeValue = SubstituteFeatu_1020_TypeValueIn;
 }
 
-SubstituteFeatu_1024_TypeChoicePair::~SubstituteFeatu_1024_TypeChoicePair()
+SubstituteFeatu_1020_TypeChoicePair::~SubstituteFeatu_1020_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (SubstituteFeatu_1024_TypeType == SubstituteFeatureAlgorithmEnumE)
-    delete SubstituteFeatu_1024_TypeValue.SubstituteFeatureAlgorithmEnum;
-  else if (SubstituteFeatu_1024_TypeType == SubstituteFeatureAlgorithmIdE)
-    delete SubstituteFeatu_1024_TypeValue.SubstituteFeatureAlgorithmId;
-  else if (SubstituteFeatu_1024_TypeType == OtherSubstituteFeatureAlgorithmE)
-    delete SubstituteFeatu_1024_TypeValue.OtherSubstituteFeatureAlgorithm;
+  if (SubstituteFeatu_1020_TypeType == SubstituteFeatureAlgorithmEnumE)
+    delete SubstituteFeatu_1020_TypeValue.SubstituteFeatureAlgorithmEnum;
+  else if (SubstituteFeatu_1020_TypeType == SubstituteFeatureAlgorithmIdE)
+    delete SubstituteFeatu_1020_TypeValue.SubstituteFeatureAlgorithmId;
+  else if (SubstituteFeatu_1020_TypeType == OtherSubstituteFeatureAlgorithmE)
+    delete SubstituteFeatu_1020_TypeValue.OtherSubstituteFeatureAlgorithm;
   #endif
 }
 
-void SubstituteFeatu_1024_TypeChoicePair::printSelf(FILE * outFile)
+void SubstituteFeatu_1020_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (SubstituteFeatu_1024_TypeType == SubstituteFeatureAlgorithmEnumE)
+  if (SubstituteFeatu_1020_TypeType == SubstituteFeatureAlgorithmEnumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SubstituteFeatureAlgorithmEnum");
-      SubstituteFeatu_1024_TypeValue.SubstituteFeatureAlgorithmEnum->printSelf(outFile);
+      SubstituteFeatu_1020_TypeValue.SubstituteFeatureAlgorithmEnum->printSelf(outFile);
       fprintf(outFile, "</SubstituteFeatureAlgorithmEnum>\n");
     }
-  else if (SubstituteFeatu_1024_TypeType == SubstituteFeatureAlgorithmIdE)
+  else if (SubstituteFeatu_1020_TypeType == SubstituteFeatureAlgorithmIdE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<SubstituteFeatureAlgorithmId");
-      SubstituteFeatu_1024_TypeValue.SubstituteFeatureAlgorithmId->printSelf(outFile);
+      SubstituteFeatu_1020_TypeValue.SubstituteFeatureAlgorithmId->printSelf(outFile);
       fprintf(outFile, "</SubstituteFeatureAlgorithmId>\n");
     }
-  else if (SubstituteFeatu_1024_TypeType == OtherSubstituteFeatureAlgorithmE)
+  else if (SubstituteFeatu_1020_TypeType == OtherSubstituteFeatureAlgorithmE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherSubstituteFeatureAlgorithm");
-      SubstituteFeatu_1024_TypeValue.OtherSubstituteFeatureAlgorithm->printSelf(outFile);
+      SubstituteFeatu_1020_TypeValue.OtherSubstituteFeatureAlgorithm->printSelf(outFile);
       fprintf(outFile, "</OtherSubstituteFeatureAlgorithm>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class TemperatureTole_1025_Type
+/* class TemperatureTole_1021_Type
 
 */
 
-TemperatureTole_1025_Type::TemperatureTole_1025_Type()
+TemperatureTole_1021_Type::TemperatureTole_1021_Type()
 {
-  TemperatureTole_1025_TypePair = 0;
+  TemperatureTole_1021_TypePair = 0;
 }
 
-TemperatureTole_1025_Type::TemperatureTole_1025_Type(
- TemperatureTole_1025_TypeChoicePair * TemperatureTole_1025_TypePairIn)
+TemperatureTole_1021_Type::TemperatureTole_1021_Type(
+ TemperatureTole_1021_TypeChoicePair * TemperatureTole_1021_TypePairIn)
 {
-  TemperatureTole_1025_TypePair = TemperatureTole_1025_TypePairIn;
+  TemperatureTole_1021_TypePair = TemperatureTole_1021_TypePairIn;
 }
 
-TemperatureTole_1025_Type::~TemperatureTole_1025_Type()
+TemperatureTole_1021_Type::~TemperatureTole_1021_Type()
 {
   #ifndef NODESTRUCT
-  delete TemperatureTole_1025_TypePair;
+  delete TemperatureTole_1021_TypePair;
   #endif
 }
 
-void TemperatureTole_1025_Type::printSelf(FILE * outFile)
+void TemperatureTole_1021_Type::printSelf(FILE * outFile)
 {
-  TemperatureTole_1025_TypePair->printSelf(outFile);
+  TemperatureTole_1021_TypePair->printSelf(outFile);
 }
 
-TemperatureTole_1025_TypeChoicePair * TemperatureTole_1025_Type::getTemperatureTole_1025_TypePair()
-{return TemperatureTole_1025_TypePair;}
+TemperatureTole_1021_TypeChoicePair * TemperatureTole_1021_Type::getTemperatureTole_1021_TypePair()
+{return TemperatureTole_1021_TypePair;}
 
-void TemperatureTole_1025_Type::setTemperatureTole_1025_TypePair(TemperatureTole_1025_TypeChoicePair * TemperatureTole_1025_TypePairIn)
-{TemperatureTole_1025_TypePair = TemperatureTole_1025_TypePairIn;}
+void TemperatureTole_1021_Type::setTemperatureTole_1021_TypePair(TemperatureTole_1021_TypeChoicePair * TemperatureTole_1021_TypePairIn)
+{TemperatureTole_1021_TypePair = TemperatureTole_1021_TypePairIn;}
+TemperatureTole_1021_TypeChoicePair::TemperatureTole_1021_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class TemperatureTole_1025_TypeChoicePair
-
-*/
-
-TemperatureTole_1025_TypeChoicePair::TemperatureTole_1025_TypeChoicePair() {}
-
-TemperatureTole_1025_TypeChoicePair::TemperatureTole_1025_TypeChoicePair(
- whichOne TemperatureTole_1025_TypeTypeIn,
- TemperatureTole_1025_TypeVal TemperatureTole_1025_TypeValueIn)
+TemperatureTole_1021_TypeChoicePair::TemperatureTole_1021_TypeChoicePair(
+ whichOne TemperatureTole_1021_TypeTypeIn,
+ TemperatureTole_1021_TypeVal TemperatureTole_1021_TypeValueIn)
 {
-  TemperatureTole_1025_TypeType = TemperatureTole_1025_TypeTypeIn;
-  TemperatureTole_1025_TypeValue = TemperatureTole_1025_TypeValueIn;
+  TemperatureTole_1021_TypeType = TemperatureTole_1021_TypeTypeIn;
+  TemperatureTole_1021_TypeValue = TemperatureTole_1021_TypeValueIn;
 }
 
-TemperatureTole_1025_TypeChoicePair::~TemperatureTole_1025_TypeChoicePair()
+TemperatureTole_1021_TypeChoicePair::~TemperatureTole_1021_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (TemperatureTole_1025_TypeType == TemperatureTole_1040E)
-    delete TemperatureTole_1025_TypeValue.TemperatureTole_1040;
-  else if (TemperatureTole_1025_TypeType == MinValueE)
-    delete TemperatureTole_1025_TypeValue.MinValue;
+  if (TemperatureTole_1021_TypeType == TemperatureTole_1036E)
+    delete TemperatureTole_1021_TypeValue.TemperatureTole_1036;
+  else if (TemperatureTole_1021_TypeType == MinValueE)
+    delete TemperatureTole_1021_TypeValue.MinValue;
   #endif
 }
 
-void TemperatureTole_1025_TypeChoicePair::printSelf(FILE * outFile)
+void TemperatureTole_1021_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (TemperatureTole_1025_TypeType == TemperatureTole_1040E)
+  if (TemperatureTole_1021_TypeType == TemperatureTole_1036E)
     {
-      TemperatureTole_1025_TypeValue.TemperatureTole_1040->printSelf(outFile);
+      TemperatureTole_1021_TypeValue.TemperatureTole_1036->printSelf(outFile);
     }
-  else if (TemperatureTole_1025_TypeType == MinValueE)
+  else if (TemperatureTole_1021_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      TemperatureTole_1025_TypeValue.MinValue->printSelf(outFile);
+      TemperatureTole_1021_TypeValue.MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class TimeToleranceTy_1026_Type
+/* class TimeToleranceTy_1022_Type
 
 */
 
-TimeToleranceTy_1026_Type::TimeToleranceTy_1026_Type()
+TimeToleranceTy_1022_Type::TimeToleranceTy_1022_Type()
 {
-  TimeToleranceTy_1026_TypePair = 0;
+  TimeToleranceTy_1022_TypePair = 0;
 }
 
-TimeToleranceTy_1026_Type::TimeToleranceTy_1026_Type(
- TimeToleranceTy_1026_TypeChoicePair * TimeToleranceTy_1026_TypePairIn)
+TimeToleranceTy_1022_Type::TimeToleranceTy_1022_Type(
+ TimeToleranceTy_1022_TypeChoicePair * TimeToleranceTy_1022_TypePairIn)
 {
-  TimeToleranceTy_1026_TypePair = TimeToleranceTy_1026_TypePairIn;
+  TimeToleranceTy_1022_TypePair = TimeToleranceTy_1022_TypePairIn;
 }
 
-TimeToleranceTy_1026_Type::~TimeToleranceTy_1026_Type()
+TimeToleranceTy_1022_Type::~TimeToleranceTy_1022_Type()
 {
   #ifndef NODESTRUCT
-  delete TimeToleranceTy_1026_TypePair;
+  delete TimeToleranceTy_1022_TypePair;
   #endif
 }
 
-void TimeToleranceTy_1026_Type::printSelf(FILE * outFile)
+void TimeToleranceTy_1022_Type::printSelf(FILE * outFile)
 {
-  TimeToleranceTy_1026_TypePair->printSelf(outFile);
+  TimeToleranceTy_1022_TypePair->printSelf(outFile);
 }
 
-TimeToleranceTy_1026_TypeChoicePair * TimeToleranceTy_1026_Type::getTimeToleranceTy_1026_TypePair()
-{return TimeToleranceTy_1026_TypePair;}
+TimeToleranceTy_1022_TypeChoicePair * TimeToleranceTy_1022_Type::getTimeToleranceTy_1022_TypePair()
+{return TimeToleranceTy_1022_TypePair;}
 
-void TimeToleranceTy_1026_Type::setTimeToleranceTy_1026_TypePair(TimeToleranceTy_1026_TypeChoicePair * TimeToleranceTy_1026_TypePairIn)
-{TimeToleranceTy_1026_TypePair = TimeToleranceTy_1026_TypePairIn;}
+void TimeToleranceTy_1022_Type::setTimeToleranceTy_1022_TypePair(TimeToleranceTy_1022_TypeChoicePair * TimeToleranceTy_1022_TypePairIn)
+{TimeToleranceTy_1022_TypePair = TimeToleranceTy_1022_TypePairIn;}
+TimeToleranceTy_1022_TypeChoicePair::TimeToleranceTy_1022_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class TimeToleranceTy_1026_TypeChoicePair
-
-*/
-
-TimeToleranceTy_1026_TypeChoicePair::TimeToleranceTy_1026_TypeChoicePair() {}
-
-TimeToleranceTy_1026_TypeChoicePair::TimeToleranceTy_1026_TypeChoicePair(
- whichOne TimeToleranceTy_1026_TypeTypeIn,
- TimeToleranceTy_1026_TypeVal TimeToleranceTy_1026_TypeValueIn)
+TimeToleranceTy_1022_TypeChoicePair::TimeToleranceTy_1022_TypeChoicePair(
+ whichOne TimeToleranceTy_1022_TypeTypeIn,
+ TimeToleranceTy_1022_TypeVal TimeToleranceTy_1022_TypeValueIn)
 {
-  TimeToleranceTy_1026_TypeType = TimeToleranceTy_1026_TypeTypeIn;
-  TimeToleranceTy_1026_TypeValue = TimeToleranceTy_1026_TypeValueIn;
+  TimeToleranceTy_1022_TypeType = TimeToleranceTy_1022_TypeTypeIn;
+  TimeToleranceTy_1022_TypeValue = TimeToleranceTy_1022_TypeValueIn;
 }
 
-TimeToleranceTy_1026_TypeChoicePair::~TimeToleranceTy_1026_TypeChoicePair()
+TimeToleranceTy_1022_TypeChoicePair::~TimeToleranceTy_1022_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (TimeToleranceTy_1026_TypeType == TimeToleranceTy_1041E)
-    delete TimeToleranceTy_1026_TypeValue.TimeToleranceTy_1041;
-  else if (TimeToleranceTy_1026_TypeType == MinValueE)
-    delete TimeToleranceTy_1026_TypeValue.MinValue;
+  if (TimeToleranceTy_1022_TypeType == TimeToleranceTy_1037E)
+    delete TimeToleranceTy_1022_TypeValue.TimeToleranceTy_1037;
+  else if (TimeToleranceTy_1022_TypeType == MinValueE)
+    delete TimeToleranceTy_1022_TypeValue.MinValue;
   #endif
 }
 
-void TimeToleranceTy_1026_TypeChoicePair::printSelf(FILE * outFile)
+void TimeToleranceTy_1022_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (TimeToleranceTy_1026_TypeType == TimeToleranceTy_1041E)
+  if (TimeToleranceTy_1022_TypeType == TimeToleranceTy_1037E)
     {
-      TimeToleranceTy_1026_TypeValue.TimeToleranceTy_1041->printSelf(outFile);
+      TimeToleranceTy_1022_TypeValue.TimeToleranceTy_1037->printSelf(outFile);
     }
-  else if (TimeToleranceTy_1026_TypeType == MinValueE)
+  else if (TimeToleranceTy_1022_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      TimeToleranceTy_1026_TypeValue.MinValue->printSelf(outFile);
+      TimeToleranceTy_1022_TypeValue.MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class ToleranceZonePe_1027_Type
+/* class ToleranceZonePe_1023_Type
 
 */
 
-ToleranceZonePe_1027_Type::ToleranceZonePe_1027_Type()
+ToleranceZonePe_1023_Type::ToleranceZonePe_1023_Type()
 {
-  ToleranceZonePe_1027_TypePair = 0;
+  ToleranceZonePe_1023_TypePair = 0;
 }
 
-ToleranceZonePe_1027_Type::ToleranceZonePe_1027_Type(
- ToleranceZonePe_1027_TypeChoicePair * ToleranceZonePe_1027_TypePairIn)
+ToleranceZonePe_1023_Type::ToleranceZonePe_1023_Type(
+ ToleranceZonePe_1023_TypeChoicePair * ToleranceZonePe_1023_TypePairIn)
 {
-  ToleranceZonePe_1027_TypePair = ToleranceZonePe_1027_TypePairIn;
+  ToleranceZonePe_1023_TypePair = ToleranceZonePe_1023_TypePairIn;
 }
 
-ToleranceZonePe_1027_Type::~ToleranceZonePe_1027_Type()
+ToleranceZonePe_1023_Type::~ToleranceZonePe_1023_Type()
 {
   #ifndef NODESTRUCT
-  delete ToleranceZonePe_1027_TypePair;
+  delete ToleranceZonePe_1023_TypePair;
   #endif
 }
 
-void ToleranceZonePe_1027_Type::printSelf(FILE * outFile)
+void ToleranceZonePe_1023_Type::printSelf(FILE * outFile)
 {
-  ToleranceZonePe_1027_TypePair->printSelf(outFile);
+  ToleranceZonePe_1023_TypePair->printSelf(outFile);
 }
 
-ToleranceZonePe_1027_TypeChoicePair * ToleranceZonePe_1027_Type::getToleranceZonePe_1027_TypePair()
-{return ToleranceZonePe_1027_TypePair;}
+ToleranceZonePe_1023_TypeChoicePair * ToleranceZonePe_1023_Type::getToleranceZonePe_1023_TypePair()
+{return ToleranceZonePe_1023_TypePair;}
 
-void ToleranceZonePe_1027_Type::setToleranceZonePe_1027_TypePair(ToleranceZonePe_1027_TypeChoicePair * ToleranceZonePe_1027_TypePairIn)
-{ToleranceZonePe_1027_TypePair = ToleranceZonePe_1027_TypePairIn;}
+void ToleranceZonePe_1023_Type::setToleranceZonePe_1023_TypePair(ToleranceZonePe_1023_TypeChoicePair * ToleranceZonePe_1023_TypePairIn)
+{ToleranceZonePe_1023_TypePair = ToleranceZonePe_1023_TypePairIn;}
+ToleranceZonePe_1023_TypeChoicePair::ToleranceZonePe_1023_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class ToleranceZonePe_1027_TypeChoicePair
-
-*/
-
-ToleranceZonePe_1027_TypeChoicePair::ToleranceZonePe_1027_TypeChoicePair() {}
-
-ToleranceZonePe_1027_TypeChoicePair::ToleranceZonePe_1027_TypeChoicePair(
- whichOne ToleranceZonePe_1027_TypeTypeIn,
- ToleranceZonePe_1027_TypeVal ToleranceZonePe_1027_TypeValueIn)
+ToleranceZonePe_1023_TypeChoicePair::ToleranceZonePe_1023_TypeChoicePair(
+ whichOne ToleranceZonePe_1023_TypeTypeIn,
+ ToleranceZonePe_1023_TypeVal ToleranceZonePe_1023_TypeValueIn)
 {
-  ToleranceZonePe_1027_TypeType = ToleranceZonePe_1027_TypeTypeIn;
-  ToleranceZonePe_1027_TypeValue = ToleranceZonePe_1027_TypeValueIn;
+  ToleranceZonePe_1023_TypeType = ToleranceZonePe_1023_TypeTypeIn;
+  ToleranceZonePe_1023_TypeValue = ToleranceZonePe_1023_TypeValueIn;
 }
 
-ToleranceZonePe_1027_TypeChoicePair::~ToleranceZonePe_1027_TypeChoicePair()
+ToleranceZonePe_1023_TypeChoicePair::~ToleranceZonePe_1023_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (ToleranceZonePe_1027_TypeType == RectangularUnitAreaE)
-    delete ToleranceZonePe_1027_TypeValue.RectangularUnitArea;
-  else if (ToleranceZonePe_1027_TypeType == CircularUnitAreaE)
-    delete ToleranceZonePe_1027_TypeValue.CircularUnitArea;
+  if (ToleranceZonePe_1023_TypeType == RectangularUnitAreaE)
+    delete ToleranceZonePe_1023_TypeValue.RectangularUnitArea;
+  else if (ToleranceZonePe_1023_TypeType == CircularUnitAreaE)
+    delete ToleranceZonePe_1023_TypeValue.CircularUnitArea;
   #endif
 }
 
-void ToleranceZonePe_1027_TypeChoicePair::printSelf(FILE * outFile)
+void ToleranceZonePe_1023_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (ToleranceZonePe_1027_TypeType == RectangularUnitAreaE)
+  if (ToleranceZonePe_1023_TypeType == RectangularUnitAreaE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RectangularUnitArea");
-      ToleranceZonePe_1027_TypeValue.RectangularUnitArea->printSelf(outFile);
+      ToleranceZonePe_1023_TypeValue.RectangularUnitArea->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</RectangularUnitArea>\n");
     }
-  else if (ToleranceZonePe_1027_TypeType == CircularUnitAreaE)
+  else if (ToleranceZonePe_1023_TypeType == CircularUnitAreaE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<CircularUnitArea");
-      ToleranceZonePe_1027_TypeValue.CircularUnitArea->printSelf(outFile);
+      ToleranceZonePe_1023_TypeValue.CircularUnitArea->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</CircularUnitArea>\n");
     }
@@ -19154,17 +19292,17 @@ void ToleranceZonePe_1027_TypeChoicePair::printSelf(FILE * outFile)
 
 /* ***************************************************************** */
 
-/* class AlgorithmType_1_1028_Type
+/* class AlgorithmType_1_1024_Type
 
 */
 
-AlgorithmType_1_1028_Type::AlgorithmType_1_1028_Type()
+AlgorithmType_1_1024_Type::AlgorithmType_1_1024_Type()
 {
   SoftwareId = 0;
   Parameters = 0;
 }
 
-AlgorithmType_1_1028_Type::AlgorithmType_1_1028_Type(
+AlgorithmType_1_1024_Type::AlgorithmType_1_1024_Type(
  QIFReferenceType * SoftwareIdIn,
  XmlString * ParametersIn)
 {
@@ -19172,7 +19310,7 @@ AlgorithmType_1_1028_Type::AlgorithmType_1_1028_Type(
   Parameters = ParametersIn;
 }
 
-AlgorithmType_1_1028_Type::~AlgorithmType_1_1028_Type()
+AlgorithmType_1_1024_Type::~AlgorithmType_1_1024_Type()
 {
   #ifndef NODESTRUCT
   delete SoftwareId;
@@ -19180,7 +19318,7 @@ AlgorithmType_1_1028_Type::~AlgorithmType_1_1028_Type()
   #endif
 }
 
-void AlgorithmType_1_1028_Type::printSelf(FILE * outFile)
+void AlgorithmType_1_1024_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<SoftwareId");
@@ -19195,31 +19333,31 @@ void AlgorithmType_1_1028_Type::printSelf(FILE * outFile)
     }
 }
 
-QIFReferenceType * AlgorithmType_1_1028_Type::getSoftwareId()
+QIFReferenceType * AlgorithmType_1_1024_Type::getSoftwareId()
 {return SoftwareId;}
 
-void AlgorithmType_1_1028_Type::setSoftwareId(QIFReferenceType * SoftwareIdIn)
+void AlgorithmType_1_1024_Type::setSoftwareId(QIFReferenceType * SoftwareIdIn)
 {SoftwareId = SoftwareIdIn;}
 
-XmlString * AlgorithmType_1_1028_Type::getParameters()
+XmlString * AlgorithmType_1_1024_Type::getParameters()
 {return Parameters;}
 
-void AlgorithmType_1_1028_Type::setParameters(XmlString * ParametersIn)
+void AlgorithmType_1_1024_Type::setParameters(XmlString * ParametersIn)
 {Parameters = ParametersIn;}
 
 /* ***************************************************************** */
 
-/* class AlgorithmType_1_1029_Type
+/* class AlgorithmType_1_1025_Type
 
 */
 
-AlgorithmType_1_1029_Type::AlgorithmType_1_1029_Type()
+AlgorithmType_1_1025_Type::AlgorithmType_1_1025_Type()
 {
   StandardId = 0;
   Section = 0;
 }
 
-AlgorithmType_1_1029_Type::AlgorithmType_1_1029_Type(
+AlgorithmType_1_1025_Type::AlgorithmType_1_1025_Type(
  QIFReferenceType * StandardIdIn,
  XmlString * SectionIn)
 {
@@ -19227,7 +19365,7 @@ AlgorithmType_1_1029_Type::AlgorithmType_1_1029_Type(
   Section = SectionIn;
 }
 
-AlgorithmType_1_1029_Type::~AlgorithmType_1_1029_Type()
+AlgorithmType_1_1025_Type::~AlgorithmType_1_1025_Type()
 {
   #ifndef NODESTRUCT
   delete StandardId;
@@ -19235,7 +19373,7 @@ AlgorithmType_1_1029_Type::~AlgorithmType_1_1029_Type()
   #endif
 }
 
-void AlgorithmType_1_1029_Type::printSelf(FILE * outFile)
+void AlgorithmType_1_1025_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<StandardId");
@@ -19250,31 +19388,31 @@ void AlgorithmType_1_1029_Type::printSelf(FILE * outFile)
     }
 }
 
-QIFReferenceType * AlgorithmType_1_1029_Type::getStandardId()
+QIFReferenceType * AlgorithmType_1_1025_Type::getStandardId()
 {return StandardId;}
 
-void AlgorithmType_1_1029_Type::setStandardId(QIFReferenceType * StandardIdIn)
+void AlgorithmType_1_1025_Type::setStandardId(QIFReferenceType * StandardIdIn)
 {StandardId = StandardIdIn;}
 
-XmlString * AlgorithmType_1_1029_Type::getSection()
+XmlString * AlgorithmType_1_1025_Type::getSection()
 {return Section;}
 
-void AlgorithmType_1_1029_Type::setSection(XmlString * SectionIn)
+void AlgorithmType_1_1025_Type::setSection(XmlString * SectionIn)
 {Section = SectionIn;}
 
 /* ***************************************************************** */
 
-/* class AngularToleranc_1030_Type
+/* class AngularToleranc_1026_Type
 
 */
 
-AngularToleranc_1030_Type::AngularToleranc_1030_Type()
+AngularToleranc_1026_Type::AngularToleranc_1026_Type()
 {
   MaxValue = 0;
   MinValue = 0;
 }
 
-AngularToleranc_1030_Type::AngularToleranc_1030_Type(
+AngularToleranc_1026_Type::AngularToleranc_1026_Type(
  AngularValueType * MaxValueIn,
  AngularValueType * MinValueIn)
 {
@@ -19282,7 +19420,7 @@ AngularToleranc_1030_Type::AngularToleranc_1030_Type(
   MinValue = MinValueIn;
 }
 
-AngularToleranc_1030_Type::~AngularToleranc_1030_Type()
+AngularToleranc_1026_Type::~AngularToleranc_1026_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
@@ -19290,7 +19428,7 @@ AngularToleranc_1030_Type::~AngularToleranc_1030_Type()
   #endif
 }
 
-void AngularToleranc_1030_Type::printSelf(FILE * outFile)
+void AngularToleranc_1026_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -19305,31 +19443,31 @@ void AngularToleranc_1030_Type::printSelf(FILE * outFile)
     }
 }
 
-AngularValueType * AngularToleranc_1030_Type::getMaxValue()
+AngularValueType * AngularToleranc_1026_Type::getMaxValue()
 {return MaxValue;}
 
-void AngularToleranc_1030_Type::setMaxValue(AngularValueType * MaxValueIn)
+void AngularToleranc_1026_Type::setMaxValue(AngularValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-AngularValueType * AngularToleranc_1030_Type::getMinValue()
+AngularValueType * AngularToleranc_1026_Type::getMinValue()
 {return MinValue;}
 
-void AngularToleranc_1030_Type::setMinValue(AngularValueType * MinValueIn)
+void AngularToleranc_1026_Type::setMinValue(AngularValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
 /* ***************************************************************** */
 
-/* class AngularToleranc_1031_Type
+/* class AngularToleranc_1027_Type
 
 */
 
-AngularToleranc_1031_Type::AngularToleranc_1031_Type()
+AngularToleranc_1027_Type::AngularToleranc_1027_Type()
 {
   MaxValue = 0;
   MinValue = 0;
 }
 
-AngularToleranc_1031_Type::AngularToleranc_1031_Type(
+AngularToleranc_1027_Type::AngularToleranc_1027_Type(
  AngularValueType * MaxValueIn,
  AngularValueType * MinValueIn)
 {
@@ -19337,7 +19475,7 @@ AngularToleranc_1031_Type::AngularToleranc_1031_Type(
   MinValue = MinValueIn;
 }
 
-AngularToleranc_1031_Type::~AngularToleranc_1031_Type()
+AngularToleranc_1027_Type::~AngularToleranc_1027_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
@@ -19345,7 +19483,7 @@ AngularToleranc_1031_Type::~AngularToleranc_1031_Type()
   #endif
 }
 
-void AngularToleranc_1031_Type::printSelf(FILE * outFile)
+void AngularToleranc_1027_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -19360,31 +19498,31 @@ void AngularToleranc_1031_Type::printSelf(FILE * outFile)
     }
 }
 
-AngularValueType * AngularToleranc_1031_Type::getMaxValue()
+AngularValueType * AngularToleranc_1027_Type::getMaxValue()
 {return MaxValue;}
 
-void AngularToleranc_1031_Type::setMaxValue(AngularValueType * MaxValueIn)
+void AngularToleranc_1027_Type::setMaxValue(AngularValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-AngularValueType * AngularToleranc_1031_Type::getMinValue()
+AngularValueType * AngularToleranc_1027_Type::getMinValue()
 {return MinValue;}
 
-void AngularToleranc_1031_Type::setMinValue(AngularValueType * MinValueIn)
+void AngularToleranc_1027_Type::setMinValue(AngularValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
 /* ***************************************************************** */
 
-/* class AreaToleranceTy_1032_Type
+/* class AreaToleranceTy_1028_Type
 
 */
 
-AreaToleranceTy_1032_Type::AreaToleranceTy_1032_Type()
+AreaToleranceTy_1028_Type::AreaToleranceTy_1028_Type()
 {
   MaxValue = 0;
   MinValue = 0;
 }
 
-AreaToleranceTy_1032_Type::AreaToleranceTy_1032_Type(
+AreaToleranceTy_1028_Type::AreaToleranceTy_1028_Type(
  AreaValueType * MaxValueIn,
  AreaValueType * MinValueIn)
 {
@@ -19392,7 +19530,7 @@ AreaToleranceTy_1032_Type::AreaToleranceTy_1032_Type(
   MinValue = MinValueIn;
 }
 
-AreaToleranceTy_1032_Type::~AreaToleranceTy_1032_Type()
+AreaToleranceTy_1028_Type::~AreaToleranceTy_1028_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
@@ -19400,7 +19538,7 @@ AreaToleranceTy_1032_Type::~AreaToleranceTy_1032_Type()
   #endif
 }
 
-void AreaToleranceTy_1032_Type::printSelf(FILE * outFile)
+void AreaToleranceTy_1028_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -19415,31 +19553,31 @@ void AreaToleranceTy_1032_Type::printSelf(FILE * outFile)
     }
 }
 
-AreaValueType * AreaToleranceTy_1032_Type::getMaxValue()
+AreaValueType * AreaToleranceTy_1028_Type::getMaxValue()
 {return MaxValue;}
 
-void AreaToleranceTy_1032_Type::setMaxValue(AreaValueType * MaxValueIn)
+void AreaToleranceTy_1028_Type::setMaxValue(AreaValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-AreaValueType * AreaToleranceTy_1032_Type::getMinValue()
+AreaValueType * AreaToleranceTy_1028_Type::getMinValue()
 {return MinValue;}
 
-void AreaToleranceTy_1032_Type::setMinValue(AreaValueType * MinValueIn)
+void AreaToleranceTy_1028_Type::setMinValue(AreaValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
 /* ***************************************************************** */
 
-/* class ForceToleranceT_1033_Type
+/* class ForceToleranceT_1029_Type
 
 */
 
-ForceToleranceT_1033_Type::ForceToleranceT_1033_Type()
+ForceToleranceT_1029_Type::ForceToleranceT_1029_Type()
 {
   MaxValue = 0;
   MinValue = 0;
 }
 
-ForceToleranceT_1033_Type::ForceToleranceT_1033_Type(
+ForceToleranceT_1029_Type::ForceToleranceT_1029_Type(
  ForceValueType * MaxValueIn,
  ForceValueType * MinValueIn)
 {
@@ -19447,7 +19585,7 @@ ForceToleranceT_1033_Type::ForceToleranceT_1033_Type(
   MinValue = MinValueIn;
 }
 
-ForceToleranceT_1033_Type::~ForceToleranceT_1033_Type()
+ForceToleranceT_1029_Type::~ForceToleranceT_1029_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
@@ -19455,7 +19593,7 @@ ForceToleranceT_1033_Type::~ForceToleranceT_1033_Type()
   #endif
 }
 
-void ForceToleranceT_1033_Type::printSelf(FILE * outFile)
+void ForceToleranceT_1029_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -19470,31 +19608,31 @@ void ForceToleranceT_1033_Type::printSelf(FILE * outFile)
     }
 }
 
-ForceValueType * ForceToleranceT_1033_Type::getMaxValue()
+ForceValueType * ForceToleranceT_1029_Type::getMaxValue()
 {return MaxValue;}
 
-void ForceToleranceT_1033_Type::setMaxValue(ForceValueType * MaxValueIn)
+void ForceToleranceT_1029_Type::setMaxValue(ForceValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-ForceValueType * ForceToleranceT_1033_Type::getMinValue()
+ForceValueType * ForceToleranceT_1029_Type::getMinValue()
 {return MinValue;}
 
-void ForceToleranceT_1033_Type::setMinValue(ForceValueType * MinValueIn)
+void ForceToleranceT_1029_Type::setMinValue(ForceValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
 /* ***************************************************************** */
 
-/* class LinearTolerance_1034_Type
+/* class LinearTolerance_1030_Type
 
 */
 
-LinearTolerance_1034_Type::LinearTolerance_1034_Type()
+LinearTolerance_1030_Type::LinearTolerance_1030_Type()
 {
   MaxValue = 0;
   MinValue = 0;
 }
 
-LinearTolerance_1034_Type::LinearTolerance_1034_Type(
+LinearTolerance_1030_Type::LinearTolerance_1030_Type(
  LinearValueType * MaxValueIn,
  LinearValueType * MinValueIn)
 {
@@ -19502,7 +19640,7 @@ LinearTolerance_1034_Type::LinearTolerance_1034_Type(
   MinValue = MinValueIn;
 }
 
-LinearTolerance_1034_Type::~LinearTolerance_1034_Type()
+LinearTolerance_1030_Type::~LinearTolerance_1030_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
@@ -19510,7 +19648,7 @@ LinearTolerance_1034_Type::~LinearTolerance_1034_Type()
   #endif
 }
 
-void LinearTolerance_1034_Type::printSelf(FILE * outFile)
+void LinearTolerance_1030_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -19525,51 +19663,51 @@ void LinearTolerance_1034_Type::printSelf(FILE * outFile)
     }
 }
 
-LinearValueType * LinearTolerance_1034_Type::getMaxValue()
+LinearValueType * LinearTolerance_1030_Type::getMaxValue()
 {return MaxValue;}
 
-void LinearTolerance_1034_Type::setMaxValue(LinearValueType * MaxValueIn)
+void LinearTolerance_1030_Type::setMaxValue(LinearValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-LinearValueType * LinearTolerance_1034_Type::getMinValue()
+LinearValueType * LinearTolerance_1030_Type::getMinValue()
 {return MinValue;}
 
-void LinearTolerance_1034_Type::setMinValue(LinearValueType * MinValueIn)
+void LinearTolerance_1030_Type::setMinValue(LinearValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
 /* ***************************************************************** */
 
-/* class LinearTolerance_1035_Type
+/* class LinearTolerance_1031_Type
 
 */
 
-LinearTolerance_1035_Type::LinearTolerance_1035_Type()
+LinearTolerance_1031_Type::LinearTolerance_1031_Type()
 {
   MaxValue = 0;
   MaxDualValue = 0;
-  LinearTolerance_1042 = 0;
+  LinearTolerance_1038 = 0;
 }
 
-LinearTolerance_1035_Type::LinearTolerance_1035_Type(
+LinearTolerance_1031_Type::LinearTolerance_1031_Type(
  LinearValueType * MaxValueIn,
  LinearDualValueType * MaxDualValueIn,
- LinearTolerance_1042_Type * LinearTolerance_1042In)
+ LinearTolerance_1038_Type * LinearTolerance_1038In)
 {
   MaxValue = MaxValueIn;
   MaxDualValue = MaxDualValueIn;
-  LinearTolerance_1042 = LinearTolerance_1042In;
+  LinearTolerance_1038 = LinearTolerance_1038In;
 }
 
-LinearTolerance_1035_Type::~LinearTolerance_1035_Type()
+LinearTolerance_1031_Type::~LinearTolerance_1031_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
   delete MaxDualValue;
-  delete LinearTolerance_1042;
+  delete LinearTolerance_1038;
   #endif
 }
 
-void LinearTolerance_1035_Type::printSelf(FILE * outFile)
+void LinearTolerance_1031_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -19582,43 +19720,43 @@ void LinearTolerance_1035_Type::printSelf(FILE * outFile)
       MaxDualValue->printSelf(outFile);
       fprintf(outFile, "</MaxDualValue>\n");
     }
-  if (LinearTolerance_1042)
+  if (LinearTolerance_1038)
     {
-      LinearTolerance_1042->printSelf(outFile);
+      LinearTolerance_1038->printSelf(outFile);
     }
 }
 
-LinearValueType * LinearTolerance_1035_Type::getMaxValue()
+LinearValueType * LinearTolerance_1031_Type::getMaxValue()
 {return MaxValue;}
 
-void LinearTolerance_1035_Type::setMaxValue(LinearValueType * MaxValueIn)
+void LinearTolerance_1031_Type::setMaxValue(LinearValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-LinearDualValueType * LinearTolerance_1035_Type::getMaxDualValue()
+LinearDualValueType * LinearTolerance_1031_Type::getMaxDualValue()
 {return MaxDualValue;}
 
-void LinearTolerance_1035_Type::setMaxDualValue(LinearDualValueType * MaxDualValueIn)
+void LinearTolerance_1031_Type::setMaxDualValue(LinearDualValueType * MaxDualValueIn)
 {MaxDualValue = MaxDualValueIn;}
 
-LinearTolerance_1042_Type * LinearTolerance_1035_Type::getLinearTolerance_1042()
-{return LinearTolerance_1042;}
+LinearTolerance_1038_Type * LinearTolerance_1031_Type::getLinearTolerance_1038()
+{return LinearTolerance_1038;}
 
-void LinearTolerance_1035_Type::setLinearTolerance_1042(LinearTolerance_1042_Type * LinearTolerance_1042In)
-{LinearTolerance_1042 = LinearTolerance_1042In;}
+void LinearTolerance_1031_Type::setLinearTolerance_1038(LinearTolerance_1038_Type * LinearTolerance_1038In)
+{LinearTolerance_1038 = LinearTolerance_1038In;}
 
 /* ***************************************************************** */
 
-/* class LinearTolerance_1036_Type
+/* class LinearTolerance_1032_Type
 
 */
 
-LinearTolerance_1036_Type::LinearTolerance_1036_Type()
+LinearTolerance_1032_Type::LinearTolerance_1032_Type()
 {
   MinValue = 0;
   MinDualValue = 0;
 }
 
-LinearTolerance_1036_Type::LinearTolerance_1036_Type(
+LinearTolerance_1032_Type::LinearTolerance_1032_Type(
  LinearValueType * MinValueIn,
  LinearDualValueType * MinDualValueIn)
 {
@@ -19626,7 +19764,7 @@ LinearTolerance_1036_Type::LinearTolerance_1036_Type(
   MinDualValue = MinDualValueIn;
 }
 
-LinearTolerance_1036_Type::~LinearTolerance_1036_Type()
+LinearTolerance_1032_Type::~LinearTolerance_1032_Type()
 {
   #ifndef NODESTRUCT
   delete MinValue;
@@ -19634,7 +19772,7 @@ LinearTolerance_1036_Type::~LinearTolerance_1036_Type()
   #endif
 }
 
-void LinearTolerance_1036_Type::printSelf(FILE * outFile)
+void LinearTolerance_1032_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MinValue");
@@ -19649,31 +19787,31 @@ void LinearTolerance_1036_Type::printSelf(FILE * outFile)
     }
 }
 
-LinearValueType * LinearTolerance_1036_Type::getMinValue()
+LinearValueType * LinearTolerance_1032_Type::getMinValue()
 {return MinValue;}
 
-void LinearTolerance_1036_Type::setMinValue(LinearValueType * MinValueIn)
+void LinearTolerance_1032_Type::setMinValue(LinearValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-LinearDualValueType * LinearTolerance_1036_Type::getMinDualValue()
+LinearDualValueType * LinearTolerance_1032_Type::getMinDualValue()
 {return MinDualValue;}
 
-void LinearTolerance_1036_Type::setMinDualValue(LinearDualValueType * MinDualValueIn)
+void LinearTolerance_1032_Type::setMinDualValue(LinearDualValueType * MinDualValueIn)
 {MinDualValue = MinDualValueIn;}
 
 /* ***************************************************************** */
 
-/* class MassToleranceTy_1037_Type
+/* class MassToleranceTy_1033_Type
 
 */
 
-MassToleranceTy_1037_Type::MassToleranceTy_1037_Type()
+MassToleranceTy_1033_Type::MassToleranceTy_1033_Type()
 {
   MaxValue = 0;
   MinValue = 0;
 }
 
-MassToleranceTy_1037_Type::MassToleranceTy_1037_Type(
+MassToleranceTy_1033_Type::MassToleranceTy_1033_Type(
  MassValueType * MaxValueIn,
  MassValueType * MinValueIn)
 {
@@ -19681,7 +19819,7 @@ MassToleranceTy_1037_Type::MassToleranceTy_1037_Type(
   MinValue = MinValueIn;
 }
 
-MassToleranceTy_1037_Type::~MassToleranceTy_1037_Type()
+MassToleranceTy_1033_Type::~MassToleranceTy_1033_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
@@ -19689,7 +19827,7 @@ MassToleranceTy_1037_Type::~MassToleranceTy_1037_Type()
   #endif
 }
 
-void MassToleranceTy_1037_Type::printSelf(FILE * outFile)
+void MassToleranceTy_1033_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -19704,31 +19842,31 @@ void MassToleranceTy_1037_Type::printSelf(FILE * outFile)
     }
 }
 
-MassValueType * MassToleranceTy_1037_Type::getMaxValue()
+MassValueType * MassToleranceTy_1033_Type::getMaxValue()
 {return MaxValue;}
 
-void MassToleranceTy_1037_Type::setMaxValue(MassValueType * MaxValueIn)
+void MassToleranceTy_1033_Type::setMaxValue(MassValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-MassValueType * MassToleranceTy_1037_Type::getMinValue()
+MassValueType * MassToleranceTy_1033_Type::getMinValue()
 {return MinValue;}
 
-void MassToleranceTy_1037_Type::setMinValue(MassValueType * MinValueIn)
+void MassToleranceTy_1033_Type::setMinValue(MassValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
 /* ***************************************************************** */
 
-/* class PressureToleran_1038_Type
+/* class PressureToleran_1034_Type
 
 */
 
-PressureToleran_1038_Type::PressureToleran_1038_Type()
+PressureToleran_1034_Type::PressureToleran_1034_Type()
 {
   MaxValue = 0;
   MinValue = 0;
 }
 
-PressureToleran_1038_Type::PressureToleran_1038_Type(
+PressureToleran_1034_Type::PressureToleran_1034_Type(
  PressureValueType * MaxValueIn,
  PressureValueType * MinValueIn)
 {
@@ -19736,7 +19874,7 @@ PressureToleran_1038_Type::PressureToleran_1038_Type(
   MinValue = MinValueIn;
 }
 
-PressureToleran_1038_Type::~PressureToleran_1038_Type()
+PressureToleran_1034_Type::~PressureToleran_1034_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
@@ -19744,7 +19882,7 @@ PressureToleran_1038_Type::~PressureToleran_1038_Type()
   #endif
 }
 
-void PressureToleran_1038_Type::printSelf(FILE * outFile)
+void PressureToleran_1034_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -19759,31 +19897,31 @@ void PressureToleran_1038_Type::printSelf(FILE * outFile)
     }
 }
 
-PressureValueType * PressureToleran_1038_Type::getMaxValue()
+PressureValueType * PressureToleran_1034_Type::getMaxValue()
 {return MaxValue;}
 
-void PressureToleran_1038_Type::setMaxValue(PressureValueType * MaxValueIn)
+void PressureToleran_1034_Type::setMaxValue(PressureValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-PressureValueType * PressureToleran_1038_Type::getMinValue()
+PressureValueType * PressureToleran_1034_Type::getMinValue()
 {return MinValue;}
 
-void PressureToleran_1038_Type::setMinValue(PressureValueType * MinValueIn)
+void PressureToleran_1034_Type::setMinValue(PressureValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
 /* ***************************************************************** */
 
-/* class SpeedToleranceT_1039_Type
+/* class SpeedToleranceT_1035_Type
 
 */
 
-SpeedToleranceT_1039_Type::SpeedToleranceT_1039_Type()
+SpeedToleranceT_1035_Type::SpeedToleranceT_1035_Type()
 {
   MaxValue = 0;
   MinValue = 0;
 }
 
-SpeedToleranceT_1039_Type::SpeedToleranceT_1039_Type(
+SpeedToleranceT_1035_Type::SpeedToleranceT_1035_Type(
  SpeedValueType * MaxValueIn,
  SpeedValueType * MinValueIn)
 {
@@ -19791,7 +19929,7 @@ SpeedToleranceT_1039_Type::SpeedToleranceT_1039_Type(
   MinValue = MinValueIn;
 }
 
-SpeedToleranceT_1039_Type::~SpeedToleranceT_1039_Type()
+SpeedToleranceT_1035_Type::~SpeedToleranceT_1035_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
@@ -19799,7 +19937,7 @@ SpeedToleranceT_1039_Type::~SpeedToleranceT_1039_Type()
   #endif
 }
 
-void SpeedToleranceT_1039_Type::printSelf(FILE * outFile)
+void SpeedToleranceT_1035_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -19814,31 +19952,31 @@ void SpeedToleranceT_1039_Type::printSelf(FILE * outFile)
     }
 }
 
-SpeedValueType * SpeedToleranceT_1039_Type::getMaxValue()
+SpeedValueType * SpeedToleranceT_1035_Type::getMaxValue()
 {return MaxValue;}
 
-void SpeedToleranceT_1039_Type::setMaxValue(SpeedValueType * MaxValueIn)
+void SpeedToleranceT_1035_Type::setMaxValue(SpeedValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-SpeedValueType * SpeedToleranceT_1039_Type::getMinValue()
+SpeedValueType * SpeedToleranceT_1035_Type::getMinValue()
 {return MinValue;}
 
-void SpeedToleranceT_1039_Type::setMinValue(SpeedValueType * MinValueIn)
+void SpeedToleranceT_1035_Type::setMinValue(SpeedValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
 /* ***************************************************************** */
 
-/* class TemperatureTole_1040_Type
+/* class TemperatureTole_1036_Type
 
 */
 
-TemperatureTole_1040_Type::TemperatureTole_1040_Type()
+TemperatureTole_1036_Type::TemperatureTole_1036_Type()
 {
   MaxValue = 0;
   MinValue = 0;
 }
 
-TemperatureTole_1040_Type::TemperatureTole_1040_Type(
+TemperatureTole_1036_Type::TemperatureTole_1036_Type(
  TemperatureValueType * MaxValueIn,
  TemperatureValueType * MinValueIn)
 {
@@ -19846,7 +19984,7 @@ TemperatureTole_1040_Type::TemperatureTole_1040_Type(
   MinValue = MinValueIn;
 }
 
-TemperatureTole_1040_Type::~TemperatureTole_1040_Type()
+TemperatureTole_1036_Type::~TemperatureTole_1036_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
@@ -19854,7 +19992,7 @@ TemperatureTole_1040_Type::~TemperatureTole_1040_Type()
   #endif
 }
 
-void TemperatureTole_1040_Type::printSelf(FILE * outFile)
+void TemperatureTole_1036_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -19869,31 +20007,31 @@ void TemperatureTole_1040_Type::printSelf(FILE * outFile)
     }
 }
 
-TemperatureValueType * TemperatureTole_1040_Type::getMaxValue()
+TemperatureValueType * TemperatureTole_1036_Type::getMaxValue()
 {return MaxValue;}
 
-void TemperatureTole_1040_Type::setMaxValue(TemperatureValueType * MaxValueIn)
+void TemperatureTole_1036_Type::setMaxValue(TemperatureValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-TemperatureValueType * TemperatureTole_1040_Type::getMinValue()
+TemperatureValueType * TemperatureTole_1036_Type::getMinValue()
 {return MinValue;}
 
-void TemperatureTole_1040_Type::setMinValue(TemperatureValueType * MinValueIn)
+void TemperatureTole_1036_Type::setMinValue(TemperatureValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
 /* ***************************************************************** */
 
-/* class TimeToleranceTy_1041_Type
+/* class TimeToleranceTy_1037_Type
 
 */
 
-TimeToleranceTy_1041_Type::TimeToleranceTy_1041_Type()
+TimeToleranceTy_1037_Type::TimeToleranceTy_1037_Type()
 {
   MaxValue = 0;
   MinValue = 0;
 }
 
-TimeToleranceTy_1041_Type::TimeToleranceTy_1041_Type(
+TimeToleranceTy_1037_Type::TimeToleranceTy_1037_Type(
  TimeValueType * MaxValueIn,
  TimeValueType * MinValueIn)
 {
@@ -19901,7 +20039,7 @@ TimeToleranceTy_1041_Type::TimeToleranceTy_1041_Type(
   MinValue = MinValueIn;
 }
 
-TimeToleranceTy_1041_Type::~TimeToleranceTy_1041_Type()
+TimeToleranceTy_1037_Type::~TimeToleranceTy_1037_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
@@ -19909,7 +20047,7 @@ TimeToleranceTy_1041_Type::~TimeToleranceTy_1041_Type()
   #endif
 }
 
-void TimeToleranceTy_1041_Type::printSelf(FILE * outFile)
+void TimeToleranceTy_1037_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -19924,31 +20062,31 @@ void TimeToleranceTy_1041_Type::printSelf(FILE * outFile)
     }
 }
 
-TimeValueType * TimeToleranceTy_1041_Type::getMaxValue()
+TimeValueType * TimeToleranceTy_1037_Type::getMaxValue()
 {return MaxValue;}
 
-void TimeToleranceTy_1041_Type::setMaxValue(TimeValueType * MaxValueIn)
+void TimeToleranceTy_1037_Type::setMaxValue(TimeValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-TimeValueType * TimeToleranceTy_1041_Type::getMinValue()
+TimeValueType * TimeToleranceTy_1037_Type::getMinValue()
 {return MinValue;}
 
-void TimeToleranceTy_1041_Type::setMinValue(TimeValueType * MinValueIn)
+void TimeToleranceTy_1037_Type::setMinValue(TimeValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
 /* ***************************************************************** */
 
-/* class LinearTolerance_1042_Type
+/* class LinearTolerance_1038_Type
 
 */
 
-LinearTolerance_1042_Type::LinearTolerance_1042_Type()
+LinearTolerance_1038_Type::LinearTolerance_1038_Type()
 {
   MinValue = 0;
   MinDualValue = 0;
 }
 
-LinearTolerance_1042_Type::LinearTolerance_1042_Type(
+LinearTolerance_1038_Type::LinearTolerance_1038_Type(
  LinearValueType * MinValueIn,
  LinearDualValueType * MinDualValueIn)
 {
@@ -19956,7 +20094,7 @@ LinearTolerance_1042_Type::LinearTolerance_1042_Type(
   MinDualValue = MinDualValueIn;
 }
 
-LinearTolerance_1042_Type::~LinearTolerance_1042_Type()
+LinearTolerance_1038_Type::~LinearTolerance_1038_Type()
 {
   #ifndef NODESTRUCT
   delete MinValue;
@@ -19964,7 +20102,7 @@ LinearTolerance_1042_Type::~LinearTolerance_1042_Type()
   #endif
 }
 
-void LinearTolerance_1042_Type::printSelf(FILE * outFile)
+void LinearTolerance_1038_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MinValue");
@@ -19979,16 +20117,16 @@ void LinearTolerance_1042_Type::printSelf(FILE * outFile)
     }
 }
 
-LinearValueType * LinearTolerance_1042_Type::getMinValue()
+LinearValueType * LinearTolerance_1038_Type::getMinValue()
 {return MinValue;}
 
-void LinearTolerance_1042_Type::setMinValue(LinearValueType * MinValueIn)
+void LinearTolerance_1038_Type::setMinValue(LinearValueType * MinValueIn)
 {MinValue = MinValueIn;}
 
-LinearDualValueType * LinearTolerance_1042_Type::getMinDualValue()
+LinearDualValueType * LinearTolerance_1038_Type::getMinDualValue()
 {return MinDualValue;}
 
-void LinearTolerance_1042_Type::setMinDualValue(LinearDualValueType * MinDualValueIn)
+void LinearTolerance_1038_Type::setMinDualValue(LinearDualValueType * MinDualValueIn)
 {MinDualValue = MinDualValueIn;}
 
 /* ***************************************************************** */

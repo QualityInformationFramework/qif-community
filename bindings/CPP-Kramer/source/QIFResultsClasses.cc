@@ -4,7 +4,6 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
-#include <boost/regex.hpp>
 #include <xmlSchemaInstance.hh>
 #include "QIFResultsClasses.hh"
 
@@ -86,6 +85,13 @@ void ActualComponentSetType::printSelf(FILE * outFile)
         fprintf(stderr, "ActualComponent list is empty\n");
         exit(1);
       }
+    if (ActualComponent->size() < 1)
+      {
+        fprintf(stderr,
+                "size of ActualComponent list (%d) less than minimum required (1)\n",
+                (int)ActualComponent->size());
+        exit(1);
+      }
     std::list<ActualComponentType *>::iterator iter;
     for (iter = ActualComponent->begin();
          iter != ActualComponent->end(); iter++)
@@ -114,7 +120,7 @@ bool ActualComponentSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ActualComponentSetType\n");
               returnValue = true;
@@ -130,7 +136,7 @@ bool ActualComponentSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -139,7 +145,7 @@ bool ActualComponentSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ActualComponentSetType\n");
       returnValue = true;
@@ -151,8 +157,8 @@ bool ActualComponentSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -194,7 +200,15 @@ ActualComponentSetTypeLisd::~ActualComponentSetTypeLisd()
   #endif
 }
 
-void ActualComponentSetTypeLisd::printSelf(FILE * outFile){}
+void ActualComponentSetTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ActualComponentSetType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -271,6 +285,13 @@ void ActualComponentSetsType::printSelf(FILE * outFile)
         fprintf(stderr, "ActualComponentSet list is empty\n");
         exit(1);
       }
+    if (ActualComponentSet->size() < 1)
+      {
+        fprintf(stderr,
+                "size of ActualComponentSet list (%d) less than minimum required (1)\n",
+                (int)ActualComponentSet->size());
+        exit(1);
+      }
     std::list<ActualComponentSetType *>::iterator iter;
     for (iter = ActualComponentSet->begin();
          iter != ActualComponentSet->end(); iter++)
@@ -299,7 +320,7 @@ bool ActualComponentSetsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ActualComponentSetsType\n");
               returnValue = true;
@@ -315,7 +336,7 @@ bool ActualComponentSetsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -324,7 +345,7 @@ bool ActualComponentSetsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ActualComponentSetsType\n");
       returnValue = true;
@@ -336,8 +357,8 @@ bool ActualComponentSetsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -507,7 +528,7 @@ bool ActualComponentType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ActualComponentType\n");
               returnValue = true;
@@ -523,7 +544,7 @@ bool ActualComponentType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -532,7 +553,7 @@ bool ActualComponentType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ActualComponentType\n");
       returnValue = true;
@@ -544,8 +565,8 @@ bool ActualComponentType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -617,7 +638,15 @@ ActualComponentTypeLisd::~ActualComponentTypeLisd()
   #endif
 }
 
-void ActualComponentTypeLisd::printSelf(FILE * outFile){}
+void ActualComponentTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ActualComponentType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -694,6 +723,13 @@ void MeasurementResultsSetType::printSelf(FILE * outFile)
         fprintf(stderr, "MeasurementResults list is empty\n");
         exit(1);
       }
+    if (MeasurementResults->size() < 1)
+      {
+        fprintf(stderr,
+                "size of MeasurementResults list (%d) less than minimum required (1)\n",
+                (int)MeasurementResults->size());
+        exit(1);
+      }
     std::list<MeasurementResultsType *>::iterator iter;
     for (iter = MeasurementResults->begin();
          iter != MeasurementResults->end(); iter++)
@@ -722,7 +758,7 @@ bool MeasurementResultsSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in MeasurementResultsSetType\n");
               returnValue = true;
@@ -738,7 +774,7 @@ bool MeasurementResultsSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -747,7 +783,7 @@ bool MeasurementResultsSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in MeasurementResultsSetType\n");
       returnValue = true;
@@ -759,8 +795,8 @@ bool MeasurementResultsSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -1002,7 +1038,7 @@ bool MeasurementResultsType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MeasurementResultsType\n");
               returnValue = true;
@@ -1018,7 +1054,7 @@ bool MeasurementResultsType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -1027,7 +1063,7 @@ bool MeasurementResultsType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MeasurementResultsType\n");
       returnValue = true;
@@ -1039,8 +1075,8 @@ bool MeasurementResultsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -1142,7 +1178,15 @@ MeasurementResultsTypeLisd::~MeasurementResultsTypeLisd()
   #endif
 }
 
-void MeasurementResultsTypeLisd::printSelf(FILE * outFile){}
+void MeasurementResultsTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<MeasurementResultsType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 

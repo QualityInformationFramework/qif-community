@@ -51,6 +51,7 @@ class CartesianCMMSpeedsType;
 class CartesianCMMType;
 class CartesianMeasurementDeviceScalesType;
 class CartesianResolutionType;
+class CartesianResolutionTypeChoicePair;
 class CartesianWorkingVolumeType;
 class ChargeCoupledDeviceCameraSensorType;
 class ClosedShellSetType;
@@ -82,6 +83,7 @@ class FixturesType;
 class FunctionDiscreteType;
 class GageDeviceType;
 class ISO10360TestType;
+class ISO10360TestTypeChoicePair;
 class LaserRadarType;
 class LaserTrackerType;
 class LaserTriangulationSensorType;
@@ -135,6 +137,7 @@ class SimpleTactileProbeSensorType;
 class SineBarType;
 class SinglePointArticulationPerformanceTestType;
 class SphericalResolutionType;
+class SphericalResolutionTypeChoicePair;
 class SphericalWorkingVolumeType;
 class StiffnessType;
 class StructuredLightSensorType;
@@ -179,24 +182,17 @@ class UniversalLengthMeasuringType;
 class UserAxisBaseType;
 class UserDefinedAxisType;
 class UserDefinedResolutionType;
+class UserDefinedResolutionTypeChoicePair;
 class UserDefinedWorkingVolumeType;
 class VolumetricPerformanceTestType;
 class WorkingVolumeBaseType;
 class XYZLinearSpecificationType;
 class XYZResolutionType;
-class CartesianResolu_1240_Type;
-class CartesianResolu_1240_TypeChoicePair;
-class ISO10360TestTyp_1241_Type;
-class ISO10360TestTyp_1241_TypeChoicePair;
-class MeasurementReso_1242_Type;
-class MeasurementReso_1242_TypeChoicePair;
-class SphericalResolu_1243_Type;
-class SphericalResolu_1243_TypeChoicePair;
-class UserDefinedReso_1244_Type;
-class UserDefinedReso_1244_TypeChoicePair;
-class CartesianResolu_1245_Type;
-class SphericalResolu_1246_Type;
-class UserDefinedReso_1247_Type;
+class CartesianResolu_1195_Type;
+class MeasurementReso_1196_Type;
+class MeasurementReso_1196_TypeChoicePair;
+class SphericalResolu_1197_Type;
+class UserDefinedReso_1198_Type;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -1100,15 +1096,44 @@ class ISO10360TestType :
 public:
   ISO10360TestType();
   ISO10360TestType(
-    ISO10360TestTyp_1241_Type * ISO10360TestTyp_1241In);
+    ISO10360TestTypeChoicePair * ISO10360TestTypePairIn);
   ~ISO10360TestType();
   void printSelf(FILE * outFile);
-
-  ISO10360TestTyp_1241_Type * getISO10360TestTyp_1241();
-  void setISO10360TestTyp_1241(ISO10360TestTyp_1241_Type * ISO10360TestTyp_1241In);
+  ISO10360TestTypeChoicePair * getISO10360TestTypeChoicePair();
+  void setISO10360TestTypeChoicePair(ISO10360TestTypeChoicePair * ISO10360TestTypePairIn);
 
 protected:
-  ISO10360TestTyp_1241_Type * ISO10360TestTyp_1241;
+  ISO10360TestTypeChoicePair * ISO10360TestTypePair;
+};
+
+/* ***************************************************************** */
+
+union ISO10360TestTypeVal
+{
+  LinearValueType * MaxErrorConstant;
+  LinearErrorType * LinearError;
+  LesserErrorType * LesserError;
+};
+
+/* ***************************************************************** */
+
+class ISO10360TestTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    MaxErrorConstantE,
+    LinearErrorE,
+    LesserErrorE };
+  ISO10360TestTypeChoicePair();
+  ISO10360TestTypeChoicePair(
+    whichOne ISO10360TestTypeTypeIn,
+    ISO10360TestTypeVal ISO10360TestTypeValueIn);
+  ~ISO10360TestTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne ISO10360TestTypeType;
+  ISO10360TestTypeVal ISO10360TestTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1399,7 +1424,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn);
   MeasurementResourceBaseType(
     QIFIdType * idIn,
@@ -1410,7 +1435,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn);
   ~MeasurementResourceBaseType();
   void printSelf(FILE * outFile);
@@ -1433,8 +1458,8 @@ public:
   void setMass(MassValueType * MassIn);
   CartesianWorkingVolumeType * getSize();
   void setSize(CartesianWorkingVolumeType * SizeIn);
-  MeasurementReso_1242_Type * getMeasurementReso_1242();
-  void setMeasurementReso_1242(MeasurementReso_1242_Type * MeasurementReso_1242In);
+  MeasurementReso_1196_Type * getMeasurementReso_1196();
+  void setMeasurementReso_1196(MeasurementReso_1196_Type * MeasurementReso_1196In);
   AttributesType * getAttributes();
   void setAttributes(AttributesType * AttributesIn);
 
@@ -1447,7 +1472,7 @@ protected:
   XmlString * SerialNumber;
   MassValueType * Mass;
   CartesianWorkingVolumeType * Size;
-  MeasurementReso_1242_Type * MeasurementReso_1242;
+  MeasurementReso_1196_Type * MeasurementReso_1196;
   AttributesType * Attributes;
 };
 
@@ -1505,7 +1530,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     TemperatureType * TemperatureRangeMinIn,
     TemperatureType * TemperatureRangeMaxIn,
@@ -1524,7 +1549,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     TemperatureType * TemperatureRangeMinIn,
     TemperatureType * TemperatureRangeMaxIn,
@@ -1712,7 +1737,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     TipEndGeometryType * TipEndGeometryIn,
     LinearValueType * TipEndDiameterIn,
@@ -1728,7 +1753,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     TipEndGeometryType * TipEndGeometryIn,
     LinearValueType * TipEndDiameterIn,
@@ -1926,7 +1951,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -1943,7 +1968,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -2024,15 +2049,42 @@ class SphericalResolutionType :
 public:
   SphericalResolutionType();
   SphericalResolutionType(
-    SphericalResolu_1243_Type * SphericalResolu_1243In);
+    SphericalResolutionTypeChoicePair * SphericalResolutionTypePairIn);
   ~SphericalResolutionType();
   void printSelf(FILE * outFile);
-
-  SphericalResolu_1243_Type * getSphericalResolu_1243();
-  void setSphericalResolu_1243(SphericalResolu_1243_Type * SphericalResolu_1243In);
+  SphericalResolutionTypeChoicePair * getSphericalResolutionTypeChoicePair();
+  void setSphericalResolutionTypeChoicePair(SphericalResolutionTypeChoicePair * SphericalResolutionTypePairIn);
 
 protected:
-  SphericalResolu_1243_Type * SphericalResolu_1243;
+  SphericalResolutionTypeChoicePair * SphericalResolutionTypePair;
+};
+
+/* ***************************************************************** */
+
+union SphericalResolutionTypeVal
+{
+  SphericalResolu_1197_Type * SphericalResolu_1197;
+  RAPZResolutionType * RAPResolution;
+};
+
+/* ***************************************************************** */
+
+class SphericalResolutionTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    SphericalResolu_1197E,
+    RAPResolutionE };
+  SphericalResolutionTypeChoicePair();
+  SphericalResolutionTypeChoicePair(
+    whichOne SphericalResolutionTypeTypeIn,
+    SphericalResolutionTypeVal SphericalResolutionTypeValueIn);
+  ~SphericalResolutionTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne SphericalResolutionTypeType;
+  SphericalResolutionTypeVal SphericalResolutionTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2077,7 +2129,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -2103,7 +2155,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -2407,7 +2459,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn);
   ToolBaseType(
     QIFIdType * idIn,
@@ -2418,7 +2470,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn);
   ~ToolBaseType();
   void printSelf(FILE * outFile);
@@ -2454,7 +2506,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     ArrayReferenceType * SensorIdsIn);
   ToolWithDetachableSensorsType(
@@ -2466,7 +2518,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     ArrayReferenceType * SensorIdsIn);
   ~ToolWithDetachableSensorsType();
@@ -2495,7 +2547,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn);
   ToolWithIntegratedSensorBaseType(
     QIFIdType * idIn,
@@ -2506,7 +2558,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn);
   ~ToolWithIntegratedSensorBaseType();
   void printSelf(FILE * outFile);
@@ -2528,7 +2580,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     LinearVariableDifferentialTransformerSensorType * LVDTSensorIn);
   ToolWithLVDTSensorType(
@@ -2540,7 +2592,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     LinearVariableDifferentialTransformerSensorType * LVDTSensorIn);
   ~ToolWithLVDTSensorType();
@@ -2569,7 +2621,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     LaserTriangulationSensorType * LaserTriangulationSensorIn);
   ToolWithLaserTriangulationSensorType(
@@ -2581,7 +2633,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     LaserTriangulationSensorType * LaserTriangulationSensorIn);
   ~ToolWithLaserTriangulationSensorType();
@@ -2610,7 +2662,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     MagnetoInductiveSensorType * MagnetoInductiveSensorIn);
   ToolWithMagnetoInductiveSensorType(
@@ -2622,7 +2674,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     MagnetoInductiveSensorType * MagnetoInductiveSensorIn);
   ~ToolWithMagnetoInductiveSensorType();
@@ -2651,7 +2703,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     SimpleTactileProbeSensorType * SimpleTactileProbeSensorIn);
   ToolWithSimpleTactileProbeSensorType(
@@ -2663,7 +2715,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     SimpleTactileProbeSensorType * SimpleTactileProbeSensorIn);
   ~ToolWithSimpleTactileProbeSensorType();
@@ -2692,7 +2744,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     StructuredLightSensorType * StructuredLightSensorIn);
   ToolWithStructuredLightSensorType(
@@ -2704,7 +2756,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     StructuredLightSensorType * StructuredLightSensorIn);
   ~ToolWithStructuredLightSensorType();
@@ -2733,7 +2785,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     UltrasonicSensorType * UltrasonicSensorIn);
   ToolWithUltrasonicSensorType(
@@ -2745,7 +2797,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     UltrasonicSensorType * UltrasonicSensorIn);
   ~ToolWithUltrasonicSensorType();
@@ -2891,7 +2943,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -2917,7 +2969,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -3012,15 +3064,42 @@ class UserDefinedResolutionType :
 public:
   UserDefinedResolutionType();
   UserDefinedResolutionType(
-    UserDefinedReso_1244_Type * UserDefinedReso_1244In);
+    UserDefinedResolutionTypeChoicePair * UserDefinedResolutionTypePairIn);
   ~UserDefinedResolutionType();
   void printSelf(FILE * outFile);
-
-  UserDefinedReso_1244_Type * getUserDefinedReso_1244();
-  void setUserDefinedReso_1244(UserDefinedReso_1244_Type * UserDefinedReso_1244In);
+  UserDefinedResolutionTypeChoicePair * getUserDefinedResolutionTypeChoicePair();
+  void setUserDefinedResolutionTypeChoicePair(UserDefinedResolutionTypeChoicePair * UserDefinedResolutionTypePairIn);
 
 protected:
-  UserDefinedReso_1244_Type * UserDefinedReso_1244;
+  UserDefinedResolutionTypeChoicePair * UserDefinedResolutionTypePair;
+};
+
+/* ***************************************************************** */
+
+union UserDefinedResolutionTypeVal
+{
+  UserDefinedReso_1198_Type * UserDefinedReso_1198;
+  ABCResolutionType * ABCResolution;
+};
+
+/* ***************************************************************** */
+
+class UserDefinedResolutionTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    UserDefinedReso_1198E,
+    ABCResolutionE };
+  UserDefinedResolutionTypeChoicePair();
+  UserDefinedResolutionTypeChoicePair(
+    whichOne UserDefinedResolutionTypeTypeIn,
+    UserDefinedResolutionTypeVal UserDefinedResolutionTypeValueIn);
+  ~UserDefinedResolutionTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne UserDefinedResolutionTypeType;
+  UserDefinedResolutionTypeVal UserDefinedResolutionTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3113,252 +3192,15 @@ protected:
 
 /* ***************************************************************** */
 
-class CartesianResolu_1240_Type :
+class CartesianResolu_1195_Type :
   public XmlTypeBase
 {
 public:
-  CartesianResolu_1240_Type();
-  CartesianResolu_1240_Type(
-    CartesianResolu_1240_TypeChoicePair * CartesianResolu_1240_TypePairIn);
-  ~CartesianResolu_1240_Type();
-  void printSelf(FILE * outFile);
-
-  CartesianResolu_1240_TypeChoicePair * getCartesianResolu_1240_TypePair();
-  void setCartesianResolu_1240_TypePair(CartesianResolu_1240_TypeChoicePair * CartesianResolu_1240_TypePairIn);
-
-protected:
-  CartesianResolu_1240_TypeChoicePair * CartesianResolu_1240_TypePair;
-};
-
-/* ***************************************************************** */
-
-union CartesianResolu_1240_TypeVal
-{
-  CartesianResolu_1245_Type * CartesianResolu_1245;
-  XYZResolutionType * XYZResolution;
-};
-
-/* ***************************************************************** */
-
-class CartesianResolu_1240_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    CartesianResolu_1245E,
-    XYZResolutionE };
-  CartesianResolu_1240_TypeChoicePair();
-  CartesianResolu_1240_TypeChoicePair(
-    whichOne CartesianResolu_1240_TypeTypeIn,
-    CartesianResolu_1240_TypeVal CartesianResolu_1240_TypeValueIn);
-  ~CartesianResolu_1240_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne CartesianResolu_1240_TypeType;
-  CartesianResolu_1240_TypeVal CartesianResolu_1240_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class ISO10360TestTyp_1241_Type :
-  public XmlTypeBase
-{
-public:
-  ISO10360TestTyp_1241_Type();
-  ISO10360TestTyp_1241_Type(
-    ISO10360TestTyp_1241_TypeChoicePair * ISO10360TestTyp_1241_TypePairIn);
-  ~ISO10360TestTyp_1241_Type();
-  void printSelf(FILE * outFile);
-
-  ISO10360TestTyp_1241_TypeChoicePair * getISO10360TestTyp_1241_TypePair();
-  void setISO10360TestTyp_1241_TypePair(ISO10360TestTyp_1241_TypeChoicePair * ISO10360TestTyp_1241_TypePairIn);
-
-protected:
-  ISO10360TestTyp_1241_TypeChoicePair * ISO10360TestTyp_1241_TypePair;
-};
-
-/* ***************************************************************** */
-
-union ISO10360TestTyp_1241_TypeVal
-{
-  LinearValueType * MaxErrorConstant;
-  LinearErrorType * LinearError;
-  LesserErrorType * LesserError;
-};
-
-/* ***************************************************************** */
-
-class ISO10360TestTyp_1241_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    MaxErrorConstantE,
-    LinearErrorE,
-    LesserErrorE };
-  ISO10360TestTyp_1241_TypeChoicePair();
-  ISO10360TestTyp_1241_TypeChoicePair(
-    whichOne ISO10360TestTyp_1241_TypeTypeIn,
-    ISO10360TestTyp_1241_TypeVal ISO10360TestTyp_1241_TypeValueIn);
-  ~ISO10360TestTyp_1241_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne ISO10360TestTyp_1241_TypeType;
-  ISO10360TestTyp_1241_TypeVal ISO10360TestTyp_1241_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class MeasurementReso_1242_Type :
-  public XmlTypeBase
-{
-public:
-  MeasurementReso_1242_Type();
-  MeasurementReso_1242_Type(
-    MeasurementReso_1242_TypeChoicePair * MeasurementReso_1242_TypePairIn);
-  ~MeasurementReso_1242_Type();
-  void printSelf(FILE * outFile);
-
-  MeasurementReso_1242_TypeChoicePair * getMeasurementReso_1242_TypePair();
-  void setMeasurementReso_1242_TypePair(MeasurementReso_1242_TypeChoicePair * MeasurementReso_1242_TypePairIn);
-
-protected:
-  MeasurementReso_1242_TypeChoicePair * MeasurementReso_1242_TypePair;
-};
-
-/* ***************************************************************** */
-
-union MeasurementReso_1242_TypeVal
-{
-  QIFReferenceType * LocationId;
-  LocationType * Location;
-};
-
-/* ***************************************************************** */
-
-class MeasurementReso_1242_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    LocationIdE,
-    LocationE };
-  MeasurementReso_1242_TypeChoicePair();
-  MeasurementReso_1242_TypeChoicePair(
-    whichOne MeasurementReso_1242_TypeTypeIn,
-    MeasurementReso_1242_TypeVal MeasurementReso_1242_TypeValueIn);
-  ~MeasurementReso_1242_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne MeasurementReso_1242_TypeType;
-  MeasurementReso_1242_TypeVal MeasurementReso_1242_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class SphericalResolu_1243_Type :
-  public XmlTypeBase
-{
-public:
-  SphericalResolu_1243_Type();
-  SphericalResolu_1243_Type(
-    SphericalResolu_1243_TypeChoicePair * SphericalResolu_1243_TypePairIn);
-  ~SphericalResolu_1243_Type();
-  void printSelf(FILE * outFile);
-
-  SphericalResolu_1243_TypeChoicePair * getSphericalResolu_1243_TypePair();
-  void setSphericalResolu_1243_TypePair(SphericalResolu_1243_TypeChoicePair * SphericalResolu_1243_TypePairIn);
-
-protected:
-  SphericalResolu_1243_TypeChoicePair * SphericalResolu_1243_TypePair;
-};
-
-/* ***************************************************************** */
-
-union SphericalResolu_1243_TypeVal
-{
-  SphericalResolu_1246_Type * SphericalResolu_1246;
-  RAPZResolutionType * RAPResolution;
-};
-
-/* ***************************************************************** */
-
-class SphericalResolu_1243_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    SphericalResolu_1246E,
-    RAPResolutionE };
-  SphericalResolu_1243_TypeChoicePair();
-  SphericalResolu_1243_TypeChoicePair(
-    whichOne SphericalResolu_1243_TypeTypeIn,
-    SphericalResolu_1243_TypeVal SphericalResolu_1243_TypeValueIn);
-  ~SphericalResolu_1243_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne SphericalResolu_1243_TypeType;
-  SphericalResolu_1243_TypeVal SphericalResolu_1243_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedReso_1244_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedReso_1244_Type();
-  UserDefinedReso_1244_Type(
-    UserDefinedReso_1244_TypeChoicePair * UserDefinedReso_1244_TypePairIn);
-  ~UserDefinedReso_1244_Type();
-  void printSelf(FILE * outFile);
-
-  UserDefinedReso_1244_TypeChoicePair * getUserDefinedReso_1244_TypePair();
-  void setUserDefinedReso_1244_TypePair(UserDefinedReso_1244_TypeChoicePair * UserDefinedReso_1244_TypePairIn);
-
-protected:
-  UserDefinedReso_1244_TypeChoicePair * UserDefinedReso_1244_TypePair;
-};
-
-/* ***************************************************************** */
-
-union UserDefinedReso_1244_TypeVal
-{
-  UserDefinedReso_1247_Type * UserDefinedReso_1247;
-  ABCResolutionType * ABCResolution;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedReso_1244_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    UserDefinedReso_1247E,
-    ABCResolutionE };
-  UserDefinedReso_1244_TypeChoicePair();
-  UserDefinedReso_1244_TypeChoicePair(
-    whichOne UserDefinedReso_1244_TypeTypeIn,
-    UserDefinedReso_1244_TypeVal UserDefinedReso_1244_TypeValueIn);
-  ~UserDefinedReso_1244_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne UserDefinedReso_1244_TypeType;
-  UserDefinedReso_1244_TypeVal UserDefinedReso_1244_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class CartesianResolu_1245_Type :
-  public XmlTypeBase
-{
-public:
-  CartesianResolu_1245_Type();
-  CartesianResolu_1245_Type(
+  CartesianResolu_1195_Type();
+  CartesianResolu_1195_Type(
     LinearValueType * CombinedCartesianResolutionIn,
     XYZResolutionType * XYZResolutionIn);
-  ~CartesianResolu_1245_Type();
+  ~CartesianResolu_1195_Type();
   void printSelf(FILE * outFile);
 
   LinearValueType * getCombinedCartesianResolution();
@@ -3373,15 +3215,62 @@ protected:
 
 /* ***************************************************************** */
 
-class SphericalResolu_1246_Type :
+class MeasurementReso_1196_Type :
   public XmlTypeBase
 {
 public:
-  SphericalResolu_1246_Type();
-  SphericalResolu_1246_Type(
+  MeasurementReso_1196_Type();
+  MeasurementReso_1196_Type(
+    MeasurementReso_1196_TypeChoicePair * MeasurementReso_1196_TypePairIn);
+  ~MeasurementReso_1196_Type();
+  void printSelf(FILE * outFile);
+
+  MeasurementReso_1196_TypeChoicePair * getMeasurementReso_1196_TypePair();
+  void setMeasurementReso_1196_TypePair(MeasurementReso_1196_TypeChoicePair * MeasurementReso_1196_TypePairIn);
+
+protected:
+  MeasurementReso_1196_TypeChoicePair * MeasurementReso_1196_TypePair;
+};
+
+/* ***************************************************************** */
+
+union MeasurementReso_1196_TypeVal
+{
+  QIFReferenceType * LocationId;
+  LocationType * Location;
+};
+
+/* ***************************************************************** */
+
+class MeasurementReso_1196_TypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    LocationIdE,
+    LocationE };
+  MeasurementReso_1196_TypeChoicePair();
+  MeasurementReso_1196_TypeChoicePair(
+    whichOne MeasurementReso_1196_TypeTypeIn,
+    MeasurementReso_1196_TypeVal MeasurementReso_1196_TypeValueIn);
+  ~MeasurementReso_1196_TypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne MeasurementReso_1196_TypeType;
+  MeasurementReso_1196_TypeVal MeasurementReso_1196_TypeValue;
+};
+
+/* ***************************************************************** */
+
+class SphericalResolu_1197_Type :
+  public XmlTypeBase
+{
+public:
+  SphericalResolu_1197_Type();
+  SphericalResolu_1197_Type(
     CombinedSphericalResolutionType * CombinedSphericalResolutionIn,
     RAPZResolutionType * RAPZResolutionIn);
-  ~SphericalResolu_1246_Type();
+  ~SphericalResolu_1197_Type();
   void printSelf(FILE * outFile);
 
   CombinedSphericalResolutionType * getCombinedSphericalResolution();
@@ -3396,15 +3285,15 @@ protected:
 
 /* ***************************************************************** */
 
-class UserDefinedReso_1247_Type :
+class UserDefinedReso_1198_Type :
   public XmlTypeBase
 {
 public:
-  UserDefinedReso_1247_Type();
-  UserDefinedReso_1247_Type(
+  UserDefinedReso_1198_Type();
+  UserDefinedReso_1198_Type(
     CombinedUserDefinedResolutionType * CombinedUserDefinedResolutionIn,
     ABCResolutionType * ABCResolutionIn);
-  ~UserDefinedReso_1247_Type();
+  ~UserDefinedReso_1198_Type();
   void printSelf(FILE * outFile);
 
   CombinedUserDefinedResolutionType * getCombinedUserDefinedResolution();
@@ -3529,7 +3418,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     ArrayReferenceType * ToolIdsIn);
   CarriageType(
@@ -3541,7 +3430,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     ArrayReferenceType * ToolIdsIn);
   ~CarriageType();
@@ -3642,15 +3531,42 @@ class CartesianResolutionType :
 public:
   CartesianResolutionType();
   CartesianResolutionType(
-    CartesianResolu_1240_Type * CartesianResolu_1240In);
+    CartesianResolutionTypeChoicePair * CartesianResolutionTypePairIn);
   ~CartesianResolutionType();
   void printSelf(FILE * outFile);
-
-  CartesianResolu_1240_Type * getCartesianResolu_1240();
-  void setCartesianResolu_1240(CartesianResolu_1240_Type * CartesianResolu_1240In);
+  CartesianResolutionTypeChoicePair * getCartesianResolutionTypeChoicePair();
+  void setCartesianResolutionTypeChoicePair(CartesianResolutionTypeChoicePair * CartesianResolutionTypePairIn);
 
 protected:
-  CartesianResolu_1240_Type * CartesianResolu_1240;
+  CartesianResolutionTypeChoicePair * CartesianResolutionTypePair;
+};
+
+/* ***************************************************************** */
+
+union CartesianResolutionTypeVal
+{
+  CartesianResolu_1195_Type * CartesianResolu_1195;
+  XYZResolutionType * XYZResolution;
+};
+
+/* ***************************************************************** */
+
+class CartesianResolutionTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    CartesianResolu_1195E,
+    XYZResolutionE };
+  CartesianResolutionTypeChoicePair();
+  CartesianResolutionTypeChoicePair(
+    whichOne CartesianResolutionTypeTypeIn,
+    CartesianResolutionTypeVal CartesianResolutionTypeValueIn);
+  ~CartesianResolutionTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne CartesianResolutionTypeType;
+  CartesianResolutionTypeVal CartesianResolutionTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3695,7 +3611,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -3724,7 +3640,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -3822,7 +3738,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -3849,7 +3765,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -3951,7 +3867,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -3968,7 +3884,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -4010,7 +3926,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -4033,7 +3949,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -4088,7 +4004,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -4110,7 +4026,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -4161,7 +4077,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -4189,7 +4105,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -4427,7 +4343,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn);
   FixtureType(
     QIFIdType * idIn,
@@ -4438,7 +4354,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn);
   ~FixtureType();
   void printSelf(FILE * outFile);
@@ -4474,7 +4390,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -4502,7 +4418,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -4577,7 +4493,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * LaserSourceIn,
     LinearValueType * LaserWaveLengthIn,
@@ -4595,7 +4511,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * LaserSourceIn,
     LinearValueType * LaserWaveLengthIn,
@@ -4690,7 +4606,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -4718,7 +4634,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -4793,7 +4709,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -4821,7 +4737,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -4896,7 +4812,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn);
@@ -4909,7 +4825,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn);
@@ -5014,7 +4930,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -5031,7 +4947,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -5059,7 +4975,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     ChargeCoupledDeviceCameraSensorType * ChargeCoupledDeviceCameraSensorIn);
   ToolWithCCDCameraSensorType(
@@ -5071,7 +4987,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     ChargeCoupledDeviceCameraSensorType * ChargeCoupledDeviceCameraSensorIn);
   ~ToolWithCCDCameraSensorType();
@@ -5100,7 +5016,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CapacitiveSensorType * CapacitiveSensorIn);
   ToolWithCapacitiveSensorType(
@@ -5112,7 +5028,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CapacitiveSensorType * CapacitiveSensorIn);
   ~ToolWithCapacitiveSensorType();
@@ -5141,7 +5057,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     ComplexTactileProbeSensorType * ComplexTactileProbeSensorIn);
   ToolWithComplexTactileProbeSensorType(
@@ -5153,7 +5069,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     ComplexTactileProbeSensorType * ComplexTactileProbeSensorIn);
   ~ToolWithComplexTactileProbeSensorType();
@@ -5182,7 +5098,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     ConfocalChromaticSensorType * ConfocalChromaticSensorIn);
   ToolWithConfocalChromaticSensorType(
@@ -5194,7 +5110,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     ConfocalChromaticSensorType * ConfocalChromaticSensorIn);
   ~ToolWithConfocalChromaticSensorType();
@@ -5223,7 +5139,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     DifferentialVariableReluctanceTransducerSensorType * DVRTSensorIn);
   ToolWithDVRTSensorType(
@@ -5235,7 +5151,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     DifferentialVariableReluctanceTransducerSensorType * DVRTSensorIn);
   ~ToolWithDVRTSensorType();
@@ -5264,7 +5180,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     DrawWireSensorType * DrawWireSensorIn);
   ToolWithDrawWireSensorType(
@@ -5276,7 +5192,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     DrawWireSensorType * DrawWireSensorIn);
   ~ToolWithDrawWireSensorType();
@@ -5305,7 +5221,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     EddyCurrentSensorType * EddyCurrentSensorIn);
   ToolWithEddyCurrentSensorType(
@@ -5317,7 +5233,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     EddyCurrentSensorType * EddyCurrentSensorIn);
   ~ToolWithEddyCurrentSensorType();
@@ -5346,7 +5262,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -5363,7 +5279,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -5406,7 +5322,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -5430,7 +5346,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -5516,7 +5432,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -5541,7 +5457,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -5604,7 +5520,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -5621,7 +5537,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -5649,7 +5565,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -5674,7 +5590,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -5737,7 +5653,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -5766,7 +5682,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -5845,7 +5761,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -5863,7 +5779,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -5898,7 +5814,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -5932,7 +5848,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6031,7 +5947,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6064,7 +5980,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6159,7 +6075,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6186,7 +6102,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6257,7 +6173,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6282,7 +6198,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6345,7 +6261,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6360,7 +6276,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6395,7 +6311,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6414,7 +6330,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6459,7 +6375,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6485,7 +6401,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6552,7 +6468,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6582,7 +6498,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6629,7 +6545,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6655,7 +6571,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6722,7 +6638,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6750,7 +6666,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6825,7 +6741,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -6849,7 +6765,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     XmlString * ProtectionClassIn,
     XmlString * LinearityErrorIn,
@@ -6908,7 +6824,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6930,7 +6846,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -6987,7 +6903,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -7020,7 +6936,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -7115,7 +7031,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -7138,7 +7054,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -7193,7 +7109,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -7213,7 +7129,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -7262,7 +7178,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -7277,7 +7193,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -7303,7 +7219,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -7322,7 +7238,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -7352,7 +7268,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -7371,7 +7287,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -7401,7 +7317,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -7421,7 +7337,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -7452,7 +7368,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,
@@ -7472,7 +7388,7 @@ public:
     XmlString * SerialNumberIn,
     MassValueType * MassIn,
     CartesianWorkingVolumeType * SizeIn,
-    MeasurementReso_1242_Type * MeasurementReso_1242In,
+    MeasurementReso_1196_Type * MeasurementReso_1196In,
     AttributesType * AttributesIn,
     CalibrationsType * CalibrationsIn,
     EnvironmentalRangeType * EnvironmentalRangeIn,

@@ -25,6 +25,7 @@ class CircleFeatureItemType;
 class CircleFeatureMeasurementType;
 class CircleFeatureNominalType;
 class CircleFromConeType;
+class CircleFromConeTypeChoicePair;
 class CircleFromScanType;
 class CircleIntersectionType;
 class CircleMeasurementDeterminationType;
@@ -243,6 +244,7 @@ class FeatureNominalBaseType;
 class FeatureNominalBaseTypeLisd;
 class FeatureNominalsType;
 class FeatureZoneAreaBaseType;
+class FeatureZoneAreaBaseTypeChoicePair;
 class FeatureZoneAreaBetweenType;
 class FeatureZoneAreaCircularType;
 class FeatureZoneAreaCylindricalType;
@@ -252,6 +254,7 @@ class FeatureZoneAreaSphericalType;
 class FeatureZoneBaseType;
 class FeatureZoneBaseTypeLisd;
 class FeatureZoneCurveBaseType;
+class FeatureZoneCurveBaseTypeChoicePair;
 class FeatureZoneCurveCircularType;
 class FeatureZoneCurveIrregularType;
 class FeatureZoneCurveLineType;
@@ -411,6 +414,7 @@ class OtherSurfaceFeatureDefinitionType;
 class OtherSurfaceFeatureItemType;
 class OtherSurfaceFeatureMeasurementType;
 class OtherSurfaceFeatureNominalType;
+class OtherSurfaceFeatureNominalTypeChoicePair;
 class OtherSurfaceMeasurementDeterminationType;
 class OtherSurfaceMeasurementDeterminationTypeChoicePair;
 class PatternFeatureCircleDefinitionType;
@@ -507,6 +511,7 @@ class PointFeatureMovePointAxisType;
 class PointFeatureMovePointType;
 class PointFeatureMovePointVectorType;
 class PointFeatureNominalBaseType;
+class PointFeatureNominalBaseTypeChoicePair;
 class PointFeatureNominalType;
 class PointFeaturePierceType;
 class PointFeatureProjectionType;
@@ -632,71 +637,61 @@ class TorusMeasurementDeterminationTypeChoicePair;
 class TorusRecompType;
 class TorusTransformType;
 class TransformationReferenceType;
-class CircleFromConeT_1093_Type;
-class CircleFromConeT_1093_TypeChoicePair;
-class ConeFeatureDefi_1094_Type;
-class ConeFeatureDefi_1094_TypeChoicePair;
-class ConeFeatureDefi_1095_Type;
-class ConeFeatureMeas_1096_Type;
-class ConeFeatureMeas_1096_TypeChoicePair;
-class ConicalSegmentF_1097_Type;
-class ConicalSegmentF_1097_TypeChoicePair;
-class ConicalSegmentF_1098_Type;
-class ConicalSegmentF_1099_Type;
-class ConicalSegmentF_1099_TypeChoicePair;
-class FeatureZoneArea_1100_Type;
-class FeatureZoneArea_1100_TypeChoicePair;
-class FeatureZoneArea_1101_Type;
-class FeatureZoneArea_1101_TypeChoicePair;
-class FeatureZoneArea_1102_Type;
-class FeatureZoneArea_1102_TypeChoicePair;
-class FeatureZoneCurv_1103_Type;
-class FeatureZoneCurv_1103_TypeChoicePair;
-class FeatureZonePoin_1104_Type;
-class FeatureZonePoin_1104_TypeChoicePair;
-class GroupFeatureDef_1105_Type;
-class GroupFeatureDef_1105_TypeChoicePair;
-class MeasuredPointSe_1106_Type;
-class MeasuredPointSe_1106_TypeChoicePair;
-class MeasuredPointSe_1107_Type;
-class MeasuredPointSe_1107_TypeChoicePair;
-class MeasuredPointSe_1108_Type;
-class MeasuredPointSe_1108_TypeChoicePair;
-class MeasuredPointSe_1109_Type;
-class MeasuredPointSe_1109_TypeChoicePair;
-class MeasuredPointSe_1110_Type;
-class MeasuredPointSe_1110_TypeChoicePair;
-class MeasuredPointSe_1111_Type;
-class MeasuredPointSe_1111_TypeChoicePair;
-class MeasuredPointSe_1112_Type;
-class MeasuredPointSe_1112_TypeChoicePair;
-class MeasuredPointSe_1113_Type;
-class MeasuredPointSe_1113_TypeChoicePair;
-class MeasuredPointSe_1114_Type;
-class MeasuredPointSe_1114_TypeChoicePair;
-class MeasuredPointSe_1115_Type;
-class MeasuredPointSe_1115_TypeChoicePair;
-class MeasuredPointSe_1116_Type;
-class MeasuredPointSe_1116_TypeChoicePair;
-class MeasuredPointSe_1117_Type;
-class MeasuredPointSe_1117_TypeChoicePair;
-class MeasuredPointSe_1118_Type;
-class OppositeAngledP_1119_Type;
-class OppositeAngledP_1119_TypeChoicePair;
-class OppositeAngledP_1120_Type;
-class OppositeAngledP_1120_TypeChoicePair;
-class OtherSurfaceFea_1121_Type;
-class OtherSurfaceFea_1121_TypeChoicePair;
-class PlaneFeatureNom_1122_Type;
-class PlaneFeatureNom_1122_TypeChoicePair;
-class PointFeatureExt_1123_Type;
-class PointFeatureExt_1123_TypeChoicePair;
-class PointFeatureMov_1124_Type;
-class PointFeatureMov_1124_TypeChoicePair;
-class PointFeatureNom_1125_Type;
-class PointFeatureNom_1125_TypeChoicePair;
-class MeasuredPointSe_1126_Type;
-class MeasuredPointSe_1126_TypeChoicePair;
+class ConeFeatureDefi_1071_Type;
+class ConeFeatureDefi_1071_TypeChoicePair;
+class ConeFeatureDefi_1072_Type;
+class ConeFeatureMeas_1073_Type;
+class ConeFeatureMeas_1073_TypeChoicePair;
+class ConicalSegmentF_1074_Type;
+class ConicalSegmentF_1074_TypeChoicePair;
+class ConicalSegmentF_1075_Type;
+class ConicalSegmentF_1076_Type;
+class ConicalSegmentF_1076_TypeChoicePair;
+class FeatureZoneArea_1077_Type;
+class FeatureZoneArea_1077_TypeChoicePair;
+class FeatureZoneArea_1078_Type;
+class FeatureZoneArea_1078_TypeChoicePair;
+class FeatureZonePoin_1079_Type;
+class FeatureZonePoin_1079_TypeChoicePair;
+class GroupFeatureDef_1080_Type;
+class GroupFeatureDef_1080_TypeChoicePair;
+class MeasuredPointSe_1081_Type;
+class MeasuredPointSe_1081_TypeChoicePair;
+class MeasuredPointSe_1082_Type;
+class MeasuredPointSe_1082_TypeChoicePair;
+class MeasuredPointSe_1083_Type;
+class MeasuredPointSe_1083_TypeChoicePair;
+class MeasuredPointSe_1084_Type;
+class MeasuredPointSe_1084_TypeChoicePair;
+class MeasuredPointSe_1085_Type;
+class MeasuredPointSe_1085_TypeChoicePair;
+class MeasuredPointSe_1086_Type;
+class MeasuredPointSe_1086_TypeChoicePair;
+class MeasuredPointSe_1087_Type;
+class MeasuredPointSe_1087_TypeChoicePair;
+class MeasuredPointSe_1088_Type;
+class MeasuredPointSe_1088_TypeChoicePair;
+class MeasuredPointSe_1089_Type;
+class MeasuredPointSe_1089_TypeChoicePair;
+class MeasuredPointSe_1090_Type;
+class MeasuredPointSe_1090_TypeChoicePair;
+class MeasuredPointSe_1091_Type;
+class MeasuredPointSe_1091_TypeChoicePair;
+class MeasuredPointSe_1092_Type;
+class MeasuredPointSe_1092_TypeChoicePair;
+class MeasuredPointSe_1093_Type;
+class OppositeAngledP_1094_Type;
+class OppositeAngledP_1094_TypeChoicePair;
+class OppositeAngledP_1095_Type;
+class OppositeAngledP_1095_TypeChoicePair;
+class PlaneFeatureNom_1096_Type;
+class PlaneFeatureNom_1096_TypeChoicePair;
+class PointFeatureExt_1097_Type;
+class PointFeatureExt_1097_TypeChoicePair;
+class PointFeatureMov_1098_Type;
+class PointFeatureMov_1098_TypeChoicePair;
+class MeasuredPointSe_1099_Type;
+class MeasuredPointSe_1099_TypeChoicePair;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -4538,22 +4533,49 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In);
+    FeatureZoneCurveBaseTypeChoicePair * FeatureZoneCurveBaseTypePairIn);
   FeatureZoneCurveBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In);
+    FeatureZoneCurveBaseTypeChoicePair * FeatureZoneCurveBaseTypePairIn);
   ~FeatureZoneCurveBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
-
-  FeatureZoneCurv_1103_Type * getFeatureZoneCurv_1103();
-  void setFeatureZoneCurv_1103(FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In);
+  FeatureZoneCurveBaseTypeChoicePair * getFeatureZoneCurveBaseTypeChoicePair();
+  void setFeatureZoneCurveBaseTypeChoicePair(FeatureZoneCurveBaseTypeChoicePair * FeatureZoneCurveBaseTypePairIn);
 
 protected:
-  FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103;
+  FeatureZoneCurveBaseTypeChoicePair * FeatureZoneCurveBaseTypePair;
+};
+
+/* ***************************************************************** */
+
+union FeatureZoneCurveBaseTypeVal
+{
+  ArrayReferenceFullType * EdgeIds;
+  ArrayReferenceFullType * CurveIds;
+};
+
+/* ***************************************************************** */
+
+class FeatureZoneCurveBaseTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    EdgeIdsE,
+    CurveIdsE };
+  FeatureZoneCurveBaseTypeChoicePair();
+  FeatureZoneCurveBaseTypeChoicePair(
+    whichOne FeatureZoneCurveBaseTypeTypeIn,
+    FeatureZoneCurveBaseTypeVal FeatureZoneCurveBaseTypeValueIn);
+  ~FeatureZoneCurveBaseTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne FeatureZoneCurveBaseTypeType;
+  FeatureZoneCurveBaseTypeVal FeatureZoneCurveBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -4567,14 +4589,14 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In,
+    FeatureZoneCurveBaseTypeChoicePair * FeatureZoneCurveBaseTypePairIn,
     CircleType * CircleIn);
   FeatureZoneCurveCircularType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In,
+    FeatureZoneCurveBaseTypeChoicePair * FeatureZoneCurveBaseTypePairIn,
     CircleType * CircleIn);
   ~FeatureZoneCurveCircularType();
   void printSelf(FILE * outFile);
@@ -4598,14 +4620,14 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In,
+    FeatureZoneCurveBaseTypeChoicePair * FeatureZoneCurveBaseTypePairIn,
     PolyLineType * CurvePointsIn);
   FeatureZoneCurveIrregularType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In,
+    FeatureZoneCurveBaseTypeChoicePair * FeatureZoneCurveBaseTypePairIn,
     PolyLineType * CurvePointsIn);
   ~FeatureZoneCurveIrregularType();
   void printSelf(FILE * outFile);
@@ -4629,14 +4651,14 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In,
+    FeatureZoneCurveBaseTypeChoicePair * FeatureZoneCurveBaseTypePairIn,
     LineSegmentType * LineIn);
   FeatureZoneCurveLineType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneCurv_1103_Type * FeatureZoneCurv_1103In,
+    FeatureZoneCurveBaseTypeChoicePair * FeatureZoneCurveBaseTypePairIn,
     LineSegmentType * LineIn);
   ~FeatureZoneCurveLineType();
   void printSelf(FILE * outFile);
@@ -4687,26 +4709,26 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZonePoin_1104_Type * FeatureZonePoin_1104In,
+    FeatureZonePoin_1079_Type * FeatureZonePoin_1079In,
     PointType * PointIn);
   FeatureZonePointType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZonePoin_1104_Type * FeatureZonePoin_1104In,
+    FeatureZonePoin_1079_Type * FeatureZonePoin_1079In,
     PointType * PointIn);
   ~FeatureZonePointType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
-  FeatureZonePoin_1104_Type * getFeatureZonePoin_1104();
-  void setFeatureZonePoin_1104(FeatureZonePoin_1104_Type * FeatureZonePoin_1104In);
+  FeatureZonePoin_1079_Type * getFeatureZonePoin_1079();
+  void setFeatureZonePoin_1079(FeatureZonePoin_1079_Type * FeatureZonePoin_1079In);
   PointType * getPoint();
   void setPoint(PointType * PointIn);
 
 protected:
-  FeatureZonePoin_1104_Type * FeatureZonePoin_1104;
+  FeatureZonePoin_1079_Type * FeatureZonePoin_1079;
   PointType * Point;
 };
 
@@ -5277,20 +5299,20 @@ public:
   MeasuredPointSetType(
     AttributesType * AttributesIn,
     OtherUnitsType * UnitsIn,
-    MeasuredPointSe_1106_Type * MeasuredPointSe_1106In,
-    MeasuredPointSe_1107_Type * MeasuredPointSe_1107In,
-    MeasuredPointSe_1108_Type * MeasuredPointSe_1108In,
-    MeasuredPointSe_1109_Type * MeasuredPointSe_1109In,
-    MeasuredPointSe_1110_Type * MeasuredPointSe_1110In,
+    MeasuredPointSe_1081_Type * MeasuredPointSe_1081In,
+    MeasuredPointSe_1082_Type * MeasuredPointSe_1082In,
+    MeasuredPointSe_1083_Type * MeasuredPointSe_1083In,
+    MeasuredPointSe_1084_Type * MeasuredPointSe_1084In,
+    MeasuredPointSe_1085_Type * MeasuredPointSe_1085In,
     QIFReferenceType * MeasurementDeviceIdIn,
-    MeasuredPointSe_1111_Type * MeasuredPointSe_1111In,
-    MeasuredPointSe_1112_Type * MeasuredPointSe_1112In,
-    MeasuredPointSe_1113_Type * MeasuredPointSe_1113In,
-    MeasuredPointSe_1114_Type * MeasuredPointSe_1114In,
-    MeasuredPointSe_1115_Type * MeasuredPointSe_1115In,
-    MeasuredPointSe_1116_Type * MeasuredPointSe_1116In,
-    MeasuredPointSe_1117_Type * MeasuredPointSe_1117In,
-    MeasuredPointSe_1118_Type * MeasuredPointSe_1118In);
+    MeasuredPointSe_1086_Type * MeasuredPointSe_1086In,
+    MeasuredPointSe_1087_Type * MeasuredPointSe_1087In,
+    MeasuredPointSe_1088_Type * MeasuredPointSe_1088In,
+    MeasuredPointSe_1089_Type * MeasuredPointSe_1089In,
+    MeasuredPointSe_1090_Type * MeasuredPointSe_1090In,
+    MeasuredPointSe_1091_Type * MeasuredPointSe_1091In,
+    MeasuredPointSe_1092_Type * MeasuredPointSe_1092In,
+    MeasuredPointSe_1093_Type * MeasuredPointSe_1093In);
   MeasuredPointSetType(
     XmlDecimal * combinedUncertaintyIn,
     NaturalType * countIn,
@@ -5317,20 +5339,20 @@ public:
     ValidityEnumType * zValidityIn,
     AttributesType * AttributesIn,
     OtherUnitsType * UnitsIn,
-    MeasuredPointSe_1106_Type * MeasuredPointSe_1106In,
-    MeasuredPointSe_1107_Type * MeasuredPointSe_1107In,
-    MeasuredPointSe_1108_Type * MeasuredPointSe_1108In,
-    MeasuredPointSe_1109_Type * MeasuredPointSe_1109In,
-    MeasuredPointSe_1110_Type * MeasuredPointSe_1110In,
+    MeasuredPointSe_1081_Type * MeasuredPointSe_1081In,
+    MeasuredPointSe_1082_Type * MeasuredPointSe_1082In,
+    MeasuredPointSe_1083_Type * MeasuredPointSe_1083In,
+    MeasuredPointSe_1084_Type * MeasuredPointSe_1084In,
+    MeasuredPointSe_1085_Type * MeasuredPointSe_1085In,
     QIFReferenceType * MeasurementDeviceIdIn,
-    MeasuredPointSe_1111_Type * MeasuredPointSe_1111In,
-    MeasuredPointSe_1112_Type * MeasuredPointSe_1112In,
-    MeasuredPointSe_1113_Type * MeasuredPointSe_1113In,
-    MeasuredPointSe_1114_Type * MeasuredPointSe_1114In,
-    MeasuredPointSe_1115_Type * MeasuredPointSe_1115In,
-    MeasuredPointSe_1116_Type * MeasuredPointSe_1116In,
-    MeasuredPointSe_1117_Type * MeasuredPointSe_1117In,
-    MeasuredPointSe_1118_Type * MeasuredPointSe_1118In);
+    MeasuredPointSe_1086_Type * MeasuredPointSe_1086In,
+    MeasuredPointSe_1087_Type * MeasuredPointSe_1087In,
+    MeasuredPointSe_1088_Type * MeasuredPointSe_1088In,
+    MeasuredPointSe_1089_Type * MeasuredPointSe_1089In,
+    MeasuredPointSe_1090_Type * MeasuredPointSe_1090In,
+    MeasuredPointSe_1091_Type * MeasuredPointSe_1091In,
+    MeasuredPointSe_1092_Type * MeasuredPointSe_1092In,
+    MeasuredPointSe_1093_Type * MeasuredPointSe_1093In);
   ~MeasuredPointSetType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -5386,34 +5408,34 @@ public:
   void setAttributes(AttributesType * AttributesIn);
   OtherUnitsType * getUnits();
   void setUnits(OtherUnitsType * UnitsIn);
-  MeasuredPointSe_1106_Type * getMeasuredPointSe_1106();
-  void setMeasuredPointSe_1106(MeasuredPointSe_1106_Type * MeasuredPointSe_1106In);
-  MeasuredPointSe_1107_Type * getMeasuredPointSe_1107();
-  void setMeasuredPointSe_1107(MeasuredPointSe_1107_Type * MeasuredPointSe_1107In);
-  MeasuredPointSe_1108_Type * getMeasuredPointSe_1108();
-  void setMeasuredPointSe_1108(MeasuredPointSe_1108_Type * MeasuredPointSe_1108In);
-  MeasuredPointSe_1109_Type * getMeasuredPointSe_1109();
-  void setMeasuredPointSe_1109(MeasuredPointSe_1109_Type * MeasuredPointSe_1109In);
-  MeasuredPointSe_1110_Type * getMeasuredPointSe_1110();
-  void setMeasuredPointSe_1110(MeasuredPointSe_1110_Type * MeasuredPointSe_1110In);
+  MeasuredPointSe_1081_Type * getMeasuredPointSe_1081();
+  void setMeasuredPointSe_1081(MeasuredPointSe_1081_Type * MeasuredPointSe_1081In);
+  MeasuredPointSe_1082_Type * getMeasuredPointSe_1082();
+  void setMeasuredPointSe_1082(MeasuredPointSe_1082_Type * MeasuredPointSe_1082In);
+  MeasuredPointSe_1083_Type * getMeasuredPointSe_1083();
+  void setMeasuredPointSe_1083(MeasuredPointSe_1083_Type * MeasuredPointSe_1083In);
+  MeasuredPointSe_1084_Type * getMeasuredPointSe_1084();
+  void setMeasuredPointSe_1084(MeasuredPointSe_1084_Type * MeasuredPointSe_1084In);
+  MeasuredPointSe_1085_Type * getMeasuredPointSe_1085();
+  void setMeasuredPointSe_1085(MeasuredPointSe_1085_Type * MeasuredPointSe_1085In);
   QIFReferenceType * getMeasurementDeviceId();
   void setMeasurementDeviceId(QIFReferenceType * MeasurementDeviceIdIn);
-  MeasuredPointSe_1111_Type * getMeasuredPointSe_1111();
-  void setMeasuredPointSe_1111(MeasuredPointSe_1111_Type * MeasuredPointSe_1111In);
-  MeasuredPointSe_1112_Type * getMeasuredPointSe_1112();
-  void setMeasuredPointSe_1112(MeasuredPointSe_1112_Type * MeasuredPointSe_1112In);
-  MeasuredPointSe_1113_Type * getMeasuredPointSe_1113();
-  void setMeasuredPointSe_1113(MeasuredPointSe_1113_Type * MeasuredPointSe_1113In);
-  MeasuredPointSe_1114_Type * getMeasuredPointSe_1114();
-  void setMeasuredPointSe_1114(MeasuredPointSe_1114_Type * MeasuredPointSe_1114In);
-  MeasuredPointSe_1115_Type * getMeasuredPointSe_1115();
-  void setMeasuredPointSe_1115(MeasuredPointSe_1115_Type * MeasuredPointSe_1115In);
-  MeasuredPointSe_1116_Type * getMeasuredPointSe_1116();
-  void setMeasuredPointSe_1116(MeasuredPointSe_1116_Type * MeasuredPointSe_1116In);
-  MeasuredPointSe_1117_Type * getMeasuredPointSe_1117();
-  void setMeasuredPointSe_1117(MeasuredPointSe_1117_Type * MeasuredPointSe_1117In);
-  MeasuredPointSe_1118_Type * getMeasuredPointSe_1118();
-  void setMeasuredPointSe_1118(MeasuredPointSe_1118_Type * MeasuredPointSe_1118In);
+  MeasuredPointSe_1086_Type * getMeasuredPointSe_1086();
+  void setMeasuredPointSe_1086(MeasuredPointSe_1086_Type * MeasuredPointSe_1086In);
+  MeasuredPointSe_1087_Type * getMeasuredPointSe_1087();
+  void setMeasuredPointSe_1087(MeasuredPointSe_1087_Type * MeasuredPointSe_1087In);
+  MeasuredPointSe_1088_Type * getMeasuredPointSe_1088();
+  void setMeasuredPointSe_1088(MeasuredPointSe_1088_Type * MeasuredPointSe_1088In);
+  MeasuredPointSe_1089_Type * getMeasuredPointSe_1089();
+  void setMeasuredPointSe_1089(MeasuredPointSe_1089_Type * MeasuredPointSe_1089In);
+  MeasuredPointSe_1090_Type * getMeasuredPointSe_1090();
+  void setMeasuredPointSe_1090(MeasuredPointSe_1090_Type * MeasuredPointSe_1090In);
+  MeasuredPointSe_1091_Type * getMeasuredPointSe_1091();
+  void setMeasuredPointSe_1091(MeasuredPointSe_1091_Type * MeasuredPointSe_1091In);
+  MeasuredPointSe_1092_Type * getMeasuredPointSe_1092();
+  void setMeasuredPointSe_1092(MeasuredPointSe_1092_Type * MeasuredPointSe_1092In);
+  MeasuredPointSe_1093_Type * getMeasuredPointSe_1093();
+  void setMeasuredPointSe_1093(MeasuredPointSe_1093_Type * MeasuredPointSe_1093In);
 
 protected:
   XmlDecimal * combinedUncertainty;
@@ -5441,20 +5463,20 @@ protected:
   ValidityEnumType * zValidity;
   AttributesType * Attributes;
   OtherUnitsType * Units;
-  MeasuredPointSe_1106_Type * MeasuredPointSe_1106;
-  MeasuredPointSe_1107_Type * MeasuredPointSe_1107;
-  MeasuredPointSe_1108_Type * MeasuredPointSe_1108;
-  MeasuredPointSe_1109_Type * MeasuredPointSe_1109;
-  MeasuredPointSe_1110_Type * MeasuredPointSe_1110;
+  MeasuredPointSe_1081_Type * MeasuredPointSe_1081;
+  MeasuredPointSe_1082_Type * MeasuredPointSe_1082;
+  MeasuredPointSe_1083_Type * MeasuredPointSe_1083;
+  MeasuredPointSe_1084_Type * MeasuredPointSe_1084;
+  MeasuredPointSe_1085_Type * MeasuredPointSe_1085;
   QIFReferenceType * MeasurementDeviceId;
-  MeasuredPointSe_1111_Type * MeasuredPointSe_1111;
-  MeasuredPointSe_1112_Type * MeasuredPointSe_1112;
-  MeasuredPointSe_1113_Type * MeasuredPointSe_1113;
-  MeasuredPointSe_1114_Type * MeasuredPointSe_1114;
-  MeasuredPointSe_1115_Type * MeasuredPointSe_1115;
-  MeasuredPointSe_1116_Type * MeasuredPointSe_1116;
-  MeasuredPointSe_1117_Type * MeasuredPointSe_1117;
-  MeasuredPointSe_1118_Type * MeasuredPointSe_1118;
+  MeasuredPointSe_1086_Type * MeasuredPointSe_1086;
+  MeasuredPointSe_1087_Type * MeasuredPointSe_1087;
+  MeasuredPointSe_1088_Type * MeasuredPointSe_1088;
+  MeasuredPointSe_1089_Type * MeasuredPointSe_1089;
+  MeasuredPointSe_1090_Type * MeasuredPointSe_1090;
+  MeasuredPointSe_1091_Type * MeasuredPointSe_1091;
+  MeasuredPointSe_1092_Type * MeasuredPointSe_1092;
+  MeasuredPointSe_1093_Type * MeasuredPointSe_1093;
 };
 
 /* ***************************************************************** */
@@ -8873,7 +8895,7 @@ public:
     XmlBoolean * NominalsCalculatedIn,
     BaseFeatureType * BaseFeatureIn,
     XmlBoolean * MinimumIn,
-    PointFeatureExt_1123_Type * PointFeatureExt_1123In);
+    PointFeatureExt_1097_Type * PointFeatureExt_1097In);
   ~PointFeatureExtremeType();
   void printSelf(FILE * outFile);
 
@@ -8881,13 +8903,13 @@ public:
   void setBaseFeature(BaseFeatureType * BaseFeatureIn);
   XmlBoolean * getMinimum();
   void setMinimum(XmlBoolean * MinimumIn);
-  PointFeatureExt_1123_Type * getPointFeatureExt_1123();
-  void setPointFeatureExt_1123(PointFeatureExt_1123_Type * PointFeatureExt_1123In);
+  PointFeatureExt_1097_Type * getPointFeatureExt_1097();
+  void setPointFeatureExt_1097(PointFeatureExt_1097_Type * PointFeatureExt_1097In);
 
 protected:
   BaseFeatureType * BaseFeature;
   XmlBoolean * Minimum;
-  PointFeatureExt_1123_Type * PointFeatureExt_1123;
+  PointFeatureExt_1097_Type * PointFeatureExt_1097;
 };
 
 /* ***************************************************************** */
@@ -9016,18 +9038,18 @@ public:
   PointFeatureMovePointType(
     XmlBoolean * NominalsCalculatedIn,
     BaseFeatureType * BaseFeatureIn,
-    PointFeatureMov_1124_Type * PointFeatureMov_1124In);
+    PointFeatureMov_1098_Type * PointFeatureMov_1098In);
   ~PointFeatureMovePointType();
   void printSelf(FILE * outFile);
 
   BaseFeatureType * getBaseFeature();
   void setBaseFeature(BaseFeatureType * BaseFeatureIn);
-  PointFeatureMov_1124_Type * getPointFeatureMov_1124();
-  void setPointFeatureMov_1124(PointFeatureMov_1124_Type * PointFeatureMov_1124In);
+  PointFeatureMov_1098_Type * getPointFeatureMov_1098();
+  void setPointFeatureMov_1098(PointFeatureMov_1098_Type * PointFeatureMov_1098In);
 
 protected:
   BaseFeatureType * BaseFeature;
-  PointFeatureMov_1124_Type * PointFeatureMov_1124;
+  PointFeatureMov_1098_Type * PointFeatureMov_1098;
 };
 
 /* ***************************************************************** */
@@ -12383,73 +12405,26 @@ protected:
 
 /* ***************************************************************** */
 
-class CircleFromConeT_1093_Type :
+class ConeFeatureDefi_1071_Type :
   public XmlTypeBase
 {
 public:
-  CircleFromConeT_1093_Type();
-  CircleFromConeT_1093_Type(
-    CircleFromConeT_1093_TypeChoicePair * CircleFromConeT_1093_TypePairIn);
-  ~CircleFromConeT_1093_Type();
+  ConeFeatureDefi_1071_Type();
+  ConeFeatureDefi_1071_Type(
+    ConeFeatureDefi_1071_TypeChoicePair * ConeFeatureDefi_1071_TypePairIn);
+  ~ConeFeatureDefi_1071_Type();
   void printSelf(FILE * outFile);
 
-  CircleFromConeT_1093_TypeChoicePair * getCircleFromConeT_1093_TypePair();
-  void setCircleFromConeT_1093_TypePair(CircleFromConeT_1093_TypeChoicePair * CircleFromConeT_1093_TypePairIn);
+  ConeFeatureDefi_1071_TypeChoicePair * getConeFeatureDefi_1071_TypePair();
+  void setConeFeatureDefi_1071_TypePair(ConeFeatureDefi_1071_TypeChoicePair * ConeFeatureDefi_1071_TypePairIn);
 
 protected:
-  CircleFromConeT_1093_TypeChoicePair * CircleFromConeT_1093_TypePair;
+  ConeFeatureDefi_1071_TypeChoicePair * ConeFeatureDefi_1071_TypePair;
 };
 
 /* ***************************************************************** */
 
-union CircleFromConeT_1093_TypeVal
-{
-  LinearValueType * Diameter;
-  LinearValueType * Distance;
-};
-
-/* ***************************************************************** */
-
-class CircleFromConeT_1093_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    DiameterE,
-    DistanceE };
-  CircleFromConeT_1093_TypeChoicePair();
-  CircleFromConeT_1093_TypeChoicePair(
-    whichOne CircleFromConeT_1093_TypeTypeIn,
-    CircleFromConeT_1093_TypeVal CircleFromConeT_1093_TypeValueIn);
-  ~CircleFromConeT_1093_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne CircleFromConeT_1093_TypeType;
-  CircleFromConeT_1093_TypeVal CircleFromConeT_1093_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class ConeFeatureDefi_1094_Type :
-  public XmlTypeBase
-{
-public:
-  ConeFeatureDefi_1094_Type();
-  ConeFeatureDefi_1094_Type(
-    ConeFeatureDefi_1094_TypeChoicePair * ConeFeatureDefi_1094_TypePairIn);
-  ~ConeFeatureDefi_1094_Type();
-  void printSelf(FILE * outFile);
-
-  ConeFeatureDefi_1094_TypeChoicePair * getConeFeatureDefi_1094_TypePair();
-  void setConeFeatureDefi_1094_TypePair(ConeFeatureDefi_1094_TypeChoicePair * ConeFeatureDefi_1094_TypePairIn);
-
-protected:
-  ConeFeatureDefi_1094_TypeChoicePair * ConeFeatureDefi_1094_TypePair;
-};
-
-/* ***************************************************************** */
-
-union ConeFeatureDefi_1094_TypeVal
+union ConeFeatureDefi_1071_TypeVal
 {
   AngularValueType * HalfAngle;
   AngularValueType * FullAngle;
@@ -12457,35 +12432,35 @@ union ConeFeatureDefi_1094_TypeVal
 
 /* ***************************************************************** */
 
-class ConeFeatureDefi_1094_TypeChoicePair :
+class ConeFeatureDefi_1071_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     HalfAngleE,
     FullAngleE };
-  ConeFeatureDefi_1094_TypeChoicePair();
-  ConeFeatureDefi_1094_TypeChoicePair(
-    whichOne ConeFeatureDefi_1094_TypeTypeIn,
-    ConeFeatureDefi_1094_TypeVal ConeFeatureDefi_1094_TypeValueIn);
-  ~ConeFeatureDefi_1094_TypeChoicePair();
+  ConeFeatureDefi_1071_TypeChoicePair();
+  ConeFeatureDefi_1071_TypeChoicePair(
+    whichOne ConeFeatureDefi_1071_TypeTypeIn,
+    ConeFeatureDefi_1071_TypeVal ConeFeatureDefi_1071_TypeValueIn);
+  ~ConeFeatureDefi_1071_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ConeFeatureDefi_1094_TypeType;
-  ConeFeatureDefi_1094_TypeVal ConeFeatureDefi_1094_TypeValue;
+  whichOne ConeFeatureDefi_1071_TypeType;
+  ConeFeatureDefi_1071_TypeVal ConeFeatureDefi_1071_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class ConeFeatureDefi_1095_Type :
+class ConeFeatureDefi_1072_Type :
   public XmlTypeBase
 {
 public:
-  ConeFeatureDefi_1095_Type();
-  ConeFeatureDefi_1095_Type(
+  ConeFeatureDefi_1072_Type();
+  ConeFeatureDefi_1072_Type(
     LinearValueType * LargeEndDistanceIn,
     LinearValueType * SmallEndDistanceIn);
-  ~ConeFeatureDefi_1095_Type();
+  ~ConeFeatureDefi_1072_Type();
   void printSelf(FILE * outFile);
 
   LinearValueType * getLargeEndDistance();
@@ -12500,26 +12475,26 @@ protected:
 
 /* ***************************************************************** */
 
-class ConeFeatureMeas_1096_Type :
+class ConeFeatureMeas_1073_Type :
   public XmlTypeBase
 {
 public:
-  ConeFeatureMeas_1096_Type();
-  ConeFeatureMeas_1096_Type(
-    ConeFeatureMeas_1096_TypeChoicePair * ConeFeatureMeas_1096_TypePairIn);
-  ~ConeFeatureMeas_1096_Type();
+  ConeFeatureMeas_1073_Type();
+  ConeFeatureMeas_1073_Type(
+    ConeFeatureMeas_1073_TypeChoicePair * ConeFeatureMeas_1073_TypePairIn);
+  ~ConeFeatureMeas_1073_Type();
   void printSelf(FILE * outFile);
 
-  ConeFeatureMeas_1096_TypeChoicePair * getConeFeatureMeas_1096_TypePair();
-  void setConeFeatureMeas_1096_TypePair(ConeFeatureMeas_1096_TypeChoicePair * ConeFeatureMeas_1096_TypePairIn);
+  ConeFeatureMeas_1073_TypeChoicePair * getConeFeatureMeas_1073_TypePair();
+  void setConeFeatureMeas_1073_TypePair(ConeFeatureMeas_1073_TypeChoicePair * ConeFeatureMeas_1073_TypePairIn);
 
 protected:
-  ConeFeatureMeas_1096_TypeChoicePair * ConeFeatureMeas_1096_TypePair;
+  ConeFeatureMeas_1073_TypeChoicePair * ConeFeatureMeas_1073_TypePair;
 };
 
 /* ***************************************************************** */
 
-union ConeFeatureMeas_1096_TypeVal
+union ConeFeatureMeas_1073_TypeVal
 {
   MeasuredAngularValueType * HalfAngle;
   MeasuredAngularValueType * FullAngle;
@@ -12527,46 +12502,46 @@ union ConeFeatureMeas_1096_TypeVal
 
 /* ***************************************************************** */
 
-class ConeFeatureMeas_1096_TypeChoicePair :
+class ConeFeatureMeas_1073_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     HalfAngleE,
     FullAngleE };
-  ConeFeatureMeas_1096_TypeChoicePair();
-  ConeFeatureMeas_1096_TypeChoicePair(
-    whichOne ConeFeatureMeas_1096_TypeTypeIn,
-    ConeFeatureMeas_1096_TypeVal ConeFeatureMeas_1096_TypeValueIn);
-  ~ConeFeatureMeas_1096_TypeChoicePair();
+  ConeFeatureMeas_1073_TypeChoicePair();
+  ConeFeatureMeas_1073_TypeChoicePair(
+    whichOne ConeFeatureMeas_1073_TypeTypeIn,
+    ConeFeatureMeas_1073_TypeVal ConeFeatureMeas_1073_TypeValueIn);
+  ~ConeFeatureMeas_1073_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ConeFeatureMeas_1096_TypeType;
-  ConeFeatureMeas_1096_TypeVal ConeFeatureMeas_1096_TypeValue;
+  whichOne ConeFeatureMeas_1073_TypeType;
+  ConeFeatureMeas_1073_TypeVal ConeFeatureMeas_1073_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class ConicalSegmentF_1097_Type :
+class ConicalSegmentF_1074_Type :
   public XmlTypeBase
 {
 public:
-  ConicalSegmentF_1097_Type();
-  ConicalSegmentF_1097_Type(
-    ConicalSegmentF_1097_TypeChoicePair * ConicalSegmentF_1097_TypePairIn);
-  ~ConicalSegmentF_1097_Type();
+  ConicalSegmentF_1074_Type();
+  ConicalSegmentF_1074_Type(
+    ConicalSegmentF_1074_TypeChoicePair * ConicalSegmentF_1074_TypePairIn);
+  ~ConicalSegmentF_1074_Type();
   void printSelf(FILE * outFile);
 
-  ConicalSegmentF_1097_TypeChoicePair * getConicalSegmentF_1097_TypePair();
-  void setConicalSegmentF_1097_TypePair(ConicalSegmentF_1097_TypeChoicePair * ConicalSegmentF_1097_TypePairIn);
+  ConicalSegmentF_1074_TypeChoicePair * getConicalSegmentF_1074_TypePair();
+  void setConicalSegmentF_1074_TypePair(ConicalSegmentF_1074_TypeChoicePair * ConicalSegmentF_1074_TypePairIn);
 
 protected:
-  ConicalSegmentF_1097_TypeChoicePair * ConicalSegmentF_1097_TypePair;
+  ConicalSegmentF_1074_TypeChoicePair * ConicalSegmentF_1074_TypePair;
 };
 
 /* ***************************************************************** */
 
-union ConicalSegmentF_1097_TypeVal
+union ConicalSegmentF_1074_TypeVal
 {
   AngularValueType * HalfAngle;
   AngularValueType * FullAngle;
@@ -12574,35 +12549,35 @@ union ConicalSegmentF_1097_TypeVal
 
 /* ***************************************************************** */
 
-class ConicalSegmentF_1097_TypeChoicePair :
+class ConicalSegmentF_1074_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     HalfAngleE,
     FullAngleE };
-  ConicalSegmentF_1097_TypeChoicePair();
-  ConicalSegmentF_1097_TypeChoicePair(
-    whichOne ConicalSegmentF_1097_TypeTypeIn,
-    ConicalSegmentF_1097_TypeVal ConicalSegmentF_1097_TypeValueIn);
-  ~ConicalSegmentF_1097_TypeChoicePair();
+  ConicalSegmentF_1074_TypeChoicePair();
+  ConicalSegmentF_1074_TypeChoicePair(
+    whichOne ConicalSegmentF_1074_TypeTypeIn,
+    ConicalSegmentF_1074_TypeVal ConicalSegmentF_1074_TypeValueIn);
+  ~ConicalSegmentF_1074_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ConicalSegmentF_1097_TypeType;
-  ConicalSegmentF_1097_TypeVal ConicalSegmentF_1097_TypeValue;
+  whichOne ConicalSegmentF_1074_TypeType;
+  ConicalSegmentF_1074_TypeVal ConicalSegmentF_1074_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class ConicalSegmentF_1098_Type :
+class ConicalSegmentF_1075_Type :
   public XmlTypeBase
 {
 public:
-  ConicalSegmentF_1098_Type();
-  ConicalSegmentF_1098_Type(
+  ConicalSegmentF_1075_Type();
+  ConicalSegmentF_1075_Type(
     LinearValueType * LargeEndDistanceIn,
     LinearValueType * SmallEndDistanceIn);
-  ~ConicalSegmentF_1098_Type();
+  ~ConicalSegmentF_1075_Type();
   void printSelf(FILE * outFile);
 
   LinearValueType * getLargeEndDistance();
@@ -12617,26 +12592,26 @@ protected:
 
 /* ***************************************************************** */
 
-class ConicalSegmentF_1099_Type :
+class ConicalSegmentF_1076_Type :
   public XmlTypeBase
 {
 public:
-  ConicalSegmentF_1099_Type();
-  ConicalSegmentF_1099_Type(
-    ConicalSegmentF_1099_TypeChoicePair * ConicalSegmentF_1099_TypePairIn);
-  ~ConicalSegmentF_1099_Type();
+  ConicalSegmentF_1076_Type();
+  ConicalSegmentF_1076_Type(
+    ConicalSegmentF_1076_TypeChoicePair * ConicalSegmentF_1076_TypePairIn);
+  ~ConicalSegmentF_1076_Type();
   void printSelf(FILE * outFile);
 
-  ConicalSegmentF_1099_TypeChoicePair * getConicalSegmentF_1099_TypePair();
-  void setConicalSegmentF_1099_TypePair(ConicalSegmentF_1099_TypeChoicePair * ConicalSegmentF_1099_TypePairIn);
+  ConicalSegmentF_1076_TypeChoicePair * getConicalSegmentF_1076_TypePair();
+  void setConicalSegmentF_1076_TypePair(ConicalSegmentF_1076_TypeChoicePair * ConicalSegmentF_1076_TypePairIn);
 
 protected:
-  ConicalSegmentF_1099_TypeChoicePair * ConicalSegmentF_1099_TypePair;
+  ConicalSegmentF_1076_TypeChoicePair * ConicalSegmentF_1076_TypePair;
 };
 
 /* ***************************************************************** */
 
-union ConicalSegmentF_1099_TypeVal
+union ConicalSegmentF_1076_TypeVal
 {
   MeasuredAngularValueType * HalfAngle;
   MeasuredAngularValueType * FullAngle;
@@ -12644,93 +12619,46 @@ union ConicalSegmentF_1099_TypeVal
 
 /* ***************************************************************** */
 
-class ConicalSegmentF_1099_TypeChoicePair :
+class ConicalSegmentF_1076_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     HalfAngleE,
     FullAngleE };
-  ConicalSegmentF_1099_TypeChoicePair();
-  ConicalSegmentF_1099_TypeChoicePair(
-    whichOne ConicalSegmentF_1099_TypeTypeIn,
-    ConicalSegmentF_1099_TypeVal ConicalSegmentF_1099_TypeValueIn);
-  ~ConicalSegmentF_1099_TypeChoicePair();
+  ConicalSegmentF_1076_TypeChoicePair();
+  ConicalSegmentF_1076_TypeChoicePair(
+    whichOne ConicalSegmentF_1076_TypeTypeIn,
+    ConicalSegmentF_1076_TypeVal ConicalSegmentF_1076_TypeValueIn);
+  ~ConicalSegmentF_1076_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ConicalSegmentF_1099_TypeType;
-  ConicalSegmentF_1099_TypeVal ConicalSegmentF_1099_TypeValue;
+  whichOne ConicalSegmentF_1076_TypeType;
+  ConicalSegmentF_1076_TypeVal ConicalSegmentF_1076_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class FeatureZoneArea_1100_Type :
+class FeatureZoneArea_1077_Type :
   public XmlTypeBase
 {
 public:
-  FeatureZoneArea_1100_Type();
-  FeatureZoneArea_1100_Type(
-    FeatureZoneArea_1100_TypeChoicePair * FeatureZoneArea_1100_TypePairIn);
-  ~FeatureZoneArea_1100_Type();
+  FeatureZoneArea_1077_Type();
+  FeatureZoneArea_1077_Type(
+    FeatureZoneArea_1077_TypeChoicePair * FeatureZoneArea_1077_TypePairIn);
+  ~FeatureZoneArea_1077_Type();
   void printSelf(FILE * outFile);
 
-  FeatureZoneArea_1100_TypeChoicePair * getFeatureZoneArea_1100_TypePair();
-  void setFeatureZoneArea_1100_TypePair(FeatureZoneArea_1100_TypeChoicePair * FeatureZoneArea_1100_TypePairIn);
+  FeatureZoneArea_1077_TypeChoicePair * getFeatureZoneArea_1077_TypePair();
+  void setFeatureZoneArea_1077_TypePair(FeatureZoneArea_1077_TypeChoicePair * FeatureZoneArea_1077_TypePairIn);
 
 protected:
-  FeatureZoneArea_1100_TypeChoicePair * FeatureZoneArea_1100_TypePair;
+  FeatureZoneArea_1077_TypeChoicePair * FeatureZoneArea_1077_TypePair;
 };
 
 /* ***************************************************************** */
 
-union FeatureZoneArea_1100_TypeVal
-{
-  ArrayReferenceFullType * FaceIds;
-  ArrayReferenceFullType * EdgeIds;
-};
-
-/* ***************************************************************** */
-
-class FeatureZoneArea_1100_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    FaceIdsE,
-    EdgeIdsE };
-  FeatureZoneArea_1100_TypeChoicePair();
-  FeatureZoneArea_1100_TypeChoicePair(
-    whichOne FeatureZoneArea_1100_TypeTypeIn,
-    FeatureZoneArea_1100_TypeVal FeatureZoneArea_1100_TypeValueIn);
-  ~FeatureZoneArea_1100_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne FeatureZoneArea_1100_TypeType;
-  FeatureZoneArea_1100_TypeVal FeatureZoneArea_1100_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class FeatureZoneArea_1101_Type :
-  public XmlTypeBase
-{
-public:
-  FeatureZoneArea_1101_Type();
-  FeatureZoneArea_1101_Type(
-    FeatureZoneArea_1101_TypeChoicePair * FeatureZoneArea_1101_TypePairIn);
-  ~FeatureZoneArea_1101_Type();
-  void printSelf(FILE * outFile);
-
-  FeatureZoneArea_1101_TypeChoicePair * getFeatureZoneArea_1101_TypePair();
-  void setFeatureZoneArea_1101_TypePair(FeatureZoneArea_1101_TypeChoicePair * FeatureZoneArea_1101_TypePairIn);
-
-protected:
-  FeatureZoneArea_1101_TypeChoicePair * FeatureZoneArea_1101_TypePair;
-};
-
-/* ***************************************************************** */
-
-union FeatureZoneArea_1101_TypeVal
+union FeatureZoneArea_1077_TypeVal
 {
   QIFReferenceFullType * FromPointZoneId;
   QIFReferenceFullType * FromCurveZoneId;
@@ -12738,46 +12666,46 @@ union FeatureZoneArea_1101_TypeVal
 
 /* ***************************************************************** */
 
-class FeatureZoneArea_1101_TypeChoicePair :
+class FeatureZoneArea_1077_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     FromPointZoneIdE,
     FromCurveZoneIdE };
-  FeatureZoneArea_1101_TypeChoicePair();
-  FeatureZoneArea_1101_TypeChoicePair(
-    whichOne FeatureZoneArea_1101_TypeTypeIn,
-    FeatureZoneArea_1101_TypeVal FeatureZoneArea_1101_TypeValueIn);
-  ~FeatureZoneArea_1101_TypeChoicePair();
+  FeatureZoneArea_1077_TypeChoicePair();
+  FeatureZoneArea_1077_TypeChoicePair(
+    whichOne FeatureZoneArea_1077_TypeTypeIn,
+    FeatureZoneArea_1077_TypeVal FeatureZoneArea_1077_TypeValueIn);
+  ~FeatureZoneArea_1077_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne FeatureZoneArea_1101_TypeType;
-  FeatureZoneArea_1101_TypeVal FeatureZoneArea_1101_TypeValue;
+  whichOne FeatureZoneArea_1077_TypeType;
+  FeatureZoneArea_1077_TypeVal FeatureZoneArea_1077_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class FeatureZoneArea_1102_Type :
+class FeatureZoneArea_1078_Type :
   public XmlTypeBase
 {
 public:
-  FeatureZoneArea_1102_Type();
-  FeatureZoneArea_1102_Type(
-    FeatureZoneArea_1102_TypeChoicePair * FeatureZoneArea_1102_TypePairIn);
-  ~FeatureZoneArea_1102_Type();
+  FeatureZoneArea_1078_Type();
+  FeatureZoneArea_1078_Type(
+    FeatureZoneArea_1078_TypeChoicePair * FeatureZoneArea_1078_TypePairIn);
+  ~FeatureZoneArea_1078_Type();
   void printSelf(FILE * outFile);
 
-  FeatureZoneArea_1102_TypeChoicePair * getFeatureZoneArea_1102_TypePair();
-  void setFeatureZoneArea_1102_TypePair(FeatureZoneArea_1102_TypeChoicePair * FeatureZoneArea_1102_TypePairIn);
+  FeatureZoneArea_1078_TypeChoicePair * getFeatureZoneArea_1078_TypePair();
+  void setFeatureZoneArea_1078_TypePair(FeatureZoneArea_1078_TypeChoicePair * FeatureZoneArea_1078_TypePairIn);
 
 protected:
-  FeatureZoneArea_1102_TypeChoicePair * FeatureZoneArea_1102_TypePair;
+  FeatureZoneArea_1078_TypeChoicePair * FeatureZoneArea_1078_TypePair;
 };
 
 /* ***************************************************************** */
 
-union FeatureZoneArea_1102_TypeVal
+union FeatureZoneArea_1078_TypeVal
 {
   QIFReferenceFullType * ToPointZoneId;
   QIFReferenceFullType * ToCurveZoneId;
@@ -12785,93 +12713,46 @@ union FeatureZoneArea_1102_TypeVal
 
 /* ***************************************************************** */
 
-class FeatureZoneArea_1102_TypeChoicePair :
+class FeatureZoneArea_1078_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     ToPointZoneIdE,
     ToCurveZoneIdE };
-  FeatureZoneArea_1102_TypeChoicePair();
-  FeatureZoneArea_1102_TypeChoicePair(
-    whichOne FeatureZoneArea_1102_TypeTypeIn,
-    FeatureZoneArea_1102_TypeVal FeatureZoneArea_1102_TypeValueIn);
-  ~FeatureZoneArea_1102_TypeChoicePair();
+  FeatureZoneArea_1078_TypeChoicePair();
+  FeatureZoneArea_1078_TypeChoicePair(
+    whichOne FeatureZoneArea_1078_TypeTypeIn,
+    FeatureZoneArea_1078_TypeVal FeatureZoneArea_1078_TypeValueIn);
+  ~FeatureZoneArea_1078_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne FeatureZoneArea_1102_TypeType;
-  FeatureZoneArea_1102_TypeVal FeatureZoneArea_1102_TypeValue;
+  whichOne FeatureZoneArea_1078_TypeType;
+  FeatureZoneArea_1078_TypeVal FeatureZoneArea_1078_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class FeatureZoneCurv_1103_Type :
+class FeatureZonePoin_1079_Type :
   public XmlTypeBase
 {
 public:
-  FeatureZoneCurv_1103_Type();
-  FeatureZoneCurv_1103_Type(
-    FeatureZoneCurv_1103_TypeChoicePair * FeatureZoneCurv_1103_TypePairIn);
-  ~FeatureZoneCurv_1103_Type();
+  FeatureZonePoin_1079_Type();
+  FeatureZonePoin_1079_Type(
+    FeatureZonePoin_1079_TypeChoicePair * FeatureZonePoin_1079_TypePairIn);
+  ~FeatureZonePoin_1079_Type();
   void printSelf(FILE * outFile);
 
-  FeatureZoneCurv_1103_TypeChoicePair * getFeatureZoneCurv_1103_TypePair();
-  void setFeatureZoneCurv_1103_TypePair(FeatureZoneCurv_1103_TypeChoicePair * FeatureZoneCurv_1103_TypePairIn);
+  FeatureZonePoin_1079_TypeChoicePair * getFeatureZonePoin_1079_TypePair();
+  void setFeatureZonePoin_1079_TypePair(FeatureZonePoin_1079_TypeChoicePair * FeatureZonePoin_1079_TypePairIn);
 
 protected:
-  FeatureZoneCurv_1103_TypeChoicePair * FeatureZoneCurv_1103_TypePair;
+  FeatureZonePoin_1079_TypeChoicePair * FeatureZonePoin_1079_TypePair;
 };
 
 /* ***************************************************************** */
 
-union FeatureZoneCurv_1103_TypeVal
-{
-  ArrayReferenceFullType * EdgeIds;
-  ArrayReferenceFullType * CurveIds;
-};
-
-/* ***************************************************************** */
-
-class FeatureZoneCurv_1103_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    EdgeIdsE,
-    CurveIdsE };
-  FeatureZoneCurv_1103_TypeChoicePair();
-  FeatureZoneCurv_1103_TypeChoicePair(
-    whichOne FeatureZoneCurv_1103_TypeTypeIn,
-    FeatureZoneCurv_1103_TypeVal FeatureZoneCurv_1103_TypeValueIn);
-  ~FeatureZoneCurv_1103_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne FeatureZoneCurv_1103_TypeType;
-  FeatureZoneCurv_1103_TypeVal FeatureZoneCurv_1103_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class FeatureZonePoin_1104_Type :
-  public XmlTypeBase
-{
-public:
-  FeatureZonePoin_1104_Type();
-  FeatureZonePoin_1104_Type(
-    FeatureZonePoin_1104_TypeChoicePair * FeatureZonePoin_1104_TypePairIn);
-  ~FeatureZonePoin_1104_Type();
-  void printSelf(FILE * outFile);
-
-  FeatureZonePoin_1104_TypeChoicePair * getFeatureZonePoin_1104_TypePair();
-  void setFeatureZonePoin_1104_TypePair(FeatureZonePoin_1104_TypeChoicePair * FeatureZonePoin_1104_TypePairIn);
-
-protected:
-  FeatureZonePoin_1104_TypeChoicePair * FeatureZonePoin_1104_TypePair;
-};
-
-/* ***************************************************************** */
-
-union FeatureZonePoin_1104_TypeVal
+union FeatureZonePoin_1079_TypeVal
 {
   QIFReferenceFullType * VertexId;
   QIFReferenceFullType * PointId;
@@ -12879,46 +12760,46 @@ union FeatureZonePoin_1104_TypeVal
 
 /* ***************************************************************** */
 
-class FeatureZonePoin_1104_TypeChoicePair :
+class FeatureZonePoin_1079_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     VertexIdE,
     PointIdE };
-  FeatureZonePoin_1104_TypeChoicePair();
-  FeatureZonePoin_1104_TypeChoicePair(
-    whichOne FeatureZonePoin_1104_TypeTypeIn,
-    FeatureZonePoin_1104_TypeVal FeatureZonePoin_1104_TypeValueIn);
-  ~FeatureZonePoin_1104_TypeChoicePair();
+  FeatureZonePoin_1079_TypeChoicePair();
+  FeatureZonePoin_1079_TypeChoicePair(
+    whichOne FeatureZonePoin_1079_TypeTypeIn,
+    FeatureZonePoin_1079_TypeVal FeatureZonePoin_1079_TypeValueIn);
+  ~FeatureZonePoin_1079_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne FeatureZonePoin_1104_TypeType;
-  FeatureZonePoin_1104_TypeVal FeatureZonePoin_1104_TypeValue;
+  whichOne FeatureZonePoin_1079_TypeType;
+  FeatureZonePoin_1079_TypeVal FeatureZonePoin_1079_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class GroupFeatureDef_1105_Type :
+class GroupFeatureDef_1080_Type :
   public XmlTypeBase
 {
 public:
-  GroupFeatureDef_1105_Type();
-  GroupFeatureDef_1105_Type(
-    GroupFeatureDef_1105_TypeChoicePair * GroupFeatureDef_1105_TypePairIn);
-  ~GroupFeatureDef_1105_Type();
+  GroupFeatureDef_1080_Type();
+  GroupFeatureDef_1080_Type(
+    GroupFeatureDef_1080_TypeChoicePair * GroupFeatureDef_1080_TypePairIn);
+  ~GroupFeatureDef_1080_Type();
   void printSelf(FILE * outFile);
 
-  GroupFeatureDef_1105_TypeChoicePair * getGroupFeatureDef_1105_TypePair();
-  void setGroupFeatureDef_1105_TypePair(GroupFeatureDef_1105_TypeChoicePair * GroupFeatureDef_1105_TypePairIn);
+  GroupFeatureDef_1080_TypeChoicePair * getGroupFeatureDef_1080_TypePair();
+  void setGroupFeatureDef_1080_TypePair(GroupFeatureDef_1080_TypeChoicePair * GroupFeatureDef_1080_TypePairIn);
 
 protected:
-  GroupFeatureDef_1105_TypeChoicePair * GroupFeatureDef_1105_TypePair;
+  GroupFeatureDef_1080_TypeChoicePair * GroupFeatureDef_1080_TypePair;
 };
 
 /* ***************************************************************** */
 
-union GroupFeatureDef_1105_TypeVal
+union GroupFeatureDef_1080_TypeVal
 {
   XmlBoolean * IsCountersunkHole;
   XmlBoolean * IsCounterboredHole;
@@ -12927,7 +12808,7 @@ union GroupFeatureDef_1105_TypeVal
 
 /* ***************************************************************** */
 
-class GroupFeatureDef_1105_TypeChoicePair :
+class GroupFeatureDef_1080_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -12935,39 +12816,39 @@ public:
     IsCountersunkHoleE,
     IsCounterboredHoleE,
     IsSpotfaceE };
-  GroupFeatureDef_1105_TypeChoicePair();
-  GroupFeatureDef_1105_TypeChoicePair(
-    whichOne GroupFeatureDef_1105_TypeTypeIn,
-    GroupFeatureDef_1105_TypeVal GroupFeatureDef_1105_TypeValueIn);
-  ~GroupFeatureDef_1105_TypeChoicePair();
+  GroupFeatureDef_1080_TypeChoicePair();
+  GroupFeatureDef_1080_TypeChoicePair(
+    whichOne GroupFeatureDef_1080_TypeTypeIn,
+    GroupFeatureDef_1080_TypeVal GroupFeatureDef_1080_TypeValueIn);
+  ~GroupFeatureDef_1080_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne GroupFeatureDef_1105_TypeType;
-  GroupFeatureDef_1105_TypeVal GroupFeatureDef_1105_TypeValue;
+  whichOne GroupFeatureDef_1080_TypeType;
+  GroupFeatureDef_1080_TypeVal GroupFeatureDef_1080_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1106_Type :
+class MeasuredPointSe_1081_Type :
   public XmlTypeBase
 {
 public:
-  MeasuredPointSe_1106_Type();
-  MeasuredPointSe_1106_Type(
-    MeasuredPointSe_1106_TypeChoicePair * MeasuredPointSe_1106_TypePairIn);
-  ~MeasuredPointSe_1106_Type();
+  MeasuredPointSe_1081_Type();
+  MeasuredPointSe_1081_Type(
+    MeasuredPointSe_1081_TypeChoicePair * MeasuredPointSe_1081_TypePairIn);
+  ~MeasuredPointSe_1081_Type();
   void printSelf(FILE * outFile);
 
-  MeasuredPointSe_1106_TypeChoicePair * getMeasuredPointSe_1106_TypePair();
-  void setMeasuredPointSe_1106_TypePair(MeasuredPointSe_1106_TypeChoicePair * MeasuredPointSe_1106_TypePairIn);
+  MeasuredPointSe_1081_TypeChoicePair * getMeasuredPointSe_1081_TypePair();
+  void setMeasuredPointSe_1081_TypePair(MeasuredPointSe_1081_TypeChoicePair * MeasuredPointSe_1081_TypePairIn);
 
 protected:
-  MeasuredPointSe_1106_TypeChoicePair * MeasuredPointSe_1106_TypePair;
+  MeasuredPointSe_1081_TypeChoicePair * MeasuredPointSe_1081_TypePair;
 };
 
 /* ***************************************************************** */
 
-union MeasuredPointSe_1106_TypeVal
+union MeasuredPointSe_1081_TypeVal
 {
   QIFReferenceFullType * CoordinateSystemId;
   QIFReferenceType * TranformId;
@@ -12975,46 +12856,46 @@ union MeasuredPointSe_1106_TypeVal
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1106_TypeChoicePair :
+class MeasuredPointSe_1081_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     CoordinateSystemIdE,
     TranformIdE };
-  MeasuredPointSe_1106_TypeChoicePair();
-  MeasuredPointSe_1106_TypeChoicePair(
-    whichOne MeasuredPointSe_1106_TypeTypeIn,
-    MeasuredPointSe_1106_TypeVal MeasuredPointSe_1106_TypeValueIn);
-  ~MeasuredPointSe_1106_TypeChoicePair();
+  MeasuredPointSe_1081_TypeChoicePair();
+  MeasuredPointSe_1081_TypeChoicePair(
+    whichOne MeasuredPointSe_1081_TypeTypeIn,
+    MeasuredPointSe_1081_TypeVal MeasuredPointSe_1081_TypeValueIn);
+  ~MeasuredPointSe_1081_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne MeasuredPointSe_1106_TypeType;
-  MeasuredPointSe_1106_TypeVal MeasuredPointSe_1106_TypeValue;
+  whichOne MeasuredPointSe_1081_TypeType;
+  MeasuredPointSe_1081_TypeVal MeasuredPointSe_1081_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1107_Type :
+class MeasuredPointSe_1082_Type :
   public XmlTypeBase
 {
 public:
-  MeasuredPointSe_1107_Type();
-  MeasuredPointSe_1107_Type(
-    MeasuredPointSe_1107_TypeChoicePair * MeasuredPointSe_1107_TypePairIn);
-  ~MeasuredPointSe_1107_Type();
+  MeasuredPointSe_1082_Type();
+  MeasuredPointSe_1082_Type(
+    MeasuredPointSe_1082_TypeChoicePair * MeasuredPointSe_1082_TypePairIn);
+  ~MeasuredPointSe_1082_Type();
   void printSelf(FILE * outFile);
 
-  MeasuredPointSe_1107_TypeChoicePair * getMeasuredPointSe_1107_TypePair();
-  void setMeasuredPointSe_1107_TypePair(MeasuredPointSe_1107_TypeChoicePair * MeasuredPointSe_1107_TypePairIn);
+  MeasuredPointSe_1082_TypeChoicePair * getMeasuredPointSe_1082_TypePair();
+  void setMeasuredPointSe_1082_TypePair(MeasuredPointSe_1082_TypeChoicePair * MeasuredPointSe_1082_TypePairIn);
 
 protected:
-  MeasuredPointSe_1107_TypeChoicePair * MeasuredPointSe_1107_TypePair;
+  MeasuredPointSe_1082_TypeChoicePair * MeasuredPointSe_1082_TypePair;
 };
 
 /* ***************************************************************** */
 
-union MeasuredPointSe_1107_TypeVal
+union MeasuredPointSe_1082_TypeVal
 {
   ListDoubleType * Points;
   ArrayBinaryType * BinaryPoints;
@@ -13022,46 +12903,46 @@ union MeasuredPointSe_1107_TypeVal
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1107_TypeChoicePair :
+class MeasuredPointSe_1082_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     PointsE,
     BinaryPointsE };
-  MeasuredPointSe_1107_TypeChoicePair();
-  MeasuredPointSe_1107_TypeChoicePair(
-    whichOne MeasuredPointSe_1107_TypeTypeIn,
-    MeasuredPointSe_1107_TypeVal MeasuredPointSe_1107_TypeValueIn);
-  ~MeasuredPointSe_1107_TypeChoicePair();
+  MeasuredPointSe_1082_TypeChoicePair();
+  MeasuredPointSe_1082_TypeChoicePair(
+    whichOne MeasuredPointSe_1082_TypeTypeIn,
+    MeasuredPointSe_1082_TypeVal MeasuredPointSe_1082_TypeValueIn);
+  ~MeasuredPointSe_1082_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne MeasuredPointSe_1107_TypeType;
-  MeasuredPointSe_1107_TypeVal MeasuredPointSe_1107_TypeValue;
+  whichOne MeasuredPointSe_1082_TypeType;
+  MeasuredPointSe_1082_TypeVal MeasuredPointSe_1082_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1108_Type :
+class MeasuredPointSe_1083_Type :
   public XmlTypeBase
 {
 public:
-  MeasuredPointSe_1108_Type();
-  MeasuredPointSe_1108_Type(
-    MeasuredPointSe_1108_TypeChoicePair * MeasuredPointSe_1108_TypePairIn);
-  ~MeasuredPointSe_1108_Type();
+  MeasuredPointSe_1083_Type();
+  MeasuredPointSe_1083_Type(
+    MeasuredPointSe_1083_TypeChoicePair * MeasuredPointSe_1083_TypePairIn);
+  ~MeasuredPointSe_1083_Type();
   void printSelf(FILE * outFile);
 
-  MeasuredPointSe_1108_TypeChoicePair * getMeasuredPointSe_1108_TypePair();
-  void setMeasuredPointSe_1108_TypePair(MeasuredPointSe_1108_TypeChoicePair * MeasuredPointSe_1108_TypePairIn);
+  MeasuredPointSe_1083_TypeChoicePair * getMeasuredPointSe_1083_TypePair();
+  void setMeasuredPointSe_1083_TypePair(MeasuredPointSe_1083_TypeChoicePair * MeasuredPointSe_1083_TypePairIn);
 
 protected:
-  MeasuredPointSe_1108_TypeChoicePair * MeasuredPointSe_1108_TypePair;
+  MeasuredPointSe_1083_TypeChoicePair * MeasuredPointSe_1083_TypePair;
 };
 
 /* ***************************************************************** */
 
-union MeasuredPointSe_1108_TypeVal
+union MeasuredPointSe_1083_TypeVal
 {
   ListDoubleType * Normals;
   ArrayBinaryType * BinaryNormals;
@@ -13069,46 +12950,46 @@ union MeasuredPointSe_1108_TypeVal
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1108_TypeChoicePair :
+class MeasuredPointSe_1083_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     NormalsE,
     BinaryNormalsE };
-  MeasuredPointSe_1108_TypeChoicePair();
-  MeasuredPointSe_1108_TypeChoicePair(
-    whichOne MeasuredPointSe_1108_TypeTypeIn,
-    MeasuredPointSe_1108_TypeVal MeasuredPointSe_1108_TypeValueIn);
-  ~MeasuredPointSe_1108_TypeChoicePair();
+  MeasuredPointSe_1083_TypeChoicePair();
+  MeasuredPointSe_1083_TypeChoicePair(
+    whichOne MeasuredPointSe_1083_TypeTypeIn,
+    MeasuredPointSe_1083_TypeVal MeasuredPointSe_1083_TypeValueIn);
+  ~MeasuredPointSe_1083_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne MeasuredPointSe_1108_TypeType;
-  MeasuredPointSe_1108_TypeVal MeasuredPointSe_1108_TypeValue;
+  whichOne MeasuredPointSe_1083_TypeType;
+  MeasuredPointSe_1083_TypeVal MeasuredPointSe_1083_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1109_Type :
+class MeasuredPointSe_1084_Type :
   public XmlTypeBase
 {
 public:
-  MeasuredPointSe_1109_Type();
-  MeasuredPointSe_1109_Type(
-    MeasuredPointSe_1109_TypeChoicePair * MeasuredPointSe_1109_TypePairIn);
-  ~MeasuredPointSe_1109_Type();
+  MeasuredPointSe_1084_Type();
+  MeasuredPointSe_1084_Type(
+    MeasuredPointSe_1084_TypeChoicePair * MeasuredPointSe_1084_TypePairIn);
+  ~MeasuredPointSe_1084_Type();
   void printSelf(FILE * outFile);
 
-  MeasuredPointSe_1109_TypeChoicePair * getMeasuredPointSe_1109_TypePair();
-  void setMeasuredPointSe_1109_TypePair(MeasuredPointSe_1109_TypeChoicePair * MeasuredPointSe_1109_TypePairIn);
+  MeasuredPointSe_1084_TypeChoicePair * getMeasuredPointSe_1084_TypePair();
+  void setMeasuredPointSe_1084_TypePair(MeasuredPointSe_1084_TypeChoicePair * MeasuredPointSe_1084_TypePairIn);
 
 protected:
-  MeasuredPointSe_1109_TypeChoicePair * MeasuredPointSe_1109_TypePair;
+  MeasuredPointSe_1084_TypeChoicePair * MeasuredPointSe_1084_TypePair;
 };
 
 /* ***************************************************************** */
 
-union MeasuredPointSe_1109_TypeVal
+union MeasuredPointSe_1084_TypeVal
 {
   XmlBoolean * Compensated;
   ListBooleanType * Compensations;
@@ -13117,7 +12998,7 @@ union MeasuredPointSe_1109_TypeVal
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1109_TypeChoicePair :
+class MeasuredPointSe_1084_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -13125,39 +13006,39 @@ public:
     CompensatedE,
     CompensationsE,
     BinaryCompensatedE };
-  MeasuredPointSe_1109_TypeChoicePair();
-  MeasuredPointSe_1109_TypeChoicePair(
-    whichOne MeasuredPointSe_1109_TypeTypeIn,
-    MeasuredPointSe_1109_TypeVal MeasuredPointSe_1109_TypeValueIn);
-  ~MeasuredPointSe_1109_TypeChoicePair();
+  MeasuredPointSe_1084_TypeChoicePair();
+  MeasuredPointSe_1084_TypeChoicePair(
+    whichOne MeasuredPointSe_1084_TypeTypeIn,
+    MeasuredPointSe_1084_TypeVal MeasuredPointSe_1084_TypeValueIn);
+  ~MeasuredPointSe_1084_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne MeasuredPointSe_1109_TypeType;
-  MeasuredPointSe_1109_TypeVal MeasuredPointSe_1109_TypeValue;
+  whichOne MeasuredPointSe_1084_TypeType;
+  MeasuredPointSe_1084_TypeVal MeasuredPointSe_1084_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1110_Type :
+class MeasuredPointSe_1085_Type :
   public XmlTypeBase
 {
 public:
-  MeasuredPointSe_1110_Type();
-  MeasuredPointSe_1110_Type(
-    MeasuredPointSe_1110_TypeChoicePair * MeasuredPointSe_1110_TypePairIn);
-  ~MeasuredPointSe_1110_Type();
+  MeasuredPointSe_1085_Type();
+  MeasuredPointSe_1085_Type(
+    MeasuredPointSe_1085_TypeChoicePair * MeasuredPointSe_1085_TypePairIn);
+  ~MeasuredPointSe_1085_Type();
   void printSelf(FILE * outFile);
 
-  MeasuredPointSe_1110_TypeChoicePair * getMeasuredPointSe_1110_TypePair();
-  void setMeasuredPointSe_1110_TypePair(MeasuredPointSe_1110_TypeChoicePair * MeasuredPointSe_1110_TypePairIn);
+  MeasuredPointSe_1085_TypeChoicePair * getMeasuredPointSe_1085_TypePair();
+  void setMeasuredPointSe_1085_TypePair(MeasuredPointSe_1085_TypeChoicePair * MeasuredPointSe_1085_TypePairIn);
 
 protected:
-  MeasuredPointSe_1110_TypeChoicePair * MeasuredPointSe_1110_TypePair;
+  MeasuredPointSe_1085_TypeChoicePair * MeasuredPointSe_1085_TypePair;
 };
 
 /* ***************************************************************** */
 
-union MeasuredPointSe_1110_TypeVal
+union MeasuredPointSe_1085_TypeVal
 {
   XmlDecimal * ProbeRadius;
   ListDoubleType * ProbeRadii;
@@ -13166,7 +13047,7 @@ union MeasuredPointSe_1110_TypeVal
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1110_TypeChoicePair :
+class MeasuredPointSe_1085_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -13174,39 +13055,39 @@ public:
     ProbeRadiusE,
     ProbeRadiiE,
     BinaryProbeRadiiE };
-  MeasuredPointSe_1110_TypeChoicePair();
-  MeasuredPointSe_1110_TypeChoicePair(
-    whichOne MeasuredPointSe_1110_TypeTypeIn,
-    MeasuredPointSe_1110_TypeVal MeasuredPointSe_1110_TypeValueIn);
-  ~MeasuredPointSe_1110_TypeChoicePair();
+  MeasuredPointSe_1085_TypeChoicePair();
+  MeasuredPointSe_1085_TypeChoicePair(
+    whichOne MeasuredPointSe_1085_TypeTypeIn,
+    MeasuredPointSe_1085_TypeVal MeasuredPointSe_1085_TypeValueIn);
+  ~MeasuredPointSe_1085_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne MeasuredPointSe_1110_TypeType;
-  MeasuredPointSe_1110_TypeVal MeasuredPointSe_1110_TypeValue;
+  whichOne MeasuredPointSe_1085_TypeType;
+  MeasuredPointSe_1085_TypeVal MeasuredPointSe_1085_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1111_Type :
+class MeasuredPointSe_1086_Type :
   public XmlTypeBase
 {
 public:
-  MeasuredPointSe_1111_Type();
-  MeasuredPointSe_1111_Type(
-    MeasuredPointSe_1111_TypeChoicePair * MeasuredPointSe_1111_TypePairIn);
-  ~MeasuredPointSe_1111_Type();
+  MeasuredPointSe_1086_Type();
+  MeasuredPointSe_1086_Type(
+    MeasuredPointSe_1086_TypeChoicePair * MeasuredPointSe_1086_TypePairIn);
+  ~MeasuredPointSe_1086_Type();
   void printSelf(FILE * outFile);
 
-  MeasuredPointSe_1111_TypeChoicePair * getMeasuredPointSe_1111_TypePair();
-  void setMeasuredPointSe_1111_TypePair(MeasuredPointSe_1111_TypeChoicePair * MeasuredPointSe_1111_TypePairIn);
+  MeasuredPointSe_1086_TypeChoicePair * getMeasuredPointSe_1086_TypePair();
+  void setMeasuredPointSe_1086_TypePair(MeasuredPointSe_1086_TypeChoicePair * MeasuredPointSe_1086_TypePairIn);
 
 protected:
-  MeasuredPointSe_1111_TypeChoicePair * MeasuredPointSe_1111_TypePair;
+  MeasuredPointSe_1086_TypeChoicePair * MeasuredPointSe_1086_TypePair;
 };
 
 /* ***************************************************************** */
 
-union MeasuredPointSe_1111_TypeVal
+union MeasuredPointSe_1086_TypeVal
 {
   QIFReferenceType * SensorId;
   ListQIFReferenceType * SensorIds;
@@ -13215,7 +13096,7 @@ union MeasuredPointSe_1111_TypeVal
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1111_TypeChoicePair :
+class MeasuredPointSe_1086_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -13223,39 +13104,39 @@ public:
     SensorIdE,
     SensorIdsE,
     BinarySensorIdsE };
-  MeasuredPointSe_1111_TypeChoicePair();
-  MeasuredPointSe_1111_TypeChoicePair(
-    whichOne MeasuredPointSe_1111_TypeTypeIn,
-    MeasuredPointSe_1111_TypeVal MeasuredPointSe_1111_TypeValueIn);
-  ~MeasuredPointSe_1111_TypeChoicePair();
+  MeasuredPointSe_1086_TypeChoicePair();
+  MeasuredPointSe_1086_TypeChoicePair(
+    whichOne MeasuredPointSe_1086_TypeTypeIn,
+    MeasuredPointSe_1086_TypeVal MeasuredPointSe_1086_TypeValueIn);
+  ~MeasuredPointSe_1086_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne MeasuredPointSe_1111_TypeType;
-  MeasuredPointSe_1111_TypeVal MeasuredPointSe_1111_TypeValue;
+  whichOne MeasuredPointSe_1086_TypeType;
+  MeasuredPointSe_1086_TypeVal MeasuredPointSe_1086_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1112_Type :
+class MeasuredPointSe_1087_Type :
   public XmlTypeBase
 {
 public:
-  MeasuredPointSe_1112_Type();
-  MeasuredPointSe_1112_Type(
-    MeasuredPointSe_1112_TypeChoicePair * MeasuredPointSe_1112_TypePairIn);
-  ~MeasuredPointSe_1112_Type();
+  MeasuredPointSe_1087_Type();
+  MeasuredPointSe_1087_Type(
+    MeasuredPointSe_1087_TypeChoicePair * MeasuredPointSe_1087_TypePairIn);
+  ~MeasuredPointSe_1087_Type();
   void printSelf(FILE * outFile);
 
-  MeasuredPointSe_1112_TypeChoicePair * getMeasuredPointSe_1112_TypePair();
-  void setMeasuredPointSe_1112_TypePair(MeasuredPointSe_1112_TypeChoicePair * MeasuredPointSe_1112_TypePairIn);
+  MeasuredPointSe_1087_TypeChoicePair * getMeasuredPointSe_1087_TypePair();
+  void setMeasuredPointSe_1087_TypePair(MeasuredPointSe_1087_TypeChoicePair * MeasuredPointSe_1087_TypePairIn);
 
 protected:
-  MeasuredPointSe_1112_TypeChoicePair * MeasuredPointSe_1112_TypePair;
+  MeasuredPointSe_1087_TypeChoicePair * MeasuredPointSe_1087_TypePair;
 };
 
 /* ***************************************************************** */
 
-union MeasuredPointSe_1112_TypeVal
+union MeasuredPointSe_1087_TypeVal
 {
   QIFReferenceType * TipId;
   ListQIFReferenceType * TipIds;
@@ -13264,7 +13145,7 @@ union MeasuredPointSe_1112_TypeVal
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1112_TypeChoicePair :
+class MeasuredPointSe_1087_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -13272,39 +13153,39 @@ public:
     TipIdE,
     TipIdsE,
     BinaryTipIdsE };
-  MeasuredPointSe_1112_TypeChoicePair();
-  MeasuredPointSe_1112_TypeChoicePair(
-    whichOne MeasuredPointSe_1112_TypeTypeIn,
-    MeasuredPointSe_1112_TypeVal MeasuredPointSe_1112_TypeValueIn);
-  ~MeasuredPointSe_1112_TypeChoicePair();
+  MeasuredPointSe_1087_TypeChoicePair();
+  MeasuredPointSe_1087_TypeChoicePair(
+    whichOne MeasuredPointSe_1087_TypeTypeIn,
+    MeasuredPointSe_1087_TypeVal MeasuredPointSe_1087_TypeValueIn);
+  ~MeasuredPointSe_1087_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne MeasuredPointSe_1112_TypeType;
-  MeasuredPointSe_1112_TypeVal MeasuredPointSe_1112_TypeValue;
+  whichOne MeasuredPointSe_1087_TypeType;
+  MeasuredPointSe_1087_TypeVal MeasuredPointSe_1087_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1113_Type :
+class MeasuredPointSe_1088_Type :
   public XmlTypeBase
 {
 public:
-  MeasuredPointSe_1113_Type();
-  MeasuredPointSe_1113_Type(
-    MeasuredPointSe_1113_TypeChoicePair * MeasuredPointSe_1113_TypePairIn);
-  ~MeasuredPointSe_1113_Type();
+  MeasuredPointSe_1088_Type();
+  MeasuredPointSe_1088_Type(
+    MeasuredPointSe_1088_TypeChoicePair * MeasuredPointSe_1088_TypePairIn);
+  ~MeasuredPointSe_1088_Type();
   void printSelf(FILE * outFile);
 
-  MeasuredPointSe_1113_TypeChoicePair * getMeasuredPointSe_1113_TypePair();
-  void setMeasuredPointSe_1113_TypePair(MeasuredPointSe_1113_TypeChoicePair * MeasuredPointSe_1113_TypePairIn);
+  MeasuredPointSe_1088_TypeChoicePair * getMeasuredPointSe_1088_TypePair();
+  void setMeasuredPointSe_1088_TypePair(MeasuredPointSe_1088_TypeChoicePair * MeasuredPointSe_1088_TypePairIn);
 
 protected:
-  MeasuredPointSe_1113_TypeChoicePair * MeasuredPointSe_1113_TypePair;
+  MeasuredPointSe_1088_TypeChoicePair * MeasuredPointSe_1088_TypePair;
 };
 
 /* ***************************************************************** */
 
-union MeasuredPointSe_1113_TypeVal
+union MeasuredPointSe_1088_TypeVal
 {
   ListQIFReferenceFullType * MeasurePointNominalIds;
   ArrayBinaryQIFReferenceFullType * BinaryMeasurePointNominalIds;
@@ -13312,46 +13193,46 @@ union MeasuredPointSe_1113_TypeVal
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1113_TypeChoicePair :
+class MeasuredPointSe_1088_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     MeasurePointNominalIdsE,
     BinaryMeasurePointNominalIdsE };
-  MeasuredPointSe_1113_TypeChoicePair();
-  MeasuredPointSe_1113_TypeChoicePair(
-    whichOne MeasuredPointSe_1113_TypeTypeIn,
-    MeasuredPointSe_1113_TypeVal MeasuredPointSe_1113_TypeValueIn);
-  ~MeasuredPointSe_1113_TypeChoicePair();
+  MeasuredPointSe_1088_TypeChoicePair();
+  MeasuredPointSe_1088_TypeChoicePair(
+    whichOne MeasuredPointSe_1088_TypeTypeIn,
+    MeasuredPointSe_1088_TypeVal MeasuredPointSe_1088_TypeValueIn);
+  ~MeasuredPointSe_1088_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne MeasuredPointSe_1113_TypeType;
-  MeasuredPointSe_1113_TypeVal MeasuredPointSe_1113_TypeValue;
+  whichOne MeasuredPointSe_1088_TypeType;
+  MeasuredPointSe_1088_TypeVal MeasuredPointSe_1088_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1114_Type :
+class MeasuredPointSe_1089_Type :
   public XmlTypeBase
 {
 public:
-  MeasuredPointSe_1114_Type();
-  MeasuredPointSe_1114_Type(
-    MeasuredPointSe_1114_TypeChoicePair * MeasuredPointSe_1114_TypePairIn);
-  ~MeasuredPointSe_1114_Type();
+  MeasuredPointSe_1089_Type();
+  MeasuredPointSe_1089_Type(
+    MeasuredPointSe_1089_TypeChoicePair * MeasuredPointSe_1089_TypePairIn);
+  ~MeasuredPointSe_1089_Type();
   void printSelf(FILE * outFile);
 
-  MeasuredPointSe_1114_TypeChoicePair * getMeasuredPointSe_1114_TypePair();
-  void setMeasuredPointSe_1114_TypePair(MeasuredPointSe_1114_TypeChoicePair * MeasuredPointSe_1114_TypePairIn);
+  MeasuredPointSe_1089_TypeChoicePair * getMeasuredPointSe_1089_TypePair();
+  void setMeasuredPointSe_1089_TypePair(MeasuredPointSe_1089_TypeChoicePair * MeasuredPointSe_1089_TypePairIn);
 
 protected:
-  MeasuredPointSe_1114_TypeChoicePair * MeasuredPointSe_1114_TypePair;
+  MeasuredPointSe_1089_TypeChoicePair * MeasuredPointSe_1089_TypePair;
 };
 
 /* ***************************************************************** */
 
-union MeasuredPointSe_1114_TypeVal
+union MeasuredPointSe_1089_TypeVal
 {
   XmlDateTime * TimeStamp;
   ListDateTimeType * TimeStamps;
@@ -13359,46 +13240,46 @@ union MeasuredPointSe_1114_TypeVal
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1114_TypeChoicePair :
+class MeasuredPointSe_1089_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     TimeStampE,
     TimeStampsE };
-  MeasuredPointSe_1114_TypeChoicePair();
-  MeasuredPointSe_1114_TypeChoicePair(
-    whichOne MeasuredPointSe_1114_TypeTypeIn,
-    MeasuredPointSe_1114_TypeVal MeasuredPointSe_1114_TypeValueIn);
-  ~MeasuredPointSe_1114_TypeChoicePair();
+  MeasuredPointSe_1089_TypeChoicePair();
+  MeasuredPointSe_1089_TypeChoicePair(
+    whichOne MeasuredPointSe_1089_TypeTypeIn,
+    MeasuredPointSe_1089_TypeVal MeasuredPointSe_1089_TypeValueIn);
+  ~MeasuredPointSe_1089_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne MeasuredPointSe_1114_TypeType;
-  MeasuredPointSe_1114_TypeVal MeasuredPointSe_1114_TypeValue;
+  whichOne MeasuredPointSe_1089_TypeType;
+  MeasuredPointSe_1089_TypeVal MeasuredPointSe_1089_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1115_Type :
+class MeasuredPointSe_1090_Type :
   public XmlTypeBase
 {
 public:
-  MeasuredPointSe_1115_Type();
-  MeasuredPointSe_1115_Type(
-    MeasuredPointSe_1115_TypeChoicePair * MeasuredPointSe_1115_TypePairIn);
-  ~MeasuredPointSe_1115_Type();
+  MeasuredPointSe_1090_Type();
+  MeasuredPointSe_1090_Type(
+    MeasuredPointSe_1090_TypeChoicePair * MeasuredPointSe_1090_TypePairIn);
+  ~MeasuredPointSe_1090_Type();
   void printSelf(FILE * outFile);
 
-  MeasuredPointSe_1115_TypeChoicePair * getMeasuredPointSe_1115_TypePair();
-  void setMeasuredPointSe_1115_TypePair(MeasuredPointSe_1115_TypeChoicePair * MeasuredPointSe_1115_TypePairIn);
+  MeasuredPointSe_1090_TypeChoicePair * getMeasuredPointSe_1090_TypePair();
+  void setMeasuredPointSe_1090_TypePair(MeasuredPointSe_1090_TypeChoicePair * MeasuredPointSe_1090_TypePairIn);
 
 protected:
-  MeasuredPointSe_1115_TypeChoicePair * MeasuredPointSe_1115_TypePair;
+  MeasuredPointSe_1090_TypeChoicePair * MeasuredPointSe_1090_TypePair;
 };
 
 /* ***************************************************************** */
 
-union MeasuredPointSe_1115_TypeVal
+union MeasuredPointSe_1090_TypeVal
 {
   ListDoubleType * Quality;
   ArrayBinaryType * BinaryQuality;
@@ -13406,46 +13287,46 @@ union MeasuredPointSe_1115_TypeVal
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1115_TypeChoicePair :
+class MeasuredPointSe_1090_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     QualityE,
     BinaryQualityE };
-  MeasuredPointSe_1115_TypeChoicePair();
-  MeasuredPointSe_1115_TypeChoicePair(
-    whichOne MeasuredPointSe_1115_TypeTypeIn,
-    MeasuredPointSe_1115_TypeVal MeasuredPointSe_1115_TypeValueIn);
-  ~MeasuredPointSe_1115_TypeChoicePair();
+  MeasuredPointSe_1090_TypeChoicePair();
+  MeasuredPointSe_1090_TypeChoicePair(
+    whichOne MeasuredPointSe_1090_TypeTypeIn,
+    MeasuredPointSe_1090_TypeVal MeasuredPointSe_1090_TypeValueIn);
+  ~MeasuredPointSe_1090_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne MeasuredPointSe_1115_TypeType;
-  MeasuredPointSe_1115_TypeVal MeasuredPointSe_1115_TypeValue;
+  whichOne MeasuredPointSe_1090_TypeType;
+  MeasuredPointSe_1090_TypeVal MeasuredPointSe_1090_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1116_Type :
+class MeasuredPointSe_1091_Type :
   public XmlTypeBase
 {
 public:
-  MeasuredPointSe_1116_Type();
-  MeasuredPointSe_1116_Type(
-    MeasuredPointSe_1116_TypeChoicePair * MeasuredPointSe_1116_TypePairIn);
-  ~MeasuredPointSe_1116_Type();
+  MeasuredPointSe_1091_Type();
+  MeasuredPointSe_1091_Type(
+    MeasuredPointSe_1091_TypeChoicePair * MeasuredPointSe_1091_TypePairIn);
+  ~MeasuredPointSe_1091_Type();
   void printSelf(FILE * outFile);
 
-  MeasuredPointSe_1116_TypeChoicePair * getMeasuredPointSe_1116_TypePair();
-  void setMeasuredPointSe_1116_TypePair(MeasuredPointSe_1116_TypeChoicePair * MeasuredPointSe_1116_TypePairIn);
+  MeasuredPointSe_1091_TypeChoicePair * getMeasuredPointSe_1091_TypePair();
+  void setMeasuredPointSe_1091_TypePair(MeasuredPointSe_1091_TypeChoicePair * MeasuredPointSe_1091_TypePairIn);
 
 protected:
-  MeasuredPointSe_1116_TypeChoicePair * MeasuredPointSe_1116_TypePair;
+  MeasuredPointSe_1091_TypeChoicePair * MeasuredPointSe_1091_TypePair;
 };
 
 /* ***************************************************************** */
 
-union MeasuredPointSe_1116_TypeVal
+union MeasuredPointSe_1091_TypeVal
 {
   ListDoubleType * Deviations;
   ArrayBinaryType * BinaryDeviations;
@@ -13453,46 +13334,46 @@ union MeasuredPointSe_1116_TypeVal
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1116_TypeChoicePair :
+class MeasuredPointSe_1091_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     DeviationsE,
     BinaryDeviationsE };
-  MeasuredPointSe_1116_TypeChoicePair();
-  MeasuredPointSe_1116_TypeChoicePair(
-    whichOne MeasuredPointSe_1116_TypeTypeIn,
-    MeasuredPointSe_1116_TypeVal MeasuredPointSe_1116_TypeValueIn);
-  ~MeasuredPointSe_1116_TypeChoicePair();
+  MeasuredPointSe_1091_TypeChoicePair();
+  MeasuredPointSe_1091_TypeChoicePair(
+    whichOne MeasuredPointSe_1091_TypeTypeIn,
+    MeasuredPointSe_1091_TypeVal MeasuredPointSe_1091_TypeValueIn);
+  ~MeasuredPointSe_1091_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne MeasuredPointSe_1116_TypeType;
-  MeasuredPointSe_1116_TypeVal MeasuredPointSe_1116_TypeValue;
+  whichOne MeasuredPointSe_1091_TypeType;
+  MeasuredPointSe_1091_TypeVal MeasuredPointSe_1091_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1117_Type :
+class MeasuredPointSe_1092_Type :
   public XmlTypeBase
 {
 public:
-  MeasuredPointSe_1117_Type();
-  MeasuredPointSe_1117_Type(
-    MeasuredPointSe_1117_TypeChoicePair * MeasuredPointSe_1117_TypePairIn);
-  ~MeasuredPointSe_1117_Type();
+  MeasuredPointSe_1092_Type();
+  MeasuredPointSe_1092_Type(
+    MeasuredPointSe_1092_TypeChoicePair * MeasuredPointSe_1092_TypePairIn);
+  ~MeasuredPointSe_1092_Type();
   void printSelf(FILE * outFile);
 
-  MeasuredPointSe_1117_TypeChoicePair * getMeasuredPointSe_1117_TypePair();
-  void setMeasuredPointSe_1117_TypePair(MeasuredPointSe_1117_TypeChoicePair * MeasuredPointSe_1117_TypePairIn);
+  MeasuredPointSe_1092_TypeChoicePair * getMeasuredPointSe_1092_TypePair();
+  void setMeasuredPointSe_1092_TypePair(MeasuredPointSe_1092_TypeChoicePair * MeasuredPointSe_1092_TypePairIn);
 
 protected:
-  MeasuredPointSe_1117_TypeChoicePair * MeasuredPointSe_1117_TypePair;
+  MeasuredPointSe_1092_TypeChoicePair * MeasuredPointSe_1092_TypePair;
 };
 
 /* ***************************************************************** */
 
-union MeasuredPointSe_1117_TypeVal
+union MeasuredPointSe_1092_TypeVal
 {
   ListIntType * Colors;
   ArrayBinaryType * BinaryColors;
@@ -13500,69 +13381,69 @@ union MeasuredPointSe_1117_TypeVal
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1117_TypeChoicePair :
+class MeasuredPointSe_1092_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     ColorsE,
     BinaryColorsE };
-  MeasuredPointSe_1117_TypeChoicePair();
-  MeasuredPointSe_1117_TypeChoicePair(
-    whichOne MeasuredPointSe_1117_TypeTypeIn,
-    MeasuredPointSe_1117_TypeVal MeasuredPointSe_1117_TypeValueIn);
-  ~MeasuredPointSe_1117_TypeChoicePair();
+  MeasuredPointSe_1092_TypeChoicePair();
+  MeasuredPointSe_1092_TypeChoicePair(
+    whichOne MeasuredPointSe_1092_TypeTypeIn,
+    MeasuredPointSe_1092_TypeVal MeasuredPointSe_1092_TypeValueIn);
+  ~MeasuredPointSe_1092_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne MeasuredPointSe_1117_TypeType;
-  MeasuredPointSe_1117_TypeVal MeasuredPointSe_1117_TypeValue;
+  whichOne MeasuredPointSe_1092_TypeType;
+  MeasuredPointSe_1092_TypeVal MeasuredPointSe_1092_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1118_Type :
+class MeasuredPointSe_1093_Type :
   public XmlTypeBase
 {
 public:
-  MeasuredPointSe_1118_Type();
-  MeasuredPointSe_1118_Type(
+  MeasuredPointSe_1093_Type();
+  MeasuredPointSe_1093_Type(
     NaturalType * NumberOfFacetsIn,
-    MeasuredPointSe_1126_Type * MeasuredPointSe_1126In);
-  ~MeasuredPointSe_1118_Type();
+    MeasuredPointSe_1099_Type * MeasuredPointSe_1099In);
+  ~MeasuredPointSe_1093_Type();
   void printSelf(FILE * outFile);
 
   NaturalType * getNumberOfFacets();
   void setNumberOfFacets(NaturalType * NumberOfFacetsIn);
-  MeasuredPointSe_1126_Type * getMeasuredPointSe_1126();
-  void setMeasuredPointSe_1126(MeasuredPointSe_1126_Type * MeasuredPointSe_1126In);
+  MeasuredPointSe_1099_Type * getMeasuredPointSe_1099();
+  void setMeasuredPointSe_1099(MeasuredPointSe_1099_Type * MeasuredPointSe_1099In);
 
 protected:
   NaturalType * NumberOfFacets;
-  MeasuredPointSe_1126_Type * MeasuredPointSe_1126;
+  MeasuredPointSe_1099_Type * MeasuredPointSe_1099;
 };
 
 /* ***************************************************************** */
 
-class OppositeAngledP_1119_Type :
+class OppositeAngledP_1094_Type :
   public XmlTypeBase
 {
 public:
-  OppositeAngledP_1119_Type();
-  OppositeAngledP_1119_Type(
-    OppositeAngledP_1119_TypeChoicePair * OppositeAngledP_1119_TypePairIn);
-  ~OppositeAngledP_1119_Type();
+  OppositeAngledP_1094_Type();
+  OppositeAngledP_1094_Type(
+    OppositeAngledP_1094_TypeChoicePair * OppositeAngledP_1094_TypePairIn);
+  ~OppositeAngledP_1094_Type();
   void printSelf(FILE * outFile);
 
-  OppositeAngledP_1119_TypeChoicePair * getOppositeAngledP_1119_TypePair();
-  void setOppositeAngledP_1119_TypePair(OppositeAngledP_1119_TypeChoicePair * OppositeAngledP_1119_TypePairIn);
+  OppositeAngledP_1094_TypeChoicePair * getOppositeAngledP_1094_TypePair();
+  void setOppositeAngledP_1094_TypePair(OppositeAngledP_1094_TypeChoicePair * OppositeAngledP_1094_TypePairIn);
 
 protected:
-  OppositeAngledP_1119_TypeChoicePair * OppositeAngledP_1119_TypePair;
+  OppositeAngledP_1094_TypeChoicePair * OppositeAngledP_1094_TypePair;
 };
 
 /* ***************************************************************** */
 
-union OppositeAngledP_1119_TypeVal
+union OppositeAngledP_1094_TypeVal
 {
   AngularValueType * TaperAngle;
   AngularValueType * DraftAngle;
@@ -13570,46 +13451,46 @@ union OppositeAngledP_1119_TypeVal
 
 /* ***************************************************************** */
 
-class OppositeAngledP_1119_TypeChoicePair :
+class OppositeAngledP_1094_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     TaperAngleE,
     DraftAngleE };
-  OppositeAngledP_1119_TypeChoicePair();
-  OppositeAngledP_1119_TypeChoicePair(
-    whichOne OppositeAngledP_1119_TypeTypeIn,
-    OppositeAngledP_1119_TypeVal OppositeAngledP_1119_TypeValueIn);
-  ~OppositeAngledP_1119_TypeChoicePair();
+  OppositeAngledP_1094_TypeChoicePair();
+  OppositeAngledP_1094_TypeChoicePair(
+    whichOne OppositeAngledP_1094_TypeTypeIn,
+    OppositeAngledP_1094_TypeVal OppositeAngledP_1094_TypeValueIn);
+  ~OppositeAngledP_1094_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne OppositeAngledP_1119_TypeType;
-  OppositeAngledP_1119_TypeVal OppositeAngledP_1119_TypeValue;
+  whichOne OppositeAngledP_1094_TypeType;
+  OppositeAngledP_1094_TypeVal OppositeAngledP_1094_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class OppositeAngledP_1120_Type :
+class OppositeAngledP_1095_Type :
   public XmlTypeBase
 {
 public:
-  OppositeAngledP_1120_Type();
-  OppositeAngledP_1120_Type(
-    OppositeAngledP_1120_TypeChoicePair * OppositeAngledP_1120_TypePairIn);
-  ~OppositeAngledP_1120_Type();
+  OppositeAngledP_1095_Type();
+  OppositeAngledP_1095_Type(
+    OppositeAngledP_1095_TypeChoicePair * OppositeAngledP_1095_TypePairIn);
+  ~OppositeAngledP_1095_Type();
   void printSelf(FILE * outFile);
 
-  OppositeAngledP_1120_TypeChoicePair * getOppositeAngledP_1120_TypePair();
-  void setOppositeAngledP_1120_TypePair(OppositeAngledP_1120_TypeChoicePair * OppositeAngledP_1120_TypePairIn);
+  OppositeAngledP_1095_TypeChoicePair * getOppositeAngledP_1095_TypePair();
+  void setOppositeAngledP_1095_TypePair(OppositeAngledP_1095_TypeChoicePair * OppositeAngledP_1095_TypePairIn);
 
 protected:
-  OppositeAngledP_1120_TypeChoicePair * OppositeAngledP_1120_TypePair;
+  OppositeAngledP_1095_TypeChoicePair * OppositeAngledP_1095_TypePair;
 };
 
 /* ***************************************************************** */
 
-union OppositeAngledP_1120_TypeVal
+union OppositeAngledP_1095_TypeVal
 {
   MeasuredAngularValueType * TaperAngle;
   MeasuredAngularValueType * DraftAngle;
@@ -13617,95 +13498,46 @@ union OppositeAngledP_1120_TypeVal
 
 /* ***************************************************************** */
 
-class OppositeAngledP_1120_TypeChoicePair :
+class OppositeAngledP_1095_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     TaperAngleE,
     DraftAngleE };
-  OppositeAngledP_1120_TypeChoicePair();
-  OppositeAngledP_1120_TypeChoicePair(
-    whichOne OppositeAngledP_1120_TypeTypeIn,
-    OppositeAngledP_1120_TypeVal OppositeAngledP_1120_TypeValueIn);
-  ~OppositeAngledP_1120_TypeChoicePair();
+  OppositeAngledP_1095_TypeChoicePair();
+  OppositeAngledP_1095_TypeChoicePair(
+    whichOne OppositeAngledP_1095_TypeTypeIn,
+    OppositeAngledP_1095_TypeVal OppositeAngledP_1095_TypeValueIn);
+  ~OppositeAngledP_1095_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne OppositeAngledP_1120_TypeType;
-  OppositeAngledP_1120_TypeVal OppositeAngledP_1120_TypeValue;
+  whichOne OppositeAngledP_1095_TypeType;
+  OppositeAngledP_1095_TypeVal OppositeAngledP_1095_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class OtherSurfaceFea_1121_Type :
+class PlaneFeatureNom_1096_Type :
   public XmlTypeBase
 {
 public:
-  OtherSurfaceFea_1121_Type();
-  OtherSurfaceFea_1121_Type(
-    OtherSurfaceFea_1121_TypeChoicePair * OtherSurfaceFea_1121_TypePairIn);
-  ~OtherSurfaceFea_1121_Type();
+  PlaneFeatureNom_1096_Type();
+  PlaneFeatureNom_1096_Type(
+    PlaneFeatureNom_1096_TypeChoicePair * PlaneFeatureNom_1096_TypePairIn);
+  ~PlaneFeatureNom_1096_Type();
   void printSelf(FILE * outFile);
 
-  OtherSurfaceFea_1121_TypeChoicePair * getOtherSurfaceFea_1121_TypePair();
-  void setOtherSurfaceFea_1121_TypePair(OtherSurfaceFea_1121_TypeChoicePair * OtherSurfaceFea_1121_TypePairIn);
+  PlaneFeatureNom_1096_TypeChoicePair * getPlaneFeatureNom_1096_TypePair();
+  void setPlaneFeatureNom_1096_TypePair(PlaneFeatureNom_1096_TypeChoicePair * PlaneFeatureNom_1096_TypePairIn);
 
 protected:
-  OtherSurfaceFea_1121_TypeChoicePair * OtherSurfaceFea_1121_TypePair;
+  PlaneFeatureNom_1096_TypeChoicePair * PlaneFeatureNom_1096_TypePair;
 };
 
 /* ***************************************************************** */
 
-union OtherSurfaceFea_1121_TypeVal
-{
-  PolyLineType * PolyLine;
-  InternalExternalEnumType * ClosedSurface;
-  OtherSurfaceConstructionMethodType * Constructed;
-};
-
-/* ***************************************************************** */
-
-class OtherSurfaceFea_1121_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    PolyLineE,
-    ClosedSurfaceE,
-    ConstructedE };
-  OtherSurfaceFea_1121_TypeChoicePair();
-  OtherSurfaceFea_1121_TypeChoicePair(
-    whichOne OtherSurfaceFea_1121_TypeTypeIn,
-    OtherSurfaceFea_1121_TypeVal OtherSurfaceFea_1121_TypeValueIn);
-  ~OtherSurfaceFea_1121_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne OtherSurfaceFea_1121_TypeType;
-  OtherSurfaceFea_1121_TypeVal OtherSurfaceFea_1121_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class PlaneFeatureNom_1122_Type :
-  public XmlTypeBase
-{
-public:
-  PlaneFeatureNom_1122_Type();
-  PlaneFeatureNom_1122_Type(
-    PlaneFeatureNom_1122_TypeChoicePair * PlaneFeatureNom_1122_TypePairIn);
-  ~PlaneFeatureNom_1122_Type();
-  void printSelf(FILE * outFile);
-
-  PlaneFeatureNom_1122_TypeChoicePair * getPlaneFeatureNom_1122_TypePair();
-  void setPlaneFeatureNom_1122_TypePair(PlaneFeatureNom_1122_TypeChoicePair * PlaneFeatureNom_1122_TypePairIn);
-
-protected:
-  PlaneFeatureNom_1122_TypeChoicePair * PlaneFeatureNom_1122_TypePair;
-};
-
-/* ***************************************************************** */
-
-union PlaneFeatureNom_1122_TypeVal
+union PlaneFeatureNom_1096_TypeVal
 {
   PolyLineType * PolyLine;
   RectangleType * Rectangle;
@@ -13714,7 +13546,7 @@ union PlaneFeatureNom_1122_TypeVal
 
 /* ***************************************************************** */
 
-class PlaneFeatureNom_1122_TypeChoicePair :
+class PlaneFeatureNom_1096_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -13722,39 +13554,39 @@ public:
     PolyLineE,
     RectangleE,
     CircleE };
-  PlaneFeatureNom_1122_TypeChoicePair();
-  PlaneFeatureNom_1122_TypeChoicePair(
-    whichOne PlaneFeatureNom_1122_TypeTypeIn,
-    PlaneFeatureNom_1122_TypeVal PlaneFeatureNom_1122_TypeValueIn);
-  ~PlaneFeatureNom_1122_TypeChoicePair();
+  PlaneFeatureNom_1096_TypeChoicePair();
+  PlaneFeatureNom_1096_TypeChoicePair(
+    whichOne PlaneFeatureNom_1096_TypeTypeIn,
+    PlaneFeatureNom_1096_TypeVal PlaneFeatureNom_1096_TypeValueIn);
+  ~PlaneFeatureNom_1096_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne PlaneFeatureNom_1122_TypeType;
-  PlaneFeatureNom_1122_TypeVal PlaneFeatureNom_1122_TypeValue;
+  whichOne PlaneFeatureNom_1096_TypeType;
+  PlaneFeatureNom_1096_TypeVal PlaneFeatureNom_1096_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class PointFeatureExt_1123_Type :
+class PointFeatureExt_1097_Type :
   public XmlTypeBase
 {
 public:
-  PointFeatureExt_1123_Type();
-  PointFeatureExt_1123_Type(
-    PointFeatureExt_1123_TypeChoicePair * PointFeatureExt_1123_TypePairIn);
-  ~PointFeatureExt_1123_Type();
+  PointFeatureExt_1097_Type();
+  PointFeatureExt_1097_Type(
+    PointFeatureExt_1097_TypeChoicePair * PointFeatureExt_1097_TypePairIn);
+  ~PointFeatureExt_1097_Type();
   void printSelf(FILE * outFile);
 
-  PointFeatureExt_1123_TypeChoicePair * getPointFeatureExt_1123_TypePair();
-  void setPointFeatureExt_1123_TypePair(PointFeatureExt_1123_TypeChoicePair * PointFeatureExt_1123_TypePairIn);
+  PointFeatureExt_1097_TypeChoicePair * getPointFeatureExt_1097_TypePair();
+  void setPointFeatureExt_1097_TypePair(PointFeatureExt_1097_TypeChoicePair * PointFeatureExt_1097_TypePairIn);
 
 protected:
-  PointFeatureExt_1123_TypeChoicePair * PointFeatureExt_1123_TypePair;
+  PointFeatureExt_1097_TypeChoicePair * PointFeatureExt_1097_TypePair;
 };
 
 /* ***************************************************************** */
 
-union PointFeatureExt_1123_TypeVal
+union PointFeatureExt_1097_TypeVal
 {
   BaseFeatureType * BaseAxisFeature;
   UnitVectorType * Vector;
@@ -13766,7 +13598,7 @@ union PointFeatureExt_1123_TypeVal
 
 /* ***************************************************************** */
 
-class PointFeatureExt_1123_TypeChoicePair :
+class PointFeatureExt_1097_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -13777,39 +13609,39 @@ public:
     XaxisE,
     YaxisE,
     ZaxisE };
-  PointFeatureExt_1123_TypeChoicePair();
-  PointFeatureExt_1123_TypeChoicePair(
-    whichOne PointFeatureExt_1123_TypeTypeIn,
-    PointFeatureExt_1123_TypeVal PointFeatureExt_1123_TypeValueIn);
-  ~PointFeatureExt_1123_TypeChoicePair();
+  PointFeatureExt_1097_TypeChoicePair();
+  PointFeatureExt_1097_TypeChoicePair(
+    whichOne PointFeatureExt_1097_TypeTypeIn,
+    PointFeatureExt_1097_TypeVal PointFeatureExt_1097_TypeValueIn);
+  ~PointFeatureExt_1097_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne PointFeatureExt_1123_TypeType;
-  PointFeatureExt_1123_TypeVal PointFeatureExt_1123_TypeValue;
+  whichOne PointFeatureExt_1097_TypeType;
+  PointFeatureExt_1097_TypeVal PointFeatureExt_1097_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class PointFeatureMov_1124_Type :
+class PointFeatureMov_1098_Type :
   public XmlTypeBase
 {
 public:
-  PointFeatureMov_1124_Type();
-  PointFeatureMov_1124_Type(
-    PointFeatureMov_1124_TypeChoicePair * PointFeatureMov_1124_TypePairIn);
-  ~PointFeatureMov_1124_Type();
+  PointFeatureMov_1098_Type();
+  PointFeatureMov_1098_Type(
+    PointFeatureMov_1098_TypeChoicePair * PointFeatureMov_1098_TypePairIn);
+  ~PointFeatureMov_1098_Type();
   void printSelf(FILE * outFile);
 
-  PointFeatureMov_1124_TypeChoicePair * getPointFeatureMov_1124_TypePair();
-  void setPointFeatureMov_1124_TypePair(PointFeatureMov_1124_TypeChoicePair * PointFeatureMov_1124_TypePairIn);
+  PointFeatureMov_1098_TypeChoicePair * getPointFeatureMov_1098_TypePair();
+  void setPointFeatureMov_1098_TypePair(PointFeatureMov_1098_TypeChoicePair * PointFeatureMov_1098_TypePairIn);
 
 protected:
-  PointFeatureMov_1124_TypeChoicePair * PointFeatureMov_1124_TypePair;
+  PointFeatureMov_1098_TypeChoicePair * PointFeatureMov_1098_TypePair;
 };
 
 /* ***************************************************************** */
 
-union PointFeatureMov_1124_TypeVal
+union PointFeatureMov_1098_TypeVal
 {
   VectorType * Offset;
   DirectionalOffsetType * DirectionalOffset;
@@ -13817,93 +13649,46 @@ union PointFeatureMov_1124_TypeVal
 
 /* ***************************************************************** */
 
-class PointFeatureMov_1124_TypeChoicePair :
+class PointFeatureMov_1098_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     OffsetE,
     DirectionalOffsetE };
-  PointFeatureMov_1124_TypeChoicePair();
-  PointFeatureMov_1124_TypeChoicePair(
-    whichOne PointFeatureMov_1124_TypeTypeIn,
-    PointFeatureMov_1124_TypeVal PointFeatureMov_1124_TypeValueIn);
-  ~PointFeatureMov_1124_TypeChoicePair();
+  PointFeatureMov_1098_TypeChoicePair();
+  PointFeatureMov_1098_TypeChoicePair(
+    whichOne PointFeatureMov_1098_TypeTypeIn,
+    PointFeatureMov_1098_TypeVal PointFeatureMov_1098_TypeValueIn);
+  ~PointFeatureMov_1098_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne PointFeatureMov_1124_TypeType;
-  PointFeatureMov_1124_TypeVal PointFeatureMov_1124_TypeValue;
+  whichOne PointFeatureMov_1098_TypeType;
+  PointFeatureMov_1098_TypeVal PointFeatureMov_1098_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class PointFeatureNom_1125_Type :
+class MeasuredPointSe_1099_Type :
   public XmlTypeBase
 {
 public:
-  PointFeatureNom_1125_Type();
-  PointFeatureNom_1125_Type(
-    PointFeatureNom_1125_TypeChoicePair * PointFeatureNom_1125_TypePairIn);
-  ~PointFeatureNom_1125_Type();
+  MeasuredPointSe_1099_Type();
+  MeasuredPointSe_1099_Type(
+    MeasuredPointSe_1099_TypeChoicePair * MeasuredPointSe_1099_TypePairIn);
+  ~MeasuredPointSe_1099_Type();
   void printSelf(FILE * outFile);
 
-  PointFeatureNom_1125_TypeChoicePair * getPointFeatureNom_1125_TypePair();
-  void setPointFeatureNom_1125_TypePair(PointFeatureNom_1125_TypeChoicePair * PointFeatureNom_1125_TypePairIn);
+  MeasuredPointSe_1099_TypeChoicePair * getMeasuredPointSe_1099_TypePair();
+  void setMeasuredPointSe_1099_TypePair(MeasuredPointSe_1099_TypeChoicePair * MeasuredPointSe_1099_TypePairIn);
 
 protected:
-  PointFeatureNom_1125_TypeChoicePair * PointFeatureNom_1125_TypePair;
+  MeasuredPointSe_1099_TypeChoicePair * MeasuredPointSe_1099_TypePair;
 };
 
 /* ***************************************************************** */
 
-union PointFeatureNom_1125_TypeVal
-{
-  QIFReferenceFullType * SurfaceFeatureNominalId;
-  QIFReferenceFullType * CurveFeatureNominalId;
-};
-
-/* ***************************************************************** */
-
-class PointFeatureNom_1125_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    SurfaceFeatureNominalIdE,
-    CurveFeatureNominalIdE };
-  PointFeatureNom_1125_TypeChoicePair();
-  PointFeatureNom_1125_TypeChoicePair(
-    whichOne PointFeatureNom_1125_TypeTypeIn,
-    PointFeatureNom_1125_TypeVal PointFeatureNom_1125_TypeValueIn);
-  ~PointFeatureNom_1125_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne PointFeatureNom_1125_TypeType;
-  PointFeatureNom_1125_TypeVal PointFeatureNom_1125_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class MeasuredPointSe_1126_Type :
-  public XmlTypeBase
-{
-public:
-  MeasuredPointSe_1126_Type();
-  MeasuredPointSe_1126_Type(
-    MeasuredPointSe_1126_TypeChoicePair * MeasuredPointSe_1126_TypePairIn);
-  ~MeasuredPointSe_1126_Type();
-  void printSelf(FILE * outFile);
-
-  MeasuredPointSe_1126_TypeChoicePair * getMeasuredPointSe_1126_TypePair();
-  void setMeasuredPointSe_1126_TypePair(MeasuredPointSe_1126_TypeChoicePair * MeasuredPointSe_1126_TypePairIn);
-
-protected:
-  MeasuredPointSe_1126_TypeChoicePair * MeasuredPointSe_1126_TypePair;
-};
-
-/* ***************************************************************** */
-
-union MeasuredPointSe_1126_TypeVal
+union MeasuredPointSe_1099_TypeVal
 {
   ArrayI3Type * PointIndices;
   ArrayBinaryType * BinaryPointIndices;
@@ -13911,22 +13696,22 @@ union MeasuredPointSe_1126_TypeVal
 
 /* ***************************************************************** */
 
-class MeasuredPointSe_1126_TypeChoicePair :
+class MeasuredPointSe_1099_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     PointIndicesE,
     BinaryPointIndicesE };
-  MeasuredPointSe_1126_TypeChoicePair();
-  MeasuredPointSe_1126_TypeChoicePair(
-    whichOne MeasuredPointSe_1126_TypeTypeIn,
-    MeasuredPointSe_1126_TypeVal MeasuredPointSe_1126_TypeValueIn);
-  ~MeasuredPointSe_1126_TypeChoicePair();
+  MeasuredPointSe_1099_TypeChoicePair();
+  MeasuredPointSe_1099_TypeChoicePair(
+    whichOne MeasuredPointSe_1099_TypeTypeIn,
+    MeasuredPointSe_1099_TypeVal MeasuredPointSe_1099_TypeValueIn);
+  ~MeasuredPointSe_1099_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne MeasuredPointSe_1126_TypeType;
-  MeasuredPointSe_1126_TypeVal MeasuredPointSe_1126_TypeValue;
+  whichOne MeasuredPointSe_1099_TypeType;
+  MeasuredPointSe_1099_TypeVal MeasuredPointSe_1099_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -14007,15 +13792,42 @@ public:
   CircleFromConeType();
   CircleFromConeType(
     XmlBoolean * NominalsCalculatedIn,
-    CircleFromConeT_1093_Type * CircleFromConeT_1093In);
+    CircleFromConeTypeChoicePair * CircleFromConeTypePairIn);
   ~CircleFromConeType();
   void printSelf(FILE * outFile);
-
-  CircleFromConeT_1093_Type * getCircleFromConeT_1093();
-  void setCircleFromConeT_1093(CircleFromConeT_1093_Type * CircleFromConeT_1093In);
+  CircleFromConeTypeChoicePair * getCircleFromConeTypeChoicePair();
+  void setCircleFromConeTypeChoicePair(CircleFromConeTypeChoicePair * CircleFromConeTypePairIn);
 
 protected:
-  CircleFromConeT_1093_Type * CircleFromConeT_1093;
+  CircleFromConeTypeChoicePair * CircleFromConeTypePair;
+};
+
+/* ***************************************************************** */
+
+union CircleFromConeTypeVal
+{
+  LinearValueType * Diameter;
+  LinearValueType * Distance;
+};
+
+/* ***************************************************************** */
+
+class CircleFromConeTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    DiameterE,
+    DistanceE };
+  CircleFromConeTypeChoicePair();
+  CircleFromConeTypeChoicePair(
+    whichOne CircleFromConeTypeTypeIn,
+    CircleFromConeTypeVal CircleFromConeTypeValueIn);
+  ~CircleFromConeTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne CircleFromConeTypeType;
+  CircleFromConeTypeVal CircleFromConeTypeValue;
 };
 
 /* ***************************************************************** */
@@ -14463,15 +14275,15 @@ public:
     AttributesType * AttributesIn,
     InternalExternalEnumType * InternalExternalIn,
     LinearValueType * DiameterIn,
-    ConeFeatureDefi_1094_Type * ConeFeatureDefi_1094In,
-    ConeFeatureDefi_1095_Type * ConeFeatureDefi_1095In);
+    ConeFeatureDefi_1071_Type * ConeFeatureDefi_1071In,
+    ConeFeatureDefi_1072_Type * ConeFeatureDefi_1072In);
   ConeFeatureDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     InternalExternalEnumType * InternalExternalIn,
     LinearValueType * DiameterIn,
-    ConeFeatureDefi_1094_Type * ConeFeatureDefi_1094In,
-    ConeFeatureDefi_1095_Type * ConeFeatureDefi_1095In);
+    ConeFeatureDefi_1071_Type * ConeFeatureDefi_1071In,
+    ConeFeatureDefi_1072_Type * ConeFeatureDefi_1072In);
   ~ConeFeatureDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -14480,16 +14292,16 @@ public:
   void setInternalExternal(InternalExternalEnumType * InternalExternalIn);
   LinearValueType * getDiameter();
   void setDiameter(LinearValueType * DiameterIn);
-  ConeFeatureDefi_1094_Type * getConeFeatureDefi_1094();
-  void setConeFeatureDefi_1094(ConeFeatureDefi_1094_Type * ConeFeatureDefi_1094In);
-  ConeFeatureDefi_1095_Type * getConeFeatureDefi_1095();
-  void setConeFeatureDefi_1095(ConeFeatureDefi_1095_Type * ConeFeatureDefi_1095In);
+  ConeFeatureDefi_1071_Type * getConeFeatureDefi_1071();
+  void setConeFeatureDefi_1071(ConeFeatureDefi_1071_Type * ConeFeatureDefi_1071In);
+  ConeFeatureDefi_1072_Type * getConeFeatureDefi_1072();
+  void setConeFeatureDefi_1072(ConeFeatureDefi_1072_Type * ConeFeatureDefi_1072In);
 
 protected:
   InternalExternalEnumType * InternalExternal;
   LinearValueType * Diameter;
-  ConeFeatureDefi_1094_Type * ConeFeatureDefi_1094;
-  ConeFeatureDefi_1095_Type * ConeFeatureDefi_1095;
+  ConeFeatureDefi_1071_Type * ConeFeatureDefi_1071;
+  ConeFeatureDefi_1072_Type * ConeFeatureDefi_1072;
 };
 
 /* ***************************************************************** */
@@ -14559,7 +14371,7 @@ public:
     MeasuredLinearValueType * DiameterIn,
     MeasuredLinearValueType * DiameterMinIn,
     MeasuredLinearValueType * DiameterMaxIn,
-    ConeFeatureMeas_1096_Type * ConeFeatureMeas_1096In,
+    ConeFeatureMeas_1073_Type * ConeFeatureMeas_1073In,
     MeasuredLinearValueType * SmallEndDistanceIn,
     MeasuredLinearValueType * LargeEndDistanceIn,
     SweepType * SweepMeasurementRangeIn,
@@ -14583,7 +14395,7 @@ public:
     MeasuredLinearValueType * DiameterIn,
     MeasuredLinearValueType * DiameterMinIn,
     MeasuredLinearValueType * DiameterMaxIn,
-    ConeFeatureMeas_1096_Type * ConeFeatureMeas_1096In,
+    ConeFeatureMeas_1073_Type * ConeFeatureMeas_1073In,
     MeasuredLinearValueType * SmallEndDistanceIn,
     MeasuredLinearValueType * LargeEndDistanceIn,
     SweepType * SweepMeasurementRangeIn,
@@ -14601,8 +14413,8 @@ public:
   void setDiameterMin(MeasuredLinearValueType * DiameterMinIn);
   MeasuredLinearValueType * getDiameterMax();
   void setDiameterMax(MeasuredLinearValueType * DiameterMaxIn);
-  ConeFeatureMeas_1096_Type * getConeFeatureMeas_1096();
-  void setConeFeatureMeas_1096(ConeFeatureMeas_1096_Type * ConeFeatureMeas_1096In);
+  ConeFeatureMeas_1073_Type * getConeFeatureMeas_1073();
+  void setConeFeatureMeas_1073(ConeFeatureMeas_1073_Type * ConeFeatureMeas_1073In);
   MeasuredLinearValueType * getSmallEndDistance();
   void setSmallEndDistance(MeasuredLinearValueType * SmallEndDistanceIn);
   MeasuredLinearValueType * getLargeEndDistance();
@@ -14619,7 +14431,7 @@ protected:
   MeasuredLinearValueType * Diameter;
   MeasuredLinearValueType * DiameterMin;
   MeasuredLinearValueType * DiameterMax;
-  ConeFeatureMeas_1096_Type * ConeFeatureMeas_1096;
+  ConeFeatureMeas_1073_Type * ConeFeatureMeas_1073;
   MeasuredLinearValueType * SmallEndDistance;
   MeasuredLinearValueType * LargeEndDistance;
   SweepType * SweepMeasurementRange;
@@ -14826,15 +14638,15 @@ public:
     AttributesType * AttributesIn,
     InternalExternalEnumType * InternalExternalIn,
     LinearValueType * DiameterIn,
-    ConicalSegmentF_1097_Type * ConicalSegmentF_1097In,
-    ConicalSegmentF_1098_Type * ConicalSegmentF_1098In);
+    ConicalSegmentF_1074_Type * ConicalSegmentF_1074In,
+    ConicalSegmentF_1075_Type * ConicalSegmentF_1075In);
   ConicalSegmentFeatureDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     InternalExternalEnumType * InternalExternalIn,
     LinearValueType * DiameterIn,
-    ConicalSegmentF_1097_Type * ConicalSegmentF_1097In,
-    ConicalSegmentF_1098_Type * ConicalSegmentF_1098In);
+    ConicalSegmentF_1074_Type * ConicalSegmentF_1074In,
+    ConicalSegmentF_1075_Type * ConicalSegmentF_1075In);
   ~ConicalSegmentFeatureDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -14843,16 +14655,16 @@ public:
   void setInternalExternal(InternalExternalEnumType * InternalExternalIn);
   LinearValueType * getDiameter();
   void setDiameter(LinearValueType * DiameterIn);
-  ConicalSegmentF_1097_Type * getConicalSegmentF_1097();
-  void setConicalSegmentF_1097(ConicalSegmentF_1097_Type * ConicalSegmentF_1097In);
-  ConicalSegmentF_1098_Type * getConicalSegmentF_1098();
-  void setConicalSegmentF_1098(ConicalSegmentF_1098_Type * ConicalSegmentF_1098In);
+  ConicalSegmentF_1074_Type * getConicalSegmentF_1074();
+  void setConicalSegmentF_1074(ConicalSegmentF_1074_Type * ConicalSegmentF_1074In);
+  ConicalSegmentF_1075_Type * getConicalSegmentF_1075();
+  void setConicalSegmentF_1075(ConicalSegmentF_1075_Type * ConicalSegmentF_1075In);
 
 protected:
   InternalExternalEnumType * InternalExternal;
   LinearValueType * Diameter;
-  ConicalSegmentF_1097_Type * ConicalSegmentF_1097;
-  ConicalSegmentF_1098_Type * ConicalSegmentF_1098;
+  ConicalSegmentF_1074_Type * ConicalSegmentF_1074;
+  ConicalSegmentF_1075_Type * ConicalSegmentF_1075;
 };
 
 /* ***************************************************************** */
@@ -14922,7 +14734,7 @@ public:
     MeasuredLinearValueType * DiameterIn,
     MeasuredLinearValueType * DiameterMinIn,
     MeasuredLinearValueType * DiameterMaxIn,
-    ConicalSegmentF_1099_Type * ConicalSegmentF_1099In,
+    ConicalSegmentF_1076_Type * ConicalSegmentF_1076In,
     MeasuredLinearValueType * SmallEndDistanceIn,
     MeasuredLinearValueType * LargeEndDistanceIn,
     SweepType * SweepMeasurementRangeIn,
@@ -14946,7 +14758,7 @@ public:
     MeasuredLinearValueType * DiameterIn,
     MeasuredLinearValueType * DiameterMinIn,
     MeasuredLinearValueType * DiameterMaxIn,
-    ConicalSegmentF_1099_Type * ConicalSegmentF_1099In,
+    ConicalSegmentF_1076_Type * ConicalSegmentF_1076In,
     MeasuredLinearValueType * SmallEndDistanceIn,
     MeasuredLinearValueType * LargeEndDistanceIn,
     SweepType * SweepMeasurementRangeIn,
@@ -14964,8 +14776,8 @@ public:
   void setDiameterMin(MeasuredLinearValueType * DiameterMinIn);
   MeasuredLinearValueType * getDiameterMax();
   void setDiameterMax(MeasuredLinearValueType * DiameterMaxIn);
-  ConicalSegmentF_1099_Type * getConicalSegmentF_1099();
-  void setConicalSegmentF_1099(ConicalSegmentF_1099_Type * ConicalSegmentF_1099In);
+  ConicalSegmentF_1076_Type * getConicalSegmentF_1076();
+  void setConicalSegmentF_1076(ConicalSegmentF_1076_Type * ConicalSegmentF_1076In);
   MeasuredLinearValueType * getSmallEndDistance();
   void setSmallEndDistance(MeasuredLinearValueType * SmallEndDistanceIn);
   MeasuredLinearValueType * getLargeEndDistance();
@@ -14982,7 +14794,7 @@ protected:
   MeasuredLinearValueType * Diameter;
   MeasuredLinearValueType * DiameterMin;
   MeasuredLinearValueType * DiameterMax;
-  ConicalSegmentF_1099_Type * ConicalSegmentF_1099;
+  ConicalSegmentF_1076_Type * ConicalSegmentF_1076;
   MeasuredLinearValueType * SmallEndDistance;
   MeasuredLinearValueType * LargeEndDistance;
   SweepType * SweepMeasurementRange;
@@ -16721,22 +16533,49 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In);
+    FeatureZoneAreaBaseTypeChoicePair * FeatureZoneAreaBaseTypePairIn);
   FeatureZoneAreaBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In);
+    FeatureZoneAreaBaseTypeChoicePair * FeatureZoneAreaBaseTypePairIn);
   ~FeatureZoneAreaBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
-
-  FeatureZoneArea_1100_Type * getFeatureZoneArea_1100();
-  void setFeatureZoneArea_1100(FeatureZoneArea_1100_Type * FeatureZoneArea_1100In);
+  FeatureZoneAreaBaseTypeChoicePair * getFeatureZoneAreaBaseTypeChoicePair();
+  void setFeatureZoneAreaBaseTypeChoicePair(FeatureZoneAreaBaseTypeChoicePair * FeatureZoneAreaBaseTypePairIn);
 
 protected:
-  FeatureZoneArea_1100_Type * FeatureZoneArea_1100;
+  FeatureZoneAreaBaseTypeChoicePair * FeatureZoneAreaBaseTypePair;
+};
+
+/* ***************************************************************** */
+
+union FeatureZoneAreaBaseTypeVal
+{
+  ArrayReferenceFullType * FaceIds;
+  ArrayReferenceFullType * EdgeIds;
+};
+
+/* ***************************************************************** */
+
+class FeatureZoneAreaBaseTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    FaceIdsE,
+    EdgeIdsE };
+  FeatureZoneAreaBaseTypeChoicePair();
+  FeatureZoneAreaBaseTypeChoicePair(
+    whichOne FeatureZoneAreaBaseTypeTypeIn,
+    FeatureZoneAreaBaseTypeVal FeatureZoneAreaBaseTypeValueIn);
+  ~FeatureZoneAreaBaseTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne FeatureZoneAreaBaseTypeType;
+  FeatureZoneAreaBaseTypeVal FeatureZoneAreaBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -16750,9 +16589,9 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
-    FeatureZoneArea_1101_Type * FeatureZoneArea_1101In,
-    FeatureZoneArea_1102_Type * FeatureZoneArea_1102In,
+    FeatureZoneAreaBaseTypeChoicePair * FeatureZoneAreaBaseTypePairIn,
+    FeatureZoneArea_1077_Type * FeatureZoneArea_1077In,
+    FeatureZoneArea_1078_Type * FeatureZoneArea_1078In,
     UnitVectorType * StartDirectionIn,
     UnitVectorType * PlaneNormalIn);
   FeatureZoneAreaBetweenType(
@@ -16760,27 +16599,27 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
-    FeatureZoneArea_1101_Type * FeatureZoneArea_1101In,
-    FeatureZoneArea_1102_Type * FeatureZoneArea_1102In,
+    FeatureZoneAreaBaseTypeChoicePair * FeatureZoneAreaBaseTypePairIn,
+    FeatureZoneArea_1077_Type * FeatureZoneArea_1077In,
+    FeatureZoneArea_1078_Type * FeatureZoneArea_1078In,
     UnitVectorType * StartDirectionIn,
     UnitVectorType * PlaneNormalIn);
   ~FeatureZoneAreaBetweenType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
-  FeatureZoneArea_1101_Type * getFeatureZoneArea_1101();
-  void setFeatureZoneArea_1101(FeatureZoneArea_1101_Type * FeatureZoneArea_1101In);
-  FeatureZoneArea_1102_Type * getFeatureZoneArea_1102();
-  void setFeatureZoneArea_1102(FeatureZoneArea_1102_Type * FeatureZoneArea_1102In);
+  FeatureZoneArea_1077_Type * getFeatureZoneArea_1077();
+  void setFeatureZoneArea_1077(FeatureZoneArea_1077_Type * FeatureZoneArea_1077In);
+  FeatureZoneArea_1078_Type * getFeatureZoneArea_1078();
+  void setFeatureZoneArea_1078(FeatureZoneArea_1078_Type * FeatureZoneArea_1078In);
   UnitVectorType * getStartDirection();
   void setStartDirection(UnitVectorType * StartDirectionIn);
   UnitVectorType * getPlaneNormal();
   void setPlaneNormal(UnitVectorType * PlaneNormalIn);
 
 protected:
-  FeatureZoneArea_1101_Type * FeatureZoneArea_1101;
-  FeatureZoneArea_1102_Type * FeatureZoneArea_1102;
+  FeatureZoneArea_1077_Type * FeatureZoneArea_1077;
+  FeatureZoneArea_1078_Type * FeatureZoneArea_1078;
   UnitVectorType * StartDirection;
   UnitVectorType * PlaneNormal;
 };
@@ -16796,14 +16635,14 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
+    FeatureZoneAreaBaseTypeChoicePair * FeatureZoneAreaBaseTypePairIn,
     CircleType * CircleIn);
   FeatureZoneAreaCircularType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
+    FeatureZoneAreaBaseTypeChoicePair * FeatureZoneAreaBaseTypePairIn,
     CircleType * CircleIn);
   ~FeatureZoneAreaCircularType();
   void printSelf(FILE * outFile);
@@ -16827,14 +16666,14 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
+    FeatureZoneAreaBaseTypeChoicePair * FeatureZoneAreaBaseTypePairIn,
     CylinderType * CylinderIn);
   FeatureZoneAreaCylindricalType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
+    FeatureZoneAreaBaseTypeChoicePair * FeatureZoneAreaBaseTypePairIn,
     CylinderType * CylinderIn);
   ~FeatureZoneAreaCylindricalType();
   void printSelf(FILE * outFile);
@@ -16858,13 +16697,13 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In);
+    FeatureZoneAreaBaseTypeChoicePair * FeatureZoneAreaBaseTypePairIn);
   FeatureZoneAreaIrregularType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In);
+    FeatureZoneAreaBaseTypeChoicePair * FeatureZoneAreaBaseTypePairIn);
   ~FeatureZoneAreaIrregularType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -16881,14 +16720,14 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
+    FeatureZoneAreaBaseTypeChoicePair * FeatureZoneAreaBaseTypePairIn,
     RectangleType * RectangleIn);
   FeatureZoneAreaRectangularType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
+    FeatureZoneAreaBaseTypeChoicePair * FeatureZoneAreaBaseTypePairIn,
     RectangleType * RectangleIn);
   ~FeatureZoneAreaRectangularType();
   void printSelf(FILE * outFile);
@@ -16912,14 +16751,14 @@ public:
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
+    FeatureZoneAreaBaseTypeChoicePair * FeatureZoneAreaBaseTypePairIn,
     SphereType * SphereIn);
   FeatureZoneAreaSphericalType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlToken * LabelIn,
     QIFReferenceFullType * SurfaceFeatureNominalIdIn,
-    FeatureZoneArea_1100_Type * FeatureZoneArea_1100In,
+    FeatureZoneAreaBaseTypeChoicePair * FeatureZoneAreaBaseTypePairIn,
     SphereType * SphereIn);
   ~FeatureZoneAreaSphericalType();
   void printSelf(FILE * outFile);
@@ -16943,13 +16782,13 @@ public:
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In);
+    GroupFeatureDef_1080_Type * GroupFeatureDef_1080In);
   GroupFeatureDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In);
+    GroupFeatureDef_1080_Type * GroupFeatureDef_1080In);
   ~GroupFeatureDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -16958,13 +16797,13 @@ public:
   void setIsProfileGroup(XmlBoolean * IsProfileGroupIn);
   XmlBoolean * getIsRunoutGroup();
   void setIsRunoutGroup(XmlBoolean * IsRunoutGroupIn);
-  GroupFeatureDef_1105_Type * getGroupFeatureDef_1105();
-  void setGroupFeatureDef_1105(GroupFeatureDef_1105_Type * GroupFeatureDef_1105In);
+  GroupFeatureDef_1080_Type * getGroupFeatureDef_1080();
+  void setGroupFeatureDef_1080(GroupFeatureDef_1080_Type * GroupFeatureDef_1080In);
 
 protected:
   XmlBoolean * IsProfileGroup;
   XmlBoolean * IsRunoutGroup;
-  GroupFeatureDef_1105_Type * GroupFeatureDef_1105;
+  GroupFeatureDef_1080_Type * GroupFeatureDef_1080;
 };
 
 /* ***************************************************************** */
@@ -17690,7 +17529,7 @@ public:
     XmlBoolean * SingleOpenEndIn,
     EndRadiusType * EndRadius1In,
     EndRadiusType * EndRadius2In,
-    OppositeAngledP_1119_Type * OppositeAngledP_1119In);
+    OppositeAngledP_1094_Type * OppositeAngledP_1094In);
   OppositeAngledPlanesFeatureDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -17703,7 +17542,7 @@ public:
     XmlBoolean * SingleOpenEndIn,
     EndRadiusType * EndRadius1In,
     EndRadiusType * EndRadius2In,
-    OppositeAngledP_1119_Type * OppositeAngledP_1119In);
+    OppositeAngledP_1094_Type * OppositeAngledP_1094In);
   ~OppositeAngledPlanesFeatureDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -17726,8 +17565,8 @@ public:
   void setEndRadius1(EndRadiusType * EndRadius1In);
   EndRadiusType * getEndRadius2();
   void setEndRadius2(EndRadiusType * EndRadius2In);
-  OppositeAngledP_1119_Type * getOppositeAngledP_1119();
-  void setOppositeAngledP_1119(OppositeAngledP_1119_Type * OppositeAngledP_1119In);
+  OppositeAngledP_1094_Type * getOppositeAngledP_1094();
+  void setOppositeAngledP_1094(OppositeAngledP_1094_Type * OppositeAngledP_1094In);
 
 protected:
   InternalExternalEnumType * InternalExternal;
@@ -17739,7 +17578,7 @@ protected:
   XmlBoolean * SingleOpenEnd;
   EndRadiusType * EndRadius1;
   EndRadiusType * EndRadius2;
-  OppositeAngledP_1119_Type * OppositeAngledP_1119;
+  OppositeAngledP_1094_Type * OppositeAngledP_1094;
 };
 
 /* ***************************************************************** */
@@ -17815,7 +17654,7 @@ public:
     MeasuredLinearValueType * LengthMinIn,
     MeasuredLinearValueType * LengthMaxIn,
     MeasuredLinearValueType * DepthIn,
-    OppositeAngledP_1120_Type * OppositeAngledP_1120In,
+    OppositeAngledP_1095_Type * OppositeAngledP_1095In,
     MeasuredEndRadiusType * EndRadius1In,
     MeasuredEndRadiusType * EndRadius2In,
     MeasuredLinearValueType * FormIn);
@@ -17843,7 +17682,7 @@ public:
     MeasuredLinearValueType * LengthMinIn,
     MeasuredLinearValueType * LengthMaxIn,
     MeasuredLinearValueType * DepthIn,
-    OppositeAngledP_1120_Type * OppositeAngledP_1120In,
+    OppositeAngledP_1095_Type * OppositeAngledP_1095In,
     MeasuredEndRadiusType * EndRadius1In,
     MeasuredEndRadiusType * EndRadius2In,
     MeasuredLinearValueType * FormIn);
@@ -17871,8 +17710,8 @@ public:
   void setLengthMax(MeasuredLinearValueType * LengthMaxIn);
   MeasuredLinearValueType * getDepth();
   void setDepth(MeasuredLinearValueType * DepthIn);
-  OppositeAngledP_1120_Type * getOppositeAngledP_1120();
-  void setOppositeAngledP_1120(OppositeAngledP_1120_Type * OppositeAngledP_1120In);
+  OppositeAngledP_1095_Type * getOppositeAngledP_1095();
+  void setOppositeAngledP_1095(OppositeAngledP_1095_Type * OppositeAngledP_1095In);
   MeasuredEndRadiusType * getEndRadius1();
   void setEndRadius1(MeasuredEndRadiusType * EndRadius1In);
   MeasuredEndRadiusType * getEndRadius2();
@@ -17891,7 +17730,7 @@ protected:
   MeasuredLinearValueType * LengthMin;
   MeasuredLinearValueType * LengthMax;
   MeasuredLinearValueType * Depth;
-  OppositeAngledP_1120_Type * OppositeAngledP_1120;
+  OppositeAngledP_1095_Type * OppositeAngledP_1095;
   MeasuredEndRadiusType * EndRadius1;
   MeasuredEndRadiusType * EndRadius2;
   MeasuredLinearValueType * Form;
@@ -18891,7 +18730,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
-    OtherSurfaceFea_1121_Type * OtherSurfaceFea_1121In);
+    OtherSurfaceFeatureNominalTypeChoicePair * OtherSurfaceFeatureNominalTypePairIn);
   OtherSurfaceFeatureNominalType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -18903,16 +18742,45 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
-    OtherSurfaceFea_1121_Type * OtherSurfaceFea_1121In);
+    OtherSurfaceFeatureNominalTypeChoicePair * OtherSurfaceFeatureNominalTypePairIn);
   ~OtherSurfaceFeatureNominalType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
-
-  OtherSurfaceFea_1121_Type * getOtherSurfaceFea_1121();
-  void setOtherSurfaceFea_1121(OtherSurfaceFea_1121_Type * OtherSurfaceFea_1121In);
+  OtherSurfaceFeatureNominalTypeChoicePair * getOtherSurfaceFeatureNominalTypeChoicePair();
+  void setOtherSurfaceFeatureNominalTypeChoicePair(OtherSurfaceFeatureNominalTypeChoicePair * OtherSurfaceFeatureNominalTypePairIn);
 
 protected:
-  OtherSurfaceFea_1121_Type * OtherSurfaceFea_1121;
+  OtherSurfaceFeatureNominalTypeChoicePair * OtherSurfaceFeatureNominalTypePair;
+};
+
+/* ***************************************************************** */
+
+union OtherSurfaceFeatureNominalTypeVal
+{
+  PolyLineType * PolyLine;
+  InternalExternalEnumType * ClosedSurface;
+  OtherSurfaceConstructionMethodType * Constructed;
+};
+
+/* ***************************************************************** */
+
+class OtherSurfaceFeatureNominalTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    PolyLineE,
+    ClosedSurfaceE,
+    ConstructedE };
+  OtherSurfaceFeatureNominalTypeChoicePair();
+  OtherSurfaceFeatureNominalTypeChoicePair(
+    whichOne OtherSurfaceFeatureNominalTypeTypeIn,
+    OtherSurfaceFeatureNominalTypeVal OtherSurfaceFeatureNominalTypeValueIn);
+  ~OtherSurfaceFeatureNominalTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne OtherSurfaceFeatureNominalTypeType;
+  OtherSurfaceFeatureNominalTypeVal OtherSurfaceFeatureNominalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -18926,13 +18794,13 @@ public:
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In);
+    GroupFeatureDef_1080_Type * GroupFeatureDef_1080In);
   PatternFeatureDefinitionBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In);
+    GroupFeatureDef_1080_Type * GroupFeatureDef_1080In);
   ~PatternFeatureDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -18984,7 +18852,7 @@ public:
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
+    GroupFeatureDef_1080_Type * GroupFeatureDef_1080In,
     UnitVectorType * LineDirectionIn,
     LinearValueType * IncrementalDistanceIn,
     UnitVectorType * FeatureDirectionIn,
@@ -18994,7 +18862,7 @@ public:
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
+    GroupFeatureDef_1080_Type * GroupFeatureDef_1080In,
     UnitVectorType * LineDirectionIn,
     LinearValueType * IncrementalDistanceIn,
     UnitVectorType * FeatureDirectionIn,
@@ -19100,7 +18968,7 @@ public:
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
+    GroupFeatureDef_1080_Type * GroupFeatureDef_1080In,
     VectorType * AlongRowDirectionIn,
     LinearValueType * IncrementalRowDistanceIn,
     VectorType * BetweenRowDirectionIn,
@@ -19113,7 +18981,7 @@ public:
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
+    GroupFeatureDef_1080_Type * GroupFeatureDef_1080In,
     VectorType * AlongRowDirectionIn,
     LinearValueType * IncrementalRowDistanceIn,
     VectorType * BetweenRowDirectionIn,
@@ -19369,7 +19237,7 @@ public:
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
     PointType * LocationIn,
     UnitVectorType * NormalIn,
-    PlaneFeatureNom_1122_Type * PlaneFeatureNom_1122In,
+    PlaneFeatureNom_1096_Type * PlaneFeatureNom_1096In,
     PlaneConstructionMethodType * ConstructedIn);
   PlaneFeatureNominalType(
     QIFIdType * idIn,
@@ -19384,7 +19252,7 @@ public:
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
     PointType * LocationIn,
     UnitVectorType * NormalIn,
-    PlaneFeatureNom_1122_Type * PlaneFeatureNom_1122In,
+    PlaneFeatureNom_1096_Type * PlaneFeatureNom_1096In,
     PlaneConstructionMethodType * ConstructedIn);
   ~PlaneFeatureNominalType();
   void printSelf(FILE * outFile);
@@ -19394,15 +19262,15 @@ public:
   void setLocation(PointType * LocationIn);
   UnitVectorType * getNormal();
   void setNormal(UnitVectorType * NormalIn);
-  PlaneFeatureNom_1122_Type * getPlaneFeatureNom_1122();
-  void setPlaneFeatureNom_1122(PlaneFeatureNom_1122_Type * PlaneFeatureNom_1122In);
+  PlaneFeatureNom_1096_Type * getPlaneFeatureNom_1096();
+  void setPlaneFeatureNom_1096(PlaneFeatureNom_1096_Type * PlaneFeatureNom_1096In);
   PlaneConstructionMethodType * getConstructed();
   void setConstructed(PlaneConstructionMethodType * ConstructedIn);
 
 protected:
   PointType * Location;
   UnitVectorType * Normal;
-  PlaneFeatureNom_1122_Type * PlaneFeatureNom_1122;
+  PlaneFeatureNom_1096_Type * PlaneFeatureNom_1096;
   PlaneConstructionMethodType * Constructed;
 };
 
@@ -19954,7 +19822,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
-    PointFeatureNom_1125_Type * PointFeatureNom_1125In);
+    PointFeatureNominalBaseTypeChoicePair * PointFeatureNominalBaseTypePairIn);
   PointFeatureNominalBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -19966,16 +19834,43 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
-    PointFeatureNom_1125_Type * PointFeatureNom_1125In);
+    PointFeatureNominalBaseTypeChoicePair * PointFeatureNominalBaseTypePairIn);
   ~PointFeatureNominalBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
-
-  PointFeatureNom_1125_Type * getPointFeatureNom_1125();
-  void setPointFeatureNom_1125(PointFeatureNom_1125_Type * PointFeatureNom_1125In);
+  PointFeatureNominalBaseTypeChoicePair * getPointFeatureNominalBaseTypeChoicePair();
+  void setPointFeatureNominalBaseTypeChoicePair(PointFeatureNominalBaseTypeChoicePair * PointFeatureNominalBaseTypePairIn);
 
 protected:
-  PointFeatureNom_1125_Type * PointFeatureNom_1125;
+  PointFeatureNominalBaseTypeChoicePair * PointFeatureNominalBaseTypePair;
+};
+
+/* ***************************************************************** */
+
+union PointFeatureNominalBaseTypeVal
+{
+  QIFReferenceFullType * SurfaceFeatureNominalId;
+  QIFReferenceFullType * CurveFeatureNominalId;
+};
+
+/* ***************************************************************** */
+
+class PointFeatureNominalBaseTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    SurfaceFeatureNominalIdE,
+    CurveFeatureNominalIdE };
+  PointFeatureNominalBaseTypeChoicePair();
+  PointFeatureNominalBaseTypeChoicePair(
+    whichOne PointFeatureNominalBaseTypeTypeIn,
+    PointFeatureNominalBaseTypeVal PointFeatureNominalBaseTypeValueIn);
+  ~PointFeatureNominalBaseTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne PointFeatureNominalBaseTypeType;
+  PointFeatureNominalBaseTypeVal PointFeatureNominalBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -19995,7 +19890,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
-    PointFeatureNom_1125_Type * PointFeatureNom_1125In,
+    PointFeatureNominalBaseTypeChoicePair * PointFeatureNominalBaseTypePairIn,
     PointType * LocationIn,
     UnitVectorType * NormalIn,
     PointConstructionMethodType * ConstructedIn);
@@ -20010,7 +19905,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
-    PointFeatureNom_1125_Type * PointFeatureNom_1125In,
+    PointFeatureNominalBaseTypeChoicePair * PointFeatureNominalBaseTypePairIn,
     PointType * LocationIn,
     UnitVectorType * NormalIn,
     PointConstructionMethodType * ConstructedIn);
@@ -21001,7 +20896,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
-    PointFeatureNom_1125_Type * PointFeatureNom_1125In,
+    PointFeatureNominalBaseTypeChoicePair * PointFeatureNominalBaseTypePairIn,
     PointType * LocationIn,
     UnitVectorType * NormalIn,
     UnitVectorType * AdjacentNormalIn,
@@ -21017,7 +20912,7 @@ public:
     ArrayReferenceFullType * EntityExternalIdsIn,
     PointListType * PointListIn,
     SubstituteFeatureAlgorithmType * SubstituteFeatureAlgorithmIn,
-    PointFeatureNom_1125_Type * PointFeatureNom_1125In,
+    PointFeatureNominalBaseTypeChoicePair * PointFeatureNominalBaseTypePairIn,
     PointType * LocationIn,
     UnitVectorType * NormalIn,
     UnitVectorType * AdjacentNormalIn,
@@ -21053,7 +20948,7 @@ public:
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
+    GroupFeatureDef_1080_Type * GroupFeatureDef_1080In,
     LinearValueType * DiameterIn,
     UnitVectorType * FeatureDirectionIn,
     NaturalType * NumberOfFeaturesIn);
@@ -21062,7 +20957,7 @@ public:
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
+    GroupFeatureDef_1080_Type * GroupFeatureDef_1080In,
     LinearValueType * DiameterIn,
     UnitVectorType * FeatureDirectionIn,
     NaturalType * NumberOfFeaturesIn);
@@ -21182,7 +21077,7 @@ public:
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
+    GroupFeatureDef_1080_Type * GroupFeatureDef_1080In,
     LinearValueType * ArcRadiusIn,
     AngularValueType * IncrementalArcIn,
     UnitVectorType * FeatureDirectionIn,
@@ -21192,7 +21087,7 @@ public:
     AttributesType * AttributesIn,
     XmlBoolean * IsProfileGroupIn,
     XmlBoolean * IsRunoutGroupIn,
-    GroupFeatureDef_1105_Type * GroupFeatureDef_1105In,
+    GroupFeatureDef_1080_Type * GroupFeatureDef_1080In,
     LinearValueType * ArcRadiusIn,
     AngularValueType * IncrementalArcIn,
     UnitVectorType * FeatureDirectionIn,

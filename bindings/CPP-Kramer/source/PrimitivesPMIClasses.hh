@@ -64,6 +64,7 @@ class StatsNonNegativeIntegerWithReferencesType;
 class StatsValuesEnumType;
 class StatsWithReferenceBaseType;
 class StatsWithReferenceBaseTypeLisd;
+class StatsWithReferenceBaseTypeChoicePair;
 class SubgroupDecimalArrayType;
 class SubgroupDecimalType;
 class SubgroupDecimalTypeLisd;
@@ -88,10 +89,8 @@ class TypeOfCoordinatesType;
 class TypeOfCoordinatesTypeChoicePair;
 class UniformScaleType;
 class ZoneOrientationEnumType;
-class ScaleType_1006_Type;
-class ScaleType_1006_TypeChoicePair;
-class StatsWithRefere_1007_Type;
-class StatsWithRefere_1007_TypeChoicePair;
+class ScaleType_1005_Type;
+class ScaleType_1005_TypeChoicePair;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -923,18 +922,18 @@ public:
   ScaleType();
   ScaleType(
     PointType * OriginIn,
-    ScaleType_1006_Type * ScaleType_1006In);
+    ScaleType_1005_Type * ScaleType_1005In);
   ~ScaleType();
   void printSelf(FILE * outFile);
 
   PointType * getOrigin();
   void setOrigin(PointType * OriginIn);
-  ScaleType_1006_Type * getScaleType_1006();
-  void setScaleType_1006(ScaleType_1006_Type * ScaleType_1006In);
+  ScaleType_1005_Type * getScaleType_1005();
+  void setScaleType_1005(ScaleType_1005_Type * ScaleType_1005In);
 
 protected:
   PointType * Origin;
-  ScaleType_1006_Type * ScaleType_1006;
+  ScaleType_1005_Type * ScaleType_1005;
 };
 
 /* ***************************************************************** */
@@ -1173,15 +1172,45 @@ class StatsWithReferenceBaseType :
 public:
   StatsWithReferenceBaseType();
   StatsWithReferenceBaseType(
-    StatsWithRefere_1007_Type * StatsWithRefere_1007In);
+    StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn);
   ~StatsWithReferenceBaseType();
   void printSelf(FILE * outFile);
 
-  StatsWithRefere_1007_Type * getStatsWithRefere_1007();
-  void setStatsWithRefere_1007(StatsWithRefere_1007_Type * StatsWithRefere_1007In);
+  StatsWithReferenceBaseTypeChoicePair * getStatsWithReferenceBaseTypePair();
+  void setStatsWithReferenceBaseTypePair(StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn);
 
 protected:
-  StatsWithRefere_1007_Type * StatsWithRefere_1007;
+  StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePair;
+};
+
+/* ***************************************************************** */
+
+union StatsWithReferenceBaseTypeVal
+{
+  QIFReferenceType * SoftwareId;
+  QIFReferenceType * StandardId;
+  QIFReferenceType * AlgorithmId;
+};
+
+/* ***************************************************************** */
+
+class StatsWithReferenceBaseTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    SoftwareIdE,
+    StandardIdE,
+    AlgorithmIdE };
+  StatsWithReferenceBaseTypeChoicePair();
+  StatsWithReferenceBaseTypeChoicePair(
+    whichOne StatsWithReferenceBaseTypeTypeIn,
+    StatsWithReferenceBaseTypeVal StatsWithReferenceBaseTypeValueIn);
+  ~StatsWithReferenceBaseTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne StatsWithReferenceBaseTypeType;
+  StatsWithReferenceBaseTypeVal StatsWithReferenceBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1275,7 +1304,7 @@ class SubgroupDecimalsType :
 public:
   SubgroupDecimalsType();
   SubgroupDecimalsType(
-    StatsWithRefere_1007_Type * StatsWithRefere_1007In,
+    StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn,
     SubgroupDecimalArrayType * ValuesIn);
   ~SubgroupDecimalsType();
   void printSelf(FILE * outFile);
@@ -1360,7 +1389,7 @@ class SubgroupIntegersType :
 public:
   SubgroupIntegersType();
   SubgroupIntegersType(
-    StatsWithRefere_1007_Type * StatsWithRefere_1007In,
+    StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn,
     SubgroupIntegerArrayType * ValuesIn);
   ~SubgroupIntegersType();
   void printSelf(FILE * outFile);
@@ -1692,26 +1721,26 @@ public:
 
 /* ***************************************************************** */
 
-class ScaleType_1006_Type :
+class ScaleType_1005_Type :
   public XmlTypeBase
 {
 public:
-  ScaleType_1006_Type();
-  ScaleType_1006_Type(
-    ScaleType_1006_TypeChoicePair * ScaleType_1006_TypePairIn);
-  ~ScaleType_1006_Type();
+  ScaleType_1005_Type();
+  ScaleType_1005_Type(
+    ScaleType_1005_TypeChoicePair * ScaleType_1005_TypePairIn);
+  ~ScaleType_1005_Type();
   void printSelf(FILE * outFile);
 
-  ScaleType_1006_TypeChoicePair * getScaleType_1006_TypePair();
-  void setScaleType_1006_TypePair(ScaleType_1006_TypeChoicePair * ScaleType_1006_TypePairIn);
+  ScaleType_1005_TypeChoicePair * getScaleType_1005_TypePair();
+  void setScaleType_1005_TypePair(ScaleType_1005_TypeChoicePair * ScaleType_1005_TypePairIn);
 
 protected:
-  ScaleType_1006_TypeChoicePair * ScaleType_1006_TypePair;
+  ScaleType_1005_TypeChoicePair * ScaleType_1005_TypePair;
 };
 
 /* ***************************************************************** */
 
-union ScaleType_1006_TypeVal
+union ScaleType_1005_TypeVal
 {
   UniformScaleType * UniformScale;
   RadialDifferentialScaleType * RadialDifferentialScale;
@@ -1720,7 +1749,7 @@ union ScaleType_1006_TypeVal
 
 /* ***************************************************************** */
 
-class ScaleType_1006_TypeChoicePair :
+class ScaleType_1005_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -1728,64 +1757,15 @@ public:
     UniformScaleE,
     RadialDifferentialScaleE,
     AxialDifferentialScaleE };
-  ScaleType_1006_TypeChoicePair();
-  ScaleType_1006_TypeChoicePair(
-    whichOne ScaleType_1006_TypeTypeIn,
-    ScaleType_1006_TypeVal ScaleType_1006_TypeValueIn);
-  ~ScaleType_1006_TypeChoicePair();
+  ScaleType_1005_TypeChoicePair();
+  ScaleType_1005_TypeChoicePair(
+    whichOne ScaleType_1005_TypeTypeIn,
+    ScaleType_1005_TypeVal ScaleType_1005_TypeValueIn);
+  ~ScaleType_1005_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ScaleType_1006_TypeType;
-  ScaleType_1006_TypeVal ScaleType_1006_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class StatsWithRefere_1007_Type :
-  public XmlTypeBase
-{
-public:
-  StatsWithRefere_1007_Type();
-  StatsWithRefere_1007_Type(
-    StatsWithRefere_1007_TypeChoicePair * StatsWithRefere_1007_TypePairIn);
-  ~StatsWithRefere_1007_Type();
-  void printSelf(FILE * outFile);
-
-  StatsWithRefere_1007_TypeChoicePair * getStatsWithRefere_1007_TypePair();
-  void setStatsWithRefere_1007_TypePair(StatsWithRefere_1007_TypeChoicePair * StatsWithRefere_1007_TypePairIn);
-
-protected:
-  StatsWithRefere_1007_TypeChoicePair * StatsWithRefere_1007_TypePair;
-};
-
-/* ***************************************************************** */
-
-union StatsWithRefere_1007_TypeVal
-{
-  QIFReferenceType * SoftwareId;
-  QIFReferenceType * StandardId;
-  QIFReferenceType * AlgorithmId;
-};
-
-/* ***************************************************************** */
-
-class StatsWithRefere_1007_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    SoftwareIdE,
-    StandardIdE,
-    AlgorithmIdE };
-  StatsWithRefere_1007_TypeChoicePair();
-  StatsWithRefere_1007_TypeChoicePair(
-    whichOne StatsWithRefere_1007_TypeTypeIn,
-    StatsWithRefere_1007_TypeVal StatsWithRefere_1007_TypeValueIn);
-  ~StatsWithRefere_1007_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne StatsWithRefere_1007_TypeType;
-  StatsWithRefere_1007_TypeVal StatsWithRefere_1007_TypeValue;
+  whichOne ScaleType_1005_TypeType;
+  ScaleType_1005_TypeVal ScaleType_1005_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -1796,7 +1776,7 @@ class ListAccumulatedStatsValuesType :
 public:
   ListAccumulatedStatsValuesType();
   ListAccumulatedStatsValuesType(
-    StatsWithRefere_1007_Type * StatsWithRefere_1007In,
+    StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn,
     ListAccumulatedStatsValuesListType * StatsIn);
   ~ListAccumulatedStatsValuesType();
   void printSelf(FILE * outFile);
@@ -1830,7 +1810,7 @@ class ListSubgroupStatsValuesType :
 public:
   ListSubgroupStatsValuesType();
   ListSubgroupStatsValuesType(
-    StatsWithRefere_1007_Type * StatsWithRefere_1007In,
+    StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn,
     ListSubgroupStatsValuesListType * StatsIn);
   ~ListSubgroupStatsValuesType();
   void printSelf(FILE * outFile);
@@ -1864,7 +1844,7 @@ class ListSummaryStatsValuesType :
 public:
   ListSummaryStatsValuesType();
   ListSummaryStatsValuesType(
-    StatsWithRefere_1007_Type * StatsWithRefere_1007In,
+    StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn,
     ListSummaryStatsValuesListType * StatsIn);
   ~ListSummaryStatsValuesType();
   void printSelf(FILE * outFile);
@@ -1884,7 +1864,7 @@ class StatsMeasuredDecimalType :
 public:
   StatsMeasuredDecimalType();
   StatsMeasuredDecimalType(
-    StatsWithRefere_1007_Type * StatsWithRefere_1007In,
+    StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn,
     MeasuredDecimalType * ValueIn);
   ~StatsMeasuredDecimalType();
   void printSelf(FILE * outFile);
@@ -1904,7 +1884,7 @@ class StatsMeasuredDecimalWithReferenceType :
 public:
   StatsMeasuredDecimalWithReferenceType();
   StatsMeasuredDecimalWithReferenceType(
-    StatsWithRefere_1007_Type * StatsWithRefere_1007In,
+    StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn,
     MeasuredDecimalType * ValueIn,
     QIFReferenceType * IdIn);
   ~StatsMeasuredDecimalWithReferenceType();
@@ -1925,7 +1905,7 @@ class StatsNonNegativeIntegerType :
 public:
   StatsNonNegativeIntegerType();
   StatsNonNegativeIntegerType(
-    StatsWithRefere_1007_Type * StatsWithRefere_1007In,
+    StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn,
     XmlNonNegativeInteger * ValueIn);
   ~StatsNonNegativeIntegerType();
   void printSelf(FILE * outFile);
@@ -1945,7 +1925,7 @@ class StatsNonNegativeIntegerWithReferencesType :
 public:
   StatsNonNegativeIntegerWithReferencesType();
   StatsNonNegativeIntegerWithReferencesType(
-    StatsWithRefere_1007_Type * StatsWithRefere_1007In,
+    StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn,
     XmlNonNegativeInteger * ValueIn,
     ArrayReferenceType * IdsIn);
   ~StatsNonNegativeIntegerWithReferencesType();

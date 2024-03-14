@@ -4,7 +4,6 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
-#include <boost/regex.hpp>
 #include <xmlSchemaInstance.hh>
 #include "QIFDocumentClasses.hh"
 
@@ -181,7 +180,7 @@ bool ExternalQIFDocumentReferenceType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ExternalQIFDocumentReferenceType\n");
               returnValue = true;
@@ -197,7 +196,7 @@ bool ExternalQIFDocumentReferenceType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -206,7 +205,7 @@ bool ExternalQIFDocumentReferenceType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ExternalQIFDocumentReferenceType\n");
       returnValue = true;
@@ -218,8 +217,8 @@ bool ExternalQIFDocumentReferenceType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -273,7 +272,15 @@ ExternalQIFDocumentReferenceTypeLisd::~ExternalQIFDocumentReferenceTypeLisd()
   #endif
 }
 
-void ExternalQIFDocumentReferenceTypeLisd::printSelf(FILE * outFile){}
+void ExternalQIFDocumentReferenceTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ExternalQIFDocumentReferenceType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -350,6 +357,13 @@ void ExternalQIFReferencesType::printSelf(FILE * outFile)
         fprintf(stderr, "ExternalQIFDocument list is empty\n");
         exit(1);
       }
+    if (ExternalQIFDocument->size() < 1)
+      {
+        fprintf(stderr,
+                "size of ExternalQIFDocument list (%d) less than minimum required (1)\n",
+                (int)ExternalQIFDocument->size());
+        exit(1);
+      }
     std::list<ExternalQIFDocumentReferenceType *>::iterator iter;
     for (iter = ExternalQIFDocument->begin();
          iter != ExternalQIFDocument->end(); iter++)
@@ -378,7 +392,7 @@ bool ExternalQIFReferencesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ExternalQIFReferencesType\n");
               returnValue = true;
@@ -394,7 +408,7 @@ bool ExternalQIFReferencesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -403,7 +417,7 @@ bool ExternalQIFReferencesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ExternalQIFReferencesType\n");
       returnValue = true;
@@ -415,8 +429,8 @@ bool ExternalQIFReferencesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -621,8 +635,8 @@ QIFDocumentType::QIFDocumentType(
  StatisticsType * StatisticsIn,
  ManufacturingProcessTraceabilitiesType * ManufacturingProcessTraceabilitiesIn,
  QIFRulesType * RulesIn,
- XmlString * UserDataXMLIn,
- XmlString * SignatureIn)
+ UserDataXMLType * UserDataXMLIn,
+ UserDataXMLType * SignatureIn)
 {
   idMax = 0;
   versionQIF = 0;
@@ -691,8 +705,8 @@ QIFDocumentType::QIFDocumentType(
  StatisticsType * StatisticsIn,
  ManufacturingProcessTraceabilitiesType * ManufacturingProcessTraceabilitiesIn,
  QIFRulesType * RulesIn,
- XmlString * UserDataXMLIn,
- XmlString * SignatureIn)
+ UserDataXMLType * UserDataXMLIn,
+ UserDataXMLType * SignatureIn)
 {
   idMax = idMaxIn;
   versionQIF = versionQIFIn;
@@ -1029,6 +1043,7 @@ void QIFDocumentType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "<UserDataXML");
       UserDataXML->printSelf(outFile);
+      doSpaces(0, outFile);
       fprintf(outFile, "</UserDataXML>\n");
     }
   if (Signature)
@@ -1036,6 +1051,7 @@ void QIFDocumentType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "<Signature");
       Signature->printSelf(outFile);
+      doSpaces(0, outFile);
       fprintf(outFile, "</Signature>\n");
     }
   doSpaces(-INDENT, outFile);
@@ -1055,7 +1071,7 @@ bool QIFDocumentType::badAttributes(
       if (decl->name == "idMax")
         {
           XmlUnsignedInt * idMaxVal;
-          if (idMax)
+          if (this->idMax)
             {
               fprintf(stderr, "two values for idMax in QIFDocumentType\n");
               returnValue = true;
@@ -1071,12 +1087,12 @@ bool QIFDocumentType::badAttributes(
               break;
             }
           else
-            idMax = idMaxVal;
+            this->idMax = idMaxVal;
         }
       else if (decl->name == "versionQIF")
         {
           XmlNMTOKEN * versionQIFVal;
-          if (versionQIF)
+          if (this->versionQIF)
             {
               fprintf(stderr, "two values for versionQIF in QIFDocumentType\n");
               returnValue = true;
@@ -1092,7 +1108,7 @@ bool QIFDocumentType::badAttributes(
               break;
             }
           else
-            versionQIF = versionQIFVal;
+            this->versionQIF = versionQIFVal;
         }
       else
         {
@@ -1101,12 +1117,12 @@ bool QIFDocumentType::badAttributes(
           break;
         }
     }
-  if (idMax == 0)
+  if (this->idMax == 0)
     {
       fprintf(stderr, "required attribute \"idMax\" missing in QIFDocumentType\n");
       returnValue = true;
     }
-  if (versionQIF == 0)
+  if (this->versionQIF == 0)
     {
       fprintf(stderr, "required attribute \"versionQIF\" missing in QIFDocumentType\n");
       returnValue = true;
@@ -1118,10 +1134,10 @@ bool QIFDocumentType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete idMax;
-      idMax = 0;
-      delete versionQIF;
-      versionQIF = 0;
+      delete this->idMax;
+      this->idMax = 0;
+      delete this->versionQIF;
+      this->versionQIF = 0;
     }
   return returnValue;
 }
@@ -1312,16 +1328,16 @@ QIFRulesType * QIFDocumentType::getRules()
 void QIFDocumentType::setRules(QIFRulesType * RulesIn)
 {Rules = RulesIn;}
 
-XmlString * QIFDocumentType::getUserDataXML()
+UserDataXMLType * QIFDocumentType::getUserDataXML()
 {return UserDataXML;}
 
-void QIFDocumentType::setUserDataXML(XmlString * UserDataXMLIn)
+void QIFDocumentType::setUserDataXML(UserDataXMLType * UserDataXMLIn)
 {UserDataXML = UserDataXMLIn;}
 
-XmlString * QIFDocumentType::getSignature()
+UserDataXMLType * QIFDocumentType::getSignature()
 {return Signature;}
 
-void QIFDocumentType::setSignature(XmlString * SignatureIn)
+void QIFDocumentType::setSignature(UserDataXMLType * SignatureIn)
 {Signature = SignatureIn;}
 
 /* ***************************************************************** */
@@ -1480,7 +1496,7 @@ bool XmlHeaderForQIFDocument::badAttributes(
       else if (decl->name == "idMax")
         {
           XmlUnsignedInt * idMaxVal;
-          if (idMax)
+          if (this->idMax)
             {
               fprintf(stderr, "two values for idMax in XmlHeaderForQIFDocument\n");
               returnValue = true;
@@ -1496,12 +1512,12 @@ bool XmlHeaderForQIFDocument::badAttributes(
               break;
             }
           else
-            idMax = idMaxVal;
+            this->idMax = idMaxVal;
         }
       else if (decl->name == "versionQIF")
         {
           XmlNMTOKEN * versionQIFVal;
-          if (versionQIF)
+          if (this->versionQIF)
             {
               fprintf(stderr, "two values for versionQIF in XmlHeaderForQIFDocument\n");
               returnValue = true;
@@ -1517,7 +1533,7 @@ bool XmlHeaderForQIFDocument::badAttributes(
               break;
             }
           else
-            versionQIF = versionQIFVal;
+            this->versionQIF = versionQIFVal;
         }
       else
         {
@@ -1526,12 +1542,12 @@ bool XmlHeaderForQIFDocument::badAttributes(
           break;
         }
     }
-  if (idMax == 0)
+  if (this->idMax == 0)
     {
       fprintf(stderr, "required attribute \"idMax\" missing in XmlHeaderForQIFDocument\n");
       returnValue = true;
     }
-  if (versionQIF == 0)
+  if (this->versionQIF == 0)
     {
       fprintf(stderr, "required attribute \"versionQIF\" missing in XmlHeaderForQIFDocument\n");
       returnValue = true;
@@ -1549,10 +1565,10 @@ bool XmlHeaderForQIFDocument::badAttributes(
       XmlnsiWithPrefix = 0;
       delete location;
       location = 0;
-      delete idMax;
-      idMax = 0;
-      delete versionQIF;
-      versionQIF = 0;
+      delete this->idMax;
+      this->idMax = 0;
+      delete this->versionQIF;
+      this->versionQIF = 0;
     }
   if (location && !hasXsi)
     {

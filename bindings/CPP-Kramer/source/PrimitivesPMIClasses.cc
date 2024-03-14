@@ -4,7 +4,6 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
-#include <boost/regex.hpp>
 #include <xmlSchemaInstance.hh>
 #include "PrimitivesPMIClasses.hh"
 
@@ -219,13 +218,6 @@ BottomTypeChoicePair * BottomType::getBottomTypePair()
 
 void BottomType::setBottomTypePair(BottomTypeChoicePair * BottomTypePairIn)
 {BottomTypePair = BottomTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class BottomTypeChoicePair
-
-*/
-
 BottomTypeChoicePair::BottomTypeChoicePair() {}
 
 BottomTypeChoicePair::BottomTypeChoicePair(
@@ -713,13 +705,6 @@ DigitalModelFormatTypeChoicePair * DigitalModelFormatType::getDigitalModelFormat
 
 void DigitalModelFormatType::setDigitalModelFormatTypePair(DigitalModelFormatTypeChoicePair * DigitalModelFormatTypePairIn)
 {DigitalModelFormatTypePair = DigitalModelFormatTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class DigitalModelFormatTypeChoicePair
-
-*/
-
 DigitalModelFormatTypeChoicePair::DigitalModelFormatTypeChoicePair() {}
 
 DigitalModelFormatTypeChoicePair::DigitalModelFormatTypeChoicePair(
@@ -1043,10 +1028,10 @@ ListAccumulatedStatsValuesType::ListAccumulatedStatsValuesType() :
 }
 
 ListAccumulatedStatsValuesType::ListAccumulatedStatsValuesType(
- StatsWithRefere_1007_Type * StatsWithRefere_1007In,
+ StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn,
  ListAccumulatedStatsValuesListType * StatsIn) :
   StatsWithReferenceBaseType(
-    StatsWithRefere_1007In)
+    StatsWithReferenceBaseTypePairIn)
 {
   Stats = StatsIn;
 }
@@ -1062,9 +1047,9 @@ void ListAccumulatedStatsValuesType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (StatsWithRefere_1007)
+  if (StatsWithReferenceBaseTypePair)
     {
-      StatsWithRefere_1007->printSelf(outFile);
+      StatsWithReferenceBaseTypePair->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Stats");
@@ -1104,7 +1089,15 @@ ListAccumulatedStatsValuesTypeLisd::~ListAccumulatedStatsValuesTypeLisd()
   #endif
 }
 
-void ListAccumulatedStatsValuesTypeLisd::printSelf(FILE * outFile){}
+void ListAccumulatedStatsValuesTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ListAccumulatedStatsValuesType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -1215,10 +1208,10 @@ ListSubgroupStatsValuesType::ListSubgroupStatsValuesType() :
 }
 
 ListSubgroupStatsValuesType::ListSubgroupStatsValuesType(
- StatsWithRefere_1007_Type * StatsWithRefere_1007In,
+ StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn,
  ListSubgroupStatsValuesListType * StatsIn) :
   StatsWithReferenceBaseType(
-    StatsWithRefere_1007In)
+    StatsWithReferenceBaseTypePairIn)
 {
   Stats = StatsIn;
 }
@@ -1234,9 +1227,9 @@ void ListSubgroupStatsValuesType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (StatsWithRefere_1007)
+  if (StatsWithReferenceBaseTypePair)
     {
-      StatsWithRefere_1007->printSelf(outFile);
+      StatsWithReferenceBaseTypePair->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Stats");
@@ -1276,7 +1269,15 @@ ListSubgroupStatsValuesTypeLisd::~ListSubgroupStatsValuesTypeLisd()
   #endif
 }
 
-void ListSubgroupStatsValuesTypeLisd::printSelf(FILE * outFile){}
+void ListSubgroupStatsValuesTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ListSubgroupStatsValuesType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -1387,10 +1388,10 @@ ListSummaryStatsValuesType::ListSummaryStatsValuesType() :
 }
 
 ListSummaryStatsValuesType::ListSummaryStatsValuesType(
- StatsWithRefere_1007_Type * StatsWithRefere_1007In,
+ StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn,
  ListSummaryStatsValuesListType * StatsIn) :
   StatsWithReferenceBaseType(
-    StatsWithRefere_1007In)
+    StatsWithReferenceBaseTypePairIn)
 {
   Stats = StatsIn;
 }
@@ -1406,9 +1407,9 @@ void ListSummaryStatsValuesType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (StatsWithRefere_1007)
+  if (StatsWithReferenceBaseTypePair)
     {
-      StatsWithRefere_1007->printSelf(outFile);
+      StatsWithReferenceBaseTypePair->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Stats");
@@ -1530,13 +1531,6 @@ ManufacturingMethodTypeChoicePair * ManufacturingMethodType::getManufacturingMet
 
 void ManufacturingMethodType::setManufacturingMethodTypePair(ManufacturingMethodTypeChoicePair * ManufacturingMethodTypePairIn)
 {ManufacturingMethodTypePair = ManufacturingMethodTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ManufacturingMethodTypeChoicePair
-
-*/
-
 ManufacturingMethodTypeChoicePair::ManufacturingMethodTypeChoicePair() {}
 
 ManufacturingMethodTypeChoicePair::ManufacturingMethodTypeChoicePair(
@@ -2289,7 +2283,7 @@ bool MeasuredPointType::badAttributes(
       if (decl->name == "combinedUncertainty")
         {
           XmlDecimal * combinedUncertaintyVal;
-          if (combinedUncertainty)
+          if (this->combinedUncertainty)
             {
               fprintf(stderr, "two values for combinedUncertainty in MeasuredPointType\n");
               returnValue = true;
@@ -2305,12 +2299,12 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            combinedUncertainty = combinedUncertaintyVal;
+            this->combinedUncertainty = combinedUncertaintyVal;
         }
       else if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in MeasuredPointType\n");
               returnValue = true;
@@ -2326,12 +2320,12 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "linearUnit")
         {
           XmlToken * linearUnitVal;
-          if (linearUnit)
+          if (this->linearUnit)
             {
               fprintf(stderr, "two values for linearUnit in MeasuredPointType\n");
               returnValue = true;
@@ -2347,12 +2341,12 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            linearUnit = linearUnitVal;
+            this->linearUnit = linearUnitVal;
         }
       else if (decl->name == "meanError")
         {
           XmlDecimal * meanErrorVal;
-          if (meanError)
+          if (this->meanError)
             {
               fprintf(stderr, "two values for meanError in MeasuredPointType\n");
               returnValue = true;
@@ -2368,12 +2362,12 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            meanError = meanErrorVal;
+            this->meanError = meanErrorVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in MeasuredPointType\n");
               returnValue = true;
@@ -2389,12 +2383,12 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else if (decl->name == "validity")
         {
           ValidityEnumType * validityVal;
-          if (validity)
+          if (this->validity)
             {
               fprintf(stderr, "two values for validity in MeasuredPointType\n");
               returnValue = true;
@@ -2410,12 +2404,12 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            validity = validityVal;
+            this->validity = validityVal;
         }
       else if (decl->name == "xCombinedUncertainty")
         {
           XmlDecimal * xCombinedUncertaintyVal;
-          if (xCombinedUncertainty)
+          if (this->xCombinedUncertainty)
             {
               fprintf(stderr, "two values for xCombinedUncertainty in MeasuredPointType\n");
               returnValue = true;
@@ -2431,12 +2425,12 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            xCombinedUncertainty = xCombinedUncertaintyVal;
+            this->xCombinedUncertainty = xCombinedUncertaintyVal;
         }
       else if (decl->name == "xDecimalPlaces")
         {
           XmlNonNegativeInteger * xDecimalPlacesVal;
-          if (xDecimalPlaces)
+          if (this->xDecimalPlaces)
             {
               fprintf(stderr, "two values for xDecimalPlaces in MeasuredPointType\n");
               returnValue = true;
@@ -2452,12 +2446,12 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            xDecimalPlaces = xDecimalPlacesVal;
+            this->xDecimalPlaces = xDecimalPlacesVal;
         }
       else if (decl->name == "xMeanError")
         {
           XmlDecimal * xMeanErrorVal;
-          if (xMeanError)
+          if (this->xMeanError)
             {
               fprintf(stderr, "two values for xMeanError in MeasuredPointType\n");
               returnValue = true;
@@ -2473,12 +2467,12 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            xMeanError = xMeanErrorVal;
+            this->xMeanError = xMeanErrorVal;
         }
       else if (decl->name == "xSignificantFigures")
         {
           XmlNonNegativeInteger * xSignificantFiguresVal;
-          if (xSignificantFigures)
+          if (this->xSignificantFigures)
             {
               fprintf(stderr, "two values for xSignificantFigures in MeasuredPointType\n");
               returnValue = true;
@@ -2494,12 +2488,12 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            xSignificantFigures = xSignificantFiguresVal;
+            this->xSignificantFigures = xSignificantFiguresVal;
         }
       else if (decl->name == "xValidity")
         {
           ValidityEnumType * xValidityVal;
-          if (xValidity)
+          if (this->xValidity)
             {
               fprintf(stderr, "two values for xValidity in MeasuredPointType\n");
               returnValue = true;
@@ -2515,12 +2509,12 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            xValidity = xValidityVal;
+            this->xValidity = xValidityVal;
         }
       else if (decl->name == "yCombinedUncertainty")
         {
           XmlDecimal * yCombinedUncertaintyVal;
-          if (yCombinedUncertainty)
+          if (this->yCombinedUncertainty)
             {
               fprintf(stderr, "two values for yCombinedUncertainty in MeasuredPointType\n");
               returnValue = true;
@@ -2536,12 +2530,12 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            yCombinedUncertainty = yCombinedUncertaintyVal;
+            this->yCombinedUncertainty = yCombinedUncertaintyVal;
         }
       else if (decl->name == "yDecimalPlaces")
         {
           XmlNonNegativeInteger * yDecimalPlacesVal;
-          if (yDecimalPlaces)
+          if (this->yDecimalPlaces)
             {
               fprintf(stderr, "two values for yDecimalPlaces in MeasuredPointType\n");
               returnValue = true;
@@ -2557,12 +2551,12 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            yDecimalPlaces = yDecimalPlacesVal;
+            this->yDecimalPlaces = yDecimalPlacesVal;
         }
       else if (decl->name == "yMeanError")
         {
           XmlDecimal * yMeanErrorVal;
-          if (yMeanError)
+          if (this->yMeanError)
             {
               fprintf(stderr, "two values for yMeanError in MeasuredPointType\n");
               returnValue = true;
@@ -2578,12 +2572,12 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            yMeanError = yMeanErrorVal;
+            this->yMeanError = yMeanErrorVal;
         }
       else if (decl->name == "ySignificantFigures")
         {
           XmlNonNegativeInteger * ySignificantFiguresVal;
-          if (ySignificantFigures)
+          if (this->ySignificantFigures)
             {
               fprintf(stderr, "two values for ySignificantFigures in MeasuredPointType\n");
               returnValue = true;
@@ -2599,12 +2593,12 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            ySignificantFigures = ySignificantFiguresVal;
+            this->ySignificantFigures = ySignificantFiguresVal;
         }
       else if (decl->name == "yValidity")
         {
           ValidityEnumType * yValidityVal;
-          if (yValidity)
+          if (this->yValidity)
             {
               fprintf(stderr, "two values for yValidity in MeasuredPointType\n");
               returnValue = true;
@@ -2620,12 +2614,12 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            yValidity = yValidityVal;
+            this->yValidity = yValidityVal;
         }
       else if (decl->name == "zCombinedUncertainty")
         {
           XmlDecimal * zCombinedUncertaintyVal;
-          if (zCombinedUncertainty)
+          if (this->zCombinedUncertainty)
             {
               fprintf(stderr, "two values for zCombinedUncertainty in MeasuredPointType\n");
               returnValue = true;
@@ -2641,12 +2635,12 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            zCombinedUncertainty = zCombinedUncertaintyVal;
+            this->zCombinedUncertainty = zCombinedUncertaintyVal;
         }
       else if (decl->name == "zDecimalPlaces")
         {
           XmlNonNegativeInteger * zDecimalPlacesVal;
-          if (zDecimalPlaces)
+          if (this->zDecimalPlaces)
             {
               fprintf(stderr, "two values for zDecimalPlaces in MeasuredPointType\n");
               returnValue = true;
@@ -2662,12 +2656,12 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            zDecimalPlaces = zDecimalPlacesVal;
+            this->zDecimalPlaces = zDecimalPlacesVal;
         }
       else if (decl->name == "zMeanError")
         {
           XmlDecimal * zMeanErrorVal;
-          if (zMeanError)
+          if (this->zMeanError)
             {
               fprintf(stderr, "two values for zMeanError in MeasuredPointType\n");
               returnValue = true;
@@ -2683,12 +2677,12 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            zMeanError = zMeanErrorVal;
+            this->zMeanError = zMeanErrorVal;
         }
       else if (decl->name == "zSignificantFigures")
         {
           XmlNonNegativeInteger * zSignificantFiguresVal;
-          if (zSignificantFigures)
+          if (this->zSignificantFigures)
             {
               fprintf(stderr, "two values for zSignificantFigures in MeasuredPointType\n");
               returnValue = true;
@@ -2704,12 +2698,12 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            zSignificantFigures = zSignificantFiguresVal;
+            this->zSignificantFigures = zSignificantFiguresVal;
         }
       else if (decl->name == "zValidity")
         {
           ValidityEnumType * zValidityVal;
-          if (zValidity)
+          if (this->zValidity)
             {
               fprintf(stderr, "two values for zValidity in MeasuredPointType\n");
               returnValue = true;
@@ -2725,7 +2719,7 @@ bool MeasuredPointType::badAttributes(
               break;
             }
           else
-            zValidity = zValidityVal;
+            this->zValidity = zValidityVal;
         }
       else
         {
@@ -2741,48 +2735,48 @@ bool MeasuredPointType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete combinedUncertainty;
-      combinedUncertainty = 0;
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete linearUnit;
-      linearUnit = 0;
-      delete meanError;
-      meanError = 0;
-      delete significantFigures;
-      significantFigures = 0;
-      delete validity;
-      validity = 0;
-      delete xCombinedUncertainty;
-      xCombinedUncertainty = 0;
-      delete xDecimalPlaces;
-      xDecimalPlaces = 0;
-      delete xMeanError;
-      xMeanError = 0;
-      delete xSignificantFigures;
-      xSignificantFigures = 0;
-      delete xValidity;
-      xValidity = 0;
-      delete yCombinedUncertainty;
-      yCombinedUncertainty = 0;
-      delete yDecimalPlaces;
-      yDecimalPlaces = 0;
-      delete yMeanError;
-      yMeanError = 0;
-      delete ySignificantFigures;
-      ySignificantFigures = 0;
-      delete yValidity;
-      yValidity = 0;
-      delete zCombinedUncertainty;
-      zCombinedUncertainty = 0;
-      delete zDecimalPlaces;
-      zDecimalPlaces = 0;
-      delete zMeanError;
-      zMeanError = 0;
-      delete zSignificantFigures;
-      zSignificantFigures = 0;
-      delete zValidity;
-      zValidity = 0;
+      delete this->combinedUncertainty;
+      this->combinedUncertainty = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->linearUnit;
+      this->linearUnit = 0;
+      delete this->meanError;
+      this->meanError = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
+      delete this->validity;
+      this->validity = 0;
+      delete this->xCombinedUncertainty;
+      this->xCombinedUncertainty = 0;
+      delete this->xDecimalPlaces;
+      this->xDecimalPlaces = 0;
+      delete this->xMeanError;
+      this->xMeanError = 0;
+      delete this->xSignificantFigures;
+      this->xSignificantFigures = 0;
+      delete this->xValidity;
+      this->xValidity = 0;
+      delete this->yCombinedUncertainty;
+      this->yCombinedUncertainty = 0;
+      delete this->yDecimalPlaces;
+      this->yDecimalPlaces = 0;
+      delete this->yMeanError;
+      this->yMeanError = 0;
+      delete this->ySignificantFigures;
+      this->ySignificantFigures = 0;
+      delete this->yValidity;
+      this->yValidity = 0;
+      delete this->zCombinedUncertainty;
+      this->zCombinedUncertainty = 0;
+      delete this->zDecimalPlaces;
+      this->zDecimalPlaces = 0;
+      delete this->zMeanError;
+      this->zMeanError = 0;
+      delete this->zSignificantFigures;
+      this->zSignificantFigures = 0;
+      delete this->zValidity;
+      this->zValidity = 0;
     }
   return returnValue;
 }
@@ -3326,7 +3320,7 @@ bool MeasuredUnitVectorType::badAttributes(
       if (decl->name == "combinedUncertainty")
         {
           XmlDecimal * combinedUncertaintyVal;
-          if (combinedUncertainty)
+          if (this->combinedUncertainty)
             {
               fprintf(stderr, "two values for combinedUncertainty in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3342,12 +3336,12 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            combinedUncertainty = combinedUncertaintyVal;
+            this->combinedUncertainty = combinedUncertaintyVal;
         }
       else if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3363,12 +3357,12 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "linearUnit")
         {
           XmlToken * linearUnitVal;
-          if (linearUnit)
+          if (this->linearUnit)
             {
               fprintf(stderr, "two values for linearUnit in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3384,12 +3378,12 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            linearUnit = linearUnitVal;
+            this->linearUnit = linearUnitVal;
         }
       else if (decl->name == "meanError")
         {
           XmlDecimal * meanErrorVal;
-          if (meanError)
+          if (this->meanError)
             {
               fprintf(stderr, "two values for meanError in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3405,12 +3399,12 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            meanError = meanErrorVal;
+            this->meanError = meanErrorVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3426,12 +3420,12 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else if (decl->name == "validity")
         {
           ValidityEnumType * validityVal;
-          if (validity)
+          if (this->validity)
             {
               fprintf(stderr, "two values for validity in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3447,12 +3441,12 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            validity = validityVal;
+            this->validity = validityVal;
         }
       else if (decl->name == "xCombinedUncertainty")
         {
           XmlDecimal * xCombinedUncertaintyVal;
-          if (xCombinedUncertainty)
+          if (this->xCombinedUncertainty)
             {
               fprintf(stderr, "two values for xCombinedUncertainty in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3468,12 +3462,12 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            xCombinedUncertainty = xCombinedUncertaintyVal;
+            this->xCombinedUncertainty = xCombinedUncertaintyVal;
         }
       else if (decl->name == "xDecimalPlaces")
         {
           XmlNonNegativeInteger * xDecimalPlacesVal;
-          if (xDecimalPlaces)
+          if (this->xDecimalPlaces)
             {
               fprintf(stderr, "two values for xDecimalPlaces in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3489,12 +3483,12 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            xDecimalPlaces = xDecimalPlacesVal;
+            this->xDecimalPlaces = xDecimalPlacesVal;
         }
       else if (decl->name == "xMeanError")
         {
           XmlDecimal * xMeanErrorVal;
-          if (xMeanError)
+          if (this->xMeanError)
             {
               fprintf(stderr, "two values for xMeanError in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3510,12 +3504,12 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            xMeanError = xMeanErrorVal;
+            this->xMeanError = xMeanErrorVal;
         }
       else if (decl->name == "xSignificantFigures")
         {
           XmlNonNegativeInteger * xSignificantFiguresVal;
-          if (xSignificantFigures)
+          if (this->xSignificantFigures)
             {
               fprintf(stderr, "two values for xSignificantFigures in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3531,12 +3525,12 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            xSignificantFigures = xSignificantFiguresVal;
+            this->xSignificantFigures = xSignificantFiguresVal;
         }
       else if (decl->name == "xValidity")
         {
           ValidityEnumType * xValidityVal;
-          if (xValidity)
+          if (this->xValidity)
             {
               fprintf(stderr, "two values for xValidity in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3552,12 +3546,12 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            xValidity = xValidityVal;
+            this->xValidity = xValidityVal;
         }
       else if (decl->name == "yCombinedUncertainty")
         {
           XmlDecimal * yCombinedUncertaintyVal;
-          if (yCombinedUncertainty)
+          if (this->yCombinedUncertainty)
             {
               fprintf(stderr, "two values for yCombinedUncertainty in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3573,12 +3567,12 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            yCombinedUncertainty = yCombinedUncertaintyVal;
+            this->yCombinedUncertainty = yCombinedUncertaintyVal;
         }
       else if (decl->name == "yDecimalPlaces")
         {
           XmlNonNegativeInteger * yDecimalPlacesVal;
-          if (yDecimalPlaces)
+          if (this->yDecimalPlaces)
             {
               fprintf(stderr, "two values for yDecimalPlaces in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3594,12 +3588,12 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            yDecimalPlaces = yDecimalPlacesVal;
+            this->yDecimalPlaces = yDecimalPlacesVal;
         }
       else if (decl->name == "yMeanError")
         {
           XmlDecimal * yMeanErrorVal;
-          if (yMeanError)
+          if (this->yMeanError)
             {
               fprintf(stderr, "two values for yMeanError in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3615,12 +3609,12 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            yMeanError = yMeanErrorVal;
+            this->yMeanError = yMeanErrorVal;
         }
       else if (decl->name == "ySignificantFigures")
         {
           XmlNonNegativeInteger * ySignificantFiguresVal;
-          if (ySignificantFigures)
+          if (this->ySignificantFigures)
             {
               fprintf(stderr, "two values for ySignificantFigures in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3636,12 +3630,12 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            ySignificantFigures = ySignificantFiguresVal;
+            this->ySignificantFigures = ySignificantFiguresVal;
         }
       else if (decl->name == "yValidity")
         {
           ValidityEnumType * yValidityVal;
-          if (yValidity)
+          if (this->yValidity)
             {
               fprintf(stderr, "two values for yValidity in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3657,12 +3651,12 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            yValidity = yValidityVal;
+            this->yValidity = yValidityVal;
         }
       else if (decl->name == "zCombinedUncertainty")
         {
           XmlDecimal * zCombinedUncertaintyVal;
-          if (zCombinedUncertainty)
+          if (this->zCombinedUncertainty)
             {
               fprintf(stderr, "two values for zCombinedUncertainty in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3678,12 +3672,12 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            zCombinedUncertainty = zCombinedUncertaintyVal;
+            this->zCombinedUncertainty = zCombinedUncertaintyVal;
         }
       else if (decl->name == "zDecimalPlaces")
         {
           XmlNonNegativeInteger * zDecimalPlacesVal;
-          if (zDecimalPlaces)
+          if (this->zDecimalPlaces)
             {
               fprintf(stderr, "two values for zDecimalPlaces in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3699,12 +3693,12 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            zDecimalPlaces = zDecimalPlacesVal;
+            this->zDecimalPlaces = zDecimalPlacesVal;
         }
       else if (decl->name == "zMeanError")
         {
           XmlDecimal * zMeanErrorVal;
-          if (zMeanError)
+          if (this->zMeanError)
             {
               fprintf(stderr, "two values for zMeanError in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3720,12 +3714,12 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            zMeanError = zMeanErrorVal;
+            this->zMeanError = zMeanErrorVal;
         }
       else if (decl->name == "zSignificantFigures")
         {
           XmlNonNegativeInteger * zSignificantFiguresVal;
-          if (zSignificantFigures)
+          if (this->zSignificantFigures)
             {
               fprintf(stderr, "two values for zSignificantFigures in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3741,12 +3735,12 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            zSignificantFigures = zSignificantFiguresVal;
+            this->zSignificantFigures = zSignificantFiguresVal;
         }
       else if (decl->name == "zValidity")
         {
           ValidityEnumType * zValidityVal;
-          if (zValidity)
+          if (this->zValidity)
             {
               fprintf(stderr, "two values for zValidity in MeasuredUnitVectorType\n");
               returnValue = true;
@@ -3762,7 +3756,7 @@ bool MeasuredUnitVectorType::badAttributes(
               break;
             }
           else
-            zValidity = zValidityVal;
+            this->zValidity = zValidityVal;
         }
       else
         {
@@ -3778,48 +3772,48 @@ bool MeasuredUnitVectorType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete combinedUncertainty;
-      combinedUncertainty = 0;
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete linearUnit;
-      linearUnit = 0;
-      delete meanError;
-      meanError = 0;
-      delete significantFigures;
-      significantFigures = 0;
-      delete validity;
-      validity = 0;
-      delete xCombinedUncertainty;
-      xCombinedUncertainty = 0;
-      delete xDecimalPlaces;
-      xDecimalPlaces = 0;
-      delete xMeanError;
-      xMeanError = 0;
-      delete xSignificantFigures;
-      xSignificantFigures = 0;
-      delete xValidity;
-      xValidity = 0;
-      delete yCombinedUncertainty;
-      yCombinedUncertainty = 0;
-      delete yDecimalPlaces;
-      yDecimalPlaces = 0;
-      delete yMeanError;
-      yMeanError = 0;
-      delete ySignificantFigures;
-      ySignificantFigures = 0;
-      delete yValidity;
-      yValidity = 0;
-      delete zCombinedUncertainty;
-      zCombinedUncertainty = 0;
-      delete zDecimalPlaces;
-      zDecimalPlaces = 0;
-      delete zMeanError;
-      zMeanError = 0;
-      delete zSignificantFigures;
-      zSignificantFigures = 0;
-      delete zValidity;
-      zValidity = 0;
+      delete this->combinedUncertainty;
+      this->combinedUncertainty = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->linearUnit;
+      this->linearUnit = 0;
+      delete this->meanError;
+      this->meanError = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
+      delete this->validity;
+      this->validity = 0;
+      delete this->xCombinedUncertainty;
+      this->xCombinedUncertainty = 0;
+      delete this->xDecimalPlaces;
+      this->xDecimalPlaces = 0;
+      delete this->xMeanError;
+      this->xMeanError = 0;
+      delete this->xSignificantFigures;
+      this->xSignificantFigures = 0;
+      delete this->xValidity;
+      this->xValidity = 0;
+      delete this->yCombinedUncertainty;
+      this->yCombinedUncertainty = 0;
+      delete this->yDecimalPlaces;
+      this->yDecimalPlaces = 0;
+      delete this->yMeanError;
+      this->yMeanError = 0;
+      delete this->ySignificantFigures;
+      this->ySignificantFigures = 0;
+      delete this->yValidity;
+      this->yValidity = 0;
+      delete this->zCombinedUncertainty;
+      this->zCombinedUncertainty = 0;
+      delete this->zDecimalPlaces;
+      this->zDecimalPlaces = 0;
+      delete this->zMeanError;
+      this->zMeanError = 0;
+      delete this->zSignificantFigures;
+      this->zSignificantFigures = 0;
+      delete this->zValidity;
+      this->zValidity = 0;
     }
   return returnValue;
 }
@@ -4229,22 +4223,22 @@ void RectangularUnitAreaType::setRectangularUnitAreaOrientation(UnitVectorType *
 ScaleType::ScaleType()
 {
   Origin = 0;
-  ScaleType_1006 = 0;
+  ScaleType_1005 = 0;
 }
 
 ScaleType::ScaleType(
  PointType * OriginIn,
- ScaleType_1006_Type * ScaleType_1006In)
+ ScaleType_1005_Type * ScaleType_1005In)
 {
   Origin = OriginIn;
-  ScaleType_1006 = ScaleType_1006In;
+  ScaleType_1005 = ScaleType_1005In;
 }
 
 ScaleType::~ScaleType()
 {
   #ifndef NODESTRUCT
   delete Origin;
-  delete ScaleType_1006;
+  delete ScaleType_1005;
   #endif
 }
 
@@ -4256,7 +4250,7 @@ void ScaleType::printSelf(FILE * outFile)
   fprintf(outFile, "<Origin");
   Origin->printSelf(outFile);
   fprintf(outFile, "</Origin>\n");
-  ScaleType_1006->printSelf(outFile);
+  ScaleType_1005->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -4266,11 +4260,11 @@ PointType * ScaleType::getOrigin()
 void ScaleType::setOrigin(PointType * OriginIn)
 {Origin = OriginIn;}
 
-ScaleType_1006_Type * ScaleType::getScaleType_1006()
-{return ScaleType_1006;}
+ScaleType_1005_Type * ScaleType::getScaleType_1005()
+{return ScaleType_1005;}
 
-void ScaleType::setScaleType_1006(ScaleType_1006_Type * ScaleType_1006In)
-{ScaleType_1006 = ScaleType_1006In;}
+void ScaleType::setScaleType_1005(ScaleType_1005_Type * ScaleType_1005In)
+{ScaleType_1005 = ScaleType_1005In;}
 
 /* ***************************************************************** */
 
@@ -4289,76 +4283,74 @@ SecurityClassificationEnumType::SecurityClassificationEnumType(
     valIn)
 {
   if (!bad)
-    bad = (strcmp(val.c_str(), "NONE") &&
-           strcmp(val.c_str(), "UNCLASSIFIED") &&
-           strcmp(val.c_str(), "RESTRICTED") &&
+    bad = (strcmp(val.c_str(), "COMPANY_CONFIDENTIAL") &&
+           strcmp(val.c_str(), "CONFIDENTIAL") &&
+           strcmp(val.c_str(), "EU_CONFIDENTIAL") &&
            strcmp(val.c_str(), "EU_RESTRICTED") &&
-           strcmp(val.c_str(), "WEU_RESTRICTED") &&
+           strcmp(val.c_str(), "EU_SECRET") &&
+           strcmp(val.c_str(), "EU_TOP_SECRET") &&
+           strcmp(val.c_str(), "FOCAL_TOP_SECRET") &&
            strcmp(val.c_str(), "FOR_OFFICIAL_USE_ONLY") &&
+           strcmp(val.c_str(), "NONE") &&
+           strcmp(val.c_str(), "OFFICIAL_USE_ONLY") &&
+           strcmp(val.c_str(), "PATENT") &&
            strcmp(val.c_str(), "PROTECTED") &&
            strcmp(val.c_str(), "PROTECTED_A") &&
            strcmp(val.c_str(), "PROTECTED_B") &&
            strcmp(val.c_str(), "PROTECTED_C") &&
-           strcmp(val.c_str(), "CONFIDENTIAL") &&
-           strcmp(val.c_str(), "EU_CONFIDENTIAL") &&
-           strcmp(val.c_str(), "WEU_CONFIDENTIAL") &&
+           strcmp(val.c_str(), "REGISTERED_TRADEMARK") &&
+           strcmp(val.c_str(), "RESTRICTED") &&
            strcmp(val.c_str(), "SECRET") &&
-           strcmp(val.c_str(), "SECRET_NATIONAL_SECURITY_INFORMATION") &&
            strcmp(val.c_str(), "SECRET_FORMERLY_RESTRICTED_DATA") &&
+           strcmp(val.c_str(), "SECRET_NATIONAL_SECURITY_INFORMATION") &&
            strcmp(val.c_str(), "SECRET_RESTRICTED_DATA") &&
-           strcmp(val.c_str(), "SECRET") &&
-           strcmp(val.c_str(), "EU_SECRET") &&
-           strcmp(val.c_str(), "WEU_SECRET") &&
-           strcmp(val.c_str(), "TOP_SECRET_NATIONAL_SECURITY_INFORMATION") &&
            strcmp(val.c_str(), "TOP_SECRET_FORMERLY_RESTRICTED_DATA") &&
+           strcmp(val.c_str(), "TOP_SECRET_NATIONAL_SECURITY_INFORMATION") &&
            strcmp(val.c_str(), "TOP_SECRET_RESTRICTED_DATA") &&
-           strcmp(val.c_str(), "EU_TOP_SECRET") &&
-           strcmp(val.c_str(), "FOCAL_TOP_SECRET") &&
-           strcmp(val.c_str(), "COMPANY_CONFIDENTIAL") &&
-           strcmp(val.c_str(), "OFFICIAL_USE_ONLY") &&
            strcmp(val.c_str(), "TRADE_SECRET") &&
            strcmp(val.c_str(), "TRADEMARK") &&
-           strcmp(val.c_str(), "REGISTERED_TRADEMARK") &&
-           strcmp(val.c_str(), "PATENT") &&
-           strcmp(val.c_str(), "UNDEFINED"));
+           strcmp(val.c_str(), "UNCLASSIFIED") &&
+           strcmp(val.c_str(), "UNDEFINED") &&
+           strcmp(val.c_str(), "WEU_CONFIDENTIAL") &&
+           strcmp(val.c_str(), "WEU_RESTRICTED") &&
+           strcmp(val.c_str(), "WEU_SECRET"));
 }
 
 SecurityClassificationEnumType::~SecurityClassificationEnumType() {}
 
 bool SecurityClassificationEnumType::SecurityClassificationEnumTypeIsBad()
 {
-  return (strcmp(val.c_str(), "NONE") &&
-          strcmp(val.c_str(), "UNCLASSIFIED") &&
-          strcmp(val.c_str(), "RESTRICTED") &&
+  return (strcmp(val.c_str(), "COMPANY_CONFIDENTIAL") &&
+          strcmp(val.c_str(), "CONFIDENTIAL") &&
+          strcmp(val.c_str(), "EU_CONFIDENTIAL") &&
           strcmp(val.c_str(), "EU_RESTRICTED") &&
-          strcmp(val.c_str(), "WEU_RESTRICTED") &&
+          strcmp(val.c_str(), "EU_SECRET") &&
+          strcmp(val.c_str(), "EU_TOP_SECRET") &&
+          strcmp(val.c_str(), "FOCAL_TOP_SECRET") &&
           strcmp(val.c_str(), "FOR_OFFICIAL_USE_ONLY") &&
+          strcmp(val.c_str(), "NONE") &&
+          strcmp(val.c_str(), "OFFICIAL_USE_ONLY") &&
+          strcmp(val.c_str(), "PATENT") &&
           strcmp(val.c_str(), "PROTECTED") &&
           strcmp(val.c_str(), "PROTECTED_A") &&
           strcmp(val.c_str(), "PROTECTED_B") &&
           strcmp(val.c_str(), "PROTECTED_C") &&
-          strcmp(val.c_str(), "CONFIDENTIAL") &&
-          strcmp(val.c_str(), "EU_CONFIDENTIAL") &&
-          strcmp(val.c_str(), "WEU_CONFIDENTIAL") &&
+          strcmp(val.c_str(), "REGISTERED_TRADEMARK") &&
+          strcmp(val.c_str(), "RESTRICTED") &&
           strcmp(val.c_str(), "SECRET") &&
-          strcmp(val.c_str(), "SECRET_NATIONAL_SECURITY_INFORMATION") &&
           strcmp(val.c_str(), "SECRET_FORMERLY_RESTRICTED_DATA") &&
+          strcmp(val.c_str(), "SECRET_NATIONAL_SECURITY_INFORMATION") &&
           strcmp(val.c_str(), "SECRET_RESTRICTED_DATA") &&
-          strcmp(val.c_str(), "SECRET") &&
-          strcmp(val.c_str(), "EU_SECRET") &&
-          strcmp(val.c_str(), "WEU_SECRET") &&
-          strcmp(val.c_str(), "TOP_SECRET_NATIONAL_SECURITY_INFORMATION") &&
           strcmp(val.c_str(), "TOP_SECRET_FORMERLY_RESTRICTED_DATA") &&
+          strcmp(val.c_str(), "TOP_SECRET_NATIONAL_SECURITY_INFORMATION") &&
           strcmp(val.c_str(), "TOP_SECRET_RESTRICTED_DATA") &&
-          strcmp(val.c_str(), "EU_TOP_SECRET") &&
-          strcmp(val.c_str(), "FOCAL_TOP_SECRET") &&
-          strcmp(val.c_str(), "COMPANY_CONFIDENTIAL") &&
-          strcmp(val.c_str(), "OFFICIAL_USE_ONLY") &&
           strcmp(val.c_str(), "TRADE_SECRET") &&
           strcmp(val.c_str(), "TRADEMARK") &&
-          strcmp(val.c_str(), "REGISTERED_TRADEMARK") &&
-          strcmp(val.c_str(), "PATENT") &&
-          strcmp(val.c_str(), "UNDEFINED"));
+          strcmp(val.c_str(), "UNCLASSIFIED") &&
+          strcmp(val.c_str(), "UNDEFINED") &&
+          strcmp(val.c_str(), "WEU_CONFIDENTIAL") &&
+          strcmp(val.c_str(), "WEU_RESTRICTED") &&
+          strcmp(val.c_str(), "WEU_SECRET"));
 }
 
 void SecurityClassificationEnumType::printName(FILE * outFile)
@@ -4427,13 +4419,6 @@ SecurityClassificationTypeChoicePair * SecurityClassificationType::getSecurityCl
 
 void SecurityClassificationType::setSecurityClassificationTypePair(SecurityClassificationTypeChoicePair * SecurityClassificationTypePairIn)
 {SecurityClassificationTypePair = SecurityClassificationTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class SecurityClassificationTypeChoicePair
-
-*/
-
 SecurityClassificationTypeChoicePair::SecurityClassificationTypeChoicePair() {}
 
 SecurityClassificationTypeChoicePair::SecurityClassificationTypeChoicePair(
@@ -4573,13 +4558,6 @@ ShapeClassTypeChoicePair * ShapeClassType::getShapeClassTypePair()
 
 void ShapeClassType::setShapeClassTypePair(ShapeClassTypeChoicePair * ShapeClassTypePairIn)
 {ShapeClassTypePair = ShapeClassTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ShapeClassTypeChoicePair
-
-*/
-
 ShapeClassTypeChoicePair::ShapeClassTypeChoicePair() {}
 
 ShapeClassTypeChoicePair::ShapeClassTypeChoicePair(
@@ -4717,13 +4695,6 @@ SlotEndTypeChoicePair * SlotEndType::getSlotEndTypePair()
 
 void SlotEndType::setSlotEndTypePair(SlotEndTypeChoicePair * SlotEndTypePairIn)
 {SlotEndTypePair = SlotEndTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class SlotEndTypeChoicePair
-
-*/
-
 SlotEndTypeChoicePair::SlotEndTypeChoicePair() {}
 
 SlotEndTypeChoicePair::SlotEndTypeChoicePair(
@@ -4830,10 +4801,10 @@ StatsMeasuredDecimalType::StatsMeasuredDecimalType() :
 }
 
 StatsMeasuredDecimalType::StatsMeasuredDecimalType(
- StatsWithRefere_1007_Type * StatsWithRefere_1007In,
+ StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn,
  MeasuredDecimalType * ValueIn) :
   StatsWithReferenceBaseType(
-    StatsWithRefere_1007In)
+    StatsWithReferenceBaseTypePairIn)
 {
   Value = ValueIn;
 }
@@ -4849,9 +4820,9 @@ void StatsMeasuredDecimalType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (StatsWithRefere_1007)
+  if (StatsWithReferenceBaseTypePair)
     {
-      StatsWithRefere_1007->printSelf(outFile);
+      StatsWithReferenceBaseTypePair->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Value");
@@ -4879,11 +4850,11 @@ StatsMeasuredDecimalWithReferenceType::StatsMeasuredDecimalWithReferenceType() :
 }
 
 StatsMeasuredDecimalWithReferenceType::StatsMeasuredDecimalWithReferenceType(
- StatsWithRefere_1007_Type * StatsWithRefere_1007In,
+ StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn,
  MeasuredDecimalType * ValueIn,
  QIFReferenceType * IdIn) :
   StatsMeasuredDecimalType(
-    StatsWithRefere_1007In,
+    StatsWithReferenceBaseTypePairIn,
     ValueIn)
 {
   Id = IdIn;
@@ -4900,9 +4871,9 @@ void StatsMeasuredDecimalWithReferenceType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (StatsWithRefere_1007)
+  if (StatsWithReferenceBaseTypePair)
     {
-      StatsWithRefere_1007->printSelf(outFile);
+      StatsWithReferenceBaseTypePair->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Value");
@@ -4937,10 +4908,10 @@ StatsNonNegativeIntegerType::StatsNonNegativeIntegerType() :
 }
 
 StatsNonNegativeIntegerType::StatsNonNegativeIntegerType(
- StatsWithRefere_1007_Type * StatsWithRefere_1007In,
+ StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn,
  XmlNonNegativeInteger * ValueIn) :
   StatsWithReferenceBaseType(
-    StatsWithRefere_1007In)
+    StatsWithReferenceBaseTypePairIn)
 {
   Value = ValueIn;
 }
@@ -4956,9 +4927,9 @@ void StatsNonNegativeIntegerType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (StatsWithRefere_1007)
+  if (StatsWithReferenceBaseTypePair)
     {
-      StatsWithRefere_1007->printSelf(outFile);
+      StatsWithReferenceBaseTypePair->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Value");
@@ -4986,11 +4957,11 @@ StatsNonNegativeIntegerWithReferencesType::StatsNonNegativeIntegerWithReferences
 }
 
 StatsNonNegativeIntegerWithReferencesType::StatsNonNegativeIntegerWithReferencesType(
- StatsWithRefere_1007_Type * StatsWithRefere_1007In,
+ StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn,
  XmlNonNegativeInteger * ValueIn,
  ArrayReferenceType * IdsIn) :
   StatsNonNegativeIntegerType(
-    StatsWithRefere_1007In,
+    StatsWithReferenceBaseTypePairIn,
     ValueIn)
 {
   Ids = IdsIn;
@@ -5007,9 +4978,9 @@ void StatsNonNegativeIntegerWithReferencesType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (StatsWithRefere_1007)
+  if (StatsWithReferenceBaseTypePair)
     {
-      StatsWithRefere_1007->printSelf(outFile);
+      StatsWithReferenceBaseTypePair->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Value");
@@ -5200,19 +5171,19 @@ void StatsValuesEnumType::oPrintSelf(FILE * outFile)
 
 StatsWithReferenceBaseType::StatsWithReferenceBaseType()
 {
-  StatsWithRefere_1007 = 0;
+  StatsWithReferenceBaseTypePair = 0;
 }
 
 StatsWithReferenceBaseType::StatsWithReferenceBaseType(
- StatsWithRefere_1007_Type * StatsWithRefere_1007In)
+ StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn)
 {
-  StatsWithRefere_1007 = StatsWithRefere_1007In;
+  StatsWithReferenceBaseTypePair = StatsWithReferenceBaseTypePairIn;
 }
 
 StatsWithReferenceBaseType::~StatsWithReferenceBaseType()
 {
   #ifndef NODESTRUCT
-  delete StatsWithRefere_1007;
+  delete StatsWithReferenceBaseTypePair;
   #endif
 }
 
@@ -5220,18 +5191,64 @@ void StatsWithReferenceBaseType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (StatsWithRefere_1007)
+  if (StatsWithReferenceBaseTypePair)
     {
-      StatsWithRefere_1007->printSelf(outFile);
+      StatsWithReferenceBaseTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
 
-StatsWithRefere_1007_Type * StatsWithReferenceBaseType::getStatsWithRefere_1007()
-{return StatsWithRefere_1007;}
+StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseType::getStatsWithReferenceBaseTypePair()
+{return StatsWithReferenceBaseTypePair;}
 
-void StatsWithReferenceBaseType::setStatsWithRefere_1007(StatsWithRefere_1007_Type * StatsWithRefere_1007In)
-{StatsWithRefere_1007 = StatsWithRefere_1007In;}
+void StatsWithReferenceBaseType::setStatsWithReferenceBaseTypePair(StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn)
+{StatsWithReferenceBaseTypePair = StatsWithReferenceBaseTypePairIn;}
+StatsWithReferenceBaseTypeChoicePair::StatsWithReferenceBaseTypeChoicePair() {}
+
+StatsWithReferenceBaseTypeChoicePair::StatsWithReferenceBaseTypeChoicePair(
+ whichOne StatsWithReferenceBaseTypeTypeIn,
+ StatsWithReferenceBaseTypeVal StatsWithReferenceBaseTypeValueIn)
+{
+  StatsWithReferenceBaseTypeType = StatsWithReferenceBaseTypeTypeIn;
+  StatsWithReferenceBaseTypeValue = StatsWithReferenceBaseTypeValueIn;
+}
+
+StatsWithReferenceBaseTypeChoicePair::~StatsWithReferenceBaseTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (StatsWithReferenceBaseTypeType == SoftwareIdE)
+    delete StatsWithReferenceBaseTypeValue.SoftwareId;
+  else if (StatsWithReferenceBaseTypeType == StandardIdE)
+    delete StatsWithReferenceBaseTypeValue.StandardId;
+  else if (StatsWithReferenceBaseTypeType == AlgorithmIdE)
+    delete StatsWithReferenceBaseTypeValue.AlgorithmId;
+  #endif
+}
+
+void StatsWithReferenceBaseTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (StatsWithReferenceBaseTypeType == SoftwareIdE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<SoftwareId");
+      StatsWithReferenceBaseTypeValue.SoftwareId->printSelf(outFile);
+      fprintf(outFile, "</SoftwareId>\n");
+    }
+  else if (StatsWithReferenceBaseTypeType == StandardIdE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<StandardId");
+      StatsWithReferenceBaseTypeValue.StandardId->printSelf(outFile);
+      fprintf(outFile, "</StandardId>\n");
+    }
+  else if (StatsWithReferenceBaseTypeType == AlgorithmIdE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<AlgorithmId");
+      StatsWithReferenceBaseTypeValue.AlgorithmId->printSelf(outFile);
+      fprintf(outFile, "</AlgorithmId>\n");
+    }
+}
 
 /* ***************************************************************** */
 
@@ -5258,7 +5275,15 @@ StatsWithReferenceBaseTypeLisd::~StatsWithReferenceBaseTypeLisd()
   #endif
 }
 
-void StatsWithReferenceBaseTypeLisd::printSelf(FILE * outFile){}
+void StatsWithReferenceBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<StatsWithReferenceBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -5335,6 +5360,13 @@ void SubgroupDecimalArrayType::printSelf(FILE * outFile)
         fprintf(stderr, "SubgroupDecimal list is empty\n");
         exit(1);
       }
+    if (SubgroupDecimal->size() < 1)
+      {
+        fprintf(stderr,
+                "size of SubgroupDecimal list (%d) less than minimum required (1)\n",
+                (int)SubgroupDecimal->size());
+        exit(1);
+      }
     std::list<SubgroupDecimalType *>::iterator iter;
     for (iter = SubgroupDecimal->begin();
          iter != SubgroupDecimal->end(); iter++)
@@ -5362,7 +5394,7 @@ bool SubgroupDecimalArrayType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in SubgroupDecimalArrayType\n");
               returnValue = true;
@@ -5378,7 +5410,7 @@ bool SubgroupDecimalArrayType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -5387,7 +5419,7 @@ bool SubgroupDecimalArrayType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in SubgroupDecimalArrayType\n");
       returnValue = true;
@@ -5399,8 +5431,8 @@ bool SubgroupDecimalArrayType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -5577,7 +5609,7 @@ bool SubgroupDecimalType::badAttributes(
       if (decl->name == "combinedUncertainty")
         {
           NonNegativeDecimalType * combinedUncertaintyVal;
-          if (combinedUncertainty)
+          if (this->combinedUncertainty)
             {
               fprintf(stderr, "two values for combinedUncertainty in SubgroupDecimalType\n");
               returnValue = true;
@@ -5593,12 +5625,12 @@ bool SubgroupDecimalType::badAttributes(
               break;
             }
           else
-            combinedUncertainty = combinedUncertaintyVal;
+            this->combinedUncertainty = combinedUncertaintyVal;
         }
       else if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in SubgroupDecimalType\n");
               returnValue = true;
@@ -5614,12 +5646,12 @@ bool SubgroupDecimalType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "meanError")
         {
           NonNegativeDecimalType * meanErrorVal;
-          if (meanError)
+          if (this->meanError)
             {
               fprintf(stderr, "two values for meanError in SubgroupDecimalType\n");
               returnValue = true;
@@ -5635,12 +5667,12 @@ bool SubgroupDecimalType::badAttributes(
               break;
             }
           else
-            meanError = meanErrorVal;
+            this->meanError = meanErrorVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in SubgroupDecimalType\n");
               returnValue = true;
@@ -5656,12 +5688,12 @@ bool SubgroupDecimalType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else if (decl->name == "subgroupId")
         {
           QIFIdType * subgroupIdVal;
-          if (subgroupId)
+          if (this->subgroupId)
             {
               fprintf(stderr, "two values for subgroupId in SubgroupDecimalType\n");
               returnValue = true;
@@ -5677,7 +5709,7 @@ bool SubgroupDecimalType::badAttributes(
               break;
             }
           else
-            subgroupId = subgroupIdVal;
+            this->subgroupId = subgroupIdVal;
         }
       else
         {
@@ -5686,7 +5718,7 @@ bool SubgroupDecimalType::badAttributes(
           break;
         }
     }
-  if (subgroupId == 0)
+  if (this->subgroupId == 0)
     {
       fprintf(stderr, "required attribute \"subgroupId\" missing in SubgroupDecimalType\n");
       returnValue = true;
@@ -5698,16 +5730,16 @@ bool SubgroupDecimalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete combinedUncertainty;
-      combinedUncertainty = 0;
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete meanError;
-      meanError = 0;
-      delete significantFigures;
-      significantFigures = 0;
-      delete subgroupId;
-      subgroupId = 0;
+      delete this->combinedUncertainty;
+      this->combinedUncertainty = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->meanError;
+      this->meanError = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
+      delete this->subgroupId;
+      this->subgroupId = 0;
     }
   return returnValue;
 }
@@ -5743,7 +5775,15 @@ SubgroupDecimalTypeLisd::~SubgroupDecimalTypeLisd()
   #endif
 }
 
-void SubgroupDecimalTypeLisd::printSelf(FILE * outFile){}
+void SubgroupDecimalTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<SubgroupDecimalType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -5758,10 +5798,10 @@ SubgroupDecimalsType::SubgroupDecimalsType() :
 }
 
 SubgroupDecimalsType::SubgroupDecimalsType(
- StatsWithRefere_1007_Type * StatsWithRefere_1007In,
+ StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn,
  SubgroupDecimalArrayType * ValuesIn) :
   StatsWithReferenceBaseType(
-    StatsWithRefere_1007In)
+    StatsWithReferenceBaseTypePairIn)
 {
   Values = ValuesIn;
 }
@@ -5777,9 +5817,9 @@ void SubgroupDecimalsType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (StatsWithRefere_1007)
+  if (StatsWithReferenceBaseTypePair)
     {
-      StatsWithRefere_1007->printSelf(outFile);
+      StatsWithReferenceBaseTypePair->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Values");
@@ -5870,6 +5910,13 @@ void SubgroupIntegerArrayType::printSelf(FILE * outFile)
         fprintf(stderr, "SubgroupInteger list is empty\n");
         exit(1);
       }
+    if (SubgroupInteger->size() < 1)
+      {
+        fprintf(stderr,
+                "size of SubgroupInteger list (%d) less than minimum required (1)\n",
+                (int)SubgroupInteger->size());
+        exit(1);
+      }
     std::list<SubgroupIntegerType *>::iterator iter;
     for (iter = SubgroupInteger->begin();
          iter != SubgroupInteger->end(); iter++)
@@ -5897,7 +5944,7 @@ bool SubgroupIntegerArrayType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in SubgroupIntegerArrayType\n");
               returnValue = true;
@@ -5913,7 +5960,7 @@ bool SubgroupIntegerArrayType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -5922,7 +5969,7 @@ bool SubgroupIntegerArrayType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in SubgroupIntegerArrayType\n");
       returnValue = true;
@@ -5934,8 +5981,8 @@ bool SubgroupIntegerArrayType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -6035,7 +6082,7 @@ bool SubgroupIntegerType::badAttributes(
       if (decl->name == "subgroupId")
         {
           QIFIdType * subgroupIdVal;
-          if (subgroupId)
+          if (this->subgroupId)
             {
               fprintf(stderr, "two values for subgroupId in SubgroupIntegerType\n");
               returnValue = true;
@@ -6051,7 +6098,7 @@ bool SubgroupIntegerType::badAttributes(
               break;
             }
           else
-            subgroupId = subgroupIdVal;
+            this->subgroupId = subgroupIdVal;
         }
       else
         {
@@ -6060,7 +6107,7 @@ bool SubgroupIntegerType::badAttributes(
           break;
         }
     }
-  if (subgroupId == 0)
+  if (this->subgroupId == 0)
     {
       fprintf(stderr, "required attribute \"subgroupId\" missing in SubgroupIntegerType\n");
       returnValue = true;
@@ -6072,8 +6119,8 @@ bool SubgroupIntegerType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete subgroupId;
-      subgroupId = 0;
+      delete this->subgroupId;
+      this->subgroupId = 0;
     }
   return returnValue;
 }
@@ -6109,7 +6156,15 @@ SubgroupIntegerTypeLisd::~SubgroupIntegerTypeLisd()
   #endif
 }
 
-void SubgroupIntegerTypeLisd::printSelf(FILE * outFile){}
+void SubgroupIntegerTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<SubgroupIntegerType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -6124,10 +6179,10 @@ SubgroupIntegersType::SubgroupIntegersType() :
 }
 
 SubgroupIntegersType::SubgroupIntegersType(
- StatsWithRefere_1007_Type * StatsWithRefere_1007In,
+ StatsWithReferenceBaseTypeChoicePair * StatsWithReferenceBaseTypePairIn,
  SubgroupIntegerArrayType * ValuesIn) :
   StatsWithReferenceBaseType(
-    StatsWithRefere_1007In)
+    StatsWithReferenceBaseTypePairIn)
 {
   Values = ValuesIn;
 }
@@ -6143,9 +6198,9 @@ void SubgroupIntegersType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  if (StatsWithRefere_1007)
+  if (StatsWithReferenceBaseTypePair)
     {
-      StatsWithRefere_1007->printSelf(outFile);
+      StatsWithReferenceBaseTypePair->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<Values");
@@ -6374,6 +6429,13 @@ void SummaryStatsValuesListType::printSelf(FILE * outFile)
         fprintf(stderr, "SummaryStatsValues list is empty\n");
         exit(1);
       }
+    if (SummaryStatsValues->size() < 1)
+      {
+        fprintf(stderr,
+                "size of SummaryStatsValues list (%d) less than minimum required (1)\n",
+                (int)SummaryStatsValues->size());
+        exit(1);
+      }
     std::list<SummaryStatsValuesType *>::iterator iter;
     for (iter = SummaryStatsValues->begin();
          iter != SummaryStatsValues->end(); iter++)
@@ -6402,7 +6464,7 @@ bool SummaryStatsValuesListType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in SummaryStatsValuesListType\n");
               returnValue = true;
@@ -6418,7 +6480,7 @@ bool SummaryStatsValuesListType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -6427,7 +6489,7 @@ bool SummaryStatsValuesListType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in SummaryStatsValuesListType\n");
       returnValue = true;
@@ -6439,8 +6501,8 @@ bool SummaryStatsValuesListType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -6482,7 +6544,15 @@ SummaryStatsValuesListTypeLisd::~SummaryStatsValuesListTypeLisd()
   #endif
 }
 
-void SummaryStatsValuesListTypeLisd::printSelf(FILE * outFile){}
+void SummaryStatsValuesListTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<SummaryStatsValuesListType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -6565,7 +6635,15 @@ SummaryStatsValuesTypeLisd::~SummaryStatsValuesTypeLisd()
   #endif
 }
 
-void SummaryStatsValuesTypeLisd::printSelf(FILE * outFile){}
+void SummaryStatsValuesTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<SummaryStatsValuesType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -6758,13 +6836,6 @@ ThreadClassTypeChoicePair * ThreadClassType::getThreadClassTypePair()
 
 void ThreadClassType::setThreadClassTypePair(ThreadClassTypeChoicePair * ThreadClassTypePairIn)
 {ThreadClassTypePair = ThreadClassTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ThreadClassTypeChoicePair
-
-*/
-
 ThreadClassTypeChoicePair::ThreadClassTypeChoicePair() {}
 
 ThreadClassTypeChoicePair::ThreadClassTypeChoicePair(
@@ -7006,13 +7077,6 @@ ThreadSeriesTypeChoicePair * ThreadSeriesType::getThreadSeriesTypePair()
 
 void ThreadSeriesType::setThreadSeriesTypePair(ThreadSeriesTypeChoicePair * ThreadSeriesTypePairIn)
 {ThreadSeriesTypePair = ThreadSeriesTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ThreadSeriesTypeChoicePair
-
-*/
-
 ThreadSeriesTypeChoicePair::ThreadSeriesTypeChoicePair() {}
 
 ThreadSeriesTypeChoicePair::ThreadSeriesTypeChoicePair(
@@ -7088,13 +7152,6 @@ TypeOfCoordinatesTypeChoicePair * TypeOfCoordinatesType::getTypeOfCoordinatesTyp
 
 void TypeOfCoordinatesType::setTypeOfCoordinatesTypePair(TypeOfCoordinatesTypeChoicePair * TypeOfCoordinatesTypePairIn)
 {TypeOfCoordinatesTypePair = TypeOfCoordinatesTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class TypeOfCoordinatesTypeChoicePair
-
-*/
-
 TypeOfCoordinatesTypeChoicePair::TypeOfCoordinatesTypeChoicePair() {}
 
 TypeOfCoordinatesTypeChoicePair::TypeOfCoordinatesTypeChoicePair(
@@ -7238,183 +7295,85 @@ void ZoneOrientationEnumType::oPrintSelf(FILE * outFile)
 
 /* ***************************************************************** */
 
-/* class ScaleType_1006_Type
+/* class ScaleType_1005_Type
 
 */
 
-ScaleType_1006_Type::ScaleType_1006_Type()
+ScaleType_1005_Type::ScaleType_1005_Type()
 {
-  ScaleType_1006_TypePair = 0;
+  ScaleType_1005_TypePair = 0;
 }
 
-ScaleType_1006_Type::ScaleType_1006_Type(
- ScaleType_1006_TypeChoicePair * ScaleType_1006_TypePairIn)
+ScaleType_1005_Type::ScaleType_1005_Type(
+ ScaleType_1005_TypeChoicePair * ScaleType_1005_TypePairIn)
 {
-  ScaleType_1006_TypePair = ScaleType_1006_TypePairIn;
+  ScaleType_1005_TypePair = ScaleType_1005_TypePairIn;
 }
 
-ScaleType_1006_Type::~ScaleType_1006_Type()
+ScaleType_1005_Type::~ScaleType_1005_Type()
 {
   #ifndef NODESTRUCT
-  delete ScaleType_1006_TypePair;
+  delete ScaleType_1005_TypePair;
   #endif
 }
 
-void ScaleType_1006_Type::printSelf(FILE * outFile)
+void ScaleType_1005_Type::printSelf(FILE * outFile)
 {
-  ScaleType_1006_TypePair->printSelf(outFile);
+  ScaleType_1005_TypePair->printSelf(outFile);
 }
 
-ScaleType_1006_TypeChoicePair * ScaleType_1006_Type::getScaleType_1006_TypePair()
-{return ScaleType_1006_TypePair;}
+ScaleType_1005_TypeChoicePair * ScaleType_1005_Type::getScaleType_1005_TypePair()
+{return ScaleType_1005_TypePair;}
 
-void ScaleType_1006_Type::setScaleType_1006_TypePair(ScaleType_1006_TypeChoicePair * ScaleType_1006_TypePairIn)
-{ScaleType_1006_TypePair = ScaleType_1006_TypePairIn;}
+void ScaleType_1005_Type::setScaleType_1005_TypePair(ScaleType_1005_TypeChoicePair * ScaleType_1005_TypePairIn)
+{ScaleType_1005_TypePair = ScaleType_1005_TypePairIn;}
+ScaleType_1005_TypeChoicePair::ScaleType_1005_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class ScaleType_1006_TypeChoicePair
-
-*/
-
-ScaleType_1006_TypeChoicePair::ScaleType_1006_TypeChoicePair() {}
-
-ScaleType_1006_TypeChoicePair::ScaleType_1006_TypeChoicePair(
- whichOne ScaleType_1006_TypeTypeIn,
- ScaleType_1006_TypeVal ScaleType_1006_TypeValueIn)
+ScaleType_1005_TypeChoicePair::ScaleType_1005_TypeChoicePair(
+ whichOne ScaleType_1005_TypeTypeIn,
+ ScaleType_1005_TypeVal ScaleType_1005_TypeValueIn)
 {
-  ScaleType_1006_TypeType = ScaleType_1006_TypeTypeIn;
-  ScaleType_1006_TypeValue = ScaleType_1006_TypeValueIn;
+  ScaleType_1005_TypeType = ScaleType_1005_TypeTypeIn;
+  ScaleType_1005_TypeValue = ScaleType_1005_TypeValueIn;
 }
 
-ScaleType_1006_TypeChoicePair::~ScaleType_1006_TypeChoicePair()
+ScaleType_1005_TypeChoicePair::~ScaleType_1005_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (ScaleType_1006_TypeType == UniformScaleE)
-    delete ScaleType_1006_TypeValue.UniformScale;
-  else if (ScaleType_1006_TypeType == RadialDifferentialScaleE)
-    delete ScaleType_1006_TypeValue.RadialDifferentialScale;
-  else if (ScaleType_1006_TypeType == AxialDifferentialScaleE)
-    delete ScaleType_1006_TypeValue.AxialDifferentialScale;
+  if (ScaleType_1005_TypeType == UniformScaleE)
+    delete ScaleType_1005_TypeValue.UniformScale;
+  else if (ScaleType_1005_TypeType == RadialDifferentialScaleE)
+    delete ScaleType_1005_TypeValue.RadialDifferentialScale;
+  else if (ScaleType_1005_TypeType == AxialDifferentialScaleE)
+    delete ScaleType_1005_TypeValue.AxialDifferentialScale;
   #endif
 }
 
-void ScaleType_1006_TypeChoicePair::printSelf(FILE * outFile)
+void ScaleType_1005_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (ScaleType_1006_TypeType == UniformScaleE)
+  if (ScaleType_1005_TypeType == UniformScaleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UniformScale");
-      ScaleType_1006_TypeValue.UniformScale->printSelf(outFile);
+      ScaleType_1005_TypeValue.UniformScale->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</UniformScale>\n");
     }
-  else if (ScaleType_1006_TypeType == RadialDifferentialScaleE)
+  else if (ScaleType_1005_TypeType == RadialDifferentialScaleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<RadialDifferentialScale");
-      ScaleType_1006_TypeValue.RadialDifferentialScale->printSelf(outFile);
+      ScaleType_1005_TypeValue.RadialDifferentialScale->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</RadialDifferentialScale>\n");
     }
-  else if (ScaleType_1006_TypeType == AxialDifferentialScaleE)
+  else if (ScaleType_1005_TypeType == AxialDifferentialScaleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AxialDifferentialScale");
-      ScaleType_1006_TypeValue.AxialDifferentialScale->printSelf(outFile);
+      ScaleType_1005_TypeValue.AxialDifferentialScale->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</AxialDifferentialScale>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class StatsWithRefere_1007_Type
-
-*/
-
-StatsWithRefere_1007_Type::StatsWithRefere_1007_Type()
-{
-  StatsWithRefere_1007_TypePair = 0;
-}
-
-StatsWithRefere_1007_Type::StatsWithRefere_1007_Type(
- StatsWithRefere_1007_TypeChoicePair * StatsWithRefere_1007_TypePairIn)
-{
-  StatsWithRefere_1007_TypePair = StatsWithRefere_1007_TypePairIn;
-}
-
-StatsWithRefere_1007_Type::~StatsWithRefere_1007_Type()
-{
-  #ifndef NODESTRUCT
-  delete StatsWithRefere_1007_TypePair;
-  #endif
-}
-
-void StatsWithRefere_1007_Type::printSelf(FILE * outFile)
-{
-  if (StatsWithRefere_1007_TypePair)
-    {
-      StatsWithRefere_1007_TypePair->printSelf(outFile);
-    }
-}
-
-StatsWithRefere_1007_TypeChoicePair * StatsWithRefere_1007_Type::getStatsWithRefere_1007_TypePair()
-{return StatsWithRefere_1007_TypePair;}
-
-void StatsWithRefere_1007_Type::setStatsWithRefere_1007_TypePair(StatsWithRefere_1007_TypeChoicePair * StatsWithRefere_1007_TypePairIn)
-{StatsWithRefere_1007_TypePair = StatsWithRefere_1007_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class StatsWithRefere_1007_TypeChoicePair
-
-*/
-
-StatsWithRefere_1007_TypeChoicePair::StatsWithRefere_1007_TypeChoicePair() {}
-
-StatsWithRefere_1007_TypeChoicePair::StatsWithRefere_1007_TypeChoicePair(
- whichOne StatsWithRefere_1007_TypeTypeIn,
- StatsWithRefere_1007_TypeVal StatsWithRefere_1007_TypeValueIn)
-{
-  StatsWithRefere_1007_TypeType = StatsWithRefere_1007_TypeTypeIn;
-  StatsWithRefere_1007_TypeValue = StatsWithRefere_1007_TypeValueIn;
-}
-
-StatsWithRefere_1007_TypeChoicePair::~StatsWithRefere_1007_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (StatsWithRefere_1007_TypeType == SoftwareIdE)
-    delete StatsWithRefere_1007_TypeValue.SoftwareId;
-  else if (StatsWithRefere_1007_TypeType == StandardIdE)
-    delete StatsWithRefere_1007_TypeValue.StandardId;
-  else if (StatsWithRefere_1007_TypeType == AlgorithmIdE)
-    delete StatsWithRefere_1007_TypeValue.AlgorithmId;
-  #endif
-}
-
-void StatsWithRefere_1007_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (StatsWithRefere_1007_TypeType == SoftwareIdE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<SoftwareId");
-      StatsWithRefere_1007_TypeValue.SoftwareId->printSelf(outFile);
-      fprintf(outFile, "</SoftwareId>\n");
-    }
-  else if (StatsWithRefere_1007_TypeType == StandardIdE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<StandardId");
-      StatsWithRefere_1007_TypeValue.StandardId->printSelf(outFile);
-      fprintf(outFile, "</StandardId>\n");
-    }
-  else if (StatsWithRefere_1007_TypeType == AlgorithmIdE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<AlgorithmId");
-      StatsWithRefere_1007_TypeValue.AlgorithmId->printSelf(outFile);
-      fprintf(outFile, "</AlgorithmId>\n");
     }
 }
 

@@ -84,6 +84,7 @@ class PMIDisplayTypeLisd;
 class PlanePMIDisplayType;
 class Polyline2dType;
 class Polyline2dTypeLisd;
+class Polyline2dTypeChoicePair;
 class Polylines2dType;
 class SavedViewSetType;
 class SavedViewType;
@@ -131,20 +132,17 @@ class ZoneSectionPlanesType;
 class ZoneSectionSetType;
 class ZoneSectionType;
 class ZoneSectionTypeLisd;
-class ExplodedViewMov_1231_Type;
-class ExplodedViewMov_1231_TypeChoicePair;
-class LogicalOperatio_1232_Type;
-class LogicalOperatio_1232_TypeLisd;
-class LogicalOperatio_1232_TypeChoicePair;
-class LogicalOperatio_1232_TypeChoicePairLisd;
-class Polyline2dType_1233_Type;
-class Polyline2dType_1233_TypeChoicePair;
-class Triangulation2d_1234_Type;
-class Triangulation2d_1234_TypeChoicePair;
-class Triangulation2d_1235_Type;
-class Triangulation2d_1235_TypeChoicePair;
-class WitnessLinesTyp_1236_Type;
-class WitnessLinesTyp_1237_Type;
+class ExplodedViewMov_1187_Type;
+class ExplodedViewMov_1187_TypeChoicePair;
+class LogicalOperatio_1188_Type;
+class LogicalOperatio_1188_TypeChoicePair;
+class LogicalOperatio_1188_TypeChoicePairLisd;
+class Triangulation2d_1189_Type;
+class Triangulation2d_1189_TypeChoicePair;
+class Triangulation2d_1190_Type;
+class Triangulation2d_1190_TypeChoicePair;
+class WitnessLinesTyp_1191_Type;
+class WitnessLinesTyp_1192_Type;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -627,21 +625,21 @@ class ExplodedViewMoveGroupType :
 public:
   ExplodedViewMoveGroupType();
   ExplodedViewMoveGroupType(
-    ExplodedViewMov_1231_Type * ExplodedViewMov_1231In,
+    ExplodedViewMov_1187_Type * ExplodedViewMov_1187In,
     ArrayReferenceFullType * ComponentIdsIn,
     ArrayReferenceFullType * BodyIdsIn);
   ~ExplodedViewMoveGroupType();
   void printSelf(FILE * outFile);
 
-  ExplodedViewMov_1231_Type * getExplodedViewMov_1231();
-  void setExplodedViewMov_1231(ExplodedViewMov_1231_Type * ExplodedViewMov_1231In);
+  ExplodedViewMov_1187_Type * getExplodedViewMov_1187();
+  void setExplodedViewMov_1187(ExplodedViewMov_1187_Type * ExplodedViewMov_1187In);
   ArrayReferenceFullType * getComponentIds();
   void setComponentIds(ArrayReferenceFullType * ComponentIdsIn);
   ArrayReferenceFullType * getBodyIds();
   void setBodyIds(ArrayReferenceFullType * BodyIdsIn);
 
 protected:
-  ExplodedViewMov_1231_Type * ExplodedViewMov_1231;
+  ExplodedViewMov_1187_Type * ExplodedViewMov_1187;
   ArrayReferenceFullType * ComponentIds;
   ArrayReferenceFullType * BodyIds;
 };
@@ -1480,11 +1478,11 @@ public:
   LogicalOperationType();
   LogicalOperationType(
     LogicalOperationEnumType * ActionIn,
-    LogicalOperatio_1232_Type * LogicalOperatio_1232In);
+    LogicalOperatio_1188_Type * LogicalOperatio_1188In);
   LogicalOperationType(
     XmlUnsignedInt * indexIn,
     LogicalOperationEnumType * ActionIn,
-    LogicalOperatio_1232_Type * LogicalOperatio_1232In);
+    LogicalOperatio_1188_Type * LogicalOperatio_1188In);
   ~LogicalOperationType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -1494,13 +1492,13 @@ public:
 
   LogicalOperationEnumType * getAction();
   void setAction(LogicalOperationEnumType * ActionIn);
-  LogicalOperatio_1232_Type * getLogicalOperatio_1232();
-  void setLogicalOperatio_1232(LogicalOperatio_1232_Type * LogicalOperatio_1232In);
+  LogicalOperatio_1188_Type * getLogicalOperatio_1188();
+  void setLogicalOperatio_1188(LogicalOperatio_1188_Type * LogicalOperatio_1188In);
 
 protected:
   XmlUnsignedInt * index;
   LogicalOperationEnumType * Action;
-  LogicalOperatio_1232_Type * LogicalOperatio_1232;
+  LogicalOperatio_1188_Type * LogicalOperatio_1188;
 };
 
 /* ***************************************************************** */
@@ -1721,10 +1719,10 @@ class Polyline2dType :
 public:
   Polyline2dType();
   Polyline2dType(
-    Polyline2dType_1233_Type * Polyline2dType_1233In);
+    Polyline2dTypeChoicePair * Polyline2dTypePairIn);
   Polyline2dType(
     ColorType * colorIn,
-    Polyline2dType_1233_Type * Polyline2dType_1233In);
+    Polyline2dTypeChoicePair * Polyline2dTypePairIn);
   ~Polyline2dType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -1732,12 +1730,40 @@ public:
   ColorType * getcolor();
   void setcolor(ColorType * colorIn);
 
-  Polyline2dType_1233_Type * getPolyline2dType_1233();
-  void setPolyline2dType_1233(Polyline2dType_1233_Type * Polyline2dType_1233In);
+  Polyline2dTypeChoicePair * getPolyline2dTypePair();
+  void setPolyline2dTypePair(Polyline2dTypeChoicePair * Polyline2dTypePairIn);
 
 protected:
   ColorType * color;
-  Polyline2dType_1233_Type * Polyline2dType_1233;
+  Polyline2dTypeChoicePair * Polyline2dTypePair;
+};
+
+/* ***************************************************************** */
+
+union Polyline2dTypeVal
+{
+  ArrayPoint2dType * Points;
+  ArrayBinaryType * PointsBinary;
+};
+
+/* ***************************************************************** */
+
+class Polyline2dTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    PointsE,
+    PointsBinaryE };
+  Polyline2dTypeChoicePair();
+  Polyline2dTypeChoicePair(
+    whichOne Polyline2dTypeTypeIn,
+    Polyline2dTypeVal Polyline2dTypeValueIn);
+  ~Polyline2dTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne Polyline2dTypeType;
+  Polyline2dTypeVal Polyline2dTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2546,19 +2572,19 @@ class Triangulation2dType :
 public:
   Triangulation2dType();
   Triangulation2dType(
-    Triangulation2d_1234_Type * Triangulation2d_1234In,
-    Triangulation2d_1235_Type * Triangulation2d_1235In);
+    Triangulation2d_1189_Type * Triangulation2d_1189In,
+    Triangulation2d_1190_Type * Triangulation2d_1190In);
   ~Triangulation2dType();
   void printSelf(FILE * outFile);
 
-  Triangulation2d_1234_Type * getTriangulation2d_1234();
-  void setTriangulation2d_1234(Triangulation2d_1234_Type * Triangulation2d_1234In);
-  Triangulation2d_1235_Type * getTriangulation2d_1235();
-  void setTriangulation2d_1235(Triangulation2d_1235_Type * Triangulation2d_1235In);
+  Triangulation2d_1189_Type * getTriangulation2d_1189();
+  void setTriangulation2d_1189(Triangulation2d_1189_Type * Triangulation2d_1189In);
+  Triangulation2d_1190_Type * getTriangulation2d_1190();
+  void setTriangulation2d_1190(Triangulation2d_1190_Type * Triangulation2d_1190In);
 
 protected:
-  Triangulation2d_1234_Type * Triangulation2d_1234;
-  Triangulation2d_1235_Type * Triangulation2d_1235;
+  Triangulation2d_1189_Type * Triangulation2d_1189;
+  Triangulation2d_1190_Type * Triangulation2d_1190;
 };
 
 /* ***************************************************************** */
@@ -2742,8 +2768,8 @@ protected:
 
 union WitnessLinesTypeVal
 {
-  WitnessLinesTyp_1236_Type * WitnessLinesTyp_1236;
-  WitnessLinesTyp_1237_Type * WitnessLinesTyp_1237;
+  WitnessLinesTyp_1191_Type * WitnessLinesTyp_1191;
+  WitnessLinesTyp_1192_Type * WitnessLinesTyp_1192;
 };
 
 /* ***************************************************************** */
@@ -2753,8 +2779,8 @@ class WitnessLinesTypeChoicePair :
 {
 public:
   enum whichOne {
-    WitnessLinesTyp_1236E,
-    WitnessLinesTyp_1237E };
+    WitnessLinesTyp_1191E,
+    WitnessLinesTyp_1192E };
   WitnessLinesTypeChoicePair();
   WitnessLinesTypeChoicePair(
     whichOne WitnessLinesTypeTypeIn,
@@ -2918,26 +2944,26 @@ public:
 
 /* ***************************************************************** */
 
-class ExplodedViewMov_1231_Type :
+class ExplodedViewMov_1187_Type :
   public XmlTypeBase
 {
 public:
-  ExplodedViewMov_1231_Type();
-  ExplodedViewMov_1231_Type(
-    ExplodedViewMov_1231_TypeChoicePair * ExplodedViewMov_1231_TypePairIn);
-  ~ExplodedViewMov_1231_Type();
+  ExplodedViewMov_1187_Type();
+  ExplodedViewMov_1187_Type(
+    ExplodedViewMov_1187_TypeChoicePair * ExplodedViewMov_1187_TypePairIn);
+  ~ExplodedViewMov_1187_Type();
   void printSelf(FILE * outFile);
 
-  ExplodedViewMov_1231_TypeChoicePair * getExplodedViewMov_1231_TypePair();
-  void setExplodedViewMov_1231_TypePair(ExplodedViewMov_1231_TypeChoicePair * ExplodedViewMov_1231_TypePairIn);
+  ExplodedViewMov_1187_TypeChoicePair * getExplodedViewMov_1187_TypePair();
+  void setExplodedViewMov_1187_TypePair(ExplodedViewMov_1187_TypeChoicePair * ExplodedViewMov_1187_TypePairIn);
 
 protected:
-  ExplodedViewMov_1231_TypeChoicePair * ExplodedViewMov_1231_TypePair;
+  ExplodedViewMov_1187_TypeChoicePair * ExplodedViewMov_1187_TypePair;
 };
 
 /* ***************************************************************** */
 
-union ExplodedViewMov_1231_TypeVal
+union ExplodedViewMov_1187_TypeVal
 {
   ExplodedViewTranslateType * Translate;
   ExplodedViewRotateType * Rotate;
@@ -2945,46 +2971,46 @@ union ExplodedViewMov_1231_TypeVal
 
 /* ***************************************************************** */
 
-class ExplodedViewMov_1231_TypeChoicePair :
+class ExplodedViewMov_1187_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     TranslateE,
     RotateE };
-  ExplodedViewMov_1231_TypeChoicePair();
-  ExplodedViewMov_1231_TypeChoicePair(
-    whichOne ExplodedViewMov_1231_TypeTypeIn,
-    ExplodedViewMov_1231_TypeVal ExplodedViewMov_1231_TypeValueIn);
-  ~ExplodedViewMov_1231_TypeChoicePair();
+  ExplodedViewMov_1187_TypeChoicePair();
+  ExplodedViewMov_1187_TypeChoicePair(
+    whichOne ExplodedViewMov_1187_TypeTypeIn,
+    ExplodedViewMov_1187_TypeVal ExplodedViewMov_1187_TypeValueIn);
+  ~ExplodedViewMov_1187_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ExplodedViewMov_1231_TypeType;
-  ExplodedViewMov_1231_TypeVal ExplodedViewMov_1231_TypeValue;
+  whichOne ExplodedViewMov_1187_TypeType;
+  ExplodedViewMov_1187_TypeVal ExplodedViewMov_1187_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class LogicalOperatio_1232_Type :
+class LogicalOperatio_1188_Type :
   public XmlTypeBase
 {
 public:
-  LogicalOperatio_1232_Type();
-  LogicalOperatio_1232_Type(
-    LogicalOperatio_1232_TypeChoicePairLisd * LogicalOperatio_1232_TypePairsIn);
-  ~LogicalOperatio_1232_Type();
+  LogicalOperatio_1188_Type();
+  LogicalOperatio_1188_Type(
+    LogicalOperatio_1188_TypeChoicePairLisd * LogicalOperatio_1188_TypePairsIn);
+  ~LogicalOperatio_1188_Type();
   void printSelf(FILE * outFile);
 
-  LogicalOperatio_1232_TypeChoicePairLisd * getLogicalOperatio_1232_TypePairs();
-  void setLogicalOperatio_1232_TypePairs(LogicalOperatio_1232_TypeChoicePairLisd * LogicalOperatio_1232_TypePairsIn);
+  LogicalOperatio_1188_TypeChoicePairLisd * getLogicalOperatio_1188_TypePairs();
+  void setLogicalOperatio_1188_TypePairs(LogicalOperatio_1188_TypeChoicePairLisd * LogicalOperatio_1188_TypePairsIn);
 
 protected:
-  LogicalOperatio_1232_TypeChoicePairLisd * LogicalOperatio_1232_TypePairs;
+  LogicalOperatio_1188_TypeChoicePairLisd * LogicalOperatio_1188_TypePairs;
 };
 
 /* ***************************************************************** */
 
-union LogicalOperatio_1232_TypeVal
+union LogicalOperatio_1188_TypeVal
 {
   XmlUnsignedInt * SectionPlane;
   XmlUnsignedInt * LogicalOperationResult;
@@ -2992,121 +3018,60 @@ union LogicalOperatio_1232_TypeVal
 
 /* ***************************************************************** */
 
-class LogicalOperatio_1232_TypeChoicePair :
+class LogicalOperatio_1188_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     SectionPlaneE,
     LogicalOperationResultE };
-  LogicalOperatio_1232_TypeChoicePair();
-  LogicalOperatio_1232_TypeChoicePair(
-    whichOne LogicalOperatio_1232_TypeTypeIn,
-    LogicalOperatio_1232_TypeVal LogicalOperatio_1232_TypeValueIn);
-  ~LogicalOperatio_1232_TypeChoicePair();
+  LogicalOperatio_1188_TypeChoicePair();
+  LogicalOperatio_1188_TypeChoicePair(
+    whichOne LogicalOperatio_1188_TypeTypeIn,
+    LogicalOperatio_1188_TypeVal LogicalOperatio_1188_TypeValueIn);
+  ~LogicalOperatio_1188_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne LogicalOperatio_1232_TypeType;
-  LogicalOperatio_1232_TypeVal LogicalOperatio_1232_TypeValue;
+  whichOne LogicalOperatio_1188_TypeType;
+  LogicalOperatio_1188_TypeVal LogicalOperatio_1188_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class LogicalOperatio_1232_TypeChoicePairLisd :
-  public std::list<LogicalOperatio_1232_TypeChoicePair *>,
+class LogicalOperatio_1188_TypeChoicePairLisd :
+  public std::list<LogicalOperatio_1188_TypeChoicePair *>,
   public XmlSchemaInstanceBase
 {
 public:
-  LogicalOperatio_1232_TypeChoicePairLisd();
-  LogicalOperatio_1232_TypeChoicePairLisd
-    (LogicalOperatio_1232_TypeChoicePair * aLogicalOperatio_1232_TypeChoicePair);
-  ~LogicalOperatio_1232_TypeChoicePairLisd();
+  LogicalOperatio_1188_TypeChoicePairLisd();
+  LogicalOperatio_1188_TypeChoicePairLisd
+    (LogicalOperatio_1188_TypeChoicePair * aLogicalOperatio_1188_TypeChoicePair);
+  ~LogicalOperatio_1188_TypeChoicePairLisd();
   void printSelf(FILE * outFile);
 };
 
 /* ***************************************************************** */
 
-class LogicalOperatio_1232_TypeLisd :
-  public std::list<LogicalOperatio_1232_Type *>,
-  public XmlSchemaInstanceBase
-{
-public:
-  LogicalOperatio_1232_TypeLisd();
-  LogicalOperatio_1232_TypeLisd(
-    LogicalOperatio_1232_Type * aLogicalOperatio_1232_Type);
-  ~LogicalOperatio_1232_TypeLisd();
-  void printSelf(FILE * outFile);
-};
-
-/* ***************************************************************** */
-
-class Polyline2dType_1233_Type :
+class Triangulation2d_1189_Type :
   public XmlTypeBase
 {
 public:
-  Polyline2dType_1233_Type();
-  Polyline2dType_1233_Type(
-    Polyline2dType_1233_TypeChoicePair * Polyline2dType_1233_TypePairIn);
-  ~Polyline2dType_1233_Type();
+  Triangulation2d_1189_Type();
+  Triangulation2d_1189_Type(
+    Triangulation2d_1189_TypeChoicePair * Triangulation2d_1189_TypePairIn);
+  ~Triangulation2d_1189_Type();
   void printSelf(FILE * outFile);
 
-  Polyline2dType_1233_TypeChoicePair * getPolyline2dType_1233_TypePair();
-  void setPolyline2dType_1233_TypePair(Polyline2dType_1233_TypeChoicePair * Polyline2dType_1233_TypePairIn);
+  Triangulation2d_1189_TypeChoicePair * getTriangulation2d_1189_TypePair();
+  void setTriangulation2d_1189_TypePair(Triangulation2d_1189_TypeChoicePair * Triangulation2d_1189_TypePairIn);
 
 protected:
-  Polyline2dType_1233_TypeChoicePair * Polyline2dType_1233_TypePair;
+  Triangulation2d_1189_TypeChoicePair * Triangulation2d_1189_TypePair;
 };
 
 /* ***************************************************************** */
 
-union Polyline2dType_1233_TypeVal
-{
-  ArrayPoint2dType * Points;
-  ArrayBinaryType * PointsBinary;
-};
-
-/* ***************************************************************** */
-
-class Polyline2dType_1233_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    PointsE,
-    PointsBinaryE };
-  Polyline2dType_1233_TypeChoicePair();
-  Polyline2dType_1233_TypeChoicePair(
-    whichOne Polyline2dType_1233_TypeTypeIn,
-    Polyline2dType_1233_TypeVal Polyline2dType_1233_TypeValueIn);
-  ~Polyline2dType_1233_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne Polyline2dType_1233_TypeType;
-  Polyline2dType_1233_TypeVal Polyline2dType_1233_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class Triangulation2d_1234_Type :
-  public XmlTypeBase
-{
-public:
-  Triangulation2d_1234_Type();
-  Triangulation2d_1234_Type(
-    Triangulation2d_1234_TypeChoicePair * Triangulation2d_1234_TypePairIn);
-  ~Triangulation2d_1234_Type();
-  void printSelf(FILE * outFile);
-
-  Triangulation2d_1234_TypeChoicePair * getTriangulation2d_1234_TypePair();
-  void setTriangulation2d_1234_TypePair(Triangulation2d_1234_TypeChoicePair * Triangulation2d_1234_TypePairIn);
-
-protected:
-  Triangulation2d_1234_TypeChoicePair * Triangulation2d_1234_TypePair;
-};
-
-/* ***************************************************************** */
-
-union Triangulation2d_1234_TypeVal
+union Triangulation2d_1189_TypeVal
 {
   ArrayPoint2dType * Vertices;
   ArrayBinaryType * VerticesBinary;
@@ -3114,46 +3079,46 @@ union Triangulation2d_1234_TypeVal
 
 /* ***************************************************************** */
 
-class Triangulation2d_1234_TypeChoicePair :
+class Triangulation2d_1189_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     VerticesE,
     VerticesBinaryE };
-  Triangulation2d_1234_TypeChoicePair();
-  Triangulation2d_1234_TypeChoicePair(
-    whichOne Triangulation2d_1234_TypeTypeIn,
-    Triangulation2d_1234_TypeVal Triangulation2d_1234_TypeValueIn);
-  ~Triangulation2d_1234_TypeChoicePair();
+  Triangulation2d_1189_TypeChoicePair();
+  Triangulation2d_1189_TypeChoicePair(
+    whichOne Triangulation2d_1189_TypeTypeIn,
+    Triangulation2d_1189_TypeVal Triangulation2d_1189_TypeValueIn);
+  ~Triangulation2d_1189_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne Triangulation2d_1234_TypeType;
-  Triangulation2d_1234_TypeVal Triangulation2d_1234_TypeValue;
+  whichOne Triangulation2d_1189_TypeType;
+  Triangulation2d_1189_TypeVal Triangulation2d_1189_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class Triangulation2d_1235_Type :
+class Triangulation2d_1190_Type :
   public XmlTypeBase
 {
 public:
-  Triangulation2d_1235_Type();
-  Triangulation2d_1235_Type(
-    Triangulation2d_1235_TypeChoicePair * Triangulation2d_1235_TypePairIn);
-  ~Triangulation2d_1235_Type();
+  Triangulation2d_1190_Type();
+  Triangulation2d_1190_Type(
+    Triangulation2d_1190_TypeChoicePair * Triangulation2d_1190_TypePairIn);
+  ~Triangulation2d_1190_Type();
   void printSelf(FILE * outFile);
 
-  Triangulation2d_1235_TypeChoicePair * getTriangulation2d_1235_TypePair();
-  void setTriangulation2d_1235_TypePair(Triangulation2d_1235_TypeChoicePair * Triangulation2d_1235_TypePairIn);
+  Triangulation2d_1190_TypeChoicePair * getTriangulation2d_1190_TypePair();
+  void setTriangulation2d_1190_TypePair(Triangulation2d_1190_TypeChoicePair * Triangulation2d_1190_TypePairIn);
 
 protected:
-  Triangulation2d_1235_TypeChoicePair * Triangulation2d_1235_TypePair;
+  Triangulation2d_1190_TypeChoicePair * Triangulation2d_1190_TypePair;
 };
 
 /* ***************************************************************** */
 
-union Triangulation2d_1235_TypeVal
+union Triangulation2d_1190_TypeVal
 {
   ArrayI3Type * Triangles;
   ArrayBinaryType * TrianglesBinary;
@@ -3163,7 +3128,7 @@ union Triangulation2d_1235_TypeVal
 
 /* ***************************************************************** */
 
-class Triangulation2d_1235_TypeChoicePair :
+class Triangulation2d_1190_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -3172,30 +3137,30 @@ public:
     TrianglesBinaryE,
     TrianglesColorE,
     TrianglesColorBinaryE };
-  Triangulation2d_1235_TypeChoicePair();
-  Triangulation2d_1235_TypeChoicePair(
-    whichOne Triangulation2d_1235_TypeTypeIn,
-    Triangulation2d_1235_TypeVal Triangulation2d_1235_TypeValueIn);
-  ~Triangulation2d_1235_TypeChoicePair();
+  Triangulation2d_1190_TypeChoicePair();
+  Triangulation2d_1190_TypeChoicePair(
+    whichOne Triangulation2d_1190_TypeTypeIn,
+    Triangulation2d_1190_TypeVal Triangulation2d_1190_TypeValueIn);
+  ~Triangulation2d_1190_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne Triangulation2d_1235_TypeType;
-  Triangulation2d_1235_TypeVal Triangulation2d_1235_TypeValue;
+  whichOne Triangulation2d_1190_TypeType;
+  Triangulation2d_1190_TypeVal Triangulation2d_1190_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class WitnessLinesTyp_1236_Type :
+class WitnessLinesTyp_1191_Type :
   public XmlTypeBase
 {
 public:
-  WitnessLinesTyp_1236_Type();
-  WitnessLinesTyp_1236_Type(
+  WitnessLinesTyp_1191_Type();
+  WitnessLinesTyp_1191_Type(
     LineSegment2dType * Segment1In,
     PointSimpleType * ZextensionPoint1In,
     LineSegment2dType * Segment2In,
     PointSimpleType * ZextensionPoint2In);
-  ~WitnessLinesTyp_1236_Type();
+  ~WitnessLinesTyp_1191_Type();
   void printSelf(FILE * outFile);
 
   LineSegment2dType * getSegment1();
@@ -3216,17 +3181,17 @@ protected:
 
 /* ***************************************************************** */
 
-class WitnessLinesTyp_1237_Type :
+class WitnessLinesTyp_1192_Type :
   public XmlTypeBase
 {
 public:
-  WitnessLinesTyp_1237_Type();
-  WitnessLinesTyp_1237_Type(
+  WitnessLinesTyp_1192_Type();
+  WitnessLinesTyp_1192_Type(
     Point2dSimpleType * BeginPointIn,
     Point2dSimpleType * EndPointIn,
     Point2dSimpleType * CircleCenterIn,
     DoublePositiveType * CircleRadiusIn);
-  ~WitnessLinesTyp_1237_Type();
+  ~WitnessLinesTyp_1192_Type();
   void printSelf(FILE * outFile);
 
   Point2dSimpleType * getBeginPoint();

@@ -4,7 +4,6 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
-#include <boost/regex.hpp>
 #include <xmlSchemaInstance.hh>
 #include "TraceabilityClasses.hh"
 
@@ -532,7 +531,15 @@ EnvironmentTypeLisd::~EnvironmentTypeLisd()
   #endif
 }
 
-void EnvironmentTypeLisd::printSelf(FILE * outFile){}
+void EnvironmentTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<EnvironmentType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -609,6 +616,13 @@ void EnvironmentsType::printSelf(FILE * outFile)
         fprintf(stderr, "Environment list is empty\n");
         exit(1);
       }
+    if (Environment->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Environment list (%d) less than minimum required (1)\n",
+                (int)Environment->size());
+        exit(1);
+      }
     std::list<EnvironmentType *>::iterator iter;
     for (iter = Environment->begin();
          iter != Environment->end(); iter++)
@@ -637,7 +651,7 @@ bool EnvironmentsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in EnvironmentsType\n");
               returnValue = true;
@@ -653,7 +667,7 @@ bool EnvironmentsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -662,7 +676,7 @@ bool EnvironmentsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in EnvironmentsType\n");
       returnValue = true;
@@ -674,8 +688,8 @@ bool EnvironmentsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -767,6 +781,13 @@ void ErrorsType::printSelf(FILE * outFile)
         fprintf(stderr, "Error list is empty\n");
         exit(1);
       }
+    if (Error->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Error list (%d) less than minimum required (1)\n",
+                (int)Error->size());
+        exit(1);
+      }
     std::list<XmlString *>::iterator iter;
     for (iter = Error->begin();
          iter != Error->end(); iter++)
@@ -794,7 +815,7 @@ bool ErrorsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ErrorsType\n");
               returnValue = true;
@@ -810,7 +831,7 @@ bool ErrorsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -819,7 +840,7 @@ bool ErrorsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ErrorsType\n");
       returnValue = true;
@@ -831,8 +852,8 @@ bool ErrorsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -1207,7 +1228,7 @@ InspectionTraceabilityType::InspectionTraceabilityType()
   ReportType = 0;
   SecurityClassification = 0;
   PlantLocation = 0;
-  InspectionTrace_1043 = 0;
+  InspectionTrace_1039 = 0;
   Errors = 0;
   Attributes = 0;
 }
@@ -1234,7 +1255,7 @@ InspectionTraceabilityType::InspectionTraceabilityType(
  XmlToken * ReportTypeIn,
  SecurityClassificationType * SecurityClassificationIn,
  LocationType * PlantLocationIn,
- InspectionTrace_1043_Type * InspectionTrace_1043In,
+ InspectionTrace_1039_Type * InspectionTrace_1039In,
  ErrorsType * ErrorsIn,
  AttributesType * AttributesIn)
 {
@@ -1259,7 +1280,7 @@ InspectionTraceabilityType::InspectionTraceabilityType(
   ReportType = ReportTypeIn;
   SecurityClassification = SecurityClassificationIn;
   PlantLocation = PlantLocationIn;
-  InspectionTrace_1043 = InspectionTrace_1043In;
+  InspectionTrace_1039 = InspectionTrace_1039In;
   Errors = ErrorsIn;
   Attributes = AttributesIn;
 }
@@ -1288,7 +1309,7 @@ InspectionTraceabilityType::~InspectionTraceabilityType()
   delete ReportType;
   delete SecurityClassification;
   delete PlantLocation;
-  delete InspectionTrace_1043;
+  delete InspectionTrace_1039;
   delete Errors;
   delete Attributes;
   #endif
@@ -1456,9 +1477,9 @@ void InspectionTraceabilityType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</PlantLocation>\n");
     }
-  if (InspectionTrace_1043)
+  if (InspectionTrace_1039)
     {
-      InspectionTrace_1043->printSelf(outFile);
+  InspectionTrace_1039->printSelf(outFile);
     }
   if (Errors)
     {
@@ -1605,11 +1626,11 @@ LocationType * InspectionTraceabilityType::getPlantLocation()
 void InspectionTraceabilityType::setPlantLocation(LocationType * PlantLocationIn)
 {PlantLocation = PlantLocationIn;}
 
-InspectionTrace_1043_Type * InspectionTraceabilityType::getInspectionTrace_1043()
-{return InspectionTrace_1043;}
+InspectionTrace_1039_Type * InspectionTraceabilityType::getInspectionTrace_1039()
+{return InspectionTrace_1039;}
 
-void InspectionTraceabilityType::setInspectionTrace_1043(InspectionTrace_1043_Type * InspectionTrace_1043In)
-{InspectionTrace_1043 = InspectionTrace_1043In;}
+void InspectionTraceabilityType::setInspectionTrace_1039(InspectionTrace_1039_Type * InspectionTrace_1039In)
+{InspectionTrace_1039 = InspectionTrace_1039In;}
 
 ErrorsType * InspectionTraceabilityType::getErrors()
 {return Errors;}
@@ -1698,6 +1719,13 @@ void ManufacturingProcessTraceabilitiesType::printSelf(FILE * outFile)
         fprintf(stderr, "ManufacturingProcessTraceability list is empty\n");
         exit(1);
       }
+    if (ManufacturingProcessTraceability->size() < 1)
+      {
+        fprintf(stderr,
+                "size of ManufacturingProcessTraceability list (%d) less than minimum required (1)\n",
+                (int)ManufacturingProcessTraceability->size());
+        exit(1);
+      }
     std::list<ManufacturingProcessTraceabilityType *>::iterator iter;
     for (iter = ManufacturingProcessTraceability->begin();
          iter != ManufacturingProcessTraceability->end(); iter++)
@@ -1726,7 +1754,7 @@ bool ManufacturingProcessTraceabilitiesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ManufacturingProcessTraceabilitiesType\n");
               returnValue = true;
@@ -1742,7 +1770,7 @@ bool ManufacturingProcessTraceabilitiesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -1751,7 +1779,7 @@ bool ManufacturingProcessTraceabilitiesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ManufacturingProcessTraceabilitiesType\n");
       returnValue = true;
@@ -1763,8 +1791,8 @@ bool ManufacturingProcessTraceabilitiesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -2053,7 +2081,7 @@ bool ManufacturingProcessTraceabilityType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ManufacturingProcessTraceabilityType\n");
               returnValue = true;
@@ -2069,7 +2097,7 @@ bool ManufacturingProcessTraceabilityType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -2078,7 +2106,7 @@ bool ManufacturingProcessTraceabilityType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ManufacturingProcessTraceabilityType\n");
       returnValue = true;
@@ -2090,8 +2118,8 @@ bool ManufacturingProcessTraceabilityType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -2217,7 +2245,15 @@ ManufacturingProcessTraceabilityTypeLisd::~ManufacturingProcessTraceabilityTypeL
   #endif
 }
 
-void ManufacturingProcessTraceabilityTypeLisd::printSelf(FILE * outFile){}
+void ManufacturingProcessTraceabilityTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ManufacturingProcessTraceabilityType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -2314,7 +2350,7 @@ PreInspectionTraceabilityType::PreInspectionTraceabilityType()
   InspectionProgram = 0;
   SecurityClassification = 0;
   PlantLocation = 0;
-  PreInspectionTr_1044 = 0;
+  PreInspectionTr_1040 = 0;
   FormalStandardId = 0;
   Attributes = 0;
 }
@@ -2335,7 +2371,7 @@ PreInspectionTraceabilityType::PreInspectionTraceabilityType(
  InspectionProgramType * InspectionProgramIn,
  SecurityClassificationType * SecurityClassificationIn,
  LocationType * PlantLocationIn,
- PreInspectionTr_1044_Type * PreInspectionTr_1044In,
+ PreInspectionTr_1040_Type * PreInspectionTr_1040In,
  QIFReferenceType * FormalStandardIdIn,
  AttributesType * AttributesIn)
 {
@@ -2354,7 +2390,7 @@ PreInspectionTraceabilityType::PreInspectionTraceabilityType(
   InspectionProgram = InspectionProgramIn;
   SecurityClassification = SecurityClassificationIn;
   PlantLocation = PlantLocationIn;
-  PreInspectionTr_1044 = PreInspectionTr_1044In;
+  PreInspectionTr_1040 = PreInspectionTr_1040In;
   FormalStandardId = FormalStandardIdIn;
   Attributes = AttributesIn;
 }
@@ -2377,7 +2413,7 @@ PreInspectionTraceabilityType::~PreInspectionTraceabilityType()
   delete InspectionProgram;
   delete SecurityClassification;
   delete PlantLocation;
-  delete PreInspectionTr_1044;
+  delete PreInspectionTr_1040;
   delete FormalStandardId;
   delete Attributes;
   #endif
@@ -2501,9 +2537,9 @@ void PreInspectionTraceabilityType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</PlantLocation>\n");
     }
-  if (PreInspectionTr_1044)
+  if (PreInspectionTr_1040)
     {
-      PreInspectionTr_1044->printSelf(outFile);
+  PreInspectionTr_1040->printSelf(outFile);
     }
   doSpaces(0, outFile);
   fprintf(outFile, "<FormalStandardId");
@@ -2610,11 +2646,11 @@ LocationType * PreInspectionTraceabilityType::getPlantLocation()
 void PreInspectionTraceabilityType::setPlantLocation(LocationType * PlantLocationIn)
 {PlantLocation = PlantLocationIn;}
 
-PreInspectionTr_1044_Type * PreInspectionTraceabilityType::getPreInspectionTr_1044()
-{return PreInspectionTr_1044;}
+PreInspectionTr_1040_Type * PreInspectionTraceabilityType::getPreInspectionTr_1040()
+{return PreInspectionTr_1040;}
 
-void PreInspectionTraceabilityType::setPreInspectionTr_1044(PreInspectionTr_1044_Type * PreInspectionTr_1044In)
-{PreInspectionTr_1044 = PreInspectionTr_1044In;}
+void PreInspectionTraceabilityType::setPreInspectionTr_1040(PreInspectionTr_1040_Type * PreInspectionTr_1040In)
+{PreInspectionTr_1040 = PreInspectionTr_1040In;}
 
 QIFReferenceType * PreInspectionTraceabilityType::getFormalStandardId()
 {return FormalStandardId;}
@@ -2708,7 +2744,15 @@ ProcessParameterTypeLisd::~ProcessParameterTypeLisd()
   #endif
 }
 
-void ProcessParameterTypeLisd::printSelf(FILE * outFile){}
+void ProcessParameterTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ProcessParameterType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -2785,6 +2829,13 @@ void ProcessParametersType::printSelf(FILE * outFile)
         fprintf(stderr, "Parameter list is empty\n");
         exit(1);
       }
+    if (Parameter->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Parameter list (%d) less than minimum required (1)\n",
+                (int)Parameter->size());
+        exit(1);
+      }
     std::list<ProcessParameterType *>::iterator iter;
     for (iter = Parameter->begin();
          iter != Parameter->end(); iter++)
@@ -2813,7 +2864,7 @@ bool ProcessParametersType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ProcessParametersType\n");
               returnValue = true;
@@ -2829,7 +2880,7 @@ bool ProcessParametersType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -2838,7 +2889,7 @@ bool ProcessParametersType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ProcessParametersType\n");
       returnValue = true;
@@ -2850,8 +2901,8 @@ bool ProcessParametersType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -2944,19 +2995,19 @@ void ProductDataQualityAreaEnumType::oPrintSelf(FILE * outFile)
 
 ProductDataQualityAreaType::ProductDataQualityAreaType()
 {
-  ProductDataQual_1045 = 0;
+  ProductDataQualityAreaTypePair = 0;
 }
 
 ProductDataQualityAreaType::ProductDataQualityAreaType(
- ProductDataQual_1045_Type * ProductDataQual_1045In)
+ ProductDataQualityAreaTypeChoicePair * ProductDataQualityAreaTypePairIn)
 {
-  ProductDataQual_1045 = ProductDataQual_1045In;
+  ProductDataQualityAreaTypePair = ProductDataQualityAreaTypePairIn;
 }
 
 ProductDataQualityAreaType::~ProductDataQualityAreaType()
 {
   #ifndef NODESTRUCT
-  delete ProductDataQual_1045;
+  delete ProductDataQualityAreaTypePair;
   #endif
 }
 
@@ -2964,15 +3015,52 @@ void ProductDataQualityAreaType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  ProductDataQual_1045->printSelf(outFile);
+  ProductDataQualityAreaTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
-ProductDataQual_1045_Type * ProductDataQualityAreaType::getProductDataQual_1045()
-{return ProductDataQual_1045;}
+ProductDataQualityAreaTypeChoicePair * ProductDataQualityAreaType::getProductDataQualityAreaTypePair()
+{return ProductDataQualityAreaTypePair;}
 
-void ProductDataQualityAreaType::setProductDataQual_1045(ProductDataQual_1045_Type * ProductDataQual_1045In)
-{ProductDataQual_1045 = ProductDataQual_1045In;}
+void ProductDataQualityAreaType::setProductDataQualityAreaTypePair(ProductDataQualityAreaTypeChoicePair * ProductDataQualityAreaTypePairIn)
+{ProductDataQualityAreaTypePair = ProductDataQualityAreaTypePairIn;}
+ProductDataQualityAreaTypeChoicePair::ProductDataQualityAreaTypeChoicePair() {}
+
+ProductDataQualityAreaTypeChoicePair::ProductDataQualityAreaTypeChoicePair(
+ whichOne ProductDataQualityAreaTypeTypeIn,
+ ProductDataQualityAreaTypeVal ProductDataQualityAreaTypeValueIn)
+{
+  ProductDataQualityAreaTypeType = ProductDataQualityAreaTypeTypeIn;
+  ProductDataQualityAreaTypeValue = ProductDataQualityAreaTypeValueIn;
+}
+
+ProductDataQualityAreaTypeChoicePair::~ProductDataQualityAreaTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (ProductDataQualityAreaTypeType == AreaEnumE)
+    delete ProductDataQualityAreaTypeValue.AreaEnum;
+  else if (ProductDataQualityAreaTypeType == OtherAreaE)
+    delete ProductDataQualityAreaTypeValue.OtherArea;
+  #endif
+}
+
+void ProductDataQualityAreaTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (ProductDataQualityAreaTypeType == AreaEnumE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<AreaEnum");
+      ProductDataQualityAreaTypeValue.AreaEnum->printSelf(outFile);
+      fprintf(outFile, "</AreaEnum>\n");
+    }
+  else if (ProductDataQualityAreaTypeType == OtherAreaE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<OtherArea");
+      ProductDataQualityAreaTypeValue.OtherArea->printSelf(outFile);
+      fprintf(outFile, "</OtherArea>\n");
+    }
+}
 
 /* ***************************************************************** */
 
@@ -3149,7 +3237,15 @@ ProductDataQualityCheckTypeLisd::~ProductDataQualityCheckTypeLisd()
   #endif
 }
 
-void ProductDataQualityCheckTypeLisd::printSelf(FILE * outFile){}
+void ProductDataQualityCheckTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ProductDataQualityCheckType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -3226,6 +3322,13 @@ void ProductDataQualityChecksType::printSelf(FILE * outFile)
         fprintf(stderr, "ProductDataQualityCheck list is empty\n");
         exit(1);
       }
+    if (ProductDataQualityCheck->size() < 1)
+      {
+        fprintf(stderr,
+                "size of ProductDataQualityCheck list (%d) less than minimum required (1)\n",
+                (int)ProductDataQualityCheck->size());
+        exit(1);
+      }
     std::list<ProductDataQualityCheckType *>::iterator iter;
     for (iter = ProductDataQualityCheck->begin();
          iter != ProductDataQualityCheck->end(); iter++)
@@ -3254,7 +3357,7 @@ bool ProductDataQualityChecksType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ProductDataQualityChecksType\n");
               returnValue = true;
@@ -3270,7 +3373,7 @@ bool ProductDataQualityChecksType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -3279,7 +3382,7 @@ bool ProductDataQualityChecksType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ProductDataQualityChecksType\n");
       returnValue = true;
@@ -3291,8 +3394,8 @@ bool ProductDataQualityChecksType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -3661,13 +3764,6 @@ TimeDescriptionTypeChoicePair * TimeDescriptionType::getTimeDescriptionTypePair(
 
 void TimeDescriptionType::setTimeDescriptionTypePair(TimeDescriptionTypeChoicePair * TimeDescriptionTypePairIn)
 {TimeDescriptionTypePair = TimeDescriptionTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class TimeDescriptionTypeChoicePair
-
-*/
-
 TimeDescriptionTypeChoicePair::TimeDescriptionTypeChoicePair() {}
 
 TimeDescriptionTypeChoicePair::TimeDescriptionTypeChoicePair(
@@ -4432,246 +4528,153 @@ void ValidationCountsType::setSignaturePresent(XmlBoolean * SignaturePresentIn)
 
 /* ***************************************************************** */
 
-/* class InspectionTrace_1043_Type
+/* class InspectionTrace_1039_Type
 
 */
 
-InspectionTrace_1043_Type::InspectionTrace_1043_Type()
+InspectionTrace_1039_Type::InspectionTrace_1039_Type()
 {
-  InspectionTrace_1043_TypePair = 0;
+  InspectionTrace_1039_TypePair = 0;
 }
 
-InspectionTrace_1043_Type::InspectionTrace_1043_Type(
- InspectionTrace_1043_TypeChoicePair * InspectionTrace_1043_TypePairIn)
+InspectionTrace_1039_Type::InspectionTrace_1039_Type(
+ InspectionTrace_1039_TypeChoicePair * InspectionTrace_1039_TypePairIn)
 {
-  InspectionTrace_1043_TypePair = InspectionTrace_1043_TypePairIn;
+  InspectionTrace_1039_TypePair = InspectionTrace_1039_TypePairIn;
 }
 
-InspectionTrace_1043_Type::~InspectionTrace_1043_Type()
+InspectionTrace_1039_Type::~InspectionTrace_1039_Type()
 {
   #ifndef NODESTRUCT
-  delete InspectionTrace_1043_TypePair;
+  delete InspectionTrace_1039_TypePair;
   #endif
 }
 
-void InspectionTrace_1043_Type::printSelf(FILE * outFile)
+void InspectionTrace_1039_Type::printSelf(FILE * outFile)
 {
-  if (InspectionTrace_1043_TypePair)
+  if (InspectionTrace_1039_TypePair)
     {
-      InspectionTrace_1043_TypePair->printSelf(outFile);
+      InspectionTrace_1039_TypePair->printSelf(outFile);
     }
 }
 
-InspectionTrace_1043_TypeChoicePair * InspectionTrace_1043_Type::getInspectionTrace_1043_TypePair()
-{return InspectionTrace_1043_TypePair;}
+InspectionTrace_1039_TypeChoicePair * InspectionTrace_1039_Type::getInspectionTrace_1039_TypePair()
+{return InspectionTrace_1039_TypePair;}
 
-void InspectionTrace_1043_Type::setInspectionTrace_1043_TypePair(InspectionTrace_1043_TypeChoicePair * InspectionTrace_1043_TypePairIn)
-{InspectionTrace_1043_TypePair = InspectionTrace_1043_TypePairIn;}
+void InspectionTrace_1039_Type::setInspectionTrace_1039_TypePair(InspectionTrace_1039_TypeChoicePair * InspectionTrace_1039_TypePairIn)
+{InspectionTrace_1039_TypePair = InspectionTrace_1039_TypePairIn;}
+InspectionTrace_1039_TypeChoicePair::InspectionTrace_1039_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class InspectionTrace_1043_TypeChoicePair
-
-*/
-
-InspectionTrace_1043_TypeChoicePair::InspectionTrace_1043_TypeChoicePair() {}
-
-InspectionTrace_1043_TypeChoicePair::InspectionTrace_1043_TypeChoicePair(
- whichOne InspectionTrace_1043_TypeTypeIn,
- InspectionTrace_1043_TypeVal InspectionTrace_1043_TypeValueIn)
+InspectionTrace_1039_TypeChoicePair::InspectionTrace_1039_TypeChoicePair(
+ whichOne InspectionTrace_1039_TypeTypeIn,
+ InspectionTrace_1039_TypeVal InspectionTrace_1039_TypeValueIn)
 {
-  InspectionTrace_1043_TypeType = InspectionTrace_1043_TypeTypeIn;
-  InspectionTrace_1043_TypeValue = InspectionTrace_1043_TypeValueIn;
+  InspectionTrace_1039_TypeType = InspectionTrace_1039_TypeTypeIn;
+  InspectionTrace_1039_TypeValue = InspectionTrace_1039_TypeValueIn;
 }
 
-InspectionTrace_1043_TypeChoicePair::~InspectionTrace_1043_TypeChoicePair()
+InspectionTrace_1039_TypeChoicePair::~InspectionTrace_1039_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (InspectionTrace_1043_TypeType == ReferencedQIFPlanInstanceE)
-    delete InspectionTrace_1043_TypeValue.ReferencedQIFPlanInstance;
-  else if (InspectionTrace_1043_TypeType == ReferencedQIFPlanE)
-    delete InspectionTrace_1043_TypeValue.ReferencedQIFPlan;
+  if (InspectionTrace_1039_TypeType == ReferencedQIFPlanInstanceE)
+    delete InspectionTrace_1039_TypeValue.ReferencedQIFPlanInstance;
+  else if (InspectionTrace_1039_TypeType == ReferencedQIFPlanE)
+    delete InspectionTrace_1039_TypeValue.ReferencedQIFPlan;
   #endif
 }
 
-void InspectionTrace_1043_TypeChoicePair::printSelf(FILE * outFile)
+void InspectionTrace_1039_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (InspectionTrace_1043_TypeType == ReferencedQIFPlanInstanceE)
+  if (InspectionTrace_1039_TypeType == ReferencedQIFPlanInstanceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ReferencedQIFPlanInstance");
-      InspectionTrace_1043_TypeValue.ReferencedQIFPlanInstance->printSelf(outFile);
+      InspectionTrace_1039_TypeValue.ReferencedQIFPlanInstance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ReferencedQIFPlanInstance>\n");
     }
-  else if (InspectionTrace_1043_TypeType == ReferencedQIFPlanE)
+  else if (InspectionTrace_1039_TypeType == ReferencedQIFPlanE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ReferencedQIFPlan");
-      InspectionTrace_1043_TypeValue.ReferencedQIFPlan->printSelf(outFile);
+      InspectionTrace_1039_TypeValue.ReferencedQIFPlan->printSelf(outFile);
       fprintf(outFile, "</ReferencedQIFPlan>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class PreInspectionTr_1044_Type
+/* class PreInspectionTr_1040_Type
 
 */
 
-PreInspectionTr_1044_Type::PreInspectionTr_1044_Type()
+PreInspectionTr_1040_Type::PreInspectionTr_1040_Type()
 {
-  PreInspectionTr_1044_TypePair = 0;
+  PreInspectionTr_1040_TypePair = 0;
 }
 
-PreInspectionTr_1044_Type::PreInspectionTr_1044_Type(
- PreInspectionTr_1044_TypeChoicePair * PreInspectionTr_1044_TypePairIn)
+PreInspectionTr_1040_Type::PreInspectionTr_1040_Type(
+ PreInspectionTr_1040_TypeChoicePair * PreInspectionTr_1040_TypePairIn)
 {
-  PreInspectionTr_1044_TypePair = PreInspectionTr_1044_TypePairIn;
+  PreInspectionTr_1040_TypePair = PreInspectionTr_1040_TypePairIn;
 }
 
-PreInspectionTr_1044_Type::~PreInspectionTr_1044_Type()
+PreInspectionTr_1040_Type::~PreInspectionTr_1040_Type()
 {
   #ifndef NODESTRUCT
-  delete PreInspectionTr_1044_TypePair;
+  delete PreInspectionTr_1040_TypePair;
   #endif
 }
 
-void PreInspectionTr_1044_Type::printSelf(FILE * outFile)
+void PreInspectionTr_1040_Type::printSelf(FILE * outFile)
 {
-  if (PreInspectionTr_1044_TypePair)
+  if (PreInspectionTr_1040_TypePair)
     {
-      PreInspectionTr_1044_TypePair->printSelf(outFile);
+      PreInspectionTr_1040_TypePair->printSelf(outFile);
     }
 }
 
-PreInspectionTr_1044_TypeChoicePair * PreInspectionTr_1044_Type::getPreInspectionTr_1044_TypePair()
-{return PreInspectionTr_1044_TypePair;}
+PreInspectionTr_1040_TypeChoicePair * PreInspectionTr_1040_Type::getPreInspectionTr_1040_TypePair()
+{return PreInspectionTr_1040_TypePair;}
 
-void PreInspectionTr_1044_Type::setPreInspectionTr_1044_TypePair(PreInspectionTr_1044_TypeChoicePair * PreInspectionTr_1044_TypePairIn)
-{PreInspectionTr_1044_TypePair = PreInspectionTr_1044_TypePairIn;}
+void PreInspectionTr_1040_Type::setPreInspectionTr_1040_TypePair(PreInspectionTr_1040_TypeChoicePair * PreInspectionTr_1040_TypePairIn)
+{PreInspectionTr_1040_TypePair = PreInspectionTr_1040_TypePairIn;}
+PreInspectionTr_1040_TypeChoicePair::PreInspectionTr_1040_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class PreInspectionTr_1044_TypeChoicePair
-
-*/
-
-PreInspectionTr_1044_TypeChoicePair::PreInspectionTr_1044_TypeChoicePair() {}
-
-PreInspectionTr_1044_TypeChoicePair::PreInspectionTr_1044_TypeChoicePair(
- whichOne PreInspectionTr_1044_TypeTypeIn,
- PreInspectionTr_1044_TypeVal PreInspectionTr_1044_TypeValueIn)
+PreInspectionTr_1040_TypeChoicePair::PreInspectionTr_1040_TypeChoicePair(
+ whichOne PreInspectionTr_1040_TypeTypeIn,
+ PreInspectionTr_1040_TypeVal PreInspectionTr_1040_TypeValueIn)
 {
-  PreInspectionTr_1044_TypeType = PreInspectionTr_1044_TypeTypeIn;
-  PreInspectionTr_1044_TypeValue = PreInspectionTr_1044_TypeValueIn;
+  PreInspectionTr_1040_TypeType = PreInspectionTr_1040_TypeTypeIn;
+  PreInspectionTr_1040_TypeValue = PreInspectionTr_1040_TypeValueIn;
 }
 
-PreInspectionTr_1044_TypeChoicePair::~PreInspectionTr_1044_TypeChoicePair()
+PreInspectionTr_1040_TypeChoicePair::~PreInspectionTr_1040_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (PreInspectionTr_1044_TypeType == ReferencedQIFPlanInstanceE)
-    delete PreInspectionTr_1044_TypeValue.ReferencedQIFPlanInstance;
-  else if (PreInspectionTr_1044_TypeType == ReferencedQIFPlanE)
-    delete PreInspectionTr_1044_TypeValue.ReferencedQIFPlan;
+  if (PreInspectionTr_1040_TypeType == ReferencedQIFPlanInstanceE)
+    delete PreInspectionTr_1040_TypeValue.ReferencedQIFPlanInstance;
+  else if (PreInspectionTr_1040_TypeType == ReferencedQIFPlanE)
+    delete PreInspectionTr_1040_TypeValue.ReferencedQIFPlan;
   #endif
 }
 
-void PreInspectionTr_1044_TypeChoicePair::printSelf(FILE * outFile)
+void PreInspectionTr_1040_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (PreInspectionTr_1044_TypeType == ReferencedQIFPlanInstanceE)
+  if (PreInspectionTr_1040_TypeType == ReferencedQIFPlanInstanceE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ReferencedQIFPlanInstance");
-      PreInspectionTr_1044_TypeValue.ReferencedQIFPlanInstance->printSelf(outFile);
+      PreInspectionTr_1040_TypeValue.ReferencedQIFPlanInstance->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ReferencedQIFPlanInstance>\n");
     }
-  else if (PreInspectionTr_1044_TypeType == ReferencedQIFPlanE)
+  else if (PreInspectionTr_1040_TypeType == ReferencedQIFPlanE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ReferencedQIFPlan");
-      PreInspectionTr_1044_TypeValue.ReferencedQIFPlan->printSelf(outFile);
+      PreInspectionTr_1040_TypeValue.ReferencedQIFPlan->printSelf(outFile);
       fprintf(outFile, "</ReferencedQIFPlan>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class ProductDataQual_1045_Type
-
-*/
-
-ProductDataQual_1045_Type::ProductDataQual_1045_Type()
-{
-  ProductDataQual_1045_TypePair = 0;
-}
-
-ProductDataQual_1045_Type::ProductDataQual_1045_Type(
- ProductDataQual_1045_TypeChoicePair * ProductDataQual_1045_TypePairIn)
-{
-  ProductDataQual_1045_TypePair = ProductDataQual_1045_TypePairIn;
-}
-
-ProductDataQual_1045_Type::~ProductDataQual_1045_Type()
-{
-  #ifndef NODESTRUCT
-  delete ProductDataQual_1045_TypePair;
-  #endif
-}
-
-void ProductDataQual_1045_Type::printSelf(FILE * outFile)
-{
-  ProductDataQual_1045_TypePair->printSelf(outFile);
-}
-
-ProductDataQual_1045_TypeChoicePair * ProductDataQual_1045_Type::getProductDataQual_1045_TypePair()
-{return ProductDataQual_1045_TypePair;}
-
-void ProductDataQual_1045_Type::setProductDataQual_1045_TypePair(ProductDataQual_1045_TypeChoicePair * ProductDataQual_1045_TypePairIn)
-{ProductDataQual_1045_TypePair = ProductDataQual_1045_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ProductDataQual_1045_TypeChoicePair
-
-*/
-
-ProductDataQual_1045_TypeChoicePair::ProductDataQual_1045_TypeChoicePair() {}
-
-ProductDataQual_1045_TypeChoicePair::ProductDataQual_1045_TypeChoicePair(
- whichOne ProductDataQual_1045_TypeTypeIn,
- ProductDataQual_1045_TypeVal ProductDataQual_1045_TypeValueIn)
-{
-  ProductDataQual_1045_TypeType = ProductDataQual_1045_TypeTypeIn;
-  ProductDataQual_1045_TypeValue = ProductDataQual_1045_TypeValueIn;
-}
-
-ProductDataQual_1045_TypeChoicePair::~ProductDataQual_1045_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (ProductDataQual_1045_TypeType == AreaEnumE)
-    delete ProductDataQual_1045_TypeValue.AreaEnum;
-  else if (ProductDataQual_1045_TypeType == OtherAreaE)
-    delete ProductDataQual_1045_TypeValue.OtherArea;
-  #endif
-}
-
-void ProductDataQual_1045_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (ProductDataQual_1045_TypeType == AreaEnumE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<AreaEnum");
-      ProductDataQual_1045_TypeValue.AreaEnum->printSelf(outFile);
-      fprintf(outFile, "</AreaEnum>\n");
-    }
-  else if (ProductDataQual_1045_TypeType == OtherAreaE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<OtherArea");
-      ProductDataQual_1045_TypeValue.OtherArea->printSelf(outFile);
-      fprintf(outFile, "</OtherArea>\n");
     }
 }
 

@@ -2,7 +2,14 @@
 
 /*
 
-This ignores white space outside of meaningful strings of characters.
+This keeps white space in comments, in strings, and between items in a list.
+
+In the case of characters representing foreign XML for an XmlAny, this
+1. ignores white space occurring before the opening '<' or the first newline,
+whichever comes first. The newline is also ignored if it comes first.
+2. keeps any other white space before the closing '>' .
+
+Otherwise, this ignores white space or signals an error if it occurs.
 
 */
 
@@ -28,8 +35,9 @@ extern int yyReadData;
 extern int yyReadDataList;
 extern int yyStartAnew;
 extern int yyReadXML;
-extern char yyXMLbuffer[5000];
-extern int yyBufferIndex;
+extern std::string yyXMLbuffer;
+
+int depthXML;
 
 #ifdef STRINGIN
 char * yyStringInputPointer;
@@ -58,7 +66,11 @@ W [ \t\n\r]*
 %x COMMENT
 %x DATA
 %x DATALIST
-%x XMLTEXT
+%x XMLTEXT0
+%x XMLTEXT1
+%x XMLTEXT2
+%x XMLTEXT3
+%x XMLTEXT4
 %x XMLVER
 
 %%
@@ -69,6 +81,7 @@ W [ \t\n\r]*
       yyStartAnew = 0;
       yyReadData = 0;
       yyReadDataList = 0;
+      yyReadXML = 0;
     }
   else if (yyReadDataList)
     {
@@ -81,9 +94,10 @@ W [ \t\n\r]*
     }
   else if (yyReadXML)
     {
-      BEGIN(XMLTEXT);
+      BEGIN(XMLTEXT0);
       yyReadXML = 0;
-      yyBufferIndex = 0;
+      depthXML = 0;
+      yyXMLbuffer.clear();
     }
 
 {W}"<!--"               {ECH; BEGIN(COMMENT); /* delete comment start */}
@@ -91,12 +105,60 @@ W [ \t\n\r]*
 <COMMENT>\n             {ECH;  /* delete comment middle */ }
 <COMMENT>"-->"          {ECH; BEGIN(INITIAL); /* delete comment end */ }
 
-<XMLTEXT>"</"{W}"UserDataXML"{W}">" {ECH;
-                                     BEGIN(INITIAL);
-                                     return UserDataXMLEND;
-                                    }
-<XMLTEXT>\n              {ECH; yyXMLbuffer[yyBufferIndex++] = '\n';}
-<XMLTEXT>.               {ECH; yyXMLbuffer[yyBufferIndex++] = yytext[0];}
+<XMLTEXT0>[ \t]         {ECH;}
+<XMLTEXT0>[\r\n]        {ECH; BEGIN(XMLTEXT1);}
+<XMLTEXT0>"\r\n"        {ECH; BEGIN(XMLTEXT1);}
+<XMLTEXT0>"<"           {ECH; unput('<'); BEGIN(XMLTEXT1);}
+
+<XMLTEXT1>"<"           {ECH;
+                         depthXML = 1;
+                         yyXMLbuffer.push_back('<');
+                         BEGIN(XMLTEXT2);
+                        }
+<XMLTEXT1>[ \t\n\r]     {ECH; yyXMLbuffer.push_back(yytext[0]); /*save white*/}
+<XMLTEXT1>.             {ECH; return BAD; /* need to see white or < first */}
+
+<XMLTEXT2>"/>"          {ECH; /* found end of section */
+                         yyXMLbuffer.append("/>");
+                         depthXML--;
+                         if (depthXML == 0)
+                           {
+                             BEGIN(XMLTEXT4);
+                           }
+                        }
+<XMLTEXT2>"</"          {ECH; /* found beginning of end of section */
+                         yyXMLbuffer.append("</");
+                         depthXML--;
+                         if (depthXML == 0) BEGIN(XMLTEXT3);
+                        }
+<XMLTEXT2>"<"           {ECH; yyXMLbuffer.push_back('<'); depthXML++;}
+<XMLTEXT2>\n            {ECH; yyXMLbuffer.push_back(yytext[0]);}
+<XMLTEXT2>.             {ECH; yyXMLbuffer.push_back(yytext[0]);}
+
+<XMLTEXT3>"/>"          {ECH; return BAD;}
+<XMLTEXT3>"<"           {ECH; return BAD;}
+<XMLTEXT3>">"           {ECH;
+                         yyXMLbuffer.push_back('>');
+                         BEGIN(XMLTEXT4);
+                        }
+<XMLTEXT3>\n            {ECH; yyXMLbuffer.push_back(yytext[0]);}
+<XMLTEXT3>.             {ECH; yyXMLbuffer.push_back(yytext[0]);}
+
+<XMLTEXT4>[ \t\n\r]     {ECH; yyXMLbuffer.push_back(yytext[0]); /*save white*/}
+<XMLTEXT4>"</"          {while ((yyXMLbuffer.back() == '\t') ||
+				(yyXMLbuffer.back() == ' ') ||
+				(yyXMLbuffer.back() == '\n') ||
+				(yyXMLbuffer.back() == '\r'))
+                               {yyXMLbuffer.pop_back();} /* don't need white */
+                         unput('/');
+                         unput('<');
+			 BEGIN(INITIAL);
+                         return ENDITEM; /* to tell YACC string is done */
+                        }
+<XMLTEXT4>"<"           {unput('<');
+                         BEGIN(XMLTEXT2);
+                        }
+<XMLTEXT4>.             {ECH; return BAD;}
 
 <XMLVER>"xml"[ \t]+"version"{W}"="    {ECH; return XMLVERSION;}
 <XMLVER>"encoding"{W}"="              {ECH; return ENCODING;}
@@ -172,6 +234,7 @@ W [ \t\n\r]*
 "<"{W}"Action"                {ECH; return ActionSTART;}
 "</"{W}"ActionMethods"{W}">"  {ECH; return ActionMethodsEND;}
 "<"{W}"ActionMethods"         {ECH; return ActionMethodsSTART;}
+"<"{W}"ActionToTake"{W}"/>"   {ECH; return ActionToTakeEMPTY;}
 "</"{W}"ActionToTake"{W}">"   {ECH; return ActionToTakeEND;}
 "<"{W}"ActionToTake"          {ECH; return ActionToTakeSTART;}
 "</"{W}"ActionToTakeEnum"{W}">" {ECH; return ActionToTakeEnumEND;}
@@ -200,10 +263,13 @@ W [ \t\n\r]*
 "<"{W}"ActualTransforms"      {ECH; return ActualTransformsSTART;}
 "</"{W}"ActualVolumetricAccuracy"{W}">" {ECH; return ActualVolumetricAccuracyEND;}
 "<"{W}"ActualVolumetricAccuracy" {ECH; return ActualVolumetricAccuracySTART;}
+"<"{W}"AdditionalChanges"{W}"/>" {ECH; return AdditionalChangesEMPTY;}
 "</"{W}"AdditionalChanges"{W}">" {ECH; return AdditionalChangesEND;}
 "<"{W}"AdditionalChanges"     {ECH; return AdditionalChangesSTART;}
+"<"{W}"AddonName"{W}"/>"      {ECH; return AddonNameEMPTY;}
 "</"{W}"AddonName"{W}">"      {ECH; return AddonNameEND;}
 "<"{W}"AddonName"             {ECH; return AddonNameSTART;}
+"<"{W}"AddonOrganization"{W}"/>" {ECH; return AddonOrganizationEMPTY;}
 "</"{W}"AddonOrganization"{W}">" {ECH; return AddonOrganizationEND;}
 "<"{W}"AddonOrganization"     {ECH; return AddonOrganizationSTART;}
 "</"{W}"Address"{W}">"        {ECH; return AddressEND;}
@@ -230,6 +296,7 @@ W [ \t\n\r]*
 "<"{W}"Alignment"             {ECH; return AlignmentSTART;}
 "</"{W}"AlignmentOperations"{W}">" {ECH; return AlignmentOperationsEND;}
 "<"{W}"AlignmentOperations"   {ECH; return AlignmentOperationsSTART;}
+"<"{W}"All"{W}"/>"            {ECH; return AllEMPTY;}
 "</"{W}"All"{W}">"            {ECH; return AllEND;}
 "<"{W}"All"                   {ECH; return AllSTART;}
 "</"{W}"AllAround"{W}">"      {ECH; return AllAroundEND;}
@@ -338,6 +405,7 @@ W [ \t\n\r]*
 "<"{W}"Applicability"         {ECH; return ApplicabilitySTART;}
 "</"{W}"Application"{W}">"    {ECH; return ApplicationEND;}
 "<"{W}"Application"           {ECH; return ApplicationSTART;}
+"<"{W}"ApplicationName"{W}"/>" {ECH; return ApplicationNameEMPTY;}
 "</"{W}"ApplicationName"{W}">" {ECH; return ApplicationNameEND;}
 "<"{W}"ApplicationName"       {ECH; return ApplicationNameSTART;}
 "</"{W}"ApplicationSource"{W}">" {ECH; return ApplicationSourceEND;}
@@ -494,6 +562,7 @@ W [ \t\n\r]*
 "<"{W}"AxisBacklash"          {ECH; return AxisBacklashSTART;}
 "</"{W}"AxisDirection"{W}">"  {ECH; return AxisDirectionEND;}
 "<"{W}"AxisDirection"         {ECH; return AxisDirectionSTART;}
+"<"{W}"AxisName"{W}"/>"       {ECH; return AxisNameEMPTY;}
 "</"{W}"AxisName"{W}">"       {ECH; return AxisNameEND;}
 "<"{W}"AxisName"              {ECH; return AxisNameSTART;}
 "</"{W}"AxisPoint"{W}">"      {ECH; return AxisPointEND;}
@@ -592,10 +661,13 @@ W [ \t\n\r]*
 "<"{W}"BaseToroidalSegment"   {ECH; return BaseToroidalSegmentSTART;}
 "</"{W}"BaseTorus"{W}">"      {ECH; return BaseTorusEND;}
 "<"{W}"BaseTorus"             {ECH; return BaseTorusSTART;}
+"<"{W}"BaselineProductNumber"{W}"/>" {ECH; return BaselineProductNumberEMPTY;}
 "</"{W}"BaselineProductNumber"{W}">" {ECH; return BaselineProductNumberEND;}
 "<"{W}"BaselineProductNumber" {ECH; return BaselineProductNumberSTART;}
+"<"{W}"BaselineProductVersion"{W}"/>" {ECH; return BaselineProductVersionEMPTY;}
 "</"{W}"BaselineProductVersion"{W}">" {ECH; return BaselineProductVersionEND;}
 "<"{W}"BaselineProductVersion" {ECH; return BaselineProductVersionSTART;}
+"<"{W}"BasicSize"{W}"/>"      {ECH; return BasicSizeEMPTY;}
 "</"{W}"BasicSize"{W}">"      {ECH; return BasicSizeEND;}
 "<"{W}"BasicSize"             {ECH; return BasicSizeSTART;}
 "</"{W}"BeginPoint"{W}">"     {ECH; return BeginPointEND;}
@@ -1022,6 +1094,7 @@ W [ \t\n\r]*
 "<"{W}"Constructed"           {ECH; return ConstructedSTART;}
 "</"{W}"ContactingFeature"{W}">" {ECH; return ContactingFeatureEND;}
 "<"{W}"ContactingFeature"     {ECH; return ContactingFeatureSTART;}
+"<"{W}"ContourIlluminationLightSource"{W}"/>" {ECH; return ContourIlluminationLightSourceEMPTY;}
 "</"{W}"ContourIlluminationLightSource"{W}">" {ECH; return ContourIlluminationLightSourceEND;}
 "<"{W}"ContourIlluminationLightSource" {ECH; return ContourIlluminationLightSourceSTART;}
 "</"{W}"ContourSymbol"{W}">"  {ECH; return ContourSymbolEND;}
@@ -1088,6 +1161,7 @@ W [ \t\n\r]*
 "<"{W}"CorrectiveActions"     {ECH; return CorrectiveActionsSTART;}
 "</"{W}"Count"{W}">"          {ECH; return CountEND;}
 "<"{W}"Count"                 {ECH; return CountSTART;}
+"<"{W}"Country"{W}"/>"        {ECH; return CountryEMPTY;}
 "</"{W}"Country"{W}">"        {ECH; return CountryEND;}
 "<"{W}"Country"               {ECH; return CountrySTART;}
 "</"{W}"Cp"{W}">"             {ECH; return CpEND;}
@@ -1136,6 +1210,7 @@ W [ \t\n\r]*
 "<"{W}"CurveMeshSet"          {ECH; return CurveMeshSetSTART;}
 "</"{W}"CurvePoints"{W}">"    {ECH; return CurvePointsEND;}
 "<"{W}"CurvePoints"           {ECH; return CurvePointsSTART;}
+"<"{W}"CustomerNumber"{W}"/>" {ECH; return CustomerNumberEMPTY;}
 "</"{W}"CustomerNumber"{W}">" {ECH; return CustomerNumberEND;}
 "<"{W}"CustomerNumber"        {ECH; return CustomerNumberSTART;}
 "</"{W}"CustomerOrganization"{W}">" {ECH; return CustomerOrganizationEND;}
@@ -1210,6 +1285,7 @@ W [ \t\n\r]*
 "<"{W}"DVRTSensor"            {ECH; return DVRTSensorSTART;}
 "</"{W}"DarkCurrent"{W}">"    {ECH; return DarkCurrentEND;}
 "<"{W}"DarkCurrent"           {ECH; return DarkCurrentSTART;}
+"<"{W}"Data"{W}"/>"           {ECH; return DataEMPTY;}
 "</"{W}"Data"{W}">"           {ECH; return DataEND;}
 "<"{W}"Data"                  {ECH; return DataSTART;}
 "</"{W}"DateAndTime"{W}">"    {ECH; return DateAndTimeEND;}
@@ -1254,6 +1330,7 @@ W [ \t\n\r]*
 "<"{W}"DatumTargetDefinitionsCount" {ECH; return DatumTargetDefinitionsCountSTART;}
 "</"{W}"DatumTargetIds"{W}">" {ECH; return DatumTargetIdsEND;}
 "<"{W}"DatumTargetIds"        {ECH; return DatumTargetIdsSTART;}
+"<"{W}"DatumTargetLabel"{W}"/>" {ECH; return DatumTargetLabelEMPTY;}
 "</"{W}"DatumTargetLabel"{W}">" {ECH; return DatumTargetLabelEND;}
 "<"{W}"DatumTargetLabel"      {ECH; return DatumTargetLabelSTART;}
 "</"{W}"DatumTargetTranslationDirection"{W}">" {ECH; return DatumTargetTranslationDirectionEND;}
@@ -1268,6 +1345,7 @@ W [ \t\n\r]*
 "<"{W}"DatumsOk"              {ECH; return DatumsOkSTART;}
 "</"{W}"DatumsOkStats"{W}">"  {ECH; return DatumsOkStatsEND;}
 "<"{W}"DatumsOkStats"         {ECH; return DatumsOkStatsSTART;}
+"<"{W}"Declaration"{W}"/>"    {ECH; return DeclarationEMPTY;}
 "</"{W}"Declaration"{W}">"    {ECH; return DeclarationEND;}
 "<"{W}"Declaration"           {ECH; return DeclarationSTART;}
 "</"{W}"DefaultCharacteristicDefinitions"{W}">" {ECH; return DefaultCharacteristicDefinitionsEND;}
@@ -1294,6 +1372,7 @@ W [ \t\n\r]*
 "<"{W}"DegreesOfFreedom"      {ECH; return DegreesOfFreedomSTART;}
 "</"{W}"Denominator"{W}">"    {ECH; return DenominatorEND;}
 "<"{W}"Denominator"           {ECH; return DenominatorSTART;}
+"<"{W}"Department"{W}"/>"     {ECH; return DepartmentEMPTY;}
 "</"{W}"Department"{W}">"     {ECH; return DepartmentEND;}
 "<"{W}"Department"            {ECH; return DepartmentSTART;}
 "</"{W}"Depth"{W}">"          {ECH; return DepthEND;}
@@ -1314,8 +1393,10 @@ W [ \t\n\r]*
 "<"{W}"DepthMin"              {ECH; return DepthMinSTART;}
 "</"{W}"DepthVector"{W}">"    {ECH; return DepthVectorEND;}
 "<"{W}"DepthVector"           {ECH; return DepthVectorSTART;}
+"<"{W}"Description"{W}"/>"    {ECH; return DescriptionEMPTY;}
 "</"{W}"Description"{W}">"    {ECH; return DescriptionEND;}
 "<"{W}"Description"           {ECH; return DescriptionSTART;}
+"<"{W}"Designator"{W}"/>"     {ECH; return DesignatorEMPTY;}
 "</"{W}"Designator"{W}">"     {ECH; return DesignatorEND;}
 "<"{W}"Designator"            {ECH; return DesignatorSTART;}
 "</"{W}"DetachableCapacitiveSensor"{W}">" {ECH; return DetachableCapacitiveSensorEND;}
@@ -1468,6 +1549,7 @@ W [ \t\n\r]*
 "<"{W}"DomainAngle"           {ECH; return DomainAngleSTART;}
 "</"{W}"DomainLatitude"{W}">" {ECH; return DomainLatitudeEND;}
 "<"{W}"DomainLatitude"        {ECH; return DomainLatitudeSTART;}
+"<"{W}"DomainLinearUnit"{W}"/>" {ECH; return DomainLinearUnitEMPTY;}
 "</"{W}"DomainLinearUnit"{W}">" {ECH; return DomainLinearUnitEND;}
 "<"{W}"DomainLinearUnit"      {ECH; return DomainLinearUnitSTART;}
 "</"{W}"DomainLongitude"{W}">" {ECH; return DomainLongitudeEND;}
@@ -1482,8 +1564,10 @@ W [ \t\n\r]*
 "<"{W}"DrawWireSensor"        {ECH; return DrawWireSensorSTART;}
 "</"{W}"DrawingId"{W}">"      {ECH; return DrawingIdEND;}
 "<"{W}"DrawingId"             {ECH; return DrawingIdSTART;}
+"<"{W}"DrawingNumber"{W}"/>"  {ECH; return DrawingNumberEMPTY;}
 "</"{W}"DrawingNumber"{W}">"  {ECH; return DrawingNumberEND;}
 "<"{W}"DrawingNumber"         {ECH; return DrawingNumberSTART;}
+"<"{W}"DrawingZone"{W}"/>"    {ECH; return DrawingZoneEMPTY;}
 "</"{W}"DrawingZone"{W}">"    {ECH; return DrawingZoneEND;}
 "<"{W}"DrawingZone"           {ECH; return DrawingZoneSTART;}
 "</"{W}"DualNestingIndexFilter"{W}">" {ECH; return DualNestingIndexFilterEND;}
@@ -1538,8 +1622,10 @@ W [ \t\n\r]*
 "<"{W}"EffectiveUserDefinedWorkingVolume" {ECH; return EffectiveUserDefinedWorkingVolumeSTART;}
 "</"{W}"EffectiveWorkingVolume"{W}">" {ECH; return EffectiveWorkingVolumeEND;}
 "<"{W}"EffectiveWorkingVolume" {ECH; return EffectiveWorkingVolumeSTART;}
+"<"{W}"ElectronicDescription"{W}"/>" {ECH; return ElectronicDescriptionEMPTY;}
 "</"{W}"ElectronicDescription"{W}">" {ECH; return ElectronicDescriptionEND;}
 "<"{W}"ElectronicDescription" {ECH; return ElectronicDescriptionSTART;}
+"<"{W}"ElectronicMailAddress"{W}"/>" {ECH; return ElectronicMailAddressEMPTY;}
 "</"{W}"ElectronicMailAddress"{W}">" {ECH; return ElectronicMailAddressEND;}
 "<"{W}"ElectronicMailAddress" {ECH; return ElectronicMailAddressSTART;}
 "</"{W}"ElementIds"{W}">"     {ECH; return ElementIdsEND;}
@@ -1598,6 +1684,7 @@ W [ \t\n\r]*
 "<"{W}"ElseIf"                {ECH; return ElseIfSTART;}
 "</"{W}"Employee"{W}">"       {ECH; return EmployeeEND;}
 "<"{W}"Employee"              {ECH; return EmployeeSTART;}
+"<"{W}"EmployeeId"{W}"/>"     {ECH; return EmployeeIdEMPTY;}
 "</"{W}"EmployeeId"{W}">"     {ECH; return EmployeeIdEND;}
 "<"{W}"EmployeeId"            {ECH; return EmployeeIdSTART;}
 "</"{W}"EndPoint"{W}">"       {ECH; return EndPointEND;}
@@ -1616,6 +1703,7 @@ W [ \t\n\r]*
 "<"{W}"Entity"                {ECH; return EntitySTART;}
 "</"{W}"EntityExternalIds"{W}">" {ECH; return EntityExternalIdsEND;}
 "<"{W}"EntityExternalIds"     {ECH; return EntityExternalIdsSTART;}
+"<"{W}"EntityId"{W}"/>"       {ECH; return EntityIdEMPTY;}
 "</"{W}"EntityId"{W}">"       {ECH; return EntityIdEND;}
 "<"{W}"EntityId"              {ECH; return EntityIdSTART;}
 "</"{W}"EntityInternalIds"{W}">" {ECH; return EntityInternalIdsEND;}
@@ -1630,6 +1718,7 @@ W [ \t\n\r]*
 "<"{W}"EqualLegLength"        {ECH; return EqualLegLengthSTART;}
 "</"{W}"EquipmentVariation"{W}">" {ECH; return EquipmentVariationEND;}
 "<"{W}"EquipmentVariation"    {ECH; return EquipmentVariationSTART;}
+"<"{W}"Error"{W}"/>"          {ECH; return ErrorEMPTY;}
 "</"{W}"Error"{W}">"          {ECH; return ErrorEND;}
 "<"{W}"Error"                 {ECH; return ErrorSTART;}
 "</"{W}"ErrorRate"{W}">"      {ECH; return ErrorRateEND;}
@@ -1664,6 +1753,7 @@ W [ \t\n\r]*
 "<"{W}"ExplodedViewId"        {ECH; return ExplodedViewIdSTART;}
 "</"{W}"ExplodedViewSet"{W}">" {ECH; return ExplodedViewSetEND;}
 "<"{W}"ExplodedViewSet"       {ECH; return ExplodedViewSetSTART;}
+"<"{W}"ExportControlClassification"{W}"/>" {ECH; return ExportControlClassificationEMPTY;}
 "</"{W}"ExportControlClassification"{W}">" {ECH; return ExportControlClassificationEND;}
 "<"{W}"ExportControlClassification" {ECH; return ExportControlClassificationSTART;}
 "</"{W}"Extent"{W}">"         {ECH; return ExtentEND;}
@@ -1716,6 +1806,7 @@ W [ \t\n\r]*
 "<"{W}"FacePoints"            {ECH; return FacePointsSTART;}
 "</"{W}"FaceSet"{W}">"        {ECH; return FaceSetEND;}
 "<"{W}"FaceSet"               {ECH; return FaceSetSTART;}
+"<"{W}"FacsimileNumber"{W}"/>" {ECH; return FacsimileNumberEMPTY;}
 "</"{W}"FacsimileNumber"{W}">" {ECH; return FacsimileNumberEND;}
 "<"{W}"FacsimileNumber"       {ECH; return FacsimileNumberSTART;}
 "</"{W}"Factor"{W}">"         {ECH; return FactorEND;}
@@ -1754,6 +1845,7 @@ W [ \t\n\r]*
 "<"{W}"FeatureLength"         {ECH; return FeatureLengthSTART;}
 "</"{W}"FeatureMeasurementIds"{W}">" {ECH; return FeatureMeasurementIdsEND;}
 "<"{W}"FeatureMeasurementIds" {ECH; return FeatureMeasurementIdsSTART;}
+"<"{W}"FeatureName"{W}"/>"    {ECH; return FeatureNameEMPTY;}
 "</"{W}"FeatureName"{W}">"    {ECH; return FeatureNameEND;}
 "<"{W}"FeatureName"           {ECH; return FeatureNameSTART;}
 "</"{W}"FeatureNominalId"{W}">" {ECH; return FeatureNominalIdEND;}
@@ -1900,6 +1992,7 @@ W [ \t\n\r]*
 "<"{W}"ForceUnit"             {ECH; return ForceUnitSTART;}
 "</"{W}"Form"{W}">"           {ECH; return FormEND;}
 "<"{W}"Form"                  {ECH; return FormSTART;}
+"<"{W}"FormVariance"{W}"/>"   {ECH; return FormVarianceEMPTY;}
 "</"{W}"FormVariance"{W}">"   {ECH; return FormVarianceEND;}
 "<"{W}"FormVariance"          {ECH; return FormVarianceSTART;}
 "</"{W}"FormalStandardId"{W}">" {ECH; return FormalStandardIdEND;}
@@ -1986,6 +2079,7 @@ W [ \t\n\r]*
 "<"{W}"GoodnessOfFit"         {ECH; return GoodnessOfFitSTART;}
 "</"{W}"GoodnessOfFitThreshold"{W}">" {ECH; return GoodnessOfFitThresholdEND;}
 "<"{W}"GoodnessOfFitThreshold" {ECH; return GoodnessOfFitThresholdSTART;}
+"<"{W}"Grade"{W}"/>"          {ECH; return GradeEMPTY;}
 "</"{W}"Grade"{W}">"          {ECH; return GradeEND;}
 "<"{W}"Grade"                 {ECH; return GradeSTART;}
 "</"{W}"Graphics"{W}">"       {ECH; return GraphicsEND;}
@@ -2046,6 +2140,7 @@ W [ \t\n\r]*
 "<"{W}"HomeLocation"          {ECH; return HomeLocationSTART;}
 "</"{W}"HorizontalFieldOfView"{W}">" {ECH; return HorizontalFieldOfViewEND;}
 "<"{W}"HorizontalFieldOfView" {ECH; return HorizontalFieldOfViewSTART;}
+"<"{W}"HousingMaterial"{W}"/>" {ECH; return HousingMaterialEMPTY;}
 "</"{W}"HousingMaterial"{W}">" {ECH; return HousingMaterialEND;}
 "<"{W}"HousingMaterial"       {ECH; return HousingMaterialSTART;}
 "</"{W}"Hysteresis"{W}">"     {ECH; return HysteresisEND;}
@@ -2120,6 +2215,7 @@ W [ \t\n\r]*
 "<"{W}"IfThenToroidalSegmentRule" {ECH; return IfThenToroidalSegmentRuleSTART;}
 "</"{W}"IfThenTorusRule"{W}">" {ECH; return IfThenTorusRuleEND;}
 "<"{W}"IfThenTorusRule"       {ECH; return IfThenTorusRuleSTART;}
+"<"{W}"IlluminationUnit"{W}"/>" {ECH; return IlluminationUnitEMPTY;}
 "</"{W}"IlluminationUnit"{W}">" {ECH; return IlluminationUnitEND;}
 "<"{W}"IlluminationUnit"      {ECH; return IlluminationUnitSTART;}
 "</"{W}"ImageInstruction"{W}">" {ECH; return ImageInstructionEND;}
@@ -2172,6 +2268,7 @@ W [ \t\n\r]*
 "<"{W}"InternalCADCoordinateSystemId" {ECH; return InternalCADCoordinateSystemIdSTART;}
 "</"{W}"InternalExternal"{W}">" {ECH; return InternalExternalEND;}
 "<"{W}"InternalExternal"      {ECH; return InternalExternalSTART;}
+"<"{W}"InternalLocation"{W}"/>" {ECH; return InternalLocationEMPTY;}
 "</"{W}"InternalLocation"{W}">" {ECH; return InternalLocationEND;}
 "<"{W}"InternalLocation"      {ECH; return InternalLocationSTART;}
 "</"{W}"Intersection"{W}">"   {ECH; return IntersectionEND;}
@@ -2194,6 +2291,7 @@ W [ \t\n\r]*
 "<"{W}"IsSpotface"            {ECH; return IsSpotfaceSTART;}
 "</"{W}"ItemQPId"{W}">"       {ECH; return ItemQPIdEND;}
 "<"{W}"ItemQPId"              {ECH; return ItemQPIdSTART;}
+"<"{W}"Job"{W}"/>"            {ECH; return JobEMPTY;}
 "</"{W}"Job"{W}">"            {ECH; return JobEND;}
 "<"{W}"Job"                   {ECH; return JobSTART;}
 "</"{W}"JoystickSpeeds"{W}">" {ECH; return JoystickSpeedsEND;}
@@ -2208,12 +2306,14 @@ W [ \t\n\r]*
 "<"{W}"Kurtosis"              {ECH; return KurtosisSTART;}
 "</"{W}"LVDTSensor"{W}">"     {ECH; return LVDTSensorEND;}
 "<"{W}"LVDTSensor"            {ECH; return LVDTSensorSTART;}
+"<"{W}"Label"{W}"/>"          {ECH; return LabelEMPTY;}
 "</"{W}"Label"{W}">"          {ECH; return LabelEND;}
 "<"{W}"Label"                 {ECH; return LabelSTART;}
 "</"{W}"LargeEndDistance"{W}">" {ECH; return LargeEndDistanceEND;}
 "<"{W}"LargeEndDistance"      {ECH; return LargeEndDistanceSTART;}
 "</"{W}"Laser"{W}">"          {ECH; return LaserEND;}
 "<"{W}"Laser"                 {ECH; return LaserSTART;}
+"<"{W}"LaserClass"{W}"/>"     {ECH; return LaserClassEMPTY;}
 "</"{W}"LaserClass"{W}">"     {ECH; return LaserClassEND;}
 "<"{W}"LaserClass"            {ECH; return LaserClassSTART;}
 "</"{W}"LaserEffectiveLength"{W}">" {ECH; return LaserEffectiveLengthEND;}
@@ -2226,8 +2326,10 @@ W [ \t\n\r]*
 "<"{W}"LaserRadar"            {ECH; return LaserRadarSTART;}
 "</"{W}"LaserRadarMeasureFeatureMethod"{W}">" {ECH; return LaserRadarMeasureFeatureMethodEND;}
 "<"{W}"LaserRadarMeasureFeatureMethod" {ECH; return LaserRadarMeasureFeatureMethodSTART;}
+"<"{W}"LaserSafetyClass"{W}"/>" {ECH; return LaserSafetyClassEMPTY;}
 "</"{W}"LaserSafetyClass"{W}">" {ECH; return LaserSafetyClassEND;}
 "<"{W}"LaserSafetyClass"      {ECH; return LaserSafetyClassSTART;}
+"<"{W}"LaserSource"{W}"/>"    {ECH; return LaserSourceEMPTY;}
 "</"{W}"LaserSource"{W}">"    {ECH; return LaserSourceEND;}
 "<"{W}"LaserSource"           {ECH; return LaserSourceSTART;}
 "</"{W}"LaserSpotSize"{W}">"  {ECH; return LaserSpotSizeEND;}
@@ -2300,6 +2402,7 @@ W [ \t\n\r]*
 "<"{W}"LightPenCMM"           {ECH; return LightPenCMMSTART;}
 "</"{W}"LightPenCMMChargeCoupledDeviceCameraSensor"{W}">" {ECH; return LightPenCMMChargeCoupledDeviceCameraSensorEND;}
 "<"{W}"LightPenCMMChargeCoupledDeviceCameraSensor" {ECH; return LightPenCMMChargeCoupledDeviceCameraSensorSTART;}
+"<"{W}"LightSource"{W}"/>"    {ECH; return LightSourceEMPTY;}
 "</"{W}"LightSource"{W}">"    {ECH; return LightSourceEND;}
 "<"{W}"LightSource"           {ECH; return LightSourceSTART;}
 "</"{W}"Limit"{W}">"          {ECH; return LimitEND;}
@@ -2372,6 +2475,7 @@ W [ \t\n\r]*
 "<"{W}"LinearValue"           {ECH; return LinearValueSTART;}
 "</"{W}"Linearity"{W}">"      {ECH; return LinearityEND;}
 "<"{W}"Linearity"             {ECH; return LinearitySTART;}
+"<"{W}"LinearityError"{W}"/>" {ECH; return LinearityErrorEMPTY;}
 "</"{W}"LinearityError"{W}">" {ECH; return LinearityErrorEND;}
 "<"{W}"LinearityError"        {ECH; return LinearityErrorSTART;}
 "</"{W}"LinearityStudyPlan"{W}">" {ECH; return LinearityStudyPlanEND;}
@@ -2386,10 +2490,12 @@ W [ \t\n\r]*
 "<"{W}"LocatedTip"            {ECH; return LocatedTipSTART;}
 "</"{W}"LocatedTips"{W}">"    {ECH; return LocatedTipsEND;}
 "<"{W}"LocatedTips"           {ECH; return LocatedTipsSTART;}
+"<"{W}"Location"{W}"/>"       {ECH; return LocationEMPTY;}
 "</"{W}"Location"{W}">"       {ECH; return LocationEND;}
 "<"{W}"Location"              {ECH; return LocationSTART;}
 "</"{W}"LocationCharacteristicStats"{W}">" {ECH; return LocationCharacteristicStatsEND;}
 "<"{W}"LocationCharacteristicStats" {ECH; return LocationCharacteristicStatsSTART;}
+"<"{W}"LocationDescription"{W}"/>" {ECH; return LocationDescriptionEMPTY;}
 "</"{W}"LocationDescription"{W}">" {ECH; return LocationDescriptionEND;}
 "<"{W}"LocationDescription"   {ECH; return LocationDescriptionSTART;}
 "</"{W}"LocationId"{W}">"     {ECH; return LocationIdEND;}
@@ -2418,6 +2524,7 @@ W [ \t\n\r]*
 "<"{W}"LoopSet"               {ECH; return LoopSetSTART;}
 "</"{W}"Loops"{W}">"          {ECH; return LoopsEND;}
 "<"{W}"Loops"                 {ECH; return LoopsSTART;}
+"<"{W}"LotNumber"{W}"/>"      {ECH; return LotNumberEMPTY;}
 "</"{W}"LotNumber"{W}">"      {ECH; return LotNumberEND;}
 "<"{W}"LotNumber"             {ECH; return LotNumberSTART;}
 "</"{W}"LowerConfidenceLimit"{W}">" {ECH; return LowerConfidenceLimitEND;}
@@ -2432,8 +2539,10 @@ W [ \t\n\r]*
 "<"{W}"Machine"               {ECH; return MachineSTART;}
 "</"{W}"MachineCoordinateSystem"{W}">" {ECH; return MachineCoordinateSystemEND;}
 "<"{W}"MachineCoordinateSystem" {ECH; return MachineCoordinateSystemSTART;}
+"<"{W}"MachineIdentifier"{W}"/>" {ECH; return MachineIdentifierEMPTY;}
 "</"{W}"MachineIdentifier"{W}">" {ECH; return MachineIdentifierEND;}
 "<"{W}"MachineIdentifier"     {ECH; return MachineIdentifierSTART;}
+"<"{W}"MachineManufacturerName"{W}"/>" {ECH; return MachineManufacturerNameEMPTY;}
 "</"{W}"MachineManufacturerName"{W}">" {ECH; return MachineManufacturerNameEND;}
 "<"{W}"MachineManufacturerName" {ECH; return MachineManufacturerNameSTART;}
 "</"{W}"Magnetic"{W}">"       {ECH; return MagneticEND;}
@@ -2450,6 +2559,7 @@ W [ \t\n\r]*
 "<"{W}"ManualMeasureFeatureMethod" {ECH; return ManualMeasureFeatureMethodSTART;}
 "</"{W}"ManualMeasurementDevice"{W}">" {ECH; return ManualMeasurementDeviceEND;}
 "<"{W}"ManualMeasurementDevice" {ECH; return ManualMeasurementDeviceSTART;}
+"<"{W}"Manufacturer"{W}"/>"   {ECH; return ManufacturerEMPTY;}
 "</"{W}"Manufacturer"{W}">"   {ECH; return ManufacturerEND;}
 "<"{W}"Manufacturer"          {ECH; return ManufacturerSTART;}
 "</"{W}"ManufacturingMethodEnum"{W}">" {ECH; return ManufacturingMethodEnumEND;}
@@ -2494,6 +2604,7 @@ W [ \t\n\r]*
 "<"{W}"MassStatsSummary"      {ECH; return MassStatsSummarySTART;}
 "</"{W}"MassUnit"{W}">"       {ECH; return MassUnitEND;}
 "<"{W}"MassUnit"              {ECH; return MassUnitSTART;}
+"<"{W}"Material"{W}"/>"       {ECH; return MaterialEMPTY;}
 "</"{W}"Material"{W}">"       {ECH; return MaterialEND;}
 "<"{W}"Material"              {ECH; return MaterialSTART;}
 "</"{W}"MaterialClassEnum"{W}">" {ECH; return MaterialClassEnumEND;}
@@ -2624,6 +2735,7 @@ W [ \t\n\r]*
 "<"{W}"MaxValueStats"         {ECH; return MaxValueStatsSTART;}
 "</"{W}"MaxVibration"{W}">"   {ECH; return MaxVibrationEND;}
 "<"{W}"MaxVibration"          {ECH; return MaxVibrationSTART;}
+"<"{W}"MaxWireAcceleration"{W}"/>" {ECH; return MaxWireAccelerationEMPTY;}
 "</"{W}"MaxWireAcceleration"{W}">" {ECH; return MaxWireAccelerationEND;}
 "<"{W}"MaxWireAcceleration"   {ECH; return MaxWireAccelerationSTART;}
 "</"{W}"MaxWireExtensionForce"{W}">" {ECH; return MaxWireExtensionForceEND;}
@@ -2732,6 +2844,7 @@ W [ \t\n\r]*
 "<"{W}"MeasurementFieldSize"  {ECH; return MeasurementFieldSizeSTART;}
 "</"{W}"MeasurementLaser"{W}">" {ECH; return MeasurementLaserEND;}
 "<"{W}"MeasurementLaser"      {ECH; return MeasurementLaserSTART;}
+"<"{W}"MeasurementObjectMaterial"{W}"/>" {ECH; return MeasurementObjectMaterialEMPTY;}
 "</"{W}"MeasurementObjectMaterial"{W}">" {ECH; return MeasurementObjectMaterialEND;}
 "<"{W}"MeasurementObjectMaterial" {ECH; return MeasurementObjectMaterialSTART;}
 "</"{W}"MeasurementOffset"{W}">" {ECH; return MeasurementOffsetEND;}
@@ -2848,6 +2961,7 @@ W [ \t\n\r]*
 "<"{W}"Minimum"               {ECH; return MinimumSTART;}
 "</"{W}"MinimumBoundingBox"{W}">" {ECH; return MinimumBoundingBoxEND;}
 "<"{W}"MinimumBoundingBox"    {ECH; return MinimumBoundingBoxSTART;}
+"<"{W}"MinimumMaterialRemoval"{W}"/>" {ECH; return MinimumMaterialRemovalEMPTY;}
 "</"{W}"MinimumMaterialRemoval"{W}">" {ECH; return MinimumMaterialRemovalEND;}
 "<"{W}"MinimumMaterialRemoval" {ECH; return MinimumMaterialRemovalSTART;}
 "</"{W}"MinimumTargetDiameter"{W}">" {ECH; return MinimumTargetDiameterEND;}
@@ -2862,6 +2976,7 @@ W [ \t\n\r]*
 "<"{W}"Mode"                  {ECH; return ModeSTART;}
 "</"{W}"ModelId"{W}">"        {ECH; return ModelIdEND;}
 "<"{W}"ModelId"               {ECH; return ModelIdSTART;}
+"<"{W}"ModelNumber"{W}"/>"    {ECH; return ModelNumberEMPTY;}
 "</"{W}"ModelNumber"{W}">"    {ECH; return ModelNumberEND;}
 "<"{W}"ModelNumber"           {ECH; return ModelNumberSTART;}
 "</"{W}"ModelTolerance"{W}">" {ECH; return ModelToleranceEND;}
@@ -2870,8 +2985,10 @@ W [ \t\n\r]*
 "<"{W}"ModifiedThread"        {ECH; return ModifiedThreadSTART;}
 "</"{W}"Modifier"{W}">"       {ECH; return ModifierEND;}
 "<"{W}"Modifier"              {ECH; return ModifierSTART;}
+"<"{W}"MotorType"{W}"/>"      {ECH; return MotorTypeEMPTY;}
 "</"{W}"MotorType"{W}">"      {ECH; return MotorTypeEND;}
 "<"{W}"MotorType"             {ECH; return MotorTypeSTART;}
+"<"{W}"Mounting"{W}"/>"       {ECH; return MountingEMPTY;}
 "</"{W}"Mounting"{W}">"       {ECH; return MountingEND;}
 "<"{W}"Mounting"              {ECH; return MountingSTART;}
 "</"{W}"MovableDatumTarget"{W}">" {ECH; return MovableDatumTargetEND;}
@@ -2896,6 +3013,7 @@ W [ \t\n\r]*
 "<"{W}"Must"                  {ECH; return MustSTART;}
 "</"{W}"MustNot"{W}">"        {ECH; return MustNotEND;}
 "<"{W}"MustNot"               {ECH; return MustNotSTART;}
+"<"{W}"Name"{W}"/>"           {ECH; return NameEMPTY;}
 "</"{W}"Name"{W}">"           {ECH; return NameEND;}
 "<"{W}"Name"                  {ECH; return NameSTART;}
 "</"{W}"Near"{W}">"           {ECH; return NearEND;}
@@ -2930,6 +3048,7 @@ W [ \t\n\r]*
 "<"{W}"NominalVolumetricAccuracy" {ECH; return NominalVolumetricAccuracySTART;}
 "</"{W}"NominalsCalculated"{W}">" {ECH; return NominalsCalculatedEND;}
 "<"{W}"NominalsCalculated"    {ECH; return NominalsCalculatedSTART;}
+"<"{W}"NonConformanceDesignator"{W}"/>" {ECH; return NonConformanceDesignatorEMPTY;}
 "</"{W}"NonConformanceDesignator"{W}">" {ECH; return NonConformanceDesignatorEND;}
 "<"{W}"NonConformanceDesignator" {ECH; return NonConformanceDesignatorSTART;}
 "</"{W}"NonDestructiveTesting"{W}">" {ECH; return NonDestructiveTestingEND;}
@@ -3076,6 +3195,7 @@ W [ \t\n\r]*
 "<"{W}"OneSide"               {ECH; return OneSideSTART;}
 "</"{W}"OneThirdGrouping"{W}">" {ECH; return OneThirdGroupingEND;}
 "<"{W}"OneThirdGrouping"      {ECH; return OneThirdGroupingSTART;}
+"<"{W}"OperatorIdentifier"{W}"/>" {ECH; return OperatorIdentifierEMPTY;}
 "</"{W}"OperatorIdentifier"{W}">" {ECH; return OperatorIdentifierEND;}
 "<"{W}"OperatorIdentifier"    {ECH; return OperatorIdentifierSTART;}
 "</"{W}"OppositeAngledLinesFeatureDefinition"{W}">" {ECH; return OppositeAngledLinesFeatureDefinitionEND;}
@@ -3112,12 +3232,15 @@ W [ \t\n\r]*
 "<"{W}"OppositeParallelPlanesFeatureNominal" {ECH; return OppositeParallelPlanesFeatureNominalSTART;}
 "</"{W}"OpticalComparator"{W}">" {ECH; return OpticalComparatorEND;}
 "<"{W}"OpticalComparator"     {ECH; return OpticalComparatorSTART;}
+"</"{W}"OpticalDigitizerMeasureFeatureMethod"{W}">" {ECH; return OpticalDigitizerMeasureFeatureMethodEND;}
+"<"{W}"OpticalDigitizerMeasureFeatureMethod" {ECH; return OpticalDigitizerMeasureFeatureMethodSTART;}
 "</"{W}"OpticalFiberCableLength"{W}">" {ECH; return OpticalFiberCableLengthEND;}
 "<"{W}"OpticalFiberCableLength" {ECH; return OpticalFiberCableLengthSTART;}
 "</"{W}"Or"{W}">"             {ECH; return OrEND;}
 "<"{W}"Or"                    {ECH; return OrSTART;}
 "</"{W}"Order"{W}">"          {ECH; return OrderEND;}
 "<"{W}"Order"                 {ECH; return OrderSTART;}
+"<"{W}"OrderNumber"{W}"/>"    {ECH; return OrderNumberEMPTY;}
 "</"{W}"OrderNumber"{W}">"    {ECH; return OrderNumberEND;}
 "<"{W}"OrderNumber"           {ECH; return OrderNumberSTART;}
 "</"{W}"OrderU"{W}">"         {ECH; return OrderUEND;}
@@ -3134,6 +3257,7 @@ W [ \t\n\r]*
 "<"{W}"OrdersU"               {ECH; return OrdersUSTART;}
 "</"{W}"OrdersV"{W}">"        {ECH; return OrdersVEND;}
 "<"{W}"OrdersV"               {ECH; return OrdersVSTART;}
+"<"{W}"Organization"{W}"/>"   {ECH; return OrganizationEMPTY;}
 "</"{W}"Organization"{W}">"   {ECH; return OrganizationEND;}
 "<"{W}"Organization"          {ECH; return OrganizationSTART;}
 "</"{W}"Orientation"{W}">"    {ECH; return OrientationEND;}
@@ -3156,20 +3280,28 @@ W [ \t\n\r]*
 "<"{W}"OriginReference"       {ECH; return OriginReferenceSTART;}
 "</"{W}"Oscillation"{W}">"    {ECH; return OscillationEND;}
 "<"{W}"Oscillation"           {ECH; return OscillationSTART;}
+"<"{W}"OtherAccuracySource"{W}"/>" {ECH; return OtherAccuracySourceEMPTY;}
 "</"{W}"OtherAccuracySource"{W}">" {ECH; return OtherAccuracySourceEND;}
 "<"{W}"OtherAccuracySource"   {ECH; return OtherAccuracySourceSTART;}
+"<"{W}"OtherAddressDescription"{W}"/>" {ECH; return OtherAddressDescriptionEMPTY;}
 "</"{W}"OtherAddressDescription"{W}">" {ECH; return OtherAddressDescriptionEND;}
 "<"{W}"OtherAddressDescription" {ECH; return OtherAddressDescriptionSTART;}
+"<"{W}"OtherArea"{W}"/>"      {ECH; return OtherAreaEMPTY;}
 "</"{W}"OtherArea"{W}">"      {ECH; return OtherAreaEND;}
 "<"{W}"OtherArea"             {ECH; return OtherAreaSTART;}
+"<"{W}"OtherBottom"{W}"/>"    {ECH; return OtherBottomEMPTY;}
 "</"{W}"OtherBottom"{W}">"    {ECH; return OtherBottomEND;}
 "<"{W}"OtherBottom"           {ECH; return OtherBottomSTART;}
+"<"{W}"OtherCartesianCMMGeometry"{W}"/>" {ECH; return OtherCartesianCMMGeometryEMPTY;}
 "</"{W}"OtherCartesianCMMGeometry"{W}">" {ECH; return OtherCartesianCMMGeometryEND;}
 "<"{W}"OtherCartesianCMMGeometry" {ECH; return OtherCartesianCMMGeometrySTART;}
+"<"{W}"OtherCharacteristicStatus"{W}"/>" {ECH; return OtherCharacteristicStatusEMPTY;}
 "</"{W}"OtherCharacteristicStatus"{W}">" {ECH; return OtherCharacteristicStatusEND;}
 "<"{W}"OtherCharacteristicStatus" {ECH; return OtherCharacteristicStatusSTART;}
+"<"{W}"OtherControlIssue"{W}"/>" {ECH; return OtherControlIssueEMPTY;}
 "</"{W}"OtherControlIssue"{W}">" {ECH; return OtherControlIssueEND;}
 "<"{W}"OtherControlIssue"     {ECH; return OtherControlIssueSTART;}
+"<"{W}"OtherCoordinate"{W}"/>" {ECH; return OtherCoordinateEMPTY;}
 "</"{W}"OtherCoordinate"{W}">" {ECH; return OtherCoordinateEND;}
 "<"{W}"OtherCoordinate"       {ECH; return OtherCoordinateSTART;}
 "</"{W}"OtherCurveFeatureDefinition"{W}">" {ECH; return OtherCurveFeatureDefinitionEND;}
@@ -3180,14 +3312,19 @@ W [ \t\n\r]*
 "<"{W}"OtherCurveFeatureMeasurement" {ECH; return OtherCurveFeatureMeasurementSTART;}
 "</"{W}"OtherCurveFeatureNominal"{W}">" {ECH; return OtherCurveFeatureNominalEND;}
 "<"{W}"OtherCurveFeatureNominal" {ECH; return OtherCurveFeatureNominalSTART;}
+"<"{W}"OtherDigitalModelFormat"{W}"/>" {ECH; return OtherDigitalModelFormatEMPTY;}
 "</"{W}"OtherDigitalModelFormat"{W}">" {ECH; return OtherDigitalModelFormatEND;}
 "<"{W}"OtherDigitalModelFormat" {ECH; return OtherDigitalModelFormatSTART;}
+"<"{W}"OtherDistributionTransformation"{W}"/>" {ECH; return OtherDistributionTransformationEMPTY;}
 "</"{W}"OtherDistributionTransformation"{W}">" {ECH; return OtherDistributionTransformationEND;}
 "<"{W}"OtherDistributionTransformation" {ECH; return OtherDistributionTransformationSTART;}
+"<"{W}"OtherExclusionReason"{W}"/>" {ECH; return OtherExclusionReasonEMPTY;}
 "</"{W}"OtherExclusionReason"{W}">" {ECH; return OtherExclusionReasonEND;}
 "<"{W}"OtherExclusionReason"  {ECH; return OtherExclusionReasonSTART;}
+"<"{W}"OtherExtent"{W}"/>"    {ECH; return OtherExtentEMPTY;}
 "</"{W}"OtherExtent"{W}">"    {ECH; return OtherExtentEND;}
 "<"{W}"OtherExtent"           {ECH; return OtherExtentSTART;}
+"<"{W}"OtherFileSpec"{W}"/>"  {ECH; return OtherFileSpecEMPTY;}
 "</"{W}"OtherFileSpec"{W}">"  {ECH; return OtherFileSpecEND;}
 "<"{W}"OtherFileSpec"         {ECH; return OtherFileSpecSTART;}
 "</"{W}"OtherFormCharacteristicDefinition"{W}">" {ECH; return OtherFormCharacteristicDefinitionEND;}
@@ -3200,20 +3337,27 @@ W [ \t\n\r]*
 "<"{W}"OtherFormCharacteristicNominal" {ECH; return OtherFormCharacteristicNominalSTART;}
 "</"{W}"OtherFormCharacteristicStats"{W}">" {ECH; return OtherFormCharacteristicStatsEND;}
 "<"{W}"OtherFormCharacteristicStats" {ECH; return OtherFormCharacteristicStatsSTART;}
+"<"{W}"OtherInspectionStatus"{W}"/>" {ECH; return OtherInspectionStatusEMPTY;}
 "</"{W}"OtherInspectionStatus"{W}">" {ECH; return OtherInspectionStatusEND;}
 "<"{W}"OtherInspectionStatus" {ECH; return OtherInspectionStatusSTART;}
+"<"{W}"OtherLevel"{W}"/>"     {ECH; return OtherLevelEMPTY;}
 "</"{W}"OtherLevel"{W}">"     {ECH; return OtherLevelEND;}
 "<"{W}"OtherLevel"            {ECH; return OtherLevelSTART;}
+"<"{W}"OtherManufacturingMethod"{W}"/>" {ECH; return OtherManufacturingMethodEMPTY;}
 "</"{W}"OtherManufacturingMethod"{W}">" {ECH; return OtherManufacturingMethodEND;}
 "<"{W}"OtherManufacturingMethod" {ECH; return OtherManufacturingMethodSTART;}
+"<"{W}"OtherMarkingMethod"{W}"/>" {ECH; return OtherMarkingMethodEMPTY;}
 "</"{W}"OtherMarkingMethod"{W}">" {ECH; return OtherMarkingMethodEND;}
 "<"{W}"OtherMarkingMethod"    {ECH; return OtherMarkingMethodSTART;}
+"<"{W}"OtherMaterialClass"{W}"/>" {ECH; return OtherMaterialClassEMPTY;}
 "</"{W}"OtherMaterialClass"{W}">" {ECH; return OtherMaterialClassEND;}
 "<"{W}"OtherMaterialClass"    {ECH; return OtherMaterialClassSTART;}
+"<"{W}"OtherMeasureActionGroupFunction"{W}"/>" {ECH; return OtherMeasureActionGroupFunctionEMPTY;}
 "</"{W}"OtherMeasureActionGroupFunction"{W}">" {ECH; return OtherMeasureActionGroupFunctionEND;}
 "<"{W}"OtherMeasureActionGroupFunction" {ECH; return OtherMeasureActionGroupFunctionSTART;}
 "</"{W}"OtherMeasureFeatureMethod"{W}">" {ECH; return OtherMeasureFeatureMethodEND;}
 "<"{W}"OtherMeasureFeatureMethod" {ECH; return OtherMeasureFeatureMethodSTART;}
+"<"{W}"OtherMeasurementDirective"{W}"/>" {ECH; return OtherMeasurementDirectiveEMPTY;}
 "</"{W}"OtherMeasurementDirective"{W}">" {ECH; return OtherMeasurementDirectiveEND;}
 "<"{W}"OtherMeasurementDirective" {ECH; return OtherMeasurementDirectiveSTART;}
 "</"{W}"OtherNonShapeFeatureDefinition"{W}">" {ECH; return OtherNonShapeFeatureDefinitionEND;}
@@ -3224,12 +3368,16 @@ W [ \t\n\r]*
 "<"{W}"OtherNonShapeFeatureMeasurement" {ECH; return OtherNonShapeFeatureMeasurementSTART;}
 "</"{W}"OtherNonShapeFeatureNominal"{W}">" {ECH; return OtherNonShapeFeatureNominalEND;}
 "<"{W}"OtherNonShapeFeatureNominal" {ECH; return OtherNonShapeFeatureNominalSTART;}
+"<"{W}"OtherPrecedence"{W}"/>" {ECH; return OtherPrecedenceEMPTY;}
 "</"{W}"OtherPrecedence"{W}">" {ECH; return OtherPrecedenceEND;}
 "<"{W}"OtherPrecedence"       {ECH; return OtherPrecedenceSTART;}
+"<"{W}"OtherSamplingInterval"{W}"/>" {ECH; return OtherSamplingIntervalEMPTY;}
 "</"{W}"OtherSamplingInterval"{W}">" {ECH; return OtherSamplingIntervalEND;}
 "<"{W}"OtherSamplingInterval" {ECH; return OtherSamplingIntervalSTART;}
+"<"{W}"OtherSecurityClassification"{W}"/>" {ECH; return OtherSecurityClassificationEMPTY;}
 "</"{W}"OtherSecurityClassification"{W}">" {ECH; return OtherSecurityClassificationEND;}
 "<"{W}"OtherSecurityClassification" {ECH; return OtherSecurityClassificationSTART;}
+"<"{W}"OtherShapeClass"{W}"/>" {ECH; return OtherShapeClassEMPTY;}
 "</"{W}"OtherShapeClass"{W}">" {ECH; return OtherShapeClassEND;}
 "<"{W}"OtherShapeClass"       {ECH; return OtherShapeClassSTART;}
 "</"{W}"OtherShapeFeatureDefinition"{W}">" {ECH; return OtherShapeFeatureDefinitionEND;}
@@ -3246,12 +3394,16 @@ W [ \t\n\r]*
 "<"{W}"OtherSideContourSymbol" {ECH; return OtherSideContourSymbolSTART;}
 "</"{W}"OtherSideParameters"{W}">" {ECH; return OtherSideParametersEND;}
 "<"{W}"OtherSideParameters"   {ECH; return OtherSideParametersSTART;}
+"<"{W}"OtherSlotEnd"{W}"/>"   {ECH; return OtherSlotEndEMPTY;}
 "</"{W}"OtherSlotEnd"{W}">"   {ECH; return OtherSlotEndEND;}
 "<"{W}"OtherSlotEnd"          {ECH; return OtherSlotEndSTART;}
+"<"{W}"OtherStandardsOrganization"{W}"/>" {ECH; return OtherStandardsOrganizationEMPTY;}
 "</"{W}"OtherStandardsOrganization"{W}">" {ECH; return OtherStandardsOrganizationEND;}
 "<"{W}"OtherStandardsOrganization" {ECH; return OtherStandardsOrganizationSTART;}
+"<"{W}"OtherStatsEvalStatus"{W}"/>" {ECH; return OtherStatsEvalStatusEMPTY;}
 "</"{W}"OtherStatsEvalStatus"{W}">" {ECH; return OtherStatsEvalStatusEND;}
 "<"{W}"OtherStatsEvalStatus"  {ECH; return OtherStatsEvalStatusSTART;}
+"<"{W}"OtherSubstituteFeatureAlgorithm"{W}"/>" {ECH; return OtherSubstituteFeatureAlgorithmEMPTY;}
 "</"{W}"OtherSubstituteFeatureAlgorithm"{W}">" {ECH; return OtherSubstituteFeatureAlgorithmEND;}
 "<"{W}"OtherSubstituteFeatureAlgorithm" {ECH; return OtherSubstituteFeatureAlgorithmSTART;}
 "</"{W}"OtherSurfaceFeatureDefinition"{W}">" {ECH; return OtherSurfaceFeatureDefinitionEND;}
@@ -3262,24 +3414,32 @@ W [ \t\n\r]*
 "<"{W}"OtherSurfaceFeatureMeasurement" {ECH; return OtherSurfaceFeatureMeasurementSTART;}
 "</"{W}"OtherSurfaceFeatureNominal"{W}">" {ECH; return OtherSurfaceFeatureNominalEND;}
 "<"{W}"OtherSurfaceFeatureNominal" {ECH; return OtherSurfaceFeatureNominalSTART;}
+"<"{W}"OtherSurfaceParameter"{W}"/>" {ECH; return OtherSurfaceParameterEMPTY;}
 "</"{W}"OtherSurfaceParameter"{W}">" {ECH; return OtherSurfaceParameterEND;}
 "<"{W}"OtherSurfaceParameter" {ECH; return OtherSurfaceParameterSTART;}
+"<"{W}"OtherTemperatureCompensation"{W}"/>" {ECH; return OtherTemperatureCompensationEMPTY;}
 "</"{W}"OtherTemperatureCompensation"{W}">" {ECH; return OtherTemperatureCompensationEND;}
 "<"{W}"OtherTemperatureCompensation" {ECH; return OtherTemperatureCompensationSTART;}
+"<"{W}"OtherThreadClass"{W}"/>" {ECH; return OtherThreadClassEMPTY;}
 "</"{W}"OtherThreadClass"{W}">" {ECH; return OtherThreadClassEND;}
 "<"{W}"OtherThreadClass"      {ECH; return OtherThreadClassSTART;}
+"<"{W}"OtherThreadSeries"{W}"/>" {ECH; return OtherThreadSeriesEMPTY;}
 "</"{W}"OtherThreadSeries"{W}">" {ECH; return OtherThreadSeriesEND;}
 "<"{W}"OtherThreadSeries"     {ECH; return OtherThreadSeriesSTART;}
+"<"{W}"OtherTimeDescription"{W}"/>" {ECH; return OtherTimeDescriptionEMPTY;}
 "</"{W}"OtherTimeDescription"{W}">" {ECH; return OtherTimeDescriptionEND;}
 "<"{W}"OtherTimeDescription"  {ECH; return OtherTimeDescriptionSTART;}
+"<"{W}"OtherTipEndGeometry"{W}"/>" {ECH; return OtherTipEndGeometryEMPTY;}
 "</"{W}"OtherTipEndGeometry"{W}">" {ECH; return OtherTipEndGeometryEND;}
 "<"{W}"OtherTipEndGeometry"   {ECH; return OtherTipEndGeometrySTART;}
+"<"{W}"OtherTypeOfScale"{W}"/>" {ECH; return OtherTypeOfScaleEMPTY;}
 "</"{W}"OtherTypeOfScale"{W}">" {ECH; return OtherTypeOfScaleEND;}
 "<"{W}"OtherTypeOfScale"      {ECH; return OtherTypeOfScaleSTART;}
 "</"{W}"OtherUnits"{W}">"     {ECH; return OtherUnitsEND;}
 "<"{W}"OtherUnits"            {ECH; return OtherUnitsSTART;}
 "</"{W}"OuterDisposition"{W}">" {ECH; return OuterDispositionEND;}
 "<"{W}"OuterDisposition"      {ECH; return OuterDispositionSTART;}
+"<"{W}"OutputFileFormat"{W}"/>" {ECH; return OutputFileFormatEMPTY;}
 "</"{W}"OutputFileFormat"{W}">" {ECH; return OutputFileFormatEND;}
 "<"{W}"OutputFileFormat"      {ECH; return OutputFileFormatSTART;}
 "</"{W}"OutputPower"{W}">"    {ECH; return OutputPowerEND;}
@@ -3318,16 +3478,21 @@ W [ \t\n\r]*
 "<"{W}"ParallelismCharacteristicNominal" {ECH; return ParallelismCharacteristicNominalSTART;}
 "</"{W}"ParallelismCharacteristicStats"{W}">" {ECH; return ParallelismCharacteristicStatsEND;}
 "<"{W}"ParallelismCharacteristicStats" {ECH; return ParallelismCharacteristicStatsSTART;}
+"<"{W}"Parameter"{W}"/>"      {ECH; return ParameterEMPTY;}
 "</"{W}"Parameter"{W}">"      {ECH; return ParameterEND;}
 "<"{W}"Parameter"             {ECH; return ParameterSTART;}
 "</"{W}"ParameterConstraints"{W}">" {ECH; return ParameterConstraintsEND;}
 "<"{W}"ParameterConstraints"  {ECH; return ParameterConstraintsSTART;}
+"<"{W}"ParameterName"{W}"/>"  {ECH; return ParameterNameEMPTY;}
 "</"{W}"ParameterName"{W}">"  {ECH; return ParameterNameEND;}
 "<"{W}"ParameterName"         {ECH; return ParameterNameSTART;}
+"<"{W}"ParameterType"{W}"/>"  {ECH; return ParameterTypeEMPTY;}
 "</"{W}"ParameterType"{W}">"  {ECH; return ParameterTypeEND;}
 "<"{W}"ParameterType"         {ECH; return ParameterTypeSTART;}
+"<"{W}"ParameterValue"{W}"/>" {ECH; return ParameterValueEMPTY;}
 "</"{W}"ParameterValue"{W}">" {ECH; return ParameterValueEND;}
 "<"{W}"ParameterValue"        {ECH; return ParameterValueSTART;}
+"<"{W}"Parameters"{W}"/>"     {ECH; return ParametersEMPTY;}
 "</"{W}"Parameters"{W}">"     {ECH; return ParametersEND;}
 "<"{W}"Parameters"            {ECH; return ParametersSTART;}
 "</"{W}"ParentFeatureItemId"{W}">" {ECH; return ParentFeatureItemIdEND;}
@@ -3358,6 +3523,7 @@ W [ \t\n\r]*
 "<"{W}"PassValues"            {ECH; return PassValuesSTART;}
 "</"{W}"PatchRadius"{W}">"    {ECH; return PatchRadiusEND;}
 "<"{W}"PatchRadius"           {ECH; return PatchRadiusSTART;}
+"<"{W}"Path"{W}"/>"           {ECH; return PathEMPTY;}
 "</"{W}"Path"{W}">"           {ECH; return PathEND;}
 "<"{W}"Path"                  {ECH; return PathSTART;}
 "</"{W}"PathTriangulation"{W}">" {ECH; return PathTriangulationEND;}
@@ -3454,6 +3620,7 @@ W [ \t\n\r]*
 "<"{W}"PlaneReference"        {ECH; return PlaneReferenceSTART;}
 "</"{W}"PlantLocation"{W}">"  {ECH; return PlantLocationEND;}
 "<"{W}"PlantLocation"         {ECH; return PlantLocationSTART;}
+"<"{W}"PlantSector"{W}"/>"    {ECH; return PlantSectorEMPTY;}
 "</"{W}"PlantSector"{W}">"    {ECH; return PlantSectorEND;}
 "<"{W}"PlantSector"           {ECH; return PlantSectorSTART;}
 "</"{W}"Plus"{W}">"           {ECH; return PlusEND;}
@@ -3580,8 +3747,10 @@ W [ \t\n\r]*
 "<"{W}"PositionCharacteristicNominal" {ECH; return PositionCharacteristicNominalSTART;}
 "</"{W}"PositionCharacteristicStats"{W}">" {ECH; return PositionCharacteristicStatsEND;}
 "<"{W}"PositionCharacteristicStats" {ECH; return PositionCharacteristicStatsSTART;}
+"<"{W}"PostalBox"{W}"/>"      {ECH; return PostalBoxEMPTY;}
 "</"{W}"PostalBox"{W}">"      {ECH; return PostalBoxEND;}
 "<"{W}"PostalBox"             {ECH; return PostalBoxSTART;}
+"<"{W}"PostalCode"{W}"/>"     {ECH; return PostalCodeEMPTY;}
 "</"{W}"PostalCode"{W}">"     {ECH; return PostalCodeEND;}
 "<"{W}"PostalCode"            {ECH; return PostalCodeSTART;}
 "</"{W}"Pp"{W}">"             {ECH; return PpEND;}
@@ -3692,6 +3861,7 @@ W [ \t\n\r]*
 "<"{W}"ProductViewSetCount"   {ECH; return ProductViewSetCountSTART;}
 "</"{W}"ProductVisualizationSetCount"{W}">" {ECH; return ProductVisualizationSetCountEND;}
 "<"{W}"ProductVisualizationSetCount" {ECH; return ProductVisualizationSetCountSTART;}
+"<"{W}"ProductionMethod"{W}"/>" {ECH; return ProductionMethodEMPTY;}
 "</"{W}"ProductionMethod"{W}">" {ECH; return ProductionMethodEND;}
 "<"{W}"ProductionMethod"      {ECH; return ProductionMethodSTART;}
 "</"{W}"ProductionStudyPlan"{W}">" {ECH; return ProductionStudyPlanEND;}
@@ -3724,10 +3894,12 @@ W [ \t\n\r]*
 "<"{W}"ProjectionOppositeParallelLines" {ECH; return ProjectionOppositeParallelLinesSTART;}
 "</"{W}"ProjectionPlane"{W}">" {ECH; return ProjectionPlaneEND;}
 "<"{W}"ProjectionPlane"       {ECH; return ProjectionPlaneSTART;}
+"<"{W}"ProtectionClass"{W}"/>" {ECH; return ProtectionClassEMPTY;}
 "</"{W}"ProtectionClass"{W}">" {ECH; return ProtectionClassEND;}
 "<"{W}"ProtectionClass"       {ECH; return ProtectionClassSTART;}
 "</"{W}"ProxyMeasurementId"{W}">" {ECH; return ProxyMeasurementIdEND;}
 "<"{W}"ProxyMeasurementId"    {ECH; return ProxyMeasurementIdSTART;}
+"<"{W}"PurchaseOrderNumber"{W}"/>" {ECH; return PurchaseOrderNumberEMPTY;}
 "</"{W}"PurchaseOrderNumber"{W}">" {ECH; return PurchaseOrderNumberEND;}
 "<"{W}"PurchaseOrderNumber"   {ECH; return PurchaseOrderNumberSTART;}
 "</"{W}"QIFDocument"{W}">"    {ECH; return QIFDocumentEND;}
@@ -3746,6 +3918,7 @@ W [ \t\n\r]*
 "<"{W}"RAPResolution"         {ECH; return RAPResolutionSTART;}
 "</"{W}"RAPZResolution"{W}">" {ECH; return RAPZResolutionEND;}
 "<"{W}"RAPZResolution"        {ECH; return RAPZResolutionSTART;}
+"<"{W}"Radial"{W}"/>"         {ECH; return RadialEMPTY;}
 "</"{W}"Radial"{W}">"         {ECH; return RadialEND;}
 "<"{W}"Radial"                {ECH; return RadialSTART;}
 "</"{W}"RadialAxisLength"{W}">" {ECH; return RadialAxisLengthEND;}
@@ -3776,10 +3949,12 @@ W [ \t\n\r]*
 "<"{W}"RandRStudyType"        {ECH; return RandRStudyTypeSTART;}
 "</"{W}"Range"{W}">"          {ECH; return RangeEND;}
 "<"{W}"Range"                 {ECH; return RangeSTART;}
+"<"{W}"RangeAngularUnit"{W}"/>" {ECH; return RangeAngularUnitEMPTY;}
 "</"{W}"RangeAngularUnit"{W}">" {ECH; return RangeAngularUnitEND;}
 "<"{W}"RangeAngularUnit"      {ECH; return RangeAngularUnitSTART;}
 "</"{W}"RangeForVolumetricUncertainty"{W}">" {ECH; return RangeForVolumetricUncertaintyEND;}
 "<"{W}"RangeForVolumetricUncertainty" {ECH; return RangeForVolumetricUncertaintySTART;}
+"<"{W}"RangeLinearUnit"{W}"/>" {ECH; return RangeLinearUnitEMPTY;}
 "</"{W}"RangeLinearUnit"{W}">" {ECH; return RangeLinearUnitEND;}
 "<"{W}"RangeLinearUnit"       {ECH; return RangeLinearUnitSTART;}
 "</"{W}"RangePointSetId"{W}">" {ECH; return RangePointSetIdEND;}
@@ -3790,6 +3965,7 @@ W [ \t\n\r]*
 "<"{W}"Ratio"                 {ECH; return RatioSTART;}
 "</"{W}"Reason"{W}">"         {ECH; return ReasonEND;}
 "<"{W}"Reason"                {ECH; return ReasonSTART;}
+"<"{W}"ReasonForPartialInspection"{W}"/>" {ECH; return ReasonForPartialInspectionEMPTY;}
 "</"{W}"ReasonForPartialInspection"{W}">" {ECH; return ReasonForPartialInspectionEND;}
 "<"{W}"ReasonForPartialInspection" {ECH; return ReasonForPartialInspectionSTART;}
 "</"{W}"Recompensated"{W}">"  {ECH; return RecompensatedEND;}
@@ -3830,6 +4006,7 @@ W [ \t\n\r]*
 "<"{W}"ReferencedQIFPlanInstance" {ECH; return ReferencedQIFPlanInstanceSTART;}
 "</"{W}"ReferencedStandardIds"{W}">" {ECH; return ReferencedStandardIdsEND;}
 "<"{W}"ReferencedStandardIds" {ECH; return ReferencedStandardIdsSTART;}
+"<"{W}"Region"{W}"/>"         {ECH; return RegionEMPTY;}
 "</"{W}"Region"{W}">"         {ECH; return RegionEND;}
 "<"{W}"Region"                {ECH; return RegionSTART;}
 "</"{W}"RegressionIntercept"{W}">" {ECH; return RegressionInterceptEND;}
@@ -3870,22 +4047,28 @@ W [ \t\n\r]*
 "<"{W}"RelativeTotalVariation" {ECH; return RelativeTotalVariationSTART;}
 "</"{W}"Repeatability"{W}">"  {ECH; return RepeatabilityEND;}
 "<"{W}"Repeatability"         {ECH; return RepeatabilitySTART;}
+"<"{W}"ReportNumber"{W}"/>"   {ECH; return ReportNumberEMPTY;}
 "</"{W}"ReportNumber"{W}">"   {ECH; return ReportNumberEND;}
 "<"{W}"ReportNumber"          {ECH; return ReportNumberSTART;}
 "</"{W}"ReportPreparationDate"{W}">" {ECH; return ReportPreparationDateEND;}
 "<"{W}"ReportPreparationDate" {ECH; return ReportPreparationDateSTART;}
 "</"{W}"ReportPreparer"{W}">" {ECH; return ReportPreparerEND;}
 "<"{W}"ReportPreparer"        {ECH; return ReportPreparerSTART;}
+"<"{W}"ReportType"{W}"/>"     {ECH; return ReportTypeEMPTY;}
 "</"{W}"ReportType"{W}">"     {ECH; return ReportTypeEND;}
 "<"{W}"ReportType"            {ECH; return ReportTypeSTART;}
 "</"{W}"Requirement"{W}">"    {ECH; return RequirementEND;}
 "<"{W}"Requirement"           {ECH; return RequirementSTART;}
+"<"{W}"Requirements"{W}"/>"   {ECH; return RequirementsEMPTY;}
 "</"{W}"Requirements"{W}">"   {ECH; return RequirementsEND;}
 "<"{W}"Requirements"          {ECH; return RequirementsSTART;}
+"<"{W}"Resolution"{W}"/>"     {ECH; return ResolutionEMPTY;}
 "</"{W}"Resolution"{W}">"     {ECH; return ResolutionEND;}
 "<"{W}"Resolution"            {ECH; return ResolutionSTART;}
+"<"{W}"ResponsibilityIdentifier"{W}"/>" {ECH; return ResponsibilityIdentifierEMPTY;}
 "</"{W}"ResponsibilityIdentifier"{W}">" {ECH; return ResponsibilityIdentifierEND;}
 "<"{W}"ResponsibilityIdentifier" {ECH; return ResponsibilityIdentifierSTART;}
+"<"{W}"ResultStatement"{W}"/>" {ECH; return ResultStatementEMPTY;}
 "</"{W}"ResultStatement"{W}">" {ECH; return ResultStatementEND;}
 "<"{W}"ResultStatement"       {ECH; return ResultStatementSTART;}
 "</"{W}"ResultStatus"{W}">"   {ECH; return ResultStatusEND;}
@@ -3900,6 +4083,7 @@ W [ \t\n\r]*
 "<"{W}"ResultsQPIds"          {ECH; return ResultsQPIdsSTART;}
 "</"{W}"RetrievalMethod"{W}">" {ECH; return RetrievalMethodEND;}
 "<"{W}"RetrievalMethod"       {ECH; return RetrievalMethodSTART;}
+"<"{W}"Revision"{W}"/>"       {ECH; return RevisionEMPTY;}
 "</"{W}"Revision"{W}">"       {ECH; return RevisionEND;}
 "<"{W}"Revision"              {ECH; return RevisionSTART;}
 "</"{W}"Revolution23"{W}">"   {ECH; return Revolution23END;}
@@ -3946,14 +4130,18 @@ W [ \t\n\r]*
 "<"{W}"RulesUnits"            {ECH; return RulesUnitsSTART;}
 "</"{W}"RulesUsedQPId"{W}">"  {ECH; return RulesUsedQPIdEND;}
 "<"{W}"RulesUsedQPId"         {ECH; return RulesUsedQPIdSTART;}
+"<"{W}"SIUnitName"{W}"/>"     {ECH; return SIUnitNameEMPTY;}
 "</"{W}"SIUnitName"{W}">"     {ECH; return SIUnitNameEND;}
 "<"{W}"SIUnitName"            {ECH; return SIUnitNameSTART;}
+"<"{W}"SafetyLevel"{W}"/>"    {ECH; return SafetyLevelEMPTY;}
 "</"{W}"SafetyLevel"{W}">"    {ECH; return SafetyLevelEND;}
 "<"{W}"SafetyLevel"           {ECH; return SafetyLevelSTART;}
 "</"{W}"SampleFrequency"{W}">" {ECH; return SampleFrequencyEND;}
 "<"{W}"SampleFrequency"       {ECH; return SampleFrequencySTART;}
+"<"{W}"SampleNumber"{W}"/>"   {ECH; return SampleNumberEMPTY;}
 "</"{W}"SampleNumber"{W}">"   {ECH; return SampleNumberEND;}
 "<"{W}"SampleNumber"          {ECH; return SampleNumberSTART;}
+"<"{W}"SamplePenetratingMaterial"{W}"/>" {ECH; return SamplePenetratingMaterialEMPTY;}
 "</"{W}"SamplePenetratingMaterial"{W}">" {ECH; return SamplePenetratingMaterialEND;}
 "<"{W}"SamplePenetratingMaterial" {ECH; return SamplePenetratingMaterialSTART;}
 "</"{W}"SamplePenetratingMaterialLength"{W}">" {ECH; return SamplePenetratingMaterialLengthEND;}
@@ -3988,6 +4176,7 @@ W [ \t\n\r]*
 "<"{W}"ScaleCoefficientOfExpansionUncertainty" {ECH; return ScaleCoefficientOfExpansionUncertaintySTART;}
 "</"{W}"ScaleFactor"{W}">"    {ECH; return ScaleFactorEND;}
 "<"{W}"ScaleFactor"           {ECH; return ScaleFactorSTART;}
+"<"{W}"ScaleMaterial"{W}"/>"  {ECH; return ScaleMaterialEMPTY;}
 "</"{W}"ScaleMaterial"{W}">"  {ECH; return ScaleMaterialEND;}
 "<"{W}"ScaleMaterial"         {ECH; return ScaleMaterialSTART;}
 "</"{W}"ScaleReference"{W}">" {ECH; return ScaleReferenceEND;}
@@ -3996,8 +4185,10 @@ W [ \t\n\r]*
 "<"{W}"ScaleResolution"       {ECH; return ScaleResolutionSTART;}
 "</"{W}"ScanningSpeed"{W}">"  {ECH; return ScanningSpeedEND;}
 "<"{W}"ScanningSpeed"         {ECH; return ScanningSpeedSTART;}
+"<"{W}"Scope"{W}"/>"          {ECH; return ScopeEMPTY;}
 "</"{W}"Scope"{W}">"          {ECH; return ScopeEND;}
 "<"{W}"Scope"                 {ECH; return ScopeSTART;}
+"<"{W}"ScreenMaterial"{W}"/>" {ECH; return ScreenMaterialEMPTY;}
 "</"{W}"ScreenMaterial"{W}">" {ECH; return ScreenMaterialEND;}
 "<"{W}"ScreenMaterial"        {ECH; return ScreenMaterialSTART;}
 "</"{W}"SearchRadius"{W}">"   {ECH; return SearchRadiusEND;}
@@ -4046,6 +4237,7 @@ W [ \t\n\r]*
 "<"{W}"SecondaryEntity"       {ECH; return SecondaryEntitySTART;}
 "</"{W}"SecondaryRoughnessParameter"{W}">" {ECH; return SecondaryRoughnessParameterEND;}
 "<"{W}"SecondaryRoughnessParameter" {ECH; return SecondaryRoughnessParameterSTART;}
+"<"{W}"Section"{W}"/>"        {ECH; return SectionEMPTY;}
 "</"{W}"Section"{W}">"        {ECH; return SectionEND;}
 "<"{W}"Section"               {ECH; return SectionSTART;}
 "</"{W}"SectionGroup"{W}">"   {ECH; return SectionGroupEND;}
@@ -4084,6 +4276,7 @@ W [ \t\n\r]*
 "<"{W}"SeparateZone"          {ECH; return SeparateZoneSTART;}
 "</"{W}"SequenceNumber"{W}">" {ECH; return SequenceNumberEND;}
 "<"{W}"SequenceNumber"        {ECH; return SequenceNumberSTART;}
+"<"{W}"SerialNumber"{W}"/>"   {ECH; return SerialNumberEMPTY;}
 "</"{W}"SerialNumber"{W}">"   {ECH; return SerialNumberEND;}
 "<"{W}"SerialNumber"          {ECH; return SerialNumberSTART;}
 "</"{W}"Set"{W}">"            {ECH; return SetEND;}
@@ -4092,6 +4285,7 @@ W [ \t\n\r]*
 "<"{W}"ShapeClassEnum"        {ECH; return ShapeClassEnumSTART;}
 "</"{W}"ShapeClassIs"{W}">"   {ECH; return ShapeClassIsEND;}
 "<"{W}"ShapeClassIs"          {ECH; return ShapeClassIsSTART;}
+"<"{W}"SheetNumber"{W}"/>"    {ECH; return SheetNumberEMPTY;}
 "</"{W}"SheetNumber"{W}">"    {ECH; return SheetNumberEND;}
 "<"{W}"SheetNumber"           {ECH; return SheetNumberSTART;}
 "</"{W}"Shell"{W}">"          {ECH; return ShellEND;}
@@ -4100,6 +4294,7 @@ W [ \t\n\r]*
 "<"{W}"ShellIds"              {ECH; return ShellIdsSTART;}
 "</"{W}"ShellSet"{W}">"       {ECH; return ShellSetEND;}
 "<"{W}"ShellSet"              {ECH; return ShellSetSTART;}
+"<"{W}"Shift"{W}"/>"          {ECH; return ShiftEMPTY;}
 "</"{W}"Shift"{W}">"          {ECH; return ShiftEND;}
 "<"{W}"Shift"                 {ECH; return ShiftSTART;}
 "</"{W}"ShockTolerance"{W}">" {ECH; return ShockToleranceEND;}
@@ -4168,14 +4363,17 @@ W [ \t\n\r]*
 "<"{W}"SoftwareDefinitions"   {ECH; return SoftwareDefinitionsSTART;}
 "</"{W}"SoftwareId"{W}">"     {ECH; return SoftwareIdEND;}
 "<"{W}"SoftwareId"            {ECH; return SoftwareIdSTART;}
+"<"{W}"SourceDescription"{W}"/>" {ECH; return SourceDescriptionEMPTY;}
 "</"{W}"SourceDescription"{W}">" {ECH; return SourceDescriptionEND;}
 "<"{W}"SourceDescription"     {ECH; return SourceDescriptionSTART;}
+"<"{W}"SourceOfRequiredness"{W}"/>" {ECH; return SourceOfRequirednessEMPTY;}
 "</"{W}"SourceOfRequiredness"{W}">" {ECH; return SourceOfRequirednessEND;}
 "<"{W}"SourceOfRequiredness"  {ECH; return SourceOfRequirednessSTART;}
 "</"{W}"Spacer"{W}">"         {ECH; return SpacerEND;}
 "<"{W}"Spacer"                {ECH; return SpacerSTART;}
 "</"{W}"SpecificHeatCapacity"{W}">" {ECH; return SpecificHeatCapacityEND;}
 "<"{W}"SpecificHeatCapacity"  {ECH; return SpecificHeatCapacitySTART;}
+"<"{W}"Specification"{W}"/>"  {ECH; return SpecificationEMPTY;}
 "</"{W}"Specification"{W}">"  {ECH; return SpecificationEND;}
 "<"{W}"Specification"         {ECH; return SpecificationSTART;}
 "</"{W}"SpeedAbsoluteLinearity"{W}">" {ECH; return SpeedAbsoluteLinearityEND;}
@@ -4282,6 +4480,7 @@ W [ \t\n\r]*
 "<"{W}"StadiaBaseConstant"    {ECH; return StadiaBaseConstantSTART;}
 "</"{W}"StadiaRateConstant"{W}">" {ECH; return StadiaRateConstantEND;}
 "<"{W}"StadiaRateConstant"    {ECH; return StadiaRateConstantSTART;}
+"<"{W}"StageMaterial"{W}"/>"  {ECH; return StageMaterialEMPTY;}
 "</"{W}"StageMaterial"{W}">"  {ECH; return StageMaterialEND;}
 "<"{W}"StageMaterial"         {ECH; return StageMaterialSTART;}
 "</"{W}"StageSwivelingAngle"{W}">" {ECH; return StageSwivelingAngleEND;}
@@ -4296,6 +4495,7 @@ W [ \t\n\r]*
 "<"{W}"StandardDeviation"     {ECH; return StandardDeviationSTART;}
 "</"{W}"StandardId"{W}">"     {ECH; return StandardIdEND;}
 "<"{W}"StandardId"            {ECH; return StandardIdSTART;}
+"<"{W}"StandardName"{W}"/>"   {ECH; return StandardNameEMPTY;}
 "</"{W}"StandardName"{W}">"   {ECH; return StandardNameEND;}
 "<"{W}"StandardName"          {ECH; return StandardNameSTART;}
 "</"{W}"StandardsDefinitions"{W}">" {ECH; return StandardsDefinitionsEND;}
@@ -4338,6 +4538,7 @@ W [ \t\n\r]*
 "<"{W}"Status"                {ECH; return StatusSTART;}
 "</"{W}"StemDiameter"{W}">"   {ECH; return StemDiameterEND;}
 "<"{W}"StemDiameter"          {ECH; return StemDiameterSTART;}
+"<"{W}"StemMaterial"{W}"/>"   {ECH; return StemMaterialEMPTY;}
 "</"{W}"StemMaterial"{W}">"   {ECH; return StemMaterialEND;}
 "<"{W}"StemMaterial"          {ECH; return StemMaterialSTART;}
 "</"{W}"Step"{W}">"           {ECH; return StepEND;}
@@ -4362,10 +4563,13 @@ W [ \t\n\r]*
 "<"{W}"StraightnessCharacteristicStats" {ECH; return StraightnessCharacteristicStatsSTART;}
 "</"{W}"Stratification"{W}">" {ECH; return StratificationEND;}
 "<"{W}"Stratification"        {ECH; return StratificationSTART;}
+"<"{W}"Street"{W}"/>"         {ECH; return StreetEMPTY;}
 "</"{W}"Street"{W}">"         {ECH; return StreetEND;}
 "<"{W}"Street"                {ECH; return StreetSTART;}
+"<"{W}"StreetNumber"{W}"/>"   {ECH; return StreetNumberEMPTY;}
 "</"{W}"StreetNumber"{W}">"   {ECH; return StreetNumberEND;}
 "<"{W}"StreetNumber"          {ECH; return StreetNumberSTART;}
+"<"{W}"StringValue"{W}"/>"    {ECH; return StringValueEMPTY;}
 "</"{W}"StringValue"{W}">"    {ECH; return StringValueEND;}
 "<"{W}"StringValue"           {ECH; return StringValueSTART;}
 "</"{W}"StructuredLightSensor"{W}">" {ECH; return StructuredLightSensorEND;}
@@ -4442,6 +4646,7 @@ W [ \t\n\r]*
 "<"{W}"SummaryType"           {ECH; return SummaryTypeSTART;}
 "</"{W}"SupplementarySymbol"{W}">" {ECH; return SupplementarySymbolEND;}
 "<"{W}"SupplementarySymbol"   {ECH; return SupplementarySymbolSTART;}
+"<"{W}"SupplierCode"{W}"/>"   {ECH; return SupplierCodeEMPTY;}
 "</"{W}"SupplierCode"{W}">"   {ECH; return SupplierCodeEND;}
 "<"{W}"SupplierCode"          {ECH; return SupplierCodeSTART;}
 "</"{W}"Surface"{W}">"        {ECH; return SurfaceEND;}
@@ -4450,6 +4655,7 @@ W [ \t\n\r]*
 "<"{W}"SurfaceFeature"        {ECH; return SurfaceFeatureSTART;}
 "</"{W}"SurfaceFeatureNominalId"{W}">" {ECH; return SurfaceFeatureNominalIdEND;}
 "<"{W}"SurfaceFeatureNominalId" {ECH; return SurfaceFeatureNominalIdSTART;}
+"<"{W}"SurfaceIlluminationLightSource"{W}"/>" {ECH; return SurfaceIlluminationLightSourceEMPTY;}
 "</"{W}"SurfaceIlluminationLightSource"{W}">" {ECH; return SurfaceIlluminationLightSourceEND;}
 "<"{W}"SurfaceIlluminationLightSource" {ECH; return SurfaceIlluminationLightSourceSTART;}
 "</"{W}"SurfaceMeshSet"{W}">" {ECH; return SurfaceMeshSetEND;}
@@ -4544,8 +4750,10 @@ W [ \t\n\r]*
 "<"{W}"TargetValue"           {ECH; return TargetValueSTART;}
 "</"{W}"TargetZoneId"{W}">"   {ECH; return TargetZoneIdEND;}
 "<"{W}"TargetZoneId"          {ECH; return TargetZoneIdSTART;}
+"<"{W}"TelephoneNumber"{W}"/>" {ECH; return TelephoneNumberEMPTY;}
 "</"{W}"TelephoneNumber"{W}">" {ECH; return TelephoneNumberEND;}
 "<"{W}"TelephoneNumber"       {ECH; return TelephoneNumberSTART;}
+"<"{W}"TelexNumber"{W}"/>"    {ECH; return TelexNumberEMPTY;}
 "</"{W}"TelexNumber"{W}">"    {ECH; return TelexNumberEND;}
 "<"{W}"TelexNumber"           {ECH; return TelexNumberSTART;}
 "</"{W}"Temperature"{W}">"    {ECH; return TemperatureEND;}
@@ -4584,12 +4792,16 @@ W [ \t\n\r]*
 "<"{W}"TensileYieldStress"    {ECH; return TensileYieldStressSTART;}
 "</"{W}"TerminationPoint"{W}">" {ECH; return TerminationPointEND;}
 "<"{W}"TerminationPoint"      {ECH; return TerminationPointSTART;}
+"<"{W}"Text"{W}"/>"           {ECH; return TextEMPTY;}
 "</"{W}"Text"{W}">"           {ECH; return TextEND;}
 "<"{W}"Text"                  {ECH; return TextSTART;}
+"<"{W}"TextHidden"{W}"/>"     {ECH; return TextHiddenEMPTY;}
 "</"{W}"TextHidden"{W}">"     {ECH; return TextHiddenEND;}
 "<"{W}"TextHidden"            {ECH; return TextHiddenSTART;}
+"<"{W}"TextInstruction"{W}"/>" {ECH; return TextInstructionEMPTY;}
 "</"{W}"TextInstruction"{W}">" {ECH; return TextInstructionEND;}
 "<"{W}"TextInstruction"       {ECH; return TextInstructionSTART;}
+"<"{W}"TextSpecification"{W}"/>" {ECH; return TextSpecificationEMPTY;}
 "</"{W}"TextSpecification"{W}">" {ECH; return TextSpecificationEND;}
 "<"{W}"TextSpecification"     {ECH; return TextSpecificationSTART;}
 "</"{W}"TextThreadSpecification"{W}">" {ECH; return TextThreadSpecificationEND;}
@@ -4730,12 +4942,14 @@ W [ \t\n\r]*
 "<"{W}"TipEndGeometryEnum"    {ECH; return TipEndGeometryEnumSTART;}
 "</"{W}"TipEndLocation"{W}">" {ECH; return TipEndLocationEND;}
 "<"{W}"TipEndLocation"        {ECH; return TipEndLocationSTART;}
+"<"{W}"TipEndMaterial"{W}"/>" {ECH; return TipEndMaterialEMPTY;}
 "</"{W}"TipEndMaterial"{W}">" {ECH; return TipEndMaterialEND;}
 "<"{W}"TipEndMaterial"        {ECH; return TipEndMaterialSTART;}
 "</"{W}"TipId"{W}">"          {ECH; return TipIdEND;}
 "<"{W}"TipId"                 {ECH; return TipIdSTART;}
 "</"{W}"TipIds"{W}">"         {ECH; return TipIdsEND;}
 "<"{W}"TipIds"                {ECH; return TipIdsSTART;}
+"<"{W}"Title"{W}"/>"          {ECH; return TitleEMPTY;}
 "</"{W}"Title"{W}">"          {ECH; return TitleEND;}
 "<"{W}"Title"                 {ECH; return TitleSTART;}
 "</"{W}"ToCurveZoneId"{W}">"  {ECH; return ToCurveZoneIdEND;}
@@ -4858,6 +5072,7 @@ W [ \t\n\r]*
 "<"{W}"TotalRunoutCharacteristicStats" {ECH; return TotalRunoutCharacteristicStatsSTART;}
 "</"{W}"TotalVariation"{W}">" {ECH; return TotalVariationEND;}
 "<"{W}"TotalVariation"        {ECH; return TotalVariationSTART;}
+"<"{W}"Town"{W}"/>"           {ECH; return TownEMPTY;}
 "</"{W}"Town"{W}">"           {ECH; return TownEND;}
 "<"{W}"Town"                  {ECH; return TownSTART;}
 "</"{W}"Traceability"{W}">"   {ECH; return TraceabilityEND;}
@@ -4952,6 +5167,7 @@ W [ \t\n\r]*
 "<"{W}"UnitConversion"        {ECH; return UnitConversionSTART;}
 "</"{W}"UnitLength"{W}">"     {ECH; return UnitLengthEND;}
 "<"{W}"UnitLength"            {ECH; return UnitLengthSTART;}
+"<"{W}"UnitName"{W}"/>"       {ECH; return UnitNameEMPTY;}
 "</"{W}"UnitName"{W}">"       {ECH; return UnitNameEND;}
 "<"{W}"UnitName"              {ECH; return UnitNameSTART;}
 "</"{W}"UnitedOrContinuousFeature"{W}">" {ECH; return UnitedOrContinuousFeatureEND;}
@@ -5060,6 +5276,7 @@ W [ \t\n\r]*
 "<"{W}"UserDefinedSpeedCharacteristicNominal" {ECH; return UserDefinedSpeedCharacteristicNominalSTART;}
 "</"{W}"UserDefinedSpeedCharacteristicStats"{W}">" {ECH; return UserDefinedSpeedCharacteristicStatsEND;}
 "<"{W}"UserDefinedSpeedCharacteristicStats" {ECH; return UserDefinedSpeedCharacteristicStatsSTART;}
+"<"{W}"UserDefinedStrategy"{W}"/>" {ECH; return UserDefinedStrategyEMPTY;}
 "</"{W}"UserDefinedStrategy"{W}">" {ECH; return UserDefinedStrategyEND;}
 "<"{W}"UserDefinedStrategy"   {ECH; return UserDefinedStrategySTART;}
 "</"{W}"UserDefinedTemperatureCharacteristicDefinition"{W}">" {ECH; return UserDefinedTemperatureCharacteristicDefinitionEND;}
@@ -5118,6 +5335,7 @@ W [ \t\n\r]*
 "<"{W}"Validation"            {ECH; return ValidationSTART;}
 "</"{W}"ValidationCounts"{W}">" {ECH; return ValidationCountsEND;}
 "<"{W}"ValidationCounts"      {ECH; return ValidationCountsSTART;}
+"<"{W}"Value"{W}"/>"          {ECH; return ValueEMPTY;}
 "</"{W}"Value"{W}">"          {ECH; return ValueEND;}
 "<"{W}"Value"                 {ECH; return ValueSTART;}
 "</"{W}"ValueStats"{W}">"     {ECH; return ValueStatsEND;}
@@ -5136,8 +5354,10 @@ W [ \t\n\r]*
 "<"{W}"VariableValue"         {ECH; return VariableValueSTART;}
 "</"{W}"Vector"{W}">"         {ECH; return VectorEND;}
 "<"{W}"Vector"                {ECH; return VectorSTART;}
+"<"{W}"VendorName"{W}"/>"     {ECH; return VendorNameEMPTY;}
 "</"{W}"VendorName"{W}">"     {ECH; return VendorNameEND;}
 "<"{W}"VendorName"            {ECH; return VendorNameSTART;}
+"<"{W}"Version"{W}"/>"        {ECH; return VersionEMPTY;}
 "</"{W}"Version"{W}">"        {ECH; return VersionEND;}
 "<"{W}"Version"               {ECH; return VersionSTART;}
 "</"{W}"VersionHistory"{W}">" {ECH; return VersionHistoryEND;}
@@ -5164,6 +5384,7 @@ W [ \t\n\r]*
 "<"{W}"VibrationTolerance"    {ECH; return VibrationToleranceSTART;}
 "</"{W}"VideoInstruction"{W}">" {ECH; return VideoInstructionEND;}
 "<"{W}"VideoInstruction"      {ECH; return VideoInstructionSTART;}
+"<"{W}"View"{W}"/>"           {ECH; return ViewEMPTY;}
 "</"{W}"View"{W}">"           {ECH; return ViewEND;}
 "<"{W}"View"                  {ECH; return ViewSTART;}
 "</"{W}"ViewId"{W}">"         {ECH; return ViewIdEND;}
@@ -5374,8 +5595,10 @@ W [ \t\n\r]*
 "<"{W}"WeldVCharacteristicStats" {ECH; return WeldVCharacteristicStatsSTART;}
 "</"{W}"WeldingProcess"{W}">" {ECH; return WeldingProcessEND;}
 "<"{W}"WeldingProcess"        {ECH; return WeldingProcessSTART;}
+"<"{W}"WhatIsMeasured"{W}"/>" {ECH; return WhatIsMeasuredEMPTY;}
 "</"{W}"WhatIsMeasured"{W}">" {ECH; return WhatIsMeasuredEND;}
 "<"{W}"WhatIsMeasured"        {ECH; return WhatIsMeasuredSTART;}
+"<"{W}"WhatToMeasure"{W}"/>"  {ECH; return WhatToMeasureEMPTY;}
 "</"{W}"WhatToMeasure"{W}">"  {ECH; return WhatToMeasureEND;}
 "<"{W}"WhatToMeasure"         {ECH; return WhatToMeasureSTART;}
 "</"{W}"WhileActionGroup"{W}">" {ECH; return WhileActionGroupEND;}
@@ -5460,6 +5683,7 @@ W [ \t\n\r]*
 "<"{W}"XYZResolution"         {ECH; return XYZResolutionSTART;}
 "</"{W}"XZSquareness"{W}">"   {ECH; return XZSquarenessEND;}
 "<"{W}"XZSquareness"          {ECH; return XZSquarenessSTART;}
+"<"{W}"Xaxis"{W}"/>"          {ECH; return XaxisEMPTY;}
 "</"{W}"Xaxis"{W}">"          {ECH; return XaxisEND;}
 "<"{W}"Xaxis"                 {ECH; return XaxisSTART;}
 "</"{W}"XaxisDirection"{W}">" {ECH; return XaxisDirectionEND;}
@@ -5498,10 +5722,12 @@ W [ \t\n\r]*
 "<"{W}"YStiffness"            {ECH; return YStiffnessSTART;}
 "</"{W}"YZSquareness"{W}">"   {ECH; return YZSquarenessEND;}
 "<"{W}"YZSquareness"          {ECH; return YZSquarenessSTART;}
+"<"{W}"Yaxis"{W}"/>"          {ECH; return YaxisEMPTY;}
 "</"{W}"Yaxis"{W}">"          {ECH; return YaxisEND;}
 "<"{W}"Yaxis"                 {ECH; return YaxisSTART;}
 "</"{W}"YaxisDirection"{W}">" {ECH; return YaxisDirectionEND;}
 "<"{W}"YaxisDirection"        {ECH; return YaxisDirectionSTART;}
+"<"{W}"Year"{W}"/>"           {ECH; return YearEMPTY;}
 "</"{W}"Year"{W}">"           {ECH; return YearEND;}
 "<"{W}"Year"                  {ECH; return YearSTART;}
 "</"{W}"YoungsModulus"{W}">"  {ECH; return YoungsModulusEND;}
@@ -5536,6 +5762,7 @@ W [ \t\n\r]*
 "<"{W}"ZScaleFactor"          {ECH; return ZScaleFactorSTART;}
 "</"{W}"ZStiffness"{W}">"     {ECH; return ZStiffnessEND;}
 "<"{W}"ZStiffness"            {ECH; return ZStiffnessSTART;}
+"<"{W}"Zaxis"{W}"/>"          {ECH; return ZaxisEMPTY;}
 "</"{W}"Zaxis"{W}">"          {ECH; return ZaxisEND;}
 "<"{W}"Zaxis"                 {ECH; return ZaxisSTART;}
 "</"{W}"ZaxisDirection"{W}">" {ECH; return ZaxisDirectionEND;}
@@ -5681,7 +5908,7 @@ W [ \t\n\r]*
                               }
 "/>"                          {ECH; return ENDWHOLEITEM;}
 
-\"[^\"]+\"                    {ECH;
+\"[^\"]*\"                    {ECH;
                                int n;
                                for (n = 1; yytext[n] != '"'; n++);
                                yytext[n] = 0;

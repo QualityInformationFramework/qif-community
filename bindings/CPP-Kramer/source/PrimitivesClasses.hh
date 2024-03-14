@@ -41,6 +41,7 @@ class AttributeQPIdType;
 class AttributeStrType;
 class AttributeTimeType;
 class AttributeUserType;
+class AttributeUserTypeChoicePair;
 class AttributesType;
 class AxisType;
 class BinaryDataType;
@@ -109,13 +110,11 @@ class ValidityEnumType;
 class VectorSimpleType;
 class VectorType;
 class ArrayBinaryQIFR_1001_Type;
-class AttributeUserTy_1002_Type;
-class AttributeUserTy_1002_TypeChoicePair;
-class ListQIFReferenc_1003_Type;
+class ListQIFReferenc_1002_Type;
+class ValidationPoint_1003_Type;
+class ValidationPoint_1003_TypeChoicePair;
 class ValidationPoint_1004_Type;
 class ValidationPoint_1004_TypeChoicePair;
-class ValidationPoint_1005_Type;
-class ValidationPoint_1005_TypeChoicePair;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -596,24 +595,51 @@ class AttributeUserType :
 public:
   AttributeUserType();
   AttributeUserType(
-    AttributeUserTy_1002_Type * AttributeUserTy_1002In);
+    AttributeUserTypeChoicePair * AttributeUserTypePairIn);
   AttributeUserType(
     XmlString * nameIn,
     XmlString * nameUserAttributeIn,
-    AttributeUserTy_1002_Type * AttributeUserTy_1002In);
+    AttributeUserTypeChoicePair * AttributeUserTypePairIn);
   ~AttributeUserType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
   XmlString * getnameUserAttribute();
   void setnameUserAttribute(XmlString * nameUserAttributeIn);
-
-  AttributeUserTy_1002_Type * getAttributeUserTy_1002();
-  void setAttributeUserTy_1002(AttributeUserTy_1002_Type * AttributeUserTy_1002In);
+  AttributeUserTypeChoicePair * getAttributeUserTypeChoicePair();
+  void setAttributeUserTypeChoicePair(AttributeUserTypeChoicePair * AttributeUserTypePairIn);
 
 protected:
   XmlString * nameUserAttribute;
-  AttributeUserTy_1002_Type * AttributeUserTy_1002;
+  AttributeUserTypeChoicePair * AttributeUserTypePair;
+};
+
+/* ***************************************************************** */
+
+union AttributeUserTypeVal
+{
+  UserDataXMLType * UserDataXML;
+  BinaryDataType * UserDataBinary;
+};
+
+/* ***************************************************************** */
+
+class AttributeUserTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    UserDataXMLE,
+    UserDataBinaryE };
+  AttributeUserTypeChoicePair();
+  AttributeUserTypeChoicePair(
+    whichOne AttributeUserTypeTypeIn,
+    AttributeUserTypeVal AttributeUserTypeValueIn);
+  ~AttributeUserTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne AttributeUserTypeType;
+  AttributeUserTypeVal AttributeUserTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1083,7 +1109,7 @@ protected:
 union ListQIFReferenceTypeVal
 {
   ListQIFReferenceSimpleType * Ids;
-  ListQIFReferenc_1003_Type * ListQIFReferenc_1003;
+  ListQIFReferenc_1002_Type * ListQIFReferenc_1002;
 };
 
 /* ***************************************************************** */
@@ -1094,7 +1120,7 @@ class ListQIFReferenceTypeChoicePair :
 public:
   enum whichOne {
     IdsE,
-    ListQIFReferenc_1003E };
+    ListQIFReferenc_1002E };
   ListQIFReferenceTypeChoicePair();
   ListQIFReferenceTypeChoicePair(
     whichOne ListQIFReferenceTypeTypeIn,
@@ -1851,17 +1877,20 @@ protected:
 /* ***************************************************************** */
 
 class UserDataXMLType :
-  public XmlString
+  public XmlTypeBase
 {
 public:
   UserDataXMLType();
   UserDataXMLType(
-    const char * valIn);
+    XmlAnyString * XmlAnyElementIn);
   ~UserDataXMLType();
-  bool UserDataXMLTypeIsBad();
   void printSelf(FILE * outFile);
-  void oPrintSelf(FILE * outFile);
-  virtual void printName(FILE * outFile);
+
+  XmlAnyString * getXmlAnyElement();
+  void setXmlAnyElement(XmlAnyString * XmlAnyElementIn);
+
+protected:
+  XmlAnyString * XmlAnyElement;
 };
 
 /* ***************************************************************** */
@@ -1872,19 +1901,19 @@ class ValidationPointsType :
 public:
   ValidationPointsType();
   ValidationPointsType(
-    ValidationPoint_1004_Type * ValidationPoint_1004In,
-    ValidationPoint_1005_Type * ValidationPoint_1005In);
+    ValidationPoint_1003_Type * ValidationPoint_1003In,
+    ValidationPoint_1004_Type * ValidationPoint_1004In);
   ~ValidationPointsType();
   void printSelf(FILE * outFile);
 
+  ValidationPoint_1003_Type * getValidationPoint_1003();
+  void setValidationPoint_1003(ValidationPoint_1003_Type * ValidationPoint_1003In);
   ValidationPoint_1004_Type * getValidationPoint_1004();
   void setValidationPoint_1004(ValidationPoint_1004_Type * ValidationPoint_1004In);
-  ValidationPoint_1005_Type * getValidationPoint_1005();
-  void setValidationPoint_1005(ValidationPoint_1005_Type * ValidationPoint_1005In);
 
 protected:
+  ValidationPoint_1003_Type * ValidationPoint_1003;
   ValidationPoint_1004_Type * ValidationPoint_1004;
-  ValidationPoint_1005_Type * ValidationPoint_1005;
 };
 
 /* ***************************************************************** */
@@ -2019,62 +2048,15 @@ protected:
 
 /* ***************************************************************** */
 
-class AttributeUserTy_1002_Type :
+class ListQIFReferenc_1002_Type :
   public XmlTypeBase
 {
 public:
-  AttributeUserTy_1002_Type();
-  AttributeUserTy_1002_Type(
-    AttributeUserTy_1002_TypeChoicePair * AttributeUserTy_1002_TypePairIn);
-  ~AttributeUserTy_1002_Type();
-  void printSelf(FILE * outFile);
-
-  AttributeUserTy_1002_TypeChoicePair * getAttributeUserTy_1002_TypePair();
-  void setAttributeUserTy_1002_TypePair(AttributeUserTy_1002_TypeChoicePair * AttributeUserTy_1002_TypePairIn);
-
-protected:
-  AttributeUserTy_1002_TypeChoicePair * AttributeUserTy_1002_TypePair;
-};
-
-/* ***************************************************************** */
-
-union AttributeUserTy_1002_TypeVal
-{
-  UserDataXMLType * UserDataXML;
-  BinaryDataType * UserDataBinary;
-};
-
-/* ***************************************************************** */
-
-class AttributeUserTy_1002_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    UserDataXMLE,
-    UserDataBinaryE };
-  AttributeUserTy_1002_TypeChoicePair();
-  AttributeUserTy_1002_TypeChoicePair(
-    whichOne AttributeUserTy_1002_TypeTypeIn,
-    AttributeUserTy_1002_TypeVal AttributeUserTy_1002_TypeValueIn);
-  ~AttributeUserTy_1002_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne AttributeUserTy_1002_TypeType;
-  AttributeUserTy_1002_TypeVal AttributeUserTy_1002_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class ListQIFReferenc_1003_Type :
-  public XmlTypeBase
-{
-public:
-  ListQIFReferenc_1003_Type();
-  ListQIFReferenc_1003_Type(
+  ListQIFReferenc_1002_Type();
+  ListQIFReferenc_1002_Type(
     QIFReferenceSimpleType * IdIn,
     ListQIFReferenceSimpleType * XIdsIn);
-  ~ListQIFReferenc_1003_Type();
+  ~ListQIFReferenc_1002_Type();
   void printSelf(FILE * outFile);
 
   QIFReferenceSimpleType * getId();
@@ -2085,6 +2067,53 @@ public:
 protected:
   QIFReferenceSimpleType * Id;
   ListQIFReferenceSimpleType * XIds;
+};
+
+/* ***************************************************************** */
+
+class ValidationPoint_1003_Type :
+  public XmlTypeBase
+{
+public:
+  ValidationPoint_1003_Type();
+  ValidationPoint_1003_Type(
+    ValidationPoint_1003_TypeChoicePair * ValidationPoint_1003_TypePairIn);
+  ~ValidationPoint_1003_Type();
+  void printSelf(FILE * outFile);
+
+  ValidationPoint_1003_TypeChoicePair * getValidationPoint_1003_TypePair();
+  void setValidationPoint_1003_TypePair(ValidationPoint_1003_TypeChoicePair * ValidationPoint_1003_TypePairIn);
+
+protected:
+  ValidationPoint_1003_TypeChoicePair * ValidationPoint_1003_TypePair;
+};
+
+/* ***************************************************************** */
+
+union ValidationPoint_1003_TypeVal
+{
+  ArrayPointType * Points;
+  ArrayBinaryType * PointsBinary;
+};
+
+/* ***************************************************************** */
+
+class ValidationPoint_1003_TypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    PointsE,
+    PointsBinaryE };
+  ValidationPoint_1003_TypeChoicePair();
+  ValidationPoint_1003_TypeChoicePair(
+    whichOne ValidationPoint_1003_TypeTypeIn,
+    ValidationPoint_1003_TypeVal ValidationPoint_1003_TypeValueIn);
+  ~ValidationPoint_1003_TypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne ValidationPoint_1003_TypeType;
+  ValidationPoint_1003_TypeVal ValidationPoint_1003_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -2110,8 +2139,8 @@ protected:
 
 union ValidationPoint_1004_TypeVal
 {
-  ArrayPointType * Points;
-  ArrayBinaryType * PointsBinary;
+  ArrayUnitVectorType * Directions;
+  ArrayBinaryType * DirectionsBinary;
 };
 
 /* ***************************************************************** */
@@ -2121,8 +2150,8 @@ class ValidationPoint_1004_TypeChoicePair :
 {
 public:
   enum whichOne {
-    PointsE,
-    PointsBinaryE };
+    DirectionsE,
+    DirectionsBinaryE };
   ValidationPoint_1004_TypeChoicePair();
   ValidationPoint_1004_TypeChoicePair(
     whichOne ValidationPoint_1004_TypeTypeIn,
@@ -2132,53 +2161,6 @@ public:
 
   whichOne ValidationPoint_1004_TypeType;
   ValidationPoint_1004_TypeVal ValidationPoint_1004_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class ValidationPoint_1005_Type :
-  public XmlTypeBase
-{
-public:
-  ValidationPoint_1005_Type();
-  ValidationPoint_1005_Type(
-    ValidationPoint_1005_TypeChoicePair * ValidationPoint_1005_TypePairIn);
-  ~ValidationPoint_1005_Type();
-  void printSelf(FILE * outFile);
-
-  ValidationPoint_1005_TypeChoicePair * getValidationPoint_1005_TypePair();
-  void setValidationPoint_1005_TypePair(ValidationPoint_1005_TypeChoicePair * ValidationPoint_1005_TypePairIn);
-
-protected:
-  ValidationPoint_1005_TypeChoicePair * ValidationPoint_1005_TypePair;
-};
-
-/* ***************************************************************** */
-
-union ValidationPoint_1005_TypeVal
-{
-  ArrayUnitVectorType * Directions;
-  ArrayBinaryType * DirectionsBinary;
-};
-
-/* ***************************************************************** */
-
-class ValidationPoint_1005_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    DirectionsE,
-    DirectionsBinaryE };
-  ValidationPoint_1005_TypeChoicePair();
-  ValidationPoint_1005_TypeChoicePair(
-    whichOne ValidationPoint_1005_TypeTypeIn,
-    ValidationPoint_1005_TypeVal ValidationPoint_1005_TypeValueIn);
-  ~ValidationPoint_1005_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne ValidationPoint_1005_TypeType;
-  ValidationPoint_1005_TypeVal ValidationPoint_1005_TypeValue;
 };
 
 /* ***************************************************************** */

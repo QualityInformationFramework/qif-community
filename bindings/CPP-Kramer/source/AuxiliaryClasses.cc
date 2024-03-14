@@ -4,7 +4,6 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
-#include <boost/regex.hpp>
 #include <xmlSchemaInstance.hh>
 #include "AuxiliaryClasses.hh"
 
@@ -193,7 +192,7 @@ bool AuxiliaryBaseType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in AuxiliaryBaseType\n");
               returnValue = true;
@@ -209,12 +208,12 @@ bool AuxiliaryBaseType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in AuxiliaryBaseType\n");
               returnValue = true;
@@ -230,12 +229,12 @@ bool AuxiliaryBaseType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AuxiliaryBaseType\n");
               returnValue = true;
@@ -251,12 +250,12 @@ bool AuxiliaryBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in AuxiliaryBaseType\n");
               returnValue = true;
@@ -272,12 +271,12 @@ bool AuxiliaryBaseType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in AuxiliaryBaseType\n");
               returnValue = true;
@@ -293,12 +292,12 @@ bool AuxiliaryBaseType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in AuxiliaryBaseType\n");
               returnValue = true;
@@ -314,7 +313,7 @@ bool AuxiliaryBaseType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -323,7 +322,7 @@ bool AuxiliaryBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AuxiliaryBaseType\n");
       returnValue = true;
@@ -335,18 +334,18 @@ bool AuxiliaryBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -376,7 +375,15 @@ AuxiliaryBaseTypeLisd::~AuxiliaryBaseTypeLisd()
   #endif
 }
 
-void AuxiliaryBaseTypeLisd::printSelf(FILE * outFile){}
+void AuxiliaryBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<AuxiliaryBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -571,7 +578,7 @@ bool AuxiliaryPlaneBaseType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in AuxiliaryPlaneBaseType\n");
               returnValue = true;
@@ -587,12 +594,12 @@ bool AuxiliaryPlaneBaseType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in AuxiliaryPlaneBaseType\n");
               returnValue = true;
@@ -608,12 +615,12 @@ bool AuxiliaryPlaneBaseType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AuxiliaryPlaneBaseType\n");
               returnValue = true;
@@ -629,12 +636,12 @@ bool AuxiliaryPlaneBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in AuxiliaryPlaneBaseType\n");
               returnValue = true;
@@ -650,12 +657,12 @@ bool AuxiliaryPlaneBaseType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in AuxiliaryPlaneBaseType\n");
               returnValue = true;
@@ -671,12 +678,12 @@ bool AuxiliaryPlaneBaseType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in AuxiliaryPlaneBaseType\n");
               returnValue = true;
@@ -692,7 +699,7 @@ bool AuxiliaryPlaneBaseType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -701,7 +708,7 @@ bool AuxiliaryPlaneBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AuxiliaryPlaneBaseType\n");
       returnValue = true;
@@ -713,18 +720,18 @@ bool AuxiliaryPlaneBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -808,6 +815,13 @@ void AuxiliarySetType::printSelf(FILE * outFile)
     if (Auxiliary->size() == 0)
       {
         fprintf(stderr, "Auxiliary list is empty\n");
+        exit(1);
+      }
+    if (Auxiliary->size() < 1)
+      {
+        fprintf(stderr,
+                "size of Auxiliary list (%d) less than minimum required (1)\n",
+                (int)Auxiliary->size());
         exit(1);
       }
     std::list<AuxiliaryBaseType *>::iterator iter;
@@ -895,7 +909,7 @@ bool AuxiliarySetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in AuxiliarySetType\n");
               returnValue = true;
@@ -911,7 +925,7 @@ bool AuxiliarySetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -920,7 +934,7 @@ bool AuxiliarySetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in AuxiliarySetType\n");
       returnValue = true;
@@ -932,8 +946,8 @@ bool AuxiliarySetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -1143,7 +1157,7 @@ bool CADCoordinateSystemType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in CADCoordinateSystemType\n");
               returnValue = true;
@@ -1159,12 +1173,12 @@ bool CADCoordinateSystemType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in CADCoordinateSystemType\n");
               returnValue = true;
@@ -1180,12 +1194,12 @@ bool CADCoordinateSystemType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CADCoordinateSystemType\n");
               returnValue = true;
@@ -1201,12 +1215,12 @@ bool CADCoordinateSystemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in CADCoordinateSystemType\n");
               returnValue = true;
@@ -1222,12 +1236,12 @@ bool CADCoordinateSystemType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in CADCoordinateSystemType\n");
               returnValue = true;
@@ -1243,12 +1257,12 @@ bool CADCoordinateSystemType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in CADCoordinateSystemType\n");
               returnValue = true;
@@ -1264,7 +1278,7 @@ bool CADCoordinateSystemType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -1273,7 +1287,7 @@ bool CADCoordinateSystemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CADCoordinateSystemType\n");
       returnValue = true;
@@ -1285,18 +1299,18 @@ bool CADCoordinateSystemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -1332,7 +1346,15 @@ CADCoordinateSystemTypeLisd::~CADCoordinateSystemTypeLisd()
   #endif
 }
 
-void CADCoordinateSystemTypeLisd::printSelf(FILE * outFile){}
+void CADCoordinateSystemTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<CADCoordinateSystemType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -1409,6 +1431,13 @@ void CoordinateSystemSetType::printSelf(FILE * outFile)
         fprintf(stderr, "CoordinateSystem list is empty\n");
         exit(1);
       }
+    if (CoordinateSystem->size() < 1)
+      {
+        fprintf(stderr,
+                "size of CoordinateSystem list (%d) less than minimum required (1)\n",
+                (int)CoordinateSystem->size());
+        exit(1);
+      }
     std::list<CADCoordinateSystemType *>::iterator iter;
     for (iter = CoordinateSystem->begin();
          iter != CoordinateSystem->end(); iter++)
@@ -1437,7 +1466,7 @@ bool CoordinateSystemSetType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in CoordinateSystemSetType\n");
               returnValue = true;
@@ -1453,7 +1482,7 @@ bool CoordinateSystemSetType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -1462,7 +1491,7 @@ bool CoordinateSystemSetType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in CoordinateSystemSetType\n");
       returnValue = true;
@@ -1474,8 +1503,8 @@ bool CoordinateSystemSetType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -1707,7 +1736,7 @@ bool LineAuxiliaryType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in LineAuxiliaryType\n");
               returnValue = true;
@@ -1723,12 +1752,12 @@ bool LineAuxiliaryType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in LineAuxiliaryType\n");
               returnValue = true;
@@ -1744,12 +1773,12 @@ bool LineAuxiliaryType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LineAuxiliaryType\n");
               returnValue = true;
@@ -1765,12 +1794,12 @@ bool LineAuxiliaryType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in LineAuxiliaryType\n");
               returnValue = true;
@@ -1786,12 +1815,12 @@ bool LineAuxiliaryType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in LineAuxiliaryType\n");
               returnValue = true;
@@ -1807,12 +1836,12 @@ bool LineAuxiliaryType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in LineAuxiliaryType\n");
               returnValue = true;
@@ -1828,7 +1857,7 @@ bool LineAuxiliaryType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -1837,7 +1866,7 @@ bool LineAuxiliaryType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LineAuxiliaryType\n");
       returnValue = true;
@@ -1849,18 +1878,18 @@ bool LineAuxiliaryType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -2074,7 +2103,7 @@ bool PlaneReferenceType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in PlaneReferenceType\n");
               returnValue = true;
@@ -2090,12 +2119,12 @@ bool PlaneReferenceType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in PlaneReferenceType\n");
               returnValue = true;
@@ -2111,12 +2140,12 @@ bool PlaneReferenceType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PlaneReferenceType\n");
               returnValue = true;
@@ -2132,12 +2161,12 @@ bool PlaneReferenceType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in PlaneReferenceType\n");
               returnValue = true;
@@ -2153,12 +2182,12 @@ bool PlaneReferenceType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in PlaneReferenceType\n");
               returnValue = true;
@@ -2174,12 +2203,12 @@ bool PlaneReferenceType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in PlaneReferenceType\n");
               returnValue = true;
@@ -2195,7 +2224,7 @@ bool PlaneReferenceType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -2204,7 +2233,7 @@ bool PlaneReferenceType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PlaneReferenceType\n");
       returnValue = true;
@@ -2216,18 +2245,18 @@ bool PlaneReferenceType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -2424,7 +2453,7 @@ bool PointAuxiliaryType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in PointAuxiliaryType\n");
               returnValue = true;
@@ -2440,12 +2469,12 @@ bool PointAuxiliaryType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in PointAuxiliaryType\n");
               returnValue = true;
@@ -2461,12 +2490,12 @@ bool PointAuxiliaryType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PointAuxiliaryType\n");
               returnValue = true;
@@ -2482,12 +2511,12 @@ bool PointAuxiliaryType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in PointAuxiliaryType\n");
               returnValue = true;
@@ -2503,12 +2532,12 @@ bool PointAuxiliaryType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in PointAuxiliaryType\n");
               returnValue = true;
@@ -2524,12 +2553,12 @@ bool PointAuxiliaryType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in PointAuxiliaryType\n");
               returnValue = true;
@@ -2545,7 +2574,7 @@ bool PointAuxiliaryType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -2554,7 +2583,7 @@ bool PointAuxiliaryType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PointAuxiliaryType\n");
       returnValue = true;
@@ -2566,18 +2595,18 @@ bool PointAuxiliaryType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }

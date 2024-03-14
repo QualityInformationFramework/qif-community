@@ -23,10 +23,12 @@ class AngleFromCharacteristicItemType;
 class AngleFromCharacteristicMeasurementType;
 class AngleFromCharacteristicNominalType;
 class AngularCharacteristicDefinitionBaseType;
+class AngularCharacteristicDefinitionBaseTypeChoicePair;
 class AngularCharacteristicItemBaseType;
 class AngularCharacteristicMeasurementBaseType;
 class AngularCharacteristicNominalBaseType;
 class AngularCoordinateCharacteristicDefinitionType;
+class AngularCoordinateCharacteristicDefinitionTypeChoicePair;
 class AngularCoordinateCharacteristicItemType;
 class AngularCoordinateCharacteristicMeasurementType;
 class AngularCoordinateCharacteristicNominalType;
@@ -35,6 +37,7 @@ class AngularityCharacteristicItemType;
 class AngularityCharacteristicMeasurementType;
 class AngularityCharacteristicNominalType;
 class AreaCharacteristicDefinitionBaseType;
+class AreaCharacteristicDefinitionBaseTypeChoicePair;
 class AreaCharacteristicItemBaseType;
 class AreaCharacteristicMeasurementBaseType;
 class AreaCharacteristicNominalBaseType;
@@ -77,6 +80,7 @@ class CircularRunoutCharacteristicItemType;
 class CircularRunoutCharacteristicMeasurementType;
 class CircularRunoutCharacteristicNominalType;
 class CircularityCharacteristicDefinitionType;
+class CircularityCharacteristicDefinitionTypeChoicePair;
 class CircularityCharacteristicItemType;
 class CircularityCharacteristicMeasurementType;
 class CircularityCharacteristicNominalType;
@@ -126,6 +130,7 @@ class CurveLengthCharacteristicItemType;
 class CurveLengthCharacteristicMeasurementType;
 class CurveLengthCharacteristicNominalType;
 class CylindricityCharacteristicDefinitionType;
+class CylindricityCharacteristicDefinitionTypeChoicePair;
 class CylindricityCharacteristicItemType;
 class CylindricityCharacteristicMeasurementType;
 class CylindricityCharacteristicNominalType;
@@ -134,6 +139,7 @@ class DepthCharacteristicItemType;
 class DepthCharacteristicMeasurementType;
 class DepthCharacteristicNominalType;
 class DiameterCharacteristicDefinitionType;
+class DiameterCharacteristicDefinitionTypeChoicePair;
 class DiameterCharacteristicItemType;
 class DiameterCharacteristicMeasurementType;
 class DiameterCharacteristicNominalType;
@@ -169,6 +175,7 @@ class FlatnessCharacteristicItemType;
 class FlatnessCharacteristicMeasurementType;
 class FlatnessCharacteristicNominalType;
 class ForceCharacteristicDefinitionBaseType;
+class ForceCharacteristicDefinitionBaseTypeChoicePair;
 class ForceCharacteristicItemBaseType;
 class ForceCharacteristicMeasurementBaseType;
 class ForceCharacteristicNominalBaseType;
@@ -193,10 +200,12 @@ class LineProfileCharacteristicItemType;
 class LineProfileCharacteristicMeasurementType;
 class LineProfileCharacteristicNominalType;
 class LinearCharacteristicDefinitionBaseType;
+class LinearCharacteristicDefinitionBaseTypeChoicePair;
 class LinearCharacteristicItemBaseType;
 class LinearCharacteristicMeasurementBaseType;
 class LinearCharacteristicNominalBaseType;
 class LinearCoordinateCharacteristicDefinitionType;
+class LinearCoordinateCharacteristicDefinitionTypeChoicePair;
 class LinearCoordinateCharacteristicItemType;
 class LinearCoordinateCharacteristicMeasurementType;
 class LinearCoordinateCharacteristicNominalType;
@@ -210,6 +219,7 @@ class LocationSignificanceAllEnumType;
 class LocationSignificanceOneSidesEnumType;
 class LocationSignificanceSpotSeamEnumType;
 class MassCharacteristicDefinitionBaseType;
+class MassCharacteristicDefinitionBaseTypeChoicePair;
 class MassCharacteristicItemBaseType;
 class MassCharacteristicMeasurementBaseType;
 class MassCharacteristicNominalBaseType;
@@ -258,6 +268,7 @@ class PositionSphericalZoneType;
 class PositionZoneShapeType;
 class PositionZoneShapeTypeChoicePair;
 class PressureCharacteristicDefinitionBaseType;
+class PressureCharacteristicDefinitionBaseTypeChoicePair;
 class PressureCharacteristicItemBaseType;
 class PressureCharacteristicMeasurementBaseType;
 class PressureCharacteristicNominalBaseType;
@@ -286,6 +297,7 @@ class SimultaneousRequirementGroupsType;
 class SingleNestingIndexFilterSymbolEnumType;
 class SingleNestingIndexFilterType;
 class SpeedCharacteristicDefinitionBaseType;
+class SpeedCharacteristicDefinitionBaseTypeChoicePair;
 class SpeedCharacteristicItemBaseType;
 class SpeedCharacteristicMeasurementBaseType;
 class SpeedCharacteristicNominalBaseType;
@@ -331,6 +343,7 @@ class SymmetryCharacteristicItemType;
 class SymmetryCharacteristicMeasurementType;
 class SymmetryCharacteristicNominalType;
 class TemperatureCharacteristicDefinitionBaseType;
+class TemperatureCharacteristicDefinitionBaseTypeChoicePair;
 class TemperatureCharacteristicItemBaseType;
 class TemperatureCharacteristicMeasurementBaseType;
 class TemperatureCharacteristicNominalBaseType;
@@ -343,6 +356,7 @@ class ThreadCharacteristicItemType;
 class ThreadCharacteristicMeasurementType;
 class ThreadCharacteristicNominalType;
 class TimeCharacteristicDefinitionBaseType;
+class TimeCharacteristicDefinitionBaseTypeChoicePair;
 class TimeCharacteristicItemBaseType;
 class TimeCharacteristicMeasurementBaseType;
 class TimeCharacteristicNominalBaseType;
@@ -426,6 +440,7 @@ class WeldFilletCharacteristicNominalType;
 class WeldFilletEqualLegLengthType;
 class WeldFilletOneSideInBothSidesType;
 class WeldFilletOneSideType;
+class WeldFilletOneSideTypeChoicePair;
 class WeldFilletUnequalLegLengthType;
 class WeldFinishingDesignatorEnumType;
 class WeldFinishingType;
@@ -440,7 +455,9 @@ class WeldFlareVCharacteristicNominalType;
 class WeldGrooveBothSidesBaseType;
 class WeldGrooveBothSidesExtendedType;
 class WeldGrooveCharacteristicMeasurementType;
+class WeldGrooveCharacteristicMeasurementTypeChoicePair;
 class WeldGrooveCharacteristicNominalType;
+class WeldGrooveCharacteristicNominalTypeChoicePair;
 class WeldGrooveOneSideParametersType;
 class WeldGrooveOneSideType;
 class WeldJCharacteristicDefinitionType;
@@ -500,85 +517,51 @@ class WidthCharacteristicDefinitionType;
 class WidthCharacteristicItemType;
 class WidthCharacteristicMeasurementType;
 class WidthCharacteristicNominalType;
-class AngularCharacte_1046_Type;
-class AngularCharacte_1046_TypeChoicePair;
-class AngularCoordina_1047_Type;
-class AngularCoordina_1047_TypeChoicePair;
-class AreaCharacteris_1048_Type;
-class AreaCharacteris_1048_TypeChoicePair;
-class CircularityChar_1049_Type;
-class CircularityChar_1049_TypeChoicePair;
-class CircularityChar_1050_Type;
-class CriticalityType_1051_Type;
-class CriticalityType_1051_TypeChoicePair;
-class CriticalityType_1052_Type;
-class CriticalityType_1052_TypeChoicePair;
-class CylindricityCha_1053_Type;
-class CylindricityCha_1053_TypeChoicePair;
-class CylindricityCha_1054_Type;
-class DiameterCharact_1055_Type;
-class DiameterCharact_1055_TypeChoicePair;
-class FlatnessCharact_1056_Type;
-class FlatnessCharact_1056_TypeChoicePair;
-class ForceCharacteri_1057_Type;
-class ForceCharacteri_1057_TypeChoicePair;
-class GeometricCharac_1058_Type;
-class GeometricCharac_1058_TypeChoicePair;
-class LinearCharacter_1059_Type;
-class LinearCharacter_1059_TypeChoicePair;
-class LinearCoordinat_1060_Type;
-class LinearCoordinat_1060_TypeChoicePair;
-class LocationOnDrawi_1061_Type;
-class LocationOnDrawi_1062_Type;
-class LocationOnDrawi_1063_Type;
-class MassCharacteris_1064_Type;
-class MassCharacteris_1064_TypeChoicePair;
-class OrientationChar_1065_Type;
-class OrientationChar_1065_TypeChoicePair;
-class OriginReference_1066_Type;
-class PressureCharact_1067_Type;
-class PressureCharact_1067_TypeChoicePair;
-class ProfileCharacte_1068_Type;
-class ProfileCharacte_1068_TypeChoicePair;
-class SpeedCharacteri_1069_Type;
-class SpeedCharacteri_1069_TypeChoicePair;
-class SphericityChara_1070_Type;
-class StraightnessCha_1071_Type;
-class StraightnessCha_1071_TypeChoicePair;
-class SurfaceProfileN_1072_Type;
-class SurfaceProfileN_1072_TypeChoicePair;
-class TemperatureChar_1073_Type;
-class TemperatureChar_1073_TypeChoicePair;
-class TimeCharacteris_1074_Type;
-class TimeCharacteris_1074_TypeChoicePair;
-class UserDefinedUnit_1075_Type;
-class UserDefinedUnit_1075_TypeChoicePair;
-class WeldFilletChara_1076_Type;
-class WeldFilletChara_1076_TypeChoicePair;
-class WeldFilletChara_1077_Type;
-class WeldFilletChara_1077_TypeChoicePair;
-class WeldFilletOneSi_1078_Type;
-class WeldFilletOneSi_1078_TypeChoicePair;
-class WeldGrooveChara_1079_Type;
-class WeldGrooveChara_1079_TypeChoicePair;
-class WeldGrooveChara_1080_Type;
-class WeldGrooveChara_1080_TypeChoicePair;
-class WeldGrooveOneSi_1081_Type;
-class CircularityChar_1082_Type;
-class CircularityChar_1083_Type;
-class CircularityChar_1083_TypeChoicePair;
-class CylindricityCha_1084_Type;
-class CylindricityCha_1085_Type;
-class CylindricityCha_1085_TypeChoicePair;
-class FlatnessCharact_1086_Type;
-class FlatnessCharact_1087_Type;
-class StraightnessCha_1088_Type;
-class StraightnessCha_1089_Type;
-class UserDefinedUnit_1090_Type;
-class CircularityChar_1091_Type;
-class CircularityChar_1091_TypeChoicePair;
-class CylindricityCha_1092_Type;
-class CylindricityCha_1092_TypeChoicePair;
+class CircularityChar_1041_Type;
+class CircularityChar_1042_Type;
+class CircularityChar_1042_TypeChoicePair;
+class CircularityChar_1043_Type;
+class CriticalityType_1044_Type;
+class CriticalityType_1044_TypeChoicePair;
+class CriticalityType_1045_Type;
+class CriticalityType_1045_TypeChoicePair;
+class CylindricityCha_1046_Type;
+class CylindricityCha_1047_Type;
+class CylindricityCha_1047_TypeChoicePair;
+class CylindricityCha_1048_Type;
+class FlatnessCharact_1049_Type;
+class FlatnessCharact_1049_TypeChoicePair;
+class GeometricCharac_1050_Type;
+class GeometricCharac_1050_TypeChoicePair;
+class LocationOnDrawi_1051_Type;
+class LocationOnDrawi_1052_Type;
+class LocationOnDrawi_1053_Type;
+class OrientationChar_1054_Type;
+class OrientationChar_1054_TypeChoicePair;
+class OriginReference_1055_Type;
+class ProfileCharacte_1056_Type;
+class ProfileCharacte_1056_TypeChoicePair;
+class SphericityChara_1057_Type;
+class StraightnessCha_1058_Type;
+class StraightnessCha_1058_TypeChoicePair;
+class SurfaceProfileN_1059_Type;
+class SurfaceProfileN_1059_TypeChoicePair;
+class UserDefinedUnit_1060_Type;
+class UserDefinedUnit_1060_TypeChoicePair;
+class WeldFilletChara_1061_Type;
+class WeldFilletChara_1061_TypeChoicePair;
+class WeldFilletChara_1062_Type;
+class WeldFilletChara_1062_TypeChoicePair;
+class WeldGrooveOneSi_1063_Type;
+class CircularityChar_1064_Type;
+class CircularityChar_1064_TypeChoicePair;
+class CylindricityCha_1065_Type;
+class CylindricityCha_1065_TypeChoicePair;
+class FlatnessCharact_1066_Type;
+class FlatnessCharact_1067_Type;
+class StraightnessCha_1068_Type;
+class StraightnessCha_1069_Type;
+class UserDefinedUnit_1070_Type;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -1898,19 +1881,19 @@ class CriticalityType :
 public:
   CriticalityType();
   CriticalityType(
-    CriticalityType_1051_Type * CriticalityType_1051In,
-    CriticalityType_1052_Type * CriticalityType_1052In);
+    CriticalityType_1044_Type * CriticalityType_1044In,
+    CriticalityType_1045_Type * CriticalityType_1045In);
   ~CriticalityType();
   void printSelf(FILE * outFile);
 
-  CriticalityType_1051_Type * getCriticalityType_1051();
-  void setCriticalityType_1051(CriticalityType_1051_Type * CriticalityType_1051In);
-  CriticalityType_1052_Type * getCriticalityType_1052();
-  void setCriticalityType_1052(CriticalityType_1052_Type * CriticalityType_1052In);
+  CriticalityType_1044_Type * getCriticalityType_1044();
+  void setCriticalityType_1044(CriticalityType_1044_Type * CriticalityType_1044In);
+  CriticalityType_1045_Type * getCriticalityType_1045();
+  void setCriticalityType_1045(CriticalityType_1045_Type * CriticalityType_1045In);
 
 protected:
-  CriticalityType_1051_Type * CriticalityType_1051;
-  CriticalityType_1052_Type * CriticalityType_1052;
+  CriticalityType_1044_Type * CriticalityType_1044;
+  CriticalityType_1045_Type * CriticalityType_1045;
 };
 
 /* ***************************************************************** */
@@ -2260,7 +2243,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    ForceCharacteri_1057_Type * ForceCharacteri_1057In);
+    ForceCharacteristicDefinitionBaseTypeChoicePair * ForceCharacteristicDefinitionBaseTypePairIn);
   ForceCharacteristicDefinitionBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -2276,16 +2259,43 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    ForceCharacteri_1057_Type * ForceCharacteri_1057In);
+    ForceCharacteristicDefinitionBaseTypeChoicePair * ForceCharacteristicDefinitionBaseTypePairIn);
   ~ForceCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
-
-  ForceCharacteri_1057_Type * getForceCharacteri_1057();
-  void setForceCharacteri_1057(ForceCharacteri_1057_Type * ForceCharacteri_1057In);
+  ForceCharacteristicDefinitionBaseTypeChoicePair * getForceCharacteristicDefinitionBaseTypeChoicePair();
+  void setForceCharacteristicDefinitionBaseTypeChoicePair(ForceCharacteristicDefinitionBaseTypeChoicePair * ForceCharacteristicDefinitionBaseTypePairIn);
 
 protected:
-  ForceCharacteri_1057_Type * ForceCharacteri_1057;
+  ForceCharacteristicDefinitionBaseTypeChoicePair * ForceCharacteristicDefinitionBaseTypePair;
+};
+
+/* ***************************************************************** */
+
+union ForceCharacteristicDefinitionBaseTypeVal
+{
+  ForceToleranceType * Tolerance;
+  NonToleranceEnumType * NonTolerance;
+};
+
+/* ***************************************************************** */
+
+class ForceCharacteristicDefinitionBaseTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    ToleranceE,
+    NonToleranceE };
+  ForceCharacteristicDefinitionBaseTypeChoicePair();
+  ForceCharacteristicDefinitionBaseTypeChoicePair(
+    whichOne ForceCharacteristicDefinitionBaseTypeTypeIn,
+    ForceCharacteristicDefinitionBaseTypeVal ForceCharacteristicDefinitionBaseTypeValueIn);
+  ~ForceCharacteristicDefinitionBaseTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne ForceCharacteristicDefinitionBaseTypeType;
+  ForceCharacteristicDefinitionBaseTypeVal ForceCharacteristicDefinitionBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2446,7 +2456,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -2466,7 +2476,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -2475,8 +2485,8 @@ public:
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
-  GeometricCharac_1058_Type * getGeometricCharac_1058();
-  void setGeometricCharac_1058(GeometricCharac_1058_Type * GeometricCharac_1058In);
+  GeometricCharac_1050_Type * getGeometricCharac_1050();
+  void setGeometricCharac_1050(GeometricCharac_1050_Type * GeometricCharac_1050In);
   DirectionFeatureType * getDirectionFeature();
   void setDirectionFeature(DirectionFeatureType * DirectionFeatureIn);
   CollectionPlaneType * getCollectionPlane();
@@ -2487,7 +2497,7 @@ public:
   void setOrientationPlane(OrientationPlaneType * OrientationPlaneIn);
 
 protected:
-  GeometricCharac_1058_Type * GeometricCharac_1058;
+  GeometricCharac_1050_Type * GeometricCharac_1050;
   DirectionFeatureType * DirectionFeature;
   CollectionPlaneType * CollectionPlane;
   IntersectionPlaneType * IntersectionPlane;
@@ -2646,7 +2656,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   LinearCharacteristicDefinitionBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -2664,16 +2674,43 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   ~LinearCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
-
-  LinearCharacter_1059_Type * getLinearCharacter_1059();
-  void setLinearCharacter_1059(LinearCharacter_1059_Type * LinearCharacter_1059In);
+  LinearCharacteristicDefinitionBaseTypeChoicePair * getLinearCharacteristicDefinitionBaseTypeChoicePair();
+  void setLinearCharacteristicDefinitionBaseTypeChoicePair(LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
 
 protected:
-  LinearCharacter_1059_Type * LinearCharacter_1059;
+  LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePair;
+};
+
+/* ***************************************************************** */
+
+union LinearCharacteristicDefinitionBaseTypeVal
+{
+  LinearToleranceType * Tolerance;
+  NonToleranceEnumType * NonTolerance;
+};
+
+/* ***************************************************************** */
+
+class LinearCharacteristicDefinitionBaseTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    ToleranceE,
+    NonToleranceE };
+  LinearCharacteristicDefinitionBaseTypeChoicePair();
+  LinearCharacteristicDefinitionBaseTypeChoicePair(
+    whichOne LinearCharacteristicDefinitionBaseTypeTypeIn,
+    LinearCharacteristicDefinitionBaseTypeVal LinearCharacteristicDefinitionBaseTypeValueIn);
+  ~LinearCharacteristicDefinitionBaseTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne LinearCharacteristicDefinitionBaseTypeType;
+  LinearCharacteristicDefinitionBaseTypeVal LinearCharacteristicDefinitionBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -2839,7 +2876,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -2862,7 +2899,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -3040,9 +3077,9 @@ protected:
 
 union LocationOnDrawingTypeVal
 {
-  LocationOnDrawi_1061_Type * LocationOnDrawi_1061;
-  LocationOnDrawi_1062_Type * LocationOnDrawi_1062;
-  LocationOnDrawi_1063_Type * LocationOnDrawi_1063;
+  LocationOnDrawi_1051_Type * LocationOnDrawi_1051;
+  LocationOnDrawi_1052_Type * LocationOnDrawi_1052;
+  LocationOnDrawi_1053_Type * LocationOnDrawi_1053;
 };
 
 /* ***************************************************************** */
@@ -3052,9 +3089,9 @@ class LocationOnDrawingTypeChoicePair :
 {
 public:
   enum whichOne {
-    LocationOnDrawi_1061E,
-    LocationOnDrawi_1062E,
-    LocationOnDrawi_1063E };
+    LocationOnDrawi_1051E,
+    LocationOnDrawi_1052E,
+    LocationOnDrawi_1053E };
   LocationOnDrawingTypeChoicePair();
   LocationOnDrawingTypeChoicePair(
     whichOne LocationOnDrawingTypeTypeIn,
@@ -3135,7 +3172,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    MassCharacteris_1064_Type * MassCharacteris_1064In);
+    MassCharacteristicDefinitionBaseTypeChoicePair * MassCharacteristicDefinitionBaseTypePairIn);
   MassCharacteristicDefinitionBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -3151,16 +3188,43 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    MassCharacteris_1064_Type * MassCharacteris_1064In);
+    MassCharacteristicDefinitionBaseTypeChoicePair * MassCharacteristicDefinitionBaseTypePairIn);
   ~MassCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
-
-  MassCharacteris_1064_Type * getMassCharacteris_1064();
-  void setMassCharacteris_1064(MassCharacteris_1064_Type * MassCharacteris_1064In);
+  MassCharacteristicDefinitionBaseTypeChoicePair * getMassCharacteristicDefinitionBaseTypeChoicePair();
+  void setMassCharacteristicDefinitionBaseTypeChoicePair(MassCharacteristicDefinitionBaseTypeChoicePair * MassCharacteristicDefinitionBaseTypePairIn);
 
 protected:
-  MassCharacteris_1064_Type * MassCharacteris_1064;
+  MassCharacteristicDefinitionBaseTypeChoicePair * MassCharacteristicDefinitionBaseTypePair;
+};
+
+/* ***************************************************************** */
+
+union MassCharacteristicDefinitionBaseTypeVal
+{
+  MassToleranceType * Tolerance;
+  NonToleranceEnumType * NonTolerance;
+};
+
+/* ***************************************************************** */
+
+class MassCharacteristicDefinitionBaseTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    ToleranceE,
+    NonToleranceE };
+  MassCharacteristicDefinitionBaseTypeChoicePair();
+  MassCharacteristicDefinitionBaseTypeChoicePair(
+    whichOne MassCharacteristicDefinitionBaseTypeTypeIn,
+    MassCharacteristicDefinitionBaseTypeVal MassCharacteristicDefinitionBaseTypeValueIn);
+  ~MassCharacteristicDefinitionBaseTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne MassCharacteristicDefinitionBaseTypeType;
+  MassCharacteristicDefinitionBaseTypeVal MassCharacteristicDefinitionBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -3399,7 +3463,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -3413,7 +3477,7 @@ public:
     XmlBoolean * TangentPlaneIn,
     LinearValueType * MaximumToleranceValueIn,
     LinearValueType * ProjectedToleranceZoneValueIn,
-    OrientationChar_1065_Type * OrientationChar_1065In);
+    OrientationChar_1054_Type * OrientationChar_1054In);
   OrientationCharacteristicDefinitionBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -3429,7 +3493,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -3443,7 +3507,7 @@ public:
     XmlBoolean * TangentPlaneIn,
     LinearValueType * MaximumToleranceValueIn,
     LinearValueType * ProjectedToleranceZoneValueIn,
-    OrientationChar_1065_Type * OrientationChar_1065In);
+    OrientationChar_1054_Type * OrientationChar_1054In);
   ~OrientationCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -3466,8 +3530,8 @@ public:
   void setMaximumToleranceValue(LinearValueType * MaximumToleranceValueIn);
   LinearValueType * getProjectedToleranceZoneValue();
   void setProjectedToleranceZoneValue(LinearValueType * ProjectedToleranceZoneValueIn);
-  OrientationChar_1065_Type * getOrientationChar_1065();
-  void setOrientationChar_1065(OrientationChar_1065_Type * OrientationChar_1065In);
+  OrientationChar_1054_Type * getOrientationChar_1054();
+  void setOrientationChar_1054(OrientationChar_1054_Type * OrientationChar_1054In);
 
 protected:
   LinearValueType * ToleranceValue;
@@ -3479,7 +3543,7 @@ protected:
   XmlBoolean * TangentPlane;
   LinearValueType * MaximumToleranceValue;
   LinearValueType * ProjectedToleranceZoneValue;
-  OrientationChar_1065_Type * OrientationChar_1065;
+  OrientationChar_1054_Type * OrientationChar_1054;
 };
 
 /* ***************************************************************** */
@@ -3730,7 +3794,7 @@ protected:
 
 union OriginReferenceTypeVal
 {
-  OriginReference_1066_Type * OriginReference_1066;
+  OriginReference_1055_Type * OriginReference_1055;
   QIFReferenceFullType * DatumDefinitionId;
 };
 
@@ -3741,7 +3805,7 @@ class OriginReferenceTypeChoicePair :
 {
 public:
   enum whichOne {
-    OriginReference_1066E,
+    OriginReference_1055E,
     DatumDefinitionIdE };
   OriginReferenceTypeChoicePair();
   OriginReferenceTypeChoicePair(
@@ -3775,7 +3839,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -3789,7 +3853,7 @@ public:
     XmlBoolean * TangentPlaneIn,
     LinearValueType * MaximumToleranceValueIn,
     LinearValueType * ProjectedToleranceZoneValueIn,
-    OrientationChar_1065_Type * OrientationChar_1065In);
+    OrientationChar_1054_Type * OrientationChar_1054In);
   ParallelismCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -3805,7 +3869,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -3819,7 +3883,7 @@ public:
     XmlBoolean * TangentPlaneIn,
     LinearValueType * MaximumToleranceValueIn,
     LinearValueType * ProjectedToleranceZoneValueIn,
-    OrientationChar_1065_Type * OrientationChar_1065In);
+    OrientationChar_1054_Type * OrientationChar_1054In);
   ~ParallelismCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -3971,7 +4035,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -3985,7 +4049,7 @@ public:
     XmlBoolean * TangentPlaneIn,
     LinearValueType * MaximumToleranceValueIn,
     LinearValueType * ProjectedToleranceZoneValueIn,
-    OrientationChar_1065_Type * OrientationChar_1065In);
+    OrientationChar_1054_Type * OrientationChar_1054In);
   PerpendicularityCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -4001,7 +4065,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -4015,7 +4079,7 @@ public:
     XmlBoolean * TangentPlaneIn,
     LinearValueType * MaximumToleranceValueIn,
     LinearValueType * ProjectedToleranceZoneValueIn,
-    OrientationChar_1065_Type * OrientationChar_1065In);
+    OrientationChar_1054_Type * OrientationChar_1054In);
   ~PerpendicularityCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -4231,7 +4295,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -4264,7 +4328,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -4667,7 +4731,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    PressureCharact_1067_Type * PressureCharact_1067In);
+    PressureCharacteristicDefinitionBaseTypeChoicePair * PressureCharacteristicDefinitionBaseTypePairIn);
   PressureCharacteristicDefinitionBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -4683,16 +4747,43 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    PressureCharact_1067_Type * PressureCharact_1067In);
+    PressureCharacteristicDefinitionBaseTypeChoicePair * PressureCharacteristicDefinitionBaseTypePairIn);
   ~PressureCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
-
-  PressureCharact_1067_Type * getPressureCharact_1067();
-  void setPressureCharact_1067(PressureCharact_1067_Type * PressureCharact_1067In);
+  PressureCharacteristicDefinitionBaseTypeChoicePair * getPressureCharacteristicDefinitionBaseTypeChoicePair();
+  void setPressureCharacteristicDefinitionBaseTypeChoicePair(PressureCharacteristicDefinitionBaseTypeChoicePair * PressureCharacteristicDefinitionBaseTypePairIn);
 
 protected:
-  PressureCharact_1067_Type * PressureCharact_1067;
+  PressureCharacteristicDefinitionBaseTypeChoicePair * PressureCharacteristicDefinitionBaseTypePair;
+};
+
+/* ***************************************************************** */
+
+union PressureCharacteristicDefinitionBaseTypeVal
+{
+  PressureToleranceType * Tolerance;
+  NonToleranceEnumType * NonTolerance;
+};
+
+/* ***************************************************************** */
+
+class PressureCharacteristicDefinitionBaseTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    ToleranceE,
+    NonToleranceE };
+  PressureCharacteristicDefinitionBaseTypeChoicePair();
+  PressureCharacteristicDefinitionBaseTypeChoicePair(
+    whichOne PressureCharacteristicDefinitionBaseTypeTypeIn,
+    PressureCharacteristicDefinitionBaseTypeVal PressureCharacteristicDefinitionBaseTypeValueIn);
+  ~PressureCharacteristicDefinitionBaseTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne PressureCharacteristicDefinitionBaseTypeType;
+  PressureCharacteristicDefinitionBaseTypeVal PressureCharacteristicDefinitionBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -4853,14 +4944,14 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
     OrientationPlaneType * OrientationPlaneIn,
     LinearValueType * ToleranceValueIn,
     LinearDualValueType * ToleranceDualValueIn,
-    ProfileCharacte_1068_Type * ProfileCharacte_1068In,
+    ProfileCharacte_1056_Type * ProfileCharacte_1056In,
     XmlBoolean * OffsetZoneIn,
     XmlBoolean * VariableAngleIn,
     CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -4883,14 +4974,14 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
     OrientationPlaneType * OrientationPlaneIn,
     LinearValueType * ToleranceValueIn,
     LinearDualValueType * ToleranceDualValueIn,
-    ProfileCharacte_1068_Type * ProfileCharacte_1068In,
+    ProfileCharacte_1056_Type * ProfileCharacte_1056In,
     XmlBoolean * OffsetZoneIn,
     XmlBoolean * VariableAngleIn,
     CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -4906,8 +4997,8 @@ public:
   void setToleranceValue(LinearValueType * ToleranceValueIn);
   LinearDualValueType * getToleranceDualValue();
   void setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn);
-  ProfileCharacte_1068_Type * getProfileCharacte_1068();
-  void setProfileCharacte_1068(ProfileCharacte_1068_Type * ProfileCharacte_1068In);
+  ProfileCharacte_1056_Type * getProfileCharacte_1056();
+  void setProfileCharacte_1056(ProfileCharacte_1056_Type * ProfileCharacte_1056In);
   XmlBoolean * getOffsetZone();
   void setOffsetZone(XmlBoolean * OffsetZoneIn);
   XmlBoolean * getVariableAngle();
@@ -4926,7 +5017,7 @@ public:
 protected:
   LinearValueType * ToleranceValue;
   LinearDualValueType * ToleranceDualValue;
-  ProfileCharacte_1068_Type * ProfileCharacte_1068;
+  ProfileCharacte_1056_Type * ProfileCharacte_1056;
   XmlBoolean * OffsetZone;
   XmlBoolean * VariableAngle;
   CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinition;
@@ -5127,7 +5218,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In,
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn,
     XmlBoolean * ControlledRadiusIn);
   RadiusCharacteristicDefinitionType(
     QIFIdType * idIn,
@@ -5146,7 +5237,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In,
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn,
     XmlBoolean * ControlledRadiusIn);
   ~RadiusCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
@@ -5408,7 +5499,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -5431,7 +5522,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -5729,7 +5820,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    SpeedCharacteri_1069_Type * SpeedCharacteri_1069In);
+    SpeedCharacteristicDefinitionBaseTypeChoicePair * SpeedCharacteristicDefinitionBaseTypePairIn);
   SpeedCharacteristicDefinitionBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -5745,16 +5836,43 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    SpeedCharacteri_1069_Type * SpeedCharacteri_1069In);
+    SpeedCharacteristicDefinitionBaseTypeChoicePair * SpeedCharacteristicDefinitionBaseTypePairIn);
   ~SpeedCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
-
-  SpeedCharacteri_1069_Type * getSpeedCharacteri_1069();
-  void setSpeedCharacteri_1069(SpeedCharacteri_1069_Type * SpeedCharacteri_1069In);
+  SpeedCharacteristicDefinitionBaseTypeChoicePair * getSpeedCharacteristicDefinitionBaseTypeChoicePair();
+  void setSpeedCharacteristicDefinitionBaseTypeChoicePair(SpeedCharacteristicDefinitionBaseTypeChoicePair * SpeedCharacteristicDefinitionBaseTypePairIn);
 
 protected:
-  SpeedCharacteri_1069_Type * SpeedCharacteri_1069;
+  SpeedCharacteristicDefinitionBaseTypeChoicePair * SpeedCharacteristicDefinitionBaseTypePair;
+};
+
+/* ***************************************************************** */
+
+union SpeedCharacteristicDefinitionBaseTypeVal
+{
+  SpeedToleranceType * Tolerance;
+  NonToleranceEnumType * NonTolerance;
+};
+
+/* ***************************************************************** */
+
+class SpeedCharacteristicDefinitionBaseTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    ToleranceE,
+    NonToleranceE };
+  SpeedCharacteristicDefinitionBaseTypeChoicePair();
+  SpeedCharacteristicDefinitionBaseTypeChoicePair(
+    whichOne SpeedCharacteristicDefinitionBaseTypeTypeIn,
+    SpeedCharacteristicDefinitionBaseTypeVal SpeedCharacteristicDefinitionBaseTypeValueIn);
+  ~SpeedCharacteristicDefinitionBaseTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne SpeedCharacteristicDefinitionBaseTypeType;
+  SpeedCharacteristicDefinitionBaseTypeVal SpeedCharacteristicDefinitionBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -5917,7 +6035,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   SphericalDiameterCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -5935,7 +6053,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   ~SphericalDiameterCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -6085,7 +6203,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   SphericalRadiusCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -6103,7 +6221,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   ~SphericalRadiusCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -6253,7 +6371,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   SquareCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -6271,7 +6389,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   ~SquareCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -6523,14 +6641,14 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
     OrientationPlaneType * OrientationPlaneIn,
     LinearValueType * ToleranceValueIn,
     LinearDualValueType * ToleranceDualValueIn,
-    ProfileCharacte_1068_Type * ProfileCharacte_1068In,
+    ProfileCharacte_1056_Type * ProfileCharacte_1056In,
     XmlBoolean * OffsetZoneIn,
     XmlBoolean * VariableAngleIn,
     CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -6554,14 +6672,14 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
     OrientationPlaneType * OrientationPlaneIn,
     LinearValueType * ToleranceValueIn,
     LinearDualValueType * ToleranceDualValueIn,
-    ProfileCharacte_1068_Type * ProfileCharacte_1068In,
+    ProfileCharacte_1056_Type * ProfileCharacte_1056In,
     XmlBoolean * OffsetZoneIn,
     XmlBoolean * VariableAngleIn,
     CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -6737,14 +6855,14 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
     OrientationPlaneType * OrientationPlaneIn,
     LinearValueType * ToleranceValueIn,
     LinearDualValueType * ToleranceDualValueIn,
-    ProfileCharacte_1068_Type * ProfileCharacte_1068In,
+    ProfileCharacte_1056_Type * ProfileCharacte_1056In,
     XmlBoolean * OffsetZoneIn,
     XmlBoolean * VariableAngleIn,
     CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -6753,7 +6871,7 @@ public:
     QIFReferenceFullType * DatumReferenceFrameIdIn,
     XmlBoolean * OrientationOnlyIn,
     LinearValueType * ToPointToleranceValueIn,
-    SurfaceProfileN_1072_Type * SurfaceProfileN_1072In);
+    SurfaceProfileN_1059_Type * SurfaceProfileN_1059In);
   SurfaceProfileNonUniformCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -6769,14 +6887,14 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
     OrientationPlaneType * OrientationPlaneIn,
     LinearValueType * ToleranceValueIn,
     LinearDualValueType * ToleranceDualValueIn,
-    ProfileCharacte_1068_Type * ProfileCharacte_1068In,
+    ProfileCharacte_1056_Type * ProfileCharacte_1056In,
     XmlBoolean * OffsetZoneIn,
     XmlBoolean * VariableAngleIn,
     CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -6785,19 +6903,19 @@ public:
     QIFReferenceFullType * DatumReferenceFrameIdIn,
     XmlBoolean * OrientationOnlyIn,
     LinearValueType * ToPointToleranceValueIn,
-    SurfaceProfileN_1072_Type * SurfaceProfileN_1072In);
+    SurfaceProfileN_1059_Type * SurfaceProfileN_1059In);
   ~SurfaceProfileNonUniformCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
   LinearValueType * getToPointToleranceValue();
   void setToPointToleranceValue(LinearValueType * ToPointToleranceValueIn);
-  SurfaceProfileN_1072_Type * getSurfaceProfileN_1072();
-  void setSurfaceProfileN_1072(SurfaceProfileN_1072_Type * SurfaceProfileN_1072In);
+  SurfaceProfileN_1059_Type * getSurfaceProfileN_1059();
+  void setSurfaceProfileN_1059(SurfaceProfileN_1059_Type * SurfaceProfileN_1059In);
 
 protected:
   LinearValueType * ToPointToleranceValue;
-  SurfaceProfileN_1072_Type * SurfaceProfileN_1072;
+  SurfaceProfileN_1059_Type * SurfaceProfileN_1059;
 };
 
 /* ***************************************************************** */
@@ -7167,7 +7285,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -7192,7 +7310,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -7371,7 +7489,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    TemperatureChar_1073_Type * TemperatureChar_1073In);
+    TemperatureCharacteristicDefinitionBaseTypeChoicePair * TemperatureCharacteristicDefinitionBaseTypePairIn);
   TemperatureCharacteristicDefinitionBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -7387,16 +7505,43 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    TemperatureChar_1073_Type * TemperatureChar_1073In);
+    TemperatureCharacteristicDefinitionBaseTypeChoicePair * TemperatureCharacteristicDefinitionBaseTypePairIn);
   ~TemperatureCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
-
-  TemperatureChar_1073_Type * getTemperatureChar_1073();
-  void setTemperatureChar_1073(TemperatureChar_1073_Type * TemperatureChar_1073In);
+  TemperatureCharacteristicDefinitionBaseTypeChoicePair * getTemperatureCharacteristicDefinitionBaseTypeChoicePair();
+  void setTemperatureCharacteristicDefinitionBaseTypeChoicePair(TemperatureCharacteristicDefinitionBaseTypeChoicePair * TemperatureCharacteristicDefinitionBaseTypePairIn);
 
 protected:
-  TemperatureChar_1073_Type * TemperatureChar_1073;
+  TemperatureCharacteristicDefinitionBaseTypeChoicePair * TemperatureCharacteristicDefinitionBaseTypePair;
+};
+
+/* ***************************************************************** */
+
+union TemperatureCharacteristicDefinitionBaseTypeVal
+{
+  TemperatureToleranceType * Tolerance;
+  NonToleranceEnumType * NonTolerance;
+};
+
+/* ***************************************************************** */
+
+class TemperatureCharacteristicDefinitionBaseTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    ToleranceE,
+    NonToleranceE };
+  TemperatureCharacteristicDefinitionBaseTypeChoicePair();
+  TemperatureCharacteristicDefinitionBaseTypeChoicePair(
+    whichOne TemperatureCharacteristicDefinitionBaseTypeTypeIn,
+    TemperatureCharacteristicDefinitionBaseTypeVal TemperatureCharacteristicDefinitionBaseTypeValueIn);
+  ~TemperatureCharacteristicDefinitionBaseTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne TemperatureCharacteristicDefinitionBaseTypeType;
+  TemperatureCharacteristicDefinitionBaseTypeVal TemperatureCharacteristicDefinitionBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -7559,7 +7704,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   ThicknessCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -7577,7 +7722,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   ~ThicknessCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -7898,7 +8043,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    TimeCharacteris_1074_Type * TimeCharacteris_1074In);
+    TimeCharacteristicDefinitionBaseTypeChoicePair * TimeCharacteristicDefinitionBaseTypePairIn);
   TimeCharacteristicDefinitionBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -7914,16 +8059,43 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    TimeCharacteris_1074_Type * TimeCharacteris_1074In);
+    TimeCharacteristicDefinitionBaseTypeChoicePair * TimeCharacteristicDefinitionBaseTypePairIn);
   ~TimeCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
-
-  TimeCharacteris_1074_Type * getTimeCharacteris_1074();
-  void setTimeCharacteris_1074(TimeCharacteris_1074_Type * TimeCharacteris_1074In);
+  TimeCharacteristicDefinitionBaseTypeChoicePair * getTimeCharacteristicDefinitionBaseTypeChoicePair();
+  void setTimeCharacteristicDefinitionBaseTypeChoicePair(TimeCharacteristicDefinitionBaseTypeChoicePair * TimeCharacteristicDefinitionBaseTypePairIn);
 
 protected:
-  TimeCharacteris_1074_Type * TimeCharacteris_1074;
+  TimeCharacteristicDefinitionBaseTypeChoicePair * TimeCharacteristicDefinitionBaseTypePair;
+};
+
+/* ***************************************************************** */
+
+union TimeCharacteristicDefinitionBaseTypeVal
+{
+  TimeToleranceType * Tolerance;
+  NonToleranceEnumType * NonTolerance;
+};
+
+/* ***************************************************************** */
+
+class TimeCharacteristicDefinitionBaseTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    ToleranceE,
+    NonToleranceE };
+  TimeCharacteristicDefinitionBaseTypeChoicePair();
+  TimeCharacteristicDefinitionBaseTypeChoicePair(
+    whichOne TimeCharacteristicDefinitionBaseTypeTypeIn,
+    TimeCharacteristicDefinitionBaseTypeVal TimeCharacteristicDefinitionBaseTypeValueIn);
+  ~TimeCharacteristicDefinitionBaseTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne TimeCharacteristicDefinitionBaseTypeType;
+  TimeCharacteristicDefinitionBaseTypeVal TimeCharacteristicDefinitionBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -8153,7 +8325,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -8176,7 +8348,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -8510,7 +8682,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    ForceCharacteri_1057_Type * ForceCharacteri_1057In,
+    ForceCharacteristicDefinitionBaseTypeChoicePair * ForceCharacteristicDefinitionBaseTypePairIn,
     XmlString * WhatToMeasureIn);
   UserDefinedForceCharacteristicDefinitionType(
     QIFIdType * idIn,
@@ -8527,7 +8699,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    ForceCharacteri_1057_Type * ForceCharacteri_1057In,
+    ForceCharacteristicDefinitionBaseTypeChoicePair * ForceCharacteristicDefinitionBaseTypePairIn,
     XmlString * WhatToMeasureIn);
   ~UserDefinedForceCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
@@ -8682,7 +8854,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In,
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn,
     XmlString * WhatToMeasureIn);
   UserDefinedLinearCharacteristicDefinitionType(
     QIFIdType * idIn,
@@ -8701,7 +8873,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In,
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn,
     XmlString * WhatToMeasureIn);
   ~UserDefinedLinearCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
@@ -8856,7 +9028,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    MassCharacteris_1064_Type * MassCharacteris_1064In,
+    MassCharacteristicDefinitionBaseTypeChoicePair * MassCharacteristicDefinitionBaseTypePairIn,
     XmlString * WhatToMeasureIn);
   UserDefinedMassCharacteristicDefinitionType(
     QIFIdType * idIn,
@@ -8873,7 +9045,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    MassCharacteris_1064_Type * MassCharacteris_1064In,
+    MassCharacteristicDefinitionBaseTypeChoicePair * MassCharacteristicDefinitionBaseTypePairIn,
     XmlString * WhatToMeasureIn);
   ~UserDefinedMassCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
@@ -9026,7 +9198,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    PressureCharact_1067_Type * PressureCharact_1067In,
+    PressureCharacteristicDefinitionBaseTypeChoicePair * PressureCharacteristicDefinitionBaseTypePairIn,
     XmlString * WhatToMeasureIn);
   UserDefinedPressureCharacteristicDefinitionType(
     QIFIdType * idIn,
@@ -9043,7 +9215,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    PressureCharact_1067_Type * PressureCharact_1067In,
+    PressureCharacteristicDefinitionBaseTypeChoicePair * PressureCharacteristicDefinitionBaseTypePairIn,
     XmlString * WhatToMeasureIn);
   ~UserDefinedPressureCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
@@ -9196,7 +9368,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    SpeedCharacteri_1069_Type * SpeedCharacteri_1069In,
+    SpeedCharacteristicDefinitionBaseTypeChoicePair * SpeedCharacteristicDefinitionBaseTypePairIn,
     XmlString * WhatToMeasureIn);
   UserDefinedSpeedCharacteristicDefinitionType(
     QIFIdType * idIn,
@@ -9213,7 +9385,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    SpeedCharacteri_1069_Type * SpeedCharacteri_1069In,
+    SpeedCharacteristicDefinitionBaseTypeChoicePair * SpeedCharacteristicDefinitionBaseTypePairIn,
     XmlString * WhatToMeasureIn);
   ~UserDefinedSpeedCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
@@ -9366,7 +9538,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    TemperatureChar_1073_Type * TemperatureChar_1073In,
+    TemperatureCharacteristicDefinitionBaseTypeChoicePair * TemperatureCharacteristicDefinitionBaseTypePairIn,
     XmlString * WhatToMeasureIn);
   UserDefinedTemperatureCharacteristicDefinitionType(
     QIFIdType * idIn,
@@ -9383,7 +9555,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    TemperatureChar_1073_Type * TemperatureChar_1073In,
+    TemperatureCharacteristicDefinitionBaseTypeChoicePair * TemperatureCharacteristicDefinitionBaseTypePairIn,
     XmlString * WhatToMeasureIn);
   ~UserDefinedTemperatureCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
@@ -9536,7 +9708,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    TimeCharacteris_1074_Type * TimeCharacteris_1074In,
+    TimeCharacteristicDefinitionBaseTypeChoicePair * TimeCharacteristicDefinitionBaseTypePairIn,
     XmlString * WhatToMeasureIn);
   UserDefinedTimeCharacteristicDefinitionType(
     QIFIdType * idIn,
@@ -9553,7 +9725,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    TimeCharacteris_1074_Type * TimeCharacteris_1074In,
+    TimeCharacteristicDefinitionBaseTypeChoicePair * TimeCharacteristicDefinitionBaseTypePairIn,
     XmlString * WhatToMeasureIn);
   ~UserDefinedTimeCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
@@ -9839,7 +10011,7 @@ public:
     XmlToken * NameIn,
     CharacteristicDesignatorType * CharacteristicDesignatorIn,
     UserDefinedUnitValueType * TargetValueIn,
-    UserDefinedUnit_1075_Type * UserDefinedUnit_1075In,
+    UserDefinedUnit_1060_Type * UserDefinedUnit_1060In,
     XmlBoolean * DefinedAsLimitIn);
   UserDefinedUnitCharacteristicNominalType(
     QIFIdType * idIn,
@@ -9854,7 +10026,7 @@ public:
     XmlToken * NameIn,
     CharacteristicDesignatorType * CharacteristicDesignatorIn,
     UserDefinedUnitValueType * TargetValueIn,
-    UserDefinedUnit_1075_Type * UserDefinedUnit_1075In,
+    UserDefinedUnit_1060_Type * UserDefinedUnit_1060In,
     XmlBoolean * DefinedAsLimitIn);
   ~UserDefinedUnitCharacteristicNominalType();
   void printSelf(FILE * outFile);
@@ -9862,14 +10034,14 @@ public:
 
   UserDefinedUnitValueType * getTargetValue();
   void setTargetValue(UserDefinedUnitValueType * TargetValueIn);
-  UserDefinedUnit_1075_Type * getUserDefinedUnit_1075();
-  void setUserDefinedUnit_1075(UserDefinedUnit_1075_Type * UserDefinedUnit_1075In);
+  UserDefinedUnit_1060_Type * getUserDefinedUnit_1060();
+  void setUserDefinedUnit_1060(UserDefinedUnit_1060_Type * UserDefinedUnit_1060In);
   XmlBoolean * getDefinedAsLimit();
   void setDefinedAsLimit(XmlBoolean * DefinedAsLimitIn);
 
 protected:
   UserDefinedUnitValueType * TargetValue;
-  UserDefinedUnit_1075_Type * UserDefinedUnit_1075;
+  UserDefinedUnit_1060_Type * UserDefinedUnit_1060;
   XmlBoolean * DefinedAsLimit;
 };
 
@@ -10577,7 +10749,7 @@ public:
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
     LocationSignificanceAllEnumType * LocationSignificanceIn,
-    WeldFilletChara_1076_Type * WeldFilletChara_1076In);
+    WeldFilletChara_1061_Type * WeldFilletChara_1061In);
   WeldFilletCharacteristicMeasurementType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -10593,19 +10765,19 @@ public:
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
     LocationSignificanceAllEnumType * LocationSignificanceIn,
-    WeldFilletChara_1076_Type * WeldFilletChara_1076In);
+    WeldFilletChara_1061_Type * WeldFilletChara_1061In);
   ~WeldFilletCharacteristicMeasurementType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
   LocationSignificanceAllEnumType * getLocationSignificance();
   void setLocationSignificance(LocationSignificanceAllEnumType * LocationSignificanceIn);
-  WeldFilletChara_1076_Type * getWeldFilletChara_1076();
-  void setWeldFilletChara_1076(WeldFilletChara_1076_Type * WeldFilletChara_1076In);
+  WeldFilletChara_1061_Type * getWeldFilletChara_1061();
+  void setWeldFilletChara_1061(WeldFilletChara_1061_Type * WeldFilletChara_1061In);
 
 protected:
   LocationSignificanceAllEnumType * LocationSignificance;
-  WeldFilletChara_1076_Type * WeldFilletChara_1076;
+  WeldFilletChara_1061_Type * WeldFilletChara_1061;
 };
 
 /* ***************************************************************** */
@@ -10632,7 +10804,7 @@ public:
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
     LocationSignificanceAllEnumType * LocationSignificanceIn,
-    WeldFilletChara_1077_Type * WeldFilletChara_1077In);
+    WeldFilletChara_1062_Type * WeldFilletChara_1062In);
   WeldFilletCharacteristicNominalType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -10651,19 +10823,19 @@ public:
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
     LocationSignificanceAllEnumType * LocationSignificanceIn,
-    WeldFilletChara_1077_Type * WeldFilletChara_1077In);
+    WeldFilletChara_1062_Type * WeldFilletChara_1062In);
   ~WeldFilletCharacteristicNominalType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
   LocationSignificanceAllEnumType * getLocationSignificance();
   void setLocationSignificance(LocationSignificanceAllEnumType * LocationSignificanceIn);
-  WeldFilletChara_1077_Type * getWeldFilletChara_1077();
-  void setWeldFilletChara_1077(WeldFilletChara_1077_Type * WeldFilletChara_1077In);
+  WeldFilletChara_1062_Type * getWeldFilletChara_1062();
+  void setWeldFilletChara_1062(WeldFilletChara_1062_Type * WeldFilletChara_1062In);
 
 protected:
   LocationSignificanceAllEnumType * LocationSignificance;
-  WeldFilletChara_1077_Type * WeldFilletChara_1077;
+  WeldFilletChara_1062_Type * WeldFilletChara_1062;
 };
 
 /* ***************************************************************** */
@@ -10975,7 +11147,7 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
-    WeldGrooveChara_1079_Type * WeldGrooveChara_1079In);
+    WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn);
   WeldGrooveCharacteristicMeasurementType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -10990,16 +11162,43 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
-    WeldGrooveChara_1079_Type * WeldGrooveChara_1079In);
+    WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn);
   ~WeldGrooveCharacteristicMeasurementType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
-
-  WeldGrooveChara_1079_Type * getWeldGrooveChara_1079();
-  void setWeldGrooveChara_1079(WeldGrooveChara_1079_Type * WeldGrooveChara_1079In);
+  WeldGrooveCharacteristicMeasurementTypeChoicePair * getWeldGrooveCharacteristicMeasurementTypeChoicePair();
+  void setWeldGrooveCharacteristicMeasurementTypeChoicePair(WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn);
 
 protected:
-  WeldGrooveChara_1079_Type * WeldGrooveChara_1079;
+  WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePair;
+};
+
+/* ***************************************************************** */
+
+union WeldGrooveCharacteristicMeasurementTypeVal
+{
+  WeldGrooveOneSideType * OneSide;
+  WeldGrooveBothSidesExtendedType * BothSides;
+};
+
+/* ***************************************************************** */
+
+class WeldGrooveCharacteristicMeasurementTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    OneSideE,
+    BothSidesE };
+  WeldGrooveCharacteristicMeasurementTypeChoicePair();
+  WeldGrooveCharacteristicMeasurementTypeChoicePair(
+    whichOne WeldGrooveCharacteristicMeasurementTypeTypeIn,
+    WeldGrooveCharacteristicMeasurementTypeVal WeldGrooveCharacteristicMeasurementTypeValueIn);
+  ~WeldGrooveCharacteristicMeasurementTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne WeldGrooveCharacteristicMeasurementTypeType;
+  WeldGrooveCharacteristicMeasurementTypeVal WeldGrooveCharacteristicMeasurementTypeValue;
 };
 
 /* ***************************************************************** */
@@ -11025,7 +11224,7 @@ public:
     XmlToken * SpecificationIn,
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
-    WeldGrooveChara_1080_Type * WeldGrooveChara_1080In);
+    WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn);
   WeldGrooveCharacteristicNominalType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -11043,16 +11242,43 @@ public:
     XmlToken * SpecificationIn,
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
-    WeldGrooveChara_1080_Type * WeldGrooveChara_1080In);
+    WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn);
   ~WeldGrooveCharacteristicNominalType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
-
-  WeldGrooveChara_1080_Type * getWeldGrooveChara_1080();
-  void setWeldGrooveChara_1080(WeldGrooveChara_1080_Type * WeldGrooveChara_1080In);
+  WeldGrooveCharacteristicNominalTypeChoicePair * getWeldGrooveCharacteristicNominalTypeChoicePair();
+  void setWeldGrooveCharacteristicNominalTypeChoicePair(WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn);
 
 protected:
-  WeldGrooveChara_1080_Type * WeldGrooveChara_1080;
+  WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePair;
+};
+
+/* ***************************************************************** */
+
+union WeldGrooveCharacteristicNominalTypeVal
+{
+  WeldGrooveOneSideType * OneSide;
+  WeldGrooveBothSidesExtendedType * BothSides;
+};
+
+/* ***************************************************************** */
+
+class WeldGrooveCharacteristicNominalTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    OneSideE,
+    BothSidesE };
+  WeldGrooveCharacteristicNominalTypeChoicePair();
+  WeldGrooveCharacteristicNominalTypeChoicePair(
+    whichOne WeldGrooveCharacteristicNominalTypeTypeIn,
+    WeldGrooveCharacteristicNominalTypeVal WeldGrooveCharacteristicNominalTypeValueIn);
+  ~WeldGrooveCharacteristicNominalTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne WeldGrooveCharacteristicNominalTypeType;
+  WeldGrooveCharacteristicNominalTypeVal WeldGrooveCharacteristicNominalTypeValue;
 };
 
 /* ***************************************************************** */
@@ -11064,18 +11290,18 @@ public:
   WeldGrooveOneSideType();
   WeldGrooveOneSideType(
     LocationSignificanceOneSidesEnumType * LocationSignificanceIn,
-    WeldGrooveOneSi_1081_Type * WeldGrooveOneSi_1081In);
+    WeldGrooveOneSi_1063_Type * WeldGrooveOneSi_1063In);
   ~WeldGrooveOneSideType();
   void printSelf(FILE * outFile);
 
   LocationSignificanceOneSidesEnumType * getLocationSignificance();
   void setLocationSignificance(LocationSignificanceOneSidesEnumType * LocationSignificanceIn);
-  WeldGrooveOneSi_1081_Type * getWeldGrooveOneSi_1081();
-  void setWeldGrooveOneSi_1081(WeldGrooveOneSi_1081_Type * WeldGrooveOneSi_1081In);
+  WeldGrooveOneSi_1063_Type * getWeldGrooveOneSi_1063();
+  void setWeldGrooveOneSi_1063(WeldGrooveOneSi_1063_Type * WeldGrooveOneSi_1063In);
 
 protected:
   LocationSignificanceOneSidesEnumType * LocationSignificance;
-  WeldGrooveOneSi_1081_Type * WeldGrooveOneSi_1081;
+  WeldGrooveOneSi_1063_Type * WeldGrooveOneSi_1063;
 };
 
 /* ***************************************************************** */
@@ -11176,7 +11402,7 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
-    WeldGrooveChara_1079_Type * WeldGrooveChara_1079In);
+    WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn);
   WeldJCharacteristicMeasurementType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -11191,7 +11417,7 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
-    WeldGrooveChara_1079_Type * WeldGrooveChara_1079In);
+    WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn);
   ~WeldJCharacteristicMeasurementType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -11220,7 +11446,7 @@ public:
     XmlToken * SpecificationIn,
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
-    WeldGrooveChara_1080_Type * WeldGrooveChara_1080In);
+    WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn);
   WeldJCharacteristicNominalType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -11238,7 +11464,7 @@ public:
     XmlToken * SpecificationIn,
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
-    WeldGrooveChara_1080_Type * WeldGrooveChara_1080In);
+    WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn);
   ~WeldJCharacteristicNominalType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -11626,7 +11852,7 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
-    WeldGrooveChara_1079_Type * WeldGrooveChara_1079In);
+    WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn);
   WeldScarfCharacteristicMeasurementType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -11641,7 +11867,7 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
-    WeldGrooveChara_1079_Type * WeldGrooveChara_1079In);
+    WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn);
   ~WeldScarfCharacteristicMeasurementType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -11670,7 +11896,7 @@ public:
     XmlToken * SpecificationIn,
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
-    WeldGrooveChara_1080_Type * WeldGrooveChara_1080In);
+    WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn);
   WeldScarfCharacteristicNominalType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -11688,7 +11914,7 @@ public:
     XmlToken * SpecificationIn,
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
-    WeldGrooveChara_1080_Type * WeldGrooveChara_1080In);
+    WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn);
   ~WeldScarfCharacteristicNominalType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -12391,7 +12617,7 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
-    WeldGrooveChara_1079_Type * WeldGrooveChara_1079In);
+    WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn);
   WeldSquareCharacteristicMeasurementType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -12406,7 +12632,7 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
-    WeldGrooveChara_1079_Type * WeldGrooveChara_1079In);
+    WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn);
   ~WeldSquareCharacteristicMeasurementType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -12435,7 +12661,7 @@ public:
     XmlToken * SpecificationIn,
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
-    WeldGrooveChara_1080_Type * WeldGrooveChara_1080In);
+    WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn);
   WeldSquareCharacteristicNominalType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -12453,7 +12679,7 @@ public:
     XmlToken * SpecificationIn,
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
-    WeldGrooveChara_1080_Type * WeldGrooveChara_1080In);
+    WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn);
   ~WeldSquareCharacteristicNominalType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -12929,7 +13155,7 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
-    WeldGrooveChara_1079_Type * WeldGrooveChara_1079In);
+    WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn);
   WeldUCharacteristicMeasurementType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -12944,7 +13170,7 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
-    WeldGrooveChara_1079_Type * WeldGrooveChara_1079In);
+    WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn);
   ~WeldUCharacteristicMeasurementType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -12973,7 +13199,7 @@ public:
     XmlToken * SpecificationIn,
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
-    WeldGrooveChara_1080_Type * WeldGrooveChara_1080In);
+    WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn);
   WeldUCharacteristicNominalType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -12991,7 +13217,7 @@ public:
     XmlToken * SpecificationIn,
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
-    WeldGrooveChara_1080_Type * WeldGrooveChara_1080In);
+    WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn);
   ~WeldUCharacteristicNominalType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -13095,7 +13321,7 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
-    WeldGrooveChara_1079_Type * WeldGrooveChara_1079In);
+    WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn);
   WeldVCharacteristicMeasurementType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -13110,7 +13336,7 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
-    WeldGrooveChara_1079_Type * WeldGrooveChara_1079In);
+    WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn);
   ~WeldVCharacteristicMeasurementType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -13139,7 +13365,7 @@ public:
     XmlToken * SpecificationIn,
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
-    WeldGrooveChara_1080_Type * WeldGrooveChara_1080In);
+    WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn);
   WeldVCharacteristicNominalType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -13157,7 +13383,7 @@ public:
     XmlToken * SpecificationIn,
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
-    WeldGrooveChara_1080_Type * WeldGrooveChara_1080In);
+    WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn);
   ~WeldVCharacteristicNominalType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -13241,7 +13467,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   WidthCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -13259,7 +13485,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   ~WidthCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -13388,203 +13614,89 @@ public:
 
 /* ***************************************************************** */
 
-class AngularCharacte_1046_Type :
+class CircularityChar_1041_Type :
   public XmlTypeBase
 {
 public:
-  AngularCharacte_1046_Type();
-  AngularCharacte_1046_Type(
-    AngularCharacte_1046_TypeChoicePair * AngularCharacte_1046_TypePairIn);
-  ~AngularCharacte_1046_Type();
+  CircularityChar_1041_Type();
+  CircularityChar_1041_Type(
+    LinearValueType * ToleranceValueIn,
+    LinearDualValueType * ToleranceDualValueIn,
+    CircularityChar_1064_Type * CircularityChar_1064In);
+  ~CircularityChar_1041_Type();
   void printSelf(FILE * outFile);
 
-  AngularCharacte_1046_TypeChoicePair * getAngularCharacte_1046_TypePair();
-  void setAngularCharacte_1046_TypePair(AngularCharacte_1046_TypeChoicePair * AngularCharacte_1046_TypePairIn);
+  LinearValueType * getToleranceValue();
+  void setToleranceValue(LinearValueType * ToleranceValueIn);
+  LinearDualValueType * getToleranceDualValue();
+  void setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn);
+  CircularityChar_1064_Type * getCircularityChar_1064();
+  void setCircularityChar_1064(CircularityChar_1064_Type * CircularityChar_1064In);
 
 protected:
-  AngularCharacte_1046_TypeChoicePair * AngularCharacte_1046_TypePair;
+  LinearValueType * ToleranceValue;
+  LinearDualValueType * ToleranceDualValue;
+  CircularityChar_1064_Type * CircularityChar_1064;
 };
 
 /* ***************************************************************** */
 
-union AngularCharacte_1046_TypeVal
+class CircularityChar_1042_Type :
+  public XmlTypeBase
 {
-  AngularToleranceType * Tolerance;
-  NonToleranceEnumType * NonTolerance;
+public:
+  CircularityChar_1042_Type();
+  CircularityChar_1042_Type(
+    CircularityChar_1042_TypeChoicePair * CircularityChar_1042_TypePairIn);
+  ~CircularityChar_1042_Type();
+  void printSelf(FILE * outFile);
+
+  CircularityChar_1042_TypeChoicePair * getCircularityChar_1042_TypePair();
+  void setCircularityChar_1042_TypePair(CircularityChar_1042_TypeChoicePair * CircularityChar_1042_TypePairIn);
+
+protected:
+  CircularityChar_1042_TypeChoicePair * CircularityChar_1042_TypePair;
 };
 
 /* ***************************************************************** */
 
-class AngularCharacte_1046_TypeChoicePair :
+union CircularityChar_1042_TypeVal
+{
+  ToleranceZonePerUnitAngleType * ToleranceZonePerUnitAngle;
+  ToleranceZonePerUnitLengthType * ToleranceZonePerUnitArcLength;
+};
+
+/* ***************************************************************** */
+
+class CircularityChar_1042_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    ToleranceE,
-    NonToleranceE };
-  AngularCharacte_1046_TypeChoicePair();
-  AngularCharacte_1046_TypeChoicePair(
-    whichOne AngularCharacte_1046_TypeTypeIn,
-    AngularCharacte_1046_TypeVal AngularCharacte_1046_TypeValueIn);
-  ~AngularCharacte_1046_TypeChoicePair();
+    ToleranceZonePerUnitAngleE,
+    ToleranceZonePerUnitArcLengthE };
+  CircularityChar_1042_TypeChoicePair();
+  CircularityChar_1042_TypeChoicePair(
+    whichOne CircularityChar_1042_TypeTypeIn,
+    CircularityChar_1042_TypeVal CircularityChar_1042_TypeValueIn);
+  ~CircularityChar_1042_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne AngularCharacte_1046_TypeType;
-  AngularCharacte_1046_TypeVal AngularCharacte_1046_TypeValue;
+  whichOne CircularityChar_1042_TypeType;
+  CircularityChar_1042_TypeVal CircularityChar_1042_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class AngularCoordina_1047_Type :
+class CircularityChar_1043_Type :
   public XmlTypeBase
 {
 public:
-  AngularCoordina_1047_Type();
-  AngularCoordina_1047_Type(
-    AngularCoordina_1047_TypeChoicePair * AngularCoordina_1047_TypePairIn);
-  ~AngularCoordina_1047_Type();
-  void printSelf(FILE * outFile);
-
-  AngularCoordina_1047_TypeChoicePair * getAngularCoordina_1047_TypePair();
-  void setAngularCoordina_1047_TypePair(AngularCoordina_1047_TypeChoicePair * AngularCoordina_1047_TypePairIn);
-
-protected:
-  AngularCoordina_1047_TypeChoicePair * AngularCoordina_1047_TypePair;
-};
-
-/* ***************************************************************** */
-
-union AngularCoordina_1047_TypeVal
-{
-  AngularToleranceType * Tolerance;
-  NonToleranceEnumType * NonTolerance;
-};
-
-/* ***************************************************************** */
-
-class AngularCoordina_1047_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    ToleranceE,
-    NonToleranceE };
-  AngularCoordina_1047_TypeChoicePair();
-  AngularCoordina_1047_TypeChoicePair(
-    whichOne AngularCoordina_1047_TypeTypeIn,
-    AngularCoordina_1047_TypeVal AngularCoordina_1047_TypeValueIn);
-  ~AngularCoordina_1047_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne AngularCoordina_1047_TypeType;
-  AngularCoordina_1047_TypeVal AngularCoordina_1047_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class AreaCharacteris_1048_Type :
-  public XmlTypeBase
-{
-public:
-  AreaCharacteris_1048_Type();
-  AreaCharacteris_1048_Type(
-    AreaCharacteris_1048_TypeChoicePair * AreaCharacteris_1048_TypePairIn);
-  ~AreaCharacteris_1048_Type();
-  void printSelf(FILE * outFile);
-
-  AreaCharacteris_1048_TypeChoicePair * getAreaCharacteris_1048_TypePair();
-  void setAreaCharacteris_1048_TypePair(AreaCharacteris_1048_TypeChoicePair * AreaCharacteris_1048_TypePairIn);
-
-protected:
-  AreaCharacteris_1048_TypeChoicePair * AreaCharacteris_1048_TypePair;
-};
-
-/* ***************************************************************** */
-
-union AreaCharacteris_1048_TypeVal
-{
-  AreaToleranceType * Tolerance;
-  NonToleranceEnumType * NonTolerance;
-};
-
-/* ***************************************************************** */
-
-class AreaCharacteris_1048_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    ToleranceE,
-    NonToleranceE };
-  AreaCharacteris_1048_TypeChoicePair();
-  AreaCharacteris_1048_TypeChoicePair(
-    whichOne AreaCharacteris_1048_TypeTypeIn,
-    AreaCharacteris_1048_TypeVal AreaCharacteris_1048_TypeValueIn);
-  ~AreaCharacteris_1048_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne AreaCharacteris_1048_TypeType;
-  AreaCharacteris_1048_TypeVal AreaCharacteris_1048_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class CircularityChar_1049_Type :
-  public XmlTypeBase
-{
-public:
-  CircularityChar_1049_Type();
-  CircularityChar_1049_Type(
-    CircularityChar_1049_TypeChoicePair * CircularityChar_1049_TypePairIn);
-  ~CircularityChar_1049_Type();
-  void printSelf(FILE * outFile);
-
-  CircularityChar_1049_TypeChoicePair * getCircularityChar_1049_TypePair();
-  void setCircularityChar_1049_TypePair(CircularityChar_1049_TypeChoicePair * CircularityChar_1049_TypePairIn);
-
-protected:
-  CircularityChar_1049_TypeChoicePair * CircularityChar_1049_TypePair;
-};
-
-/* ***************************************************************** */
-
-union CircularityChar_1049_TypeVal
-{
-  CircularityChar_1082_Type * CircularityChar_1082;
-  CircularityChar_1083_Type * CircularityChar_1083;
-};
-
-/* ***************************************************************** */
-
-class CircularityChar_1049_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    CircularityChar_1082E,
-    CircularityChar_1083E };
-  CircularityChar_1049_TypeChoicePair();
-  CircularityChar_1049_TypeChoicePair(
-    whichOne CircularityChar_1049_TypeTypeIn,
-    CircularityChar_1049_TypeVal CircularityChar_1049_TypeValueIn);
-  ~CircularityChar_1049_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne CircularityChar_1049_TypeType;
-  CircularityChar_1049_TypeVal CircularityChar_1049_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class CircularityChar_1050_Type :
-  public XmlTypeBase
-{
-public:
-  CircularityChar_1050_Type();
-  CircularityChar_1050_Type(
+  CircularityChar_1043_Type();
+  CircularityChar_1043_Type(
     MeasuredZoneRadiiType * ZoneRadiiIn,
     MeasuredPlaneType * ZonePlaneIn);
-  ~CircularityChar_1050_Type();
+  ~CircularityChar_1043_Type();
   void printSelf(FILE * outFile);
 
   MeasuredZoneRadiiType * getZoneRadii();
@@ -13599,26 +13711,26 @@ protected:
 
 /* ***************************************************************** */
 
-class CriticalityType_1051_Type :
+class CriticalityType_1044_Type :
   public XmlTypeBase
 {
 public:
-  CriticalityType_1051_Type();
-  CriticalityType_1051_Type(
-    CriticalityType_1051_TypeChoicePair * CriticalityType_1051_TypePairIn);
-  ~CriticalityType_1051_Type();
+  CriticalityType_1044_Type();
+  CriticalityType_1044_Type(
+    CriticalityType_1044_TypeChoicePair * CriticalityType_1044_TypePairIn);
+  ~CriticalityType_1044_Type();
   void printSelf(FILE * outFile);
 
-  CriticalityType_1051_TypeChoicePair * getCriticalityType_1051_TypePair();
-  void setCriticalityType_1051_TypePair(CriticalityType_1051_TypeChoicePair * CriticalityType_1051_TypePairIn);
+  CriticalityType_1044_TypeChoicePair * getCriticalityType_1044_TypePair();
+  void setCriticalityType_1044_TypePair(CriticalityType_1044_TypeChoicePair * CriticalityType_1044_TypePairIn);
 
 protected:
-  CriticalityType_1051_TypeChoicePair * CriticalityType_1051_TypePair;
+  CriticalityType_1044_TypeChoicePair * CriticalityType_1044_TypePair;
 };
 
 /* ***************************************************************** */
 
-union CriticalityType_1051_TypeVal
+union CriticalityType_1044_TypeVal
 {
   CriticalityLevelEnumType * LevelEnum;
   XmlString * OtherLevel;
@@ -13626,46 +13738,46 @@ union CriticalityType_1051_TypeVal
 
 /* ***************************************************************** */
 
-class CriticalityType_1051_TypeChoicePair :
+class CriticalityType_1044_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     LevelEnumE,
     OtherLevelE };
-  CriticalityType_1051_TypeChoicePair();
-  CriticalityType_1051_TypeChoicePair(
-    whichOne CriticalityType_1051_TypeTypeIn,
-    CriticalityType_1051_TypeVal CriticalityType_1051_TypeValueIn);
-  ~CriticalityType_1051_TypeChoicePair();
+  CriticalityType_1044_TypeChoicePair();
+  CriticalityType_1044_TypeChoicePair(
+    whichOne CriticalityType_1044_TypeTypeIn,
+    CriticalityType_1044_TypeVal CriticalityType_1044_TypeValueIn);
+  ~CriticalityType_1044_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne CriticalityType_1051_TypeType;
-  CriticalityType_1051_TypeVal CriticalityType_1051_TypeValue;
+  whichOne CriticalityType_1044_TypeType;
+  CriticalityType_1044_TypeVal CriticalityType_1044_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class CriticalityType_1052_Type :
+class CriticalityType_1045_Type :
   public XmlTypeBase
 {
 public:
-  CriticalityType_1052_Type();
-  CriticalityType_1052_Type(
-    CriticalityType_1052_TypeChoicePair * CriticalityType_1052_TypePairIn);
-  ~CriticalityType_1052_Type();
+  CriticalityType_1045_Type();
+  CriticalityType_1045_Type(
+    CriticalityType_1045_TypeChoicePair * CriticalityType_1045_TypePairIn);
+  ~CriticalityType_1045_Type();
   void printSelf(FILE * outFile);
 
-  CriticalityType_1052_TypeChoicePair * getCriticalityType_1052_TypePair();
-  void setCriticalityType_1052_TypePair(CriticalityType_1052_TypeChoicePair * CriticalityType_1052_TypePairIn);
+  CriticalityType_1045_TypeChoicePair * getCriticalityType_1045_TypePair();
+  void setCriticalityType_1045_TypePair(CriticalityType_1045_TypeChoicePair * CriticalityType_1045_TypePairIn);
 
 protected:
-  CriticalityType_1052_TypeChoicePair * CriticalityType_1052_TypePair;
+  CriticalityType_1045_TypeChoicePair * CriticalityType_1045_TypePair;
 };
 
 /* ***************************************************************** */
 
-union CriticalityType_1052_TypeVal
+union CriticalityType_1045_TypeVal
 {
   CriticalityAreaEnumType * AreaEnum;
   XmlString * OtherArea;
@@ -13673,82 +13785,115 @@ union CriticalityType_1052_TypeVal
 
 /* ***************************************************************** */
 
-class CriticalityType_1052_TypeChoicePair :
+class CriticalityType_1045_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     AreaEnumE,
     OtherAreaE };
-  CriticalityType_1052_TypeChoicePair();
-  CriticalityType_1052_TypeChoicePair(
-    whichOne CriticalityType_1052_TypeTypeIn,
-    CriticalityType_1052_TypeVal CriticalityType_1052_TypeValueIn);
-  ~CriticalityType_1052_TypeChoicePair();
+  CriticalityType_1045_TypeChoicePair();
+  CriticalityType_1045_TypeChoicePair(
+    whichOne CriticalityType_1045_TypeTypeIn,
+    CriticalityType_1045_TypeVal CriticalityType_1045_TypeValueIn);
+  ~CriticalityType_1045_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne CriticalityType_1052_TypeType;
-  CriticalityType_1052_TypeVal CriticalityType_1052_TypeValue;
+  whichOne CriticalityType_1045_TypeType;
+  CriticalityType_1045_TypeVal CriticalityType_1045_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class CylindricityCha_1053_Type :
+class CylindricityCha_1046_Type :
   public XmlTypeBase
 {
 public:
-  CylindricityCha_1053_Type();
-  CylindricityCha_1053_Type(
-    CylindricityCha_1053_TypeChoicePair * CylindricityCha_1053_TypePairIn);
-  ~CylindricityCha_1053_Type();
+  CylindricityCha_1046_Type();
+  CylindricityCha_1046_Type(
+    LinearValueType * ToleranceValueIn,
+    LinearDualValueType * ToleranceDualValueIn,
+    CylindricityCha_1065_Type * CylindricityCha_1065In);
+  ~CylindricityCha_1046_Type();
   void printSelf(FILE * outFile);
 
-  CylindricityCha_1053_TypeChoicePair * getCylindricityCha_1053_TypePair();
-  void setCylindricityCha_1053_TypePair(CylindricityCha_1053_TypeChoicePair * CylindricityCha_1053_TypePairIn);
+  LinearValueType * getToleranceValue();
+  void setToleranceValue(LinearValueType * ToleranceValueIn);
+  LinearDualValueType * getToleranceDualValue();
+  void setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn);
+  CylindricityCha_1065_Type * getCylindricityCha_1065();
+  void setCylindricityCha_1065(CylindricityCha_1065_Type * CylindricityCha_1065In);
 
 protected:
-  CylindricityCha_1053_TypeChoicePair * CylindricityCha_1053_TypePair;
+  LinearValueType * ToleranceValue;
+  LinearDualValueType * ToleranceDualValue;
+  CylindricityCha_1065_Type * CylindricityCha_1065;
 };
 
 /* ***************************************************************** */
 
-union CylindricityCha_1053_TypeVal
+class CylindricityCha_1047_Type :
+  public XmlTypeBase
 {
-  CylindricityCha_1084_Type * CylindricityCha_1084;
-  CylindricityCha_1085_Type * CylindricityCha_1085;
+public:
+  CylindricityCha_1047_Type();
+  CylindricityCha_1047_Type(
+    CylindricityCha_1047_TypeChoicePair * CylindricityCha_1047_TypePairIn);
+  ~CylindricityCha_1047_Type();
+  void printSelf(FILE * outFile);
+
+  CylindricityCha_1047_TypeChoicePair * getCylindricityCha_1047_TypePair();
+  void setCylindricityCha_1047_TypePair(CylindricityCha_1047_TypeChoicePair * CylindricityCha_1047_TypePairIn);
+
+protected:
+  CylindricityCha_1047_TypeChoicePair * CylindricityCha_1047_TypePair;
 };
 
 /* ***************************************************************** */
 
-class CylindricityCha_1053_TypeChoicePair :
+union CylindricityCha_1047_TypeVal
+{
+  ToleranceZonePerUnitAngleType * ToleranceZonePerUnitAngle;
+  ToleranceZonePerUnitLengthType * ToleranceZonePerUnitArcLength;
+  ToleranceZonePerUnitPolarAreaType * ToleranceZonePerUnitPolarArea;
+  ToleranceZonePerUnitAreaType * ToleranceZonePerUnitArea;
+  ToleranceZonePerUnitLengthType * ToleranceZonePerUnitLength;
+};
+
+/* ***************************************************************** */
+
+class CylindricityCha_1047_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    CylindricityCha_1084E,
-    CylindricityCha_1085E };
-  CylindricityCha_1053_TypeChoicePair();
-  CylindricityCha_1053_TypeChoicePair(
-    whichOne CylindricityCha_1053_TypeTypeIn,
-    CylindricityCha_1053_TypeVal CylindricityCha_1053_TypeValueIn);
-  ~CylindricityCha_1053_TypeChoicePair();
+    ToleranceZonePerUnitAngleE,
+    ToleranceZonePerUnitArcLengthE,
+    ToleranceZonePerUnitPolarAreaE,
+    ToleranceZonePerUnitAreaE,
+    ToleranceZonePerUnitLengthE };
+  CylindricityCha_1047_TypeChoicePair();
+  CylindricityCha_1047_TypeChoicePair(
+    whichOne CylindricityCha_1047_TypeTypeIn,
+    CylindricityCha_1047_TypeVal CylindricityCha_1047_TypeValueIn);
+  ~CylindricityCha_1047_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne CylindricityCha_1053_TypeType;
-  CylindricityCha_1053_TypeVal CylindricityCha_1053_TypeValue;
+  whichOne CylindricityCha_1047_TypeType;
+  CylindricityCha_1047_TypeVal CylindricityCha_1047_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class CylindricityCha_1054_Type :
+class CylindricityCha_1048_Type :
   public XmlTypeBase
 {
 public:
-  CylindricityCha_1054_Type();
-  CylindricityCha_1054_Type(
+  CylindricityCha_1048_Type();
+  CylindricityCha_1048_Type(
     MeasuredZoneRadiiType * ZoneRadiiIn,
     MeasuredZoneAxisType * ZoneAxisIn);
-  ~CylindricityCha_1054_Type();
+  ~CylindricityCha_1048_Type();
   void printSelf(FILE * outFile);
 
   MeasuredZoneRadiiType * getZoneRadii();
@@ -13763,169 +13908,73 @@ protected:
 
 /* ***************************************************************** */
 
-class DiameterCharact_1055_Type :
+class FlatnessCharact_1049_Type :
   public XmlTypeBase
 {
 public:
-  DiameterCharact_1055_Type();
-  DiameterCharact_1055_Type(
-    DiameterCharact_1055_TypeChoicePair * DiameterCharact_1055_TypePairIn);
-  ~DiameterCharact_1055_Type();
+  FlatnessCharact_1049_Type();
+  FlatnessCharact_1049_Type(
+    FlatnessCharact_1049_TypeChoicePair * FlatnessCharact_1049_TypePairIn);
+  ~FlatnessCharact_1049_Type();
   void printSelf(FILE * outFile);
 
-  DiameterCharact_1055_TypeChoicePair * getDiameterCharact_1055_TypePair();
-  void setDiameterCharact_1055_TypePair(DiameterCharact_1055_TypeChoicePair * DiameterCharact_1055_TypePairIn);
+  FlatnessCharact_1049_TypeChoicePair * getFlatnessCharact_1049_TypePair();
+  void setFlatnessCharact_1049_TypePair(FlatnessCharact_1049_TypeChoicePair * FlatnessCharact_1049_TypePairIn);
 
 protected:
-  DiameterCharact_1055_TypeChoicePair * DiameterCharact_1055_TypePair;
+  FlatnessCharact_1049_TypeChoicePair * FlatnessCharact_1049_TypePair;
 };
 
 /* ***************************************************************** */
 
-union DiameterCharact_1055_TypeVal
+union FlatnessCharact_1049_TypeVal
 {
-  LinearToleranceType * Tolerance;
-  LimitsAndFitsSpecificationType * LimitsAndFitsSpecification;
-  NonToleranceEnumType * NonTolerance;
+  FlatnessCharact_1066_Type * FlatnessCharact_1066;
+  FlatnessCharact_1067_Type * FlatnessCharact_1067;
 };
 
 /* ***************************************************************** */
 
-class DiameterCharact_1055_TypeChoicePair :
+class FlatnessCharact_1049_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    ToleranceE,
-    LimitsAndFitsSpecificationE,
-    NonToleranceE };
-  DiameterCharact_1055_TypeChoicePair();
-  DiameterCharact_1055_TypeChoicePair(
-    whichOne DiameterCharact_1055_TypeTypeIn,
-    DiameterCharact_1055_TypeVal DiameterCharact_1055_TypeValueIn);
-  ~DiameterCharact_1055_TypeChoicePair();
+    FlatnessCharact_1066E,
+    FlatnessCharact_1067E };
+  FlatnessCharact_1049_TypeChoicePair();
+  FlatnessCharact_1049_TypeChoicePair(
+    whichOne FlatnessCharact_1049_TypeTypeIn,
+    FlatnessCharact_1049_TypeVal FlatnessCharact_1049_TypeValueIn);
+  ~FlatnessCharact_1049_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne DiameterCharact_1055_TypeType;
-  DiameterCharact_1055_TypeVal DiameterCharact_1055_TypeValue;
+  whichOne FlatnessCharact_1049_TypeType;
+  FlatnessCharact_1049_TypeVal FlatnessCharact_1049_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class FlatnessCharact_1056_Type :
+class GeometricCharac_1050_Type :
   public XmlTypeBase
 {
 public:
-  FlatnessCharact_1056_Type();
-  FlatnessCharact_1056_Type(
-    FlatnessCharact_1056_TypeChoicePair * FlatnessCharact_1056_TypePairIn);
-  ~FlatnessCharact_1056_Type();
+  GeometricCharac_1050_Type();
+  GeometricCharac_1050_Type(
+    GeometricCharac_1050_TypeChoicePair * GeometricCharac_1050_TypePairIn);
+  ~GeometricCharac_1050_Type();
   void printSelf(FILE * outFile);
 
-  FlatnessCharact_1056_TypeChoicePair * getFlatnessCharact_1056_TypePair();
-  void setFlatnessCharact_1056_TypePair(FlatnessCharact_1056_TypeChoicePair * FlatnessCharact_1056_TypePairIn);
+  GeometricCharac_1050_TypeChoicePair * getGeometricCharac_1050_TypePair();
+  void setGeometricCharac_1050_TypePair(GeometricCharac_1050_TypeChoicePair * GeometricCharac_1050_TypePairIn);
 
 protected:
-  FlatnessCharact_1056_TypeChoicePair * FlatnessCharact_1056_TypePair;
+  GeometricCharac_1050_TypeChoicePair * GeometricCharac_1050_TypePair;
 };
 
 /* ***************************************************************** */
 
-union FlatnessCharact_1056_TypeVal
-{
-  FlatnessCharact_1086_Type * FlatnessCharact_1086;
-  FlatnessCharact_1087_Type * FlatnessCharact_1087;
-};
-
-/* ***************************************************************** */
-
-class FlatnessCharact_1056_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    FlatnessCharact_1086E,
-    FlatnessCharact_1087E };
-  FlatnessCharact_1056_TypeChoicePair();
-  FlatnessCharact_1056_TypeChoicePair(
-    whichOne FlatnessCharact_1056_TypeTypeIn,
-    FlatnessCharact_1056_TypeVal FlatnessCharact_1056_TypeValueIn);
-  ~FlatnessCharact_1056_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne FlatnessCharact_1056_TypeType;
-  FlatnessCharact_1056_TypeVal FlatnessCharact_1056_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class ForceCharacteri_1057_Type :
-  public XmlTypeBase
-{
-public:
-  ForceCharacteri_1057_Type();
-  ForceCharacteri_1057_Type(
-    ForceCharacteri_1057_TypeChoicePair * ForceCharacteri_1057_TypePairIn);
-  ~ForceCharacteri_1057_Type();
-  void printSelf(FILE * outFile);
-
-  ForceCharacteri_1057_TypeChoicePair * getForceCharacteri_1057_TypePair();
-  void setForceCharacteri_1057_TypePair(ForceCharacteri_1057_TypeChoicePair * ForceCharacteri_1057_TypePairIn);
-
-protected:
-  ForceCharacteri_1057_TypeChoicePair * ForceCharacteri_1057_TypePair;
-};
-
-/* ***************************************************************** */
-
-union ForceCharacteri_1057_TypeVal
-{
-  ForceToleranceType * Tolerance;
-  NonToleranceEnumType * NonTolerance;
-};
-
-/* ***************************************************************** */
-
-class ForceCharacteri_1057_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    ToleranceE,
-    NonToleranceE };
-  ForceCharacteri_1057_TypeChoicePair();
-  ForceCharacteri_1057_TypeChoicePair(
-    whichOne ForceCharacteri_1057_TypeTypeIn,
-    ForceCharacteri_1057_TypeVal ForceCharacteri_1057_TypeValueIn);
-  ~ForceCharacteri_1057_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne ForceCharacteri_1057_TypeType;
-  ForceCharacteri_1057_TypeVal ForceCharacteri_1057_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class GeometricCharac_1058_Type :
-  public XmlTypeBase
-{
-public:
-  GeometricCharac_1058_Type();
-  GeometricCharac_1058_Type(
-    GeometricCharac_1058_TypeChoicePair * GeometricCharac_1058_TypePairIn);
-  ~GeometricCharac_1058_Type();
-  void printSelf(FILE * outFile);
-
-  GeometricCharac_1058_TypeChoicePair * getGeometricCharac_1058_TypePair();
-  void setGeometricCharac_1058_TypePair(GeometricCharac_1058_TypeChoicePair * GeometricCharac_1058_TypePairIn);
-
-protected:
-  GeometricCharac_1058_TypeChoicePair * GeometricCharac_1058_TypePair;
-};
-
-/* ***************************************************************** */
-
-union GeometricCharac_1058_TypeVal
+union GeometricCharac_1050_TypeVal
 {
   AssociatedTolerancedFeatureSpecificationElementEnumType * AssociatedTolerancedFeatureSpecificationElement;
   ReferenceFeatureAssociationSpecificationElementType * ReferenceFeatureAssociationSpecificationElement;
@@ -13933,130 +13982,36 @@ union GeometricCharac_1058_TypeVal
 
 /* ***************************************************************** */
 
-class GeometricCharac_1058_TypeChoicePair :
+class GeometricCharac_1050_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     AssociatedTolerancedFeatureSpecificationElementE,
     ReferenceFeatureAssociationSpecificationElementE };
-  GeometricCharac_1058_TypeChoicePair();
-  GeometricCharac_1058_TypeChoicePair(
-    whichOne GeometricCharac_1058_TypeTypeIn,
-    GeometricCharac_1058_TypeVal GeometricCharac_1058_TypeValueIn);
-  ~GeometricCharac_1058_TypeChoicePair();
+  GeometricCharac_1050_TypeChoicePair();
+  GeometricCharac_1050_TypeChoicePair(
+    whichOne GeometricCharac_1050_TypeTypeIn,
+    GeometricCharac_1050_TypeVal GeometricCharac_1050_TypeValueIn);
+  ~GeometricCharac_1050_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne GeometricCharac_1058_TypeType;
-  GeometricCharac_1058_TypeVal GeometricCharac_1058_TypeValue;
+  whichOne GeometricCharac_1050_TypeType;
+  GeometricCharac_1050_TypeVal GeometricCharac_1050_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class LinearCharacter_1059_Type :
+class LocationOnDrawi_1051_Type :
   public XmlTypeBase
 {
 public:
-  LinearCharacter_1059_Type();
-  LinearCharacter_1059_Type(
-    LinearCharacter_1059_TypeChoicePair * LinearCharacter_1059_TypePairIn);
-  ~LinearCharacter_1059_Type();
-  void printSelf(FILE * outFile);
-
-  LinearCharacter_1059_TypeChoicePair * getLinearCharacter_1059_TypePair();
-  void setLinearCharacter_1059_TypePair(LinearCharacter_1059_TypeChoicePair * LinearCharacter_1059_TypePairIn);
-
-protected:
-  LinearCharacter_1059_TypeChoicePair * LinearCharacter_1059_TypePair;
-};
-
-/* ***************************************************************** */
-
-union LinearCharacter_1059_TypeVal
-{
-  LinearToleranceType * Tolerance;
-  NonToleranceEnumType * NonTolerance;
-};
-
-/* ***************************************************************** */
-
-class LinearCharacter_1059_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    ToleranceE,
-    NonToleranceE };
-  LinearCharacter_1059_TypeChoicePair();
-  LinearCharacter_1059_TypeChoicePair(
-    whichOne LinearCharacter_1059_TypeTypeIn,
-    LinearCharacter_1059_TypeVal LinearCharacter_1059_TypeValueIn);
-  ~LinearCharacter_1059_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne LinearCharacter_1059_TypeType;
-  LinearCharacter_1059_TypeVal LinearCharacter_1059_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class LinearCoordinat_1060_Type :
-  public XmlTypeBase
-{
-public:
-  LinearCoordinat_1060_Type();
-  LinearCoordinat_1060_Type(
-    LinearCoordinat_1060_TypeChoicePair * LinearCoordinat_1060_TypePairIn);
-  ~LinearCoordinat_1060_Type();
-  void printSelf(FILE * outFile);
-
-  LinearCoordinat_1060_TypeChoicePair * getLinearCoordinat_1060_TypePair();
-  void setLinearCoordinat_1060_TypePair(LinearCoordinat_1060_TypeChoicePair * LinearCoordinat_1060_TypePairIn);
-
-protected:
-  LinearCoordinat_1060_TypeChoicePair * LinearCoordinat_1060_TypePair;
-};
-
-/* ***************************************************************** */
-
-union LinearCoordinat_1060_TypeVal
-{
-  LinearToleranceType * Tolerance;
-  NonToleranceEnumType * NonTolerance;
-};
-
-/* ***************************************************************** */
-
-class LinearCoordinat_1060_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    ToleranceE,
-    NonToleranceE };
-  LinearCoordinat_1060_TypeChoicePair();
-  LinearCoordinat_1060_TypeChoicePair(
-    whichOne LinearCoordinat_1060_TypeTypeIn,
-    LinearCoordinat_1060_TypeVal LinearCoordinat_1060_TypeValueIn);
-  ~LinearCoordinat_1060_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne LinearCoordinat_1060_TypeType;
-  LinearCoordinat_1060_TypeVal LinearCoordinat_1060_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class LocationOnDrawi_1061_Type :
-  public XmlTypeBase
-{
-public:
-  LocationOnDrawi_1061_Type();
-  LocationOnDrawi_1061_Type(
+  LocationOnDrawi_1051_Type();
+  LocationOnDrawi_1051_Type(
     QIFReferenceFullType * DrawingIdIn,
     XmlString * SheetNumberIn,
     XmlString * DrawingZoneIn);
-  ~LocationOnDrawi_1061_Type();
+  ~LocationOnDrawi_1051_Type();
   void printSelf(FILE * outFile);
 
   QIFReferenceFullType * getDrawingId();
@@ -14074,15 +14029,15 @@ protected:
 
 /* ***************************************************************** */
 
-class LocationOnDrawi_1062_Type :
+class LocationOnDrawi_1052_Type :
   public XmlTypeBase
 {
 public:
-  LocationOnDrawi_1062_Type();
-  LocationOnDrawi_1062_Type(
+  LocationOnDrawi_1052_Type();
+  LocationOnDrawi_1052_Type(
     QIFReferenceFullType * ModelIdIn,
     XmlString * ViewIn);
-  ~LocationOnDrawi_1062_Type();
+  ~LocationOnDrawi_1052_Type();
   void printSelf(FILE * outFile);
 
   QIFReferenceFullType * getModelId();
@@ -14097,14 +14052,14 @@ protected:
 
 /* ***************************************************************** */
 
-class LocationOnDrawi_1063_Type :
+class LocationOnDrawi_1053_Type :
   public XmlTypeBase
 {
 public:
-  LocationOnDrawi_1063_Type();
-  LocationOnDrawi_1063_Type(
+  LocationOnDrawi_1053_Type();
+  LocationOnDrawi_1053_Type(
     QIFReferenceFullType * ViewIdIn);
-  ~LocationOnDrawi_1063_Type();
+  ~LocationOnDrawi_1053_Type();
   void printSelf(FILE * outFile);
 
   QIFReferenceFullType * getViewId();
@@ -14116,73 +14071,26 @@ protected:
 
 /* ***************************************************************** */
 
-class MassCharacteris_1064_Type :
+class OrientationChar_1054_Type :
   public XmlTypeBase
 {
 public:
-  MassCharacteris_1064_Type();
-  MassCharacteris_1064_Type(
-    MassCharacteris_1064_TypeChoicePair * MassCharacteris_1064_TypePairIn);
-  ~MassCharacteris_1064_Type();
+  OrientationChar_1054_Type();
+  OrientationChar_1054_Type(
+    OrientationChar_1054_TypeChoicePair * OrientationChar_1054_TypePairIn);
+  ~OrientationChar_1054_Type();
   void printSelf(FILE * outFile);
 
-  MassCharacteris_1064_TypeChoicePair * getMassCharacteris_1064_TypePair();
-  void setMassCharacteris_1064_TypePair(MassCharacteris_1064_TypeChoicePair * MassCharacteris_1064_TypePairIn);
+  OrientationChar_1054_TypeChoicePair * getOrientationChar_1054_TypePair();
+  void setOrientationChar_1054_TypePair(OrientationChar_1054_TypeChoicePair * OrientationChar_1054_TypePairIn);
 
 protected:
-  MassCharacteris_1064_TypeChoicePair * MassCharacteris_1064_TypePair;
+  OrientationChar_1054_TypeChoicePair * OrientationChar_1054_TypePair;
 };
 
 /* ***************************************************************** */
 
-union MassCharacteris_1064_TypeVal
-{
-  MassToleranceType * Tolerance;
-  NonToleranceEnumType * NonTolerance;
-};
-
-/* ***************************************************************** */
-
-class MassCharacteris_1064_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    ToleranceE,
-    NonToleranceE };
-  MassCharacteris_1064_TypeChoicePair();
-  MassCharacteris_1064_TypeChoicePair(
-    whichOne MassCharacteris_1064_TypeTypeIn,
-    MassCharacteris_1064_TypeVal MassCharacteris_1064_TypeValueIn);
-  ~MassCharacteris_1064_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne MassCharacteris_1064_TypeType;
-  MassCharacteris_1064_TypeVal MassCharacteris_1064_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class OrientationChar_1065_Type :
-  public XmlTypeBase
-{
-public:
-  OrientationChar_1065_Type();
-  OrientationChar_1065_Type(
-    OrientationChar_1065_TypeChoicePair * OrientationChar_1065_TypePairIn);
-  ~OrientationChar_1065_Type();
-  void printSelf(FILE * outFile);
-
-  OrientationChar_1065_TypeChoicePair * getOrientationChar_1065_TypePair();
-  void setOrientationChar_1065_TypePair(OrientationChar_1065_TypeChoicePair * OrientationChar_1065_TypePairIn);
-
-protected:
-  OrientationChar_1065_TypeChoicePair * OrientationChar_1065_TypePair;
-};
-
-/* ***************************************************************** */
-
-union OrientationChar_1065_TypeVal
+union OrientationChar_1054_TypeVal
 {
   XmlBoolean * EachRadialElement;
   XmlBoolean * EachElement;
@@ -14190,35 +14098,35 @@ union OrientationChar_1065_TypeVal
 
 /* ***************************************************************** */
 
-class OrientationChar_1065_TypeChoicePair :
+class OrientationChar_1054_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     EachRadialElementE,
     EachElementE };
-  OrientationChar_1065_TypeChoicePair();
-  OrientationChar_1065_TypeChoicePair(
-    whichOne OrientationChar_1065_TypeTypeIn,
-    OrientationChar_1065_TypeVal OrientationChar_1065_TypeValueIn);
-  ~OrientationChar_1065_TypeChoicePair();
+  OrientationChar_1054_TypeChoicePair();
+  OrientationChar_1054_TypeChoicePair(
+    whichOne OrientationChar_1054_TypeTypeIn,
+    OrientationChar_1054_TypeVal OrientationChar_1054_TypeValueIn);
+  ~OrientationChar_1054_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne OrientationChar_1065_TypeType;
-  OrientationChar_1065_TypeVal OrientationChar_1065_TypeValue;
+  whichOne OrientationChar_1054_TypeType;
+  OrientationChar_1054_TypeVal OrientationChar_1054_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class OriginReference_1066_Type :
+class OriginReference_1055_Type :
   public XmlTypeBase
 {
 public:
-  OriginReference_1066_Type();
-  OriginReference_1066_Type(
+  OriginReference_1055_Type();
+  OriginReference_1055_Type(
     QIFReferenceFullType * FeatureNominalIdIn,
     ReferencedComponentEnumType * ReferencedComponentIn);
-  ~OriginReference_1066_Type();
+  ~OriginReference_1055_Type();
   void printSelf(FILE * outFile);
 
   QIFReferenceFullType * getFeatureNominalId();
@@ -14233,73 +14141,26 @@ protected:
 
 /* ***************************************************************** */
 
-class PressureCharact_1067_Type :
+class ProfileCharacte_1056_Type :
   public XmlTypeBase
 {
 public:
-  PressureCharact_1067_Type();
-  PressureCharact_1067_Type(
-    PressureCharact_1067_TypeChoicePair * PressureCharact_1067_TypePairIn);
-  ~PressureCharact_1067_Type();
+  ProfileCharacte_1056_Type();
+  ProfileCharacte_1056_Type(
+    ProfileCharacte_1056_TypeChoicePair * ProfileCharacte_1056_TypePairIn);
+  ~ProfileCharacte_1056_Type();
   void printSelf(FILE * outFile);
 
-  PressureCharact_1067_TypeChoicePair * getPressureCharact_1067_TypePair();
-  void setPressureCharact_1067_TypePair(PressureCharact_1067_TypeChoicePair * PressureCharact_1067_TypePairIn);
+  ProfileCharacte_1056_TypeChoicePair * getProfileCharacte_1056_TypePair();
+  void setProfileCharacte_1056_TypePair(ProfileCharacte_1056_TypeChoicePair * ProfileCharacte_1056_TypePairIn);
 
 protected:
-  PressureCharact_1067_TypeChoicePair * PressureCharact_1067_TypePair;
+  ProfileCharacte_1056_TypeChoicePair * ProfileCharacte_1056_TypePair;
 };
 
 /* ***************************************************************** */
 
-union PressureCharact_1067_TypeVal
-{
-  PressureToleranceType * Tolerance;
-  NonToleranceEnumType * NonTolerance;
-};
-
-/* ***************************************************************** */
-
-class PressureCharact_1067_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    ToleranceE,
-    NonToleranceE };
-  PressureCharact_1067_TypeChoicePair();
-  PressureCharact_1067_TypeChoicePair(
-    whichOne PressureCharact_1067_TypeTypeIn,
-    PressureCharact_1067_TypeVal PressureCharact_1067_TypeValueIn);
-  ~PressureCharact_1067_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne PressureCharact_1067_TypeType;
-  PressureCharact_1067_TypeVal PressureCharact_1067_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class ProfileCharacte_1068_Type :
-  public XmlTypeBase
-{
-public:
-  ProfileCharacte_1068_Type();
-  ProfileCharacte_1068_Type(
-    ProfileCharacte_1068_TypeChoicePair * ProfileCharacte_1068_TypePairIn);
-  ~ProfileCharacte_1068_Type();
-  void printSelf(FILE * outFile);
-
-  ProfileCharacte_1068_TypeChoicePair * getProfileCharacte_1068_TypePair();
-  void setProfileCharacte_1068_TypePair(ProfileCharacte_1068_TypeChoicePair * ProfileCharacte_1068_TypePairIn);
-
-protected:
-  ProfileCharacte_1068_TypeChoicePair * ProfileCharacte_1068_TypePair;
-};
-
-/* ***************************************************************** */
-
-union ProfileCharacte_1068_TypeVal
+union ProfileCharacte_1056_TypeVal
 {
   LinearValueType * OuterDisposition;
   LinearValueType * UnequallyDisposedZone;
@@ -14307,82 +14168,35 @@ union ProfileCharacte_1068_TypeVal
 
 /* ***************************************************************** */
 
-class ProfileCharacte_1068_TypeChoicePair :
+class ProfileCharacte_1056_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     OuterDispositionE,
     UnequallyDisposedZoneE };
-  ProfileCharacte_1068_TypeChoicePair();
-  ProfileCharacte_1068_TypeChoicePair(
-    whichOne ProfileCharacte_1068_TypeTypeIn,
-    ProfileCharacte_1068_TypeVal ProfileCharacte_1068_TypeValueIn);
-  ~ProfileCharacte_1068_TypeChoicePair();
+  ProfileCharacte_1056_TypeChoicePair();
+  ProfileCharacte_1056_TypeChoicePair(
+    whichOne ProfileCharacte_1056_TypeTypeIn,
+    ProfileCharacte_1056_TypeVal ProfileCharacte_1056_TypeValueIn);
+  ~ProfileCharacte_1056_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ProfileCharacte_1068_TypeType;
-  ProfileCharacte_1068_TypeVal ProfileCharacte_1068_TypeValue;
+  whichOne ProfileCharacte_1056_TypeType;
+  ProfileCharacte_1056_TypeVal ProfileCharacte_1056_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class SpeedCharacteri_1069_Type :
+class SphericityChara_1057_Type :
   public XmlTypeBase
 {
 public:
-  SpeedCharacteri_1069_Type();
-  SpeedCharacteri_1069_Type(
-    SpeedCharacteri_1069_TypeChoicePair * SpeedCharacteri_1069_TypePairIn);
-  ~SpeedCharacteri_1069_Type();
-  void printSelf(FILE * outFile);
-
-  SpeedCharacteri_1069_TypeChoicePair * getSpeedCharacteri_1069_TypePair();
-  void setSpeedCharacteri_1069_TypePair(SpeedCharacteri_1069_TypeChoicePair * SpeedCharacteri_1069_TypePairIn);
-
-protected:
-  SpeedCharacteri_1069_TypeChoicePair * SpeedCharacteri_1069_TypePair;
-};
-
-/* ***************************************************************** */
-
-union SpeedCharacteri_1069_TypeVal
-{
-  SpeedToleranceType * Tolerance;
-  NonToleranceEnumType * NonTolerance;
-};
-
-/* ***************************************************************** */
-
-class SpeedCharacteri_1069_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    ToleranceE,
-    NonToleranceE };
-  SpeedCharacteri_1069_TypeChoicePair();
-  SpeedCharacteri_1069_TypeChoicePair(
-    whichOne SpeedCharacteri_1069_TypeTypeIn,
-    SpeedCharacteri_1069_TypeVal SpeedCharacteri_1069_TypeValueIn);
-  ~SpeedCharacteri_1069_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne SpeedCharacteri_1069_TypeType;
-  SpeedCharacteri_1069_TypeVal SpeedCharacteri_1069_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class SphericityChara_1070_Type :
-  public XmlTypeBase
-{
-public:
-  SphericityChara_1070_Type();
-  SphericityChara_1070_Type(
+  SphericityChara_1057_Type();
+  SphericityChara_1057_Type(
     MeasuredZoneRadiiType * ZoneRadiiIn,
     MeasuredPointType * ZonePointIn);
-  ~SphericityChara_1070_Type();
+  ~SphericityChara_1057_Type();
   void printSelf(FILE * outFile);
 
   MeasuredZoneRadiiType * getZoneRadii();
@@ -14397,73 +14211,73 @@ protected:
 
 /* ***************************************************************** */
 
-class StraightnessCha_1071_Type :
+class StraightnessCha_1058_Type :
   public XmlTypeBase
 {
 public:
-  StraightnessCha_1071_Type();
-  StraightnessCha_1071_Type(
-    StraightnessCha_1071_TypeChoicePair * StraightnessCha_1071_TypePairIn);
-  ~StraightnessCha_1071_Type();
+  StraightnessCha_1058_Type();
+  StraightnessCha_1058_Type(
+    StraightnessCha_1058_TypeChoicePair * StraightnessCha_1058_TypePairIn);
+  ~StraightnessCha_1058_Type();
   void printSelf(FILE * outFile);
 
-  StraightnessCha_1071_TypeChoicePair * getStraightnessCha_1071_TypePair();
-  void setStraightnessCha_1071_TypePair(StraightnessCha_1071_TypeChoicePair * StraightnessCha_1071_TypePairIn);
+  StraightnessCha_1058_TypeChoicePair * getStraightnessCha_1058_TypePair();
+  void setStraightnessCha_1058_TypePair(StraightnessCha_1058_TypeChoicePair * StraightnessCha_1058_TypePairIn);
 
 protected:
-  StraightnessCha_1071_TypeChoicePair * StraightnessCha_1071_TypePair;
+  StraightnessCha_1058_TypeChoicePair * StraightnessCha_1058_TypePair;
 };
 
 /* ***************************************************************** */
 
-union StraightnessCha_1071_TypeVal
+union StraightnessCha_1058_TypeVal
 {
-  StraightnessCha_1088_Type * StraightnessCha_1088;
-  StraightnessCha_1089_Type * StraightnessCha_1089;
+  StraightnessCha_1068_Type * StraightnessCha_1068;
+  StraightnessCha_1069_Type * StraightnessCha_1069;
 };
 
 /* ***************************************************************** */
 
-class StraightnessCha_1071_TypeChoicePair :
+class StraightnessCha_1058_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    StraightnessCha_1088E,
-    StraightnessCha_1089E };
-  StraightnessCha_1071_TypeChoicePair();
-  StraightnessCha_1071_TypeChoicePair(
-    whichOne StraightnessCha_1071_TypeTypeIn,
-    StraightnessCha_1071_TypeVal StraightnessCha_1071_TypeValueIn);
-  ~StraightnessCha_1071_TypeChoicePair();
+    StraightnessCha_1068E,
+    StraightnessCha_1069E };
+  StraightnessCha_1058_TypeChoicePair();
+  StraightnessCha_1058_TypeChoicePair(
+    whichOne StraightnessCha_1058_TypeTypeIn,
+    StraightnessCha_1058_TypeVal StraightnessCha_1058_TypeValueIn);
+  ~StraightnessCha_1058_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne StraightnessCha_1071_TypeType;
-  StraightnessCha_1071_TypeVal StraightnessCha_1071_TypeValue;
+  whichOne StraightnessCha_1058_TypeType;
+  StraightnessCha_1058_TypeVal StraightnessCha_1058_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class SurfaceProfileN_1072_Type :
+class SurfaceProfileN_1059_Type :
   public XmlTypeBase
 {
 public:
-  SurfaceProfileN_1072_Type();
-  SurfaceProfileN_1072_Type(
-    SurfaceProfileN_1072_TypeChoicePair * SurfaceProfileN_1072_TypePairIn);
-  ~SurfaceProfileN_1072_Type();
+  SurfaceProfileN_1059_Type();
+  SurfaceProfileN_1059_Type(
+    SurfaceProfileN_1059_TypeChoicePair * SurfaceProfileN_1059_TypePairIn);
+  ~SurfaceProfileN_1059_Type();
   void printSelf(FILE * outFile);
 
-  SurfaceProfileN_1072_TypeChoicePair * getSurfaceProfileN_1072_TypePair();
-  void setSurfaceProfileN_1072_TypePair(SurfaceProfileN_1072_TypeChoicePair * SurfaceProfileN_1072_TypePairIn);
+  SurfaceProfileN_1059_TypeChoicePair * getSurfaceProfileN_1059_TypePair();
+  void setSurfaceProfileN_1059_TypePair(SurfaceProfileN_1059_TypeChoicePair * SurfaceProfileN_1059_TypePairIn);
 
 protected:
-  SurfaceProfileN_1072_TypeChoicePair * SurfaceProfileN_1072_TypePair;
+  SurfaceProfileN_1059_TypeChoicePair * SurfaceProfileN_1059_TypePair;
 };
 
 /* ***************************************************************** */
 
-union SurfaceProfileN_1072_TypeVal
+union SurfaceProfileN_1059_TypeVal
 {
   LinearValueType * ToPointOuterDisposition;
   LinearValueType * ToPointUnequallyDisposedZone;
@@ -14471,187 +14285,93 @@ union SurfaceProfileN_1072_TypeVal
 
 /* ***************************************************************** */
 
-class SurfaceProfileN_1072_TypeChoicePair :
+class SurfaceProfileN_1059_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     ToPointOuterDispositionE,
     ToPointUnequallyDisposedZoneE };
-  SurfaceProfileN_1072_TypeChoicePair();
-  SurfaceProfileN_1072_TypeChoicePair(
-    whichOne SurfaceProfileN_1072_TypeTypeIn,
-    SurfaceProfileN_1072_TypeVal SurfaceProfileN_1072_TypeValueIn);
-  ~SurfaceProfileN_1072_TypeChoicePair();
+  SurfaceProfileN_1059_TypeChoicePair();
+  SurfaceProfileN_1059_TypeChoicePair(
+    whichOne SurfaceProfileN_1059_TypeTypeIn,
+    SurfaceProfileN_1059_TypeVal SurfaceProfileN_1059_TypeValueIn);
+  ~SurfaceProfileN_1059_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne SurfaceProfileN_1072_TypeType;
-  SurfaceProfileN_1072_TypeVal SurfaceProfileN_1072_TypeValue;
+  whichOne SurfaceProfileN_1059_TypeType;
+  SurfaceProfileN_1059_TypeVal SurfaceProfileN_1059_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class TemperatureChar_1073_Type :
+class UserDefinedUnit_1060_Type :
   public XmlTypeBase
 {
 public:
-  TemperatureChar_1073_Type();
-  TemperatureChar_1073_Type(
-    TemperatureChar_1073_TypeChoicePair * TemperatureChar_1073_TypePairIn);
-  ~TemperatureChar_1073_Type();
+  UserDefinedUnit_1060_Type();
+  UserDefinedUnit_1060_Type(
+    UserDefinedUnit_1060_TypeChoicePair * UserDefinedUnit_1060_TypePairIn);
+  ~UserDefinedUnit_1060_Type();
   void printSelf(FILE * outFile);
 
-  TemperatureChar_1073_TypeChoicePair * getTemperatureChar_1073_TypePair();
-  void setTemperatureChar_1073_TypePair(TemperatureChar_1073_TypeChoicePair * TemperatureChar_1073_TypePairIn);
+  UserDefinedUnit_1060_TypeChoicePair * getUserDefinedUnit_1060_TypePair();
+  void setUserDefinedUnit_1060_TypePair(UserDefinedUnit_1060_TypeChoicePair * UserDefinedUnit_1060_TypePairIn);
 
 protected:
-  TemperatureChar_1073_TypeChoicePair * TemperatureChar_1073_TypePair;
+  UserDefinedUnit_1060_TypeChoicePair * UserDefinedUnit_1060_TypePair;
 };
 
 /* ***************************************************************** */
 
-union TemperatureChar_1073_TypeVal
+union UserDefinedUnit_1060_TypeVal
 {
-  TemperatureToleranceType * Tolerance;
-  NonToleranceEnumType * NonTolerance;
-};
-
-/* ***************************************************************** */
-
-class TemperatureChar_1073_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    ToleranceE,
-    NonToleranceE };
-  TemperatureChar_1073_TypeChoicePair();
-  TemperatureChar_1073_TypeChoicePair(
-    whichOne TemperatureChar_1073_TypeTypeIn,
-    TemperatureChar_1073_TypeVal TemperatureChar_1073_TypeValueIn);
-  ~TemperatureChar_1073_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne TemperatureChar_1073_TypeType;
-  TemperatureChar_1073_TypeVal TemperatureChar_1073_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class TimeCharacteris_1074_Type :
-  public XmlTypeBase
-{
-public:
-  TimeCharacteris_1074_Type();
-  TimeCharacteris_1074_Type(
-    TimeCharacteris_1074_TypeChoicePair * TimeCharacteris_1074_TypePairIn);
-  ~TimeCharacteris_1074_Type();
-  void printSelf(FILE * outFile);
-
-  TimeCharacteris_1074_TypeChoicePair * getTimeCharacteris_1074_TypePair();
-  void setTimeCharacteris_1074_TypePair(TimeCharacteris_1074_TypeChoicePair * TimeCharacteris_1074_TypePairIn);
-
-protected:
-  TimeCharacteris_1074_TypeChoicePair * TimeCharacteris_1074_TypePair;
-};
-
-/* ***************************************************************** */
-
-union TimeCharacteris_1074_TypeVal
-{
-  TimeToleranceType * Tolerance;
-  NonToleranceEnumType * NonTolerance;
-};
-
-/* ***************************************************************** */
-
-class TimeCharacteris_1074_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    ToleranceE,
-    NonToleranceE };
-  TimeCharacteris_1074_TypeChoicePair();
-  TimeCharacteris_1074_TypeChoicePair(
-    whichOne TimeCharacteris_1074_TypeTypeIn,
-    TimeCharacteris_1074_TypeVal TimeCharacteris_1074_TypeValueIn);
-  ~TimeCharacteris_1074_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne TimeCharacteris_1074_TypeType;
-  TimeCharacteris_1074_TypeVal TimeCharacteris_1074_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class UserDefinedUnit_1075_Type :
-  public XmlTypeBase
-{
-public:
-  UserDefinedUnit_1075_Type();
-  UserDefinedUnit_1075_Type(
-    UserDefinedUnit_1075_TypeChoicePair * UserDefinedUnit_1075_TypePairIn);
-  ~UserDefinedUnit_1075_Type();
-  void printSelf(FILE * outFile);
-
-  UserDefinedUnit_1075_TypeChoicePair * getUserDefinedUnit_1075_TypePair();
-  void setUserDefinedUnit_1075_TypePair(UserDefinedUnit_1075_TypeChoicePair * UserDefinedUnit_1075_TypePairIn);
-
-protected:
-  UserDefinedUnit_1075_TypeChoicePair * UserDefinedUnit_1075_TypePair;
-};
-
-/* ***************************************************************** */
-
-union UserDefinedUnit_1075_TypeVal
-{
-  UserDefinedUnit_1090_Type * UserDefinedUnit_1090;
+  UserDefinedUnit_1070_Type * UserDefinedUnit_1070;
   UserDefinedUnitValueType * MinValue;
 };
 
 /* ***************************************************************** */
 
-class UserDefinedUnit_1075_TypeChoicePair :
+class UserDefinedUnit_1060_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
-    UserDefinedUnit_1090E,
+    UserDefinedUnit_1070E,
     MinValueE };
-  UserDefinedUnit_1075_TypeChoicePair();
-  UserDefinedUnit_1075_TypeChoicePair(
-    whichOne UserDefinedUnit_1075_TypeTypeIn,
-    UserDefinedUnit_1075_TypeVal UserDefinedUnit_1075_TypeValueIn);
-  ~UserDefinedUnit_1075_TypeChoicePair();
+  UserDefinedUnit_1060_TypeChoicePair();
+  UserDefinedUnit_1060_TypeChoicePair(
+    whichOne UserDefinedUnit_1060_TypeTypeIn,
+    UserDefinedUnit_1060_TypeVal UserDefinedUnit_1060_TypeValueIn);
+  ~UserDefinedUnit_1060_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne UserDefinedUnit_1075_TypeType;
-  UserDefinedUnit_1075_TypeVal UserDefinedUnit_1075_TypeValue;
+  whichOne UserDefinedUnit_1060_TypeType;
+  UserDefinedUnit_1060_TypeVal UserDefinedUnit_1060_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class WeldFilletChara_1076_Type :
+class WeldFilletChara_1061_Type :
   public XmlTypeBase
 {
 public:
-  WeldFilletChara_1076_Type();
-  WeldFilletChara_1076_Type(
-    WeldFilletChara_1076_TypeChoicePair * WeldFilletChara_1076_TypePairIn);
-  ~WeldFilletChara_1076_Type();
+  WeldFilletChara_1061_Type();
+  WeldFilletChara_1061_Type(
+    WeldFilletChara_1061_TypeChoicePair * WeldFilletChara_1061_TypePairIn);
+  ~WeldFilletChara_1061_Type();
   void printSelf(FILE * outFile);
 
-  WeldFilletChara_1076_TypeChoicePair * getWeldFilletChara_1076_TypePair();
-  void setWeldFilletChara_1076_TypePair(WeldFilletChara_1076_TypeChoicePair * WeldFilletChara_1076_TypePairIn);
+  WeldFilletChara_1061_TypeChoicePair * getWeldFilletChara_1061_TypePair();
+  void setWeldFilletChara_1061_TypePair(WeldFilletChara_1061_TypeChoicePair * WeldFilletChara_1061_TypePairIn);
 
 protected:
-  WeldFilletChara_1076_TypeChoicePair * WeldFilletChara_1076_TypePair;
+  WeldFilletChara_1061_TypeChoicePair * WeldFilletChara_1061_TypePair;
 };
 
 /* ***************************************************************** */
 
-union WeldFilletChara_1076_TypeVal
+union WeldFilletChara_1061_TypeVal
 {
   WeldFilletBothSidesType * BothSides;
   WeldFilletOneSideType * OneSide;
@@ -14659,46 +14379,46 @@ union WeldFilletChara_1076_TypeVal
 
 /* ***************************************************************** */
 
-class WeldFilletChara_1076_TypeChoicePair :
+class WeldFilletChara_1061_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     BothSidesE,
     OneSideE };
-  WeldFilletChara_1076_TypeChoicePair();
-  WeldFilletChara_1076_TypeChoicePair(
-    whichOne WeldFilletChara_1076_TypeTypeIn,
-    WeldFilletChara_1076_TypeVal WeldFilletChara_1076_TypeValueIn);
-  ~WeldFilletChara_1076_TypeChoicePair();
+  WeldFilletChara_1061_TypeChoicePair();
+  WeldFilletChara_1061_TypeChoicePair(
+    whichOne WeldFilletChara_1061_TypeTypeIn,
+    WeldFilletChara_1061_TypeVal WeldFilletChara_1061_TypeValueIn);
+  ~WeldFilletChara_1061_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne WeldFilletChara_1076_TypeType;
-  WeldFilletChara_1076_TypeVal WeldFilletChara_1076_TypeValue;
+  whichOne WeldFilletChara_1061_TypeType;
+  WeldFilletChara_1061_TypeVal WeldFilletChara_1061_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class WeldFilletChara_1077_Type :
+class WeldFilletChara_1062_Type :
   public XmlTypeBase
 {
 public:
-  WeldFilletChara_1077_Type();
-  WeldFilletChara_1077_Type(
-    WeldFilletChara_1077_TypeChoicePair * WeldFilletChara_1077_TypePairIn);
-  ~WeldFilletChara_1077_Type();
+  WeldFilletChara_1062_Type();
+  WeldFilletChara_1062_Type(
+    WeldFilletChara_1062_TypeChoicePair * WeldFilletChara_1062_TypePairIn);
+  ~WeldFilletChara_1062_Type();
   void printSelf(FILE * outFile);
 
-  WeldFilletChara_1077_TypeChoicePair * getWeldFilletChara_1077_TypePair();
-  void setWeldFilletChara_1077_TypePair(WeldFilletChara_1077_TypeChoicePair * WeldFilletChara_1077_TypePairIn);
+  WeldFilletChara_1062_TypeChoicePair * getWeldFilletChara_1062_TypePair();
+  void setWeldFilletChara_1062_TypePair(WeldFilletChara_1062_TypeChoicePair * WeldFilletChara_1062_TypePairIn);
 
 protected:
-  WeldFilletChara_1077_TypeChoicePair * WeldFilletChara_1077_TypePair;
+  WeldFilletChara_1062_TypeChoicePair * WeldFilletChara_1062_TypePair;
 };
 
 /* ***************************************************************** */
 
-union WeldFilletChara_1077_TypeVal
+union WeldFilletChara_1062_TypeVal
 {
   WeldFilletBothSidesType * BothSides;
   WeldFilletOneSideType * OneSide;
@@ -14706,176 +14426,35 @@ union WeldFilletChara_1077_TypeVal
 
 /* ***************************************************************** */
 
-class WeldFilletChara_1077_TypeChoicePair :
+class WeldFilletChara_1062_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     BothSidesE,
     OneSideE };
-  WeldFilletChara_1077_TypeChoicePair();
-  WeldFilletChara_1077_TypeChoicePair(
-    whichOne WeldFilletChara_1077_TypeTypeIn,
-    WeldFilletChara_1077_TypeVal WeldFilletChara_1077_TypeValueIn);
-  ~WeldFilletChara_1077_TypeChoicePair();
+  WeldFilletChara_1062_TypeChoicePair();
+  WeldFilletChara_1062_TypeChoicePair(
+    whichOne WeldFilletChara_1062_TypeTypeIn,
+    WeldFilletChara_1062_TypeVal WeldFilletChara_1062_TypeValueIn);
+  ~WeldFilletChara_1062_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne WeldFilletChara_1077_TypeType;
-  WeldFilletChara_1077_TypeVal WeldFilletChara_1077_TypeValue;
+  whichOne WeldFilletChara_1062_TypeType;
+  WeldFilletChara_1062_TypeVal WeldFilletChara_1062_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class WeldFilletOneSi_1078_Type :
+class WeldGrooveOneSi_1063_Type :
   public XmlTypeBase
 {
 public:
-  WeldFilletOneSi_1078_Type();
-  WeldFilletOneSi_1078_Type(
-    WeldFilletOneSi_1078_TypeChoicePair * WeldFilletOneSi_1078_TypePairIn);
-  ~WeldFilletOneSi_1078_Type();
-  void printSelf(FILE * outFile);
-
-  WeldFilletOneSi_1078_TypeChoicePair * getWeldFilletOneSi_1078_TypePair();
-  void setWeldFilletOneSi_1078_TypePair(WeldFilletOneSi_1078_TypeChoicePair * WeldFilletOneSi_1078_TypePairIn);
-
-protected:
-  WeldFilletOneSi_1078_TypeChoicePair * WeldFilletOneSi_1078_TypePair;
-};
-
-/* ***************************************************************** */
-
-union WeldFilletOneSi_1078_TypeVal
-{
-  WeldFilletEqualLegLengthType * EqualLegLength;
-  WeldFilletUnequalLegLengthType * UnEqualLegLength;
-};
-
-/* ***************************************************************** */
-
-class WeldFilletOneSi_1078_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    EqualLegLengthE,
-    UnEqualLegLengthE };
-  WeldFilletOneSi_1078_TypeChoicePair();
-  WeldFilletOneSi_1078_TypeChoicePair(
-    whichOne WeldFilletOneSi_1078_TypeTypeIn,
-    WeldFilletOneSi_1078_TypeVal WeldFilletOneSi_1078_TypeValueIn);
-  ~WeldFilletOneSi_1078_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne WeldFilletOneSi_1078_TypeType;
-  WeldFilletOneSi_1078_TypeVal WeldFilletOneSi_1078_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class WeldGrooveChara_1079_Type :
-  public XmlTypeBase
-{
-public:
-  WeldGrooveChara_1079_Type();
-  WeldGrooveChara_1079_Type(
-    WeldGrooveChara_1079_TypeChoicePair * WeldGrooveChara_1079_TypePairIn);
-  ~WeldGrooveChara_1079_Type();
-  void printSelf(FILE * outFile);
-
-  WeldGrooveChara_1079_TypeChoicePair * getWeldGrooveChara_1079_TypePair();
-  void setWeldGrooveChara_1079_TypePair(WeldGrooveChara_1079_TypeChoicePair * WeldGrooveChara_1079_TypePairIn);
-
-protected:
-  WeldGrooveChara_1079_TypeChoicePair * WeldGrooveChara_1079_TypePair;
-};
-
-/* ***************************************************************** */
-
-union WeldGrooveChara_1079_TypeVal
-{
-  WeldGrooveOneSideType * OneSide;
-  WeldGrooveBothSidesExtendedType * BothSides;
-};
-
-/* ***************************************************************** */
-
-class WeldGrooveChara_1079_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    OneSideE,
-    BothSidesE };
-  WeldGrooveChara_1079_TypeChoicePair();
-  WeldGrooveChara_1079_TypeChoicePair(
-    whichOne WeldGrooveChara_1079_TypeTypeIn,
-    WeldGrooveChara_1079_TypeVal WeldGrooveChara_1079_TypeValueIn);
-  ~WeldGrooveChara_1079_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne WeldGrooveChara_1079_TypeType;
-  WeldGrooveChara_1079_TypeVal WeldGrooveChara_1079_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class WeldGrooveChara_1080_Type :
-  public XmlTypeBase
-{
-public:
-  WeldGrooveChara_1080_Type();
-  WeldGrooveChara_1080_Type(
-    WeldGrooveChara_1080_TypeChoicePair * WeldGrooveChara_1080_TypePairIn);
-  ~WeldGrooveChara_1080_Type();
-  void printSelf(FILE * outFile);
-
-  WeldGrooveChara_1080_TypeChoicePair * getWeldGrooveChara_1080_TypePair();
-  void setWeldGrooveChara_1080_TypePair(WeldGrooveChara_1080_TypeChoicePair * WeldGrooveChara_1080_TypePairIn);
-
-protected:
-  WeldGrooveChara_1080_TypeChoicePair * WeldGrooveChara_1080_TypePair;
-};
-
-/* ***************************************************************** */
-
-union WeldGrooveChara_1080_TypeVal
-{
-  WeldGrooveOneSideType * OneSide;
-  WeldGrooveBothSidesExtendedType * BothSides;
-};
-
-/* ***************************************************************** */
-
-class WeldGrooveChara_1080_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    OneSideE,
-    BothSidesE };
-  WeldGrooveChara_1080_TypeChoicePair();
-  WeldGrooveChara_1080_TypeChoicePair(
-    whichOne WeldGrooveChara_1080_TypeTypeIn,
-    WeldGrooveChara_1080_TypeVal WeldGrooveChara_1080_TypeValueIn);
-  ~WeldGrooveChara_1080_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne WeldGrooveChara_1080_TypeType;
-  WeldGrooveChara_1080_TypeVal WeldGrooveChara_1080_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class WeldGrooveOneSi_1081_Type :
-  public XmlTypeBase
-{
-public:
-  WeldGrooveOneSi_1081_Type();
-  WeldGrooveOneSi_1081_Type(
+  WeldGrooveOneSi_1063_Type();
+  WeldGrooveOneSi_1063_Type(
     WeldGrooveOneSideParametersType * SideParametersIn,
     WeldSupplementarySymbolEnumType * SupplementarySymbolIn);
-  ~WeldGrooveOneSi_1081_Type();
+  ~WeldGrooveOneSi_1063_Type();
   void printSelf(FILE * outFile);
 
   WeldGrooveOneSideParametersType * getSideParameters();
@@ -14890,53 +14469,26 @@ protected:
 
 /* ***************************************************************** */
 
-class CircularityChar_1082_Type :
+class CircularityChar_1064_Type :
   public XmlTypeBase
 {
 public:
-  CircularityChar_1082_Type();
-  CircularityChar_1082_Type(
-    LinearValueType * ToleranceValueIn,
-    LinearDualValueType * ToleranceDualValueIn,
-    CircularityChar_1091_Type * CircularityChar_1091In);
-  ~CircularityChar_1082_Type();
+  CircularityChar_1064_Type();
+  CircularityChar_1064_Type(
+    CircularityChar_1064_TypeChoicePair * CircularityChar_1064_TypePairIn);
+  ~CircularityChar_1064_Type();
   void printSelf(FILE * outFile);
 
-  LinearValueType * getToleranceValue();
-  void setToleranceValue(LinearValueType * ToleranceValueIn);
-  LinearDualValueType * getToleranceDualValue();
-  void setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn);
-  CircularityChar_1091_Type * getCircularityChar_1091();
-  void setCircularityChar_1091(CircularityChar_1091_Type * CircularityChar_1091In);
+  CircularityChar_1064_TypeChoicePair * getCircularityChar_1064_TypePair();
+  void setCircularityChar_1064_TypePair(CircularityChar_1064_TypeChoicePair * CircularityChar_1064_TypePairIn);
 
 protected:
-  LinearValueType * ToleranceValue;
-  LinearDualValueType * ToleranceDualValue;
-  CircularityChar_1091_Type * CircularityChar_1091;
+  CircularityChar_1064_TypeChoicePair * CircularityChar_1064_TypePair;
 };
 
 /* ***************************************************************** */
 
-class CircularityChar_1083_Type :
-  public XmlTypeBase
-{
-public:
-  CircularityChar_1083_Type();
-  CircularityChar_1083_Type(
-    CircularityChar_1083_TypeChoicePair * CircularityChar_1083_TypePairIn);
-  ~CircularityChar_1083_Type();
-  void printSelf(FILE * outFile);
-
-  CircularityChar_1083_TypeChoicePair * getCircularityChar_1083_TypePair();
-  void setCircularityChar_1083_TypePair(CircularityChar_1083_TypeChoicePair * CircularityChar_1083_TypePairIn);
-
-protected:
-  CircularityChar_1083_TypeChoicePair * CircularityChar_1083_TypePair;
-};
-
-/* ***************************************************************** */
-
-union CircularityChar_1083_TypeVal
+union CircularityChar_1064_TypeVal
 {
   ToleranceZonePerUnitAngleType * ToleranceZonePerUnitAngle;
   ToleranceZonePerUnitLengthType * ToleranceZonePerUnitArcLength;
@@ -14944,73 +14496,46 @@ union CircularityChar_1083_TypeVal
 
 /* ***************************************************************** */
 
-class CircularityChar_1083_TypeChoicePair :
+class CircularityChar_1064_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     ToleranceZonePerUnitAngleE,
     ToleranceZonePerUnitArcLengthE };
-  CircularityChar_1083_TypeChoicePair();
-  CircularityChar_1083_TypeChoicePair(
-    whichOne CircularityChar_1083_TypeTypeIn,
-    CircularityChar_1083_TypeVal CircularityChar_1083_TypeValueIn);
-  ~CircularityChar_1083_TypeChoicePair();
+  CircularityChar_1064_TypeChoicePair();
+  CircularityChar_1064_TypeChoicePair(
+    whichOne CircularityChar_1064_TypeTypeIn,
+    CircularityChar_1064_TypeVal CircularityChar_1064_TypeValueIn);
+  ~CircularityChar_1064_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne CircularityChar_1083_TypeType;
-  CircularityChar_1083_TypeVal CircularityChar_1083_TypeValue;
+  whichOne CircularityChar_1064_TypeType;
+  CircularityChar_1064_TypeVal CircularityChar_1064_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class CylindricityCha_1084_Type :
+class CylindricityCha_1065_Type :
   public XmlTypeBase
 {
 public:
-  CylindricityCha_1084_Type();
-  CylindricityCha_1084_Type(
-    LinearValueType * ToleranceValueIn,
-    LinearDualValueType * ToleranceDualValueIn,
-    CylindricityCha_1092_Type * CylindricityCha_1092In);
-  ~CylindricityCha_1084_Type();
+  CylindricityCha_1065_Type();
+  CylindricityCha_1065_Type(
+    CylindricityCha_1065_TypeChoicePair * CylindricityCha_1065_TypePairIn);
+  ~CylindricityCha_1065_Type();
   void printSelf(FILE * outFile);
 
-  LinearValueType * getToleranceValue();
-  void setToleranceValue(LinearValueType * ToleranceValueIn);
-  LinearDualValueType * getToleranceDualValue();
-  void setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn);
-  CylindricityCha_1092_Type * getCylindricityCha_1092();
-  void setCylindricityCha_1092(CylindricityCha_1092_Type * CylindricityCha_1092In);
+  CylindricityCha_1065_TypeChoicePair * getCylindricityCha_1065_TypePair();
+  void setCylindricityCha_1065_TypePair(CylindricityCha_1065_TypeChoicePair * CylindricityCha_1065_TypePairIn);
 
 protected:
-  LinearValueType * ToleranceValue;
-  LinearDualValueType * ToleranceDualValue;
-  CylindricityCha_1092_Type * CylindricityCha_1092;
+  CylindricityCha_1065_TypeChoicePair * CylindricityCha_1065_TypePair;
 };
 
 /* ***************************************************************** */
 
-class CylindricityCha_1085_Type :
-  public XmlTypeBase
-{
-public:
-  CylindricityCha_1085_Type();
-  CylindricityCha_1085_Type(
-    CylindricityCha_1085_TypeChoicePair * CylindricityCha_1085_TypePairIn);
-  ~CylindricityCha_1085_Type();
-  void printSelf(FILE * outFile);
-
-  CylindricityCha_1085_TypeChoicePair * getCylindricityCha_1085_TypePair();
-  void setCylindricityCha_1085_TypePair(CylindricityCha_1085_TypeChoicePair * CylindricityCha_1085_TypePairIn);
-
-protected:
-  CylindricityCha_1085_TypeChoicePair * CylindricityCha_1085_TypePair;
-};
-
-/* ***************************************************************** */
-
-union CylindricityCha_1085_TypeVal
+union CylindricityCha_1065_TypeVal
 {
   ToleranceZonePerUnitAngleType * ToleranceZonePerUnitAngle;
   ToleranceZonePerUnitLengthType * ToleranceZonePerUnitArcLength;
@@ -15021,7 +14546,7 @@ union CylindricityCha_1085_TypeVal
 
 /* ***************************************************************** */
 
-class CylindricityCha_1085_TypeChoicePair :
+class CylindricityCha_1065_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -15031,29 +14556,29 @@ public:
     ToleranceZonePerUnitPolarAreaE,
     ToleranceZonePerUnitAreaE,
     ToleranceZonePerUnitLengthE };
-  CylindricityCha_1085_TypeChoicePair();
-  CylindricityCha_1085_TypeChoicePair(
-    whichOne CylindricityCha_1085_TypeTypeIn,
-    CylindricityCha_1085_TypeVal CylindricityCha_1085_TypeValueIn);
-  ~CylindricityCha_1085_TypeChoicePair();
+  CylindricityCha_1065_TypeChoicePair();
+  CylindricityCha_1065_TypeChoicePair(
+    whichOne CylindricityCha_1065_TypeTypeIn,
+    CylindricityCha_1065_TypeVal CylindricityCha_1065_TypeValueIn);
+  ~CylindricityCha_1065_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne CylindricityCha_1085_TypeType;
-  CylindricityCha_1085_TypeVal CylindricityCha_1085_TypeValue;
+  whichOne CylindricityCha_1065_TypeType;
+  CylindricityCha_1065_TypeVal CylindricityCha_1065_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class FlatnessCharact_1086_Type :
+class FlatnessCharact_1066_Type :
   public XmlTypeBase
 {
 public:
-  FlatnessCharact_1086_Type();
-  FlatnessCharact_1086_Type(
+  FlatnessCharact_1066_Type();
+  FlatnessCharact_1066_Type(
     LinearValueType * ToleranceValueIn,
     LinearDualValueType * ToleranceDualValueIn,
     ToleranceZonePerUnitAreaType * ToleranceZonePerUnitAreaIn);
-  ~FlatnessCharact_1086_Type();
+  ~FlatnessCharact_1066_Type();
   void printSelf(FILE * outFile);
 
   LinearValueType * getToleranceValue();
@@ -15071,14 +14596,14 @@ protected:
 
 /* ***************************************************************** */
 
-class FlatnessCharact_1087_Type :
+class FlatnessCharact_1067_Type :
   public XmlTypeBase
 {
 public:
-  FlatnessCharact_1087_Type();
-  FlatnessCharact_1087_Type(
+  FlatnessCharact_1067_Type();
+  FlatnessCharact_1067_Type(
     ToleranceZonePerUnitAreaType * ToleranceZonePerUnitAreaIn);
-  ~FlatnessCharact_1087_Type();
+  ~FlatnessCharact_1067_Type();
   void printSelf(FILE * outFile);
 
   ToleranceZonePerUnitAreaType * getToleranceZonePerUnitArea();
@@ -15090,16 +14615,16 @@ protected:
 
 /* ***************************************************************** */
 
-class StraightnessCha_1088_Type :
+class StraightnessCha_1068_Type :
   public XmlTypeBase
 {
 public:
-  StraightnessCha_1088_Type();
-  StraightnessCha_1088_Type(
+  StraightnessCha_1068_Type();
+  StraightnessCha_1068_Type(
     LinearValueType * ToleranceValueIn,
     LinearDualValueType * ToleranceDualValueIn,
     ToleranceZonePerUnitLengthType * ToleranceZonePerUnitLengthIn);
-  ~StraightnessCha_1088_Type();
+  ~StraightnessCha_1068_Type();
   void printSelf(FILE * outFile);
 
   LinearValueType * getToleranceValue();
@@ -15117,14 +14642,14 @@ protected:
 
 /* ***************************************************************** */
 
-class StraightnessCha_1089_Type :
+class StraightnessCha_1069_Type :
   public XmlTypeBase
 {
 public:
-  StraightnessCha_1089_Type();
-  StraightnessCha_1089_Type(
+  StraightnessCha_1069_Type();
+  StraightnessCha_1069_Type(
     ToleranceZonePerUnitLengthType * ToleranceZonePerUnitLengthIn);
-  ~StraightnessCha_1089_Type();
+  ~StraightnessCha_1069_Type();
   void printSelf(FILE * outFile);
 
   ToleranceZonePerUnitLengthType * getToleranceZonePerUnitLength();
@@ -15136,15 +14661,15 @@ protected:
 
 /* ***************************************************************** */
 
-class UserDefinedUnit_1090_Type :
+class UserDefinedUnit_1070_Type :
   public XmlTypeBase
 {
 public:
-  UserDefinedUnit_1090_Type();
-  UserDefinedUnit_1090_Type(
+  UserDefinedUnit_1070_Type();
+  UserDefinedUnit_1070_Type(
     UserDefinedUnitValueType * MaxValueIn,
     UserDefinedUnitValueType * MinValueIn);
-  ~UserDefinedUnit_1090_Type();
+  ~UserDefinedUnit_1070_Type();
   void printSelf(FILE * outFile);
 
   UserDefinedUnitValueType * getMaxValue();
@@ -15155,106 +14680,6 @@ public:
 protected:
   UserDefinedUnitValueType * MaxValue;
   UserDefinedUnitValueType * MinValue;
-};
-
-/* ***************************************************************** */
-
-class CircularityChar_1091_Type :
-  public XmlTypeBase
-{
-public:
-  CircularityChar_1091_Type();
-  CircularityChar_1091_Type(
-    CircularityChar_1091_TypeChoicePair * CircularityChar_1091_TypePairIn);
-  ~CircularityChar_1091_Type();
-  void printSelf(FILE * outFile);
-
-  CircularityChar_1091_TypeChoicePair * getCircularityChar_1091_TypePair();
-  void setCircularityChar_1091_TypePair(CircularityChar_1091_TypeChoicePair * CircularityChar_1091_TypePairIn);
-
-protected:
-  CircularityChar_1091_TypeChoicePair * CircularityChar_1091_TypePair;
-};
-
-/* ***************************************************************** */
-
-union CircularityChar_1091_TypeVal
-{
-  ToleranceZonePerUnitAngleType * ToleranceZonePerUnitAngle;
-  ToleranceZonePerUnitLengthType * ToleranceZonePerUnitArcLength;
-};
-
-/* ***************************************************************** */
-
-class CircularityChar_1091_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    ToleranceZonePerUnitAngleE,
-    ToleranceZonePerUnitArcLengthE };
-  CircularityChar_1091_TypeChoicePair();
-  CircularityChar_1091_TypeChoicePair(
-    whichOne CircularityChar_1091_TypeTypeIn,
-    CircularityChar_1091_TypeVal CircularityChar_1091_TypeValueIn);
-  ~CircularityChar_1091_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne CircularityChar_1091_TypeType;
-  CircularityChar_1091_TypeVal CircularityChar_1091_TypeValue;
-};
-
-/* ***************************************************************** */
-
-class CylindricityCha_1092_Type :
-  public XmlTypeBase
-{
-public:
-  CylindricityCha_1092_Type();
-  CylindricityCha_1092_Type(
-    CylindricityCha_1092_TypeChoicePair * CylindricityCha_1092_TypePairIn);
-  ~CylindricityCha_1092_Type();
-  void printSelf(FILE * outFile);
-
-  CylindricityCha_1092_TypeChoicePair * getCylindricityCha_1092_TypePair();
-  void setCylindricityCha_1092_TypePair(CylindricityCha_1092_TypeChoicePair * CylindricityCha_1092_TypePairIn);
-
-protected:
-  CylindricityCha_1092_TypeChoicePair * CylindricityCha_1092_TypePair;
-};
-
-/* ***************************************************************** */
-
-union CylindricityCha_1092_TypeVal
-{
-  ToleranceZonePerUnitAngleType * ToleranceZonePerUnitAngle;
-  ToleranceZonePerUnitLengthType * ToleranceZonePerUnitArcLength;
-  ToleranceZonePerUnitPolarAreaType * ToleranceZonePerUnitPolarArea;
-  ToleranceZonePerUnitAreaType * ToleranceZonePerUnitArea;
-  ToleranceZonePerUnitLengthType * ToleranceZonePerUnitLength;
-};
-
-/* ***************************************************************** */
-
-class CylindricityCha_1092_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    ToleranceZonePerUnitAngleE,
-    ToleranceZonePerUnitArcLengthE,
-    ToleranceZonePerUnitPolarAreaE,
-    ToleranceZonePerUnitAreaE,
-    ToleranceZonePerUnitLengthE };
-  CylindricityCha_1092_TypeChoicePair();
-  CylindricityCha_1092_TypeChoicePair(
-    whichOne CylindricityCha_1092_TypeTypeIn,
-    CylindricityCha_1092_TypeVal CylindricityCha_1092_TypeValueIn);
-  ~CylindricityCha_1092_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne CylindricityCha_1092_TypeType;
-  CylindricityCha_1092_TypeVal CylindricityCha_1092_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -15280,7 +14705,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    AngularCharacte_1046_Type * AngularCharacte_1046In);
+    AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn);
   AngularCharacteristicDefinitionBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -15298,16 +14723,43 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    AngularCharacte_1046_Type * AngularCharacte_1046In);
+    AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn);
   ~AngularCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
-
-  AngularCharacte_1046_Type * getAngularCharacte_1046();
-  void setAngularCharacte_1046(AngularCharacte_1046_Type * AngularCharacte_1046In);
+  AngularCharacteristicDefinitionBaseTypeChoicePair * getAngularCharacteristicDefinitionBaseTypeChoicePair();
+  void setAngularCharacteristicDefinitionBaseTypeChoicePair(AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn);
 
 protected:
-  AngularCharacte_1046_Type * AngularCharacte_1046;
+  AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePair;
+};
+
+/* ***************************************************************** */
+
+union AngularCharacteristicDefinitionBaseTypeVal
+{
+  AngularToleranceType * Tolerance;
+  NonToleranceEnumType * NonTolerance;
+};
+
+/* ***************************************************************** */
+
+class AngularCharacteristicDefinitionBaseTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    ToleranceE,
+    NonToleranceE };
+  AngularCharacteristicDefinitionBaseTypeChoicePair();
+  AngularCharacteristicDefinitionBaseTypeChoicePair(
+    whichOne AngularCharacteristicDefinitionBaseTypeTypeIn,
+    AngularCharacteristicDefinitionBaseTypeVal AngularCharacteristicDefinitionBaseTypeValueIn);
+  ~AngularCharacteristicDefinitionBaseTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne AngularCharacteristicDefinitionBaseTypeType;
+  AngularCharacteristicDefinitionBaseTypeVal AngularCharacteristicDefinitionBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -15468,7 +14920,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -15482,7 +14934,7 @@ public:
     XmlBoolean * TangentPlaneIn,
     LinearValueType * MaximumToleranceValueIn,
     LinearValueType * ProjectedToleranceZoneValueIn,
-    OrientationChar_1065_Type * OrientationChar_1065In);
+    OrientationChar_1054_Type * OrientationChar_1054In);
   AngularityCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -15498,7 +14950,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -15512,7 +14964,7 @@ public:
     XmlBoolean * TangentPlaneIn,
     LinearValueType * MaximumToleranceValueIn,
     LinearValueType * ProjectedToleranceZoneValueIn,
-    OrientationChar_1065_Type * OrientationChar_1065In);
+    OrientationChar_1054_Type * OrientationChar_1054In);
   ~AngularityCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -15672,7 +15124,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    AreaCharacteris_1048_Type * AreaCharacteris_1048In);
+    AreaCharacteristicDefinitionBaseTypeChoicePair * AreaCharacteristicDefinitionBaseTypePairIn);
   AreaCharacteristicDefinitionBaseType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -15688,16 +15140,43 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    AreaCharacteris_1048_Type * AreaCharacteris_1048In);
+    AreaCharacteristicDefinitionBaseTypeChoicePair * AreaCharacteristicDefinitionBaseTypePairIn);
   ~AreaCharacteristicDefinitionBaseType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
-
-  AreaCharacteris_1048_Type * getAreaCharacteris_1048();
-  void setAreaCharacteris_1048(AreaCharacteris_1048_Type * AreaCharacteris_1048In);
+  AreaCharacteristicDefinitionBaseTypeChoicePair * getAreaCharacteristicDefinitionBaseTypeChoicePair();
+  void setAreaCharacteristicDefinitionBaseTypeChoicePair(AreaCharacteristicDefinitionBaseTypeChoicePair * AreaCharacteristicDefinitionBaseTypePairIn);
 
 protected:
-  AreaCharacteris_1048_Type * AreaCharacteris_1048;
+  AreaCharacteristicDefinitionBaseTypeChoicePair * AreaCharacteristicDefinitionBaseTypePair;
+};
+
+/* ***************************************************************** */
+
+union AreaCharacteristicDefinitionBaseTypeVal
+{
+  AreaToleranceType * Tolerance;
+  NonToleranceEnumType * NonTolerance;
+};
+
+/* ***************************************************************** */
+
+class AreaCharacteristicDefinitionBaseTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    ToleranceE,
+    NonToleranceE };
+  AreaCharacteristicDefinitionBaseTypeChoicePair();
+  AreaCharacteristicDefinitionBaseTypeChoicePair(
+    whichOne AreaCharacteristicDefinitionBaseTypeTypeIn,
+    AreaCharacteristicDefinitionBaseTypeVal AreaCharacteristicDefinitionBaseTypeValueIn);
+  ~AreaCharacteristicDefinitionBaseTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne AreaCharacteristicDefinitionBaseTypeType;
+  AreaCharacteristicDefinitionBaseTypeVal AreaCharacteristicDefinitionBaseTypeValue;
 };
 
 /* ***************************************************************** */
@@ -15860,7 +15339,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   ChordCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -15878,7 +15357,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   ~ChordCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -16026,7 +15505,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -16049,7 +15528,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -16215,7 +15694,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -16239,7 +15718,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -16401,7 +15880,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -16425,7 +15904,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -16589,7 +16068,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   ConicalTaperCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -16607,7 +16086,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   ~ConicalTaperCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -16937,7 +16416,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   CurveLengthCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -16955,7 +16434,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   ~CurveLengthCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -17105,7 +16584,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   DepthCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -17123,7 +16602,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   ~DepthCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -17273,7 +16752,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    DiameterCharact_1055_Type * DiameterCharact_1055In);
+    DiameterCharacteristicDefinitionTypeChoicePair * DiameterCharacteristicDefinitionTypePairIn);
   DiameterCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -17291,16 +16770,45 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    DiameterCharact_1055_Type * DiameterCharact_1055In);
+    DiameterCharacteristicDefinitionTypeChoicePair * DiameterCharacteristicDefinitionTypePairIn);
   ~DiameterCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
-
-  DiameterCharact_1055_Type * getDiameterCharact_1055();
-  void setDiameterCharact_1055(DiameterCharact_1055_Type * DiameterCharact_1055In);
+  DiameterCharacteristicDefinitionTypeChoicePair * getDiameterCharacteristicDefinitionTypeChoicePair();
+  void setDiameterCharacteristicDefinitionTypeChoicePair(DiameterCharacteristicDefinitionTypeChoicePair * DiameterCharacteristicDefinitionTypePairIn);
 
 protected:
-  DiameterCharact_1055_Type * DiameterCharact_1055;
+  DiameterCharacteristicDefinitionTypeChoicePair * DiameterCharacteristicDefinitionTypePair;
+};
+
+/* ***************************************************************** */
+
+union DiameterCharacteristicDefinitionTypeVal
+{
+  LinearToleranceType * Tolerance;
+  LimitsAndFitsSpecificationType * LimitsAndFitsSpecification;
+  NonToleranceEnumType * NonTolerance;
+};
+
+/* ***************************************************************** */
+
+class DiameterCharacteristicDefinitionTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    ToleranceE,
+    LimitsAndFitsSpecificationE,
+    NonToleranceE };
+  DiameterCharacteristicDefinitionTypeChoicePair();
+  DiameterCharacteristicDefinitionTypeChoicePair(
+    whichOne DiameterCharacteristicDefinitionTypeTypeIn,
+    DiameterCharacteristicDefinitionTypeVal DiameterCharacteristicDefinitionTypeValueIn);
+  ~DiameterCharacteristicDefinitionTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne DiameterCharacteristicDefinitionTypeType;
+  DiameterCharacteristicDefinitionTypeVal DiameterCharacteristicDefinitionTypeValue;
 };
 
 /* ***************************************************************** */
@@ -17447,7 +16955,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   DistanceBetweenCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -17465,7 +16973,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   ~DistanceBetweenCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -17651,7 +17159,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   DistanceFromCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -17669,7 +17177,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   ~DistanceFromCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -17855,7 +17363,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   FlatTaperCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -17873,7 +17381,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   ~FlatTaperCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -18037,7 +17545,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -18057,7 +17565,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -18207,7 +17715,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   HeightCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -18225,7 +17733,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   ~HeightCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -18375,7 +17883,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   LengthCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -18393,7 +17901,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCharacter_1059_Type * LinearCharacter_1059In);
+    LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn);
   ~LengthCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -18541,14 +18049,14 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
     OrientationPlaneType * OrientationPlaneIn,
     LinearValueType * ToleranceValueIn,
     LinearDualValueType * ToleranceDualValueIn,
-    ProfileCharacte_1068_Type * ProfileCharacte_1068In,
+    ProfileCharacte_1056_Type * ProfileCharacte_1056In,
     XmlBoolean * OffsetZoneIn,
     XmlBoolean * VariableAngleIn,
     CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -18572,14 +18080,14 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
     OrientationPlaneType * OrientationPlaneIn,
     LinearValueType * ToleranceValueIn,
     LinearDualValueType * ToleranceDualValueIn,
-    ProfileCharacte_1068_Type * ProfileCharacte_1068In,
+    ProfileCharacte_1056_Type * ProfileCharacte_1056In,
     XmlBoolean * OffsetZoneIn,
     XmlBoolean * VariableAngleIn,
     CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -18770,7 +18278,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCoordinat_1060_Type * LinearCoordinat_1060In);
+    LinearCoordinateCharacteristicDefinitionTypeChoicePair * LinearCoordinateCharacteristicDefinitionTypePairIn);
   LinearCoordinateCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -18788,16 +18296,43 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    LinearCoordinat_1060_Type * LinearCoordinat_1060In);
+    LinearCoordinateCharacteristicDefinitionTypeChoicePair * LinearCoordinateCharacteristicDefinitionTypePairIn);
   ~LinearCoordinateCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
-
-  LinearCoordinat_1060_Type * getLinearCoordinat_1060();
-  void setLinearCoordinat_1060(LinearCoordinat_1060_Type * LinearCoordinat_1060In);
+  LinearCoordinateCharacteristicDefinitionTypeChoicePair * getLinearCoordinateCharacteristicDefinitionTypeChoicePair();
+  void setLinearCoordinateCharacteristicDefinitionTypeChoicePair(LinearCoordinateCharacteristicDefinitionTypeChoicePair * LinearCoordinateCharacteristicDefinitionTypePairIn);
 
 protected:
-  LinearCoordinat_1060_Type * LinearCoordinat_1060;
+  LinearCoordinateCharacteristicDefinitionTypeChoicePair * LinearCoordinateCharacteristicDefinitionTypePair;
+};
+
+/* ***************************************************************** */
+
+union LinearCoordinateCharacteristicDefinitionTypeVal
+{
+  LinearToleranceType * Tolerance;
+  NonToleranceEnumType * NonTolerance;
+};
+
+/* ***************************************************************** */
+
+class LinearCoordinateCharacteristicDefinitionTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    ToleranceE,
+    NonToleranceE };
+  LinearCoordinateCharacteristicDefinitionTypeChoicePair();
+  LinearCoordinateCharacteristicDefinitionTypeChoicePair(
+    whichOne LinearCoordinateCharacteristicDefinitionTypeTypeIn,
+    LinearCoordinateCharacteristicDefinitionTypeVal LinearCoordinateCharacteristicDefinitionTypeValueIn);
+  ~LinearCoordinateCharacteristicDefinitionTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne LinearCoordinateCharacteristicDefinitionTypeType;
+  LinearCoordinateCharacteristicDefinitionTypeVal LinearCoordinateCharacteristicDefinitionTypeValue;
 };
 
 /* ***************************************************************** */
@@ -18970,7 +18505,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -18992,7 +18527,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -19151,14 +18686,14 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
     OrientationPlaneType * OrientationPlaneIn,
     LinearValueType * ToleranceValueIn,
     LinearDualValueType * ToleranceDualValueIn,
-    ProfileCharacte_1068_Type * ProfileCharacte_1068In,
+    ProfileCharacte_1056_Type * ProfileCharacte_1056In,
     XmlBoolean * OffsetZoneIn,
     XmlBoolean * VariableAngleIn,
     CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -19181,14 +18716,14 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
     OrientationPlaneType * OrientationPlaneIn,
     LinearValueType * ToleranceValueIn,
     LinearDualValueType * ToleranceDualValueIn,
-    ProfileCharacte_1068_Type * ProfileCharacte_1068In,
+    ProfileCharacte_1056_Type * ProfileCharacte_1056In,
     XmlBoolean * OffsetZoneIn,
     XmlBoolean * VariableAngleIn,
     CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -19357,7 +18892,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -19379,7 +18914,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -19460,7 +18995,7 @@ public:
     MeasuredLinearValueType * ValueIn,
     MeasuredLinearValueType * MaxValueIn,
     MeasuredLinearValueType * MinValueIn,
-    SphericityChara_1070_Type * SphericityChara_1070In);
+    SphericityChara_1057_Type * SphericityChara_1057In);
   SphericityCharacteristicMeasurementType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -19478,16 +19013,16 @@ public:
     MeasuredLinearValueType * ValueIn,
     MeasuredLinearValueType * MaxValueIn,
     MeasuredLinearValueType * MinValueIn,
-    SphericityChara_1070_Type * SphericityChara_1070In);
+    SphericityChara_1057_Type * SphericityChara_1057In);
   ~SphericityCharacteristicMeasurementType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
-  SphericityChara_1070_Type * getSphericityChara_1070();
-  void setSphericityChara_1070(SphericityChara_1070_Type * SphericityChara_1070In);
+  SphericityChara_1057_Type * getSphericityChara_1057();
+  void setSphericityChara_1057(SphericityChara_1057_Type * SphericityChara_1057In);
 
 protected:
-  SphericityChara_1070_Type * SphericityChara_1070;
+  SphericityChara_1057_Type * SphericityChara_1057;
 };
 
 /* ***************************************************************** */
@@ -19546,12 +19081,12 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
     OrientationPlaneType * OrientationPlaneIn,
-    StraightnessCha_1071_Type * StraightnessCha_1071In,
+    StraightnessCha_1058_Type * StraightnessCha_1058In,
     MaterialModifierEnumType * MaterialConditionIn,
     QIFReferenceType * SizeCharacteristicDefinitionIdIn,
     StraightnessZoneShapeType * ZoneShapeIn,
@@ -19571,12 +19106,12 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
     OrientationPlaneType * OrientationPlaneIn,
-    StraightnessCha_1071_Type * StraightnessCha_1071In,
+    StraightnessCha_1058_Type * StraightnessCha_1058In,
     MaterialModifierEnumType * MaterialConditionIn,
     QIFReferenceType * SizeCharacteristicDefinitionIdIn,
     StraightnessZoneShapeType * ZoneShapeIn,
@@ -19585,8 +19120,8 @@ public:
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
-  StraightnessCha_1071_Type * getStraightnessCha_1071();
-  void setStraightnessCha_1071(StraightnessCha_1071_Type * StraightnessCha_1071In);
+  StraightnessCha_1058_Type * getStraightnessCha_1058();
+  void setStraightnessCha_1058(StraightnessCha_1058_Type * StraightnessCha_1058In);
   MaterialModifierEnumType * getMaterialCondition();
   void setMaterialCondition(MaterialModifierEnumType * MaterialConditionIn);
   QIFReferenceType * getSizeCharacteristicDefinitionId();
@@ -19597,7 +19132,7 @@ public:
   void setMaximumToleranceValue(LinearValueType * MaximumToleranceValueIn);
 
 protected:
-  StraightnessCha_1071_Type * StraightnessCha_1071;
+  StraightnessCha_1058_Type * StraightnessCha_1058;
   MaterialModifierEnumType * MaterialCondition;
   QIFReferenceType * SizeCharacteristicDefinitionId;
   StraightnessZoneShapeType * ZoneShape;
@@ -19773,7 +19308,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -19795,7 +19330,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -19956,7 +19491,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    AngularCharacte_1046_Type * AngularCharacte_1046In,
+    AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn,
     XmlString * WhatToMeasureIn);
   UserDefinedAngularCharacteristicDefinitionType(
     QIFIdType * idIn,
@@ -19975,7 +19510,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    AngularCharacte_1046_Type * AngularCharacte_1046In,
+    AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn,
     XmlString * WhatToMeasureIn);
   ~UserDefinedAngularCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
@@ -20128,7 +19663,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    AreaCharacteris_1048_Type * AreaCharacteris_1048In,
+    AreaCharacteristicDefinitionBaseTypeChoicePair * AreaCharacteristicDefinitionBaseTypePairIn,
     XmlString * WhatToMeasureIn);
   UserDefinedAreaCharacteristicDefinitionType(
     QIFIdType * idIn,
@@ -20145,7 +19680,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    AreaCharacteris_1048_Type * AreaCharacteris_1048In,
+    AreaCharacteristicDefinitionBaseTypeChoicePair * AreaCharacteristicDefinitionBaseTypePairIn,
     XmlString * WhatToMeasureIn);
   ~UserDefinedAreaCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
@@ -20375,7 +19910,7 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
-    WeldGrooveChara_1079_Type * WeldGrooveChara_1079In);
+    WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn);
   WeldBevelCharacteristicMeasurementType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -20390,7 +19925,7 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
-    WeldGrooveChara_1079_Type * WeldGrooveChara_1079In);
+    WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn);
   ~WeldBevelCharacteristicMeasurementType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -20419,7 +19954,7 @@ public:
     XmlToken * SpecificationIn,
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
-    WeldGrooveChara_1080_Type * WeldGrooveChara_1080In);
+    WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn);
   WeldBevelCharacteristicNominalType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -20437,7 +19972,7 @@ public:
     XmlToken * SpecificationIn,
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
-    WeldGrooveChara_1080_Type * WeldGrooveChara_1080In);
+    WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn);
   ~WeldBevelCharacteristicNominalType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -20477,15 +20012,42 @@ public:
   WeldFilletOneSideType();
   WeldFilletOneSideType(
     WeldFinishingType * FinishingIn,
-    WeldFilletOneSi_1078_Type * WeldFilletOneSi_1078In);
+    WeldFilletOneSideTypeChoicePair * WeldFilletOneSideTypePairIn);
   ~WeldFilletOneSideType();
   void printSelf(FILE * outFile);
-
-  WeldFilletOneSi_1078_Type * getWeldFilletOneSi_1078();
-  void setWeldFilletOneSi_1078(WeldFilletOneSi_1078_Type * WeldFilletOneSi_1078In);
+  WeldFilletOneSideTypeChoicePair * getWeldFilletOneSideTypeChoicePair();
+  void setWeldFilletOneSideTypeChoicePair(WeldFilletOneSideTypeChoicePair * WeldFilletOneSideTypePairIn);
 
 protected:
-  WeldFilletOneSi_1078_Type * WeldFilletOneSi_1078;
+  WeldFilletOneSideTypeChoicePair * WeldFilletOneSideTypePair;
+};
+
+/* ***************************************************************** */
+
+union WeldFilletOneSideTypeVal
+{
+  WeldFilletEqualLegLengthType * EqualLegLength;
+  WeldFilletUnequalLegLengthType * UnEqualLegLength;
+};
+
+/* ***************************************************************** */
+
+class WeldFilletOneSideTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    EqualLegLengthE,
+    UnEqualLegLengthE };
+  WeldFilletOneSideTypeChoicePair();
+  WeldFilletOneSideTypeChoicePair(
+    whichOne WeldFilletOneSideTypeTypeIn,
+    WeldFilletOneSideTypeVal WeldFilletOneSideTypeValueIn);
+  ~WeldFilletOneSideTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne WeldFilletOneSideTypeType;
+  WeldFilletOneSideTypeVal WeldFilletOneSideTypeValue;
 };
 
 /* ***************************************************************** */
@@ -20508,7 +20070,7 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
-    WeldGrooveChara_1079_Type * WeldGrooveChara_1079In);
+    WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn);
   WeldFlareBevelCharacteristicMeasurementType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -20523,7 +20085,7 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
-    WeldGrooveChara_1079_Type * WeldGrooveChara_1079In);
+    WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn);
   ~WeldFlareBevelCharacteristicMeasurementType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -20552,7 +20114,7 @@ public:
     XmlToken * SpecificationIn,
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
-    WeldGrooveChara_1080_Type * WeldGrooveChara_1080In);
+    WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn);
   WeldFlareBevelCharacteristicNominalType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -20570,7 +20132,7 @@ public:
     XmlToken * SpecificationIn,
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
-    WeldGrooveChara_1080_Type * WeldGrooveChara_1080In);
+    WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn);
   ~WeldFlareBevelCharacteristicNominalType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -20596,7 +20158,7 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
-    WeldGrooveChara_1079_Type * WeldGrooveChara_1079In);
+    WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn);
   WeldFlareVCharacteristicMeasurementType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -20611,7 +20173,7 @@ public:
     QIFReferenceType * ManufacturingProcessIdIn,
     ArrayReferenceType * NotedEventIdsIn,
     XmlToken * NonConformanceDesignatorIn,
-    WeldGrooveChara_1079_Type * WeldGrooveChara_1079In);
+    WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn);
   ~WeldFlareVCharacteristicMeasurementType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -20640,7 +20202,7 @@ public:
     XmlToken * SpecificationIn,
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
-    WeldGrooveChara_1080_Type * WeldGrooveChara_1080In);
+    WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn);
   WeldFlareVCharacteristicNominalType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -20658,7 +20220,7 @@ public:
     XmlToken * SpecificationIn,
     WeldingProcessType * WeldingProcessIn,
     ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
-    WeldGrooveChara_1080_Type * WeldGrooveChara_1080In);
+    WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn);
   ~WeldFlareVCharacteristicNominalType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -20724,7 +20286,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    AngularCharacte_1046_Type * AngularCharacte_1046In);
+    AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn);
   AngleBetweenCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -20742,7 +20304,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    AngularCharacte_1046_Type * AngularCharacte_1046In);
+    AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn);
   ~AngleBetweenCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -20936,7 +20498,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    AngularCharacte_1046_Type * AngularCharacte_1046In);
+    AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn);
   AngleCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -20954,7 +20516,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    AngularCharacte_1046_Type * AngularCharacte_1046In);
+    AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn);
   ~AngleCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -21102,7 +20664,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    AngularCharacte_1046_Type * AngularCharacte_1046In);
+    AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn);
   AngleFromCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -21120,7 +20682,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    AngularCharacte_1046_Type * AngularCharacte_1046In);
+    AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn);
   ~AngleFromCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -21314,7 +20876,7 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    AngularCoordina_1047_Type * AngularCoordina_1047In);
+    AngularCoordinateCharacteristicDefinitionTypeChoicePair * AngularCoordinateCharacteristicDefinitionTypePairIn);
   AngularCoordinateCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -21332,16 +20894,43 @@ public:
     XmlBoolean * SeparateZoneIn,
     DimensionModifierEnumType * DimensionTypeIn,
     DimensionModifiersType * DimensionModifiersIn,
-    AngularCoordina_1047_Type * AngularCoordina_1047In);
+    AngularCoordinateCharacteristicDefinitionTypeChoicePair * AngularCoordinateCharacteristicDefinitionTypePairIn);
   ~AngularCoordinateCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
-
-  AngularCoordina_1047_Type * getAngularCoordina_1047();
-  void setAngularCoordina_1047(AngularCoordina_1047_Type * AngularCoordina_1047In);
+  AngularCoordinateCharacteristicDefinitionTypeChoicePair * getAngularCoordinateCharacteristicDefinitionTypeChoicePair();
+  void setAngularCoordinateCharacteristicDefinitionTypeChoicePair(AngularCoordinateCharacteristicDefinitionTypeChoicePair * AngularCoordinateCharacteristicDefinitionTypePairIn);
 
 protected:
-  AngularCoordina_1047_Type * AngularCoordina_1047;
+  AngularCoordinateCharacteristicDefinitionTypeChoicePair * AngularCoordinateCharacteristicDefinitionTypePair;
+};
+
+/* ***************************************************************** */
+
+union AngularCoordinateCharacteristicDefinitionTypeVal
+{
+  AngularToleranceType * Tolerance;
+  NonToleranceEnumType * NonTolerance;
+};
+
+/* ***************************************************************** */
+
+class AngularCoordinateCharacteristicDefinitionTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    ToleranceE,
+    NonToleranceE };
+  AngularCoordinateCharacteristicDefinitionTypeChoicePair();
+  AngularCoordinateCharacteristicDefinitionTypeChoicePair(
+    whichOne AngularCoordinateCharacteristicDefinitionTypeTypeIn,
+    AngularCoordinateCharacteristicDefinitionTypeVal AngularCoordinateCharacteristicDefinitionTypeValueIn);
+  ~AngularCoordinateCharacteristicDefinitionTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne AngularCoordinateCharacteristicDefinitionTypeType;
+  AngularCoordinateCharacteristicDefinitionTypeVal AngularCoordinateCharacteristicDefinitionTypeValue;
 };
 
 /* ***************************************************************** */
@@ -21514,12 +21103,12 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
     OrientationPlaneType * OrientationPlaneIn,
-    CircularityChar_1049_Type * CircularityChar_1049In);
+    CircularityCharacteristicDefinitionTypeChoicePair * CircularityCharacteristicDefinitionTypePairIn);
   CircularityCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -21535,21 +21124,48 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
     OrientationPlaneType * OrientationPlaneIn,
-    CircularityChar_1049_Type * CircularityChar_1049In);
+    CircularityCharacteristicDefinitionTypeChoicePair * CircularityCharacteristicDefinitionTypePairIn);
   ~CircularityCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
-
-  CircularityChar_1049_Type * getCircularityChar_1049();
-  void setCircularityChar_1049(CircularityChar_1049_Type * CircularityChar_1049In);
+  CircularityCharacteristicDefinitionTypeChoicePair * getCircularityCharacteristicDefinitionTypeChoicePair();
+  void setCircularityCharacteristicDefinitionTypeChoicePair(CircularityCharacteristicDefinitionTypeChoicePair * CircularityCharacteristicDefinitionTypePairIn);
 
 protected:
-  CircularityChar_1049_Type * CircularityChar_1049;
+  CircularityCharacteristicDefinitionTypeChoicePair * CircularityCharacteristicDefinitionTypePair;
+};
+
+/* ***************************************************************** */
+
+union CircularityCharacteristicDefinitionTypeVal
+{
+  CircularityChar_1041_Type * CircularityChar_1041;
+  CircularityChar_1042_Type * CircularityChar_1042;
+};
+
+/* ***************************************************************** */
+
+class CircularityCharacteristicDefinitionTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    CircularityChar_1041E,
+    CircularityChar_1042E };
+  CircularityCharacteristicDefinitionTypeChoicePair();
+  CircularityCharacteristicDefinitionTypeChoicePair(
+    whichOne CircularityCharacteristicDefinitionTypeTypeIn,
+    CircularityCharacteristicDefinitionTypeVal CircularityCharacteristicDefinitionTypeValueIn);
+  ~CircularityCharacteristicDefinitionTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne CircularityCharacteristicDefinitionTypeType;
+  CircularityCharacteristicDefinitionTypeVal CircularityCharacteristicDefinitionTypeValue;
 };
 
 /* ***************************************************************** */
@@ -21613,7 +21229,7 @@ public:
     MeasuredLinearValueType * MaxValueIn,
     MeasuredLinearValueType * MinValueIn,
     MeasuredLinearValueType * MaxCircularityIn,
-    CircularityChar_1050_Type * CircularityChar_1050In);
+    CircularityChar_1043_Type * CircularityChar_1043In);
   CircularityCharacteristicMeasurementType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -21632,19 +21248,19 @@ public:
     MeasuredLinearValueType * MaxValueIn,
     MeasuredLinearValueType * MinValueIn,
     MeasuredLinearValueType * MaxCircularityIn,
-    CircularityChar_1050_Type * CircularityChar_1050In);
+    CircularityChar_1043_Type * CircularityChar_1043In);
   ~CircularityCharacteristicMeasurementType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
   MeasuredLinearValueType * getMaxCircularity();
   void setMaxCircularity(MeasuredLinearValueType * MaxCircularityIn);
-  CircularityChar_1050_Type * getCircularityChar_1050();
-  void setCircularityChar_1050(CircularityChar_1050_Type * CircularityChar_1050In);
+  CircularityChar_1043_Type * getCircularityChar_1043();
+  void setCircularityChar_1043(CircularityChar_1043_Type * CircularityChar_1043In);
 
 protected:
   MeasuredLinearValueType * MaxCircularity;
-  CircularityChar_1050_Type * CircularityChar_1050;
+  CircularityChar_1043_Type * CircularityChar_1043;
 };
 
 /* ***************************************************************** */
@@ -21711,7 +21327,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -21733,7 +21349,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -21892,12 +21508,12 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
     OrientationPlaneType * OrientationPlaneIn,
-    CylindricityCha_1053_Type * CylindricityCha_1053In);
+    CylindricityCharacteristicDefinitionTypeChoicePair * CylindricityCharacteristicDefinitionTypePairIn);
   CylindricityCharacteristicDefinitionType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -21913,21 +21529,48 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
     OrientationPlaneType * OrientationPlaneIn,
-    CylindricityCha_1053_Type * CylindricityCha_1053In);
+    CylindricityCharacteristicDefinitionTypeChoicePair * CylindricityCharacteristicDefinitionTypePairIn);
   ~CylindricityCharacteristicDefinitionType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
-
-  CylindricityCha_1053_Type * getCylindricityCha_1053();
-  void setCylindricityCha_1053(CylindricityCha_1053_Type * CylindricityCha_1053In);
+  CylindricityCharacteristicDefinitionTypeChoicePair * getCylindricityCharacteristicDefinitionTypeChoicePair();
+  void setCylindricityCharacteristicDefinitionTypeChoicePair(CylindricityCharacteristicDefinitionTypeChoicePair * CylindricityCharacteristicDefinitionTypePairIn);
 
 protected:
-  CylindricityCha_1053_Type * CylindricityCha_1053;
+  CylindricityCharacteristicDefinitionTypeChoicePair * CylindricityCharacteristicDefinitionTypePair;
+};
+
+/* ***************************************************************** */
+
+union CylindricityCharacteristicDefinitionTypeVal
+{
+  CylindricityCha_1046_Type * CylindricityCha_1046;
+  CylindricityCha_1047_Type * CylindricityCha_1047;
+};
+
+/* ***************************************************************** */
+
+class CylindricityCharacteristicDefinitionTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    CylindricityCha_1046E,
+    CylindricityCha_1047E };
+  CylindricityCharacteristicDefinitionTypeChoicePair();
+  CylindricityCharacteristicDefinitionTypeChoicePair(
+    whichOne CylindricityCharacteristicDefinitionTypeTypeIn,
+    CylindricityCharacteristicDefinitionTypeVal CylindricityCharacteristicDefinitionTypeValueIn);
+  ~CylindricityCharacteristicDefinitionTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne CylindricityCharacteristicDefinitionTypeType;
+  CylindricityCharacteristicDefinitionTypeVal CylindricityCharacteristicDefinitionTypeValue;
 };
 
 /* ***************************************************************** */
@@ -21991,7 +21634,7 @@ public:
     MeasuredLinearValueType * MaxValueIn,
     MeasuredLinearValueType * MinValueIn,
     MeasuredLinearValueType * MaxCylindricityIn,
-    CylindricityCha_1054_Type * CylindricityCha_1054In);
+    CylindricityCha_1048_Type * CylindricityCha_1048In);
   CylindricityCharacteristicMeasurementType(
     QIFIdType * idIn,
     AttributesType * AttributesIn,
@@ -22010,19 +21653,19 @@ public:
     MeasuredLinearValueType * MaxValueIn,
     MeasuredLinearValueType * MinValueIn,
     MeasuredLinearValueType * MaxCylindricityIn,
-    CylindricityCha_1054_Type * CylindricityCha_1054In);
+    CylindricityCha_1048_Type * CylindricityCha_1048In);
   ~CylindricityCharacteristicMeasurementType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
   MeasuredLinearValueType * getMaxCylindricity();
   void setMaxCylindricity(MeasuredLinearValueType * MaxCylindricityIn);
-  CylindricityCha_1054_Type * getCylindricityCha_1054();
-  void setCylindricityCha_1054(CylindricityCha_1054_Type * CylindricityCha_1054In);
+  CylindricityCha_1048_Type * getCylindricityCha_1048();
+  void setCylindricityCha_1048(CylindricityCha_1048_Type * CylindricityCha_1048In);
 
 protected:
   MeasuredLinearValueType * MaxCylindricity;
-  CylindricityCha_1054_Type * CylindricityCha_1054;
+  CylindricityCha_1048_Type * CylindricityCha_1048;
 };
 
 /* ***************************************************************** */
@@ -22081,7 +21724,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -22103,7 +21746,7 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
@@ -22262,12 +21905,12 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
     OrientationPlaneType * OrientationPlaneIn,
-    FlatnessCharact_1056_Type * FlatnessCharact_1056In,
+    FlatnessCharact_1049_Type * FlatnessCharact_1049In,
     MaterialModifierEnumType * MaterialConditionIn,
     QIFReferenceType * SizeCharacteristicDefinitionIdIn,
     LinearValueType * MaximumToleranceValueIn,
@@ -22287,12 +21930,12 @@ public:
     XmlBoolean * IndependencyIn,
     XmlBoolean * UnitedOrContinuousFeatureIn,
     XmlBoolean * SeparateZoneIn,
-    GeometricCharac_1058_Type * GeometricCharac_1058In,
+    GeometricCharac_1050_Type * GeometricCharac_1050In,
     DirectionFeatureType * DirectionFeatureIn,
     CollectionPlaneType * CollectionPlaneIn,
     IntersectionPlaneType * IntersectionPlaneIn,
     OrientationPlaneType * OrientationPlaneIn,
-    FlatnessCharact_1056_Type * FlatnessCharact_1056In,
+    FlatnessCharact_1049_Type * FlatnessCharact_1049In,
     MaterialModifierEnumType * MaterialConditionIn,
     QIFReferenceType * SizeCharacteristicDefinitionIdIn,
     LinearValueType * MaximumToleranceValueIn,
@@ -22301,8 +21944,8 @@ public:
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
-  FlatnessCharact_1056_Type * getFlatnessCharact_1056();
-  void setFlatnessCharact_1056(FlatnessCharact_1056_Type * FlatnessCharact_1056In);
+  FlatnessCharact_1049_Type * getFlatnessCharact_1049();
+  void setFlatnessCharact_1049(FlatnessCharact_1049_Type * FlatnessCharact_1049In);
   MaterialModifierEnumType * getMaterialCondition();
   void setMaterialCondition(MaterialModifierEnumType * MaterialConditionIn);
   QIFReferenceType * getSizeCharacteristicDefinitionId();
@@ -22313,7 +21956,7 @@ public:
   void setNotConvex(XmlBoolean * NotConvexIn);
 
 protected:
-  FlatnessCharact_1056_Type * FlatnessCharact_1056;
+  FlatnessCharact_1049_Type * FlatnessCharact_1049;
   MaterialModifierEnumType * MaterialCondition;
   QIFReferenceType * SizeCharacteristicDefinitionId;
   LinearValueType * MaximumToleranceValue;

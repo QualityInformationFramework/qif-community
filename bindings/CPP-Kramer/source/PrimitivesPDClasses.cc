@@ -4,7 +4,6 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
-#include <boost/regex.hpp>
 #include <xmlSchemaInstance.hh>
 #include "PrimitivesPDClasses.hh"
 
@@ -422,7 +421,7 @@ bool DrawableBaseType::badAttributes(
       if (decl->name == "color")
         {
           ColorType * colorVal;
-          if (color)
+          if (this->color)
             {
               fprintf(stderr, "two values for color in DrawableBaseType\n");
               returnValue = true;
@@ -438,12 +437,12 @@ bool DrawableBaseType::badAttributes(
               break;
             }
           else
-            color = colorVal;
+            this->color = colorVal;
         }
       else if (decl->name == "hidden")
         {
           XmlBoolean * hiddenVal;
-          if (hidden)
+          if (this->hidden)
             {
               fprintf(stderr, "two values for hidden in DrawableBaseType\n");
               returnValue = true;
@@ -459,12 +458,12 @@ bool DrawableBaseType::badAttributes(
               break;
             }
           else
-            hidden = hiddenVal;
+            this->hidden = hiddenVal;
         }
       else if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DrawableBaseType\n");
               returnValue = true;
@@ -480,12 +479,12 @@ bool DrawableBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in DrawableBaseType\n");
               returnValue = true;
@@ -501,12 +500,12 @@ bool DrawableBaseType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else if (decl->name == "size")
         {
           DoublePositiveType * sizeVal;
-          if (size)
+          if (this->size)
             {
               fprintf(stderr, "two values for size in DrawableBaseType\n");
               returnValue = true;
@@ -522,12 +521,12 @@ bool DrawableBaseType::badAttributes(
               break;
             }
           else
-            size = sizeVal;
+            this->size = sizeVal;
         }
       else if (decl->name == "transparency")
         {
           TransparencyType * transparencyVal;
-          if (transparency)
+          if (this->transparency)
             {
               fprintf(stderr, "two values for transparency in DrawableBaseType\n");
               returnValue = true;
@@ -543,7 +542,7 @@ bool DrawableBaseType::badAttributes(
               break;
             }
           else
-            transparency = transparencyVal;
+            this->transparency = transparencyVal;
         }
       else
         {
@@ -552,7 +551,7 @@ bool DrawableBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DrawableBaseType\n");
       returnValue = true;
@@ -564,18 +563,18 @@ bool DrawableBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete color;
-      color = 0;
-      delete hidden;
-      hidden = 0;
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
-      delete size;
-      size = 0;
-      delete transparency;
-      transparency = 0;
+      delete this->color;
+      this->color = 0;
+      delete this->hidden;
+      this->hidden = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
+      delete this->size;
+      this->size = 0;
+      delete this->transparency;
+      this->transparency = 0;
     }
   return returnValue;
 }
@@ -685,7 +684,7 @@ bool EdgeOrientedType::badAttributes(
       if (decl->name == "turned")
         {
           XmlBoolean * turnedVal;
-          if (turned)
+          if (this->turned)
             {
               fprintf(stderr, "two values for turned in EdgeOrientedType\n");
               returnValue = true;
@@ -701,7 +700,7 @@ bool EdgeOrientedType::badAttributes(
               break;
             }
           else
-            turned = turnedVal;
+            this->turned = turnedVal;
         }
       else
         {
@@ -717,8 +716,8 @@ bool EdgeOrientedType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete turned;
-      turned = 0;
+      delete this->turned;
+      this->turned = 0;
     }
   return returnValue;
 }
@@ -754,7 +753,15 @@ EdgeOrientedTypeLisd::~EdgeOrientedTypeLisd()
   #endif
 }
 
-void EdgeOrientedTypeLisd::printSelf(FILE * outFile){}
+void EdgeOrientedTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<EdgeOrientedType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -943,7 +950,7 @@ bool LineStyleType::badAttributes(
       if (decl->name == "thickness")
         {
           XmlPositiveInteger * thicknessVal;
-          if (thickness)
+          if (this->thickness)
             {
               fprintf(stderr, "two values for thickness in LineStyleType\n");
               returnValue = true;
@@ -959,7 +966,7 @@ bool LineStyleType::badAttributes(
               break;
             }
           else
-            thickness = thicknessVal;
+            this->thickness = thicknessVal;
         }
       else
         {
@@ -975,8 +982,8 @@ bool LineStyleType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete thickness;
-      thickness = 0;
+      delete this->thickness;
+      this->thickness = 0;
     }
   return returnValue;
 }
@@ -1048,7 +1055,7 @@ bool NodeBaseType::badAttributes(
       if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in NodeBaseType\n");
               returnValue = true;
@@ -1064,7 +1071,7 @@ bool NodeBaseType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else
         {
@@ -1080,8 +1087,8 @@ bool NodeBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete label;
-      label = 0;
+      delete this->label;
+      this->label = 0;
     }
   return returnValue;
 }
@@ -1203,7 +1210,7 @@ bool NodeWithIdBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in NodeWithIdBaseType\n");
               returnValue = true;
@@ -1219,12 +1226,12 @@ bool NodeWithIdBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else if (decl->name == "label")
         {
           XmlString * labelVal;
-          if (label)
+          if (this->label)
             {
               fprintf(stderr, "two values for label in NodeWithIdBaseType\n");
               returnValue = true;
@@ -1240,7 +1247,7 @@ bool NodeWithIdBaseType::badAttributes(
               break;
             }
           else
-            label = labelVal;
+            this->label = labelVal;
         }
       else
         {
@@ -1249,7 +1256,7 @@ bool NodeWithIdBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in NodeWithIdBaseType\n");
       returnValue = true;
@@ -1261,10 +1268,10 @@ bool NodeWithIdBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
-      delete label;
-      label = 0;
+      delete this->id;
+      this->id = 0;
+      delete this->label;
+      this->label = 0;
     }
   return returnValue;
 }

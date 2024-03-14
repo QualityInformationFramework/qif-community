@@ -4,7 +4,6 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
-#include <boost/regex.hpp>
 #include <xmlSchemaInstance.hh>
 #include "UnitsClasses.hh"
 
@@ -112,7 +111,15 @@ AngularUnitTypeLisd::~AngularUnitTypeLisd()
   #endif
 }
 
-void AngularUnitTypeLisd::printSelf(FILE * outFile){}
+void AngularUnitTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<AngularUnitType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -231,7 +238,7 @@ bool AngularValueType::badAttributes(
       if (decl->name == "angularUnit")
         {
           XmlToken * angularUnitVal;
-          if (angularUnit)
+          if (this->angularUnit)
             {
               fprintf(stderr, "two values for angularUnit in AngularValueType\n");
               returnValue = true;
@@ -247,12 +254,12 @@ bool AngularValueType::badAttributes(
               break;
             }
           else
-            angularUnit = angularUnitVal;
+            this->angularUnit = angularUnitVal;
         }
       else if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in AngularValueType\n");
               returnValue = true;
@@ -268,12 +275,12 @@ bool AngularValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in AngularValueType\n");
               returnValue = true;
@@ -289,7 +296,7 @@ bool AngularValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else
         {
@@ -305,12 +312,12 @@ bool AngularValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete angularUnit;
-      angularUnit = 0;
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete significantFigures;
-      significantFigures = 0;
+      delete this->angularUnit;
+      this->angularUnit = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
     }
   return returnValue;
 }
@@ -422,7 +429,15 @@ AreaUnitTypeLisd::~AreaUnitTypeLisd()
   #endif
 }
 
-void AreaUnitTypeLisd::printSelf(FILE * outFile){}
+void AreaUnitTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<AreaUnitType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -541,7 +556,7 @@ bool AreaValueType::badAttributes(
       if (decl->name == "areaUnit")
         {
           XmlToken * areaUnitVal;
-          if (areaUnit)
+          if (this->areaUnit)
             {
               fprintf(stderr, "two values for areaUnit in AreaValueType\n");
               returnValue = true;
@@ -557,12 +572,12 @@ bool AreaValueType::badAttributes(
               break;
             }
           else
-            areaUnit = areaUnitVal;
+            this->areaUnit = areaUnitVal;
         }
       else if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in AreaValueType\n");
               returnValue = true;
@@ -578,12 +593,12 @@ bool AreaValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in AreaValueType\n");
               returnValue = true;
@@ -599,7 +614,7 @@ bool AreaValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else
         {
@@ -615,12 +630,12 @@ bool AreaValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete areaUnit;
-      areaUnit = 0;
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete significantFigures;
-      significantFigures = 0;
+      delete this->areaUnit;
+      this->areaUnit = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
     }
   return returnValue;
 }
@@ -810,7 +825,15 @@ ForceUnitTypeLisd::~ForceUnitTypeLisd()
   #endif
 }
 
-void ForceUnitTypeLisd::printSelf(FILE * outFile){}
+void ForceUnitTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<ForceUnitType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -929,7 +952,7 @@ bool ForceValueType::badAttributes(
       if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in ForceValueType\n");
               returnValue = true;
@@ -945,12 +968,12 @@ bool ForceValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "forceUnit")
         {
           XmlToken * forceUnitVal;
-          if (forceUnit)
+          if (this->forceUnit)
             {
               fprintf(stderr, "two values for forceUnit in ForceValueType\n");
               returnValue = true;
@@ -966,12 +989,12 @@ bool ForceValueType::badAttributes(
               break;
             }
           else
-            forceUnit = forceUnitVal;
+            this->forceUnit = forceUnitVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in ForceValueType\n");
               returnValue = true;
@@ -987,7 +1010,7 @@ bool ForceValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else
         {
@@ -1003,12 +1026,12 @@ bool ForceValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete forceUnit;
-      forceUnit = 0;
-      delete significantFigures;
-      significantFigures = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->forceUnit;
+      this->forceUnit = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
     }
   return returnValue;
 }
@@ -1141,7 +1164,7 @@ bool LinearDualValueType::badAttributes(
       if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in LinearDualValueType\n");
               returnValue = true;
@@ -1157,12 +1180,12 @@ bool LinearDualValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "linearUnit")
         {
           XmlToken * linearUnitVal;
-          if (linearUnit)
+          if (this->linearUnit)
             {
               fprintf(stderr, "two values for linearUnit in LinearDualValueType\n");
               returnValue = true;
@@ -1178,12 +1201,12 @@ bool LinearDualValueType::badAttributes(
               break;
             }
           else
-            linearUnit = linearUnitVal;
+            this->linearUnit = linearUnitVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in LinearDualValueType\n");
               returnValue = true;
@@ -1199,7 +1222,7 @@ bool LinearDualValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else
         {
@@ -1208,7 +1231,7 @@ bool LinearDualValueType::badAttributes(
           break;
         }
     }
-  if (linearUnit == 0)
+  if (this->linearUnit == 0)
     {
       fprintf(stderr, "required attribute \"linearUnit\" missing in LinearDualValueType\n");
       returnValue = true;
@@ -1220,12 +1243,12 @@ bool LinearDualValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete linearUnit;
-      linearUnit = 0;
-      delete significantFigures;
-      significantFigures = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->linearUnit;
+      this->linearUnit = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
     }
   return returnValue;
 }
@@ -1337,7 +1360,15 @@ LinearUnitTypeLisd::~LinearUnitTypeLisd()
   #endif
 }
 
-void LinearUnitTypeLisd::printSelf(FILE * outFile){}
+void LinearUnitTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<LinearUnitType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -1456,7 +1487,7 @@ bool LinearValueType::badAttributes(
       if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in LinearValueType\n");
               returnValue = true;
@@ -1472,12 +1503,12 @@ bool LinearValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "linearUnit")
         {
           XmlToken * linearUnitVal;
-          if (linearUnit)
+          if (this->linearUnit)
             {
               fprintf(stderr, "two values for linearUnit in LinearValueType\n");
               returnValue = true;
@@ -1493,12 +1524,12 @@ bool LinearValueType::badAttributes(
               break;
             }
           else
-            linearUnit = linearUnitVal;
+            this->linearUnit = linearUnitVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in LinearValueType\n");
               returnValue = true;
@@ -1514,7 +1545,7 @@ bool LinearValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else
         {
@@ -1530,12 +1561,12 @@ bool LinearValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete linearUnit;
-      linearUnit = 0;
-      delete significantFigures;
-      significantFigures = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->linearUnit;
+      this->linearUnit = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
     }
   return returnValue;
 }
@@ -1571,7 +1602,15 @@ LinearValueTypeLisd::~LinearValueTypeLisd()
   #endif
 }
 
-void LinearValueTypeLisd::printSelf(FILE * outFile){}
+void LinearValueTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<LinearValueType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -1674,7 +1713,15 @@ MassUnitTypeLisd::~MassUnitTypeLisd()
   #endif
 }
 
-void MassUnitTypeLisd::printSelf(FILE * outFile){}
+void MassUnitTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<MassUnitType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -1793,7 +1840,7 @@ bool MassValueType::badAttributes(
       if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in MassValueType\n");
               returnValue = true;
@@ -1809,12 +1856,12 @@ bool MassValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "massUnit")
         {
           XmlToken * massUnitVal;
-          if (massUnit)
+          if (this->massUnit)
             {
               fprintf(stderr, "two values for massUnit in MassValueType\n");
               returnValue = true;
@@ -1830,12 +1877,12 @@ bool MassValueType::badAttributes(
               break;
             }
           else
-            massUnit = massUnitVal;
+            this->massUnit = massUnitVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in MassValueType\n");
               returnValue = true;
@@ -1851,7 +1898,7 @@ bool MassValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else
         {
@@ -1867,12 +1914,12 @@ bool MassValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete massUnit;
-      massUnit = 0;
-      delete significantFigures;
-      significantFigures = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->massUnit;
+      this->massUnit = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
     }
   return returnValue;
 }
@@ -2038,7 +2085,7 @@ bool MeasuredAngularValueType::badAttributes(
       if (decl->name == "angularUnit")
         {
           XmlToken * angularUnitVal;
-          if (angularUnit)
+          if (this->angularUnit)
             {
               fprintf(stderr, "two values for angularUnit in MeasuredAngularValueType\n");
               returnValue = true;
@@ -2054,12 +2101,12 @@ bool MeasuredAngularValueType::badAttributes(
               break;
             }
           else
-            angularUnit = angularUnitVal;
+            this->angularUnit = angularUnitVal;
         }
       else if (decl->name == "combinedUncertainty")
         {
           NonNegativeDecimalType * combinedUncertaintyVal;
-          if (combinedUncertainty)
+          if (this->combinedUncertainty)
             {
               fprintf(stderr, "two values for combinedUncertainty in MeasuredAngularValueType\n");
               returnValue = true;
@@ -2075,12 +2122,12 @@ bool MeasuredAngularValueType::badAttributes(
               break;
             }
           else
-            combinedUncertainty = combinedUncertaintyVal;
+            this->combinedUncertainty = combinedUncertaintyVal;
         }
       else if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in MeasuredAngularValueType\n");
               returnValue = true;
@@ -2096,12 +2143,12 @@ bool MeasuredAngularValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "meanError")
         {
           NonNegativeDecimalType * meanErrorVal;
-          if (meanError)
+          if (this->meanError)
             {
               fprintf(stderr, "two values for meanError in MeasuredAngularValueType\n");
               returnValue = true;
@@ -2117,12 +2164,12 @@ bool MeasuredAngularValueType::badAttributes(
               break;
             }
           else
-            meanError = meanErrorVal;
+            this->meanError = meanErrorVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in MeasuredAngularValueType\n");
               returnValue = true;
@@ -2138,7 +2185,7 @@ bool MeasuredAngularValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else
         {
@@ -2154,16 +2201,16 @@ bool MeasuredAngularValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete angularUnit;
-      angularUnit = 0;
-      delete combinedUncertainty;
-      combinedUncertainty = 0;
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete meanError;
-      meanError = 0;
-      delete significantFigures;
-      significantFigures = 0;
+      delete this->angularUnit;
+      this->angularUnit = 0;
+      delete this->combinedUncertainty;
+      this->combinedUncertainty = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->meanError;
+      this->meanError = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
     }
   return returnValue;
 }
@@ -2329,7 +2376,7 @@ bool MeasuredAreaValueType::badAttributes(
       if (decl->name == "areaUnit")
         {
           XmlToken * areaUnitVal;
-          if (areaUnit)
+          if (this->areaUnit)
             {
               fprintf(stderr, "two values for areaUnit in MeasuredAreaValueType\n");
               returnValue = true;
@@ -2345,12 +2392,12 @@ bool MeasuredAreaValueType::badAttributes(
               break;
             }
           else
-            areaUnit = areaUnitVal;
+            this->areaUnit = areaUnitVal;
         }
       else if (decl->name == "combinedUncertainty")
         {
           NonNegativeDecimalType * combinedUncertaintyVal;
-          if (combinedUncertainty)
+          if (this->combinedUncertainty)
             {
               fprintf(stderr, "two values for combinedUncertainty in MeasuredAreaValueType\n");
               returnValue = true;
@@ -2366,12 +2413,12 @@ bool MeasuredAreaValueType::badAttributes(
               break;
             }
           else
-            combinedUncertainty = combinedUncertaintyVal;
+            this->combinedUncertainty = combinedUncertaintyVal;
         }
       else if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in MeasuredAreaValueType\n");
               returnValue = true;
@@ -2387,12 +2434,12 @@ bool MeasuredAreaValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "meanError")
         {
           NonNegativeDecimalType * meanErrorVal;
-          if (meanError)
+          if (this->meanError)
             {
               fprintf(stderr, "two values for meanError in MeasuredAreaValueType\n");
               returnValue = true;
@@ -2408,12 +2455,12 @@ bool MeasuredAreaValueType::badAttributes(
               break;
             }
           else
-            meanError = meanErrorVal;
+            this->meanError = meanErrorVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in MeasuredAreaValueType\n");
               returnValue = true;
@@ -2429,7 +2476,7 @@ bool MeasuredAreaValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else
         {
@@ -2445,16 +2492,16 @@ bool MeasuredAreaValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete areaUnit;
-      areaUnit = 0;
-      delete combinedUncertainty;
-      combinedUncertainty = 0;
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete meanError;
-      meanError = 0;
-      delete significantFigures;
-      significantFigures = 0;
+      delete this->areaUnit;
+      this->areaUnit = 0;
+      delete this->combinedUncertainty;
+      this->combinedUncertainty = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->meanError;
+      this->meanError = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
     }
   return returnValue;
 }
@@ -2604,7 +2651,7 @@ bool MeasuredDecimalType::badAttributes(
       if (decl->name == "combinedUncertainty")
         {
           NonNegativeDecimalType * combinedUncertaintyVal;
-          if (combinedUncertainty)
+          if (this->combinedUncertainty)
             {
               fprintf(stderr, "two values for combinedUncertainty in MeasuredDecimalType\n");
               returnValue = true;
@@ -2620,12 +2667,12 @@ bool MeasuredDecimalType::badAttributes(
               break;
             }
           else
-            combinedUncertainty = combinedUncertaintyVal;
+            this->combinedUncertainty = combinedUncertaintyVal;
         }
       else if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in MeasuredDecimalType\n");
               returnValue = true;
@@ -2641,12 +2688,12 @@ bool MeasuredDecimalType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "meanError")
         {
           NonNegativeDecimalType * meanErrorVal;
-          if (meanError)
+          if (this->meanError)
             {
               fprintf(stderr, "two values for meanError in MeasuredDecimalType\n");
               returnValue = true;
@@ -2662,12 +2709,12 @@ bool MeasuredDecimalType::badAttributes(
               break;
             }
           else
-            meanError = meanErrorVal;
+            this->meanError = meanErrorVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in MeasuredDecimalType\n");
               returnValue = true;
@@ -2683,7 +2730,7 @@ bool MeasuredDecimalType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else
         {
@@ -2699,14 +2746,14 @@ bool MeasuredDecimalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete combinedUncertainty;
-      combinedUncertainty = 0;
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete meanError;
-      meanError = 0;
-      delete significantFigures;
-      significantFigures = 0;
+      delete this->combinedUncertainty;
+      this->combinedUncertainty = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->meanError;
+      this->meanError = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
     }
   return returnValue;
 }
@@ -2878,7 +2925,7 @@ bool MeasuredForceValueType::badAttributes(
       if (decl->name == "combinedUncertainty")
         {
           NonNegativeDecimalType * combinedUncertaintyVal;
-          if (combinedUncertainty)
+          if (this->combinedUncertainty)
             {
               fprintf(stderr, "two values for combinedUncertainty in MeasuredForceValueType\n");
               returnValue = true;
@@ -2894,12 +2941,12 @@ bool MeasuredForceValueType::badAttributes(
               break;
             }
           else
-            combinedUncertainty = combinedUncertaintyVal;
+            this->combinedUncertainty = combinedUncertaintyVal;
         }
       else if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in MeasuredForceValueType\n");
               returnValue = true;
@@ -2915,12 +2962,12 @@ bool MeasuredForceValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "forceUnit")
         {
           XmlToken * forceUnitVal;
-          if (forceUnit)
+          if (this->forceUnit)
             {
               fprintf(stderr, "two values for forceUnit in MeasuredForceValueType\n");
               returnValue = true;
@@ -2936,12 +2983,12 @@ bool MeasuredForceValueType::badAttributes(
               break;
             }
           else
-            forceUnit = forceUnitVal;
+            this->forceUnit = forceUnitVal;
         }
       else if (decl->name == "meanError")
         {
           NonNegativeDecimalType * meanErrorVal;
-          if (meanError)
+          if (this->meanError)
             {
               fprintf(stderr, "two values for meanError in MeasuredForceValueType\n");
               returnValue = true;
@@ -2957,12 +3004,12 @@ bool MeasuredForceValueType::badAttributes(
               break;
             }
           else
-            meanError = meanErrorVal;
+            this->meanError = meanErrorVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in MeasuredForceValueType\n");
               returnValue = true;
@@ -2978,7 +3025,7 @@ bool MeasuredForceValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else
         {
@@ -2994,16 +3041,16 @@ bool MeasuredForceValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete combinedUncertainty;
-      combinedUncertainty = 0;
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete forceUnit;
-      forceUnit = 0;
-      delete meanError;
-      meanError = 0;
-      delete significantFigures;
-      significantFigures = 0;
+      delete this->combinedUncertainty;
+      this->combinedUncertainty = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->forceUnit;
+      this->forceUnit = 0;
+      delete this->meanError;
+      this->meanError = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
     }
   return returnValue;
 }
@@ -3169,7 +3216,7 @@ bool MeasuredLinearValueType::badAttributes(
       if (decl->name == "combinedUncertainty")
         {
           NonNegativeDecimalType * combinedUncertaintyVal;
-          if (combinedUncertainty)
+          if (this->combinedUncertainty)
             {
               fprintf(stderr, "two values for combinedUncertainty in MeasuredLinearValueType\n");
               returnValue = true;
@@ -3185,12 +3232,12 @@ bool MeasuredLinearValueType::badAttributes(
               break;
             }
           else
-            combinedUncertainty = combinedUncertaintyVal;
+            this->combinedUncertainty = combinedUncertaintyVal;
         }
       else if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in MeasuredLinearValueType\n");
               returnValue = true;
@@ -3206,12 +3253,12 @@ bool MeasuredLinearValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "linearUnit")
         {
           XmlToken * linearUnitVal;
-          if (linearUnit)
+          if (this->linearUnit)
             {
               fprintf(stderr, "two values for linearUnit in MeasuredLinearValueType\n");
               returnValue = true;
@@ -3227,12 +3274,12 @@ bool MeasuredLinearValueType::badAttributes(
               break;
             }
           else
-            linearUnit = linearUnitVal;
+            this->linearUnit = linearUnitVal;
         }
       else if (decl->name == "meanError")
         {
           NonNegativeDecimalType * meanErrorVal;
-          if (meanError)
+          if (this->meanError)
             {
               fprintf(stderr, "two values for meanError in MeasuredLinearValueType\n");
               returnValue = true;
@@ -3248,12 +3295,12 @@ bool MeasuredLinearValueType::badAttributes(
               break;
             }
           else
-            meanError = meanErrorVal;
+            this->meanError = meanErrorVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in MeasuredLinearValueType\n");
               returnValue = true;
@@ -3269,7 +3316,7 @@ bool MeasuredLinearValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else
         {
@@ -3285,16 +3332,16 @@ bool MeasuredLinearValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete combinedUncertainty;
-      combinedUncertainty = 0;
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete linearUnit;
-      linearUnit = 0;
-      delete meanError;
-      meanError = 0;
-      delete significantFigures;
-      significantFigures = 0;
+      delete this->combinedUncertainty;
+      this->combinedUncertainty = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->linearUnit;
+      this->linearUnit = 0;
+      delete this->meanError;
+      this->meanError = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
     }
   return returnValue;
 }
@@ -3460,7 +3507,7 @@ bool MeasuredMassValueType::badAttributes(
       if (decl->name == "combinedUncertainty")
         {
           NonNegativeDecimalType * combinedUncertaintyVal;
-          if (combinedUncertainty)
+          if (this->combinedUncertainty)
             {
               fprintf(stderr, "two values for combinedUncertainty in MeasuredMassValueType\n");
               returnValue = true;
@@ -3476,12 +3523,12 @@ bool MeasuredMassValueType::badAttributes(
               break;
             }
           else
-            combinedUncertainty = combinedUncertaintyVal;
+            this->combinedUncertainty = combinedUncertaintyVal;
         }
       else if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in MeasuredMassValueType\n");
               returnValue = true;
@@ -3497,12 +3544,12 @@ bool MeasuredMassValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "massUnit")
         {
           XmlToken * massUnitVal;
-          if (massUnit)
+          if (this->massUnit)
             {
               fprintf(stderr, "two values for massUnit in MeasuredMassValueType\n");
               returnValue = true;
@@ -3518,12 +3565,12 @@ bool MeasuredMassValueType::badAttributes(
               break;
             }
           else
-            massUnit = massUnitVal;
+            this->massUnit = massUnitVal;
         }
       else if (decl->name == "meanError")
         {
           NonNegativeDecimalType * meanErrorVal;
-          if (meanError)
+          if (this->meanError)
             {
               fprintf(stderr, "two values for meanError in MeasuredMassValueType\n");
               returnValue = true;
@@ -3539,12 +3586,12 @@ bool MeasuredMassValueType::badAttributes(
               break;
             }
           else
-            meanError = meanErrorVal;
+            this->meanError = meanErrorVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in MeasuredMassValueType\n");
               returnValue = true;
@@ -3560,7 +3607,7 @@ bool MeasuredMassValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else
         {
@@ -3576,16 +3623,16 @@ bool MeasuredMassValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete combinedUncertainty;
-      combinedUncertainty = 0;
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete massUnit;
-      massUnit = 0;
-      delete meanError;
-      meanError = 0;
-      delete significantFigures;
-      significantFigures = 0;
+      delete this->combinedUncertainty;
+      this->combinedUncertainty = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->massUnit;
+      this->massUnit = 0;
+      delete this->meanError;
+      this->meanError = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
     }
   return returnValue;
 }
@@ -3751,7 +3798,7 @@ bool MeasuredPressureValueType::badAttributes(
       if (decl->name == "combinedUncertainty")
         {
           NonNegativeDecimalType * combinedUncertaintyVal;
-          if (combinedUncertainty)
+          if (this->combinedUncertainty)
             {
               fprintf(stderr, "two values for combinedUncertainty in MeasuredPressureValueType\n");
               returnValue = true;
@@ -3767,12 +3814,12 @@ bool MeasuredPressureValueType::badAttributes(
               break;
             }
           else
-            combinedUncertainty = combinedUncertaintyVal;
+            this->combinedUncertainty = combinedUncertaintyVal;
         }
       else if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in MeasuredPressureValueType\n");
               returnValue = true;
@@ -3788,12 +3835,12 @@ bool MeasuredPressureValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "meanError")
         {
           NonNegativeDecimalType * meanErrorVal;
-          if (meanError)
+          if (this->meanError)
             {
               fprintf(stderr, "two values for meanError in MeasuredPressureValueType\n");
               returnValue = true;
@@ -3809,12 +3856,12 @@ bool MeasuredPressureValueType::badAttributes(
               break;
             }
           else
-            meanError = meanErrorVal;
+            this->meanError = meanErrorVal;
         }
       else if (decl->name == "pressureUnit")
         {
           XmlToken * pressureUnitVal;
-          if (pressureUnit)
+          if (this->pressureUnit)
             {
               fprintf(stderr, "two values for pressureUnit in MeasuredPressureValueType\n");
               returnValue = true;
@@ -3830,12 +3877,12 @@ bool MeasuredPressureValueType::badAttributes(
               break;
             }
           else
-            pressureUnit = pressureUnitVal;
+            this->pressureUnit = pressureUnitVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in MeasuredPressureValueType\n");
               returnValue = true;
@@ -3851,7 +3898,7 @@ bool MeasuredPressureValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else
         {
@@ -3867,16 +3914,16 @@ bool MeasuredPressureValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete combinedUncertainty;
-      combinedUncertainty = 0;
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete meanError;
-      meanError = 0;
-      delete pressureUnit;
-      pressureUnit = 0;
-      delete significantFigures;
-      significantFigures = 0;
+      delete this->combinedUncertainty;
+      this->combinedUncertainty = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->meanError;
+      this->meanError = 0;
+      delete this->pressureUnit;
+      this->pressureUnit = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
     }
   return returnValue;
 }
@@ -4042,7 +4089,7 @@ bool MeasuredSpeedValueType::badAttributes(
       if (decl->name == "combinedUncertainty")
         {
           NonNegativeDecimalType * combinedUncertaintyVal;
-          if (combinedUncertainty)
+          if (this->combinedUncertainty)
             {
               fprintf(stderr, "two values for combinedUncertainty in MeasuredSpeedValueType\n");
               returnValue = true;
@@ -4058,12 +4105,12 @@ bool MeasuredSpeedValueType::badAttributes(
               break;
             }
           else
-            combinedUncertainty = combinedUncertaintyVal;
+            this->combinedUncertainty = combinedUncertaintyVal;
         }
       else if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in MeasuredSpeedValueType\n");
               returnValue = true;
@@ -4079,12 +4126,12 @@ bool MeasuredSpeedValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "meanError")
         {
           NonNegativeDecimalType * meanErrorVal;
-          if (meanError)
+          if (this->meanError)
             {
               fprintf(stderr, "two values for meanError in MeasuredSpeedValueType\n");
               returnValue = true;
@@ -4100,12 +4147,12 @@ bool MeasuredSpeedValueType::badAttributes(
               break;
             }
           else
-            meanError = meanErrorVal;
+            this->meanError = meanErrorVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in MeasuredSpeedValueType\n");
               returnValue = true;
@@ -4121,12 +4168,12 @@ bool MeasuredSpeedValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else if (decl->name == "speedUnit")
         {
           XmlToken * speedUnitVal;
-          if (speedUnit)
+          if (this->speedUnit)
             {
               fprintf(stderr, "two values for speedUnit in MeasuredSpeedValueType\n");
               returnValue = true;
@@ -4142,7 +4189,7 @@ bool MeasuredSpeedValueType::badAttributes(
               break;
             }
           else
-            speedUnit = speedUnitVal;
+            this->speedUnit = speedUnitVal;
         }
       else
         {
@@ -4158,16 +4205,16 @@ bool MeasuredSpeedValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete combinedUncertainty;
-      combinedUncertainty = 0;
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete meanError;
-      meanError = 0;
-      delete significantFigures;
-      significantFigures = 0;
-      delete speedUnit;
-      speedUnit = 0;
+      delete this->combinedUncertainty;
+      this->combinedUncertainty = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->meanError;
+      this->meanError = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
+      delete this->speedUnit;
+      this->speedUnit = 0;
     }
   return returnValue;
 }
@@ -4333,7 +4380,7 @@ bool MeasuredTemperatureValueType::badAttributes(
       if (decl->name == "combinedUncertainty")
         {
           NonNegativeDecimalType * combinedUncertaintyVal;
-          if (combinedUncertainty)
+          if (this->combinedUncertainty)
             {
               fprintf(stderr, "two values for combinedUncertainty in MeasuredTemperatureValueType\n");
               returnValue = true;
@@ -4349,12 +4396,12 @@ bool MeasuredTemperatureValueType::badAttributes(
               break;
             }
           else
-            combinedUncertainty = combinedUncertaintyVal;
+            this->combinedUncertainty = combinedUncertaintyVal;
         }
       else if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in MeasuredTemperatureValueType\n");
               returnValue = true;
@@ -4370,12 +4417,12 @@ bool MeasuredTemperatureValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "meanError")
         {
           NonNegativeDecimalType * meanErrorVal;
-          if (meanError)
+          if (this->meanError)
             {
               fprintf(stderr, "two values for meanError in MeasuredTemperatureValueType\n");
               returnValue = true;
@@ -4391,12 +4438,12 @@ bool MeasuredTemperatureValueType::badAttributes(
               break;
             }
           else
-            meanError = meanErrorVal;
+            this->meanError = meanErrorVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in MeasuredTemperatureValueType\n");
               returnValue = true;
@@ -4412,12 +4459,12 @@ bool MeasuredTemperatureValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else if (decl->name == "temperatureUnit")
         {
           XmlToken * temperatureUnitVal;
-          if (temperatureUnit)
+          if (this->temperatureUnit)
             {
               fprintf(stderr, "two values for temperatureUnit in MeasuredTemperatureValueType\n");
               returnValue = true;
@@ -4433,7 +4480,7 @@ bool MeasuredTemperatureValueType::badAttributes(
               break;
             }
           else
-            temperatureUnit = temperatureUnitVal;
+            this->temperatureUnit = temperatureUnitVal;
         }
       else
         {
@@ -4449,16 +4496,16 @@ bool MeasuredTemperatureValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete combinedUncertainty;
-      combinedUncertainty = 0;
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete meanError;
-      meanError = 0;
-      delete significantFigures;
-      significantFigures = 0;
-      delete temperatureUnit;
-      temperatureUnit = 0;
+      delete this->combinedUncertainty;
+      this->combinedUncertainty = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->meanError;
+      this->meanError = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
+      delete this->temperatureUnit;
+      this->temperatureUnit = 0;
     }
   return returnValue;
 }
@@ -4624,7 +4671,7 @@ bool MeasuredTimeValueType::badAttributes(
       if (decl->name == "combinedUncertainty")
         {
           NonNegativeDecimalType * combinedUncertaintyVal;
-          if (combinedUncertainty)
+          if (this->combinedUncertainty)
             {
               fprintf(stderr, "two values for combinedUncertainty in MeasuredTimeValueType\n");
               returnValue = true;
@@ -4640,12 +4687,12 @@ bool MeasuredTimeValueType::badAttributes(
               break;
             }
           else
-            combinedUncertainty = combinedUncertaintyVal;
+            this->combinedUncertainty = combinedUncertaintyVal;
         }
       else if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in MeasuredTimeValueType\n");
               returnValue = true;
@@ -4661,12 +4708,12 @@ bool MeasuredTimeValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "meanError")
         {
           NonNegativeDecimalType * meanErrorVal;
-          if (meanError)
+          if (this->meanError)
             {
               fprintf(stderr, "two values for meanError in MeasuredTimeValueType\n");
               returnValue = true;
@@ -4682,12 +4729,12 @@ bool MeasuredTimeValueType::badAttributes(
               break;
             }
           else
-            meanError = meanErrorVal;
+            this->meanError = meanErrorVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in MeasuredTimeValueType\n");
               returnValue = true;
@@ -4703,12 +4750,12 @@ bool MeasuredTimeValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else if (decl->name == "timeUnit")
         {
           XmlToken * timeUnitVal;
-          if (timeUnit)
+          if (this->timeUnit)
             {
               fprintf(stderr, "two values for timeUnit in MeasuredTimeValueType\n");
               returnValue = true;
@@ -4724,7 +4771,7 @@ bool MeasuredTimeValueType::badAttributes(
               break;
             }
           else
-            timeUnit = timeUnitVal;
+            this->timeUnit = timeUnitVal;
         }
       else
         {
@@ -4740,16 +4787,16 @@ bool MeasuredTimeValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete combinedUncertainty;
-      combinedUncertainty = 0;
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete meanError;
-      meanError = 0;
-      delete significantFigures;
-      significantFigures = 0;
-      delete timeUnit;
-      timeUnit = 0;
+      delete this->combinedUncertainty;
+      this->combinedUncertainty = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->meanError;
+      this->meanError = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
+      delete this->timeUnit;
+      this->timeUnit = 0;
     }
   return returnValue;
 }
@@ -4920,7 +4967,7 @@ bool MeasuredUserDefinedUnitValueType::badAttributes(
       if (decl->name == "combinedUncertainty")
         {
           NonNegativeDecimalType * combinedUncertaintyVal;
-          if (combinedUncertainty)
+          if (this->combinedUncertainty)
             {
               fprintf(stderr, "two values for combinedUncertainty in MeasuredUserDefinedUnitValueType\n");
               returnValue = true;
@@ -4936,12 +4983,12 @@ bool MeasuredUserDefinedUnitValueType::badAttributes(
               break;
             }
           else
-            combinedUncertainty = combinedUncertaintyVal;
+            this->combinedUncertainty = combinedUncertaintyVal;
         }
       else if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in MeasuredUserDefinedUnitValueType\n");
               returnValue = true;
@@ -4957,12 +5004,12 @@ bool MeasuredUserDefinedUnitValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "meanError")
         {
           NonNegativeDecimalType * meanErrorVal;
-          if (meanError)
+          if (this->meanError)
             {
               fprintf(stderr, "two values for meanError in MeasuredUserDefinedUnitValueType\n");
               returnValue = true;
@@ -4978,12 +5025,12 @@ bool MeasuredUserDefinedUnitValueType::badAttributes(
               break;
             }
           else
-            meanError = meanErrorVal;
+            this->meanError = meanErrorVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in MeasuredUserDefinedUnitValueType\n");
               returnValue = true;
@@ -4999,12 +5046,12 @@ bool MeasuredUserDefinedUnitValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else if (decl->name == "unitName")
         {
           XmlToken * unitNameVal;
-          if (unitName)
+          if (this->unitName)
             {
               fprintf(stderr, "two values for unitName in MeasuredUserDefinedUnitValueType\n");
               returnValue = true;
@@ -5020,7 +5067,7 @@ bool MeasuredUserDefinedUnitValueType::badAttributes(
               break;
             }
           else
-            unitName = unitNameVal;
+            this->unitName = unitNameVal;
         }
       else
         {
@@ -5029,7 +5076,7 @@ bool MeasuredUserDefinedUnitValueType::badAttributes(
           break;
         }
     }
-  if (unitName == 0)
+  if (this->unitName == 0)
     {
       fprintf(stderr, "required attribute \"unitName\" missing in MeasuredUserDefinedUnitValueType\n");
       returnValue = true;
@@ -5041,16 +5088,16 @@ bool MeasuredUserDefinedUnitValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete combinedUncertainty;
-      combinedUncertainty = 0;
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete meanError;
-      meanError = 0;
-      delete significantFigures;
-      significantFigures = 0;
-      delete unitName;
-      unitName = 0;
+      delete this->combinedUncertainty;
+      this->combinedUncertainty = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->meanError;
+      this->meanError = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
+      delete this->unitName;
+      this->unitName = 0;
     }
   return returnValue;
 }
@@ -5086,7 +5133,15 @@ MeasuredUserDefinedUnitValueTypeLisd::~MeasuredUserDefinedUnitValueTypeLisd()
   #endif
 }
 
-void MeasuredUserDefinedUnitValueTypeLisd::printSelf(FILE * outFile){}
+void MeasuredUserDefinedUnitValueTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<MeasuredUserDefinedUnitValueType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -5419,7 +5474,7 @@ bool OtherUnitsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in OtherUnitsType\n");
               returnValue = true;
@@ -5435,7 +5490,7 @@ bool OtherUnitsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -5444,7 +5499,7 @@ bool OtherUnitsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in OtherUnitsType\n");
       returnValue = true;
@@ -5456,8 +5511,8 @@ bool OtherUnitsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -5681,7 +5736,15 @@ PressureUnitTypeLisd::~PressureUnitTypeLisd()
   #endif
 }
 
-void PressureUnitTypeLisd::printSelf(FILE * outFile){}
+void PressureUnitTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<PressureUnitType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -5800,7 +5863,7 @@ bool PressureValueType::badAttributes(
       if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in PressureValueType\n");
               returnValue = true;
@@ -5816,12 +5879,12 @@ bool PressureValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "pressureUnit")
         {
           XmlToken * pressureUnitVal;
-          if (pressureUnit)
+          if (this->pressureUnit)
             {
               fprintf(stderr, "two values for pressureUnit in PressureValueType\n");
               returnValue = true;
@@ -5837,12 +5900,12 @@ bool PressureValueType::badAttributes(
               break;
             }
           else
-            pressureUnit = pressureUnitVal;
+            this->pressureUnit = pressureUnitVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in PressureValueType\n");
               returnValue = true;
@@ -5858,7 +5921,7 @@ bool PressureValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else
         {
@@ -5874,12 +5937,12 @@ bool PressureValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete pressureUnit;
-      pressureUnit = 0;
-      delete significantFigures;
-      significantFigures = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->pressureUnit;
+      this->pressureUnit = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
     }
   return returnValue;
 }
@@ -6233,7 +6296,7 @@ bool SpecifiedDecimalType::badAttributes(
       if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in SpecifiedDecimalType\n");
               returnValue = true;
@@ -6249,12 +6312,12 @@ bool SpecifiedDecimalType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in SpecifiedDecimalType\n");
               returnValue = true;
@@ -6270,7 +6333,7 @@ bool SpecifiedDecimalType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else
         {
@@ -6286,10 +6349,10 @@ bool SpecifiedDecimalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete significantFigures;
-      significantFigures = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
     }
   return returnValue;
 }
@@ -6407,7 +6470,15 @@ SpeedUnitTypeLisd::~SpeedUnitTypeLisd()
   #endif
 }
 
-void SpeedUnitTypeLisd::printSelf(FILE * outFile){}
+void SpeedUnitTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<SpeedUnitType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -6526,7 +6597,7 @@ bool SpeedValueType::badAttributes(
       if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in SpeedValueType\n");
               returnValue = true;
@@ -6542,12 +6613,12 @@ bool SpeedValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in SpeedValueType\n");
               returnValue = true;
@@ -6563,12 +6634,12 @@ bool SpeedValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else if (decl->name == "speedUnit")
         {
           XmlToken * speedUnitVal;
-          if (speedUnit)
+          if (this->speedUnit)
             {
               fprintf(stderr, "two values for speedUnit in SpeedValueType\n");
               returnValue = true;
@@ -6584,7 +6655,7 @@ bool SpeedValueType::badAttributes(
               break;
             }
           else
-            speedUnit = speedUnitVal;
+            this->speedUnit = speedUnitVal;
         }
       else
         {
@@ -6600,12 +6671,12 @@ bool SpeedValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete significantFigures;
-      significantFigures = 0;
-      delete speedUnit;
-      speedUnit = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
+      delete this->speedUnit;
+      this->speedUnit = 0;
     }
   return returnValue;
 }
@@ -6717,7 +6788,15 @@ TemperatureUnitTypeLisd::~TemperatureUnitTypeLisd()
   #endif
 }
 
-void TemperatureUnitTypeLisd::printSelf(FILE * outFile){}
+void TemperatureUnitTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<TemperatureUnitType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -6836,7 +6915,7 @@ bool TemperatureValueType::badAttributes(
       if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in TemperatureValueType\n");
               returnValue = true;
@@ -6852,12 +6931,12 @@ bool TemperatureValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in TemperatureValueType\n");
               returnValue = true;
@@ -6873,12 +6952,12 @@ bool TemperatureValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else if (decl->name == "temperatureUnit")
         {
           XmlToken * temperatureUnitVal;
-          if (temperatureUnit)
+          if (this->temperatureUnit)
             {
               fprintf(stderr, "two values for temperatureUnit in TemperatureValueType\n");
               returnValue = true;
@@ -6894,7 +6973,7 @@ bool TemperatureValueType::badAttributes(
               break;
             }
           else
-            temperatureUnit = temperatureUnitVal;
+            this->temperatureUnit = temperatureUnitVal;
         }
       else
         {
@@ -6910,12 +6989,12 @@ bool TemperatureValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete significantFigures;
-      significantFigures = 0;
-      delete temperatureUnit;
-      temperatureUnit = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
+      delete this->temperatureUnit;
+      this->temperatureUnit = 0;
     }
   return returnValue;
 }
@@ -7027,7 +7106,15 @@ TimeUnitTypeLisd::~TimeUnitTypeLisd()
   #endif
 }
 
-void TimeUnitTypeLisd::printSelf(FILE * outFile){}
+void TimeUnitTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<TimeUnitType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -7146,7 +7233,7 @@ bool TimeValueType::badAttributes(
       if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in TimeValueType\n");
               returnValue = true;
@@ -7162,12 +7249,12 @@ bool TimeValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in TimeValueType\n");
               returnValue = true;
@@ -7183,12 +7270,12 @@ bool TimeValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else if (decl->name == "timeUnit")
         {
           XmlToken * timeUnitVal;
-          if (timeUnit)
+          if (this->timeUnit)
             {
               fprintf(stderr, "two values for timeUnit in TimeValueType\n");
               returnValue = true;
@@ -7204,7 +7291,7 @@ bool TimeValueType::badAttributes(
               break;
             }
           else
-            timeUnit = timeUnitVal;
+            this->timeUnit = timeUnitVal;
         }
       else
         {
@@ -7220,12 +7307,12 @@ bool TimeValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete significantFigures;
-      significantFigures = 0;
-      delete timeUnit;
-      timeUnit = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
+      delete this->timeUnit;
+      this->timeUnit = 0;
     }
   return returnValue;
 }
@@ -7391,7 +7478,15 @@ UserDefinedUnitTypeLisd::~UserDefinedUnitTypeLisd()
   #endif
 }
 
-void UserDefinedUnitTypeLisd::printSelf(FILE * outFile){}
+void UserDefinedUnitTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<UserDefinedUnitType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -7515,7 +7610,7 @@ bool UserDefinedUnitValueType::badAttributes(
       if (decl->name == "decimalPlaces")
         {
           XmlNonNegativeInteger * decimalPlacesVal;
-          if (decimalPlaces)
+          if (this->decimalPlaces)
             {
               fprintf(stderr, "two values for decimalPlaces in UserDefinedUnitValueType\n");
               returnValue = true;
@@ -7531,12 +7626,12 @@ bool UserDefinedUnitValueType::badAttributes(
               break;
             }
           else
-            decimalPlaces = decimalPlacesVal;
+            this->decimalPlaces = decimalPlacesVal;
         }
       else if (decl->name == "significantFigures")
         {
           XmlNonNegativeInteger * significantFiguresVal;
-          if (significantFigures)
+          if (this->significantFigures)
             {
               fprintf(stderr, "two values for significantFigures in UserDefinedUnitValueType\n");
               returnValue = true;
@@ -7552,12 +7647,12 @@ bool UserDefinedUnitValueType::badAttributes(
               break;
             }
           else
-            significantFigures = significantFiguresVal;
+            this->significantFigures = significantFiguresVal;
         }
       else if (decl->name == "unitName")
         {
           XmlToken * unitNameVal;
-          if (unitName)
+          if (this->unitName)
             {
               fprintf(stderr, "two values for unitName in UserDefinedUnitValueType\n");
               returnValue = true;
@@ -7573,7 +7668,7 @@ bool UserDefinedUnitValueType::badAttributes(
               break;
             }
           else
-            unitName = unitNameVal;
+            this->unitName = unitNameVal;
         }
       else
         {
@@ -7582,7 +7677,7 @@ bool UserDefinedUnitValueType::badAttributes(
           break;
         }
     }
-  if (unitName == 0)
+  if (this->unitName == 0)
     {
       fprintf(stderr, "required attribute \"unitName\" missing in UserDefinedUnitValueType\n");
       returnValue = true;
@@ -7594,12 +7689,12 @@ bool UserDefinedUnitValueType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete decimalPlaces;
-      decimalPlaces = 0;
-      delete significantFigures;
-      significantFigures = 0;
-      delete unitName;
-      unitName = 0;
+      delete this->decimalPlaces;
+      this->decimalPlaces = 0;
+      delete this->significantFigures;
+      this->significantFigures = 0;
+      delete this->unitName;
+      this->unitName = 0;
     }
   return returnValue;
 }
@@ -7635,7 +7730,15 @@ UserDefinedUnitValueTypeLisd::~UserDefinedUnitValueTypeLisd()
   #endif
 }
 
-void UserDefinedUnitValueTypeLisd::printSelf(FILE * outFile){}
+void UserDefinedUnitValueTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<UserDefinedUnitValueType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -7712,6 +7815,13 @@ void UserDefinedUnitsType::printSelf(FILE * outFile)
         fprintf(stderr, "UserDefinedUnit list is empty\n");
         exit(1);
       }
+    if (UserDefinedUnit->size() < 1)
+      {
+        fprintf(stderr,
+                "size of UserDefinedUnit list (%d) less than minimum required (1)\n",
+                (int)UserDefinedUnit->size());
+        exit(1);
+      }
     std::list<UserDefinedUnitType *>::iterator iter;
     for (iter = UserDefinedUnit->begin();
          iter != UserDefinedUnit->end(); iter++)
@@ -7740,7 +7850,7 @@ bool UserDefinedUnitsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in UserDefinedUnitsType\n");
               returnValue = true;
@@ -7756,7 +7866,7 @@ bool UserDefinedUnitsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -7765,7 +7875,7 @@ bool UserDefinedUnitsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in UserDefinedUnitsType\n");
       returnValue = true;
@@ -7777,8 +7887,8 @@ bool UserDefinedUnitsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }

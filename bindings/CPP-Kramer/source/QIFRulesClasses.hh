@@ -110,13 +110,12 @@ class SphericalSegmentPointSamplingStrategyTypeChoicePair;
 class SurfaceOfRevolutionPointSamplingStrategyType;
 class SurfaceOfRevolutionPointSamplingStrategyTypeChoicePair;
 class ThenPointsType;
+class ThenPointsTypeChoicePair;
 class ToroidalSegmentPointSamplingStrategyType;
 class ToroidalSegmentPointSamplingStrategyTypeChoicePair;
 class TorusPointSamplingStrategyType;
 class TorusPointSamplingStrategyTypeChoicePair;
 class ZeroToOneType;
-class ThenPointsType_1213_Type;
-class ThenPointsType_1213_TypeChoicePair;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -1704,15 +1703,47 @@ class ThenPointsType :
 public:
   ThenPointsType();
   ThenPointsType(
-    ThenPointsType_1213_Type * ThenPointsType_1213In);
+    ThenPointsTypeChoicePair * ThenPointsTypePairIn);
   ~ThenPointsType();
   void printSelf(FILE * outFile);
 
-  ThenPointsType_1213_Type * getThenPointsType_1213();
-  void setThenPointsType_1213(ThenPointsType_1213_Type * ThenPointsType_1213In);
+  ThenPointsTypeChoicePair * getThenPointsTypePair();
+  void setThenPointsTypePair(ThenPointsTypeChoicePair * ThenPointsTypePairIn);
 
 protected:
-  ThenPointsType_1213_Type * ThenPointsType_1213;
+  ThenPointsTypeChoicePair * ThenPointsTypePair;
+};
+
+/* ***************************************************************** */
+
+union ThenPointsTypeVal
+{
+  XmlUnsignedInt * NumberOfPoints;
+  XmlUnsignedInt * MinPoints;
+  PositiveDecimalType * PointDensity;
+  PositiveDecimalType * MinPointDensity;
+};
+
+/* ***************************************************************** */
+
+class ThenPointsTypeChoicePair :
+  public XmlTypeBase
+{
+public:
+  enum whichOne {
+    NumberOfPointsE,
+    MinPointsE,
+    PointDensityE,
+    MinPointDensityE };
+  ThenPointsTypeChoicePair();
+  ThenPointsTypeChoicePair(
+    whichOne ThenPointsTypeTypeIn,
+    ThenPointsTypeVal ThenPointsTypeValueIn);
+  ~ThenPointsTypeChoicePair();
+  void printSelf(FILE * outFile);
+
+  whichOne ThenPointsTypeType;
+  ThenPointsTypeVal ThenPointsTypeValue;
 };
 
 /* ***************************************************************** */
@@ -1823,57 +1854,6 @@ public:
   void printSelf(FILE * outFile);
   void oPrintSelf(FILE * outFile);
   virtual void printName(FILE * outFile);
-};
-
-/* ***************************************************************** */
-
-class ThenPointsType_1213_Type :
-  public XmlTypeBase
-{
-public:
-  ThenPointsType_1213_Type();
-  ThenPointsType_1213_Type(
-    ThenPointsType_1213_TypeChoicePair * ThenPointsType_1213_TypePairIn);
-  ~ThenPointsType_1213_Type();
-  void printSelf(FILE * outFile);
-
-  ThenPointsType_1213_TypeChoicePair * getThenPointsType_1213_TypePair();
-  void setThenPointsType_1213_TypePair(ThenPointsType_1213_TypeChoicePair * ThenPointsType_1213_TypePairIn);
-
-protected:
-  ThenPointsType_1213_TypeChoicePair * ThenPointsType_1213_TypePair;
-};
-
-/* ***************************************************************** */
-
-union ThenPointsType_1213_TypeVal
-{
-  XmlUnsignedInt * NumberOfPoints;
-  XmlUnsignedInt * MinPoints;
-  PositiveDecimalType * PointDensity;
-  PositiveDecimalType * MinPointDensity;
-};
-
-/* ***************************************************************** */
-
-class ThenPointsType_1213_TypeChoicePair :
-  public XmlTypeBase
-{
-public:
-  enum whichOne {
-    NumberOfPointsE,
-    MinPointsE,
-    PointDensityE,
-    MinPointDensityE };
-  ThenPointsType_1213_TypeChoicePair();
-  ThenPointsType_1213_TypeChoicePair(
-    whichOne ThenPointsType_1213_TypeTypeIn,
-    ThenPointsType_1213_TypeVal ThenPointsType_1213_TypeValueIn);
-  ~ThenPointsType_1213_TypeChoicePair();
-  void printSelf(FILE * outFile);
-
-  whichOne ThenPointsType_1213_TypeType;
-  ThenPointsType_1213_TypeVal ThenPointsType_1213_TypeValue;
 };
 
 /* ***************************************************************** */

@@ -48,20 +48,20 @@ class ValidationFaceType;
 class VertexSetType;
 class VertexType;
 class VertexTypeLisd;
-class FaceMeshType_1224_Type;
-class FaceMeshType_1224_TypeChoicePair;
-class FaceMeshType_1225_Type;
-class FaceMeshType_1225_TypeChoicePair;
-class FaceMeshType_1226_Type;
-class FaceMeshType_1226_TypeChoicePair;
-class PointCloudType_1227_Type;
-class PointCloudType_1227_TypeChoicePair;
-class PointCloudType_1228_Type;
-class PointCloudType_1228_TypeChoicePair;
-class PointCloudType_1229_Type;
-class PointCloudType_1229_TypeChoicePair;
-class PointCloudType_1230_Type;
-class PointCloudType_1230_TypeChoicePair;
+class FaceMeshType_1180_Type;
+class FaceMeshType_1180_TypeChoicePair;
+class FaceMeshType_1181_Type;
+class FaceMeshType_1181_TypeChoicePair;
+class FaceMeshType_1182_Type;
+class FaceMeshType_1182_TypeChoicePair;
+class PointCloudType_1183_Type;
+class PointCloudType_1183_TypeChoicePair;
+class PointCloudType_1184_Type;
+class PointCloudType_1184_TypeChoicePair;
+class PointCloudType_1185_Type;
+class PointCloudType_1185_TypeChoicePair;
+class PointCloudType_1186_Type;
+class PointCloudType_1186_TypeChoicePair;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -646,26 +646,26 @@ public:
 
 /* ***************************************************************** */
 
-class FaceMeshType_1224_Type :
+class FaceMeshType_1180_Type :
   public XmlTypeBase
 {
 public:
-  FaceMeshType_1224_Type();
-  FaceMeshType_1224_Type(
-    FaceMeshType_1224_TypeChoicePair * FaceMeshType_1224_TypePairIn);
-  ~FaceMeshType_1224_Type();
+  FaceMeshType_1180_Type();
+  FaceMeshType_1180_Type(
+    FaceMeshType_1180_TypeChoicePair * FaceMeshType_1180_TypePairIn);
+  ~FaceMeshType_1180_Type();
   void printSelf(FILE * outFile);
 
-  FaceMeshType_1224_TypeChoicePair * getFaceMeshType_1224_TypePair();
-  void setFaceMeshType_1224_TypePair(FaceMeshType_1224_TypeChoicePair * FaceMeshType_1224_TypePairIn);
+  FaceMeshType_1180_TypeChoicePair * getFaceMeshType_1180_TypePair();
+  void setFaceMeshType_1180_TypePair(FaceMeshType_1180_TypeChoicePair * FaceMeshType_1180_TypePairIn);
 
 protected:
-  FaceMeshType_1224_TypeChoicePair * FaceMeshType_1224_TypePair;
+  FaceMeshType_1180_TypeChoicePair * FaceMeshType_1180_TypePair;
 };
 
 /* ***************************************************************** */
 
-union FaceMeshType_1224_TypeVal
+union FaceMeshType_1180_TypeVal
 {
   ArrayIntType * Triangles;
   ArrayBinaryType * TrianglesBinary;
@@ -673,46 +673,46 @@ union FaceMeshType_1224_TypeVal
 
 /* ***************************************************************** */
 
-class FaceMeshType_1224_TypeChoicePair :
+class FaceMeshType_1180_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     TrianglesE,
     TrianglesBinaryE };
-  FaceMeshType_1224_TypeChoicePair();
-  FaceMeshType_1224_TypeChoicePair(
-    whichOne FaceMeshType_1224_TypeTypeIn,
-    FaceMeshType_1224_TypeVal FaceMeshType_1224_TypeValueIn);
-  ~FaceMeshType_1224_TypeChoicePair();
+  FaceMeshType_1180_TypeChoicePair();
+  FaceMeshType_1180_TypeChoicePair(
+    whichOne FaceMeshType_1180_TypeTypeIn,
+    FaceMeshType_1180_TypeVal FaceMeshType_1180_TypeValueIn);
+  ~FaceMeshType_1180_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne FaceMeshType_1224_TypeType;
-  FaceMeshType_1224_TypeVal FaceMeshType_1224_TypeValue;
+  whichOne FaceMeshType_1180_TypeType;
+  FaceMeshType_1180_TypeVal FaceMeshType_1180_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class FaceMeshType_1225_Type :
+class FaceMeshType_1181_Type :
   public XmlTypeBase
 {
 public:
-  FaceMeshType_1225_Type();
-  FaceMeshType_1225_Type(
-    FaceMeshType_1225_TypeChoicePair * FaceMeshType_1225_TypePairIn);
-  ~FaceMeshType_1225_Type();
+  FaceMeshType_1181_Type();
+  FaceMeshType_1181_Type(
+    FaceMeshType_1181_TypeChoicePair * FaceMeshType_1181_TypePairIn);
+  ~FaceMeshType_1181_Type();
   void printSelf(FILE * outFile);
 
-  FaceMeshType_1225_TypeChoicePair * getFaceMeshType_1225_TypePair();
-  void setFaceMeshType_1225_TypePair(FaceMeshType_1225_TypeChoicePair * FaceMeshType_1225_TypePairIn);
+  FaceMeshType_1181_TypeChoicePair * getFaceMeshType_1181_TypePair();
+  void setFaceMeshType_1181_TypePair(FaceMeshType_1181_TypeChoicePair * FaceMeshType_1181_TypePairIn);
 
 protected:
-  FaceMeshType_1225_TypeChoicePair * FaceMeshType_1225_TypePair;
+  FaceMeshType_1181_TypeChoicePair * FaceMeshType_1181_TypePair;
 };
 
 /* ***************************************************************** */
 
-union FaceMeshType_1225_TypeVal
+union FaceMeshType_1181_TypeVal
 {
   ArrayIntType * TrianglesVisible;
   ArrayBinaryType * TrianglesVisibleBinary;
@@ -722,7 +722,7 @@ union FaceMeshType_1225_TypeVal
 
 /* ***************************************************************** */
 
-class FaceMeshType_1225_TypeChoicePair :
+class FaceMeshType_1181_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -731,39 +731,39 @@ public:
     TrianglesVisibleBinaryE,
     TrianglesHiddenE,
     TrianglesHiddenBinaryE };
-  FaceMeshType_1225_TypeChoicePair();
-  FaceMeshType_1225_TypeChoicePair(
-    whichOne FaceMeshType_1225_TypeTypeIn,
-    FaceMeshType_1225_TypeVal FaceMeshType_1225_TypeValueIn);
-  ~FaceMeshType_1225_TypeChoicePair();
+  FaceMeshType_1181_TypeChoicePair();
+  FaceMeshType_1181_TypeChoicePair(
+    whichOne FaceMeshType_1181_TypeTypeIn,
+    FaceMeshType_1181_TypeVal FaceMeshType_1181_TypeValueIn);
+  ~FaceMeshType_1181_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne FaceMeshType_1225_TypeType;
-  FaceMeshType_1225_TypeVal FaceMeshType_1225_TypeValue;
+  whichOne FaceMeshType_1181_TypeType;
+  FaceMeshType_1181_TypeVal FaceMeshType_1181_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class FaceMeshType_1226_Type :
+class FaceMeshType_1182_Type :
   public XmlTypeBase
 {
 public:
-  FaceMeshType_1226_Type();
-  FaceMeshType_1226_Type(
-    FaceMeshType_1226_TypeChoicePair * FaceMeshType_1226_TypePairIn);
-  ~FaceMeshType_1226_Type();
+  FaceMeshType_1182_Type();
+  FaceMeshType_1182_Type(
+    FaceMeshType_1182_TypeChoicePair * FaceMeshType_1182_TypePairIn);
+  ~FaceMeshType_1182_Type();
   void printSelf(FILE * outFile);
 
-  FaceMeshType_1226_TypeChoicePair * getFaceMeshType_1226_TypePair();
-  void setFaceMeshType_1226_TypePair(FaceMeshType_1226_TypeChoicePair * FaceMeshType_1226_TypePairIn);
+  FaceMeshType_1182_TypeChoicePair * getFaceMeshType_1182_TypePair();
+  void setFaceMeshType_1182_TypePair(FaceMeshType_1182_TypeChoicePair * FaceMeshType_1182_TypePairIn);
 
 protected:
-  FaceMeshType_1226_TypeChoicePair * FaceMeshType_1226_TypePair;
+  FaceMeshType_1182_TypeChoicePair * FaceMeshType_1182_TypePair;
 };
 
 /* ***************************************************************** */
 
-union FaceMeshType_1226_TypeVal
+union FaceMeshType_1182_TypeVal
 {
   ArrayUnsignedByteType * TrianglesColor;
   ArrayBinaryType * TrianglesColorBinary;
@@ -771,46 +771,46 @@ union FaceMeshType_1226_TypeVal
 
 /* ***************************************************************** */
 
-class FaceMeshType_1226_TypeChoicePair :
+class FaceMeshType_1182_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     TrianglesColorE,
     TrianglesColorBinaryE };
-  FaceMeshType_1226_TypeChoicePair();
-  FaceMeshType_1226_TypeChoicePair(
-    whichOne FaceMeshType_1226_TypeTypeIn,
-    FaceMeshType_1226_TypeVal FaceMeshType_1226_TypeValueIn);
-  ~FaceMeshType_1226_TypeChoicePair();
+  FaceMeshType_1182_TypeChoicePair();
+  FaceMeshType_1182_TypeChoicePair(
+    whichOne FaceMeshType_1182_TypeTypeIn,
+    FaceMeshType_1182_TypeVal FaceMeshType_1182_TypeValueIn);
+  ~FaceMeshType_1182_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne FaceMeshType_1226_TypeType;
-  FaceMeshType_1226_TypeVal FaceMeshType_1226_TypeValue;
+  whichOne FaceMeshType_1182_TypeType;
+  FaceMeshType_1182_TypeVal FaceMeshType_1182_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class PointCloudType_1227_Type :
+class PointCloudType_1183_Type :
   public XmlTypeBase
 {
 public:
-  PointCloudType_1227_Type();
-  PointCloudType_1227_Type(
-    PointCloudType_1227_TypeChoicePair * PointCloudType_1227_TypePairIn);
-  ~PointCloudType_1227_Type();
+  PointCloudType_1183_Type();
+  PointCloudType_1183_Type(
+    PointCloudType_1183_TypeChoicePair * PointCloudType_1183_TypePairIn);
+  ~PointCloudType_1183_Type();
   void printSelf(FILE * outFile);
 
-  PointCloudType_1227_TypeChoicePair * getPointCloudType_1227_TypePair();
-  void setPointCloudType_1227_TypePair(PointCloudType_1227_TypeChoicePair * PointCloudType_1227_TypePairIn);
+  PointCloudType_1183_TypeChoicePair * getPointCloudType_1183_TypePair();
+  void setPointCloudType_1183_TypePair(PointCloudType_1183_TypeChoicePair * PointCloudType_1183_TypePairIn);
 
 protected:
-  PointCloudType_1227_TypeChoicePair * PointCloudType_1227_TypePair;
+  PointCloudType_1183_TypeChoicePair * PointCloudType_1183_TypePair;
 };
 
 /* ***************************************************************** */
 
-union PointCloudType_1227_TypeVal
+union PointCloudType_1183_TypeVal
 {
   ArrayPointType * Points;
   ArrayBinaryType * PointsBinary;
@@ -818,46 +818,46 @@ union PointCloudType_1227_TypeVal
 
 /* ***************************************************************** */
 
-class PointCloudType_1227_TypeChoicePair :
+class PointCloudType_1183_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     PointsE,
     PointsBinaryE };
-  PointCloudType_1227_TypeChoicePair();
-  PointCloudType_1227_TypeChoicePair(
-    whichOne PointCloudType_1227_TypeTypeIn,
-    PointCloudType_1227_TypeVal PointCloudType_1227_TypeValueIn);
-  ~PointCloudType_1227_TypeChoicePair();
+  PointCloudType_1183_TypeChoicePair();
+  PointCloudType_1183_TypeChoicePair(
+    whichOne PointCloudType_1183_TypeTypeIn,
+    PointCloudType_1183_TypeVal PointCloudType_1183_TypeValueIn);
+  ~PointCloudType_1183_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne PointCloudType_1227_TypeType;
-  PointCloudType_1227_TypeVal PointCloudType_1227_TypeValue;
+  whichOne PointCloudType_1183_TypeType;
+  PointCloudType_1183_TypeVal PointCloudType_1183_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class PointCloudType_1228_Type :
+class PointCloudType_1184_Type :
   public XmlTypeBase
 {
 public:
-  PointCloudType_1228_Type();
-  PointCloudType_1228_Type(
-    PointCloudType_1228_TypeChoicePair * PointCloudType_1228_TypePairIn);
-  ~PointCloudType_1228_Type();
+  PointCloudType_1184_Type();
+  PointCloudType_1184_Type(
+    PointCloudType_1184_TypeChoicePair * PointCloudType_1184_TypePairIn);
+  ~PointCloudType_1184_Type();
   void printSelf(FILE * outFile);
 
-  PointCloudType_1228_TypeChoicePair * getPointCloudType_1228_TypePair();
-  void setPointCloudType_1228_TypePair(PointCloudType_1228_TypeChoicePair * PointCloudType_1228_TypePairIn);
+  PointCloudType_1184_TypeChoicePair * getPointCloudType_1184_TypePair();
+  void setPointCloudType_1184_TypePair(PointCloudType_1184_TypeChoicePair * PointCloudType_1184_TypePairIn);
 
 protected:
-  PointCloudType_1228_TypeChoicePair * PointCloudType_1228_TypePair;
+  PointCloudType_1184_TypeChoicePair * PointCloudType_1184_TypePair;
 };
 
 /* ***************************************************************** */
 
-union PointCloudType_1228_TypeVal
+union PointCloudType_1184_TypeVal
 {
   ArrayUnitVectorType * Normals;
   ArrayBinaryType * NormalsBinary;
@@ -865,46 +865,46 @@ union PointCloudType_1228_TypeVal
 
 /* ***************************************************************** */
 
-class PointCloudType_1228_TypeChoicePair :
+class PointCloudType_1184_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     NormalsE,
     NormalsBinaryE };
-  PointCloudType_1228_TypeChoicePair();
-  PointCloudType_1228_TypeChoicePair(
-    whichOne PointCloudType_1228_TypeTypeIn,
-    PointCloudType_1228_TypeVal PointCloudType_1228_TypeValueIn);
-  ~PointCloudType_1228_TypeChoicePair();
+  PointCloudType_1184_TypeChoicePair();
+  PointCloudType_1184_TypeChoicePair(
+    whichOne PointCloudType_1184_TypeTypeIn,
+    PointCloudType_1184_TypeVal PointCloudType_1184_TypeValueIn);
+  ~PointCloudType_1184_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne PointCloudType_1228_TypeType;
-  PointCloudType_1228_TypeVal PointCloudType_1228_TypeValue;
+  whichOne PointCloudType_1184_TypeType;
+  PointCloudType_1184_TypeVal PointCloudType_1184_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class PointCloudType_1229_Type :
+class PointCloudType_1185_Type :
   public XmlTypeBase
 {
 public:
-  PointCloudType_1229_Type();
-  PointCloudType_1229_Type(
-    PointCloudType_1229_TypeChoicePair * PointCloudType_1229_TypePairIn);
-  ~PointCloudType_1229_Type();
+  PointCloudType_1185_Type();
+  PointCloudType_1185_Type(
+    PointCloudType_1185_TypeChoicePair * PointCloudType_1185_TypePairIn);
+  ~PointCloudType_1185_Type();
   void printSelf(FILE * outFile);
 
-  PointCloudType_1229_TypeChoicePair * getPointCloudType_1229_TypePair();
-  void setPointCloudType_1229_TypePair(PointCloudType_1229_TypeChoicePair * PointCloudType_1229_TypePairIn);
+  PointCloudType_1185_TypeChoicePair * getPointCloudType_1185_TypePair();
+  void setPointCloudType_1185_TypePair(PointCloudType_1185_TypeChoicePair * PointCloudType_1185_TypePairIn);
 
 protected:
-  PointCloudType_1229_TypeChoicePair * PointCloudType_1229_TypePair;
+  PointCloudType_1185_TypeChoicePair * PointCloudType_1185_TypePair;
 };
 
 /* ***************************************************************** */
 
-union PointCloudType_1229_TypeVal
+union PointCloudType_1185_TypeVal
 {
   ArrayIntType * PointsVisible;
   ArrayBinaryType * PointsVisibleBinary;
@@ -914,7 +914,7 @@ union PointCloudType_1229_TypeVal
 
 /* ***************************************************************** */
 
-class PointCloudType_1229_TypeChoicePair :
+class PointCloudType_1185_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -923,39 +923,39 @@ public:
     PointsVisibleBinaryE,
     PointsHiddenE,
     PointsHiddenBinaryE };
-  PointCloudType_1229_TypeChoicePair();
-  PointCloudType_1229_TypeChoicePair(
-    whichOne PointCloudType_1229_TypeTypeIn,
-    PointCloudType_1229_TypeVal PointCloudType_1229_TypeValueIn);
-  ~PointCloudType_1229_TypeChoicePair();
+  PointCloudType_1185_TypeChoicePair();
+  PointCloudType_1185_TypeChoicePair(
+    whichOne PointCloudType_1185_TypeTypeIn,
+    PointCloudType_1185_TypeVal PointCloudType_1185_TypeValueIn);
+  ~PointCloudType_1185_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne PointCloudType_1229_TypeType;
-  PointCloudType_1229_TypeVal PointCloudType_1229_TypeValue;
+  whichOne PointCloudType_1185_TypeType;
+  PointCloudType_1185_TypeVal PointCloudType_1185_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class PointCloudType_1230_Type :
+class PointCloudType_1186_Type :
   public XmlTypeBase
 {
 public:
-  PointCloudType_1230_Type();
-  PointCloudType_1230_Type(
-    PointCloudType_1230_TypeChoicePair * PointCloudType_1230_TypePairIn);
-  ~PointCloudType_1230_Type();
+  PointCloudType_1186_Type();
+  PointCloudType_1186_Type(
+    PointCloudType_1186_TypeChoicePair * PointCloudType_1186_TypePairIn);
+  ~PointCloudType_1186_Type();
   void printSelf(FILE * outFile);
 
-  PointCloudType_1230_TypeChoicePair * getPointCloudType_1230_TypePair();
-  void setPointCloudType_1230_TypePair(PointCloudType_1230_TypeChoicePair * PointCloudType_1230_TypePairIn);
+  PointCloudType_1186_TypeChoicePair * getPointCloudType_1186_TypePair();
+  void setPointCloudType_1186_TypePair(PointCloudType_1186_TypeChoicePair * PointCloudType_1186_TypePairIn);
 
 protected:
-  PointCloudType_1230_TypeChoicePair * PointCloudType_1230_TypePair;
+  PointCloudType_1186_TypeChoicePair * PointCloudType_1186_TypePair;
 };
 
 /* ***************************************************************** */
 
-union PointCloudType_1230_TypeVal
+union PointCloudType_1186_TypeVal
 {
   ArrayUnsignedByteType * PointsColor;
   ArrayBinaryType * PointsColorBinary;
@@ -963,22 +963,22 @@ union PointCloudType_1230_TypeVal
 
 /* ***************************************************************** */
 
-class PointCloudType_1230_TypeChoicePair :
+class PointCloudType_1186_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     PointsColorE,
     PointsColorBinaryE };
-  PointCloudType_1230_TypeChoicePair();
-  PointCloudType_1230_TypeChoicePair(
-    whichOne PointCloudType_1230_TypeTypeIn,
-    PointCloudType_1230_TypeVal PointCloudType_1230_TypeValueIn);
-  ~PointCloudType_1230_TypeChoicePair();
+  PointCloudType_1186_TypeChoicePair();
+  PointCloudType_1186_TypeChoicePair(
+    whichOne PointCloudType_1186_TypeTypeIn,
+    PointCloudType_1186_TypeVal PointCloudType_1186_TypeValueIn);
+  ~PointCloudType_1186_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne PointCloudType_1230_TypeType;
-  PointCloudType_1230_TypeVal PointCloudType_1230_TypeValue;
+  whichOne PointCloudType_1186_TypeType;
+  PointCloudType_1186_TypeVal PointCloudType_1186_TypeValue;
 };
 
 /* ***************************************************************** */
@@ -1189,9 +1189,9 @@ public:
     ValidationFaceType * ValidationIn,
     ElementReferenceType * MeshIn,
     ArrayReferenceType * LoopIdsIn,
-    FaceMeshType_1224_Type * FaceMeshType_1224In,
-    FaceMeshType_1225_Type * FaceMeshType_1225In,
-    FaceMeshType_1226_Type * FaceMeshType_1226In);
+    FaceMeshType_1180_Type * FaceMeshType_1180In,
+    FaceMeshType_1181_Type * FaceMeshType_1181In,
+    FaceMeshType_1182_Type * FaceMeshType_1182In);
   FaceMeshType(
     XmlString * labelIn,
     QIFIdType * idIn,
@@ -1204,9 +1204,9 @@ public:
     ValidationFaceType * ValidationIn,
     ElementReferenceType * MeshIn,
     ArrayReferenceType * LoopIdsIn,
-    FaceMeshType_1224_Type * FaceMeshType_1224In,
-    FaceMeshType_1225_Type * FaceMeshType_1225In,
-    FaceMeshType_1226_Type * FaceMeshType_1226In);
+    FaceMeshType_1180_Type * FaceMeshType_1180In,
+    FaceMeshType_1181_Type * FaceMeshType_1181In,
+    FaceMeshType_1182_Type * FaceMeshType_1182In);
   ~FaceMeshType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -1215,19 +1215,19 @@ public:
   void setMesh(ElementReferenceType * MeshIn);
   ArrayReferenceType * getLoopIds();
   void setLoopIds(ArrayReferenceType * LoopIdsIn);
-  FaceMeshType_1224_Type * getFaceMeshType_1224();
-  void setFaceMeshType_1224(FaceMeshType_1224_Type * FaceMeshType_1224In);
-  FaceMeshType_1225_Type * getFaceMeshType_1225();
-  void setFaceMeshType_1225(FaceMeshType_1225_Type * FaceMeshType_1225In);
-  FaceMeshType_1226_Type * getFaceMeshType_1226();
-  void setFaceMeshType_1226(FaceMeshType_1226_Type * FaceMeshType_1226In);
+  FaceMeshType_1180_Type * getFaceMeshType_1180();
+  void setFaceMeshType_1180(FaceMeshType_1180_Type * FaceMeshType_1180In);
+  FaceMeshType_1181_Type * getFaceMeshType_1181();
+  void setFaceMeshType_1181(FaceMeshType_1181_Type * FaceMeshType_1181In);
+  FaceMeshType_1182_Type * getFaceMeshType_1182();
+  void setFaceMeshType_1182(FaceMeshType_1182_Type * FaceMeshType_1182In);
 
 protected:
   ElementReferenceType * Mesh;
   ArrayReferenceType * LoopIds;
-  FaceMeshType_1224_Type * FaceMeshType_1224;
-  FaceMeshType_1225_Type * FaceMeshType_1225;
-  FaceMeshType_1226_Type * FaceMeshType_1226;
+  FaceMeshType_1180_Type * FaceMeshType_1180;
+  FaceMeshType_1181_Type * FaceMeshType_1181;
+  FaceMeshType_1182_Type * FaceMeshType_1182;
 };
 
 /* ***************************************************************** */
@@ -1383,10 +1383,10 @@ public:
   PointCloudType();
   PointCloudType(
     AttributesType * AttributesIn,
-    PointCloudType_1227_Type * PointCloudType_1227In,
-    PointCloudType_1228_Type * PointCloudType_1228In,
-    PointCloudType_1229_Type * PointCloudType_1229In,
-    PointCloudType_1230_Type * PointCloudType_1230In);
+    PointCloudType_1183_Type * PointCloudType_1183In,
+    PointCloudType_1184_Type * PointCloudType_1184In,
+    PointCloudType_1185_Type * PointCloudType_1185In,
+    PointCloudType_1186_Type * PointCloudType_1186In);
   PointCloudType(
     XmlString * labelIn,
     QIFIdType * idIn,
@@ -1395,28 +1395,28 @@ public:
     XmlBoolean * hiddenIn,
     DoublePositiveType * sizeIn,
     TransparencyType * transparencyIn,
-    PointCloudType_1227_Type * PointCloudType_1227In,
-    PointCloudType_1228_Type * PointCloudType_1228In,
-    PointCloudType_1229_Type * PointCloudType_1229In,
-    PointCloudType_1230_Type * PointCloudType_1230In);
+    PointCloudType_1183_Type * PointCloudType_1183In,
+    PointCloudType_1184_Type * PointCloudType_1184In,
+    PointCloudType_1185_Type * PointCloudType_1185In,
+    PointCloudType_1186_Type * PointCloudType_1186In);
   ~PointCloudType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
 
-  PointCloudType_1227_Type * getPointCloudType_1227();
-  void setPointCloudType_1227(PointCloudType_1227_Type * PointCloudType_1227In);
-  PointCloudType_1228_Type * getPointCloudType_1228();
-  void setPointCloudType_1228(PointCloudType_1228_Type * PointCloudType_1228In);
-  PointCloudType_1229_Type * getPointCloudType_1229();
-  void setPointCloudType_1229(PointCloudType_1229_Type * PointCloudType_1229In);
-  PointCloudType_1230_Type * getPointCloudType_1230();
-  void setPointCloudType_1230(PointCloudType_1230_Type * PointCloudType_1230In);
+  PointCloudType_1183_Type * getPointCloudType_1183();
+  void setPointCloudType_1183(PointCloudType_1183_Type * PointCloudType_1183In);
+  PointCloudType_1184_Type * getPointCloudType_1184();
+  void setPointCloudType_1184(PointCloudType_1184_Type * PointCloudType_1184In);
+  PointCloudType_1185_Type * getPointCloudType_1185();
+  void setPointCloudType_1185(PointCloudType_1185_Type * PointCloudType_1185In);
+  PointCloudType_1186_Type * getPointCloudType_1186();
+  void setPointCloudType_1186(PointCloudType_1186_Type * PointCloudType_1186In);
 
 protected:
-  PointCloudType_1227_Type * PointCloudType_1227;
-  PointCloudType_1228_Type * PointCloudType_1228;
-  PointCloudType_1229_Type * PointCloudType_1229;
-  PointCloudType_1230_Type * PointCloudType_1230;
+  PointCloudType_1183_Type * PointCloudType_1183;
+  PointCloudType_1184_Type * PointCloudType_1184;
+  PointCloudType_1185_Type * PointCloudType_1185;
+  PointCloudType_1186_Type * PointCloudType_1186;
 };
 
 /* ***************************************************************** */

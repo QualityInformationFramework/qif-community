@@ -64,10 +64,10 @@ class ValidationPartAssemblyInstanceType;
 class ValidationPartAssemblyInstanceTypeLisd;
 class ValidationPartAssemblyInstancesType;
 class ValidationPartAssemblyType;
-class ComponentType_1238_Type;
-class ComponentType_1238_TypeChoicePair;
-class ProductType_1239_Type;
-class ProductType_1239_TypeChoicePair;
+class ComponentType_1193_Type;
+class ComponentType_1193_TypeChoicePair;
+class ProductType_1194_Type;
+class ProductType_1194_TypeChoicePair;
 
 /* ***************************************************************** */
 /* ***************************************************************** */
@@ -204,7 +204,7 @@ public:
     ElementReferenceType * TransformIn,
     QPIdType * UUIDIn,
     ProductTraceabilityType * TraceabilityIn,
-    ComponentType_1238_Type * ComponentType_1238In);
+    ComponentType_1193_Type * ComponentType_1193In);
   ComponentType(
     XmlString * labelIn,
     QIFIdType * idIn,
@@ -216,7 +216,7 @@ public:
     ElementReferenceType * TransformIn,
     QPIdType * UUIDIn,
     ProductTraceabilityType * TraceabilityIn,
-    ComponentType_1238_Type * ComponentType_1238In);
+    ComponentType_1193_Type * ComponentType_1193In);
   ~ComponentType();
   void printSelf(FILE * outFile);
   bool badAttributes(AttributePairLisd * attributes);
@@ -227,14 +227,14 @@ public:
   void setUUID(QPIdType * UUIDIn);
   ProductTraceabilityType * getTraceability();
   void setTraceability(ProductTraceabilityType * TraceabilityIn);
-  ComponentType_1238_Type * getComponentType_1238();
-  void setComponentType_1238(ComponentType_1238_Type * ComponentType_1238In);
+  ComponentType_1193_Type * getComponentType_1193();
+  void setComponentType_1193(ComponentType_1193_Type * ComponentType_1193In);
 
 protected:
   ElementReferenceType * Transform;
   QPIdType * UUID;
   ProductTraceabilityType * Traceability;
-  ComponentType_1238_Type * ComponentType_1238;
+  ComponentType_1193_Type * ComponentType_1193;
 };
 
 /* ***************************************************************** */
@@ -1485,7 +1485,7 @@ public:
     PartSetType * PartSetIn,
     AssemblySetType * AssemblySetIn,
     ComponentSetType * ComponentSetIn,
-    ProductType_1239_Type * ProductType_1239In,
+    ProductType_1194_Type * ProductType_1194In,
     AsmPathsType * AsmPathsIn,
     MaterialsType * MaterialLibraryIn);
   ~ProductType();
@@ -1519,8 +1519,8 @@ public:
   void setAssemblySet(AssemblySetType * AssemblySetIn);
   ComponentSetType * getComponentSet();
   void setComponentSet(ComponentSetType * ComponentSetIn);
-  ProductType_1239_Type * getProductType_1239();
-  void setProductType_1239(ProductType_1239_Type * ProductType_1239In);
+  ProductType_1194_Type * getProductType_1194();
+  void setProductType_1194(ProductType_1194_Type * ProductType_1194In);
   AsmPathsType * getAsmPaths();
   void setAsmPaths(AsmPathsType * AsmPathsIn);
   MaterialsType * getMaterialLibrary();
@@ -1541,7 +1541,7 @@ protected:
   PartSetType * PartSet;
   AssemblySetType * AssemblySet;
   ComponentSetType * ComponentSet;
-  ProductType_1239_Type * ProductType_1239;
+  ProductType_1194_Type * ProductType_1194;
   AsmPathsType * AsmPaths;
   MaterialsType * MaterialLibrary;
 };
@@ -1675,26 +1675,26 @@ protected:
 
 /* ***************************************************************** */
 
-class ComponentType_1238_Type :
+class ComponentType_1193_Type :
   public XmlTypeBase
 {
 public:
-  ComponentType_1238_Type();
-  ComponentType_1238_Type(
-    ComponentType_1238_TypeChoicePair * ComponentType_1238_TypePairIn);
-  ~ComponentType_1238_Type();
+  ComponentType_1193_Type();
+  ComponentType_1193_Type(
+    ComponentType_1193_TypeChoicePair * ComponentType_1193_TypePairIn);
+  ~ComponentType_1193_Type();
   void printSelf(FILE * outFile);
 
-  ComponentType_1238_TypeChoicePair * getComponentType_1238_TypePair();
-  void setComponentType_1238_TypePair(ComponentType_1238_TypeChoicePair * ComponentType_1238_TypePairIn);
+  ComponentType_1193_TypeChoicePair * getComponentType_1193_TypePair();
+  void setComponentType_1193_TypePair(ComponentType_1193_TypeChoicePair * ComponentType_1193_TypePairIn);
 
 protected:
-  ComponentType_1238_TypeChoicePair * ComponentType_1238_TypePair;
+  ComponentType_1193_TypeChoicePair * ComponentType_1193_TypePair;
 };
 
 /* ***************************************************************** */
 
-union ComponentType_1238_TypeVal
+union ComponentType_1193_TypeVal
 {
   ElementReferenceType * Part;
   ElementReferenceType * Assembly;
@@ -1702,46 +1702,46 @@ union ComponentType_1238_TypeVal
 
 /* ***************************************************************** */
 
-class ComponentType_1238_TypeChoicePair :
+class ComponentType_1193_TypeChoicePair :
   public XmlTypeBase
 {
 public:
   enum whichOne {
     PartE,
     AssemblyE };
-  ComponentType_1238_TypeChoicePair();
-  ComponentType_1238_TypeChoicePair(
-    whichOne ComponentType_1238_TypeTypeIn,
-    ComponentType_1238_TypeVal ComponentType_1238_TypeValueIn);
-  ~ComponentType_1238_TypeChoicePair();
+  ComponentType_1193_TypeChoicePair();
+  ComponentType_1193_TypeChoicePair(
+    whichOne ComponentType_1193_TypeTypeIn,
+    ComponentType_1193_TypeVal ComponentType_1193_TypeValueIn);
+  ~ComponentType_1193_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ComponentType_1238_TypeType;
-  ComponentType_1238_TypeVal ComponentType_1238_TypeValue;
+  whichOne ComponentType_1193_TypeType;
+  ComponentType_1193_TypeVal ComponentType_1193_TypeValue;
 };
 
 /* ***************************************************************** */
 
-class ProductType_1239_Type :
+class ProductType_1194_Type :
   public XmlTypeBase
 {
 public:
-  ProductType_1239_Type();
-  ProductType_1239_Type(
-    ProductType_1239_TypeChoicePair * ProductType_1239_TypePairIn);
-  ~ProductType_1239_Type();
+  ProductType_1194_Type();
+  ProductType_1194_Type(
+    ProductType_1194_TypeChoicePair * ProductType_1194_TypePairIn);
+  ~ProductType_1194_Type();
   void printSelf(FILE * outFile);
 
-  ProductType_1239_TypeChoicePair * getProductType_1239_TypePair();
-  void setProductType_1239_TypePair(ProductType_1239_TypeChoicePair * ProductType_1239_TypePairIn);
+  ProductType_1194_TypeChoicePair * getProductType_1194_TypePair();
+  void setProductType_1194_TypePair(ProductType_1194_TypeChoicePair * ProductType_1194_TypePairIn);
 
 protected:
-  ProductType_1239_TypeChoicePair * ProductType_1239_TypePair;
+  ProductType_1194_TypeChoicePair * ProductType_1194_TypePair;
 };
 
 /* ***************************************************************** */
 
-union ProductType_1239_TypeVal
+union ProductType_1194_TypeVal
 {
   ElementReferenceType * RootPart;
   ElementReferenceType * RootAssembly;
@@ -1750,7 +1750,7 @@ union ProductType_1239_TypeVal
 
 /* ***************************************************************** */
 
-class ProductType_1239_TypeChoicePair :
+class ProductType_1194_TypeChoicePair :
   public XmlTypeBase
 {
 public:
@@ -1758,15 +1758,15 @@ public:
     RootPartE,
     RootAssemblyE,
     RootComponentE };
-  ProductType_1239_TypeChoicePair();
-  ProductType_1239_TypeChoicePair(
-    whichOne ProductType_1239_TypeTypeIn,
-    ProductType_1239_TypeVal ProductType_1239_TypeValueIn);
-  ~ProductType_1239_TypeChoicePair();
+  ProductType_1194_TypeChoicePair();
+  ProductType_1194_TypeChoicePair(
+    whichOne ProductType_1194_TypeTypeIn,
+    ProductType_1194_TypeVal ProductType_1194_TypeValueIn);
+  ~ProductType_1194_TypeChoicePair();
   void printSelf(FILE * outFile);
 
-  whichOne ProductType_1239_TypeType;
-  ProductType_1239_TypeVal ProductType_1239_TypeValue;
+  whichOne ProductType_1194_TypeType;
+  ProductType_1194_TypeVal ProductType_1194_TypeValue;
 };
 
 /* ***************************************************************** */

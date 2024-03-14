@@ -48,10 +48,15 @@ only if USEXSITYPE is defined when this is compiled and is used in
 connection with derived types that are used via xsi:type. The
 printElement field is used in connection with substitution groups.
 
-All fields of all classes are public unless ACCESS is defined when the
-code is compiled (i.e., if -DACCESS is used). If ACCESS is defined,
-all data fields of most types are protected, and access functions are
-provided to get and set the fields.
+The XmlAnyString class is derived from the XmlString class and represents
+the XML text of an XmlAny. It is not a basic data type.
+
+All fields of all classes are public unless ACCESSGETSET or
+ACCESSOVERLOAD is defined when the code is compiled (i.e., if
+-DACCESSGETSET or -DACCESSOVERLOAD is used). If ACCESSGETSET or
+ACCESSOVERLOAD is defined, all data fields of most types are
+protected, and access functions are provided to get and set the
+fields.
 
 */
 
@@ -91,6 +96,18 @@ provided to get and set the fields.
 #define XFPRINTF fprintf(outFile,
 #endif
 
+#ifdef ACCESSGETSET
+#define PROT(x) x
+#define GET(x) get ## x
+#define SET(x) set ## x
+#elif defined(ACCESSOVERLOAD)
+#define PROT(x) PROTECT_ ## x
+#define GET(x) x
+#define SET(x) x
+#else
+#define PROT(x) x
+#endif
+
 #define NAMESIZE 200
 
 //void xprintf(char * outString, int * N, const char * format, ...);
@@ -98,10 +115,24 @@ void xprintf(char * outString, size_t * remain, size_t * N,
 	     const char * format, ...);
 
 /*********************************************************************/
+/* Missing Primitive Types
+byte
+duration
+gDay
+gMonth
+gMonthDay
+gYear
+gYearMonth
+language
+Name
+normalizedString
+*/
 
 class AttributePair;
 class AttributePairLisd;
+class SchemaInstanceError;
 class SchemaLocation;
+class XmlAnyString;
 class XmlAnyURI;
 class XmlBase64Binary;
 class XmlBase64BinaryLisd;
@@ -169,8 +200,19 @@ public:
   virtual ~XmlSchemaInstanceBase();
   virtual void PRINTSELFDECL = 0;
   static void doSpaces(int change, FILE * outFile);
+
   static int places;
   static int format;
+};
+
+/*********************************************************************/
+
+class SchemaInstanceError
+{
+public:
+  SchemaInstanceError(const char * mess)
+  {errorMessage = mess;}
+  std::string errorMessage;
 };
 
 /*********************************************************************/
@@ -184,19 +226,22 @@ public:
   virtual void PRINTNAMEDECL = 0;
   virtual void PRINTSELFDECL = 0;
   virtual void OPRINTSELFDECL = 0;
-
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  const char * GET(printElement)();
+  void SET(printElement)(const char * printElementIn);
+  bool GET(bad)();
+  void SET(bad)(bool badIn);
 #ifdef USEXSITYPE 
-  const char * printTypp;
+  const char * GET(printTypp)();
+  void SET(printTypp)(const char * printTyppIn);
 #endif
-#ifdef ACCESS
-  const char * getprintElement();
-  void setprintElement(const char * printElementIn);
-  bool getbad();
-  void setbad(bool badIn);
 protected:
 #endif
-  const char * printElement;
-  bool bad;
+  const char * PROT(printElement);
+  bool PROT(bad);
+#ifdef USEXSITYPE 
+  const char * PROT(printTypp);
+#endif
 };
 
 /*********************************************************************/
@@ -208,15 +253,19 @@ public:
   XmlTypeBase();
   virtual ~XmlTypeBase();
 
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  const char * GET(printElement)();
+  void SET(printElement)(const char * printElementIn);
 #ifdef USEXSITYPE 
-  const char * printTypp;
+  const char * GET(printTypp)();
+  const char * SET(printTypp)(const char * printTyppIn);
 #endif
-#ifdef ACCESS
-  const char * getprintElement();
-  void setprintElement(const char * printElementIn);
 protected:
 #endif
-  const char * printElement;
+  const char * PROT(printElement);
+#ifdef USEXSITYPE
+  const char * PROT(printTypp);
+#endif
 };
 
 /*********************************************************************/
@@ -228,12 +277,12 @@ public:
   XmlOPrintTypeBase();
   virtual ~XmlOPrintTypeBase();
   virtual void OPRINTSELFDECL = 0;
-#ifdef ACCESS
-  bool getbad();
-  void setbad(bool badIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  bool GET(bad)();
+  void SET(bad)(bool badIn);
 protected:
 #endif
-  bool bad;
+  bool PROT(bad);
 };
 
 /*********************************************************************/
@@ -248,14 +297,15 @@ public:
     const char * valIn);
   ~AttributePair();
   void PRINTSELFDECL;
-#ifdef ACCESS
-  std::string getname();
-  void setname(std::string nameIn);
-  std::string getval();
-  void setval(std::string valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string GET(name)();
+  void SET(name)(std::string nameIn);
+  std::string GET(val)();
+  void SET(val)(std::string valIn);
+protected:
 #endif
-  std::string name;
-  std::string val;
+  std::string PROT(name);
+  std::string PROT(val);
 };
 
 /*********************************************************************/
@@ -285,20 +335,22 @@ public:
     bool hasNamespaceIn);
   ~SchemaLocation();
   void PRINTSELFDECL;
-#ifdef ACCESS
-  std::string getprefix();
-  void setprefix(std::string prefixIn);
-  std::string getlocation();
-  void setlocation(std::string locationIn);
-  bool gethasNamespace();
-  void sethasNamespace(bool hasNamespaceIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string GET(prefix)();
+  void SET(prefix)(std::string prefixIn);
+  std::string GET(location)();
+  void SET(location)(std::string locationIn);
+  bool GET(hasNamespace)();
+  void SET(hasNamespace)(bool hasNamespaceIn);
 protected:
 #endif
-  std::string prefix;
-  std::string location;
-  bool hasNamespace;
+  std::string PROT(prefix);
+  std::string PROT(location);
+  bool PROT(hasNamespace);
 };
 
+/*********************************************************************/
+/***************************** BEGIN BASIC TYPES *********************/
 /*********************************************************************/
 
 /* class XmlAnyURI
@@ -319,15 +371,15 @@ public:
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
   bool XmlAnyURIIsBad();
-#ifdef ACCESS
-  std::string getval();
-  void setval(std::string valIn);
-  bool getbad();
-  void setbad(bool badIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string GET(val)();
+  void SET(val)(std::string valIn);
+  bool GET(bad)();
+  void SET(bad)(bool badIn);
 protected:
 #endif
-  std::string val;
-  bool bad;
+  std::string PROT(val);
+  bool PROT(bad);
 };
 
 /*********************************************************************/
@@ -350,12 +402,12 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlBase64BinaryIsBad();
-#ifdef ACCESS
-  std::string getval();
-  void setval(std::string valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string GET(val)();
+  void SET(val)(std::string valIn);
 protected:
 #endif
-  std::string val;
+  std::string PROT(val);
 };
 
 /*********************************************************************/
@@ -402,12 +454,12 @@ public:
   void PRINTSELFDECL;
   void OPRINTSELFDECL;
   bool XmlBooleanIsBad();
-#ifdef ACCESS
-  bool getval();
-  void setval(bool valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  bool GET(val)();
+  void SET(val)(bool valIn);
 protected:
 #endif
-  bool val;
+  bool PROT(val);
 };
 
 /*********************************************************************/
@@ -450,12 +502,12 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlDateIsBad();
-#ifdef ACCESS
-  std::string getval();
-  void setval(std::string valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string GET(val)();
+  void SET(val)(std::string valIn);
 protected:
 #endif
-  std::string val;
+  std::string PROT(val);
 };
 
 /*********************************************************************/
@@ -498,12 +550,12 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlDateTimeIsBad();
-#ifdef ACCESS
-  std::string getval();
-  void setval(std::string valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string GET(val)();
+  void SET(val)(std::string valIn);
 protected:
 #endif
-  std::string val;
+  std::string PROT(val);
 };
 
 /*********************************************************************/
@@ -550,16 +602,15 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlDecimalIsBad();
-
-#ifdef ACCESS
-  double getval();
-  void setval(double valIn);
-  short int getplaces();
-  void setplaces(short int placesIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  double GET(val)();
+  void SET(val)(double valIn);
+  short int GET(places)();
+  void SET(places)(short int placesIn);
 protected:
 #endif
-  double val;
-  short int places;
+  double PROT(val);
+  short int PROT(places);
 };
 
 /*********************************************************************/
@@ -608,18 +659,18 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlDoubleIsBad();
-#ifdef ACCESS
-  double getval();
-  void setval(double valIn);
-  short int getplaces();
-  void setplaces(short int placesIn);
-  char getformat();
-  void setformat(char formatIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  double GET(val)();
+  void SET(val)(double valIn);
+  short int GET(places)();
+  void SET(places)(short int placesIn);
+  char GET(format)();
+  void SET(format)(char formatIn);
 protected:
 #endif
-  double val;
-  short int places;
-  char format;
+  double PROT(val);
+  short int PROT(places);
+  char PROT(format);
 };
 
 /*********************************************************************/
@@ -669,18 +720,18 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlFloatIsBad();
-#ifdef ACCESS
-  float getval();
-  void setval(float valIn);
-  short int getplaces();
-  void setplaces(short int placesIn);
-  char getformat();
-  void setformat(char formatIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  float GET(val)();
+  void SET(val)(float valIn);
+  short int GET(places)();
+  void SET(places)(short int placesIn);
+  char GET(format)();
+  void SET(format)(char formatIn);
 protected:
 #endif
-  float val;
-  short int places;
-  char format;
+  float PROT(val);
+  short int PROT(places);
+  char PROT(format);
 };
 
 /*********************************************************************/
@@ -731,12 +782,12 @@ public:
   static int lastAuto;
   static const int idSize;
   static char buffer[];
-#ifdef ACCESS
-  std::string getval();
-  void setval(std::string valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string GET(val)();
+  void SET(val)(std::string valIn);
 protected:
 #endif
-  std::string val;
+  std::string PROT(val);
 };
 
 /*********************************************************************/
@@ -786,12 +837,12 @@ public:
   static bool idMissing();
   static std::set<std::string> allIDREFs;
   static const int idrefSize;
-#ifdef ACCESS
-  std::string getval();
-  void setval(std::string valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string GET(val)();
+  void SET(val)(std::string valIn);
 protected:
 #endif
-  std::string val;
+  std::string PROT(val);
 };
 
 /*********************************************************************/
@@ -834,12 +885,12 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlIntIsBad();
-#ifdef ACCESS
-  int getval();
-  void setval(int valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  int GET(val)();
+  void SET(val)(int valIn);
 protected:
 #endif
-  int val;
+  int PROT(val);
 };
 
 /*********************************************************************/
@@ -885,12 +936,12 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlIntegerIsBad();
-#ifdef ACCESS
-  int getval();
-  void setval(int valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  int GET(val)();
+  void SET(val)(int valIn);
 protected:
 #endif
-  int val;
+  int PROT(val);
 };
 
 /*********************************************************************/
@@ -933,12 +984,12 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlLongIsBad();
-#ifdef ACCESS
-  long getval();
-  void setval(long longIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  long GET(val)();
+  void SET(val)(long longIn);
 protected:
 #endif
-  long val;
+  long PROT(val);
 };
 
 /*********************************************************************/
@@ -981,12 +1032,12 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlNCNameIsBad();
-#ifdef ACCESS
-  std::string getval();
-  void setval(std::string valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string GET(val)();
+  void SET(val)(std::string valIn);
 protected:
 #endif
-  std::string val;
+  std::string PROT(val);
 };
 
 /*********************************************************************/
@@ -1032,12 +1083,12 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlNegativeIntegerIsBad();
-#ifdef ACCESS
-  int getval();
-  void setval(int valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  int GET(val)();
+  void SET(val)(int valIn);
 protected:
 #endif
-  int val;
+  int PROT(val);
 };
 
 /*********************************************************************/
@@ -1080,12 +1131,12 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlNMTOKENIsBad();
-#ifdef ACCESS
-  std::string getval();
-  void setval(std::string valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string GET(val)();
+  void SET(val)(std::string valIn);
 protected:
 #endif
-  std::string val;
+  std::string PROT(val);
 };
 
 /*********************************************************************/
@@ -1131,12 +1182,12 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlNonNegativeIntegerIsBad();
-#ifdef ACCESS
-  int getval();
-  void setval(int valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  int GET(val)();
+  void SET(val)(int valIn);
 protected:
 #endif
-  int val;
+  int PROT(val);
 };
 
 /*********************************************************************/
@@ -1182,12 +1233,12 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlNonPositiveIntegerIsBad();
-#ifdef ACCESS
-  int getval();
-  void setval(int valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  int GET(val)();
+  void SET(val)(int valIn);
 protected:
 #endif
-  int val;
+  int PROT(val);
 };
 
 /*********************************************************************/
@@ -1233,12 +1284,12 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlPositiveIntegerIsBad();
-#ifdef ACCESS
-  int getval();
-  void setval(int valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  int GET(val)();
+  void SET(val)(int valIn);
 protected:
 #endif
-  int val;
+  int PROT(val);
 };
 
 /*********************************************************************/
@@ -1281,12 +1332,12 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlShortIsBad();
-#ifdef ACCESS
-  int getval();
-  void setval(int valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  int GET(val)();
+  void SET(val)(int valIn);
 protected:
 #endif
-  int val;
+  int PROT(val);
 };
 
 /*********************************************************************/
@@ -1329,12 +1380,12 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlStringIsBad();
-#ifdef ACCESS
-  std::string getval();
-  void setval(std::string valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string GET(val)();
+  void SET(val)(std::string valIn);
 protected:
 #endif
-  std::string val;
+  std::string PROT(val);
 };
 
 /*********************************************************************/
@@ -1382,12 +1433,12 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlTimeIsBad();
-#ifdef ACCESS
-  std::string getval();
-  void setval(std::string valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string GET(val)();
+  void SET(val)(std::string valIn);
 protected:
 #endif
-  std::string val;
+  std::string PROT(val);
 };
 
 /*********************************************************************/
@@ -1433,12 +1484,12 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlTokenIsBad();
-#ifdef ACCESS
-  std::string getval();
-  void setval(std::string valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string GET(val)();
+  void SET(val)(std::string valIn);
 protected:
 #endif
-  std::string val;
+  std::string PROT(val);
 };
 
 /*********************************************************************/
@@ -1481,12 +1532,12 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlUnsignedByteIsBad();
-#ifdef ACCESS
-  unsigned char getval();
-  void setval(unsigned char valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  unsigned char GET(val)();
+  void SET(val)(unsigned char valIn);
 protected:
 #endif
-  unsigned char val;
+  unsigned char PROT(val);
 };
 
 /*********************************************************************/
@@ -1529,12 +1580,12 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlUnsignedIntIsBad();
-#ifdef ACCESS
-  unsigned int getval();
-  void setval(unsigned int valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  unsigned int GET(val)();
+  void SET(val)(unsigned int valIn);
 protected:
 #endif
-  unsigned int val;
+  unsigned int PROT(val);
 };
 
 /*********************************************************************/
@@ -1577,12 +1628,12 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlUnsignedLongIsBad();
-#ifdef ACCESS
-  unsigned long getval();
-  void setval(unsigned long valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  unsigned long GET(val)();
+  void SET(val)(unsigned long valIn);
 protected:
 #endif
-  unsigned long val;
+  unsigned long PROT(val);
 };
 
 /*********************************************************************/
@@ -1625,12 +1676,12 @@ public:
   void OPRINTSELFDECL;
   void printBad(FILE * badFile);
   bool XmlUnsignedShortIsBad();
-#ifdef ACCESS
-  unsigned short getval();
-  void setval(unsigned short valIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  unsigned short GET(val)();
+  void SET(val)(unsigned short valIn);
 protected:
 #endif
-  unsigned short val;
+  unsigned short PROT(val);
 };
 
 /*********************************************************************/
@@ -1654,6 +1705,11 @@ public:
 };
 
 /*********************************************************************/
+/***************************** END BASIC TYPES ***********************/
+/*********************************************************************/
+
+
+/*********************************************************************/
 
 class XmlVersion :
   public XmlSchemaInstanceBase
@@ -1665,15 +1721,45 @@ public:
    const char * standaloneIn);
   ~XmlVersion();
   void PRINTSELFDECL;
-#ifdef ACCESS
-  char * getencoding();
-  void setencoding(char * encodingIn);
-  char * getstandalone();
-  void setstandalone(char * standaloneIn);
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  char * GET(encoding)();
+  void SET(encoding)(char * encodingIn);
+  char * GET(standalone)();
+  void SET(standalone)(char * standaloneIn);
 protected:
 #endif
-  char encoding[10];
-  char standalone[10];
+  char PROT(encoding)[10];
+  char PROT(standalone)[10];
+};
+
+/*********************************************************************/
+
+/* class XmlAnyString
+
+This is a class for handling the XML text of an XmlAny.
+The XmlAnyStringIsBad function checks that the string is a single
+valid XML element.
+
+*/
+
+class XmlAnyString :
+  public XmlString
+{
+public:
+  XmlAnyString();
+  XmlAnyString(
+    const char * valIn);
+  ~XmlAnyString();
+  void PRINTSELFDECL;
+  void OPRINTSELFDECL;
+  void printBad(FILE * badFile);
+  bool XmlAnyStringIsBad();
+#if defined(ACCESSGETSET) || defined(ACCESSOVERLOAD)
+  std::string GET(val)();
+  void SET(val)(std::string valIn);
+protected:
+#endif
+  std::string PROT(val);
 };
 
 /*********************************************************************/

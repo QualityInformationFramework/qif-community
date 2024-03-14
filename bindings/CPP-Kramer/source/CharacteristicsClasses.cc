@@ -4,7 +4,6 @@
 #include <string.h>            // for strdup
 #include <stdlib.h>            // for exit
 #include <list>
-#include <boost/regex.hpp>
 #include <xmlSchemaInstance.hh>
 #include "CharacteristicsClasses.hh"
 
@@ -38,7 +37,7 @@ AngleBetweenCharacteristicDefinitionType::AngleBetweenCharacteristicDefinitionTy
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCharacte_1046_Type * AngularCharacte_1046In) :
+ AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn) :
   AngularCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -55,7 +54,7 @@ AngleBetweenCharacteristicDefinitionType::AngleBetweenCharacteristicDefinitionTy
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    AngularCharacte_1046In)
+    AngularCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -76,7 +75,7 @@ AngleBetweenCharacteristicDefinitionType::AngleBetweenCharacteristicDefinitionTy
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCharacte_1046_Type * AngularCharacte_1046In) :
+ AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn) :
   AngularCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -94,7 +93,7 @@ AngleBetweenCharacteristicDefinitionType::AngleBetweenCharacteristicDefinitionTy
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    AngularCharacte_1046In)
+    AngularCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -241,7 +240,7 @@ void AngleBetweenCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  AngularCharacte_1046->printSelf(outFile);
+  AngularCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -259,7 +258,7 @@ bool AngleBetweenCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngleBetweenCharacteristicDefinitionType\n");
               returnValue = true;
@@ -275,7 +274,7 @@ bool AngleBetweenCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -284,7 +283,7 @@ bool AngleBetweenCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngleBetweenCharacteristicDefinitionType\n");
       returnValue = true;
@@ -296,8 +295,8 @@ bool AngleBetweenCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -501,7 +500,7 @@ bool AngleBetweenCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngleBetweenCharacteristicItemType\n");
               returnValue = true;
@@ -517,7 +516,7 @@ bool AngleBetweenCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -526,7 +525,7 @@ bool AngleBetweenCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngleBetweenCharacteristicItemType\n");
       returnValue = true;
@@ -538,8 +537,8 @@ bool AngleBetweenCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -810,7 +809,7 @@ bool AngleBetweenCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngleBetweenCharacteristicMeasurementType\n");
               returnValue = true;
@@ -826,7 +825,7 @@ bool AngleBetweenCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -835,7 +834,7 @@ bool AngleBetweenCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngleBetweenCharacteristicMeasurementType\n");
       returnValue = true;
@@ -847,8 +846,8 @@ bool AngleBetweenCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -1142,7 +1141,7 @@ bool AngleBetweenCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngleBetweenCharacteristicNominalType\n");
               returnValue = true;
@@ -1158,7 +1157,7 @@ bool AngleBetweenCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -1167,7 +1166,7 @@ bool AngleBetweenCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngleBetweenCharacteristicNominalType\n");
       returnValue = true;
@@ -1179,8 +1178,8 @@ bool AngleBetweenCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -1248,7 +1247,7 @@ AngleCharacteristicDefinitionType::AngleCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCharacte_1046_Type * AngularCharacte_1046In) :
+ AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn) :
   AngularCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -1265,7 +1264,7 @@ AngleCharacteristicDefinitionType::AngleCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    AngularCharacte_1046In)
+    AngularCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -1286,7 +1285,7 @@ AngleCharacteristicDefinitionType::AngleCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCharacte_1046_Type * AngularCharacte_1046In) :
+ AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn) :
   AngularCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -1304,7 +1303,7 @@ AngleCharacteristicDefinitionType::AngleCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    AngularCharacte_1046In)
+    AngularCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -1451,7 +1450,7 @@ void AngleCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  AngularCharacte_1046->printSelf(outFile);
+  AngularCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -1469,7 +1468,7 @@ bool AngleCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngleCharacteristicDefinitionType\n");
               returnValue = true;
@@ -1485,7 +1484,7 @@ bool AngleCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -1494,7 +1493,7 @@ bool AngleCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngleCharacteristicDefinitionType\n");
       returnValue = true;
@@ -1506,8 +1505,8 @@ bool AngleCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -1711,7 +1710,7 @@ bool AngleCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngleCharacteristicItemType\n");
               returnValue = true;
@@ -1727,7 +1726,7 @@ bool AngleCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -1736,7 +1735,7 @@ bool AngleCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngleCharacteristicItemType\n");
       returnValue = true;
@@ -1748,8 +1747,8 @@ bool AngleCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -1994,7 +1993,7 @@ bool AngleCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngleCharacteristicMeasurementType\n");
               returnValue = true;
@@ -2010,7 +2009,7 @@ bool AngleCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -2019,7 +2018,7 @@ bool AngleCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngleCharacteristicMeasurementType\n");
       returnValue = true;
@@ -2031,8 +2030,8 @@ bool AngleCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -2237,7 +2236,7 @@ bool AngleCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngleCharacteristicNominalType\n");
               returnValue = true;
@@ -2253,7 +2252,7 @@ bool AngleCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -2262,7 +2261,7 @@ bool AngleCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngleCharacteristicNominalType\n");
       returnValue = true;
@@ -2274,8 +2273,8 @@ bool AngleCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -2307,7 +2306,7 @@ AngleFromCharacteristicDefinitionType::AngleFromCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCharacte_1046_Type * AngularCharacte_1046In) :
+ AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn) :
   AngularCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -2324,7 +2323,7 @@ AngleFromCharacteristicDefinitionType::AngleFromCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    AngularCharacte_1046In)
+    AngularCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -2345,7 +2344,7 @@ AngleFromCharacteristicDefinitionType::AngleFromCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCharacte_1046_Type * AngularCharacte_1046In) :
+ AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn) :
   AngularCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -2363,7 +2362,7 @@ AngleFromCharacteristicDefinitionType::AngleFromCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    AngularCharacte_1046In)
+    AngularCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -2510,7 +2509,7 @@ void AngleFromCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  AngularCharacte_1046->printSelf(outFile);
+  AngularCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -2528,7 +2527,7 @@ bool AngleFromCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngleFromCharacteristicDefinitionType\n");
               returnValue = true;
@@ -2544,7 +2543,7 @@ bool AngleFromCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -2553,7 +2552,7 @@ bool AngleFromCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngleFromCharacteristicDefinitionType\n");
       returnValue = true;
@@ -2565,8 +2564,8 @@ bool AngleFromCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -2770,7 +2769,7 @@ bool AngleFromCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngleFromCharacteristicItemType\n");
               returnValue = true;
@@ -2786,7 +2785,7 @@ bool AngleFromCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -2795,7 +2794,7 @@ bool AngleFromCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngleFromCharacteristicItemType\n");
       returnValue = true;
@@ -2807,8 +2806,8 @@ bool AngleFromCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -3079,7 +3078,7 @@ bool AngleFromCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngleFromCharacteristicMeasurementType\n");
               returnValue = true;
@@ -3095,7 +3094,7 @@ bool AngleFromCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -3104,7 +3103,7 @@ bool AngleFromCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngleFromCharacteristicMeasurementType\n");
       returnValue = true;
@@ -3116,8 +3115,8 @@ bool AngleFromCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -3411,7 +3410,7 @@ bool AngleFromCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngleFromCharacteristicNominalType\n");
               returnValue = true;
@@ -3427,7 +3426,7 @@ bool AngleFromCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -3436,7 +3435,7 @@ bool AngleFromCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngleFromCharacteristicNominalType\n");
       returnValue = true;
@@ -3448,8 +3447,8 @@ bool AngleFromCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -3499,7 +3498,7 @@ void AngleFromCharacteristicNominalType::setVertex(PointType * VertexIn)
 AngularCharacteristicDefinitionBaseType::AngularCharacteristicDefinitionBaseType() :
   DimensionalCharacteristicDefinitionBaseType()
 {
-  AngularCharacte_1046 = 0;
+  AngularCharacteristicDefinitionBaseTypePair = 0;
 }
 
 AngularCharacteristicDefinitionBaseType::AngularCharacteristicDefinitionBaseType(
@@ -3518,7 +3517,7 @@ AngularCharacteristicDefinitionBaseType::AngularCharacteristicDefinitionBaseType
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCharacte_1046_Type * AngularCharacte_1046In) :
+ AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn) :
   DimensionalCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -3536,7 +3535,7 @@ AngularCharacteristicDefinitionBaseType::AngularCharacteristicDefinitionBaseType
     DimensionTypeIn,
     DimensionModifiersIn)
 {
-  AngularCharacte_1046 = AngularCharacte_1046In;
+  AngularCharacteristicDefinitionBaseTypePair = AngularCharacteristicDefinitionBaseTypePairIn;
 }
 
 AngularCharacteristicDefinitionBaseType::AngularCharacteristicDefinitionBaseType(
@@ -3556,7 +3555,7 @@ AngularCharacteristicDefinitionBaseType::AngularCharacteristicDefinitionBaseType
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCharacte_1046_Type * AngularCharacte_1046In) :
+ AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn) :
   DimensionalCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -3575,13 +3574,13 @@ AngularCharacteristicDefinitionBaseType::AngularCharacteristicDefinitionBaseType
     DimensionTypeIn,
     DimensionModifiersIn)
 {
-  AngularCharacte_1046 = AngularCharacte_1046In;
+  AngularCharacteristicDefinitionBaseTypePair = AngularCharacteristicDefinitionBaseTypePairIn;
 }
 
 AngularCharacteristicDefinitionBaseType::~AngularCharacteristicDefinitionBaseType()
 {
   #ifndef NODESTRUCT
-  delete AngularCharacte_1046;
+  delete AngularCharacteristicDefinitionBaseTypePair;
   #endif
 }
 
@@ -3722,8 +3721,54 @@ void AngularCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  AngularCharacte_1046->printSelf(outFile);
+  AngularCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
+}
+AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseType::getAngularCharacteristicDefinitionBaseTypeChoicePair()
+{return AngularCharacteristicDefinitionBaseTypePair;}
+
+void AngularCharacteristicDefinitionBaseType::setAngularCharacteristicDefinitionBaseTypeChoicePair(AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn)
+{AngularCharacteristicDefinitionBaseTypePair = AngularCharacteristicDefinitionBaseTypePairIn;}
+
+/* ***************************************************************** */
+
+AngularCharacteristicDefinitionBaseTypeChoicePair::AngularCharacteristicDefinitionBaseTypeChoicePair() {}
+
+AngularCharacteristicDefinitionBaseTypeChoicePair::AngularCharacteristicDefinitionBaseTypeChoicePair(
+ whichOne AngularCharacteristicDefinitionBaseTypeTypeIn,
+ AngularCharacteristicDefinitionBaseTypeVal AngularCharacteristicDefinitionBaseTypeValueIn)
+{
+  AngularCharacteristicDefinitionBaseTypeType = AngularCharacteristicDefinitionBaseTypeTypeIn;
+  AngularCharacteristicDefinitionBaseTypeValue = AngularCharacteristicDefinitionBaseTypeValueIn;
+}
+
+AngularCharacteristicDefinitionBaseTypeChoicePair::~AngularCharacteristicDefinitionBaseTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (AngularCharacteristicDefinitionBaseTypeType == ToleranceE)
+    delete AngularCharacteristicDefinitionBaseTypeValue.Tolerance;
+  else if (AngularCharacteristicDefinitionBaseTypeType == NonToleranceE)
+    delete AngularCharacteristicDefinitionBaseTypeValue.NonTolerance;
+  #endif
+}
+
+void AngularCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (AngularCharacteristicDefinitionBaseTypeType == ToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Tolerance");
+      AngularCharacteristicDefinitionBaseTypeValue.Tolerance->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</Tolerance>\n");
+    }
+  else if (AngularCharacteristicDefinitionBaseTypeType == NonToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<NonTolerance");
+      AngularCharacteristicDefinitionBaseTypeValue.NonTolerance->printSelf(outFile);
+      fprintf(outFile, "</NonTolerance>\n");
+    }
 }
 
 bool AngularCharacteristicDefinitionBaseType::badAttributes(
@@ -3740,7 +3785,7 @@ bool AngularCharacteristicDefinitionBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngularCharacteristicDefinitionBaseType\n");
               returnValue = true;
@@ -3756,7 +3801,7 @@ bool AngularCharacteristicDefinitionBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -3765,7 +3810,7 @@ bool AngularCharacteristicDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngularCharacteristicDefinitionBaseType\n");
       returnValue = true;
@@ -3777,17 +3822,11 @@ bool AngularCharacteristicDefinitionBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
-
-AngularCharacte_1046_Type * AngularCharacteristicDefinitionBaseType::getAngularCharacte_1046()
-{return AngularCharacte_1046;}
-
-void AngularCharacteristicDefinitionBaseType::setAngularCharacte_1046(AngularCharacte_1046_Type * AngularCharacte_1046In)
-{AngularCharacte_1046 = AngularCharacte_1046In;}
 
 /* ***************************************************************** */
 
@@ -3988,7 +4027,7 @@ bool AngularCharacteristicItemBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngularCharacteristicItemBaseType\n");
               returnValue = true;
@@ -4004,7 +4043,7 @@ bool AngularCharacteristicItemBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -4013,7 +4052,7 @@ bool AngularCharacteristicItemBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngularCharacteristicItemBaseType\n");
       returnValue = true;
@@ -4025,8 +4064,8 @@ bool AngularCharacteristicItemBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -4277,7 +4316,7 @@ bool AngularCharacteristicMeasurementBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngularCharacteristicMeasurementBaseType\n");
               returnValue = true;
@@ -4293,7 +4332,7 @@ bool AngularCharacteristicMeasurementBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -4302,7 +4341,7 @@ bool AngularCharacteristicMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngularCharacteristicMeasurementBaseType\n");
       returnValue = true;
@@ -4314,8 +4353,8 @@ bool AngularCharacteristicMeasurementBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -4540,7 +4579,7 @@ bool AngularCharacteristicNominalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngularCharacteristicNominalBaseType\n");
               returnValue = true;
@@ -4556,7 +4595,7 @@ bool AngularCharacteristicNominalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -4565,7 +4604,7 @@ bool AngularCharacteristicNominalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngularCharacteristicNominalBaseType\n");
       returnValue = true;
@@ -4577,8 +4616,8 @@ bool AngularCharacteristicNominalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -4598,7 +4637,7 @@ void AngularCharacteristicNominalBaseType::setTargetValue(AngularValueType * Tar
 AngularCoordinateCharacteristicDefinitionType::AngularCoordinateCharacteristicDefinitionType() :
   CoordinateCharacteristicDefinitionBaseType()
 {
-  AngularCoordina_1047 = 0;
+  AngularCoordinateCharacteristicDefinitionTypePair = 0;
 }
 
 AngularCoordinateCharacteristicDefinitionType::AngularCoordinateCharacteristicDefinitionType(
@@ -4617,7 +4656,7 @@ AngularCoordinateCharacteristicDefinitionType::AngularCoordinateCharacteristicDe
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCoordina_1047_Type * AngularCoordina_1047In) :
+ AngularCoordinateCharacteristicDefinitionTypeChoicePair * AngularCoordinateCharacteristicDefinitionTypePairIn) :
   CoordinateCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -4635,7 +4674,7 @@ AngularCoordinateCharacteristicDefinitionType::AngularCoordinateCharacteristicDe
     DimensionTypeIn,
     DimensionModifiersIn)
 {
-  AngularCoordina_1047 = AngularCoordina_1047In;
+  AngularCoordinateCharacteristicDefinitionTypePair = AngularCoordinateCharacteristicDefinitionTypePairIn;
 }
 
 AngularCoordinateCharacteristicDefinitionType::AngularCoordinateCharacteristicDefinitionType(
@@ -4655,7 +4694,7 @@ AngularCoordinateCharacteristicDefinitionType::AngularCoordinateCharacteristicDe
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCoordina_1047_Type * AngularCoordina_1047In) :
+ AngularCoordinateCharacteristicDefinitionTypeChoicePair * AngularCoordinateCharacteristicDefinitionTypePairIn) :
   CoordinateCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -4674,13 +4713,13 @@ AngularCoordinateCharacteristicDefinitionType::AngularCoordinateCharacteristicDe
     DimensionTypeIn,
     DimensionModifiersIn)
 {
-  AngularCoordina_1047 = AngularCoordina_1047In;
+  AngularCoordinateCharacteristicDefinitionTypePair = AngularCoordinateCharacteristicDefinitionTypePairIn;
 }
 
 AngularCoordinateCharacteristicDefinitionType::~AngularCoordinateCharacteristicDefinitionType()
 {
   #ifndef NODESTRUCT
-  delete AngularCoordina_1047;
+  delete AngularCoordinateCharacteristicDefinitionTypePair;
   #endif
 }
 
@@ -4821,8 +4860,54 @@ void AngularCoordinateCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  AngularCoordina_1047->printSelf(outFile);
+  AngularCoordinateCharacteristicDefinitionTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
+}
+AngularCoordinateCharacteristicDefinitionTypeChoicePair * AngularCoordinateCharacteristicDefinitionType::getAngularCoordinateCharacteristicDefinitionTypeChoicePair()
+{return AngularCoordinateCharacteristicDefinitionTypePair;}
+
+void AngularCoordinateCharacteristicDefinitionType::setAngularCoordinateCharacteristicDefinitionTypeChoicePair(AngularCoordinateCharacteristicDefinitionTypeChoicePair * AngularCoordinateCharacteristicDefinitionTypePairIn)
+{AngularCoordinateCharacteristicDefinitionTypePair = AngularCoordinateCharacteristicDefinitionTypePairIn;}
+
+/* ***************************************************************** */
+
+AngularCoordinateCharacteristicDefinitionTypeChoicePair::AngularCoordinateCharacteristicDefinitionTypeChoicePair() {}
+
+AngularCoordinateCharacteristicDefinitionTypeChoicePair::AngularCoordinateCharacteristicDefinitionTypeChoicePair(
+ whichOne AngularCoordinateCharacteristicDefinitionTypeTypeIn,
+ AngularCoordinateCharacteristicDefinitionTypeVal AngularCoordinateCharacteristicDefinitionTypeValueIn)
+{
+  AngularCoordinateCharacteristicDefinitionTypeType = AngularCoordinateCharacteristicDefinitionTypeTypeIn;
+  AngularCoordinateCharacteristicDefinitionTypeValue = AngularCoordinateCharacteristicDefinitionTypeValueIn;
+}
+
+AngularCoordinateCharacteristicDefinitionTypeChoicePair::~AngularCoordinateCharacteristicDefinitionTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (AngularCoordinateCharacteristicDefinitionTypeType == ToleranceE)
+    delete AngularCoordinateCharacteristicDefinitionTypeValue.Tolerance;
+  else if (AngularCoordinateCharacteristicDefinitionTypeType == NonToleranceE)
+    delete AngularCoordinateCharacteristicDefinitionTypeValue.NonTolerance;
+  #endif
+}
+
+void AngularCoordinateCharacteristicDefinitionTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (AngularCoordinateCharacteristicDefinitionTypeType == ToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Tolerance");
+      AngularCoordinateCharacteristicDefinitionTypeValue.Tolerance->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</Tolerance>\n");
+    }
+  else if (AngularCoordinateCharacteristicDefinitionTypeType == NonToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<NonTolerance");
+      AngularCoordinateCharacteristicDefinitionTypeValue.NonTolerance->printSelf(outFile);
+      fprintf(outFile, "</NonTolerance>\n");
+    }
 }
 
 bool AngularCoordinateCharacteristicDefinitionType::badAttributes(
@@ -4839,7 +4924,7 @@ bool AngularCoordinateCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngularCoordinateCharacteristicDefinitionType\n");
               returnValue = true;
@@ -4855,7 +4940,7 @@ bool AngularCoordinateCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -4864,7 +4949,7 @@ bool AngularCoordinateCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngularCoordinateCharacteristicDefinitionType\n");
       returnValue = true;
@@ -4876,17 +4961,11 @@ bool AngularCoordinateCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
-
-AngularCoordina_1047_Type * AngularCoordinateCharacteristicDefinitionType::getAngularCoordina_1047()
-{return AngularCoordina_1047;}
-
-void AngularCoordinateCharacteristicDefinitionType::setAngularCoordina_1047(AngularCoordina_1047_Type * AngularCoordina_1047In)
-{AngularCoordina_1047 = AngularCoordina_1047In;}
 
 /* ***************************************************************** */
 
@@ -5087,7 +5166,7 @@ bool AngularCoordinateCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngularCoordinateCharacteristicItemType\n");
               returnValue = true;
@@ -5103,7 +5182,7 @@ bool AngularCoordinateCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -5112,7 +5191,7 @@ bool AngularCoordinateCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngularCoordinateCharacteristicItemType\n");
       returnValue = true;
@@ -5124,8 +5203,8 @@ bool AngularCoordinateCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -5385,7 +5464,7 @@ bool AngularCoordinateCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngularCoordinateCharacteristicMeasurementType\n");
               returnValue = true;
@@ -5401,7 +5480,7 @@ bool AngularCoordinateCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -5410,7 +5489,7 @@ bool AngularCoordinateCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngularCoordinateCharacteristicMeasurementType\n");
       returnValue = true;
@@ -5422,8 +5501,8 @@ bool AngularCoordinateCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -5671,7 +5750,7 @@ bool AngularCoordinateCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngularCoordinateCharacteristicNominalType\n");
               returnValue = true;
@@ -5687,7 +5766,7 @@ bool AngularCoordinateCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -5696,7 +5775,7 @@ bool AngularCoordinateCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngularCoordinateCharacteristicNominalType\n");
       returnValue = true;
@@ -5708,8 +5787,8 @@ bool AngularCoordinateCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -5757,7 +5836,7 @@ AngularityCharacteristicDefinitionType::AngularityCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -5771,7 +5850,7 @@ AngularityCharacteristicDefinitionType::AngularityCharacteristicDefinitionType(
  XmlBoolean * TangentPlaneIn,
  LinearValueType * MaximumToleranceValueIn,
  LinearValueType * ProjectedToleranceZoneValueIn,
- OrientationChar_1065_Type * OrientationChar_1065In) :
+ OrientationChar_1054_Type * OrientationChar_1054In) :
   OrientationCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -5786,7 +5865,7 @@ AngularityCharacteristicDefinitionType::AngularityCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -5800,7 +5879,7 @@ AngularityCharacteristicDefinitionType::AngularityCharacteristicDefinitionType(
     TangentPlaneIn,
     MaximumToleranceValueIn,
     ProjectedToleranceZoneValueIn,
-    OrientationChar_1065In)
+    OrientationChar_1054In)
 {
 }
 
@@ -5819,7 +5898,7 @@ AngularityCharacteristicDefinitionType::AngularityCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -5833,7 +5912,7 @@ AngularityCharacteristicDefinitionType::AngularityCharacteristicDefinitionType(
  XmlBoolean * TangentPlaneIn,
  LinearValueType * MaximumToleranceValueIn,
  LinearValueType * ProjectedToleranceZoneValueIn,
- OrientationChar_1065_Type * OrientationChar_1065In) :
+ OrientationChar_1054_Type * OrientationChar_1054In) :
   OrientationCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -5849,7 +5928,7 @@ AngularityCharacteristicDefinitionType::AngularityCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -5863,7 +5942,7 @@ AngularityCharacteristicDefinitionType::AngularityCharacteristicDefinitionType(
     TangentPlaneIn,
     MaximumToleranceValueIn,
     ProjectedToleranceZoneValueIn,
-    OrientationChar_1065In)
+    OrientationChar_1054In)
 {
 }
 
@@ -5995,9 +6074,9 @@ void AngularityCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -6086,9 +6165,9 @@ void AngularityCharacteristicDefinitionType::printSelf(FILE * outFile)
       ProjectedToleranceZoneValue->printSelf(outFile);
       fprintf(outFile, "</ProjectedToleranceZoneValue>\n");
     }
-  if (OrientationChar_1065)
+  if (OrientationChar_1054)
     {
-      OrientationChar_1065->printSelf(outFile);
+  OrientationChar_1054->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -6107,7 +6186,7 @@ bool AngularityCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngularityCharacteristicDefinitionType\n");
               returnValue = true;
@@ -6123,7 +6202,7 @@ bool AngularityCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -6132,7 +6211,7 @@ bool AngularityCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngularityCharacteristicDefinitionType\n");
       returnValue = true;
@@ -6144,8 +6223,8 @@ bool AngularityCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -6349,7 +6428,7 @@ bool AngularityCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngularityCharacteristicItemType\n");
               returnValue = true;
@@ -6365,7 +6444,7 @@ bool AngularityCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -6374,7 +6453,7 @@ bool AngularityCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngularityCharacteristicItemType\n");
       returnValue = true;
@@ -6386,8 +6465,8 @@ bool AngularityCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -6676,7 +6755,7 @@ bool AngularityCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngularityCharacteristicMeasurementType\n");
               returnValue = true;
@@ -6692,7 +6771,7 @@ bool AngularityCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -6701,7 +6780,7 @@ bool AngularityCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngularityCharacteristicMeasurementType\n");
       returnValue = true;
@@ -6713,8 +6792,8 @@ bool AngularityCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -6921,7 +7000,7 @@ bool AngularityCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AngularityCharacteristicNominalType\n");
               returnValue = true;
@@ -6937,7 +7016,7 @@ bool AngularityCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -6946,7 +7025,7 @@ bool AngularityCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AngularityCharacteristicNominalType\n");
       returnValue = true;
@@ -6958,8 +7037,8 @@ bool AngularityCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -6979,7 +7058,7 @@ void AngularityCharacteristicNominalType::setAngle(AngularValueType * AngleIn)
 AreaCharacteristicDefinitionBaseType::AreaCharacteristicDefinitionBaseType() :
   CharacteristicDefinitionBaseType()
 {
-  AreaCharacteris_1048 = 0;
+  AreaCharacteristicDefinitionBaseTypePair = 0;
 }
 
 AreaCharacteristicDefinitionBaseType::AreaCharacteristicDefinitionBaseType(
@@ -6996,7 +7075,7 @@ AreaCharacteristicDefinitionBaseType::AreaCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- AreaCharacteris_1048_Type * AreaCharacteris_1048In) :
+ AreaCharacteristicDefinitionBaseTypeChoicePair * AreaCharacteristicDefinitionBaseTypePairIn) :
   CharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -7012,7 +7091,7 @@ AreaCharacteristicDefinitionBaseType::AreaCharacteristicDefinitionBaseType(
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  AreaCharacteris_1048 = AreaCharacteris_1048In;
+  AreaCharacteristicDefinitionBaseTypePair = AreaCharacteristicDefinitionBaseTypePairIn;
 }
 
 AreaCharacteristicDefinitionBaseType::AreaCharacteristicDefinitionBaseType(
@@ -7030,7 +7109,7 @@ AreaCharacteristicDefinitionBaseType::AreaCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- AreaCharacteris_1048_Type * AreaCharacteris_1048In) :
+ AreaCharacteristicDefinitionBaseTypeChoicePair * AreaCharacteristicDefinitionBaseTypePairIn) :
   CharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -7047,13 +7126,13 @@ AreaCharacteristicDefinitionBaseType::AreaCharacteristicDefinitionBaseType(
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  AreaCharacteris_1048 = AreaCharacteris_1048In;
+  AreaCharacteristicDefinitionBaseTypePair = AreaCharacteristicDefinitionBaseTypePairIn;
 }
 
 AreaCharacteristicDefinitionBaseType::~AreaCharacteristicDefinitionBaseType()
 {
   #ifndef NODESTRUCT
-  delete AreaCharacteris_1048;
+  delete AreaCharacteristicDefinitionBaseTypePair;
   #endif
 }
 
@@ -7179,8 +7258,54 @@ void AreaCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  AreaCharacteris_1048->printSelf(outFile);
+  AreaCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
+}
+AreaCharacteristicDefinitionBaseTypeChoicePair * AreaCharacteristicDefinitionBaseType::getAreaCharacteristicDefinitionBaseTypeChoicePair()
+{return AreaCharacteristicDefinitionBaseTypePair;}
+
+void AreaCharacteristicDefinitionBaseType::setAreaCharacteristicDefinitionBaseTypeChoicePair(AreaCharacteristicDefinitionBaseTypeChoicePair * AreaCharacteristicDefinitionBaseTypePairIn)
+{AreaCharacteristicDefinitionBaseTypePair = AreaCharacteristicDefinitionBaseTypePairIn;}
+
+/* ***************************************************************** */
+
+AreaCharacteristicDefinitionBaseTypeChoicePair::AreaCharacteristicDefinitionBaseTypeChoicePair() {}
+
+AreaCharacteristicDefinitionBaseTypeChoicePair::AreaCharacteristicDefinitionBaseTypeChoicePair(
+ whichOne AreaCharacteristicDefinitionBaseTypeTypeIn,
+ AreaCharacteristicDefinitionBaseTypeVal AreaCharacteristicDefinitionBaseTypeValueIn)
+{
+  AreaCharacteristicDefinitionBaseTypeType = AreaCharacteristicDefinitionBaseTypeTypeIn;
+  AreaCharacteristicDefinitionBaseTypeValue = AreaCharacteristicDefinitionBaseTypeValueIn;
+}
+
+AreaCharacteristicDefinitionBaseTypeChoicePair::~AreaCharacteristicDefinitionBaseTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (AreaCharacteristicDefinitionBaseTypeType == ToleranceE)
+    delete AreaCharacteristicDefinitionBaseTypeValue.Tolerance;
+  else if (AreaCharacteristicDefinitionBaseTypeType == NonToleranceE)
+    delete AreaCharacteristicDefinitionBaseTypeValue.NonTolerance;
+  #endif
+}
+
+void AreaCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (AreaCharacteristicDefinitionBaseTypeType == ToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Tolerance");
+      AreaCharacteristicDefinitionBaseTypeValue.Tolerance->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</Tolerance>\n");
+    }
+  else if (AreaCharacteristicDefinitionBaseTypeType == NonToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<NonTolerance");
+      AreaCharacteristicDefinitionBaseTypeValue.NonTolerance->printSelf(outFile);
+      fprintf(outFile, "</NonTolerance>\n");
+    }
 }
 
 bool AreaCharacteristicDefinitionBaseType::badAttributes(
@@ -7197,7 +7322,7 @@ bool AreaCharacteristicDefinitionBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AreaCharacteristicDefinitionBaseType\n");
               returnValue = true;
@@ -7213,7 +7338,7 @@ bool AreaCharacteristicDefinitionBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -7222,7 +7347,7 @@ bool AreaCharacteristicDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AreaCharacteristicDefinitionBaseType\n");
       returnValue = true;
@@ -7234,17 +7359,11 @@ bool AreaCharacteristicDefinitionBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
-
-AreaCharacteris_1048_Type * AreaCharacteristicDefinitionBaseType::getAreaCharacteris_1048()
-{return AreaCharacteris_1048;}
-
-void AreaCharacteristicDefinitionBaseType::setAreaCharacteris_1048(AreaCharacteris_1048_Type * AreaCharacteris_1048In)
-{AreaCharacteris_1048 = AreaCharacteris_1048In;}
 
 /* ***************************************************************** */
 
@@ -7445,7 +7564,7 @@ bool AreaCharacteristicItemBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AreaCharacteristicItemBaseType\n");
               returnValue = true;
@@ -7461,7 +7580,7 @@ bool AreaCharacteristicItemBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -7470,7 +7589,7 @@ bool AreaCharacteristicItemBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AreaCharacteristicItemBaseType\n");
       returnValue = true;
@@ -7482,8 +7601,8 @@ bool AreaCharacteristicItemBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -7734,7 +7853,7 @@ bool AreaCharacteristicMeasurementBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AreaCharacteristicMeasurementBaseType\n");
               returnValue = true;
@@ -7750,7 +7869,7 @@ bool AreaCharacteristicMeasurementBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -7759,7 +7878,7 @@ bool AreaCharacteristicMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AreaCharacteristicMeasurementBaseType\n");
       returnValue = true;
@@ -7771,8 +7890,8 @@ bool AreaCharacteristicMeasurementBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -7997,7 +8116,7 @@ bool AreaCharacteristicNominalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in AreaCharacteristicNominalBaseType\n");
               returnValue = true;
@@ -8013,7 +8132,7 @@ bool AreaCharacteristicNominalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -8022,7 +8141,7 @@ bool AreaCharacteristicNominalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in AreaCharacteristicNominalBaseType\n");
       returnValue = true;
@@ -8034,8 +8153,8 @@ bool AreaCharacteristicNominalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -8121,6 +8240,13 @@ void ArrayNonDestructiveTestingType::printSelf(FILE * outFile)
         fprintf(stderr, "TypeOfTest list is empty\n");
         exit(1);
       }
+    if (TypeOfTest->size() < 1)
+      {
+        fprintf(stderr,
+                "size of TypeOfTest list (%d) less than minimum required (1)\n",
+                (int)TypeOfTest->size());
+        exit(1);
+      }
     std::list<NonDestructiveTestingEnumType *>::iterator iter;
     for (iter = TypeOfTest->begin();
          iter != TypeOfTest->end(); iter++)
@@ -8148,7 +8274,7 @@ bool ArrayNonDestructiveTestingType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in ArrayNonDestructiveTestingType\n");
               returnValue = true;
@@ -8164,7 +8290,7 @@ bool ArrayNonDestructiveTestingType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -8173,7 +8299,7 @@ bool ArrayNonDestructiveTestingType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in ArrayNonDestructiveTestingType\n");
       returnValue = true;
@@ -8185,8 +8311,8 @@ bool ArrayNonDestructiveTestingType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -8733,7 +8859,7 @@ bool CharacteristicBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CharacteristicBaseType\n");
               returnValue = true;
@@ -8749,7 +8875,7 @@ bool CharacteristicBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -8758,7 +8884,7 @@ bool CharacteristicBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CharacteristicBaseType\n");
       returnValue = true;
@@ -8770,8 +8896,8 @@ bool CharacteristicBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -9036,7 +9162,7 @@ bool CharacteristicDefinitionBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CharacteristicDefinitionBaseType\n");
               returnValue = true;
@@ -9052,7 +9178,7 @@ bool CharacteristicDefinitionBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -9061,7 +9187,7 @@ bool CharacteristicDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CharacteristicDefinitionBaseType\n");
       returnValue = true;
@@ -9073,8 +9199,8 @@ bool CharacteristicDefinitionBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -9170,7 +9296,15 @@ CharacteristicDefinitionBaseTypeLisd::~CharacteristicDefinitionBaseTypeLisd()
   #endif
 }
 
-void CharacteristicDefinitionBaseTypeLisd::printSelf(FILE * outFile){}
+void CharacteristicDefinitionBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<CharacteristicDefinitionBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -9245,6 +9379,13 @@ void CharacteristicDefinitionsType::printSelf(FILE * outFile)
     if (CharacteristicDefinition->size() == 0)
       {
         fprintf(stderr, "CharacteristicDefinition list is empty\n");
+        exit(1);
+      }
+    if (CharacteristicDefinition->size() < 1)
+      {
+        fprintf(stderr,
+                "size of CharacteristicDefinition list (%d) less than minimum required (1)\n",
+                (int)CharacteristicDefinition->size());
         exit(1);
       }
     std::list<CharacteristicDefinitionBaseType *>::iterator iter;
@@ -10452,7 +10593,7 @@ bool CharacteristicDefinitionsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in CharacteristicDefinitionsType\n");
               returnValue = true;
@@ -10468,7 +10609,7 @@ bool CharacteristicDefinitionsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -10477,7 +10618,7 @@ bool CharacteristicDefinitionsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in CharacteristicDefinitionsType\n");
       returnValue = true;
@@ -10489,8 +10630,8 @@ bool CharacteristicDefinitionsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -10682,7 +10823,15 @@ CharacteristicGroupStatusTypeLisd::~CharacteristicGroupStatusTypeLisd()
   #endif
 }
 
-void CharacteristicGroupStatusTypeLisd::printSelf(FILE * outFile){}
+void CharacteristicGroupStatusTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<CharacteristicGroupStatusType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -10759,6 +10908,13 @@ void CharacteristicGroupStatusesType::printSelf(FILE * outFile)
         fprintf(stderr, "CharacteristicGroupStatus list is empty\n");
         exit(1);
       }
+    if (CharacteristicGroupStatus->size() < 1)
+      {
+        fprintf(stderr,
+                "size of CharacteristicGroupStatus list (%d) less than minimum required (1)\n",
+                (int)CharacteristicGroupStatus->size());
+        exit(1);
+      }
     std::list<CharacteristicGroupStatusType *>::iterator iter;
     for (iter = CharacteristicGroupStatus->begin();
          iter != CharacteristicGroupStatus->end(); iter++)
@@ -10787,7 +10943,7 @@ bool CharacteristicGroupStatusesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in CharacteristicGroupStatusesType\n");
               returnValue = true;
@@ -10803,7 +10959,7 @@ bool CharacteristicGroupStatusesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -10812,7 +10968,7 @@ bool CharacteristicGroupStatusesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in CharacteristicGroupStatusesType\n");
       returnValue = true;
@@ -10824,8 +10980,8 @@ bool CharacteristicGroupStatusesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -11009,7 +11165,7 @@ bool CharacteristicGroupType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CharacteristicGroupType\n");
               returnValue = true;
@@ -11025,7 +11181,7 @@ bool CharacteristicGroupType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -11034,7 +11190,7 @@ bool CharacteristicGroupType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CharacteristicGroupType\n");
       returnValue = true;
@@ -11046,8 +11202,8 @@ bool CharacteristicGroupType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -11125,7 +11281,15 @@ CharacteristicGroupTypeLisd::~CharacteristicGroupTypeLisd()
   #endif
 }
 
-void CharacteristicGroupTypeLisd::printSelf(FILE * outFile){}
+void CharacteristicGroupTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<CharacteristicGroupType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -11202,6 +11366,13 @@ void CharacteristicGroupsType::printSelf(FILE * outFile)
         fprintf(stderr, "CharacteristicGroup list is empty\n");
         exit(1);
       }
+    if (CharacteristicGroup->size() < 1)
+      {
+        fprintf(stderr,
+                "size of CharacteristicGroup list (%d) less than minimum required (1)\n",
+                (int)CharacteristicGroup->size());
+        exit(1);
+      }
     std::list<CharacteristicGroupType *>::iterator iter;
     for (iter = CharacteristicGroup->begin();
          iter != CharacteristicGroup->end(); iter++)
@@ -11271,7 +11442,7 @@ bool CharacteristicGroupsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in CharacteristicGroupsType\n");
               returnValue = true;
@@ -11287,7 +11458,7 @@ bool CharacteristicGroupsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -11296,7 +11467,7 @@ bool CharacteristicGroupsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in CharacteristicGroupsType\n");
       returnValue = true;
@@ -11308,8 +11479,8 @@ bool CharacteristicGroupsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -11543,7 +11714,7 @@ bool CharacteristicItemBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CharacteristicItemBaseType\n");
               returnValue = true;
@@ -11559,7 +11730,7 @@ bool CharacteristicItemBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -11568,7 +11739,7 @@ bool CharacteristicItemBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CharacteristicItemBaseType\n");
       returnValue = true;
@@ -11580,8 +11751,8 @@ bool CharacteristicItemBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -11665,7 +11836,15 @@ CharacteristicItemBaseTypeLisd::~CharacteristicItemBaseTypeLisd()
   #endif
 }
 
-void CharacteristicItemBaseTypeLisd::printSelf(FILE * outFile){}
+void CharacteristicItemBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<CharacteristicItemBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -11740,6 +11919,13 @@ void CharacteristicItemsType::printSelf(FILE * outFile)
     if (CharacteristicItem->size() == 0)
       {
         fprintf(stderr, "CharacteristicItem list is empty\n");
+        exit(1);
+      }
+    if (CharacteristicItem->size() < 1)
+      {
+        fprintf(stderr,
+                "size of CharacteristicItem list (%d) less than minimum required (1)\n",
+                (int)CharacteristicItem->size());
         exit(1);
       }
     std::list<CharacteristicItemBaseType *>::iterator iter;
@@ -12947,7 +13133,7 @@ bool CharacteristicItemsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in CharacteristicItemsType\n");
               returnValue = true;
@@ -12963,7 +13149,7 @@ bool CharacteristicItemsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -12972,7 +13158,7 @@ bool CharacteristicItemsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in CharacteristicItemsType\n");
       returnValue = true;
@@ -12984,8 +13170,8 @@ bool CharacteristicItemsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -13168,7 +13354,7 @@ bool CharacteristicManufacturingProcessGroupType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CharacteristicManufacturingProcessGroupType\n");
               returnValue = true;
@@ -13184,7 +13370,7 @@ bool CharacteristicManufacturingProcessGroupType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -13193,7 +13379,7 @@ bool CharacteristicManufacturingProcessGroupType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CharacteristicManufacturingProcessGroupType\n");
       returnValue = true;
@@ -13205,8 +13391,8 @@ bool CharacteristicManufacturingProcessGroupType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -13444,7 +13630,7 @@ bool CharacteristicMeasurementBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CharacteristicMeasurementBaseType\n");
               returnValue = true;
@@ -13460,7 +13646,7 @@ bool CharacteristicMeasurementBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -13469,7 +13655,7 @@ bool CharacteristicMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CharacteristicMeasurementBaseType\n");
       returnValue = true;
@@ -13481,8 +13667,8 @@ bool CharacteristicMeasurementBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -13572,7 +13758,15 @@ CharacteristicMeasurementBaseTypeLisd::~CharacteristicMeasurementBaseTypeLisd()
   #endif
 }
 
-void CharacteristicMeasurementBaseTypeLisd::printSelf(FILE * outFile){}
+void CharacteristicMeasurementBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<CharacteristicMeasurementBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -13647,6 +13841,13 @@ void CharacteristicMeasurementsType::printSelf(FILE * outFile)
     if (CharacteristicMeasurement->size() == 0)
       {
         fprintf(stderr, "CharacteristicMeasurement list is empty\n");
+        exit(1);
+      }
+    if (CharacteristicMeasurement->size() < 1)
+      {
+        fprintf(stderr,
+                "size of CharacteristicMeasurement list (%d) less than minimum required (1)\n",
+                (int)CharacteristicMeasurement->size());
         exit(1);
       }
     std::list<CharacteristicMeasurementBaseType *>::iterator iter;
@@ -14854,7 +15055,7 @@ bool CharacteristicMeasurementsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in CharacteristicMeasurementsType\n");
               returnValue = true;
@@ -14870,7 +15071,7 @@ bool CharacteristicMeasurementsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -14879,7 +15080,7 @@ bool CharacteristicMeasurementsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in CharacteristicMeasurementsType\n");
       returnValue = true;
@@ -14891,8 +15092,8 @@ bool CharacteristicMeasurementsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -15114,7 +15315,7 @@ bool CharacteristicNominalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CharacteristicNominalBaseType\n");
               returnValue = true;
@@ -15130,7 +15331,7 @@ bool CharacteristicNominalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -15139,7 +15340,7 @@ bool CharacteristicNominalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CharacteristicNominalBaseType\n");
       returnValue = true;
@@ -15151,8 +15352,8 @@ bool CharacteristicNominalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -15230,7 +15431,15 @@ CharacteristicNominalBaseTypeLisd::~CharacteristicNominalBaseTypeLisd()
   #endif
 }
 
-void CharacteristicNominalBaseTypeLisd::printSelf(FILE * outFile){}
+void CharacteristicNominalBaseTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<CharacteristicNominalBaseType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -15305,6 +15514,13 @@ void CharacteristicNominalsType::printSelf(FILE * outFile)
     if (CharacteristicNominal->size() == 0)
       {
         fprintf(stderr, "CharacteristicNominal list is empty\n");
+        exit(1);
+      }
+    if (CharacteristicNominal->size() < 1)
+      {
+        fprintf(stderr,
+                "size of CharacteristicNominal list (%d) less than minimum required (1)\n",
+                (int)CharacteristicNominal->size());
         exit(1);
       }
     std::list<CharacteristicNominalBaseType *>::iterator iter;
@@ -16512,7 +16728,7 @@ bool CharacteristicNominalsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in CharacteristicNominalsType\n");
               returnValue = true;
@@ -16528,7 +16744,7 @@ bool CharacteristicNominalsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -16537,7 +16753,7 @@ bool CharacteristicNominalsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in CharacteristicNominalsType\n");
       returnValue = true;
@@ -16549,8 +16765,8 @@ bool CharacteristicNominalsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -16674,13 +16890,6 @@ CharacteristicStatusTypeChoicePair * CharacteristicStatusType::getCharacteristic
 
 void CharacteristicStatusType::setCharacteristicStatusTypePair(CharacteristicStatusTypeChoicePair * CharacteristicStatusTypePairIn)
 {CharacteristicStatusTypePair = CharacteristicStatusTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class CharacteristicStatusTypeChoicePair
-
-*/
-
 CharacteristicStatusTypeChoicePair::CharacteristicStatusTypeChoicePair() {}
 
 CharacteristicStatusTypeChoicePair::CharacteristicStatusTypeChoicePair(
@@ -16746,7 +16955,7 @@ ChordCharacteristicDefinitionType::ChordCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -16763,7 +16972,7 @@ ChordCharacteristicDefinitionType::ChordCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -16784,7 +16993,7 @@ ChordCharacteristicDefinitionType::ChordCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -16802,7 +17011,7 @@ ChordCharacteristicDefinitionType::ChordCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -16949,7 +17158,7 @@ void ChordCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1059->printSelf(outFile);
+  LinearCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -16967,7 +17176,7 @@ bool ChordCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ChordCharacteristicDefinitionType\n");
               returnValue = true;
@@ -16983,7 +17192,7 @@ bool ChordCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -16992,7 +17201,7 @@ bool ChordCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ChordCharacteristicDefinitionType\n");
       returnValue = true;
@@ -17004,8 +17213,8 @@ bool ChordCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -17209,7 +17418,7 @@ bool ChordCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ChordCharacteristicItemType\n");
               returnValue = true;
@@ -17225,7 +17434,7 @@ bool ChordCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -17234,7 +17443,7 @@ bool ChordCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ChordCharacteristicItemType\n");
       returnValue = true;
@@ -17246,8 +17455,8 @@ bool ChordCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -17492,7 +17701,7 @@ bool ChordCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ChordCharacteristicMeasurementType\n");
               returnValue = true;
@@ -17508,7 +17717,7 @@ bool ChordCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -17517,7 +17726,7 @@ bool ChordCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ChordCharacteristicMeasurementType\n");
       returnValue = true;
@@ -17529,8 +17738,8 @@ bool ChordCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -17746,7 +17955,7 @@ bool ChordCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ChordCharacteristicNominalType\n");
               returnValue = true;
@@ -17762,7 +17971,7 @@ bool ChordCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -17771,7 +17980,7 @@ bool ChordCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ChordCharacteristicNominalType\n");
       returnValue = true;
@@ -17783,8 +17992,8 @@ bool ChordCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -17814,7 +18023,7 @@ CircularRunoutCharacteristicDefinitionType::CircularRunoutCharacteristicDefiniti
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -17836,7 +18045,7 @@ CircularRunoutCharacteristicDefinitionType::CircularRunoutCharacteristicDefiniti
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -17862,7 +18071,7 @@ CircularRunoutCharacteristicDefinitionType::CircularRunoutCharacteristicDefiniti
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -17885,7 +18094,7 @@ CircularRunoutCharacteristicDefinitionType::CircularRunoutCharacteristicDefiniti
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -18024,9 +18233,9 @@ void CircularRunoutCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -18095,7 +18304,7 @@ bool CircularRunoutCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CircularRunoutCharacteristicDefinitionType\n");
               returnValue = true;
@@ -18111,7 +18320,7 @@ bool CircularRunoutCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -18120,7 +18329,7 @@ bool CircularRunoutCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CircularRunoutCharacteristicDefinitionType\n");
       returnValue = true;
@@ -18132,8 +18341,8 @@ bool CircularRunoutCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -18337,7 +18546,7 @@ bool CircularRunoutCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CircularRunoutCharacteristicItemType\n");
               returnValue = true;
@@ -18353,7 +18562,7 @@ bool CircularRunoutCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -18362,7 +18571,7 @@ bool CircularRunoutCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CircularRunoutCharacteristicItemType\n");
       returnValue = true;
@@ -18374,8 +18583,8 @@ bool CircularRunoutCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -18631,7 +18840,7 @@ bool CircularRunoutCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CircularRunoutCharacteristicMeasurementType\n");
               returnValue = true;
@@ -18647,7 +18856,7 @@ bool CircularRunoutCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -18656,7 +18865,7 @@ bool CircularRunoutCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CircularRunoutCharacteristicMeasurementType\n");
       returnValue = true;
@@ -18668,8 +18877,8 @@ bool CircularRunoutCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -18889,7 +19098,7 @@ bool CircularRunoutCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CircularRunoutCharacteristicNominalType\n");
               returnValue = true;
@@ -18905,7 +19114,7 @@ bool CircularRunoutCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -18914,7 +19123,7 @@ bool CircularRunoutCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CircularRunoutCharacteristicNominalType\n");
       returnValue = true;
@@ -18926,8 +19135,8 @@ bool CircularRunoutCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -18953,7 +19162,7 @@ void CircularRunoutCharacteristicNominalType::setProfileCurveId(QIFReferenceFull
 CircularityCharacteristicDefinitionType::CircularityCharacteristicDefinitionType() :
   FormCharacteristicDefinitionBaseType()
 {
-  CircularityChar_1049 = 0;
+  CircularityCharacteristicDefinitionTypePair = 0;
 }
 
 CircularityCharacteristicDefinitionType::CircularityCharacteristicDefinitionType(
@@ -18970,12 +19179,12 @@ CircularityCharacteristicDefinitionType::CircularityCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
- CircularityChar_1049_Type * CircularityChar_1049In) :
+ CircularityCharacteristicDefinitionTypeChoicePair * CircularityCharacteristicDefinitionTypePairIn) :
   FormCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -18990,13 +19199,13 @@ CircularityCharacteristicDefinitionType::CircularityCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn)
 {
-  CircularityChar_1049 = CircularityChar_1049In;
+  CircularityCharacteristicDefinitionTypePair = CircularityCharacteristicDefinitionTypePairIn;
 }
 
 CircularityCharacteristicDefinitionType::CircularityCharacteristicDefinitionType(
@@ -19014,12 +19223,12 @@ CircularityCharacteristicDefinitionType::CircularityCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
- CircularityChar_1049_Type * CircularityChar_1049In) :
+ CircularityCharacteristicDefinitionTypeChoicePair * CircularityCharacteristicDefinitionTypePairIn) :
   FormCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -19035,19 +19244,19 @@ CircularityCharacteristicDefinitionType::CircularityCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn)
 {
-  CircularityChar_1049 = CircularityChar_1049In;
+  CircularityCharacteristicDefinitionTypePair = CircularityCharacteristicDefinitionTypePairIn;
 }
 
 CircularityCharacteristicDefinitionType::~CircularityCharacteristicDefinitionType()
 {
   #ifndef NODESTRUCT
-  delete CircularityChar_1049;
+  delete CircularityCharacteristicDefinitionTypePair;
   #endif
 }
 
@@ -19173,9 +19382,9 @@ void CircularityCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -19209,8 +19418,47 @@ void CircularityCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</OrientationPlane>\n");
     }
-  CircularityChar_1049->printSelf(outFile);
+  CircularityCharacteristicDefinitionTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
+}
+CircularityCharacteristicDefinitionTypeChoicePair * CircularityCharacteristicDefinitionType::getCircularityCharacteristicDefinitionTypeChoicePair()
+{return CircularityCharacteristicDefinitionTypePair;}
+
+void CircularityCharacteristicDefinitionType::setCircularityCharacteristicDefinitionTypeChoicePair(CircularityCharacteristicDefinitionTypeChoicePair * CircularityCharacteristicDefinitionTypePairIn)
+{CircularityCharacteristicDefinitionTypePair = CircularityCharacteristicDefinitionTypePairIn;}
+
+/* ***************************************************************** */
+
+CircularityCharacteristicDefinitionTypeChoicePair::CircularityCharacteristicDefinitionTypeChoicePair() {}
+
+CircularityCharacteristicDefinitionTypeChoicePair::CircularityCharacteristicDefinitionTypeChoicePair(
+ whichOne CircularityCharacteristicDefinitionTypeTypeIn,
+ CircularityCharacteristicDefinitionTypeVal CircularityCharacteristicDefinitionTypeValueIn)
+{
+  CircularityCharacteristicDefinitionTypeType = CircularityCharacteristicDefinitionTypeTypeIn;
+  CircularityCharacteristicDefinitionTypeValue = CircularityCharacteristicDefinitionTypeValueIn;
+}
+
+CircularityCharacteristicDefinitionTypeChoicePair::~CircularityCharacteristicDefinitionTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (CircularityCharacteristicDefinitionTypeType == CircularityChar_1041E)
+    delete CircularityCharacteristicDefinitionTypeValue.CircularityChar_1041;
+  else if (CircularityCharacteristicDefinitionTypeType == CircularityChar_1042E)
+    delete CircularityCharacteristicDefinitionTypeValue.CircularityChar_1042;
+  #endif
+}
+
+void CircularityCharacteristicDefinitionTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (CircularityCharacteristicDefinitionTypeType == CircularityChar_1041E)
+    {
+      CircularityCharacteristicDefinitionTypeValue.CircularityChar_1041->printSelf(outFile);
+    }
+  else if (CircularityCharacteristicDefinitionTypeType == CircularityChar_1042E)
+    {
+      CircularityCharacteristicDefinitionTypeValue.CircularityChar_1042->printSelf(outFile);
+    }
 }
 
 bool CircularityCharacteristicDefinitionType::badAttributes(
@@ -19227,7 +19475,7 @@ bool CircularityCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CircularityCharacteristicDefinitionType\n");
               returnValue = true;
@@ -19243,7 +19491,7 @@ bool CircularityCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -19252,7 +19500,7 @@ bool CircularityCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CircularityCharacteristicDefinitionType\n");
       returnValue = true;
@@ -19264,17 +19512,11 @@ bool CircularityCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
-
-CircularityChar_1049_Type * CircularityCharacteristicDefinitionType::getCircularityChar_1049()
-{return CircularityChar_1049;}
-
-void CircularityCharacteristicDefinitionType::setCircularityChar_1049(CircularityChar_1049_Type * CircularityChar_1049In)
-{CircularityChar_1049 = CircularityChar_1049In;}
 
 /* ***************************************************************** */
 
@@ -19475,7 +19717,7 @@ bool CircularityCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CircularityCharacteristicItemType\n");
               returnValue = true;
@@ -19491,7 +19733,7 @@ bool CircularityCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -19500,7 +19742,7 @@ bool CircularityCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CircularityCharacteristicItemType\n");
       returnValue = true;
@@ -19512,8 +19754,8 @@ bool CircularityCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -19528,7 +19770,7 @@ CircularityCharacteristicMeasurementType::CircularityCharacteristicMeasurementTy
   FormCharacteristicMeasurementBaseType()
 {
   MaxCircularity = 0;
-  CircularityChar_1050 = 0;
+  CircularityChar_1043 = 0;
 }
 
 CircularityCharacteristicMeasurementType::CircularityCharacteristicMeasurementType(
@@ -19548,7 +19790,7 @@ CircularityCharacteristicMeasurementType::CircularityCharacteristicMeasurementTy
  MeasuredLinearValueType * MaxValueIn,
  MeasuredLinearValueType * MinValueIn,
  MeasuredLinearValueType * MaxCircularityIn,
- CircularityChar_1050_Type * CircularityChar_1050In) :
+ CircularityChar_1043_Type * CircularityChar_1043In) :
   FormCharacteristicMeasurementBaseType(
     AttributesIn,
     DescriptionIn,
@@ -19567,7 +19809,7 @@ CircularityCharacteristicMeasurementType::CircularityCharacteristicMeasurementTy
     MinValueIn)
 {
   MaxCircularity = MaxCircularityIn;
-  CircularityChar_1050 = CircularityChar_1050In;
+  CircularityChar_1043 = CircularityChar_1043In;
 }
 
 CircularityCharacteristicMeasurementType::CircularityCharacteristicMeasurementType(
@@ -19588,7 +19830,7 @@ CircularityCharacteristicMeasurementType::CircularityCharacteristicMeasurementTy
  MeasuredLinearValueType * MaxValueIn,
  MeasuredLinearValueType * MinValueIn,
  MeasuredLinearValueType * MaxCircularityIn,
- CircularityChar_1050_Type * CircularityChar_1050In) :
+ CircularityChar_1043_Type * CircularityChar_1043In) :
   FormCharacteristicMeasurementBaseType(
     idIn,
     AttributesIn,
@@ -19608,14 +19850,14 @@ CircularityCharacteristicMeasurementType::CircularityCharacteristicMeasurementTy
     MinValueIn)
 {
   MaxCircularity = MaxCircularityIn;
-  CircularityChar_1050 = CircularityChar_1050In;
+  CircularityChar_1043 = CircularityChar_1043In;
 }
 
 CircularityCharacteristicMeasurementType::~CircularityCharacteristicMeasurementType()
 {
   #ifndef NODESTRUCT
   delete MaxCircularity;
-  delete CircularityChar_1050;
+  delete CircularityChar_1043;
   #endif
 }
 
@@ -19760,9 +20002,9 @@ void CircularityCharacteristicMeasurementType::printSelf(FILE * outFile)
       MaxCircularity->printSelf(outFile);
       fprintf(outFile, "</MaxCircularity>\n");
     }
-  if (CircularityChar_1050)
+  if (CircularityChar_1043)
     {
-      CircularityChar_1050->printSelf(outFile);
+      CircularityChar_1043->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -19781,7 +20023,7 @@ bool CircularityCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CircularityCharacteristicMeasurementType\n");
               returnValue = true;
@@ -19797,7 +20039,7 @@ bool CircularityCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -19806,7 +20048,7 @@ bool CircularityCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CircularityCharacteristicMeasurementType\n");
       returnValue = true;
@@ -19818,8 +20060,8 @@ bool CircularityCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -19830,11 +20072,11 @@ MeasuredLinearValueType * CircularityCharacteristicMeasurementType::getMaxCircul
 void CircularityCharacteristicMeasurementType::setMaxCircularity(MeasuredLinearValueType * MaxCircularityIn)
 {MaxCircularity = MaxCircularityIn;}
 
-CircularityChar_1050_Type * CircularityCharacteristicMeasurementType::getCircularityChar_1050()
-{return CircularityChar_1050;}
+CircularityChar_1043_Type * CircularityCharacteristicMeasurementType::getCircularityChar_1043()
+{return CircularityChar_1043;}
 
-void CircularityCharacteristicMeasurementType::setCircularityChar_1050(CircularityChar_1050_Type * CircularityChar_1050In)
-{CircularityChar_1050 = CircularityChar_1050In;}
+void CircularityCharacteristicMeasurementType::setCircularityChar_1043(CircularityChar_1043_Type * CircularityChar_1043In)
+{CircularityChar_1043 = CircularityChar_1043In;}
 
 /* ***************************************************************** */
 
@@ -20038,7 +20280,7 @@ bool CircularityCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CircularityCharacteristicNominalType\n");
               returnValue = true;
@@ -20054,7 +20296,7 @@ bool CircularityCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -20063,7 +20305,7 @@ bool CircularityCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CircularityCharacteristicNominalType\n");
       returnValue = true;
@@ -20075,8 +20317,8 @@ bool CircularityCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -20113,7 +20355,7 @@ CoaxialityCharacteristicDefinitionType::CoaxialityCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -20136,7 +20378,7 @@ CoaxialityCharacteristicDefinitionType::CoaxialityCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -20163,7 +20405,7 @@ CoaxialityCharacteristicDefinitionType::CoaxialityCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -20187,7 +20429,7 @@ CoaxialityCharacteristicDefinitionType::CoaxialityCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -20328,9 +20570,9 @@ void CoaxialityCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -20404,7 +20646,7 @@ bool CoaxialityCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CoaxialityCharacteristicDefinitionType\n");
               returnValue = true;
@@ -20420,7 +20662,7 @@ bool CoaxialityCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -20429,7 +20671,7 @@ bool CoaxialityCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CoaxialityCharacteristicDefinitionType\n");
       returnValue = true;
@@ -20441,8 +20683,8 @@ bool CoaxialityCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -20652,7 +20894,7 @@ bool CoaxialityCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CoaxialityCharacteristicItemType\n");
               returnValue = true;
@@ -20668,7 +20910,7 @@ bool CoaxialityCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -20677,7 +20919,7 @@ bool CoaxialityCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CoaxialityCharacteristicItemType\n");
       returnValue = true;
@@ -20689,8 +20931,8 @@ bool CoaxialityCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -20958,7 +21200,7 @@ bool CoaxialityCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CoaxialityCharacteristicMeasurementType\n");
               returnValue = true;
@@ -20974,7 +21216,7 @@ bool CoaxialityCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -20983,7 +21225,7 @@ bool CoaxialityCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CoaxialityCharacteristicMeasurementType\n");
       returnValue = true;
@@ -20995,8 +21237,8 @@ bool CoaxialityCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -21190,7 +21432,7 @@ bool CoaxialityCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CoaxialityCharacteristicNominalType\n");
               returnValue = true;
@@ -21206,7 +21448,7 @@ bool CoaxialityCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -21215,7 +21457,7 @@ bool CoaxialityCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CoaxialityCharacteristicNominalType\n");
       returnValue = true;
@@ -21227,8 +21469,8 @@ bool CoaxialityCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -21302,13 +21544,6 @@ CoaxialityZoneShapeTypeChoicePair * CoaxialityZoneShapeType::getCoaxialityZoneSh
 
 void CoaxialityZoneShapeType::setCoaxialityZoneShapeTypePair(CoaxialityZoneShapeTypeChoicePair * CoaxialityZoneShapeTypePairIn)
 {CoaxialityZoneShapeTypePair = CoaxialityZoneShapeTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class CoaxialityZoneShapeTypeChoicePair
-
-*/
-
 CoaxialityZoneShapeTypeChoicePair::CoaxialityZoneShapeTypeChoicePair() {}
 
 CoaxialityZoneShapeTypeChoicePair::CoaxialityZoneShapeTypeChoicePair(
@@ -21777,8 +22012,7 @@ CompositeSegmentPositionMeasurementType::CompositeSegmentPositionMeasurementType
     StatusIn,
     DRFTransformActualIdIn,
     ZoneDataSetIn)
-{
-}
+{}
 
 CompositeSegmentPositionMeasurementType::~CompositeSegmentPositionMeasurementType() {}
 
@@ -21933,8 +22167,7 @@ CompositeSegmentProfileMeasurementType::CompositeSegmentProfileMeasurementType(
     StatusIn,
     DRFTransformActualIdIn,
     ZoneDataSetIn)
-{
-}
+{}
 
 CompositeSegmentProfileMeasurementType::~CompositeSegmentProfileMeasurementType() {}
 
@@ -22005,8 +22238,7 @@ CompositeSegmentSymmetryDefinitionType::CompositeSegmentSymmetryDefinitionType(
     ToleranceValueIn,
     ToleranceDualValueIn,
     CharacteristicDesignatorIn)
-{
-}
+{}
 
 CompositeSegmentSymmetryDefinitionType::~CompositeSegmentSymmetryDefinitionType() {}
 
@@ -22066,8 +22298,7 @@ CompositeSegmentSymmetryMeasurementType::CompositeSegmentSymmetryMeasurementType
     StatusIn,
     DRFTransformActualIdIn,
     ZoneDataSetIn)
-{
-}
+{}
 
 CompositeSegmentSymmetryMeasurementType::~CompositeSegmentSymmetryMeasurementType() {}
 
@@ -22145,7 +22376,7 @@ ConcentricityCharacteristicDefinitionType::ConcentricityCharacteristicDefinition
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -22168,7 +22399,7 @@ ConcentricityCharacteristicDefinitionType::ConcentricityCharacteristicDefinition
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -22195,7 +22426,7 @@ ConcentricityCharacteristicDefinitionType::ConcentricityCharacteristicDefinition
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -22219,7 +22450,7 @@ ConcentricityCharacteristicDefinitionType::ConcentricityCharacteristicDefinition
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -22360,9 +22591,9 @@ void ConcentricityCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -22436,7 +22667,7 @@ bool ConcentricityCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ConcentricityCharacteristicDefinitionType\n");
               returnValue = true;
@@ -22452,7 +22683,7 @@ bool ConcentricityCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -22461,7 +22692,7 @@ bool ConcentricityCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ConcentricityCharacteristicDefinitionType\n");
       returnValue = true;
@@ -22473,8 +22704,8 @@ bool ConcentricityCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -22684,7 +22915,7 @@ bool ConcentricityCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ConcentricityCharacteristicItemType\n");
               returnValue = true;
@@ -22700,7 +22931,7 @@ bool ConcentricityCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -22709,7 +22940,7 @@ bool ConcentricityCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ConcentricityCharacteristicItemType\n");
       returnValue = true;
@@ -22721,8 +22952,8 @@ bool ConcentricityCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -22990,7 +23221,7 @@ bool ConcentricityCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ConcentricityCharacteristicMeasurementType\n");
               returnValue = true;
@@ -23006,7 +23237,7 @@ bool ConcentricityCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -23015,7 +23246,7 @@ bool ConcentricityCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ConcentricityCharacteristicMeasurementType\n");
       returnValue = true;
@@ -23027,8 +23258,8 @@ bool ConcentricityCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -23222,7 +23453,7 @@ bool ConcentricityCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ConcentricityCharacteristicNominalType\n");
               returnValue = true;
@@ -23238,7 +23469,7 @@ bool ConcentricityCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -23247,7 +23478,7 @@ bool ConcentricityCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ConcentricityCharacteristicNominalType\n");
       returnValue = true;
@@ -23259,8 +23490,8 @@ bool ConcentricityCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -23350,13 +23581,6 @@ ConcentricityZoneShapeTypeChoicePair * ConcentricityZoneShapeType::getConcentric
 
 void ConcentricityZoneShapeType::setConcentricityZoneShapeTypePair(ConcentricityZoneShapeTypeChoicePair * ConcentricityZoneShapeTypePairIn)
 {ConcentricityZoneShapeTypePair = ConcentricityZoneShapeTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ConcentricityZoneShapeTypeChoicePair
-
-*/
-
 ConcentricityZoneShapeTypeChoicePair::ConcentricityZoneShapeTypeChoicePair() {}
 
 ConcentricityZoneShapeTypeChoicePair::ConcentricityZoneShapeTypeChoicePair(
@@ -23428,7 +23652,7 @@ ConicalTaperCharacteristicDefinitionType::ConicalTaperCharacteristicDefinitionTy
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -23445,7 +23669,7 @@ ConicalTaperCharacteristicDefinitionType::ConicalTaperCharacteristicDefinitionTy
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -23466,7 +23690,7 @@ ConicalTaperCharacteristicDefinitionType::ConicalTaperCharacteristicDefinitionTy
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -23484,7 +23708,7 @@ ConicalTaperCharacteristicDefinitionType::ConicalTaperCharacteristicDefinitionTy
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -23631,7 +23855,7 @@ void ConicalTaperCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1059->printSelf(outFile);
+  LinearCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -23649,7 +23873,7 @@ bool ConicalTaperCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ConicalTaperCharacteristicDefinitionType\n");
               returnValue = true;
@@ -23665,7 +23889,7 @@ bool ConicalTaperCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -23674,7 +23898,7 @@ bool ConicalTaperCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ConicalTaperCharacteristicDefinitionType\n");
       returnValue = true;
@@ -23686,8 +23910,8 @@ bool ConicalTaperCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -23891,7 +24115,7 @@ bool ConicalTaperCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ConicalTaperCharacteristicItemType\n");
               returnValue = true;
@@ -23907,7 +24131,7 @@ bool ConicalTaperCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -23916,7 +24140,7 @@ bool ConicalTaperCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ConicalTaperCharacteristicItemType\n");
       returnValue = true;
@@ -23928,8 +24152,8 @@ bool ConicalTaperCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -24187,7 +24411,7 @@ bool ConicalTaperCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ConicalTaperCharacteristicMeasurementType\n");
               returnValue = true;
@@ -24203,7 +24427,7 @@ bool ConicalTaperCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -24212,7 +24436,7 @@ bool ConicalTaperCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ConicalTaperCharacteristicMeasurementType\n");
       returnValue = true;
@@ -24224,8 +24448,8 @@ bool ConicalTaperCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -24457,7 +24681,7 @@ bool ConicalTaperCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ConicalTaperCharacteristicNominalType\n");
               returnValue = true;
@@ -24473,7 +24697,7 @@ bool ConicalTaperCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -24482,7 +24706,7 @@ bool ConicalTaperCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ConicalTaperCharacteristicNominalType\n");
       returnValue = true;
@@ -24494,8 +24718,8 @@ bool ConicalTaperCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -24533,7 +24757,7 @@ ConicityCharacteristicDefinitionType::ConicityCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -24554,7 +24778,7 @@ ConicityCharacteristicDefinitionType::ConicityCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -24579,7 +24803,7 @@ ConicityCharacteristicDefinitionType::ConicityCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -24601,7 +24825,7 @@ ConicityCharacteristicDefinitionType::ConicityCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -24741,9 +24965,9 @@ void ConicityCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -24805,7 +25029,7 @@ bool ConicityCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ConicityCharacteristicDefinitionType\n");
               returnValue = true;
@@ -24821,7 +25045,7 @@ bool ConicityCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -24830,7 +25054,7 @@ bool ConicityCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ConicityCharacteristicDefinitionType\n");
       returnValue = true;
@@ -24842,8 +25066,8 @@ bool ConicityCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -25059,7 +25283,7 @@ bool ConicityCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ConicityCharacteristicItemType\n");
               returnValue = true;
@@ -25075,7 +25299,7 @@ bool ConicityCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -25084,7 +25308,7 @@ bool ConicityCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ConicityCharacteristicItemType\n");
       returnValue = true;
@@ -25096,8 +25320,8 @@ bool ConicityCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -25342,7 +25566,7 @@ bool ConicityCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ConicityCharacteristicMeasurementType\n");
               returnValue = true;
@@ -25358,7 +25582,7 @@ bool ConicityCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -25367,7 +25591,7 @@ bool ConicityCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ConicityCharacteristicMeasurementType\n");
       returnValue = true;
@@ -25379,8 +25603,8 @@ bool ConicityCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -25574,7 +25798,7 @@ bool ConicityCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ConicityCharacteristicNominalType\n");
               returnValue = true;
@@ -25590,7 +25814,7 @@ bool ConicityCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -25599,7 +25823,7 @@ bool ConicityCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ConicityCharacteristicNominalType\n");
       returnValue = true;
@@ -25611,8 +25835,8 @@ bool ConicityCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -25860,7 +26084,7 @@ bool CoordinateCharacteristicDefinitionBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CoordinateCharacteristicDefinitionBaseType\n");
               returnValue = true;
@@ -25876,7 +26100,7 @@ bool CoordinateCharacteristicDefinitionBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -25885,7 +26109,7 @@ bool CoordinateCharacteristicDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CoordinateCharacteristicDefinitionBaseType\n");
       returnValue = true;
@@ -25897,8 +26121,8 @@ bool CoordinateCharacteristicDefinitionBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -26102,7 +26326,7 @@ bool CoordinateCharacteristicItemBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CoordinateCharacteristicItemBaseType\n");
               returnValue = true;
@@ -26118,7 +26342,7 @@ bool CoordinateCharacteristicItemBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -26127,7 +26351,7 @@ bool CoordinateCharacteristicItemBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CoordinateCharacteristicItemBaseType\n");
       returnValue = true;
@@ -26139,8 +26363,8 @@ bool CoordinateCharacteristicItemBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -26363,7 +26587,7 @@ bool CoordinateCharacteristicMeasurementBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CoordinateCharacteristicMeasurementBaseType\n");
               returnValue = true;
@@ -26379,7 +26603,7 @@ bool CoordinateCharacteristicMeasurementBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -26388,7 +26612,7 @@ bool CoordinateCharacteristicMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CoordinateCharacteristicMeasurementBaseType\n");
       returnValue = true;
@@ -26400,8 +26624,8 @@ bool CoordinateCharacteristicMeasurementBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -26601,7 +26825,7 @@ bool CoordinateCharacteristicNominalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CoordinateCharacteristicNominalBaseType\n");
               returnValue = true;
@@ -26617,7 +26841,7 @@ bool CoordinateCharacteristicNominalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -26626,7 +26850,7 @@ bool CoordinateCharacteristicNominalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CoordinateCharacteristicNominalBaseType\n");
       returnValue = true;
@@ -26638,8 +26862,8 @@ bool CoordinateCharacteristicNominalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -26782,23 +27006,23 @@ void CriticalityLevelEnumType::oPrintSelf(FILE * outFile)
 
 CriticalityType::CriticalityType()
 {
-  CriticalityType_1051 = 0;
-  CriticalityType_1052 = 0;
+  CriticalityType_1044 = 0;
+  CriticalityType_1045 = 0;
 }
 
 CriticalityType::CriticalityType(
- CriticalityType_1051_Type * CriticalityType_1051In,
- CriticalityType_1052_Type * CriticalityType_1052In)
+ CriticalityType_1044_Type * CriticalityType_1044In,
+ CriticalityType_1045_Type * CriticalityType_1045In)
 {
-  CriticalityType_1051 = CriticalityType_1051In;
-  CriticalityType_1052 = CriticalityType_1052In;
+  CriticalityType_1044 = CriticalityType_1044In;
+  CriticalityType_1045 = CriticalityType_1045In;
 }
 
 CriticalityType::~CriticalityType()
 {
   #ifndef NODESTRUCT
-  delete CriticalityType_1051;
-  delete CriticalityType_1052;
+  delete CriticalityType_1044;
+  delete CriticalityType_1045;
   #endif
 }
 
@@ -26806,25 +27030,25 @@ void CriticalityType::printSelf(FILE * outFile)
 {
   fprintf(outFile, ">\n");
   doSpaces(+INDENT, outFile);
-  CriticalityType_1051->printSelf(outFile);
-  if (CriticalityType_1052)
+  CriticalityType_1044->printSelf(outFile);
+  if (CriticalityType_1045)
     {
-      CriticalityType_1052->printSelf(outFile);
+  CriticalityType_1045->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
 
-CriticalityType_1051_Type * CriticalityType::getCriticalityType_1051()
-{return CriticalityType_1051;}
+CriticalityType_1044_Type * CriticalityType::getCriticalityType_1044()
+{return CriticalityType_1044;}
 
-void CriticalityType::setCriticalityType_1051(CriticalityType_1051_Type * CriticalityType_1051In)
-{CriticalityType_1051 = CriticalityType_1051In;}
+void CriticalityType::setCriticalityType_1044(CriticalityType_1044_Type * CriticalityType_1044In)
+{CriticalityType_1044 = CriticalityType_1044In;}
 
-CriticalityType_1052_Type * CriticalityType::getCriticalityType_1052()
-{return CriticalityType_1052;}
+CriticalityType_1045_Type * CriticalityType::getCriticalityType_1045()
+{return CriticalityType_1045;}
 
-void CriticalityType::setCriticalityType_1052(CriticalityType_1052_Type * CriticalityType_1052In)
-{CriticalityType_1052 = CriticalityType_1052In;}
+void CriticalityType::setCriticalityType_1045(CriticalityType_1045_Type * CriticalityType_1045In)
+{CriticalityType_1045 = CriticalityType_1045In;}
 
 /* ***************************************************************** */
 
@@ -26853,7 +27077,7 @@ CurveLengthCharacteristicDefinitionType::CurveLengthCharacteristicDefinitionType
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -26870,7 +27094,7 @@ CurveLengthCharacteristicDefinitionType::CurveLengthCharacteristicDefinitionType
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -26891,7 +27115,7 @@ CurveLengthCharacteristicDefinitionType::CurveLengthCharacteristicDefinitionType
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -26909,7 +27133,7 @@ CurveLengthCharacteristicDefinitionType::CurveLengthCharacteristicDefinitionType
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -27056,7 +27280,7 @@ void CurveLengthCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1059->printSelf(outFile);
+  LinearCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -27074,7 +27298,7 @@ bool CurveLengthCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CurveLengthCharacteristicDefinitionType\n");
               returnValue = true;
@@ -27090,7 +27314,7 @@ bool CurveLengthCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -27099,7 +27323,7 @@ bool CurveLengthCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CurveLengthCharacteristicDefinitionType\n");
       returnValue = true;
@@ -27111,8 +27335,8 @@ bool CurveLengthCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -27316,7 +27540,7 @@ bool CurveLengthCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CurveLengthCharacteristicItemType\n");
               returnValue = true;
@@ -27332,7 +27556,7 @@ bool CurveLengthCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -27341,7 +27565,7 @@ bool CurveLengthCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CurveLengthCharacteristicItemType\n");
       returnValue = true;
@@ -27353,8 +27577,8 @@ bool CurveLengthCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -27599,7 +27823,7 @@ bool CurveLengthCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CurveLengthCharacteristicMeasurementType\n");
               returnValue = true;
@@ -27615,7 +27839,7 @@ bool CurveLengthCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -27624,7 +27848,7 @@ bool CurveLengthCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CurveLengthCharacteristicMeasurementType\n");
       returnValue = true;
@@ -27636,8 +27860,8 @@ bool CurveLengthCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -27853,7 +28077,7 @@ bool CurveLengthCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CurveLengthCharacteristicNominalType\n");
               returnValue = true;
@@ -27869,7 +28093,7 @@ bool CurveLengthCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -27878,7 +28102,7 @@ bool CurveLengthCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CurveLengthCharacteristicNominalType\n");
       returnValue = true;
@@ -27890,8 +28114,8 @@ bool CurveLengthCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -27905,7 +28129,7 @@ bool CurveLengthCharacteristicNominalType::badAttributes(
 CylindricityCharacteristicDefinitionType::CylindricityCharacteristicDefinitionType() :
   FormCharacteristicDefinitionBaseType()
 {
-  CylindricityCha_1053 = 0;
+  CylindricityCharacteristicDefinitionTypePair = 0;
 }
 
 CylindricityCharacteristicDefinitionType::CylindricityCharacteristicDefinitionType(
@@ -27922,12 +28146,12 @@ CylindricityCharacteristicDefinitionType::CylindricityCharacteristicDefinitionTy
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
- CylindricityCha_1053_Type * CylindricityCha_1053In) :
+ CylindricityCharacteristicDefinitionTypeChoicePair * CylindricityCharacteristicDefinitionTypePairIn) :
   FormCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -27942,13 +28166,13 @@ CylindricityCharacteristicDefinitionType::CylindricityCharacteristicDefinitionTy
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn)
 {
-  CylindricityCha_1053 = CylindricityCha_1053In;
+  CylindricityCharacteristicDefinitionTypePair = CylindricityCharacteristicDefinitionTypePairIn;
 }
 
 CylindricityCharacteristicDefinitionType::CylindricityCharacteristicDefinitionType(
@@ -27966,12 +28190,12 @@ CylindricityCharacteristicDefinitionType::CylindricityCharacteristicDefinitionTy
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
- CylindricityCha_1053_Type * CylindricityCha_1053In) :
+ CylindricityCharacteristicDefinitionTypeChoicePair * CylindricityCharacteristicDefinitionTypePairIn) :
   FormCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -27987,19 +28211,19 @@ CylindricityCharacteristicDefinitionType::CylindricityCharacteristicDefinitionTy
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn)
 {
-  CylindricityCha_1053 = CylindricityCha_1053In;
+  CylindricityCharacteristicDefinitionTypePair = CylindricityCharacteristicDefinitionTypePairIn;
 }
 
 CylindricityCharacteristicDefinitionType::~CylindricityCharacteristicDefinitionType()
 {
   #ifndef NODESTRUCT
-  delete CylindricityCha_1053;
+  delete CylindricityCharacteristicDefinitionTypePair;
   #endif
 }
 
@@ -28125,9 +28349,9 @@ void CylindricityCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -28161,8 +28385,47 @@ void CylindricityCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</OrientationPlane>\n");
     }
-  CylindricityCha_1053->printSelf(outFile);
+  CylindricityCharacteristicDefinitionTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
+}
+CylindricityCharacteristicDefinitionTypeChoicePair * CylindricityCharacteristicDefinitionType::getCylindricityCharacteristicDefinitionTypeChoicePair()
+{return CylindricityCharacteristicDefinitionTypePair;}
+
+void CylindricityCharacteristicDefinitionType::setCylindricityCharacteristicDefinitionTypeChoicePair(CylindricityCharacteristicDefinitionTypeChoicePair * CylindricityCharacteristicDefinitionTypePairIn)
+{CylindricityCharacteristicDefinitionTypePair = CylindricityCharacteristicDefinitionTypePairIn;}
+
+/* ***************************************************************** */
+
+CylindricityCharacteristicDefinitionTypeChoicePair::CylindricityCharacteristicDefinitionTypeChoicePair() {}
+
+CylindricityCharacteristicDefinitionTypeChoicePair::CylindricityCharacteristicDefinitionTypeChoicePair(
+ whichOne CylindricityCharacteristicDefinitionTypeTypeIn,
+ CylindricityCharacteristicDefinitionTypeVal CylindricityCharacteristicDefinitionTypeValueIn)
+{
+  CylindricityCharacteristicDefinitionTypeType = CylindricityCharacteristicDefinitionTypeTypeIn;
+  CylindricityCharacteristicDefinitionTypeValue = CylindricityCharacteristicDefinitionTypeValueIn;
+}
+
+CylindricityCharacteristicDefinitionTypeChoicePair::~CylindricityCharacteristicDefinitionTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (CylindricityCharacteristicDefinitionTypeType == CylindricityCha_1046E)
+    delete CylindricityCharacteristicDefinitionTypeValue.CylindricityCha_1046;
+  else if (CylindricityCharacteristicDefinitionTypeType == CylindricityCha_1047E)
+    delete CylindricityCharacteristicDefinitionTypeValue.CylindricityCha_1047;
+  #endif
+}
+
+void CylindricityCharacteristicDefinitionTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (CylindricityCharacteristicDefinitionTypeType == CylindricityCha_1046E)
+    {
+      CylindricityCharacteristicDefinitionTypeValue.CylindricityCha_1046->printSelf(outFile);
+    }
+  else if (CylindricityCharacteristicDefinitionTypeType == CylindricityCha_1047E)
+    {
+      CylindricityCharacteristicDefinitionTypeValue.CylindricityCha_1047->printSelf(outFile);
+    }
 }
 
 bool CylindricityCharacteristicDefinitionType::badAttributes(
@@ -28179,7 +28442,7 @@ bool CylindricityCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CylindricityCharacteristicDefinitionType\n");
               returnValue = true;
@@ -28195,7 +28458,7 @@ bool CylindricityCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -28204,7 +28467,7 @@ bool CylindricityCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CylindricityCharacteristicDefinitionType\n");
       returnValue = true;
@@ -28216,17 +28479,11 @@ bool CylindricityCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
-
-CylindricityCha_1053_Type * CylindricityCharacteristicDefinitionType::getCylindricityCha_1053()
-{return CylindricityCha_1053;}
-
-void CylindricityCharacteristicDefinitionType::setCylindricityCha_1053(CylindricityCha_1053_Type * CylindricityCha_1053In)
-{CylindricityCha_1053 = CylindricityCha_1053In;}
 
 /* ***************************************************************** */
 
@@ -28427,7 +28684,7 @@ bool CylindricityCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CylindricityCharacteristicItemType\n");
               returnValue = true;
@@ -28443,7 +28700,7 @@ bool CylindricityCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -28452,7 +28709,7 @@ bool CylindricityCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CylindricityCharacteristicItemType\n");
       returnValue = true;
@@ -28464,8 +28721,8 @@ bool CylindricityCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -28480,7 +28737,7 @@ CylindricityCharacteristicMeasurementType::CylindricityCharacteristicMeasurement
   FormCharacteristicMeasurementBaseType()
 {
   MaxCylindricity = 0;
-  CylindricityCha_1054 = 0;
+  CylindricityCha_1048 = 0;
 }
 
 CylindricityCharacteristicMeasurementType::CylindricityCharacteristicMeasurementType(
@@ -28500,7 +28757,7 @@ CylindricityCharacteristicMeasurementType::CylindricityCharacteristicMeasurement
  MeasuredLinearValueType * MaxValueIn,
  MeasuredLinearValueType * MinValueIn,
  MeasuredLinearValueType * MaxCylindricityIn,
- CylindricityCha_1054_Type * CylindricityCha_1054In) :
+ CylindricityCha_1048_Type * CylindricityCha_1048In) :
   FormCharacteristicMeasurementBaseType(
     AttributesIn,
     DescriptionIn,
@@ -28519,7 +28776,7 @@ CylindricityCharacteristicMeasurementType::CylindricityCharacteristicMeasurement
     MinValueIn)
 {
   MaxCylindricity = MaxCylindricityIn;
-  CylindricityCha_1054 = CylindricityCha_1054In;
+  CylindricityCha_1048 = CylindricityCha_1048In;
 }
 
 CylindricityCharacteristicMeasurementType::CylindricityCharacteristicMeasurementType(
@@ -28540,7 +28797,7 @@ CylindricityCharacteristicMeasurementType::CylindricityCharacteristicMeasurement
  MeasuredLinearValueType * MaxValueIn,
  MeasuredLinearValueType * MinValueIn,
  MeasuredLinearValueType * MaxCylindricityIn,
- CylindricityCha_1054_Type * CylindricityCha_1054In) :
+ CylindricityCha_1048_Type * CylindricityCha_1048In) :
   FormCharacteristicMeasurementBaseType(
     idIn,
     AttributesIn,
@@ -28560,14 +28817,14 @@ CylindricityCharacteristicMeasurementType::CylindricityCharacteristicMeasurement
     MinValueIn)
 {
   MaxCylindricity = MaxCylindricityIn;
-  CylindricityCha_1054 = CylindricityCha_1054In;
+  CylindricityCha_1048 = CylindricityCha_1048In;
 }
 
 CylindricityCharacteristicMeasurementType::~CylindricityCharacteristicMeasurementType()
 {
   #ifndef NODESTRUCT
   delete MaxCylindricity;
-  delete CylindricityCha_1054;
+  delete CylindricityCha_1048;
   #endif
 }
 
@@ -28712,9 +28969,9 @@ void CylindricityCharacteristicMeasurementType::printSelf(FILE * outFile)
       MaxCylindricity->printSelf(outFile);
       fprintf(outFile, "</MaxCylindricity>\n");
     }
-  if (CylindricityCha_1054)
+  if (CylindricityCha_1048)
     {
-      CylindricityCha_1054->printSelf(outFile);
+      CylindricityCha_1048->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -28733,7 +28990,7 @@ bool CylindricityCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CylindricityCharacteristicMeasurementType\n");
               returnValue = true;
@@ -28749,7 +29006,7 @@ bool CylindricityCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -28758,7 +29015,7 @@ bool CylindricityCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CylindricityCharacteristicMeasurementType\n");
       returnValue = true;
@@ -28770,8 +29027,8 @@ bool CylindricityCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -28782,11 +29039,11 @@ MeasuredLinearValueType * CylindricityCharacteristicMeasurementType::getMaxCylin
 void CylindricityCharacteristicMeasurementType::setMaxCylindricity(MeasuredLinearValueType * MaxCylindricityIn)
 {MaxCylindricity = MaxCylindricityIn;}
 
-CylindricityCha_1054_Type * CylindricityCharacteristicMeasurementType::getCylindricityCha_1054()
-{return CylindricityCha_1054;}
+CylindricityCha_1048_Type * CylindricityCharacteristicMeasurementType::getCylindricityCha_1048()
+{return CylindricityCha_1048;}
 
-void CylindricityCharacteristicMeasurementType::setCylindricityCha_1054(CylindricityCha_1054_Type * CylindricityCha_1054In)
-{CylindricityCha_1054 = CylindricityCha_1054In;}
+void CylindricityCharacteristicMeasurementType::setCylindricityCha_1048(CylindricityCha_1048_Type * CylindricityCha_1048In)
+{CylindricityCha_1048 = CylindricityCha_1048In;}
 
 /* ***************************************************************** */
 
@@ -28977,7 +29234,7 @@ bool CylindricityCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in CylindricityCharacteristicNominalType\n");
               returnValue = true;
@@ -28993,7 +29250,7 @@ bool CylindricityCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -29002,7 +29259,7 @@ bool CylindricityCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in CylindricityCharacteristicNominalType\n");
       returnValue = true;
@@ -29014,8 +29271,8 @@ bool CylindricityCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -29047,7 +29304,7 @@ DepthCharacteristicDefinitionType::DepthCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -29064,7 +29321,7 @@ DepthCharacteristicDefinitionType::DepthCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -29085,7 +29342,7 @@ DepthCharacteristicDefinitionType::DepthCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -29103,7 +29360,7 @@ DepthCharacteristicDefinitionType::DepthCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -29250,7 +29507,7 @@ void DepthCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1059->printSelf(outFile);
+  LinearCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -29268,7 +29525,7 @@ bool DepthCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DepthCharacteristicDefinitionType\n");
               returnValue = true;
@@ -29284,7 +29541,7 @@ bool DepthCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -29293,7 +29550,7 @@ bool DepthCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DepthCharacteristicDefinitionType\n");
       returnValue = true;
@@ -29305,8 +29562,8 @@ bool DepthCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -29510,7 +29767,7 @@ bool DepthCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DepthCharacteristicItemType\n");
               returnValue = true;
@@ -29526,7 +29783,7 @@ bool DepthCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -29535,7 +29792,7 @@ bool DepthCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DepthCharacteristicItemType\n");
       returnValue = true;
@@ -29547,8 +29804,8 @@ bool DepthCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -29793,7 +30050,7 @@ bool DepthCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DepthCharacteristicMeasurementType\n");
               returnValue = true;
@@ -29809,7 +30066,7 @@ bool DepthCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -29818,7 +30075,7 @@ bool DepthCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DepthCharacteristicMeasurementType\n");
       returnValue = true;
@@ -29830,8 +30087,8 @@ bool DepthCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -30047,7 +30304,7 @@ bool DepthCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DepthCharacteristicNominalType\n");
               returnValue = true;
@@ -30063,7 +30320,7 @@ bool DepthCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -30072,7 +30329,7 @@ bool DepthCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DepthCharacteristicNominalType\n");
       returnValue = true;
@@ -30084,8 +30341,8 @@ bool DepthCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -30099,7 +30356,7 @@ bool DepthCharacteristicNominalType::badAttributes(
 DiameterCharacteristicDefinitionType::DiameterCharacteristicDefinitionType() :
   DimensionalCharacteristicDefinitionBaseType()
 {
-  DiameterCharact_1055 = 0;
+  DiameterCharacteristicDefinitionTypePair = 0;
 }
 
 DiameterCharacteristicDefinitionType::DiameterCharacteristicDefinitionType(
@@ -30118,7 +30375,7 @@ DiameterCharacteristicDefinitionType::DiameterCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- DiameterCharact_1055_Type * DiameterCharact_1055In) :
+ DiameterCharacteristicDefinitionTypeChoicePair * DiameterCharacteristicDefinitionTypePairIn) :
   DimensionalCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -30136,7 +30393,7 @@ DiameterCharacteristicDefinitionType::DiameterCharacteristicDefinitionType(
     DimensionTypeIn,
     DimensionModifiersIn)
 {
-  DiameterCharact_1055 = DiameterCharact_1055In;
+  DiameterCharacteristicDefinitionTypePair = DiameterCharacteristicDefinitionTypePairIn;
 }
 
 DiameterCharacteristicDefinitionType::DiameterCharacteristicDefinitionType(
@@ -30156,7 +30413,7 @@ DiameterCharacteristicDefinitionType::DiameterCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- DiameterCharact_1055_Type * DiameterCharact_1055In) :
+ DiameterCharacteristicDefinitionTypeChoicePair * DiameterCharacteristicDefinitionTypePairIn) :
   DimensionalCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -30175,13 +30432,13 @@ DiameterCharacteristicDefinitionType::DiameterCharacteristicDefinitionType(
     DimensionTypeIn,
     DimensionModifiersIn)
 {
-  DiameterCharact_1055 = DiameterCharact_1055In;
+  DiameterCharacteristicDefinitionTypePair = DiameterCharacteristicDefinitionTypePairIn;
 }
 
 DiameterCharacteristicDefinitionType::~DiameterCharacteristicDefinitionType()
 {
   #ifndef NODESTRUCT
-  delete DiameterCharact_1055;
+  delete DiameterCharacteristicDefinitionTypePair;
   #endif
 }
 
@@ -30322,8 +30579,64 @@ void DiameterCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  DiameterCharact_1055->printSelf(outFile);
+  DiameterCharacteristicDefinitionTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
+}
+DiameterCharacteristicDefinitionTypeChoicePair * DiameterCharacteristicDefinitionType::getDiameterCharacteristicDefinitionTypeChoicePair()
+{return DiameterCharacteristicDefinitionTypePair;}
+
+void DiameterCharacteristicDefinitionType::setDiameterCharacteristicDefinitionTypeChoicePair(DiameterCharacteristicDefinitionTypeChoicePair * DiameterCharacteristicDefinitionTypePairIn)
+{DiameterCharacteristicDefinitionTypePair = DiameterCharacteristicDefinitionTypePairIn;}
+
+/* ***************************************************************** */
+
+DiameterCharacteristicDefinitionTypeChoicePair::DiameterCharacteristicDefinitionTypeChoicePair() {}
+
+DiameterCharacteristicDefinitionTypeChoicePair::DiameterCharacteristicDefinitionTypeChoicePair(
+ whichOne DiameterCharacteristicDefinitionTypeTypeIn,
+ DiameterCharacteristicDefinitionTypeVal DiameterCharacteristicDefinitionTypeValueIn)
+{
+  DiameterCharacteristicDefinitionTypeType = DiameterCharacteristicDefinitionTypeTypeIn;
+  DiameterCharacteristicDefinitionTypeValue = DiameterCharacteristicDefinitionTypeValueIn;
+}
+
+DiameterCharacteristicDefinitionTypeChoicePair::~DiameterCharacteristicDefinitionTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (DiameterCharacteristicDefinitionTypeType == ToleranceE)
+    delete DiameterCharacteristicDefinitionTypeValue.Tolerance;
+  else if (DiameterCharacteristicDefinitionTypeType == LimitsAndFitsSpecificationE)
+    delete DiameterCharacteristicDefinitionTypeValue.LimitsAndFitsSpecification;
+  else if (DiameterCharacteristicDefinitionTypeType == NonToleranceE)
+    delete DiameterCharacteristicDefinitionTypeValue.NonTolerance;
+  #endif
+}
+
+void DiameterCharacteristicDefinitionTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (DiameterCharacteristicDefinitionTypeType == ToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Tolerance");
+      DiameterCharacteristicDefinitionTypeValue.Tolerance->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</Tolerance>\n");
+    }
+  else if (DiameterCharacteristicDefinitionTypeType == LimitsAndFitsSpecificationE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<LimitsAndFitsSpecification");
+      DiameterCharacteristicDefinitionTypeValue.LimitsAndFitsSpecification->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</LimitsAndFitsSpecification>\n");
+    }
+  else if (DiameterCharacteristicDefinitionTypeType == NonToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<NonTolerance");
+      DiameterCharacteristicDefinitionTypeValue.NonTolerance->printSelf(outFile);
+      fprintf(outFile, "</NonTolerance>\n");
+    }
 }
 
 bool DiameterCharacteristicDefinitionType::badAttributes(
@@ -30340,7 +30653,7 @@ bool DiameterCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DiameterCharacteristicDefinitionType\n");
               returnValue = true;
@@ -30356,7 +30669,7 @@ bool DiameterCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -30365,7 +30678,7 @@ bool DiameterCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DiameterCharacteristicDefinitionType\n");
       returnValue = true;
@@ -30377,17 +30690,11 @@ bool DiameterCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
-
-DiameterCharact_1055_Type * DiameterCharacteristicDefinitionType::getDiameterCharact_1055()
-{return DiameterCharact_1055;}
-
-void DiameterCharacteristicDefinitionType::setDiameterCharact_1055(DiameterCharact_1055_Type * DiameterCharact_1055In)
-{DiameterCharact_1055 = DiameterCharact_1055In;}
 
 /* ***************************************************************** */
 
@@ -30588,7 +30895,7 @@ bool DiameterCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DiameterCharacteristicItemType\n");
               returnValue = true;
@@ -30604,7 +30911,7 @@ bool DiameterCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -30613,7 +30920,7 @@ bool DiameterCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DiameterCharacteristicItemType\n");
       returnValue = true;
@@ -30625,8 +30932,8 @@ bool DiameterCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -30871,7 +31178,7 @@ bool DiameterCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DiameterCharacteristicMeasurementType\n");
               returnValue = true;
@@ -30887,7 +31194,7 @@ bool DiameterCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -30896,7 +31203,7 @@ bool DiameterCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DiameterCharacteristicMeasurementType\n");
       returnValue = true;
@@ -30908,8 +31215,8 @@ bool DiameterCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -31125,7 +31432,7 @@ bool DiameterCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DiameterCharacteristicNominalType\n");
               returnValue = true;
@@ -31141,7 +31448,7 @@ bool DiameterCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -31150,7 +31457,7 @@ bool DiameterCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DiameterCharacteristicNominalType\n");
       returnValue = true;
@@ -31162,8 +31469,8 @@ bool DiameterCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -31415,7 +31722,7 @@ bool DimensionalCharacteristicDefinitionBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DimensionalCharacteristicDefinitionBaseType\n");
               returnValue = true;
@@ -31431,7 +31738,7 @@ bool DimensionalCharacteristicDefinitionBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -31440,7 +31747,7 @@ bool DimensionalCharacteristicDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DimensionalCharacteristicDefinitionBaseType\n");
       returnValue = true;
@@ -31452,8 +31759,8 @@ bool DimensionalCharacteristicDefinitionBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -31669,7 +31976,7 @@ bool DimensionalCharacteristicItemBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DimensionalCharacteristicItemBaseType\n");
               returnValue = true;
@@ -31685,7 +31992,7 @@ bool DimensionalCharacteristicItemBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -31694,7 +32001,7 @@ bool DimensionalCharacteristicItemBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DimensionalCharacteristicItemBaseType\n");
       returnValue = true;
@@ -31706,8 +32013,8 @@ bool DimensionalCharacteristicItemBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -31919,7 +32226,7 @@ bool DimensionalCharacteristicMeasurementBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DimensionalCharacteristicMeasurementBaseType\n");
               returnValue = true;
@@ -31935,7 +32242,7 @@ bool DimensionalCharacteristicMeasurementBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -31944,7 +32251,7 @@ bool DimensionalCharacteristicMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DimensionalCharacteristicMeasurementBaseType\n");
       returnValue = true;
@@ -31956,8 +32263,8 @@ bool DimensionalCharacteristicMeasurementBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -32151,7 +32458,7 @@ bool DimensionalCharacteristicNominalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DimensionalCharacteristicNominalBaseType\n");
               returnValue = true;
@@ -32167,7 +32474,7 @@ bool DimensionalCharacteristicNominalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -32176,7 +32483,7 @@ bool DimensionalCharacteristicNominalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DimensionalCharacteristicNominalBaseType\n");
       returnValue = true;
@@ -32188,8 +32495,8 @@ bool DimensionalCharacteristicNominalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -32221,7 +32528,7 @@ DistanceBetweenCharacteristicDefinitionType::DistanceBetweenCharacteristicDefini
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -32238,7 +32545,7 @@ DistanceBetweenCharacteristicDefinitionType::DistanceBetweenCharacteristicDefini
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -32259,7 +32566,7 @@ DistanceBetweenCharacteristicDefinitionType::DistanceBetweenCharacteristicDefini
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -32277,7 +32584,7 @@ DistanceBetweenCharacteristicDefinitionType::DistanceBetweenCharacteristicDefini
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -32424,7 +32731,7 @@ void DistanceBetweenCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1059->printSelf(outFile);
+  LinearCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -32442,7 +32749,7 @@ bool DistanceBetweenCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DistanceBetweenCharacteristicDefinitionType\n");
               returnValue = true;
@@ -32458,7 +32765,7 @@ bool DistanceBetweenCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -32467,7 +32774,7 @@ bool DistanceBetweenCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DistanceBetweenCharacteristicDefinitionType\n");
       returnValue = true;
@@ -32479,8 +32786,8 @@ bool DistanceBetweenCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -32684,7 +32991,7 @@ bool DistanceBetweenCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DistanceBetweenCharacteristicItemType\n");
               returnValue = true;
@@ -32700,7 +33007,7 @@ bool DistanceBetweenCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -32709,7 +33016,7 @@ bool DistanceBetweenCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DistanceBetweenCharacteristicItemType\n");
       returnValue = true;
@@ -32721,8 +33028,8 @@ bool DistanceBetweenCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -32980,7 +33287,7 @@ bool DistanceBetweenCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DistanceBetweenCharacteristicMeasurementType\n");
               returnValue = true;
@@ -32996,7 +33303,7 @@ bool DistanceBetweenCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -33005,7 +33312,7 @@ bool DistanceBetweenCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DistanceBetweenCharacteristicMeasurementType\n");
       returnValue = true;
@@ -33017,8 +33324,8 @@ bool DistanceBetweenCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -33304,7 +33611,7 @@ bool DistanceBetweenCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DistanceBetweenCharacteristicNominalType\n");
               returnValue = true;
@@ -33320,7 +33627,7 @@ bool DistanceBetweenCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -33329,7 +33636,7 @@ bool DistanceBetweenCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DistanceBetweenCharacteristicNominalType\n");
       returnValue = true;
@@ -33341,8 +33648,8 @@ bool DistanceBetweenCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -33404,7 +33711,7 @@ DistanceFromCharacteristicDefinitionType::DistanceFromCharacteristicDefinitionTy
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -33421,7 +33728,7 @@ DistanceFromCharacteristicDefinitionType::DistanceFromCharacteristicDefinitionTy
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -33442,7 +33749,7 @@ DistanceFromCharacteristicDefinitionType::DistanceFromCharacteristicDefinitionTy
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -33460,7 +33767,7 @@ DistanceFromCharacteristicDefinitionType::DistanceFromCharacteristicDefinitionTy
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -33607,7 +33914,7 @@ void DistanceFromCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1059->printSelf(outFile);
+  LinearCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -33625,7 +33932,7 @@ bool DistanceFromCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DistanceFromCharacteristicDefinitionType\n");
               returnValue = true;
@@ -33641,7 +33948,7 @@ bool DistanceFromCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -33650,7 +33957,7 @@ bool DistanceFromCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DistanceFromCharacteristicDefinitionType\n");
       returnValue = true;
@@ -33662,8 +33969,8 @@ bool DistanceFromCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -33867,7 +34174,7 @@ bool DistanceFromCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DistanceFromCharacteristicItemType\n");
               returnValue = true;
@@ -33883,7 +34190,7 @@ bool DistanceFromCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -33892,7 +34199,7 @@ bool DistanceFromCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DistanceFromCharacteristicItemType\n");
       returnValue = true;
@@ -33904,8 +34211,8 @@ bool DistanceFromCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -34163,7 +34470,7 @@ bool DistanceFromCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DistanceFromCharacteristicMeasurementType\n");
               returnValue = true;
@@ -34179,7 +34486,7 @@ bool DistanceFromCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -34188,7 +34495,7 @@ bool DistanceFromCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DistanceFromCharacteristicMeasurementType\n");
       returnValue = true;
@@ -34200,8 +34507,8 @@ bool DistanceFromCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -34487,7 +34794,7 @@ bool DistanceFromCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in DistanceFromCharacteristicNominalType\n");
               returnValue = true;
@@ -34503,7 +34810,7 @@ bool DistanceFromCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -34512,7 +34819,7 @@ bool DistanceFromCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in DistanceFromCharacteristicNominalType\n");
       returnValue = true;
@@ -34524,8 +34831,8 @@ bool DistanceFromCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -34764,7 +35071,7 @@ EllipticityCharacteristicDefinitionType::EllipticityCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -34785,7 +35092,7 @@ EllipticityCharacteristicDefinitionType::EllipticityCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -34810,7 +35117,7 @@ EllipticityCharacteristicDefinitionType::EllipticityCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -34832,7 +35139,7 @@ EllipticityCharacteristicDefinitionType::EllipticityCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -34972,9 +35279,9 @@ void EllipticityCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -35036,7 +35343,7 @@ bool EllipticityCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in EllipticityCharacteristicDefinitionType\n");
               returnValue = true;
@@ -35052,7 +35359,7 @@ bool EllipticityCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -35061,7 +35368,7 @@ bool EllipticityCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in EllipticityCharacteristicDefinitionType\n");
       returnValue = true;
@@ -35073,8 +35380,8 @@ bool EllipticityCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -35290,7 +35597,7 @@ bool EllipticityCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in EllipticityCharacteristicItemType\n");
               returnValue = true;
@@ -35306,7 +35613,7 @@ bool EllipticityCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -35315,7 +35622,7 @@ bool EllipticityCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in EllipticityCharacteristicItemType\n");
       returnValue = true;
@@ -35327,8 +35634,8 @@ bool EllipticityCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -35573,7 +35880,7 @@ bool EllipticityCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in EllipticityCharacteristicMeasurementType\n");
               returnValue = true;
@@ -35589,7 +35896,7 @@ bool EllipticityCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -35598,7 +35905,7 @@ bool EllipticityCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in EllipticityCharacteristicMeasurementType\n");
       returnValue = true;
@@ -35610,8 +35917,8 @@ bool EllipticityCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -35805,7 +36112,7 @@ bool EllipticityCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in EllipticityCharacteristicNominalType\n");
               returnValue = true;
@@ -35821,7 +36128,7 @@ bool EllipticityCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -35830,7 +36137,7 @@ bool EllipticityCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in EllipticityCharacteristicNominalType\n");
       returnValue = true;
@@ -35842,8 +36149,8 @@ bool EllipticityCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -35949,13 +36256,6 @@ ExtentTypeChoicePair * ExtentType::getExtentTypePair()
 
 void ExtentType::setExtentTypePair(ExtentTypeChoicePair * ExtentTypePairIn)
 {ExtentTypePair = ExtentTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ExtentTypeChoicePair
-
-*/
-
 ExtentTypeChoicePair::ExtentTypeChoicePair() {}
 
 ExtentTypeChoicePair::ExtentTypeChoicePair(
@@ -36031,13 +36331,6 @@ FilterTypeChoicePair * FilterType::getFilterTypePair()
 
 void FilterType::setFilterTypePair(FilterTypeChoicePair * FilterTypePairIn)
 {FilterTypePair = FilterTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class FilterTypeChoicePair
-
-*/
-
 FilterTypeChoicePair::FilterTypeChoicePair() {}
 
 FilterTypeChoicePair::FilterTypeChoicePair(
@@ -36105,7 +36398,7 @@ FlatTaperCharacteristicDefinitionType::FlatTaperCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -36122,7 +36415,7 @@ FlatTaperCharacteristicDefinitionType::FlatTaperCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -36143,7 +36436,7 @@ FlatTaperCharacteristicDefinitionType::FlatTaperCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -36161,7 +36454,7 @@ FlatTaperCharacteristicDefinitionType::FlatTaperCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -36308,7 +36601,7 @@ void FlatTaperCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1059->printSelf(outFile);
+  LinearCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -36326,7 +36619,7 @@ bool FlatTaperCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FlatTaperCharacteristicDefinitionType\n");
               returnValue = true;
@@ -36342,7 +36635,7 @@ bool FlatTaperCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -36351,7 +36644,7 @@ bool FlatTaperCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FlatTaperCharacteristicDefinitionType\n");
       returnValue = true;
@@ -36363,8 +36656,8 @@ bool FlatTaperCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -36568,7 +36861,7 @@ bool FlatTaperCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FlatTaperCharacteristicItemType\n");
               returnValue = true;
@@ -36584,7 +36877,7 @@ bool FlatTaperCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -36593,7 +36886,7 @@ bool FlatTaperCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FlatTaperCharacteristicItemType\n");
       returnValue = true;
@@ -36605,8 +36898,8 @@ bool FlatTaperCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -36864,7 +37157,7 @@ bool FlatTaperCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FlatTaperCharacteristicMeasurementType\n");
               returnValue = true;
@@ -36880,7 +37173,7 @@ bool FlatTaperCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -36889,7 +37182,7 @@ bool FlatTaperCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FlatTaperCharacteristicMeasurementType\n");
       returnValue = true;
@@ -36901,8 +37194,8 @@ bool FlatTaperCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -37134,7 +37427,7 @@ bool FlatTaperCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FlatTaperCharacteristicNominalType\n");
               returnValue = true;
@@ -37150,7 +37443,7 @@ bool FlatTaperCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -37159,7 +37452,7 @@ bool FlatTaperCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FlatTaperCharacteristicNominalType\n");
       returnValue = true;
@@ -37171,8 +37464,8 @@ bool FlatTaperCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -37192,7 +37485,7 @@ void FlatTaperCharacteristicNominalType::setDistance(LinearValueType * DistanceI
 FlatnessCharacteristicDefinitionType::FlatnessCharacteristicDefinitionType() :
   FormCharacteristicDefinitionBaseType()
 {
-  FlatnessCharact_1056 = 0;
+  FlatnessCharact_1049 = 0;
   MaterialCondition = 0;
   SizeCharacteristicDefinitionId = 0;
   MaximumToleranceValue = 0;
@@ -37213,12 +37506,12 @@ FlatnessCharacteristicDefinitionType::FlatnessCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
- FlatnessCharact_1056_Type * FlatnessCharact_1056In,
+ FlatnessCharact_1049_Type * FlatnessCharact_1049In,
  MaterialModifierEnumType * MaterialConditionIn,
  QIFReferenceType * SizeCharacteristicDefinitionIdIn,
  LinearValueType * MaximumToleranceValueIn,
@@ -37237,13 +37530,13 @@ FlatnessCharacteristicDefinitionType::FlatnessCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn)
 {
-  FlatnessCharact_1056 = FlatnessCharact_1056In;
+  FlatnessCharact_1049 = FlatnessCharact_1049In;
   MaterialCondition = MaterialConditionIn;
   SizeCharacteristicDefinitionId = SizeCharacteristicDefinitionIdIn;
   MaximumToleranceValue = MaximumToleranceValueIn;
@@ -37265,12 +37558,12 @@ FlatnessCharacteristicDefinitionType::FlatnessCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
- FlatnessCharact_1056_Type * FlatnessCharact_1056In,
+ FlatnessCharact_1049_Type * FlatnessCharact_1049In,
  MaterialModifierEnumType * MaterialConditionIn,
  QIFReferenceType * SizeCharacteristicDefinitionIdIn,
  LinearValueType * MaximumToleranceValueIn,
@@ -37290,13 +37583,13 @@ FlatnessCharacteristicDefinitionType::FlatnessCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn)
 {
-  FlatnessCharact_1056 = FlatnessCharact_1056In;
+  FlatnessCharact_1049 = FlatnessCharact_1049In;
   MaterialCondition = MaterialConditionIn;
   SizeCharacteristicDefinitionId = SizeCharacteristicDefinitionIdIn;
   MaximumToleranceValue = MaximumToleranceValueIn;
@@ -37306,7 +37599,7 @@ FlatnessCharacteristicDefinitionType::FlatnessCharacteristicDefinitionType(
 FlatnessCharacteristicDefinitionType::~FlatnessCharacteristicDefinitionType()
 {
   #ifndef NODESTRUCT
-  delete FlatnessCharact_1056;
+  delete FlatnessCharact_1049;
   delete MaterialCondition;
   delete SizeCharacteristicDefinitionId;
   delete MaximumToleranceValue;
@@ -37436,9 +37729,9 @@ void FlatnessCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -37472,7 +37765,7 @@ void FlatnessCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</OrientationPlane>\n");
     }
-  FlatnessCharact_1056->printSelf(outFile);
+  FlatnessCharact_1049->printSelf(outFile);
   if (MaterialCondition)
     {
       doSpaces(0, outFile);
@@ -37518,7 +37811,7 @@ bool FlatnessCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FlatnessCharacteristicDefinitionType\n");
               returnValue = true;
@@ -37534,7 +37827,7 @@ bool FlatnessCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -37543,7 +37836,7 @@ bool FlatnessCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FlatnessCharacteristicDefinitionType\n");
       returnValue = true;
@@ -37555,17 +37848,17 @@ bool FlatnessCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
 
-FlatnessCharact_1056_Type * FlatnessCharacteristicDefinitionType::getFlatnessCharact_1056()
-{return FlatnessCharact_1056;}
+FlatnessCharact_1049_Type * FlatnessCharacteristicDefinitionType::getFlatnessCharact_1049()
+{return FlatnessCharact_1049;}
 
-void FlatnessCharacteristicDefinitionType::setFlatnessCharact_1056(FlatnessCharact_1056_Type * FlatnessCharact_1056In)
-{FlatnessCharact_1056 = FlatnessCharact_1056In;}
+void FlatnessCharacteristicDefinitionType::setFlatnessCharact_1049(FlatnessCharact_1049_Type * FlatnessCharact_1049In)
+{FlatnessCharact_1049 = FlatnessCharact_1049In;}
 
 MaterialModifierEnumType * FlatnessCharacteristicDefinitionType::getMaterialCondition()
 {return MaterialCondition;}
@@ -37790,7 +38083,7 @@ bool FlatnessCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FlatnessCharacteristicItemType\n");
               returnValue = true;
@@ -37806,7 +38099,7 @@ bool FlatnessCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -37815,7 +38108,7 @@ bool FlatnessCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FlatnessCharacteristicItemType\n");
       returnValue = true;
@@ -37827,8 +38120,8 @@ bool FlatnessCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -38113,7 +38406,7 @@ bool FlatnessCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FlatnessCharacteristicMeasurementType\n");
               returnValue = true;
@@ -38129,7 +38422,7 @@ bool FlatnessCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -38138,7 +38431,7 @@ bool FlatnessCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FlatnessCharacteristicMeasurementType\n");
       returnValue = true;
@@ -38150,8 +38443,8 @@ bool FlatnessCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -38363,7 +38656,7 @@ bool FlatnessCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FlatnessCharacteristicNominalType\n");
               returnValue = true;
@@ -38379,7 +38672,7 @@ bool FlatnessCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -38388,7 +38681,7 @@ bool FlatnessCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FlatnessCharacteristicNominalType\n");
       returnValue = true;
@@ -38400,8 +38693,8 @@ bool FlatnessCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -38415,7 +38708,7 @@ bool FlatnessCharacteristicNominalType::badAttributes(
 ForceCharacteristicDefinitionBaseType::ForceCharacteristicDefinitionBaseType() :
   CharacteristicDefinitionBaseType()
 {
-  ForceCharacteri_1057 = 0;
+  ForceCharacteristicDefinitionBaseTypePair = 0;
 }
 
 ForceCharacteristicDefinitionBaseType::ForceCharacteristicDefinitionBaseType(
@@ -38432,7 +38725,7 @@ ForceCharacteristicDefinitionBaseType::ForceCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- ForceCharacteri_1057_Type * ForceCharacteri_1057In) :
+ ForceCharacteristicDefinitionBaseTypeChoicePair * ForceCharacteristicDefinitionBaseTypePairIn) :
   CharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -38448,7 +38741,7 @@ ForceCharacteristicDefinitionBaseType::ForceCharacteristicDefinitionBaseType(
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  ForceCharacteri_1057 = ForceCharacteri_1057In;
+  ForceCharacteristicDefinitionBaseTypePair = ForceCharacteristicDefinitionBaseTypePairIn;
 }
 
 ForceCharacteristicDefinitionBaseType::ForceCharacteristicDefinitionBaseType(
@@ -38466,7 +38759,7 @@ ForceCharacteristicDefinitionBaseType::ForceCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- ForceCharacteri_1057_Type * ForceCharacteri_1057In) :
+ ForceCharacteristicDefinitionBaseTypeChoicePair * ForceCharacteristicDefinitionBaseTypePairIn) :
   CharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -38483,13 +38776,13 @@ ForceCharacteristicDefinitionBaseType::ForceCharacteristicDefinitionBaseType(
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  ForceCharacteri_1057 = ForceCharacteri_1057In;
+  ForceCharacteristicDefinitionBaseTypePair = ForceCharacteristicDefinitionBaseTypePairIn;
 }
 
 ForceCharacteristicDefinitionBaseType::~ForceCharacteristicDefinitionBaseType()
 {
   #ifndef NODESTRUCT
-  delete ForceCharacteri_1057;
+  delete ForceCharacteristicDefinitionBaseTypePair;
   #endif
 }
 
@@ -38615,8 +38908,54 @@ void ForceCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  ForceCharacteri_1057->printSelf(outFile);
+  ForceCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
+}
+ForceCharacteristicDefinitionBaseTypeChoicePair * ForceCharacteristicDefinitionBaseType::getForceCharacteristicDefinitionBaseTypeChoicePair()
+{return ForceCharacteristicDefinitionBaseTypePair;}
+
+void ForceCharacteristicDefinitionBaseType::setForceCharacteristicDefinitionBaseTypeChoicePair(ForceCharacteristicDefinitionBaseTypeChoicePair * ForceCharacteristicDefinitionBaseTypePairIn)
+{ForceCharacteristicDefinitionBaseTypePair = ForceCharacteristicDefinitionBaseTypePairIn;}
+
+/* ***************************************************************** */
+
+ForceCharacteristicDefinitionBaseTypeChoicePair::ForceCharacteristicDefinitionBaseTypeChoicePair() {}
+
+ForceCharacteristicDefinitionBaseTypeChoicePair::ForceCharacteristicDefinitionBaseTypeChoicePair(
+ whichOne ForceCharacteristicDefinitionBaseTypeTypeIn,
+ ForceCharacteristicDefinitionBaseTypeVal ForceCharacteristicDefinitionBaseTypeValueIn)
+{
+  ForceCharacteristicDefinitionBaseTypeType = ForceCharacteristicDefinitionBaseTypeTypeIn;
+  ForceCharacteristicDefinitionBaseTypeValue = ForceCharacteristicDefinitionBaseTypeValueIn;
+}
+
+ForceCharacteristicDefinitionBaseTypeChoicePair::~ForceCharacteristicDefinitionBaseTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (ForceCharacteristicDefinitionBaseTypeType == ToleranceE)
+    delete ForceCharacteristicDefinitionBaseTypeValue.Tolerance;
+  else if (ForceCharacteristicDefinitionBaseTypeType == NonToleranceE)
+    delete ForceCharacteristicDefinitionBaseTypeValue.NonTolerance;
+  #endif
+}
+
+void ForceCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (ForceCharacteristicDefinitionBaseTypeType == ToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Tolerance");
+      ForceCharacteristicDefinitionBaseTypeValue.Tolerance->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</Tolerance>\n");
+    }
+  else if (ForceCharacteristicDefinitionBaseTypeType == NonToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<NonTolerance");
+      ForceCharacteristicDefinitionBaseTypeValue.NonTolerance->printSelf(outFile);
+      fprintf(outFile, "</NonTolerance>\n");
+    }
 }
 
 bool ForceCharacteristicDefinitionBaseType::badAttributes(
@@ -38633,7 +38972,7 @@ bool ForceCharacteristicDefinitionBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ForceCharacteristicDefinitionBaseType\n");
               returnValue = true;
@@ -38649,7 +38988,7 @@ bool ForceCharacteristicDefinitionBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -38658,7 +38997,7 @@ bool ForceCharacteristicDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ForceCharacteristicDefinitionBaseType\n");
       returnValue = true;
@@ -38670,17 +39009,11 @@ bool ForceCharacteristicDefinitionBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
-
-ForceCharacteri_1057_Type * ForceCharacteristicDefinitionBaseType::getForceCharacteri_1057()
-{return ForceCharacteri_1057;}
-
-void ForceCharacteristicDefinitionBaseType::setForceCharacteri_1057(ForceCharacteri_1057_Type * ForceCharacteri_1057In)
-{ForceCharacteri_1057 = ForceCharacteri_1057In;}
 
 /* ***************************************************************** */
 
@@ -38881,7 +39214,7 @@ bool ForceCharacteristicItemBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ForceCharacteristicItemBaseType\n");
               returnValue = true;
@@ -38897,7 +39230,7 @@ bool ForceCharacteristicItemBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -38906,7 +39239,7 @@ bool ForceCharacteristicItemBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ForceCharacteristicItemBaseType\n");
       returnValue = true;
@@ -38918,8 +39251,8 @@ bool ForceCharacteristicItemBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -39170,7 +39503,7 @@ bool ForceCharacteristicMeasurementBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ForceCharacteristicMeasurementBaseType\n");
               returnValue = true;
@@ -39186,7 +39519,7 @@ bool ForceCharacteristicMeasurementBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -39195,7 +39528,7 @@ bool ForceCharacteristicMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ForceCharacteristicMeasurementBaseType\n");
       returnValue = true;
@@ -39207,8 +39540,8 @@ bool ForceCharacteristicMeasurementBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -39433,7 +39766,7 @@ bool ForceCharacteristicNominalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ForceCharacteristicNominalBaseType\n");
               returnValue = true;
@@ -39449,7 +39782,7 @@ bool ForceCharacteristicNominalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -39458,7 +39791,7 @@ bool ForceCharacteristicNominalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ForceCharacteristicNominalBaseType\n");
       returnValue = true;
@@ -39470,8 +39803,8 @@ bool ForceCharacteristicNominalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -39507,7 +39840,7 @@ FormCharacteristicDefinitionBaseType::FormCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -39526,7 +39859,7 @@ FormCharacteristicDefinitionBaseType::FormCharacteristicDefinitionBaseType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -39549,7 +39882,7 @@ FormCharacteristicDefinitionBaseType::FormCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -39569,7 +39902,7 @@ FormCharacteristicDefinitionBaseType::FormCharacteristicDefinitionBaseType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -39705,9 +40038,9 @@ void FormCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -39758,7 +40091,7 @@ bool FormCharacteristicDefinitionBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FormCharacteristicDefinitionBaseType\n");
               returnValue = true;
@@ -39774,7 +40107,7 @@ bool FormCharacteristicDefinitionBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -39783,7 +40116,7 @@ bool FormCharacteristicDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FormCharacteristicDefinitionBaseType\n");
       returnValue = true;
@@ -39795,8 +40128,8 @@ bool FormCharacteristicDefinitionBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -40000,7 +40333,7 @@ bool FormCharacteristicItemBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FormCharacteristicItemBaseType\n");
               returnValue = true;
@@ -40016,7 +40349,7 @@ bool FormCharacteristicItemBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -40025,7 +40358,7 @@ bool FormCharacteristicItemBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FormCharacteristicItemBaseType\n");
       returnValue = true;
@@ -40037,8 +40370,8 @@ bool FormCharacteristicItemBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -40283,7 +40616,7 @@ bool FormCharacteristicMeasurementBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FormCharacteristicMeasurementBaseType\n");
               returnValue = true;
@@ -40299,7 +40632,7 @@ bool FormCharacteristicMeasurementBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -40308,7 +40641,7 @@ bool FormCharacteristicMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FormCharacteristicMeasurementBaseType\n");
       returnValue = true;
@@ -40320,8 +40653,8 @@ bool FormCharacteristicMeasurementBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -40515,7 +40848,7 @@ bool FormCharacteristicNominalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in FormCharacteristicNominalBaseType\n");
               returnValue = true;
@@ -40531,7 +40864,7 @@ bool FormCharacteristicNominalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -40540,7 +40873,7 @@ bool FormCharacteristicNominalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in FormCharacteristicNominalBaseType\n");
       returnValue = true;
@@ -40552,8 +40885,8 @@ bool FormCharacteristicNominalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -40567,7 +40900,7 @@ bool FormCharacteristicNominalBaseType::badAttributes(
 GeometricCharacteristicDefinitionBaseType::GeometricCharacteristicDefinitionBaseType() :
   CharacteristicDefinitionBaseType()
 {
-  GeometricCharac_1058 = 0;
+  GeometricCharac_1050 = 0;
   DirectionFeature = 0;
   CollectionPlane = 0;
   IntersectionPlane = 0;
@@ -40588,7 +40921,7 @@ GeometricCharacteristicDefinitionBaseType::GeometricCharacteristicDefinitionBase
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -40608,7 +40941,7 @@ GeometricCharacteristicDefinitionBaseType::GeometricCharacteristicDefinitionBase
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  GeometricCharac_1058 = GeometricCharac_1058In;
+  GeometricCharac_1050 = GeometricCharac_1050In;
   DirectionFeature = DirectionFeatureIn;
   CollectionPlane = CollectionPlaneIn;
   IntersectionPlane = IntersectionPlaneIn;
@@ -40630,7 +40963,7 @@ GeometricCharacteristicDefinitionBaseType::GeometricCharacteristicDefinitionBase
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -40651,7 +40984,7 @@ GeometricCharacteristicDefinitionBaseType::GeometricCharacteristicDefinitionBase
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  GeometricCharac_1058 = GeometricCharac_1058In;
+  GeometricCharac_1050 = GeometricCharac_1050In;
   DirectionFeature = DirectionFeatureIn;
   CollectionPlane = CollectionPlaneIn;
   IntersectionPlane = IntersectionPlaneIn;
@@ -40661,7 +40994,7 @@ GeometricCharacteristicDefinitionBaseType::GeometricCharacteristicDefinitionBase
 GeometricCharacteristicDefinitionBaseType::~GeometricCharacteristicDefinitionBaseType()
 {
   #ifndef NODESTRUCT
-  delete GeometricCharac_1058;
+  delete GeometricCharac_1050;
   delete DirectionFeature;
   delete CollectionPlane;
   delete IntersectionPlane;
@@ -40791,9 +41124,9 @@ void GeometricCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -40844,7 +41177,7 @@ bool GeometricCharacteristicDefinitionBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in GeometricCharacteristicDefinitionBaseType\n");
               returnValue = true;
@@ -40860,7 +41193,7 @@ bool GeometricCharacteristicDefinitionBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -40869,7 +41202,7 @@ bool GeometricCharacteristicDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in GeometricCharacteristicDefinitionBaseType\n");
       returnValue = true;
@@ -40881,17 +41214,17 @@ bool GeometricCharacteristicDefinitionBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
 
-GeometricCharac_1058_Type * GeometricCharacteristicDefinitionBaseType::getGeometricCharac_1058()
-{return GeometricCharac_1058;}
+GeometricCharac_1050_Type * GeometricCharacteristicDefinitionBaseType::getGeometricCharac_1050()
+{return GeometricCharac_1050;}
 
-void GeometricCharacteristicDefinitionBaseType::setGeometricCharac_1058(GeometricCharac_1058_Type * GeometricCharac_1058In)
-{GeometricCharac_1058 = GeometricCharac_1058In;}
+void GeometricCharacteristicDefinitionBaseType::setGeometricCharac_1050(GeometricCharac_1050_Type * GeometricCharac_1050In)
+{GeometricCharac_1050 = GeometricCharac_1050In;}
 
 DirectionFeatureType * GeometricCharacteristicDefinitionBaseType::getDirectionFeature()
 {return DirectionFeature;}
@@ -41116,7 +41449,7 @@ bool GeometricCharacteristicItemBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in GeometricCharacteristicItemBaseType\n");
               returnValue = true;
@@ -41132,7 +41465,7 @@ bool GeometricCharacteristicItemBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -41141,7 +41474,7 @@ bool GeometricCharacteristicItemBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in GeometricCharacteristicItemBaseType\n");
       returnValue = true;
@@ -41153,8 +41486,8 @@ bool GeometricCharacteristicItemBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -41405,7 +41738,7 @@ bool GeometricCharacteristicMeasurementBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in GeometricCharacteristicMeasurementBaseType\n");
               returnValue = true;
@@ -41421,7 +41754,7 @@ bool GeometricCharacteristicMeasurementBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -41430,7 +41763,7 @@ bool GeometricCharacteristicMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in GeometricCharacteristicMeasurementBaseType\n");
       returnValue = true;
@@ -41442,8 +41775,8 @@ bool GeometricCharacteristicMeasurementBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -41655,7 +41988,7 @@ bool GeometricCharacteristicNominalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in GeometricCharacteristicNominalBaseType\n");
               returnValue = true;
@@ -41671,7 +42004,7 @@ bool GeometricCharacteristicNominalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -41680,7 +42013,7 @@ bool GeometricCharacteristicNominalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in GeometricCharacteristicNominalBaseType\n");
       returnValue = true;
@@ -41692,8 +42025,8 @@ bool GeometricCharacteristicNominalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -41725,7 +42058,7 @@ HeightCharacteristicDefinitionType::HeightCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -41742,7 +42075,7 @@ HeightCharacteristicDefinitionType::HeightCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -41763,7 +42096,7 @@ HeightCharacteristicDefinitionType::HeightCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -41781,7 +42114,7 @@ HeightCharacteristicDefinitionType::HeightCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -41928,7 +42261,7 @@ void HeightCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1059->printSelf(outFile);
+  LinearCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -41946,7 +42279,7 @@ bool HeightCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in HeightCharacteristicDefinitionType\n");
               returnValue = true;
@@ -41962,7 +42295,7 @@ bool HeightCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -41971,7 +42304,7 @@ bool HeightCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in HeightCharacteristicDefinitionType\n");
       returnValue = true;
@@ -41983,8 +42316,8 @@ bool HeightCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -42188,7 +42521,7 @@ bool HeightCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in HeightCharacteristicItemType\n");
               returnValue = true;
@@ -42204,7 +42537,7 @@ bool HeightCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -42213,7 +42546,7 @@ bool HeightCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in HeightCharacteristicItemType\n");
       returnValue = true;
@@ -42225,8 +42558,8 @@ bool HeightCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -42471,7 +42804,7 @@ bool HeightCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in HeightCharacteristicMeasurementType\n");
               returnValue = true;
@@ -42487,7 +42820,7 @@ bool HeightCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -42496,7 +42829,7 @@ bool HeightCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in HeightCharacteristicMeasurementType\n");
       returnValue = true;
@@ -42508,8 +42841,8 @@ bool HeightCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -42725,7 +43058,7 @@ bool HeightCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in HeightCharacteristicNominalType\n");
               returnValue = true;
@@ -42741,7 +43074,7 @@ bool HeightCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -42750,7 +43083,7 @@ bool HeightCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in HeightCharacteristicNominalType\n");
       returnValue = true;
@@ -42762,8 +43095,8 @@ bool HeightCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -42795,7 +43128,7 @@ LengthCharacteristicDefinitionType::LengthCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -42812,7 +43145,7 @@ LengthCharacteristicDefinitionType::LengthCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -42833,7 +43166,7 @@ LengthCharacteristicDefinitionType::LengthCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -42851,7 +43184,7 @@ LengthCharacteristicDefinitionType::LengthCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -42998,7 +43331,7 @@ void LengthCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1059->printSelf(outFile);
+  LinearCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -43016,7 +43349,7 @@ bool LengthCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LengthCharacteristicDefinitionType\n");
               returnValue = true;
@@ -43032,7 +43365,7 @@ bool LengthCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -43041,7 +43374,7 @@ bool LengthCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LengthCharacteristicDefinitionType\n");
       returnValue = true;
@@ -43053,8 +43386,8 @@ bool LengthCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -43258,7 +43591,7 @@ bool LengthCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LengthCharacteristicItemType\n");
               returnValue = true;
@@ -43274,7 +43607,7 @@ bool LengthCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -43283,7 +43616,7 @@ bool LengthCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LengthCharacteristicItemType\n");
       returnValue = true;
@@ -43295,8 +43628,8 @@ bool LengthCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -43541,7 +43874,7 @@ bool LengthCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LengthCharacteristicMeasurementType\n");
               returnValue = true;
@@ -43557,7 +43890,7 @@ bool LengthCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -43566,7 +43899,7 @@ bool LengthCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LengthCharacteristicMeasurementType\n");
       returnValue = true;
@@ -43578,8 +43911,8 @@ bool LengthCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -43795,7 +44128,7 @@ bool LengthCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LengthCharacteristicNominalType\n");
               returnValue = true;
@@ -43811,7 +44144,7 @@ bool LengthCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -43820,7 +44153,7 @@ bool LengthCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LengthCharacteristicNominalType\n");
       returnValue = true;
@@ -43832,8 +44165,8 @@ bool LengthCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -43864,14 +44197,14 @@ LineProfileCharacteristicDefinitionType::LineProfileCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
- ProfileCharacte_1068_Type * ProfileCharacte_1068In,
+ ProfileCharacte_1056_Type * ProfileCharacte_1056In,
  XmlBoolean * OffsetZoneIn,
  XmlBoolean * VariableAngleIn,
  CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -43894,14 +44227,14 @@ LineProfileCharacteristicDefinitionType::LineProfileCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn,
     ToleranceValueIn,
     ToleranceDualValueIn,
-    ProfileCharacte_1068In,
+    ProfileCharacte_1056In,
     OffsetZoneIn,
     VariableAngleIn,
     SecondCompositeSegmentProfileDefinitionIn,
@@ -43928,14 +44261,14 @@ LineProfileCharacteristicDefinitionType::LineProfileCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
- ProfileCharacte_1068_Type * ProfileCharacte_1068In,
+ ProfileCharacte_1056_Type * ProfileCharacte_1056In,
  XmlBoolean * OffsetZoneIn,
  XmlBoolean * VariableAngleIn,
  CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -43959,14 +44292,14 @@ LineProfileCharacteristicDefinitionType::LineProfileCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn,
     ToleranceValueIn,
     ToleranceDualValueIn,
-    ProfileCharacte_1068In,
+    ProfileCharacte_1056In,
     OffsetZoneIn,
     VariableAngleIn,
     SecondCompositeSegmentProfileDefinitionIn,
@@ -44107,9 +44440,9 @@ void LineProfileCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -44154,9 +44487,9 @@ void LineProfileCharacteristicDefinitionType::printSelf(FILE * outFile)
       ToleranceDualValue->printSelf(outFile);
       fprintf(outFile, "</ToleranceDualValue>\n");
     }
-  if (ProfileCharacte_1068)
+  if (ProfileCharacte_1056)
     {
-      ProfileCharacte_1068->printSelf(outFile);
+  ProfileCharacte_1056->printSelf(outFile);
     }
   if (OffsetZone)
     {
@@ -44235,7 +44568,7 @@ bool LineProfileCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LineProfileCharacteristicDefinitionType\n");
               returnValue = true;
@@ -44251,7 +44584,7 @@ bool LineProfileCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -44260,7 +44593,7 @@ bool LineProfileCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LineProfileCharacteristicDefinitionType\n");
       returnValue = true;
@@ -44272,8 +44605,8 @@ bool LineProfileCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -44483,7 +44816,7 @@ bool LineProfileCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LineProfileCharacteristicItemType\n");
               returnValue = true;
@@ -44499,7 +44832,7 @@ bool LineProfileCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -44508,7 +44841,7 @@ bool LineProfileCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LineProfileCharacteristicItemType\n");
       returnValue = true;
@@ -44520,8 +44853,8 @@ bool LineProfileCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -44858,7 +45191,7 @@ bool LineProfileCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LineProfileCharacteristicMeasurementType\n");
               returnValue = true;
@@ -44874,7 +45207,7 @@ bool LineProfileCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -44883,7 +45216,7 @@ bool LineProfileCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LineProfileCharacteristicMeasurementType\n");
       returnValue = true;
@@ -44895,8 +45228,8 @@ bool LineProfileCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -45124,7 +45457,7 @@ bool LineProfileCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LineProfileCharacteristicNominalType\n");
               returnValue = true;
@@ -45140,7 +45473,7 @@ bool LineProfileCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -45149,7 +45482,7 @@ bool LineProfileCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LineProfileCharacteristicNominalType\n");
       returnValue = true;
@@ -45161,8 +45494,8 @@ bool LineProfileCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -45188,7 +45521,7 @@ void LineProfileCharacteristicNominalType::setProfileCurveId(QIFReferenceFullTyp
 LinearCharacteristicDefinitionBaseType::LinearCharacteristicDefinitionBaseType() :
   DimensionalCharacteristicDefinitionBaseType()
 {
-  LinearCharacter_1059 = 0;
+  LinearCharacteristicDefinitionBaseTypePair = 0;
 }
 
 LinearCharacteristicDefinitionBaseType::LinearCharacteristicDefinitionBaseType(
@@ -45207,7 +45540,7 @@ LinearCharacteristicDefinitionBaseType::LinearCharacteristicDefinitionBaseType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   DimensionalCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -45225,7 +45558,7 @@ LinearCharacteristicDefinitionBaseType::LinearCharacteristicDefinitionBaseType(
     DimensionTypeIn,
     DimensionModifiersIn)
 {
-  LinearCharacter_1059 = LinearCharacter_1059In;
+  LinearCharacteristicDefinitionBaseTypePair = LinearCharacteristicDefinitionBaseTypePairIn;
 }
 
 LinearCharacteristicDefinitionBaseType::LinearCharacteristicDefinitionBaseType(
@@ -45245,7 +45578,7 @@ LinearCharacteristicDefinitionBaseType::LinearCharacteristicDefinitionBaseType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   DimensionalCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -45264,13 +45597,13 @@ LinearCharacteristicDefinitionBaseType::LinearCharacteristicDefinitionBaseType(
     DimensionTypeIn,
     DimensionModifiersIn)
 {
-  LinearCharacter_1059 = LinearCharacter_1059In;
+  LinearCharacteristicDefinitionBaseTypePair = LinearCharacteristicDefinitionBaseTypePairIn;
 }
 
 LinearCharacteristicDefinitionBaseType::~LinearCharacteristicDefinitionBaseType()
 {
   #ifndef NODESTRUCT
-  delete LinearCharacter_1059;
+  delete LinearCharacteristicDefinitionBaseTypePair;
   #endif
 }
 
@@ -45411,8 +45744,54 @@ void LinearCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1059->printSelf(outFile);
+  LinearCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
+}
+LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseType::getLinearCharacteristicDefinitionBaseTypeChoicePair()
+{return LinearCharacteristicDefinitionBaseTypePair;}
+
+void LinearCharacteristicDefinitionBaseType::setLinearCharacteristicDefinitionBaseTypeChoicePair(LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn)
+{LinearCharacteristicDefinitionBaseTypePair = LinearCharacteristicDefinitionBaseTypePairIn;}
+
+/* ***************************************************************** */
+
+LinearCharacteristicDefinitionBaseTypeChoicePair::LinearCharacteristicDefinitionBaseTypeChoicePair() {}
+
+LinearCharacteristicDefinitionBaseTypeChoicePair::LinearCharacteristicDefinitionBaseTypeChoicePair(
+ whichOne LinearCharacteristicDefinitionBaseTypeTypeIn,
+ LinearCharacteristicDefinitionBaseTypeVal LinearCharacteristicDefinitionBaseTypeValueIn)
+{
+  LinearCharacteristicDefinitionBaseTypeType = LinearCharacteristicDefinitionBaseTypeTypeIn;
+  LinearCharacteristicDefinitionBaseTypeValue = LinearCharacteristicDefinitionBaseTypeValueIn;
+}
+
+LinearCharacteristicDefinitionBaseTypeChoicePair::~LinearCharacteristicDefinitionBaseTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (LinearCharacteristicDefinitionBaseTypeType == ToleranceE)
+    delete LinearCharacteristicDefinitionBaseTypeValue.Tolerance;
+  else if (LinearCharacteristicDefinitionBaseTypeType == NonToleranceE)
+    delete LinearCharacteristicDefinitionBaseTypeValue.NonTolerance;
+  #endif
+}
+
+void LinearCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (LinearCharacteristicDefinitionBaseTypeType == ToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Tolerance");
+      LinearCharacteristicDefinitionBaseTypeValue.Tolerance->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</Tolerance>\n");
+    }
+  else if (LinearCharacteristicDefinitionBaseTypeType == NonToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<NonTolerance");
+      LinearCharacteristicDefinitionBaseTypeValue.NonTolerance->printSelf(outFile);
+      fprintf(outFile, "</NonTolerance>\n");
+    }
 }
 
 bool LinearCharacteristicDefinitionBaseType::badAttributes(
@@ -45429,7 +45808,7 @@ bool LinearCharacteristicDefinitionBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LinearCharacteristicDefinitionBaseType\n");
               returnValue = true;
@@ -45445,7 +45824,7 @@ bool LinearCharacteristicDefinitionBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -45454,7 +45833,7 @@ bool LinearCharacteristicDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LinearCharacteristicDefinitionBaseType\n");
       returnValue = true;
@@ -45466,17 +45845,11 @@ bool LinearCharacteristicDefinitionBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
-
-LinearCharacter_1059_Type * LinearCharacteristicDefinitionBaseType::getLinearCharacter_1059()
-{return LinearCharacter_1059;}
-
-void LinearCharacteristicDefinitionBaseType::setLinearCharacter_1059(LinearCharacter_1059_Type * LinearCharacter_1059In)
-{LinearCharacter_1059 = LinearCharacter_1059In;}
 
 /* ***************************************************************** */
 
@@ -45677,7 +46050,7 @@ bool LinearCharacteristicItemBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LinearCharacteristicItemBaseType\n");
               returnValue = true;
@@ -45693,7 +46066,7 @@ bool LinearCharacteristicItemBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -45702,7 +46075,7 @@ bool LinearCharacteristicItemBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LinearCharacteristicItemBaseType\n");
       returnValue = true;
@@ -45714,8 +46087,8 @@ bool LinearCharacteristicItemBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -45966,7 +46339,7 @@ bool LinearCharacteristicMeasurementBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LinearCharacteristicMeasurementBaseType\n");
               returnValue = true;
@@ -45982,7 +46355,7 @@ bool LinearCharacteristicMeasurementBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -45991,7 +46364,7 @@ bool LinearCharacteristicMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LinearCharacteristicMeasurementBaseType\n");
       returnValue = true;
@@ -46003,8 +46376,8 @@ bool LinearCharacteristicMeasurementBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -46242,7 +46615,7 @@ bool LinearCharacteristicNominalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LinearCharacteristicNominalBaseType\n");
               returnValue = true;
@@ -46258,7 +46631,7 @@ bool LinearCharacteristicNominalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -46267,7 +46640,7 @@ bool LinearCharacteristicNominalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LinearCharacteristicNominalBaseType\n");
       returnValue = true;
@@ -46279,8 +46652,8 @@ bool LinearCharacteristicNominalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -46306,7 +46679,7 @@ void LinearCharacteristicNominalBaseType::setTargetDualValue(LinearDualValueType
 LinearCoordinateCharacteristicDefinitionType::LinearCoordinateCharacteristicDefinitionType() :
   CoordinateCharacteristicDefinitionBaseType()
 {
-  LinearCoordinat_1060 = 0;
+  LinearCoordinateCharacteristicDefinitionTypePair = 0;
 }
 
 LinearCoordinateCharacteristicDefinitionType::LinearCoordinateCharacteristicDefinitionType(
@@ -46325,7 +46698,7 @@ LinearCoordinateCharacteristicDefinitionType::LinearCoordinateCharacteristicDefi
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCoordinat_1060_Type * LinearCoordinat_1060In) :
+ LinearCoordinateCharacteristicDefinitionTypeChoicePair * LinearCoordinateCharacteristicDefinitionTypePairIn) :
   CoordinateCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -46343,7 +46716,7 @@ LinearCoordinateCharacteristicDefinitionType::LinearCoordinateCharacteristicDefi
     DimensionTypeIn,
     DimensionModifiersIn)
 {
-  LinearCoordinat_1060 = LinearCoordinat_1060In;
+  LinearCoordinateCharacteristicDefinitionTypePair = LinearCoordinateCharacteristicDefinitionTypePairIn;
 }
 
 LinearCoordinateCharacteristicDefinitionType::LinearCoordinateCharacteristicDefinitionType(
@@ -46363,7 +46736,7 @@ LinearCoordinateCharacteristicDefinitionType::LinearCoordinateCharacteristicDefi
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCoordinat_1060_Type * LinearCoordinat_1060In) :
+ LinearCoordinateCharacteristicDefinitionTypeChoicePair * LinearCoordinateCharacteristicDefinitionTypePairIn) :
   CoordinateCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -46382,13 +46755,13 @@ LinearCoordinateCharacteristicDefinitionType::LinearCoordinateCharacteristicDefi
     DimensionTypeIn,
     DimensionModifiersIn)
 {
-  LinearCoordinat_1060 = LinearCoordinat_1060In;
+  LinearCoordinateCharacteristicDefinitionTypePair = LinearCoordinateCharacteristicDefinitionTypePairIn;
 }
 
 LinearCoordinateCharacteristicDefinitionType::~LinearCoordinateCharacteristicDefinitionType()
 {
   #ifndef NODESTRUCT
-  delete LinearCoordinat_1060;
+  delete LinearCoordinateCharacteristicDefinitionTypePair;
   #endif
 }
 
@@ -46529,8 +46902,54 @@ void LinearCoordinateCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCoordinat_1060->printSelf(outFile);
+  LinearCoordinateCharacteristicDefinitionTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
+}
+LinearCoordinateCharacteristicDefinitionTypeChoicePair * LinearCoordinateCharacteristicDefinitionType::getLinearCoordinateCharacteristicDefinitionTypeChoicePair()
+{return LinearCoordinateCharacteristicDefinitionTypePair;}
+
+void LinearCoordinateCharacteristicDefinitionType::setLinearCoordinateCharacteristicDefinitionTypeChoicePair(LinearCoordinateCharacteristicDefinitionTypeChoicePair * LinearCoordinateCharacteristicDefinitionTypePairIn)
+{LinearCoordinateCharacteristicDefinitionTypePair = LinearCoordinateCharacteristicDefinitionTypePairIn;}
+
+/* ***************************************************************** */
+
+LinearCoordinateCharacteristicDefinitionTypeChoicePair::LinearCoordinateCharacteristicDefinitionTypeChoicePair() {}
+
+LinearCoordinateCharacteristicDefinitionTypeChoicePair::LinearCoordinateCharacteristicDefinitionTypeChoicePair(
+ whichOne LinearCoordinateCharacteristicDefinitionTypeTypeIn,
+ LinearCoordinateCharacteristicDefinitionTypeVal LinearCoordinateCharacteristicDefinitionTypeValueIn)
+{
+  LinearCoordinateCharacteristicDefinitionTypeType = LinearCoordinateCharacteristicDefinitionTypeTypeIn;
+  LinearCoordinateCharacteristicDefinitionTypeValue = LinearCoordinateCharacteristicDefinitionTypeValueIn;
+}
+
+LinearCoordinateCharacteristicDefinitionTypeChoicePair::~LinearCoordinateCharacteristicDefinitionTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (LinearCoordinateCharacteristicDefinitionTypeType == ToleranceE)
+    delete LinearCoordinateCharacteristicDefinitionTypeValue.Tolerance;
+  else if (LinearCoordinateCharacteristicDefinitionTypeType == NonToleranceE)
+    delete LinearCoordinateCharacteristicDefinitionTypeValue.NonTolerance;
+  #endif
+}
+
+void LinearCoordinateCharacteristicDefinitionTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (LinearCoordinateCharacteristicDefinitionTypeType == ToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Tolerance");
+      LinearCoordinateCharacteristicDefinitionTypeValue.Tolerance->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</Tolerance>\n");
+    }
+  else if (LinearCoordinateCharacteristicDefinitionTypeType == NonToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<NonTolerance");
+      LinearCoordinateCharacteristicDefinitionTypeValue.NonTolerance->printSelf(outFile);
+      fprintf(outFile, "</NonTolerance>\n");
+    }
 }
 
 bool LinearCoordinateCharacteristicDefinitionType::badAttributes(
@@ -46547,7 +46966,7 @@ bool LinearCoordinateCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LinearCoordinateCharacteristicDefinitionType\n");
               returnValue = true;
@@ -46563,7 +46982,7 @@ bool LinearCoordinateCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -46572,7 +46991,7 @@ bool LinearCoordinateCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LinearCoordinateCharacteristicDefinitionType\n");
       returnValue = true;
@@ -46584,17 +47003,11 @@ bool LinearCoordinateCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
-
-LinearCoordinat_1060_Type * LinearCoordinateCharacteristicDefinitionType::getLinearCoordinat_1060()
-{return LinearCoordinat_1060;}
-
-void LinearCoordinateCharacteristicDefinitionType::setLinearCoordinat_1060(LinearCoordinat_1060_Type * LinearCoordinat_1060In)
-{LinearCoordinat_1060 = LinearCoordinat_1060In;}
 
 /* ***************************************************************** */
 
@@ -46795,7 +47208,7 @@ bool LinearCoordinateCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LinearCoordinateCharacteristicItemType\n");
               returnValue = true;
@@ -46811,7 +47224,7 @@ bool LinearCoordinateCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -46820,7 +47233,7 @@ bool LinearCoordinateCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LinearCoordinateCharacteristicItemType\n");
       returnValue = true;
@@ -46832,8 +47245,8 @@ bool LinearCoordinateCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -47093,7 +47506,7 @@ bool LinearCoordinateCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LinearCoordinateCharacteristicMeasurementType\n");
               returnValue = true;
@@ -47109,7 +47522,7 @@ bool LinearCoordinateCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -47118,7 +47531,7 @@ bool LinearCoordinateCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LinearCoordinateCharacteristicMeasurementType\n");
       returnValue = true;
@@ -47130,8 +47543,8 @@ bool LinearCoordinateCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -47379,7 +47792,7 @@ bool LinearCoordinateCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LinearCoordinateCharacteristicNominalType\n");
               returnValue = true;
@@ -47395,7 +47808,7 @@ bool LinearCoordinateCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -47404,7 +47817,7 @@ bool LinearCoordinateCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LinearCoordinateCharacteristicNominalType\n");
       returnValue = true;
@@ -47416,8 +47829,8 @@ bool LinearCoordinateCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -47468,7 +47881,7 @@ LocationCharacteristicDefinitionBaseType::LocationCharacteristicDefinitionBaseTy
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -47490,7 +47903,7 @@ LocationCharacteristicDefinitionBaseType::LocationCharacteristicDefinitionBaseTy
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -47516,7 +47929,7 @@ LocationCharacteristicDefinitionBaseType::LocationCharacteristicDefinitionBaseTy
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -47539,7 +47952,7 @@ LocationCharacteristicDefinitionBaseType::LocationCharacteristicDefinitionBaseTy
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -47681,9 +48094,9 @@ void LocationCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -47752,7 +48165,7 @@ bool LocationCharacteristicDefinitionBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LocationCharacteristicDefinitionBaseType\n");
               returnValue = true;
@@ -47768,7 +48181,7 @@ bool LocationCharacteristicDefinitionBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -47777,7 +48190,7 @@ bool LocationCharacteristicDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LocationCharacteristicDefinitionBaseType\n");
       returnValue = true;
@@ -47789,8 +48202,8 @@ bool LocationCharacteristicDefinitionBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -48012,7 +48425,7 @@ bool LocationCharacteristicItemBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LocationCharacteristicItemBaseType\n");
               returnValue = true;
@@ -48028,7 +48441,7 @@ bool LocationCharacteristicItemBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -48037,7 +48450,7 @@ bool LocationCharacteristicItemBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LocationCharacteristicItemBaseType\n");
       returnValue = true;
@@ -48049,8 +48462,8 @@ bool LocationCharacteristicItemBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -48322,7 +48735,7 @@ bool LocationCharacteristicMeasurementBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LocationCharacteristicMeasurementBaseType\n");
               returnValue = true;
@@ -48338,7 +48751,7 @@ bool LocationCharacteristicMeasurementBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -48347,7 +48760,7 @@ bool LocationCharacteristicMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LocationCharacteristicMeasurementBaseType\n");
       returnValue = true;
@@ -48359,8 +48772,8 @@ bool LocationCharacteristicMeasurementBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -48566,7 +48979,7 @@ bool LocationCharacteristicNominalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in LocationCharacteristicNominalBaseType\n");
               returnValue = true;
@@ -48582,7 +48995,7 @@ bool LocationCharacteristicNominalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -48591,7 +49004,7 @@ bool LocationCharacteristicNominalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in LocationCharacteristicNominalBaseType\n");
       returnValue = true;
@@ -48603,8 +49016,8 @@ bool LocationCharacteristicNominalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -48646,13 +49059,6 @@ LocationOnDrawingTypeChoicePair * LocationOnDrawingType::getLocationOnDrawingTyp
 
 void LocationOnDrawingType::setLocationOnDrawingTypePair(LocationOnDrawingTypeChoicePair * LocationOnDrawingTypePairIn)
 {LocationOnDrawingTypePair = LocationOnDrawingTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class LocationOnDrawingTypeChoicePair
-
-*/
-
 LocationOnDrawingTypeChoicePair::LocationOnDrawingTypeChoicePair() {}
 
 LocationOnDrawingTypeChoicePair::LocationOnDrawingTypeChoicePair(
@@ -48666,28 +49072,28 @@ LocationOnDrawingTypeChoicePair::LocationOnDrawingTypeChoicePair(
 LocationOnDrawingTypeChoicePair::~LocationOnDrawingTypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (LocationOnDrawingTypeType == LocationOnDrawi_1061E)
-    delete LocationOnDrawingTypeValue.LocationOnDrawi_1061;
-  else if (LocationOnDrawingTypeType == LocationOnDrawi_1062E)
-    delete LocationOnDrawingTypeValue.LocationOnDrawi_1062;
-  else if (LocationOnDrawingTypeType == LocationOnDrawi_1063E)
-    delete LocationOnDrawingTypeValue.LocationOnDrawi_1063;
+  if (LocationOnDrawingTypeType == LocationOnDrawi_1051E)
+    delete LocationOnDrawingTypeValue.LocationOnDrawi_1051;
+  else if (LocationOnDrawingTypeType == LocationOnDrawi_1052E)
+    delete LocationOnDrawingTypeValue.LocationOnDrawi_1052;
+  else if (LocationOnDrawingTypeType == LocationOnDrawi_1053E)
+    delete LocationOnDrawingTypeValue.LocationOnDrawi_1053;
   #endif
 }
 
 void LocationOnDrawingTypeChoicePair::printSelf(FILE * outFile)
 {
-  if (LocationOnDrawingTypeType == LocationOnDrawi_1061E)
+  if (LocationOnDrawingTypeType == LocationOnDrawi_1051E)
     {
-      LocationOnDrawingTypeValue.LocationOnDrawi_1061->printSelf(outFile);
+      LocationOnDrawingTypeValue.LocationOnDrawi_1051->printSelf(outFile);
     }
-  else if (LocationOnDrawingTypeType == LocationOnDrawi_1062E)
+  else if (LocationOnDrawingTypeType == LocationOnDrawi_1052E)
     {
-      LocationOnDrawingTypeValue.LocationOnDrawi_1062->printSelf(outFile);
+      LocationOnDrawingTypeValue.LocationOnDrawi_1052->printSelf(outFile);
     }
-  else if (LocationOnDrawingTypeType == LocationOnDrawi_1063E)
+  else if (LocationOnDrawingTypeType == LocationOnDrawi_1053E)
     {
-      LocationOnDrawingTypeValue.LocationOnDrawi_1063->printSelf(outFile);
+      LocationOnDrawingTypeValue.LocationOnDrawi_1053->printSelf(outFile);
     }
 }
 
@@ -48878,7 +49284,7 @@ void LocationSignificanceSpotSeamEnumType::oPrintSelf(FILE * outFile)
 MassCharacteristicDefinitionBaseType::MassCharacteristicDefinitionBaseType() :
   CharacteristicDefinitionBaseType()
 {
-  MassCharacteris_1064 = 0;
+  MassCharacteristicDefinitionBaseTypePair = 0;
 }
 
 MassCharacteristicDefinitionBaseType::MassCharacteristicDefinitionBaseType(
@@ -48895,7 +49301,7 @@ MassCharacteristicDefinitionBaseType::MassCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- MassCharacteris_1064_Type * MassCharacteris_1064In) :
+ MassCharacteristicDefinitionBaseTypeChoicePair * MassCharacteristicDefinitionBaseTypePairIn) :
   CharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -48911,7 +49317,7 @@ MassCharacteristicDefinitionBaseType::MassCharacteristicDefinitionBaseType(
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  MassCharacteris_1064 = MassCharacteris_1064In;
+  MassCharacteristicDefinitionBaseTypePair = MassCharacteristicDefinitionBaseTypePairIn;
 }
 
 MassCharacteristicDefinitionBaseType::MassCharacteristicDefinitionBaseType(
@@ -48929,7 +49335,7 @@ MassCharacteristicDefinitionBaseType::MassCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- MassCharacteris_1064_Type * MassCharacteris_1064In) :
+ MassCharacteristicDefinitionBaseTypeChoicePair * MassCharacteristicDefinitionBaseTypePairIn) :
   CharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -48946,13 +49352,13 @@ MassCharacteristicDefinitionBaseType::MassCharacteristicDefinitionBaseType(
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  MassCharacteris_1064 = MassCharacteris_1064In;
+  MassCharacteristicDefinitionBaseTypePair = MassCharacteristicDefinitionBaseTypePairIn;
 }
 
 MassCharacteristicDefinitionBaseType::~MassCharacteristicDefinitionBaseType()
 {
   #ifndef NODESTRUCT
-  delete MassCharacteris_1064;
+  delete MassCharacteristicDefinitionBaseTypePair;
   #endif
 }
 
@@ -49078,8 +49484,54 @@ void MassCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  MassCharacteris_1064->printSelf(outFile);
+  MassCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
+}
+MassCharacteristicDefinitionBaseTypeChoicePair * MassCharacteristicDefinitionBaseType::getMassCharacteristicDefinitionBaseTypeChoicePair()
+{return MassCharacteristicDefinitionBaseTypePair;}
+
+void MassCharacteristicDefinitionBaseType::setMassCharacteristicDefinitionBaseTypeChoicePair(MassCharacteristicDefinitionBaseTypeChoicePair * MassCharacteristicDefinitionBaseTypePairIn)
+{MassCharacteristicDefinitionBaseTypePair = MassCharacteristicDefinitionBaseTypePairIn;}
+
+/* ***************************************************************** */
+
+MassCharacteristicDefinitionBaseTypeChoicePair::MassCharacteristicDefinitionBaseTypeChoicePair() {}
+
+MassCharacteristicDefinitionBaseTypeChoicePair::MassCharacteristicDefinitionBaseTypeChoicePair(
+ whichOne MassCharacteristicDefinitionBaseTypeTypeIn,
+ MassCharacteristicDefinitionBaseTypeVal MassCharacteristicDefinitionBaseTypeValueIn)
+{
+  MassCharacteristicDefinitionBaseTypeType = MassCharacteristicDefinitionBaseTypeTypeIn;
+  MassCharacteristicDefinitionBaseTypeValue = MassCharacteristicDefinitionBaseTypeValueIn;
+}
+
+MassCharacteristicDefinitionBaseTypeChoicePair::~MassCharacteristicDefinitionBaseTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (MassCharacteristicDefinitionBaseTypeType == ToleranceE)
+    delete MassCharacteristicDefinitionBaseTypeValue.Tolerance;
+  else if (MassCharacteristicDefinitionBaseTypeType == NonToleranceE)
+    delete MassCharacteristicDefinitionBaseTypeValue.NonTolerance;
+  #endif
+}
+
+void MassCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (MassCharacteristicDefinitionBaseTypeType == ToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Tolerance");
+      MassCharacteristicDefinitionBaseTypeValue.Tolerance->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</Tolerance>\n");
+    }
+  else if (MassCharacteristicDefinitionBaseTypeType == NonToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<NonTolerance");
+      MassCharacteristicDefinitionBaseTypeValue.NonTolerance->printSelf(outFile);
+      fprintf(outFile, "</NonTolerance>\n");
+    }
 }
 
 bool MassCharacteristicDefinitionBaseType::badAttributes(
@@ -49096,7 +49548,7 @@ bool MassCharacteristicDefinitionBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MassCharacteristicDefinitionBaseType\n");
               returnValue = true;
@@ -49112,7 +49564,7 @@ bool MassCharacteristicDefinitionBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -49121,7 +49573,7 @@ bool MassCharacteristicDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MassCharacteristicDefinitionBaseType\n");
       returnValue = true;
@@ -49133,17 +49585,11 @@ bool MassCharacteristicDefinitionBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
-
-MassCharacteris_1064_Type * MassCharacteristicDefinitionBaseType::getMassCharacteris_1064()
-{return MassCharacteris_1064;}
-
-void MassCharacteristicDefinitionBaseType::setMassCharacteris_1064(MassCharacteris_1064_Type * MassCharacteris_1064In)
-{MassCharacteris_1064 = MassCharacteris_1064In;}
 
 /* ***************************************************************** */
 
@@ -49344,7 +49790,7 @@ bool MassCharacteristicItemBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MassCharacteristicItemBaseType\n");
               returnValue = true;
@@ -49360,7 +49806,7 @@ bool MassCharacteristicItemBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -49369,7 +49815,7 @@ bool MassCharacteristicItemBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MassCharacteristicItemBaseType\n");
       returnValue = true;
@@ -49381,8 +49827,8 @@ bool MassCharacteristicItemBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -49633,7 +50079,7 @@ bool MassCharacteristicMeasurementBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MassCharacteristicMeasurementBaseType\n");
               returnValue = true;
@@ -49649,7 +50095,7 @@ bool MassCharacteristicMeasurementBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -49658,7 +50104,7 @@ bool MassCharacteristicMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MassCharacteristicMeasurementBaseType\n");
       returnValue = true;
@@ -49670,8 +50116,8 @@ bool MassCharacteristicMeasurementBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -49896,7 +50342,7 @@ bool MassCharacteristicNominalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in MassCharacteristicNominalBaseType\n");
               returnValue = true;
@@ -49912,7 +50358,7 @@ bool MassCharacteristicNominalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -49921,7 +50367,7 @@ bool MassCharacteristicNominalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in MassCharacteristicNominalBaseType\n");
       returnValue = true;
@@ -49933,8 +50379,8 @@ bool MassCharacteristicNominalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -50197,7 +50643,7 @@ OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinition
   TangentPlane = 0;
   MaximumToleranceValue = 0;
   ProjectedToleranceZoneValue = 0;
-  OrientationChar_1065 = 0;
+  OrientationChar_1054 = 0;
 }
 
 OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinitionBaseType(
@@ -50214,7 +50660,7 @@ OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinition
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -50228,7 +50674,7 @@ OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinition
  XmlBoolean * TangentPlaneIn,
  LinearValueType * MaximumToleranceValueIn,
  LinearValueType * ProjectedToleranceZoneValueIn,
- OrientationChar_1065_Type * OrientationChar_1065In) :
+ OrientationChar_1054_Type * OrientationChar_1054In) :
   GeometricCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -50243,7 +50689,7 @@ OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinition
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -50258,7 +50704,7 @@ OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinition
   TangentPlane = TangentPlaneIn;
   MaximumToleranceValue = MaximumToleranceValueIn;
   ProjectedToleranceZoneValue = ProjectedToleranceZoneValueIn;
-  OrientationChar_1065 = OrientationChar_1065In;
+  OrientationChar_1054 = OrientationChar_1054In;
 }
 
 OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinitionBaseType(
@@ -50276,7 +50722,7 @@ OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinition
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -50290,7 +50736,7 @@ OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinition
  XmlBoolean * TangentPlaneIn,
  LinearValueType * MaximumToleranceValueIn,
  LinearValueType * ProjectedToleranceZoneValueIn,
- OrientationChar_1065_Type * OrientationChar_1065In) :
+ OrientationChar_1054_Type * OrientationChar_1054In) :
   GeometricCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -50306,7 +50752,7 @@ OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinition
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -50321,7 +50767,7 @@ OrientationCharacteristicDefinitionBaseType::OrientationCharacteristicDefinition
   TangentPlane = TangentPlaneIn;
   MaximumToleranceValue = MaximumToleranceValueIn;
   ProjectedToleranceZoneValue = ProjectedToleranceZoneValueIn;
-  OrientationChar_1065 = OrientationChar_1065In;
+  OrientationChar_1054 = OrientationChar_1054In;
 }
 
 OrientationCharacteristicDefinitionBaseType::~OrientationCharacteristicDefinitionBaseType()
@@ -50336,7 +50782,7 @@ OrientationCharacteristicDefinitionBaseType::~OrientationCharacteristicDefinitio
   delete TangentPlane;
   delete MaximumToleranceValue;
   delete ProjectedToleranceZoneValue;
-  delete OrientationChar_1065;
+  delete OrientationChar_1054;
   #endif
 }
 
@@ -50462,9 +50908,9 @@ void OrientationCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -50553,9 +50999,9 @@ void OrientationCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       ProjectedToleranceZoneValue->printSelf(outFile);
       fprintf(outFile, "</ProjectedToleranceZoneValue>\n");
     }
-  if (OrientationChar_1065)
+  if (OrientationChar_1054)
     {
-      OrientationChar_1065->printSelf(outFile);
+  OrientationChar_1054->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -50574,7 +51020,7 @@ bool OrientationCharacteristicDefinitionBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in OrientationCharacteristicDefinitionBaseType\n");
               returnValue = true;
@@ -50590,7 +51036,7 @@ bool OrientationCharacteristicDefinitionBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -50599,7 +51045,7 @@ bool OrientationCharacteristicDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in OrientationCharacteristicDefinitionBaseType\n");
       returnValue = true;
@@ -50611,8 +51057,8 @@ bool OrientationCharacteristicDefinitionBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -50671,11 +51117,11 @@ LinearValueType * OrientationCharacteristicDefinitionBaseType::getProjectedToler
 void OrientationCharacteristicDefinitionBaseType::setProjectedToleranceZoneValue(LinearValueType * ProjectedToleranceZoneValueIn)
 {ProjectedToleranceZoneValue = ProjectedToleranceZoneValueIn;}
 
-OrientationChar_1065_Type * OrientationCharacteristicDefinitionBaseType::getOrientationChar_1065()
-{return OrientationChar_1065;}
+OrientationChar_1054_Type * OrientationCharacteristicDefinitionBaseType::getOrientationChar_1054()
+{return OrientationChar_1054;}
 
-void OrientationCharacteristicDefinitionBaseType::setOrientationChar_1065(OrientationChar_1065_Type * OrientationChar_1065In)
-{OrientationChar_1065 = OrientationChar_1065In;}
+void OrientationCharacteristicDefinitionBaseType::setOrientationChar_1054(OrientationChar_1054_Type * OrientationChar_1054In)
+{OrientationChar_1054 = OrientationChar_1054In;}
 
 /* ***************************************************************** */
 
@@ -50876,7 +51322,7 @@ bool OrientationCharacteristicItemBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in OrientationCharacteristicItemBaseType\n");
               returnValue = true;
@@ -50892,7 +51338,7 @@ bool OrientationCharacteristicItemBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -50901,7 +51347,7 @@ bool OrientationCharacteristicItemBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in OrientationCharacteristicItemBaseType\n");
       returnValue = true;
@@ -50913,8 +51359,8 @@ bool OrientationCharacteristicItemBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -51211,7 +51657,7 @@ bool OrientationCharacteristicMeasurementBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in OrientationCharacteristicMeasurementBaseType\n");
               returnValue = true;
@@ -51227,7 +51673,7 @@ bool OrientationCharacteristicMeasurementBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -51236,7 +51682,7 @@ bool OrientationCharacteristicMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in OrientationCharacteristicMeasurementBaseType\n");
       returnValue = true;
@@ -51248,8 +51694,8 @@ bool OrientationCharacteristicMeasurementBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -51467,7 +51913,7 @@ bool OrientationCharacteristicNominalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in OrientationCharacteristicNominalBaseType\n");
               returnValue = true;
@@ -51483,7 +51929,7 @@ bool OrientationCharacteristicNominalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -51492,7 +51938,7 @@ bool OrientationCharacteristicNominalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in OrientationCharacteristicNominalBaseType\n");
       returnValue = true;
@@ -51504,8 +51950,8 @@ bool OrientationCharacteristicNominalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -51635,13 +52081,6 @@ OrientationZoneShapeTypeChoicePair * OrientationZoneShapeType::getOrientationZon
 
 void OrientationZoneShapeType::setOrientationZoneShapeTypePair(OrientationZoneShapeTypeChoicePair * OrientationZoneShapeTypePairIn)
 {OrientationZoneShapeTypePair = OrientationZoneShapeTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class OrientationZoneShapeTypeChoicePair
-
-*/
-
 OrientationZoneShapeTypeChoicePair::OrientationZoneShapeTypeChoicePair() {}
 
 OrientationZoneShapeTypeChoicePair::OrientationZoneShapeTypeChoicePair(
@@ -51719,13 +52158,6 @@ OriginReferenceTypeChoicePair * OriginReferenceType::getOriginReferenceTypePair(
 
 void OriginReferenceType::setOriginReferenceTypePair(OriginReferenceTypeChoicePair * OriginReferenceTypePairIn)
 {OriginReferenceTypePair = OriginReferenceTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class OriginReferenceTypeChoicePair
-
-*/
-
 OriginReferenceTypeChoicePair::OriginReferenceTypeChoicePair() {}
 
 OriginReferenceTypeChoicePair::OriginReferenceTypeChoicePair(
@@ -51739,8 +52171,8 @@ OriginReferenceTypeChoicePair::OriginReferenceTypeChoicePair(
 OriginReferenceTypeChoicePair::~OriginReferenceTypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (OriginReferenceTypeType == OriginReference_1066E)
-    delete OriginReferenceTypeValue.OriginReference_1066;
+  if (OriginReferenceTypeType == OriginReference_1055E)
+    delete OriginReferenceTypeValue.OriginReference_1055;
   else if (OriginReferenceTypeType == DatumDefinitionIdE)
     delete OriginReferenceTypeValue.DatumDefinitionId;
   #endif
@@ -51748,9 +52180,9 @@ OriginReferenceTypeChoicePair::~OriginReferenceTypeChoicePair()
 
 void OriginReferenceTypeChoicePair::printSelf(FILE * outFile)
 {
-  if (OriginReferenceTypeType == OriginReference_1066E)
+  if (OriginReferenceTypeType == OriginReference_1055E)
     {
-      OriginReferenceTypeValue.OriginReference_1066->printSelf(outFile);
+      OriginReferenceTypeValue.OriginReference_1055->printSelf(outFile);
     }
   else if (OriginReferenceTypeType == DatumDefinitionIdE)
     {
@@ -51788,7 +52220,7 @@ OtherFormCharacteristicDefinitionType::OtherFormCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -51809,7 +52241,7 @@ OtherFormCharacteristicDefinitionType::OtherFormCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -51834,7 +52266,7 @@ OtherFormCharacteristicDefinitionType::OtherFormCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -51856,7 +52288,7 @@ OtherFormCharacteristicDefinitionType::OtherFormCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -51996,9 +52428,9 @@ void OtherFormCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -52060,7 +52492,7 @@ bool OtherFormCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in OtherFormCharacteristicDefinitionType\n");
               returnValue = true;
@@ -52076,7 +52508,7 @@ bool OtherFormCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -52085,7 +52517,7 @@ bool OtherFormCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherFormCharacteristicDefinitionType\n");
       returnValue = true;
@@ -52097,8 +52529,8 @@ bool OtherFormCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -52314,7 +52746,7 @@ bool OtherFormCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in OtherFormCharacteristicItemType\n");
               returnValue = true;
@@ -52330,7 +52762,7 @@ bool OtherFormCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -52339,7 +52771,7 @@ bool OtherFormCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherFormCharacteristicItemType\n");
       returnValue = true;
@@ -52351,8 +52783,8 @@ bool OtherFormCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -52597,7 +53029,7 @@ bool OtherFormCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in OtherFormCharacteristicMeasurementType\n");
               returnValue = true;
@@ -52613,7 +53045,7 @@ bool OtherFormCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -52622,7 +53054,7 @@ bool OtherFormCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherFormCharacteristicMeasurementType\n");
       returnValue = true;
@@ -52634,8 +53066,8 @@ bool OtherFormCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -52829,7 +53261,7 @@ bool OtherFormCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in OtherFormCharacteristicNominalType\n");
               returnValue = true;
@@ -52845,7 +53277,7 @@ bool OtherFormCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -52854,7 +53286,7 @@ bool OtherFormCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in OtherFormCharacteristicNominalType\n");
       returnValue = true;
@@ -52866,8 +53298,8 @@ bool OtherFormCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -52897,7 +53329,7 @@ ParallelismCharacteristicDefinitionType::ParallelismCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -52911,7 +53343,7 @@ ParallelismCharacteristicDefinitionType::ParallelismCharacteristicDefinitionType
  XmlBoolean * TangentPlaneIn,
  LinearValueType * MaximumToleranceValueIn,
  LinearValueType * ProjectedToleranceZoneValueIn,
- OrientationChar_1065_Type * OrientationChar_1065In) :
+ OrientationChar_1054_Type * OrientationChar_1054In) :
   OrientationCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -52926,7 +53358,7 @@ ParallelismCharacteristicDefinitionType::ParallelismCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -52940,7 +53372,7 @@ ParallelismCharacteristicDefinitionType::ParallelismCharacteristicDefinitionType
     TangentPlaneIn,
     MaximumToleranceValueIn,
     ProjectedToleranceZoneValueIn,
-    OrientationChar_1065In)
+    OrientationChar_1054In)
 {
 }
 
@@ -52959,7 +53391,7 @@ ParallelismCharacteristicDefinitionType::ParallelismCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -52973,7 +53405,7 @@ ParallelismCharacteristicDefinitionType::ParallelismCharacteristicDefinitionType
  XmlBoolean * TangentPlaneIn,
  LinearValueType * MaximumToleranceValueIn,
  LinearValueType * ProjectedToleranceZoneValueIn,
- OrientationChar_1065_Type * OrientationChar_1065In) :
+ OrientationChar_1054_Type * OrientationChar_1054In) :
   OrientationCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -52989,7 +53421,7 @@ ParallelismCharacteristicDefinitionType::ParallelismCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -53003,7 +53435,7 @@ ParallelismCharacteristicDefinitionType::ParallelismCharacteristicDefinitionType
     TangentPlaneIn,
     MaximumToleranceValueIn,
     ProjectedToleranceZoneValueIn,
-    OrientationChar_1065In)
+    OrientationChar_1054In)
 {
 }
 
@@ -53135,9 +53567,9 @@ void ParallelismCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -53226,9 +53658,9 @@ void ParallelismCharacteristicDefinitionType::printSelf(FILE * outFile)
       ProjectedToleranceZoneValue->printSelf(outFile);
       fprintf(outFile, "</ProjectedToleranceZoneValue>\n");
     }
-  if (OrientationChar_1065)
+  if (OrientationChar_1054)
     {
-      OrientationChar_1065->printSelf(outFile);
+  OrientationChar_1054->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -53247,7 +53679,7 @@ bool ParallelismCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ParallelismCharacteristicDefinitionType\n");
               returnValue = true;
@@ -53263,7 +53695,7 @@ bool ParallelismCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -53272,7 +53704,7 @@ bool ParallelismCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ParallelismCharacteristicDefinitionType\n");
       returnValue = true;
@@ -53284,8 +53716,8 @@ bool ParallelismCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -53489,7 +53921,7 @@ bool ParallelismCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ParallelismCharacteristicItemType\n");
               returnValue = true;
@@ -53505,7 +53937,7 @@ bool ParallelismCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -53514,7 +53946,7 @@ bool ParallelismCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ParallelismCharacteristicItemType\n");
       returnValue = true;
@@ -53526,8 +53958,8 @@ bool ParallelismCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -53816,7 +54248,7 @@ bool ParallelismCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ParallelismCharacteristicMeasurementType\n");
               returnValue = true;
@@ -53832,7 +54264,7 @@ bool ParallelismCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -53841,7 +54273,7 @@ bool ParallelismCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ParallelismCharacteristicMeasurementType\n");
       returnValue = true;
@@ -53853,8 +54285,8 @@ bool ParallelismCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -54048,7 +54480,7 @@ bool ParallelismCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ParallelismCharacteristicNominalType\n");
               returnValue = true;
@@ -54064,7 +54496,7 @@ bool ParallelismCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -54073,7 +54505,7 @@ bool ParallelismCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ParallelismCharacteristicNominalType\n");
       returnValue = true;
@@ -54085,8 +54517,8 @@ bool ParallelismCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -54116,7 +54548,7 @@ PerpendicularityCharacteristicDefinitionType::PerpendicularityCharacteristicDefi
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -54130,7 +54562,7 @@ PerpendicularityCharacteristicDefinitionType::PerpendicularityCharacteristicDefi
  XmlBoolean * TangentPlaneIn,
  LinearValueType * MaximumToleranceValueIn,
  LinearValueType * ProjectedToleranceZoneValueIn,
- OrientationChar_1065_Type * OrientationChar_1065In) :
+ OrientationChar_1054_Type * OrientationChar_1054In) :
   OrientationCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -54145,7 +54577,7 @@ PerpendicularityCharacteristicDefinitionType::PerpendicularityCharacteristicDefi
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -54159,7 +54591,7 @@ PerpendicularityCharacteristicDefinitionType::PerpendicularityCharacteristicDefi
     TangentPlaneIn,
     MaximumToleranceValueIn,
     ProjectedToleranceZoneValueIn,
-    OrientationChar_1065In)
+    OrientationChar_1054In)
 {
 }
 
@@ -54178,7 +54610,7 @@ PerpendicularityCharacteristicDefinitionType::PerpendicularityCharacteristicDefi
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -54192,7 +54624,7 @@ PerpendicularityCharacteristicDefinitionType::PerpendicularityCharacteristicDefi
  XmlBoolean * TangentPlaneIn,
  LinearValueType * MaximumToleranceValueIn,
  LinearValueType * ProjectedToleranceZoneValueIn,
- OrientationChar_1065_Type * OrientationChar_1065In) :
+ OrientationChar_1054_Type * OrientationChar_1054In) :
   OrientationCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -54208,7 +54640,7 @@ PerpendicularityCharacteristicDefinitionType::PerpendicularityCharacteristicDefi
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -54222,7 +54654,7 @@ PerpendicularityCharacteristicDefinitionType::PerpendicularityCharacteristicDefi
     TangentPlaneIn,
     MaximumToleranceValueIn,
     ProjectedToleranceZoneValueIn,
-    OrientationChar_1065In)
+    OrientationChar_1054In)
 {
 }
 
@@ -54354,9 +54786,9 @@ void PerpendicularityCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -54445,9 +54877,9 @@ void PerpendicularityCharacteristicDefinitionType::printSelf(FILE * outFile)
       ProjectedToleranceZoneValue->printSelf(outFile);
       fprintf(outFile, "</ProjectedToleranceZoneValue>\n");
     }
-  if (OrientationChar_1065)
+  if (OrientationChar_1054)
     {
-      OrientationChar_1065->printSelf(outFile);
+  OrientationChar_1054->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -54466,7 +54898,7 @@ bool PerpendicularityCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PerpendicularityCharacteristicDefinitionType\n");
               returnValue = true;
@@ -54482,7 +54914,7 @@ bool PerpendicularityCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -54491,7 +54923,7 @@ bool PerpendicularityCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PerpendicularityCharacteristicDefinitionType\n");
       returnValue = true;
@@ -54503,8 +54935,8 @@ bool PerpendicularityCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -54708,7 +55140,7 @@ bool PerpendicularityCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PerpendicularityCharacteristicItemType\n");
               returnValue = true;
@@ -54724,7 +55156,7 @@ bool PerpendicularityCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -54733,7 +55165,7 @@ bool PerpendicularityCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PerpendicularityCharacteristicItemType\n");
       returnValue = true;
@@ -54745,8 +55177,8 @@ bool PerpendicularityCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -55035,7 +55467,7 @@ bool PerpendicularityCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PerpendicularityCharacteristicMeasurementType\n");
               returnValue = true;
@@ -55051,7 +55483,7 @@ bool PerpendicularityCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -55060,7 +55492,7 @@ bool PerpendicularityCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PerpendicularityCharacteristicMeasurementType\n");
       returnValue = true;
@@ -55072,8 +55504,8 @@ bool PerpendicularityCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -55267,7 +55699,7 @@ bool PerpendicularityCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PerpendicularityCharacteristicNominalType\n");
               returnValue = true;
@@ -55283,7 +55715,7 @@ bool PerpendicularityCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -55292,7 +55724,7 @@ bool PerpendicularityCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PerpendicularityCharacteristicNominalType\n");
       returnValue = true;
@@ -55304,8 +55736,8 @@ bool PerpendicularityCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -55390,7 +55822,15 @@ PointDeviationTypeLisd::~PointDeviationTypeLisd()
   #endif
 }
 
-void PointDeviationTypeLisd::printSelf(FILE * outFile){}
+void PointDeviationTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<PointDeviationType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -55467,6 +55907,13 @@ void PointDeviationsType::printSelf(FILE * outFile)
         fprintf(stderr, "PointDeviation list is empty\n");
         exit(1);
       }
+    if (PointDeviation->size() < 1)
+      {
+        fprintf(stderr,
+                "size of PointDeviation list (%d) less than minimum required (1)\n",
+                (int)PointDeviation->size());
+        exit(1);
+      }
     std::list<PointDeviationType *>::iterator iter;
     for (iter = PointDeviation->begin();
          iter != PointDeviation->end(); iter++)
@@ -55495,7 +55942,7 @@ bool PointDeviationsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in PointDeviationsType\n");
               returnValue = true;
@@ -55511,7 +55958,7 @@ bool PointDeviationsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -55520,7 +55967,7 @@ bool PointDeviationsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in PointDeviationsType\n");
       returnValue = true;
@@ -55532,8 +55979,8 @@ bool PointDeviationsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -55575,14 +56022,14 @@ PointProfileCharacteristicDefinitionType::PointProfileCharacteristicDefinitionTy
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
- ProfileCharacte_1068_Type * ProfileCharacte_1068In,
+ ProfileCharacte_1056_Type * ProfileCharacte_1056In,
  XmlBoolean * OffsetZoneIn,
  XmlBoolean * VariableAngleIn,
  CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -55604,14 +56051,14 @@ PointProfileCharacteristicDefinitionType::PointProfileCharacteristicDefinitionTy
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn,
     ToleranceValueIn,
     ToleranceDualValueIn,
-    ProfileCharacte_1068In,
+    ProfileCharacte_1056In,
     OffsetZoneIn,
     VariableAngleIn,
     SecondCompositeSegmentProfileDefinitionIn,
@@ -55637,14 +56084,14 @@ PointProfileCharacteristicDefinitionType::PointProfileCharacteristicDefinitionTy
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
- ProfileCharacte_1068_Type * ProfileCharacte_1068In,
+ ProfileCharacte_1056_Type * ProfileCharacte_1056In,
  XmlBoolean * OffsetZoneIn,
  XmlBoolean * VariableAngleIn,
  CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -55667,14 +56114,14 @@ PointProfileCharacteristicDefinitionType::PointProfileCharacteristicDefinitionTy
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn,
     ToleranceValueIn,
     ToleranceDualValueIn,
-    ProfileCharacte_1068In,
+    ProfileCharacte_1056In,
     OffsetZoneIn,
     VariableAngleIn,
     SecondCompositeSegmentProfileDefinitionIn,
@@ -55813,9 +56260,9 @@ void PointProfileCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -55860,9 +56307,9 @@ void PointProfileCharacteristicDefinitionType::printSelf(FILE * outFile)
       ToleranceDualValue->printSelf(outFile);
       fprintf(outFile, "</ToleranceDualValue>\n");
     }
-  if (ProfileCharacte_1068)
+  if (ProfileCharacte_1056)
     {
-      ProfileCharacte_1068->printSelf(outFile);
+  ProfileCharacte_1056->printSelf(outFile);
     }
   if (OffsetZone)
     {
@@ -55933,7 +56380,7 @@ bool PointProfileCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PointProfileCharacteristicDefinitionType\n");
               returnValue = true;
@@ -55949,7 +56396,7 @@ bool PointProfileCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -55958,7 +56405,7 @@ bool PointProfileCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PointProfileCharacteristicDefinitionType\n");
       returnValue = true;
@@ -55970,8 +56417,8 @@ bool PointProfileCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -56175,7 +56622,7 @@ bool PointProfileCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PointProfileCharacteristicItemType\n");
               returnValue = true;
@@ -56191,7 +56638,7 @@ bool PointProfileCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -56200,7 +56647,7 @@ bool PointProfileCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PointProfileCharacteristicItemType\n");
       returnValue = true;
@@ -56212,8 +56659,8 @@ bool PointProfileCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -56550,7 +56997,7 @@ bool PointProfileCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PointProfileCharacteristicMeasurementType\n");
               returnValue = true;
@@ -56566,7 +57013,7 @@ bool PointProfileCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -56575,7 +57022,7 @@ bool PointProfileCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PointProfileCharacteristicMeasurementType\n");
       returnValue = true;
@@ -56587,8 +57034,8 @@ bool PointProfileCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -56793,7 +57240,7 @@ bool PointProfileCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PointProfileCharacteristicNominalType\n");
               returnValue = true;
@@ -56809,7 +57256,7 @@ bool PointProfileCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -56818,7 +57265,7 @@ bool PointProfileCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PointProfileCharacteristicNominalType\n");
       returnValue = true;
@@ -56830,8 +57277,8 @@ bool PointProfileCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -56871,7 +57318,7 @@ PositionCharacteristicDefinitionType::PositionCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -56903,7 +57350,7 @@ PositionCharacteristicDefinitionType::PositionCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -56939,7 +57386,7 @@ PositionCharacteristicDefinitionType::PositionCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -56972,7 +57419,7 @@ PositionCharacteristicDefinitionType::PositionCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -57131,9 +57578,9 @@ void PositionCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -57270,7 +57717,7 @@ bool PositionCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PositionCharacteristicDefinitionType\n");
               returnValue = true;
@@ -57286,7 +57733,7 @@ bool PositionCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -57295,7 +57742,7 @@ bool PositionCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PositionCharacteristicDefinitionType\n");
       returnValue = true;
@@ -57307,8 +57754,8 @@ bool PositionCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -57572,7 +58019,7 @@ bool PositionCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PositionCharacteristicItemType\n");
               returnValue = true;
@@ -57588,7 +58035,7 @@ bool PositionCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -57597,7 +58044,7 @@ bool PositionCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PositionCharacteristicItemType\n");
       returnValue = true;
@@ -57609,8 +58056,8 @@ bool PositionCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -57946,7 +58393,7 @@ bool PositionCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PositionCharacteristicMeasurementType\n");
               returnValue = true;
@@ -57962,7 +58409,7 @@ bool PositionCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -57971,7 +58418,7 @@ bool PositionCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PositionCharacteristicMeasurementType\n");
       returnValue = true;
@@ -57983,8 +58430,8 @@ bool PositionCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -58222,7 +58669,7 @@ bool PositionCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PositionCharacteristicNominalType\n");
               returnValue = true;
@@ -58238,7 +58685,7 @@ bool PositionCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -58247,7 +58694,7 @@ bool PositionCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PositionCharacteristicNominalType\n");
       returnValue = true;
@@ -58259,8 +58706,8 @@ bool PositionCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -58659,13 +59106,6 @@ PositionZoneShapeTypeChoicePair * PositionZoneShapeType::getPositionZoneShapeTyp
 
 void PositionZoneShapeType::setPositionZoneShapeTypePair(PositionZoneShapeTypeChoicePair * PositionZoneShapeTypePairIn)
 {PositionZoneShapeTypePair = PositionZoneShapeTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class PositionZoneShapeTypeChoicePair
-
-*/
-
 PositionZoneShapeTypeChoicePair::PositionZoneShapeTypeChoicePair() {}
 
 PositionZoneShapeTypeChoicePair::PositionZoneShapeTypeChoicePair(
@@ -58725,7 +59165,7 @@ void PositionZoneShapeTypeChoicePair::printSelf(FILE * outFile)
 PressureCharacteristicDefinitionBaseType::PressureCharacteristicDefinitionBaseType() :
   CharacteristicDefinitionBaseType()
 {
-  PressureCharact_1067 = 0;
+  PressureCharacteristicDefinitionBaseTypePair = 0;
 }
 
 PressureCharacteristicDefinitionBaseType::PressureCharacteristicDefinitionBaseType(
@@ -58742,7 +59182,7 @@ PressureCharacteristicDefinitionBaseType::PressureCharacteristicDefinitionBaseTy
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- PressureCharact_1067_Type * PressureCharact_1067In) :
+ PressureCharacteristicDefinitionBaseTypeChoicePair * PressureCharacteristicDefinitionBaseTypePairIn) :
   CharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -58758,7 +59198,7 @@ PressureCharacteristicDefinitionBaseType::PressureCharacteristicDefinitionBaseTy
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  PressureCharact_1067 = PressureCharact_1067In;
+  PressureCharacteristicDefinitionBaseTypePair = PressureCharacteristicDefinitionBaseTypePairIn;
 }
 
 PressureCharacteristicDefinitionBaseType::PressureCharacteristicDefinitionBaseType(
@@ -58776,7 +59216,7 @@ PressureCharacteristicDefinitionBaseType::PressureCharacteristicDefinitionBaseTy
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- PressureCharact_1067_Type * PressureCharact_1067In) :
+ PressureCharacteristicDefinitionBaseTypeChoicePair * PressureCharacteristicDefinitionBaseTypePairIn) :
   CharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -58793,13 +59233,13 @@ PressureCharacteristicDefinitionBaseType::PressureCharacteristicDefinitionBaseTy
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  PressureCharact_1067 = PressureCharact_1067In;
+  PressureCharacteristicDefinitionBaseTypePair = PressureCharacteristicDefinitionBaseTypePairIn;
 }
 
 PressureCharacteristicDefinitionBaseType::~PressureCharacteristicDefinitionBaseType()
 {
   #ifndef NODESTRUCT
-  delete PressureCharact_1067;
+  delete PressureCharacteristicDefinitionBaseTypePair;
   #endif
 }
 
@@ -58925,8 +59365,54 @@ void PressureCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  PressureCharact_1067->printSelf(outFile);
+  PressureCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
+}
+PressureCharacteristicDefinitionBaseTypeChoicePair * PressureCharacteristicDefinitionBaseType::getPressureCharacteristicDefinitionBaseTypeChoicePair()
+{return PressureCharacteristicDefinitionBaseTypePair;}
+
+void PressureCharacteristicDefinitionBaseType::setPressureCharacteristicDefinitionBaseTypeChoicePair(PressureCharacteristicDefinitionBaseTypeChoicePair * PressureCharacteristicDefinitionBaseTypePairIn)
+{PressureCharacteristicDefinitionBaseTypePair = PressureCharacteristicDefinitionBaseTypePairIn;}
+
+/* ***************************************************************** */
+
+PressureCharacteristicDefinitionBaseTypeChoicePair::PressureCharacteristicDefinitionBaseTypeChoicePair() {}
+
+PressureCharacteristicDefinitionBaseTypeChoicePair::PressureCharacteristicDefinitionBaseTypeChoicePair(
+ whichOne PressureCharacteristicDefinitionBaseTypeTypeIn,
+ PressureCharacteristicDefinitionBaseTypeVal PressureCharacteristicDefinitionBaseTypeValueIn)
+{
+  PressureCharacteristicDefinitionBaseTypeType = PressureCharacteristicDefinitionBaseTypeTypeIn;
+  PressureCharacteristicDefinitionBaseTypeValue = PressureCharacteristicDefinitionBaseTypeValueIn;
+}
+
+PressureCharacteristicDefinitionBaseTypeChoicePair::~PressureCharacteristicDefinitionBaseTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (PressureCharacteristicDefinitionBaseTypeType == ToleranceE)
+    delete PressureCharacteristicDefinitionBaseTypeValue.Tolerance;
+  else if (PressureCharacteristicDefinitionBaseTypeType == NonToleranceE)
+    delete PressureCharacteristicDefinitionBaseTypeValue.NonTolerance;
+  #endif
+}
+
+void PressureCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (PressureCharacteristicDefinitionBaseTypeType == ToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Tolerance");
+      PressureCharacteristicDefinitionBaseTypeValue.Tolerance->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</Tolerance>\n");
+    }
+  else if (PressureCharacteristicDefinitionBaseTypeType == NonToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<NonTolerance");
+      PressureCharacteristicDefinitionBaseTypeValue.NonTolerance->printSelf(outFile);
+      fprintf(outFile, "</NonTolerance>\n");
+    }
 }
 
 bool PressureCharacteristicDefinitionBaseType::badAttributes(
@@ -58943,7 +59429,7 @@ bool PressureCharacteristicDefinitionBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PressureCharacteristicDefinitionBaseType\n");
               returnValue = true;
@@ -58959,7 +59445,7 @@ bool PressureCharacteristicDefinitionBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -58968,7 +59454,7 @@ bool PressureCharacteristicDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PressureCharacteristicDefinitionBaseType\n");
       returnValue = true;
@@ -58980,17 +59466,11 @@ bool PressureCharacteristicDefinitionBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
-
-PressureCharact_1067_Type * PressureCharacteristicDefinitionBaseType::getPressureCharact_1067()
-{return PressureCharact_1067;}
-
-void PressureCharacteristicDefinitionBaseType::setPressureCharact_1067(PressureCharact_1067_Type * PressureCharact_1067In)
-{PressureCharact_1067 = PressureCharact_1067In;}
 
 /* ***************************************************************** */
 
@@ -59191,7 +59671,7 @@ bool PressureCharacteristicItemBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PressureCharacteristicItemBaseType\n");
               returnValue = true;
@@ -59207,7 +59687,7 @@ bool PressureCharacteristicItemBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -59216,7 +59696,7 @@ bool PressureCharacteristicItemBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PressureCharacteristicItemBaseType\n");
       returnValue = true;
@@ -59228,8 +59708,8 @@ bool PressureCharacteristicItemBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -59480,7 +59960,7 @@ bool PressureCharacteristicMeasurementBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PressureCharacteristicMeasurementBaseType\n");
               returnValue = true;
@@ -59496,7 +59976,7 @@ bool PressureCharacteristicMeasurementBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -59505,7 +59985,7 @@ bool PressureCharacteristicMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PressureCharacteristicMeasurementBaseType\n");
       returnValue = true;
@@ -59517,8 +59997,8 @@ bool PressureCharacteristicMeasurementBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -59743,7 +60223,7 @@ bool PressureCharacteristicNominalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in PressureCharacteristicNominalBaseType\n");
               returnValue = true;
@@ -59759,7 +60239,7 @@ bool PressureCharacteristicNominalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -59768,7 +60248,7 @@ bool PressureCharacteristicNominalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in PressureCharacteristicNominalBaseType\n");
       returnValue = true;
@@ -59780,8 +60260,8 @@ bool PressureCharacteristicNominalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -59803,7 +60283,7 @@ ProfileCharacteristicDefinitionBaseType::ProfileCharacteristicDefinitionBaseType
 {
   ToleranceValue = 0;
   ToleranceDualValue = 0;
-  ProfileCharacte_1068 = 0;
+  ProfileCharacte_1056 = 0;
   OffsetZone = 0;
   VariableAngle = 0;
   SecondCompositeSegmentProfileDefinition = 0;
@@ -59827,14 +60307,14 @@ ProfileCharacteristicDefinitionBaseType::ProfileCharacteristicDefinitionBaseType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
- ProfileCharacte_1068_Type * ProfileCharacte_1068In,
+ ProfileCharacte_1056_Type * ProfileCharacte_1056In,
  XmlBoolean * OffsetZoneIn,
  XmlBoolean * VariableAngleIn,
  CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -59856,7 +60336,7 @@ ProfileCharacteristicDefinitionBaseType::ProfileCharacteristicDefinitionBaseType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -59864,7 +60344,7 @@ ProfileCharacteristicDefinitionBaseType::ProfileCharacteristicDefinitionBaseType
 {
   ToleranceValue = ToleranceValueIn;
   ToleranceDualValue = ToleranceDualValueIn;
-  ProfileCharacte_1068 = ProfileCharacte_1068In;
+  ProfileCharacte_1056 = ProfileCharacte_1056In;
   OffsetZone = OffsetZoneIn;
   VariableAngle = VariableAngleIn;
   SecondCompositeSegmentProfileDefinition = SecondCompositeSegmentProfileDefinitionIn;
@@ -59889,14 +60369,14 @@ ProfileCharacteristicDefinitionBaseType::ProfileCharacteristicDefinitionBaseType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
- ProfileCharacte_1068_Type * ProfileCharacte_1068In,
+ ProfileCharacte_1056_Type * ProfileCharacte_1056In,
  XmlBoolean * OffsetZoneIn,
  XmlBoolean * VariableAngleIn,
  CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -59919,7 +60399,7 @@ ProfileCharacteristicDefinitionBaseType::ProfileCharacteristicDefinitionBaseType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -59927,7 +60407,7 @@ ProfileCharacteristicDefinitionBaseType::ProfileCharacteristicDefinitionBaseType
 {
   ToleranceValue = ToleranceValueIn;
   ToleranceDualValue = ToleranceDualValueIn;
-  ProfileCharacte_1068 = ProfileCharacte_1068In;
+  ProfileCharacte_1056 = ProfileCharacte_1056In;
   OffsetZone = OffsetZoneIn;
   VariableAngle = VariableAngleIn;
   SecondCompositeSegmentProfileDefinition = SecondCompositeSegmentProfileDefinitionIn;
@@ -59942,7 +60422,7 @@ ProfileCharacteristicDefinitionBaseType::~ProfileCharacteristicDefinitionBaseTyp
   #ifndef NODESTRUCT
   delete ToleranceValue;
   delete ToleranceDualValue;
-  delete ProfileCharacte_1068;
+  delete ProfileCharacte_1056;
   delete OffsetZone;
   delete VariableAngle;
   delete SecondCompositeSegmentProfileDefinition;
@@ -60075,9 +60555,9 @@ void ProfileCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -60122,9 +60602,9 @@ void ProfileCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       ToleranceDualValue->printSelf(outFile);
       fprintf(outFile, "</ToleranceDualValue>\n");
     }
-  if (ProfileCharacte_1068)
+  if (ProfileCharacte_1056)
     {
-      ProfileCharacte_1068->printSelf(outFile);
+  ProfileCharacte_1056->printSelf(outFile);
     }
   if (OffsetZone)
     {
@@ -60195,7 +60675,7 @@ bool ProfileCharacteristicDefinitionBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ProfileCharacteristicDefinitionBaseType\n");
               returnValue = true;
@@ -60211,7 +60691,7 @@ bool ProfileCharacteristicDefinitionBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -60220,7 +60700,7 @@ bool ProfileCharacteristicDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ProfileCharacteristicDefinitionBaseType\n");
       returnValue = true;
@@ -60232,8 +60712,8 @@ bool ProfileCharacteristicDefinitionBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -60250,11 +60730,11 @@ LinearDualValueType * ProfileCharacteristicDefinitionBaseType::getToleranceDualV
 void ProfileCharacteristicDefinitionBaseType::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
 {ToleranceDualValue = ToleranceDualValueIn;}
 
-ProfileCharacte_1068_Type * ProfileCharacteristicDefinitionBaseType::getProfileCharacte_1068()
-{return ProfileCharacte_1068;}
+ProfileCharacte_1056_Type * ProfileCharacteristicDefinitionBaseType::getProfileCharacte_1056()
+{return ProfileCharacte_1056;}
 
-void ProfileCharacteristicDefinitionBaseType::setProfileCharacte_1068(ProfileCharacte_1068_Type * ProfileCharacte_1068In)
-{ProfileCharacte_1068 = ProfileCharacte_1068In;}
+void ProfileCharacteristicDefinitionBaseType::setProfileCharacte_1056(ProfileCharacte_1056_Type * ProfileCharacte_1056In)
+{ProfileCharacte_1056 = ProfileCharacte_1056In;}
 
 XmlBoolean * ProfileCharacteristicDefinitionBaseType::getOffsetZone()
 {return OffsetZone;}
@@ -60497,7 +60977,7 @@ bool ProfileCharacteristicItemBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ProfileCharacteristicItemBaseType\n");
               returnValue = true;
@@ -60513,7 +60993,7 @@ bool ProfileCharacteristicItemBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -60522,7 +61002,7 @@ bool ProfileCharacteristicItemBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ProfileCharacteristicItemBaseType\n");
       returnValue = true;
@@ -60534,8 +61014,8 @@ bool ProfileCharacteristicItemBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -60888,7 +61368,7 @@ bool ProfileCharacteristicMeasurementBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ProfileCharacteristicMeasurementBaseType\n");
               returnValue = true;
@@ -60904,7 +61384,7 @@ bool ProfileCharacteristicMeasurementBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -60913,7 +61393,7 @@ bool ProfileCharacteristicMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ProfileCharacteristicMeasurementBaseType\n");
       returnValue = true;
@@ -60925,8 +61405,8 @@ bool ProfileCharacteristicMeasurementBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -61181,7 +61661,7 @@ bool ProfileCharacteristicNominalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ProfileCharacteristicNominalBaseType\n");
               returnValue = true;
@@ -61197,7 +61677,7 @@ bool ProfileCharacteristicNominalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -61206,7 +61686,7 @@ bool ProfileCharacteristicNominalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ProfileCharacteristicNominalBaseType\n");
       returnValue = true;
@@ -61218,8 +61698,8 @@ bool ProfileCharacteristicNominalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -61258,7 +61738,7 @@ RadiusCharacteristicDefinitionType::RadiusCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In,
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn,
  XmlBoolean * ControlledRadiusIn) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
@@ -61276,7 +61756,7 @@ RadiusCharacteristicDefinitionType::RadiusCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
   ControlledRadius = ControlledRadiusIn;
 }
@@ -61298,7 +61778,7 @@ RadiusCharacteristicDefinitionType::RadiusCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In,
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn,
  XmlBoolean * ControlledRadiusIn) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
@@ -61317,7 +61797,7 @@ RadiusCharacteristicDefinitionType::RadiusCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
   ControlledRadius = ControlledRadiusIn;
 }
@@ -61466,7 +61946,7 @@ void RadiusCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1059->printSelf(outFile);
+  LinearCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   if (ControlledRadius)
     {
       doSpaces(0, outFile);
@@ -61491,7 +61971,7 @@ bool RadiusCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in RadiusCharacteristicDefinitionType\n");
               returnValue = true;
@@ -61507,7 +61987,7 @@ bool RadiusCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -61516,7 +61996,7 @@ bool RadiusCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in RadiusCharacteristicDefinitionType\n");
       returnValue = true;
@@ -61528,8 +62008,8 @@ bool RadiusCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -61739,7 +62219,7 @@ bool RadiusCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in RadiusCharacteristicItemType\n");
               returnValue = true;
@@ -61755,7 +62235,7 @@ bool RadiusCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -61764,7 +62244,7 @@ bool RadiusCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in RadiusCharacteristicItemType\n");
       returnValue = true;
@@ -61776,8 +62256,8 @@ bool RadiusCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -62022,7 +62502,7 @@ bool RadiusCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in RadiusCharacteristicMeasurementType\n");
               returnValue = true;
@@ -62038,7 +62518,7 @@ bool RadiusCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -62047,7 +62527,7 @@ bool RadiusCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in RadiusCharacteristicMeasurementType\n");
       returnValue = true;
@@ -62059,8 +62539,8 @@ bool RadiusCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -62276,7 +62756,7 @@ bool RadiusCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in RadiusCharacteristicNominalType\n");
               returnValue = true;
@@ -62292,7 +62772,7 @@ bool RadiusCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -62301,7 +62781,7 @@ bool RadiusCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in RadiusCharacteristicNominalType\n");
       returnValue = true;
@@ -62313,8 +62793,8 @@ bool RadiusCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -62744,7 +63224,7 @@ RunoutCharacteristicDefinitionBaseType::RunoutCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -62766,7 +63246,7 @@ RunoutCharacteristicDefinitionBaseType::RunoutCharacteristicDefinitionBaseType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -62792,7 +63272,7 @@ RunoutCharacteristicDefinitionBaseType::RunoutCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -62815,7 +63295,7 @@ RunoutCharacteristicDefinitionBaseType::RunoutCharacteristicDefinitionBaseType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -62957,9 +63437,9 @@ void RunoutCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -63028,7 +63508,7 @@ bool RunoutCharacteristicDefinitionBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in RunoutCharacteristicDefinitionBaseType\n");
               returnValue = true;
@@ -63044,7 +63524,7 @@ bool RunoutCharacteristicDefinitionBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -63053,7 +63533,7 @@ bool RunoutCharacteristicDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in RunoutCharacteristicDefinitionBaseType\n");
       returnValue = true;
@@ -63065,8 +63545,8 @@ bool RunoutCharacteristicDefinitionBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -63288,7 +63768,7 @@ bool RunoutCharacteristicItemBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in RunoutCharacteristicItemBaseType\n");
               returnValue = true;
@@ -63304,7 +63784,7 @@ bool RunoutCharacteristicItemBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -63313,7 +63793,7 @@ bool RunoutCharacteristicItemBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in RunoutCharacteristicItemBaseType\n");
       returnValue = true;
@@ -63325,8 +63805,8 @@ bool RunoutCharacteristicItemBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -63584,7 +64064,7 @@ bool RunoutCharacteristicMeasurementBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in RunoutCharacteristicMeasurementBaseType\n");
               returnValue = true;
@@ -63600,7 +64080,7 @@ bool RunoutCharacteristicMeasurementBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -63609,7 +64089,7 @@ bool RunoutCharacteristicMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in RunoutCharacteristicMeasurementBaseType\n");
       returnValue = true;
@@ -63621,8 +64101,8 @@ bool RunoutCharacteristicMeasurementBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -63822,7 +64302,7 @@ bool RunoutCharacteristicNominalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in RunoutCharacteristicNominalBaseType\n");
               returnValue = true;
@@ -63838,7 +64318,7 @@ bool RunoutCharacteristicNominalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -63847,7 +64327,7 @@ bool RunoutCharacteristicNominalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in RunoutCharacteristicNominalBaseType\n");
       returnValue = true;
@@ -63859,8 +64339,8 @@ bool RunoutCharacteristicNominalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -64021,7 +64501,15 @@ SimultaneousRequirementGroupTypeLisd::~SimultaneousRequirementGroupTypeLisd()
   #endif
 }
 
-void SimultaneousRequirementGroupTypeLisd::printSelf(FILE * outFile){}
+void SimultaneousRequirementGroupTypeLisd::printSelf(FILE * outFile)
+{
+  std::list<SimultaneousRequirementGroupType *>::iterator iter;
+
+  for (iter = begin(); iter != end(); iter++)
+    {
+      (*iter)->printSelf(outFile);
+    }
+}
 
 /* ***************************************************************** */
 
@@ -64098,6 +64586,13 @@ void SimultaneousRequirementGroupsType::printSelf(FILE * outFile)
         fprintf(stderr, "SimultaneousRequirementGroup list is empty\n");
         exit(1);
       }
+    if (SimultaneousRequirementGroup->size() < 1)
+      {
+        fprintf(stderr,
+                "size of SimultaneousRequirementGroup list (%d) less than minimum required (1)\n",
+                (int)SimultaneousRequirementGroup->size());
+        exit(1);
+      }
     std::list<SimultaneousRequirementGroupType *>::iterator iter;
     for (iter = SimultaneousRequirementGroup->begin();
          iter != SimultaneousRequirementGroup->end(); iter++)
@@ -64126,7 +64621,7 @@ bool SimultaneousRequirementGroupsType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in SimultaneousRequirementGroupsType\n");
               returnValue = true;
@@ -64142,7 +64637,7 @@ bool SimultaneousRequirementGroupsType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -64151,7 +64646,7 @@ bool SimultaneousRequirementGroupsType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in SimultaneousRequirementGroupsType\n");
       returnValue = true;
@@ -64163,8 +64658,8 @@ bool SimultaneousRequirementGroupsType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -64336,7 +64831,7 @@ void SingleNestingIndexFilterType::setSecondDirectionNestingIndex(LinearValueTyp
 SpeedCharacteristicDefinitionBaseType::SpeedCharacteristicDefinitionBaseType() :
   CharacteristicDefinitionBaseType()
 {
-  SpeedCharacteri_1069 = 0;
+  SpeedCharacteristicDefinitionBaseTypePair = 0;
 }
 
 SpeedCharacteristicDefinitionBaseType::SpeedCharacteristicDefinitionBaseType(
@@ -64353,7 +64848,7 @@ SpeedCharacteristicDefinitionBaseType::SpeedCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- SpeedCharacteri_1069_Type * SpeedCharacteri_1069In) :
+ SpeedCharacteristicDefinitionBaseTypeChoicePair * SpeedCharacteristicDefinitionBaseTypePairIn) :
   CharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -64369,7 +64864,7 @@ SpeedCharacteristicDefinitionBaseType::SpeedCharacteristicDefinitionBaseType(
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  SpeedCharacteri_1069 = SpeedCharacteri_1069In;
+  SpeedCharacteristicDefinitionBaseTypePair = SpeedCharacteristicDefinitionBaseTypePairIn;
 }
 
 SpeedCharacteristicDefinitionBaseType::SpeedCharacteristicDefinitionBaseType(
@@ -64387,7 +64882,7 @@ SpeedCharacteristicDefinitionBaseType::SpeedCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- SpeedCharacteri_1069_Type * SpeedCharacteri_1069In) :
+ SpeedCharacteristicDefinitionBaseTypeChoicePair * SpeedCharacteristicDefinitionBaseTypePairIn) :
   CharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -64404,13 +64899,13 @@ SpeedCharacteristicDefinitionBaseType::SpeedCharacteristicDefinitionBaseType(
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  SpeedCharacteri_1069 = SpeedCharacteri_1069In;
+  SpeedCharacteristicDefinitionBaseTypePair = SpeedCharacteristicDefinitionBaseTypePairIn;
 }
 
 SpeedCharacteristicDefinitionBaseType::~SpeedCharacteristicDefinitionBaseType()
 {
   #ifndef NODESTRUCT
-  delete SpeedCharacteri_1069;
+  delete SpeedCharacteristicDefinitionBaseTypePair;
   #endif
 }
 
@@ -64536,8 +65031,54 @@ void SpeedCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  SpeedCharacteri_1069->printSelf(outFile);
+  SpeedCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
+}
+SpeedCharacteristicDefinitionBaseTypeChoicePair * SpeedCharacteristicDefinitionBaseType::getSpeedCharacteristicDefinitionBaseTypeChoicePair()
+{return SpeedCharacteristicDefinitionBaseTypePair;}
+
+void SpeedCharacteristicDefinitionBaseType::setSpeedCharacteristicDefinitionBaseTypeChoicePair(SpeedCharacteristicDefinitionBaseTypeChoicePair * SpeedCharacteristicDefinitionBaseTypePairIn)
+{SpeedCharacteristicDefinitionBaseTypePair = SpeedCharacteristicDefinitionBaseTypePairIn;}
+
+/* ***************************************************************** */
+
+SpeedCharacteristicDefinitionBaseTypeChoicePair::SpeedCharacteristicDefinitionBaseTypeChoicePair() {}
+
+SpeedCharacteristicDefinitionBaseTypeChoicePair::SpeedCharacteristicDefinitionBaseTypeChoicePair(
+ whichOne SpeedCharacteristicDefinitionBaseTypeTypeIn,
+ SpeedCharacteristicDefinitionBaseTypeVal SpeedCharacteristicDefinitionBaseTypeValueIn)
+{
+  SpeedCharacteristicDefinitionBaseTypeType = SpeedCharacteristicDefinitionBaseTypeTypeIn;
+  SpeedCharacteristicDefinitionBaseTypeValue = SpeedCharacteristicDefinitionBaseTypeValueIn;
+}
+
+SpeedCharacteristicDefinitionBaseTypeChoicePair::~SpeedCharacteristicDefinitionBaseTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (SpeedCharacteristicDefinitionBaseTypeType == ToleranceE)
+    delete SpeedCharacteristicDefinitionBaseTypeValue.Tolerance;
+  else if (SpeedCharacteristicDefinitionBaseTypeType == NonToleranceE)
+    delete SpeedCharacteristicDefinitionBaseTypeValue.NonTolerance;
+  #endif
+}
+
+void SpeedCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (SpeedCharacteristicDefinitionBaseTypeType == ToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Tolerance");
+      SpeedCharacteristicDefinitionBaseTypeValue.Tolerance->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</Tolerance>\n");
+    }
+  else if (SpeedCharacteristicDefinitionBaseTypeType == NonToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<NonTolerance");
+      SpeedCharacteristicDefinitionBaseTypeValue.NonTolerance->printSelf(outFile);
+      fprintf(outFile, "</NonTolerance>\n");
+    }
 }
 
 bool SpeedCharacteristicDefinitionBaseType::badAttributes(
@@ -64554,7 +65095,7 @@ bool SpeedCharacteristicDefinitionBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SpeedCharacteristicDefinitionBaseType\n");
               returnValue = true;
@@ -64570,7 +65111,7 @@ bool SpeedCharacteristicDefinitionBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -64579,7 +65120,7 @@ bool SpeedCharacteristicDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SpeedCharacteristicDefinitionBaseType\n");
       returnValue = true;
@@ -64591,17 +65132,11 @@ bool SpeedCharacteristicDefinitionBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
-
-SpeedCharacteri_1069_Type * SpeedCharacteristicDefinitionBaseType::getSpeedCharacteri_1069()
-{return SpeedCharacteri_1069;}
-
-void SpeedCharacteristicDefinitionBaseType::setSpeedCharacteri_1069(SpeedCharacteri_1069_Type * SpeedCharacteri_1069In)
-{SpeedCharacteri_1069 = SpeedCharacteri_1069In;}
 
 /* ***************************************************************** */
 
@@ -64802,7 +65337,7 @@ bool SpeedCharacteristicItemBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SpeedCharacteristicItemBaseType\n");
               returnValue = true;
@@ -64818,7 +65353,7 @@ bool SpeedCharacteristicItemBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -64827,7 +65362,7 @@ bool SpeedCharacteristicItemBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SpeedCharacteristicItemBaseType\n");
       returnValue = true;
@@ -64839,8 +65374,8 @@ bool SpeedCharacteristicItemBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -65091,7 +65626,7 @@ bool SpeedCharacteristicMeasurementBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SpeedCharacteristicMeasurementBaseType\n");
               returnValue = true;
@@ -65107,7 +65642,7 @@ bool SpeedCharacteristicMeasurementBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -65116,7 +65651,7 @@ bool SpeedCharacteristicMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SpeedCharacteristicMeasurementBaseType\n");
       returnValue = true;
@@ -65128,8 +65663,8 @@ bool SpeedCharacteristicMeasurementBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -65354,7 +65889,7 @@ bool SpeedCharacteristicNominalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SpeedCharacteristicNominalBaseType\n");
               returnValue = true;
@@ -65370,7 +65905,7 @@ bool SpeedCharacteristicNominalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -65379,7 +65914,7 @@ bool SpeedCharacteristicNominalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SpeedCharacteristicNominalBaseType\n");
       returnValue = true;
@@ -65391,8 +65926,8 @@ bool SpeedCharacteristicNominalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -65430,7 +65965,7 @@ SphericalDiameterCharacteristicDefinitionType::SphericalDiameterCharacteristicDe
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -65447,7 +65982,7 @@ SphericalDiameterCharacteristicDefinitionType::SphericalDiameterCharacteristicDe
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -65468,7 +66003,7 @@ SphericalDiameterCharacteristicDefinitionType::SphericalDiameterCharacteristicDe
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -65486,7 +66021,7 @@ SphericalDiameterCharacteristicDefinitionType::SphericalDiameterCharacteristicDe
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -65633,7 +66168,7 @@ void SphericalDiameterCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1059->printSelf(outFile);
+  LinearCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -65651,7 +66186,7 @@ bool SphericalDiameterCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SphericalDiameterCharacteristicDefinitionType\n");
               returnValue = true;
@@ -65667,7 +66202,7 @@ bool SphericalDiameterCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -65676,7 +66211,7 @@ bool SphericalDiameterCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SphericalDiameterCharacteristicDefinitionType\n");
       returnValue = true;
@@ -65688,8 +66223,8 @@ bool SphericalDiameterCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -65893,7 +66428,7 @@ bool SphericalDiameterCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SphericalDiameterCharacteristicItemType\n");
               returnValue = true;
@@ -65909,7 +66444,7 @@ bool SphericalDiameterCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -65918,7 +66453,7 @@ bool SphericalDiameterCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SphericalDiameterCharacteristicItemType\n");
       returnValue = true;
@@ -65930,8 +66465,8 @@ bool SphericalDiameterCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -66176,7 +66711,7 @@ bool SphericalDiameterCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SphericalDiameterCharacteristicMeasurementType\n");
               returnValue = true;
@@ -66192,7 +66727,7 @@ bool SphericalDiameterCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -66201,7 +66736,7 @@ bool SphericalDiameterCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SphericalDiameterCharacteristicMeasurementType\n");
       returnValue = true;
@@ -66213,8 +66748,8 @@ bool SphericalDiameterCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -66430,7 +66965,7 @@ bool SphericalDiameterCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SphericalDiameterCharacteristicNominalType\n");
               returnValue = true;
@@ -66446,7 +66981,7 @@ bool SphericalDiameterCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -66455,7 +66990,7 @@ bool SphericalDiameterCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SphericalDiameterCharacteristicNominalType\n");
       returnValue = true;
@@ -66467,8 +67002,8 @@ bool SphericalDiameterCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -66500,7 +67035,7 @@ SphericalRadiusCharacteristicDefinitionType::SphericalRadiusCharacteristicDefini
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -66517,7 +67052,7 @@ SphericalRadiusCharacteristicDefinitionType::SphericalRadiusCharacteristicDefini
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -66538,7 +67073,7 @@ SphericalRadiusCharacteristicDefinitionType::SphericalRadiusCharacteristicDefini
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -66556,7 +67091,7 @@ SphericalRadiusCharacteristicDefinitionType::SphericalRadiusCharacteristicDefini
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -66703,7 +67238,7 @@ void SphericalRadiusCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1059->printSelf(outFile);
+  LinearCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -66721,7 +67256,7 @@ bool SphericalRadiusCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SphericalRadiusCharacteristicDefinitionType\n");
               returnValue = true;
@@ -66737,7 +67272,7 @@ bool SphericalRadiusCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -66746,7 +67281,7 @@ bool SphericalRadiusCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SphericalRadiusCharacteristicDefinitionType\n");
       returnValue = true;
@@ -66758,8 +67293,8 @@ bool SphericalRadiusCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -66963,7 +67498,7 @@ bool SphericalRadiusCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SphericalRadiusCharacteristicItemType\n");
               returnValue = true;
@@ -66979,7 +67514,7 @@ bool SphericalRadiusCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -66988,7 +67523,7 @@ bool SphericalRadiusCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SphericalRadiusCharacteristicItemType\n");
       returnValue = true;
@@ -67000,8 +67535,8 @@ bool SphericalRadiusCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -67246,7 +67781,7 @@ bool SphericalRadiusCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SphericalRadiusCharacteristicMeasurementType\n");
               returnValue = true;
@@ -67262,7 +67797,7 @@ bool SphericalRadiusCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -67271,7 +67806,7 @@ bool SphericalRadiusCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SphericalRadiusCharacteristicMeasurementType\n");
       returnValue = true;
@@ -67283,8 +67818,8 @@ bool SphericalRadiusCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -67500,7 +68035,7 @@ bool SphericalRadiusCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SphericalRadiusCharacteristicNominalType\n");
               returnValue = true;
@@ -67516,7 +68051,7 @@ bool SphericalRadiusCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -67525,7 +68060,7 @@ bool SphericalRadiusCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SphericalRadiusCharacteristicNominalType\n");
       returnValue = true;
@@ -67537,8 +68072,8 @@ bool SphericalRadiusCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -67570,7 +68105,7 @@ SphericityCharacteristicDefinitionType::SphericityCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -67591,7 +68126,7 @@ SphericityCharacteristicDefinitionType::SphericityCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -67616,7 +68151,7 @@ SphericityCharacteristicDefinitionType::SphericityCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -67638,7 +68173,7 @@ SphericityCharacteristicDefinitionType::SphericityCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -67778,9 +68313,9 @@ void SphericityCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -67842,7 +68377,7 @@ bool SphericityCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SphericityCharacteristicDefinitionType\n");
               returnValue = true;
@@ -67858,7 +68393,7 @@ bool SphericityCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -67867,7 +68402,7 @@ bool SphericityCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SphericityCharacteristicDefinitionType\n");
       returnValue = true;
@@ -67879,8 +68414,8 @@ bool SphericityCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -68096,7 +68631,7 @@ bool SphericityCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SphericityCharacteristicItemType\n");
               returnValue = true;
@@ -68112,7 +68647,7 @@ bool SphericityCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -68121,7 +68656,7 @@ bool SphericityCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SphericityCharacteristicItemType\n");
       returnValue = true;
@@ -68133,8 +68668,8 @@ bool SphericityCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -68148,7 +68683,7 @@ bool SphericityCharacteristicItemType::badAttributes(
 SphericityCharacteristicMeasurementType::SphericityCharacteristicMeasurementType() :
   FormCharacteristicMeasurementBaseType()
 {
-  SphericityChara_1070 = 0;
+  SphericityChara_1057 = 0;
 }
 
 SphericityCharacteristicMeasurementType::SphericityCharacteristicMeasurementType(
@@ -68167,7 +68702,7 @@ SphericityCharacteristicMeasurementType::SphericityCharacteristicMeasurementType
  MeasuredLinearValueType * ValueIn,
  MeasuredLinearValueType * MaxValueIn,
  MeasuredLinearValueType * MinValueIn,
- SphericityChara_1070_Type * SphericityChara_1070In) :
+ SphericityChara_1057_Type * SphericityChara_1057In) :
   FormCharacteristicMeasurementBaseType(
     AttributesIn,
     DescriptionIn,
@@ -68185,7 +68720,7 @@ SphericityCharacteristicMeasurementType::SphericityCharacteristicMeasurementType
     MaxValueIn,
     MinValueIn)
 {
-  SphericityChara_1070 = SphericityChara_1070In;
+  SphericityChara_1057 = SphericityChara_1057In;
 }
 
 SphericityCharacteristicMeasurementType::SphericityCharacteristicMeasurementType(
@@ -68205,7 +68740,7 @@ SphericityCharacteristicMeasurementType::SphericityCharacteristicMeasurementType
  MeasuredLinearValueType * ValueIn,
  MeasuredLinearValueType * MaxValueIn,
  MeasuredLinearValueType * MinValueIn,
- SphericityChara_1070_Type * SphericityChara_1070In) :
+ SphericityChara_1057_Type * SphericityChara_1057In) :
   FormCharacteristicMeasurementBaseType(
     idIn,
     AttributesIn,
@@ -68224,13 +68759,13 @@ SphericityCharacteristicMeasurementType::SphericityCharacteristicMeasurementType
     MaxValueIn,
     MinValueIn)
 {
-  SphericityChara_1070 = SphericityChara_1070In;
+  SphericityChara_1057 = SphericityChara_1057In;
 }
 
 SphericityCharacteristicMeasurementType::~SphericityCharacteristicMeasurementType()
 {
   #ifndef NODESTRUCT
-  delete SphericityChara_1070;
+  delete SphericityChara_1057;
   #endif
 }
 
@@ -68368,9 +68903,9 @@ void SphericityCharacteristicMeasurementType::printSelf(FILE * outFile)
       MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
-  if (SphericityChara_1070)
+  if (SphericityChara_1057)
     {
-      SphericityChara_1070->printSelf(outFile);
+      SphericityChara_1057->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -68389,7 +68924,7 @@ bool SphericityCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SphericityCharacteristicMeasurementType\n");
               returnValue = true;
@@ -68405,7 +68940,7 @@ bool SphericityCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -68414,7 +68949,7 @@ bool SphericityCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SphericityCharacteristicMeasurementType\n");
       returnValue = true;
@@ -68426,17 +68961,17 @@ bool SphericityCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
 
-SphericityChara_1070_Type * SphericityCharacteristicMeasurementType::getSphericityChara_1070()
-{return SphericityChara_1070;}
+SphericityChara_1057_Type * SphericityCharacteristicMeasurementType::getSphericityChara_1057()
+{return SphericityChara_1057;}
 
-void SphericityCharacteristicMeasurementType::setSphericityChara_1070(SphericityChara_1070_Type * SphericityChara_1070In)
-{SphericityChara_1070 = SphericityChara_1070In;}
+void SphericityCharacteristicMeasurementType::setSphericityChara_1057(SphericityChara_1057_Type * SphericityChara_1057In)
+{SphericityChara_1057 = SphericityChara_1057In;}
 
 /* ***************************************************************** */
 
@@ -68627,7 +69162,7 @@ bool SphericityCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SphericityCharacteristicNominalType\n");
               returnValue = true;
@@ -68643,7 +69178,7 @@ bool SphericityCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -68652,7 +69187,7 @@ bool SphericityCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SphericityCharacteristicNominalType\n");
       returnValue = true;
@@ -68664,8 +69199,8 @@ bool SphericityCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -68697,7 +69232,7 @@ SquareCharacteristicDefinitionType::SquareCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -68714,7 +69249,7 @@ SquareCharacteristicDefinitionType::SquareCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -68735,7 +69270,7 @@ SquareCharacteristicDefinitionType::SquareCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -68753,7 +69288,7 @@ SquareCharacteristicDefinitionType::SquareCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -68900,7 +69435,7 @@ void SquareCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1059->printSelf(outFile);
+  LinearCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -68918,7 +69453,7 @@ bool SquareCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SquareCharacteristicDefinitionType\n");
               returnValue = true;
@@ -68934,7 +69469,7 @@ bool SquareCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -68943,7 +69478,7 @@ bool SquareCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SquareCharacteristicDefinitionType\n");
       returnValue = true;
@@ -68955,8 +69490,8 @@ bool SquareCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -69160,7 +69695,7 @@ bool SquareCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SquareCharacteristicItemType\n");
               returnValue = true;
@@ -69176,7 +69711,7 @@ bool SquareCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -69185,7 +69720,7 @@ bool SquareCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SquareCharacteristicItemType\n");
       returnValue = true;
@@ -69197,8 +69732,8 @@ bool SquareCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -69443,7 +69978,7 @@ bool SquareCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SquareCharacteristicMeasurementType\n");
               returnValue = true;
@@ -69459,7 +69994,7 @@ bool SquareCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -69468,7 +70003,7 @@ bool SquareCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SquareCharacteristicMeasurementType\n");
       returnValue = true;
@@ -69480,8 +70015,8 @@ bool SquareCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -69697,7 +70232,7 @@ bool SquareCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SquareCharacteristicNominalType\n");
               returnValue = true;
@@ -69713,7 +70248,7 @@ bool SquareCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -69722,7 +70257,7 @@ bool SquareCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SquareCharacteristicNominalType\n");
       returnValue = true;
@@ -69734,8 +70269,8 @@ bool SquareCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -69749,7 +70284,7 @@ bool SquareCharacteristicNominalType::badAttributes(
 StraightnessCharacteristicDefinitionType::StraightnessCharacteristicDefinitionType() :
   FormCharacteristicDefinitionBaseType()
 {
-  StraightnessCha_1071 = 0;
+  StraightnessCha_1058 = 0;
   MaterialCondition = 0;
   SizeCharacteristicDefinitionId = 0;
   ZoneShape = 0;
@@ -69770,12 +70305,12 @@ StraightnessCharacteristicDefinitionType::StraightnessCharacteristicDefinitionTy
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
- StraightnessCha_1071_Type * StraightnessCha_1071In,
+ StraightnessCha_1058_Type * StraightnessCha_1058In,
  MaterialModifierEnumType * MaterialConditionIn,
  QIFReferenceType * SizeCharacteristicDefinitionIdIn,
  StraightnessZoneShapeType * ZoneShapeIn,
@@ -69794,13 +70329,13 @@ StraightnessCharacteristicDefinitionType::StraightnessCharacteristicDefinitionTy
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn)
 {
-  StraightnessCha_1071 = StraightnessCha_1071In;
+  StraightnessCha_1058 = StraightnessCha_1058In;
   MaterialCondition = MaterialConditionIn;
   SizeCharacteristicDefinitionId = SizeCharacteristicDefinitionIdIn;
   ZoneShape = ZoneShapeIn;
@@ -69822,12 +70357,12 @@ StraightnessCharacteristicDefinitionType::StraightnessCharacteristicDefinitionTy
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
- StraightnessCha_1071_Type * StraightnessCha_1071In,
+ StraightnessCha_1058_Type * StraightnessCha_1058In,
  MaterialModifierEnumType * MaterialConditionIn,
  QIFReferenceType * SizeCharacteristicDefinitionIdIn,
  StraightnessZoneShapeType * ZoneShapeIn,
@@ -69847,13 +70382,13 @@ StraightnessCharacteristicDefinitionType::StraightnessCharacteristicDefinitionTy
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn)
 {
-  StraightnessCha_1071 = StraightnessCha_1071In;
+  StraightnessCha_1058 = StraightnessCha_1058In;
   MaterialCondition = MaterialConditionIn;
   SizeCharacteristicDefinitionId = SizeCharacteristicDefinitionIdIn;
   ZoneShape = ZoneShapeIn;
@@ -69863,7 +70398,7 @@ StraightnessCharacteristicDefinitionType::StraightnessCharacteristicDefinitionTy
 StraightnessCharacteristicDefinitionType::~StraightnessCharacteristicDefinitionType()
 {
   #ifndef NODESTRUCT
-  delete StraightnessCha_1071;
+  delete StraightnessCha_1058;
   delete MaterialCondition;
   delete SizeCharacteristicDefinitionId;
   delete ZoneShape;
@@ -69993,9 +70528,9 @@ void StraightnessCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -70029,7 +70564,7 @@ void StraightnessCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</OrientationPlane>\n");
     }
-  StraightnessCha_1071->printSelf(outFile);
+  StraightnessCha_1058->printSelf(outFile);
   if (MaterialCondition)
     {
       doSpaces(0, outFile);
@@ -70073,7 +70608,7 @@ bool StraightnessCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in StraightnessCharacteristicDefinitionType\n");
               returnValue = true;
@@ -70089,7 +70624,7 @@ bool StraightnessCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -70098,7 +70633,7 @@ bool StraightnessCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in StraightnessCharacteristicDefinitionType\n");
       returnValue = true;
@@ -70110,17 +70645,17 @@ bool StraightnessCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
 
-StraightnessCha_1071_Type * StraightnessCharacteristicDefinitionType::getStraightnessCha_1071()
-{return StraightnessCha_1071;}
+StraightnessCha_1058_Type * StraightnessCharacteristicDefinitionType::getStraightnessCha_1058()
+{return StraightnessCha_1058;}
 
-void StraightnessCharacteristicDefinitionType::setStraightnessCha_1071(StraightnessCha_1071_Type * StraightnessCha_1071In)
-{StraightnessCha_1071 = StraightnessCha_1071In;}
+void StraightnessCharacteristicDefinitionType::setStraightnessCha_1058(StraightnessCha_1058_Type * StraightnessCha_1058In)
+{StraightnessCha_1058 = StraightnessCha_1058In;}
 
 MaterialModifierEnumType * StraightnessCharacteristicDefinitionType::getMaterialCondition()
 {return MaterialCondition;}
@@ -70345,7 +70880,7 @@ bool StraightnessCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in StraightnessCharacteristicItemType\n");
               returnValue = true;
@@ -70361,7 +70896,7 @@ bool StraightnessCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -70370,7 +70905,7 @@ bool StraightnessCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in StraightnessCharacteristicItemType\n");
       returnValue = true;
@@ -70382,8 +70917,8 @@ bool StraightnessCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -70681,7 +71216,7 @@ bool StraightnessCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in StraightnessCharacteristicMeasurementType\n");
               returnValue = true;
@@ -70697,7 +71232,7 @@ bool StraightnessCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -70706,7 +71241,7 @@ bool StraightnessCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in StraightnessCharacteristicMeasurementType\n");
       returnValue = true;
@@ -70718,8 +71253,8 @@ bool StraightnessCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -70950,7 +71485,7 @@ bool StraightnessCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in StraightnessCharacteristicNominalType\n");
               returnValue = true;
@@ -70966,7 +71501,7 @@ bool StraightnessCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -70975,7 +71510,7 @@ bool StraightnessCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in StraightnessCharacteristicNominalType\n");
       returnValue = true;
@@ -70987,8 +71522,8 @@ bool StraightnessCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -71096,13 +71631,6 @@ StraightnessZoneShapeTypeChoicePair * StraightnessZoneShapeType::getStraightness
 
 void StraightnessZoneShapeType::setStraightnessZoneShapeTypePair(StraightnessZoneShapeTypeChoicePair * StraightnessZoneShapeTypePairIn)
 {StraightnessZoneShapeTypePair = StraightnessZoneShapeTypePairIn;}
-
-/* ***************************************************************** */
-
-/* class StraightnessZoneShapeTypeChoicePair
-
-*/
-
 StraightnessZoneShapeTypeChoicePair::StraightnessZoneShapeTypeChoicePair() {}
 
 StraightnessZoneShapeTypeChoicePair::StraightnessZoneShapeTypeChoicePair(
@@ -71216,6 +71744,13 @@ void StringValuesType::printSelf(FILE * outFile)
         fprintf(stderr, "StringValue list is empty\n");
         exit(1);
       }
+    if (StringValue->size() < 1)
+      {
+        fprintf(stderr,
+                "size of StringValue list (%d) less than minimum required (1)\n",
+                (int)StringValue->size());
+        exit(1);
+      }
     std::list<XmlString *>::iterator iter;
     for (iter = StringValue->begin();
          iter != StringValue->end(); iter++)
@@ -71243,7 +71778,7 @@ bool StringValuesType::badAttributes(
       if (decl->name == "n")
         {
           NaturalType * nVal;
-          if (n)
+          if (this->n)
             {
               fprintf(stderr, "two values for n in StringValuesType\n");
               returnValue = true;
@@ -71259,7 +71794,7 @@ bool StringValuesType::badAttributes(
               break;
             }
           else
-            n = nVal;
+            this->n = nVal;
         }
       else
         {
@@ -71268,7 +71803,7 @@ bool StringValuesType::badAttributes(
           break;
         }
     }
-  if (n == 0)
+  if (this->n == 0)
     {
       fprintf(stderr, "required attribute \"n\" missing in StringValuesType\n");
       returnValue = true;
@@ -71280,8 +71815,8 @@ bool StringValuesType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete n;
-      n = 0;
+      delete this->n;
+      this->n = 0;
     }
   return returnValue;
 }
@@ -71324,14 +71859,14 @@ SurfaceProfileCharacteristicDefinitionType::SurfaceProfileCharacteristicDefiniti
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
- ProfileCharacte_1068_Type * ProfileCharacte_1068In,
+ ProfileCharacte_1056_Type * ProfileCharacte_1056In,
  XmlBoolean * OffsetZoneIn,
  XmlBoolean * VariableAngleIn,
  CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -71354,14 +71889,14 @@ SurfaceProfileCharacteristicDefinitionType::SurfaceProfileCharacteristicDefiniti
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn,
     ToleranceValueIn,
     ToleranceDualValueIn,
-    ProfileCharacte_1068In,
+    ProfileCharacte_1056In,
     OffsetZoneIn,
     VariableAngleIn,
     SecondCompositeSegmentProfileDefinitionIn,
@@ -71388,14 +71923,14 @@ SurfaceProfileCharacteristicDefinitionType::SurfaceProfileCharacteristicDefiniti
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
- ProfileCharacte_1068_Type * ProfileCharacte_1068In,
+ ProfileCharacte_1056_Type * ProfileCharacte_1056In,
  XmlBoolean * OffsetZoneIn,
  XmlBoolean * VariableAngleIn,
  CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -71419,14 +71954,14 @@ SurfaceProfileCharacteristicDefinitionType::SurfaceProfileCharacteristicDefiniti
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn,
     ToleranceValueIn,
     ToleranceDualValueIn,
-    ProfileCharacte_1068In,
+    ProfileCharacte_1056In,
     OffsetZoneIn,
     VariableAngleIn,
     SecondCompositeSegmentProfileDefinitionIn,
@@ -71567,9 +72102,9 @@ void SurfaceProfileCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -71614,9 +72149,9 @@ void SurfaceProfileCharacteristicDefinitionType::printSelf(FILE * outFile)
       ToleranceDualValue->printSelf(outFile);
       fprintf(outFile, "</ToleranceDualValue>\n");
     }
-  if (ProfileCharacte_1068)
+  if (ProfileCharacte_1056)
     {
-      ProfileCharacte_1068->printSelf(outFile);
+  ProfileCharacte_1056->printSelf(outFile);
     }
   if (OffsetZone)
     {
@@ -71695,7 +72230,7 @@ bool SurfaceProfileCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SurfaceProfileCharacteristicDefinitionType\n");
               returnValue = true;
@@ -71711,7 +72246,7 @@ bool SurfaceProfileCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -71720,7 +72255,7 @@ bool SurfaceProfileCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceProfileCharacteristicDefinitionType\n");
       returnValue = true;
@@ -71732,8 +72267,8 @@ bool SurfaceProfileCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -71943,7 +72478,7 @@ bool SurfaceProfileCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SurfaceProfileCharacteristicItemType\n");
               returnValue = true;
@@ -71959,7 +72494,7 @@ bool SurfaceProfileCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -71968,7 +72503,7 @@ bool SurfaceProfileCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceProfileCharacteristicItemType\n");
       returnValue = true;
@@ -71980,8 +72515,8 @@ bool SurfaceProfileCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -72318,7 +72853,7 @@ bool SurfaceProfileCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SurfaceProfileCharacteristicMeasurementType\n");
               returnValue = true;
@@ -72334,7 +72869,7 @@ bool SurfaceProfileCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -72343,7 +72878,7 @@ bool SurfaceProfileCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceProfileCharacteristicMeasurementType\n");
       returnValue = true;
@@ -72355,8 +72890,8 @@ bool SurfaceProfileCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -72561,7 +73096,7 @@ bool SurfaceProfileCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SurfaceProfileCharacteristicNominalType\n");
               returnValue = true;
@@ -72577,7 +73112,7 @@ bool SurfaceProfileCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -72586,7 +73121,7 @@ bool SurfaceProfileCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceProfileCharacteristicNominalType\n");
       returnValue = true;
@@ -72598,8 +73133,8 @@ bool SurfaceProfileCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -72614,7 +73149,7 @@ SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCh
   ProfileCharacteristicDefinitionBaseType()
 {
   ToPointToleranceValue = 0;
-  SurfaceProfileN_1072 = 0;
+  SurfaceProfileN_1059 = 0;
 }
 
 SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCharacteristicDefinitionType(
@@ -72631,14 +73166,14 @@ SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCh
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
- ProfileCharacte_1068_Type * ProfileCharacte_1068In,
+ ProfileCharacte_1056_Type * ProfileCharacte_1056In,
  XmlBoolean * OffsetZoneIn,
  XmlBoolean * VariableAngleIn,
  CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -72647,7 +73182,7 @@ SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCh
  QIFReferenceFullType * DatumReferenceFrameIdIn,
  XmlBoolean * OrientationOnlyIn,
  LinearValueType * ToPointToleranceValueIn,
- SurfaceProfileN_1072_Type * SurfaceProfileN_1072In) :
+ SurfaceProfileN_1059_Type * SurfaceProfileN_1059In) :
   ProfileCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -72662,14 +73197,14 @@ SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCh
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn,
     ToleranceValueIn,
     ToleranceDualValueIn,
-    ProfileCharacte_1068In,
+    ProfileCharacte_1056In,
     OffsetZoneIn,
     VariableAngleIn,
     SecondCompositeSegmentProfileDefinitionIn,
@@ -72679,7 +73214,7 @@ SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCh
     OrientationOnlyIn)
 {
   ToPointToleranceValue = ToPointToleranceValueIn;
-  SurfaceProfileN_1072 = SurfaceProfileN_1072In;
+  SurfaceProfileN_1059 = SurfaceProfileN_1059In;
 }
 
 SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCharacteristicDefinitionType(
@@ -72697,14 +73232,14 @@ SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCh
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
  OrientationPlaneType * OrientationPlaneIn,
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
- ProfileCharacte_1068_Type * ProfileCharacte_1068In,
+ ProfileCharacte_1056_Type * ProfileCharacte_1056In,
  XmlBoolean * OffsetZoneIn,
  XmlBoolean * VariableAngleIn,
  CompositeSegmentProfileDefinitionType * SecondCompositeSegmentProfileDefinitionIn,
@@ -72713,7 +73248,7 @@ SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCh
  QIFReferenceFullType * DatumReferenceFrameIdIn,
  XmlBoolean * OrientationOnlyIn,
  LinearValueType * ToPointToleranceValueIn,
- SurfaceProfileN_1072_Type * SurfaceProfileN_1072In) :
+ SurfaceProfileN_1059_Type * SurfaceProfileN_1059In) :
   ProfileCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -72729,14 +73264,14 @@ SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCh
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
     OrientationPlaneIn,
     ToleranceValueIn,
     ToleranceDualValueIn,
-    ProfileCharacte_1068In,
+    ProfileCharacte_1056In,
     OffsetZoneIn,
     VariableAngleIn,
     SecondCompositeSegmentProfileDefinitionIn,
@@ -72746,14 +73281,14 @@ SurfaceProfileNonUniformCharacteristicDefinitionType::SurfaceProfileNonUniformCh
     OrientationOnlyIn)
 {
   ToPointToleranceValue = ToPointToleranceValueIn;
-  SurfaceProfileN_1072 = SurfaceProfileN_1072In;
+  SurfaceProfileN_1059 = SurfaceProfileN_1059In;
 }
 
 SurfaceProfileNonUniformCharacteristicDefinitionType::~SurfaceProfileNonUniformCharacteristicDefinitionType()
 {
   #ifndef NODESTRUCT
   delete ToPointToleranceValue;
-  delete SurfaceProfileN_1072;
+  delete SurfaceProfileN_1059;
   #endif
 }
 
@@ -72879,9 +73414,9 @@ void SurfaceProfileNonUniformCharacteristicDefinitionType::printSelf(FILE * outF
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -72926,9 +73461,9 @@ void SurfaceProfileNonUniformCharacteristicDefinitionType::printSelf(FILE * outF
       ToleranceDualValue->printSelf(outFile);
       fprintf(outFile, "</ToleranceDualValue>\n");
     }
-  if (ProfileCharacte_1068)
+  if (ProfileCharacte_1056)
     {
-      ProfileCharacte_1068->printSelf(outFile);
+  ProfileCharacte_1056->printSelf(outFile);
     }
   if (OffsetZone)
     {
@@ -72986,9 +73521,9 @@ void SurfaceProfileNonUniformCharacteristicDefinitionType::printSelf(FILE * outF
   fprintf(outFile, "<ToPointToleranceValue");
   ToPointToleranceValue->printSelf(outFile);
   fprintf(outFile, "</ToPointToleranceValue>\n");
-  if (SurfaceProfileN_1072)
+  if (SurfaceProfileN_1059)
     {
-      SurfaceProfileN_1072->printSelf(outFile);
+  SurfaceProfileN_1059->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -73007,7 +73542,7 @@ bool SurfaceProfileNonUniformCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SurfaceProfileNonUniformCharacteristicDefinitionType\n");
               returnValue = true;
@@ -73023,7 +73558,7 @@ bool SurfaceProfileNonUniformCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -73032,7 +73567,7 @@ bool SurfaceProfileNonUniformCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceProfileNonUniformCharacteristicDefinitionType\n");
       returnValue = true;
@@ -73044,8 +73579,8 @@ bool SurfaceProfileNonUniformCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -73056,11 +73591,11 @@ LinearValueType * SurfaceProfileNonUniformCharacteristicDefinitionType::getToPoi
 void SurfaceProfileNonUniformCharacteristicDefinitionType::setToPointToleranceValue(LinearValueType * ToPointToleranceValueIn)
 {ToPointToleranceValue = ToPointToleranceValueIn;}
 
-SurfaceProfileN_1072_Type * SurfaceProfileNonUniformCharacteristicDefinitionType::getSurfaceProfileN_1072()
-{return SurfaceProfileN_1072;}
+SurfaceProfileN_1059_Type * SurfaceProfileNonUniformCharacteristicDefinitionType::getSurfaceProfileN_1059()
+{return SurfaceProfileN_1059;}
 
-void SurfaceProfileNonUniformCharacteristicDefinitionType::setSurfaceProfileN_1072(SurfaceProfileN_1072_Type * SurfaceProfileN_1072In)
-{SurfaceProfileN_1072 = SurfaceProfileN_1072In;}
+void SurfaceProfileNonUniformCharacteristicDefinitionType::setSurfaceProfileN_1059(SurfaceProfileN_1059_Type * SurfaceProfileN_1059In)
+{SurfaceProfileN_1059 = SurfaceProfileN_1059In;}
 
 /* ***************************************************************** */
 
@@ -73261,7 +73796,7 @@ bool SurfaceProfileNonUniformCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SurfaceProfileNonUniformCharacteristicItemType\n");
               returnValue = true;
@@ -73277,7 +73812,7 @@ bool SurfaceProfileNonUniformCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -73286,7 +73821,7 @@ bool SurfaceProfileNonUniformCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceProfileNonUniformCharacteristicItemType\n");
       returnValue = true;
@@ -73298,8 +73833,8 @@ bool SurfaceProfileNonUniformCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -73636,7 +74171,7 @@ bool SurfaceProfileNonUniformCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SurfaceProfileNonUniformCharacteristicMeasurementType\n");
               returnValue = true;
@@ -73652,7 +74187,7 @@ bool SurfaceProfileNonUniformCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -73661,7 +74196,7 @@ bool SurfaceProfileNonUniformCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceProfileNonUniformCharacteristicMeasurementType\n");
       returnValue = true;
@@ -73673,8 +74208,8 @@ bool SurfaceProfileNonUniformCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -73879,7 +74414,7 @@ bool SurfaceProfileNonUniformCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SurfaceProfileNonUniformCharacteristicNominalType\n");
               returnValue = true;
@@ -73895,7 +74430,7 @@ bool SurfaceProfileNonUniformCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -73904,7 +74439,7 @@ bool SurfaceProfileNonUniformCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceProfileNonUniformCharacteristicNominalType\n");
       returnValue = true;
@@ -73916,8 +74451,8 @@ bool SurfaceProfileNonUniformCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -74152,7 +74687,7 @@ bool SurfaceTextureCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SurfaceTextureCharacteristicDefinitionType\n");
               returnValue = true;
@@ -74168,7 +74703,7 @@ bool SurfaceTextureCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -74177,7 +74712,7 @@ bool SurfaceTextureCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceTextureCharacteristicDefinitionType\n");
       returnValue = true;
@@ -74189,8 +74724,8 @@ bool SurfaceTextureCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -74400,7 +74935,7 @@ bool SurfaceTextureCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SurfaceTextureCharacteristicItemType\n");
               returnValue = true;
@@ -74416,7 +74951,7 @@ bool SurfaceTextureCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -74425,7 +74960,7 @@ bool SurfaceTextureCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceTextureCharacteristicItemType\n");
       returnValue = true;
@@ -74437,8 +74972,8 @@ bool SurfaceTextureCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -74663,7 +75198,7 @@ bool SurfaceTextureCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SurfaceTextureCharacteristicMeasurementType\n");
               returnValue = true;
@@ -74679,7 +75214,7 @@ bool SurfaceTextureCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -74688,7 +75223,7 @@ bool SurfaceTextureCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceTextureCharacteristicMeasurementType\n");
       returnValue = true;
@@ -74700,8 +75235,8 @@ bool SurfaceTextureCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -75005,7 +75540,7 @@ bool SurfaceTextureCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SurfaceTextureCharacteristicNominalType\n");
               returnValue = true;
@@ -75021,7 +75556,7 @@ bool SurfaceTextureCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -75030,7 +75565,7 @@ bool SurfaceTextureCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SurfaceTextureCharacteristicNominalType\n");
       returnValue = true;
@@ -75042,8 +75577,8 @@ bool SurfaceTextureCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -75123,7 +75658,7 @@ SymmetryCharacteristicDefinitionType::SymmetryCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -75147,7 +75682,7 @@ SymmetryCharacteristicDefinitionType::SymmetryCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -75175,7 +75710,7 @@ SymmetryCharacteristicDefinitionType::SymmetryCharacteristicDefinitionType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -75200,7 +75735,7 @@ SymmetryCharacteristicDefinitionType::SymmetryCharacteristicDefinitionType(
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -75343,9 +75878,9 @@ void SymmetryCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -75430,7 +75965,7 @@ bool SymmetryCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SymmetryCharacteristicDefinitionType\n");
               returnValue = true;
@@ -75446,7 +75981,7 @@ bool SymmetryCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -75455,7 +75990,7 @@ bool SymmetryCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SymmetryCharacteristicDefinitionType\n");
       returnValue = true;
@@ -75467,8 +76002,8 @@ bool SymmetryCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -75684,7 +76219,7 @@ bool SymmetryCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SymmetryCharacteristicItemType\n");
               returnValue = true;
@@ -75700,7 +76235,7 @@ bool SymmetryCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -75709,7 +76244,7 @@ bool SymmetryCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SymmetryCharacteristicItemType\n");
       returnValue = true;
@@ -75721,8 +76256,8 @@ bool SymmetryCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -76018,7 +76553,7 @@ bool SymmetryCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SymmetryCharacteristicMeasurementType\n");
               returnValue = true;
@@ -76034,7 +76569,7 @@ bool SymmetryCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -76043,7 +76578,7 @@ bool SymmetryCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SymmetryCharacteristicMeasurementType\n");
       returnValue = true;
@@ -76055,8 +76590,8 @@ bool SymmetryCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -76262,7 +76797,7 @@ bool SymmetryCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in SymmetryCharacteristicNominalType\n");
               returnValue = true;
@@ -76278,7 +76813,7 @@ bool SymmetryCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -76287,7 +76822,7 @@ bool SymmetryCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in SymmetryCharacteristicNominalType\n");
       returnValue = true;
@@ -76299,8 +76834,8 @@ bool SymmetryCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -76314,7 +76849,7 @@ bool SymmetryCharacteristicNominalType::badAttributes(
 TemperatureCharacteristicDefinitionBaseType::TemperatureCharacteristicDefinitionBaseType() :
   CharacteristicDefinitionBaseType()
 {
-  TemperatureChar_1073 = 0;
+  TemperatureCharacteristicDefinitionBaseTypePair = 0;
 }
 
 TemperatureCharacteristicDefinitionBaseType::TemperatureCharacteristicDefinitionBaseType(
@@ -76331,7 +76866,7 @@ TemperatureCharacteristicDefinitionBaseType::TemperatureCharacteristicDefinition
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- TemperatureChar_1073_Type * TemperatureChar_1073In) :
+ TemperatureCharacteristicDefinitionBaseTypeChoicePair * TemperatureCharacteristicDefinitionBaseTypePairIn) :
   CharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -76347,7 +76882,7 @@ TemperatureCharacteristicDefinitionBaseType::TemperatureCharacteristicDefinition
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  TemperatureChar_1073 = TemperatureChar_1073In;
+  TemperatureCharacteristicDefinitionBaseTypePair = TemperatureCharacteristicDefinitionBaseTypePairIn;
 }
 
 TemperatureCharacteristicDefinitionBaseType::TemperatureCharacteristicDefinitionBaseType(
@@ -76365,7 +76900,7 @@ TemperatureCharacteristicDefinitionBaseType::TemperatureCharacteristicDefinition
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- TemperatureChar_1073_Type * TemperatureChar_1073In) :
+ TemperatureCharacteristicDefinitionBaseTypeChoicePair * TemperatureCharacteristicDefinitionBaseTypePairIn) :
   CharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -76382,13 +76917,13 @@ TemperatureCharacteristicDefinitionBaseType::TemperatureCharacteristicDefinition
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  TemperatureChar_1073 = TemperatureChar_1073In;
+  TemperatureCharacteristicDefinitionBaseTypePair = TemperatureCharacteristicDefinitionBaseTypePairIn;
 }
 
 TemperatureCharacteristicDefinitionBaseType::~TemperatureCharacteristicDefinitionBaseType()
 {
   #ifndef NODESTRUCT
-  delete TemperatureChar_1073;
+  delete TemperatureCharacteristicDefinitionBaseTypePair;
   #endif
 }
 
@@ -76514,8 +77049,54 @@ void TemperatureCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  TemperatureChar_1073->printSelf(outFile);
+  TemperatureCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
+}
+TemperatureCharacteristicDefinitionBaseTypeChoicePair * TemperatureCharacteristicDefinitionBaseType::getTemperatureCharacteristicDefinitionBaseTypeChoicePair()
+{return TemperatureCharacteristicDefinitionBaseTypePair;}
+
+void TemperatureCharacteristicDefinitionBaseType::setTemperatureCharacteristicDefinitionBaseTypeChoicePair(TemperatureCharacteristicDefinitionBaseTypeChoicePair * TemperatureCharacteristicDefinitionBaseTypePairIn)
+{TemperatureCharacteristicDefinitionBaseTypePair = TemperatureCharacteristicDefinitionBaseTypePairIn;}
+
+/* ***************************************************************** */
+
+TemperatureCharacteristicDefinitionBaseTypeChoicePair::TemperatureCharacteristicDefinitionBaseTypeChoicePair() {}
+
+TemperatureCharacteristicDefinitionBaseTypeChoicePair::TemperatureCharacteristicDefinitionBaseTypeChoicePair(
+ whichOne TemperatureCharacteristicDefinitionBaseTypeTypeIn,
+ TemperatureCharacteristicDefinitionBaseTypeVal TemperatureCharacteristicDefinitionBaseTypeValueIn)
+{
+  TemperatureCharacteristicDefinitionBaseTypeType = TemperatureCharacteristicDefinitionBaseTypeTypeIn;
+  TemperatureCharacteristicDefinitionBaseTypeValue = TemperatureCharacteristicDefinitionBaseTypeValueIn;
+}
+
+TemperatureCharacteristicDefinitionBaseTypeChoicePair::~TemperatureCharacteristicDefinitionBaseTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (TemperatureCharacteristicDefinitionBaseTypeType == ToleranceE)
+    delete TemperatureCharacteristicDefinitionBaseTypeValue.Tolerance;
+  else if (TemperatureCharacteristicDefinitionBaseTypeType == NonToleranceE)
+    delete TemperatureCharacteristicDefinitionBaseTypeValue.NonTolerance;
+  #endif
+}
+
+void TemperatureCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (TemperatureCharacteristicDefinitionBaseTypeType == ToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Tolerance");
+      TemperatureCharacteristicDefinitionBaseTypeValue.Tolerance->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</Tolerance>\n");
+    }
+  else if (TemperatureCharacteristicDefinitionBaseTypeType == NonToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<NonTolerance");
+      TemperatureCharacteristicDefinitionBaseTypeValue.NonTolerance->printSelf(outFile);
+      fprintf(outFile, "</NonTolerance>\n");
+    }
 }
 
 bool TemperatureCharacteristicDefinitionBaseType::badAttributes(
@@ -76532,7 +77113,7 @@ bool TemperatureCharacteristicDefinitionBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in TemperatureCharacteristicDefinitionBaseType\n");
               returnValue = true;
@@ -76548,7 +77129,7 @@ bool TemperatureCharacteristicDefinitionBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -76557,7 +77138,7 @@ bool TemperatureCharacteristicDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in TemperatureCharacteristicDefinitionBaseType\n");
       returnValue = true;
@@ -76569,17 +77150,11 @@ bool TemperatureCharacteristicDefinitionBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
-
-TemperatureChar_1073_Type * TemperatureCharacteristicDefinitionBaseType::getTemperatureChar_1073()
-{return TemperatureChar_1073;}
-
-void TemperatureCharacteristicDefinitionBaseType::setTemperatureChar_1073(TemperatureChar_1073_Type * TemperatureChar_1073In)
-{TemperatureChar_1073 = TemperatureChar_1073In;}
 
 /* ***************************************************************** */
 
@@ -76780,7 +77355,7 @@ bool TemperatureCharacteristicItemBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in TemperatureCharacteristicItemBaseType\n");
               returnValue = true;
@@ -76796,7 +77371,7 @@ bool TemperatureCharacteristicItemBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -76805,7 +77380,7 @@ bool TemperatureCharacteristicItemBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in TemperatureCharacteristicItemBaseType\n");
       returnValue = true;
@@ -76817,8 +77392,8 @@ bool TemperatureCharacteristicItemBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -77069,7 +77644,7 @@ bool TemperatureCharacteristicMeasurementBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in TemperatureCharacteristicMeasurementBaseType\n");
               returnValue = true;
@@ -77085,7 +77660,7 @@ bool TemperatureCharacteristicMeasurementBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -77094,7 +77669,7 @@ bool TemperatureCharacteristicMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in TemperatureCharacteristicMeasurementBaseType\n");
       returnValue = true;
@@ -77106,8 +77681,8 @@ bool TemperatureCharacteristicMeasurementBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -77332,7 +77907,7 @@ bool TemperatureCharacteristicNominalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in TemperatureCharacteristicNominalBaseType\n");
               returnValue = true;
@@ -77348,7 +77923,7 @@ bool TemperatureCharacteristicNominalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -77357,7 +77932,7 @@ bool TemperatureCharacteristicNominalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in TemperatureCharacteristicNominalBaseType\n");
       returnValue = true;
@@ -77369,8 +77944,8 @@ bool TemperatureCharacteristicNominalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -77408,7 +77983,7 @@ ThicknessCharacteristicDefinitionType::ThicknessCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -77425,7 +78000,7 @@ ThicknessCharacteristicDefinitionType::ThicknessCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -77446,7 +78021,7 @@ ThicknessCharacteristicDefinitionType::ThicknessCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -77464,7 +78039,7 @@ ThicknessCharacteristicDefinitionType::ThicknessCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -77611,7 +78186,7 @@ void ThicknessCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1059->printSelf(outFile);
+  LinearCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -77629,7 +78204,7 @@ bool ThicknessCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ThicknessCharacteristicDefinitionType\n");
               returnValue = true;
@@ -77645,7 +78220,7 @@ bool ThicknessCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -77654,7 +78229,7 @@ bool ThicknessCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ThicknessCharacteristicDefinitionType\n");
       returnValue = true;
@@ -77666,8 +78241,8 @@ bool ThicknessCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -77871,7 +78446,7 @@ bool ThicknessCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ThicknessCharacteristicItemType\n");
               returnValue = true;
@@ -77887,7 +78462,7 @@ bool ThicknessCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -77896,7 +78471,7 @@ bool ThicknessCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ThicknessCharacteristicItemType\n");
       returnValue = true;
@@ -77908,8 +78483,8 @@ bool ThicknessCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -78154,7 +78729,7 @@ bool ThicknessCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ThicknessCharacteristicMeasurementType\n");
               returnValue = true;
@@ -78170,7 +78745,7 @@ bool ThicknessCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -78179,7 +78754,7 @@ bool ThicknessCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ThicknessCharacteristicMeasurementType\n");
       returnValue = true;
@@ -78191,8 +78766,8 @@ bool ThicknessCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -78408,7 +78983,7 @@ bool ThicknessCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ThicknessCharacteristicNominalType\n");
               returnValue = true;
@@ -78424,7 +78999,7 @@ bool ThicknessCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -78433,7 +79008,7 @@ bool ThicknessCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ThicknessCharacteristicNominalType\n");
       returnValue = true;
@@ -78445,8 +79020,8 @@ bool ThicknessCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -78681,7 +79256,7 @@ bool ThreadCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ThreadCharacteristicDefinitionType\n");
               returnValue = true;
@@ -78697,7 +79272,7 @@ bool ThreadCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -78706,7 +79281,7 @@ bool ThreadCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ThreadCharacteristicDefinitionType\n");
       returnValue = true;
@@ -78718,8 +79293,8 @@ bool ThreadCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -78929,7 +79504,7 @@ bool ThreadCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ThreadCharacteristicItemType\n");
               returnValue = true;
@@ -78945,7 +79520,7 @@ bool ThreadCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -78954,7 +79529,7 @@ bool ThreadCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ThreadCharacteristicItemType\n");
       returnValue = true;
@@ -78966,8 +79541,8 @@ bool ThreadCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -79205,7 +79780,7 @@ bool ThreadCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ThreadCharacteristicMeasurementType\n");
               returnValue = true;
@@ -79221,7 +79796,7 @@ bool ThreadCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -79230,7 +79805,7 @@ bool ThreadCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ThreadCharacteristicMeasurementType\n");
       returnValue = true;
@@ -79242,8 +79817,8 @@ bool ThreadCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -79449,7 +80024,7 @@ bool ThreadCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ThreadCharacteristicNominalType\n");
               returnValue = true;
@@ -79465,7 +80040,7 @@ bool ThreadCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -79474,7 +80049,7 @@ bool ThreadCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ThreadCharacteristicNominalType\n");
       returnValue = true;
@@ -79486,8 +80061,8 @@ bool ThreadCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -79501,7 +80076,7 @@ bool ThreadCharacteristicNominalType::badAttributes(
 TimeCharacteristicDefinitionBaseType::TimeCharacteristicDefinitionBaseType() :
   CharacteristicDefinitionBaseType()
 {
-  TimeCharacteris_1074 = 0;
+  TimeCharacteristicDefinitionBaseTypePair = 0;
 }
 
 TimeCharacteristicDefinitionBaseType::TimeCharacteristicDefinitionBaseType(
@@ -79518,7 +80093,7 @@ TimeCharacteristicDefinitionBaseType::TimeCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- TimeCharacteris_1074_Type * TimeCharacteris_1074In) :
+ TimeCharacteristicDefinitionBaseTypeChoicePair * TimeCharacteristicDefinitionBaseTypePairIn) :
   CharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -79534,7 +80109,7 @@ TimeCharacteristicDefinitionBaseType::TimeCharacteristicDefinitionBaseType(
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  TimeCharacteris_1074 = TimeCharacteris_1074In;
+  TimeCharacteristicDefinitionBaseTypePair = TimeCharacteristicDefinitionBaseTypePairIn;
 }
 
 TimeCharacteristicDefinitionBaseType::TimeCharacteristicDefinitionBaseType(
@@ -79552,7 +80127,7 @@ TimeCharacteristicDefinitionBaseType::TimeCharacteristicDefinitionBaseType(
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- TimeCharacteris_1074_Type * TimeCharacteris_1074In) :
+ TimeCharacteristicDefinitionBaseTypeChoicePair * TimeCharacteristicDefinitionBaseTypePairIn) :
   CharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -79569,13 +80144,13 @@ TimeCharacteristicDefinitionBaseType::TimeCharacteristicDefinitionBaseType(
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn)
 {
-  TimeCharacteris_1074 = TimeCharacteris_1074In;
+  TimeCharacteristicDefinitionBaseTypePair = TimeCharacteristicDefinitionBaseTypePairIn;
 }
 
 TimeCharacteristicDefinitionBaseType::~TimeCharacteristicDefinitionBaseType()
 {
   #ifndef NODESTRUCT
-  delete TimeCharacteris_1074;
+  delete TimeCharacteristicDefinitionBaseTypePair;
   #endif
 }
 
@@ -79701,8 +80276,54 @@ void TimeCharacteristicDefinitionBaseType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  TimeCharacteris_1074->printSelf(outFile);
+  TimeCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
+}
+TimeCharacteristicDefinitionBaseTypeChoicePair * TimeCharacteristicDefinitionBaseType::getTimeCharacteristicDefinitionBaseTypeChoicePair()
+{return TimeCharacteristicDefinitionBaseTypePair;}
+
+void TimeCharacteristicDefinitionBaseType::setTimeCharacteristicDefinitionBaseTypeChoicePair(TimeCharacteristicDefinitionBaseTypeChoicePair * TimeCharacteristicDefinitionBaseTypePairIn)
+{TimeCharacteristicDefinitionBaseTypePair = TimeCharacteristicDefinitionBaseTypePairIn;}
+
+/* ***************************************************************** */
+
+TimeCharacteristicDefinitionBaseTypeChoicePair::TimeCharacteristicDefinitionBaseTypeChoicePair() {}
+
+TimeCharacteristicDefinitionBaseTypeChoicePair::TimeCharacteristicDefinitionBaseTypeChoicePair(
+ whichOne TimeCharacteristicDefinitionBaseTypeTypeIn,
+ TimeCharacteristicDefinitionBaseTypeVal TimeCharacteristicDefinitionBaseTypeValueIn)
+{
+  TimeCharacteristicDefinitionBaseTypeType = TimeCharacteristicDefinitionBaseTypeTypeIn;
+  TimeCharacteristicDefinitionBaseTypeValue = TimeCharacteristicDefinitionBaseTypeValueIn;
+}
+
+TimeCharacteristicDefinitionBaseTypeChoicePair::~TimeCharacteristicDefinitionBaseTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (TimeCharacteristicDefinitionBaseTypeType == ToleranceE)
+    delete TimeCharacteristicDefinitionBaseTypeValue.Tolerance;
+  else if (TimeCharacteristicDefinitionBaseTypeType == NonToleranceE)
+    delete TimeCharacteristicDefinitionBaseTypeValue.NonTolerance;
+  #endif
+}
+
+void TimeCharacteristicDefinitionBaseTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (TimeCharacteristicDefinitionBaseTypeType == ToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<Tolerance");
+      TimeCharacteristicDefinitionBaseTypeValue.Tolerance->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</Tolerance>\n");
+    }
+  else if (TimeCharacteristicDefinitionBaseTypeType == NonToleranceE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<NonTolerance");
+      TimeCharacteristicDefinitionBaseTypeValue.NonTolerance->printSelf(outFile);
+      fprintf(outFile, "</NonTolerance>\n");
+    }
 }
 
 bool TimeCharacteristicDefinitionBaseType::badAttributes(
@@ -79719,7 +80340,7 @@ bool TimeCharacteristicDefinitionBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in TimeCharacteristicDefinitionBaseType\n");
               returnValue = true;
@@ -79735,7 +80356,7 @@ bool TimeCharacteristicDefinitionBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -79744,7 +80365,7 @@ bool TimeCharacteristicDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in TimeCharacteristicDefinitionBaseType\n");
       returnValue = true;
@@ -79756,17 +80377,11 @@ bool TimeCharacteristicDefinitionBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
-
-TimeCharacteris_1074_Type * TimeCharacteristicDefinitionBaseType::getTimeCharacteris_1074()
-{return TimeCharacteris_1074;}
-
-void TimeCharacteristicDefinitionBaseType::setTimeCharacteris_1074(TimeCharacteris_1074_Type * TimeCharacteris_1074In)
-{TimeCharacteris_1074 = TimeCharacteris_1074In;}
 
 /* ***************************************************************** */
 
@@ -79967,7 +80582,7 @@ bool TimeCharacteristicItemBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in TimeCharacteristicItemBaseType\n");
               returnValue = true;
@@ -79983,7 +80598,7 @@ bool TimeCharacteristicItemBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -79992,7 +80607,7 @@ bool TimeCharacteristicItemBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in TimeCharacteristicItemBaseType\n");
       returnValue = true;
@@ -80004,8 +80619,8 @@ bool TimeCharacteristicItemBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -80256,7 +80871,7 @@ bool TimeCharacteristicMeasurementBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in TimeCharacteristicMeasurementBaseType\n");
               returnValue = true;
@@ -80272,7 +80887,7 @@ bool TimeCharacteristicMeasurementBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -80281,7 +80896,7 @@ bool TimeCharacteristicMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in TimeCharacteristicMeasurementBaseType\n");
       returnValue = true;
@@ -80293,8 +80908,8 @@ bool TimeCharacteristicMeasurementBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -80519,7 +81134,7 @@ bool TimeCharacteristicNominalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in TimeCharacteristicNominalBaseType\n");
               returnValue = true;
@@ -80535,7 +81150,7 @@ bool TimeCharacteristicNominalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -80544,7 +81159,7 @@ bool TimeCharacteristicNominalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in TimeCharacteristicNominalBaseType\n");
       returnValue = true;
@@ -80556,8 +81171,8 @@ bool TimeCharacteristicNominalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -80646,13 +81261,6 @@ ToleranceDefinitionsTypeChoicePairLisd * ToleranceDefinitionsType::getToleranceD
 
 void ToleranceDefinitionsType::setToleranceDefinitionsTypePairs(ToleranceDefinitionsTypeChoicePairLisd * ToleranceDefinitionsTypePairsIn)
 {ToleranceDefinitionsTypePairs = ToleranceDefinitionsTypePairsIn;}
-
-/* ***************************************************************** */
-
-/* class ToleranceDefinitionsTypeChoicePair
-
-*/
-
 ToleranceDefinitionsTypeChoicePair::ToleranceDefinitionsTypeChoicePair() {}
 
 ToleranceDefinitionsTypeChoicePair::ToleranceDefinitionsTypeChoicePair(
@@ -80693,6 +81301,69 @@ void ToleranceDefinitionsTypeChoicePair::printSelf(FILE * outFile)
     }
 }
 
+bool ToleranceDefinitionsType::badAttributes(
+ AttributePairLisd * attributes)
+{
+  std::list<AttributePair *>::iterator iter;
+  AttributePair * decl;
+  bool returnValue;
+
+  returnValue = false;
+  for (iter = attributes->begin(); iter != attributes->end(); iter++)
+    {
+      decl = *iter;
+      if (decl->name == "n")
+        {
+          NaturalType * nVal;
+          if (this->n)
+            {
+              fprintf(stderr, "two values for n in ToleranceDefinitionsType\n");
+              returnValue = true;
+              break;
+            }
+          nVal = new NaturalType(decl->val.c_str());
+          if (nVal->bad)
+            {
+              delete nVal;
+              fprintf(stderr, "bad value %s for n in ToleranceDefinitionsType\n",
+                      decl->val.c_str());
+              returnValue = true;
+              break;
+            }
+          else
+            this->n = nVal;
+        }
+      else
+        {
+          fprintf(stderr, "bad attribute in ToleranceDefinitionsType\n");
+          returnValue = true;
+          break;
+        }
+    }
+  if (this->n == 0)
+    {
+      fprintf(stderr, "required attribute \"n\" missing in ToleranceDefinitionsType\n");
+      returnValue = true;
+    }
+  for (iter = attributes->begin(); iter != attributes->end(); iter++)
+    {
+      delete *iter;
+    }
+  attributes->clear();
+  if (returnValue == true)
+    {
+      delete this->n;
+      this->n = 0;
+    }
+  return returnValue;
+}
+
+NaturalType * ToleranceDefinitionsType::getn()
+{return n;}
+
+void ToleranceDefinitionsType::setn(NaturalType * nIn)
+{n = nIn;}
+
 /* ***************************************************************** */
 
 /* class ToleranceDefinitionsTypeChoicePairLisd
@@ -80722,77 +81393,11 @@ void ToleranceDefinitionsTypeChoicePairLisd::printSelf(FILE * outFile)
 {
   std::list<ToleranceDefinitionsTypeChoicePair *>::iterator iter;
 
-  fprintf(outFile, ">\n");
-  doSpaces(+INDENT, outFile);
   for (iter = begin(); iter != end(); iter++)
     {
       (*iter)->printSelf(outFile);
     }
-  doSpaces(-INDENT, outFile);
 }
-
-bool ToleranceDefinitionsType::badAttributes(
- AttributePairLisd * attributes)
-{
-  std::list<AttributePair *>::iterator iter;
-  AttributePair * decl;
-  bool returnValue;
-
-  returnValue = false;
-  for (iter = attributes->begin(); iter != attributes->end(); iter++)
-    {
-      decl = *iter;
-      if (decl->name == "n")
-        {
-          NaturalType * nVal;
-          if (n)
-            {
-              fprintf(stderr, "two values for n in ToleranceDefinitionsType\n");
-              returnValue = true;
-              break;
-            }
-          nVal = new NaturalType(decl->val.c_str());
-          if (nVal->bad)
-            {
-              delete nVal;
-              fprintf(stderr, "bad value %s for n in ToleranceDefinitionsType\n",
-                      decl->val.c_str());
-              returnValue = true;
-              break;
-            }
-          else
-            n = nVal;
-        }
-      else
-        {
-          fprintf(stderr, "bad attribute in ToleranceDefinitionsType\n");
-          returnValue = true;
-          break;
-        }
-    }
-  if (n == 0)
-    {
-      fprintf(stderr, "required attribute \"n\" missing in ToleranceDefinitionsType\n");
-      returnValue = true;
-    }
-  for (iter = attributes->begin(); iter != attributes->end(); iter++)
-    {
-      delete *iter;
-    }
-  attributes->clear();
-  if (returnValue == true)
-    {
-      delete n;
-      n = 0;
-    }
-  return returnValue;
-}
-
-NaturalType * ToleranceDefinitionsType::getn()
-{return n;}
-
-void ToleranceDefinitionsType::setn(NaturalType * nIn)
-{n = nIn;}
 
 /* ***************************************************************** */
 
@@ -80821,7 +81426,7 @@ ToroidicityCharacteristicDefinitionType::ToroidicityCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -80842,7 +81447,7 @@ ToroidicityCharacteristicDefinitionType::ToroidicityCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -80867,7 +81472,7 @@ ToroidicityCharacteristicDefinitionType::ToroidicityCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -80889,7 +81494,7 @@ ToroidicityCharacteristicDefinitionType::ToroidicityCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -81029,9 +81634,9 @@ void ToroidicityCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -81093,7 +81698,7 @@ bool ToroidicityCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ToroidicityCharacteristicDefinitionType\n");
               returnValue = true;
@@ -81109,7 +81714,7 @@ bool ToroidicityCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -81118,7 +81723,7 @@ bool ToroidicityCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ToroidicityCharacteristicDefinitionType\n");
       returnValue = true;
@@ -81130,8 +81735,8 @@ bool ToroidicityCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -81347,7 +81952,7 @@ bool ToroidicityCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ToroidicityCharacteristicItemType\n");
               returnValue = true;
@@ -81363,7 +81968,7 @@ bool ToroidicityCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -81372,7 +81977,7 @@ bool ToroidicityCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ToroidicityCharacteristicItemType\n");
       returnValue = true;
@@ -81384,8 +81989,8 @@ bool ToroidicityCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -81630,7 +82235,7 @@ bool ToroidicityCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ToroidicityCharacteristicMeasurementType\n");
               returnValue = true;
@@ -81646,7 +82251,7 @@ bool ToroidicityCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -81655,7 +82260,7 @@ bool ToroidicityCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ToroidicityCharacteristicMeasurementType\n");
       returnValue = true;
@@ -81667,8 +82272,8 @@ bool ToroidicityCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -81862,7 +82467,7 @@ bool ToroidicityCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in ToroidicityCharacteristicNominalType\n");
               returnValue = true;
@@ -81878,7 +82483,7 @@ bool ToroidicityCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -81887,7 +82492,7 @@ bool ToroidicityCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in ToroidicityCharacteristicNominalType\n");
       returnValue = true;
@@ -81899,8 +82504,8 @@ bool ToroidicityCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -81930,7 +82535,7 @@ TotalRunoutCharacteristicDefinitionType::TotalRunoutCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -81952,7 +82557,7 @@ TotalRunoutCharacteristicDefinitionType::TotalRunoutCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -81978,7 +82583,7 @@ TotalRunoutCharacteristicDefinitionType::TotalRunoutCharacteristicDefinitionType
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- GeometricCharac_1058_Type * GeometricCharac_1058In,
+ GeometricCharac_1050_Type * GeometricCharac_1050In,
  DirectionFeatureType * DirectionFeatureIn,
  CollectionPlaneType * CollectionPlaneIn,
  IntersectionPlaneType * IntersectionPlaneIn,
@@ -82001,7 +82606,7 @@ TotalRunoutCharacteristicDefinitionType::TotalRunoutCharacteristicDefinitionType
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    GeometricCharac_1058In,
+    GeometricCharac_1050In,
     DirectionFeatureIn,
     CollectionPlaneIn,
     IntersectionPlaneIn,
@@ -82140,9 +82745,9 @@ void TotalRunoutCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  if (GeometricCharac_1058)
+  if (GeometricCharac_1050)
     {
-      GeometricCharac_1058->printSelf(outFile);
+  GeometricCharac_1050->printSelf(outFile);
     }
   if (DirectionFeature)
     {
@@ -82211,7 +82816,7 @@ bool TotalRunoutCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in TotalRunoutCharacteristicDefinitionType\n");
               returnValue = true;
@@ -82227,7 +82832,7 @@ bool TotalRunoutCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -82236,7 +82841,7 @@ bool TotalRunoutCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in TotalRunoutCharacteristicDefinitionType\n");
       returnValue = true;
@@ -82248,8 +82853,8 @@ bool TotalRunoutCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -82453,7 +83058,7 @@ bool TotalRunoutCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in TotalRunoutCharacteristicItemType\n");
               returnValue = true;
@@ -82469,7 +83074,7 @@ bool TotalRunoutCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -82478,7 +83083,7 @@ bool TotalRunoutCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in TotalRunoutCharacteristicItemType\n");
       returnValue = true;
@@ -82490,8 +83095,8 @@ bool TotalRunoutCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -82747,7 +83352,7 @@ bool TotalRunoutCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in TotalRunoutCharacteristicMeasurementType\n");
               returnValue = true;
@@ -82763,7 +83368,7 @@ bool TotalRunoutCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -82772,7 +83377,7 @@ bool TotalRunoutCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in TotalRunoutCharacteristicMeasurementType\n");
       returnValue = true;
@@ -82784,8 +83389,8 @@ bool TotalRunoutCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -82979,7 +83584,7 @@ bool TotalRunoutCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in TotalRunoutCharacteristicNominalType\n");
               returnValue = true;
@@ -82995,7 +83600,7 @@ bool TotalRunoutCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -83004,7 +83609,7 @@ bool TotalRunoutCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in TotalRunoutCharacteristicNominalType\n");
       returnValue = true;
@@ -83016,8 +83621,8 @@ bool TotalRunoutCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -83050,7 +83655,7 @@ UserDefinedAngularCharacteristicDefinitionType::UserDefinedAngularCharacteristic
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCharacte_1046_Type * AngularCharacte_1046In,
+ AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn,
  XmlString * WhatToMeasureIn) :
   AngularCharacteristicDefinitionBaseType(
     AttributesIn,
@@ -83068,7 +83673,7 @@ UserDefinedAngularCharacteristicDefinitionType::UserDefinedAngularCharacteristic
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    AngularCharacte_1046In)
+    AngularCharacteristicDefinitionBaseTypePairIn)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -83090,7 +83695,7 @@ UserDefinedAngularCharacteristicDefinitionType::UserDefinedAngularCharacteristic
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- AngularCharacte_1046_Type * AngularCharacte_1046In,
+ AngularCharacteristicDefinitionBaseTypeChoicePair * AngularCharacteristicDefinitionBaseTypePairIn,
  XmlString * WhatToMeasureIn) :
   AngularCharacteristicDefinitionBaseType(
     idIn,
@@ -83109,7 +83714,7 @@ UserDefinedAngularCharacteristicDefinitionType::UserDefinedAngularCharacteristic
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    AngularCharacte_1046In)
+    AngularCharacteristicDefinitionBaseTypePairIn)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -83258,7 +83863,7 @@ void UserDefinedAngularCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  AngularCharacte_1046->printSelf(outFile);
+  AngularCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<WhatToMeasure");
   WhatToMeasure->printSelf(outFile);
@@ -83280,7 +83885,7 @@ bool UserDefinedAngularCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedAngularCharacteristicDefinitionType\n");
               returnValue = true;
@@ -83296,7 +83901,7 @@ bool UserDefinedAngularCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -83305,7 +83910,7 @@ bool UserDefinedAngularCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedAngularCharacteristicDefinitionType\n");
       returnValue = true;
@@ -83317,8 +83922,8 @@ bool UserDefinedAngularCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -83528,7 +84133,7 @@ bool UserDefinedAngularCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedAngularCharacteristicItemType\n");
               returnValue = true;
@@ -83544,7 +84149,7 @@ bool UserDefinedAngularCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -83553,7 +84158,7 @@ bool UserDefinedAngularCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedAngularCharacteristicItemType\n");
       returnValue = true;
@@ -83565,8 +84170,8 @@ bool UserDefinedAngularCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -83811,7 +84416,7 @@ bool UserDefinedAngularCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedAngularCharacteristicMeasurementType\n");
               returnValue = true;
@@ -83827,7 +84432,7 @@ bool UserDefinedAngularCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -83836,7 +84441,7 @@ bool UserDefinedAngularCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedAngularCharacteristicMeasurementType\n");
       returnValue = true;
@@ -83848,8 +84453,8 @@ bool UserDefinedAngularCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -84054,7 +84659,7 @@ bool UserDefinedAngularCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedAngularCharacteristicNominalType\n");
               returnValue = true;
@@ -84070,7 +84675,7 @@ bool UserDefinedAngularCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -84079,7 +84684,7 @@ bool UserDefinedAngularCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedAngularCharacteristicNominalType\n");
       returnValue = true;
@@ -84091,8 +84696,8 @@ bool UserDefinedAngularCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -84123,7 +84728,7 @@ UserDefinedAreaCharacteristicDefinitionType::UserDefinedAreaCharacteristicDefini
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- AreaCharacteris_1048_Type * AreaCharacteris_1048In,
+ AreaCharacteristicDefinitionBaseTypeChoicePair * AreaCharacteristicDefinitionBaseTypePairIn,
  XmlString * WhatToMeasureIn) :
   AreaCharacteristicDefinitionBaseType(
     AttributesIn,
@@ -84139,7 +84744,7 @@ UserDefinedAreaCharacteristicDefinitionType::UserDefinedAreaCharacteristicDefini
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    AreaCharacteris_1048In)
+    AreaCharacteristicDefinitionBaseTypePairIn)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -84159,7 +84764,7 @@ UserDefinedAreaCharacteristicDefinitionType::UserDefinedAreaCharacteristicDefini
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- AreaCharacteris_1048_Type * AreaCharacteris_1048In,
+ AreaCharacteristicDefinitionBaseTypeChoicePair * AreaCharacteristicDefinitionBaseTypePairIn,
  XmlString * WhatToMeasureIn) :
   AreaCharacteristicDefinitionBaseType(
     idIn,
@@ -84176,7 +84781,7 @@ UserDefinedAreaCharacteristicDefinitionType::UserDefinedAreaCharacteristicDefini
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    AreaCharacteris_1048In)
+    AreaCharacteristicDefinitionBaseTypePairIn)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -84310,7 +84915,7 @@ void UserDefinedAreaCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  AreaCharacteris_1048->printSelf(outFile);
+  AreaCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<WhatToMeasure");
   WhatToMeasure->printSelf(outFile);
@@ -84332,7 +84937,7 @@ bool UserDefinedAreaCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedAreaCharacteristicDefinitionType\n");
               returnValue = true;
@@ -84348,7 +84953,7 @@ bool UserDefinedAreaCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -84357,7 +84962,7 @@ bool UserDefinedAreaCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedAreaCharacteristicDefinitionType\n");
       returnValue = true;
@@ -84369,8 +84974,8 @@ bool UserDefinedAreaCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -84580,7 +85185,7 @@ bool UserDefinedAreaCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedAreaCharacteristicItemType\n");
               returnValue = true;
@@ -84596,7 +85201,7 @@ bool UserDefinedAreaCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -84605,7 +85210,7 @@ bool UserDefinedAreaCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedAreaCharacteristicItemType\n");
       returnValue = true;
@@ -84617,8 +85222,8 @@ bool UserDefinedAreaCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -84863,7 +85468,7 @@ bool UserDefinedAreaCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedAreaCharacteristicMeasurementType\n");
               returnValue = true;
@@ -84879,7 +85484,7 @@ bool UserDefinedAreaCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -84888,7 +85493,7 @@ bool UserDefinedAreaCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedAreaCharacteristicMeasurementType\n");
       returnValue = true;
@@ -84900,8 +85505,8 @@ bool UserDefinedAreaCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -85106,7 +85711,7 @@ bool UserDefinedAreaCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedAreaCharacteristicNominalType\n");
               returnValue = true;
@@ -85122,7 +85727,7 @@ bool UserDefinedAreaCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -85131,7 +85736,7 @@ bool UserDefinedAreaCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedAreaCharacteristicNominalType\n");
       returnValue = true;
@@ -85143,8 +85748,8 @@ bool UserDefinedAreaCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -85379,7 +85984,7 @@ bool UserDefinedAttributeCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedAttributeCharacteristicDefinitionType\n");
               returnValue = true;
@@ -85395,7 +86000,7 @@ bool UserDefinedAttributeCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -85404,7 +86009,7 @@ bool UserDefinedAttributeCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedAttributeCharacteristicDefinitionType\n");
       returnValue = true;
@@ -85416,8 +86021,8 @@ bool UserDefinedAttributeCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -85627,7 +86232,7 @@ bool UserDefinedAttributeCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedAttributeCharacteristicItemType\n");
               returnValue = true;
@@ -85643,7 +86248,7 @@ bool UserDefinedAttributeCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -85652,7 +86257,7 @@ bool UserDefinedAttributeCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedAttributeCharacteristicItemType\n");
       returnValue = true;
@@ -85664,8 +86269,8 @@ bool UserDefinedAttributeCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -85890,7 +86495,7 @@ bool UserDefinedAttributeCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedAttributeCharacteristicMeasurementType\n");
               returnValue = true;
@@ -85906,7 +86511,7 @@ bool UserDefinedAttributeCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -85915,7 +86520,7 @@ bool UserDefinedAttributeCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedAttributeCharacteristicMeasurementType\n");
       returnValue = true;
@@ -85927,8 +86532,8 @@ bool UserDefinedAttributeCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -86156,7 +86761,7 @@ bool UserDefinedAttributeCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedAttributeCharacteristicNominalType\n");
               returnValue = true;
@@ -86172,7 +86777,7 @@ bool UserDefinedAttributeCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -86181,7 +86786,7 @@ bool UserDefinedAttributeCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedAttributeCharacteristicNominalType\n");
       returnValue = true;
@@ -86193,8 +86798,8 @@ bool UserDefinedAttributeCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -86237,7 +86842,7 @@ UserDefinedForceCharacteristicDefinitionType::UserDefinedForceCharacteristicDefi
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- ForceCharacteri_1057_Type * ForceCharacteri_1057In,
+ ForceCharacteristicDefinitionBaseTypeChoicePair * ForceCharacteristicDefinitionBaseTypePairIn,
  XmlString * WhatToMeasureIn) :
   ForceCharacteristicDefinitionBaseType(
     AttributesIn,
@@ -86253,7 +86858,7 @@ UserDefinedForceCharacteristicDefinitionType::UserDefinedForceCharacteristicDefi
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    ForceCharacteri_1057In)
+    ForceCharacteristicDefinitionBaseTypePairIn)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -86273,7 +86878,7 @@ UserDefinedForceCharacteristicDefinitionType::UserDefinedForceCharacteristicDefi
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- ForceCharacteri_1057_Type * ForceCharacteri_1057In,
+ ForceCharacteristicDefinitionBaseTypeChoicePair * ForceCharacteristicDefinitionBaseTypePairIn,
  XmlString * WhatToMeasureIn) :
   ForceCharacteristicDefinitionBaseType(
     idIn,
@@ -86290,7 +86895,7 @@ UserDefinedForceCharacteristicDefinitionType::UserDefinedForceCharacteristicDefi
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    ForceCharacteri_1057In)
+    ForceCharacteristicDefinitionBaseTypePairIn)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -86424,7 +87029,7 @@ void UserDefinedForceCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  ForceCharacteri_1057->printSelf(outFile);
+  ForceCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<WhatToMeasure");
   WhatToMeasure->printSelf(outFile);
@@ -86446,7 +87051,7 @@ bool UserDefinedForceCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedForceCharacteristicDefinitionType\n");
               returnValue = true;
@@ -86462,7 +87067,7 @@ bool UserDefinedForceCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -86471,7 +87076,7 @@ bool UserDefinedForceCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedForceCharacteristicDefinitionType\n");
       returnValue = true;
@@ -86483,8 +87088,8 @@ bool UserDefinedForceCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -86694,7 +87299,7 @@ bool UserDefinedForceCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedForceCharacteristicItemType\n");
               returnValue = true;
@@ -86710,7 +87315,7 @@ bool UserDefinedForceCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -86719,7 +87324,7 @@ bool UserDefinedForceCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedForceCharacteristicItemType\n");
       returnValue = true;
@@ -86731,8 +87336,8 @@ bool UserDefinedForceCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -86977,7 +87582,7 @@ bool UserDefinedForceCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedForceCharacteristicMeasurementType\n");
               returnValue = true;
@@ -86993,7 +87598,7 @@ bool UserDefinedForceCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -87002,7 +87607,7 @@ bool UserDefinedForceCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedForceCharacteristicMeasurementType\n");
       returnValue = true;
@@ -87014,8 +87619,8 @@ bool UserDefinedForceCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -87220,7 +87825,7 @@ bool UserDefinedForceCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedForceCharacteristicNominalType\n");
               returnValue = true;
@@ -87236,7 +87841,7 @@ bool UserDefinedForceCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -87245,7 +87850,7 @@ bool UserDefinedForceCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedForceCharacteristicNominalType\n");
       returnValue = true;
@@ -87257,8 +87862,8 @@ bool UserDefinedForceCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -87291,7 +87896,7 @@ UserDefinedLinearCharacteristicDefinitionType::UserDefinedLinearCharacteristicDe
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In,
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn,
  XmlString * WhatToMeasureIn) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
@@ -87309,7 +87914,7 @@ UserDefinedLinearCharacteristicDefinitionType::UserDefinedLinearCharacteristicDe
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -87331,7 +87936,7 @@ UserDefinedLinearCharacteristicDefinitionType::UserDefinedLinearCharacteristicDe
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In,
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn,
  XmlString * WhatToMeasureIn) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
@@ -87350,7 +87955,7 @@ UserDefinedLinearCharacteristicDefinitionType::UserDefinedLinearCharacteristicDe
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -87499,7 +88104,7 @@ void UserDefinedLinearCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1059->printSelf(outFile);
+  LinearCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<WhatToMeasure");
   WhatToMeasure->printSelf(outFile);
@@ -87521,7 +88126,7 @@ bool UserDefinedLinearCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedLinearCharacteristicDefinitionType\n");
               returnValue = true;
@@ -87537,7 +88142,7 @@ bool UserDefinedLinearCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -87546,7 +88151,7 @@ bool UserDefinedLinearCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedLinearCharacteristicDefinitionType\n");
       returnValue = true;
@@ -87558,8 +88163,8 @@ bool UserDefinedLinearCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -87769,7 +88374,7 @@ bool UserDefinedLinearCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedLinearCharacteristicItemType\n");
               returnValue = true;
@@ -87785,7 +88390,7 @@ bool UserDefinedLinearCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -87794,7 +88399,7 @@ bool UserDefinedLinearCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedLinearCharacteristicItemType\n");
       returnValue = true;
@@ -87806,8 +88411,8 @@ bool UserDefinedLinearCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -88052,7 +88657,7 @@ bool UserDefinedLinearCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedLinearCharacteristicMeasurementType\n");
               returnValue = true;
@@ -88068,7 +88673,7 @@ bool UserDefinedLinearCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -88077,7 +88682,7 @@ bool UserDefinedLinearCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedLinearCharacteristicMeasurementType\n");
       returnValue = true;
@@ -88089,8 +88694,8 @@ bool UserDefinedLinearCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -88306,7 +88911,7 @@ bool UserDefinedLinearCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedLinearCharacteristicNominalType\n");
               returnValue = true;
@@ -88322,7 +88927,7 @@ bool UserDefinedLinearCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -88331,7 +88936,7 @@ bool UserDefinedLinearCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedLinearCharacteristicNominalType\n");
       returnValue = true;
@@ -88343,8 +88948,8 @@ bool UserDefinedLinearCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -88375,7 +88980,7 @@ UserDefinedMassCharacteristicDefinitionType::UserDefinedMassCharacteristicDefini
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- MassCharacteris_1064_Type * MassCharacteris_1064In,
+ MassCharacteristicDefinitionBaseTypeChoicePair * MassCharacteristicDefinitionBaseTypePairIn,
  XmlString * WhatToMeasureIn) :
   MassCharacteristicDefinitionBaseType(
     AttributesIn,
@@ -88391,7 +88996,7 @@ UserDefinedMassCharacteristicDefinitionType::UserDefinedMassCharacteristicDefini
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    MassCharacteris_1064In)
+    MassCharacteristicDefinitionBaseTypePairIn)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -88411,7 +89016,7 @@ UserDefinedMassCharacteristicDefinitionType::UserDefinedMassCharacteristicDefini
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- MassCharacteris_1064_Type * MassCharacteris_1064In,
+ MassCharacteristicDefinitionBaseTypeChoicePair * MassCharacteristicDefinitionBaseTypePairIn,
  XmlString * WhatToMeasureIn) :
   MassCharacteristicDefinitionBaseType(
     idIn,
@@ -88428,7 +89033,7 @@ UserDefinedMassCharacteristicDefinitionType::UserDefinedMassCharacteristicDefini
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    MassCharacteris_1064In)
+    MassCharacteristicDefinitionBaseTypePairIn)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -88562,7 +89167,7 @@ void UserDefinedMassCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  MassCharacteris_1064->printSelf(outFile);
+  MassCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<WhatToMeasure");
   WhatToMeasure->printSelf(outFile);
@@ -88584,7 +89189,7 @@ bool UserDefinedMassCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedMassCharacteristicDefinitionType\n");
               returnValue = true;
@@ -88600,7 +89205,7 @@ bool UserDefinedMassCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -88609,7 +89214,7 @@ bool UserDefinedMassCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedMassCharacteristicDefinitionType\n");
       returnValue = true;
@@ -88621,8 +89226,8 @@ bool UserDefinedMassCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -88832,7 +89437,7 @@ bool UserDefinedMassCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedMassCharacteristicItemType\n");
               returnValue = true;
@@ -88848,7 +89453,7 @@ bool UserDefinedMassCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -88857,7 +89462,7 @@ bool UserDefinedMassCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedMassCharacteristicItemType\n");
       returnValue = true;
@@ -88869,8 +89474,8 @@ bool UserDefinedMassCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -89115,7 +89720,7 @@ bool UserDefinedMassCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedMassCharacteristicMeasurementType\n");
               returnValue = true;
@@ -89131,7 +89736,7 @@ bool UserDefinedMassCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -89140,7 +89745,7 @@ bool UserDefinedMassCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedMassCharacteristicMeasurementType\n");
       returnValue = true;
@@ -89152,8 +89757,8 @@ bool UserDefinedMassCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -89358,7 +89963,7 @@ bool UserDefinedMassCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedMassCharacteristicNominalType\n");
               returnValue = true;
@@ -89374,7 +89979,7 @@ bool UserDefinedMassCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -89383,7 +89988,7 @@ bool UserDefinedMassCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedMassCharacteristicNominalType\n");
       returnValue = true;
@@ -89395,8 +90000,8 @@ bool UserDefinedMassCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -89427,7 +90032,7 @@ UserDefinedPressureCharacteristicDefinitionType::UserDefinedPressureCharacterist
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- PressureCharact_1067_Type * PressureCharact_1067In,
+ PressureCharacteristicDefinitionBaseTypeChoicePair * PressureCharacteristicDefinitionBaseTypePairIn,
  XmlString * WhatToMeasureIn) :
   PressureCharacteristicDefinitionBaseType(
     AttributesIn,
@@ -89443,7 +90048,7 @@ UserDefinedPressureCharacteristicDefinitionType::UserDefinedPressureCharacterist
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    PressureCharact_1067In)
+    PressureCharacteristicDefinitionBaseTypePairIn)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -89463,7 +90068,7 @@ UserDefinedPressureCharacteristicDefinitionType::UserDefinedPressureCharacterist
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- PressureCharact_1067_Type * PressureCharact_1067In,
+ PressureCharacteristicDefinitionBaseTypeChoicePair * PressureCharacteristicDefinitionBaseTypePairIn,
  XmlString * WhatToMeasureIn) :
   PressureCharacteristicDefinitionBaseType(
     idIn,
@@ -89480,7 +90085,7 @@ UserDefinedPressureCharacteristicDefinitionType::UserDefinedPressureCharacterist
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    PressureCharact_1067In)
+    PressureCharacteristicDefinitionBaseTypePairIn)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -89614,7 +90219,7 @@ void UserDefinedPressureCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  PressureCharact_1067->printSelf(outFile);
+  PressureCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<WhatToMeasure");
   WhatToMeasure->printSelf(outFile);
@@ -89636,7 +90241,7 @@ bool UserDefinedPressureCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedPressureCharacteristicDefinitionType\n");
               returnValue = true;
@@ -89652,7 +90257,7 @@ bool UserDefinedPressureCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -89661,7 +90266,7 @@ bool UserDefinedPressureCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedPressureCharacteristicDefinitionType\n");
       returnValue = true;
@@ -89673,8 +90278,8 @@ bool UserDefinedPressureCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -89884,7 +90489,7 @@ bool UserDefinedPressureCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedPressureCharacteristicItemType\n");
               returnValue = true;
@@ -89900,7 +90505,7 @@ bool UserDefinedPressureCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -89909,7 +90514,7 @@ bool UserDefinedPressureCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedPressureCharacteristicItemType\n");
       returnValue = true;
@@ -89921,8 +90526,8 @@ bool UserDefinedPressureCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -90167,7 +90772,7 @@ bool UserDefinedPressureCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedPressureCharacteristicMeasurementType\n");
               returnValue = true;
@@ -90183,7 +90788,7 @@ bool UserDefinedPressureCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -90192,7 +90797,7 @@ bool UserDefinedPressureCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedPressureCharacteristicMeasurementType\n");
       returnValue = true;
@@ -90204,8 +90809,8 @@ bool UserDefinedPressureCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -90410,7 +91015,7 @@ bool UserDefinedPressureCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedPressureCharacteristicNominalType\n");
               returnValue = true;
@@ -90426,7 +91031,7 @@ bool UserDefinedPressureCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -90435,7 +91040,7 @@ bool UserDefinedPressureCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedPressureCharacteristicNominalType\n");
       returnValue = true;
@@ -90447,8 +91052,8 @@ bool UserDefinedPressureCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -90479,7 +91084,7 @@ UserDefinedSpeedCharacteristicDefinitionType::UserDefinedSpeedCharacteristicDefi
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- SpeedCharacteri_1069_Type * SpeedCharacteri_1069In,
+ SpeedCharacteristicDefinitionBaseTypeChoicePair * SpeedCharacteristicDefinitionBaseTypePairIn,
  XmlString * WhatToMeasureIn) :
   SpeedCharacteristicDefinitionBaseType(
     AttributesIn,
@@ -90495,7 +91100,7 @@ UserDefinedSpeedCharacteristicDefinitionType::UserDefinedSpeedCharacteristicDefi
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    SpeedCharacteri_1069In)
+    SpeedCharacteristicDefinitionBaseTypePairIn)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -90515,7 +91120,7 @@ UserDefinedSpeedCharacteristicDefinitionType::UserDefinedSpeedCharacteristicDefi
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- SpeedCharacteri_1069_Type * SpeedCharacteri_1069In,
+ SpeedCharacteristicDefinitionBaseTypeChoicePair * SpeedCharacteristicDefinitionBaseTypePairIn,
  XmlString * WhatToMeasureIn) :
   SpeedCharacteristicDefinitionBaseType(
     idIn,
@@ -90532,7 +91137,7 @@ UserDefinedSpeedCharacteristicDefinitionType::UserDefinedSpeedCharacteristicDefi
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    SpeedCharacteri_1069In)
+    SpeedCharacteristicDefinitionBaseTypePairIn)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -90666,7 +91271,7 @@ void UserDefinedSpeedCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  SpeedCharacteri_1069->printSelf(outFile);
+  SpeedCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<WhatToMeasure");
   WhatToMeasure->printSelf(outFile);
@@ -90688,7 +91293,7 @@ bool UserDefinedSpeedCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedSpeedCharacteristicDefinitionType\n");
               returnValue = true;
@@ -90704,7 +91309,7 @@ bool UserDefinedSpeedCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -90713,7 +91318,7 @@ bool UserDefinedSpeedCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedSpeedCharacteristicDefinitionType\n");
       returnValue = true;
@@ -90725,8 +91330,8 @@ bool UserDefinedSpeedCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -90936,7 +91541,7 @@ bool UserDefinedSpeedCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedSpeedCharacteristicItemType\n");
               returnValue = true;
@@ -90952,7 +91557,7 @@ bool UserDefinedSpeedCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -90961,7 +91566,7 @@ bool UserDefinedSpeedCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedSpeedCharacteristicItemType\n");
       returnValue = true;
@@ -90973,8 +91578,8 @@ bool UserDefinedSpeedCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -91219,7 +91824,7 @@ bool UserDefinedSpeedCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedSpeedCharacteristicMeasurementType\n");
               returnValue = true;
@@ -91235,7 +91840,7 @@ bool UserDefinedSpeedCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -91244,7 +91849,7 @@ bool UserDefinedSpeedCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedSpeedCharacteristicMeasurementType\n");
       returnValue = true;
@@ -91256,8 +91861,8 @@ bool UserDefinedSpeedCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -91462,7 +92067,7 @@ bool UserDefinedSpeedCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedSpeedCharacteristicNominalType\n");
               returnValue = true;
@@ -91478,7 +92083,7 @@ bool UserDefinedSpeedCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -91487,7 +92092,7 @@ bool UserDefinedSpeedCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedSpeedCharacteristicNominalType\n");
       returnValue = true;
@@ -91499,8 +92104,8 @@ bool UserDefinedSpeedCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -91531,7 +92136,7 @@ UserDefinedTemperatureCharacteristicDefinitionType::UserDefinedTemperatureCharac
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- TemperatureChar_1073_Type * TemperatureChar_1073In,
+ TemperatureCharacteristicDefinitionBaseTypeChoicePair * TemperatureCharacteristicDefinitionBaseTypePairIn,
  XmlString * WhatToMeasureIn) :
   TemperatureCharacteristicDefinitionBaseType(
     AttributesIn,
@@ -91547,7 +92152,7 @@ UserDefinedTemperatureCharacteristicDefinitionType::UserDefinedTemperatureCharac
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    TemperatureChar_1073In)
+    TemperatureCharacteristicDefinitionBaseTypePairIn)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -91567,7 +92172,7 @@ UserDefinedTemperatureCharacteristicDefinitionType::UserDefinedTemperatureCharac
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- TemperatureChar_1073_Type * TemperatureChar_1073In,
+ TemperatureCharacteristicDefinitionBaseTypeChoicePair * TemperatureCharacteristicDefinitionBaseTypePairIn,
  XmlString * WhatToMeasureIn) :
   TemperatureCharacteristicDefinitionBaseType(
     idIn,
@@ -91584,7 +92189,7 @@ UserDefinedTemperatureCharacteristicDefinitionType::UserDefinedTemperatureCharac
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    TemperatureChar_1073In)
+    TemperatureCharacteristicDefinitionBaseTypePairIn)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -91718,7 +92323,7 @@ void UserDefinedTemperatureCharacteristicDefinitionType::printSelf(FILE * outFil
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  TemperatureChar_1073->printSelf(outFile);
+  TemperatureCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<WhatToMeasure");
   WhatToMeasure->printSelf(outFile);
@@ -91740,7 +92345,7 @@ bool UserDefinedTemperatureCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedTemperatureCharacteristicDefinitionType\n");
               returnValue = true;
@@ -91756,7 +92361,7 @@ bool UserDefinedTemperatureCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -91765,7 +92370,7 @@ bool UserDefinedTemperatureCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedTemperatureCharacteristicDefinitionType\n");
       returnValue = true;
@@ -91777,8 +92382,8 @@ bool UserDefinedTemperatureCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -91988,7 +92593,7 @@ bool UserDefinedTemperatureCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedTemperatureCharacteristicItemType\n");
               returnValue = true;
@@ -92004,7 +92609,7 @@ bool UserDefinedTemperatureCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -92013,7 +92618,7 @@ bool UserDefinedTemperatureCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedTemperatureCharacteristicItemType\n");
       returnValue = true;
@@ -92025,8 +92630,8 @@ bool UserDefinedTemperatureCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -92271,7 +92876,7 @@ bool UserDefinedTemperatureCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedTemperatureCharacteristicMeasurementType\n");
               returnValue = true;
@@ -92287,7 +92892,7 @@ bool UserDefinedTemperatureCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -92296,7 +92901,7 @@ bool UserDefinedTemperatureCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedTemperatureCharacteristicMeasurementType\n");
       returnValue = true;
@@ -92308,8 +92913,8 @@ bool UserDefinedTemperatureCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -92514,7 +93119,7 @@ bool UserDefinedTemperatureCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedTemperatureCharacteristicNominalType\n");
               returnValue = true;
@@ -92530,7 +93135,7 @@ bool UserDefinedTemperatureCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -92539,7 +93144,7 @@ bool UserDefinedTemperatureCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedTemperatureCharacteristicNominalType\n");
       returnValue = true;
@@ -92551,8 +93156,8 @@ bool UserDefinedTemperatureCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -92583,7 +93188,7 @@ UserDefinedTimeCharacteristicDefinitionType::UserDefinedTimeCharacteristicDefini
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- TimeCharacteris_1074_Type * TimeCharacteris_1074In,
+ TimeCharacteristicDefinitionBaseTypeChoicePair * TimeCharacteristicDefinitionBaseTypePairIn,
  XmlString * WhatToMeasureIn) :
   TimeCharacteristicDefinitionBaseType(
     AttributesIn,
@@ -92599,7 +93204,7 @@ UserDefinedTimeCharacteristicDefinitionType::UserDefinedTimeCharacteristicDefini
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    TimeCharacteris_1074In)
+    TimeCharacteristicDefinitionBaseTypePairIn)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -92619,7 +93224,7 @@ UserDefinedTimeCharacteristicDefinitionType::UserDefinedTimeCharacteristicDefini
  XmlBoolean * IndependencyIn,
  XmlBoolean * UnitedOrContinuousFeatureIn,
  XmlBoolean * SeparateZoneIn,
- TimeCharacteris_1074_Type * TimeCharacteris_1074In,
+ TimeCharacteristicDefinitionBaseTypeChoicePair * TimeCharacteristicDefinitionBaseTypePairIn,
  XmlString * WhatToMeasureIn) :
   TimeCharacteristicDefinitionBaseType(
     idIn,
@@ -92636,7 +93241,7 @@ UserDefinedTimeCharacteristicDefinitionType::UserDefinedTimeCharacteristicDefini
     IndependencyIn,
     UnitedOrContinuousFeatureIn,
     SeparateZoneIn,
-    TimeCharacteris_1074In)
+    TimeCharacteristicDefinitionBaseTypePairIn)
 {
   WhatToMeasure = WhatToMeasureIn;
 }
@@ -92770,7 +93375,7 @@ void UserDefinedTimeCharacteristicDefinitionType::printSelf(FILE * outFile)
       SeparateZone->printSelf(outFile);
       fprintf(outFile, "</SeparateZone>\n");
     }
-  TimeCharacteris_1074->printSelf(outFile);
+  TimeCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<WhatToMeasure");
   WhatToMeasure->printSelf(outFile);
@@ -92792,7 +93397,7 @@ bool UserDefinedTimeCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedTimeCharacteristicDefinitionType\n");
               returnValue = true;
@@ -92808,7 +93413,7 @@ bool UserDefinedTimeCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -92817,7 +93422,7 @@ bool UserDefinedTimeCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedTimeCharacteristicDefinitionType\n");
       returnValue = true;
@@ -92829,8 +93434,8 @@ bool UserDefinedTimeCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -93040,7 +93645,7 @@ bool UserDefinedTimeCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedTimeCharacteristicItemType\n");
               returnValue = true;
@@ -93056,7 +93661,7 @@ bool UserDefinedTimeCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -93065,7 +93670,7 @@ bool UserDefinedTimeCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedTimeCharacteristicItemType\n");
       returnValue = true;
@@ -93077,8 +93682,8 @@ bool UserDefinedTimeCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -93323,7 +93928,7 @@ bool UserDefinedTimeCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedTimeCharacteristicMeasurementType\n");
               returnValue = true;
@@ -93339,7 +93944,7 @@ bool UserDefinedTimeCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -93348,7 +93953,7 @@ bool UserDefinedTimeCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedTimeCharacteristicMeasurementType\n");
       returnValue = true;
@@ -93360,8 +93965,8 @@ bool UserDefinedTimeCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -93566,7 +94171,7 @@ bool UserDefinedTimeCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedTimeCharacteristicNominalType\n");
               returnValue = true;
@@ -93582,7 +94187,7 @@ bool UserDefinedTimeCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -93591,7 +94196,7 @@ bool UserDefinedTimeCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedTimeCharacteristicNominalType\n");
       returnValue = true;
@@ -93603,8 +94208,8 @@ bool UserDefinedTimeCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -93829,7 +94434,7 @@ bool UserDefinedUnitCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedUnitCharacteristicDefinitionType\n");
               returnValue = true;
@@ -93845,7 +94450,7 @@ bool UserDefinedUnitCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -93854,7 +94459,7 @@ bool UserDefinedUnitCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedUnitCharacteristicDefinitionType\n");
       returnValue = true;
@@ -93866,8 +94471,8 @@ bool UserDefinedUnitCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -94071,7 +94676,7 @@ bool UserDefinedUnitCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedUnitCharacteristicItemType\n");
               returnValue = true;
@@ -94087,7 +94692,7 @@ bool UserDefinedUnitCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -94096,7 +94701,7 @@ bool UserDefinedUnitCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedUnitCharacteristicItemType\n");
       returnValue = true;
@@ -94108,8 +94713,8 @@ bool UserDefinedUnitCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -94360,7 +94965,7 @@ bool UserDefinedUnitCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedUnitCharacteristicMeasurementType\n");
               returnValue = true;
@@ -94376,7 +94981,7 @@ bool UserDefinedUnitCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -94385,7 +94990,7 @@ bool UserDefinedUnitCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedUnitCharacteristicMeasurementType\n");
       returnValue = true;
@@ -94397,8 +95002,8 @@ bool UserDefinedUnitCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -94431,7 +95036,7 @@ UserDefinedUnitCharacteristicNominalType::UserDefinedUnitCharacteristicNominalTy
   CharacteristicNominalBaseType()
 {
   TargetValue = 0;
-  UserDefinedUnit_1075 = 0;
+  UserDefinedUnit_1060 = 0;
   DefinedAsLimit = 0;
 }
 
@@ -94447,7 +95052,7 @@ UserDefinedUnitCharacteristicNominalType::UserDefinedUnitCharacteristicNominalTy
  XmlToken * NameIn,
  CharacteristicDesignatorType * CharacteristicDesignatorIn,
  UserDefinedUnitValueType * TargetValueIn,
- UserDefinedUnit_1075_Type * UserDefinedUnit_1075In,
+ UserDefinedUnit_1060_Type * UserDefinedUnit_1060In,
  XmlBoolean * DefinedAsLimitIn) :
   CharacteristicNominalBaseType(
     AttributesIn,
@@ -94462,7 +95067,7 @@ UserDefinedUnitCharacteristicNominalType::UserDefinedUnitCharacteristicNominalTy
     CharacteristicDesignatorIn)
 {
   TargetValue = TargetValueIn;
-  UserDefinedUnit_1075 = UserDefinedUnit_1075In;
+  UserDefinedUnit_1060 = UserDefinedUnit_1060In;
   DefinedAsLimit = DefinedAsLimitIn;
 }
 
@@ -94479,7 +95084,7 @@ UserDefinedUnitCharacteristicNominalType::UserDefinedUnitCharacteristicNominalTy
  XmlToken * NameIn,
  CharacteristicDesignatorType * CharacteristicDesignatorIn,
  UserDefinedUnitValueType * TargetValueIn,
- UserDefinedUnit_1075_Type * UserDefinedUnit_1075In,
+ UserDefinedUnit_1060_Type * UserDefinedUnit_1060In,
  XmlBoolean * DefinedAsLimitIn) :
   CharacteristicNominalBaseType(
     idIn,
@@ -94495,7 +95100,7 @@ UserDefinedUnitCharacteristicNominalType::UserDefinedUnitCharacteristicNominalTy
     CharacteristicDesignatorIn)
 {
   TargetValue = TargetValueIn;
-  UserDefinedUnit_1075 = UserDefinedUnit_1075In;
+  UserDefinedUnit_1060 = UserDefinedUnit_1060In;
   DefinedAsLimit = DefinedAsLimitIn;
 }
 
@@ -94503,7 +95108,7 @@ UserDefinedUnitCharacteristicNominalType::~UserDefinedUnitCharacteristicNominalT
 {
   #ifndef NODESTRUCT
   delete TargetValue;
-  delete UserDefinedUnit_1075;
+  delete UserDefinedUnit_1060;
   delete DefinedAsLimit;
   #endif
 }
@@ -94615,7 +95220,7 @@ void UserDefinedUnitCharacteristicNominalType::printSelf(FILE * outFile)
   fprintf(outFile, "<TargetValue");
   TargetValue->printSelf(outFile);
   fprintf(outFile, "</TargetValue>\n");
-  UserDefinedUnit_1075->printSelf(outFile);
+  UserDefinedUnit_1060->printSelf(outFile);
   doSpaces(0, outFile);
   fprintf(outFile, "<DefinedAsLimit");
   DefinedAsLimit->printSelf(outFile);
@@ -94637,7 +95242,7 @@ bool UserDefinedUnitCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in UserDefinedUnitCharacteristicNominalType\n");
               returnValue = true;
@@ -94653,7 +95258,7 @@ bool UserDefinedUnitCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -94662,7 +95267,7 @@ bool UserDefinedUnitCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in UserDefinedUnitCharacteristicNominalType\n");
       returnValue = true;
@@ -94674,8 +95279,8 @@ bool UserDefinedUnitCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -94686,11 +95291,11 @@ UserDefinedUnitValueType * UserDefinedUnitCharacteristicNominalType::getTargetVa
 void UserDefinedUnitCharacteristicNominalType::setTargetValue(UserDefinedUnitValueType * TargetValueIn)
 {TargetValue = TargetValueIn;}
 
-UserDefinedUnit_1075_Type * UserDefinedUnitCharacteristicNominalType::getUserDefinedUnit_1075()
-{return UserDefinedUnit_1075;}
+UserDefinedUnit_1060_Type * UserDefinedUnitCharacteristicNominalType::getUserDefinedUnit_1060()
+{return UserDefinedUnit_1060;}
 
-void UserDefinedUnitCharacteristicNominalType::setUserDefinedUnit_1075(UserDefinedUnit_1075_Type * UserDefinedUnit_1075In)
-{UserDefinedUnit_1075 = UserDefinedUnit_1075In;}
+void UserDefinedUnitCharacteristicNominalType::setUserDefinedUnit_1060(UserDefinedUnit_1060_Type * UserDefinedUnit_1060In)
+{UserDefinedUnit_1060 = UserDefinedUnit_1060In;}
 
 XmlBoolean * UserDefinedUnitCharacteristicNominalType::getDefinedAsLimit()
 {return DefinedAsLimit;}
@@ -94918,7 +95523,7 @@ bool WeldBevelCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldBevelCharacteristicDefinitionType\n");
               returnValue = true;
@@ -94934,7 +95539,7 @@ bool WeldBevelCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -94943,7 +95548,7 @@ bool WeldBevelCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldBevelCharacteristicDefinitionType\n");
       returnValue = true;
@@ -94955,8 +95560,8 @@ bool WeldBevelCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -95160,7 +95765,7 @@ bool WeldBevelCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldBevelCharacteristicItemType\n");
               returnValue = true;
@@ -95176,7 +95781,7 @@ bool WeldBevelCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -95185,7 +95790,7 @@ bool WeldBevelCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldBevelCharacteristicItemType\n");
       returnValue = true;
@@ -95197,8 +95802,8 @@ bool WeldBevelCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -95227,7 +95832,7 @@ WeldBevelCharacteristicMeasurementType::WeldBevelCharacteristicMeasurementType(
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn) :
   WeldGrooveCharacteristicMeasurementType(
     AttributesIn,
     DescriptionIn,
@@ -95241,7 +95846,7 @@ WeldBevelCharacteristicMeasurementType::WeldBevelCharacteristicMeasurementType(
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveCharacteristicMeasurementTypePairIn)
 {
 }
 
@@ -95259,7 +95864,7 @@ WeldBevelCharacteristicMeasurementType::WeldBevelCharacteristicMeasurementType(
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn) :
   WeldGrooveCharacteristicMeasurementType(
     idIn,
     AttributesIn,
@@ -95274,7 +95879,7 @@ WeldBevelCharacteristicMeasurementType::WeldBevelCharacteristicMeasurementType(
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveCharacteristicMeasurementTypePairIn)
 {
 }
 
@@ -95397,9 +96002,9 @@ void WeldBevelCharacteristicMeasurementType::printSelf(FILE * outFile)
       NonConformanceDesignator->printSelf(outFile);
       fprintf(outFile, "</NonConformanceDesignator>\n");
     }
-  if (WeldGrooveChara_1079)
+  if (WeldGrooveCharacteristicMeasurementTypePair)
     {
-      WeldGrooveChara_1079->printSelf(outFile);
+      WeldGrooveCharacteristicMeasurementTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -95418,7 +96023,7 @@ bool WeldBevelCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldBevelCharacteristicMeasurementType\n");
               returnValue = true;
@@ -95434,7 +96039,7 @@ bool WeldBevelCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -95443,7 +96048,7 @@ bool WeldBevelCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldBevelCharacteristicMeasurementType\n");
       returnValue = true;
@@ -95455,8 +96060,8 @@ bool WeldBevelCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -95488,7 +96093,7 @@ WeldBevelCharacteristicNominalType::WeldBevelCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
+ WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn) :
   WeldGrooveCharacteristicNominalType(
     AttributesIn,
     DescriptionIn,
@@ -95505,7 +96110,7 @@ WeldBevelCharacteristicNominalType::WeldBevelCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1080In)
+    WeldGrooveCharacteristicNominalTypePairIn)
 {
 }
 
@@ -95526,7 +96131,7 @@ WeldBevelCharacteristicNominalType::WeldBevelCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
+ WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn) :
   WeldGrooveCharacteristicNominalType(
     idIn,
     AttributesIn,
@@ -95544,7 +96149,7 @@ WeldBevelCharacteristicNominalType::WeldBevelCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1080In)
+    WeldGrooveCharacteristicNominalTypePairIn)
 {
 }
 
@@ -95694,9 +96299,9 @@ void WeldBevelCharacteristicNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</NonDestructiveTesting>\n");
     }
-  if (WeldGrooveChara_1080)
+  if (WeldGrooveCharacteristicNominalTypePair)
     {
-      WeldGrooveChara_1080->printSelf(outFile);
+      WeldGrooveCharacteristicNominalTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -95715,7 +96320,7 @@ bool WeldBevelCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldBevelCharacteristicNominalType\n");
               returnValue = true;
@@ -95731,7 +96336,7 @@ bool WeldBevelCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -95740,7 +96345,7 @@ bool WeldBevelCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldBevelCharacteristicNominalType\n");
       returnValue = true;
@@ -95752,8 +96357,8 @@ bool WeldBevelCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -95978,7 +96583,7 @@ bool WeldCharacteristicDefinitionBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldCharacteristicDefinitionBaseType\n");
               returnValue = true;
@@ -95994,7 +96599,7 @@ bool WeldCharacteristicDefinitionBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -96003,7 +96608,7 @@ bool WeldCharacteristicDefinitionBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldCharacteristicDefinitionBaseType\n");
       returnValue = true;
@@ -96015,8 +96620,8 @@ bool WeldCharacteristicDefinitionBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -96220,7 +96825,7 @@ bool WeldCharacteristicItemBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldCharacteristicItemBaseType\n");
               returnValue = true;
@@ -96236,7 +96841,7 @@ bool WeldCharacteristicItemBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -96245,7 +96850,7 @@ bool WeldCharacteristicItemBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldCharacteristicItemBaseType\n");
       returnValue = true;
@@ -96257,8 +96862,8 @@ bool WeldCharacteristicItemBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -96470,7 +97075,7 @@ bool WeldCharacteristicMeasurementBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldCharacteristicMeasurementBaseType\n");
               returnValue = true;
@@ -96486,7 +97091,7 @@ bool WeldCharacteristicMeasurementBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -96495,7 +97100,7 @@ bool WeldCharacteristicMeasurementBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldCharacteristicMeasurementBaseType\n");
       returnValue = true;
@@ -96507,8 +97112,8 @@ bool WeldCharacteristicMeasurementBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -96769,7 +97374,7 @@ bool WeldCharacteristicNominalBaseType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldCharacteristicNominalBaseType\n");
               returnValue = true;
@@ -96785,7 +97390,7 @@ bool WeldCharacteristicNominalBaseType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -96794,7 +97399,7 @@ bool WeldCharacteristicNominalBaseType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldCharacteristicNominalBaseType\n");
       returnValue = true;
@@ -96806,8 +97411,8 @@ bool WeldCharacteristicNominalBaseType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -97073,7 +97678,7 @@ bool WeldCompoundCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldCompoundCharacteristicDefinitionType\n");
               returnValue = true;
@@ -97089,7 +97694,7 @@ bool WeldCompoundCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -97098,7 +97703,7 @@ bool WeldCompoundCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldCompoundCharacteristicDefinitionType\n");
       returnValue = true;
@@ -97110,8 +97715,8 @@ bool WeldCompoundCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -97332,7 +97937,7 @@ bool WeldCompoundCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldCompoundCharacteristicItemType\n");
               returnValue = true;
@@ -97348,7 +97953,7 @@ bool WeldCompoundCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -97357,7 +97962,7 @@ bool WeldCompoundCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldCompoundCharacteristicItemType\n");
       returnValue = true;
@@ -97369,8 +97974,8 @@ bool WeldCompoundCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -97599,7 +98204,7 @@ bool WeldCompoundCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldCompoundCharacteristicMeasurementType\n");
               returnValue = true;
@@ -97615,7 +98220,7 @@ bool WeldCompoundCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -97624,7 +98229,7 @@ bool WeldCompoundCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldCompoundCharacteristicMeasurementType\n");
       returnValue = true;
@@ -97636,8 +98241,8 @@ bool WeldCompoundCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -97905,7 +98510,7 @@ bool WeldCompoundCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldCompoundCharacteristicNominalType\n");
               returnValue = true;
@@ -97921,7 +98526,7 @@ bool WeldCompoundCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -97930,7 +98535,7 @@ bool WeldCompoundCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldCompoundCharacteristicNominalType\n");
       returnValue = true;
@@ -97942,8 +98547,8 @@ bool WeldCompoundCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -98240,7 +98845,7 @@ bool WeldEdgeCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldEdgeCharacteristicDefinitionType\n");
               returnValue = true;
@@ -98256,7 +98861,7 @@ bool WeldEdgeCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -98265,7 +98870,7 @@ bool WeldEdgeCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldEdgeCharacteristicDefinitionType\n");
       returnValue = true;
@@ -98277,8 +98882,8 @@ bool WeldEdgeCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -98482,7 +99087,7 @@ bool WeldEdgeCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldEdgeCharacteristicItemType\n");
               returnValue = true;
@@ -98498,7 +99103,7 @@ bool WeldEdgeCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -98507,7 +99112,7 @@ bool WeldEdgeCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldEdgeCharacteristicItemType\n");
       returnValue = true;
@@ -98519,8 +99124,8 @@ bool WeldEdgeCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -98756,7 +99361,7 @@ bool WeldEdgeCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldEdgeCharacteristicMeasurementType\n");
               returnValue = true;
@@ -98772,7 +99377,7 @@ bool WeldEdgeCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -98781,7 +99386,7 @@ bool WeldEdgeCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldEdgeCharacteristicMeasurementType\n");
       returnValue = true;
@@ -98793,8 +99398,8 @@ bool WeldEdgeCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -99081,7 +99686,7 @@ bool WeldEdgeCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldEdgeCharacteristicNominalType\n");
               returnValue = true;
@@ -99097,7 +99702,7 @@ bool WeldEdgeCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -99106,7 +99711,7 @@ bool WeldEdgeCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldEdgeCharacteristicNominalType\n");
       returnValue = true;
@@ -99118,8 +99723,8 @@ bool WeldEdgeCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -99436,7 +100041,7 @@ bool WeldFilletCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldFilletCharacteristicDefinitionType\n");
               returnValue = true;
@@ -99452,7 +100057,7 @@ bool WeldFilletCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -99461,7 +100066,7 @@ bool WeldFilletCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldFilletCharacteristicDefinitionType\n");
       returnValue = true;
@@ -99473,8 +100078,8 @@ bool WeldFilletCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -99678,7 +100283,7 @@ bool WeldFilletCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldFilletCharacteristicItemType\n");
               returnValue = true;
@@ -99694,7 +100299,7 @@ bool WeldFilletCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -99703,7 +100308,7 @@ bool WeldFilletCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldFilletCharacteristicItemType\n");
       returnValue = true;
@@ -99715,8 +100320,8 @@ bool WeldFilletCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -99731,7 +100336,7 @@ WeldFilletCharacteristicMeasurementType::WeldFilletCharacteristicMeasurementType
   WeldCharacteristicMeasurementBaseType()
 {
   LocationSignificance = 0;
-  WeldFilletChara_1076 = 0;
+  WeldFilletChara_1061 = 0;
 }
 
 WeldFilletCharacteristicMeasurementType::WeldFilletCharacteristicMeasurementType(
@@ -99748,7 +100353,7 @@ WeldFilletCharacteristicMeasurementType::WeldFilletCharacteristicMeasurementType
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
  LocationSignificanceAllEnumType * LocationSignificanceIn,
- WeldFilletChara_1076_Type * WeldFilletChara_1076In) :
+ WeldFilletChara_1061_Type * WeldFilletChara_1061In) :
   WeldCharacteristicMeasurementBaseType(
     AttributesIn,
     DescriptionIn,
@@ -99764,7 +100369,7 @@ WeldFilletCharacteristicMeasurementType::WeldFilletCharacteristicMeasurementType
     NonConformanceDesignatorIn)
 {
   LocationSignificance = LocationSignificanceIn;
-  WeldFilletChara_1076 = WeldFilletChara_1076In;
+  WeldFilletChara_1061 = WeldFilletChara_1061In;
 }
 
 WeldFilletCharacteristicMeasurementType::WeldFilletCharacteristicMeasurementType(
@@ -99782,7 +100387,7 @@ WeldFilletCharacteristicMeasurementType::WeldFilletCharacteristicMeasurementType
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
  LocationSignificanceAllEnumType * LocationSignificanceIn,
- WeldFilletChara_1076_Type * WeldFilletChara_1076In) :
+ WeldFilletChara_1061_Type * WeldFilletChara_1061In) :
   WeldCharacteristicMeasurementBaseType(
     idIn,
     AttributesIn,
@@ -99799,14 +100404,14 @@ WeldFilletCharacteristicMeasurementType::WeldFilletCharacteristicMeasurementType
     NonConformanceDesignatorIn)
 {
   LocationSignificance = LocationSignificanceIn;
-  WeldFilletChara_1076 = WeldFilletChara_1076In;
+  WeldFilletChara_1061 = WeldFilletChara_1061In;
 }
 
 WeldFilletCharacteristicMeasurementType::~WeldFilletCharacteristicMeasurementType()
 {
   #ifndef NODESTRUCT
   delete LocationSignificance;
-  delete WeldFilletChara_1076;
+  delete WeldFilletChara_1061;
   #endif
 }
 
@@ -99927,9 +100532,9 @@ void WeldFilletCharacteristicMeasurementType::printSelf(FILE * outFile)
   fprintf(outFile, "<LocationSignificance");
   LocationSignificance->printSelf(outFile);
   fprintf(outFile, "</LocationSignificance>\n");
-  if (WeldFilletChara_1076)
+  if (WeldFilletChara_1061)
     {
-      WeldFilletChara_1076->printSelf(outFile);
+  WeldFilletChara_1061->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -99948,7 +100553,7 @@ bool WeldFilletCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldFilletCharacteristicMeasurementType\n");
               returnValue = true;
@@ -99964,7 +100569,7 @@ bool WeldFilletCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -99973,7 +100578,7 @@ bool WeldFilletCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldFilletCharacteristicMeasurementType\n");
       returnValue = true;
@@ -99985,8 +100590,8 @@ bool WeldFilletCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -99997,11 +100602,11 @@ LocationSignificanceAllEnumType * WeldFilletCharacteristicMeasurementType::getLo
 void WeldFilletCharacteristicMeasurementType::setLocationSignificance(LocationSignificanceAllEnumType * LocationSignificanceIn)
 {LocationSignificance = LocationSignificanceIn;}
 
-WeldFilletChara_1076_Type * WeldFilletCharacteristicMeasurementType::getWeldFilletChara_1076()
-{return WeldFilletChara_1076;}
+WeldFilletChara_1061_Type * WeldFilletCharacteristicMeasurementType::getWeldFilletChara_1061()
+{return WeldFilletChara_1061;}
 
-void WeldFilletCharacteristicMeasurementType::setWeldFilletChara_1076(WeldFilletChara_1076_Type * WeldFilletChara_1076In)
-{WeldFilletChara_1076 = WeldFilletChara_1076In;}
+void WeldFilletCharacteristicMeasurementType::setWeldFilletChara_1061(WeldFilletChara_1061_Type * WeldFilletChara_1061In)
+{WeldFilletChara_1061 = WeldFilletChara_1061In;}
 
 /* ***************************************************************** */
 
@@ -100013,7 +100618,7 @@ WeldFilletCharacteristicNominalType::WeldFilletCharacteristicNominalType() :
   WeldCharacteristicNominalBaseType()
 {
   LocationSignificance = 0;
-  WeldFilletChara_1077 = 0;
+  WeldFilletChara_1062 = 0;
 }
 
 WeldFilletCharacteristicNominalType::WeldFilletCharacteristicNominalType(
@@ -100033,7 +100638,7 @@ WeldFilletCharacteristicNominalType::WeldFilletCharacteristicNominalType(
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
  LocationSignificanceAllEnumType * LocationSignificanceIn,
- WeldFilletChara_1077_Type * WeldFilletChara_1077In) :
+ WeldFilletChara_1062_Type * WeldFilletChara_1062In) :
   WeldCharacteristicNominalBaseType(
     AttributesIn,
     DescriptionIn,
@@ -100052,7 +100657,7 @@ WeldFilletCharacteristicNominalType::WeldFilletCharacteristicNominalType(
     NonDestructiveTestingIn)
 {
   LocationSignificance = LocationSignificanceIn;
-  WeldFilletChara_1077 = WeldFilletChara_1077In;
+  WeldFilletChara_1062 = WeldFilletChara_1062In;
 }
 
 WeldFilletCharacteristicNominalType::WeldFilletCharacteristicNominalType(
@@ -100073,7 +100678,7 @@ WeldFilletCharacteristicNominalType::WeldFilletCharacteristicNominalType(
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
  LocationSignificanceAllEnumType * LocationSignificanceIn,
- WeldFilletChara_1077_Type * WeldFilletChara_1077In) :
+ WeldFilletChara_1062_Type * WeldFilletChara_1062In) :
   WeldCharacteristicNominalBaseType(
     idIn,
     AttributesIn,
@@ -100093,14 +100698,14 @@ WeldFilletCharacteristicNominalType::WeldFilletCharacteristicNominalType(
     NonDestructiveTestingIn)
 {
   LocationSignificance = LocationSignificanceIn;
-  WeldFilletChara_1077 = WeldFilletChara_1077In;
+  WeldFilletChara_1062 = WeldFilletChara_1062In;
 }
 
 WeldFilletCharacteristicNominalType::~WeldFilletCharacteristicNominalType()
 {
   #ifndef NODESTRUCT
   delete LocationSignificance;
-  delete WeldFilletChara_1077;
+  delete WeldFilletChara_1062;
   #endif
 }
 
@@ -100248,9 +100853,9 @@ void WeldFilletCharacteristicNominalType::printSelf(FILE * outFile)
   fprintf(outFile, "<LocationSignificance");
   LocationSignificance->printSelf(outFile);
   fprintf(outFile, "</LocationSignificance>\n");
-  if (WeldFilletChara_1077)
+  if (WeldFilletChara_1062)
     {
-      WeldFilletChara_1077->printSelf(outFile);
+  WeldFilletChara_1062->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -100269,7 +100874,7 @@ bool WeldFilletCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldFilletCharacteristicNominalType\n");
               returnValue = true;
@@ -100285,7 +100890,7 @@ bool WeldFilletCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -100294,7 +100899,7 @@ bool WeldFilletCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldFilletCharacteristicNominalType\n");
       returnValue = true;
@@ -100306,8 +100911,8 @@ bool WeldFilletCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -100318,11 +100923,11 @@ LocationSignificanceAllEnumType * WeldFilletCharacteristicNominalType::getLocati
 void WeldFilletCharacteristicNominalType::setLocationSignificance(LocationSignificanceAllEnumType * LocationSignificanceIn)
 {LocationSignificance = LocationSignificanceIn;}
 
-WeldFilletChara_1077_Type * WeldFilletCharacteristicNominalType::getWeldFilletChara_1077()
-{return WeldFilletChara_1077;}
+WeldFilletChara_1062_Type * WeldFilletCharacteristicNominalType::getWeldFilletChara_1062()
+{return WeldFilletChara_1062;}
 
-void WeldFilletCharacteristicNominalType::setWeldFilletChara_1077(WeldFilletChara_1077_Type * WeldFilletChara_1077In)
-{WeldFilletChara_1077 = WeldFilletChara_1077In;}
+void WeldFilletCharacteristicNominalType::setWeldFilletChara_1062(WeldFilletChara_1062_Type * WeldFilletChara_1062In)
+{WeldFilletChara_1062 = WeldFilletChara_1062In;}
 
 /* ***************************************************************** */
 
@@ -100495,22 +101100,22 @@ void WeldFilletOneSideInBothSidesType::setPitch(LinearValueType * PitchIn)
 WeldFilletOneSideType::WeldFilletOneSideType() :
   WeldOneSideParametersBaseType()
 {
-  WeldFilletOneSi_1078 = 0;
+  WeldFilletOneSideTypePair = 0;
 }
 
 WeldFilletOneSideType::WeldFilletOneSideType(
  WeldFinishingType * FinishingIn,
- WeldFilletOneSi_1078_Type * WeldFilletOneSi_1078In) :
+ WeldFilletOneSideTypeChoicePair * WeldFilletOneSideTypePairIn) :
   WeldOneSideParametersBaseType(
     FinishingIn)
 {
-  WeldFilletOneSi_1078 = WeldFilletOneSi_1078In;
+  WeldFilletOneSideTypePair = WeldFilletOneSideTypePairIn;
 }
 
 WeldFilletOneSideType::~WeldFilletOneSideType()
 {
   #ifndef NODESTRUCT
-  delete WeldFilletOneSi_1078;
+  delete WeldFilletOneSideTypePair;
   #endif
 }
 
@@ -100526,18 +101131,59 @@ void WeldFilletOneSideType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</Finishing>\n");
     }
-  if (WeldFilletOneSi_1078)
+  if (WeldFilletOneSideTypePair)
     {
-      WeldFilletOneSi_1078->printSelf(outFile);
+      WeldFilletOneSideTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
+WeldFilletOneSideTypeChoicePair * WeldFilletOneSideType::getWeldFilletOneSideTypeChoicePair()
+{return WeldFilletOneSideTypePair;}
 
-WeldFilletOneSi_1078_Type * WeldFilletOneSideType::getWeldFilletOneSi_1078()
-{return WeldFilletOneSi_1078;}
+void WeldFilletOneSideType::setWeldFilletOneSideTypeChoicePair(WeldFilletOneSideTypeChoicePair * WeldFilletOneSideTypePairIn)
+{WeldFilletOneSideTypePair = WeldFilletOneSideTypePairIn;}
 
-void WeldFilletOneSideType::setWeldFilletOneSi_1078(WeldFilletOneSi_1078_Type * WeldFilletOneSi_1078In)
-{WeldFilletOneSi_1078 = WeldFilletOneSi_1078In;}
+/* ***************************************************************** */
+
+WeldFilletOneSideTypeChoicePair::WeldFilletOneSideTypeChoicePair() {}
+
+WeldFilletOneSideTypeChoicePair::WeldFilletOneSideTypeChoicePair(
+ whichOne WeldFilletOneSideTypeTypeIn,
+ WeldFilletOneSideTypeVal WeldFilletOneSideTypeValueIn)
+{
+  WeldFilletOneSideTypeType = WeldFilletOneSideTypeTypeIn;
+  WeldFilletOneSideTypeValue = WeldFilletOneSideTypeValueIn;
+}
+
+WeldFilletOneSideTypeChoicePair::~WeldFilletOneSideTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (WeldFilletOneSideTypeType == EqualLegLengthE)
+    delete WeldFilletOneSideTypeValue.EqualLegLength;
+  else if (WeldFilletOneSideTypeType == UnEqualLegLengthE)
+    delete WeldFilletOneSideTypeValue.UnEqualLegLength;
+  #endif
+}
+
+void WeldFilletOneSideTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (WeldFilletOneSideTypeType == EqualLegLengthE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<EqualLegLength");
+      WeldFilletOneSideTypeValue.EqualLegLength->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</EqualLegLength>\n");
+    }
+  else if (WeldFilletOneSideTypeType == UnEqualLegLengthE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<UnEqualLegLength");
+      WeldFilletOneSideTypeValue.UnEqualLegLength->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</UnEqualLegLength>\n");
+    }
+}
 
 /* ***************************************************************** */
 
@@ -100940,7 +101586,7 @@ bool WeldFlareBevelCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldFlareBevelCharacteristicDefinitionType\n");
               returnValue = true;
@@ -100956,7 +101602,7 @@ bool WeldFlareBevelCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -100965,7 +101611,7 @@ bool WeldFlareBevelCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldFlareBevelCharacteristicDefinitionType\n");
       returnValue = true;
@@ -100977,8 +101623,8 @@ bool WeldFlareBevelCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -101182,7 +101828,7 @@ bool WeldFlareBevelCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldFlareBevelCharacteristicItemType\n");
               returnValue = true;
@@ -101198,7 +101844,7 @@ bool WeldFlareBevelCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -101207,7 +101853,7 @@ bool WeldFlareBevelCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldFlareBevelCharacteristicItemType\n");
       returnValue = true;
@@ -101219,8 +101865,8 @@ bool WeldFlareBevelCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -101249,7 +101895,7 @@ WeldFlareBevelCharacteristicMeasurementType::WeldFlareBevelCharacteristicMeasure
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn) :
   WeldGrooveCharacteristicMeasurementType(
     AttributesIn,
     DescriptionIn,
@@ -101263,7 +101909,7 @@ WeldFlareBevelCharacteristicMeasurementType::WeldFlareBevelCharacteristicMeasure
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveCharacteristicMeasurementTypePairIn)
 {
 }
 
@@ -101281,7 +101927,7 @@ WeldFlareBevelCharacteristicMeasurementType::WeldFlareBevelCharacteristicMeasure
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn) :
   WeldGrooveCharacteristicMeasurementType(
     idIn,
     AttributesIn,
@@ -101296,7 +101942,7 @@ WeldFlareBevelCharacteristicMeasurementType::WeldFlareBevelCharacteristicMeasure
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveCharacteristicMeasurementTypePairIn)
 {
 }
 
@@ -101419,9 +102065,9 @@ void WeldFlareBevelCharacteristicMeasurementType::printSelf(FILE * outFile)
       NonConformanceDesignator->printSelf(outFile);
       fprintf(outFile, "</NonConformanceDesignator>\n");
     }
-  if (WeldGrooveChara_1079)
+  if (WeldGrooveCharacteristicMeasurementTypePair)
     {
-      WeldGrooveChara_1079->printSelf(outFile);
+      WeldGrooveCharacteristicMeasurementTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -101440,7 +102086,7 @@ bool WeldFlareBevelCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldFlareBevelCharacteristicMeasurementType\n");
               returnValue = true;
@@ -101456,7 +102102,7 @@ bool WeldFlareBevelCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -101465,7 +102111,7 @@ bool WeldFlareBevelCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldFlareBevelCharacteristicMeasurementType\n");
       returnValue = true;
@@ -101477,8 +102123,8 @@ bool WeldFlareBevelCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -101510,7 +102156,7 @@ WeldFlareBevelCharacteristicNominalType::WeldFlareBevelCharacteristicNominalType
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
+ WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn) :
   WeldGrooveCharacteristicNominalType(
     AttributesIn,
     DescriptionIn,
@@ -101527,7 +102173,7 @@ WeldFlareBevelCharacteristicNominalType::WeldFlareBevelCharacteristicNominalType
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1080In)
+    WeldGrooveCharacteristicNominalTypePairIn)
 {
 }
 
@@ -101548,7 +102194,7 @@ WeldFlareBevelCharacteristicNominalType::WeldFlareBevelCharacteristicNominalType
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
+ WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn) :
   WeldGrooveCharacteristicNominalType(
     idIn,
     AttributesIn,
@@ -101566,7 +102212,7 @@ WeldFlareBevelCharacteristicNominalType::WeldFlareBevelCharacteristicNominalType
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1080In)
+    WeldGrooveCharacteristicNominalTypePairIn)
 {
 }
 
@@ -101716,9 +102362,9 @@ void WeldFlareBevelCharacteristicNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</NonDestructiveTesting>\n");
     }
-  if (WeldGrooveChara_1080)
+  if (WeldGrooveCharacteristicNominalTypePair)
     {
-      WeldGrooveChara_1080->printSelf(outFile);
+      WeldGrooveCharacteristicNominalTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -101737,7 +102383,7 @@ bool WeldFlareBevelCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldFlareBevelCharacteristicNominalType\n");
               returnValue = true;
@@ -101753,7 +102399,7 @@ bool WeldFlareBevelCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -101762,7 +102408,7 @@ bool WeldFlareBevelCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldFlareBevelCharacteristicNominalType\n");
       returnValue = true;
@@ -101774,8 +102420,8 @@ bool WeldFlareBevelCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -102000,7 +102646,7 @@ bool WeldFlareVCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldFlareVCharacteristicDefinitionType\n");
               returnValue = true;
@@ -102016,7 +102662,7 @@ bool WeldFlareVCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -102025,7 +102671,7 @@ bool WeldFlareVCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldFlareVCharacteristicDefinitionType\n");
       returnValue = true;
@@ -102037,8 +102683,8 @@ bool WeldFlareVCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -102242,7 +102888,7 @@ bool WeldFlareVCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldFlareVCharacteristicItemType\n");
               returnValue = true;
@@ -102258,7 +102904,7 @@ bool WeldFlareVCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -102267,7 +102913,7 @@ bool WeldFlareVCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldFlareVCharacteristicItemType\n");
       returnValue = true;
@@ -102279,8 +102925,8 @@ bool WeldFlareVCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -102309,7 +102955,7 @@ WeldFlareVCharacteristicMeasurementType::WeldFlareVCharacteristicMeasurementType
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn) :
   WeldGrooveCharacteristicMeasurementType(
     AttributesIn,
     DescriptionIn,
@@ -102323,7 +102969,7 @@ WeldFlareVCharacteristicMeasurementType::WeldFlareVCharacteristicMeasurementType
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveCharacteristicMeasurementTypePairIn)
 {
 }
 
@@ -102341,7 +102987,7 @@ WeldFlareVCharacteristicMeasurementType::WeldFlareVCharacteristicMeasurementType
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn) :
   WeldGrooveCharacteristicMeasurementType(
     idIn,
     AttributesIn,
@@ -102356,7 +103002,7 @@ WeldFlareVCharacteristicMeasurementType::WeldFlareVCharacteristicMeasurementType
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveCharacteristicMeasurementTypePairIn)
 {
 }
 
@@ -102479,9 +103125,9 @@ void WeldFlareVCharacteristicMeasurementType::printSelf(FILE * outFile)
       NonConformanceDesignator->printSelf(outFile);
       fprintf(outFile, "</NonConformanceDesignator>\n");
     }
-  if (WeldGrooveChara_1079)
+  if (WeldGrooveCharacteristicMeasurementTypePair)
     {
-      WeldGrooveChara_1079->printSelf(outFile);
+      WeldGrooveCharacteristicMeasurementTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -102500,7 +103146,7 @@ bool WeldFlareVCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldFlareVCharacteristicMeasurementType\n");
               returnValue = true;
@@ -102516,7 +103162,7 @@ bool WeldFlareVCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -102525,7 +103171,7 @@ bool WeldFlareVCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldFlareVCharacteristicMeasurementType\n");
       returnValue = true;
@@ -102537,8 +103183,8 @@ bool WeldFlareVCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -102570,7 +103216,7 @@ WeldFlareVCharacteristicNominalType::WeldFlareVCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
+ WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn) :
   WeldGrooveCharacteristicNominalType(
     AttributesIn,
     DescriptionIn,
@@ -102587,7 +103233,7 @@ WeldFlareVCharacteristicNominalType::WeldFlareVCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1080In)
+    WeldGrooveCharacteristicNominalTypePairIn)
 {
 }
 
@@ -102608,7 +103254,7 @@ WeldFlareVCharacteristicNominalType::WeldFlareVCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
+ WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn) :
   WeldGrooveCharacteristicNominalType(
     idIn,
     AttributesIn,
@@ -102626,7 +103272,7 @@ WeldFlareVCharacteristicNominalType::WeldFlareVCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1080In)
+    WeldGrooveCharacteristicNominalTypePairIn)
 {
 }
 
@@ -102776,9 +103422,9 @@ void WeldFlareVCharacteristicNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</NonDestructiveTesting>\n");
     }
-  if (WeldGrooveChara_1080)
+  if (WeldGrooveCharacteristicNominalTypePair)
     {
-      WeldGrooveChara_1080->printSelf(outFile);
+      WeldGrooveCharacteristicNominalTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -102797,7 +103443,7 @@ bool WeldFlareVCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldFlareVCharacteristicNominalType\n");
               returnValue = true;
@@ -102813,7 +103459,7 @@ bool WeldFlareVCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -102822,7 +103468,7 @@ bool WeldFlareVCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldFlareVCharacteristicNominalType\n");
       returnValue = true;
@@ -102834,8 +103480,8 @@ bool WeldFlareVCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -102978,7 +103624,7 @@ void WeldGrooveBothSidesExtendedType::setSpacer(XmlBoolean * SpacerIn)
 WeldGrooveCharacteristicMeasurementType::WeldGrooveCharacteristicMeasurementType() :
   WeldCharacteristicMeasurementBaseType()
 {
-  WeldGrooveChara_1079 = 0;
+  WeldGrooveCharacteristicMeasurementTypePair = 0;
 }
 
 WeldGrooveCharacteristicMeasurementType::WeldGrooveCharacteristicMeasurementType(
@@ -102994,7 +103640,7 @@ WeldGrooveCharacteristicMeasurementType::WeldGrooveCharacteristicMeasurementType
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn) :
   WeldCharacteristicMeasurementBaseType(
     AttributesIn,
     DescriptionIn,
@@ -103009,7 +103655,7 @@ WeldGrooveCharacteristicMeasurementType::WeldGrooveCharacteristicMeasurementType
     NotedEventIdsIn,
     NonConformanceDesignatorIn)
 {
-  WeldGrooveChara_1079 = WeldGrooveChara_1079In;
+  WeldGrooveCharacteristicMeasurementTypePair = WeldGrooveCharacteristicMeasurementTypePairIn;
 }
 
 WeldGrooveCharacteristicMeasurementType::WeldGrooveCharacteristicMeasurementType(
@@ -103026,7 +103672,7 @@ WeldGrooveCharacteristicMeasurementType::WeldGrooveCharacteristicMeasurementType
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn) :
   WeldCharacteristicMeasurementBaseType(
     idIn,
     AttributesIn,
@@ -103042,13 +103688,13 @@ WeldGrooveCharacteristicMeasurementType::WeldGrooveCharacteristicMeasurementType
     NotedEventIdsIn,
     NonConformanceDesignatorIn)
 {
-  WeldGrooveChara_1079 = WeldGrooveChara_1079In;
+  WeldGrooveCharacteristicMeasurementTypePair = WeldGrooveCharacteristicMeasurementTypePairIn;
 }
 
 WeldGrooveCharacteristicMeasurementType::~WeldGrooveCharacteristicMeasurementType()
 {
   #ifndef NODESTRUCT
-  delete WeldGrooveChara_1079;
+  delete WeldGrooveCharacteristicMeasurementTypePair;
   #endif
 }
 
@@ -103165,11 +103811,58 @@ void WeldGrooveCharacteristicMeasurementType::printSelf(FILE * outFile)
       NonConformanceDesignator->printSelf(outFile);
       fprintf(outFile, "</NonConformanceDesignator>\n");
     }
-  if (WeldGrooveChara_1079)
+  if (WeldGrooveCharacteristicMeasurementTypePair)
     {
-      WeldGrooveChara_1079->printSelf(outFile);
+      WeldGrooveCharacteristicMeasurementTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
+}
+WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementType::getWeldGrooveCharacteristicMeasurementTypeChoicePair()
+{return WeldGrooveCharacteristicMeasurementTypePair;}
+
+void WeldGrooveCharacteristicMeasurementType::setWeldGrooveCharacteristicMeasurementTypeChoicePair(WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn)
+{WeldGrooveCharacteristicMeasurementTypePair = WeldGrooveCharacteristicMeasurementTypePairIn;}
+
+/* ***************************************************************** */
+
+WeldGrooveCharacteristicMeasurementTypeChoicePair::WeldGrooveCharacteristicMeasurementTypeChoicePair() {}
+
+WeldGrooveCharacteristicMeasurementTypeChoicePair::WeldGrooveCharacteristicMeasurementTypeChoicePair(
+ whichOne WeldGrooveCharacteristicMeasurementTypeTypeIn,
+ WeldGrooveCharacteristicMeasurementTypeVal WeldGrooveCharacteristicMeasurementTypeValueIn)
+{
+  WeldGrooveCharacteristicMeasurementTypeType = WeldGrooveCharacteristicMeasurementTypeTypeIn;
+  WeldGrooveCharacteristicMeasurementTypeValue = WeldGrooveCharacteristicMeasurementTypeValueIn;
+}
+
+WeldGrooveCharacteristicMeasurementTypeChoicePair::~WeldGrooveCharacteristicMeasurementTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (WeldGrooveCharacteristicMeasurementTypeType == OneSideE)
+    delete WeldGrooveCharacteristicMeasurementTypeValue.OneSide;
+  else if (WeldGrooveCharacteristicMeasurementTypeType == BothSidesE)
+    delete WeldGrooveCharacteristicMeasurementTypeValue.BothSides;
+  #endif
+}
+
+void WeldGrooveCharacteristicMeasurementTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (WeldGrooveCharacteristicMeasurementTypeType == OneSideE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<OneSide");
+      WeldGrooveCharacteristicMeasurementTypeValue.OneSide->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</OneSide>\n");
+    }
+  else if (WeldGrooveCharacteristicMeasurementTypeType == BothSidesE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<BothSides");
+      WeldGrooveCharacteristicMeasurementTypeValue.BothSides->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</BothSides>\n");
+    }
 }
 
 bool WeldGrooveCharacteristicMeasurementType::badAttributes(
@@ -103186,7 +103879,7 @@ bool WeldGrooveCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldGrooveCharacteristicMeasurementType\n");
               returnValue = true;
@@ -103202,7 +103895,7 @@ bool WeldGrooveCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -103211,7 +103904,7 @@ bool WeldGrooveCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldGrooveCharacteristicMeasurementType\n");
       returnValue = true;
@@ -103223,17 +103916,11 @@ bool WeldGrooveCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
-
-WeldGrooveChara_1079_Type * WeldGrooveCharacteristicMeasurementType::getWeldGrooveChara_1079()
-{return WeldGrooveChara_1079;}
-
-void WeldGrooveCharacteristicMeasurementType::setWeldGrooveChara_1079(WeldGrooveChara_1079_Type * WeldGrooveChara_1079In)
-{WeldGrooveChara_1079 = WeldGrooveChara_1079In;}
 
 /* ***************************************************************** */
 
@@ -103244,7 +103931,7 @@ void WeldGrooveCharacteristicMeasurementType::setWeldGrooveChara_1079(WeldGroove
 WeldGrooveCharacteristicNominalType::WeldGrooveCharacteristicNominalType() :
   WeldCharacteristicNominalBaseType()
 {
-  WeldGrooveChara_1080 = 0;
+  WeldGrooveCharacteristicNominalTypePair = 0;
 }
 
 WeldGrooveCharacteristicNominalType::WeldGrooveCharacteristicNominalType(
@@ -103263,7 +103950,7 @@ WeldGrooveCharacteristicNominalType::WeldGrooveCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
+ WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn) :
   WeldCharacteristicNominalBaseType(
     AttributesIn,
     DescriptionIn,
@@ -103281,7 +103968,7 @@ WeldGrooveCharacteristicNominalType::WeldGrooveCharacteristicNominalType(
     WeldingProcessIn,
     NonDestructiveTestingIn)
 {
-  WeldGrooveChara_1080 = WeldGrooveChara_1080In;
+  WeldGrooveCharacteristicNominalTypePair = WeldGrooveCharacteristicNominalTypePairIn;
 }
 
 WeldGrooveCharacteristicNominalType::WeldGrooveCharacteristicNominalType(
@@ -103301,7 +103988,7 @@ WeldGrooveCharacteristicNominalType::WeldGrooveCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
+ WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn) :
   WeldCharacteristicNominalBaseType(
     idIn,
     AttributesIn,
@@ -103320,13 +104007,13 @@ WeldGrooveCharacteristicNominalType::WeldGrooveCharacteristicNominalType(
     WeldingProcessIn,
     NonDestructiveTestingIn)
 {
-  WeldGrooveChara_1080 = WeldGrooveChara_1080In;
+  WeldGrooveCharacteristicNominalTypePair = WeldGrooveCharacteristicNominalTypePairIn;
 }
 
 WeldGrooveCharacteristicNominalType::~WeldGrooveCharacteristicNominalType()
 {
   #ifndef NODESTRUCT
-  delete WeldGrooveChara_1080;
+  delete WeldGrooveCharacteristicNominalTypePair;
   #endif
 }
 
@@ -103470,11 +104157,58 @@ void WeldGrooveCharacteristicNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</NonDestructiveTesting>\n");
     }
-  if (WeldGrooveChara_1080)
+  if (WeldGrooveCharacteristicNominalTypePair)
     {
-      WeldGrooveChara_1080->printSelf(outFile);
+      WeldGrooveCharacteristicNominalTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
+}
+WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalType::getWeldGrooveCharacteristicNominalTypeChoicePair()
+{return WeldGrooveCharacteristicNominalTypePair;}
+
+void WeldGrooveCharacteristicNominalType::setWeldGrooveCharacteristicNominalTypeChoicePair(WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn)
+{WeldGrooveCharacteristicNominalTypePair = WeldGrooveCharacteristicNominalTypePairIn;}
+
+/* ***************************************************************** */
+
+WeldGrooveCharacteristicNominalTypeChoicePair::WeldGrooveCharacteristicNominalTypeChoicePair() {}
+
+WeldGrooveCharacteristicNominalTypeChoicePair::WeldGrooveCharacteristicNominalTypeChoicePair(
+ whichOne WeldGrooveCharacteristicNominalTypeTypeIn,
+ WeldGrooveCharacteristicNominalTypeVal WeldGrooveCharacteristicNominalTypeValueIn)
+{
+  WeldGrooveCharacteristicNominalTypeType = WeldGrooveCharacteristicNominalTypeTypeIn;
+  WeldGrooveCharacteristicNominalTypeValue = WeldGrooveCharacteristicNominalTypeValueIn;
+}
+
+WeldGrooveCharacteristicNominalTypeChoicePair::~WeldGrooveCharacteristicNominalTypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (WeldGrooveCharacteristicNominalTypeType == OneSideE)
+    delete WeldGrooveCharacteristicNominalTypeValue.OneSide;
+  else if (WeldGrooveCharacteristicNominalTypeType == BothSidesE)
+    delete WeldGrooveCharacteristicNominalTypeValue.BothSides;
+  #endif
+}
+
+void WeldGrooveCharacteristicNominalTypeChoicePair::printSelf(FILE * outFile)
+{
+  if (WeldGrooveCharacteristicNominalTypeType == OneSideE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<OneSide");
+      WeldGrooveCharacteristicNominalTypeValue.OneSide->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</OneSide>\n");
+    }
+  else if (WeldGrooveCharacteristicNominalTypeType == BothSidesE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<BothSides");
+      WeldGrooveCharacteristicNominalTypeValue.BothSides->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</BothSides>\n");
+    }
 }
 
 bool WeldGrooveCharacteristicNominalType::badAttributes(
@@ -103491,7 +104225,7 @@ bool WeldGrooveCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldGrooveCharacteristicNominalType\n");
               returnValue = true;
@@ -103507,7 +104241,7 @@ bool WeldGrooveCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -103516,7 +104250,7 @@ bool WeldGrooveCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldGrooveCharacteristicNominalType\n");
       returnValue = true;
@@ -103528,17 +104262,11 @@ bool WeldGrooveCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
-
-WeldGrooveChara_1080_Type * WeldGrooveCharacteristicNominalType::getWeldGrooveChara_1080()
-{return WeldGrooveChara_1080;}
-
-void WeldGrooveCharacteristicNominalType::setWeldGrooveChara_1080(WeldGrooveChara_1080_Type * WeldGrooveChara_1080In)
-{WeldGrooveChara_1080 = WeldGrooveChara_1080In;}
 
 /* ***************************************************************** */
 
@@ -103685,22 +104413,22 @@ void WeldGrooveOneSideParametersType::setPitch(LinearValueType * PitchIn)
 WeldGrooveOneSideType::WeldGrooveOneSideType()
 {
   LocationSignificance = 0;
-  WeldGrooveOneSi_1081 = 0;
+  WeldGrooveOneSi_1063 = 0;
 }
 
 WeldGrooveOneSideType::WeldGrooveOneSideType(
  LocationSignificanceOneSidesEnumType * LocationSignificanceIn,
- WeldGrooveOneSi_1081_Type * WeldGrooveOneSi_1081In)
+ WeldGrooveOneSi_1063_Type * WeldGrooveOneSi_1063In)
 {
   LocationSignificance = LocationSignificanceIn;
-  WeldGrooveOneSi_1081 = WeldGrooveOneSi_1081In;
+  WeldGrooveOneSi_1063 = WeldGrooveOneSi_1063In;
 }
 
 WeldGrooveOneSideType::~WeldGrooveOneSideType()
 {
   #ifndef NODESTRUCT
   delete LocationSignificance;
-  delete WeldGrooveOneSi_1081;
+  delete WeldGrooveOneSi_1063;
   #endif
 }
 
@@ -103712,7 +104440,7 @@ void WeldGrooveOneSideType::printSelf(FILE * outFile)
   fprintf(outFile, "<LocationSignificance");
   LocationSignificance->printSelf(outFile);
   fprintf(outFile, "</LocationSignificance>\n");
-  WeldGrooveOneSi_1081->printSelf(outFile);
+  WeldGrooveOneSi_1063->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -103722,11 +104450,11 @@ LocationSignificanceOneSidesEnumType * WeldGrooveOneSideType::getLocationSignifi
 void WeldGrooveOneSideType::setLocationSignificance(LocationSignificanceOneSidesEnumType * LocationSignificanceIn)
 {LocationSignificance = LocationSignificanceIn;}
 
-WeldGrooveOneSi_1081_Type * WeldGrooveOneSideType::getWeldGrooveOneSi_1081()
-{return WeldGrooveOneSi_1081;}
+WeldGrooveOneSi_1063_Type * WeldGrooveOneSideType::getWeldGrooveOneSi_1063()
+{return WeldGrooveOneSi_1063;}
 
-void WeldGrooveOneSideType::setWeldGrooveOneSi_1081(WeldGrooveOneSi_1081_Type * WeldGrooveOneSi_1081In)
-{WeldGrooveOneSi_1081 = WeldGrooveOneSi_1081In;}
+void WeldGrooveOneSideType::setWeldGrooveOneSi_1063(WeldGrooveOneSi_1063_Type * WeldGrooveOneSi_1063In)
+{WeldGrooveOneSi_1063 = WeldGrooveOneSi_1063In;}
 
 /* ***************************************************************** */
 
@@ -103948,7 +104676,7 @@ bool WeldJCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldJCharacteristicDefinitionType\n");
               returnValue = true;
@@ -103964,7 +104692,7 @@ bool WeldJCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -103973,7 +104701,7 @@ bool WeldJCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldJCharacteristicDefinitionType\n");
       returnValue = true;
@@ -103985,8 +104713,8 @@ bool WeldJCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -104190,7 +104918,7 @@ bool WeldJCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldJCharacteristicItemType\n");
               returnValue = true;
@@ -104206,7 +104934,7 @@ bool WeldJCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -104215,7 +104943,7 @@ bool WeldJCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldJCharacteristicItemType\n");
       returnValue = true;
@@ -104227,8 +104955,8 @@ bool WeldJCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -104257,7 +104985,7 @@ WeldJCharacteristicMeasurementType::WeldJCharacteristicMeasurementType(
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn) :
   WeldGrooveCharacteristicMeasurementType(
     AttributesIn,
     DescriptionIn,
@@ -104271,7 +104999,7 @@ WeldJCharacteristicMeasurementType::WeldJCharacteristicMeasurementType(
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveCharacteristicMeasurementTypePairIn)
 {
 }
 
@@ -104289,7 +105017,7 @@ WeldJCharacteristicMeasurementType::WeldJCharacteristicMeasurementType(
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn) :
   WeldGrooveCharacteristicMeasurementType(
     idIn,
     AttributesIn,
@@ -104304,7 +105032,7 @@ WeldJCharacteristicMeasurementType::WeldJCharacteristicMeasurementType(
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveCharacteristicMeasurementTypePairIn)
 {
 }
 
@@ -104427,9 +105155,9 @@ void WeldJCharacteristicMeasurementType::printSelf(FILE * outFile)
       NonConformanceDesignator->printSelf(outFile);
       fprintf(outFile, "</NonConformanceDesignator>\n");
     }
-  if (WeldGrooveChara_1079)
+  if (WeldGrooveCharacteristicMeasurementTypePair)
     {
-      WeldGrooveChara_1079->printSelf(outFile);
+      WeldGrooveCharacteristicMeasurementTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -104448,7 +105176,7 @@ bool WeldJCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldJCharacteristicMeasurementType\n");
               returnValue = true;
@@ -104464,7 +105192,7 @@ bool WeldJCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -104473,7 +105201,7 @@ bool WeldJCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldJCharacteristicMeasurementType\n");
       returnValue = true;
@@ -104485,8 +105213,8 @@ bool WeldJCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -104518,7 +105246,7 @@ WeldJCharacteristicNominalType::WeldJCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
+ WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn) :
   WeldGrooveCharacteristicNominalType(
     AttributesIn,
     DescriptionIn,
@@ -104535,7 +105263,7 @@ WeldJCharacteristicNominalType::WeldJCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1080In)
+    WeldGrooveCharacteristicNominalTypePairIn)
 {
 }
 
@@ -104556,7 +105284,7 @@ WeldJCharacteristicNominalType::WeldJCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
+ WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn) :
   WeldGrooveCharacteristicNominalType(
     idIn,
     AttributesIn,
@@ -104574,7 +105302,7 @@ WeldJCharacteristicNominalType::WeldJCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1080In)
+    WeldGrooveCharacteristicNominalTypePairIn)
 {
 }
 
@@ -104724,9 +105452,9 @@ void WeldJCharacteristicNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</NonDestructiveTesting>\n");
     }
-  if (WeldGrooveChara_1080)
+  if (WeldGrooveCharacteristicNominalTypePair)
     {
-      WeldGrooveChara_1080->printSelf(outFile);
+      WeldGrooveCharacteristicNominalTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -104745,7 +105473,7 @@ bool WeldJCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldJCharacteristicNominalType\n");
               returnValue = true;
@@ -104761,7 +105489,7 @@ bool WeldJCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -104770,7 +105498,7 @@ bool WeldJCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldJCharacteristicNominalType\n");
       returnValue = true;
@@ -104782,8 +105510,8 @@ bool WeldJCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -105210,7 +105938,7 @@ bool WeldPlugCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldPlugCharacteristicDefinitionType\n");
               returnValue = true;
@@ -105226,7 +105954,7 @@ bool WeldPlugCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -105235,7 +105963,7 @@ bool WeldPlugCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldPlugCharacteristicDefinitionType\n");
       returnValue = true;
@@ -105247,8 +105975,8 @@ bool WeldPlugCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -105452,7 +106180,7 @@ bool WeldPlugCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldPlugCharacteristicItemType\n");
               returnValue = true;
@@ -105468,7 +106196,7 @@ bool WeldPlugCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -105477,7 +106205,7 @@ bool WeldPlugCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldPlugCharacteristicItemType\n");
       returnValue = true;
@@ -105489,8 +106217,8 @@ bool WeldPlugCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -105726,7 +106454,7 @@ bool WeldPlugCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldPlugCharacteristicMeasurementType\n");
               returnValue = true;
@@ -105742,7 +106470,7 @@ bool WeldPlugCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -105751,7 +106479,7 @@ bool WeldPlugCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldPlugCharacteristicMeasurementType\n");
       returnValue = true;
@@ -105763,8 +106491,8 @@ bool WeldPlugCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -106051,7 +106779,7 @@ bool WeldPlugCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldPlugCharacteristicNominalType\n");
               returnValue = true;
@@ -106067,7 +106795,7 @@ bool WeldPlugCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -106076,7 +106804,7 @@ bool WeldPlugCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldPlugCharacteristicNominalType\n");
       returnValue = true;
@@ -106088,8 +106816,8 @@ bool WeldPlugCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -106437,7 +107165,7 @@ bool WeldScarfCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldScarfCharacteristicDefinitionType\n");
               returnValue = true;
@@ -106453,7 +107181,7 @@ bool WeldScarfCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -106462,7 +107190,7 @@ bool WeldScarfCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldScarfCharacteristicDefinitionType\n");
       returnValue = true;
@@ -106474,8 +107202,8 @@ bool WeldScarfCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -106679,7 +107407,7 @@ bool WeldScarfCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldScarfCharacteristicItemType\n");
               returnValue = true;
@@ -106695,7 +107423,7 @@ bool WeldScarfCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -106704,7 +107432,7 @@ bool WeldScarfCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldScarfCharacteristicItemType\n");
       returnValue = true;
@@ -106716,8 +107444,8 @@ bool WeldScarfCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -106746,7 +107474,7 @@ WeldScarfCharacteristicMeasurementType::WeldScarfCharacteristicMeasurementType(
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn) :
   WeldGrooveCharacteristicMeasurementType(
     AttributesIn,
     DescriptionIn,
@@ -106760,7 +107488,7 @@ WeldScarfCharacteristicMeasurementType::WeldScarfCharacteristicMeasurementType(
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveCharacteristicMeasurementTypePairIn)
 {
 }
 
@@ -106778,7 +107506,7 @@ WeldScarfCharacteristicMeasurementType::WeldScarfCharacteristicMeasurementType(
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn) :
   WeldGrooveCharacteristicMeasurementType(
     idIn,
     AttributesIn,
@@ -106793,7 +107521,7 @@ WeldScarfCharacteristicMeasurementType::WeldScarfCharacteristicMeasurementType(
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveCharacteristicMeasurementTypePairIn)
 {
 }
 
@@ -106916,9 +107644,9 @@ void WeldScarfCharacteristicMeasurementType::printSelf(FILE * outFile)
       NonConformanceDesignator->printSelf(outFile);
       fprintf(outFile, "</NonConformanceDesignator>\n");
     }
-  if (WeldGrooveChara_1079)
+  if (WeldGrooveCharacteristicMeasurementTypePair)
     {
-      WeldGrooveChara_1079->printSelf(outFile);
+      WeldGrooveCharacteristicMeasurementTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -106937,7 +107665,7 @@ bool WeldScarfCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldScarfCharacteristicMeasurementType\n");
               returnValue = true;
@@ -106953,7 +107681,7 @@ bool WeldScarfCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -106962,7 +107690,7 @@ bool WeldScarfCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldScarfCharacteristicMeasurementType\n");
       returnValue = true;
@@ -106974,8 +107702,8 @@ bool WeldScarfCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -107007,7 +107735,7 @@ WeldScarfCharacteristicNominalType::WeldScarfCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
+ WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn) :
   WeldGrooveCharacteristicNominalType(
     AttributesIn,
     DescriptionIn,
@@ -107024,7 +107752,7 @@ WeldScarfCharacteristicNominalType::WeldScarfCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1080In)
+    WeldGrooveCharacteristicNominalTypePairIn)
 {
 }
 
@@ -107045,7 +107773,7 @@ WeldScarfCharacteristicNominalType::WeldScarfCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
+ WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn) :
   WeldGrooveCharacteristicNominalType(
     idIn,
     AttributesIn,
@@ -107063,7 +107791,7 @@ WeldScarfCharacteristicNominalType::WeldScarfCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1080In)
+    WeldGrooveCharacteristicNominalTypePairIn)
 {
 }
 
@@ -107213,9 +107941,9 @@ void WeldScarfCharacteristicNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</NonDestructiveTesting>\n");
     }
-  if (WeldGrooveChara_1080)
+  if (WeldGrooveCharacteristicNominalTypePair)
     {
-      WeldGrooveChara_1080->printSelf(outFile);
+      WeldGrooveCharacteristicNominalTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -107234,7 +107962,7 @@ bool WeldScarfCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldScarfCharacteristicNominalType\n");
               returnValue = true;
@@ -107250,7 +107978,7 @@ bool WeldScarfCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -107259,7 +107987,7 @@ bool WeldScarfCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldScarfCharacteristicNominalType\n");
       returnValue = true;
@@ -107271,8 +107999,8 @@ bool WeldScarfCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -107497,7 +108225,7 @@ bool WeldSeamCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldSeamCharacteristicDefinitionType\n");
               returnValue = true;
@@ -107513,7 +108241,7 @@ bool WeldSeamCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -107522,7 +108250,7 @@ bool WeldSeamCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldSeamCharacteristicDefinitionType\n");
       returnValue = true;
@@ -107534,8 +108262,8 @@ bool WeldSeamCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -107739,7 +108467,7 @@ bool WeldSeamCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldSeamCharacteristicItemType\n");
               returnValue = true;
@@ -107755,7 +108483,7 @@ bool WeldSeamCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -107764,7 +108492,7 @@ bool WeldSeamCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldSeamCharacteristicItemType\n");
       returnValue = true;
@@ -107776,8 +108504,8 @@ bool WeldSeamCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -108013,7 +108741,7 @@ bool WeldSeamCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldSeamCharacteristicMeasurementType\n");
               returnValue = true;
@@ -108029,7 +108757,7 @@ bool WeldSeamCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -108038,7 +108766,7 @@ bool WeldSeamCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldSeamCharacteristicMeasurementType\n");
       returnValue = true;
@@ -108050,8 +108778,8 @@ bool WeldSeamCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -108338,7 +109066,7 @@ bool WeldSeamCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldSeamCharacteristicNominalType\n");
               returnValue = true;
@@ -108354,7 +109082,7 @@ bool WeldSeamCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -108363,7 +109091,7 @@ bool WeldSeamCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldSeamCharacteristicNominalType\n");
       returnValue = true;
@@ -108375,8 +109103,8 @@ bool WeldSeamCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -108613,7 +109341,7 @@ bool WeldSlotCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldSlotCharacteristicDefinitionType\n");
               returnValue = true;
@@ -108629,7 +109357,7 @@ bool WeldSlotCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -108638,7 +109366,7 @@ bool WeldSlotCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldSlotCharacteristicDefinitionType\n");
       returnValue = true;
@@ -108650,8 +109378,8 @@ bool WeldSlotCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -108855,7 +109583,7 @@ bool WeldSlotCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldSlotCharacteristicItemType\n");
               returnValue = true;
@@ -108871,7 +109599,7 @@ bool WeldSlotCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -108880,7 +109608,7 @@ bool WeldSlotCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldSlotCharacteristicItemType\n");
       returnValue = true;
@@ -108892,8 +109620,8 @@ bool WeldSlotCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -109129,7 +109857,7 @@ bool WeldSlotCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldSlotCharacteristicMeasurementType\n");
               returnValue = true;
@@ -109145,7 +109873,7 @@ bool WeldSlotCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -109154,7 +109882,7 @@ bool WeldSlotCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldSlotCharacteristicMeasurementType\n");
       returnValue = true;
@@ -109166,8 +109894,8 @@ bool WeldSlotCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -109454,7 +110182,7 @@ bool WeldSlotCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldSlotCharacteristicNominalType\n");
               returnValue = true;
@@ -109470,7 +110198,7 @@ bool WeldSlotCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -109479,7 +110207,7 @@ bool WeldSlotCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldSlotCharacteristicNominalType\n");
       returnValue = true;
@@ -109491,8 +110219,8 @@ bool WeldSlotCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -109729,7 +110457,7 @@ bool WeldSpotCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldSpotCharacteristicDefinitionType\n");
               returnValue = true;
@@ -109745,7 +110473,7 @@ bool WeldSpotCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -109754,7 +110482,7 @@ bool WeldSpotCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldSpotCharacteristicDefinitionType\n");
       returnValue = true;
@@ -109766,8 +110494,8 @@ bool WeldSpotCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -109971,7 +110699,7 @@ bool WeldSpotCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldSpotCharacteristicItemType\n");
               returnValue = true;
@@ -109987,7 +110715,7 @@ bool WeldSpotCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -109996,7 +110724,7 @@ bool WeldSpotCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldSpotCharacteristicItemType\n");
       returnValue = true;
@@ -110008,8 +110736,8 @@ bool WeldSpotCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -110258,7 +110986,7 @@ bool WeldSpotCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldSpotCharacteristicMeasurementType\n");
               returnValue = true;
@@ -110274,7 +111002,7 @@ bool WeldSpotCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -110283,7 +111011,7 @@ bool WeldSpotCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldSpotCharacteristicMeasurementType\n");
       returnValue = true;
@@ -110295,8 +111023,8 @@ bool WeldSpotCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -110602,7 +111330,7 @@ bool WeldSpotCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldSpotCharacteristicNominalType\n");
               returnValue = true;
@@ -110618,7 +111346,7 @@ bool WeldSpotCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -110627,7 +111355,7 @@ bool WeldSpotCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldSpotCharacteristicNominalType\n");
       returnValue = true;
@@ -110639,8 +111367,8 @@ bool WeldSpotCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -110966,7 +111694,7 @@ bool WeldSquareCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldSquareCharacteristicDefinitionType\n");
               returnValue = true;
@@ -110982,7 +111710,7 @@ bool WeldSquareCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -110991,7 +111719,7 @@ bool WeldSquareCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldSquareCharacteristicDefinitionType\n");
       returnValue = true;
@@ -111003,8 +111731,8 @@ bool WeldSquareCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -111208,7 +111936,7 @@ bool WeldSquareCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldSquareCharacteristicItemType\n");
               returnValue = true;
@@ -111224,7 +111952,7 @@ bool WeldSquareCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -111233,7 +111961,7 @@ bool WeldSquareCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldSquareCharacteristicItemType\n");
       returnValue = true;
@@ -111245,8 +111973,8 @@ bool WeldSquareCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -111275,7 +112003,7 @@ WeldSquareCharacteristicMeasurementType::WeldSquareCharacteristicMeasurementType
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn) :
   WeldGrooveCharacteristicMeasurementType(
     AttributesIn,
     DescriptionIn,
@@ -111289,7 +112017,7 @@ WeldSquareCharacteristicMeasurementType::WeldSquareCharacteristicMeasurementType
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveCharacteristicMeasurementTypePairIn)
 {
 }
 
@@ -111307,7 +112035,7 @@ WeldSquareCharacteristicMeasurementType::WeldSquareCharacteristicMeasurementType
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn) :
   WeldGrooveCharacteristicMeasurementType(
     idIn,
     AttributesIn,
@@ -111322,7 +112050,7 @@ WeldSquareCharacteristicMeasurementType::WeldSquareCharacteristicMeasurementType
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveCharacteristicMeasurementTypePairIn)
 {
 }
 
@@ -111445,9 +112173,9 @@ void WeldSquareCharacteristicMeasurementType::printSelf(FILE * outFile)
       NonConformanceDesignator->printSelf(outFile);
       fprintf(outFile, "</NonConformanceDesignator>\n");
     }
-  if (WeldGrooveChara_1079)
+  if (WeldGrooveCharacteristicMeasurementTypePair)
     {
-      WeldGrooveChara_1079->printSelf(outFile);
+      WeldGrooveCharacteristicMeasurementTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -111466,7 +112194,7 @@ bool WeldSquareCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldSquareCharacteristicMeasurementType\n");
               returnValue = true;
@@ -111482,7 +112210,7 @@ bool WeldSquareCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -111491,7 +112219,7 @@ bool WeldSquareCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldSquareCharacteristicMeasurementType\n");
       returnValue = true;
@@ -111503,8 +112231,8 @@ bool WeldSquareCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -111536,7 +112264,7 @@ WeldSquareCharacteristicNominalType::WeldSquareCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
+ WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn) :
   WeldGrooveCharacteristicNominalType(
     AttributesIn,
     DescriptionIn,
@@ -111553,7 +112281,7 @@ WeldSquareCharacteristicNominalType::WeldSquareCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1080In)
+    WeldGrooveCharacteristicNominalTypePairIn)
 {
 }
 
@@ -111574,7 +112302,7 @@ WeldSquareCharacteristicNominalType::WeldSquareCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
+ WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn) :
   WeldGrooveCharacteristicNominalType(
     idIn,
     AttributesIn,
@@ -111592,7 +112320,7 @@ WeldSquareCharacteristicNominalType::WeldSquareCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1080In)
+    WeldGrooveCharacteristicNominalTypePairIn)
 {
 }
 
@@ -111742,9 +112470,9 @@ void WeldSquareCharacteristicNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</NonDestructiveTesting>\n");
     }
-  if (WeldGrooveChara_1080)
+  if (WeldGrooveCharacteristicNominalTypePair)
     {
-      WeldGrooveChara_1080->printSelf(outFile);
+      WeldGrooveCharacteristicNominalTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -111763,7 +112491,7 @@ bool WeldSquareCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldSquareCharacteristicNominalType\n");
               returnValue = true;
@@ -111779,7 +112507,7 @@ bool WeldSquareCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -111788,7 +112516,7 @@ bool WeldSquareCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldSquareCharacteristicNominalType\n");
       returnValue = true;
@@ -111800,8 +112528,8 @@ bool WeldSquareCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -112026,7 +112754,7 @@ bool WeldStudCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldStudCharacteristicDefinitionType\n");
               returnValue = true;
@@ -112042,7 +112770,7 @@ bool WeldStudCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -112051,7 +112779,7 @@ bool WeldStudCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldStudCharacteristicDefinitionType\n");
       returnValue = true;
@@ -112063,8 +112791,8 @@ bool WeldStudCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -112268,7 +112996,7 @@ bool WeldStudCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldStudCharacteristicItemType\n");
               returnValue = true;
@@ -112284,7 +113012,7 @@ bool WeldStudCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -112293,7 +113021,7 @@ bool WeldStudCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldStudCharacteristicItemType\n");
       returnValue = true;
@@ -112305,8 +113033,8 @@ bool WeldStudCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -112532,7 +113260,7 @@ bool WeldStudCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldStudCharacteristicMeasurementType\n");
               returnValue = true;
@@ -112548,7 +113276,7 @@ bool WeldStudCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -112557,7 +113285,7 @@ bool WeldStudCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldStudCharacteristicMeasurementType\n");
       returnValue = true;
@@ -112569,8 +113297,8 @@ bool WeldStudCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -112841,7 +113569,7 @@ bool WeldStudCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldStudCharacteristicNominalType\n");
               returnValue = true;
@@ -112857,7 +113585,7 @@ bool WeldStudCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -112866,7 +113594,7 @@ bool WeldStudCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldStudCharacteristicNominalType\n");
       returnValue = true;
@@ -112878,8 +113606,8 @@ bool WeldStudCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -113172,7 +113900,7 @@ bool WeldSurfacingCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldSurfacingCharacteristicDefinitionType\n");
               returnValue = true;
@@ -113188,7 +113916,7 @@ bool WeldSurfacingCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -113197,7 +113925,7 @@ bool WeldSurfacingCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldSurfacingCharacteristicDefinitionType\n");
       returnValue = true;
@@ -113209,8 +113937,8 @@ bool WeldSurfacingCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -113414,7 +114142,7 @@ bool WeldSurfacingCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldSurfacingCharacteristicItemType\n");
               returnValue = true;
@@ -113430,7 +114158,7 @@ bool WeldSurfacingCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -113439,7 +114167,7 @@ bool WeldSurfacingCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldSurfacingCharacteristicItemType\n");
       returnValue = true;
@@ -113451,8 +114179,8 @@ bool WeldSurfacingCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -113678,7 +114406,7 @@ bool WeldSurfacingCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldSurfacingCharacteristicMeasurementType\n");
               returnValue = true;
@@ -113694,7 +114422,7 @@ bool WeldSurfacingCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -113703,7 +114431,7 @@ bool WeldSurfacingCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldSurfacingCharacteristicMeasurementType\n");
       returnValue = true;
@@ -113715,8 +114443,8 @@ bool WeldSurfacingCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -113987,7 +114715,7 @@ bool WeldSurfacingCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldSurfacingCharacteristicNominalType\n");
               returnValue = true;
@@ -114003,7 +114731,7 @@ bool WeldSurfacingCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -114012,7 +114740,7 @@ bool WeldSurfacingCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldSurfacingCharacteristicNominalType\n");
       returnValue = true;
@@ -114024,8 +114752,8 @@ bool WeldSurfacingCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -114256,7 +114984,7 @@ bool WeldUCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldUCharacteristicDefinitionType\n");
               returnValue = true;
@@ -114272,7 +115000,7 @@ bool WeldUCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -114281,7 +115009,7 @@ bool WeldUCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldUCharacteristicDefinitionType\n");
       returnValue = true;
@@ -114293,8 +115021,8 @@ bool WeldUCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -114498,7 +115226,7 @@ bool WeldUCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldUCharacteristicItemType\n");
               returnValue = true;
@@ -114514,7 +115242,7 @@ bool WeldUCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -114523,7 +115251,7 @@ bool WeldUCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldUCharacteristicItemType\n");
       returnValue = true;
@@ -114535,8 +115263,8 @@ bool WeldUCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -114565,7 +115293,7 @@ WeldUCharacteristicMeasurementType::WeldUCharacteristicMeasurementType(
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn) :
   WeldGrooveCharacteristicMeasurementType(
     AttributesIn,
     DescriptionIn,
@@ -114579,7 +115307,7 @@ WeldUCharacteristicMeasurementType::WeldUCharacteristicMeasurementType(
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveCharacteristicMeasurementTypePairIn)
 {
 }
 
@@ -114597,7 +115325,7 @@ WeldUCharacteristicMeasurementType::WeldUCharacteristicMeasurementType(
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn) :
   WeldGrooveCharacteristicMeasurementType(
     idIn,
     AttributesIn,
@@ -114612,7 +115340,7 @@ WeldUCharacteristicMeasurementType::WeldUCharacteristicMeasurementType(
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveCharacteristicMeasurementTypePairIn)
 {
 }
 
@@ -114735,9 +115463,9 @@ void WeldUCharacteristicMeasurementType::printSelf(FILE * outFile)
       NonConformanceDesignator->printSelf(outFile);
       fprintf(outFile, "</NonConformanceDesignator>\n");
     }
-  if (WeldGrooveChara_1079)
+  if (WeldGrooveCharacteristicMeasurementTypePair)
     {
-      WeldGrooveChara_1079->printSelf(outFile);
+      WeldGrooveCharacteristicMeasurementTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -114756,7 +115484,7 @@ bool WeldUCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldUCharacteristicMeasurementType\n");
               returnValue = true;
@@ -114772,7 +115500,7 @@ bool WeldUCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -114781,7 +115509,7 @@ bool WeldUCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldUCharacteristicMeasurementType\n");
       returnValue = true;
@@ -114793,8 +115521,8 @@ bool WeldUCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -114826,7 +115554,7 @@ WeldUCharacteristicNominalType::WeldUCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
+ WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn) :
   WeldGrooveCharacteristicNominalType(
     AttributesIn,
     DescriptionIn,
@@ -114843,7 +115571,7 @@ WeldUCharacteristicNominalType::WeldUCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1080In)
+    WeldGrooveCharacteristicNominalTypePairIn)
 {
 }
 
@@ -114864,7 +115592,7 @@ WeldUCharacteristicNominalType::WeldUCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
+ WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn) :
   WeldGrooveCharacteristicNominalType(
     idIn,
     AttributesIn,
@@ -114882,7 +115610,7 @@ WeldUCharacteristicNominalType::WeldUCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1080In)
+    WeldGrooveCharacteristicNominalTypePairIn)
 {
 }
 
@@ -115032,9 +115760,9 @@ void WeldUCharacteristicNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</NonDestructiveTesting>\n");
     }
-  if (WeldGrooveChara_1080)
+  if (WeldGrooveCharacteristicNominalTypePair)
     {
-      WeldGrooveChara_1080->printSelf(outFile);
+      WeldGrooveCharacteristicNominalTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -115053,7 +115781,7 @@ bool WeldUCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldUCharacteristicNominalType\n");
               returnValue = true;
@@ -115069,7 +115797,7 @@ bool WeldUCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -115078,7 +115806,7 @@ bool WeldUCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldUCharacteristicNominalType\n");
       returnValue = true;
@@ -115090,8 +115818,8 @@ bool WeldUCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -115316,7 +116044,7 @@ bool WeldVCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldVCharacteristicDefinitionType\n");
               returnValue = true;
@@ -115332,7 +116060,7 @@ bool WeldVCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -115341,7 +116069,7 @@ bool WeldVCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldVCharacteristicDefinitionType\n");
       returnValue = true;
@@ -115353,8 +116081,8 @@ bool WeldVCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -115558,7 +116286,7 @@ bool WeldVCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldVCharacteristicItemType\n");
               returnValue = true;
@@ -115574,7 +116302,7 @@ bool WeldVCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -115583,7 +116311,7 @@ bool WeldVCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldVCharacteristicItemType\n");
       returnValue = true;
@@ -115595,8 +116323,8 @@ bool WeldVCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -115625,7 +116353,7 @@ WeldVCharacteristicMeasurementType::WeldVCharacteristicMeasurementType(
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn) :
   WeldGrooveCharacteristicMeasurementType(
     AttributesIn,
     DescriptionIn,
@@ -115639,7 +116367,7 @@ WeldVCharacteristicMeasurementType::WeldVCharacteristicMeasurementType(
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveCharacteristicMeasurementTypePairIn)
 {
 }
 
@@ -115657,7 +116385,7 @@ WeldVCharacteristicMeasurementType::WeldVCharacteristicMeasurementType(
  QIFReferenceType * ManufacturingProcessIdIn,
  ArrayReferenceType * NotedEventIdsIn,
  XmlToken * NonConformanceDesignatorIn,
- WeldGrooveChara_1079_Type * WeldGrooveChara_1079In) :
+ WeldGrooveCharacteristicMeasurementTypeChoicePair * WeldGrooveCharacteristicMeasurementTypePairIn) :
   WeldGrooveCharacteristicMeasurementType(
     idIn,
     AttributesIn,
@@ -115672,7 +116400,7 @@ WeldVCharacteristicMeasurementType::WeldVCharacteristicMeasurementType(
     ManufacturingProcessIdIn,
     NotedEventIdsIn,
     NonConformanceDesignatorIn,
-    WeldGrooveChara_1079In)
+    WeldGrooveCharacteristicMeasurementTypePairIn)
 {
 }
 
@@ -115795,9 +116523,9 @@ void WeldVCharacteristicMeasurementType::printSelf(FILE * outFile)
       NonConformanceDesignator->printSelf(outFile);
       fprintf(outFile, "</NonConformanceDesignator>\n");
     }
-  if (WeldGrooveChara_1079)
+  if (WeldGrooveCharacteristicMeasurementTypePair)
     {
-      WeldGrooveChara_1079->printSelf(outFile);
+      WeldGrooveCharacteristicMeasurementTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -115816,7 +116544,7 @@ bool WeldVCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldVCharacteristicMeasurementType\n");
               returnValue = true;
@@ -115832,7 +116560,7 @@ bool WeldVCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -115841,7 +116569,7 @@ bool WeldVCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldVCharacteristicMeasurementType\n");
       returnValue = true;
@@ -115853,8 +116581,8 @@ bool WeldVCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -115886,7 +116614,7 @@ WeldVCharacteristicNominalType::WeldVCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
+ WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn) :
   WeldGrooveCharacteristicNominalType(
     AttributesIn,
     DescriptionIn,
@@ -115903,7 +116631,7 @@ WeldVCharacteristicNominalType::WeldVCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1080In)
+    WeldGrooveCharacteristicNominalTypePairIn)
 {
 }
 
@@ -115924,7 +116652,7 @@ WeldVCharacteristicNominalType::WeldVCharacteristicNominalType(
  XmlToken * SpecificationIn,
  WeldingProcessType * WeldingProcessIn,
  ArrayNonDestructiveTestingType * NonDestructiveTestingIn,
- WeldGrooveChara_1080_Type * WeldGrooveChara_1080In) :
+ WeldGrooveCharacteristicNominalTypeChoicePair * WeldGrooveCharacteristicNominalTypePairIn) :
   WeldGrooveCharacteristicNominalType(
     idIn,
     AttributesIn,
@@ -115942,7 +116670,7 @@ WeldVCharacteristicNominalType::WeldVCharacteristicNominalType(
     SpecificationIn,
     WeldingProcessIn,
     NonDestructiveTestingIn,
-    WeldGrooveChara_1080In)
+    WeldGrooveCharacteristicNominalTypePairIn)
 {
 }
 
@@ -116092,9 +116820,9 @@ void WeldVCharacteristicNominalType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</NonDestructiveTesting>\n");
     }
-  if (WeldGrooveChara_1080)
+  if (WeldGrooveCharacteristicNominalTypePair)
     {
-      WeldGrooveChara_1080->printSelf(outFile);
+      WeldGrooveCharacteristicNominalTypePair->printSelf(outFile);
     }
   doSpaces(-INDENT, outFile);
 }
@@ -116113,7 +116841,7 @@ bool WeldVCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WeldVCharacteristicNominalType\n");
               returnValue = true;
@@ -116129,7 +116857,7 @@ bool WeldVCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -116138,7 +116866,7 @@ bool WeldVCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WeldVCharacteristicNominalType\n");
       returnValue = true;
@@ -116150,8 +116878,8 @@ bool WeldVCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -116399,7 +117127,7 @@ WidthCharacteristicDefinitionType::WidthCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     AttributesIn,
     DescriptionIn,
@@ -116416,7 +117144,7 @@ WidthCharacteristicDefinitionType::WidthCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -116437,7 +117165,7 @@ WidthCharacteristicDefinitionType::WidthCharacteristicDefinitionType(
  XmlBoolean * SeparateZoneIn,
  DimensionModifierEnumType * DimensionTypeIn,
  DimensionModifiersType * DimensionModifiersIn,
- LinearCharacter_1059_Type * LinearCharacter_1059In) :
+ LinearCharacteristicDefinitionBaseTypeChoicePair * LinearCharacteristicDefinitionBaseTypePairIn) :
   LinearCharacteristicDefinitionBaseType(
     idIn,
     AttributesIn,
@@ -116455,7 +117183,7 @@ WidthCharacteristicDefinitionType::WidthCharacteristicDefinitionType(
     SeparateZoneIn,
     DimensionTypeIn,
     DimensionModifiersIn,
-    LinearCharacter_1059In)
+    LinearCharacteristicDefinitionBaseTypePairIn)
 {
 }
 
@@ -116602,7 +117330,7 @@ void WidthCharacteristicDefinitionType::printSelf(FILE * outFile)
       doSpaces(0, outFile);
       fprintf(outFile, "</DimensionModifiers>\n");
     }
-  LinearCharacter_1059->printSelf(outFile);
+  LinearCharacteristicDefinitionBaseTypePair->printSelf(outFile);
   doSpaces(-INDENT, outFile);
 }
 
@@ -116620,7 +117348,7 @@ bool WidthCharacteristicDefinitionType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WidthCharacteristicDefinitionType\n");
               returnValue = true;
@@ -116636,7 +117364,7 @@ bool WidthCharacteristicDefinitionType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -116645,7 +117373,7 @@ bool WidthCharacteristicDefinitionType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WidthCharacteristicDefinitionType\n");
       returnValue = true;
@@ -116657,8 +117385,8 @@ bool WidthCharacteristicDefinitionType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -116862,7 +117590,7 @@ bool WidthCharacteristicItemType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WidthCharacteristicItemType\n");
               returnValue = true;
@@ -116878,7 +117606,7 @@ bool WidthCharacteristicItemType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -116887,7 +117615,7 @@ bool WidthCharacteristicItemType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WidthCharacteristicItemType\n");
       returnValue = true;
@@ -116899,8 +117627,8 @@ bool WidthCharacteristicItemType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -117145,7 +117873,7 @@ bool WidthCharacteristicMeasurementType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WidthCharacteristicMeasurementType\n");
               returnValue = true;
@@ -117161,7 +117889,7 @@ bool WidthCharacteristicMeasurementType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -117170,7 +117898,7 @@ bool WidthCharacteristicMeasurementType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WidthCharacteristicMeasurementType\n");
       returnValue = true;
@@ -117182,8 +117910,8 @@ bool WidthCharacteristicMeasurementType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
@@ -117399,7 +118127,7 @@ bool WidthCharacteristicNominalType::badAttributes(
       if (decl->name == "id")
         {
           QIFIdType * idVal;
-          if (id)
+          if (this->id)
             {
               fprintf(stderr, "two values for id in WidthCharacteristicNominalType\n");
               returnValue = true;
@@ -117415,7 +118143,7 @@ bool WidthCharacteristicNominalType::badAttributes(
               break;
             }
           else
-            id = idVal;
+            this->id = idVal;
         }
       else
         {
@@ -117424,7 +118152,7 @@ bool WidthCharacteristicNominalType::badAttributes(
           break;
         }
     }
-  if (id == 0)
+  if (this->id == 0)
     {
       fprintf(stderr, "required attribute \"id\" missing in WidthCharacteristicNominalType\n");
       returnValue = true;
@@ -117436,338 +118164,168 @@ bool WidthCharacteristicNominalType::badAttributes(
   attributes->clear();
   if (returnValue == true)
     {
-      delete id;
-      id = 0;
+      delete this->id;
+      this->id = 0;
     }
   return returnValue;
 }
 
 /* ***************************************************************** */
 
-/* class AngularCharacte_1046_Type
+/* class CircularityChar_1041_Type
 
 */
 
-AngularCharacte_1046_Type::AngularCharacte_1046_Type()
+CircularityChar_1041_Type::CircularityChar_1041_Type()
 {
-  AngularCharacte_1046_TypePair = 0;
+  ToleranceValue = 0;
+  ToleranceDualValue = 0;
+  CircularityChar_1064 = 0;
 }
 
-AngularCharacte_1046_Type::AngularCharacte_1046_Type(
- AngularCharacte_1046_TypeChoicePair * AngularCharacte_1046_TypePairIn)
+CircularityChar_1041_Type::CircularityChar_1041_Type(
+ LinearValueType * ToleranceValueIn,
+ LinearDualValueType * ToleranceDualValueIn,
+ CircularityChar_1064_Type * CircularityChar_1064In)
 {
-  AngularCharacte_1046_TypePair = AngularCharacte_1046_TypePairIn;
+  ToleranceValue = ToleranceValueIn;
+  ToleranceDualValue = ToleranceDualValueIn;
+  CircularityChar_1064 = CircularityChar_1064In;
 }
 
-AngularCharacte_1046_Type::~AngularCharacte_1046_Type()
+CircularityChar_1041_Type::~CircularityChar_1041_Type()
 {
   #ifndef NODESTRUCT
-  delete AngularCharacte_1046_TypePair;
+  delete ToleranceValue;
+  delete ToleranceDualValue;
+  delete CircularityChar_1064;
   #endif
 }
 
-void AngularCharacte_1046_Type::printSelf(FILE * outFile)
+void CircularityChar_1041_Type::printSelf(FILE * outFile)
 {
-  AngularCharacte_1046_TypePair->printSelf(outFile);
-}
-
-AngularCharacte_1046_TypeChoicePair * AngularCharacte_1046_Type::getAngularCharacte_1046_TypePair()
-{return AngularCharacte_1046_TypePair;}
-
-void AngularCharacte_1046_Type::setAngularCharacte_1046_TypePair(AngularCharacte_1046_TypeChoicePair * AngularCharacte_1046_TypePairIn)
-{AngularCharacte_1046_TypePair = AngularCharacte_1046_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class AngularCharacte_1046_TypeChoicePair
-
-*/
-
-AngularCharacte_1046_TypeChoicePair::AngularCharacte_1046_TypeChoicePair() {}
-
-AngularCharacte_1046_TypeChoicePair::AngularCharacte_1046_TypeChoicePair(
- whichOne AngularCharacte_1046_TypeTypeIn,
- AngularCharacte_1046_TypeVal AngularCharacte_1046_TypeValueIn)
-{
-  AngularCharacte_1046_TypeType = AngularCharacte_1046_TypeTypeIn;
-  AngularCharacte_1046_TypeValue = AngularCharacte_1046_TypeValueIn;
-}
-
-AngularCharacte_1046_TypeChoicePair::~AngularCharacte_1046_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (AngularCharacte_1046_TypeType == ToleranceE)
-    delete AngularCharacte_1046_TypeValue.Tolerance;
-  else if (AngularCharacte_1046_TypeType == NonToleranceE)
-    delete AngularCharacte_1046_TypeValue.NonTolerance;
-  #endif
-}
-
-void AngularCharacte_1046_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (AngularCharacte_1046_TypeType == ToleranceE)
+  doSpaces(0, outFile);
+  fprintf(outFile, "<ToleranceValue");
+  ToleranceValue->printSelf(outFile);
+  fprintf(outFile, "</ToleranceValue>\n");
+  if (ToleranceDualValue)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<Tolerance");
-      AngularCharacte_1046_TypeValue.Tolerance->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</Tolerance>\n");
+      fprintf(outFile, "<ToleranceDualValue");
+      ToleranceDualValue->printSelf(outFile);
+      fprintf(outFile, "</ToleranceDualValue>\n");
     }
-  else if (AngularCharacte_1046_TypeType == NonToleranceE)
+  if (CircularityChar_1064)
     {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<NonTolerance");
-      AngularCharacte_1046_TypeValue.NonTolerance->printSelf(outFile);
-      fprintf(outFile, "</NonTolerance>\n");
+  CircularityChar_1064->printSelf(outFile);
     }
 }
 
-/* ***************************************************************** */
+LinearValueType * CircularityChar_1041_Type::getToleranceValue()
+{return ToleranceValue;}
 
-/* class AngularCoordina_1047_Type
+void CircularityChar_1041_Type::setToleranceValue(LinearValueType * ToleranceValueIn)
+{ToleranceValue = ToleranceValueIn;}
 
-*/
+LinearDualValueType * CircularityChar_1041_Type::getToleranceDualValue()
+{return ToleranceDualValue;}
 
-AngularCoordina_1047_Type::AngularCoordina_1047_Type()
-{
-  AngularCoordina_1047_TypePair = 0;
-}
+void CircularityChar_1041_Type::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
+{ToleranceDualValue = ToleranceDualValueIn;}
 
-AngularCoordina_1047_Type::AngularCoordina_1047_Type(
- AngularCoordina_1047_TypeChoicePair * AngularCoordina_1047_TypePairIn)
-{
-  AngularCoordina_1047_TypePair = AngularCoordina_1047_TypePairIn;
-}
+CircularityChar_1064_Type * CircularityChar_1041_Type::getCircularityChar_1064()
+{return CircularityChar_1064;}
 
-AngularCoordina_1047_Type::~AngularCoordina_1047_Type()
-{
-  #ifndef NODESTRUCT
-  delete AngularCoordina_1047_TypePair;
-  #endif
-}
-
-void AngularCoordina_1047_Type::printSelf(FILE * outFile)
-{
-  AngularCoordina_1047_TypePair->printSelf(outFile);
-}
-
-AngularCoordina_1047_TypeChoicePair * AngularCoordina_1047_Type::getAngularCoordina_1047_TypePair()
-{return AngularCoordina_1047_TypePair;}
-
-void AngularCoordina_1047_Type::setAngularCoordina_1047_TypePair(AngularCoordina_1047_TypeChoicePair * AngularCoordina_1047_TypePairIn)
-{AngularCoordina_1047_TypePair = AngularCoordina_1047_TypePairIn;}
+void CircularityChar_1041_Type::setCircularityChar_1064(CircularityChar_1064_Type * CircularityChar_1064In)
+{CircularityChar_1064 = CircularityChar_1064In;}
 
 /* ***************************************************************** */
 
-/* class AngularCoordina_1047_TypeChoicePair
+/* class CircularityChar_1042_Type
 
 */
 
-AngularCoordina_1047_TypeChoicePair::AngularCoordina_1047_TypeChoicePair() {}
-
-AngularCoordina_1047_TypeChoicePair::AngularCoordina_1047_TypeChoicePair(
- whichOne AngularCoordina_1047_TypeTypeIn,
- AngularCoordina_1047_TypeVal AngularCoordina_1047_TypeValueIn)
+CircularityChar_1042_Type::CircularityChar_1042_Type()
 {
-  AngularCoordina_1047_TypeType = AngularCoordina_1047_TypeTypeIn;
-  AngularCoordina_1047_TypeValue = AngularCoordina_1047_TypeValueIn;
+  CircularityChar_1042_TypePair = 0;
 }
 
-AngularCoordina_1047_TypeChoicePair::~AngularCoordina_1047_TypeChoicePair()
+CircularityChar_1042_Type::CircularityChar_1042_Type(
+ CircularityChar_1042_TypeChoicePair * CircularityChar_1042_TypePairIn)
+{
+  CircularityChar_1042_TypePair = CircularityChar_1042_TypePairIn;
+}
+
+CircularityChar_1042_Type::~CircularityChar_1042_Type()
 {
   #ifndef NODESTRUCT
-  if (AngularCoordina_1047_TypeType == ToleranceE)
-    delete AngularCoordina_1047_TypeValue.Tolerance;
-  else if (AngularCoordina_1047_TypeType == NonToleranceE)
-    delete AngularCoordina_1047_TypeValue.NonTolerance;
+  delete CircularityChar_1042_TypePair;
   #endif
 }
 
-void AngularCoordina_1047_TypeChoicePair::printSelf(FILE * outFile)
+void CircularityChar_1042_Type::printSelf(FILE * outFile)
 {
-  if (AngularCoordina_1047_TypeType == ToleranceE)
+  CircularityChar_1042_TypePair->printSelf(outFile);
+}
+
+CircularityChar_1042_TypeChoicePair * CircularityChar_1042_Type::getCircularityChar_1042_TypePair()
+{return CircularityChar_1042_TypePair;}
+
+void CircularityChar_1042_Type::setCircularityChar_1042_TypePair(CircularityChar_1042_TypeChoicePair * CircularityChar_1042_TypePairIn)
+{CircularityChar_1042_TypePair = CircularityChar_1042_TypePairIn;}
+CircularityChar_1042_TypeChoicePair::CircularityChar_1042_TypeChoicePair() {}
+
+CircularityChar_1042_TypeChoicePair::CircularityChar_1042_TypeChoicePair(
+ whichOne CircularityChar_1042_TypeTypeIn,
+ CircularityChar_1042_TypeVal CircularityChar_1042_TypeValueIn)
+{
+  CircularityChar_1042_TypeType = CircularityChar_1042_TypeTypeIn;
+  CircularityChar_1042_TypeValue = CircularityChar_1042_TypeValueIn;
+}
+
+CircularityChar_1042_TypeChoicePair::~CircularityChar_1042_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (CircularityChar_1042_TypeType == ToleranceZonePerUnitAngleE)
+    delete CircularityChar_1042_TypeValue.ToleranceZonePerUnitAngle;
+  else if (CircularityChar_1042_TypeType == ToleranceZonePerUnitArcLengthE)
+    delete CircularityChar_1042_TypeValue.ToleranceZonePerUnitArcLength;
+  #endif
+}
+
+void CircularityChar_1042_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (CircularityChar_1042_TypeType == ToleranceZonePerUnitAngleE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<Tolerance");
-      AngularCoordina_1047_TypeValue.Tolerance->printSelf(outFile);
+      fprintf(outFile, "<ToleranceZonePerUnitAngle");
+      CircularityChar_1042_TypeValue.ToleranceZonePerUnitAngle->printSelf(outFile);
       doSpaces(0, outFile);
-      fprintf(outFile, "</Tolerance>\n");
+      fprintf(outFile, "</ToleranceZonePerUnitAngle>\n");
     }
-  else if (AngularCoordina_1047_TypeType == NonToleranceE)
+  else if (CircularityChar_1042_TypeType == ToleranceZonePerUnitArcLengthE)
     {
       doSpaces(0, outFile);
-      fprintf(outFile, "<NonTolerance");
-      AngularCoordina_1047_TypeValue.NonTolerance->printSelf(outFile);
-      fprintf(outFile, "</NonTolerance>\n");
+      fprintf(outFile, "<ToleranceZonePerUnitArcLength");
+      CircularityChar_1042_TypeValue.ToleranceZonePerUnitArcLength->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</ToleranceZonePerUnitArcLength>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class AreaCharacteris_1048_Type
+/* class CircularityChar_1043_Type
 
 */
 
-AreaCharacteris_1048_Type::AreaCharacteris_1048_Type()
-{
-  AreaCharacteris_1048_TypePair = 0;
-}
-
-AreaCharacteris_1048_Type::AreaCharacteris_1048_Type(
- AreaCharacteris_1048_TypeChoicePair * AreaCharacteris_1048_TypePairIn)
-{
-  AreaCharacteris_1048_TypePair = AreaCharacteris_1048_TypePairIn;
-}
-
-AreaCharacteris_1048_Type::~AreaCharacteris_1048_Type()
-{
-  #ifndef NODESTRUCT
-  delete AreaCharacteris_1048_TypePair;
-  #endif
-}
-
-void AreaCharacteris_1048_Type::printSelf(FILE * outFile)
-{
-  AreaCharacteris_1048_TypePair->printSelf(outFile);
-}
-
-AreaCharacteris_1048_TypeChoicePair * AreaCharacteris_1048_Type::getAreaCharacteris_1048_TypePair()
-{return AreaCharacteris_1048_TypePair;}
-
-void AreaCharacteris_1048_Type::setAreaCharacteris_1048_TypePair(AreaCharacteris_1048_TypeChoicePair * AreaCharacteris_1048_TypePairIn)
-{AreaCharacteris_1048_TypePair = AreaCharacteris_1048_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class AreaCharacteris_1048_TypeChoicePair
-
-*/
-
-AreaCharacteris_1048_TypeChoicePair::AreaCharacteris_1048_TypeChoicePair() {}
-
-AreaCharacteris_1048_TypeChoicePair::AreaCharacteris_1048_TypeChoicePair(
- whichOne AreaCharacteris_1048_TypeTypeIn,
- AreaCharacteris_1048_TypeVal AreaCharacteris_1048_TypeValueIn)
-{
-  AreaCharacteris_1048_TypeType = AreaCharacteris_1048_TypeTypeIn;
-  AreaCharacteris_1048_TypeValue = AreaCharacteris_1048_TypeValueIn;
-}
-
-AreaCharacteris_1048_TypeChoicePair::~AreaCharacteris_1048_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (AreaCharacteris_1048_TypeType == ToleranceE)
-    delete AreaCharacteris_1048_TypeValue.Tolerance;
-  else if (AreaCharacteris_1048_TypeType == NonToleranceE)
-    delete AreaCharacteris_1048_TypeValue.NonTolerance;
-  #endif
-}
-
-void AreaCharacteris_1048_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (AreaCharacteris_1048_TypeType == ToleranceE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<Tolerance");
-      AreaCharacteris_1048_TypeValue.Tolerance->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</Tolerance>\n");
-    }
-  else if (AreaCharacteris_1048_TypeType == NonToleranceE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<NonTolerance");
-      AreaCharacteris_1048_TypeValue.NonTolerance->printSelf(outFile);
-      fprintf(outFile, "</NonTolerance>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class CircularityChar_1049_Type
-
-*/
-
-CircularityChar_1049_Type::CircularityChar_1049_Type()
-{
-  CircularityChar_1049_TypePair = 0;
-}
-
-CircularityChar_1049_Type::CircularityChar_1049_Type(
- CircularityChar_1049_TypeChoicePair * CircularityChar_1049_TypePairIn)
-{
-  CircularityChar_1049_TypePair = CircularityChar_1049_TypePairIn;
-}
-
-CircularityChar_1049_Type::~CircularityChar_1049_Type()
-{
-  #ifndef NODESTRUCT
-  delete CircularityChar_1049_TypePair;
-  #endif
-}
-
-void CircularityChar_1049_Type::printSelf(FILE * outFile)
-{
-  CircularityChar_1049_TypePair->printSelf(outFile);
-}
-
-CircularityChar_1049_TypeChoicePair * CircularityChar_1049_Type::getCircularityChar_1049_TypePair()
-{return CircularityChar_1049_TypePair;}
-
-void CircularityChar_1049_Type::setCircularityChar_1049_TypePair(CircularityChar_1049_TypeChoicePair * CircularityChar_1049_TypePairIn)
-{CircularityChar_1049_TypePair = CircularityChar_1049_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class CircularityChar_1049_TypeChoicePair
-
-*/
-
-CircularityChar_1049_TypeChoicePair::CircularityChar_1049_TypeChoicePair() {}
-
-CircularityChar_1049_TypeChoicePair::CircularityChar_1049_TypeChoicePair(
- whichOne CircularityChar_1049_TypeTypeIn,
- CircularityChar_1049_TypeVal CircularityChar_1049_TypeValueIn)
-{
-  CircularityChar_1049_TypeType = CircularityChar_1049_TypeTypeIn;
-  CircularityChar_1049_TypeValue = CircularityChar_1049_TypeValueIn;
-}
-
-CircularityChar_1049_TypeChoicePair::~CircularityChar_1049_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (CircularityChar_1049_TypeType == CircularityChar_1082E)
-    delete CircularityChar_1049_TypeValue.CircularityChar_1082;
-  else if (CircularityChar_1049_TypeType == CircularityChar_1083E)
-    delete CircularityChar_1049_TypeValue.CircularityChar_1083;
-  #endif
-}
-
-void CircularityChar_1049_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (CircularityChar_1049_TypeType == CircularityChar_1082E)
-    {
-      CircularityChar_1049_TypeValue.CircularityChar_1082->printSelf(outFile);
-    }
-  else if (CircularityChar_1049_TypeType == CircularityChar_1083E)
-    {
-      CircularityChar_1049_TypeValue.CircularityChar_1083->printSelf(outFile);
-    }
-}
-
-/* ***************************************************************** */
-
-/* class CircularityChar_1050_Type
-
-*/
-
-CircularityChar_1050_Type::CircularityChar_1050_Type()
+CircularityChar_1043_Type::CircularityChar_1043_Type()
 {
   ZoneRadii = 0;
   ZonePlane = 0;
 }
 
-CircularityChar_1050_Type::CircularityChar_1050_Type(
+CircularityChar_1043_Type::CircularityChar_1043_Type(
  MeasuredZoneRadiiType * ZoneRadiiIn,
  MeasuredPlaneType * ZonePlaneIn)
 {
@@ -117775,7 +118333,7 @@ CircularityChar_1050_Type::CircularityChar_1050_Type(
   ZonePlane = ZonePlaneIn;
 }
 
-CircularityChar_1050_Type::~CircularityChar_1050_Type()
+CircularityChar_1043_Type::~CircularityChar_1043_Type()
 {
   #ifndef NODESTRUCT
   delete ZoneRadii;
@@ -117783,7 +118341,7 @@ CircularityChar_1050_Type::~CircularityChar_1050_Type()
   #endif
 }
 
-void CircularityChar_1050_Type::printSelf(FILE * outFile)
+void CircularityChar_1043_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ZoneRadii");
@@ -117797,265 +118355,351 @@ void CircularityChar_1050_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</ZonePlane>\n");
 }
 
-MeasuredZoneRadiiType * CircularityChar_1050_Type::getZoneRadii()
+MeasuredZoneRadiiType * CircularityChar_1043_Type::getZoneRadii()
 {return ZoneRadii;}
 
-void CircularityChar_1050_Type::setZoneRadii(MeasuredZoneRadiiType * ZoneRadiiIn)
+void CircularityChar_1043_Type::setZoneRadii(MeasuredZoneRadiiType * ZoneRadiiIn)
 {ZoneRadii = ZoneRadiiIn;}
 
-MeasuredPlaneType * CircularityChar_1050_Type::getZonePlane()
+MeasuredPlaneType * CircularityChar_1043_Type::getZonePlane()
 {return ZonePlane;}
 
-void CircularityChar_1050_Type::setZonePlane(MeasuredPlaneType * ZonePlaneIn)
+void CircularityChar_1043_Type::setZonePlane(MeasuredPlaneType * ZonePlaneIn)
 {ZonePlane = ZonePlaneIn;}
 
 /* ***************************************************************** */
 
-/* class CriticalityType_1051_Type
+/* class CriticalityType_1044_Type
 
 */
 
-CriticalityType_1051_Type::CriticalityType_1051_Type()
+CriticalityType_1044_Type::CriticalityType_1044_Type()
 {
-  CriticalityType_1051_TypePair = 0;
+  CriticalityType_1044_TypePair = 0;
 }
 
-CriticalityType_1051_Type::CriticalityType_1051_Type(
- CriticalityType_1051_TypeChoicePair * CriticalityType_1051_TypePairIn)
+CriticalityType_1044_Type::CriticalityType_1044_Type(
+ CriticalityType_1044_TypeChoicePair * CriticalityType_1044_TypePairIn)
 {
-  CriticalityType_1051_TypePair = CriticalityType_1051_TypePairIn;
+  CriticalityType_1044_TypePair = CriticalityType_1044_TypePairIn;
 }
 
-CriticalityType_1051_Type::~CriticalityType_1051_Type()
+CriticalityType_1044_Type::~CriticalityType_1044_Type()
 {
   #ifndef NODESTRUCT
-  delete CriticalityType_1051_TypePair;
+  delete CriticalityType_1044_TypePair;
   #endif
 }
 
-void CriticalityType_1051_Type::printSelf(FILE * outFile)
+void CriticalityType_1044_Type::printSelf(FILE * outFile)
 {
-  CriticalityType_1051_TypePair->printSelf(outFile);
+  CriticalityType_1044_TypePair->printSelf(outFile);
 }
 
-CriticalityType_1051_TypeChoicePair * CriticalityType_1051_Type::getCriticalityType_1051_TypePair()
-{return CriticalityType_1051_TypePair;}
+CriticalityType_1044_TypeChoicePair * CriticalityType_1044_Type::getCriticalityType_1044_TypePair()
+{return CriticalityType_1044_TypePair;}
 
-void CriticalityType_1051_Type::setCriticalityType_1051_TypePair(CriticalityType_1051_TypeChoicePair * CriticalityType_1051_TypePairIn)
-{CriticalityType_1051_TypePair = CriticalityType_1051_TypePairIn;}
+void CriticalityType_1044_Type::setCriticalityType_1044_TypePair(CriticalityType_1044_TypeChoicePair * CriticalityType_1044_TypePairIn)
+{CriticalityType_1044_TypePair = CriticalityType_1044_TypePairIn;}
+CriticalityType_1044_TypeChoicePair::CriticalityType_1044_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class CriticalityType_1051_TypeChoicePair
-
-*/
-
-CriticalityType_1051_TypeChoicePair::CriticalityType_1051_TypeChoicePair() {}
-
-CriticalityType_1051_TypeChoicePair::CriticalityType_1051_TypeChoicePair(
- whichOne CriticalityType_1051_TypeTypeIn,
- CriticalityType_1051_TypeVal CriticalityType_1051_TypeValueIn)
+CriticalityType_1044_TypeChoicePair::CriticalityType_1044_TypeChoicePair(
+ whichOne CriticalityType_1044_TypeTypeIn,
+ CriticalityType_1044_TypeVal CriticalityType_1044_TypeValueIn)
 {
-  CriticalityType_1051_TypeType = CriticalityType_1051_TypeTypeIn;
-  CriticalityType_1051_TypeValue = CriticalityType_1051_TypeValueIn;
+  CriticalityType_1044_TypeType = CriticalityType_1044_TypeTypeIn;
+  CriticalityType_1044_TypeValue = CriticalityType_1044_TypeValueIn;
 }
 
-CriticalityType_1051_TypeChoicePair::~CriticalityType_1051_TypeChoicePair()
+CriticalityType_1044_TypeChoicePair::~CriticalityType_1044_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (CriticalityType_1051_TypeType == LevelEnumE)
-    delete CriticalityType_1051_TypeValue.LevelEnum;
-  else if (CriticalityType_1051_TypeType == OtherLevelE)
-    delete CriticalityType_1051_TypeValue.OtherLevel;
+  if (CriticalityType_1044_TypeType == LevelEnumE)
+    delete CriticalityType_1044_TypeValue.LevelEnum;
+  else if (CriticalityType_1044_TypeType == OtherLevelE)
+    delete CriticalityType_1044_TypeValue.OtherLevel;
   #endif
 }
 
-void CriticalityType_1051_TypeChoicePair::printSelf(FILE * outFile)
+void CriticalityType_1044_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (CriticalityType_1051_TypeType == LevelEnumE)
+  if (CriticalityType_1044_TypeType == LevelEnumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<LevelEnum");
-      CriticalityType_1051_TypeValue.LevelEnum->printSelf(outFile);
+      CriticalityType_1044_TypeValue.LevelEnum->printSelf(outFile);
       fprintf(outFile, "</LevelEnum>\n");
     }
-  else if (CriticalityType_1051_TypeType == OtherLevelE)
+  else if (CriticalityType_1044_TypeType == OtherLevelE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherLevel");
-      CriticalityType_1051_TypeValue.OtherLevel->printSelf(outFile);
+      CriticalityType_1044_TypeValue.OtherLevel->printSelf(outFile);
       fprintf(outFile, "</OtherLevel>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class CriticalityType_1052_Type
+/* class CriticalityType_1045_Type
 
 */
 
-CriticalityType_1052_Type::CriticalityType_1052_Type()
+CriticalityType_1045_Type::CriticalityType_1045_Type()
 {
-  CriticalityType_1052_TypePair = 0;
+  CriticalityType_1045_TypePair = 0;
 }
 
-CriticalityType_1052_Type::CriticalityType_1052_Type(
- CriticalityType_1052_TypeChoicePair * CriticalityType_1052_TypePairIn)
+CriticalityType_1045_Type::CriticalityType_1045_Type(
+ CriticalityType_1045_TypeChoicePair * CriticalityType_1045_TypePairIn)
 {
-  CriticalityType_1052_TypePair = CriticalityType_1052_TypePairIn;
+  CriticalityType_1045_TypePair = CriticalityType_1045_TypePairIn;
 }
 
-CriticalityType_1052_Type::~CriticalityType_1052_Type()
+CriticalityType_1045_Type::~CriticalityType_1045_Type()
 {
   #ifndef NODESTRUCT
-  delete CriticalityType_1052_TypePair;
+  delete CriticalityType_1045_TypePair;
   #endif
 }
 
-void CriticalityType_1052_Type::printSelf(FILE * outFile)
+void CriticalityType_1045_Type::printSelf(FILE * outFile)
 {
-  if (CriticalityType_1052_TypePair)
+  if (CriticalityType_1045_TypePair)
     {
-      CriticalityType_1052_TypePair->printSelf(outFile);
+      CriticalityType_1045_TypePair->printSelf(outFile);
     }
 }
 
-CriticalityType_1052_TypeChoicePair * CriticalityType_1052_Type::getCriticalityType_1052_TypePair()
-{return CriticalityType_1052_TypePair;}
+CriticalityType_1045_TypeChoicePair * CriticalityType_1045_Type::getCriticalityType_1045_TypePair()
+{return CriticalityType_1045_TypePair;}
 
-void CriticalityType_1052_Type::setCriticalityType_1052_TypePair(CriticalityType_1052_TypeChoicePair * CriticalityType_1052_TypePairIn)
-{CriticalityType_1052_TypePair = CriticalityType_1052_TypePairIn;}
+void CriticalityType_1045_Type::setCriticalityType_1045_TypePair(CriticalityType_1045_TypeChoicePair * CriticalityType_1045_TypePairIn)
+{CriticalityType_1045_TypePair = CriticalityType_1045_TypePairIn;}
+CriticalityType_1045_TypeChoicePair::CriticalityType_1045_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class CriticalityType_1052_TypeChoicePair
-
-*/
-
-CriticalityType_1052_TypeChoicePair::CriticalityType_1052_TypeChoicePair() {}
-
-CriticalityType_1052_TypeChoicePair::CriticalityType_1052_TypeChoicePair(
- whichOne CriticalityType_1052_TypeTypeIn,
- CriticalityType_1052_TypeVal CriticalityType_1052_TypeValueIn)
+CriticalityType_1045_TypeChoicePair::CriticalityType_1045_TypeChoicePair(
+ whichOne CriticalityType_1045_TypeTypeIn,
+ CriticalityType_1045_TypeVal CriticalityType_1045_TypeValueIn)
 {
-  CriticalityType_1052_TypeType = CriticalityType_1052_TypeTypeIn;
-  CriticalityType_1052_TypeValue = CriticalityType_1052_TypeValueIn;
+  CriticalityType_1045_TypeType = CriticalityType_1045_TypeTypeIn;
+  CriticalityType_1045_TypeValue = CriticalityType_1045_TypeValueIn;
 }
 
-CriticalityType_1052_TypeChoicePair::~CriticalityType_1052_TypeChoicePair()
+CriticalityType_1045_TypeChoicePair::~CriticalityType_1045_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (CriticalityType_1052_TypeType == AreaEnumE)
-    delete CriticalityType_1052_TypeValue.AreaEnum;
-  else if (CriticalityType_1052_TypeType == OtherAreaE)
-    delete CriticalityType_1052_TypeValue.OtherArea;
+  if (CriticalityType_1045_TypeType == AreaEnumE)
+    delete CriticalityType_1045_TypeValue.AreaEnum;
+  else if (CriticalityType_1045_TypeType == OtherAreaE)
+    delete CriticalityType_1045_TypeValue.OtherArea;
   #endif
 }
 
-void CriticalityType_1052_TypeChoicePair::printSelf(FILE * outFile)
+void CriticalityType_1045_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (CriticalityType_1052_TypeType == AreaEnumE)
+  if (CriticalityType_1045_TypeType == AreaEnumE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AreaEnum");
-      CriticalityType_1052_TypeValue.AreaEnum->printSelf(outFile);
+      CriticalityType_1045_TypeValue.AreaEnum->printSelf(outFile);
       fprintf(outFile, "</AreaEnum>\n");
     }
-  else if (CriticalityType_1052_TypeType == OtherAreaE)
+  else if (CriticalityType_1045_TypeType == OtherAreaE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OtherArea");
-      CriticalityType_1052_TypeValue.OtherArea->printSelf(outFile);
+      CriticalityType_1045_TypeValue.OtherArea->printSelf(outFile);
       fprintf(outFile, "</OtherArea>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class CylindricityCha_1053_Type
+/* class CylindricityCha_1046_Type
 
 */
 
-CylindricityCha_1053_Type::CylindricityCha_1053_Type()
+CylindricityCha_1046_Type::CylindricityCha_1046_Type()
 {
-  CylindricityCha_1053_TypePair = 0;
+  ToleranceValue = 0;
+  ToleranceDualValue = 0;
+  CylindricityCha_1065 = 0;
 }
 
-CylindricityCha_1053_Type::CylindricityCha_1053_Type(
- CylindricityCha_1053_TypeChoicePair * CylindricityCha_1053_TypePairIn)
+CylindricityCha_1046_Type::CylindricityCha_1046_Type(
+ LinearValueType * ToleranceValueIn,
+ LinearDualValueType * ToleranceDualValueIn,
+ CylindricityCha_1065_Type * CylindricityCha_1065In)
 {
-  CylindricityCha_1053_TypePair = CylindricityCha_1053_TypePairIn;
+  ToleranceValue = ToleranceValueIn;
+  ToleranceDualValue = ToleranceDualValueIn;
+  CylindricityCha_1065 = CylindricityCha_1065In;
 }
 
-CylindricityCha_1053_Type::~CylindricityCha_1053_Type()
+CylindricityCha_1046_Type::~CylindricityCha_1046_Type()
 {
   #ifndef NODESTRUCT
-  delete CylindricityCha_1053_TypePair;
+  delete ToleranceValue;
+  delete ToleranceDualValue;
+  delete CylindricityCha_1065;
   #endif
 }
 
-void CylindricityCha_1053_Type::printSelf(FILE * outFile)
+void CylindricityCha_1046_Type::printSelf(FILE * outFile)
 {
-  CylindricityCha_1053_TypePair->printSelf(outFile);
+  doSpaces(0, outFile);
+  fprintf(outFile, "<ToleranceValue");
+  ToleranceValue->printSelf(outFile);
+  fprintf(outFile, "</ToleranceValue>\n");
+  if (ToleranceDualValue)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<ToleranceDualValue");
+      ToleranceDualValue->printSelf(outFile);
+      fprintf(outFile, "</ToleranceDualValue>\n");
+    }
+  if (CylindricityCha_1065)
+    {
+  CylindricityCha_1065->printSelf(outFile);
+    }
 }
 
-CylindricityCha_1053_TypeChoicePair * CylindricityCha_1053_Type::getCylindricityCha_1053_TypePair()
-{return CylindricityCha_1053_TypePair;}
+LinearValueType * CylindricityCha_1046_Type::getToleranceValue()
+{return ToleranceValue;}
 
-void CylindricityCha_1053_Type::setCylindricityCha_1053_TypePair(CylindricityCha_1053_TypeChoicePair * CylindricityCha_1053_TypePairIn)
-{CylindricityCha_1053_TypePair = CylindricityCha_1053_TypePairIn;}
+void CylindricityCha_1046_Type::setToleranceValue(LinearValueType * ToleranceValueIn)
+{ToleranceValue = ToleranceValueIn;}
+
+LinearDualValueType * CylindricityCha_1046_Type::getToleranceDualValue()
+{return ToleranceDualValue;}
+
+void CylindricityCha_1046_Type::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
+{ToleranceDualValue = ToleranceDualValueIn;}
+
+CylindricityCha_1065_Type * CylindricityCha_1046_Type::getCylindricityCha_1065()
+{return CylindricityCha_1065;}
+
+void CylindricityCha_1046_Type::setCylindricityCha_1065(CylindricityCha_1065_Type * CylindricityCha_1065In)
+{CylindricityCha_1065 = CylindricityCha_1065In;}
 
 /* ***************************************************************** */
 
-/* class CylindricityCha_1053_TypeChoicePair
+/* class CylindricityCha_1047_Type
 
 */
 
-CylindricityCha_1053_TypeChoicePair::CylindricityCha_1053_TypeChoicePair() {}
-
-CylindricityCha_1053_TypeChoicePair::CylindricityCha_1053_TypeChoicePair(
- whichOne CylindricityCha_1053_TypeTypeIn,
- CylindricityCha_1053_TypeVal CylindricityCha_1053_TypeValueIn)
+CylindricityCha_1047_Type::CylindricityCha_1047_Type()
 {
-  CylindricityCha_1053_TypeType = CylindricityCha_1053_TypeTypeIn;
-  CylindricityCha_1053_TypeValue = CylindricityCha_1053_TypeValueIn;
+  CylindricityCha_1047_TypePair = 0;
 }
 
-CylindricityCha_1053_TypeChoicePair::~CylindricityCha_1053_TypeChoicePair()
+CylindricityCha_1047_Type::CylindricityCha_1047_Type(
+ CylindricityCha_1047_TypeChoicePair * CylindricityCha_1047_TypePairIn)
+{
+  CylindricityCha_1047_TypePair = CylindricityCha_1047_TypePairIn;
+}
+
+CylindricityCha_1047_Type::~CylindricityCha_1047_Type()
 {
   #ifndef NODESTRUCT
-  if (CylindricityCha_1053_TypeType == CylindricityCha_1084E)
-    delete CylindricityCha_1053_TypeValue.CylindricityCha_1084;
-  else if (CylindricityCha_1053_TypeType == CylindricityCha_1085E)
-    delete CylindricityCha_1053_TypeValue.CylindricityCha_1085;
+  delete CylindricityCha_1047_TypePair;
   #endif
 }
 
-void CylindricityCha_1053_TypeChoicePair::printSelf(FILE * outFile)
+void CylindricityCha_1047_Type::printSelf(FILE * outFile)
 {
-  if (CylindricityCha_1053_TypeType == CylindricityCha_1084E)
+  CylindricityCha_1047_TypePair->printSelf(outFile);
+}
+
+CylindricityCha_1047_TypeChoicePair * CylindricityCha_1047_Type::getCylindricityCha_1047_TypePair()
+{return CylindricityCha_1047_TypePair;}
+
+void CylindricityCha_1047_Type::setCylindricityCha_1047_TypePair(CylindricityCha_1047_TypeChoicePair * CylindricityCha_1047_TypePairIn)
+{CylindricityCha_1047_TypePair = CylindricityCha_1047_TypePairIn;}
+CylindricityCha_1047_TypeChoicePair::CylindricityCha_1047_TypeChoicePair() {}
+
+CylindricityCha_1047_TypeChoicePair::CylindricityCha_1047_TypeChoicePair(
+ whichOne CylindricityCha_1047_TypeTypeIn,
+ CylindricityCha_1047_TypeVal CylindricityCha_1047_TypeValueIn)
+{
+  CylindricityCha_1047_TypeType = CylindricityCha_1047_TypeTypeIn;
+  CylindricityCha_1047_TypeValue = CylindricityCha_1047_TypeValueIn;
+}
+
+CylindricityCha_1047_TypeChoicePair::~CylindricityCha_1047_TypeChoicePair()
+{
+  #ifndef NODESTRUCT
+  if (CylindricityCha_1047_TypeType == ToleranceZonePerUnitAngleE)
+    delete CylindricityCha_1047_TypeValue.ToleranceZonePerUnitAngle;
+  else if (CylindricityCha_1047_TypeType == ToleranceZonePerUnitArcLengthE)
+    delete CylindricityCha_1047_TypeValue.ToleranceZonePerUnitArcLength;
+  else if (CylindricityCha_1047_TypeType == ToleranceZonePerUnitPolarAreaE)
+    delete CylindricityCha_1047_TypeValue.ToleranceZonePerUnitPolarArea;
+  else if (CylindricityCha_1047_TypeType == ToleranceZonePerUnitAreaE)
+    delete CylindricityCha_1047_TypeValue.ToleranceZonePerUnitArea;
+  else if (CylindricityCha_1047_TypeType == ToleranceZonePerUnitLengthE)
+    delete CylindricityCha_1047_TypeValue.ToleranceZonePerUnitLength;
+  #endif
+}
+
+void CylindricityCha_1047_TypeChoicePair::printSelf(FILE * outFile)
+{
+  if (CylindricityCha_1047_TypeType == ToleranceZonePerUnitAngleE)
     {
-      CylindricityCha_1053_TypeValue.CylindricityCha_1084->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "<ToleranceZonePerUnitAngle");
+      CylindricityCha_1047_TypeValue.ToleranceZonePerUnitAngle->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</ToleranceZonePerUnitAngle>\n");
     }
-  else if (CylindricityCha_1053_TypeType == CylindricityCha_1085E)
+  else if (CylindricityCha_1047_TypeType == ToleranceZonePerUnitArcLengthE)
     {
-      CylindricityCha_1053_TypeValue.CylindricityCha_1085->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "<ToleranceZonePerUnitArcLength");
+      CylindricityCha_1047_TypeValue.ToleranceZonePerUnitArcLength->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</ToleranceZonePerUnitArcLength>\n");
+    }
+  else if (CylindricityCha_1047_TypeType == ToleranceZonePerUnitPolarAreaE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<ToleranceZonePerUnitPolarArea");
+      CylindricityCha_1047_TypeValue.ToleranceZonePerUnitPolarArea->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</ToleranceZonePerUnitPolarArea>\n");
+    }
+  else if (CylindricityCha_1047_TypeType == ToleranceZonePerUnitAreaE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<ToleranceZonePerUnitArea");
+      CylindricityCha_1047_TypeValue.ToleranceZonePerUnitArea->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</ToleranceZonePerUnitArea>\n");
+    }
+  else if (CylindricityCha_1047_TypeType == ToleranceZonePerUnitLengthE)
+    {
+      doSpaces(0, outFile);
+      fprintf(outFile, "<ToleranceZonePerUnitLength");
+      CylindricityCha_1047_TypeValue.ToleranceZonePerUnitLength->printSelf(outFile);
+      doSpaces(0, outFile);
+      fprintf(outFile, "</ToleranceZonePerUnitLength>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class CylindricityCha_1054_Type
+/* class CylindricityCha_1048_Type
 
 */
 
-CylindricityCha_1054_Type::CylindricityCha_1054_Type()
+CylindricityCha_1048_Type::CylindricityCha_1048_Type()
 {
   ZoneRadii = 0;
   ZoneAxis = 0;
 }
 
-CylindricityCha_1054_Type::CylindricityCha_1054_Type(
+CylindricityCha_1048_Type::CylindricityCha_1048_Type(
  MeasuredZoneRadiiType * ZoneRadiiIn,
  MeasuredZoneAxisType * ZoneAxisIn)
 {
@@ -118063,7 +118707,7 @@ CylindricityCha_1054_Type::CylindricityCha_1054_Type(
   ZoneAxis = ZoneAxisIn;
 }
 
-CylindricityCha_1054_Type::~CylindricityCha_1054_Type()
+CylindricityCha_1048_Type::~CylindricityCha_1048_Type()
 {
   #ifndef NODESTRUCT
   delete ZoneRadii;
@@ -118071,7 +118715,7 @@ CylindricityCha_1054_Type::~CylindricityCha_1054_Type()
   #endif
 }
 
-void CylindricityCha_1054_Type::printSelf(FILE * outFile)
+void CylindricityCha_1048_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ZoneRadii");
@@ -118085,339 +118729,155 @@ void CylindricityCha_1054_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</ZoneAxis>\n");
 }
 
-MeasuredZoneRadiiType * CylindricityCha_1054_Type::getZoneRadii()
+MeasuredZoneRadiiType * CylindricityCha_1048_Type::getZoneRadii()
 {return ZoneRadii;}
 
-void CylindricityCha_1054_Type::setZoneRadii(MeasuredZoneRadiiType * ZoneRadiiIn)
+void CylindricityCha_1048_Type::setZoneRadii(MeasuredZoneRadiiType * ZoneRadiiIn)
 {ZoneRadii = ZoneRadiiIn;}
 
-MeasuredZoneAxisType * CylindricityCha_1054_Type::getZoneAxis()
+MeasuredZoneAxisType * CylindricityCha_1048_Type::getZoneAxis()
 {return ZoneAxis;}
 
-void CylindricityCha_1054_Type::setZoneAxis(MeasuredZoneAxisType * ZoneAxisIn)
+void CylindricityCha_1048_Type::setZoneAxis(MeasuredZoneAxisType * ZoneAxisIn)
 {ZoneAxis = ZoneAxisIn;}
 
 /* ***************************************************************** */
 
-/* class DiameterCharact_1055_Type
+/* class FlatnessCharact_1049_Type
 
 */
 
-DiameterCharact_1055_Type::DiameterCharact_1055_Type()
+FlatnessCharact_1049_Type::FlatnessCharact_1049_Type()
 {
-  DiameterCharact_1055_TypePair = 0;
+  FlatnessCharact_1049_TypePair = 0;
 }
 
-DiameterCharact_1055_Type::DiameterCharact_1055_Type(
- DiameterCharact_1055_TypeChoicePair * DiameterCharact_1055_TypePairIn)
+FlatnessCharact_1049_Type::FlatnessCharact_1049_Type(
+ FlatnessCharact_1049_TypeChoicePair * FlatnessCharact_1049_TypePairIn)
 {
-  DiameterCharact_1055_TypePair = DiameterCharact_1055_TypePairIn;
+  FlatnessCharact_1049_TypePair = FlatnessCharact_1049_TypePairIn;
 }
 
-DiameterCharact_1055_Type::~DiameterCharact_1055_Type()
+FlatnessCharact_1049_Type::~FlatnessCharact_1049_Type()
 {
   #ifndef NODESTRUCT
-  delete DiameterCharact_1055_TypePair;
+  delete FlatnessCharact_1049_TypePair;
   #endif
 }
 
-void DiameterCharact_1055_Type::printSelf(FILE * outFile)
+void FlatnessCharact_1049_Type::printSelf(FILE * outFile)
 {
-  DiameterCharact_1055_TypePair->printSelf(outFile);
+  FlatnessCharact_1049_TypePair->printSelf(outFile);
 }
 
-DiameterCharact_1055_TypeChoicePair * DiameterCharact_1055_Type::getDiameterCharact_1055_TypePair()
-{return DiameterCharact_1055_TypePair;}
+FlatnessCharact_1049_TypeChoicePair * FlatnessCharact_1049_Type::getFlatnessCharact_1049_TypePair()
+{return FlatnessCharact_1049_TypePair;}
 
-void DiameterCharact_1055_Type::setDiameterCharact_1055_TypePair(DiameterCharact_1055_TypeChoicePair * DiameterCharact_1055_TypePairIn)
-{DiameterCharact_1055_TypePair = DiameterCharact_1055_TypePairIn;}
+void FlatnessCharact_1049_Type::setFlatnessCharact_1049_TypePair(FlatnessCharact_1049_TypeChoicePair * FlatnessCharact_1049_TypePairIn)
+{FlatnessCharact_1049_TypePair = FlatnessCharact_1049_TypePairIn;}
+FlatnessCharact_1049_TypeChoicePair::FlatnessCharact_1049_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class DiameterCharact_1055_TypeChoicePair
-
-*/
-
-DiameterCharact_1055_TypeChoicePair::DiameterCharact_1055_TypeChoicePair() {}
-
-DiameterCharact_1055_TypeChoicePair::DiameterCharact_1055_TypeChoicePair(
- whichOne DiameterCharact_1055_TypeTypeIn,
- DiameterCharact_1055_TypeVal DiameterCharact_1055_TypeValueIn)
+FlatnessCharact_1049_TypeChoicePair::FlatnessCharact_1049_TypeChoicePair(
+ whichOne FlatnessCharact_1049_TypeTypeIn,
+ FlatnessCharact_1049_TypeVal FlatnessCharact_1049_TypeValueIn)
 {
-  DiameterCharact_1055_TypeType = DiameterCharact_1055_TypeTypeIn;
-  DiameterCharact_1055_TypeValue = DiameterCharact_1055_TypeValueIn;
+  FlatnessCharact_1049_TypeType = FlatnessCharact_1049_TypeTypeIn;
+  FlatnessCharact_1049_TypeValue = FlatnessCharact_1049_TypeValueIn;
 }
 
-DiameterCharact_1055_TypeChoicePair::~DiameterCharact_1055_TypeChoicePair()
+FlatnessCharact_1049_TypeChoicePair::~FlatnessCharact_1049_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (DiameterCharact_1055_TypeType == ToleranceE)
-    delete DiameterCharact_1055_TypeValue.Tolerance;
-  else if (DiameterCharact_1055_TypeType == LimitsAndFitsSpecificationE)
-    delete DiameterCharact_1055_TypeValue.LimitsAndFitsSpecification;
-  else if (DiameterCharact_1055_TypeType == NonToleranceE)
-    delete DiameterCharact_1055_TypeValue.NonTolerance;
+  if (FlatnessCharact_1049_TypeType == FlatnessCharact_1066E)
+    delete FlatnessCharact_1049_TypeValue.FlatnessCharact_1066;
+  else if (FlatnessCharact_1049_TypeType == FlatnessCharact_1067E)
+    delete FlatnessCharact_1049_TypeValue.FlatnessCharact_1067;
   #endif
 }
 
-void DiameterCharact_1055_TypeChoicePair::printSelf(FILE * outFile)
+void FlatnessCharact_1049_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (DiameterCharact_1055_TypeType == ToleranceE)
+  if (FlatnessCharact_1049_TypeType == FlatnessCharact_1066E)
     {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<Tolerance");
-      DiameterCharact_1055_TypeValue.Tolerance->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</Tolerance>\n");
+      FlatnessCharact_1049_TypeValue.FlatnessCharact_1066->printSelf(outFile);
     }
-  else if (DiameterCharact_1055_TypeType == LimitsAndFitsSpecificationE)
+  else if (FlatnessCharact_1049_TypeType == FlatnessCharact_1067E)
     {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<LimitsAndFitsSpecification");
-      DiameterCharact_1055_TypeValue.LimitsAndFitsSpecification->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</LimitsAndFitsSpecification>\n");
-    }
-  else if (DiameterCharact_1055_TypeType == NonToleranceE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<NonTolerance");
-      DiameterCharact_1055_TypeValue.NonTolerance->printSelf(outFile);
-      fprintf(outFile, "</NonTolerance>\n");
+      FlatnessCharact_1049_TypeValue.FlatnessCharact_1067->printSelf(outFile);
     }
 }
 
 /* ***************************************************************** */
 
-/* class FlatnessCharact_1056_Type
+/* class GeometricCharac_1050_Type
 
 */
 
-FlatnessCharact_1056_Type::FlatnessCharact_1056_Type()
+GeometricCharac_1050_Type::GeometricCharac_1050_Type()
 {
-  FlatnessCharact_1056_TypePair = 0;
+  GeometricCharac_1050_TypePair = 0;
 }
 
-FlatnessCharact_1056_Type::FlatnessCharact_1056_Type(
- FlatnessCharact_1056_TypeChoicePair * FlatnessCharact_1056_TypePairIn)
+GeometricCharac_1050_Type::GeometricCharac_1050_Type(
+ GeometricCharac_1050_TypeChoicePair * GeometricCharac_1050_TypePairIn)
 {
-  FlatnessCharact_1056_TypePair = FlatnessCharact_1056_TypePairIn;
+  GeometricCharac_1050_TypePair = GeometricCharac_1050_TypePairIn;
 }
 
-FlatnessCharact_1056_Type::~FlatnessCharact_1056_Type()
+GeometricCharac_1050_Type::~GeometricCharac_1050_Type()
 {
   #ifndef NODESTRUCT
-  delete FlatnessCharact_1056_TypePair;
+  delete GeometricCharac_1050_TypePair;
   #endif
 }
 
-void FlatnessCharact_1056_Type::printSelf(FILE * outFile)
+void GeometricCharac_1050_Type::printSelf(FILE * outFile)
 {
-  FlatnessCharact_1056_TypePair->printSelf(outFile);
-}
-
-FlatnessCharact_1056_TypeChoicePair * FlatnessCharact_1056_Type::getFlatnessCharact_1056_TypePair()
-{return FlatnessCharact_1056_TypePair;}
-
-void FlatnessCharact_1056_Type::setFlatnessCharact_1056_TypePair(FlatnessCharact_1056_TypeChoicePair * FlatnessCharact_1056_TypePairIn)
-{FlatnessCharact_1056_TypePair = FlatnessCharact_1056_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class FlatnessCharact_1056_TypeChoicePair
-
-*/
-
-FlatnessCharact_1056_TypeChoicePair::FlatnessCharact_1056_TypeChoicePair() {}
-
-FlatnessCharact_1056_TypeChoicePair::FlatnessCharact_1056_TypeChoicePair(
- whichOne FlatnessCharact_1056_TypeTypeIn,
- FlatnessCharact_1056_TypeVal FlatnessCharact_1056_TypeValueIn)
-{
-  FlatnessCharact_1056_TypeType = FlatnessCharact_1056_TypeTypeIn;
-  FlatnessCharact_1056_TypeValue = FlatnessCharact_1056_TypeValueIn;
-}
-
-FlatnessCharact_1056_TypeChoicePair::~FlatnessCharact_1056_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (FlatnessCharact_1056_TypeType == FlatnessCharact_1086E)
-    delete FlatnessCharact_1056_TypeValue.FlatnessCharact_1086;
-  else if (FlatnessCharact_1056_TypeType == FlatnessCharact_1087E)
-    delete FlatnessCharact_1056_TypeValue.FlatnessCharact_1087;
-  #endif
-}
-
-void FlatnessCharact_1056_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (FlatnessCharact_1056_TypeType == FlatnessCharact_1086E)
+  if (GeometricCharac_1050_TypePair)
     {
-      FlatnessCharact_1056_TypeValue.FlatnessCharact_1086->printSelf(outFile);
-    }
-  else if (FlatnessCharact_1056_TypeType == FlatnessCharact_1087E)
-    {
-      FlatnessCharact_1056_TypeValue.FlatnessCharact_1087->printSelf(outFile);
+      GeometricCharac_1050_TypePair->printSelf(outFile);
     }
 }
 
-/* ***************************************************************** */
+GeometricCharac_1050_TypeChoicePair * GeometricCharac_1050_Type::getGeometricCharac_1050_TypePair()
+{return GeometricCharac_1050_TypePair;}
 
-/* class ForceCharacteri_1057_Type
+void GeometricCharac_1050_Type::setGeometricCharac_1050_TypePair(GeometricCharac_1050_TypeChoicePair * GeometricCharac_1050_TypePairIn)
+{GeometricCharac_1050_TypePair = GeometricCharac_1050_TypePairIn;}
+GeometricCharac_1050_TypeChoicePair::GeometricCharac_1050_TypeChoicePair() {}
 
-*/
-
-ForceCharacteri_1057_Type::ForceCharacteri_1057_Type()
+GeometricCharac_1050_TypeChoicePair::GeometricCharac_1050_TypeChoicePair(
+ whichOne GeometricCharac_1050_TypeTypeIn,
+ GeometricCharac_1050_TypeVal GeometricCharac_1050_TypeValueIn)
 {
-  ForceCharacteri_1057_TypePair = 0;
+  GeometricCharac_1050_TypeType = GeometricCharac_1050_TypeTypeIn;
+  GeometricCharac_1050_TypeValue = GeometricCharac_1050_TypeValueIn;
 }
 
-ForceCharacteri_1057_Type::ForceCharacteri_1057_Type(
- ForceCharacteri_1057_TypeChoicePair * ForceCharacteri_1057_TypePairIn)
-{
-  ForceCharacteri_1057_TypePair = ForceCharacteri_1057_TypePairIn;
-}
-
-ForceCharacteri_1057_Type::~ForceCharacteri_1057_Type()
+GeometricCharac_1050_TypeChoicePair::~GeometricCharac_1050_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  delete ForceCharacteri_1057_TypePair;
+  if (GeometricCharac_1050_TypeType == AssociatedTolerancedFeatureSpecificationElementE)
+    delete GeometricCharac_1050_TypeValue.AssociatedTolerancedFeatureSpecificationElement;
+  else if (GeometricCharac_1050_TypeType == ReferenceFeatureAssociationSpecificationElementE)
+    delete GeometricCharac_1050_TypeValue.ReferenceFeatureAssociationSpecificationElement;
   #endif
 }
 
-void ForceCharacteri_1057_Type::printSelf(FILE * outFile)
+void GeometricCharac_1050_TypeChoicePair::printSelf(FILE * outFile)
 {
-  ForceCharacteri_1057_TypePair->printSelf(outFile);
-}
-
-ForceCharacteri_1057_TypeChoicePair * ForceCharacteri_1057_Type::getForceCharacteri_1057_TypePair()
-{return ForceCharacteri_1057_TypePair;}
-
-void ForceCharacteri_1057_Type::setForceCharacteri_1057_TypePair(ForceCharacteri_1057_TypeChoicePair * ForceCharacteri_1057_TypePairIn)
-{ForceCharacteri_1057_TypePair = ForceCharacteri_1057_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ForceCharacteri_1057_TypeChoicePair
-
-*/
-
-ForceCharacteri_1057_TypeChoicePair::ForceCharacteri_1057_TypeChoicePair() {}
-
-ForceCharacteri_1057_TypeChoicePair::ForceCharacteri_1057_TypeChoicePair(
- whichOne ForceCharacteri_1057_TypeTypeIn,
- ForceCharacteri_1057_TypeVal ForceCharacteri_1057_TypeValueIn)
-{
-  ForceCharacteri_1057_TypeType = ForceCharacteri_1057_TypeTypeIn;
-  ForceCharacteri_1057_TypeValue = ForceCharacteri_1057_TypeValueIn;
-}
-
-ForceCharacteri_1057_TypeChoicePair::~ForceCharacteri_1057_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (ForceCharacteri_1057_TypeType == ToleranceE)
-    delete ForceCharacteri_1057_TypeValue.Tolerance;
-  else if (ForceCharacteri_1057_TypeType == NonToleranceE)
-    delete ForceCharacteri_1057_TypeValue.NonTolerance;
-  #endif
-}
-
-void ForceCharacteri_1057_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (ForceCharacteri_1057_TypeType == ToleranceE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<Tolerance");
-      ForceCharacteri_1057_TypeValue.Tolerance->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</Tolerance>\n");
-    }
-  else if (ForceCharacteri_1057_TypeType == NonToleranceE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<NonTolerance");
-      ForceCharacteri_1057_TypeValue.NonTolerance->printSelf(outFile);
-      fprintf(outFile, "</NonTolerance>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class GeometricCharac_1058_Type
-
-*/
-
-GeometricCharac_1058_Type::GeometricCharac_1058_Type()
-{
-  GeometricCharac_1058_TypePair = 0;
-}
-
-GeometricCharac_1058_Type::GeometricCharac_1058_Type(
- GeometricCharac_1058_TypeChoicePair * GeometricCharac_1058_TypePairIn)
-{
-  GeometricCharac_1058_TypePair = GeometricCharac_1058_TypePairIn;
-}
-
-GeometricCharac_1058_Type::~GeometricCharac_1058_Type()
-{
-  #ifndef NODESTRUCT
-  delete GeometricCharac_1058_TypePair;
-  #endif
-}
-
-void GeometricCharac_1058_Type::printSelf(FILE * outFile)
-{
-  if (GeometricCharac_1058_TypePair)
-    {
-      GeometricCharac_1058_TypePair->printSelf(outFile);
-    }
-}
-
-GeometricCharac_1058_TypeChoicePair * GeometricCharac_1058_Type::getGeometricCharac_1058_TypePair()
-{return GeometricCharac_1058_TypePair;}
-
-void GeometricCharac_1058_Type::setGeometricCharac_1058_TypePair(GeometricCharac_1058_TypeChoicePair * GeometricCharac_1058_TypePairIn)
-{GeometricCharac_1058_TypePair = GeometricCharac_1058_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class GeometricCharac_1058_TypeChoicePair
-
-*/
-
-GeometricCharac_1058_TypeChoicePair::GeometricCharac_1058_TypeChoicePair() {}
-
-GeometricCharac_1058_TypeChoicePair::GeometricCharac_1058_TypeChoicePair(
- whichOne GeometricCharac_1058_TypeTypeIn,
- GeometricCharac_1058_TypeVal GeometricCharac_1058_TypeValueIn)
-{
-  GeometricCharac_1058_TypeType = GeometricCharac_1058_TypeTypeIn;
-  GeometricCharac_1058_TypeValue = GeometricCharac_1058_TypeValueIn;
-}
-
-GeometricCharac_1058_TypeChoicePair::~GeometricCharac_1058_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (GeometricCharac_1058_TypeType == AssociatedTolerancedFeatureSpecificationElementE)
-    delete GeometricCharac_1058_TypeValue.AssociatedTolerancedFeatureSpecificationElement;
-  else if (GeometricCharac_1058_TypeType == ReferenceFeatureAssociationSpecificationElementE)
-    delete GeometricCharac_1058_TypeValue.ReferenceFeatureAssociationSpecificationElement;
-  #endif
-}
-
-void GeometricCharac_1058_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (GeometricCharac_1058_TypeType == AssociatedTolerancedFeatureSpecificationElementE)
+  if (GeometricCharac_1050_TypeType == AssociatedTolerancedFeatureSpecificationElementE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<AssociatedTolerancedFeatureSpecificationElement");
-      GeometricCharac_1058_TypeValue.AssociatedTolerancedFeatureSpecificationElement->printSelf(outFile);
+      GeometricCharac_1050_TypeValue.AssociatedTolerancedFeatureSpecificationElement->printSelf(outFile);
       fprintf(outFile, "</AssociatedTolerancedFeatureSpecificationElement>\n");
     }
-  else if (GeometricCharac_1058_TypeType == ReferenceFeatureAssociationSpecificationElementE)
+  else if (GeometricCharac_1050_TypeType == ReferenceFeatureAssociationSpecificationElementE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ReferenceFeatureAssociationSpecificationElement");
-      GeometricCharac_1058_TypeValue.ReferenceFeatureAssociationSpecificationElement->printSelf(outFile);
+      GeometricCharac_1050_TypeValue.ReferenceFeatureAssociationSpecificationElement->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ReferenceFeatureAssociationSpecificationElement>\n");
     }
@@ -118425,178 +118885,18 @@ void GeometricCharac_1058_TypeChoicePair::printSelf(FILE * outFile)
 
 /* ***************************************************************** */
 
-/* class LinearCharacter_1059_Type
+/* class LocationOnDrawi_1051_Type
 
 */
 
-LinearCharacter_1059_Type::LinearCharacter_1059_Type()
-{
-  LinearCharacter_1059_TypePair = 0;
-}
-
-LinearCharacter_1059_Type::LinearCharacter_1059_Type(
- LinearCharacter_1059_TypeChoicePair * LinearCharacter_1059_TypePairIn)
-{
-  LinearCharacter_1059_TypePair = LinearCharacter_1059_TypePairIn;
-}
-
-LinearCharacter_1059_Type::~LinearCharacter_1059_Type()
-{
-  #ifndef NODESTRUCT
-  delete LinearCharacter_1059_TypePair;
-  #endif
-}
-
-void LinearCharacter_1059_Type::printSelf(FILE * outFile)
-{
-  LinearCharacter_1059_TypePair->printSelf(outFile);
-}
-
-LinearCharacter_1059_TypeChoicePair * LinearCharacter_1059_Type::getLinearCharacter_1059_TypePair()
-{return LinearCharacter_1059_TypePair;}
-
-void LinearCharacter_1059_Type::setLinearCharacter_1059_TypePair(LinearCharacter_1059_TypeChoicePair * LinearCharacter_1059_TypePairIn)
-{LinearCharacter_1059_TypePair = LinearCharacter_1059_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class LinearCharacter_1059_TypeChoicePair
-
-*/
-
-LinearCharacter_1059_TypeChoicePair::LinearCharacter_1059_TypeChoicePair() {}
-
-LinearCharacter_1059_TypeChoicePair::LinearCharacter_1059_TypeChoicePair(
- whichOne LinearCharacter_1059_TypeTypeIn,
- LinearCharacter_1059_TypeVal LinearCharacter_1059_TypeValueIn)
-{
-  LinearCharacter_1059_TypeType = LinearCharacter_1059_TypeTypeIn;
-  LinearCharacter_1059_TypeValue = LinearCharacter_1059_TypeValueIn;
-}
-
-LinearCharacter_1059_TypeChoicePair::~LinearCharacter_1059_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (LinearCharacter_1059_TypeType == ToleranceE)
-    delete LinearCharacter_1059_TypeValue.Tolerance;
-  else if (LinearCharacter_1059_TypeType == NonToleranceE)
-    delete LinearCharacter_1059_TypeValue.NonTolerance;
-  #endif
-}
-
-void LinearCharacter_1059_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (LinearCharacter_1059_TypeType == ToleranceE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<Tolerance");
-      LinearCharacter_1059_TypeValue.Tolerance->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</Tolerance>\n");
-    }
-  else if (LinearCharacter_1059_TypeType == NonToleranceE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<NonTolerance");
-      LinearCharacter_1059_TypeValue.NonTolerance->printSelf(outFile);
-      fprintf(outFile, "</NonTolerance>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class LinearCoordinat_1060_Type
-
-*/
-
-LinearCoordinat_1060_Type::LinearCoordinat_1060_Type()
-{
-  LinearCoordinat_1060_TypePair = 0;
-}
-
-LinearCoordinat_1060_Type::LinearCoordinat_1060_Type(
- LinearCoordinat_1060_TypeChoicePair * LinearCoordinat_1060_TypePairIn)
-{
-  LinearCoordinat_1060_TypePair = LinearCoordinat_1060_TypePairIn;
-}
-
-LinearCoordinat_1060_Type::~LinearCoordinat_1060_Type()
-{
-  #ifndef NODESTRUCT
-  delete LinearCoordinat_1060_TypePair;
-  #endif
-}
-
-void LinearCoordinat_1060_Type::printSelf(FILE * outFile)
-{
-  LinearCoordinat_1060_TypePair->printSelf(outFile);
-}
-
-LinearCoordinat_1060_TypeChoicePair * LinearCoordinat_1060_Type::getLinearCoordinat_1060_TypePair()
-{return LinearCoordinat_1060_TypePair;}
-
-void LinearCoordinat_1060_Type::setLinearCoordinat_1060_TypePair(LinearCoordinat_1060_TypeChoicePair * LinearCoordinat_1060_TypePairIn)
-{LinearCoordinat_1060_TypePair = LinearCoordinat_1060_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class LinearCoordinat_1060_TypeChoicePair
-
-*/
-
-LinearCoordinat_1060_TypeChoicePair::LinearCoordinat_1060_TypeChoicePair() {}
-
-LinearCoordinat_1060_TypeChoicePair::LinearCoordinat_1060_TypeChoicePair(
- whichOne LinearCoordinat_1060_TypeTypeIn,
- LinearCoordinat_1060_TypeVal LinearCoordinat_1060_TypeValueIn)
-{
-  LinearCoordinat_1060_TypeType = LinearCoordinat_1060_TypeTypeIn;
-  LinearCoordinat_1060_TypeValue = LinearCoordinat_1060_TypeValueIn;
-}
-
-LinearCoordinat_1060_TypeChoicePair::~LinearCoordinat_1060_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (LinearCoordinat_1060_TypeType == ToleranceE)
-    delete LinearCoordinat_1060_TypeValue.Tolerance;
-  else if (LinearCoordinat_1060_TypeType == NonToleranceE)
-    delete LinearCoordinat_1060_TypeValue.NonTolerance;
-  #endif
-}
-
-void LinearCoordinat_1060_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (LinearCoordinat_1060_TypeType == ToleranceE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<Tolerance");
-      LinearCoordinat_1060_TypeValue.Tolerance->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</Tolerance>\n");
-    }
-  else if (LinearCoordinat_1060_TypeType == NonToleranceE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<NonTolerance");
-      LinearCoordinat_1060_TypeValue.NonTolerance->printSelf(outFile);
-      fprintf(outFile, "</NonTolerance>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class LocationOnDrawi_1061_Type
-
-*/
-
-LocationOnDrawi_1061_Type::LocationOnDrawi_1061_Type()
+LocationOnDrawi_1051_Type::LocationOnDrawi_1051_Type()
 {
   DrawingId = 0;
   SheetNumber = 0;
   DrawingZone = 0;
 }
 
-LocationOnDrawi_1061_Type::LocationOnDrawi_1061_Type(
+LocationOnDrawi_1051_Type::LocationOnDrawi_1051_Type(
  QIFReferenceFullType * DrawingIdIn,
  XmlString * SheetNumberIn,
  XmlString * DrawingZoneIn)
@@ -118606,7 +118906,7 @@ LocationOnDrawi_1061_Type::LocationOnDrawi_1061_Type(
   DrawingZone = DrawingZoneIn;
 }
 
-LocationOnDrawi_1061_Type::~LocationOnDrawi_1061_Type()
+LocationOnDrawi_1051_Type::~LocationOnDrawi_1051_Type()
 {
   #ifndef NODESTRUCT
   delete DrawingId;
@@ -118615,7 +118915,7 @@ LocationOnDrawi_1061_Type::~LocationOnDrawi_1061_Type()
   #endif
 }
 
-void LocationOnDrawi_1061_Type::printSelf(FILE * outFile)
+void LocationOnDrawi_1051_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<DrawingId");
@@ -118637,37 +118937,37 @@ void LocationOnDrawi_1061_Type::printSelf(FILE * outFile)
     }
 }
 
-QIFReferenceFullType * LocationOnDrawi_1061_Type::getDrawingId()
+QIFReferenceFullType * LocationOnDrawi_1051_Type::getDrawingId()
 {return DrawingId;}
 
-void LocationOnDrawi_1061_Type::setDrawingId(QIFReferenceFullType * DrawingIdIn)
+void LocationOnDrawi_1051_Type::setDrawingId(QIFReferenceFullType * DrawingIdIn)
 {DrawingId = DrawingIdIn;}
 
-XmlString * LocationOnDrawi_1061_Type::getSheetNumber()
+XmlString * LocationOnDrawi_1051_Type::getSheetNumber()
 {return SheetNumber;}
 
-void LocationOnDrawi_1061_Type::setSheetNumber(XmlString * SheetNumberIn)
+void LocationOnDrawi_1051_Type::setSheetNumber(XmlString * SheetNumberIn)
 {SheetNumber = SheetNumberIn;}
 
-XmlString * LocationOnDrawi_1061_Type::getDrawingZone()
+XmlString * LocationOnDrawi_1051_Type::getDrawingZone()
 {return DrawingZone;}
 
-void LocationOnDrawi_1061_Type::setDrawingZone(XmlString * DrawingZoneIn)
+void LocationOnDrawi_1051_Type::setDrawingZone(XmlString * DrawingZoneIn)
 {DrawingZone = DrawingZoneIn;}
 
 /* ***************************************************************** */
 
-/* class LocationOnDrawi_1062_Type
+/* class LocationOnDrawi_1052_Type
 
 */
 
-LocationOnDrawi_1062_Type::LocationOnDrawi_1062_Type()
+LocationOnDrawi_1052_Type::LocationOnDrawi_1052_Type()
 {
   ModelId = 0;
   View = 0;
 }
 
-LocationOnDrawi_1062_Type::LocationOnDrawi_1062_Type(
+LocationOnDrawi_1052_Type::LocationOnDrawi_1052_Type(
  QIFReferenceFullType * ModelIdIn,
  XmlString * ViewIn)
 {
@@ -118675,7 +118975,7 @@ LocationOnDrawi_1062_Type::LocationOnDrawi_1062_Type(
   View = ViewIn;
 }
 
-LocationOnDrawi_1062_Type::~LocationOnDrawi_1062_Type()
+LocationOnDrawi_1052_Type::~LocationOnDrawi_1052_Type()
 {
   #ifndef NODESTRUCT
   delete ModelId;
@@ -118683,7 +118983,7 @@ LocationOnDrawi_1062_Type::~LocationOnDrawi_1062_Type()
   #endif
 }
 
-void LocationOnDrawi_1062_Type::printSelf(FILE * outFile)
+void LocationOnDrawi_1052_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ModelId");
@@ -118695,43 +118995,43 @@ void LocationOnDrawi_1062_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</View>\n");
 }
 
-QIFReferenceFullType * LocationOnDrawi_1062_Type::getModelId()
+QIFReferenceFullType * LocationOnDrawi_1052_Type::getModelId()
 {return ModelId;}
 
-void LocationOnDrawi_1062_Type::setModelId(QIFReferenceFullType * ModelIdIn)
+void LocationOnDrawi_1052_Type::setModelId(QIFReferenceFullType * ModelIdIn)
 {ModelId = ModelIdIn;}
 
-XmlString * LocationOnDrawi_1062_Type::getView()
+XmlString * LocationOnDrawi_1052_Type::getView()
 {return View;}
 
-void LocationOnDrawi_1062_Type::setView(XmlString * ViewIn)
+void LocationOnDrawi_1052_Type::setView(XmlString * ViewIn)
 {View = ViewIn;}
 
 /* ***************************************************************** */
 
-/* class LocationOnDrawi_1063_Type
+/* class LocationOnDrawi_1053_Type
 
 */
 
-LocationOnDrawi_1063_Type::LocationOnDrawi_1063_Type()
+LocationOnDrawi_1053_Type::LocationOnDrawi_1053_Type()
 {
   ViewId = 0;
 }
 
-LocationOnDrawi_1063_Type::LocationOnDrawi_1063_Type(
+LocationOnDrawi_1053_Type::LocationOnDrawi_1053_Type(
  QIFReferenceFullType * ViewIdIn)
 {
   ViewId = ViewIdIn;
 }
 
-LocationOnDrawi_1063_Type::~LocationOnDrawi_1063_Type()
+LocationOnDrawi_1053_Type::~LocationOnDrawi_1053_Type()
 {
   #ifndef NODESTRUCT
   delete ViewId;
   #endif
 }
 
-void LocationOnDrawi_1063_Type::printSelf(FILE * outFile)
+void LocationOnDrawi_1053_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ViewId");
@@ -118739,187 +119039,100 @@ void LocationOnDrawi_1063_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</ViewId>\n");
 }
 
-QIFReferenceFullType * LocationOnDrawi_1063_Type::getViewId()
+QIFReferenceFullType * LocationOnDrawi_1053_Type::getViewId()
 {return ViewId;}
 
-void LocationOnDrawi_1063_Type::setViewId(QIFReferenceFullType * ViewIdIn)
+void LocationOnDrawi_1053_Type::setViewId(QIFReferenceFullType * ViewIdIn)
 {ViewId = ViewIdIn;}
 
 /* ***************************************************************** */
 
-/* class MassCharacteris_1064_Type
+/* class OrientationChar_1054_Type
 
 */
 
-MassCharacteris_1064_Type::MassCharacteris_1064_Type()
+OrientationChar_1054_Type::OrientationChar_1054_Type()
 {
-  MassCharacteris_1064_TypePair = 0;
+  OrientationChar_1054_TypePair = 0;
 }
 
-MassCharacteris_1064_Type::MassCharacteris_1064_Type(
- MassCharacteris_1064_TypeChoicePair * MassCharacteris_1064_TypePairIn)
+OrientationChar_1054_Type::OrientationChar_1054_Type(
+ OrientationChar_1054_TypeChoicePair * OrientationChar_1054_TypePairIn)
 {
-  MassCharacteris_1064_TypePair = MassCharacteris_1064_TypePairIn;
+  OrientationChar_1054_TypePair = OrientationChar_1054_TypePairIn;
 }
 
-MassCharacteris_1064_Type::~MassCharacteris_1064_Type()
+OrientationChar_1054_Type::~OrientationChar_1054_Type()
 {
   #ifndef NODESTRUCT
-  delete MassCharacteris_1064_TypePair;
+  delete OrientationChar_1054_TypePair;
   #endif
 }
 
-void MassCharacteris_1064_Type::printSelf(FILE * outFile)
+void OrientationChar_1054_Type::printSelf(FILE * outFile)
 {
-  MassCharacteris_1064_TypePair->printSelf(outFile);
-}
-
-MassCharacteris_1064_TypeChoicePair * MassCharacteris_1064_Type::getMassCharacteris_1064_TypePair()
-{return MassCharacteris_1064_TypePair;}
-
-void MassCharacteris_1064_Type::setMassCharacteris_1064_TypePair(MassCharacteris_1064_TypeChoicePair * MassCharacteris_1064_TypePairIn)
-{MassCharacteris_1064_TypePair = MassCharacteris_1064_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class MassCharacteris_1064_TypeChoicePair
-
-*/
-
-MassCharacteris_1064_TypeChoicePair::MassCharacteris_1064_TypeChoicePair() {}
-
-MassCharacteris_1064_TypeChoicePair::MassCharacteris_1064_TypeChoicePair(
- whichOne MassCharacteris_1064_TypeTypeIn,
- MassCharacteris_1064_TypeVal MassCharacteris_1064_TypeValueIn)
-{
-  MassCharacteris_1064_TypeType = MassCharacteris_1064_TypeTypeIn;
-  MassCharacteris_1064_TypeValue = MassCharacteris_1064_TypeValueIn;
-}
-
-MassCharacteris_1064_TypeChoicePair::~MassCharacteris_1064_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (MassCharacteris_1064_TypeType == ToleranceE)
-    delete MassCharacteris_1064_TypeValue.Tolerance;
-  else if (MassCharacteris_1064_TypeType == NonToleranceE)
-    delete MassCharacteris_1064_TypeValue.NonTolerance;
-  #endif
-}
-
-void MassCharacteris_1064_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (MassCharacteris_1064_TypeType == ToleranceE)
+  if (OrientationChar_1054_TypePair)
     {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<Tolerance");
-      MassCharacteris_1064_TypeValue.Tolerance->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</Tolerance>\n");
-    }
-  else if (MassCharacteris_1064_TypeType == NonToleranceE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<NonTolerance");
-      MassCharacteris_1064_TypeValue.NonTolerance->printSelf(outFile);
-      fprintf(outFile, "</NonTolerance>\n");
+      OrientationChar_1054_TypePair->printSelf(outFile);
     }
 }
 
-/* ***************************************************************** */
+OrientationChar_1054_TypeChoicePair * OrientationChar_1054_Type::getOrientationChar_1054_TypePair()
+{return OrientationChar_1054_TypePair;}
 
-/* class OrientationChar_1065_Type
+void OrientationChar_1054_Type::setOrientationChar_1054_TypePair(OrientationChar_1054_TypeChoicePair * OrientationChar_1054_TypePairIn)
+{OrientationChar_1054_TypePair = OrientationChar_1054_TypePairIn;}
+OrientationChar_1054_TypeChoicePair::OrientationChar_1054_TypeChoicePair() {}
 
-*/
-
-OrientationChar_1065_Type::OrientationChar_1065_Type()
+OrientationChar_1054_TypeChoicePair::OrientationChar_1054_TypeChoicePair(
+ whichOne OrientationChar_1054_TypeTypeIn,
+ OrientationChar_1054_TypeVal OrientationChar_1054_TypeValueIn)
 {
-  OrientationChar_1065_TypePair = 0;
+  OrientationChar_1054_TypeType = OrientationChar_1054_TypeTypeIn;
+  OrientationChar_1054_TypeValue = OrientationChar_1054_TypeValueIn;
 }
 
-OrientationChar_1065_Type::OrientationChar_1065_Type(
- OrientationChar_1065_TypeChoicePair * OrientationChar_1065_TypePairIn)
-{
-  OrientationChar_1065_TypePair = OrientationChar_1065_TypePairIn;
-}
-
-OrientationChar_1065_Type::~OrientationChar_1065_Type()
+OrientationChar_1054_TypeChoicePair::~OrientationChar_1054_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  delete OrientationChar_1065_TypePair;
+  if (OrientationChar_1054_TypeType == EachRadialElementE)
+    delete OrientationChar_1054_TypeValue.EachRadialElement;
+  else if (OrientationChar_1054_TypeType == EachElementE)
+    delete OrientationChar_1054_TypeValue.EachElement;
   #endif
 }
 
-void OrientationChar_1065_Type::printSelf(FILE * outFile)
+void OrientationChar_1054_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (OrientationChar_1065_TypePair)
-    {
-      OrientationChar_1065_TypePair->printSelf(outFile);
-    }
-}
-
-OrientationChar_1065_TypeChoicePair * OrientationChar_1065_Type::getOrientationChar_1065_TypePair()
-{return OrientationChar_1065_TypePair;}
-
-void OrientationChar_1065_Type::setOrientationChar_1065_TypePair(OrientationChar_1065_TypeChoicePair * OrientationChar_1065_TypePairIn)
-{OrientationChar_1065_TypePair = OrientationChar_1065_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class OrientationChar_1065_TypeChoicePair
-
-*/
-
-OrientationChar_1065_TypeChoicePair::OrientationChar_1065_TypeChoicePair() {}
-
-OrientationChar_1065_TypeChoicePair::OrientationChar_1065_TypeChoicePair(
- whichOne OrientationChar_1065_TypeTypeIn,
- OrientationChar_1065_TypeVal OrientationChar_1065_TypeValueIn)
-{
-  OrientationChar_1065_TypeType = OrientationChar_1065_TypeTypeIn;
-  OrientationChar_1065_TypeValue = OrientationChar_1065_TypeValueIn;
-}
-
-OrientationChar_1065_TypeChoicePair::~OrientationChar_1065_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (OrientationChar_1065_TypeType == EachRadialElementE)
-    delete OrientationChar_1065_TypeValue.EachRadialElement;
-  else if (OrientationChar_1065_TypeType == EachElementE)
-    delete OrientationChar_1065_TypeValue.EachElement;
-  #endif
-}
-
-void OrientationChar_1065_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (OrientationChar_1065_TypeType == EachRadialElementE)
+  if (OrientationChar_1054_TypeType == EachRadialElementE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<EachRadialElement");
-      OrientationChar_1065_TypeValue.EachRadialElement->printSelf(outFile);
+      OrientationChar_1054_TypeValue.EachRadialElement->printSelf(outFile);
       fprintf(outFile, "</EachRadialElement>\n");
     }
-  else if (OrientationChar_1065_TypeType == EachElementE)
+  else if (OrientationChar_1054_TypeType == EachElementE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<EachElement");
-      OrientationChar_1065_TypeValue.EachElement->printSelf(outFile);
+      OrientationChar_1054_TypeValue.EachElement->printSelf(outFile);
       fprintf(outFile, "</EachElement>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class OriginReference_1066_Type
+/* class OriginReference_1055_Type
 
 */
 
-OriginReference_1066_Type::OriginReference_1066_Type()
+OriginReference_1055_Type::OriginReference_1055_Type()
 {
   FeatureNominalId = 0;
   ReferencedComponent = 0;
 }
 
-OriginReference_1066_Type::OriginReference_1066_Type(
+OriginReference_1055_Type::OriginReference_1055_Type(
  QIFReferenceFullType * FeatureNominalIdIn,
  ReferencedComponentEnumType * ReferencedComponentIn)
 {
@@ -118927,7 +119140,7 @@ OriginReference_1066_Type::OriginReference_1066_Type(
   ReferencedComponent = ReferencedComponentIn;
 }
 
-OriginReference_1066_Type::~OriginReference_1066_Type()
+OriginReference_1055_Type::~OriginReference_1055_Type()
 {
   #ifndef NODESTRUCT
   delete FeatureNominalId;
@@ -118935,7 +119148,7 @@ OriginReference_1066_Type::~OriginReference_1066_Type()
   #endif
 }
 
-void OriginReference_1066_Type::printSelf(FILE * outFile)
+void OriginReference_1055_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<FeatureNominalId");
@@ -118947,273 +119160,106 @@ void OriginReference_1066_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</ReferencedComponent>\n");
 }
 
-QIFReferenceFullType * OriginReference_1066_Type::getFeatureNominalId()
+QIFReferenceFullType * OriginReference_1055_Type::getFeatureNominalId()
 {return FeatureNominalId;}
 
-void OriginReference_1066_Type::setFeatureNominalId(QIFReferenceFullType * FeatureNominalIdIn)
+void OriginReference_1055_Type::setFeatureNominalId(QIFReferenceFullType * FeatureNominalIdIn)
 {FeatureNominalId = FeatureNominalIdIn;}
 
-ReferencedComponentEnumType * OriginReference_1066_Type::getReferencedComponent()
+ReferencedComponentEnumType * OriginReference_1055_Type::getReferencedComponent()
 {return ReferencedComponent;}
 
-void OriginReference_1066_Type::setReferencedComponent(ReferencedComponentEnumType * ReferencedComponentIn)
+void OriginReference_1055_Type::setReferencedComponent(ReferencedComponentEnumType * ReferencedComponentIn)
 {ReferencedComponent = ReferencedComponentIn;}
 
 /* ***************************************************************** */
 
-/* class PressureCharact_1067_Type
+/* class ProfileCharacte_1056_Type
 
 */
 
-PressureCharact_1067_Type::PressureCharact_1067_Type()
+ProfileCharacte_1056_Type::ProfileCharacte_1056_Type()
 {
-  PressureCharact_1067_TypePair = 0;
+  ProfileCharacte_1056_TypePair = 0;
 }
 
-PressureCharact_1067_Type::PressureCharact_1067_Type(
- PressureCharact_1067_TypeChoicePair * PressureCharact_1067_TypePairIn)
+ProfileCharacte_1056_Type::ProfileCharacte_1056_Type(
+ ProfileCharacte_1056_TypeChoicePair * ProfileCharacte_1056_TypePairIn)
 {
-  PressureCharact_1067_TypePair = PressureCharact_1067_TypePairIn;
+  ProfileCharacte_1056_TypePair = ProfileCharacte_1056_TypePairIn;
 }
 
-PressureCharact_1067_Type::~PressureCharact_1067_Type()
+ProfileCharacte_1056_Type::~ProfileCharacte_1056_Type()
 {
   #ifndef NODESTRUCT
-  delete PressureCharact_1067_TypePair;
+  delete ProfileCharacte_1056_TypePair;
   #endif
 }
 
-void PressureCharact_1067_Type::printSelf(FILE * outFile)
+void ProfileCharacte_1056_Type::printSelf(FILE * outFile)
 {
-  PressureCharact_1067_TypePair->printSelf(outFile);
-}
-
-PressureCharact_1067_TypeChoicePair * PressureCharact_1067_Type::getPressureCharact_1067_TypePair()
-{return PressureCharact_1067_TypePair;}
-
-void PressureCharact_1067_Type::setPressureCharact_1067_TypePair(PressureCharact_1067_TypeChoicePair * PressureCharact_1067_TypePairIn)
-{PressureCharact_1067_TypePair = PressureCharact_1067_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class PressureCharact_1067_TypeChoicePair
-
-*/
-
-PressureCharact_1067_TypeChoicePair::PressureCharact_1067_TypeChoicePair() {}
-
-PressureCharact_1067_TypeChoicePair::PressureCharact_1067_TypeChoicePair(
- whichOne PressureCharact_1067_TypeTypeIn,
- PressureCharact_1067_TypeVal PressureCharact_1067_TypeValueIn)
-{
-  PressureCharact_1067_TypeType = PressureCharact_1067_TypeTypeIn;
-  PressureCharact_1067_TypeValue = PressureCharact_1067_TypeValueIn;
-}
-
-PressureCharact_1067_TypeChoicePair::~PressureCharact_1067_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (PressureCharact_1067_TypeType == ToleranceE)
-    delete PressureCharact_1067_TypeValue.Tolerance;
-  else if (PressureCharact_1067_TypeType == NonToleranceE)
-    delete PressureCharact_1067_TypeValue.NonTolerance;
-  #endif
-}
-
-void PressureCharact_1067_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (PressureCharact_1067_TypeType == ToleranceE)
+  if (ProfileCharacte_1056_TypePair)
     {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<Tolerance");
-      PressureCharact_1067_TypeValue.Tolerance->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</Tolerance>\n");
-    }
-  else if (PressureCharact_1067_TypeType == NonToleranceE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<NonTolerance");
-      PressureCharact_1067_TypeValue.NonTolerance->printSelf(outFile);
-      fprintf(outFile, "</NonTolerance>\n");
+      ProfileCharacte_1056_TypePair->printSelf(outFile);
     }
 }
 
-/* ***************************************************************** */
+ProfileCharacte_1056_TypeChoicePair * ProfileCharacte_1056_Type::getProfileCharacte_1056_TypePair()
+{return ProfileCharacte_1056_TypePair;}
 
-/* class ProfileCharacte_1068_Type
+void ProfileCharacte_1056_Type::setProfileCharacte_1056_TypePair(ProfileCharacte_1056_TypeChoicePair * ProfileCharacte_1056_TypePairIn)
+{ProfileCharacte_1056_TypePair = ProfileCharacte_1056_TypePairIn;}
+ProfileCharacte_1056_TypeChoicePair::ProfileCharacte_1056_TypeChoicePair() {}
 
-*/
-
-ProfileCharacte_1068_Type::ProfileCharacte_1068_Type()
+ProfileCharacte_1056_TypeChoicePair::ProfileCharacte_1056_TypeChoicePair(
+ whichOne ProfileCharacte_1056_TypeTypeIn,
+ ProfileCharacte_1056_TypeVal ProfileCharacte_1056_TypeValueIn)
 {
-  ProfileCharacte_1068_TypePair = 0;
+  ProfileCharacte_1056_TypeType = ProfileCharacte_1056_TypeTypeIn;
+  ProfileCharacte_1056_TypeValue = ProfileCharacte_1056_TypeValueIn;
 }
 
-ProfileCharacte_1068_Type::ProfileCharacte_1068_Type(
- ProfileCharacte_1068_TypeChoicePair * ProfileCharacte_1068_TypePairIn)
-{
-  ProfileCharacte_1068_TypePair = ProfileCharacte_1068_TypePairIn;
-}
-
-ProfileCharacte_1068_Type::~ProfileCharacte_1068_Type()
+ProfileCharacte_1056_TypeChoicePair::~ProfileCharacte_1056_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  delete ProfileCharacte_1068_TypePair;
+  if (ProfileCharacte_1056_TypeType == OuterDispositionE)
+    delete ProfileCharacte_1056_TypeValue.OuterDisposition;
+  else if (ProfileCharacte_1056_TypeType == UnequallyDisposedZoneE)
+    delete ProfileCharacte_1056_TypeValue.UnequallyDisposedZone;
   #endif
 }
 
-void ProfileCharacte_1068_Type::printSelf(FILE * outFile)
+void ProfileCharacte_1056_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (ProfileCharacte_1068_TypePair)
-    {
-      ProfileCharacte_1068_TypePair->printSelf(outFile);
-    }
-}
-
-ProfileCharacte_1068_TypeChoicePair * ProfileCharacte_1068_Type::getProfileCharacte_1068_TypePair()
-{return ProfileCharacte_1068_TypePair;}
-
-void ProfileCharacte_1068_Type::setProfileCharacte_1068_TypePair(ProfileCharacte_1068_TypeChoicePair * ProfileCharacte_1068_TypePairIn)
-{ProfileCharacte_1068_TypePair = ProfileCharacte_1068_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class ProfileCharacte_1068_TypeChoicePair
-
-*/
-
-ProfileCharacte_1068_TypeChoicePair::ProfileCharacte_1068_TypeChoicePair() {}
-
-ProfileCharacte_1068_TypeChoicePair::ProfileCharacte_1068_TypeChoicePair(
- whichOne ProfileCharacte_1068_TypeTypeIn,
- ProfileCharacte_1068_TypeVal ProfileCharacte_1068_TypeValueIn)
-{
-  ProfileCharacte_1068_TypeType = ProfileCharacte_1068_TypeTypeIn;
-  ProfileCharacte_1068_TypeValue = ProfileCharacte_1068_TypeValueIn;
-}
-
-ProfileCharacte_1068_TypeChoicePair::~ProfileCharacte_1068_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (ProfileCharacte_1068_TypeType == OuterDispositionE)
-    delete ProfileCharacte_1068_TypeValue.OuterDisposition;
-  else if (ProfileCharacte_1068_TypeType == UnequallyDisposedZoneE)
-    delete ProfileCharacte_1068_TypeValue.UnequallyDisposedZone;
-  #endif
-}
-
-void ProfileCharacte_1068_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (ProfileCharacte_1068_TypeType == OuterDispositionE)
+  if (ProfileCharacte_1056_TypeType == OuterDispositionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OuterDisposition");
-      ProfileCharacte_1068_TypeValue.OuterDisposition->printSelf(outFile);
+      ProfileCharacte_1056_TypeValue.OuterDisposition->printSelf(outFile);
       fprintf(outFile, "</OuterDisposition>\n");
     }
-  else if (ProfileCharacte_1068_TypeType == UnequallyDisposedZoneE)
+  else if (ProfileCharacte_1056_TypeType == UnequallyDisposedZoneE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<UnequallyDisposedZone");
-      ProfileCharacte_1068_TypeValue.UnequallyDisposedZone->printSelf(outFile);
+      ProfileCharacte_1056_TypeValue.UnequallyDisposedZone->printSelf(outFile);
       fprintf(outFile, "</UnequallyDisposedZone>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class SpeedCharacteri_1069_Type
+/* class SphericityChara_1057_Type
 
 */
 
-SpeedCharacteri_1069_Type::SpeedCharacteri_1069_Type()
-{
-  SpeedCharacteri_1069_TypePair = 0;
-}
-
-SpeedCharacteri_1069_Type::SpeedCharacteri_1069_Type(
- SpeedCharacteri_1069_TypeChoicePair * SpeedCharacteri_1069_TypePairIn)
-{
-  SpeedCharacteri_1069_TypePair = SpeedCharacteri_1069_TypePairIn;
-}
-
-SpeedCharacteri_1069_Type::~SpeedCharacteri_1069_Type()
-{
-  #ifndef NODESTRUCT
-  delete SpeedCharacteri_1069_TypePair;
-  #endif
-}
-
-void SpeedCharacteri_1069_Type::printSelf(FILE * outFile)
-{
-  SpeedCharacteri_1069_TypePair->printSelf(outFile);
-}
-
-SpeedCharacteri_1069_TypeChoicePair * SpeedCharacteri_1069_Type::getSpeedCharacteri_1069_TypePair()
-{return SpeedCharacteri_1069_TypePair;}
-
-void SpeedCharacteri_1069_Type::setSpeedCharacteri_1069_TypePair(SpeedCharacteri_1069_TypeChoicePair * SpeedCharacteri_1069_TypePairIn)
-{SpeedCharacteri_1069_TypePair = SpeedCharacteri_1069_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class SpeedCharacteri_1069_TypeChoicePair
-
-*/
-
-SpeedCharacteri_1069_TypeChoicePair::SpeedCharacteri_1069_TypeChoicePair() {}
-
-SpeedCharacteri_1069_TypeChoicePair::SpeedCharacteri_1069_TypeChoicePair(
- whichOne SpeedCharacteri_1069_TypeTypeIn,
- SpeedCharacteri_1069_TypeVal SpeedCharacteri_1069_TypeValueIn)
-{
-  SpeedCharacteri_1069_TypeType = SpeedCharacteri_1069_TypeTypeIn;
-  SpeedCharacteri_1069_TypeValue = SpeedCharacteri_1069_TypeValueIn;
-}
-
-SpeedCharacteri_1069_TypeChoicePair::~SpeedCharacteri_1069_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (SpeedCharacteri_1069_TypeType == ToleranceE)
-    delete SpeedCharacteri_1069_TypeValue.Tolerance;
-  else if (SpeedCharacteri_1069_TypeType == NonToleranceE)
-    delete SpeedCharacteri_1069_TypeValue.NonTolerance;
-  #endif
-}
-
-void SpeedCharacteri_1069_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (SpeedCharacteri_1069_TypeType == ToleranceE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<Tolerance");
-      SpeedCharacteri_1069_TypeValue.Tolerance->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</Tolerance>\n");
-    }
-  else if (SpeedCharacteri_1069_TypeType == NonToleranceE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<NonTolerance");
-      SpeedCharacteri_1069_TypeValue.NonTolerance->printSelf(outFile);
-      fprintf(outFile, "</NonTolerance>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class SphericityChara_1070_Type
-
-*/
-
-SphericityChara_1070_Type::SphericityChara_1070_Type()
+SphericityChara_1057_Type::SphericityChara_1057_Type()
 {
   ZoneRadii = 0;
   ZonePoint = 0;
 }
 
-SphericityChara_1070_Type::SphericityChara_1070_Type(
+SphericityChara_1057_Type::SphericityChara_1057_Type(
  MeasuredZoneRadiiType * ZoneRadiiIn,
  MeasuredPointType * ZonePointIn)
 {
@@ -119221,7 +119267,7 @@ SphericityChara_1070_Type::SphericityChara_1070_Type(
   ZonePoint = ZonePointIn;
 }
 
-SphericityChara_1070_Type::~SphericityChara_1070_Type()
+SphericityChara_1057_Type::~SphericityChara_1057_Type()
 {
   #ifndef NODESTRUCT
   delete ZoneRadii;
@@ -119229,7 +119275,7 @@ SphericityChara_1070_Type::~SphericityChara_1070_Type()
   #endif
 }
 
-void SphericityChara_1070_Type::printSelf(FILE * outFile)
+void SphericityChara_1057_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ZoneRadii");
@@ -119242,488 +119288,300 @@ void SphericityChara_1070_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</ZonePoint>\n");
 }
 
-MeasuredZoneRadiiType * SphericityChara_1070_Type::getZoneRadii()
+MeasuredZoneRadiiType * SphericityChara_1057_Type::getZoneRadii()
 {return ZoneRadii;}
 
-void SphericityChara_1070_Type::setZoneRadii(MeasuredZoneRadiiType * ZoneRadiiIn)
+void SphericityChara_1057_Type::setZoneRadii(MeasuredZoneRadiiType * ZoneRadiiIn)
 {ZoneRadii = ZoneRadiiIn;}
 
-MeasuredPointType * SphericityChara_1070_Type::getZonePoint()
+MeasuredPointType * SphericityChara_1057_Type::getZonePoint()
 {return ZonePoint;}
 
-void SphericityChara_1070_Type::setZonePoint(MeasuredPointType * ZonePointIn)
+void SphericityChara_1057_Type::setZonePoint(MeasuredPointType * ZonePointIn)
 {ZonePoint = ZonePointIn;}
 
 /* ***************************************************************** */
 
-/* class StraightnessCha_1071_Type
+/* class StraightnessCha_1058_Type
 
 */
 
-StraightnessCha_1071_Type::StraightnessCha_1071_Type()
+StraightnessCha_1058_Type::StraightnessCha_1058_Type()
 {
-  StraightnessCha_1071_TypePair = 0;
+  StraightnessCha_1058_TypePair = 0;
 }
 
-StraightnessCha_1071_Type::StraightnessCha_1071_Type(
- StraightnessCha_1071_TypeChoicePair * StraightnessCha_1071_TypePairIn)
+StraightnessCha_1058_Type::StraightnessCha_1058_Type(
+ StraightnessCha_1058_TypeChoicePair * StraightnessCha_1058_TypePairIn)
 {
-  StraightnessCha_1071_TypePair = StraightnessCha_1071_TypePairIn;
+  StraightnessCha_1058_TypePair = StraightnessCha_1058_TypePairIn;
 }
 
-StraightnessCha_1071_Type::~StraightnessCha_1071_Type()
+StraightnessCha_1058_Type::~StraightnessCha_1058_Type()
 {
   #ifndef NODESTRUCT
-  delete StraightnessCha_1071_TypePair;
+  delete StraightnessCha_1058_TypePair;
   #endif
 }
 
-void StraightnessCha_1071_Type::printSelf(FILE * outFile)
+void StraightnessCha_1058_Type::printSelf(FILE * outFile)
 {
-  StraightnessCha_1071_TypePair->printSelf(outFile);
+  StraightnessCha_1058_TypePair->printSelf(outFile);
 }
 
-StraightnessCha_1071_TypeChoicePair * StraightnessCha_1071_Type::getStraightnessCha_1071_TypePair()
-{return StraightnessCha_1071_TypePair;}
+StraightnessCha_1058_TypeChoicePair * StraightnessCha_1058_Type::getStraightnessCha_1058_TypePair()
+{return StraightnessCha_1058_TypePair;}
 
-void StraightnessCha_1071_Type::setStraightnessCha_1071_TypePair(StraightnessCha_1071_TypeChoicePair * StraightnessCha_1071_TypePairIn)
-{StraightnessCha_1071_TypePair = StraightnessCha_1071_TypePairIn;}
+void StraightnessCha_1058_Type::setStraightnessCha_1058_TypePair(StraightnessCha_1058_TypeChoicePair * StraightnessCha_1058_TypePairIn)
+{StraightnessCha_1058_TypePair = StraightnessCha_1058_TypePairIn;}
+StraightnessCha_1058_TypeChoicePair::StraightnessCha_1058_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class StraightnessCha_1071_TypeChoicePair
-
-*/
-
-StraightnessCha_1071_TypeChoicePair::StraightnessCha_1071_TypeChoicePair() {}
-
-StraightnessCha_1071_TypeChoicePair::StraightnessCha_1071_TypeChoicePair(
- whichOne StraightnessCha_1071_TypeTypeIn,
- StraightnessCha_1071_TypeVal StraightnessCha_1071_TypeValueIn)
+StraightnessCha_1058_TypeChoicePair::StraightnessCha_1058_TypeChoicePair(
+ whichOne StraightnessCha_1058_TypeTypeIn,
+ StraightnessCha_1058_TypeVal StraightnessCha_1058_TypeValueIn)
 {
-  StraightnessCha_1071_TypeType = StraightnessCha_1071_TypeTypeIn;
-  StraightnessCha_1071_TypeValue = StraightnessCha_1071_TypeValueIn;
+  StraightnessCha_1058_TypeType = StraightnessCha_1058_TypeTypeIn;
+  StraightnessCha_1058_TypeValue = StraightnessCha_1058_TypeValueIn;
 }
 
-StraightnessCha_1071_TypeChoicePair::~StraightnessCha_1071_TypeChoicePair()
+StraightnessCha_1058_TypeChoicePair::~StraightnessCha_1058_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (StraightnessCha_1071_TypeType == StraightnessCha_1088E)
-    delete StraightnessCha_1071_TypeValue.StraightnessCha_1088;
-  else if (StraightnessCha_1071_TypeType == StraightnessCha_1089E)
-    delete StraightnessCha_1071_TypeValue.StraightnessCha_1089;
+  if (StraightnessCha_1058_TypeType == StraightnessCha_1068E)
+    delete StraightnessCha_1058_TypeValue.StraightnessCha_1068;
+  else if (StraightnessCha_1058_TypeType == StraightnessCha_1069E)
+    delete StraightnessCha_1058_TypeValue.StraightnessCha_1069;
   #endif
 }
 
-void StraightnessCha_1071_TypeChoicePair::printSelf(FILE * outFile)
+void StraightnessCha_1058_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (StraightnessCha_1071_TypeType == StraightnessCha_1088E)
+  if (StraightnessCha_1058_TypeType == StraightnessCha_1068E)
     {
-      StraightnessCha_1071_TypeValue.StraightnessCha_1088->printSelf(outFile);
+      StraightnessCha_1058_TypeValue.StraightnessCha_1068->printSelf(outFile);
     }
-  else if (StraightnessCha_1071_TypeType == StraightnessCha_1089E)
+  else if (StraightnessCha_1058_TypeType == StraightnessCha_1069E)
     {
-      StraightnessCha_1071_TypeValue.StraightnessCha_1089->printSelf(outFile);
+      StraightnessCha_1058_TypeValue.StraightnessCha_1069->printSelf(outFile);
     }
 }
 
 /* ***************************************************************** */
 
-/* class SurfaceProfileN_1072_Type
+/* class SurfaceProfileN_1059_Type
 
 */
 
-SurfaceProfileN_1072_Type::SurfaceProfileN_1072_Type()
+SurfaceProfileN_1059_Type::SurfaceProfileN_1059_Type()
 {
-  SurfaceProfileN_1072_TypePair = 0;
+  SurfaceProfileN_1059_TypePair = 0;
 }
 
-SurfaceProfileN_1072_Type::SurfaceProfileN_1072_Type(
- SurfaceProfileN_1072_TypeChoicePair * SurfaceProfileN_1072_TypePairIn)
+SurfaceProfileN_1059_Type::SurfaceProfileN_1059_Type(
+ SurfaceProfileN_1059_TypeChoicePair * SurfaceProfileN_1059_TypePairIn)
 {
-  SurfaceProfileN_1072_TypePair = SurfaceProfileN_1072_TypePairIn;
+  SurfaceProfileN_1059_TypePair = SurfaceProfileN_1059_TypePairIn;
 }
 
-SurfaceProfileN_1072_Type::~SurfaceProfileN_1072_Type()
+SurfaceProfileN_1059_Type::~SurfaceProfileN_1059_Type()
 {
   #ifndef NODESTRUCT
-  delete SurfaceProfileN_1072_TypePair;
+  delete SurfaceProfileN_1059_TypePair;
   #endif
 }
 
-void SurfaceProfileN_1072_Type::printSelf(FILE * outFile)
+void SurfaceProfileN_1059_Type::printSelf(FILE * outFile)
 {
-  if (SurfaceProfileN_1072_TypePair)
+  if (SurfaceProfileN_1059_TypePair)
     {
-      SurfaceProfileN_1072_TypePair->printSelf(outFile);
+      SurfaceProfileN_1059_TypePair->printSelf(outFile);
     }
 }
 
-SurfaceProfileN_1072_TypeChoicePair * SurfaceProfileN_1072_Type::getSurfaceProfileN_1072_TypePair()
-{return SurfaceProfileN_1072_TypePair;}
+SurfaceProfileN_1059_TypeChoicePair * SurfaceProfileN_1059_Type::getSurfaceProfileN_1059_TypePair()
+{return SurfaceProfileN_1059_TypePair;}
 
-void SurfaceProfileN_1072_Type::setSurfaceProfileN_1072_TypePair(SurfaceProfileN_1072_TypeChoicePair * SurfaceProfileN_1072_TypePairIn)
-{SurfaceProfileN_1072_TypePair = SurfaceProfileN_1072_TypePairIn;}
+void SurfaceProfileN_1059_Type::setSurfaceProfileN_1059_TypePair(SurfaceProfileN_1059_TypeChoicePair * SurfaceProfileN_1059_TypePairIn)
+{SurfaceProfileN_1059_TypePair = SurfaceProfileN_1059_TypePairIn;}
+SurfaceProfileN_1059_TypeChoicePair::SurfaceProfileN_1059_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class SurfaceProfileN_1072_TypeChoicePair
-
-*/
-
-SurfaceProfileN_1072_TypeChoicePair::SurfaceProfileN_1072_TypeChoicePair() {}
-
-SurfaceProfileN_1072_TypeChoicePair::SurfaceProfileN_1072_TypeChoicePair(
- whichOne SurfaceProfileN_1072_TypeTypeIn,
- SurfaceProfileN_1072_TypeVal SurfaceProfileN_1072_TypeValueIn)
+SurfaceProfileN_1059_TypeChoicePair::SurfaceProfileN_1059_TypeChoicePair(
+ whichOne SurfaceProfileN_1059_TypeTypeIn,
+ SurfaceProfileN_1059_TypeVal SurfaceProfileN_1059_TypeValueIn)
 {
-  SurfaceProfileN_1072_TypeType = SurfaceProfileN_1072_TypeTypeIn;
-  SurfaceProfileN_1072_TypeValue = SurfaceProfileN_1072_TypeValueIn;
+  SurfaceProfileN_1059_TypeType = SurfaceProfileN_1059_TypeTypeIn;
+  SurfaceProfileN_1059_TypeValue = SurfaceProfileN_1059_TypeValueIn;
 }
 
-SurfaceProfileN_1072_TypeChoicePair::~SurfaceProfileN_1072_TypeChoicePair()
+SurfaceProfileN_1059_TypeChoicePair::~SurfaceProfileN_1059_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (SurfaceProfileN_1072_TypeType == ToPointOuterDispositionE)
-    delete SurfaceProfileN_1072_TypeValue.ToPointOuterDisposition;
-  else if (SurfaceProfileN_1072_TypeType == ToPointUnequallyDisposedZoneE)
-    delete SurfaceProfileN_1072_TypeValue.ToPointUnequallyDisposedZone;
+  if (SurfaceProfileN_1059_TypeType == ToPointOuterDispositionE)
+    delete SurfaceProfileN_1059_TypeValue.ToPointOuterDisposition;
+  else if (SurfaceProfileN_1059_TypeType == ToPointUnequallyDisposedZoneE)
+    delete SurfaceProfileN_1059_TypeValue.ToPointUnequallyDisposedZone;
   #endif
 }
 
-void SurfaceProfileN_1072_TypeChoicePair::printSelf(FILE * outFile)
+void SurfaceProfileN_1059_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (SurfaceProfileN_1072_TypeType == ToPointOuterDispositionE)
+  if (SurfaceProfileN_1059_TypeType == ToPointOuterDispositionE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToPointOuterDisposition");
-      SurfaceProfileN_1072_TypeValue.ToPointOuterDisposition->printSelf(outFile);
+      SurfaceProfileN_1059_TypeValue.ToPointOuterDisposition->printSelf(outFile);
       fprintf(outFile, "</ToPointOuterDisposition>\n");
     }
-  else if (SurfaceProfileN_1072_TypeType == ToPointUnequallyDisposedZoneE)
+  else if (SurfaceProfileN_1059_TypeType == ToPointUnequallyDisposedZoneE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToPointUnequallyDisposedZone");
-      SurfaceProfileN_1072_TypeValue.ToPointUnequallyDisposedZone->printSelf(outFile);
+      SurfaceProfileN_1059_TypeValue.ToPointUnequallyDisposedZone->printSelf(outFile);
       fprintf(outFile, "</ToPointUnequallyDisposedZone>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class TemperatureChar_1073_Type
+/* class UserDefinedUnit_1060_Type
 
 */
 
-TemperatureChar_1073_Type::TemperatureChar_1073_Type()
+UserDefinedUnit_1060_Type::UserDefinedUnit_1060_Type()
 {
-  TemperatureChar_1073_TypePair = 0;
+  UserDefinedUnit_1060_TypePair = 0;
 }
 
-TemperatureChar_1073_Type::TemperatureChar_1073_Type(
- TemperatureChar_1073_TypeChoicePair * TemperatureChar_1073_TypePairIn)
+UserDefinedUnit_1060_Type::UserDefinedUnit_1060_Type(
+ UserDefinedUnit_1060_TypeChoicePair * UserDefinedUnit_1060_TypePairIn)
 {
-  TemperatureChar_1073_TypePair = TemperatureChar_1073_TypePairIn;
+  UserDefinedUnit_1060_TypePair = UserDefinedUnit_1060_TypePairIn;
 }
 
-TemperatureChar_1073_Type::~TemperatureChar_1073_Type()
+UserDefinedUnit_1060_Type::~UserDefinedUnit_1060_Type()
 {
   #ifndef NODESTRUCT
-  delete TemperatureChar_1073_TypePair;
+  delete UserDefinedUnit_1060_TypePair;
   #endif
 }
 
-void TemperatureChar_1073_Type::printSelf(FILE * outFile)
+void UserDefinedUnit_1060_Type::printSelf(FILE * outFile)
 {
-  TemperatureChar_1073_TypePair->printSelf(outFile);
+  UserDefinedUnit_1060_TypePair->printSelf(outFile);
 }
 
-TemperatureChar_1073_TypeChoicePair * TemperatureChar_1073_Type::getTemperatureChar_1073_TypePair()
-{return TemperatureChar_1073_TypePair;}
+UserDefinedUnit_1060_TypeChoicePair * UserDefinedUnit_1060_Type::getUserDefinedUnit_1060_TypePair()
+{return UserDefinedUnit_1060_TypePair;}
 
-void TemperatureChar_1073_Type::setTemperatureChar_1073_TypePair(TemperatureChar_1073_TypeChoicePair * TemperatureChar_1073_TypePairIn)
-{TemperatureChar_1073_TypePair = TemperatureChar_1073_TypePairIn;}
+void UserDefinedUnit_1060_Type::setUserDefinedUnit_1060_TypePair(UserDefinedUnit_1060_TypeChoicePair * UserDefinedUnit_1060_TypePairIn)
+{UserDefinedUnit_1060_TypePair = UserDefinedUnit_1060_TypePairIn;}
+UserDefinedUnit_1060_TypeChoicePair::UserDefinedUnit_1060_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class TemperatureChar_1073_TypeChoicePair
-
-*/
-
-TemperatureChar_1073_TypeChoicePair::TemperatureChar_1073_TypeChoicePair() {}
-
-TemperatureChar_1073_TypeChoicePair::TemperatureChar_1073_TypeChoicePair(
- whichOne TemperatureChar_1073_TypeTypeIn,
- TemperatureChar_1073_TypeVal TemperatureChar_1073_TypeValueIn)
+UserDefinedUnit_1060_TypeChoicePair::UserDefinedUnit_1060_TypeChoicePair(
+ whichOne UserDefinedUnit_1060_TypeTypeIn,
+ UserDefinedUnit_1060_TypeVal UserDefinedUnit_1060_TypeValueIn)
 {
-  TemperatureChar_1073_TypeType = TemperatureChar_1073_TypeTypeIn;
-  TemperatureChar_1073_TypeValue = TemperatureChar_1073_TypeValueIn;
+  UserDefinedUnit_1060_TypeType = UserDefinedUnit_1060_TypeTypeIn;
+  UserDefinedUnit_1060_TypeValue = UserDefinedUnit_1060_TypeValueIn;
 }
 
-TemperatureChar_1073_TypeChoicePair::~TemperatureChar_1073_TypeChoicePair()
+UserDefinedUnit_1060_TypeChoicePair::~UserDefinedUnit_1060_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (TemperatureChar_1073_TypeType == ToleranceE)
-    delete TemperatureChar_1073_TypeValue.Tolerance;
-  else if (TemperatureChar_1073_TypeType == NonToleranceE)
-    delete TemperatureChar_1073_TypeValue.NonTolerance;
+  if (UserDefinedUnit_1060_TypeType == UserDefinedUnit_1070E)
+    delete UserDefinedUnit_1060_TypeValue.UserDefinedUnit_1070;
+  else if (UserDefinedUnit_1060_TypeType == MinValueE)
+    delete UserDefinedUnit_1060_TypeValue.MinValue;
   #endif
 }
 
-void TemperatureChar_1073_TypeChoicePair::printSelf(FILE * outFile)
+void UserDefinedUnit_1060_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (TemperatureChar_1073_TypeType == ToleranceE)
+  if (UserDefinedUnit_1060_TypeType == UserDefinedUnit_1070E)
     {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<Tolerance");
-      TemperatureChar_1073_TypeValue.Tolerance->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</Tolerance>\n");
+      UserDefinedUnit_1060_TypeValue.UserDefinedUnit_1070->printSelf(outFile);
     }
-  else if (TemperatureChar_1073_TypeType == NonToleranceE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<NonTolerance");
-      TemperatureChar_1073_TypeValue.NonTolerance->printSelf(outFile);
-      fprintf(outFile, "</NonTolerance>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class TimeCharacteris_1074_Type
-
-*/
-
-TimeCharacteris_1074_Type::TimeCharacteris_1074_Type()
-{
-  TimeCharacteris_1074_TypePair = 0;
-}
-
-TimeCharacteris_1074_Type::TimeCharacteris_1074_Type(
- TimeCharacteris_1074_TypeChoicePair * TimeCharacteris_1074_TypePairIn)
-{
-  TimeCharacteris_1074_TypePair = TimeCharacteris_1074_TypePairIn;
-}
-
-TimeCharacteris_1074_Type::~TimeCharacteris_1074_Type()
-{
-  #ifndef NODESTRUCT
-  delete TimeCharacteris_1074_TypePair;
-  #endif
-}
-
-void TimeCharacteris_1074_Type::printSelf(FILE * outFile)
-{
-  TimeCharacteris_1074_TypePair->printSelf(outFile);
-}
-
-TimeCharacteris_1074_TypeChoicePair * TimeCharacteris_1074_Type::getTimeCharacteris_1074_TypePair()
-{return TimeCharacteris_1074_TypePair;}
-
-void TimeCharacteris_1074_Type::setTimeCharacteris_1074_TypePair(TimeCharacteris_1074_TypeChoicePair * TimeCharacteris_1074_TypePairIn)
-{TimeCharacteris_1074_TypePair = TimeCharacteris_1074_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class TimeCharacteris_1074_TypeChoicePair
-
-*/
-
-TimeCharacteris_1074_TypeChoicePair::TimeCharacteris_1074_TypeChoicePair() {}
-
-TimeCharacteris_1074_TypeChoicePair::TimeCharacteris_1074_TypeChoicePair(
- whichOne TimeCharacteris_1074_TypeTypeIn,
- TimeCharacteris_1074_TypeVal TimeCharacteris_1074_TypeValueIn)
-{
-  TimeCharacteris_1074_TypeType = TimeCharacteris_1074_TypeTypeIn;
-  TimeCharacteris_1074_TypeValue = TimeCharacteris_1074_TypeValueIn;
-}
-
-TimeCharacteris_1074_TypeChoicePair::~TimeCharacteris_1074_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (TimeCharacteris_1074_TypeType == ToleranceE)
-    delete TimeCharacteris_1074_TypeValue.Tolerance;
-  else if (TimeCharacteris_1074_TypeType == NonToleranceE)
-    delete TimeCharacteris_1074_TypeValue.NonTolerance;
-  #endif
-}
-
-void TimeCharacteris_1074_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (TimeCharacteris_1074_TypeType == ToleranceE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<Tolerance");
-      TimeCharacteris_1074_TypeValue.Tolerance->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</Tolerance>\n");
-    }
-  else if (TimeCharacteris_1074_TypeType == NonToleranceE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<NonTolerance");
-      TimeCharacteris_1074_TypeValue.NonTolerance->printSelf(outFile);
-      fprintf(outFile, "</NonTolerance>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class UserDefinedUnit_1075_Type
-
-*/
-
-UserDefinedUnit_1075_Type::UserDefinedUnit_1075_Type()
-{
-  UserDefinedUnit_1075_TypePair = 0;
-}
-
-UserDefinedUnit_1075_Type::UserDefinedUnit_1075_Type(
- UserDefinedUnit_1075_TypeChoicePair * UserDefinedUnit_1075_TypePairIn)
-{
-  UserDefinedUnit_1075_TypePair = UserDefinedUnit_1075_TypePairIn;
-}
-
-UserDefinedUnit_1075_Type::~UserDefinedUnit_1075_Type()
-{
-  #ifndef NODESTRUCT
-  delete UserDefinedUnit_1075_TypePair;
-  #endif
-}
-
-void UserDefinedUnit_1075_Type::printSelf(FILE * outFile)
-{
-  UserDefinedUnit_1075_TypePair->printSelf(outFile);
-}
-
-UserDefinedUnit_1075_TypeChoicePair * UserDefinedUnit_1075_Type::getUserDefinedUnit_1075_TypePair()
-{return UserDefinedUnit_1075_TypePair;}
-
-void UserDefinedUnit_1075_Type::setUserDefinedUnit_1075_TypePair(UserDefinedUnit_1075_TypeChoicePair * UserDefinedUnit_1075_TypePairIn)
-{UserDefinedUnit_1075_TypePair = UserDefinedUnit_1075_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class UserDefinedUnit_1075_TypeChoicePair
-
-*/
-
-UserDefinedUnit_1075_TypeChoicePair::UserDefinedUnit_1075_TypeChoicePair() {}
-
-UserDefinedUnit_1075_TypeChoicePair::UserDefinedUnit_1075_TypeChoicePair(
- whichOne UserDefinedUnit_1075_TypeTypeIn,
- UserDefinedUnit_1075_TypeVal UserDefinedUnit_1075_TypeValueIn)
-{
-  UserDefinedUnit_1075_TypeType = UserDefinedUnit_1075_TypeTypeIn;
-  UserDefinedUnit_1075_TypeValue = UserDefinedUnit_1075_TypeValueIn;
-}
-
-UserDefinedUnit_1075_TypeChoicePair::~UserDefinedUnit_1075_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (UserDefinedUnit_1075_TypeType == UserDefinedUnit_1090E)
-    delete UserDefinedUnit_1075_TypeValue.UserDefinedUnit_1090;
-  else if (UserDefinedUnit_1075_TypeType == MinValueE)
-    delete UserDefinedUnit_1075_TypeValue.MinValue;
-  #endif
-}
-
-void UserDefinedUnit_1075_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (UserDefinedUnit_1075_TypeType == UserDefinedUnit_1090E)
-    {
-      UserDefinedUnit_1075_TypeValue.UserDefinedUnit_1090->printSelf(outFile);
-    }
-  else if (UserDefinedUnit_1075_TypeType == MinValueE)
+  else if (UserDefinedUnit_1060_TypeType == MinValueE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<MinValue");
-      UserDefinedUnit_1075_TypeValue.MinValue->printSelf(outFile);
+      UserDefinedUnit_1060_TypeValue.MinValue->printSelf(outFile);
       fprintf(outFile, "</MinValue>\n");
     }
 }
 
 /* ***************************************************************** */
 
-/* class WeldFilletChara_1076_Type
+/* class WeldFilletChara_1061_Type
 
 */
 
-WeldFilletChara_1076_Type::WeldFilletChara_1076_Type()
+WeldFilletChara_1061_Type::WeldFilletChara_1061_Type()
 {
-  WeldFilletChara_1076_TypePair = 0;
+  WeldFilletChara_1061_TypePair = 0;
 }
 
-WeldFilletChara_1076_Type::WeldFilletChara_1076_Type(
- WeldFilletChara_1076_TypeChoicePair * WeldFilletChara_1076_TypePairIn)
+WeldFilletChara_1061_Type::WeldFilletChara_1061_Type(
+ WeldFilletChara_1061_TypeChoicePair * WeldFilletChara_1061_TypePairIn)
 {
-  WeldFilletChara_1076_TypePair = WeldFilletChara_1076_TypePairIn;
+  WeldFilletChara_1061_TypePair = WeldFilletChara_1061_TypePairIn;
 }
 
-WeldFilletChara_1076_Type::~WeldFilletChara_1076_Type()
+WeldFilletChara_1061_Type::~WeldFilletChara_1061_Type()
 {
   #ifndef NODESTRUCT
-  delete WeldFilletChara_1076_TypePair;
+  delete WeldFilletChara_1061_TypePair;
   #endif
 }
 
-void WeldFilletChara_1076_Type::printSelf(FILE * outFile)
+void WeldFilletChara_1061_Type::printSelf(FILE * outFile)
 {
-  if (WeldFilletChara_1076_TypePair)
+  if (WeldFilletChara_1061_TypePair)
     {
-      WeldFilletChara_1076_TypePair->printSelf(outFile);
+      WeldFilletChara_1061_TypePair->printSelf(outFile);
     }
 }
 
-WeldFilletChara_1076_TypeChoicePair * WeldFilletChara_1076_Type::getWeldFilletChara_1076_TypePair()
-{return WeldFilletChara_1076_TypePair;}
+WeldFilletChara_1061_TypeChoicePair * WeldFilletChara_1061_Type::getWeldFilletChara_1061_TypePair()
+{return WeldFilletChara_1061_TypePair;}
 
-void WeldFilletChara_1076_Type::setWeldFilletChara_1076_TypePair(WeldFilletChara_1076_TypeChoicePair * WeldFilletChara_1076_TypePairIn)
-{WeldFilletChara_1076_TypePair = WeldFilletChara_1076_TypePairIn;}
+void WeldFilletChara_1061_Type::setWeldFilletChara_1061_TypePair(WeldFilletChara_1061_TypeChoicePair * WeldFilletChara_1061_TypePairIn)
+{WeldFilletChara_1061_TypePair = WeldFilletChara_1061_TypePairIn;}
+WeldFilletChara_1061_TypeChoicePair::WeldFilletChara_1061_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class WeldFilletChara_1076_TypeChoicePair
-
-*/
-
-WeldFilletChara_1076_TypeChoicePair::WeldFilletChara_1076_TypeChoicePair() {}
-
-WeldFilletChara_1076_TypeChoicePair::WeldFilletChara_1076_TypeChoicePair(
- whichOne WeldFilletChara_1076_TypeTypeIn,
- WeldFilletChara_1076_TypeVal WeldFilletChara_1076_TypeValueIn)
+WeldFilletChara_1061_TypeChoicePair::WeldFilletChara_1061_TypeChoicePair(
+ whichOne WeldFilletChara_1061_TypeTypeIn,
+ WeldFilletChara_1061_TypeVal WeldFilletChara_1061_TypeValueIn)
 {
-  WeldFilletChara_1076_TypeType = WeldFilletChara_1076_TypeTypeIn;
-  WeldFilletChara_1076_TypeValue = WeldFilletChara_1076_TypeValueIn;
+  WeldFilletChara_1061_TypeType = WeldFilletChara_1061_TypeTypeIn;
+  WeldFilletChara_1061_TypeValue = WeldFilletChara_1061_TypeValueIn;
 }
 
-WeldFilletChara_1076_TypeChoicePair::~WeldFilletChara_1076_TypeChoicePair()
+WeldFilletChara_1061_TypeChoicePair::~WeldFilletChara_1061_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (WeldFilletChara_1076_TypeType == BothSidesE)
-    delete WeldFilletChara_1076_TypeValue.BothSides;
-  else if (WeldFilletChara_1076_TypeType == OneSideE)
-    delete WeldFilletChara_1076_TypeValue.OneSide;
+  if (WeldFilletChara_1061_TypeType == BothSidesE)
+    delete WeldFilletChara_1061_TypeValue.BothSides;
+  else if (WeldFilletChara_1061_TypeType == OneSideE)
+    delete WeldFilletChara_1061_TypeValue.OneSide;
   #endif
 }
 
-void WeldFilletChara_1076_TypeChoicePair::printSelf(FILE * outFile)
+void WeldFilletChara_1061_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (WeldFilletChara_1076_TypeType == BothSidesE)
+  if (WeldFilletChara_1061_TypeType == BothSidesE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BothSides");
-      WeldFilletChara_1076_TypeValue.BothSides->printSelf(outFile);
+      WeldFilletChara_1061_TypeValue.BothSides->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BothSides>\n");
     }
-  else if (WeldFilletChara_1076_TypeType == OneSideE)
+  else if (WeldFilletChara_1061_TypeType == OneSideE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OneSide");
-      WeldFilletChara_1076_TypeValue.OneSide->printSelf(outFile);
+      WeldFilletChara_1061_TypeValue.OneSide->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</OneSide>\n");
     }
@@ -119731,83 +119589,76 @@ void WeldFilletChara_1076_TypeChoicePair::printSelf(FILE * outFile)
 
 /* ***************************************************************** */
 
-/* class WeldFilletChara_1077_Type
+/* class WeldFilletChara_1062_Type
 
 */
 
-WeldFilletChara_1077_Type::WeldFilletChara_1077_Type()
+WeldFilletChara_1062_Type::WeldFilletChara_1062_Type()
 {
-  WeldFilletChara_1077_TypePair = 0;
+  WeldFilletChara_1062_TypePair = 0;
 }
 
-WeldFilletChara_1077_Type::WeldFilletChara_1077_Type(
- WeldFilletChara_1077_TypeChoicePair * WeldFilletChara_1077_TypePairIn)
+WeldFilletChara_1062_Type::WeldFilletChara_1062_Type(
+ WeldFilletChara_1062_TypeChoicePair * WeldFilletChara_1062_TypePairIn)
 {
-  WeldFilletChara_1077_TypePair = WeldFilletChara_1077_TypePairIn;
+  WeldFilletChara_1062_TypePair = WeldFilletChara_1062_TypePairIn;
 }
 
-WeldFilletChara_1077_Type::~WeldFilletChara_1077_Type()
+WeldFilletChara_1062_Type::~WeldFilletChara_1062_Type()
 {
   #ifndef NODESTRUCT
-  delete WeldFilletChara_1077_TypePair;
+  delete WeldFilletChara_1062_TypePair;
   #endif
 }
 
-void WeldFilletChara_1077_Type::printSelf(FILE * outFile)
+void WeldFilletChara_1062_Type::printSelf(FILE * outFile)
 {
-  if (WeldFilletChara_1077_TypePair)
+  if (WeldFilletChara_1062_TypePair)
     {
-      WeldFilletChara_1077_TypePair->printSelf(outFile);
+      WeldFilletChara_1062_TypePair->printSelf(outFile);
     }
 }
 
-WeldFilletChara_1077_TypeChoicePair * WeldFilletChara_1077_Type::getWeldFilletChara_1077_TypePair()
-{return WeldFilletChara_1077_TypePair;}
+WeldFilletChara_1062_TypeChoicePair * WeldFilletChara_1062_Type::getWeldFilletChara_1062_TypePair()
+{return WeldFilletChara_1062_TypePair;}
 
-void WeldFilletChara_1077_Type::setWeldFilletChara_1077_TypePair(WeldFilletChara_1077_TypeChoicePair * WeldFilletChara_1077_TypePairIn)
-{WeldFilletChara_1077_TypePair = WeldFilletChara_1077_TypePairIn;}
+void WeldFilletChara_1062_Type::setWeldFilletChara_1062_TypePair(WeldFilletChara_1062_TypeChoicePair * WeldFilletChara_1062_TypePairIn)
+{WeldFilletChara_1062_TypePair = WeldFilletChara_1062_TypePairIn;}
+WeldFilletChara_1062_TypeChoicePair::WeldFilletChara_1062_TypeChoicePair() {}
 
-/* ***************************************************************** */
-
-/* class WeldFilletChara_1077_TypeChoicePair
-
-*/
-
-WeldFilletChara_1077_TypeChoicePair::WeldFilletChara_1077_TypeChoicePair() {}
-
-WeldFilletChara_1077_TypeChoicePair::WeldFilletChara_1077_TypeChoicePair(
- whichOne WeldFilletChara_1077_TypeTypeIn,
- WeldFilletChara_1077_TypeVal WeldFilletChara_1077_TypeValueIn)
+WeldFilletChara_1062_TypeChoicePair::WeldFilletChara_1062_TypeChoicePair(
+ whichOne WeldFilletChara_1062_TypeTypeIn,
+ WeldFilletChara_1062_TypeVal WeldFilletChara_1062_TypeValueIn)
 {
-  WeldFilletChara_1077_TypeType = WeldFilletChara_1077_TypeTypeIn;
-  WeldFilletChara_1077_TypeValue = WeldFilletChara_1077_TypeValueIn;
+  WeldFilletChara_1062_TypeType = WeldFilletChara_1062_TypeTypeIn;
+  WeldFilletChara_1062_TypeValue = WeldFilletChara_1062_TypeValueIn;
 }
 
-WeldFilletChara_1077_TypeChoicePair::~WeldFilletChara_1077_TypeChoicePair()
+WeldFilletChara_1062_TypeChoicePair::~WeldFilletChara_1062_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  if (WeldFilletChara_1077_TypeType == BothSidesE)
-    delete WeldFilletChara_1077_TypeValue.BothSides;
-  else if (WeldFilletChara_1077_TypeType == OneSideE)
-    delete WeldFilletChara_1077_TypeValue.OneSide;
+  if (WeldFilletChara_1062_TypeType == BothSidesE)
+    delete WeldFilletChara_1062_TypeValue.BothSides;
+  else if (WeldFilletChara_1062_TypeType == OneSideE)
+    delete WeldFilletChara_1062_TypeValue.OneSide;
   #endif
 }
 
-void WeldFilletChara_1077_TypeChoicePair::printSelf(FILE * outFile)
+void WeldFilletChara_1062_TypeChoicePair::printSelf(FILE * outFile)
 {
-  if (WeldFilletChara_1077_TypeType == BothSidesE)
+  if (WeldFilletChara_1062_TypeType == BothSidesE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<BothSides");
-      WeldFilletChara_1077_TypeValue.BothSides->printSelf(outFile);
+      WeldFilletChara_1062_TypeValue.BothSides->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</BothSides>\n");
     }
-  else if (WeldFilletChara_1077_TypeType == OneSideE)
+  else if (WeldFilletChara_1062_TypeType == OneSideE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<OneSide");
-      WeldFilletChara_1077_TypeValue.OneSide->printSelf(outFile);
+      WeldFilletChara_1062_TypeValue.OneSide->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</OneSide>\n");
     }
@@ -119815,269 +119666,17 @@ void WeldFilletChara_1077_TypeChoicePair::printSelf(FILE * outFile)
 
 /* ***************************************************************** */
 
-/* class WeldFilletOneSi_1078_Type
+/* class WeldGrooveOneSi_1063_Type
 
 */
 
-WeldFilletOneSi_1078_Type::WeldFilletOneSi_1078_Type()
-{
-  WeldFilletOneSi_1078_TypePair = 0;
-}
-
-WeldFilletOneSi_1078_Type::WeldFilletOneSi_1078_Type(
- WeldFilletOneSi_1078_TypeChoicePair * WeldFilletOneSi_1078_TypePairIn)
-{
-  WeldFilletOneSi_1078_TypePair = WeldFilletOneSi_1078_TypePairIn;
-}
-
-WeldFilletOneSi_1078_Type::~WeldFilletOneSi_1078_Type()
-{
-  #ifndef NODESTRUCT
-  delete WeldFilletOneSi_1078_TypePair;
-  #endif
-}
-
-void WeldFilletOneSi_1078_Type::printSelf(FILE * outFile)
-{
-  if (WeldFilletOneSi_1078_TypePair)
-    {
-      WeldFilletOneSi_1078_TypePair->printSelf(outFile);
-    }
-}
-
-WeldFilletOneSi_1078_TypeChoicePair * WeldFilletOneSi_1078_Type::getWeldFilletOneSi_1078_TypePair()
-{return WeldFilletOneSi_1078_TypePair;}
-
-void WeldFilletOneSi_1078_Type::setWeldFilletOneSi_1078_TypePair(WeldFilletOneSi_1078_TypeChoicePair * WeldFilletOneSi_1078_TypePairIn)
-{WeldFilletOneSi_1078_TypePair = WeldFilletOneSi_1078_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class WeldFilletOneSi_1078_TypeChoicePair
-
-*/
-
-WeldFilletOneSi_1078_TypeChoicePair::WeldFilletOneSi_1078_TypeChoicePair() {}
-
-WeldFilletOneSi_1078_TypeChoicePair::WeldFilletOneSi_1078_TypeChoicePair(
- whichOne WeldFilletOneSi_1078_TypeTypeIn,
- WeldFilletOneSi_1078_TypeVal WeldFilletOneSi_1078_TypeValueIn)
-{
-  WeldFilletOneSi_1078_TypeType = WeldFilletOneSi_1078_TypeTypeIn;
-  WeldFilletOneSi_1078_TypeValue = WeldFilletOneSi_1078_TypeValueIn;
-}
-
-WeldFilletOneSi_1078_TypeChoicePair::~WeldFilletOneSi_1078_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (WeldFilletOneSi_1078_TypeType == EqualLegLengthE)
-    delete WeldFilletOneSi_1078_TypeValue.EqualLegLength;
-  else if (WeldFilletOneSi_1078_TypeType == UnEqualLegLengthE)
-    delete WeldFilletOneSi_1078_TypeValue.UnEqualLegLength;
-  #endif
-}
-
-void WeldFilletOneSi_1078_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (WeldFilletOneSi_1078_TypeType == EqualLegLengthE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<EqualLegLength");
-      WeldFilletOneSi_1078_TypeValue.EqualLegLength->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</EqualLegLength>\n");
-    }
-  else if (WeldFilletOneSi_1078_TypeType == UnEqualLegLengthE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<UnEqualLegLength");
-      WeldFilletOneSi_1078_TypeValue.UnEqualLegLength->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</UnEqualLegLength>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class WeldGrooveChara_1079_Type
-
-*/
-
-WeldGrooveChara_1079_Type::WeldGrooveChara_1079_Type()
-{
-  WeldGrooveChara_1079_TypePair = 0;
-}
-
-WeldGrooveChara_1079_Type::WeldGrooveChara_1079_Type(
- WeldGrooveChara_1079_TypeChoicePair * WeldGrooveChara_1079_TypePairIn)
-{
-  WeldGrooveChara_1079_TypePair = WeldGrooveChara_1079_TypePairIn;
-}
-
-WeldGrooveChara_1079_Type::~WeldGrooveChara_1079_Type()
-{
-  #ifndef NODESTRUCT
-  delete WeldGrooveChara_1079_TypePair;
-  #endif
-}
-
-void WeldGrooveChara_1079_Type::printSelf(FILE * outFile)
-{
-  if (WeldGrooveChara_1079_TypePair)
-    {
-      WeldGrooveChara_1079_TypePair->printSelf(outFile);
-    }
-}
-
-WeldGrooveChara_1079_TypeChoicePair * WeldGrooveChara_1079_Type::getWeldGrooveChara_1079_TypePair()
-{return WeldGrooveChara_1079_TypePair;}
-
-void WeldGrooveChara_1079_Type::setWeldGrooveChara_1079_TypePair(WeldGrooveChara_1079_TypeChoicePair * WeldGrooveChara_1079_TypePairIn)
-{WeldGrooveChara_1079_TypePair = WeldGrooveChara_1079_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class WeldGrooveChara_1079_TypeChoicePair
-
-*/
-
-WeldGrooveChara_1079_TypeChoicePair::WeldGrooveChara_1079_TypeChoicePair() {}
-
-WeldGrooveChara_1079_TypeChoicePair::WeldGrooveChara_1079_TypeChoicePair(
- whichOne WeldGrooveChara_1079_TypeTypeIn,
- WeldGrooveChara_1079_TypeVal WeldGrooveChara_1079_TypeValueIn)
-{
-  WeldGrooveChara_1079_TypeType = WeldGrooveChara_1079_TypeTypeIn;
-  WeldGrooveChara_1079_TypeValue = WeldGrooveChara_1079_TypeValueIn;
-}
-
-WeldGrooveChara_1079_TypeChoicePair::~WeldGrooveChara_1079_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (WeldGrooveChara_1079_TypeType == OneSideE)
-    delete WeldGrooveChara_1079_TypeValue.OneSide;
-  else if (WeldGrooveChara_1079_TypeType == BothSidesE)
-    delete WeldGrooveChara_1079_TypeValue.BothSides;
-  #endif
-}
-
-void WeldGrooveChara_1079_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (WeldGrooveChara_1079_TypeType == OneSideE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<OneSide");
-      WeldGrooveChara_1079_TypeValue.OneSide->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</OneSide>\n");
-    }
-  else if (WeldGrooveChara_1079_TypeType == BothSidesE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<BothSides");
-      WeldGrooveChara_1079_TypeValue.BothSides->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</BothSides>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class WeldGrooveChara_1080_Type
-
-*/
-
-WeldGrooveChara_1080_Type::WeldGrooveChara_1080_Type()
-{
-  WeldGrooveChara_1080_TypePair = 0;
-}
-
-WeldGrooveChara_1080_Type::WeldGrooveChara_1080_Type(
- WeldGrooveChara_1080_TypeChoicePair * WeldGrooveChara_1080_TypePairIn)
-{
-  WeldGrooveChara_1080_TypePair = WeldGrooveChara_1080_TypePairIn;
-}
-
-WeldGrooveChara_1080_Type::~WeldGrooveChara_1080_Type()
-{
-  #ifndef NODESTRUCT
-  delete WeldGrooveChara_1080_TypePair;
-  #endif
-}
-
-void WeldGrooveChara_1080_Type::printSelf(FILE * outFile)
-{
-  if (WeldGrooveChara_1080_TypePair)
-    {
-      WeldGrooveChara_1080_TypePair->printSelf(outFile);
-    }
-}
-
-WeldGrooveChara_1080_TypeChoicePair * WeldGrooveChara_1080_Type::getWeldGrooveChara_1080_TypePair()
-{return WeldGrooveChara_1080_TypePair;}
-
-void WeldGrooveChara_1080_Type::setWeldGrooveChara_1080_TypePair(WeldGrooveChara_1080_TypeChoicePair * WeldGrooveChara_1080_TypePairIn)
-{WeldGrooveChara_1080_TypePair = WeldGrooveChara_1080_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class WeldGrooveChara_1080_TypeChoicePair
-
-*/
-
-WeldGrooveChara_1080_TypeChoicePair::WeldGrooveChara_1080_TypeChoicePair() {}
-
-WeldGrooveChara_1080_TypeChoicePair::WeldGrooveChara_1080_TypeChoicePair(
- whichOne WeldGrooveChara_1080_TypeTypeIn,
- WeldGrooveChara_1080_TypeVal WeldGrooveChara_1080_TypeValueIn)
-{
-  WeldGrooveChara_1080_TypeType = WeldGrooveChara_1080_TypeTypeIn;
-  WeldGrooveChara_1080_TypeValue = WeldGrooveChara_1080_TypeValueIn;
-}
-
-WeldGrooveChara_1080_TypeChoicePair::~WeldGrooveChara_1080_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (WeldGrooveChara_1080_TypeType == OneSideE)
-    delete WeldGrooveChara_1080_TypeValue.OneSide;
-  else if (WeldGrooveChara_1080_TypeType == BothSidesE)
-    delete WeldGrooveChara_1080_TypeValue.BothSides;
-  #endif
-}
-
-void WeldGrooveChara_1080_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (WeldGrooveChara_1080_TypeType == OneSideE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<OneSide");
-      WeldGrooveChara_1080_TypeValue.OneSide->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</OneSide>\n");
-    }
-  else if (WeldGrooveChara_1080_TypeType == BothSidesE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<BothSides");
-      WeldGrooveChara_1080_TypeValue.BothSides->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</BothSides>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class WeldGrooveOneSi_1081_Type
-
-*/
-
-WeldGrooveOneSi_1081_Type::WeldGrooveOneSi_1081_Type()
+WeldGrooveOneSi_1063_Type::WeldGrooveOneSi_1063_Type()
 {
   SideParameters = 0;
   SupplementarySymbol = 0;
 }
 
-WeldGrooveOneSi_1081_Type::WeldGrooveOneSi_1081_Type(
+WeldGrooveOneSi_1063_Type::WeldGrooveOneSi_1063_Type(
  WeldGrooveOneSideParametersType * SideParametersIn,
  WeldSupplementarySymbolEnumType * SupplementarySymbolIn)
 {
@@ -120085,7 +119684,7 @@ WeldGrooveOneSi_1081_Type::WeldGrooveOneSi_1081_Type(
   SupplementarySymbol = SupplementarySymbolIn;
 }
 
-WeldGrooveOneSi_1081_Type::~WeldGrooveOneSi_1081_Type()
+WeldGrooveOneSi_1063_Type::~WeldGrooveOneSi_1063_Type()
 {
   #ifndef NODESTRUCT
   delete SideParameters;
@@ -120093,7 +119692,7 @@ WeldGrooveOneSi_1081_Type::~WeldGrooveOneSi_1081_Type()
   #endif
 }
 
-void WeldGrooveOneSi_1081_Type::printSelf(FILE * outFile)
+void WeldGrooveOneSi_1063_Type::printSelf(FILE * outFile)
 {
   if (SideParameters)
     {
@@ -120112,163 +119711,90 @@ void WeldGrooveOneSi_1081_Type::printSelf(FILE * outFile)
     }
 }
 
-WeldGrooveOneSideParametersType * WeldGrooveOneSi_1081_Type::getSideParameters()
+WeldGrooveOneSideParametersType * WeldGrooveOneSi_1063_Type::getSideParameters()
 {return SideParameters;}
 
-void WeldGrooveOneSi_1081_Type::setSideParameters(WeldGrooveOneSideParametersType * SideParametersIn)
+void WeldGrooveOneSi_1063_Type::setSideParameters(WeldGrooveOneSideParametersType * SideParametersIn)
 {SideParameters = SideParametersIn;}
 
-WeldSupplementarySymbolEnumType * WeldGrooveOneSi_1081_Type::getSupplementarySymbol()
+WeldSupplementarySymbolEnumType * WeldGrooveOneSi_1063_Type::getSupplementarySymbol()
 {return SupplementarySymbol;}
 
-void WeldGrooveOneSi_1081_Type::setSupplementarySymbol(WeldSupplementarySymbolEnumType * SupplementarySymbolIn)
+void WeldGrooveOneSi_1063_Type::setSupplementarySymbol(WeldSupplementarySymbolEnumType * SupplementarySymbolIn)
 {SupplementarySymbol = SupplementarySymbolIn;}
 
 /* ***************************************************************** */
 
-/* class CircularityChar_1082_Type
+/* class CircularityChar_1064_Type
 
 */
 
-CircularityChar_1082_Type::CircularityChar_1082_Type()
+CircularityChar_1064_Type::CircularityChar_1064_Type()
 {
-  ToleranceValue = 0;
-  ToleranceDualValue = 0;
-  CircularityChar_1091 = 0;
+  CircularityChar_1064_TypePair = 0;
 }
 
-CircularityChar_1082_Type::CircularityChar_1082_Type(
- LinearValueType * ToleranceValueIn,
- LinearDualValueType * ToleranceDualValueIn,
- CircularityChar_1091_Type * CircularityChar_1091In)
+CircularityChar_1064_Type::CircularityChar_1064_Type(
+ CircularityChar_1064_TypeChoicePair * CircularityChar_1064_TypePairIn)
 {
-  ToleranceValue = ToleranceValueIn;
-  ToleranceDualValue = ToleranceDualValueIn;
-  CircularityChar_1091 = CircularityChar_1091In;
+  CircularityChar_1064_TypePair = CircularityChar_1064_TypePairIn;
 }
 
-CircularityChar_1082_Type::~CircularityChar_1082_Type()
+CircularityChar_1064_Type::~CircularityChar_1064_Type()
 {
   #ifndef NODESTRUCT
-  delete ToleranceValue;
-  delete ToleranceDualValue;
-  delete CircularityChar_1091;
+  delete CircularityChar_1064_TypePair;
   #endif
 }
 
-void CircularityChar_1082_Type::printSelf(FILE * outFile)
+void CircularityChar_1064_Type::printSelf(FILE * outFile)
 {
-  doSpaces(0, outFile);
-  fprintf(outFile, "<ToleranceValue");
-  ToleranceValue->printSelf(outFile);
-  fprintf(outFile, "</ToleranceValue>\n");
-  if (ToleranceDualValue)
+  if (CircularityChar_1064_TypePair)
     {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<ToleranceDualValue");
-      ToleranceDualValue->printSelf(outFile);
-      fprintf(outFile, "</ToleranceDualValue>\n");
-    }
-  if (CircularityChar_1091)
-    {
-      CircularityChar_1091->printSelf(outFile);
+      CircularityChar_1064_TypePair->printSelf(outFile);
     }
 }
 
-LinearValueType * CircularityChar_1082_Type::getToleranceValue()
-{return ToleranceValue;}
+CircularityChar_1064_TypeChoicePair * CircularityChar_1064_Type::getCircularityChar_1064_TypePair()
+{return CircularityChar_1064_TypePair;}
 
-void CircularityChar_1082_Type::setToleranceValue(LinearValueType * ToleranceValueIn)
-{ToleranceValue = ToleranceValueIn;}
+void CircularityChar_1064_Type::setCircularityChar_1064_TypePair(CircularityChar_1064_TypeChoicePair * CircularityChar_1064_TypePairIn)
+{CircularityChar_1064_TypePair = CircularityChar_1064_TypePairIn;}
+CircularityChar_1064_TypeChoicePair::CircularityChar_1064_TypeChoicePair() {}
 
-LinearDualValueType * CircularityChar_1082_Type::getToleranceDualValue()
-{return ToleranceDualValue;}
-
-void CircularityChar_1082_Type::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
-{ToleranceDualValue = ToleranceDualValueIn;}
-
-CircularityChar_1091_Type * CircularityChar_1082_Type::getCircularityChar_1091()
-{return CircularityChar_1091;}
-
-void CircularityChar_1082_Type::setCircularityChar_1091(CircularityChar_1091_Type * CircularityChar_1091In)
-{CircularityChar_1091 = CircularityChar_1091In;}
-
-/* ***************************************************************** */
-
-/* class CircularityChar_1083_Type
-
-*/
-
-CircularityChar_1083_Type::CircularityChar_1083_Type()
+CircularityChar_1064_TypeChoicePair::CircularityChar_1064_TypeChoicePair(
+ whichOne CircularityChar_1064_TypeTypeIn,
+ CircularityChar_1064_TypeVal CircularityChar_1064_TypeValueIn)
 {
-  CircularityChar_1083_TypePair = 0;
+  CircularityChar_1064_TypeType = CircularityChar_1064_TypeTypeIn;
+  CircularityChar_1064_TypeValue = CircularityChar_1064_TypeValueIn;
 }
 
-CircularityChar_1083_Type::CircularityChar_1083_Type(
- CircularityChar_1083_TypeChoicePair * CircularityChar_1083_TypePairIn)
-{
-  CircularityChar_1083_TypePair = CircularityChar_1083_TypePairIn;
-}
-
-CircularityChar_1083_Type::~CircularityChar_1083_Type()
+CircularityChar_1064_TypeChoicePair::~CircularityChar_1064_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  delete CircularityChar_1083_TypePair;
+  if (CircularityChar_1064_TypeType == ToleranceZonePerUnitAngleE)
+    delete CircularityChar_1064_TypeValue.ToleranceZonePerUnitAngle;
+  else if (CircularityChar_1064_TypeType == ToleranceZonePerUnitArcLengthE)
+    delete CircularityChar_1064_TypeValue.ToleranceZonePerUnitArcLength;
   #endif
 }
 
-void CircularityChar_1083_Type::printSelf(FILE * outFile)
+void CircularityChar_1064_TypeChoicePair::printSelf(FILE * outFile)
 {
-  CircularityChar_1083_TypePair->printSelf(outFile);
-}
-
-CircularityChar_1083_TypeChoicePair * CircularityChar_1083_Type::getCircularityChar_1083_TypePair()
-{return CircularityChar_1083_TypePair;}
-
-void CircularityChar_1083_Type::setCircularityChar_1083_TypePair(CircularityChar_1083_TypeChoicePair * CircularityChar_1083_TypePairIn)
-{CircularityChar_1083_TypePair = CircularityChar_1083_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class CircularityChar_1083_TypeChoicePair
-
-*/
-
-CircularityChar_1083_TypeChoicePair::CircularityChar_1083_TypeChoicePair() {}
-
-CircularityChar_1083_TypeChoicePair::CircularityChar_1083_TypeChoicePair(
- whichOne CircularityChar_1083_TypeTypeIn,
- CircularityChar_1083_TypeVal CircularityChar_1083_TypeValueIn)
-{
-  CircularityChar_1083_TypeType = CircularityChar_1083_TypeTypeIn;
-  CircularityChar_1083_TypeValue = CircularityChar_1083_TypeValueIn;
-}
-
-CircularityChar_1083_TypeChoicePair::~CircularityChar_1083_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (CircularityChar_1083_TypeType == ToleranceZonePerUnitAngleE)
-    delete CircularityChar_1083_TypeValue.ToleranceZonePerUnitAngle;
-  else if (CircularityChar_1083_TypeType == ToleranceZonePerUnitArcLengthE)
-    delete CircularityChar_1083_TypeValue.ToleranceZonePerUnitArcLength;
-  #endif
-}
-
-void CircularityChar_1083_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (CircularityChar_1083_TypeType == ToleranceZonePerUnitAngleE)
+  if (CircularityChar_1064_TypeType == ToleranceZonePerUnitAngleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitAngle");
-      CircularityChar_1083_TypeValue.ToleranceZonePerUnitAngle->printSelf(outFile);
+      CircularityChar_1064_TypeValue.ToleranceZonePerUnitAngle->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitAngle>\n");
     }
-  else if (CircularityChar_1083_TypeType == ToleranceZonePerUnitArcLengthE)
+  else if (CircularityChar_1064_TypeType == ToleranceZonePerUnitArcLengthE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitArcLength");
-      CircularityChar_1083_TypeValue.ToleranceZonePerUnitArcLength->printSelf(outFile);
+      CircularityChar_1064_TypeValue.ToleranceZonePerUnitArcLength->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitArcLength>\n");
     }
@@ -120276,179 +119802,106 @@ void CircularityChar_1083_TypeChoicePair::printSelf(FILE * outFile)
 
 /* ***************************************************************** */
 
-/* class CylindricityCha_1084_Type
+/* class CylindricityCha_1065_Type
 
 */
 
-CylindricityCha_1084_Type::CylindricityCha_1084_Type()
+CylindricityCha_1065_Type::CylindricityCha_1065_Type()
 {
-  ToleranceValue = 0;
-  ToleranceDualValue = 0;
-  CylindricityCha_1092 = 0;
+  CylindricityCha_1065_TypePair = 0;
 }
 
-CylindricityCha_1084_Type::CylindricityCha_1084_Type(
- LinearValueType * ToleranceValueIn,
- LinearDualValueType * ToleranceDualValueIn,
- CylindricityCha_1092_Type * CylindricityCha_1092In)
+CylindricityCha_1065_Type::CylindricityCha_1065_Type(
+ CylindricityCha_1065_TypeChoicePair * CylindricityCha_1065_TypePairIn)
 {
-  ToleranceValue = ToleranceValueIn;
-  ToleranceDualValue = ToleranceDualValueIn;
-  CylindricityCha_1092 = CylindricityCha_1092In;
+  CylindricityCha_1065_TypePair = CylindricityCha_1065_TypePairIn;
 }
 
-CylindricityCha_1084_Type::~CylindricityCha_1084_Type()
+CylindricityCha_1065_Type::~CylindricityCha_1065_Type()
 {
   #ifndef NODESTRUCT
-  delete ToleranceValue;
-  delete ToleranceDualValue;
-  delete CylindricityCha_1092;
+  delete CylindricityCha_1065_TypePair;
   #endif
 }
 
-void CylindricityCha_1084_Type::printSelf(FILE * outFile)
+void CylindricityCha_1065_Type::printSelf(FILE * outFile)
 {
-  doSpaces(0, outFile);
-  fprintf(outFile, "<ToleranceValue");
-  ToleranceValue->printSelf(outFile);
-  fprintf(outFile, "</ToleranceValue>\n");
-  if (ToleranceDualValue)
+  if (CylindricityCha_1065_TypePair)
     {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<ToleranceDualValue");
-      ToleranceDualValue->printSelf(outFile);
-      fprintf(outFile, "</ToleranceDualValue>\n");
-    }
-  if (CylindricityCha_1092)
-    {
-      CylindricityCha_1092->printSelf(outFile);
+      CylindricityCha_1065_TypePair->printSelf(outFile);
     }
 }
 
-LinearValueType * CylindricityCha_1084_Type::getToleranceValue()
-{return ToleranceValue;}
+CylindricityCha_1065_TypeChoicePair * CylindricityCha_1065_Type::getCylindricityCha_1065_TypePair()
+{return CylindricityCha_1065_TypePair;}
 
-void CylindricityCha_1084_Type::setToleranceValue(LinearValueType * ToleranceValueIn)
-{ToleranceValue = ToleranceValueIn;}
+void CylindricityCha_1065_Type::setCylindricityCha_1065_TypePair(CylindricityCha_1065_TypeChoicePair * CylindricityCha_1065_TypePairIn)
+{CylindricityCha_1065_TypePair = CylindricityCha_1065_TypePairIn;}
+CylindricityCha_1065_TypeChoicePair::CylindricityCha_1065_TypeChoicePair() {}
 
-LinearDualValueType * CylindricityCha_1084_Type::getToleranceDualValue()
-{return ToleranceDualValue;}
-
-void CylindricityCha_1084_Type::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
-{ToleranceDualValue = ToleranceDualValueIn;}
-
-CylindricityCha_1092_Type * CylindricityCha_1084_Type::getCylindricityCha_1092()
-{return CylindricityCha_1092;}
-
-void CylindricityCha_1084_Type::setCylindricityCha_1092(CylindricityCha_1092_Type * CylindricityCha_1092In)
-{CylindricityCha_1092 = CylindricityCha_1092In;}
-
-/* ***************************************************************** */
-
-/* class CylindricityCha_1085_Type
-
-*/
-
-CylindricityCha_1085_Type::CylindricityCha_1085_Type()
+CylindricityCha_1065_TypeChoicePair::CylindricityCha_1065_TypeChoicePair(
+ whichOne CylindricityCha_1065_TypeTypeIn,
+ CylindricityCha_1065_TypeVal CylindricityCha_1065_TypeValueIn)
 {
-  CylindricityCha_1085_TypePair = 0;
+  CylindricityCha_1065_TypeType = CylindricityCha_1065_TypeTypeIn;
+  CylindricityCha_1065_TypeValue = CylindricityCha_1065_TypeValueIn;
 }
 
-CylindricityCha_1085_Type::CylindricityCha_1085_Type(
- CylindricityCha_1085_TypeChoicePair * CylindricityCha_1085_TypePairIn)
-{
-  CylindricityCha_1085_TypePair = CylindricityCha_1085_TypePairIn;
-}
-
-CylindricityCha_1085_Type::~CylindricityCha_1085_Type()
+CylindricityCha_1065_TypeChoicePair::~CylindricityCha_1065_TypeChoicePair()
 {
   #ifndef NODESTRUCT
-  delete CylindricityCha_1085_TypePair;
+  if (CylindricityCha_1065_TypeType == ToleranceZonePerUnitAngleE)
+    delete CylindricityCha_1065_TypeValue.ToleranceZonePerUnitAngle;
+  else if (CylindricityCha_1065_TypeType == ToleranceZonePerUnitArcLengthE)
+    delete CylindricityCha_1065_TypeValue.ToleranceZonePerUnitArcLength;
+  else if (CylindricityCha_1065_TypeType == ToleranceZonePerUnitPolarAreaE)
+    delete CylindricityCha_1065_TypeValue.ToleranceZonePerUnitPolarArea;
+  else if (CylindricityCha_1065_TypeType == ToleranceZonePerUnitAreaE)
+    delete CylindricityCha_1065_TypeValue.ToleranceZonePerUnitArea;
+  else if (CylindricityCha_1065_TypeType == ToleranceZonePerUnitLengthE)
+    delete CylindricityCha_1065_TypeValue.ToleranceZonePerUnitLength;
   #endif
 }
 
-void CylindricityCha_1085_Type::printSelf(FILE * outFile)
+void CylindricityCha_1065_TypeChoicePair::printSelf(FILE * outFile)
 {
-  CylindricityCha_1085_TypePair->printSelf(outFile);
-}
-
-CylindricityCha_1085_TypeChoicePair * CylindricityCha_1085_Type::getCylindricityCha_1085_TypePair()
-{return CylindricityCha_1085_TypePair;}
-
-void CylindricityCha_1085_Type::setCylindricityCha_1085_TypePair(CylindricityCha_1085_TypeChoicePair * CylindricityCha_1085_TypePairIn)
-{CylindricityCha_1085_TypePair = CylindricityCha_1085_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class CylindricityCha_1085_TypeChoicePair
-
-*/
-
-CylindricityCha_1085_TypeChoicePair::CylindricityCha_1085_TypeChoicePair() {}
-
-CylindricityCha_1085_TypeChoicePair::CylindricityCha_1085_TypeChoicePair(
- whichOne CylindricityCha_1085_TypeTypeIn,
- CylindricityCha_1085_TypeVal CylindricityCha_1085_TypeValueIn)
-{
-  CylindricityCha_1085_TypeType = CylindricityCha_1085_TypeTypeIn;
-  CylindricityCha_1085_TypeValue = CylindricityCha_1085_TypeValueIn;
-}
-
-CylindricityCha_1085_TypeChoicePair::~CylindricityCha_1085_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (CylindricityCha_1085_TypeType == ToleranceZonePerUnitAngleE)
-    delete CylindricityCha_1085_TypeValue.ToleranceZonePerUnitAngle;
-  else if (CylindricityCha_1085_TypeType == ToleranceZonePerUnitArcLengthE)
-    delete CylindricityCha_1085_TypeValue.ToleranceZonePerUnitArcLength;
-  else if (CylindricityCha_1085_TypeType == ToleranceZonePerUnitPolarAreaE)
-    delete CylindricityCha_1085_TypeValue.ToleranceZonePerUnitPolarArea;
-  else if (CylindricityCha_1085_TypeType == ToleranceZonePerUnitAreaE)
-    delete CylindricityCha_1085_TypeValue.ToleranceZonePerUnitArea;
-  else if (CylindricityCha_1085_TypeType == ToleranceZonePerUnitLengthE)
-    delete CylindricityCha_1085_TypeValue.ToleranceZonePerUnitLength;
-  #endif
-}
-
-void CylindricityCha_1085_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (CylindricityCha_1085_TypeType == ToleranceZonePerUnitAngleE)
+  if (CylindricityCha_1065_TypeType == ToleranceZonePerUnitAngleE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitAngle");
-      CylindricityCha_1085_TypeValue.ToleranceZonePerUnitAngle->printSelf(outFile);
+      CylindricityCha_1065_TypeValue.ToleranceZonePerUnitAngle->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitAngle>\n");
     }
-  else if (CylindricityCha_1085_TypeType == ToleranceZonePerUnitArcLengthE)
+  else if (CylindricityCha_1065_TypeType == ToleranceZonePerUnitArcLengthE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitArcLength");
-      CylindricityCha_1085_TypeValue.ToleranceZonePerUnitArcLength->printSelf(outFile);
+      CylindricityCha_1065_TypeValue.ToleranceZonePerUnitArcLength->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitArcLength>\n");
     }
-  else if (CylindricityCha_1085_TypeType == ToleranceZonePerUnitPolarAreaE)
+  else if (CylindricityCha_1065_TypeType == ToleranceZonePerUnitPolarAreaE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitPolarArea");
-      CylindricityCha_1085_TypeValue.ToleranceZonePerUnitPolarArea->printSelf(outFile);
+      CylindricityCha_1065_TypeValue.ToleranceZonePerUnitPolarArea->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitPolarArea>\n");
     }
-  else if (CylindricityCha_1085_TypeType == ToleranceZonePerUnitAreaE)
+  else if (CylindricityCha_1065_TypeType == ToleranceZonePerUnitAreaE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitArea");
-      CylindricityCha_1085_TypeValue.ToleranceZonePerUnitArea->printSelf(outFile);
+      CylindricityCha_1065_TypeValue.ToleranceZonePerUnitArea->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitArea>\n");
     }
-  else if (CylindricityCha_1085_TypeType == ToleranceZonePerUnitLengthE)
+  else if (CylindricityCha_1065_TypeType == ToleranceZonePerUnitLengthE)
     {
       doSpaces(0, outFile);
       fprintf(outFile, "<ToleranceZonePerUnitLength");
-      CylindricityCha_1085_TypeValue.ToleranceZonePerUnitLength->printSelf(outFile);
+      CylindricityCha_1065_TypeValue.ToleranceZonePerUnitLength->printSelf(outFile);
       doSpaces(0, outFile);
       fprintf(outFile, "</ToleranceZonePerUnitLength>\n");
     }
@@ -120456,18 +119909,18 @@ void CylindricityCha_1085_TypeChoicePair::printSelf(FILE * outFile)
 
 /* ***************************************************************** */
 
-/* class FlatnessCharact_1086_Type
+/* class FlatnessCharact_1066_Type
 
 */
 
-FlatnessCharact_1086_Type::FlatnessCharact_1086_Type()
+FlatnessCharact_1066_Type::FlatnessCharact_1066_Type()
 {
   ToleranceValue = 0;
   ToleranceDualValue = 0;
   ToleranceZonePerUnitArea = 0;
 }
 
-FlatnessCharact_1086_Type::FlatnessCharact_1086_Type(
+FlatnessCharact_1066_Type::FlatnessCharact_1066_Type(
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
  ToleranceZonePerUnitAreaType * ToleranceZonePerUnitAreaIn)
@@ -120477,7 +119930,7 @@ FlatnessCharact_1086_Type::FlatnessCharact_1086_Type(
   ToleranceZonePerUnitArea = ToleranceZonePerUnitAreaIn;
 }
 
-FlatnessCharact_1086_Type::~FlatnessCharact_1086_Type()
+FlatnessCharact_1066_Type::~FlatnessCharact_1066_Type()
 {
   #ifndef NODESTRUCT
   delete ToleranceValue;
@@ -120486,7 +119939,7 @@ FlatnessCharact_1086_Type::~FlatnessCharact_1086_Type()
   #endif
 }
 
-void FlatnessCharact_1086_Type::printSelf(FILE * outFile)
+void FlatnessCharact_1066_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ToleranceValue");
@@ -120509,49 +119962,49 @@ void FlatnessCharact_1086_Type::printSelf(FILE * outFile)
     }
 }
 
-LinearValueType * FlatnessCharact_1086_Type::getToleranceValue()
+LinearValueType * FlatnessCharact_1066_Type::getToleranceValue()
 {return ToleranceValue;}
 
-void FlatnessCharact_1086_Type::setToleranceValue(LinearValueType * ToleranceValueIn)
+void FlatnessCharact_1066_Type::setToleranceValue(LinearValueType * ToleranceValueIn)
 {ToleranceValue = ToleranceValueIn;}
 
-LinearDualValueType * FlatnessCharact_1086_Type::getToleranceDualValue()
+LinearDualValueType * FlatnessCharact_1066_Type::getToleranceDualValue()
 {return ToleranceDualValue;}
 
-void FlatnessCharact_1086_Type::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
+void FlatnessCharact_1066_Type::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
 {ToleranceDualValue = ToleranceDualValueIn;}
 
-ToleranceZonePerUnitAreaType * FlatnessCharact_1086_Type::getToleranceZonePerUnitArea()
+ToleranceZonePerUnitAreaType * FlatnessCharact_1066_Type::getToleranceZonePerUnitArea()
 {return ToleranceZonePerUnitArea;}
 
-void FlatnessCharact_1086_Type::setToleranceZonePerUnitArea(ToleranceZonePerUnitAreaType * ToleranceZonePerUnitAreaIn)
+void FlatnessCharact_1066_Type::setToleranceZonePerUnitArea(ToleranceZonePerUnitAreaType * ToleranceZonePerUnitAreaIn)
 {ToleranceZonePerUnitArea = ToleranceZonePerUnitAreaIn;}
 
 /* ***************************************************************** */
 
-/* class FlatnessCharact_1087_Type
+/* class FlatnessCharact_1067_Type
 
 */
 
-FlatnessCharact_1087_Type::FlatnessCharact_1087_Type()
+FlatnessCharact_1067_Type::FlatnessCharact_1067_Type()
 {
   ToleranceZonePerUnitArea = 0;
 }
 
-FlatnessCharact_1087_Type::FlatnessCharact_1087_Type(
+FlatnessCharact_1067_Type::FlatnessCharact_1067_Type(
  ToleranceZonePerUnitAreaType * ToleranceZonePerUnitAreaIn)
 {
   ToleranceZonePerUnitArea = ToleranceZonePerUnitAreaIn;
 }
 
-FlatnessCharact_1087_Type::~FlatnessCharact_1087_Type()
+FlatnessCharact_1067_Type::~FlatnessCharact_1067_Type()
 {
   #ifndef NODESTRUCT
   delete ToleranceZonePerUnitArea;
   #endif
 }
 
-void FlatnessCharact_1087_Type::printSelf(FILE * outFile)
+void FlatnessCharact_1067_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ToleranceZonePerUnitArea");
@@ -120560,26 +120013,26 @@ void FlatnessCharact_1087_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</ToleranceZonePerUnitArea>\n");
 }
 
-ToleranceZonePerUnitAreaType * FlatnessCharact_1087_Type::getToleranceZonePerUnitArea()
+ToleranceZonePerUnitAreaType * FlatnessCharact_1067_Type::getToleranceZonePerUnitArea()
 {return ToleranceZonePerUnitArea;}
 
-void FlatnessCharact_1087_Type::setToleranceZonePerUnitArea(ToleranceZonePerUnitAreaType * ToleranceZonePerUnitAreaIn)
+void FlatnessCharact_1067_Type::setToleranceZonePerUnitArea(ToleranceZonePerUnitAreaType * ToleranceZonePerUnitAreaIn)
 {ToleranceZonePerUnitArea = ToleranceZonePerUnitAreaIn;}
 
 /* ***************************************************************** */
 
-/* class StraightnessCha_1088_Type
+/* class StraightnessCha_1068_Type
 
 */
 
-StraightnessCha_1088_Type::StraightnessCha_1088_Type()
+StraightnessCha_1068_Type::StraightnessCha_1068_Type()
 {
   ToleranceValue = 0;
   ToleranceDualValue = 0;
   ToleranceZonePerUnitLength = 0;
 }
 
-StraightnessCha_1088_Type::StraightnessCha_1088_Type(
+StraightnessCha_1068_Type::StraightnessCha_1068_Type(
  LinearValueType * ToleranceValueIn,
  LinearDualValueType * ToleranceDualValueIn,
  ToleranceZonePerUnitLengthType * ToleranceZonePerUnitLengthIn)
@@ -120589,7 +120042,7 @@ StraightnessCha_1088_Type::StraightnessCha_1088_Type(
   ToleranceZonePerUnitLength = ToleranceZonePerUnitLengthIn;
 }
 
-StraightnessCha_1088_Type::~StraightnessCha_1088_Type()
+StraightnessCha_1068_Type::~StraightnessCha_1068_Type()
 {
   #ifndef NODESTRUCT
   delete ToleranceValue;
@@ -120598,7 +120051,7 @@ StraightnessCha_1088_Type::~StraightnessCha_1088_Type()
   #endif
 }
 
-void StraightnessCha_1088_Type::printSelf(FILE * outFile)
+void StraightnessCha_1068_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ToleranceValue");
@@ -120621,49 +120074,49 @@ void StraightnessCha_1088_Type::printSelf(FILE * outFile)
     }
 }
 
-LinearValueType * StraightnessCha_1088_Type::getToleranceValue()
+LinearValueType * StraightnessCha_1068_Type::getToleranceValue()
 {return ToleranceValue;}
 
-void StraightnessCha_1088_Type::setToleranceValue(LinearValueType * ToleranceValueIn)
+void StraightnessCha_1068_Type::setToleranceValue(LinearValueType * ToleranceValueIn)
 {ToleranceValue = ToleranceValueIn;}
 
-LinearDualValueType * StraightnessCha_1088_Type::getToleranceDualValue()
+LinearDualValueType * StraightnessCha_1068_Type::getToleranceDualValue()
 {return ToleranceDualValue;}
 
-void StraightnessCha_1088_Type::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
+void StraightnessCha_1068_Type::setToleranceDualValue(LinearDualValueType * ToleranceDualValueIn)
 {ToleranceDualValue = ToleranceDualValueIn;}
 
-ToleranceZonePerUnitLengthType * StraightnessCha_1088_Type::getToleranceZonePerUnitLength()
+ToleranceZonePerUnitLengthType * StraightnessCha_1068_Type::getToleranceZonePerUnitLength()
 {return ToleranceZonePerUnitLength;}
 
-void StraightnessCha_1088_Type::setToleranceZonePerUnitLength(ToleranceZonePerUnitLengthType * ToleranceZonePerUnitLengthIn)
+void StraightnessCha_1068_Type::setToleranceZonePerUnitLength(ToleranceZonePerUnitLengthType * ToleranceZonePerUnitLengthIn)
 {ToleranceZonePerUnitLength = ToleranceZonePerUnitLengthIn;}
 
 /* ***************************************************************** */
 
-/* class StraightnessCha_1089_Type
+/* class StraightnessCha_1069_Type
 
 */
 
-StraightnessCha_1089_Type::StraightnessCha_1089_Type()
+StraightnessCha_1069_Type::StraightnessCha_1069_Type()
 {
   ToleranceZonePerUnitLength = 0;
 }
 
-StraightnessCha_1089_Type::StraightnessCha_1089_Type(
+StraightnessCha_1069_Type::StraightnessCha_1069_Type(
  ToleranceZonePerUnitLengthType * ToleranceZonePerUnitLengthIn)
 {
   ToleranceZonePerUnitLength = ToleranceZonePerUnitLengthIn;
 }
 
-StraightnessCha_1089_Type::~StraightnessCha_1089_Type()
+StraightnessCha_1069_Type::~StraightnessCha_1069_Type()
 {
   #ifndef NODESTRUCT
   delete ToleranceZonePerUnitLength;
   #endif
 }
 
-void StraightnessCha_1089_Type::printSelf(FILE * outFile)
+void StraightnessCha_1069_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<ToleranceZonePerUnitLength");
@@ -120672,25 +120125,25 @@ void StraightnessCha_1089_Type::printSelf(FILE * outFile)
   fprintf(outFile, "</ToleranceZonePerUnitLength>\n");
 }
 
-ToleranceZonePerUnitLengthType * StraightnessCha_1089_Type::getToleranceZonePerUnitLength()
+ToleranceZonePerUnitLengthType * StraightnessCha_1069_Type::getToleranceZonePerUnitLength()
 {return ToleranceZonePerUnitLength;}
 
-void StraightnessCha_1089_Type::setToleranceZonePerUnitLength(ToleranceZonePerUnitLengthType * ToleranceZonePerUnitLengthIn)
+void StraightnessCha_1069_Type::setToleranceZonePerUnitLength(ToleranceZonePerUnitLengthType * ToleranceZonePerUnitLengthIn)
 {ToleranceZonePerUnitLength = ToleranceZonePerUnitLengthIn;}
 
 /* ***************************************************************** */
 
-/* class UserDefinedUnit_1090_Type
+/* class UserDefinedUnit_1070_Type
 
 */
 
-UserDefinedUnit_1090_Type::UserDefinedUnit_1090_Type()
+UserDefinedUnit_1070_Type::UserDefinedUnit_1070_Type()
 {
   MaxValue = 0;
   MinValue = 0;
 }
 
-UserDefinedUnit_1090_Type::UserDefinedUnit_1090_Type(
+UserDefinedUnit_1070_Type::UserDefinedUnit_1070_Type(
  UserDefinedUnitValueType * MaxValueIn,
  UserDefinedUnitValueType * MinValueIn)
 {
@@ -120698,7 +120151,7 @@ UserDefinedUnit_1090_Type::UserDefinedUnit_1090_Type(
   MinValue = MinValueIn;
 }
 
-UserDefinedUnit_1090_Type::~UserDefinedUnit_1090_Type()
+UserDefinedUnit_1070_Type::~UserDefinedUnit_1070_Type()
 {
   #ifndef NODESTRUCT
   delete MaxValue;
@@ -120706,7 +120159,7 @@ UserDefinedUnit_1090_Type::~UserDefinedUnit_1090_Type()
   #endif
 }
 
-void UserDefinedUnit_1090_Type::printSelf(FILE * outFile)
+void UserDefinedUnit_1070_Type::printSelf(FILE * outFile)
 {
   doSpaces(0, outFile);
   fprintf(outFile, "<MaxValue");
@@ -120721,215 +120174,17 @@ void UserDefinedUnit_1090_Type::printSelf(FILE * outFile)
     }
 }
 
-UserDefinedUnitValueType * UserDefinedUnit_1090_Type::getMaxValue()
+UserDefinedUnitValueType * UserDefinedUnit_1070_Type::getMaxValue()
 {return MaxValue;}
 
-void UserDefinedUnit_1090_Type::setMaxValue(UserDefinedUnitValueType * MaxValueIn)
+void UserDefinedUnit_1070_Type::setMaxValue(UserDefinedUnitValueType * MaxValueIn)
 {MaxValue = MaxValueIn;}
 
-UserDefinedUnitValueType * UserDefinedUnit_1090_Type::getMinValue()
+UserDefinedUnitValueType * UserDefinedUnit_1070_Type::getMinValue()
 {return MinValue;}
 
-void UserDefinedUnit_1090_Type::setMinValue(UserDefinedUnitValueType * MinValueIn)
+void UserDefinedUnit_1070_Type::setMinValue(UserDefinedUnitValueType * MinValueIn)
 {MinValue = MinValueIn;}
-
-/* ***************************************************************** */
-
-/* class CircularityChar_1091_Type
-
-*/
-
-CircularityChar_1091_Type::CircularityChar_1091_Type()
-{
-  CircularityChar_1091_TypePair = 0;
-}
-
-CircularityChar_1091_Type::CircularityChar_1091_Type(
- CircularityChar_1091_TypeChoicePair * CircularityChar_1091_TypePairIn)
-{
-  CircularityChar_1091_TypePair = CircularityChar_1091_TypePairIn;
-}
-
-CircularityChar_1091_Type::~CircularityChar_1091_Type()
-{
-  #ifndef NODESTRUCT
-  delete CircularityChar_1091_TypePair;
-  #endif
-}
-
-void CircularityChar_1091_Type::printSelf(FILE * outFile)
-{
-  if (CircularityChar_1091_TypePair)
-    {
-      CircularityChar_1091_TypePair->printSelf(outFile);
-    }
-}
-
-CircularityChar_1091_TypeChoicePair * CircularityChar_1091_Type::getCircularityChar_1091_TypePair()
-{return CircularityChar_1091_TypePair;}
-
-void CircularityChar_1091_Type::setCircularityChar_1091_TypePair(CircularityChar_1091_TypeChoicePair * CircularityChar_1091_TypePairIn)
-{CircularityChar_1091_TypePair = CircularityChar_1091_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class CircularityChar_1091_TypeChoicePair
-
-*/
-
-CircularityChar_1091_TypeChoicePair::CircularityChar_1091_TypeChoicePair() {}
-
-CircularityChar_1091_TypeChoicePair::CircularityChar_1091_TypeChoicePair(
- whichOne CircularityChar_1091_TypeTypeIn,
- CircularityChar_1091_TypeVal CircularityChar_1091_TypeValueIn)
-{
-  CircularityChar_1091_TypeType = CircularityChar_1091_TypeTypeIn;
-  CircularityChar_1091_TypeValue = CircularityChar_1091_TypeValueIn;
-}
-
-CircularityChar_1091_TypeChoicePair::~CircularityChar_1091_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (CircularityChar_1091_TypeType == ToleranceZonePerUnitAngleE)
-    delete CircularityChar_1091_TypeValue.ToleranceZonePerUnitAngle;
-  else if (CircularityChar_1091_TypeType == ToleranceZonePerUnitArcLengthE)
-    delete CircularityChar_1091_TypeValue.ToleranceZonePerUnitArcLength;
-  #endif
-}
-
-void CircularityChar_1091_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (CircularityChar_1091_TypeType == ToleranceZonePerUnitAngleE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<ToleranceZonePerUnitAngle");
-      CircularityChar_1091_TypeValue.ToleranceZonePerUnitAngle->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</ToleranceZonePerUnitAngle>\n");
-    }
-  else if (CircularityChar_1091_TypeType == ToleranceZonePerUnitArcLengthE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<ToleranceZonePerUnitArcLength");
-      CircularityChar_1091_TypeValue.ToleranceZonePerUnitArcLength->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</ToleranceZonePerUnitArcLength>\n");
-    }
-}
-
-/* ***************************************************************** */
-
-/* class CylindricityCha_1092_Type
-
-*/
-
-CylindricityCha_1092_Type::CylindricityCha_1092_Type()
-{
-  CylindricityCha_1092_TypePair = 0;
-}
-
-CylindricityCha_1092_Type::CylindricityCha_1092_Type(
- CylindricityCha_1092_TypeChoicePair * CylindricityCha_1092_TypePairIn)
-{
-  CylindricityCha_1092_TypePair = CylindricityCha_1092_TypePairIn;
-}
-
-CylindricityCha_1092_Type::~CylindricityCha_1092_Type()
-{
-  #ifndef NODESTRUCT
-  delete CylindricityCha_1092_TypePair;
-  #endif
-}
-
-void CylindricityCha_1092_Type::printSelf(FILE * outFile)
-{
-  if (CylindricityCha_1092_TypePair)
-    {
-      CylindricityCha_1092_TypePair->printSelf(outFile);
-    }
-}
-
-CylindricityCha_1092_TypeChoicePair * CylindricityCha_1092_Type::getCylindricityCha_1092_TypePair()
-{return CylindricityCha_1092_TypePair;}
-
-void CylindricityCha_1092_Type::setCylindricityCha_1092_TypePair(CylindricityCha_1092_TypeChoicePair * CylindricityCha_1092_TypePairIn)
-{CylindricityCha_1092_TypePair = CylindricityCha_1092_TypePairIn;}
-
-/* ***************************************************************** */
-
-/* class CylindricityCha_1092_TypeChoicePair
-
-*/
-
-CylindricityCha_1092_TypeChoicePair::CylindricityCha_1092_TypeChoicePair() {}
-
-CylindricityCha_1092_TypeChoicePair::CylindricityCha_1092_TypeChoicePair(
- whichOne CylindricityCha_1092_TypeTypeIn,
- CylindricityCha_1092_TypeVal CylindricityCha_1092_TypeValueIn)
-{
-  CylindricityCha_1092_TypeType = CylindricityCha_1092_TypeTypeIn;
-  CylindricityCha_1092_TypeValue = CylindricityCha_1092_TypeValueIn;
-}
-
-CylindricityCha_1092_TypeChoicePair::~CylindricityCha_1092_TypeChoicePair()
-{
-  #ifndef NODESTRUCT
-  if (CylindricityCha_1092_TypeType == ToleranceZonePerUnitAngleE)
-    delete CylindricityCha_1092_TypeValue.ToleranceZonePerUnitAngle;
-  else if (CylindricityCha_1092_TypeType == ToleranceZonePerUnitArcLengthE)
-    delete CylindricityCha_1092_TypeValue.ToleranceZonePerUnitArcLength;
-  else if (CylindricityCha_1092_TypeType == ToleranceZonePerUnitPolarAreaE)
-    delete CylindricityCha_1092_TypeValue.ToleranceZonePerUnitPolarArea;
-  else if (CylindricityCha_1092_TypeType == ToleranceZonePerUnitAreaE)
-    delete CylindricityCha_1092_TypeValue.ToleranceZonePerUnitArea;
-  else if (CylindricityCha_1092_TypeType == ToleranceZonePerUnitLengthE)
-    delete CylindricityCha_1092_TypeValue.ToleranceZonePerUnitLength;
-  #endif
-}
-
-void CylindricityCha_1092_TypeChoicePair::printSelf(FILE * outFile)
-{
-  if (CylindricityCha_1092_TypeType == ToleranceZonePerUnitAngleE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<ToleranceZonePerUnitAngle");
-      CylindricityCha_1092_TypeValue.ToleranceZonePerUnitAngle->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</ToleranceZonePerUnitAngle>\n");
-    }
-  else if (CylindricityCha_1092_TypeType == ToleranceZonePerUnitArcLengthE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<ToleranceZonePerUnitArcLength");
-      CylindricityCha_1092_TypeValue.ToleranceZonePerUnitArcLength->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</ToleranceZonePerUnitArcLength>\n");
-    }
-  else if (CylindricityCha_1092_TypeType == ToleranceZonePerUnitPolarAreaE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<ToleranceZonePerUnitPolarArea");
-      CylindricityCha_1092_TypeValue.ToleranceZonePerUnitPolarArea->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</ToleranceZonePerUnitPolarArea>\n");
-    }
-  else if (CylindricityCha_1092_TypeType == ToleranceZonePerUnitAreaE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<ToleranceZonePerUnitArea");
-      CylindricityCha_1092_TypeValue.ToleranceZonePerUnitArea->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</ToleranceZonePerUnitArea>\n");
-    }
-  else if (CylindricityCha_1092_TypeType == ToleranceZonePerUnitLengthE)
-    {
-      doSpaces(0, outFile);
-      fprintf(outFile, "<ToleranceZonePerUnitLength");
-      CylindricityCha_1092_TypeValue.ToleranceZonePerUnitLength->printSelf(outFile);
-      doSpaces(0, outFile);
-      fprintf(outFile, "</ToleranceZonePerUnitLength>\n");
-    }
-}
 
 /* ***************************************************************** */
 
