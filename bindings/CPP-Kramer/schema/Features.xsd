@@ -18,7 +18,7 @@
 
   <xs:annotation>
     <xs:documentation>
-      The FeatureTypes.xsd schema file defines types that describe
+      The Features.xsd schema file defines types that describe
       dimensional metrology shape features. Features have four aspects:
       item, definition, nominal, and measurement. Feature descriptions in
       natural language are given the documentation of the feature item
@@ -29,6 +29,490 @@
         - defines the substitution groups for feature aspects.
     </xs:documentation>
   </xs:annotation>
+
+<!-- DEFINE THE FEATURES ELEMENT -->
+
+  <xs:element name="Features"
+              type="FeatureAspectsListsType">
+    <xs:annotation>
+      <xs:documentation>
+        The Features element describes inspection features.
+      </xs:documentation>
+    </xs:annotation>
+
+<!-- START NOMINAL TO DEFINITION KEY/KEYREF PAIRS FOR FEATURES -->
+
+    <xs:keyref name="CircularArcFeatureNominalToDefinitionKeyref"
+      refer="CircularArcFeatureDefinitionKey">
+      <xs:annotation>
+        <xs:documentation>
+          The CircularArcFeatureNominalToDefinitionKeyref requires that the
+          FeatureDefinitionId of a CircularArcFeatureNominal be the QIF id
+          of a CircularArcFeatureDefinition. All other
+          FeatureNominalToDefinitionKeyrefs are similar.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:FeatureNominals/t:CircularArcFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:keyref name="CircleFeatureNominalToDefinitionKeyref"
+      refer="CircleFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureNominals/t:CircleFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="CircleFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureDefinitions/t:CircleFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:key name="CircularArcFeatureDefinitionKey">
+      <xs:annotation>
+        <xs:documentation>
+          The CircularArcFeatureDefinitionKey collects all QIF ids of
+          CircularArcFeatureDefinitions. All other FeatureDefinitionKeys are
+          similar.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:CircularArcFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ConeFeatureNominalToDefinitionKeyref"
+      refer="ConeFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureNominals/t:ConeFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="ConeFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureDefinitions/t:ConeFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ConicalSegmentFeatureNominalToDefinitionKeyref"
+      refer="ConicalSegmentFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureNominals/t:ConicalSegmentFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="ConicalSegmentFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:ConicalSegmentFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="CylinderFeatureNominalToDefinitionKeyref"
+      refer="CylinderFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureNominals/t:CylinderFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="CylinderFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:CylinderFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="CylindricalSegmentFeatureNominalToDefinitionKeyref"
+      refer="CylindricalSegmentFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureNominals/t:CylindricalSegmentFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="CylindricalSegmentFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:CylindricalSegmentFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="EdgePointFeatureNominalToDefinitionKeyref"
+      refer="EdgePointFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureNominals/t:EdgePointFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="EdgePointFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:EdgePointFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="EllipseFeatureNominalToDefinitionKeyref"
+      refer="EllipseFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureNominals/t:EllipseFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="EllipseFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureDefinitions/t:EllipseFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="EllipticalArcFeatureNominalToDefinitionKeyref"
+      refer="EllipticalArcFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureNominals/t:EllipticalArcFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="EllipticalArcFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:EllipticalArcFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ElongatedCircleFeatureNominalToDefinitionKeyref"
+      refer="ElongatedCircleFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureNominals/t:ElongatedCircleFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="ElongatedCircleFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:ElongatedCircleFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ElongatedCylinderFeatureNominalToDefinitionKeyref"
+      refer="ElongatedCylinderFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureNominals/t:ElongatedCylinderFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="ElongatedCylinderFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:ElongatedCylinderFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ExtrudedCrossSectionFeatureNominalToDefinitionKeyref"
+      refer="ExtrudedCrossSectionFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureNominals/t:ExtrudedCrossSectionFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="ExtrudedCrossSectionFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:ExtrudedCrossSectionFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="GroupFeatureNominalToDefinitionKeyref"
+      refer="GroupFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureNominals/t:GroupFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="GroupFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureDefinitions/t:GroupFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="LineFeatureNominalToDefinitionKeyref"
+      refer="LineFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureNominals/t:LineFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="LineFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureDefinitions/t:LineFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="MarkingFeatureNominalToDefinitionKeyref"
+      refer="MarkingFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureNominals/t:MarkingFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="MarkingFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureDefinitions/t:MarkingFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="OtherCurveFeatureNominalToDefinitionKeyref"
+      refer="OtherCurveFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureNominals/t:OtherCurveFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="OtherCurveFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:OtherCurveFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="OtherNonShapeFeatureNominalToDefinitionKeyref"
+      refer="OtherNonShapeFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureNominals/t:OtherNonShapeFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="OtherNonShapeFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:OtherNonShapeFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="OtherShapeFeatureNominalToDefinitionKeyref"
+      refer="OtherShapeFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureNominals/t:OtherShapeFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="OtherShapeFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:OtherShapeFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="OtherSurfaceFeatureNominalToDefinitionKeyref"
+      refer="OtherSurfaceFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureNominals/t:OtherSurfaceFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="OtherSurfaceFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:OtherSurfaceFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="PatternFeatureCircleNominalToDefinitionKeyref"
+      refer="PatternFeatureCircleDefinitionKey">
+      <xs:selector xpath="t:FeatureNominals/t:PatternFeatureCircleNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="PatternFeatureCircleDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:PatternFeatureCircleDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="PatternFeatureCircularArcNominalToDefinitionKeyref"
+      refer="PatternFeatureCircularArcDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureNominals/t:PatternFeatureCircularArcNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="PatternFeatureCircularArcDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:PatternFeatureCircularArcDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="PatternFeatureLinearNominalToDefinitionKeyref"
+      refer="PatternFeatureLinearDefinitionKey">
+      <xs:selector xpath="t:FeatureNominals/t:PatternFeatureLinearNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="PatternFeatureLinearDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:PatternFeatureLinearDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="PatternFeatureParallelogramNominalToDefinitionKeyref"
+      refer="PatternFeatureParallelogramDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureNominals/t:PatternFeatureParallelogramNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="PatternFeatureParallelogramDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:PatternFeatureParallelogramDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="PlaneFeatureNominalToDefinitionKeyref"
+      refer="PlaneFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureNominals/t:PlaneFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="PlaneFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureDefinitions/t:PlaneFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="PointDefinedCurveFeatureNominalToDefinitionKeyref"
+      refer="PointDefinedCurveFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureNominals/t:PointDefinedCurveFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="PointDefinedCurveFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:PointDefinedCurveFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="PointDefinedSurfaceFeatureNominalToDefinitionKeyref"
+      refer="PointDefinedSurfaceFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureNominals/t:PointDefinedSurfaceFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="PointDefinedSurfaceFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:PointDefinedSurfaceFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="OppositeParallelLinesFeatureNominalToDefinitionKeyref"
+      refer="OppositeParallelLinesFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureNominals/t:OppositeParallelLinesFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="OppositeParallelLinesFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions
+              /t:OppositeParallelLinesFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="OppositeAngledLinesFeatureNominalToDefinitionKeyref"
+      refer="OppositeAngledLinesFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureNominals/t:OppositeAngledLinesFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="OppositeAngledLinesFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:OppositeAngledLinesFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="PointFeatureNominalToDefinitionKeyref"
+      refer="PointFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureNominals/t:PointFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="PointFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureDefinitions/t:PointFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="OppositeParallelPlanesFeatureNominalToDefinitionKeyref"
+      refer="OppositeParallelPlanesFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureNominals/t:OppositeParallelPlanesFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="OppositeParallelPlanesFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions
+              /t:OppositeParallelPlanesFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="OppositeAngledPlanesFeatureNominalToDefinitionKeyref"
+      refer="OppositeAngledPlanesFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureNominals/t:OppositeAngledPlanesFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="OppositeAngledPlanesFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:OppositeAngledPlanesFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="SphereFeatureNominalToDefinitionKeyref"
+      refer="SphereFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureNominals/t:SphereFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="SphereFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureDefinitions/t:SphereFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="SphericalSegmentFeatureNominalToDefinitionKeyref"
+      refer="SphericalSegmentFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureNominals/t:SphericalSegmentFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="SphericalSegmentFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:SphericalSegmentFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="SurfaceOfRevolutionFeatureNominalToDefinitionKeyref"
+      refer="SurfaceOfRevolutionFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureNominals/t:SurfaceOfRevolutionFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="SurfaceOfRevolutionFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:SurfaceOfRevolutionFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ThreadedFeatureNominalToDefinitionKeyref"
+      refer="ThreadedFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureNominals/t:ThreadedFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="ThreadedFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:ThreadedFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ToroidalSegmentFeatureNominalToDefinitionKeyref"
+      refer="ToroidalSegmentFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureNominals/t:ToroidalSegmentFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="ToroidalSegmentFeatureDefinitionKey">
+      <xs:selector
+        xpath="t:FeatureDefinitions/t:ToroidalSegmentFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="TorusFeatureNominalToDefinitionKeyref"
+      refer="TorusFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureNominals/t:TorusFeatureNominal"/>
+      <xs:field xpath="t:FeatureDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="TorusFeatureDefinitionKey">
+      <xs:selector xpath="t:FeatureDefinitions/t:TorusFeatureDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+  </xs:element>
+
+<!-- END NOMINAL TO DEFINITION KEY/KEYREF PAIRS FOR FEATURES -->
+
+<!-- END OF FEATURES ELEMENT -->
 
 <!-- BEGIN FEATURE BASE TYPES AND SUPPORT TYPES -->
 
@@ -20832,490 +21316,6 @@
   </xs:complexType>
 
 <!--  END SUPPLEMENTAL FEATURES ZONES -->
-
-<!-- DEFINE THE FEATURES ELEMENT -->
-
-  <xs:element name="Features"
-              type="FeatureAspectsListsType">
-    <xs:annotation>
-      <xs:documentation>
-        The Features element describes inspection features.
-      </xs:documentation>
-    </xs:annotation>
-
-<!-- START NOMINAL TO DEFINITION KEY/KEYREF PAIRS FOR FEATURES -->
-
-    <xs:keyref name="CircularArcFeatureNominalToDefinitionKeyref"
-      refer="CircularArcFeatureDefinitionKey">
-      <xs:annotation>
-        <xs:documentation>
-          The CircularArcFeatureNominalToDefinitionKeyref requires that the
-          FeatureDefinitionId of a CircularArcFeatureNominal be the QIF id
-          of a CircularArcFeatureDefinition. All other
-          FeatureNominalToDefinitionKeyrefs are similar.
-        </xs:documentation>
-      </xs:annotation>
-      <xs:selector xpath="t:FeatureNominals/t:CircularArcFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:keyref name="CircleFeatureNominalToDefinitionKeyref"
-      refer="CircleFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureNominals/t:CircleFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="CircleFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureDefinitions/t:CircleFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:key name="CircularArcFeatureDefinitionKey">
-      <xs:annotation>
-        <xs:documentation>
-          The CircularArcFeatureDefinitionKey collects all QIF ids of
-          CircularArcFeatureDefinitions. All other FeatureDefinitionKeys are
-          similar.
-        </xs:documentation>
-      </xs:annotation>
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:CircularArcFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="ConeFeatureNominalToDefinitionKeyref"
-      refer="ConeFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureNominals/t:ConeFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="ConeFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureDefinitions/t:ConeFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="ConicalSegmentFeatureNominalToDefinitionKeyref"
-      refer="ConicalSegmentFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureNominals/t:ConicalSegmentFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="ConicalSegmentFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:ConicalSegmentFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="CylinderFeatureNominalToDefinitionKeyref"
-      refer="CylinderFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureNominals/t:CylinderFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="CylinderFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:CylinderFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="CylindricalSegmentFeatureNominalToDefinitionKeyref"
-      refer="CylindricalSegmentFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureNominals/t:CylindricalSegmentFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="CylindricalSegmentFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:CylindricalSegmentFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="EdgePointFeatureNominalToDefinitionKeyref"
-      refer="EdgePointFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureNominals/t:EdgePointFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="EdgePointFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:EdgePointFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="EllipseFeatureNominalToDefinitionKeyref"
-      refer="EllipseFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureNominals/t:EllipseFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="EllipseFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureDefinitions/t:EllipseFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="EllipticalArcFeatureNominalToDefinitionKeyref"
-      refer="EllipticalArcFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureNominals/t:EllipticalArcFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="EllipticalArcFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:EllipticalArcFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="ElongatedCircleFeatureNominalToDefinitionKeyref"
-      refer="ElongatedCircleFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureNominals/t:ElongatedCircleFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="ElongatedCircleFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:ElongatedCircleFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="ElongatedCylinderFeatureNominalToDefinitionKeyref"
-      refer="ElongatedCylinderFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureNominals/t:ElongatedCylinderFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="ElongatedCylinderFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:ElongatedCylinderFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="ExtrudedCrossSectionFeatureNominalToDefinitionKeyref"
-      refer="ExtrudedCrossSectionFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureNominals/t:ExtrudedCrossSectionFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="ExtrudedCrossSectionFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:ExtrudedCrossSectionFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="GroupFeatureNominalToDefinitionKeyref"
-      refer="GroupFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureNominals/t:GroupFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="GroupFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureDefinitions/t:GroupFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="LineFeatureNominalToDefinitionKeyref"
-      refer="LineFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureNominals/t:LineFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="LineFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureDefinitions/t:LineFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="MarkingFeatureNominalToDefinitionKeyref"
-      refer="MarkingFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureNominals/t:MarkingFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="MarkingFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureDefinitions/t:MarkingFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="OtherCurveFeatureNominalToDefinitionKeyref"
-      refer="OtherCurveFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureNominals/t:OtherCurveFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="OtherCurveFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:OtherCurveFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="OtherNonShapeFeatureNominalToDefinitionKeyref"
-      refer="OtherNonShapeFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureNominals/t:OtherNonShapeFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="OtherNonShapeFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:OtherNonShapeFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="OtherShapeFeatureNominalToDefinitionKeyref"
-      refer="OtherShapeFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureNominals/t:OtherShapeFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="OtherShapeFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:OtherShapeFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="OtherSurfaceFeatureNominalToDefinitionKeyref"
-      refer="OtherSurfaceFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureNominals/t:OtherSurfaceFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="OtherSurfaceFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:OtherSurfaceFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="PatternFeatureCircleNominalToDefinitionKeyref"
-      refer="PatternFeatureCircleDefinitionKey">
-      <xs:selector xpath="t:FeatureNominals/t:PatternFeatureCircleNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="PatternFeatureCircleDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:PatternFeatureCircleDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="PatternFeatureCircularArcNominalToDefinitionKeyref"
-      refer="PatternFeatureCircularArcDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureNominals/t:PatternFeatureCircularArcNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="PatternFeatureCircularArcDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:PatternFeatureCircularArcDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="PatternFeatureLinearNominalToDefinitionKeyref"
-      refer="PatternFeatureLinearDefinitionKey">
-      <xs:selector xpath="t:FeatureNominals/t:PatternFeatureLinearNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="PatternFeatureLinearDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:PatternFeatureLinearDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="PatternFeatureParallelogramNominalToDefinitionKeyref"
-      refer="PatternFeatureParallelogramDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureNominals/t:PatternFeatureParallelogramNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="PatternFeatureParallelogramDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:PatternFeatureParallelogramDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="PlaneFeatureNominalToDefinitionKeyref"
-      refer="PlaneFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureNominals/t:PlaneFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="PlaneFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureDefinitions/t:PlaneFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="PointDefinedCurveFeatureNominalToDefinitionKeyref"
-      refer="PointDefinedCurveFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureNominals/t:PointDefinedCurveFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="PointDefinedCurveFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:PointDefinedCurveFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="PointDefinedSurfaceFeatureNominalToDefinitionKeyref"
-      refer="PointDefinedSurfaceFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureNominals/t:PointDefinedSurfaceFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="PointDefinedSurfaceFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:PointDefinedSurfaceFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="OppositeParallelLinesFeatureNominalToDefinitionKeyref"
-      refer="OppositeParallelLinesFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureNominals/t:OppositeParallelLinesFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="OppositeParallelLinesFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions
-              /t:OppositeParallelLinesFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="OppositeAngledLinesFeatureNominalToDefinitionKeyref"
-      refer="OppositeAngledLinesFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureNominals/t:OppositeAngledLinesFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="OppositeAngledLinesFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:OppositeAngledLinesFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="PointFeatureNominalToDefinitionKeyref"
-      refer="PointFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureNominals/t:PointFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="PointFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureDefinitions/t:PointFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="OppositeParallelPlanesFeatureNominalToDefinitionKeyref"
-      refer="OppositeParallelPlanesFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureNominals/t:OppositeParallelPlanesFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="OppositeParallelPlanesFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions
-              /t:OppositeParallelPlanesFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="OppositeAngledPlanesFeatureNominalToDefinitionKeyref"
-      refer="OppositeAngledPlanesFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureNominals/t:OppositeAngledPlanesFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="OppositeAngledPlanesFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:OppositeAngledPlanesFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="SphereFeatureNominalToDefinitionKeyref"
-      refer="SphereFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureNominals/t:SphereFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="SphereFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureDefinitions/t:SphereFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="SphericalSegmentFeatureNominalToDefinitionKeyref"
-      refer="SphericalSegmentFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureNominals/t:SphericalSegmentFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="SphericalSegmentFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:SphericalSegmentFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="SurfaceOfRevolutionFeatureNominalToDefinitionKeyref"
-      refer="SurfaceOfRevolutionFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureNominals/t:SurfaceOfRevolutionFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="SurfaceOfRevolutionFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:SurfaceOfRevolutionFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="ThreadedFeatureNominalToDefinitionKeyref"
-      refer="ThreadedFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureNominals/t:ThreadedFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="ThreadedFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:ThreadedFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="ToroidalSegmentFeatureNominalToDefinitionKeyref"
-      refer="ToroidalSegmentFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureNominals/t:ToroidalSegmentFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="ToroidalSegmentFeatureDefinitionKey">
-      <xs:selector
-        xpath="t:FeatureDefinitions/t:ToroidalSegmentFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="TorusFeatureNominalToDefinitionKeyref"
-      refer="TorusFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureNominals/t:TorusFeatureNominal"/>
-      <xs:field xpath="t:FeatureDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="TorusFeatureDefinitionKey">
-      <xs:selector xpath="t:FeatureDefinitions/t:TorusFeatureDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-  </xs:element>
-
-<!-- END NOMINAL TO DEFINITION KEY/KEYREF PAIRS FOR FEATURES -->
-
-<!-- END OF FEATURES ELEMENT -->
 
 <!-- START FEATURE ASPECT LIST TYPES -->
 
