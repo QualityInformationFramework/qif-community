@@ -179,6 +179,35 @@
             set.
           </xs:documentation>
         </xs:annotation>
+
+        <!-- start key and keyref for QIF ids of actual DRF Transforms -->
+
+        <xs:key name="DRFTransformActualIdKey">
+          <xs:annotation>
+            <xs:documentation>
+              The DRFTransformActualIdKey collects all QIF ids of actual
+              DRF transforms in this MeasurementResults.
+            </xs:documentation>
+          </xs:annotation>
+          <xs:selector xpath="t:ActualTransforms/t:Transform"/>
+          <xs:field xpath="@id"/>
+        </xs:key>
+
+        <xs:keyref name="DRFTransformActualIdKeyref"
+          refer="DRFTransformActualIdKey">
+          <xs:annotation>
+            <xs:documentation>
+              The DRFTransformActualIdKeyref requires that a
+              DRFTransformActualId located anywhere in this
+              MeasurementResults be present in the DRFTransformActualIdKey.
+            </xs:documentation>
+          </xs:annotation>
+          <xs:selector
+            xpath="t:MeasuredCharacteristics/t:CharacteristicMeasurements/t:*
+                 | t:MeasuredCharacteristics/t:CharacteristicMeasurements/t:*
+                  /t:*"/>
+          <xs:field xpath="t:DRFTransformActualId"/>
+        </xs:keyref>
       </xs:element>
     </xs:sequence>
     <xs:attribute name="n"
