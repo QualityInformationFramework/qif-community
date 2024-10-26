@@ -14,9 +14,9 @@
   attributeFormDefault="unqualified"
   version="3.0.0">
 
-  <xs:include schemaLocation="IntermediatesPMI.xsd"/>
-  <xs:include schemaLocation="Topology.xsd"/>
-  <xs:include schemaLocation="Geometry.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/IntermediatesPMI.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/Topology.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/Geometry.xsd"/>
 
   <xs:annotation>
     <xs:documentation>
@@ -2337,7 +2337,8 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="RAPZResolution"
-                        type="RAPZResolutionType">
+                        type="RAPZResolutionType"
+			minOccurs="0">
               <xs:annotation>
                 <xs:documentation>
                   The RAPZResolution element is the resolution for
@@ -2430,7 +2431,8 @@
               </xs:annotation>
             </xs:element>
             <xs:element name="ABCResolution"
-                        type="ABCResolutionType">
+                        type="ABCResolutionType"
+			minOccurs="0">
               <xs:annotation>
                 <xs:documentation>
                   The ABCResolution element gives the resolution of the
@@ -6848,8 +6850,8 @@
   <xs:complexType name="NumericalLengthAccuracyType">
     <xs:annotation>
       <xs:documentation>
-        The NumericalLengthAccuracyType defines the accuracy of a length or
-        point measurement device.
+        The NumericalLengthAccuracyType defines the accuracy of a length
+        measurement device.
       </xs:documentation>
     </xs:annotation>
     <xs:complexContent>
