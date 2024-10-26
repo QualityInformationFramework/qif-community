@@ -58,8 +58,8 @@ be using .// since the ids they check may appear at arbitrarily deep levels
 in a Plan (since Plan has a recursive structure). As
 a result, ids that occur below the least nested locations they can occur
 will not be checked. These keyrefs are not currently using .// because of
-the interaction of .// in XMLSpy with Rules, which uses up all memory.
-Altova has been notified of this problem in XMLSpy.
+the interaction in commercial XML tools of .// with Rules, which uses up all
+memory.
 
 -->
 
@@ -1211,7 +1211,7 @@ Altova has been notified of this problem in XMLSpy.
       <xs:field xpath="."/>
     </xs:keyref>
 
-<!-- start key and two keyrefs for QIF ids of Transforms -->
+<!-- start key/keyref pair for QIF ids of Transforms -->
 
     <xs:key name="TransformIdKey">
       <xs:annotation>
@@ -1243,23 +1243,6 @@ Altova has been notified of this problem in XMLSpy.
              | t:Product/t:TopologySet/t:BodySet/t:Body/t:Transform/t:Id
              | t:Product/t:ComponentSet/t:Component/t:Transform/t:Id"/>
       <xs:field xpath="."/>
-    </xs:keyref>
-
-    <xs:keyref name="DRFTransformActualIdKeyref"
-      refer="TransformIdKey">
-      <xs:annotation>
-        <xs:documentation>
-          The DRFTransformActualIdKeyref requires that a
-          DRFTransformActualId located anywhere be the id of a Transform.
-        </xs:documentation>
-      </xs:annotation>
-      <xs:selector
-        xpath="t:Results/t:MeasurementResultsSet/t:MeasurementResults
-              /t:MeasuredCharacteristics/t:CharacteristicMeasurements/t:*
-             | t:Results/t:MeasurementResultsSet/t:MeasurementResults
-              /t:MeasuredCharacteristics/t:CharacteristicMeasurements/t:*
-              /t:*"/>
-      <xs:field xpath="t:DRFTransformActualId"/>
     </xs:keyref>
 
 <!-- start key and four keyrefs for QIF ids of CoordinateSystems -->
@@ -1449,7 +1432,7 @@ Altova has been notified of this problem in XMLSpy.
       </xs:annotation>
       <xs:selector
         xpath="t:MeasurementResources/t:DetachableSensors/t:*
-             | t:MeasurementResources/t:Tools/t:*/t:*
+             | t:MeasurementResources/t:Tools/t:*
              | t:ExternalQIFReferences/t:ExternalQIFDocument"/>
       <xs:field xpath="@id"/>
     </xs:key>
@@ -1622,7 +1605,7 @@ Altova has been notified of this problem in XMLSpy.
       <xs:annotation>
         <xs:documentation>
           The ActualComponentAsmPathKeyref requires that AsmPathId
-          located in ActualComponent be the id of AsmPath.
+          located in an ActualComponent be the id of AsmPath.
         </xs:documentation>
       </xs:annotation>
       <xs:selector
@@ -1906,8 +1889,8 @@ Altova has been notified of this problem in XMLSpy.
       <xs:selector
         xpath="t:Statistics/t:StatisticalStudiesResults
               /t:ProductionStudyResults/t:ControlIssueDetailsList
-              /t:ControlIssueDetails"/>
-      <xs:field xpath="ControlMethodId"/>
+              /t:ControlIssueDetails/t:ControlMethodId"/>
+      <xs:field xpath="."/>
     </xs:keyref>
 
 <!-- start key and one keyref for QIF ids of study plans -->
@@ -6960,8 +6943,8 @@ Altova has been notified of this problem in XMLSpy.
       </xs:annotation>
       <xs:selector
         xpath="t:CoordinateSystems/t:CoordinateSystemDefinitions
-              /t:CoordinateSystem"/>
-      <xs:field xpath="InternalCADCoordinateSystemId"/>
+              /t:CoordinateSystem/t:InternalCADCoordinateSystemId"/>
+      <xs:field xpath="."/>
     </xs:keyref>
 
 <!-- END KEY/KEYREF PAIR FOR IDS OF INTERNAL CAD COORDINATE SYSTEMS -->
