@@ -14,11 +14,11 @@
   attributeFormDefault="unqualified"
   version="3.0.0">
 
-  <xs:include schemaLocation="../QIFLibrary/Geometry.xsd"/>
-  <xs:include schemaLocation="../QIFLibrary/Topology.xsd"/>
-  <xs:include schemaLocation="../QIFLibrary/Auxiliary.xsd"/>
-  <xs:include schemaLocation="../QIFLibrary/Visualization.xsd"/>
-  <xs:include schemaLocation="../QIFLibrary/Traceability.xsd"/>
+  <xs:include schemaLocation="Geometry.xsd"/>
+  <xs:include schemaLocation="Topology.xsd"/>
+  <xs:include schemaLocation="Auxiliary.xsd"/>
+  <xs:include schemaLocation="Visualization.xsd"/>
+  <xs:include schemaLocation="Traceability.xsd"/>
 
   <xs:annotation>
     <xs:documentation>

@@ -14,9 +14,9 @@
   attributeFormDefault="unqualified"
   version="3.0.0">
 
-  <xs:include schemaLocation="../QIFLibrary/Traceability.xsd"/>
-  <xs:include schemaLocation="../QIFLibrary/Characteristics.xsd"/>
-  <xs:include schemaLocation="../QIFLibrary/Features.xsd"/>
+  <xs:include schemaLocation="Traceability.xsd"/>
+  <xs:include schemaLocation="Characteristics.xsd"/>
+  <xs:include schemaLocation="Features.xsd"/>
 
   <xs:annotation>
     <xs:documentation>

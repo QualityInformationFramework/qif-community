@@ -14,7 +14,7 @@
   attributeFormDefault="unqualified"
   version="3.0.0">
 
-  <xs:include schemaLocation="../QIFLibrary/Primitives.xsd"/>
+  <xs:include schemaLocation="Primitives.xsd"/>
 
   <xs:annotation>
     <xs:documentation>

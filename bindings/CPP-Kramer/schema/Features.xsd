@@ -14,7 +14,7 @@
   attributeFormDefault="unqualified"
   version="3.0.0">
 
-  <xs:include schemaLocation="../QIFLibrary/IntermediatesPMI.xsd"/>
+  <xs:include schemaLocation="IntermediatesPMI.xsd"/>
 
   <xs:annotation>
     <xs:documentation>
