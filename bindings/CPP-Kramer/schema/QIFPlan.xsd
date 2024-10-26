@@ -889,19 +889,6 @@
     </xs:complexContent>
   </xs:complexType>
 
-  <xs:complexType name="OpticalDigitizerMeasureFeatureMethodType">
-    <xs:annotation>
-      <xs:documentation>
-        The OpticalDigitizerMeasureFeatureMethodType is the metrology
-        method in which an optical digitizer is used for measuring the
-        feature.
-      </xs:documentation>
-    </xs:annotation>
-    <xs:complexContent>
-      <xs:extension base="MeasureFeatureMethodBaseType"/>
-    </xs:complexContent>
-  </xs:complexType>
-
   <xs:complexType name="OtherMeasureFeatureMethodType">
     <xs:annotation>
       <xs:documentation>
@@ -1902,7 +1889,6 @@
           LaserTrackerMeasureFeatureMethod
           ManualMeasureFeatureMethod
           MicroscopeMeasureFeatureMethod
-          OpticalDigitizerMeasureFeatureMethod
           ProfileProjectorMeasureFeatureMethod
           TheodoliteMeasureFeatureMethod
           UniversalLengthMeasureFeatureMethod
@@ -1949,10 +1935,6 @@
 
   <xs:element name="MicroscopeMeasureFeatureMethod"
               type="MicroscopeMeasureFeatureMethodType"
-              substitutionGroup="ActionMethod"/>
-
-  <xs:element name="OpticalDigitizerMeasureFeatureMethod"
-              type="OpticalDigitizerMeasureFeatureMethodType"
               substitutionGroup="ActionMethod"/>
 
   <xs:element name="ProfileProjectorMeasureFeatureMethod"
