@@ -33,7 +33,1198 @@
     </xs:documentation>
   </xs:annotation>
 
-  <xs:complexType name="CharacteristicBaseType"
+<!-- DEFINE THE CHARACTERISTICS ELEMENT -->
+
+  <xs:element name="Characteristics"
+              type="CharacteristicAspectsListsType">
+    <xs:annotation>
+      <xs:documentation>
+        The global Characteristics element contains four lists of
+        characteristics aspects.
+      </xs:documentation>
+    </xs:annotation>
+
+<!-- START NOMINAL TO DEFINITION KEY/KEYREF PAIRS FOR CHARACTERISTICS -->
+
+    <xs:keyref name="AngleCharacteristicNominalToDefinitionKeyref"
+      refer="AngleCharacteristicDefinitionKey">
+      <xs:annotation>
+        <xs:documentation>
+          The AngleCharacteristicNominalToDefinitionKeyref requires that
+          the DefinitionId of an AngleCharacteristicNominal be the QIF id
+          of an AngleCharacteristicDefinition. All other
+          CharacteristicNominalToDefinitionKeyrefs are similar.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:AngleCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="AngleCharacteristicDefinitionKey">
+      <xs:annotation>
+        <xs:documentation>
+          The AngleCharacteristicDefinitionKey collects all QIF ids of
+          AngleCharacteristicDefinitions. All other
+          CharacteristicDefinitionKeys are similar.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:CharacteristicDefinitions/t:AngleCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="AngleBetweenCharacteristicNominalToDefinitionKeyref"
+      refer="AngleBetweenCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:AngleBetweenCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="AngleBetweenCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:AngleBetweenCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="AngularCoordinateCharacteristicNominalToDefinitionKeyref"
+      refer="AngularCoordinateCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:AngularCoordinateCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="AngularCoordinateCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:AngularCoordinateCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="AngleFromCharacteristicNominalToDefinitionKeyref"
+      refer="AngleFromCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:AngleFromCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="AngleFromCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:AngleFromCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="AngularityCharacteristicNominalToDefinitionKeyref"
+      refer="AngularityCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:AngularityCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="AngularityCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:AngularityCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ChordCharacteristicNominalToDefinitionKeyref"
+      refer="ChordCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:ChordCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="ChordCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions/t:ChordCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="CircularityCharacteristicNominalToDefinitionKeyref"
+      refer="CircularityCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:CircularityCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="CircularityCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:CircularityCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="CircularRunoutCharacteristicNominalToDefinitionKeyref"
+      refer="CircularRunoutCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:CircularRunoutCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="CircularRunoutCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:CircularRunoutCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="CoaxialityCharacteristicNominalToDefinitionKeyref"
+      refer="CoaxialityCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:CoaxialityCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="CoaxialityCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:CoaxialityCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ConcentricityCharacteristicNominalToDefinitionKeyref"
+      refer="ConcentricityCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:ConcentricityCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="ConcentricityCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:ConcentricityCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ConicalTaperDiameterCharacteristicNominalToDefinitionKeyref"
+      refer="ConicalTaperCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:ConicalTaperCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="ConicalTaperCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:ConicalTaperCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ConicityCharacteristicNominalToDefinitionKeyref"
+      refer="ConicityCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:ConicityCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="ConicityCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:ConicityCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="LinearCoordinateCharacteristicNominalToDefinitionKeyref"
+      refer="LinearCoordinateCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:LinearCoordinateCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="LinearCoordinateCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:LinearCoordinateCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="CurveLengthCharacteristicNominalToDefinitionKeyref"
+      refer="CurveLengthCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:CurveLengthCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="CurveLengthCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:CurveLengthCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="CylindricityCharacteristicNominalToDefinitionKeyref"
+      refer="CylindricityCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:CylindricityCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="CylindricityCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:CylindricityCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="DepthCharacteristicNominalToDefinitionKeyref"
+      refer="DepthCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:DepthCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="DepthCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions/t:DepthCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="DiameterCharacteristicNominalToDefinitionKeyref"
+      refer="DiameterCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:DiameterCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="DiameterCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:DiameterCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="DistanceBetweenCharacteristicNominalToDefinitionKeyref"
+      refer="DistanceBetweenCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:DistanceBetweenCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="DistanceBetweenCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:DistanceBetweenCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="DistanceFromCharacteristicNominalToDefinitionKeyref"
+      refer="DistanceFromCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:DistanceFromCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="DistanceFromCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:DistanceFromCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="EllipticityCharacteristicNominalToDefinitionKeyref"
+      refer="EllipticityCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:EllipticityCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="EllipticityCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:EllipticityCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="FlatnessCharacteristicNominalToDefinitionKeyref"
+      refer="FlatnessCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:FlatnessCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="FlatnessCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:FlatnessCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="FlatTaperDiameterCharacteristicNominalToDefinitionKeyref"
+      refer="FlatTaperCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:FlatTaperCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="FlatTaperCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:FlatTaperCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="HeightCharacteristicNominalToDefinitionKeyref"
+      refer="HeightCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:HeightCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="HeightCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions/t:HeightCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="LengthCharacteristicNominalToDefinitionKeyref"
+      refer="LengthCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:LengthCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="LengthCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions/t:LengthCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="LineProfileCharacteristicNominalToDefinitionKeyref"
+      refer="LineProfileCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:LineProfileCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="LineProfileCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:LineProfileCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="OtherFormCharacteristicNominalToDefinitionKeyref"
+      refer="OtherFormCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:OtherFormCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="OtherFormCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:OtherFormCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ParallelismCharacteristicNominalToDefinitionKeyref"
+      refer="ParallelismCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:ParallelismCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="ParallelismCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:ParallelismCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="PerpendicularityCharacteristicNominalToDefinitionKeyref"
+      refer="PerpendicularityCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:PerpendicularityCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="PerpendicularityCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:PerpendicularityCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="PointProfileCharacteristicNominalToDefinitionKeyref"
+      refer="PointProfileCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:PointProfileCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="PointProfileCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:PointProfileCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="PositionCharacteristicNominalToDefinitionKeyref"
+      refer="PositionCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:PositionCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="PositionCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:PositionCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="RadiusCharacteristicNominalToDefinitionKeyref"
+      refer="RadiusCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:RadiusCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="RadiusCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions/t:RadiusCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="SphericalDiameterCharacteristicNominalToDefinitionKeyref"
+      refer="SphericalDiameterCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:SphericalDiameterCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="SphericalDiameterCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:SphericalDiameterCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="SphericalRadiusCharacteristicNominalToDefinitionKeyref"
+      refer="SphericalRadiusCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:SphericalRadiusCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="SphericalRadiusCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:SphericalRadiusCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="SphericityCharacteristicNominalToDefinitionKeyref"
+      refer="SphericityCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:SphericityCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="SphericityCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:SphericityCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="SquareCharacteristicNominalToDefinitionKeyref"
+      refer="SquareCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:SquareCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="SquareCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions/t:SquareCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="StraightnessCharacteristicNominalToDefinitionKeyref"
+      refer="StraightnessCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:StraightnessCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="StraightnessCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:StraightnessCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="SurfaceProfileCharacteristicNominalToDefinitionKeyref"
+      refer="SurfaceProfileCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:SurfaceProfileCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="SurfaceProfileCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:SurfaceProfileCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="SurfaceProfileNonUniformCharacteristicNominalToDefinitionKeyref"
+      refer="SurfaceProfileNonUniformCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:SurfaceProfileNonUniformCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="SurfaceProfileNonUniformCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:SurfaceProfileNonUniformCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="SurfaceTextureCharacteristicNominalToDefinitionKeyref"
+      refer="SurfaceTextureCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:SurfaceTextureCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="SurfaceTextureCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:SurfaceTextureCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="SymmetryCharacteristicNominalToDefinitionKeyref"
+      refer="SymmetryCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:SymmetryCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="SymmetryCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:SymmetryCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ThicknessCharacteristicNominalToDefinitionKeyref"
+      refer="ThicknessCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:ThicknessCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="ThicknessCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:ThicknessCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ThreadCharacteristicNominalToDefinitionKeyref"
+      refer="ThreadCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:ThreadCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="ThreadCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions/t:ThreadCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ToroidicityCharacteristicNominalToDefinitionKeyref"
+      refer="ToroidicityCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:ToroidicityCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="ToroidicityCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:ToroidicityCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="TotalRunoutCharacteristicNominalToDefinitionKeyref"
+      refer="TotalRunoutCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:TotalRunoutCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="TotalRunoutCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:TotalRunoutCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="UserDefinedAttributeCharacteristicNominalToDefinitionKeyref"
+      refer="UserDefinedAttributeCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:UserDefinedAttributeCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="UserDefinedAttributeCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:UserDefinedAttributeCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="UserDefinedLinearCharacteristicNominalToDefinitionKeyref"
+      refer="UserDefinedLinearCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:UserDefinedLinearCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="UserDefinedLinearCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:UserDefinedLinearCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="UserDefinedAngularCharacteristicNominalToDefinitionKeyref"
+      refer="UserDefinedAngularCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:UserDefinedAngularCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="UserDefinedAngularCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:UserDefinedAngularCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="UserDefinedTemperatureCharacteristicNominalToDefinitionKeyref"
+      refer="UserDefinedTemperatureCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:UserDefinedTemperatureCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="UserDefinedTemperatureCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:UserDefinedTemperatureCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="UserDefinedAreaCharacteristicNominalToDefinitionKeyref"
+      refer="UserDefinedAreaCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:UserDefinedAreaCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="UserDefinedAreaCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:UserDefinedAreaCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="UserDefinedForceCharacteristicNominalToDefinitionKeyref"
+      refer="UserDefinedForceCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:UserDefinedForceCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="UserDefinedForceCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:UserDefinedForceCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="UserDefinedMassCharacteristicNominalToDefinitionKeyref"
+      refer="UserDefinedMassCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:UserDefinedMassCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="UserDefinedMassCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:UserDefinedMassCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="UserDefinedPressureCharacteristicNominalToDefinitionKeyref"
+      refer="UserDefinedPressureCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:UserDefinedPressureCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="UserDefinedPressureCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:UserDefinedPressureCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="UserDefinedSpeedCharacteristicNominalToDefinitionKeyref"
+      refer="UserDefinedSpeedCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:UserDefinedSpeedCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="UserDefinedSpeedCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:UserDefinedSpeedCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="UserDefinedTimeCharacteristicNominalToDefinitionKeyref"
+      refer="UserDefinedTimeCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:UserDefinedTimeCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="UserDefinedTimeCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:UserDefinedTimeCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="UserDefinedUnitCharacteristicNominalToDefinitionKeyref"
+      refer="UserDefinedUnitCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:UserDefinedUnitCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="UserDefinedUnitCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:UserDefinedUnitCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WidthCharacteristicNominalToDefinitionKeyref"
+      refer="WidthCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:WidthCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="WidthCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions/t:WidthCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WeldFilletCharacteristicNominalToDefinitionKeyref"
+      refer="WeldFilletCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:WeldFilletCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="WeldFilletCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:WeldFilletCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WeldPlugCharacteristicNominalToDefinitionKeyref"
+      refer="WeldPlugCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:WeldPlugCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="WeldPlugCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:WeldPlugCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WeldSlotCharacteristicNominalToDefinitionKeyref"
+      refer="WeldSlotCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:WeldSlotCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="WeldSlotCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:WeldSlotCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WeldSpotCharacteristicNominalToDefinitionKeyref"
+      refer="WeldSpotCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:WeldSpotCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="WeldSpotCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:WeldSpotCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WeldStudCharacteristicNominalToDefinitionKeyref"
+      refer="WeldStudCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:WeldStudCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="WeldStudCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:WeldStudCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WeldSeamCharacteristicNominalToDefinitionKeyref"
+      refer="WeldSeamCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:WeldSeamCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="WeldSeamCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:WeldSeamCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WeldSurfacingCharacteristicNominalToDefinitionKeyref"
+      refer="WeldSurfacingCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:WeldSurfacingCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="WeldSurfacingCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:WeldSurfacingCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WeldEdgeCharacteristicNominalToDefinitionKeyref"
+      refer="WeldEdgeCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:WeldEdgeCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="WeldEdgeCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:WeldEdgeCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WeldSquareCharacteristicNominalToDefinitionKeyref"
+      refer="WeldSquareCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:WeldSquareCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="WeldSquareCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:WeldSquareCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WeldBevelCharacteristicNominalToDefinitionKeyref"
+      refer="WeldBevelCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:WeldBevelCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="WeldBevelCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:WeldBevelCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WeldVCharacteristicNominalToDefinitionKeyref"
+      refer="WeldVCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:WeldVCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="WeldVCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions/t:WeldVCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WeldUCharacteristicNominalToDefinitionKeyref"
+      refer="WeldUCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:WeldUCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="WeldUCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions/t:WeldUCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WeldJCharacteristicNominalToDefinitionKeyref"
+      refer="WeldJCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:WeldJCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="WeldJCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions/t:WeldJCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WeldFlareVCharacteristicNominalToDefinitionKeyref"
+      refer="WeldFlareVCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:WeldFlareVCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="WeldFlareVCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:WeldFlareVCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WeldFlareBevelCharacteristicNominalToDefinitionKeyref"
+      refer="WeldFlareBevelCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals
+              /t:WeldFlareBevelCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="WeldFlareBevelCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:WeldFlareBevelCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WeldScarfCharacteristicNominalToDefinitionKeyref"
+      refer="WeldScarfCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:WeldScarfCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="WeldScarfCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:WeldScarfCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WeldCompoundCharacteristicNominalToDefinitionKeyref"
+      refer="WeldCompoundCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:WeldCompoundCharacteristicNominal"/>
+      <xs:field xpath="t:CharacteristicDefinitionId"/>
+    </xs:keyref>
+
+    <xs:key name="WeldCompoundCharacteristicDefinitionKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:WeldCompoundCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+<!-- END NOMINAL TO DEFINITION KEY/KEYREF PAIRS FOR CHARACTERISTICS -->
+
+    <xs:key name="WeldFromCompoundCharacteristicNominalIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The WeldFromCompoundCharacteristicNominalIdKey collects all QIF
+          ids of all weld characteristic nominals that can be referenced by
+          the compound weld nominal.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:WeldFilletCharacteristicNominal
+             | t:CharacteristicNominals/t:WeldPlugCharacteristicNominal
+             | t:CharacteristicNominals/t:WeldSlotCharacteristicNominal
+             | t:CharacteristicNominals/t:WeldSpotCharacteristicNominal
+             | t:CharacteristicNominals/t:WeldStudCharacteristicNominal
+             | t:CharacteristicNominals/t:WeldSeamCharacteristicNominal
+             | t:CharacteristicNominals
+              /t:WeldSurfacingCharacteristicNominal
+             | t:CharacteristicNominals/t:WeldEdgeCharacteristicNominal
+             | t:CharacteristicNominals/t:WeldSquareCharacteristicNominal
+             | t:CharacteristicNominals/t:WeldBevelCharacteristicNominal
+             | t:CharacteristicNominals/t:WeldVCharacteristicNominal
+             | t:CharacteristicNominals/t:WeldUCharacteristicNominal
+             | t:CharacteristicNominals/t:WeldJCharacteristicNominal
+             | t:CharacteristicNominals/t:WeldFlareVCharacteristicNominal
+             | t:CharacteristicNominals
+              /t:WeldFlareBevelCharacteristicNominal
+             | t:CharacteristicNominals/t:WeldScarfCharacteristicNominal"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WeldCompoundCharacteristicNominalWeldCharacteristicKeyref"
+      refer="WeldFromCompoundCharacteristicNominalIdKey">
+      <xs:selector
+        xpath="t:CharacteristicNominals/t:WeldCompoundCharacteristicNominal
+              /t:WeldCharacteristicNominalIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="WeldFromCompoundCharacteristicDefinitionIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The WeldFromCompoundCharacteristicDefinitionIdKey collects all
+          QIF ids of all weld characteristic definitions that can be
+          referenced by the compound weld definition.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:WeldFilletCharacteristicDefinition
+             | t:CharacteristicDefinitions
+              /t:WeldPlugCharacteristicDefinition
+             | t:CharacteristicDefinitions
+              /t:WeldSlotCharacteristicDefinition
+             | t:CharacteristicDefinitions
+              /t:WeldSpotCharacteristicDefinition
+             | t:CharacteristicDefinitions
+              /t:WeldStudCharacteristicDefinition
+             | t:CharacteristicDefinitions
+              /t:WeldSeamCharacteristicDefinition
+             | t:CharacteristicDefinitions
+              /t:WeldSurfacingCharacteristicDefinition
+             | t:CharacteristicDefinitions
+              /t:WeldEdgeCharacteristicDefinition
+             | t:CharacteristicDefinitions
+              /t:WeldSquareCharacteristicDefinition
+             | t:CharacteristicDefinitions
+              /t:WeldBevelCharacteristicDefinition
+             | t:CharacteristicDefinitions/t:WeldVCharacteristicDefinition
+             | t:CharacteristicDefinitions/t:WeldUCharacteristicDefinition
+             | t:CharacteristicDefinitions/t:WeldJCharacteristicDefinition
+             | t:CharacteristicDefinitions
+              /t:WeldFlareVCharacteristicDefinition
+             | t:CharacteristicDefinitions
+              /t:WeldFlareBevelCharacteristicDefinition
+             | t:CharacteristicDefinitions
+              /t:WeldScarfCharacteristicDefinition"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WeldCompoundCharacteristicDefinitionWeldCharacteristicKeyref"
+      refer="WeldFromCompoundCharacteristicDefinitionIdKey">
+      <xs:selector
+        xpath="t:CharacteristicDefinitions
+              /t:WeldCompoundCharacteristicDefinition
+              /t:WeldCharacteristicDefinitionIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="WeldFromCompoundCharacteristicItemIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The WeldFromCompoundCharacteristicItemIdKey collects all QIF ids
+          of all weld characteristic items that can be referenced by the
+          compound weld item.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:CharacteristicItems/t:WeldFilletCharacteristicItem
+             | t:CharacteristicItems/t:WeldPlugCharacteristicItem
+             | t:CharacteristicItems/t:WeldSlotCharacteristicItem
+             | t:CharacteristicItems/t:WeldSpotCharacteristicItem
+             | t:CharacteristicItems/t:WeldStudCharacteristicItem
+             | t:CharacteristicItems/t:WeldSeamCharacteristicItem
+             | t:CharacteristicItems/t:WeldSurfacingCharacteristicItem
+             | t:CharacteristicItems/t:WeldEdgeCharacteristicItem
+             | t:CharacteristicItems/t:WeldSquareCharacteristicItem
+             | t:CharacteristicItems/t:WeldBevelCharacteristicItem
+             | t:CharacteristicItems/t:WeldVCharacteristicItem
+             | t:CharacteristicItems/t:WeldUCharacteristicItem
+             | t:CharacteristicItems/t:WeldJCharacteristicItem
+             | t:CharacteristicItems/t:WeldFlareVCharacteristicItem
+             | t:CharacteristicItems/t:WeldFlareBevelCharacteristicItem
+             | t:CharacteristicItems/t:WeldScarfCharacteristicItem"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="WeldCompoundCharacteristicItemWeldCharacteristicKeyref"
+      refer="WeldFromCompoundCharacteristicItemIdKey">
+      <xs:selector
+        xpath="t:CharacteristicItems/t:WeldCompoundCharacteristicItem
+              /t:WeldCharacteristicItemIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+  </xs:element>
+
+<!--  END CHARACTERISTICS ELEMENT -->
+
+<xs:complexType name="CharacteristicBaseType"
                   abstract="true">
     <xs:annotation>
       <xs:documentation>
@@ -10076,1197 +11267,6 @@
   </xs:complexType>
 
 <!--  END CHARACTERISTIC TYPES -->
-
-<!-- DEFINE THE CHARACTERISTICS ELEMENT -->
-
-  <xs:element name="Characteristics"
-              type="CharacteristicAspectsListsType">
-    <xs:annotation>
-      <xs:documentation>
-        The global Characteristics element contains four lists of
-        characteristics aspects.
-      </xs:documentation>
-    </xs:annotation>
-
-<!-- START NOMINAL TO DEFINITION KEY/KEYREF PAIRS FOR CHARACTERISTICS -->
-
-    <xs:keyref name="AngleCharacteristicNominalToDefinitionKeyref"
-      refer="AngleCharacteristicDefinitionKey">
-      <xs:annotation>
-        <xs:documentation>
-          The AngleCharacteristicNominalToDefinitionKeyref requires that
-          the DefinitionId of an AngleCharacteristicNominal be the QIF id
-          of an AngleCharacteristicDefinition. All other
-          CharacteristicNominalToDefinitionKeyrefs are similar.
-        </xs:documentation>
-      </xs:annotation>
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:AngleCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="AngleCharacteristicDefinitionKey">
-      <xs:annotation>
-        <xs:documentation>
-          The AngleCharacteristicDefinitionKey collects all QIF ids of
-          AngleCharacteristicDefinitions. All other
-          CharacteristicDefinitionKeys are similar.
-        </xs:documentation>
-      </xs:annotation>
-      <xs:selector
-        xpath="t:CharacteristicDefinitions/t:AngleCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="AngleBetweenCharacteristicNominalToDefinitionKeyref"
-      refer="AngleBetweenCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:AngleBetweenCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="AngleBetweenCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:AngleBetweenCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="AngularCoordinateCharacteristicNominalToDefinitionKeyref"
-      refer="AngularCoordinateCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:AngularCoordinateCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="AngularCoordinateCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:AngularCoordinateCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="AngleFromCharacteristicNominalToDefinitionKeyref"
-      refer="AngleFromCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:AngleFromCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="AngleFromCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:AngleFromCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="AngularityCharacteristicNominalToDefinitionKeyref"
-      refer="AngularityCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:AngularityCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="AngularityCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:AngularityCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="ChordCharacteristicNominalToDefinitionKeyref"
-      refer="ChordCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:ChordCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="ChordCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions/t:ChordCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="CircularityCharacteristicNominalToDefinitionKeyref"
-      refer="CircularityCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:CircularityCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="CircularityCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:CircularityCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="CircularRunoutCharacteristicNominalToDefinitionKeyref"
-      refer="CircularRunoutCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:CircularRunoutCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="CircularRunoutCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:CircularRunoutCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="CoaxialityCharacteristicNominalToDefinitionKeyref"
-      refer="CoaxialityCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:CoaxialityCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="CoaxialityCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:CoaxialityCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="ConcentricityCharacteristicNominalToDefinitionKeyref"
-      refer="ConcentricityCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:ConcentricityCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="ConcentricityCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:ConcentricityCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="ConicalTaperDiameterCharacteristicNominalToDefinitionKeyref"
-      refer="ConicalTaperCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:ConicalTaperCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="ConicalTaperCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:ConicalTaperCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="ConicityCharacteristicNominalToDefinitionKeyref"
-      refer="ConicityCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:ConicityCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="ConicityCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:ConicityCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="LinearCoordinateCharacteristicNominalToDefinitionKeyref"
-      refer="LinearCoordinateCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:LinearCoordinateCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="LinearCoordinateCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:LinearCoordinateCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="CurveLengthCharacteristicNominalToDefinitionKeyref"
-      refer="CurveLengthCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:CurveLengthCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="CurveLengthCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:CurveLengthCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="CylindricityCharacteristicNominalToDefinitionKeyref"
-      refer="CylindricityCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:CylindricityCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="CylindricityCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:CylindricityCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="DepthCharacteristicNominalToDefinitionKeyref"
-      refer="DepthCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:DepthCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="DepthCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions/t:DepthCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="DiameterCharacteristicNominalToDefinitionKeyref"
-      refer="DiameterCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:DiameterCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="DiameterCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:DiameterCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="DistanceBetweenCharacteristicNominalToDefinitionKeyref"
-      refer="DistanceBetweenCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:DistanceBetweenCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="DistanceBetweenCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:DistanceBetweenCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="DistanceFromCharacteristicNominalToDefinitionKeyref"
-      refer="DistanceFromCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:DistanceFromCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="DistanceFromCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:DistanceFromCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="EllipticityCharacteristicNominalToDefinitionKeyref"
-      refer="EllipticityCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:EllipticityCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="EllipticityCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:EllipticityCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="FlatnessCharacteristicNominalToDefinitionKeyref"
-      refer="FlatnessCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:FlatnessCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="FlatnessCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:FlatnessCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="FlatTaperDiameterCharacteristicNominalToDefinitionKeyref"
-      refer="FlatTaperCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:FlatTaperCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="FlatTaperCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:FlatTaperCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="HeightCharacteristicNominalToDefinitionKeyref"
-      refer="HeightCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:HeightCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="HeightCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions/t:HeightCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="LengthCharacteristicNominalToDefinitionKeyref"
-      refer="LengthCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:LengthCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="LengthCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions/t:LengthCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="LineProfileCharacteristicNominalToDefinitionKeyref"
-      refer="LineProfileCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:LineProfileCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="LineProfileCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:LineProfileCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="OtherFormCharacteristicNominalToDefinitionKeyref"
-      refer="OtherFormCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:OtherFormCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="OtherFormCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:OtherFormCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="ParallelismCharacteristicNominalToDefinitionKeyref"
-      refer="ParallelismCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:ParallelismCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="ParallelismCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:ParallelismCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="PerpendicularityCharacteristicNominalToDefinitionKeyref"
-      refer="PerpendicularityCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:PerpendicularityCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="PerpendicularityCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:PerpendicularityCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="PointProfileCharacteristicNominalToDefinitionKeyref"
-      refer="PointProfileCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:PointProfileCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="PointProfileCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:PointProfileCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="PositionCharacteristicNominalToDefinitionKeyref"
-      refer="PositionCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:PositionCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="PositionCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:PositionCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="RadiusCharacteristicNominalToDefinitionKeyref"
-      refer="RadiusCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:RadiusCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="RadiusCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions/t:RadiusCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="SphericalDiameterCharacteristicNominalToDefinitionKeyref"
-      refer="SphericalDiameterCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:SphericalDiameterCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="SphericalDiameterCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:SphericalDiameterCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="SphericalRadiusCharacteristicNominalToDefinitionKeyref"
-      refer="SphericalRadiusCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:SphericalRadiusCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="SphericalRadiusCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:SphericalRadiusCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="SphericityCharacteristicNominalToDefinitionKeyref"
-      refer="SphericityCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:SphericityCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="SphericityCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:SphericityCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="SquareCharacteristicNominalToDefinitionKeyref"
-      refer="SquareCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:SquareCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="SquareCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions/t:SquareCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="StraightnessCharacteristicNominalToDefinitionKeyref"
-      refer="StraightnessCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:StraightnessCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="StraightnessCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:StraightnessCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="SurfaceProfileCharacteristicNominalToDefinitionKeyref"
-      refer="SurfaceProfileCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:SurfaceProfileCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="SurfaceProfileCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:SurfaceProfileCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="SurfaceProfileNonUniformCharacteristicNominalToDefinitionKeyref"
-      refer="SurfaceProfileNonUniformCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:SurfaceProfileNonUniformCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="SurfaceProfileNonUniformCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:SurfaceProfileNonUniformCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="SurfaceTextureCharacteristicNominalToDefinitionKeyref"
-      refer="SurfaceTextureCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:SurfaceTextureCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="SurfaceTextureCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:SurfaceTextureCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="SymmetryCharacteristicNominalToDefinitionKeyref"
-      refer="SymmetryCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:SymmetryCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="SymmetryCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:SymmetryCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="ThicknessCharacteristicNominalToDefinitionKeyref"
-      refer="ThicknessCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:ThicknessCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="ThicknessCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:ThicknessCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="ThreadCharacteristicNominalToDefinitionKeyref"
-      refer="ThreadCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:ThreadCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="ThreadCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions/t:ThreadCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="ToroidicityCharacteristicNominalToDefinitionKeyref"
-      refer="ToroidicityCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:ToroidicityCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="ToroidicityCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:ToroidicityCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="TotalRunoutCharacteristicNominalToDefinitionKeyref"
-      refer="TotalRunoutCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:TotalRunoutCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="TotalRunoutCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:TotalRunoutCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="UserDefinedAttributeCharacteristicNominalToDefinitionKeyref"
-      refer="UserDefinedAttributeCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:UserDefinedAttributeCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="UserDefinedAttributeCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:UserDefinedAttributeCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="UserDefinedLinearCharacteristicNominalToDefinitionKeyref"
-      refer="UserDefinedLinearCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:UserDefinedLinearCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="UserDefinedLinearCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:UserDefinedLinearCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="UserDefinedAngularCharacteristicNominalToDefinitionKeyref"
-      refer="UserDefinedAngularCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:UserDefinedAngularCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="UserDefinedAngularCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:UserDefinedAngularCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="UserDefinedTemperatureCharacteristicNominalToDefinitionKeyref"
-      refer="UserDefinedTemperatureCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:UserDefinedTemperatureCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="UserDefinedTemperatureCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:UserDefinedTemperatureCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="UserDefinedAreaCharacteristicNominalToDefinitionKeyref"
-      refer="UserDefinedAreaCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:UserDefinedAreaCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="UserDefinedAreaCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:UserDefinedAreaCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="UserDefinedForceCharacteristicNominalToDefinitionKeyref"
-      refer="UserDefinedForceCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:UserDefinedForceCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="UserDefinedForceCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:UserDefinedForceCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="UserDefinedMassCharacteristicNominalToDefinitionKeyref"
-      refer="UserDefinedMassCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:UserDefinedMassCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="UserDefinedMassCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:UserDefinedMassCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="UserDefinedPressureCharacteristicNominalToDefinitionKeyref"
-      refer="UserDefinedPressureCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:UserDefinedPressureCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="UserDefinedPressureCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:UserDefinedPressureCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="UserDefinedSpeedCharacteristicNominalToDefinitionKeyref"
-      refer="UserDefinedSpeedCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:UserDefinedSpeedCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="UserDefinedSpeedCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:UserDefinedSpeedCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="UserDefinedTimeCharacteristicNominalToDefinitionKeyref"
-      refer="UserDefinedTimeCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:UserDefinedTimeCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="UserDefinedTimeCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:UserDefinedTimeCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="UserDefinedUnitCharacteristicNominalToDefinitionKeyref"
-      refer="UserDefinedUnitCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:UserDefinedUnitCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="UserDefinedUnitCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:UserDefinedUnitCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WidthCharacteristicNominalToDefinitionKeyref"
-      refer="WidthCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:WidthCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="WidthCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions/t:WidthCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WeldFilletCharacteristicNominalToDefinitionKeyref"
-      refer="WeldFilletCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:WeldFilletCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="WeldFilletCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:WeldFilletCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WeldPlugCharacteristicNominalToDefinitionKeyref"
-      refer="WeldPlugCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:WeldPlugCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="WeldPlugCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:WeldPlugCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WeldSlotCharacteristicNominalToDefinitionKeyref"
-      refer="WeldSlotCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:WeldSlotCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="WeldSlotCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:WeldSlotCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WeldSpotCharacteristicNominalToDefinitionKeyref"
-      refer="WeldSpotCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:WeldSpotCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="WeldSpotCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:WeldSpotCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WeldStudCharacteristicNominalToDefinitionKeyref"
-      refer="WeldStudCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:WeldStudCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="WeldStudCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:WeldStudCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WeldSeamCharacteristicNominalToDefinitionKeyref"
-      refer="WeldSeamCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:WeldSeamCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="WeldSeamCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:WeldSeamCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WeldSurfacingCharacteristicNominalToDefinitionKeyref"
-      refer="WeldSurfacingCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:WeldSurfacingCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="WeldSurfacingCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:WeldSurfacingCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WeldEdgeCharacteristicNominalToDefinitionKeyref"
-      refer="WeldEdgeCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:WeldEdgeCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="WeldEdgeCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:WeldEdgeCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WeldSquareCharacteristicNominalToDefinitionKeyref"
-      refer="WeldSquareCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:WeldSquareCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="WeldSquareCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:WeldSquareCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WeldBevelCharacteristicNominalToDefinitionKeyref"
-      refer="WeldBevelCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:WeldBevelCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="WeldBevelCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:WeldBevelCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WeldVCharacteristicNominalToDefinitionKeyref"
-      refer="WeldVCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:WeldVCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="WeldVCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions/t:WeldVCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WeldUCharacteristicNominalToDefinitionKeyref"
-      refer="WeldUCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:WeldUCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="WeldUCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions/t:WeldUCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WeldJCharacteristicNominalToDefinitionKeyref"
-      refer="WeldJCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:WeldJCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="WeldJCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions/t:WeldJCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WeldFlareVCharacteristicNominalToDefinitionKeyref"
-      refer="WeldFlareVCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:WeldFlareVCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="WeldFlareVCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:WeldFlareVCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WeldFlareBevelCharacteristicNominalToDefinitionKeyref"
-      refer="WeldFlareBevelCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals
-              /t:WeldFlareBevelCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="WeldFlareBevelCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:WeldFlareBevelCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WeldScarfCharacteristicNominalToDefinitionKeyref"
-      refer="WeldScarfCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:WeldScarfCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="WeldScarfCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:WeldScarfCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WeldCompoundCharacteristicNominalToDefinitionKeyref"
-      refer="WeldCompoundCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:WeldCompoundCharacteristicNominal"/>
-      <xs:field xpath="t:CharacteristicDefinitionId"/>
-    </xs:keyref>
-
-    <xs:key name="WeldCompoundCharacteristicDefinitionKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:WeldCompoundCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-<!-- END NOMINAL TO DEFINITION KEY/KEYREF PAIRS FOR CHARACTERISTICS -->
-
-    <xs:key name="WeldFromCompoundCharacteristicNominalIdKey">
-      <xs:annotation>
-        <xs:documentation>
-          The WeldFromCompoundCharacteristicNominalIdKey collects all QIF
-          ids of all weld characteristic nominals that can be referenced by
-          the compound weld nominal.
-        </xs:documentation>
-      </xs:annotation>
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:WeldFilletCharacteristicNominal
-             | t:CharacteristicNominals/t:WeldPlugCharacteristicNominal
-             | t:CharacteristicNominals/t:WeldSlotCharacteristicNominal
-             | t:CharacteristicNominals/t:WeldSpotCharacteristicNominal
-             | t:CharacteristicNominals/t:WeldStudCharacteristicNominal
-             | t:CharacteristicNominals/t:WeldSeamCharacteristicNominal
-             | t:CharacteristicNominals
-              /t:WeldSurfacingCharacteristicNominal
-             | t:CharacteristicNominals/t:WeldEdgeCharacteristicNominal
-             | t:CharacteristicNominals/t:WeldSquareCharacteristicNominal
-             | t:CharacteristicNominals/t:WeldBevelCharacteristicNominal
-             | t:CharacteristicNominals/t:WeldVCharacteristicNominal
-             | t:CharacteristicNominals/t:WeldUCharacteristicNominal
-             | t:CharacteristicNominals/t:WeldJCharacteristicNominal
-             | t:CharacteristicNominals/t:WeldFlareVCharacteristicNominal
-             | t:CharacteristicNominals
-              /t:WeldFlareBevelCharacteristicNominal
-             | t:CharacteristicNominals/t:WeldScarfCharacteristicNominal"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WeldCompoundCharacteristicNominalWeldCharacteristicKeyref"
-      refer="WeldFromCompoundCharacteristicNominalIdKey">
-      <xs:selector
-        xpath="t:CharacteristicNominals/t:WeldCompoundCharacteristicNominal
-              /t:WeldCharacteristicNominalIds/t:Id"/>
-      <xs:field xpath="."/>
-    </xs:keyref>
-
-    <xs:key name="WeldFromCompoundCharacteristicDefinitionIdKey">
-      <xs:annotation>
-        <xs:documentation>
-          The WeldFromCompoundCharacteristicDefinitionIdKey collects all
-          QIF ids of all weld characteristic definitions that can be
-          referenced by the compound weld definition.
-        </xs:documentation>
-      </xs:annotation>
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:WeldFilletCharacteristicDefinition
-             | t:CharacteristicDefinitions
-              /t:WeldPlugCharacteristicDefinition
-             | t:CharacteristicDefinitions
-              /t:WeldSlotCharacteristicDefinition
-             | t:CharacteristicDefinitions
-              /t:WeldSpotCharacteristicDefinition
-             | t:CharacteristicDefinitions
-              /t:WeldStudCharacteristicDefinition
-             | t:CharacteristicDefinitions
-              /t:WeldSeamCharacteristicDefinition
-             | t:CharacteristicDefinitions
-              /t:WeldSurfacingCharacteristicDefinition
-             | t:CharacteristicDefinitions
-              /t:WeldEdgeCharacteristicDefinition
-             | t:CharacteristicDefinitions
-              /t:WeldSquareCharacteristicDefinition
-             | t:CharacteristicDefinitions
-              /t:WeldBevelCharacteristicDefinition
-             | t:CharacteristicDefinitions/t:WeldVCharacteristicDefinition
-             | t:CharacteristicDefinitions/t:WeldUCharacteristicDefinition
-             | t:CharacteristicDefinitions/t:WeldJCharacteristicDefinition
-             | t:CharacteristicDefinitions
-              /t:WeldFlareVCharacteristicDefinition
-             | t:CharacteristicDefinitions
-              /t:WeldFlareBevelCharacteristicDefinition
-             | t:CharacteristicDefinitions
-              /t:WeldScarfCharacteristicDefinition"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WeldCompoundCharacteristicDefinitionWeldCharacteristicKeyref"
-      refer="WeldFromCompoundCharacteristicDefinitionIdKey">
-      <xs:selector
-        xpath="t:CharacteristicDefinitions
-              /t:WeldCompoundCharacteristicDefinition
-              /t:WeldCharacteristicDefinitionIds/t:Id"/>
-      <xs:field xpath="."/>
-    </xs:keyref>
-
-    <xs:key name="WeldFromCompoundCharacteristicItemIdKey">
-      <xs:annotation>
-        <xs:documentation>
-          The WeldFromCompoundCharacteristicItemIdKey collects all QIF ids
-          of all weld characteristic items that can be referenced by the
-          compound weld item.
-        </xs:documentation>
-      </xs:annotation>
-      <xs:selector
-        xpath="t:CharacteristicItems/t:WeldFilletCharacteristicItem
-             | t:CharacteristicItems/t:WeldPlugCharacteristicItem
-             | t:CharacteristicItems/t:WeldSlotCharacteristicItem
-             | t:CharacteristicItems/t:WeldSpotCharacteristicItem
-             | t:CharacteristicItems/t:WeldStudCharacteristicItem
-             | t:CharacteristicItems/t:WeldSeamCharacteristicItem
-             | t:CharacteristicItems/t:WeldSurfacingCharacteristicItem
-             | t:CharacteristicItems/t:WeldEdgeCharacteristicItem
-             | t:CharacteristicItems/t:WeldSquareCharacteristicItem
-             | t:CharacteristicItems/t:WeldBevelCharacteristicItem
-             | t:CharacteristicItems/t:WeldVCharacteristicItem
-             | t:CharacteristicItems/t:WeldUCharacteristicItem
-             | t:CharacteristicItems/t:WeldJCharacteristicItem
-             | t:CharacteristicItems/t:WeldFlareVCharacteristicItem
-             | t:CharacteristicItems/t:WeldFlareBevelCharacteristicItem
-             | t:CharacteristicItems/t:WeldScarfCharacteristicItem"/>
-      <xs:field xpath="@id"/>
-    </xs:key>
-
-    <xs:keyref name="WeldCompoundCharacteristicItemWeldCharacteristicKeyref"
-      refer="WeldFromCompoundCharacteristicItemIdKey">
-      <xs:selector
-        xpath="t:CharacteristicItems/t:WeldCompoundCharacteristicItem
-              /t:WeldCharacteristicItemIds/t:Id"/>
-      <xs:field xpath="."/>
-    </xs:keyref>
-  </xs:element>
-
-<!--  END CHARACTERISTICS ELEMENT -->
 
 <!-- START CHARACTERISTIC ASPECT LIST TYPES -->
 
