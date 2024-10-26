@@ -23,7 +23,17 @@
     </xs:documentation>
   </xs:annotation>
 
-<!--  BEGIN STATISTICAL STUDY PLAN TYPES -->
+  <xs:element name="Statistics"
+              type="StatisticsType">
+    <xs:annotation>
+      <xs:documentation>
+        The global Statistics element holds all statistical plans and/or
+        results.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <!--  BEGIN STATISTICAL STUDY PLAN TYPES -->
 
   <xs:complexType name="StatisticalStudyPlanBaseType"
                   abstract="true">
@@ -2909,15 +2919,5 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-
-  <xs:element name="Statistics"
-              type="StatisticsType">
-    <xs:annotation>
-      <xs:documentation>
-        The global Statistics element holds all statistical plans and/or
-        results.
-      </xs:documentation>
-    </xs:annotation>
-  </xs:element>
 
 </xs:schema>
