@@ -73,7 +73,7 @@ For STRINGIN, the lex file must also be compiled with STRINGIN defined.
 extern QIFDocumentFile * QIFDocumentTree;
 extern FILE * yyin;
 extern int yyparse();
-extern void yylex_destroy();
+extern int yylex_destroy();
 
 #ifdef STRINGIN
 extern char * yyStringInputPointer;
