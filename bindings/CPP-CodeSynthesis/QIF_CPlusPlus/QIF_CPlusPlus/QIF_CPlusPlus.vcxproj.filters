@@ -22,6 +22,7 @@
     <None Include="res\QIF_CPlusPlus.ico">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="PostBuildStep.cmd" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="QIF_CPlusPlus.h">

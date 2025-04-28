@@ -574,7 +574,7 @@ DATDEF/FA(DAT_A),DAT(A)                 <- datum definition
 void CQIF_CPlusPlusDlg::OnBnClickedReadqif()
 {
 	CString wrkstr;
-	::std::auto_ptr< ::QIFDocumentType > qifDoc; // QIF objects (eventually)
+	std::unique_ptr<QIFDocumentType> qifDoc; // QIF objects (eventually)
 
 	// set up file open dialog
 	CFileDialog InDlg(TRUE, _T("QIF"), NULL, OFN_HIDEREADONLY, _T("QIF documents files (*.QIF)|*.qif|All files (*.*)|*.*||"));
@@ -1041,27 +1041,27 @@ void CQIF_CPlusPlusDlg::OnBnClickedWriteqif()
 
 	// lists
 	MeasurementDevicesType measDevices;
-	measDevices.n(0); // this is an illegal value for n but we'll increment it later
+	measDevices.n(static_cast<xsd::qif30::NaturalType>(0)); // this is an illegal value for n but we'll increment it later
 	DatumDefinitionsType datumDefs;
-	datumDefs.n(0);
+	datumDefs.n(static_cast<xsd::qif30::NaturalType>(0));
 	DatumReferenceFramesType drfDefs;
-	drfDefs.n(0);
+	drfDefs.n(static_cast<xsd::qif30::NaturalType>(0));
 	FeatureDefinitionsType featDefs;
-	featDefs.n(0);
+	featDefs.n(static_cast<xsd::qif30::NaturalType>(0));
 	FeatureNominalsType featNoms;
-	featNoms.n(0);
+	featNoms.n(static_cast<xsd::qif30::NaturalType>(0));
 	FeatureItemsType featItems;
-	featItems.n(0);
+	featItems.n(static_cast<xsd::qif30::NaturalType>(0));
 	FeatureMeasurementsType featActs;
-	featActs.n(0);
+	featActs.n(static_cast<xsd::qif30::NaturalType>(0));
 	CharacteristicDefinitionsType charDefs;
-	charDefs.n(0);
+	charDefs.n(static_cast<xsd::qif30::NaturalType>(0));
 	CharacteristicNominalsType charNoms;
-	charNoms.n(0);
+	charNoms.n(static_cast<xsd::qif30::NaturalType>(0));
 	CharacteristicItemsType charItems;
-	charItems.n(0);
+	charItems.n(static_cast<xsd::qif30::NaturalType>(0));
 	CharacteristicMeasurementsType charActs;
-	charActs.n(0);
+	charActs.n(static_cast<xsd::qif30::NaturalType>(0));
 #pragma endregion lists
 
 #pragma region Datum definitions
@@ -1094,7 +1094,7 @@ void CQIF_CPlusPlusDlg::OnBnClickedWriteqif()
 	drfA.id(qifid++); // required id
 	// datums list
 	DatumsType drfAdats;
-	drfAdats.n(0);
+	drfAdats.n(static_cast<xsd::qif30::NaturalType>(0));
 
 	// A is simple datum with no material condition modifier
 	DatumType dtA_A;
@@ -1128,7 +1128,7 @@ void CQIF_CPlusPlusDlg::OnBnClickedWriteqif()
 	drfAB.id(qifid++); // required id
 	// datums list
 	DatumsType drfABdats;
-	drfABdats.n(0);
+	drfABdats.n(static_cast<xsd::qif30::NaturalType>(0));
 
 	// A is simple datum with no material condition modifier
 	DatumType dtA_AB;
@@ -1181,7 +1181,7 @@ void CQIF_CPlusPlusDlg::OnBnClickedWriteqif()
 	drfABC.id(qifid++); // required id
 	// datums list
 	DatumsType drfABCdats;
-	drfABCdats.n(0);
+	drfABCdats.n(static_cast<xsd::qif30::NaturalType>(0));
 
 	// A is simple datum with no material condition modifier
 	DatumType dtA_ABC;
