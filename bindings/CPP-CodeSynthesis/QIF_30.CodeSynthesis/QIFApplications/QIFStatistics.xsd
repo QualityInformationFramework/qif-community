@@ -1,0 +1,2934 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This document is part of QIF 3.0, an open, industry-wide standard -->
+<!-- established by the Dimensional Metrology Standards Consortium.    -->
+<!-- This document shall not be used in any manner to claim any        -->
+<!-- proprietary rights to such information, such as rights to a       -->
+<!-- patent, trademark, or copyright.                                  -->
+
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://qifstandards.org/xsd/qif3"
+  xmlns:t="http://qifstandards.org/xsd/qif3"
+  targetNamespace="http://qifstandards.org/xsd/qif3"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified"
+  version="3.0.0">
+
+  <xs:include schemaLocation="../QIFLibrary/Statistics.xsd"/>
+
+  <xs:annotation>
+    <xs:documentation>
+      The QIFStatistics.xsd schema file defines types that describe plans
+      for statistical studies and the results from statistical studies.
+    </xs:documentation>
+  </xs:annotation>
+
+<!--  BEGIN STATISTICAL STUDY PLAN TYPES -->
+
+  <xs:complexType name="StatisticalStudyPlanBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The StatisticalStudyPlanBaseType is the abstract base type that
+        defines information common to all statistical study plans.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Version"
+        type="VersionType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Version element gives version information about
+            the statistical study.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="Attributes"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Attributes element contains user defined
+            attributes (typified, binary array, or XML structured).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:sequence
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional compositor defines the feature items
+            to be used in the study and whether to accumulate an
+            average feature representation.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:element name="FeatureItemIds"
+          type="ArrayReferenceType">
+          <xs:annotation>
+            <xs:documentation>
+              The FeatureItemIds element is the list of feature items to be
+              included in this statistical study.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="CalculateAverageFeatures"
+          type="xs:boolean"
+          minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>
+              The optional CalculateAverageFeatures element when
+              present and set true signifies that average features are
+              to be calculated in this statistical study.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+      <xs:sequence
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional compositor defines the characteristic items
+            to be used in the study and the statistical values to be
+            accumulated for them.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:element name="CharacteristicItemIds"
+          type="ArrayReferenceType">
+          <xs:annotation>
+            <xs:documentation>
+              The CharacteristicItemIds element is the list of
+              characteristic items to be included in this statistical
+              study.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="StatsValuesPerChar"
+          type="ListAccumulatedStatsValuesType"
+          minOccurs="0"
+          maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>
+              Each optional StatsValuesPerChar element identifies the
+              various statistical values to be accumulated on a
+              per-characteristic basis in this statistical study plan. For
+              example, the Cpk of each characteristic might be accumulated.
+              Each optional StatsValuesPerChar element also optionally
+              identifies the statistical software to use for the evaluation.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="StatsValuesPerSubgroup"
+          type="ListSubgroupStatsValuesType"
+          minOccurs="0"
+          maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>
+              Each optional StatsValuesPerSubgroup element identifies
+              the various statistical values to be accumulated on a
+              per-subgroup basis for this statistical study plan. For
+              example, the average value of each characteristic might
+              be accumulated for each subgroup. Each optional
+              StatsValuesPerSubgroup element also optionally identifies the
+              statistical software to use for the evaluation.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+      <xs:element name="StatsValuesSummarys"
+        type="SummaryStatsValuesListType"
+        minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each optional StatsValuesSummarys element identifies a list of
+            statistical values to be summarized over all characteristics in
+            this statistical study plan. For example, the Cpk value over
+            all characteristics might be summarized. Each optional
+            StatsValuesSummarys element also optionally identifies the
+            statistical software to use for the evaluation.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PreInspectionTraceability"
+        type="PreInspectionTraceabilityType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional PreInspectionTraceability element gives
+            traceability information that applies to the statistical study.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Name"
+        type="xs:token"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Name element is the name identifying the
+            statistical study.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Description"
+        type="xs:string"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Description element is a description of the
+            statistical study.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PlanId"
+        type="QIFReferenceType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional PlanId element is the QIF id of the associated
+            measurement plan.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            This optional compositor provides a choice between software, or
+            a standard of specification.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:element name="SoftwareId"
+          type="QIFReferenceType">
+          <xs:annotation>
+            <xs:documentation>
+              The optional SoftwareId element is the QIF id of the analysis
+              software to be used with this plan. This value can be
+              overridden by software, standard or specification, and
+              algorithm ids in the StatsValuesPerChar,
+              StatsValuesPerSubgroup, and StatsValuesSummarys elements.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="StandardId"
+          type="QIFReferenceType">
+          <xs:annotation>
+            <xs:documentation>
+              The optional StandardId element is the QIF id of the standard
+              or specification to be used with this plan. This value can be
+              overridden by software, standard or specification, and
+              algorithm ids in the StatsValuesPerChar,
+              StatsValuesPerSubgroup, and StatsValuesSummarys elements.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="CorrectiveActionPlanId"
+        type="QIFReferenceType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional CorrectiveActionPlanId element is the QIF id of a
+            corrective action plan.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id"
+      type="QIFIdType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required id attribute is the QIF id of the statistical study,
+          used for referencing.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="AbsoluteLimitsByUnitType">
+    <xs:annotation>
+      <xs:documentation>
+        The AbsoluteLimitsByUnitType defines a list of limits for various
+        units types. This reusable type is used to define absolute
+        minimums, maximums and differences for various units types.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="LinearLimit"
+        type="LinearValueType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional LinearLimit element defines the limit that a linear
+            characteristic must achieve.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AngularLimit"
+        type="AngularValueType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional AngularLimit element defines the limit that an
+            angular characteristic must achieve.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AreaLimit"
+        type="AreaValueType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional AreaLimit element defines the limit that an area
+            characteristic must achieve.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ForceLimit"
+        type="ForceValueType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ForceLimit element defines the limit that a force
+            characteristic must achieve.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MassLimit"
+        type="MassValueType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional MassLimit element defines the limit that a mass
+            characteristic must achieve.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PressureLimit"
+        type="PressureValueType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional PressureLimit element defines the limit that a
+            pressure characteristic must achieve.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SpeedLimit"
+        type="SpeedValueType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional SpeedLimit element defines the limit that a speed
+            characteristic must achieve.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TemperatureLimit"
+        type="TemperatureValueType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional TemperatureLimit element defines the limit that a
+            temperature characteristic must achieve.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TimeLimit"
+        type="TimeValueType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional TimeLimit element defines the limit that a time
+            characteristic must achieve.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedUnitLimit"
+        type="UserDefinedUnitValueType"
+        minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each optional UserDefinedUnitLimit element defines the limit a
+            device measuring a user-defined unit characteristic must
+            achieve. This element is not to be used to define a limit with
+            units available in another element. In particular this element
+            is not to be used to define a limit with linear units, angular
+            units, or units of temperature, area, force, mass, pressure,
+            speed, or time.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of absolute limits defined
+          in the list.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="LinearityStudyPlanType">
+    <xs:annotation>
+      <xs:documentation>
+        The LinearityStudyPlanType defines information that is related to a
+        linearity statistical study where an artifact or artifacts are
+        measured to determine the linearity of a measurement system.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="StatisticalStudyPlanBaseType">
+        <xs:sequence>
+          <xs:element name="MeasurementDeviceIds"
+            type="ArrayReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional MeasurementDeviceIds element is a list of
+                the ids of one or more measurement devices in the
+                measurement system to be studied.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GoodnessOfFitThreshold"
+            type="xs:decimal"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional GoodnessOfFitThreshold element is the minimum
+                goodness of fit (R-squared) that must be achieved for the
+                measurement device to pass.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice>
+            <xs:annotation>
+              <xs:documentation>
+                This compositor provides a choice between the two methods
+                (absolute and relative) used to determine minimum allowed
+                linearity.
+              </xs:documentation>
+            </xs:annotation>
+            <xs:element name="AbsoluteMinimums"
+              type="AbsoluteLimitsByUnitType">
+              <xs:annotation>
+                <xs:documentation>
+                  The AbsoluteMinimums element defines the list of minimum
+                  allowable linearities measuring devices must achieve.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="RelativeLinearityMinimum"
+              type="xs:decimal">
+              <xs:annotation>
+                <xs:documentation>
+                  The RelativeLinearityMinimum element defines the minimum
+                  allowable relative linearity measuring devices must
+                  achieve.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="StabilityStudyPlanType">
+    <xs:annotation>
+      <xs:documentation>
+        The StabilityStudyPlanType defines information that is related to a
+        stability statistical study where the same part or artifact is
+        measured over time to assess the stability of a measurement system.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="StatisticalStudyPlanBaseType">
+        <xs:sequence>
+          <xs:element name="MeasurementDeviceIds"
+            type="ArrayReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional MeasurementDeviceIds element is a list of
+                the ids of one or more measurement devices in the
+                measurement system to be studied.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SampleSize"
+            type="xs:positiveInteger">
+            <xs:annotation>
+              <xs:documentation>
+                The SampleSize element specifies the number of samples
+                to be used in the statistical study.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SampleFrequency"
+            type="xs:positiveInteger">
+            <xs:annotation>
+              <xs:documentation>
+                The SampleFrequency element specifies the sampling
+                frequency n, n parts are measured in each sampling
+                interval.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SamplingInterval"
+            type="SamplingIntervalType">
+            <xs:annotation>
+              <xs:documentation>
+                The SamplingInterval element specifies the sampling
+                interval.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="BiasStudyPlanType">
+    <xs:annotation>
+      <xs:documentation>
+        The BiasStudyPlanType defines information that is related to a
+        bias statistical study where the bias (measured value versus
+        actual value) of a measurement system is determined.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MultipleProductInstanceStudyPlanBaseType">
+        <xs:sequence>
+          <xs:element name="MeasurementDeviceIds"
+            type="ArrayReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional MeasurementDeviceIds element is a list of
+                the ids of one or more measurement devices in the
+                measurement system to be studied.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="FirstArticleStudyPlanType">
+    <xs:annotation>
+      <xs:documentation>
+        The FirstArticleStudyPlanType defines information that is
+        related to a first article statistical study where the number
+        and severity of non-conforming characteristics determines
+        product acceptance.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="StatisticalStudyPlanBaseType">
+        <xs:sequence>
+          <xs:element name="InSpecRatio"
+            type="xs:decimal">
+            <xs:annotation>
+              <xs:documentation>
+                The InSpecRatio element specifies the fraction of inspected
+                characteristics which must be within specification limits
+                for the product to pass expressed as a number between 0 and
+                1.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice>
+            <xs:annotation>
+              <xs:documentation>
+                This compositor provides a choice between the two methods
+                (absolute and relative) used to determine maximum allowed
+                deviation.
+              </xs:documentation>
+            </xs:annotation>
+            <xs:element name="AbsoluteMaximums"
+              type="AbsoluteLimitsByUnitType">
+              <xs:annotation>
+                <xs:documentation>
+                  The AbsoluteMaximums element defines a list of maximum
+                  allowable absolute deviations from nominal for
+                  out-of-specification characteristics.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="RelativeMaximum"
+              type="xs:decimal">
+              <xs:annotation>
+                <xs:documentation>
+                  The RelativeMaximum element defines the maximum allowable
+                  deviation for out of specification characteristics as a
+                  multiple of the tolerance zone.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ProcessDifferenceStudyPlanType">
+    <xs:annotation>
+      <xs:documentation>
+        The ProcessDifferenceStudyPlanType defines information that is
+        related to a difference statistical study where the same part is
+        measured before and after a manufacturing process to determine any
+        part distortion caused by that process.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="StatisticalStudyPlanBaseType">
+        <xs:sequence>
+          <xs:element name="NumberOfSamples"
+            type="xs:positiveInteger">
+            <xs:annotation>
+              <xs:documentation>
+                The NumberOfSamples element specifies the number of samples
+                to be used in the statistical study.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SubgroupSize"
+            type="xs:positiveInteger"
+            fixed="2">
+            <xs:annotation>
+              <xs:documentation>
+                The SubgroupSize element fixes the size of each subgroup to
+                2. The first item in each subgroup is the result of
+                measurement before the manufacturing process and the second
+                item is the result of measurement after the process.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ManufacturingProcessId"
+            type="QIFReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ManufacturingProcessId element is a reference
+                to the traceability information for the process on which
+                the study is to be based.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice>
+            <xs:annotation>
+              <xs:documentation>
+                This compositor provides a choice between the two methods
+                (absolute and relative) used to determine maximum allowed
+                differences.
+              </xs:documentation>
+            </xs:annotation>
+            <xs:element name="AbsoluteDifferences"
+              type="AbsoluteLimitsByUnitType">
+              <xs:annotation>
+                <xs:documentation>
+                  The AbsoluteDifferences element defines a list of the
+                  maximum allowable absolute differences between before
+                  and after for characteristics of various units.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="RelativeDifference"
+              type="xs:decimal">
+              <xs:annotation>
+                <xs:documentation>
+                  The RelativeDifference element defines the maximum
+                  allowable difference between before and after for
+                  characteristics as a multiple of the tolerance zone.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MultipleProductInstanceStudyPlanBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The MultipleProductInstanceStudyPlanBaseType is the abstract
+        base type that defines information common to all statistical
+        studies involving multiple part measurements.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="StatisticalStudyPlanBaseType">
+        <xs:sequence>
+          <xs:element name="NumberOfSamples"
+            type="xs:positiveInteger">
+            <xs:annotation>
+              <xs:documentation>
+                The NumberOfSamples element specifies the number of samples
+                to be used in the statistical study.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SubgroupSize"
+            type="xs:positiveInteger"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional SubgroupSize element defines the size of each
+                subgroup. The number of subgroups is determined by dividing
+                the number of samples by the subgroup size. The subgroup
+                size must be specified if control limits, Cp, Cpk or the
+                estimated standard deviation are to be calculated.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="SimpleStudyPlanType">
+    <xs:annotation>
+      <xs:documentation>
+        The SimpleStudyPlanType defines information that is related to a
+        simple statistical study where multiple samples are measured for
+        the purpose of averaging features for process adjustment or reverse
+        engineering.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MultipleProductInstanceStudyPlanBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="CapabilityStudyPlanType">
+    <xs:annotation>
+      <xs:documentation>
+        The CapabilityStudyPlanType defines information that is related to
+        a capability statistical study where a number of part samples are
+        measured to establish the capability of a manufacturing process.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MultipleProductInstanceStudyPlanBaseType">
+        <xs:sequence>
+          <xs:choice>
+            <xs:annotation>
+              <xs:documentation>
+                This compositor provides a choice between the two values
+                used to determine process capability: Cpk or Ppk.
+              </xs:documentation>
+            </xs:annotation>
+            <xs:element name="CpkThreshold"
+              type="CriterionDecimalType">
+              <xs:annotation>
+                <xs:documentation>
+                  The CpkThreshold element defines the minimum Cpk value
+                  that must be achieved for a process to be considered
+                  capable.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="PpkThreshold"
+              type="CriterionDecimalType">
+              <xs:annotation>
+                <xs:documentation>
+                  The PpkThreshold element defines the minimum Ppk value
+                  that must be achieved for a process to be considered
+                  capable.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="GageRandRStudyEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The GageRandRStudyEnumType enumerates the various gage RandR study
+        types.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="RANGE"/>
+      <xs:enumeration value="AVGANDRANGE"/>
+      <xs:enumeration value="ANOVA"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="CriteriaByUnitType">
+    <xs:annotation>
+      <xs:documentation>
+        The CriteriaByUnitType defines a list of criteria for various units
+        types.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="LinearCriterion"
+        type="CriterionLinearType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional LinearCriterion element defines a criterion for a
+            linear characteristic.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AngularCriterion"
+        type="CriterionAngularType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional AngularCriterion element defines a criterion for an
+            angular characteristic.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AreaCriterion"
+        type="CriterionAreaType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional AreaCriterion element defines a criterion for an
+            area characteristic.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ForceCriterion"
+        type="CriterionForceType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ForceCriterion element defines a criterion for a
+            force characteristic.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MassCriterion"
+        type="CriterionMassType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional MassCriterion element defines a criterion for a
+            mass characteristic.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PressureCriterion"
+        type="CriterionPressureType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional PressureCriterion element defines a criterion for
+            a pressure characteristic.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SpeedCriterion"
+        type="CriterionSpeedType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional SpeedCriterion element defines a criterion for a
+            speed characteristic.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TemperatureCriterion"
+        type="CriterionTemperatureType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional TemperatureCriterion element defines a criterion
+            for a temperature characteristic.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TimeCriterion"
+        type="CriterionTimeType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional TimeCriterion element defines a criterion for a
+            time characteristic.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedUnitCriterion"
+        type="CriterionUserDefinedUnitType"
+        minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each optional UserDefinedUnitCriterion element defines a
+            criterion for user defined unit characteristics. This element
+            is not to be used to define a criterion with units available in
+            another element. In particular this element is not to be used
+            to define a criterion with linear units, angular units, or
+            units of temperature, area, force, mass, pressure, speed, or
+            time.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of criteria in the list.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="GageRandRStudyPlanType">
+    <xs:annotation>
+      <xs:documentation>
+        The GageRandRStudyPlanType defines information that is related to a
+        gage repeatability and reproducibility statistical study where a
+        number of part samples are repeatedly measured by two or more
+        appraisers to establish the repeatability and reproducibility of a
+        measurement process.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="StatisticalStudyPlanBaseType">
+        <xs:sequence>
+          <xs:element name="MeasurementDeviceIds"
+            type="ArrayReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional MeasurementDeviceIds element is a list of the
+                ids of one or more measurement devices in the measurement
+                system to be studied.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RandRStudyType"
+            type="GageRandRStudyEnumType">
+            <xs:annotation>
+              <xs:documentation>
+                The RandRStudyType element defines the type of the gage
+                RandR study type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NumberOfAppraisers"
+            type="xs:positiveInteger">
+            <xs:annotation>
+              <xs:documentation>
+                The NumberOfAppraisers element defines the number of
+                appraisers taking part in the study.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NumberOfParts"
+            type="xs:positiveInteger">
+            <xs:annotation>
+              <xs:documentation>
+                The NumberOfParts element defines the number of parts to be
+                used in the study.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NumberOfTrials"
+            type="xs:positiveInteger">
+            <xs:annotation>
+              <xs:documentation>
+                The NumberOfTrials element defines the number of times each
+                part is to be measured by each appraiser.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                This optional compositor provides a choice between
+                relative and absolute appraiser equipment variation
+                criteria.
+              </xs:documentation>
+            </xs:annotation>
+            <xs:element name="MaximumRelativeAppraiserVariation"
+              type="CriterionDecimalType">
+              <xs:annotation>
+                <xs:documentation>
+                  The MaximumRelativeAppraiserVariation element defines the
+                  maximum appraiser variation allowed for the gage RandR
+                  study to pass.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="MaximumAbsoluteAppraiserVariation"
+              type="CriteriaByUnitType">
+              <xs:annotation>
+                <xs:documentation>
+                  The MaximumAbsoluteAppraiserVariation element defines a
+                  list of maximum appraiser variations allowed for the gage
+                  RandR study to pass in various units.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+          <xs:choice
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                This optional compositor provides a choice between relative
+                and absolute maximum equipment variation criteria.
+              </xs:documentation>
+            </xs:annotation>
+            <xs:element name="MaximumRelativeEquipmentVariation"
+              type="CriterionDecimalType">
+              <xs:annotation>
+                <xs:documentation>
+                  The MaximumRelativeEquipmentVariation element defines the
+                  maximum equipment variation allowed for the gage RandR
+                  study to pass.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="MaximumAbsoluteEquipmentVariation"
+              type="CriteriaByUnitType">
+              <xs:annotation>
+                <xs:documentation>
+                  The MaximumAbsoluteEquipmentVariation element defines a
+                  list of maximum equipment variations allowed for the gage
+                  RandR study to pass in various units.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+          <xs:choice
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                This optional compositor provides a choice between relative
+                and absolute maximum total RandR criteria.
+              </xs:documentation>
+            </xs:annotation>
+            <xs:element name="MaximumRelativeTotalRandR"
+              type="CriterionDecimalType">
+              <xs:annotation>
+                <xs:documentation>
+                  The MaximumRelativeTotalRandR element defines the maximum
+                  total RandR allowed for the gage RandR study to pass.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="MaximumAbsoluteTotalRandR"
+              type="CriteriaByUnitType">
+              <xs:annotation>
+                <xs:documentation>
+                  The MaximumAbsoluteTotalRandR element defines a list
+                  of maximum total RandR allowed for the gage RandR
+                  study to pass in various units.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ControlMethodType">
+    <xs:annotation>
+      <xs:documentation>
+        The ControlMethodType defines the control method for detecting
+        statistical process control issues.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AssignableCauseIds"
+        type="ArrayReferenceType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional AssignableCauseIds element is a list of the QIF
+            ids of possible assignable causes for this control issue.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="Attributes"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Attributes element contains user defined
+            attributes (typified, binary array, or XML structured).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice>
+        <xs:element name="NumOutOfTolerance"
+          type="CriterionIntegerType">
+          <xs:annotation>
+            <xs:documentation>
+              The NumOutOfTolerance element defines the number of
+              characteristic values that must exceed upper or lower
+              specification limit for a control issue to exist.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="CpThreshold"
+          type="CriterionDecimalType">
+          <xs:annotation>
+            <xs:documentation>
+              The CpThreshold element defines the Cp threshold below which
+              a control issue might exist.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="CpkThreshold"
+          type="CriterionDecimalType">
+          <xs:annotation>
+            <xs:documentation>
+              The CpkThreshold element defines the Cpk threshold below
+              which a control issue might exist.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="PpThreshold"
+          type="CriterionDecimalType">
+          <xs:annotation>
+            <xs:documentation>
+              The PpThreshold element defines the Pp threshold below which
+              a control issue might exist.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="PpkThreshold"
+          type="CriterionDecimalType">
+          <xs:annotation>
+            <xs:documentation>
+              The PpkThreshold element defines the Ppk threshold below
+              which a control issue might exist.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="NumOutOfControl"
+          type="CriterionIntegerType">
+          <xs:annotation>
+            <xs:documentation>
+              The NumOutOfControl element defines the number of
+              characteristic values that must exceed upper or lower control
+              limits for a control issue to exist.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="TrendGrouping"
+          type="CriterionIntegerType">
+          <xs:annotation>
+            <xs:documentation>
+              The TrendGrouping element defines the number of adjacent
+              characteristic measurements that must be trending either up
+              or down as a group for a control issue to exist. Common
+              practice is to flag a control issue when 6 or more
+              measurements are trending.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="SkewGrouping"
+          type="CriterionIntegerType">
+          <xs:annotation>
+            <xs:documentation>
+              The SkewGrouping element defines the number of adjacent
+              characteristic measurements that must be grouped on one side
+              of the mean for a control issue to exist. Common practice is
+              to flag a control issue when 8 or more measurements are
+              skewed to one side of the mean.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="OneThirdGrouping"
+          type="CriterionOutOfType">
+          <xs:annotation>
+            <xs:documentation>
+              The OneThirdGrouping element defines the fraction of adjacent
+              characteristic measurements that must deviate from the mean
+              by one third or more of the difference between a control
+              limit and the mean and all on the same side of the mean for a
+              control issue to exist. Common practice is to flag a control
+              issue when 4 or more out of 5 measurements are one third or
+              more of the way from the mean to the control limit and on one
+              side of the mean.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="TwoThirdsGrouping"
+          type="CriterionOutOfType">
+          <xs:annotation>
+            <xs:documentation>
+              The TwoThirdsGrouping element defines the fraction of
+              adjacent characteristic measurements that must deviate from
+              the mean by two thirds or more of the difference between a
+              control limit and the mean and all on the same side of the
+              mean for a control issue to exist. Common practice is to flag
+              a control issue when 2 or more out of 3 measurements are two
+              thirds or more of the way from the mean to the control limit
+              and on one side of the mean.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Oscillation"
+          type="CriterionOutOfType">
+          <xs:annotation>
+            <xs:documentation>
+              The Oscillation element defines the fraction of adjacent
+              characteristic measurements that must deviate alternately
+              from the one side of the mean to the other side of the mean
+              for an oscillation control issue to exist.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Stratification"
+          type="CriterionOutOfType">
+          <xs:annotation>
+            <xs:documentation>
+              The Stratification element defines the fraction of adjacent
+              characteristic measurements that must deviate from the mean
+              by one third or more of the difference between a control
+              limit and the mean and on either side of the mean for a
+              control issue to exist.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="NumOutOfControlRng"
+          type="CriterionIntegerType">
+          <xs:annotation>
+            <xs:documentation>
+              The NumOutOfControlRng element defines the number of
+              characteristic subgroup ranges that must exceed upper or
+              lower control range limits for a control issue to exist.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="id"
+      type="QIFIdType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required id attribute is the QIF id of the control method,
+          used for referencing.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ControlMethodsType">
+    <xs:annotation>
+      <xs:documentation>
+        The ControlMethodsType defines a list of control methods.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ControlMethod"
+        type="ControlMethodType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each ControlMethod element defines a control method.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of control methods in the
+          list.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ProductionStudyPlanType">
+    <xs:annotation>
+      <xs:documentation>
+        The ProductionStudyPlanType defines information that is related to
+        an ongoing production statistical study where samples are measured
+        for statistical process control to ensure the ongoing stability or
+        capability of a manufacturing process.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MultipleProductInstanceStudyPlanBaseType">
+        <xs:sequence>
+          <xs:element name="SamplingMethod"
+            type="SamplingMethodType">
+            <xs:annotation>
+              <xs:documentation>
+                The SamplingMethod element defines a method of sample
+                selection.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ControlMethods"
+            type="ControlMethodsType">
+            <xs:annotation>
+              <xs:documentation>
+                The ControlMethods element defines a list of control
+                methods to detect process instability or lack of
+                capability.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+<!-- BEGIN SUBSTITUTION GROUP FOR STATISTICAL STUDY PLANS -->
+
+  <xs:element name="StatisticalStudyPlan"
+    type="StatisticalStudyPlanBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The global StatisticalStudyPlan element is the head of a
+        substitution group. Any element that is a member of the group may
+        be substituted for the StatisticalStudyPlan element anywhere the
+        StatisticalStudyPlan element may be used in an instance file.
+        This substitution group includes the following members:
+          BiasStudyPlan
+          CapabilityStudyPlan
+          FirstArticleStudyPlan
+          GageRandRStudyPlan
+          LinearityStudyPlan
+          ProcessDifferenceStudyPlan
+          ProductionStudyPlan
+          SimpleStudyPlan
+          StabilityStudyPlan
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="FirstArticleStudyPlan"
+    type="FirstArticleStudyPlanType"
+    substitutionGroup="StatisticalStudyPlan">
+    <xs:annotation>
+      <xs:documentation>
+        The global FirstArticleStudyPlan element gives information about a
+        first article inspection statistical study.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="LinearityStudyPlan"
+    type="LinearityStudyPlanType"
+    substitutionGroup="StatisticalStudyPlan">
+    <xs:annotation>
+      <xs:documentation>
+        The global LinearityStudyPlan element gives information about a
+        linearity statistical study.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="SimpleStudyPlan"
+    type="SimpleStudyPlanType"
+    substitutionGroup="StatisticalStudyPlan">
+    <xs:annotation>
+      <xs:documentation>
+        The global SimpleStudyPlan element gives information about a simple
+        multi-part statistical study.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="BiasStudyPlan"
+    type="BiasStudyPlanType"
+    substitutionGroup="StatisticalStudyPlan">
+    <xs:annotation>
+      <xs:documentation>
+        The global BiasStudyPlan element gives information about a bias
+        statistical study.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="StabilityStudyPlan"
+    type="StabilityStudyPlanType"
+    substitutionGroup="StatisticalStudyPlan">
+    <xs:annotation>
+      <xs:documentation>
+        The global StabilityStudyPlan element gives information about a
+        stability statistical study.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="ProcessDifferenceStudyPlan"
+    type="ProcessDifferenceStudyPlanType"
+    substitutionGroup="StatisticalStudyPlan">
+    <xs:annotation>
+      <xs:documentation>
+        The global ProcessDifferenceStudyPlan element gives information
+        about a difference statistical study.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="CapabilityStudyPlan"
+    type="CapabilityStudyPlanType"
+    substitutionGroup="StatisticalStudyPlan">
+    <xs:annotation>
+      <xs:documentation>
+        The global CapabilityStudyPlan element gives information about a
+        capability statistical study.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="GageRandRStudyPlan"
+    type="GageRandRStudyPlanType"
+    substitutionGroup="StatisticalStudyPlan">
+    <xs:annotation>
+      <xs:documentation>
+        The global GageRandRStudyPlan element gives information about a
+        gage repeatability and reproducibility statistical study.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="ProductionStudyPlan"
+    type="ProductionStudyPlanType"
+    substitutionGroup="StatisticalStudyPlan">
+    <xs:annotation>
+      <xs:documentation>
+        The global ProductionStudyPlan element gives information about a
+        production statistical study.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+<!-- END SUBSTITUTION GROUP FOR STATISTICAL STUDIES -->
+
+<!--  BEGIN STATISTICAL STUDY RESULTS TYPES -->
+
+  <xs:complexType name="StatisticalStudyResultsBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The StatisticalStudyResultsBaseType is the abstract base type that
+        defines information common to all statistical study results.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ThisStatisticalStudyResultsInstanceQPId"
+        type="QPIdType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ThisStatisticalStudyResultsInstanceQPId element
+            uniquely identifies the statistical study results. Different
+            versions of the results must have different
+            ThisStatisticalStudyResultsInstanceQPId elements.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="Attributes"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Attributes element contains user defined
+            attributes (typified, binary array, or XML structured).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Status"
+        type="StatsEvalStatusType">
+        <xs:annotation>
+          <xs:documentation>
+            The Status element is the overall status of the statistical
+            study.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice
+        minOccurs="0">
+        <xs:element name="SoftwareId"
+          type="QIFReferenceType">
+          <xs:annotation>
+            <xs:documentation>
+              The SoftwareId element is the id of the software used to
+              evaluate the statistical values in these results. This value
+              can be overridden by the value on any particular instance of
+              CharacteristicsStats or on any individual statistical value.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="StandardId"
+          type="QIFReferenceType">
+          <xs:annotation>
+            <xs:documentation>
+              The StandardId element is the id of the standard or
+              specification used to evaluate the statistical values in
+              these results. This value can be overridden by the value on
+              any particular instance of CharacteristicsStats or on any
+              individual statistical value.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="StudyIssues"
+        type="StudyIssuesType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional StudyIssues element defines a list that provides
+            details about any issues encountered in the study.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InspectionTraceability"
+        type="InspectionTraceabilityType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional InspectionTraceability element gives traceability
+            information that applies to the statistical study results.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Name"
+        type="xs:token"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Name element is the name identifying the
+            statistical study results.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Description"
+        type="xs:string"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Description element is a description of the
+            statistical study results.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="StudyId"
+        type="QIFReferenceType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional StudyId element is the QIF id of the associated
+            statistical study plan.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            This optional compositor provides a choice between QIF sources
+            of measurement results (either internal or external) or other,
+            external sources of measurement results.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:element name="ResultsIds"
+          type="ArrayReferenceType">
+          <xs:annotation>
+            <xs:documentation>
+              The ResultsIds element is a list of QIF ids of a measurement
+              results either internal or external to this QIF document.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ResultsQPIds"
+          type="ArrayQPIdFullReferenceType"
+          maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>
+              The ResultsQPIds element identifies a list of measurement
+              results by the results version number QPId in a QIF document
+              or documents external to this QIF document.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ResultsFiles"
+          type="ExternalFileReferencesType">
+          <xs:annotation>
+            <xs:documentation>
+              The ResultsFiles element contains a list of information about
+              external measurement results files.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element ref="AverageFeatures"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional AverageFeatures element is a list of the results of
+            average feature calculations.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="CharacteristicsStats"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional CharacteristicsStats element contains a list of
+            results of statistical analysis for one or more characteristics.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LinearStatsSummaries"
+        type="SummariesStatisticsLinearType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional LinearStatsSummary element contains a list of the
+            results of statistical summaries for characteristic statistics
+            with linear units.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AngularStatsSummaries"
+        type="SummariesStatisticsAngularType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional AngularStatsSummaries element contains a list of
+            the results of statistical summaries for characteristic
+            statistics with angular units.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AreaStatsSummaries"
+        type="SummariesStatisticsAreaType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional AreaStatsSummaries element contains a list of the
+            results of statistical summaries for characteristic statistics
+            with area units.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ForceStatsSummaries"
+        type="SummariesStatisticsForceType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ForceStatsSummaries element contains a list of the
+            results of statistical summaries for characteristic statistics
+            with force units.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MassStatsSummaries"
+        type="SummariesStatisticsMassType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional MassStatsSummaries element contains a list of the
+            results of statistical summaries for characteristic statistics
+            with mass units.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PressureStatsSummaries"
+        type="SummariesStatisticsPressureType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional PressureStatsSummaries element contains a list of
+            the results of statistical summaries for characteristic
+            statistics with pressure units.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SpeedStatsSummaries"
+        type="SummariesStatisticsSpeedType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional SpeedStatsSummaries element contains a list of the
+            results of statistical summaries for characteristic statistics
+            with speed units.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TemperatureStatsSummaries"
+        type="SummariesStatisticsTemperatureType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional TemperatureStatsSummaries element contains a list
+            of the results of statistical summaries for characteristic
+            statistics with temperature units.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TimeStatsSummaries"
+        type="SummariesStatisticsTimeType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional TimeStatsSummaries element contains a list of the
+            results of statistical summaries for characteristic statistics
+            with time units.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedUnitStatsSummaries"
+        type="SummariesStatisticsUserDefinedUnitType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional UserDefinedUnitStatsSummaries element contains a
+            list of the results of statistical summaries for characteristic
+            statistics with user defined units. This element is not to be
+            used to define summaries with units available in another
+            element. In particular this element is not to be used to define
+            summaries with linear units, angular units, or units of
+            temperature, area, force, mass, pressure, speed, or time.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="StatsSummaries"
+        type="SummariesStatisticsType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional StatsSummaries element contains a list of the
+            results of statistical summaries for characteristic statistics
+            with dimensionless units.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id"
+      type="QIFIdType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required id attribute is the QIF id of the statistical study
+          results, used for referencing.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="LinearityStudyResultsType">
+    <xs:annotation>
+      <xs:documentation>
+        The LinearityStudyResultsType defines the results from a linearity
+        statistical study where an artifact or artifacts were measured to
+        determine the linearity of a measurement device.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="StatisticalStudyResultsBaseType">
+        <xs:sequence>
+          <xs:element name="SampleSize"
+            type="xs:positiveInteger">
+            <xs:annotation>
+              <xs:documentation>
+                The SampleSize element specifies the number of samples
+                used in the statistical study.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MeasurementDeviceIds"
+            type="ArrayReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional MeasurementDeviceIds element is a list of the
+                ids of one or more measurement devices in the measurement
+                system to be studied.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="GoodnessOfFit"
+            type="MeasuredDecimalType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional GoodnessOfFit element is the goodness of fit
+                (R-squared) achieved by the measurement device.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:choice
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                This optional compositor provides a choice of the absolute
+                linearity results for the measurement device.
+              </xs:documentation>
+            </xs:annotation>
+            <xs:element name="LinearAbsoluteLinearity"
+              type="MeasuredLinearValueType">
+              <xs:annotation>
+                <xs:documentation>
+                  The optional LinearAbsoluteLinearity element is the
+                  linearity achieved by the measurement device measuring a
+                  linear characteristic.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="AngularAbsoluteLinearity"
+              type="MeasuredAngularValueType">
+              <xs:annotation>
+                <xs:documentation>
+                  The optional AngularAbsoluteLinearity element is the
+                  linearity achieved by the measurement device measuring an
+                  angular characteristic.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="AreaAbsoluteLinearity"
+              type="MeasuredAreaValueType">
+              <xs:annotation>
+                <xs:documentation>
+                  The optional AreaAbsoluteLinearity element is the
+                  linearity achieved by the measurement device measuring an
+                  area characteristic.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="ForceAbsoluteLinearity"
+              type="MeasuredForceValueType">
+              <xs:annotation>
+                <xs:documentation>
+                  The optional ForceAbsoluteLinearity element is the
+                  linearity achieved by the measurement device measuring a
+                  force characteristic.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="MassAbsoluteLinearity"
+              type="MeasuredMassValueType">
+              <xs:annotation>
+                <xs:documentation>
+                  The optional MassAbsoluteLinearity element is the
+                  linearity achieved by the measurement device measuring a
+                  mass characteristic.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="PressureAbsoluteLinearity"
+              type="MeasuredPressureValueType">
+              <xs:annotation>
+                <xs:documentation>
+                  The optional PressureAbsoluteLinearity element is the
+                  linearity achieved by the measurement device measuring a
+                  pressure characteristic.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="SpeedAbsoluteLinearity"
+              type="MeasuredSpeedValueType">
+              <xs:annotation>
+                <xs:documentation>
+                  The optional SpeedAbsoluteLinearity element is the
+                  linearity achieved by the measurement device measuring a
+                  speed characteristic.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="TemperatureAbsoluteLinearity"
+              type="MeasuredTemperatureValueType">
+              <xs:annotation>
+                <xs:documentation>
+                  The optional TemperatureAbsoluteLinearity element is the
+                  linearity achieved by the measurement device measuring a
+                  temperature characteristic.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="TimeAbsoluteLinearity"
+              type="MeasuredTimeValueType">
+              <xs:annotation>
+                <xs:documentation>
+                  The optional TimeAbsoluteLinearity element is the
+                  linearity achieved by the measurement device measuring a
+                  time characteristic.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="UserDefinedUnitAbsoluteLinearity"
+              type="MeasuredUserDefinedUnitValueType">
+              <xs:annotation>
+                <xs:documentation>
+                  The optional UserDefinedUnitAbsoluteLinearity element is
+                  the linearity achieved by the measurement device
+                  measuring an user-defined unit characteristic. This
+                  element is not to be used to define a measurement with
+                  units available in another element. In particular this
+                  element is not to be used to define a measurement with
+                  linear units, angular units, or units of temperature,
+                  area, force, mass, pressure, speed, or time.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+          <xs:element name="RelativeLinearity"
+            type="MeasuredDecimalType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional RelativeLinearity element is relative
+                linearity achieved by the measurement device.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="StabilityStudyResultsType">
+    <xs:annotation>
+      <xs:documentation>
+        The StabilityStudyResultsType defines the results from a stability
+        statistical study where the same part or artifact was measured over
+        time to assess the stability of a measurement device.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="StatisticalStudyResultsBaseType">
+        <xs:sequence>
+          <xs:element name="SampleSize"
+            type="xs:positiveInteger">
+            <xs:annotation>
+              <xs:documentation>
+                The SampleSize element specifies the number of samples n
+                used in the statistical study.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MeasurementDeviceIds"
+            type="ArrayReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional MeasurementDeviceIds element is a list of the
+                ids of one or more measurement devices in the measurement
+                system to be studied.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="BiasStudyResultsType">
+    <xs:annotation>
+      <xs:documentation>
+        The BiasStudyResultsType defines the results from a bias
+        statistical study where the bias (measured value versus actual
+        value) of a measurement device was determined.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="StatisticalStudyResultsBaseType">
+        <xs:sequence>
+          <xs:element name="SampleSize"
+            type="xs:positiveInteger">
+            <xs:annotation>
+              <xs:documentation>
+                The SampleSize element specifies the number of samples used
+                in the statistical study.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MeasurementDeviceIds"
+            type="ArrayReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional MeasurementDeviceIds element is a list of the
+                ids of one or more measurement devices in the measurement
+                system to be studied.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AbsoluteMeasurementsByUnitType">
+    <xs:annotation>
+      <xs:documentation>
+        The AbsoluteMeasurementsByUnitType defines a list of measurement
+        results for various units types. This reusable type is used to
+        define absolute minimums, maximums and differences for various
+        units types.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="LinearMeasurement"
+        type="MeasuredLinearValueType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional LinearMeasurement element defines a measurement
+            result in linear units.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AngularMeasurement"
+        type="MeasuredAngularValueType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional AngularMeasurement element defines a measurement
+            result in angular units.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AreaMeasurement"
+        type="MeasuredAreaValueType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional AreaMeasurement element defines a measurement
+            result in area units.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ForceMeasurement"
+        type="MeasuredForceValueType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ForceMeasurement element defines a measurement
+            result in force units.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MassMeasurement"
+        type="MeasuredMassValueType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional MassMeasurement element defines a measurement
+            result in mass units.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PressureMeasurement"
+        type="MeasuredPressureValueType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional PressureMeasurement element defines a measurement
+            result in pressure units.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SpeedMeasurement"
+        type="MeasuredSpeedValueType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional SpeedMeasurement element defines a measurement
+            result in speed units.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TemperatureMeasurement"
+        type="MeasuredTemperatureValueType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional TemperatureMeasurement element defines a
+            measurement result in temperature units.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TimeMeasurement"
+        type="MeasuredTimeValueType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional TimeMeasurement element defines a measurement
+            result in time units.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserDefinedUnitMeasurement"
+        type="MeasuredUserDefinedUnitValueType"
+        minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each optional UserDefinedUnitMeasurement defines a measurement
+            result with a particular set of units. This element is not to
+            be used to define a measurement with units available in another
+            element. In particular this element is not to be used to define
+            a measurement with linear units, angular units, or units of
+            temperature, area, force, mass, pressure, speed, or time.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of absolute measurement
+          results defined in the list.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="FirstArticleStudyResultsType">
+    <xs:annotation>
+      <xs:documentation>
+        The FirstArticleStudyResultsType defines information that is
+        related to the results of a first article statistical study
+        where the number and severity of non-conforming characteristics
+        determined product acceptance.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="StatisticalStudyResultsBaseType">
+        <xs:sequence>
+          <xs:element name="InSpecRatio"
+            type="xs:decimal"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional InSpecRatio element is the fraction of
+                inspected characteristics which were within specification
+                limits expressed as a number between 0 and 1.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AbsoluteMaximums"
+            type="AbsoluteMeasurementsByUnitType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional AbsoluteMaximums element defines the
+                worst absolute deviation from nominal over all
+                characteristics for various units.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RelativeMaximum"
+            type="MeasuredDecimalType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional RelativeMaximum element is the worst relative
+                deviation from nominal over all characteristics
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ProcessDifferenceStudyResultsType">
+    <xs:annotation>
+      <xs:documentation>
+        The ProcessDifferenceStudyResultsType defines information that is
+        related the to the results of a difference statistical study where
+        the same part was measured before and after a manufacturing process
+        to determine any part distortion caused by that process.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="StatisticalStudyResultsBaseType">
+        <xs:sequence>
+          <xs:element name="NumberOfSamples"
+            type="xs:positiveInteger">
+            <xs:annotation>
+              <xs:documentation>
+                The NumberOfSamples element specifies the number of samples
+                used in the statistical study.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SubgroupSize"
+            type="xs:positiveInteger"
+            fixed="2">
+            <xs:annotation>
+              <xs:documentation>
+                The SubgroupSize element fixed the size of each subgroup
+                used in the difference statistical study.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ManufacturingProcessId"
+            type="QIFReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ManufacturingProcessId element is a reference
+                to the traceability information for the process on which
+                the study was based.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AbsoluteDifferences"
+            type="AbsoluteMeasurementsByUnitType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional AbsoluteDifferences element defines the
+                worst absolute differences between before and after
+                over all characteristics for various units.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RelativeDifference"
+            type="MeasuredDecimalType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional RelativeDifference element is the worst
+                relative deviation between before and after over all
+                characteristics
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MultipleProductInstanceStudyResultsBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The MultipleProductInstanceStudyResultsBaseType is the abstract
+        base type that defines information common to the results of all
+        statistical studies involving multiple part measurements.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="StatisticalStudyResultsBaseType">
+        <xs:sequence>
+          <xs:element name="NumberOfSamples"
+            type="xs:positiveInteger">
+            <xs:annotation>
+              <xs:documentation>
+                The NumberOfSamples element specifies the number of samples
+                used in the statistical study.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SubgroupSize"
+            type="xs:positiveInteger"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional SubgroupSize element is the size of each
+                subgroup used in the statistical study.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="SimpleStudyResultsType">
+    <xs:annotation>
+      <xs:documentation>
+        The SimpleStudyResultsType defines information that is related to
+        the results of a simple statistical study where multiple samples
+        were measured for the purpose of averaging features for process
+        adjustment or reverse engineering.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MultipleProductInstanceStudyResultsBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="CapabilityStudyResultsType">
+    <xs:annotation>
+      <xs:documentation>
+        The CapabilityStudyResultsType defines information that is related
+        to the results of a capability statistical study where a number of
+        part samples were measured to establish the capability of a
+        manufacturing process.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MultipleProductInstanceStudyResultsBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="GageRandRStudyResultsType">
+    <xs:annotation>
+      <xs:documentation>
+        The GageRandRStudyResultsType defines information that is related to
+        the results of a gage repeatability and reproducibility statistical
+        study where a number of part samples were repeatedly measured by
+        two or more appraisers to establish the repeatability and
+        reproducibility of a measurement process.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="StatisticalStudyResultsBaseType">
+        <xs:sequence>
+          <xs:element name="MeasurementDeviceIds"
+            type="ArrayReferenceType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional MeasurementDeviceIds element is a list of the
+                ids of one or more measurement devices in the measurement
+                system to be studied.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NumberOfAppraisers"
+            type="xs:positiveInteger">
+            <xs:annotation>
+              <xs:documentation>
+                The NumberOfAppraisers element defines the number of
+                appraisers that took part in the study.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NumberOfParts"
+            type="xs:positiveInteger">
+            <xs:annotation>
+              <xs:documentation>
+                The NumberOfParts element defines the number of parts used
+                in the study.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NumberOfTrials"
+            type="xs:positiveInteger">
+            <xs:annotation>
+              <xs:documentation>
+                The NumberOfTrials element defines the number of times each
+                part was measured by each appraiser.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ProductionStudyResultsType">
+    <xs:annotation>
+      <xs:documentation>
+        The ProductionStudyResultsType defines information that is related
+        to the results of an ongoing production statistical study where
+        samples are measured for statistical process control to ensure the
+        ongoing stability or capability of a manufacturing process.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="MultipleProductInstanceStudyResultsBaseType">
+        <xs:sequence>
+          <xs:element name="ControlIssueDetailsList"
+            type="ControlIssueDetailsListType"
+            maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ControlIssueDetailsList element is a list
+                of control issues that were encountered.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+<!-- BEGIN SUBSTITUTION GROUP FOR STATISTICAL STUDY RESULTS -->
+
+  <xs:element name="StatisticalStudyResults"
+    type="StatisticalStudyResultsBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The global StatisticalStudyResults element is the head of a
+        substitution group. Any element that is a member of the group may
+        be substituted for the StatisticalStudyResults element anywhere the
+        StatisticalStudyResults element may be used in an instance file.
+        The members of this substitution group are:
+          BiasStudyResults
+          CapabilityStudyResults
+          FirstArticleStudyResults
+          GageRandRStudyResults
+          LinearityStudyResults
+          SimpleStudyResults
+          StabilityStudyResults
+          ProcessDifferenceStudyResults
+          ProductionStudyResults
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="FirstArticleStudyResults"
+    type="FirstArticleStudyResultsType"
+    substitutionGroup="StatisticalStudyResults">
+    <xs:annotation>
+      <xs:documentation>
+        The global FirstArticleStudyResults element gives information about
+        the results of a first article inspection statistical study.
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:key name="FirstArticleSubgroupIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The FirstArticleSubgroupIdKey collects all QIF ids of all
+          Subgroups in CharacteristicStats of a first article study.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:CharacteristicsStats/t:*/t:Subgroups/t:Subgroup"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="FirstArticleSubgroupIdKeyref"
+      refer="FirstArticleSubgroupIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The FirstArticleSubgroupIdKeyref requires that a SubgroupId
+          in a StudyIssue in CharacteristicStats be the id of a
+          Subgroup in the same first article study.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:CharacteristicsStats/t:*/t:StudyIssues/t:StudyIssue
+              /t:SubgroupIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+  </xs:element>
+
+  <xs:element name="LinearityStudyResults"
+    type="LinearityStudyResultsType"
+    substitutionGroup="StatisticalStudyResults">
+    <xs:annotation>
+      <xs:documentation>
+        The global LinearityStudyResults element gives information about
+        the results of a linearity statistical study.
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:key name="LinearitySubgroupIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The LinearitySubgroupIdKey collects all QIF ids of all
+          Subgroups in CharacteristicStats of a linearity study.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:CharacteristicsStats/t:*/t:Subgroups/t:Subgroup"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="LinearitySubgroupIdKeyref"
+      refer="LinearitySubgroupIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The LinearitySubgroupIdKeyref requires that a SubgroupId in
+          a StudyIssue in CharacteristicStats be the id of a Subgroup
+          in the same linearity study.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:CharacteristicsStats/t:*/t:StudyIssues/t:StudyIssue
+              /t:SubgroupIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+  </xs:element>
+
+  <xs:element name="SimpleStudyResults"
+    type="SimpleStudyResultsType"
+    substitutionGroup="StatisticalStudyResults">
+    <xs:annotation>
+      <xs:documentation>
+        The global SimpleStudyResults element gives information about the
+        results of a simple multi-part statistical study.
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:key name="SimpleSubgroupIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The SimpleSubgroupIdKey collects all QIF ids of all
+          Subgroups in CharacteristicStats of a simple study.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:CharacteristicsStats/t:*/t:Subgroups/t:Subgroup"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="SimpleSubgroupIdKeyref"
+      refer="SimpleSubgroupIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The SimpleSubgroupIdKeyref requires that a SubgroupId in
+          a StudyIssue in CharacteristicStats be the id of a Subgroup
+          in the same simple study.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:CharacteristicsStats/t:*/t:StudyIssues/t:StudyIssue
+              /t:SubgroupIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+  </xs:element>
+
+  <xs:element name="BiasStudyResults"
+    type="BiasStudyResultsType"
+    substitutionGroup="StatisticalStudyResults">
+    <xs:annotation>
+      <xs:documentation>
+        The global BiasStudyResults element gives information about the
+        results of a bias statistical study.
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:key name="BiasSubgroupIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The BiasSubgroupIdKey collects all QIF ids of all
+          Subgroups in CharacteristicStats of a bias study.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:CharacteristicsStats/t:*/t:Subgroups/t:Subgroup"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="BiasSubgroupIdKeyref"
+      refer="BiasSubgroupIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The BiasSubgroupIdKeyref requires that a SubgroupId in
+          a StudyIssue in CharacteristicStats be the id of a Subgroup
+          in the same bias study.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:CharacteristicsStats/t:*/t:StudyIssues/t:StudyIssue
+              /t:SubgroupIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+  </xs:element>
+
+  <xs:element name="StabilityStudyResults"
+    type="StabilityStudyResultsType"
+    substitutionGroup="StatisticalStudyResults">
+    <xs:annotation>
+      <xs:documentation>
+        The global StabilityStudyResults element gives information about
+        the results of a stability statistical study.
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:key name="StabilitySubgroupIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The StabilitySubgroupIdKey collects all QIF ids of all
+          Subgroups in CharacteristicStats of a stability study.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:CharacteristicsStats/t:*/t:Subgroups/t:Subgroup"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="StabilitySubgroupIdKeyref"
+      refer="StabilitySubgroupIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The StabilitySubgroupIdKeyref requires that a SubgroupId in
+          a StudyIssue in CharacteristicStats be the id of a Subgroup
+          in the same stability study.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:CharacteristicsStats/t:*/t:StudyIssues/t:StudyIssue
+              /t:SubgroupIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+  </xs:element>
+
+  <xs:element name="CapabilityStudyResults"
+    type="CapabilityStudyResultsType"
+    substitutionGroup="StatisticalStudyResults">
+    <xs:annotation>
+      <xs:documentation>
+        The global CapabilityStudyResults element gives information about
+        the results of a capability statistical study.
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:key name="CapabilitySubgroupIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The CapabilitySubgroupIdKey collects all QIF ids of all
+          Subgroups in CharacteristicStats of a capability study.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:CharacteristicsStats/t:*/t:Subgroups/t:Subgroup"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="CapabilitySubgroupIdKeyref"
+      refer="CapabilitySubgroupIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The CapabilitySubgroupIdKeyref requires that a SubgroupId in
+          a StudyIssue in CharacteristicStats be the id of a Subgroup
+          in the same capability study.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:CharacteristicsStats/t:*/t:StudyIssues/t:StudyIssue
+              /t:SubgroupIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+  </xs:element>
+
+  <xs:element name="ProcessDifferenceStudyResults"
+    type="ProcessDifferenceStudyResultsType"
+    substitutionGroup="StatisticalStudyResults">
+    <xs:annotation>
+      <xs:documentation>
+        The global ProcessDifferenceStudyResults element gives information
+        about the results of a difference statistical study.
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:key name="ProcessDifferenceSubgroupIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProcessDifferenceSubgroupIdKey collects all QIF ids of all
+          Subgroups in CharacteristicStats of a process difference study.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:CharacteristicsStats/t:*/t:Subgroups/t:Subgroup"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ProcessDifferenceSubgroupIdKeyref"
+      refer="ProcessDifferenceSubgroupIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProcessDifferenceSubgroupIdKeyref requires that a
+          SubgroupId in a StudyIssue in CharacteristicStats be the id
+          of a Subgroup in the same process difference study.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:CharacteristicsStats/t:*/t:StudyIssues/t:StudyIssue
+              /t:SubgroupIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+  </xs:element>
+
+  <xs:element name="GageRandRStudyResults"
+    type="GageRandRStudyResultsType"
+    substitutionGroup="StatisticalStudyResults">
+    <xs:annotation>
+      <xs:documentation>
+        The global GageRandRStudyResults element gives information about
+        the results of a gage repeatability and reproducibility statistical
+        study.
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:key name="GageRandRSubgroupIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The GageRandRSubgroupIdKey collects all QIF ids of all
+          Subgroups in CharacteristicStats of a gage R and R study.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:CharacteristicsStats/t:*/t:Subgroups/t:Subgroup"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="GageRandRSubgroupIdKeyref"
+      refer="GageRandRSubgroupIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The GageRandRSubgroupIdKeyref requires that a SubgroupId in
+          a StudyIssue in CharacteristicStats be the id of a Subgroup
+          in the same gage R and R study.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:CharacteristicsStats/t:*/t:StudyIssues/t:StudyIssue
+              /t:SubgroupIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+  </xs:element>
+
+  <xs:element name="ProductionStudyResults"
+    type="ProductionStudyResultsType"
+    substitutionGroup="StatisticalStudyResults">
+    <xs:annotation>
+      <xs:documentation>
+        The global ProductionStudyResults element gives information about
+        the results of a production statistical study.
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:key name="ProductionSubgroupIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductionSubgroupIdKey collects all QIF ids of all
+          Subgroups in CharacteristicStats of a production study.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:CharacteristicsStats/t:*/t:Subgroups/t:Subgroup"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ProductionSubgroupIdKeyref"
+      refer="ProductionSubgroupIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ProductionSubgroupIdKeyref requires that a SubgroupId in
+          a StudyIssue in CharacteristicStats be the id of a Subgroup
+          in the production article study.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:CharacteristicsStats/t:*/t:StudyIssues/t:StudyIssue
+              /t:SubgroupIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+  </xs:element>
+
+<!-- END SUBSTITUTION GROUP FOR STATISTICAL RESULTS -->
+
+<!-- GLOBAL STATISTICS ELEMENTS -->
+
+  <xs:complexType name="StatisticalStudyPlansType">
+    <xs:annotation>
+      <xs:documentation>
+        The StatisticalStudyPlansType defines a list of statistical study
+        plans.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="StatisticalStudyPlan"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each StatisticalStudyPlan element gives information about a
+            statistical study plan.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of statistical study plans
+          in this list.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="StatisticalStudiesResultsType">
+    <xs:annotation>
+      <xs:documentation>
+        The StatisticalStudiesResultsType defines a list of statistical
+        study results.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="StatisticalStudyResults"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each StatisticalStudyResults element gives information about
+            the results of a statistical study.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of statistical study
+          results in this list.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="CorrectiveActionPlanType">
+    <xs:annotation>
+      <xs:documentation>
+        The CorrectiveActionPlanType defines a corrective action plan as
+        lists of assignable causes and corrective actions.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Version"
+        type="VersionType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Version element gives version information about
+            the statistics.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="Attributes"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Attributes element contains user defined
+            attributes (typified, binary array, or XML structured).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AssignableCauses"
+        type="AssignableCausesType">
+        <xs:annotation>
+          <xs:documentation>
+            The AssignableCauses element defines one or more
+            assignable causes.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CorrectiveActions"
+        type="CorrectiveActionsType">
+        <xs:annotation>
+          <xs:documentation>
+            The CorrectiveActions element defines one or more corrective
+            actions.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="id"
+      type="QIFIdType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required id attribute is the QIF id of the corrective action
+          plan, used for referencing.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="CorrectiveActionPlansType">
+    <xs:annotation>
+      <xs:documentation>
+        The CorrectiveActionPlansType defines a list of corrective action
+        plans.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CorrectiveActionPlan"
+        type="CorrectiveActionPlanType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each CorrectiveActionPlan element defines a corrective action
+            plan.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of corrective action plans
+          in this list.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="StatisticsType">
+    <xs:annotation>
+      <xs:documentation>
+        The StatisticsType defines the container element that holds all
+        statistical plan and/or results.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="StatisticalStudyPlans"
+        type="StatisticalStudyPlansType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional StatisticalStudyPlans element defines one or more
+            statistical study plans.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="StatisticalStudiesResults"
+        type="StatisticalStudiesResultsType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional StatisticalStudiesResults element defines one or
+            more statistical study results.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CorrectiveActionPlans"
+        type="CorrectiveActionPlansType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional CorrectiveActionPlans element defines one or more
+            corrective action plans.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="Statistics"
+    type="StatisticsType">
+    <xs:annotation>
+      <xs:documentation>
+        The global Statistics element holds all statistical plans and/or
+        results.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+</xs:schema>

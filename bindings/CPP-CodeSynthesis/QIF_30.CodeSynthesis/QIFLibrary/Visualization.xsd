@@ -1,0 +1,3958 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This document is part of QIF 3.0, an open, industry-wide standard -->
+<!-- established by the Dimensional Metrology Standards Consortium.    -->
+<!-- This document shall not be used in any manner to claim any        -->
+<!-- proprietary rights to such information, such as rights to a       -->
+<!-- patent, trademark, or copyright.                                  -->
+
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://qifstandards.org/xsd/qif3"
+  xmlns:t="http://qifstandards.org/xsd/qif3"
+  targetNamespace="http://qifstandards.org/xsd/qif3"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified"
+  version="3.0.0">
+
+  <xs:include schemaLocation="../QIFLibrary/PrimitivesPD.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/Characteristics.xsd"/>
+
+  <xs:annotation>
+    <xs:documentation>
+      This schema file defines types used in visualization
+      of the model objects, particularly PMI entities.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="VisualizationSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The VisualizationSetType defines a container for storing all
+        visualization data used for drawing PMI entities in a graphical
+        3D scene.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Fonts">
+        <xs:annotation>
+          <xs:documentation>
+            The Fonts element is a container for storing all used fonts.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="TrailingZeroDisplay"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The TrailingZeroDisplay element is a container for storing
+            trailing zero display options.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="PMIDisplaySet">
+        <xs:annotation>
+          <xs:documentation>
+            The PMIDisplaySet element is a container for storing all
+            display data used for visualization of PMI entities.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="FontsType">
+    <xs:annotation>
+      <xs:documentation>
+        The FontsType defines a container for storing all unique fonts used
+        for model entities visualization.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Font"
+        type="FontType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Font element is a font which is used for visualization
+            of 3D annotations.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of fonts in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:simpleType name="AlignmentEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The AlignmentEnumType enumerates values that describe an alignment.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ALIGNMENT_LEFT"/>
+      <xs:enumeration value="ALIGNMENT_RIGHT"/>
+      <xs:enumeration value="ALIGNMENT_CENTER"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="FontType">
+    <xs:annotation>
+      <xs:documentation>
+        The FontType defines a font.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Attributes"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Attributes element contains user defined
+            attributes (typified, binary array, or XML structured).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Name"
+        type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            The Name element is the font name.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Size"
+        type="NaturalType">
+        <xs:annotation>
+          <xs:documentation>
+            The Size element is the font size defined in points
+            (typography, 1 pt = 1/72 inch).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Alignment"
+        type="AlignmentEnumType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional alignment element defines the note alignment,
+            ALIGNMENT_LEFT is the default.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="index"
+      type="xs:unsignedInt"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required index attribute is an index identifying a font
+          within the Fonts table.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="bold"
+      type="xs:boolean"
+      default="false">
+      <xs:annotation>
+        <xs:documentation>
+          The optional bold attribute shows if the written text
+          must be bold.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="italic"
+      type="xs:boolean"
+      default="false">
+      <xs:annotation>
+        <xs:documentation>
+          The optional italic attribute shows if the written text
+          must be italicized.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="underline"
+      type="xs:boolean"
+      default="false">
+      <xs:annotation>
+        <xs:documentation>
+          The optional underline attribute shows if the written text
+          must be underlined.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="PMIDisplaySetType">
+    <xs:annotation>
+      <xs:documentation>
+        The PMIDisplaySetType defines a container for storing all
+        display data used for visualization of the annotation data.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PMIDisplay"
+        type="PMIDisplayType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each PMIDisplay element contains a block of display information
+            which is used for visualization of the annotation data.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of elements in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="PMIDisplayType">
+    <xs:annotation>
+      <xs:documentation>
+        The PMIDisplayType defines a block of display data used for
+        visualization of PMI entities.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Attributes"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Attributes element contains user defined
+            attributes (typified, binary array, or XML structured).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Color"
+        type="ColorType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ColorType is the RGB color type - a triplet of
+            integer numbers: the red-component, the green-component and the
+            blue-component.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Plane"
+        type="PlanePMIDisplayType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Plane element is an annotation plane.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="Texts"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Texts element specifies a set of text lines.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="Leader"
+        minOccurs="0"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Leader element defines leaders.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="WitnessLines"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional WitnessLines element defines witness lines.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="Frames"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Frames element defines the visualization frames.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Graphics"
+        type="GraphicsType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Graphics element defines additional visualization
+            data. It allows specifying user-defined PMI data that have no
+            semantic representation in a QIF file.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Reference"
+        type="ElementReferenceFullType">
+        <xs:annotation>
+          <xs:documentation>
+            The Reference element is the id of an annotation entity which
+            will be visualized according to the display information defined
+            in the fields above.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GroupID"
+        type="I2Type"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional GroupID element is the group id:
+            the first value is a group index,
+            the second value is an annotation index within the group.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PlanePMIDisplayType">
+    <xs:annotation>
+      <xs:documentation>
+        The PlanePMIDisplayType defines an annotation plane.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AnnotationViewId"
+        type="ElementReferenceType">
+        <xs:annotation>
+          <xs:documentation>
+            The AnnotationViewId element is the id of an annotation view
+            entity.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Origin"
+        type="PointType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Origin element is the origin of the annotation
+            plane.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Direction"
+        type="UnitVectorType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Direction element is a text direction. This
+            direction overrides the default text direction defined in the
+            annotation view.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Polylines2dType">
+    <xs:annotation>
+      <xs:documentation>
+        The Polylines2dType is a container for storing 2D polyline curves.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Polyline"
+        type="Polyline2dType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Polyline element is a polyline curve.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of polyline curves in this
+          set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="Polyline2dType">
+    <xs:annotation>
+      <xs:documentation>
+        The Polyline2dType defines a polyline curve.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice>
+        <xs:annotation>
+          <xs:documentation>
+            This compositor provides a choice of the representation method
+            for the polyline points.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:element name="Points"
+          type="ArrayPoint2dType">
+          <xs:annotation>
+            <xs:documentation>
+              The Points element is an array of 2D polyline points.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="PointsBinary"
+          type="ArrayBinaryType">
+          <xs:annotation>
+            <xs:documentation>
+              The PointsBinary element is a binary array of 2D polyline
+              points.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="color"
+      type="ColorType">
+      <xs:annotation>
+        <xs:documentation>
+          The optional color attribute is the color for the polyline.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="Areas2dType">
+    <xs:annotation>
+      <xs:documentation>
+        The Areas2dType defines a container for storing 2D areas.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Area"
+        type="Area2dType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Area element is a 2D area.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of areas in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="Area2dType">
+    <xs:annotation>
+      <xs:documentation>
+        The Area2dType defines a 2D area.
+        </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:annotation>
+        <xs:documentation>
+          This compositor provides a choice of the representation method
+          for the area.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:element name="Loops"
+        type="Loops2dType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The Loops element alternative is a set of loops defining the
+            area. The first loop is outer, the rest are inner loops.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Triangulation"
+        type="Triangulation2dType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The Triangulation element alternative is an area defined in
+            triangulation form.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+
+  <xs:complexType name="Loops2dType">
+    <xs:annotation>
+      <xs:documentation>
+        The Loops2dType defines a set of loops. The first loop is outer,
+        the rest are inner loops.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Loop"
+        type="Polyline2dType"
+        minOccurs="1"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Loop element is a 2D loop defined as a polyline.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of loops in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="Triangulation2dType">
+    <xs:annotation>
+      <xs:documentation>
+        The Triangulation2dType defines a 2D triangle mesh.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice>
+        <xs:annotation>
+          <xs:documentation>
+            This compositor provides a choice of the representation method
+            for an array of 2D points.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:element name="Vertices"
+          type="ArrayPoint2dType">
+          <xs:annotation>
+            <xs:documentation>
+              The Vertices element alternative is an array of 2D vertices
+              of the mesh.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="VerticesBinary"
+          type="ArrayBinaryType">
+          <xs:annotation>
+            <xs:documentation>
+              The VerticesBinary element alternative is a binary array of
+              2D vertices of the mesh.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:choice>
+        <xs:annotation>
+          <xs:documentation>
+            This compositor provides a choice of the representation method
+            for indices of the triangle vertices.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:element name="Triangles"
+          type="ArrayI3Type">
+          <xs:annotation>
+            <xs:documentation>
+              The Triangles element alternative is an array of indices of
+              the triangle vertices. The number of array elements
+              corresponds to the number of triangles in the mesh. Each
+              element of this array is a triplet of integer numbers: index
+              of the first vertex, index of the second vertex and index of
+              the third vertex.  All three vertex indexes of a triangle
+              must be different and must lie in the range [0, ..., number
+              of vertices - 1].
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="TrianglesBinary"
+          type="ArrayBinaryType">
+          <xs:annotation>
+            <xs:documentation>
+              The TrianglesBinary element alternative is a binary array of
+              indices of the triangle vertices. The number of array
+              elements corresponds to the number of triangles in the
+              mesh. Each element of this array is a triplet of 32-bit
+              integer numbers: index of the first vertex, index of the
+              second vertex and index of the third vertex. All three vertex
+              indexes of a triangle must be different and must lie in the
+              range [0, ..., number of vertices - 1].
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="TrianglesColor"
+          type="ArrayUnsignedByteType">
+          <xs:annotation>
+            <xs:documentation>
+              The TrianglesColor element is an array of unsigned byte
+              values which defines the colors of the triangles. Each element
+              of this array is a triplet of unsigned byte numbers - the
+              RGB color: the red-component, the green-component and the
+              blue-component. The number of array elements corresponds
+              to the number of triangles.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="TrianglesColorBinary"
+          type="ArrayBinaryType">
+          <xs:annotation>
+            <xs:documentation>
+              The TrianglesColorBinary element is a binary array of
+              unsigned byte values which defines the colors of the
+              triangles. Each element of this array is a triplet of
+              unsigned byte numbers - the RGB color: the red-component, the
+              green-component and the blue-component. The number of array
+              elements corresponds to the number of triangles.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GraphicsType">
+    <xs:annotation>
+      <xs:documentation>
+        The GraphicsType defines additional graphical presentation
+        data. These visualization data allow specifying user-defined 3D
+        annotations that have no semantic representation in a QIF file.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Polylines"
+        type="Polylines2dType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Polylines element is a set of 2D polylines.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Areas"
+        type="Areas2dType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Areas element is a set of 2D areas.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="LeaderType">
+    <xs:annotation>
+      <xs:documentation>
+        The LeaderType defines a 3D annotation leader.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="LineSegment2dType">
+        <xs:sequence>
+          <xs:element name="HeadForm"
+            type="LeaderHeadFormType">
+            <xs:annotation>
+              <xs:documentation>
+                The HeadForm element gives the form of the leader head.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="HeadHeight"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The HeadHeight element is the size of the leader head.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="LeaderExtendType">
+    <xs:annotation>
+      <xs:documentation>
+        The LeaderExtendType defines an extended leader which has a break
+        point and consists of two segments.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="LeaderType">
+        <xs:sequence>
+          <xs:element name="PointExtension"
+            type="Point2dSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The PointExtension element specifies the 2D coordinates of
+                the extension point. The 2D coordinates are defined in the
+                visualization plane coordinate system.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Modifier"
+            type="LeaderModifierEnumType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Modifier element specifies a leader modifier.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="LeaderDoubleHeadType">
+    <xs:annotation>
+      <xs:documentation>
+        The LeaderDoubleHeadType defines a double headed leader.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="LeaderType">
+        <xs:sequence>
+          <xs:element name="HeadForm2"
+            type="LeaderHeadFormEnumType">
+            <xs:annotation>
+              <xs:documentation>
+                The HeadForm2 element defines the second head form.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PointConnection"
+            type="Point2dSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The PointConnection specifies 2D coordinates of the
+                connection point. The 2D coordinates are defined in the
+                visualization plane coordinate system.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="LeaderDoubleHeadExtendType">
+    <xs:annotation>
+      <xs:documentation>
+        The LeaderDoubleHeadExtendType defines a double headed extended
+        leader which has a break point and consists of two segments.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="LeaderDoubleHeadType">
+        <xs:sequence>
+          <xs:element name="PointExtension"
+            type="Point2dSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The PointExtension element specifies 2D coordinates of the
+                extension point. The 2D coordinates are defined in the
+                visualization plane coordinate system.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="LeaderCircularType">
+    <xs:annotation>
+      <xs:documentation>
+        The LeaderCircularType defines a leader that is a circular arc
+        which is less than a semicircle.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="LeaderType">
+        <xs:sequence>
+          <xs:element name="Center"
+            type="Point2dSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The Center element specifies the 2D coordinates of the
+                leader central point. The 2D coordinates are defined in the
+                visualization plane coordinate system.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="LeaderDoubleHeadCircularType">
+    <xs:annotation>
+      <xs:documentation>
+        The LeaderDoubleHeadCircularType defines a double headed circular
+        leader.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="LeaderDoubleHeadType">
+        <xs:sequence>
+          <xs:element name="Center"
+            type="Point2dSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The Center element specifies the 2D coordinates of the
+                second central point. The 2D coordinates are defined in the
+                visualization plane coordinate system.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="TextsType">
+    <xs:annotation>
+      <xs:documentation>
+        The TextsType defines a number of 3D annotation text lines.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Text"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Text element is a string.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="fontIndex"
+      type="xs:unsignedInt"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required fontIndex attribute is the index of a font
+          within the Fonts table.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="lineHeight"
+      type="xs:double">
+      <xs:annotation>
+        <xs:documentation>
+          The optional lineHeight attribute is the height of the text line
+          defined in the model units.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of text strings in this
+          array.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="FramesType">
+    <xs:annotation>
+      <xs:documentation>
+        The FramesType defines an array of visualization frames.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Frame"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Frame element is a visualization frame.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of visualization frames in
+          this array.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="TextType">
+    <xs:annotation>
+      <xs:documentation>
+        The TextType defines a 3D annotation text.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Data"
+        type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            The Data element is a string.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="XY"
+        type="Point2dSimpleType">
+        <xs:annotation>
+          <xs:documentation>
+            The XY element specifies the 2D coordinates of the text anchor
+            point. The 2D coordinates are defined in the visualization
+            plane coordinate system.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="WitnessLinesType">
+    <xs:annotation>
+      <xs:documentation>
+        The WitnessLinesType defines a pair of witness lines or a circular
+        witness line. The circular witness line must be less than a
+        semicircle.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:sequence>
+        <xs:element name="Segment1"
+          type="LineSegment2dType">
+          <xs:annotation>
+            <xs:documentation>
+              The Segment1 element is the first witness line.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ZextensionPoint1"
+          type="PointSimpleType"
+          minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>
+              The optional ZextensionPoint1 element is an extension point
+              of the first witness line, it lies on the feature in cases
+              when the annotation plane does not intersect the feature.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Segment2"
+          type="LineSegment2dType">
+          <xs:annotation>
+            <xs:documentation>
+              The Segment2 element is the second witness line.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="ZextensionPoint2"
+          type="PointSimpleType"
+          minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>
+              The optional ZextensionPoint2 element is an extension point
+              of the second witness line, it lies on the feature in cases
+              when the annotation plane does not intersect the feature.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+      <xs:sequence>
+        <xs:element name="BeginPoint"
+          type="Point2dSimpleType">
+          <xs:annotation>
+            <xs:documentation>
+              The BeginPoint element is the begin point of the circular
+              witness line.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="EndPoint"
+          type="Point2dSimpleType">
+          <xs:annotation>
+            <xs:documentation>
+              The EndPoint element is the end point of the circular witness
+              line.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="CircleCenter"
+          type="Point2dSimpleType">
+          <xs:annotation>
+            <xs:documentation>
+              The CircleCenter element is the center of the circular
+              witness line.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="CircleRadius"
+          type="DoublePositiveType">
+          <xs:annotation>
+            <xs:documentation>
+              The CircleRadius element is the radius of the circular
+              witness line.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:choice>
+    <xs:attribute name="width"
+      type="xs:double"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required width attribute is the width of the witness lines in
+          points.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="FrameBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The FrameBaseType is the abstract base type for all frame types.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:complexType>
+
+  <xs:complexType name="FrameRectangularType">
+    <xs:annotation>
+      <xs:documentation>
+        The FrameRectangularType defines a rectangular frame.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="FrameBaseType">
+        <xs:sequence>
+          <xs:element name="XY"
+            type="Point2dSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The XY element specifies the 2D coordinates of the anchor
+                point. The 2D coordinates are defined in the visualization
+                plane coordinate system.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Width"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The Width element is the frame width.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Height"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The Height element is the frame height.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="FrameCircularType">
+    <xs:annotation>
+      <xs:documentation>
+        The FrameCircularType defines a circular frame.
+        This is normally used for visualization of datum targets.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="FrameBaseType">
+        <xs:sequence>
+          <xs:element name="XY"
+            type="Point2dSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The XY element specifies the 2D coordinates of the anchor
+                point. The 2D coordinates are defined in the visualization
+                plane coordinate system.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Radius"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The Radius element is the frame radius.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="crossed"
+          type="xs:boolean"
+          default="true"
+          use="optional">
+          <xs:annotation>
+            <xs:documentation>
+              The optional crossed attribute shows if the frame must be
+              crossed with the middle line which separates the circular
+              frame in two halves (top and bottom).
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="FrameFlagType">
+    <xs:annotation>
+      <xs:documentation>
+        The FrameFlagType defines a flag frame. This is normally used for
+        visualization of flag notes.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="FrameRectangularType">
+        <xs:attribute name="right"
+          type="xs:boolean"
+          default="true"
+          use="optional">
+          <xs:annotation>
+            <xs:documentation>
+              The optional right attribute shows if the flag frame
+              has the triangle element at the right side.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="FrameIrregularFormType">
+    <xs:annotation>
+      <xs:documentation>
+        The FrameIrregularFormType defines an irregular form frame.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="FrameBaseType">
+        <xs:sequence>
+          <xs:element name="Points"
+            type="ArrayPoint2dType">
+            <xs:annotation>
+              <xs:documentation>
+                The Points element is a 2D polyline which describes the
+                frame shape. The 2D coordinates of the polyline point are
+                defined in the visualization plane coordinate system.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="FrameWeldSymbolTailType">
+    <xs:annotation>
+      <xs:documentation>
+        The FrameWeldSymbolTailType defines the tail of a weld symbol frame.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="UpperPoint"
+        type="Point2dSimpleType">
+        <xs:annotation>
+          <xs:documentation>
+            The UpperPoint element defines the upper point of the tail.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LowerPoint"
+        type="Point2dSimpleType">
+        <xs:annotation>
+          <xs:documentation>
+            The LowerPoint element defines the lower point of the tail.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="WeldMainSymbolEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The WeldMainSymbolEnumType enumerates values that describe the main
+        symbol of the weld symbol object.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="WELD_FILLET_ARROW_SIDE"/>
+      <xs:enumeration value="WELD_FILLET_OTHER_SIDE"/>
+      <xs:enumeration value="WELD_FILLET_BOTH"/>
+      <xs:enumeration value="WELD_SPOT_ARROW_SIDE"/>
+      <xs:enumeration value="WELD_SPOT_OTHER_SIDE"/>
+      <xs:enumeration value="WELD_SPOT_NO_SIDE"/>
+      <xs:enumeration value="WELD_STUD_ARROW_SIDE"/>
+      <xs:enumeration value="WELD_SEAM_ARROW_SIDE"/>
+      <xs:enumeration value="WELD_SEAM_OTHER_SIDE"/>
+      <xs:enumeration value="WELD_SEAM_NO_SIDE"/>
+      <xs:enumeration value="WELD_SURFACING_ARROW_SIDE"/>
+      <xs:enumeration value="WELD_EDGE_ARROW_SIDE"/>
+      <xs:enumeration value="WELD_EDGE_OTHER_SIDE"/>
+      <xs:enumeration value="WELD_SQUARE_ARROW_SIDE"/>
+      <xs:enumeration value="WELD_SQUARE_OTHER_SIDE"/>
+      <xs:enumeration value="WELD_SQUARE_BOTH"/>
+      <xs:enumeration value="WELD_V_ARROW_SIDE"/>
+      <xs:enumeration value="WELD_V_OTHER_SIDE"/>
+      <xs:enumeration value="WELD_V_BOTH"/>
+      <xs:enumeration value="WELD_BEVEL_ARROW_SIDE"/>
+      <xs:enumeration value="WELD_BEVEL_OTHER_SIDE"/>
+      <xs:enumeration value="WELD_BEVEL_BOTH"/>
+      <xs:enumeration value="WELD_U_ARROW_SIDE"/>
+      <xs:enumeration value="WELD_U_OTHER_SIDE"/>
+      <xs:enumeration value="WELD_U_BOTH"/>
+      <xs:enumeration value="WELD_J_ARROW_SIDE"/>
+      <xs:enumeration value="WELD_J_OTHER_SIDE"/>
+      <xs:enumeration value="WELD_J_BOTH"/>
+      <xs:enumeration value="WELD_FLARE_V_ARROW_SIDE"/>
+      <xs:enumeration value="WELD_FLARE_V_OTHER_SIDE"/>
+      <xs:enumeration value="WELD_FLARE_V_BOTH"/>
+      <xs:enumeration value="WELD_FLARE_BEVEL_ARROW_SIDE"/>
+      <xs:enumeration value="WELD_FLARE_BEVEL_OTHER_SIDE"/>
+      <xs:enumeration value="WELD_FLARE_BEVEL_BOTH"/>
+      <xs:enumeration value="WELD_SCARF_V_ARROW_SIDE"/>
+      <xs:enumeration value="WELD_SCARF_V_OTHER_SIDE"/>
+      <xs:enumeration value="WELD_SCARF_V_BOTH"/>
+      <xs:enumeration value="WELD_V_SPACER"/>
+      <xs:enumeration value="WELD_BEVEL_SPACER"/>
+      <xs:enumeration value="WELD_U_SPACER"/>
+      <xs:enumeration value="WELD_J_SPACER"/>
+      <xs:enumeration value="WELD_FLARE_V_SPACER"/>
+      <xs:enumeration value="WELD_FLARE_BEVEL_SPACER"/>
+      <xs:enumeration value="BACK_WELD"/>
+      <xs:enumeration value="MELT_THROUGH"/>
+      <xs:enumeration value="CONSUMABLE_INSERT"/>
+      <xs:enumeration value="REMOVABLE_BACKING"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="OriginType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The OriginType defines the origin of a 2D element.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Origin"
+        type="Point2dSimpleType">
+        <xs:annotation>
+          <xs:documentation>
+            The Origin element is the 2D position.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="WeldMainSymbolType">
+    <xs:annotation>
+      <xs:documentation>
+        The WeldMainSymbolType defines a main symbol placed on the reference
+        line of the weld symbol.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="OriginType">
+        <xs:sequence>
+          <xs:element name="Symbol"
+            type="WeldMainSymbolEnumType">
+            <xs:annotation>
+              <xs:documentation>
+                The Symbol element gives the symbol to be placed on the
+                reference line.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="WeldSupplementarySymbolType">
+    <xs:annotation>
+      <xs:documentation>
+        The WeldSupplementarySymbolType defines a supplementary symbol
+        of the weld symbol.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="OriginType">
+        <xs:sequence>
+          <xs:element name="Symbol"
+            type="WeldSupplementarySymbolEnumType">
+            <xs:annotation>
+              <xs:documentation>
+                The Symbol element defines a supplementary symbol.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="WeldContourSymbolType">
+    <xs:annotation>
+      <xs:documentation>
+        The WeldContourSymbolType defines a contour symbol of the weld
+        symbol.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="OriginType">
+        <xs:sequence>
+          <xs:element name="Symbol"
+            type="WeldContourSymbolEnumType">
+            <xs:annotation>
+              <xs:documentation>
+                The Symbol element gives a contour symbol.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="FrameWeldSymbolType">
+    <xs:annotation>
+      <xs:documentation>
+        The FrameWeldSymbolType defines the frame of a weld symbol.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="FrameBaseType">
+        <xs:sequence>
+          <xs:element name="ReferenceLineBeginPoint"
+            type="Point2dSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The ReferenceLineBeginPoint element is the begin point of
+                the reference line.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReferenceLineEndPoint"
+            type="Point2dSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The ReferenceLineEndPoint element is the end point of the
+                reference line.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Tail"
+            type="FrameWeldSymbolTailType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Tail element gives the tail of the weld symbol
+                frame.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MainSymbol"
+            type="WeldMainSymbolType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional MainSymbol element gives a main symbol. It can
+                be omitted for a weld symbol with multiple reference lines.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SupplementarySymbol"
+            type="WeldSupplementarySymbolType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional SupplementarySymbol element gives a
+                supplementary symbol.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ArrowSideContourSymbol"
+            type="WeldContourSymbolType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ArrowSideContourSymbol element gives a contour
+                symbol to be placed on the arrow side of the reference line.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OtherSideContourSymbol"
+            type="WeldContourSymbolType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional OtherSideContourSymbol element gives a contour
+                symbol to be placed on the other side of the reference line.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="FrameTriangleType">
+    <xs:annotation>
+      <xs:documentation>
+        The FrameTriangleType defines a triangular frame.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="FrameBaseType">
+        <xs:sequence>
+          <xs:element name="Point"
+            type="Point2dSimpleType"
+            minOccurs="3"
+            maxOccurs="3">
+            <xs:annotation>
+              <xs:documentation>
+                Each Point element is a point of a triangular 2D polyline
+                which describes the frame shape. The 2D coordinates of the
+                polyline point are defined in the visualization plane
+                coordinate system.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="FramePentagonalType">
+    <xs:annotation>
+      <xs:documentation>
+        The FramePentagonalType defines a pentagonal frame.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="FrameBaseType">
+        <xs:sequence>
+          <xs:element name="Point"
+            type="Point2dSimpleType"
+            minOccurs="5"
+            maxOccurs="5">
+            <xs:annotation>
+              <xs:documentation>
+                Each Point element is a point of a pentagonal 2D polyline
+                which describes the frame shape. The 2D coordinates of the
+                polyline point are defined in the visualization plane
+                coordinate system.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="FrameOctagonalType">
+    <xs:annotation>
+      <xs:documentation>
+        The FrameOctagonalType defines an octagonal frame.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="FrameBaseType">
+        <xs:sequence>
+          <xs:element name="Point"
+            type="Point2dSimpleType"
+            minOccurs="8"
+            maxOccurs="8">
+            <xs:annotation>
+              <xs:documentation>
+                Each Point element is a point of an octagonal 2D polyline
+                which describes the frame shape. The 2D coordinates of the
+                polyline point are defined in the visualization plane
+                coordinate system.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="FrameHexagonalType">
+    <xs:annotation>
+      <xs:documentation>
+        The FrameHexagonalType defines a hexagonal frame.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="FrameBaseType">
+        <xs:sequence>
+          <xs:element name="Point"
+            type="Point2dSimpleType"
+            minOccurs="6"
+            maxOccurs="6">
+            <xs:annotation>
+              <xs:documentation>
+                Each Point element is a point of a hexagonal 2D polyline
+                which describes the frame shape. The 2D coordinates of the
+                polyline point are defined in the visualization plane
+                coordinate system.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="LeaderHeadFormEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The LeaderHeadFormEnumType enumerates values that describe leader
+        head forms.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NONE"/>
+      <xs:enumeration value="ARROW_OPEN"/>
+      <xs:enumeration value="ARROW_UNFILLED"/>
+      <xs:enumeration value="ARROW_BLANKED"/>
+      <xs:enumeration value="ARROW_FILLED"/>
+      <xs:enumeration value="TRIANGLE_BLANKED"/>
+      <xs:enumeration value="TRIANGLE_FILLED"/>
+      <xs:enumeration value="DOT_BLANKED"/>
+      <xs:enumeration value="DOT_FILLED"/>
+      <xs:enumeration value="BOX_BLANKED"/>
+      <xs:enumeration value="BOX_FILLED"/>
+      <xs:enumeration value="DIMENSION_ORIGIN"/>
+      <xs:enumeration value="SYMBOL_SLASH"/>
+      <xs:enumeration value="SYMBOL_INTEGRAL"/>
+      <xs:enumeration value="SYMBOL_CROSS"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="LeaderHeadFormType">
+    <xs:annotation>
+      <xs:documentation>
+        The LeaderHeadFormType defines the form of a leader head.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="LeaderHeadFormEnumType">
+        <xs:attribute name="normal"
+          type="D3Type">
+          <xs:annotation>
+            <xs:documentation>
+              The optional normal attribute defines the normal of the plane
+              for drawing a leader head with type SYMBOL_CROSS.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="LeaderModifierEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The LeaderModifierEnumType enumerates values that describe the
+        leader's modifier.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ALL_AROUND"/>
+      <xs:enumeration value="ALL_OVER"/>
+      <xs:enumeration value="FLAG"/>
+      <xs:enumeration value="ALL_AROUND_FLAG"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="ViewSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The ViewSetType defines a container for storing all views present
+        in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="CameraSet"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional CameraSet element is a set of Camera objects.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="SavedViewSet"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional SavedViewSet element is a set of saved view
+            objects.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="AnnotationViewSet"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional AnnotationViewSet element is a set of annotation
+            view objects.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="SimplifiedRepresentationSet"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional SimplifiedRepresentationSet element is a set of
+            simplified representation objects.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="ExplodedViewSet"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ExplodedViewSet element is a set of exploded view
+            objects.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="DisplayStyleSet"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional DisplayStyleSet element is a set of display style
+            objects.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="ZoneSectionSet"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ZoneSectionSet element is a set of zone section
+            objects.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element ref="HatchStyleSet"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional HatchStyleSet element is a set of hatch style
+            objects.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CameraType">
+    <xs:annotation>
+      <xs:documentation>
+        The CameraType defines a camera. The camera describes projection
+        of the 3D model space to a 2D window.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="NodeWithIdBaseType">
+        <xs:sequence>
+          <xs:element name="ViewPlaneOrigin"
+            type="PointSimpleType">
+            <xs:annotation>
+              <xs:documentation>
+                The ViewPlaneOrigin element is the view plane origin.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Orientation"
+            type="QuaternionType">
+            <xs:annotation>
+              <xs:documentation>
+                The Orientation element is the rotation of the view plane
+                around the view plane origin.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Ratio"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The Ratio element is the aspect ratio of the view plane
+                (normally it corresponds to the viewport).
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Near"
+            type="LinearValueType">
+            <xs:annotation>
+              <xs:documentation>
+                The Near element is the distance from the view plane to the
+                near clipping plane.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Far"
+            type="LinearValueType">
+            <xs:annotation>
+              <xs:documentation>
+                The Far element is the distance from the view plane to the
+                far clipping plane.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Height"
+            type="xs:double">
+            <xs:annotation>
+              <xs:documentation>
+                The Height element is half of the top to bottom extent of
+                the near clipping plane.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="form"
+          type="CameraFormEnumType"
+          default="ORTHOGRAPHIC">
+          <xs:annotation>
+            <xs:documentation>
+              The optional form attribute specifies the camera type which
+              can take one of the following values: 'ORTHOGRAPHIC' or
+              'PERSPECTIVE'.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="CameraFormEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The CameraFormEnumType enumerates values that describe the camera
+        form and can take the following values:
+          'ORTHOGRAPHIC' - an orthographic camera;
+          'PERSPECTIVE' - a perspective camera;
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ORTHOGRAPHIC"/>
+      <xs:enumeration value="PERSPECTIVE"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="SavedViewType">
+    <xs:annotation>
+      <xs:documentation>
+        The SavedViewType defines a saved view to facilitate presentation
+        of the model and its annotations.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="NodeWithIdBaseType">
+        <xs:sequence>
+          <xs:element name="ActiveView"
+            type="xs:boolean"
+            default="false"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ActiveView element shows whether this view
+                is active.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AnnotationVisibleIds"
+            type="ArrayReferenceFullType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional AnnotationVisibleIds element is an array
+                of identifiers of model characteristics which must be
+                visible in this saved view.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AnnotationHiddenIds"
+            type="ArrayReferenceFullType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional AnnotationHiddenIds element is an array of
+                identifiers of model characteristics which must be hidden
+                in this saved view.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BodyIds"
+            type="ArrayReferenceFullType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional BodyIds element is an array of identifiers of
+                model bodies which must be visible in this saved view. If
+                the BodyIds element is absent, then all model bodies are
+                visible in this saved view.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ComponentIds"
+            type="ArrayReferenceFullType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ComponentIds element is an array of
+                identifiers of model components which must be visible in
+                this saved view. If the ComponentIds element is absent,
+                then all model components are visible in this saved view.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SimplifiedRepresentationId"
+            type="QIFReferenceActiveType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional SimplifiedRepresentationId element is the
+                identifier of a simplified representation, which shows
+                the model in a simplified way.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ExplodedViewId"
+            type="QIFReferenceActiveType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ExplodedViewId element is the identifier of
+                an exploded view, which shows each component of the model
+                separated from other components.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DisplayStyleId"
+            type="QIFReferenceActiveType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional DisplayStyleId element is the identifier of a
+                display style, which defines a color, transparency and
+                displaying form.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ZoneSectionId"
+            type="QIFReferenceActiveType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional ZoneSectionId element is the identifier of a
+                zone section, which (1) defines a set of section planes
+                that separate the model into parts and (2) defines logical
+                operations that use the planes to separate the model.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CameraIds"
+            type="ArrayReferenceActiveType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional CameraIds element is an array of camera
+                identifiers.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ZoneSectionType">
+    <xs:annotation>
+      <xs:documentation>
+        The ZoneSectionType defines model clipping by specifying
+        a set of section planes and logical operations between them.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="NodeWithIdBaseType">
+        <xs:sequence>
+          <xs:element name="SectionPlanes"
+            type="ZoneSectionPlanesType">
+            <xs:annotation>
+              <xs:documentation>
+                The Planes element is a set of zone section planes.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LogicalOperations"
+            type="LogicalOperationsType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional LogicalOperations element defines logical
+                operations between zone section planes.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="hatching"
+          type="xs:boolean"
+          default="true">
+          <xs:annotation>
+            <xs:documentation>
+              The optional hatching attribute indicates if hatching is
+              On or Off.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="LogicalOperationType">
+    <xs:annotation>
+      <xs:documentation>
+        The LogicalOperationType defines a logical operation.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Action"
+        type="LogicalOperationEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The Action element specifies the logical operation type:
+            LOGICAL_AND or LOGICAL_OR.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice
+        minOccurs="2"
+        maxOccurs="2">
+        <xs:annotation>
+          <xs:documentation>
+            This compositor provides a choice of two arguments of the
+            logical operation. Each argument can be defined as a section
+            plane or a result of other logical operation.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:element name="SectionPlane"
+          type="xs:unsignedInt">
+          <xs:annotation>
+            <xs:documentation>
+              The SectionPlane element is the section plane index.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="LogicalOperationResult"
+          type="xs:unsignedInt">
+          <xs:annotation>
+            <xs:documentation>
+              The LogicalOperationResult element is the logical
+              operation index.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="index"
+      type="xs:unsignedInt"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required index attribute is an index identifying a
+          logical operation within the LogicalOperations set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="LogicalOperationsType">
+    <xs:annotation>
+      <xs:documentation>
+        The LogicalOperationsType defines a logical operations tree.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="LogicalOperation"
+        type="LogicalOperationType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each LogicalOperation element is a logical operation.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of LogicalOperation
+          elements in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:simpleType name="LogicalOperationEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The LogicalOperationEnumType enumerates the
+        logical operation types.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LOGICAL_AND"/>
+      <xs:enumeration value="LOGICAL_OR"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="ZoneSectionPlanesType">
+    <xs:annotation>
+      <xs:documentation>
+        The ZoneSectionPlanesType is a collection of zone section planes.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SectionPlane"
+        type="ZoneSectionPlaneType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each SectionPlane element is a section plane.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of SectionPlane
+          elements in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ZoneSectionPlaneType">
+    <xs:annotation>
+      <xs:documentation>
+        The ZoneSectionPlaneType defines a zone section plane.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Plane"
+        type="PlaneXType">
+        <xs:annotation>
+          <xs:documentation>
+            The Plane element is a section plane.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SectionGroups"
+        type="SectionGroupsType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional SectionGroups element is a group of
+            cross-sections.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="index"
+      type="xs:unsignedInt"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required index attribute is an index identifying a zone
+          section plane within the SectionPlanes set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="SectionGroupsType">
+    <xs:annotation>
+      <xs:documentation>
+        The SectionGroupsType defines an array of the section groups.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SectionGroup"
+        type="SectionGroupType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each SectionGroup element is a section group of the zone
+            section.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of SectionGroup elements
+          in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="SectionGroupType">
+    <xs:annotation>
+      <xs:documentation>
+        The SectionGroupType defines a section group as areas, paths and
+        vertices on body.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="BodyId"
+        type="QIFReferenceFullType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional BodyId element is an identifier of the body.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Areas"
+        type="SectionAreasType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Areas element is a set of section areas.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Paths"
+        type="SectionPathsType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Paths element is a set of section paths.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Vertices"
+        type="ArrayReferenceType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Vertices element is a set of section vertices.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SectionPathsType">
+    <xs:annotation>
+      <xs:documentation>
+        The SectionPathsType is an array of section paths.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Path"
+        type="SectionPathType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Path element is a section path.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of Path elements in this
+          set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="SectionLoopsType">
+    <xs:annotation>
+      <xs:documentation>
+        The SectionLoopsType is an array of closed section loops.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Loop"
+        type="SectionPathType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Loop element is a closed section loop.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of Loop elements in this
+          set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="SectionAreasType">
+    <xs:annotation>
+      <xs:documentation>
+        The SectionAreasType defines an array of section areas.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Area"
+        type="SectionAreaType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Area element is a section area.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of areas in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="SectionAreaType">
+    <xs:annotation>
+      <xs:documentation>
+        The SectionAreaType defines a section area.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="HatchStyleId"
+        type="QIFReferenceType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional HatchStyleId element is an identifier of the hatch
+            style for the section area.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Loops"
+        type="SectionLoopsType">
+        <xs:annotation>
+          <xs:documentation>
+            The Loops element is a set of section closed loops - boundary
+            of the area.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SectionEdgesType">
+    <xs:annotation>
+      <xs:documentation>
+        The SectionEdgesType defines an array of section edges.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Edge"
+        type="EdgeOrientedType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Edge element is an edge of the section path.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of edges in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="SectionPathType">
+    <xs:annotation>
+      <xs:documentation>
+        The SectionPathType defines a section path as an array of edges.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Edges"
+        type="SectionEdgesType">
+        <xs:annotation>
+          <xs:documentation>
+            The Edges element is a set of section edges.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="HatchPatternsType">
+    <xs:annotation>
+      <xs:documentation>
+        The HatchPatternsType defines an array of hatch patterns.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Pattern"
+        type="HatchPatternType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            The Pattern element is a hatch pattern.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of patterns in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="HatchStyleType">
+    <xs:annotation>
+      <xs:documentation>
+        The HatchStyleType defines a hatch style.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="NodeWithIdBaseType">
+        <xs:sequence>
+          <xs:element name="Form"
+            type="HatchStyleFormEnumType">
+            <xs:annotation>
+              <xs:documentation>
+                The Form element is a hatch form.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Color"
+            type="ColorType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Color element is a  color.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Patterns"
+            type="HatchPatternsType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The Patterns element is a hatch patterns.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="HatchStyleFormEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The HatchStyleFormEnumType enumerates values that describe
+        hatching styles.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NONE"/>
+      <xs:enumeration value="PATTERN"/>
+      <xs:enumeration value="FILL"/>
+      <xs:enumeration value="ERASED"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="HatchPatternType">
+    <xs:annotation>
+      <xs:documentation>
+        The HatchPatternType defines a pattern of the hatching.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="LineStyle"
+        type="LineStyleType"
+        default="SOLID"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional LineStyle element is the line style of the
+            hatching.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FirstLineOrigin"
+        type="Point2dSimpleType">
+        <xs:annotation>
+          <xs:documentation>
+            The FirstLineOrigin element is the origin of the first hatching
+            line.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SecondLineOrigin"
+        type="Point2dSimpleType">
+        <xs:annotation>
+          <xs:documentation>
+            The SecondLineOrigin element is the origin of the second
+            hatching line.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Angle"
+        type="AngularValueType">
+        <xs:annotation>
+          <xs:documentation>
+            The Angle element is the angle of the hatching lines.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Color"
+        type="ColorType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Color element is the color of the hatching lines.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DisplayStyleType">
+    <xs:annotation>
+      <xs:documentation>
+        The DisplayStyleType defines a display style of saved view elements,
+        such as color, transparency and visualization form.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="NodeWithIdBaseType">
+        <xs:sequence>
+          <xs:element name="Mode"
+            type="DisplayStyleModeType">
+            <xs:annotation>
+              <xs:documentation>
+                The Mode element is the default displaying style.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DisplayStyleGroups"
+            type="DisplayStyleGroupsType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional DisplayStyleGroups element is groups of
+                elements with defined displaying style.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DisplayStyleGroupsType">
+    <xs:annotation>
+      <xs:documentation>
+        The DisplayStyleGroupsType is a collection of the groups of 
+        elements with defined displaying style.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DisplayStyleGroup"
+        type="DisplayStyleGroupType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each DisplayStyleGroup element is a group of elements with
+            defined displaying style.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of elements in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="DisplayStyleModeType">
+    <xs:annotation>
+      <xs:documentation>
+        The DisplayStyleModeType defines a mode of the display style.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Form"
+        type="DisplayStyleFormEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The Form element is the displaying form for this style.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Color"
+        type="ColorType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Color element is the color for this style.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Transparency"
+        type="TransparencyType"
+        default="0"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Transparency element is the value of the
+            transparency for this style.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DisplayStyleGroupType">
+    <xs:annotation>
+      <xs:documentation>
+        The DisplayStyleGroupType defines a group of elements and its
+        displaying style.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Mode"
+        type="DisplayStyleModeType">
+        <xs:annotation>
+          <xs:documentation>
+            The Mode element is the display style of the group.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ComponentIds"
+        type="ArrayReferenceFullType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ComponentIds element is an array of identifiers
+            of the group components.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BodyIds"
+        type="ArrayReferenceFullType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional BodyIds element is an array of identifiers
+            of the group bodies.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="DisplayStyleFormEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The DisplayStyleFormEnumType enumerates values that describe
+        display forms.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="WIREFRAME"/>
+      <xs:enumeration value="ISOLINES"/>
+      <xs:enumeration value="ISOLINES_WITH_EDGES"/>
+      <xs:enumeration value="SHADING"/>
+      <xs:enumeration value="SHADING_WITH_EDGES"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="ExplodedViewType">
+    <xs:annotation>
+      <xs:documentation>
+        The ExplodedViewType defines a sequence of translate and rotate
+        operations that is applied to the groups of components and
+        bodies. The exploded view shows each object separated from others.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="NodeWithIdBaseType">
+        <xs:sequence>
+          <xs:element name="MoveGroups"
+            type="ExplodedViewMoveGroupsType">
+            <xs:annotation>
+              <xs:documentation>
+                The MoveGroups element is a sequence of translate and
+                rotate operations that is applied to the groups of
+                components and bodies.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ExplodedViewMoveGroupsType">
+    <xs:annotation>
+      <xs:documentation>
+        The ExplodedViewMoveGroupsType defines a sequence of translate and
+        rotate operations that is applied to the groups of components and
+        bodies.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="MoveGroup"
+        type="ExplodedViewMoveGroupType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each MoveGroup element is a group of components and bodies with
+            a defined translate or rotate operator.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of elements in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ExplodedViewMoveGroupType">
+    <xs:annotation>
+      <xs:documentation>
+        The ExplodedViewMoveGroupType is a group of components and bodies
+        with a defined translate or rotate operation.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Translate"
+          type="ExplodedViewTranslateType">
+          <xs:annotation>
+            <xs:documentation>
+              The Translate element alternative is the translation operator
+              of the group.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="Rotate"
+          type="ExplodedViewRotateType">
+          <xs:annotation>
+            <xs:documentation>
+              The Rotate element alternative is the rotation operator of
+              the group.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="ComponentIds"
+        type="ArrayReferenceFullType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ComponentIds element is an array of component
+            identifiers.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BodyIds"
+        type="ArrayReferenceFullType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional BodyIds element is an array of body identifiers.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ExplodedViewTranslateType">
+    <xs:annotation>
+      <xs:documentation>
+        The ExplodedViewTranslateType defines the translation of the group
+        in the exploded view.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Direction"
+        type="UnitVectorType">
+        <xs:annotation>
+          <xs:documentation>
+            The Direction element is the translation direction.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Value"
+        type="LinearValueType">
+        <xs:annotation>
+          <xs:documentation>
+            The Value element is the translation distance.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ExplodedViewRotateType">
+    <xs:annotation>
+      <xs:documentation>
+        The ExplodedViewRotateType defines the rotation of the group in the
+        exploded view.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Axis"
+        type="AxisType">
+        <xs:annotation>
+          <xs:documentation>
+            The Axis element is the rotation axis.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Angle"
+        type="AngularValueType">
+        <xs:annotation>
+          <xs:documentation>
+            The Angle element is the rotation angle.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="SimplifiedRepresentationFormEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The SimplifiedRepresentationFormEnumType enumerates values that
+        describe simplified representation forms.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MASTER"/>
+      <xs:enumeration value="HIDE"/>
+      <xs:enumeration value="BOUNDING_BOX"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="SimplifiedRepresentationType">
+    <xs:annotation>
+      <xs:documentation>
+        The SimplifiedRepresentationType defines a simplified model
+        representation to be used in a saved view.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="NodeWithIdBaseType">
+        <xs:sequence>
+          <xs:element name="Form"
+            type="SimplifiedRepresentationFormEnumType">
+            <xs:annotation>
+              <xs:documentation>
+                The SimplifiedRepresentationFormEnumType element is the
+                default simplified representation form.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SimplifiedRepresentationGroups"
+            type="SimplifiedRepresentationGroupsType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional SimplifiedRepresentationGroups element is
+                groups of components and bodies with defined simplified
+                representation forms.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="SimplifiedRepresentationGroupsType">
+    <xs:annotation>
+      <xs:documentation>
+        The SimplifiedRepresentationGroupsType is a collection of groups of
+        components and bodies with defined simplified representation forms.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SimplifiedRepresentationGroup"
+        type="SimplifiedRepresentationGroupType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each SimplifiedRepresentationGroup element is a group of
+            components and bodies with defined simplified representation
+            forms.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of elements in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="SimplifiedRepresentationGroupType">
+    <xs:annotation>
+      <xs:documentation>
+        The SimplifiedRepresentationGroupType defines a simplified
+        representation for a group of components and bodies.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Form"
+        type="SimplifiedRepresentationFormEnumType">
+        <xs:annotation>
+          <xs:documentation>
+            The Form element is a simplified representation form.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ComponentIds"
+        type="ArrayReferenceFullType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional ComponentIds element is an array of component
+            identifiers.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BodyIds"
+        type="ArrayReferenceFullType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional BodyIds element is an array of body identifiers.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AnnotationViewType">
+    <xs:annotation>
+      <xs:documentation>
+        The AnnotationViewType element defines an annotation view to
+        facilitate representation of the model's annotations.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="NodeWithIdBaseType">
+        <xs:sequence>
+          <xs:element name="Normal"
+            type="UnitVectorType">
+            <xs:annotation>
+              <xs:documentation>
+                The Normal element is the normal vector of the
+                visualization planes.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Direction"
+            type="UnitVectorType">
+            <xs:annotation>
+              <xs:documentation>
+                The Direction element is the default text direction.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="Frames"
+    type="FramesType">
+    <xs:annotation>
+      <xs:documentation>
+        The global Frames element is a set of frames.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Frame"
+    type="FrameBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The global Frame element is the head of a substitution group.  Any
+        element that is a member of the group may be substituted for the
+        Frame element anywhere the Frame element may be used in an instance
+        file.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="FrameRectangular"
+    type="FrameRectangularType"
+    substitutionGroup="Frame">
+    <xs:annotation>
+      <xs:documentation>
+        The global FrameRectangular element defines a rectangular frame.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="FrameCircular"
+    type="FrameCircularType"
+    substitutionGroup="Frame">
+    <xs:annotation>
+      <xs:documentation>
+        The global FrameCircular element defines a circular frame.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="FrameFlag"
+    type="FrameFlagType"
+    substitutionGroup="Frame">
+    <xs:annotation>
+      <xs:documentation>
+        The global FrameFlag element defines a flag form frame.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="FrameIrregularForm"
+    type="FrameIrregularFormType"
+    substitutionGroup="Frame">
+    <xs:annotation>
+      <xs:documentation>
+        The global FrameIrregularForm element defines an irregular form
+        frame.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="FrameTriangle"
+    type="FrameTriangleType"
+    substitutionGroup="Frame">
+    <xs:annotation>
+      <xs:documentation>
+        The global FrameTriangle element defines a triangle frame.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="FrameHexagonal"
+    type="FrameHexagonalType"
+    substitutionGroup="Frame">
+    <xs:annotation>
+      <xs:documentation>
+        The global FrameHexagonal element defines a hexagonal frame.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="FramePentagonal"
+    type="FramePentagonalType"
+    substitutionGroup="Frame">
+    <xs:annotation>
+      <xs:documentation>
+        The global FramePentagonal element defines a pentagonal frame.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="FrameOctagonal"
+    type="FrameOctagonalType"
+    substitutionGroup="Frame">
+    <xs:annotation>
+      <xs:documentation>
+        The global FrameOctagonal element defines an octagonal frame.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="FrameWeldSymbol"
+    type="FrameWeldSymbolType"
+    substitutionGroup="Frame">
+    <xs:annotation>
+      <xs:documentation>
+        The global FrameWeldSymbol element defines a weld symbol frame.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Leader"
+    type="LeaderType">
+    <xs:annotation>
+      <xs:documentation>
+        The global Leader element is the head of a substitution group.  Any
+        element that is a member of the group may be substituted for the
+        Leader element anywhere the Leader element may be used in an
+        instance file.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="LeaderExtend"
+    type="LeaderExtendType"
+    substitutionGroup="Leader">
+    <xs:annotation>
+      <xs:documentation>
+        The global LeaderExtend element defines an extended leader which
+        has a break point and consists of two segments.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="LeaderCircular"
+    type="LeaderCircularType"
+    substitutionGroup="Leader">
+    <xs:annotation>
+      <xs:documentation>
+        The global LeaderCircular element defines a leader that is a
+        circular arc which is less than a semicircle.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="LeaderDoubleHead"
+    type="LeaderDoubleHeadType"
+    substitutionGroup="Leader">
+    <xs:annotation>
+      <xs:documentation>
+        The global LeaderDoubleHead element defines a double head leader.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="LeaderDoubleHeadCircular"
+    type="LeaderDoubleHeadCircularType"
+    substitutionGroup="Leader">
+    <xs:annotation>
+      <xs:documentation>
+        The global LeaderDoubleHeadCircular element defines a double
+        head circular leader.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="LeaderDoubleHeadExtend"
+    type="LeaderDoubleHeadExtendType"
+    substitutionGroup="Leader">
+    <xs:annotation>
+      <xs:documentation>
+        The global LeaderDoubleHeadExtend element defines a double head
+        extended leader which has a break point and consists of two
+        segments.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="WitnessLines"
+    type="WitnessLinesType">
+    <xs:annotation>
+      <xs:documentation>
+        The global WitnessLines element is a pair of witness lines.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Texts"
+    type="TextsType">
+    <xs:annotation>
+      <xs:documentation>
+        The global Texts element is a set of strings.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Text"
+    type="TextType">
+    <xs:annotation>
+      <xs:documentation>
+        The global Text element is a string.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="VisualizationSet"
+    type="VisualizationSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global VisualizationSet element is a collection of display info
+        objects and fonts used for visualization of 3D annotations.
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:key name="VisualizationSetFontIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The VisualizationSetFontIdKey collects all indices of fonts.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:Fonts/t:Font"/>
+      <xs:field xpath="@index"/>
+    </xs:key>
+
+    <xs:keyref name="VisualizationSetPMIDisplayFontIdKeyref"
+      refer="VisualizationSetFontIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The VisualizationSetPMIDisplayFontIdKeyref requires that fonts
+          whose indices are specified in a PMIDisplay be present in the
+          font set (FontSet).
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:PMIDisplaySet/t:PMIDisplay/t:Texts"/>
+      <xs:field xpath="@fontIndex"/>
+    </xs:keyref>
+  </xs:element>
+
+  <xs:element name="PMIDisplaySet"
+    type="PMIDisplaySetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global PMIDisplaySet element is a collection of display info
+        objects associated with PMI entities.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="Fonts"
+    type="FontsType">
+    <xs:annotation>
+      <xs:documentation>
+        The global Fonts element is a collection of fonts used for
+        visualization of 3D annotations.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="ViewSet"
+    type="ViewSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global ViewSet element is a collection of all views present in
+        the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:key name="SimplifiedRepresentationIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The SimplifiedRepresentationIdKey collects all QIF ids of
+          SimplifiedRepresentations.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:SimplifiedRepresentationSet/t:SimplifiedRepresentation"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="SimplifiedRepresentationIdKeyref"
+      refer="SimplifiedRepresentationIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The SimplifiedRepresentationIdKeyref requires that the
+          SimplifiedRepresentationId of a SavedView be the QIF id of a
+          SimplifiedRepresentation.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:SavedViewSet/t:SavedView/t:SimplifiedRepresentationId"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="ExplodedViewIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ExplodedViewIdKey collects all QIF ids of ExplodedViews.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:ExplodedViewSet/t:ExplodedView"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ExplodedViewIdKeyref"
+      refer="ExplodedViewIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ExplodedViewIdKeyref requires that the ExplodedViewId of a
+          SavedView be the QIF id of an ExplodedView.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:SavedViewSet/t:SavedView/t:ExplodedViewId"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="DisplayStyleIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The DisplayStyleIdKey collects all QIF ids of DisplayStyles.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:DisplayStyleSet/t:DisplayStyle"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="DisplayStyleIdKeyref"
+      refer="DisplayStyleIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The DisplayStyleIdKeyref requires that the DisplayStyleId of a
+          SavedView be the QIF id of a DisplayStyle.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:SavedViewSet/t:SavedView/t:DisplayStyleId"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="ZoneSectionIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ZoneSectionIdKey collects all QIF ids of ZoneSections.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:ZoneSectionSet/t:ZoneSection"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="ZoneSectionIdKeyref"
+      refer="ZoneSectionIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ZoneSectionIdKeyref requires that the ZoneSectionId of a
+          SavedView be the QIF id of a ZoneSection.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:SavedViewSet/t:SavedView/t:ZoneSectionId"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="CameraIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The CameraIdKey collects all QIF ids of Cameras.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:CameraSet/t:Camera"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="CameraIdKeyref"
+      refer="CameraIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The CameraIdKeyref requires that each of the CameraIds of a
+          SavedView be the QIF id of a Camera.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:SavedViewSet/t:SavedView/t:CameraIds/t:Id"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="HatchStyleIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The HatchStyleIdKey collects all QIF ids of HatchStyles.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:HatchStyleSet/t:HatchStyle"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:keyref name="HatchStyleIdKeyref"
+      refer="HatchStyleIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The HatchStyleIdKeyref requires that the HatchStyleId of an Area 
+          in a ZoneSection be the QIF id of a HatchStyle.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:ZoneSectionSet/t:ZoneSection/t:SectionPlanes
+              /t:SectionPlane/t:SectionGroups/t:SectionGroup/t:Areas
+              /t:Area/t:HatchStyleId"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+  </xs:element>
+
+  <xs:complexType name="CameraSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The CameraSetType defines a collection of cameras.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Camera"
+        type="CameraType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Camera element defines a camera.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of cameras in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:element name="CameraSet"
+    type="CameraSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global CameraSet element is a collection of cameras.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="SavedViewSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The SavedViewSetType is a collection of saved views.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SavedView"
+        type="SavedViewType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each SavedView element defines a saved View.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of saved views in this
+          set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:element name="SavedViewSet"
+    type="SavedViewSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global SavedViewSet element is a collection of saved views.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:complexType name="AnnotationViewSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The AnnotationViewSetType defines a collection of annotation views.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="AnnotationView"
+        type="AnnotationViewType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each AnnotationView element defines an annotation view.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of annotation views in
+          this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="DisplayStyleSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The DisplayStyleSetType defines a collection of display style types.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DisplayStyle"
+        type="DisplayStyleType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each DisplayStyle element defines a display style.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of display styles in this
+          set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ExplodedViewSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The ExplodedViewSetType defines a collection of exploded views.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ExplodedView"
+        type="ExplodedViewType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each ExplodedView element defines an exploded view.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of exploded views in this
+          set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="SimplifiedRepresentationSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The SimplifiedRepresentationSetType defines a collection of
+        simplified representations.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="SimplifiedRepresentation"
+        type="SimplifiedRepresentationType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each SimplifiedRepresentation element defines a simplified
+            representation.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of simplified
+          representations in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="ZoneSectionSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The ZoneSectionSetType defines a collection of zone sections.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="ZoneSection"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each ZoneSection element defines a zone section.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of zone sections in this
+          set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="HatchStyleSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The HatchStyleSetType defines a collection of hatching styles.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="HatchStyle"
+        type="HatchStyleType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each HatchStyle element defines a hatching style.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of hatching styles in this
+          set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:element name="ZoneSection"
+    type="ZoneSectionType">
+    <xs:annotation>
+      <xs:documentation>
+        The global ZoneSection element is a zone section.
+      </xs:documentation>
+    </xs:annotation>
+
+    <xs:key name="ZoneSectionPlaneIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ZoneSectionPlaneIdKey collects all indices of planes.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:SectionPlanes/t:SectionPlane"/>
+      <xs:field xpath="@index"/>
+    </xs:key>
+
+    <xs:keyref name="ZoneSectionLogicalOperationsSectionPlaneIdKeyref"
+      refer="ZoneSectionPlaneIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ZoneSectionLogicalOperationsSectionPlaneIdKeyref requires
+          that section planes whose indices are specified in
+          a LogicalOperation be present in the SectionPlanes.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:LogicalOperations/t:LogicalOperation/t:SectionPlane"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+
+    <xs:key name="ZoneSectionLogicalOperationIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ZoneSectionLogicalOperationIdKey collects all indices of
+          logical operations.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector xpath="t:LogicalOperations/t:LogicalOperation"/>
+      <xs:field xpath="@index"/>
+    </xs:key>
+
+    <xs:keyref name="ZoneSectionLogicalOperationsLogicalOperationIdKeyref"
+      refer="ZoneSectionLogicalOperationIdKey">
+      <xs:annotation>
+        <xs:documentation>
+          The ZoneSectionLogicalOperationsLogicalOperationIdKeyref requires
+          that logical operation results whose indices are specified in
+          a LogicalOperation be present in the LogicalOperations.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:selector
+        xpath="t:LogicalOperations/t:LogicalOperation
+              /t:LogicalOperationResult"/>
+      <xs:field xpath="."/>
+    </xs:keyref>
+  </xs:element>
+
+  <xs:complexType name="TrailingZeroDisplayType">
+    <xs:annotation>
+      <xs:documentation>
+        The TrailingZeroDisplayType defines trailing zero
+        display options to be used in characteristics.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DimensionalCharacteristicValueTarget"
+        type="xs:boolean"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional DimensionalCharacteristicValueTarget element shows
+            whether all value targets in dimensional characteristics
+            displayed with (true) or without (false) trailing zeros. If
+            this element not defined then the display of trailing zeros
+            uses the definition in the standard.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DimensionalCharacteristicValueLimits"
+        type="xs:boolean"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional DimensionalCharacteristicValueLimits element shows
+            whether all value limits in dimensional characteristics
+            displayed with (true) or without (false) trailing zeros. If
+            this element not defined then the display of trailing zeros
+            uses the definition in the standard.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GeometricCharacteristicValue"
+        type="xs:boolean"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional GeometricCharacteristicValue element shows whether
+            all value in geometric characteristics displayed with (true) or
+            without (false) trailing zeros. If this element not defined
+            then the display of trailing zeros uses the definition in the
+            standard.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TrailingZeroDimensionalCharacteristicDisplayGroups"
+        type="TrailingZeroDimensionalCharacteristicDisplayGroupsType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional TrailingZeroDimensionalCharacteristicDisplayGroups
+            element contains groups of dimensional characteristics with
+            defined trailing zero display options.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TrailingZeroGeometricCharacteristicDisplayGroups"
+        type="TrailingZeroGeometricCharacteristicDisplayGroupsType"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional TrailingZeroGeometricCharacteristicDisplayGroups
+            element contains groups of dimensional characteristics with
+            defined trailing zero display options.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TrailingZeroDimensionalCharacteristicDisplayGroupsType">
+    <xs:annotation>
+      <xs:documentation>
+        The TrailingZeroDimensionalCharacteristicDisplayGroupsType is a
+        collection of groups of dimensional characteristics with defined
+        trailing zero display options.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TrailingZeroDimensionalCharacteristicDisplayGroup"
+        type="TrailingZeroDimensionalCharacteristicDisplayGroupType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each TrailingZeroDimensionalCharacteristicGroup element is a
+            group of dimensional characteristics with defined trailing zero
+            display options.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of elements in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="TrailingZeroDimensionalCharacteristicDisplayGroupType">
+    <xs:annotation>
+      <xs:documentation>
+        The TrailingZeroDimensionalCharacteristicDisplayGroupType defines
+        the trailing zero display options for a group of dimensional
+        characteristics.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DimensionalCharacteristicValueTarget"
+        type="xs:boolean"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional DimensionalCharacteristicValueTarget element shows
+            whether all value targets in dimensional characteristics are
+            displayed with (true) or without (false) trailing zeros.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DimensionalCharacteristicValueLimits"
+        type="xs:boolean"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional DimensionalCharacteristicValueLimits element shows
+            whether all value limits in dimensional characteristics are
+            displayed with (true) or without (false) trailing zeros.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DimensionalCharacteristicIds"
+        type="ArrayReferenceFullType">
+        <xs:annotation>
+          <xs:documentation>
+            The DimensionalCharacteristicIds element is an array of
+            dimensional characteristics identifiers.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TrailingZeroGeometricCharacteristicDisplayGroupsType">
+    <xs:annotation>
+      <xs:documentation>
+        The TrailingZeroGeometricCharacteristicDisplayGroupsType is a
+        collection of groups of geometric characteristics with defined
+        trailing zero display options.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TrailingZeroGeometricCharacteristicDisplayGroup"
+        type="TrailingZeroGeometricCharacteristicDisplayGroupType"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each TrailingZeroGeometricCharacteristicGroup element is a
+            group of geometric characteristics with defined trailing zero
+            display options.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of elements in this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="TrailingZeroGeometricCharacteristicDisplayGroupType">
+    <xs:annotation>
+      <xs:documentation>
+        The TrailingZeroGeometricCharacteristicDisplayGroupType defines the
+        trailing zero display options for a group of geometric
+        characteristics.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="GeometricCharacteristicValue"
+        type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>
+            The optional GeometricCharacteristicValue element shows whether
+            all value in geometric characteristics are displayed
+            with (true) or without (false) trailing zeros.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GeometricCharacteristicIds"
+        type="ArrayReferenceFullType">
+        <xs:annotation>
+          <xs:documentation>
+            The GeometricCharacteristicIds element is an array of
+            geometric characteristics identifiers.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="AnnotationViewSet"
+    type="AnnotationViewSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global AnnotationViewSet element is a collection
+        of annotation views.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="ExplodedViewSet"
+    type="ExplodedViewSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global ExplodedViewSet element is a collection
+        of exploded views.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="SimplifiedRepresentationSet"
+    type="SimplifiedRepresentationSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global SimplifiedRepresentationSet element is a collection
+        of simplified representations.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="DisplayStyleSet"
+    type="DisplayStyleSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global DisplayStyleSet element is a collection
+        of display styles.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="ZoneSectionSet"
+    type="ZoneSectionSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global ZoneSectionSet element is a collection
+        of zone sections.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="HatchStyleSet"
+    type="HatchStyleSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The global HatchStyleSet element is a collection
+        of hatch styles.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="TrailingZeroDisplay"
+    type="TrailingZeroDisplayType">
+    <xs:annotation>
+      <xs:documentation>
+        The global TrailingZeroDisplay element is a trailing zero display
+        options.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+</xs:schema>

@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This document is part of QIF 3.0, an open, industry-wide standard -->
+<!-- established by the Dimensional Metrology Standards Consortium.    -->
+<!-- This document shall not be used in any manner to claim any        -->
+<!-- proprietary rights to such information, such as rights to a       -->
+<!-- patent, trademark, or copyright.                                  -->
+
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://qifstandards.org/xsd/qif3"
+  xmlns:t="http://qifstandards.org/xsd/qif3"
+  targetNamespace="http://qifstandards.org/xsd/qif3"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified"
+  version="3.0.0">
+  
+  <xs:include schemaLocation="../QIFLibrary/GenericExpressions.xsd"/>
+  <xs:include schemaLocation="../QIFLibrary/PrimitivesPMI.xsd"/>
+
+  <xs:annotation>
+    <xs:documentation>
+      This file defines QIF-specific Boolean expressions and arithmetic
+      expressions. The initial intent is that these expressions should
+      support writing QIF rules. The file includes specialized Boolean
+      expressions for identifying the types of features and
+      characteristics.
+
+      It is assumed that a system consuming an instance file containing
+      expressions will be capable of evaluating the expressions.
+    </xs:documentation>
+  </xs:annotation>
+
+<!-- START QIF BOOLEAN EXPRESSIONS -->
+
+  <xs:complexType name="SamplingCategoryIsType">
+    <xs:annotation>
+      <xs:documentation>
+        The SamplingCategoryIsType defines a Boolean expression
+        representing a test of sampling category. The
+        SamplingCategoryIsType evaluates to true if the val is the point
+        level in the environment in which the SamplingCategoryIsType is
+        evaluated. Otherwise, it evaluates to false.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BooleanExpressionBaseType">
+        <xs:attribute name="val"
+          type="xs:unsignedInt"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required val attribute is the value against which to
+              test the sampling category in the environment.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="FeatureIsDatumType">
+    <xs:annotation>
+      <xs:documentation>
+        The FeatureIsDatumType defines a Boolean expression representing a
+        test of whether a feature is a datum. The FeatureIsDatumType
+        evaluates to true if the feature for which hit points are being
+        selected is used as a datum. Otherwise, it evaluates to false.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BooleanExpressionBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="FeatureIsInternalType">
+    <xs:annotation>
+      <xs:documentation>
+        The FeatureIsInternalType defines a Boolean expression representing
+        a test of whether a feature is internal. The FeatureIsInternalType
+        evaluates to true if the feature for which hit points are being
+        selected is an internal feature. Otherwise, it evaluates to false,
+        which means either the feature is external or the feature is
+        neither internal nor external.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BooleanExpressionBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="CharacteristicIsType">
+    <xs:annotation>
+      <xs:documentation>
+        The CharacteristicIsType defines a Boolean expression representing
+        a test of whether a characteristic is of a given type. The
+        CharacteristicIsType evaluates to true if the val is the
+        characteristic type of the characteristic for which hit points are
+        being selected or a DME is being selected. Otherwise, it evaluates
+        to false.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BooleanExpressionBaseType">
+        <xs:attribute name="val"
+          type="CharacteristicTypeEnumType"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required val attribute is the characteristic type against
+              which to test the characteristic type of the feature.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="FeatureTypeIsType">
+    <xs:annotation>
+      <xs:documentation>
+        The FeatureTypeIsType defines a Boolean expression representing a
+        test of whether a feature is of a given type. The FeatureTypeIsType
+        evaluates to true if the val is the feature type of the feature for
+        which a DME is being selected. Otherwise, it evaluates to false.
+        The FeatureTypeIsType should not be used in boolean expressions in
+        the FeatureRules of the QIFRulesType since those rules are already
+        feature specific.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BooleanExpressionBaseType">
+        <xs:attribute name="val"
+          type="FeatureTypeEnumType"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required val attribute is the feature type against
+              which to test the feature type of the feature.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ShapeClassIsType">
+    <xs:annotation>
+      <xs:documentation>
+        The ShapeClassIsType defines a Boolean expression representing a
+        test of whether a part is in a given shape class. The
+        ShapeClassIsType evaluates to true if the val is the primary shape
+        class of the part containing the feature for which the number of
+        points is being set. Otherwise, it evaluates to false.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="BooleanExpressionBaseType">
+        <xs:attribute name="val"
+          type="ShapeClassEnumType"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required val attribute is the shape class type against
+              which to test the shape class of the part on which the
+              feature is located.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+<!-- BEGIN ENUMERATION TYPES -->
+
+  <xs:simpleType name="PointSamplingStrategyEnumBaseType">
+    <xs:annotation>
+      <xs:documentation>
+        The PointSamplingStrategyEnumType enumerates point sampling
+        strategy types as given in ISO14406:2010.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="ORTHOGONALGRID"/>
+      <xs:enumeration value="BIRDCAGE"/>
+      <xs:enumeration value="POLARGRID"/>
+      <xs:enumeration value="SPECIFIEDGRID"/>
+      <xs:enumeration value="STRATIFIED"/>
+      <xs:enumeration value="HELIX"/>
+      <xs:enumeration value="SPIRAL"/>
+      <xs:enumeration value="SPIDERWEB"/>
+      <xs:enumeration value="POINTS"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="PointPointSamplingStrategyEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The PointPointSamplingStrategyEnumType enumerates point sampling
+        strategy types for point features.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="PointSamplingStrategyEnumBaseType">
+      <xs:enumeration value="POINTS"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="OpenCurvePointSamplingStrategyEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The OpenCurvePointSamplingStrategyEnumType enumerates point
+        sampling strategy types for open curves.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="PointSamplingStrategyEnumBaseType">
+      <xs:enumeration value="POINTS"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ClosedCurvePointSamplingStrategyEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The ClosedCurvePointSamplingStrategyEnumType enumerates point
+        sampling strategy types for closed curves. The POINTS value here
+        has the same meaning as in the PointSamplingStrategyEnumBaseType.
+        EQUIDISTANT means the points are spaced evenly along the curve.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="POINTS"/>
+      <xs:enumeration value="EQUIDISTANT"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="PointDefinedPointSamplingStrategyEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The PointDefinedPointSamplingStrategyEnumType enumerates point
+        sampling strategy types for point-defined curves and surfaces. The
+        POINTS value here has the same meaning as in the
+        PointSamplingStrategyEnumBaseType. GIVENPOINTS means to use the
+        points of the point-defined curve or surface.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="GIVENPOINTS"/>
+      <xs:enumeration value="POINTS"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ConePointSamplingStrategyEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The ConePointSamplingStrategyEnumType enumerates point sampling
+        strategy types from ISO14406:2010 applicable to a cone.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="PointSamplingStrategyEnumBaseType">
+      <xs:enumeration value="POLARGRID"/>
+      <xs:enumeration value="STRATIFIED"/>
+      <xs:enumeration value="SPIRAL"/>
+      <xs:enumeration value="SPIDERWEB"/>
+      <xs:enumeration value="POINTS"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ElongatedCylinderPointSamplingStrategyEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The ElongatedCylinderPointSamplingStrategyEnumType enumerates point
+        sampling strategy types as given in ISO14406:2010 for cylinder.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="PointSamplingStrategyEnumBaseType">
+      <xs:enumeration value="ORTHOGONALGRID"/>
+      <xs:enumeration value="BIRDCAGE"/>
+      <xs:enumeration value="SPECIFIEDGRID"/>
+      <xs:enumeration value="STRATIFIED"/>
+      <xs:enumeration value="HELIX"/>
+      <xs:enumeration value="POINTS"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ExtrudedCrossSectionPointSamplingStrategyEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The ExtrudedCrossSectionPointSamplingStrategyEnumType enumerates
+        point sampling strategy types given in ISO14406:2010 that are
+        applicable.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="PointSamplingStrategyEnumBaseType">
+      <xs:enumeration value="BIRDCAGE"/>
+      <xs:enumeration value="STRATIFIED"/>
+      <xs:enumeration value="POINTS"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="SpherePointSamplingStrategyEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The SpherePointSamplingStrategyEnumType enumerates point sampling
+        strategy types as given in ISO14406:2010.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="PointSamplingStrategyEnumBaseType">
+      <xs:enumeration value="ORTHOGONALGRID"/>
+      <xs:enumeration value="SPECIFIEDGRID"/>
+      <xs:enumeration value="STRATIFIED"/>
+      <xs:enumeration value="HELIX"/>
+      <xs:enumeration value="POINTS"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="SurfaceOfRevolutionPointSamplingStrategyEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The SurfaceOfRevolutionPointSamplingStrategyEnumType enumerates
+        point sampling strategy types as given in ISO14406:2010.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="PointSamplingStrategyEnumBaseType">
+      <xs:enumeration value="ORTHOGONALGRID"/>
+      <xs:enumeration value="BIRDCAGE"/>
+      <xs:enumeration value="SPECIFIEDGRID"/>
+      <xs:enumeration value="STRATIFIED"/>
+      <xs:enumeration value="HELIX"/>
+      <xs:enumeration value="POINTS"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="PlanePointSamplingStrategyEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The PointSamplingStrategyEnumType enumerates point sampling
+        strategy types as given in ISO14406:2010.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="PointSamplingStrategyEnumBaseType">
+      <xs:enumeration value="ORTHOGONALGRID"/>
+      <xs:enumeration value="POLARGRID"/>
+      <xs:enumeration value="SPECIFIEDGRID"/>
+      <xs:enumeration value="STRATIFIED"/>
+      <xs:enumeration value="SPIRAL"/>
+      <xs:enumeration value="SPIDERWEB"/>
+      <xs:enumeration value="POINTS"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="CharacteristicTypeEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The CharacteristicTypeEnumType enumerates types of characteristics.
+        The enumeration values represent the names of the characteristic
+        types defined in Characteristics.xsd.
+          ANGLE = AngleCharacteristicNominalType
+          ANGLECOORDINATE = AngleCoordinateCharacteristicNominalType
+          ANGLEFROM = AngleFromCharacteristicNominalType
+          ANGLEBETWEEN = AngleBetweenCharacteristicNominalType
+          ANGULARITY = AngularityCharacteristicNominalType
+          CHORD = ChordCharacteristicNominalType
+          CIRCULARITY = CircularityCharacteristicNominalType
+          CIRCULARRUNOUT = CircularRunoutCharacteristicNominalType
+          CONCENTRICITY = ConcentricityCharacteristicNominalType
+          CONICALTAPER = ConicalTaperCharacteristicNominalType
+          CONICITY = ConicityCharacteristicNominalType
+          CURVELENGTH = CurveLengthCharacteristicNominalType
+          CYLINDRICITY = CylindricityCharacteristicNominalType
+          DEPTH = DepthCharacteristicNominalType
+          DIAMETER = DiameterCharacteristicNominalType
+          DISTANCE = DistanceBetweenCharacteristicNominalType
+          DISTANCEFROM = DistanceFromCharacteristicNominalType
+          ELLIPTICITY = EllipticityCharacteristicNominalType
+          FLATTAPER = FlatTaperCharacteristicNominalType
+          FLATNESS = FlatnessCharacteristicNominalType
+          HEIGHT = HeightCharacteristicNominalType
+          LENGTH = LengthCharacteristicNominalType
+          LENGTHCOORDINATE = LengthCoordinateCharacteristicNominalType
+          LINEPROFILE = LineProfileCharacteristicNominalType
+          OTHERFORM = OtherFormCharacteristicNominalType
+          PERPENDICULARITY = PerpendicularityCharacteristicNominalType
+          PARALLELISM = ParallelismCharacteristicNominalType
+          POINTPROFILE = PointProfileCharacteristicNominalType
+          POSITION = PositionCharacteristicNominalType
+          RADIUS = RadiusCharacteristicNominalType
+          SPHERICALDIAMETER = SphericalDiameterCharacteristicNominalType
+          SPHERICALRADIUS = SphericalRadiusCharacteristicNominalType
+          SPHERICITY = SphericityCharacteristicNominalType
+          SQUARE = SquareCharacteristicNominalType
+          STRAIGHTNESS = StraightnessCharacteristicNominalType
+          SURFACEPROFILE = SurfaceProfileCharacteristicNominalType
+          SURFACEPROFILENONUNIFORM = SurfaceProfileNonUniformChar'Nom'Type
+          SYMMETRY = SymmetryCharacteristicNominalType
+          THICKNESS = ThicknessCharacteristicNominalType
+          THREAD = ThreadCharacteristicNominalType
+          TOROIDICITY = ToroidicityCharacteristicNominalType
+          TOTALRUNOUT = TotalRunoutCharacteristicNominalType
+          WELDBEVEL = WeldBevelCharacteristicNominalType
+          WELDEDGE = WeldEdgeCharacteristicNominalType
+          WELDFILLET = WeldFilletCharacteristicNominalType
+          WELDFLAREBEVEL = WeldFlareBevelCharacteristicNominalType
+          WELDFLAREV = WeldFlareVCharacteristicNominalType
+          WELDJ = WeldJCharacteristicNominalType
+          WELDPLUG = WeldPlugCharacteristicNominalType
+          WELDSCARF = WeldScarfCharacteristicNominalType
+          WELDSEAM = WeldSeamCharacteristicNominalType
+          WELDSLOT = WeldSlotCharacteristicNominalType
+          WELDSPOT = WeldSpotCharacteristicNominalType
+          WELDSQUARE = WeldSquareCharacteristicNominalType
+          WELDSTUD = WeldStudCharacteristicNominalType
+          WELDSURFACING = WeldSurfacingCharacteristicNominalType
+          WELDU = WeldUCharacteristicNominalType
+          WELDV = WeldVCharacteristicNominalType
+          WIDTH = WidthCharacteristicNominalType
+        </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="ANGLE"/>
+      <xs:enumeration value="ANGLEBETWEEN"/>
+      <xs:enumeration value="ANGLECOORDINATE"/>
+      <xs:enumeration value="ANGLEFROM"/>
+      <xs:enumeration value="ANGULARITY"/>
+      <xs:enumeration value="CHORD"/>
+      <xs:enumeration value="CIRCULARITY"/>
+      <xs:enumeration value="CIRCULARRUNOUT"/>
+      <xs:enumeration value="CONCENTRICITY"/>
+      <xs:enumeration value="CONICALTAPER"/>
+      <xs:enumeration value="CONICITY"/>
+      <xs:enumeration value="CURVELENGTH"/>
+      <xs:enumeration value="CYLINDRICITY"/>
+      <xs:enumeration value="DEPTH"/>
+      <xs:enumeration value="DIAMETER"/>
+      <xs:enumeration value="DISTANCE"/>
+      <xs:enumeration value="DISTANCEFROM"/>
+      <xs:enumeration value="ELLIPTICITY"/>
+      <xs:enumeration value="FLATTAPER"/>
+      <xs:enumeration value="FLATNESS"/>
+      <xs:enumeration value="HEIGHT"/>
+      <xs:enumeration value="LENGTH"/>
+      <xs:enumeration value="LENGTHCOORDINATE"/>
+      <xs:enumeration value="LINEPROFILE"/>
+      <xs:enumeration value="OTHERFORM"/>
+      <xs:enumeration value="PERPENDICULARITY"/>
+      <xs:enumeration value="PARALLELISM"/>
+      <xs:enumeration value="POINTPROFILE"/>
+      <xs:enumeration value="POSITION"/>
+      <xs:enumeration value="RADIUS"/>
+      <xs:enumeration value="SPHERICALDIAMTER"/>
+      <xs:enumeration value="SPHERICALRADIUS"/>
+      <xs:enumeration value="SPHERICITY"/>
+      <xs:enumeration value="SQUARE"/>
+      <xs:enumeration value="STRAIGHTNESS"/>
+      <xs:enumeration value="SURFACEPROFILE"/>
+      <xs:enumeration value="SURFACEPROFILENONUNIFORM"/>
+      <xs:enumeration value="SYMMETRY"/>
+      <xs:enumeration value="THICKNESS"/>
+      <xs:enumeration value="THREAD"/>
+      <xs:enumeration value="TOROIDICITY"/>
+      <xs:enumeration value="TOTALRUNOUT"/>
+      <xs:enumeration value="WELDBEVEL"/>
+      <xs:enumeration value="WELDEDGE"/>
+      <xs:enumeration value="WELDFILLET"/>
+      <xs:enumeration value="WELDFLAREBEVEL"/>
+      <xs:enumeration value="WELDFLAREV"/>
+      <xs:enumeration value="WELDJ"/>
+      <xs:enumeration value="WELDPLUG"/>
+      <xs:enumeration value="WELDSCARF"/>
+      <xs:enumeration value="WELDSEAM"/>
+      <xs:enumeration value="WELDSLOT"/>
+      <xs:enumeration value="WELDSPOT"/>
+      <xs:enumeration value="WELDSQUARE"/>
+      <xs:enumeration value="WELDSTUD"/>
+      <xs:enumeration value="WELDSURFACING"/>
+      <xs:enumeration value="WELDU"/>
+      <xs:enumeration value="WELDV"/>
+      <xs:enumeration value="WIDTH"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="FeatureTypeEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The FeatureTypeEnumType enumerates types of features.
+        The enumeration values represent the names of the feature
+        types defined in Features.xsd.
+          CIRCLE = CircleFeatureItemType
+          CIRCULARARC = CircularArcFeatureItemType
+          CONE = ConeFeatureItemType
+          CONICALSEGMENT = ConicalSegmentFeatureItemType
+          CYLINDER = CylinderFeatureItemType
+          CYLINDRICALSEGMENT = CylindricalSegmentFeatureItemType
+          EDGEPOINT = EdgePointFeatureItemType
+          ELLIPSE = EllipseFeatureItemType
+          ELLIPTICALARC = EllipticalArcFeatureItemType
+          ELONGATEDCIRCLE = ElongatedCircleFeatureItemType
+          ELONGATEDCYLINDER = ElongatedCylinderFeatureItemType
+          EXTRUDEDCROSSSECTION = ExtrudedCrossSectionFeatureItemType
+          GROUP = GroupFeatureItemType
+          LINE = LineFeatureItemType
+          MARKING = MarkingFeatureItemType
+          OPPOSITEANGLEDLINES = OppositeAngledLinesFeatureItemType
+          OPPOSITEANGLEDPLANES = OppositeAngledPlanesFeatureItemType
+          OPPOSITEPARALLELLINES = OppositeParallelLinesFeatureItemType
+          OPPOSITEPARALLELPLANES = OppositeParallelPlanesFeatureItemType
+          OTHERCURVE = OtherCurveFeatureItemType
+          OTHERNONSHAPE = OtherNonShapeFeatureItemType
+          OTHERSHAPE = OtherShapeFeatureItemType
+          OTHERSURFACE = OtherSurfaceFeatureItemType
+          PATTERN = PatternFeatureItemBaseType (any pattern feature)
+          PATTERNCIRCLE = PatternFeatureCircleItemType
+          PATTERNCIRCULARARC = PatternFeatureCircularArcItemType
+          PATTERNLINEAR = PatternFeatureLinearItemType
+          PATTERNPARALLELOGRAM = PatternFeatureParallelogramItemType
+          PLANE = PlaneFeatureItemType
+          POINT = PointFeatureItemType
+          POINTDEFINEDCURVE = PointDefinedCurveFeatureItemType
+          POINTDEFINEDSURFACE = PointDefinedSurfaceFeatureItemType
+          SPHERE = SphereFeatureItemType
+          SPHERICALSEGMENT = SphericalSegmentFeatureItemType
+          SURFACEOFREVOLUTION = SurfaceOfRevolutionFeatureItemType
+          THREADED = ThreadedFeatureItemType
+          TOROIDALSEGMENT = ToroidalSegmentFeatureItemType
+          TORUS = TorusFeatureItemType
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="CIRCLE"/>
+      <xs:enumeration value="CIRCULARARC"/>
+      <xs:enumeration value="CONE"/>
+      <xs:enumeration value="CONICALSEGMENT"/>
+      <xs:enumeration value="CYLINDER"/>
+      <xs:enumeration value="CYLINDRICALSEGMENT"/>
+      <xs:enumeration value="EDGEPOINT"/>
+      <xs:enumeration value="ELLIPSE"/>
+      <xs:enumeration value="ELLIPTICALARC"/>
+      <xs:enumeration value="ELONGATEDCIRCLE"/>
+      <xs:enumeration value="ELONGATEDCYLINDER"/>
+      <xs:enumeration value="EXTRUDEDCROSSSECTION"/>
+      <xs:enumeration value="GROUP"/>
+      <xs:enumeration value="LINE"/>
+      <xs:enumeration value="MARKING"/>
+      <xs:enumeration value="OPPOSITEANGLEDLINES"/>
+      <xs:enumeration value="OPPOSITEPARALLELLINES"/>
+      <xs:enumeration value="OPPOSITEANGLEDPLANES"/>
+      <xs:enumeration value="OPPOSITEPARALLELPLANES"/>
+      <xs:enumeration value="OTHERCURVE"/>
+      <xs:enumeration value="OTHERNONSHAPE"/>
+      <xs:enumeration value="OTHERSHAPE"/>
+      <xs:enumeration value="OTHERSURFACE"/>
+      <xs:enumeration value="PATTERN"/>
+      <xs:enumeration value="PATTERNCIRCLE"/>
+      <xs:enumeration value="PATTERNCIRCULARARC"/>
+      <xs:enumeration value="PATTERNLINEAR"/>
+      <xs:enumeration value="PATTERNPARALLELOGRAM"/>
+      <xs:enumeration value="PLANE"/>
+      <xs:enumeration value="POINT"/>
+      <xs:enumeration value="POINTDEFINEDCURVE"/>
+      <xs:enumeration value="POINTDEFINEDSURFACE"/>
+      <xs:enumeration value="SPHERE"/>
+      <xs:enumeration value="SPHERICALSEGMENT"/>
+      <xs:enumeration value="SURFACEOFREVOLUTION"/>
+      <xs:enumeration value="THREADED"/>
+      <xs:enumeration value="TOROIDALSEGMENT"/>
+      <xs:enumeration value="TORUS"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="DMEClassNameEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The DMEClassNameEnumType enumerates values that name classes of
+        DMEs. The values are self-explanatory. Some values are a subtype
+        of a parent type as follows:
+          CALIPER
+            DIAL_CALIPER
+            DIGITAL_CALIPER
+          CMM
+            AACMM
+            CARTESIAN_CMM
+              MULTIPLE_CARRIAGE_CARTESIAN_CMM
+            LIGHT_PEN_CMM
+            PARALLEL_LINK_CMM
+          MICROMETER
+            ANALOG_MICROMETER
+            DIGITAL_MICROMETER
+          TACTILE_PROBE_SENSOR
+            COMPLEX_TACTILE_PROBE_SENSOR
+            SIMPLE_TACTILE_PROBE_SENSOR
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="AACMM"/>
+      <xs:enumeration value="ALLDMES"/>
+      <xs:enumeration value="ANALOG_MICROMETER"/>
+      <xs:enumeration value="AUTOCOLLIMATOR"/>
+      <xs:enumeration value="CALIPER"/>
+      <xs:enumeration value="CAPACITIVE_SENSOR"/>
+      <xs:enumeration value="CARTESIAN_CMM"/>
+      <xs:enumeration value="CHARGE_COUPLED_DEVICE_CAMERA_SENSOR"/>
+      <xs:enumeration value="CMM"/>
+      <xs:enumeration value="COMPLEX_TACTILE_PROBE_SENSOR"/>
+      <xs:enumeration value="COMPUTED_TOMOGRAPHY"/>
+      <xs:enumeration value="CONFOCAL_CHROMATIC_SENSOR"/>
+      <xs:enumeration value="DIAL_CALIPER"/>
+      <xs:enumeration value="DIGITAL_CALIPER"/>
+      <xs:enumeration value="DIGITAL_MICROMETER"/>
+      <xs:enumeration value="DRAW_WIRE_SENSOR"/>
+      <xs:enumeration value="DVRT_SENSOR"/>
+      <xs:enumeration value="EDDY_CURRENT_SENSOR"/>
+      <xs:enumeration value="GAGE"/>
+      <xs:enumeration value="LASER_RADAR"/>
+      <xs:enumeration value="LASER_TRACKER"/>
+      <xs:enumeration value="LASER_TRIANGULATION_SENSOR"/>
+      <xs:enumeration value="LIGHT_PEN_CMM"/>
+      <xs:enumeration value="LVDT_SENSOR"/>
+      <xs:enumeration value="MAGNETO_INDUCTIVE_SENSOR"/>
+      <xs:enumeration value="MEASUREMENT_ROOM"/>
+      <xs:enumeration value="MICROMETER"/>
+      <xs:enumeration value="MICROSCOPE"/>
+      <xs:enumeration value="MULTIPLE_CARRIAGE_CARTESIAN_CMM"/>
+      <xs:enumeration value="OPTICAL_COMPARATOR"/>
+      <xs:enumeration value="PARALLEL_LINK_CMM"/>
+      <xs:enumeration value="PROBE_TIP"/>
+      <xs:enumeration value="SIMPLE_TACTILE_PROBE_SENSOR"/>
+      <xs:enumeration value="SINE_BAR"/>
+      <xs:enumeration value="STRUCTURED_LIGHT_SENSOR"/>
+      <xs:enumeration value="TACTILE_PROBE_SENSOR"/>
+      <xs:enumeration value="THEODOLITE"/>
+      <xs:enumeration value="TOOL_WITH_CCD_CAMERA_SENSOR"/>
+      <xs:enumeration value="TOOL_WITH_CAPACITIVE_SENSOR"/>
+      <xs:enumeration value="TOOL_WITH_COMPLEX_TACTILE_PROBE_SENSOR"/>
+      <xs:enumeration value="TOOL_WITH_CONFOCAL_CHROMATIC_SENSOR"/>
+      <xs:enumeration value="TOOL_WITH_DETACHABLE_SENSORS"/>
+      <xs:enumeration value="TOOL_WITH_DVRT_SENSOR"/>
+      <xs:enumeration value="TOOL_WITH_DRAW_WIRE_SENSOR"/>
+      <xs:enumeration value="TOOL_WITH_EDDY_CURRENT_SENSOR"/>
+      <xs:enumeration value="TOOL_WITH_INTEGRATED_SENSOR"/>
+      <xs:enumeration value="TOOL_WITH_LVDT_SENSOR"/>
+      <xs:enumeration value="TOOL_WITH_LASER_TRIANGULATION_SENSOR"/>
+      <xs:enumeration value="TOOL_WITH_MAGNETOINDUCTIVE_SENSOR"/>
+      <xs:enumeration value="TOOL_WITH_SIMPLE_TACTILE_PROBE_SENSOR"/>
+      <xs:enumeration value="TOOL_WITH_STRUCTURED_LIGHT_SENSOR"/>
+      <xs:enumeration value="TOOL_WITH_ULTRASONIC_SENSOR"/>
+      <xs:enumeration value="ULTRASONIC_SENSOR"/>
+      <xs:enumeration value="UNIVERSAL_DEVICE"/>
+      <xs:enumeration value="UNIVERSAL_LENGTH_MEASURING"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ArithmeticComparisonEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArithmeticComparisonEnumType enumerates values that describe
+        a comparison that may be made between two arithmetic expressions.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:NMTOKEN">
+      <xs:enumeration value="EQUAL"/>
+      <xs:enumeration value="GREATER"/>
+      <xs:enumeration value="GREATEROREQUAL"/>
+      <xs:enumeration value="LESS"/>
+      <xs:enumeration value="LESSOREQUAL"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+<!-- END ENUMERATION TYPES -->
+
+<!-- START SUBSTITUTION GROUP EXTENSION FOR BooleanExpression -->
+
+  <xs:element name="CharacteristicIs"
+    type="CharacteristicIsType"
+    substitutionGroup="BooleanExpression"/>
+
+  <xs:element name="FeatureIsDatum"
+    type="FeatureIsDatumType"
+    substitutionGroup="BooleanExpression"/>
+
+  <xs:element name="FeatureIsInternal"
+    type="FeatureIsInternalType"
+    substitutionGroup="BooleanExpression"/>
+
+  <xs:element name="FeatureTypeIs"
+    type="FeatureTypeIsType"
+    substitutionGroup="BooleanExpression"/>
+
+  <xs:element name="SamplingCategoryIs"
+    type="SamplingCategoryIsType"
+    substitutionGroup="BooleanExpression"/>
+
+  <xs:element name="ShapeClassIs"
+    type="ShapeClassIsType"
+    substitutionGroup="BooleanExpression"/>
+
+<!-- END SUBSTITUTION GROUP EXTENSION FOR BooleanExpression -->
+
+<!-- END QIF BOOLEAN EXPRESSIONS -->
+
+<!-- START QIF ARITHMETIC EXPRESSIONS -->
+
+  <xs:complexType name="ArithmeticParameterBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The abstract ArithmeticParameterBaseType defines an arithmetic
+        expression that represents the value of an arithmetic parameter of
+        a feature, characteristic, DME, or part (e.g., the diameter of a
+        circle). If a parameter value is given in units that are not the
+        units in use, the evaluating system must convert to the units in
+        use and use the converted value.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArithmeticExpressionBaseType">
+        <xs:sequence>
+          <xs:element name="Parameter"
+            type="xs:token">
+            <xs:annotation>
+              <xs:documentation>
+                The Parameter element is the xpath starting from the
+                feature, characteristic, DME, or part and ending in name of
+                the arithmetic parameter whose value is to be obtained --
+                for example, Diameter for a Circle or Sweep/Angle for a
+                Circular Arc. The type of the value of the parameter must
+                be xs:decimal or the value must be convertible to
+                xs:decimal without loss of accuracy.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArithmeticFeatureParameterType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArithmeticFeatureParameterType defines an arithmetic expression
+        that represents the value of an arithmetic parameter of a feature
+        (e.g., the diameter of a circle). If the feature instance under
+        consideration does not have the given parameter, rules containing
+        an instance of the ArithmeticFeatureParameter do not apply.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArithmeticParameterBaseType">
+        <xs:sequence>
+          <xs:element name="FeatureTypeEnum"
+            type="FeatureTypeEnumType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional CharacteristicTypeEnum element identifies the
+                type of feature. If this element is used, the rule
+                containing the ArithmeticFeatureParameter applies only to
+                features of the given type. If this element is not used,
+                the rule containing the ArithmeticFeatureParameter applies
+                to any feature that has the parameter.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArithmeticCharacteristicParameterType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArithmeticCharacteristicParameterType defines an arithmetic
+        expression that represents the value of an arithmetic parameter of
+        a characteristic (e.g., the ToleranceValue of a geometric
+        tolerance). If the characteristic under consideration does not have
+        the given parameter, rules containing an instance of the
+        ArithmeticCharacteristicParameter do not apply.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArithmeticParameterBaseType">
+        <xs:sequence>
+          <xs:element name="CharacteristicTypeEnum"
+            type="CharacteristicTypeEnumType"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional CharacteristicTypeEnum element identifies the
+                type of characteristic. If this element is used, the rule
+                containing the ArithmeticCharacteristicParameter applies
+                only to characteristics of the given type. If this element
+                is not used, the rule containing the
+                ArithmeticCharacteristicParameterType applies to any
+                characteristic that has the parameter.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArithmeticDMEParameterType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArithmeticDMEParameterType defines an arithmetic expression
+        that represents the value of an arithmetic parameter of a DME
+        (e.g., the resolution of a caliper). If the DME under consideration
+        does not have the given parameter, rules containing an instance of
+        the ArithmeticDMEParameter do not apply.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArithmeticParameterBaseType">
+        <xs:sequence>
+          <xs:element name="DMEClassNameEnum"
+            type="DMEClassNameEnumType">
+            <xs:annotation>
+              <xs:documentation>
+                The DMEClassNameEnum element identifies the type of DME. A
+                rule containing the ArithmeticDMEParameter applies only to
+                DMEs of the given type.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ArithmeticPartParameterType">
+    <xs:annotation>
+      <xs:documentation>
+        The ArithmeticPartParameterType defines an arithmetic expression
+        that represents the value of an arithmetic parameter of the part
+        being inspected. If the part under consideration does not have the
+        given parameter, rules containing an instance of the
+        ArithmeticPartParameter do not apply.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArithmeticParameterBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="CharacteristicToleranceType">
+    <xs:annotation>
+      <xs:documentation>
+        The CharacteristicToleranceType defines an arithmetic expression
+        representing the tolerance range of a characteristic. The
+        CharacteristicToleranceType evaluates to the difference between the
+        MaxValue and MinValue given in the tolerance of the characteristic.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArithmeticExpressionBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="FeatureLengthType">
+    <xs:annotation>
+      <xs:documentation>
+        The FeatureLengthType defines an arithmetic expression representing
+        the length of a feature. The FeatureLengthType evaluates to the
+        length of the feature being processed. The length of a curve is its
+        curve length. The length of a surface is the largest distance
+        between any two points on the surface. The units for length are the
+        linear units used in the file.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArithmeticExpressionBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="FeatureAreaType">
+    <xs:annotation>
+      <xs:documentation>
+        The FeatureAreaType defines an arithmetic expression representing
+        the area of a feature. The FeatureAreaType evaluates to the area of
+        the feature being processed. The units for area are the area units
+        used in the file.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArithmeticExpressionBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="FeatureSizeType">
+    <xs:annotation>
+      <xs:documentation>
+        The FeatureSizeType defines an arithmetic expression representing
+        the relevant linear size of a feature. The author of any set of
+        rules that uses feature size should provide a definition of feature
+        size for each combination of feature type and characteristic
+        covered by the rules. For example, for a cylindrical hole, the
+        feature size for a diameter characteristic might be the diameter,
+        for a length characteristic might be the length, and for a
+        cylindricity characteristic might be the maximum distance between
+        any two points on the cylinder. The units for size are the length
+        units used in the file.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ArithmeticExpressionBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+<!-- START SUBSTITUTION GROUP EXTENSION FOR ArithmeticExpression -->
+
+  <xs:element name="ArithmeticFeatureParameter"
+    type="ArithmeticFeatureParameterType"
+    substitutionGroup="ArithmeticExpression"/>
+
+  <xs:element name="ArithmeticCharacteristicParameter"
+    type="ArithmeticCharacteristicParameterType"
+    substitutionGroup="ArithmeticExpression"/>
+
+  <xs:element name="ArithmeticDMEParameter"
+    type="ArithmeticDMEParameterType"
+    substitutionGroup="ArithmeticExpression"/>
+
+  <xs:element name="ArithmeticPartParameter"
+    type="ArithmeticPartParameterType"
+    substitutionGroup="ArithmeticExpression"/>
+
+  <xs:element name="CharacteristicTolerance"
+    type="CharacteristicToleranceType"
+    substitutionGroup="ArithmeticExpression"/>
+
+  <xs:element name="FeatureLength"
+    type="FeatureLengthType"
+    substitutionGroup="ArithmeticExpression"/>
+
+  <xs:element name="FeatureArea"
+    type="FeatureAreaType"
+    substitutionGroup="ArithmeticExpression"/>
+
+  <xs:element name="FeatureSize"
+    type="FeatureSizeType"
+    substitutionGroup="ArithmeticExpression"/>
+
+<!-- END SUBSTITUTION GROUP EXTENSION FOR ArithmeticExpression -->
+
+<!-- END QIF ARITHMETIC EXPRESSIONS -->
+
+</xs:schema>

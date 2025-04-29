@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This document is part of QIF 3.0, an open, industry-wide standard -->
+<!-- established by the Dimensional Metrology Standards Consortium.    -->
+<!-- This document shall not be used in any manner to claim any        -->
+<!-- proprietary rights to such information, such as rights to a       -->
+<!-- patent, trademark, or copyright.                                  -->
+
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://qifstandards.org/xsd/qif3"
+  xmlns:t="http://qifstandards.org/xsd/qif3"
+  targetNamespace="http://qifstandards.org/xsd/qif3"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified"
+  version="3.0.0">
+
+  <xs:include schemaLocation="../QIFLibrary/Primitives.xsd"/>
+
+  <xs:annotation>
+    <xs:documentation>
+      This schema file defines a set of miscellaneous basic types used in
+      other schema files.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:simpleType name="ColorType">
+    <xs:annotation>
+      <xs:documentation>
+        The ColorType is the RGB color type - a triplet of integer numbers:
+        the red-component, the green-component and the blue-component.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="ListIntType">
+      <xs:length value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="QuaternionType">
+    <xs:annotation>
+      <xs:documentation>
+        The Quaternion is the quaternion type.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Value"
+        type="D4Type">
+        <xs:annotation>
+          <xs:documentation>
+            The Quaternion is defined in the following way: the first
+            element is the scalar part (cos(theta/2)), the second, third,
+            and fourth elements are the imaginary/"vector" part,
+            (sin(theta/2) * axis).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="NodeBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The NodeBaseType is the abstract base type for model elements.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="label"
+      type="xs:string">
+      <xs:annotation>
+        <xs:documentation>
+          The optional label attribute is the model entity "nameplate".
+          Normally it can be seen at the entity item in the project tree.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="NodeWithIdBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The NodeWithIdBaseType is the abstract base type for model elements
+        with id.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="NodeBaseType">
+        <xs:sequence>
+          <xs:element ref="Attributes"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional Attributes element contains user defined
+                attributes (typified, binary array, or XML structured).
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="id"
+          type="QIFIdType"
+          use="required">
+          <xs:annotation>
+            <xs:documentation>
+              The required id attribute is the unique model entity
+              identifier.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="TransparencyType">
+    <xs:annotation>
+      <xs:documentation>
+        The TransparencyType is the transparency type - double value in
+        range [0..1].
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:double">
+      <xs:minInclusive value="0"/>
+      <xs:maxExclusive value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:attributeGroup name="AttrDrawable">
+    <xs:attribute name="color"
+      type="ColorType">
+      <xs:annotation>
+        <xs:documentation>
+          The optional color attribute defines the RGB color property
+          of a model entity.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="transparency"
+      type="TransparencyType"
+      default="0.0">
+      <xs:annotation>
+        <xs:documentation>
+          The optional transparency attribute defines the transparency
+          property of a model entity.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="hidden"
+      type="xs:boolean"
+      default="0">
+      <xs:annotation>
+        <xs:documentation>
+          The optional hidden attribute defines the visibility property
+          of a model entity in the graphical window.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="size"
+      type="DoublePositiveType">
+      <xs:annotation>
+        <xs:documentation>
+          The optional size attribute defines a recommended size for
+          visualization of an infinite drawable element such as plane,
+          cylinder, axis, etc., or objects without explicit geometric
+          parameters (e.g. coordinate system).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:attributeGroup>
+
+  <xs:complexType name="DrawableBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The DrawableBaseType is the abstract base type for drawable
+        elements. It contains data necessary for a model entity
+        visualization.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="NodeWithIdBaseType">
+        <xs:attributeGroup ref="AttrDrawable"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AuthorType">
+    <xs:annotation>
+      <xs:documentation>
+        The AuthorType contains information about the author.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name"
+        type="xs:string"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Author element is the name of the person.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Organization"
+        type="xs:string"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Organization element is the name of author's
+            organization.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ApplicationType">
+    <xs:annotation>
+      <xs:documentation>
+        The ApplicationType contains information about the application.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name"
+        type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            The Name element is the name of the software application.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Organization"
+        type="xs:string"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional Organization element is the name of the
+            organization that created the software application.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AddonName"
+        type="xs:string"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional AddonName element is the name of the software
+            add-on application.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AddonOrganization"
+        type="xs:string"
+        minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            The optional AddonOrganization element is the name of the
+            organization that created the software add-on application.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="EdgeOrientedType">
+    <xs:annotation>
+      <xs:documentation>
+        The EdgeOrientedType is a reference to an edge with a given
+        orientation.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ElementReferenceType">
+        <xs:attribute name="turned"
+          type="xs:boolean"
+          default="0">
+          <xs:annotation>
+            <xs:documentation>
+              The optional turned attribute shows if the referenced
+              edge must be reversed from the original edge orientation.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="LineStyleEnumType">
+    <xs:annotation>
+      <xs:documentation>
+        The LineStyleEnumType enumerates values that describe line styles.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SOLID"/>
+      <xs:enumeration value="DOT"/>
+      <xs:enumeration value="DASH"/>
+      <xs:enumeration value="DASH_DOT"/>
+      <xs:enumeration value="DASH_DOT_DOT"/>
+      <xs:enumeration value="DASH_DOT_DOT_DOT"/>
+      <xs:enumeration value="DASH_DASH_DOT"/>
+      <xs:enumeration value="DASH_DASH_DOT_DOT"/>
+      <xs:enumeration value="DASH_DASH_DOT_DOT_DOT"/>
+      <xs:enumeration value="SHORT_DASH"/>
+      <xs:enumeration value="LONG_DASH"/>
+      <xs:enumeration value="MEDIUM_LONG_DASH"/>
+      <xs:enumeration value="MEDIUM_DASH_SHORT_DASH_SHORT_DASH"/>
+      <xs:enumeration value="LONG_DASH_SHORT_DASH"/>
+      <xs:enumeration value="LONG_DASH_SHORT_DASH_SHORT_DASH"/>
+      <xs:enumeration value="LONG_DASH_DOT_DOT"/>
+      <xs:enumeration value="LONG_DASH_DOT"/>
+      <xs:enumeration value="MEDIUM_DASH_DOT_SHORT_DASH_DOT"/>
+      <xs:enumeration value="SPARSE_DOT"/>
+      <xs:enumeration value="CENTERLINE"/>
+      <xs:enumeration value="PHANTOM"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="LineStyleType">
+    <xs:annotation>
+      <xs:documentation>
+        The LineStyleType defines a line style.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="LineStyleEnumType">
+        <xs:attribute name="thickness"
+          type="xs:positiveInteger"
+          default="1">
+          <xs:annotation>
+            <xs:documentation>
+              The optional thickness attribute is the line thickness in
+              pixels.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8BCD60B0-4779-46B3-B900-62AE193F21DF}</ProjectGuid>
+    <RootNamespace>QIF_30_vc100</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="xsd-cxx-tree.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\</IntDir>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ExecutablePath>C:\dev\xsd\bin\debug;C:\dev\xsd\bin;$(ExecutablePath)</ExecutablePath>
+    <TargetName>$(ProjectName)D</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ExecutablePath>C:\dev\xsd\bin\release;C:\dev\xsd\bin;$(VC_ExecutablePath_x64);$(CommonExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <CXX_Tree_Mapping_Rule>
+      <AdditionalOptions>--location-map http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd=..\QIFLibrary\xmldsig-core-schema.xsd --hxx-prologue "#include \"..\\export.hxx\""</AdditionalOptions>
+      <CharType>1</CharType>
+      <NamespaceMap>http://qifstandards.org/xsd/qif3=xsd::qif30</NamespaceMap>
+      <GenSerialization>true</GenSerialization>
+      <GenPolymorphic>true</GenPolymorphic>
+      <GenDefaultCtor>true</GenDefaultCtor>
+      <RootElement>QIFDocument</RootElement>
+      <ExportSymbol>QIF30_SYMBOL_DECL</ExportSymbol>
+    </CXX_Tree_Mapping_Rule>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;C:\dev\xsd\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>QIF30_EXPORTS;LIBXERCES_C_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>C:\dev\xsd\lib\xerces-c.dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)D.dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <CXX_Tree_Mapping_Rule>
+      <AdditionalOptions>--location-map http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd=..\QIFLibrary\xmldsig-core-schema.xsd --hxx-prologue "#include \"..\\export.hxx\""</AdditionalOptions>
+      <CharType>1</CharType>
+      <NamespaceMap>http://qifstandards.org/xsd/qif3=xsd::qif30</NamespaceMap>
+      <GenSerialization>true</GenSerialization>
+      <GenPolymorphic>true</GenPolymorphic>
+      <GenDefaultCtor>true</GenDefaultCtor>
+      <RootElement>QIFDocument</RootElement>
+      <ExportSymbol>QIF30_SYMBOL_DECL</ExportSymbol>
+    </CXX_Tree_Mapping_Rule>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>..\;..\QIFLibrary;..\QIFApplications;C:\dev\xsd\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>QIF30_EXPORTS;LIBXERCES_C_SHARED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>C:\dev\xsd\lib\xerces-c.dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="qiflibrary\Auxiliary.cxx" />
+    <ClCompile Include="qiflibrary\Characteristics.cxx" />
+    <ClCompile Include="qiflibrary\Expressions.cxx" />
+    <ClCompile Include="qiflibrary\Features.cxx" />
+    <ClCompile Include="qiflibrary\GenericExpressions.cxx" />
+    <ClCompile Include="qiflibrary\Geometry.cxx" />
+    <ClCompile Include="qiflibrary\IntermediatesPMI.cxx" />
+    <ClCompile Include="qiflibrary\Primitives.cxx" />
+    <ClCompile Include="qiflibrary\PrimitivesPD.cxx" />
+    <ClCompile Include="qiflibrary\PrimitivesPMI.cxx" />
+    <ClCompile Include="qifapplications\QIFDocument.cxx" />
+    <ClCompile Include="qifapplications\QIFMeasurementResources.cxx" />
+    <ClCompile Include="qifapplications\QIFPlan.cxx" />
+    <ClCompile Include="qifapplications\QIFProduct.cxx" />
+    <ClCompile Include="qifapplications\QIFResults.cxx" />
+    <ClCompile Include="qifapplications\QIFRules.cxx" />
+    <ClCompile Include="qifapplications\QIFStatistics.cxx" />
+    <ClCompile Include="qiflibrary\Statistics.cxx" />
+    <ClCompile Include="qiflibrary\Topology.cxx" />
+    <ClCompile Include="qiflibrary\Traceability.cxx" />
+    <ClCompile Include="qiflibrary\Units.cxx" />
+    <ClCompile Include="qiflibrary\Visualization.cxx" />
+    <ClCompile Include="qiflibrary\xmldsig-core-schema-qif3-namespace.cxx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="qiflibrary\Auxiliary.hxx" />
+    <ClInclude Include="qiflibrary\Characteristics.hxx" />
+    <ClInclude Include="qiflibrary\Expressions.hxx" />
+    <ClInclude Include="qiflibrary\Features.hxx" />
+    <ClInclude Include="qiflibrary\GenericExpressions.hxx" />
+    <ClInclude Include="qiflibrary\Geometry.hxx" />
+    <ClInclude Include="qiflibrary\IntermediatesPMI.hxx" />
+    <ClInclude Include="qiflibrary\Primitives.hxx" />
+    <ClInclude Include="qiflibrary\PrimitivesPD.hxx" />
+    <ClInclude Include="qiflibrary\PrimitivesPMI.hxx" />
+    <ClInclude Include="qifapplications\QIFDocument.hxx" />
+    <ClInclude Include="qifapplications\QIFMeasurementResources.hxx" />
+    <ClInclude Include="qifapplications\QIFPlan.hxx" />
+    <ClInclude Include="qifapplications\QIFProduct.hxx" />
+    <ClInclude Include="qifapplications\QIFResults.hxx" />
+    <ClInclude Include="qifapplications\QIFRules.hxx" />
+    <ClInclude Include="qifapplications\QIFStatistics.hxx" />
+    <ClInclude Include="qiflibrary\Statistics.hxx" />
+    <ClInclude Include="qiflibrary\Topology.hxx" />
+    <ClInclude Include="qiflibrary\Traceability.hxx" />
+    <ClInclude Include="qiflibrary\Units.hxx" />
+    <ClInclude Include="qiflibrary\Visualization.hxx" />
+    <ClInclude Include="qiflibrary\xmldsig-core-schema-qif3-namespace.hxx" />
+  </ItemGroup>
+  <ItemGroup>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Auxiliary.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+      <SubType>Designer</SubType>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Characteristics.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Expressions.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Features.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\GenericExpressions.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Geometry.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\IntermediatesPMI.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Primitives.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\PrimitivesPD.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\PrimitivesPMI.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFDocument.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFApplications</OutDir>
+      <SubType>Designer</SubType>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFMeasurementResources.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFApplications</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFPlan.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFApplications</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFProduct.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFApplications</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFResults.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFApplications</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFRules.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFApplications</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFStatistics.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFApplications</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFApplications</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Statistics.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Topology.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Traceability.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Units.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Visualization.xsd">
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+      <SubType>Designer</SubType>
+    </CXX_Tree_Mapping_Rule>
+    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\xmldsig-core-schema-qif3-namespace.xsd">
+      <SubType>Designer</SubType>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\QIFLibrary</OutDir>
+      <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\QIFLibrary</OutDir>
+    </CXX_Tree_Mapping_Rule>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="xsd-cxx-tree.targets" />
+  </ImportGroup>
+</Project>

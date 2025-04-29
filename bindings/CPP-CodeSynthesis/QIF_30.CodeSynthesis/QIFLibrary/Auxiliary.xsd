@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This document is part of QIF 3.0, an open, industry-wide standard -->
+<!-- established by the Dimensional Metrology Standards Consortium.    -->
+<!-- This document shall not be used in any manner to claim any        -->
+<!-- proprietary rights to such information, such as rights to a       -->
+<!-- patent, trademark, or copyright.                                  -->
+
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="http://qifstandards.org/xsd/qif3"
+  xmlns:t="http://qifstandards.org/xsd/qif3"
+  targetNamespace="http://qifstandards.org/xsd/qif3"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified"
+  version="3.0.0">
+
+  <xs:include schemaLocation="../QIFLibrary/PrimitivesPD.xsd"/>
+
+  <xs:annotation>
+    <xs:documentation>
+      This schema file defines types that describe auxiliary entities of a
+      CAD model.
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:complexType name="CoordinateSystemSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The CoordinateSystemSetType represents a container for storing all
+        coordinate systems present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="CoordinateSystem"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each CoordinateSystem element is a coordinate system.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of coordinate systems in
+          this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="CADCoordinateSystemType">
+    <xs:annotation>
+      <xs:documentation>
+        The CADCoordinateSystemType defines the Cartesian 3D coordinate
+        system in the model space.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DrawableBaseType">
+        <xs:sequence>
+          <xs:element ref="CoordinateSystemCore">
+            <xs:annotation>
+              <xs:documentation>
+                The CoordinateSystemCore element defines the mathematical
+                core of the coordinate system.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AuxiliarySetType">
+    <xs:annotation>
+      <xs:documentation>
+        The AuxiliarySetType represents a container for storing all
+        auxiliary objects present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="Auxiliary"
+        maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>
+            Each Auxiliary element is an auxiliary object.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="n"
+      type="NaturalType"
+      use="required">
+      <xs:annotation>
+        <xs:documentation>
+          The required n attribute is the number of auxiliary objects in
+          this set.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="AuxiliaryBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The AuxiliaryBaseType is the abstract base type for all
+        auxiliary object types.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="DrawableBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="PointAuxiliaryType">
+    <xs:annotation>
+      <xs:documentation>
+        The PointAuxiliaryType defines an auxiliary point.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="AuxiliaryBaseType">
+        <xs:sequence>
+          <xs:element name="XYZ"
+            type="PointType">
+            <xs:annotation>
+              <xs:documentation>
+                The XYZ element is the Cartesian three-dimensional
+                coordinates of the 3D point.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="LineAuxiliaryType">
+    <xs:annotation>
+      <xs:documentation>
+        The LineAuxiliaryType defines an auxiliary line.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="AuxiliaryBaseType">
+        <xs:sequence>
+          <xs:group ref="LineSegmentGroup">
+            <xs:annotation>
+              <xs:documentation>
+                The LineSegmentGroup is a group of elements that contains a
+                start point and an end point that define a portion of a
+                line.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:group>
+          <xs:element name="LineStyle"
+            type="LineStyleType"
+            default="SOLID"
+            minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>
+                The optional LineStyle element is the line style of the
+                auxiliary line.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AuxiliaryPlaneBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The AuxiliaryPlaneBaseType is the abstract base type for all
+        auxiliary plane types.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="AuxiliaryBaseType">
+        <xs:sequence>
+          <xs:element name="Plane"
+            type="PlaneType">
+            <xs:annotation>
+              <xs:documentation>
+                The Plane element is the plane definition.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="PlaneReferenceType">
+    <xs:annotation>
+      <xs:documentation>
+        The PlaneReferenceType defines a plane with user defined attributes
+        and direct references; the plane may be used as an auxiliary plane.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="AuxiliaryPlaneBaseType"/>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="CoordinateSystemSet"
+    type="CoordinateSystemSetType">
+    <xs:annotation>
+      <xs:documentation>
+        The CoordinateSystemSet global element is a collection of all
+        coordinate systems present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="CoordinateSystem"
+    type="CADCoordinateSystemType">
+    <xs:annotation>
+      <xs:documentation>
+        The CoordinateSystem element is a Cartesian 3D coordinate system.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="CoordinateSystemCore"
+    type="CoordinateSystemCoreType">
+    <xs:annotation>
+      <xs:documentation>
+        The CoordinateSystemCore element is the mathematical core of a
+        Cartesian 3D coordinate system.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="AuxiliarySet"
+    type="AuxiliarySetType">
+    <xs:annotation>
+      <xs:documentation>
+        The AuxiliarySet global element is a collection of all
+        auxiliary objects present in the CAD scene.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+<!-- START SUBSTITUTION GROUP FOR AUXILIARY -->
+
+  <xs:element name="Auxiliary"
+    type="AuxiliaryBaseType"
+    abstract="true">
+    <xs:annotation>
+      <xs:documentation>
+        The Auxiliary global element is an auxiliary object. This is
+        the head of a substitution group.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="PointAuxiliary"
+    type="PointAuxiliaryType"
+    substitutionGroup="Auxiliary">
+    <xs:annotation>
+      <xs:documentation>
+        The PointAuxiliary global element is an auxiliary point.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="LineAuxiliary"
+    type="LineAuxiliaryType"
+    substitutionGroup="Auxiliary">
+    <xs:annotation>
+      <xs:documentation>
+        The LineAuxiliary global element is an auxiliary line.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+  <xs:element name="PlaneReference"
+    type="PlaneReferenceType"
+    substitutionGroup="Auxiliary">
+    <xs:annotation>
+      <xs:documentation>
+        The PlaneReference global element is a reference plane.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+
+<!-- END SUBSTITUTION GROUP FOR AUXILIARY -->
+
+</xs:schema>

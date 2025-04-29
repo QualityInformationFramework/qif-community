@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QIF_30_vc100", "QIF_30\QIF_30_vc100.vcxproj", "{8BCD60B0-4779-46B3-B900-62AE193F21DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8BCD60B0-4779-46B3-B900-62AE193F21DF}.Debug|x64.ActiveCfg = Release|x64
+		{8BCD60B0-4779-46B3-B900-62AE193F21DF}.Debug|x64.Build.0 = Release|x64
+		{8BCD60B0-4779-46B3-B900-62AE193F21DF}.Release|x64.ActiveCfg = Release|x64
+		{8BCD60B0-4779-46B3-B900-62AE193F21DF}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E59B9A65-D6BA-4D9A-AD1F-FC363661F504}
+	EndGlobalSection
+EndGlobal
