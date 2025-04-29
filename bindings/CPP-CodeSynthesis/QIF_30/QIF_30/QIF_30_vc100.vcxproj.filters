@@ -9,9 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Schema Files">
-      <UniqueIdentifier>{326a9484-93da-456d-9f82-5235d4ebdeb2}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="qiflibrary\Auxiliary.cxx">
@@ -154,79 +151,5 @@
     <ClInclude Include="qiflibrary\xmldsig-core-schema-qif3-namespace.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Auxiliary.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Characteristics.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Expressions.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Features.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\GenericExpressions.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Geometry.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\IntermediatesPMI.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Primitives.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\PrimitivesPD.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\PrimitivesPMI.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFDocument.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFMeasurementResources.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFPlan.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFProduct.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFResults.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFRules.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFApplications\QIFStatistics.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Statistics.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Topology.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Traceability.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Units.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\Visualization.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-    <CXX_Tree_Mapping_Rule Include="..\QIFLibrary\xmldsig-core-schema-qif3-namespace.xsd">
-      <Filter>Schema Files</Filter>
-    </CXX_Tree_Mapping_Rule>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\ReadMe.txt" />
   </ItemGroup>
 </Project>
