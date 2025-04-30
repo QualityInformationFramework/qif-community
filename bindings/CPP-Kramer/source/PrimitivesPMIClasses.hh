@@ -450,6 +450,10 @@ public:
   void printSelf(FILE * outFile);
   void oPrintSelf(FILE * outFile);
 
+  bool getbad();
+  void setbad(bool badIn);
+
+protected:
   bool bad;
 };
 
@@ -470,6 +474,10 @@ public:
   void printSelf(FILE * outFile);
   void oPrintSelf(FILE * outFile);
 
+  bool getbad();
+  void setbad(bool badIn);
+
+protected:
   bool bad;
 };
 
@@ -490,6 +498,10 @@ public:
   void printSelf(FILE * outFile);
   void oPrintSelf(FILE * outFile);
 
+  bool getbad();
+  void setbad(bool badIn);
+
+protected:
   bool bad;
 };
 
